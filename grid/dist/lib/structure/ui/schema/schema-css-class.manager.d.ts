@@ -1,0 +1,31 @@
+import { ElementRef, OnDestroy, RendererFactory2 } from '@angular/core';
+import { SchemaQueryService } from 'structure/app/schema/schema-query.service';
+import { StructureId } from 'structure/domain/structure-id';
+export declare class SchemaCssClassManager implements OnDestroy {
+    private rendererFactory2;
+    private schemaQueryService;
+    private readonly VERTICAL_GRID_CLASS_NAME;
+    private readonly HORIZONTAL_GRID_CLASS_NAME;
+    private readonly THEME_FABRIC_CLASS_NAME;
+    private readonly THEME_MATERIAL_CLASS_NAME;
+    private readonly THEME_LIGHT_CLASS_NAME;
+    private readonly THEME_DARK_CLASS_NAME;
+    private readonly ROW_COLORING_ODD;
+    private readonly ROW_COLORING_EVEN;
+    private readonly renderer;
+    private cssClass;
+    private cssHostRef;
+    private unsubscribe$;
+    constructor(rendererFactory2: RendererFactory2, schemaQueryService: SchemaQueryService);
+    ngOnDestroy(): void;
+    init(elementRef: ElementRef, structureId: StructureId): void;
+    private updateState;
+    private renderCssClasses;
+    private toggleCssClass;
+    private removeThemeCssClasses;
+    private resolveThemeClassName;
+    private resolveRowColoringClassName;
+    private removeRowColoringClasses;
+    private addClass;
+    private removeClass;
+}

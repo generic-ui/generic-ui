@@ -1,0 +1,26 @@
+{
+	"name": "@generic-ui/grid",
+	"version": "0.0.1-alpha1",
+	"description": "Generic Ui - Grid",
+	"license": "UNLICENSED",
+	"peerDependencies": {
+		"@angular/common": "6.1.10",
+		"@angular/core": "6.1.10",
+		"element-resize-detector": "1.1.14"
+	},
+	"main": "dist/gui-grid.umd.js",
+	"module": "dist/gui-grid.js",
+	"files": [
+		"dist"
+	],
+	"keywords": [
+		"grid",
+		"generic"
+	],
+	"homepage": "https://github.com/generic-ui/generic-ui/grid",
+	"bugs": "https://github.com/generic-ui/generic-ui/issues",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/generic-ui/generic-ui.git"
+	}
+}

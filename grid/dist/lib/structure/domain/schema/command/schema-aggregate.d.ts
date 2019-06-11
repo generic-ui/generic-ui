@@ -1,0 +1,36 @@
+import { RowColoring } from 'structure/domain/schema/row-coloring';
+import { ColumnHeaderEntity } from 'structure/domain/schema/command/column-header/column-header.entity';
+import { SchemaTheme } from 'structure/domain/schema/schema-theme';
+export declare class SchemaAggregate {
+    private width?;
+    private height?;
+    static default(): SchemaAggregate;
+    private headerHeight;
+    private pagerHeight;
+    private containerHeight;
+    private active;
+    private horizontalGrid;
+    private verticalGrid;
+    private columnHeader;
+    private theme;
+    private rowColoring;
+    constructor(width?: number, height?: number);
+    getRowColoring(): RowColoring;
+    setHeight(height: number): void;
+    setTheme(theme: SchemaTheme): void;
+    setRowColoring(coloring: RowColoring): void;
+    getTheme(): SchemaTheme;
+    getWidth(): number;
+    getHeight(): number;
+    getContainerHeight(): number;
+    getColumnHeader(): ColumnHeaderEntity;
+    setHeaderTop(enabled: boolean): void;
+    setHeaderBottom(enabled: boolean): void;
+    setVerticalGrid(enabled: boolean): void;
+    setHorizontalGrid(enabled: boolean): void;
+    isVerticalGridEnabled(): boolean;
+    isHorizontalGridEnabled(): boolean;
+    private getHeaderHeight;
+    private getPagerHeight;
+    private calculateContainerHeight;
+}
