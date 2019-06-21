@@ -1,2 +1,2 @@
-import { StructureDefinition } from 'structure/domain/structure-definition';
+import { StructureDefinition } from 'structure/ui/structure/structure-definition';
 export declare const gridStructureDefinition: StructureDefinition;

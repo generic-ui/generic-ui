@@ -6,12 +6,12 @@ import { Entity } from 'structure/domain/source/entity';
 import { Presentation } from 'structure/domain/presentation/query/presentation';
 import { AggregateId, QueryModel } from 'generic-ui-cqrs';
 export declare class Structure extends QueryModel {
-    origin: Origin;
-    formation: Formation;
-    schema: Schema;
-    paging: Paging;
-    source: Array<Entity>;
-    presentation: Presentation;
+    private readonly origin;
+    private readonly formation;
+    private readonly schema;
+    private readonly paging;
+    private readonly source;
+    private readonly presentation;
     constructor(uid: AggregateId, origin: Origin, formation: Formation, schema: Schema, paging: Paging, source: Array<Entity>, presentation: Presentation);
     getOrigin(): Origin;
     getFormation(): Formation;
@@ -19,4 +19,7 @@ export declare class Structure extends QueryModel {
     getPaging(): Paging;
     getSource(): Array<Entity>;
     getPresentation(): Presentation;
+    isTopHeaderEnabled(): boolean;
+    isBottomHeaderEnabled(): boolean;
+    isReadyToDisplay(): boolean;
 }

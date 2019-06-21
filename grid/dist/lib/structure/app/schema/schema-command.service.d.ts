@@ -1,5 +1,5 @@
 import { OnDestroy } from '@angular/core';
-import { RowColoring } from 'structure/domain/schema/row-coloring';
+import { SchemaRowColoring } from 'structure/domain/schema/schema-row-coloring';
 import { StructureId } from 'structure/domain/structure-id';
 import { SchemaDispatcher } from 'structure/domain/schema/command/schema.dispatcher';
 import { SchemaTheme } from 'structure/domain/schema/schema-theme';
@@ -15,7 +15,7 @@ export declare class SchemaCommandService implements OnDestroy {
     changeVerticalGrid(enabled: boolean, structureId?: StructureId): void;
     changeHorizontalGrid(enabled: boolean, structureId?: StructureId): void;
     setTheme(theme: SchemaTheme, structureId?: StructureId): void;
-    setRowColoring(coloring: RowColoring, structureId?: StructureId): void;
+    setRowColoring(coloring: SchemaRowColoring, structureId?: StructureId): void;
     changeTopHeader(enabled: boolean, structureId?: StructureId): void;
     changeBottomHeader(enabled: boolean, structureId?: StructureId): void;
     toggleVerticalGrid(structureId?: StructureId): void;

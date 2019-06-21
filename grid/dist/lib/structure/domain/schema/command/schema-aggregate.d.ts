@@ -1,5 +1,5 @@
-import { RowColoring } from 'structure/domain/schema/row-coloring';
 import { ColumnHeaderEntity } from 'structure/domain/schema/command/column-header/column-header.entity';
+import { SchemaRowColoring } from 'structure/domain/schema/schema-row-coloring';
 import { SchemaTheme } from 'structure/domain/schema/schema-theme';
 export declare class SchemaAggregate {
     private width?;
@@ -15,10 +15,10 @@ export declare class SchemaAggregate {
     private theme;
     private rowColoring;
     constructor(width?: number, height?: number);
-    getRowColoring(): RowColoring;
+    getRowColoring(): SchemaRowColoring;
     setHeight(height: number): void;
     setTheme(theme: SchemaTheme): void;
-    setRowColoring(coloring: RowColoring): void;
+    setRowColoring(coloring: SchemaRowColoring): void;
     getTheme(): SchemaTheme;
     getWidth(): number;
     getHeight(): number;

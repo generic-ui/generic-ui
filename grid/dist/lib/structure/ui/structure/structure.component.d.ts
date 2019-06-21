@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { StructureQueryService } from 'structure/app/structure/structure-query.service';
 import { StructureBase } from 'structure/ui/structure-base';
-import { StructureDefinition } from 'structure/domain/structure-definition';
+import { StructureDefinition } from 'structure/ui/structure/structure-definition';
 import { StructureId } from 'structure/domain/structure-id';
 import { SchemaCssClassManager } from 'structure/ui/schema/schema-css-class.manager';
 import { FormationCommandService } from 'structure/app/formation/formation-command.service';
@@ -48,7 +49,7 @@ export declare const structureComponentSelfProviders: ({
     provide: typeof StructureCommandService;
     useClass: typeof import("structure/ui/structure/local/structure/local-structure-command.service").LocalStructureCommandService;
 } | {
-    provide: typeof import("structure/app/structure/structure-query.service").StructureQueryService;
+    provide: typeof StructureQueryService;
     useClass: typeof import("structure/ui/structure/local/structure/local-structure-query.service").LocalStructureQueryService;
 } | typeof SchemaCssClassManager | {
     provide: typeof StructureId;
@@ -58,9 +59,10 @@ export declare class StructureComponent extends StructureBase implements OnChang
     private elementRef;
     private changeDetectorRef;
     private renderer;
-    structureDefinition: StructureDefinition;
+    private structureDefinition;
     private structureId;
     private structureCommandService;
+    private structureQueryService;
     private originCommandService;
     private pagingCommandService;
     private pagingEventService;
@@ -77,8 +79,9 @@ export declare class StructureComponent extends StructureBase implements OnChang
     private structureHeight;
     private columnHeader;
     private pagingQueryModel;
+    private structure;
     private readonly unsubscribe$;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureId: StructureId, structureCommandService: StructureCommandService, originCommandService: OriginCommandService, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, pagingQueryService: PagingQueryService, schemaCommandService: SchemaCommandService, schemaQueryService: SchemaQueryService, formationCommandService: FormationCommandService, presentationCommandService: PresentationCommandService, presentationQueryService: PresentationQueryService, schemaStylesManager: SchemaCssClassManager, className: string);
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureId: StructureId, structureCommandService: StructureCommandService, structureQueryService: StructureQueryService, originCommandService: OriginCommandService, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, pagingQueryService: PagingQueryService, schemaCommandService: SchemaCommandService, schemaQueryService: SchemaQueryService, formationCommandService: FormationCommandService, presentationCommandService: PresentationCommandService, presentationQueryService: PresentationQueryService, schemaStylesManager: SchemaCssClassManager, className: string);
     ngOnChanges(simpleChanges: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;
@@ -89,4 +92,5 @@ export declare class StructureComponent extends StructureBase implements OnChang
     isColumnHeaderBottomEnabled(): boolean;
     isPagingTopEnabled(): boolean;
     isPagingBottomEnabled(): boolean;
+    isBorderEnabled(): boolean;
 }

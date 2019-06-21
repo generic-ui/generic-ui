@@ -1,7 +1,7 @@
 import { ElementRef, Renderer2, OnDestroy, AfterViewInit, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormationQueryService } from 'structure/app/formation/formation-query.service';
 import { SelectedRowsList } from 'structure/domain/formation/query/selected-rows/selected-rows-list';
-import { RowColoring } from 'structure/domain/schema/row-coloring';
+import { SchemaRowColoring } from 'structure/domain/schema/schema-row-coloring';
 import { Entity } from 'structure/domain/source/entity';
 import { SourceQueryService } from 'structure/app/source/source-query.service';
 import { StructureId } from 'structure/domain/structure-id';
@@ -27,7 +27,7 @@ export declare class StructureContainerComponent implements OnInit, AfterViewIni
     source: Array<Entity>;
     height: number;
     selectedRows: SelectedRowsList;
-    rowColoring: RowColoring;
+    rowColoring: SchemaRowColoring;
     private autoResizeWidthEnabled;
     private unsubscribe$;
     constructor(elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, structureId: StructureId, sourceQueryService: SourceQueryService, schemaQueryService: SchemaQueryService, presentationCommandService: PresentationCommandService, presentationQueryService: PresentationQueryService, formationQueryService: FormationQueryService, resizeDetector: ResizeDetector, structureParent: any);
