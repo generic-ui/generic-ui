@@ -1,8 +1,15 @@
 {
-	"name": "@generic-ui/grid",
+	"name": "@generic-ui/ngx-grid",
 	"version": "0.0.1-alpha.3",
-	"description": "Generic Ui - Grid",
+	"description": "Generic Ui - Angular Grid",
 	"license": "UNLICENSED",
+	"peerDependencies": {
+		"@angular/common": "^6.1.10",
+		"@angular/core": "^6.1.10",
+		"element-resize-detector": "^1.1.14",
+		"rxjs": "^6.0.0"
+	},
+	"main": "dist/gui-grid.umd.js",
 	"module": "dist/gui-grid.js",
 	"files": [
 		"dist"
