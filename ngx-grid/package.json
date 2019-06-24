@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/ngx-grid",
-	"version": "0.0.1-alpha.3",
+	"version": "0.0.1-alpha.4",
 	"description": "Generic Ui - Angular Grid",
 	"license": "UNLICENSED",
 	"peerDependencies": {
@@ -10,6 +10,7 @@
 		"rxjs": "^6.0.0"
 	},
 	"main": "dist/gui-grid.umd.js",
+	"types": "dist/grid.index.d.ts",
 	"module": "dist/gui-grid.js",
 	"files": [
 		"dist"
