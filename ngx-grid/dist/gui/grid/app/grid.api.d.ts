@@ -8,14 +8,15 @@ export interface GuiColumn {
 }
 export declare enum GuiColumnType {
     TEXT = 0,
-    CHIP = 1,
-    LINK = 2,
-    INPUT = 3,
-    IMAGE = 4,
-    CHECKBOX = 5,
-    BOLD = 6,
-    ITALIC = 7,
-    CUSTOM = 8
+    NUMBER = 1,
+    CHIP = 2,
+    LINK = 3,
+    INPUT = 4,
+    IMAGE = 5,
+    CHECKBOX = 6,
+    BOLD = 7,
+    ITALIC = 8,
+    CUSTOM = 9
 }
 export interface GuiPagingConfig {
     enabled?: boolean;
