@@ -1,8 +1,8 @@
 {
 	"name": "@generic-ui/grid",
-	"version": "0.0.1-alpha.8",
+	"version": "0.0.1-alpha.9",
 	"description": "Generic Ui - Grid",
-	"license": "UNLICENSED",
+	"license": "MIT",
 	"module": "dist/gui-grid.js",
 	"files": [
 		"dist"
@@ -11,7 +11,7 @@
 		"grid",
 		"generic"
 	],
-	"homepage": "https://github.com/generic-ui/generic-ui",
+	"homepage": "https://github.com/generic-ui/generic-ui/tree/master/grid",
 	"bugs": "https://github.com/generic-ui/generic-ui/issues",
 	"repository": {
 		"type": "git",
