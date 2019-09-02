@@ -1,1 +1,3 @@
 Generic Ui
+
+GenericUI is a lightweight data management tool that displays statistic figures in a tabular format. It was developed in mind of easy implementation and usage. The data can be viewed in a form of Grid. Through built-in functions, the data inside the grid can be easily tracked and managed. GenericUI includes many user friendly features like sorting, paging, data binding, theming. Additionally, Grid supports a variety of helpful elements such as button, check box, input, chip, select.

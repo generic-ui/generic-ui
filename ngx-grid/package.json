@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/ngx-grid",
-	"version": "0.0.1-alpha.10",
+	"version": "0.0.1-alpha.11",
 	"description": "Generic Ui - Angular Grid",
 	"license": "MIT",
 	"peerDependencies": {
@@ -20,10 +20,10 @@
 		"generic",
 		"angular"
 	],
-	"homepage": "https://github.com/generic-ui/generic-ui/tree/master/ngx-grid",
+	"homepage": "http://generic-ui.com",
 	"bugs": "https://github.com/generic-ui/generic-ui/issues",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/generic-ui/generic-ui/.git"
+		"url": "https://github.com/generic-ui/generic-ui.git"
 	}
 }
