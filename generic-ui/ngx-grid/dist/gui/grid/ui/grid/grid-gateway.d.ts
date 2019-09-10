@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { GuiColumn, GuiPagingConfig, GuiRowColoring, GuiTheme } from '../../../grid/app/grid.api';
+import { GuiColumn, GuiPagingConfig, GuiRowColoring, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
 export declare abstract class GridGateway {
     /**
      * INPUTS
@@ -18,6 +18,7 @@ export declare abstract class GridGateway {
     rowColoring: string | GuiRowColoring;
     loading: boolean;
     virtualScroll: boolean;
+    sorting: boolean | GuiSorting;
     /**
      * OUTPUTS
      */

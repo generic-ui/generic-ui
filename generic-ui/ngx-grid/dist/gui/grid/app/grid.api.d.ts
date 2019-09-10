@@ -37,3 +37,10 @@ export declare enum GuiRowColoring {
     EVEN = 1,
     ODD = 2
 }
+export interface GuiSorting {
+    enabled?: boolean;
+    /**
+     * @experimental
+     */
+    multiSorting?: boolean;
+}
