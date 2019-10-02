@@ -8,15 +8,14 @@ export interface GuiColumn {
 }
 export declare enum GuiColumnType {
     TEXT = 0,
-    NUMBER = 1,
-    CHIP = 2,
-    LINK = 3,
-    INPUT = 4,
-    IMAGE = 5,
-    CHECKBOX = 6,
-    BOLD = 7,
-    ITALIC = 8,
-    CUSTOM = 9
+    CHIP = 1,
+    LINK = 2,
+    IMAGE = 3,
+    BOLD = 4,
+    ITALIC = 5,
+    NUMBER = 6,
+    CHECKBOX = 7,
+    CUSTOM = 8
 }
 export interface GuiPagingConfig {
     enabled?: boolean;
@@ -43,4 +42,13 @@ export interface GuiSorting {
      * @experimental
      */
     multiSorting?: boolean;
+}
+export interface GuiFiltering {
+    enabled?: boolean;
+}
+export interface GuiQuickFilters {
+    enabled?: boolean;
+}
+export interface GuiSearching {
+    enabled?: boolean;
 }

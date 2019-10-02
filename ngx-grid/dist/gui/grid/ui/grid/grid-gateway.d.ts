@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { GuiColumn, GuiPagingConfig, GuiRowColoring, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
+import { GuiColumn, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
 export declare abstract class GridGateway {
     /**
      * INPUTS
@@ -20,6 +20,26 @@ export declare abstract class GridGateway {
     virtualScroll: boolean;
     sorting: boolean | GuiSorting;
     /**
+     * @experimental
+     */
+    filtering: boolean | GuiFiltering;
+    /**
+     * @experimental
+     */
+    quickFilters: boolean | GuiQuickFilters;
+    /**
+     * @experimental
+     */
+    searching: boolean | GuiSearching;
+    /**
+     * @experimental
+     */
+    editMode: boolean;
+    /**
+     * @experimental
+     */
+    cellEditing: boolean;
+    /**
      * OUTPUTS
      */
     pageChanged: EventEmitter<number>;
@@ -27,9 +47,20 @@ export declare abstract class GridGateway {
     itemsSelected: EventEmitter<any>;
     columnsChanged: EventEmitter<void>;
     containerWidthChanged: EventEmitter<number>;
+    sourceEdited: EventEmitter<{
+        after: any;
+        before: any;
+    }>;
+    cellEditEntered: EventEmitter<void>;
+    cellEditCanceled: EventEmitter<void>;
+    cellEditSubmitted: EventEmitter<void>;
     onPageChange(page: number): void;
     onPageSizeChange(pageSize: number): void;
     onItemSelect(item: any): void;
     onColumnsChange(): void;
     onContainerWidthChange(containerWidth: number): void;
+    onSourceEdit(value: any): void;
+    onCellEditEnter(): void;
+    onCellEditSubmit(): void;
+    onCellEditCancel(): void;
 }
