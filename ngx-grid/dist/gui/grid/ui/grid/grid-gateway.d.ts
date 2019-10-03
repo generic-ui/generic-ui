@@ -39,6 +39,7 @@ export declare abstract class GridGateway {
      * @experimental
      */
     cellEditing: boolean;
+    summaryPanel: boolean;
     /**
      * OUTPUTS
      */
