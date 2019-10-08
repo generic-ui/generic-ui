@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { GuiColumn, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
+import { GuiAggregation, GuiColumn, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
 export declare abstract class GridGateway {
     /**
      * INPUTS
@@ -40,6 +40,10 @@ export declare abstract class GridGateway {
      */
     cellEditing: boolean;
     summaryPanel: boolean;
+    /**
+     * @experimental
+     */
+    aggregation: GuiAggregation;
     /**
      * OUTPUTS
      */

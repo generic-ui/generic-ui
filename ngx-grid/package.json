@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/ngx-grid",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Generic Ui - Angular Grid",
 	"license": "MIT",
 	"peerDependencies": {

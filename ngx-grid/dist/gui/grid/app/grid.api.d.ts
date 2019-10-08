@@ -52,3 +52,6 @@ export interface GuiQuickFilters {
 export interface GuiSearching {
     enabled?: boolean;
 }
+export interface GuiAggregation {
+    enabled?: boolean;
+}
