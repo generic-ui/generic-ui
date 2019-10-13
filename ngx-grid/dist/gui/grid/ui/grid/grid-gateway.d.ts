@@ -1,6 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GuiAggregation, GuiColumn, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../../grid/app/grid.api';
-export declare abstract class GridGateway {
+import { GridColumnConverter } from 'grid/ui/grid/grid.column.converter';
+import { ColumnConfig } from 'structure/domain/composition/column.config';
+export declare abstract class GridGateway implements OnChanges {
+    private gridColumnConverter;
     /**
      * INPUTS
      */
@@ -59,6 +62,8 @@ export declare abstract class GridGateway {
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
+    columnsConfig: Array<ColumnConfig>;
+    protected constructor(gridColumnConverter: GridColumnConverter);
     onPageChange(page: number): void;
     onPageSizeChange(pageSize: number): void;
     onItemSelect(item: any): void;
@@ -68,4 +73,5 @@ export declare abstract class GridGateway {
     onCellEditEnter(): void;
     onCellEditSubmit(): void;
     onCellEditCancel(): void;
+    ngOnChanges(changes: SimpleChanges): void;
 }
