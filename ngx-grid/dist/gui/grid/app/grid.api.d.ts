@@ -5,6 +5,7 @@ export interface GuiColumn {
     template?: string;
     columnType?: string | GuiColumnType;
     width?: string | number;
+    aggregation?: GuiColumnAggregation;
 }
 export declare enum GuiColumnType {
     TEXT = 0,
@@ -54,4 +55,10 @@ export interface GuiSearching {
 }
 export interface GuiAggregation {
     enabled?: boolean;
+    top?: boolean;
+    bottom?: boolean;
+}
+export interface GuiColumnAggregation {
+    enabled?: boolean;
+    aggregationTypes?: Array<any>;
 }

@@ -4,6 +4,7 @@
 export * from './grid.index';
 export { GridGateway as ɵc } from './gui/grid/ui/grid/grid-gateway';
 export { gridStructureDefinition as ɵf } from './gui/grid/ui/grid/grid-structure-definition';
+export { GridColumnConverter as ɵh } from './gui/grid/ui/grid/grid.column.converter';
 export { gridSelector as ɵa } from './gui/grid/ui/grid/grid.component';
 export { gridProviders as ɵd } from './gui/grid/ui/grid/grid.providers';
 export { StructureDefinition as ɵe } from './lib/structure/ui/structure-definition';
