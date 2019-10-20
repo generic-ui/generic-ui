@@ -59,6 +59,7 @@ export declare abstract class GridGateway implements OnChanges {
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
+    private readonly gridColumnConverter;
     protected constructor();
     ngOnChanges(changes: SimpleChanges): void;
     onPageChange(page: number): void;
@@ -70,7 +71,4 @@ export declare abstract class GridGateway implements OnChanges {
     onCellEditEnter(): void;
     onCellEditSubmit(): void;
     onCellEditCancel(): void;
-    private convert;
-    private convertColumn;
-    private convertType;
 }

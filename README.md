@@ -1,3 +1,30 @@
-Generic Ui
+##<a href='http://generic-ui.com' >Generic Ui Grid</a>
 
-GenericUI is a lightweight data management tool that displays statistic figures in a tabular format. It was developed in mind of easy implementation and usage. The data can be viewed in a form of Grid. Through built-in functions, the data inside the grid can be easily tracked and managed. GenericUI includes many user friendly features like sorting, paging, data binding, theming. Additionally, Grid supports a variety of helpful elements such as button, check box, input, chip, select.
+Generic UI is a lightweight data management tool that displays statistic figures in a tabular format. It was developed with ease of implementation and usage in mind. The data can be viewed in grid form. Using built-in functions, the data contained in the grid can easily be tracked and managed. Generic UI includes many user-friendly features like sorting, paging, data binding and theming. Additionally, the grid supports a variety of helpful elements such as buttons, check boxes, inputs, chips and dropdown menus.
+
+![demo](http://generic-ui.com/assets/images/grid-example.png)
+
+Supported libraries and frameworks:
+ * Angular - <a href="https://github.com/generic-ui/generic-ui/tree/master/ngx-grid" >Grid for Angular</a>,
+ * JavaScript - <a href="https://github.com/generic-ui/generic-ui/tree/master/grid" >Grid for Vanilla JavaScript</a>,
+ * jQuery - TBD
+ * React - TBD,
+ * Vue.js - TBD.
+
+
+Grid is a rich library with many features like:
+ * Editing 
+ * Virtual scroll, infinite scroll,
+ * Summaries,
+ * Sort, search, filter,
+ * Pagination,
+ * Column configuration,
+ * Themes,
+ * Templates.
+
+
+To find more details about this Generic Ui Grid library visit our website <a href="http://generic-ui.com/">Generic Ui - Grid - homepage</a>.
+You will find there <a href="http://generic-ui.com/guide">full documentation and easy to read guide</a> on how to use *Grid*.
+
+## License:
+Code released under <a href='https://github.com/generic-ui/generic-ui/blob/master/ngx-grid/LICENSE' >the MIT license</a>.

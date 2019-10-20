@@ -1,22 +1,55 @@
 export declare type fieldAccessor = (element?: any) => any;
 export interface GuiColumn {
+    type?: string | GuiDataType;
+    view?: string | GuiCellView;
     header?: string;
     field?: string | fieldAccessor;
-    template?: string;
-    columnType?: string | GuiColumnType;
+    customTemplate?: string;
     width?: string | number;
     aggregation?: GuiColumnAggregation;
 }
-export declare enum GuiColumnType {
+export declare enum GuiDataType {
+    UNKNOWN = 0,
+    NUMBER = 1,
+    STRING = 2,
+    BOOLEAN = 3,
+    DATE = 4,
+    CUSTOM = 5
+}
+export declare enum GuiCellView {
     TEXT = 0,
     CHIP = 1,
     LINK = 2,
     IMAGE = 3,
     BOLD = 4,
     ITALIC = 5,
-    NUMBER = 6,
-    CHECKBOX = 7,
-    CUSTOM = 8
+    CHECKBOX = 6,
+    CUSTOM = 7
+}
+export declare enum GuiNumberCellView {
+    TEXT = 0,
+    BOLD = 1,
+    ITALIC = 2,
+    CHIP = 3
+}
+export declare enum GuiStringCellView {
+    TEXT = 0,
+    BOLD = 1,
+    ITALIC = 2,
+    CHIP = 3
+}
+export declare enum GuiBooleanCellView {
+    TEXT = 0,
+    BOLD = 1,
+    ITALIC = 2,
+    CHIP = 3,
+    CHECKBOX = 4
+}
+export declare enum GuiDateCellView {
+    TEXT = 0,
+    BOLD = 1,
+    ITALIC = 2,
+    CHIP = 3
 }
 export interface GuiPagingConfig {
     enabled?: boolean;
