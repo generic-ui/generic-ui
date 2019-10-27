@@ -1,11 +1,14 @@
-##<a href='http://generic-ui.com' >Generic Ui - Grid for Angular</a>
+# <a href='http://generic-ui.com' >Generic UI - Grid for Angular</a>
 ## Grid component
 
-Generic UI Grid is one of the best free <a href="http://generic-ui.com">angular grid library</a>. It offers many built-in features that work out of the box
-: editing, sorting, pagination, theming, summaries, column configuration, and many more. Performance is the main focus point, grid is able to present huge sets of data. It greatly
- integrates with the best <a href="https://angular.io">javascript framework there is Angular</a>. All of that makes this library a great free to use Angular
+**The Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
+ It offers many built-in features that work out of the box:
+  editing, sorting, pagination, theming, summaries, column configuration, and many more.
+   Performance is the main focus point, grid is able to present huge sets of data.
+    It greatly integrates with the best <a href="https://angular.io">javascript framework there is Angular</a>.
+     All of that makes this library a great free to use **Angular data
   table
-  plugin.
+  plugin**.
 
 ![demo](http://generic-ui.com/assets/images/grid-example.png)
 
@@ -20,24 +23,24 @@ The creation of an gui-grid will be done in these simple steps:
 Specify columns and source in grid component
 Include GridModule
 Setup template
-Add code below to you html template. Notice that <gui-grid> has two input [columns] and [source]. These will help you specify the shape of the grid and the data you wish to bind.
+Add code below to you html template. Notice that `<gui-grid>` has two input `[columns]` and `[source]`. These will help you specify the shape of the grid and the data you wish to bind.
 
-app.component.html:
+**app.component.html:**
 ```
 <gui-grid [columns]="columns"
-		  [source]="source">
+	  [source]="source">
 </gui-grid>
 ```
 
 ### Specify columns and source
-Now write a variable inside app.component.ts named as columns, with it we will create column headers. In this example we are using two attributes:
+Now write a variable inside `app.component.ts` named as columns, with it we will create column headers. In this example we are using two attributes:
 
 * header represents displayed header name,
 * field binds data from source.
 
 You can find more column options in a columns section
 
-app.component.ts:
+**app.component.ts:**
 ```
 columns: Array<GuiColumn> = [{
     header: 'Name',
@@ -52,11 +55,11 @@ columns: Array<GuiColumn> = [{
 ```
 
 
-We got columns specified, now we need to bind it with source. Create new variable called source in app.component.ts and copy code below. Inside source are three items each has three values: name, type, price. These values are names of our columns fields.
+We got columns specified, now we need to bind it with source.
+Create new variable called source in `app.component.ts` and copy code below.
+ Inside source are three items each has three values: `name`, `type`, `price`. These values are names of our columns fields.
 
-You can find more information on source in this section.
-
-app.component.ts
+**app.component.ts**
 ```
 source: Array<any> = [{
     name: 'T-shirt',
@@ -73,10 +76,10 @@ source: Array<any> = [{
 }];
 ```
 
-###Include GridModule
-The only thing that is left is to include GridModule in app.module.ts and we are done.
+### Include GridModule
+The only thing that is left is to include `GridModule` in `app.module.ts` and we are done.
 
-app.module.ts
+**app.module.ts**
 ```
 import { GridModule } from '@generic-ui/ngx-grid';
 
@@ -90,7 +93,7 @@ export class BasicModule {
 ```
 
 ## Installation
-First you need to install @generic-ui/ngx-grid package with all it's peer dependencies.
+First you need to install *@generic-ui/ngx-grid* package with all it's peer dependencies.
 
 
 Npm installation:
@@ -104,7 +107,7 @@ Yarn installation:
 yarn add @generic-ui/ngx-grid element-resize-detector@1.1.14
 ```
 
-Make sure that you use Angular in version at least 6.1.10 and Rxjs in version greater than 6.0.0.
+Make sure that you use **Angular** in version at least 6.1.10 and Rxjs in version greater than 6.0.0.
 
 ## Grid API
 

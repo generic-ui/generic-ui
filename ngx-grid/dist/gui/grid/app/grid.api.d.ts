@@ -1,9 +1,10 @@
-export declare type fieldAccessor = (element?: any) => any;
+export declare type FieldAccessor = (element?: any) => any;
+export declare type ViewTemplateMethod = (cellValue: any) => string;
 export interface GuiColumn {
+    field?: string | FieldAccessor;
     type?: string | GuiDataType;
-    view?: string | GuiCellView;
+    view?: string | GuiCellView | ViewTemplateMethod;
     header?: string;
-    field?: string | fieldAccessor;
     customTemplate?: string;
     width?: string | number;
     aggregation?: GuiColumnAggregation;
