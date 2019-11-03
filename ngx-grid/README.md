@@ -1,7 +1,7 @@
 # <a href='http://generic-ui.com' >Generic UI - Grid for Angular</a>
 ## Grid component
 
-**The Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
+**Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
  It offers many built-in features that work out of the box:
   editing, sorting, pagination, theming, summaries, column configuration, and many more.
    Performance is the main focus point, grid is able to present huge sets of data.
@@ -13,7 +13,7 @@
 ![demo](http://generic-ui.com/assets/images/grid-example.png)
 
 ## Quick Example
-GenericUI is easy to use, all you need to do is specify columns and source. Below is simple use of our grid with three columns and three items.
+Generic UI is easy to use, all you need to do is specify columns and source. Below is simple use of our grid with three columns and three items.
 
 ![demo](http://generic-ui.com/assets/images/grid-basic.png)
 
@@ -115,7 +115,7 @@ In this section you can find list of Inputs and Outputs that configures gui-grid
 
 In order to build the grid you need to have data source specified and defined columns. Source and columns need to work together, therefor columns have to be bound with data source. The basic section got an easy guide how to do it.
 
-The GenericUI is completely editable. You can specify:
+Generic UI is completely editable. You can specify:
 
 * width and height,
 * different theme like: Fabric, Material, Light, Dark,
@@ -124,7 +124,7 @@ The GenericUI is completely editable. You can specify:
 * rows color,
 * loading indicator.
 
-The GenericUI also provides the output options that posts information anytime when:
+Generic UI also provides the output options that posts information anytime when:
 
 * page changes,
 * page size changes,

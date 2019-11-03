@@ -1,7 +1,7 @@
 # <a href='http://generic-ui.com' >Generic UI Grid</a>
 ## JavaScript
 
-**The Generic UI Grid** is one of the best free <a href="http://generic-ui.com">JavaScript grid library</a>. It offers many built-in features that work out of
+**Generic UI Grid** is one of the best free <a href="http://generic-ui.com">JavaScript grid library</a>. It offers many built-in features that work out of
  the box
 : editing, sorting, pagination, theming, summaries, column configuration, and many more. Performance is the main focus point, grid is able to present huge sets of data.
 All of that makes this library a great free to use **JavaScript grid library**.
