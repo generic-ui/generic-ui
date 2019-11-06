@@ -59,7 +59,11 @@ export declare abstract class GridGateway implements OnChanges {
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
+    themeConfig: any;
+    rowColoringConfig: any;
     private readonly gridColumnConverter;
+    private readonly gridThemeConverter;
+    private readonly gridRowColoringConverter;
     protected constructor();
     ngOnChanges(changes: SimpleChanges): void;
     onPageChange(page: number): void;
