@@ -1,4 +1,4 @@
-import { ElementRef, ChangeDetectorRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { GridGateway } from './grid-gateway';
 import { GridIdGenerator } from './register/grid-id.generator';
 import { GridRegister } from './register/grid.register';
