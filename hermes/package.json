@@ -1,0 +1,23 @@
+{
+	"name": "@generic-ui/hermes",
+	"version": "0.1.0",
+	"license": "MIT",
+	"peerDependencies": {
+		"@angular/common": "^8.2.0",
+		"@angular/core": "^8.2.0",
+		"rxjs": "^6.0.0"
+	},
+	"main": "bundles/generic-ui-hermes.umd.js",
+	"module": "fesm5/generic-ui-hermes.js",
+	"es2015": "fesm2015/generic-ui-hermes.js",
+	"esm5": "esm5/generic-ui-hermes.js",
+	"esm2015": "esm2015/generic-ui-hermes.js",
+	"fesm5": "fesm5/generic-ui-hermes.js",
+	"fesm2015": "fesm2015/generic-ui-hermes.js",
+	"typings": "generic-ui-hermes.d.ts",
+	"metadata": "generic-ui-hermes.metadata.json",
+	"sideEffects": false,
+	"dependencies": {
+		"tslib": "^1.9.0"
+	}
+}

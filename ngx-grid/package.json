@@ -1,13 +1,13 @@
 {
 	"name": "@generic-ui/ngx-grid",
-	"version": "0.4.4",
+	"version": "0.5.0",
 	"description": "Generic UI - Angular Grid library",
 	"license": "MIT",
 	"peerDependencies": {
-		"@angular/common": "^6.1.10",
-		"@angular/core": "^6.1.10",
-		"@angular/forms": "^6.1.10",
-		"@angular/platform-browser": "^6.1.10",
+		"@angular/common": "^8.0.0",
+		"@angular/core": "^8.0.0",
+		"@angular/forms": "^8.0.0",
+		"@angular/platform-browser": "^8.0.0",
 		"element-resize-detector": "1.1.14",
 		"rxjs": "^6.0.0"
 	},

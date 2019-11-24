@@ -1,0 +1,21 @@
+{
+  "name": "@generic-ui/fabric",
+  "version": "0.1.0",
+  "peerDependencies": {
+    "@angular/common": "^8.2.0",
+    "@angular/core": "^8.2.0"
+  },
+  "main": "bundles/generic-ui-fabric.umd.js",
+  "module": "fesm5/generic-ui-fabric.js",
+  "es2015": "fesm2015/generic-ui-fabric.js",
+  "esm5": "esm5/generic-ui-fabric.js",
+  "esm2015": "esm2015/generic-ui-fabric.js",
+  "fesm5": "fesm5/generic-ui-fabric.js",
+  "fesm2015": "fesm2015/generic-ui-fabric.js",
+  "typings": "generic-ui-fabric.d.ts",
+  "metadata": "generic-ui-fabric.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}
