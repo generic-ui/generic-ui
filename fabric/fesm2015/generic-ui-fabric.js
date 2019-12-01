@@ -1,5 +1,5 @@
-import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, ComponentFactoryResolver, ChangeDetectorRef, Inject, forwardRef, ViewChild, ViewContainerRef, Injectable, ApplicationRef, Injector, HostListener, ViewChildren, Optional } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, ComponentFactoryResolver, ChangeDetectorRef, Inject, forwardRef, ViewChild, ViewContainerRef, Injectable, ApplicationRef, Injector, PLATFORM_ID, HostListener, ViewChildren, Optional } from '@angular/core';
+import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { distinctUntilChanged, debounceTime, map, throttleTime, filter, takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
@@ -514,6 +514,62 @@ FabricChipModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class InlineDialogCords {
+    /**
+     * @param {?} element
+     * @param {?} pageXOffset
+     * @param {?} pageYOffset
+     */
+    constructor(element, pageXOffset, pageYOffset) {
+        this.element = element;
+        this.calculateCords(element, pageXOffset, pageYOffset);
+    }
+    /**
+     * @return {?}
+     */
+    getVerticalPosition() {
+        return this.verticalPosition;
+    }
+    /**
+     * @return {?}
+     */
+    getHorizontalPosition() {
+        return this.horizontalPosition;
+    }
+    /**
+     * @private
+     * @param {?} element
+     * @param {?} pageXOffset
+     * @param {?} pageYOffset
+     * @return {?}
+     */
+    calculateCords(element, pageXOffset, pageYOffset) {
+        /** @type {?} */
+        const elementRect = element.nativeElement.getBoundingClientRect();
+        /** @type {?} */
+        const elementBottom = elementRect.bottom;
+        /** @type {?} */
+        const elementLeft = elementRect.left;
+        this.horizontalPosition = pageXOffset + elementLeft;
+        this.verticalPosition = pageYOffset + elementBottom;
+    }
+}
+if (false) {
+    /** @type {?} */
+    InlineDialogCords.prototype.verticalPosition;
+    /** @type {?} */
+    InlineDialogCords.prototype.horizontalPosition;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.element;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class FabricInlineDialogComponent {
     /**
      * @param {?} componentFactoryResolver
@@ -590,7 +646,7 @@ FabricInlineDialogComponent.decorators = [
     { type: Component, args: [{
                 template: "<div [style.top.px]=\"dialogTopAttribute\"\n\t [style.left.px]=\"dialogLeftAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-inline-dialog-wrapper{position:absolute}.gui-inline-dialog-wrapper .gui-inline-dialog-content{background-color:#fefdfc;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}"]
+                styles: [".gui-inline-dialog-wrapper{position:absolute}.gui-inline-dialog-wrapper .gui-inline-dialog-content{background-color:#fefdfc;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
             }] }
 ];
 /** @nocollapse */
@@ -651,68 +707,20 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class InlineDialogCords {
-    /**
-     * @param {?} element
-     */
-    constructor(element) {
-        this.element = element;
-        this.calculateCords(element);
-    }
-    /**
-     * @private
-     * @param {?} element
-     * @return {?}
-     */
-    calculateCords(element) {
-        /** @type {?} */
-        const elementRect = element.nativeElement.getBoundingClientRect();
-        /** @type {?} */
-        const elementBottom = elementRect.bottom;
-        /** @type {?} */
-        const elementLeft = elementRect.left;
-        this.horizontalPosition = window.pageXOffset + elementLeft;
-        this.verticalPosition = window.pageYOffset + elementBottom;
-    }
-    /**
-     * @return {?}
-     */
-    getVerticalPosition() {
-        return this.verticalPosition;
-    }
-    /**
-     * @return {?}
-     */
-    getHorizontalPosition() {
-        return this.horizontalPosition;
-    }
-}
-if (false) {
-    /** @type {?} */
-    InlineDialogCords.prototype.verticalPosition;
-    /** @type {?} */
-    InlineDialogCords.prototype.horizontalPosition;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.element;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FabricInlineDialogService {
     /**
      * @param {?} componentFactoryResolver
      * @param {?} applicationRef
      * @param {?} injector
+     * @param {?} platformId
+     * @param {?} document
      */
-    constructor(componentFactoryResolver, applicationRef, injector) {
+    constructor(componentFactoryResolver, applicationRef, injector, platformId, document) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.applicationRef = applicationRef;
         this.injector = injector;
+        this.platformId = platformId;
+        this.document = document;
         this.inlineDialogRef = null;
         this.inlineDialogState$ = new Subject();
     }
@@ -762,7 +770,7 @@ class FabricInlineDialogService {
         /** @type {?} */
         const domDialogElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
             .rootNodes[0]));
-        document.body.appendChild(domDialogElement);
+        this.document.body.appendChild(domDialogElement);
         this.inlineDialogRef = componentRef;
     }
     /**
@@ -782,9 +790,11 @@ class FabricInlineDialogService {
      * @return {?}
      */
     getInlineDialogCords(element) {
-        /** @type {?} */
-        const inlineDialogCords = new InlineDialogCords(element);
-        this.inlineDialogState$.next(inlineDialogCords);
+        if (isPlatformBrowser(this.platformId)) {
+            /** @type {?} */
+            const inlineDialogCords = new InlineDialogCords(element, window.pageXOffset, window.pageYOffset);
+            this.inlineDialogState$.next(inlineDialogCords);
+        }
     }
 }
 FabricInlineDialogService.decorators = [
@@ -794,7 +804,9 @@ FabricInlineDialogService.decorators = [
 FabricInlineDialogService.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ApplicationRef },
-    { type: Injector }
+    { type: Injector },
+    { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 if (false) {
     /** @type {?} */
@@ -819,6 +831,16 @@ if (false) {
      * @private
      */
     FabricInlineDialogService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.platformId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.document;
 }
 
 /**
@@ -1489,7 +1511,7 @@ FabricDatePickerCalendarComponent.decorators = [
                 host: {
                     '[class.gui-date-picker-calendar]': 'true'
                 },
-                styles: [".gui-date-picker-calendar{box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-date-picker-calendar .gui-date-picker-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;border-radius:4px;box-shadow:0 3px 7px #999;width:250px;padding:0 0 12px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:24px 18px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface h3{margin:0;cursor:pointer;pointer-events:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{background:0 0;border:none;font-size:18px;margin-left:12px;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table{height:250px;width:250px;padding:0 12px}.gui-date-picker-calendar .gui-date-picker-container table td{height:31px;width:31px;text-align:center;position:relative}.gui-date-picker-calendar .gui-date-picker-container table td span{border-radius:4px;padding:2px 4px;border:1px solid transparent}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day span{display:none;pointer-events:none}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year{cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year span{font-size:13px}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-month span{display:block;pointer-events:auto;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#c7e2f6}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border:1px solid #1a69a4}"]
+                styles: [".gui-date-picker-calendar{box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-date-picker-calendar .gui-date-picker-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;border-radius:4px;width:250px;padding:0 0 12px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:24px 18px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface h3{margin:0;cursor:pointer;pointer-events:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{background:0 0;border:none;font-size:18px;margin-left:12px;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table{height:250px;width:250px;padding:0 12px}.gui-date-picker-calendar .gui-date-picker-container table td{height:31px;width:31px;text-align:center;position:relative}.gui-date-picker-calendar .gui-date-picker-container table td span{border-radius:4px;padding:2px 4px;border:1px solid transparent}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day span{display:none;pointer-events:none}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year{cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year span{font-size:13px}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-month span{display:block;pointer-events:auto;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#c7e2f6}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border:1px solid #1a69a4}"]
             }] }
 ];
 /** @nocollapse */
@@ -1662,9 +1684,9 @@ class FabricDatePickerComponent {
 FabricDatePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker',
-                template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input formControlName='date'\n\t\t\t   [value]=\"pickedDate| date: 'd/M/yyyy'\">\n\t</form>\n\t<div class=\"gui-date-picker-icon\" (click)=\"openDatePicker()\"></div>\n</div>\n",
+                template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input gui-input formControlName='date'\n\t\t\t   [value]=\"pickedDate| date: 'd/M/yyyy'\">\n\t</form>\n\t<div class=\"gui-date-picker-icon\" (click)=\"openDatePicker()\"></div>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{border-style:solid;border-width:0 0 1px;border-color:#999;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA+SURBVDhPY0AD/6E0PoCihhFKE6MRG2BkgjLIBhQbAAPkeAGsZ+C9gG4AyFkwTBQYjYXBYADFmQlKkwsYGAB1FwsOS8cZnAAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer}"]
+                styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
             }] }
 ];
 /** @nocollapse */
@@ -1737,6 +1759,45 @@ FabricInlineDialogModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class FabricInputComponent {
+}
+FabricInputComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'input[gui-input]',
+                template: "\n",
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-input]': 'true'
+                },
+                styles: [".gui-input{background:0 0;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-input{background:0 0;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricInputModule {
+}
+FabricInputModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                declarations: [
+                    FabricInputComponent
+                ],
+                exports: [
+                    FabricInputComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class FabricDatePickerModule {
 }
 FabricDatePickerModule.decorators = [
@@ -1744,7 +1805,8 @@ FabricDatePickerModule.decorators = [
                 imports: [
                     CommonModule,
                     FabricInlineDialogModule,
-                    ReactiveFormsModule
+                    ReactiveFormsModule,
+                    FabricInputModule
                 ],
                 declarations: [
                     FabricDatePickerCalendarComponent,
@@ -2274,11 +2336,13 @@ class FabricDialogService {
      * @param {?} componentFactoryResolver
      * @param {?} applicationRef
      * @param {?} injector
+     * @param {?} document
      */
-    constructor(componentFactoryResolver, applicationRef, injector) {
+    constructor(componentFactoryResolver, applicationRef, injector, document) {
         this.componentFactoryResolver = componentFactoryResolver;
         this.applicationRef = applicationRef;
         this.injector = injector;
+        this.document = document;
         this.dialogRef = null;
     }
     /**
@@ -2318,7 +2382,7 @@ class FabricDialogService {
         /** @type {?} */
         const domDialogElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
             .rootNodes[0]));
-        document.body.appendChild(domDialogElement);
+        this.document.body.appendChild(domDialogElement);
         this.dialogRef = componentRef;
     }
     /**
@@ -2338,7 +2402,8 @@ FabricDialogService.decorators = [
 FabricDialogService.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ApplicationRef },
-    { type: Injector }
+    { type: Injector },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 if (false) {
     /** @type {?} */
@@ -2358,6 +2423,11 @@ if (false) {
      * @private
      */
     FabricDialogService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDialogService.prototype.document;
 }
 
 /**
@@ -2403,14 +2473,17 @@ FabricDialogComponent.decorators = [
     { type: Component, args: [{
                 template: "<div class=\"gui-dialog-blanket\"></div>\n<div class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<a (click)=\"closeDialog()\" class=\"gui-dialog-close\"></a>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fefdfc;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px;opacity:.4}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:hover{opacity:.8}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#333}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}"]
+                styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fefdfc;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px;opacity:.4}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:hover{opacity:.8}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#333}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{background:#bdbdbd}"]
             }] }
 ];
 /** @nocollapse */
 FabricDialogComponent.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: ChangeDetectorRef },
-    { type: FabricDialogService }
+    { type: FabricDialogService, decorators: [{ type: Inject, args: [forwardRef((/**
+                     * @return {?}
+                     */
+                    () => FabricDialogService)),] }] }
 ];
 FabricDialogComponent.propDecorators = {
     container: [{ type: ViewChild, args: ['container', { read: ViewContainerRef, static: false },] }]
@@ -3879,45 +3952,6 @@ FabricToggleButtonGroupModule.decorators = [
                 ],
                 exports: [
                     FabricToggleButtonGroupComponent
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricInputComponent {
-}
-FabricInputComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'input[gui-input]',
-                template: "\n",
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-input]': 'true'
-                },
-                styles: [".gui-input{background:#fefdfc;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{background:#616161}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricInputModule {
-}
-FabricInputModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule
-                ],
-                declarations: [
-                    FabricInputComponent
-                ],
-                exports: [
-                    FabricInputComponent
                 ]
             },] }
 ];

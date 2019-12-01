@@ -1,31 +1,40 @@
 {
-	"name": "@generic-ui/ngx-grid",
-	"version": "0.5.0",
-	"description": "Generic UI - Angular Grid library",
-	"license": "MIT",
-	"peerDependencies": {
-		"@angular/common": "^8.0.0",
-		"@angular/core": "^8.0.0",
-		"@angular/forms": "^8.0.0",
-		"@angular/platform-browser": "^8.0.0",
-		"element-resize-detector": "1.1.14",
-		"rxjs": "^6.0.0"
-	},
-	"main": "dist/gui-grid.umd.js",
-	"types": "dist/grid.index.d.ts",
-	"module": "dist/gui-grid.js",
-	"files": [
-		"dist"
-	],
-	"keywords": [
-		"grid",
-		"generic",
-		"angular"
-	],
-	"homepage": "http://generic-ui.com",
-	"bugs": "https://github.com/generic-ui/generic-ui/issues",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/generic-ui/generic-ui.git"
-	}
+  "name": "@generic-ui/ngx-grid",
+  "description": "Generic UI - Angular Grid library",
+  "version": "0.4.5",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/platform-browser": "^8.0.0",
+    "@generic-ui/fabric": "latest",
+    "@generic-ui/hermes": "latest",
+    "element-resize-detector": "1.1.14",
+    "rxjs": "^6.0.0"
+  },
+  "keywords": [
+    "grid",
+    "generic",
+    "angular"
+  ],
+  "homepage": "http://generic-ui.com",
+  "bugs": "https://github.com/generic-ui/generic-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generic-ui/generic-ui.git"
+  },
+  "main": "bundles/generic-ui-ngx-grid.umd.js",
+  "module": "fesm5/generic-ui-ngx-grid.js",
+  "es2015": "fesm2015/generic-ui-ngx-grid.js",
+  "esm5": "esm5/generic-ui-ngx-grid.js",
+  "esm2015": "esm2015/generic-ui-ngx-grid.js",
+  "fesm5": "fesm5/generic-ui-ngx-grid.js",
+  "fesm2015": "fesm2015/generic-ui-ngx-grid.js",
+  "typings": "generic-ui-ngx-grid.d.ts",
+  "metadata": "generic-ui-ngx-grid.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
 }

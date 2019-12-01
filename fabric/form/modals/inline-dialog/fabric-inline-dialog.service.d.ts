@@ -5,9 +5,11 @@ export declare class FabricInlineDialogService implements OnDestroy {
     private componentFactoryResolver;
     private applicationRef;
     private injector;
+    private platformId;
+    private document;
     inlineDialogRef: ComponentRef<any>;
     private inlineDialogState$;
-    constructor(componentFactoryResolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector);
+    constructor(componentFactoryResolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector, platformId: any, document: any);
     ngOnDestroy(): void;
     open(element: ElementRef, component: Type<any>): void;
     close(): void;

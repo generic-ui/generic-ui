@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import * as tslib_1 from "tslib";
+import { DomainEvent } from '@generic-ui/hermes';
+var VerticalScrollEnabledSetEvent = /** @class */ (function (_super) {
+    tslib_1.__extends(VerticalScrollEnabledSetEvent, _super);
+    function VerticalScrollEnabledSetEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'VerticalScrollEnabledSetEvent') || this;
+    }
+    return VerticalScrollEnabledSetEvent;
+}(DomainEvent));
+export { VerticalScrollEnabledSetEvent };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmVydGljYWwtc2Nyb2xsLWVuYWJsZWQtc2V0LmV2ZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJsaWIvc3RydWN0dXJlL2RvbWFpbi9zdHJ1Y3R1cmUvY29tbWFuZC92ZXJ0aWNhbC1mb3JtYXRpb24vc2V0LWVuYWJsZWQvdmVydGljYWwtc2Nyb2xsLWVuYWJsZWQtc2V0LmV2ZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFlLFdBQVcsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBRTlEO0lBQW1ELHlEQUFXO0lBRTdELHVDQUFZLFdBQXdCO2VBQ25DLGtCQUFNLFdBQVcsRUFBRSwrQkFBK0IsQ0FBQztJQUNwRCxDQUFDO0lBQ0Ysb0NBQUM7QUFBRCxDQUFDLEFBTEQsQ0FBbUQsV0FBVyxHQUs3RCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFnZ3JlZ2F0ZUlkLCBEb21haW5FdmVudCB9IGZyb20gJ0BnZW5lcmljLXVpL2hlcm1lcyc7XG5cbmV4cG9ydCBjbGFzcyBWZXJ0aWNhbFNjcm9sbEVuYWJsZWRTZXRFdmVudCBleHRlbmRzIERvbWFpbkV2ZW50IHtcblxuXHRjb25zdHJ1Y3RvcihhZ2dyZWdhdGVJZDogQWdncmVnYXRlSWQpIHtcblx0XHRzdXBlcihhZ2dyZWdhdGVJZCwgJ1ZlcnRpY2FsU2Nyb2xsRW5hYmxlZFNldEV2ZW50Jyk7XG5cdH1cbn1cbiJdfQ==

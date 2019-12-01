@@ -3,7 +3,7 @@ export declare abstract class Message {
     aggregateId: AggregateId;
     protected readonly messageType: string;
     private readonly messageId;
-    protected constructor(aggregateId: AggregateId, messageType: string);
+    protected constructor(aggregateId: AggregateId, messageType: string, messageId?: string);
     getMessageType(): string;
     getAggregateId(): AggregateId;
     getMessageId(): string;

@@ -1,140 +1,24 @@
-# <a href='http://generic-ui.com' >Generic UI - Grid for Angular</a>
-## Grid component
+# NgxGrid
 
-**Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
- It offers many built-in features that work out of the box:
-  editing, sorting, pagination, theming, summaries, column configuration, and many more.
-   Performance is the main focus point, grid is able to present huge sets of data.
-    It greatly integrates with the best <a href="https://angular.io">javascript framework there is Angular</a>.
-     All of that makes this library a great free to use **Angular data
-  table
-  plugin**.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
-![demo](http://generic-ui.com/assets/images/grid-example.png)
+## Code scaffolding
 
-## Quick Example
-Generic UI is easy to use, all you need to do is specify columns and source. Below is simple use of our grid with three columns and three items.
+Run `ng generate component component-name --project ngx-grid` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-grid`.
+> Note: Don't forget to add `--project ngx-grid` or else it will be added to the default project in your `angular.json` file. 
 
-![demo](http://generic-ui.com/assets/images/grid-basic.png)
+## Build
 
-The creation of an gui-grid will be done in these simple steps:
+Run `ng build ngx-grid` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Setup template
-Specify columns and source in grid component
-Include GridModule
-Setup template
-Add code below to you html template. Notice that `<gui-grid>` has two input `[columns]` and `[source]`. These will help you specify the shape of the grid and the data you wish to bind.
+## Publishing
 
-**app.component.html:**
-```
-<gui-grid [columns]="columns"
-	  [source]="source">
-</gui-grid>
-```
+After building your library with `ng build ngx-grid`, go to the dist folder `cd dist/ngx-grid` and run `npm publish`.
 
-### Specify columns and source
-Now write a variable inside `app.component.ts` named as columns, with it we will create column headers. In this example we are using two attributes:
+## Running unit tests
 
-* header represents displayed header name,
-* field binds data from source.
+Run `ng test ngx-grid` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-You can find more column options in a columns section
+## Further help
 
-**app.component.ts:**
-```
-columns: Array<GuiColumn> = [{
-    header: 'Name',
-    field: 'name'
-}, {
-    header: 'Type',
-    field: 'type'
-}, {
-    header: 'Price',
-    field: 'price'
-}];
-```
-
-
-We got columns specified, now we need to bind it with source.
-Create new variable called source in `app.component.ts` and copy code below.
- Inside source are three items each has three values: `name`, `type`, `price`. These values are names of our columns fields.
-
-**app.component.ts**
-```
-source: Array<any> = [{
-    name: 'T-shirt',
-    type: 'clothes',
-    price: '15$'
-}, {
-    name: 'Shoes',
-    type: 'footwear',
-    price: '100$'
-}, {
-    name: 'Ball cap',
-    type: 'headgear',
-    price: '50$'
-}];
-```
-
-### Include GridModule
-The only thing that is left is to include `GridModule` in `app.module.ts` and we are done.
-
-**app.module.ts**
-```
-import { GridModule } from '@generic-ui/ngx-grid';
-
-@NgModule({
-	imports: [
-		GridModule
-	]
-})
-export class BasicModule {
-}
-```
-
-## Installation
-First you need to install *@generic-ui/ngx-grid* package with all it's peer dependencies.
-
-
-Npm installation:
-```Bash
-npm install @generic-ui/ngx-grid element-resize-detector@1.1.14
-```
-
-
-Yarn installation:
-```Bash
-yarn add @generic-ui/ngx-grid element-resize-detector@1.1.14
-```
-
-Make sure that you use **Angular** in version at least 6.1.10 and Rxjs in version greater than 6.0.0.
-
-## Grid API
-
-In this section you can find list of Inputs and Outputs that configures gui-grid.
-
-In order to build the grid you need to have data source specified and defined columns. Source and columns need to work together, therefor columns have to be bound with data source. The basic section got an easy guide how to do it.
-
-Generic UI is completely editable. You can specify:
-
-* width and height,
-* different theme like: Fabric, Material, Light, Dark,
-* header placed at the top and/or bottom of the grid,
-* disabled or enabled vertical and horizontal lines,
-* rows color,
-* loading indicator.
-
-Generic UI also provides the output options that posts information anytime when:
-
-* page changes,
-* page size changes,
-* grid row is selected.
-
-## Contact
-
-Feel free to contact us with any questions or issues, as FAQ will be published in the near future. 
-We will really appreciate it you letting us know how do you use
- this angular grid library. If you find any bug, let us know about it through <a href="https://github.com/generic-ui/generic-ui/issues">Report an issue</a>.
-
-## License:
-Code released under <a href='https://github.com/generic-ui/generic-ui/blob/master/grid/LICENSE' >the MIT license</a>.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).

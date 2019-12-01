@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/grid",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"description": "Generic UI - Grid",
 	"license": "MIT",
 	"module": "dist/gui-grid.js",

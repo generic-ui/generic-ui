@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { CompositionId } from './composition-id';
+/** @type {?} */
+export const globalCompositionId = new CompositionId('-1');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2xvYmFsLWNvbXBvc2l0aW9uLWlkLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJsaWIvc3RydWN0dXJlL2RvbWFpbi9jb21wb3NpdGlvbi9nbG9iYWwtY29tcG9zaXRpb24taWQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSxrQkFBa0IsQ0FBQzs7QUFFakQsTUFBTSxPQUFPLG1CQUFtQixHQUFHLElBQUksYUFBYSxDQUFDLElBQUksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvc2l0aW9uSWQgfSBmcm9tICcuL2NvbXBvc2l0aW9uLWlkJztcblxuZXhwb3J0IGNvbnN0IGdsb2JhbENvbXBvc2l0aW9uSWQgPSBuZXcgQ29tcG9zaXRpb25JZCgnLTEnKTtcbiJdfQ==

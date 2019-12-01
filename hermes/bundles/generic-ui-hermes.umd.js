@@ -267,111 +267,93 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    // tslint:disable:no-bitwise
-    /**
-     * @return {?}
-     */
-    function getRandomFromMathRandom() {
-        /** @type {?} */
-        var result = new Array(16);
-        /** @type {?} */
-        var r = 0;
-        for (var i = 0; i < 16; i++) {
-            if ((i & 0x03) === 0) {
-                r = Math.random() * 0x100000000;
-            }
-            result[i] = r >>> ((i & 0x03) << 3) & 0xff;
-        }
-        return (/** @type {?} */ (result));
-    }
-    /**
-     * @return {?}
-     */
-    function getRandomFunction() {
-        // tslint:disable-next-line:no-string-literal
-        /** @type {?} */
-        var browserCrypto = window.crypto || ((/** @type {?} */ (window['msCrypto'])));
-        if (browserCrypto && browserCrypto.getRandomValues) {
-            // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-            //
-            // Moderately fast, high quality
-            try {
-                return (/**
-                 * @return {?}
-                 */
-                function getRandomFromCryptoRandom() {
-                    /** @type {?} */
-                    var result = new Uint8Array(16);
-                    browserCrypto.getRandomValues(result);
-                    return (/** @type {?} */ (result));
-                });
-            }
-            catch (e) { /* fallback*/
-            }
-        }
-        // Math.random()-based (RNG)
-        //
-        // If all else fails, use Math.random().  It's fast, but is of unspecified
-        // quality.
-        return getRandomFromMathRandom;
-    }
-    /** @type {?} */
-    var getRandom = getRandomFunction();
-    var ByteHexMappings = /** @class */ (function () {
-        function ByteHexMappings() {
-            this.byteToHex = [];
-            this.hexToByte = {};
+    var RandomStringGenerator = /** @class */ (function () {
+        function RandomStringGenerator() {
             for (var i = 0; i < 256; i++) {
-                this.byteToHex[i] = (i + 0x100).toString(16).substr(1);
-                this.hexToByte[this.byteToHex[i]] = i;
+                RandomStringGenerator.byteToHex[i] = (i + 0x100).toString(16).substr(1);
+                RandomStringGenerator.hexToByte[RandomStringGenerator.byteToHex[i]] = i;
             }
         }
-        return ByteHexMappings;
+        /**
+         * @return {?}
+         */
+        RandomStringGenerator.generate = /**
+         * @return {?}
+         */
+        function () {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        };
+        /**
+         * @return {?}
+         */
+        RandomStringGenerator.getUuidV4 = /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var result = this.getRandomFromMathRandom();
+            result[6] = (result[6] & 0x0f) | 0x40;
+            result[8] = (result[8] & 0x3f) | 0x80;
+            return result;
+        };
+        /**
+         * @param {?} buf
+         * @param {?=} offset
+         * @return {?}
+         */
+        RandomStringGenerator.uuidToString = /**
+         * @param {?} buf
+         * @param {?=} offset
+         * @return {?}
+         */
+        function (buf, offset) {
+            if (offset === void 0) { offset = 0; }
+            /** @type {?} */
+            var i = offset;
+            /** @type {?} */
+            var bth = this.byteToHex;
+            return bth[buf[i++]] + bth[buf[i++]] +
+                bth[buf[i++]] + bth[buf[i++]] + '-' +
+                bth[buf[i++]] + bth[buf[i++]] + '-' +
+                bth[buf[i++]] + bth[buf[i++]] + '-' +
+                bth[buf[i++]] + bth[buf[i++]] + '-' +
+                bth[buf[i++]] + bth[buf[i++]] +
+                bth[buf[i++]] + bth[buf[i++]] +
+                bth[buf[i++]] + bth[buf[i++]];
+        };
+        /**
+         * @return {?}
+         */
+        RandomStringGenerator.getRandomFromMathRandom = /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var result = new Array(16);
+            /** @type {?} */
+            var r = 0;
+            for (var i = 0; i < 16; i++) {
+                if ((i & 0x03) === 0) {
+                    r = Math.random() * 0x100000000;
+                }
+                result[i] = r >>> ((i & 0x03) << 3) & 0xff;
+            }
+            return (/** @type {?} */ (result));
+        };
+        RandomStringGenerator.byteToHex = [];
+        RandomStringGenerator.hexToByte = {};
+        RandomStringGenerator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        RandomStringGenerator.ctorParameters = function () { return []; };
+        return RandomStringGenerator;
     }());
     if (false) {
         /** @type {?} */
-        ByteHexMappings.prototype.byteToHex;
+        RandomStringGenerator.byteToHex;
         /** @type {?} */
-        ByteHexMappings.prototype.hexToByte;
-    }
-    /** @type {?} */
-    var byteHexMappings = new ByteHexMappings();
-    /**
-     * @return {?}
-     */
-    function getUuidV4() {
-        /** @type {?} */
-        var result = getRandom();
-        // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-        result[6] = (result[6] & 0x0f) | 0x40;
-        result[8] = (result[8] & 0x3f) | 0x80;
-        return result;
-    }
-    /**
-     * @param {?} buf
-     * @param {?=} offset
-     * @return {?}
-     */
-    function uuidToString(buf, offset) {
-        if (offset === void 0) { offset = 0; }
-        /** @type {?} */
-        var i = offset;
-        /** @type {?} */
-        var bth = byteHexMappings.byteToHex;
-        return bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]];
-    }
-    /**
-     * @return {?}
-     */
-    function getUuidV4String() {
-        return uuidToString(getUuidV4());
+        RandomStringGenerator.hexToByte;
     }
 
     /**
@@ -385,10 +367,11 @@
      * @abstract
      */
     Message = /** @class */ (function () {
-        function Message(aggregateId, messageType) {
+        function Message(aggregateId, messageType, messageId) {
+            if (messageId === void 0) { messageId = RandomStringGenerator.generate(); }
             this.aggregateId = aggregateId;
             this.messageType = messageType;
-            this.messageId = getUuidV4String();
+            this.messageId = messageId;
         }
         /**
          * @return {?}
@@ -487,11 +470,6 @@
         return Message;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Message.prototype.messageId;
         /** @type {?} */
         Message.prototype.aggregateId;
         /**
@@ -499,6 +477,11 @@
          * @protected
          */
         Message.prototype.messageType;
+        /**
+         * @type {?}
+         * @private
+         */
+        Message.prototype.messageId;
     }
 
     /**
@@ -1919,46 +1902,55 @@
     /** @type {?} */
     var hermesApi = 'hermesApi';
     var HermesApi = /** @class */ (function () {
-        function HermesApi(commandLogger, eventLogger) {
+        function HermesApi(platformId, commandLogger, eventLogger) {
+            this.platformId = platformId;
             this.commandLogger = commandLogger;
             this.eventLogger = eventLogger;
-            /** @type {?} */
-            var api = (/**
-             * @param {?} api
-             * @return {?}
-             */
-            function (api) {
-                return {
-                    /**
-                     * @param {?} enabled
-                     * @return {?}
-                     */
-                    set loggers(enabled) {
-                        if (enabled) {
-                            api.commandLogger.start();
-                            api.eventLogger.start();
+            if (common.isPlatformBrowser(this.platformId)) {
+                /** @type {?} */
+                var api = (/**
+                 * @param {?} api
+                 * @return {?}
+                 */
+                function (api) {
+                    return {
+                        /**
+                         * @param {?} enabled
+                         * @return {?}
+                         */
+                        set loggers(enabled) {
+                            if (enabled) {
+                                api.commandLogger.start();
+                                api.eventLogger.start();
+                            }
+                            else {
+                                api.commandLogger.stop();
+                                api.eventLogger.stop();
+                            }
                         }
-                        else {
-                            api.commandLogger.stop();
-                            api.eventLogger.stop();
-                        }
-                    }
-                };
-            });
-            window[hermesApi] = api(this);
-            window[hermesApi].loggers = false;
+                    };
+                });
+                window[hermesApi] = api(this);
+                window[hermesApi].loggers = false;
+            }
         }
         HermesApi.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         HermesApi.ctorParameters = function () { return [
+            { type: Object, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
             { type: CommandLogger },
             { type: DomainEventLogger }
         ]; };
         return HermesApi;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HermesApi.prototype.platformId;
         /**
          * @type {?}
          * @private
@@ -2904,6 +2896,7 @@
      */
     /** @type {?} */
     var hermesProviders = [
+        RandomStringGenerator,
         { provide: FILTERED_COMMAND_STREAM, useExisting: CommandStream },
         CommandBus,
         CommandStream,
@@ -3238,6 +3231,7 @@
     exports.PersistAnemia = PersistAnemia;
     exports.PersistReadModelStore = PersistReadModelStore;
     exports.PersistStateStore = PersistStateStore;
+    exports.RandomStringGenerator = RandomStringGenerator;
     exports.ReactiveAggregateArchive = ReactiveAggregateArchive;
     exports.ReadModel = ReadModel;
     exports.ReadModelStore = ReadModelStore;
@@ -3247,20 +3241,17 @@
     exports.assertDomainEvents = assertDomainEvents;
     exports.disableHermesLoggers = disableHermesLoggers;
     exports.enableHermesLoggers = enableHermesLoggers;
-    exports.getUuidV4String = getUuidV4String;
     exports.provideCommandHandlers = provideCommandHandlers;
     exports.provideEventHandlers = provideEventHandlers;
-    exports.ɵa = getUuidV4;
-    exports.ɵb = uuidToString;
-    exports.ɵc = commandLoggerFactory;
-    exports.ɵd = eventLoggerFactory;
-    exports.ɵe = Message;
-    exports.ɵf = DomainEventStore;
-    exports.ɵg = FILTERED_COMMAND_STREAM;
-    exports.ɵh = ConsoleCommandLogger;
-    exports.ɵi = NoopCommandLogger;
-    exports.ɵj = ConsoleEventLogger;
-    exports.ɵk = NoopEventLogger;
+    exports.ɵa = commandLoggerFactory;
+    exports.ɵb = eventLoggerFactory;
+    exports.ɵc = Message;
+    exports.ɵd = DomainEventStore;
+    exports.ɵe = FILTERED_COMMAND_STREAM;
+    exports.ɵf = ConsoleCommandLogger;
+    exports.ɵg = NoopCommandLogger;
+    exports.ɵh = ConsoleEventLogger;
+    exports.ɵi = NoopEventLogger;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

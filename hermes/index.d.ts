@@ -27,11 +27,11 @@ export { DomainEventStream } from './domain/event/domain-event.stream';
 export { DOMAIN_EVENT_HANDLERS } from './domain/event/domain-event-handlers';
 export { ReadModel } from './domain/query/read-model';
 export { ReadModelStore } from './domain/query/store/read-model.store';
-export { getUuidV4String } from './domain/uuid';
 /**
  * COMMON
  */
 export { ReactiveAggregateArchive } from './common/reactive-aggregate.archive';
+export { RandomStringGenerator } from './common/random-string.generator';
 /**
  * APP
  */

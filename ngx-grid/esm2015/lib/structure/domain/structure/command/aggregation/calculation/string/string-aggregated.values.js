@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { AggregatedValues } from '../aggregated.values';
+export class StringAggregatedValues extends AggregatedValues {
+    constructor() {
+        super();
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RyaW5nLWFnZ3JlZ2F0ZWQudmFsdWVzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJsaWIvc3RydWN0dXJlL2RvbWFpbi9zdHJ1Y3R1cmUvY29tbWFuZC9hZ2dyZWdhdGlvbi9jYWxjdWxhdGlvbi9zdHJpbmcvc3RyaW5nLWFnZ3JlZ2F0ZWQudmFsdWVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxzQkFBc0IsQ0FBQztBQUV4RCxNQUFNLE9BQU8sc0JBQXVCLFNBQVEsZ0JBQWdCO0lBRTNEO1FBQ0MsS0FBSyxFQUFFLENBQUM7SUFDVCxDQUFDO0NBRUQiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBBZ2dyZWdhdGVkVmFsdWVzIH0gZnJvbSAnLi4vYWdncmVnYXRlZC52YWx1ZXMnO1xuXG5leHBvcnQgY2xhc3MgU3RyaW5nQWdncmVnYXRlZFZhbHVlcyBleHRlbmRzIEFnZ3JlZ2F0ZWRWYWx1ZXMge1xuXG5cdGNvbnN0cnVjdG9yKCkge1xuXHRcdHN1cGVyKCk7XG5cdH1cblxufVxuIl19

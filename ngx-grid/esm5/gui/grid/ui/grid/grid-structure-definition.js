@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { StructureDefinition } from '../../../../lib/structure/ui/structure-definition';
+/**
+ * \@internal
+ * @type {?}
+ */
+export var gridStructureDefinition = new StructureDefinition.DefaultBuilder().build();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JpZC1zdHJ1Y3R1cmUtZGVmaW5pdGlvbi5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1ncmlkLyIsInNvdXJjZXMiOlsiZ3VpL2dyaWQvdWkvZ3JpZC9ncmlkLXN0cnVjdHVyZS1kZWZpbml0aW9uLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsbUJBQW1CLEVBQUUsTUFBTSxtREFBbUQsQ0FBQzs7Ozs7QUFHeEYsTUFBTSxLQUFPLHVCQUF1QixHQUFHLElBQUksbUJBQW1CLENBQUMsY0FBYyxFQUFFLENBQUMsS0FBSyxFQUFFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgU3RydWN0dXJlRGVmaW5pdGlvbiB9IGZyb20gJy4uLy4uLy4uLy4uL2xpYi9zdHJ1Y3R1cmUvdWkvc3RydWN0dXJlLWRlZmluaXRpb24nO1xuXG4vKiogQGludGVybmFsICovXG5leHBvcnQgY29uc3QgZ3JpZFN0cnVjdHVyZURlZmluaXRpb24gPSBuZXcgU3RydWN0dXJlRGVmaW5pdGlvbi5EZWZhdWx0QnVpbGRlcigpLmJ1aWxkKCk7XG4iXX0=

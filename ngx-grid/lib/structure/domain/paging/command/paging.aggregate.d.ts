@@ -1,0 +1,35 @@
+import { AggregateEvent } from '@generic-ui/hermes';
+import { Logger } from '../../../../../common/cdk/logger/logger';
+import { PagingConfigWithId } from '../paging-config-with-id';
+import { PagingConfig } from '../paging-config';
+export declare class PagingAggregate {
+    private enabled;
+    private page;
+    private pageSize;
+    private pageSizes;
+    private pagerTop;
+    private pagerBottom;
+    private readonly events;
+    static default(logger: Logger): PagingAggregate;
+    private readonly logger;
+    private constructor();
+    static fromConfig(paging: PagingConfigWithId, logger: Logger): PagingAggregate;
+    isEnabled(): boolean;
+    isDisabled(): boolean;
+    getPage(): number;
+    getPageSize(): number;
+    getPageSizes(): Array<number>;
+    isPagerTop(): boolean;
+    isPagerBottom(): boolean;
+    change(pagingConfig: PagingConfig): void;
+    nextPage(sourceSize: number): void;
+    prevPage(): void;
+    changePageSize(pageSize: number): ReadonlyArray<AggregateEvent>;
+    isNextPageDisabled(sourceSize: number): boolean;
+    isPrevPageDisabled(): boolean;
+    calculateStart(sourceSize: number): number;
+    calculateEnd(sourceSize: number): number;
+    sample(source: Array<any>): Array<any>;
+    private setPage;
+    private setPageSize;
+}

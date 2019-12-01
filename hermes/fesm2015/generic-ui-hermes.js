@@ -1,7 +1,7 @@
-import { Injectable, InjectionToken, Inject, NgModule, Optional } from '@angular/core';
+import { Injectable, InjectionToken, Inject, PLATFORM_ID, NgModule, Optional } from '@angular/core';
 import { Subject, isObservable, Observable, of, throwError, ReplaySubject } from 'rxjs';
 import { take, filter, first, map, takeUntil, distinctUntilChanged } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 
 /**
  * @fileoverview added by tsickle
@@ -68,109 +68,77 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-// tslint:disable:no-bitwise
-/**
- * @return {?}
- */
-function getRandomFromMathRandom() {
-    /** @type {?} */
-    let result = new Array(16);
-    /** @type {?} */
-    let r = 0;
-    for (let i = 0; i < 16; i++) {
-        if ((i & 0x03) === 0) {
-            r = Math.random() * 0x100000000;
-        }
-        result[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-    return (/** @type {?} */ (result));
-}
-/**
- * @return {?}
- */
-function getRandomFunction() {
-    // tslint:disable-next-line:no-string-literal
-    /** @type {?} */
-    let browserCrypto = window.crypto || ((/** @type {?} */ (window['msCrypto'])));
-    if (browserCrypto && browserCrypto.getRandomValues) {
-        // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-        //
-        // Moderately fast, high quality
-        try {
-            return (/**
-             * @return {?}
-             */
-            function getRandomFromCryptoRandom() {
-                /** @type {?} */
-                let result = new Uint8Array(16);
-                browserCrypto.getRandomValues(result);
-                return (/** @type {?} */ (result));
-            });
-        }
-        catch (e) { /* fallback*/
-        }
-    }
-    // Math.random()-based (RNG)
-    //
-    // If all else fails, use Math.random().  It's fast, but is of unspecified
-    // quality.
-    return getRandomFromMathRandom;
-}
-/** @type {?} */
-const getRandom = getRandomFunction();
-class ByteHexMappings {
+class RandomStringGenerator {
     constructor() {
-        this.byteToHex = [];
-        this.hexToByte = {};
         for (let i = 0; i < 256; i++) {
-            this.byteToHex[i] = (i + 0x100).toString(16).substr(1);
-            this.hexToByte[this.byteToHex[i]] = i;
+            RandomStringGenerator.byteToHex[i] = (i + 0x100).toString(16).substr(1);
+            RandomStringGenerator.hexToByte[RandomStringGenerator.byteToHex[i]] = i;
         }
     }
+    /**
+     * @return {?}
+     */
+    static generate() {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+    /**
+     * @return {?}
+     */
+    static getUuidV4() {
+        /** @type {?} */
+        const result = this.getRandomFromMathRandom();
+        result[6] = (result[6] & 0x0f) | 0x40;
+        result[8] = (result[8] & 0x3f) | 0x80;
+        return result;
+    }
+    /**
+     * @param {?} buf
+     * @param {?=} offset
+     * @return {?}
+     */
+    static uuidToString(buf, offset = 0) {
+        /** @type {?} */
+        let i = offset;
+        /** @type {?} */
+        let bth = this.byteToHex;
+        return bth[buf[i++]] + bth[buf[i++]] +
+            bth[buf[i++]] + bth[buf[i++]] + '-' +
+            bth[buf[i++]] + bth[buf[i++]] + '-' +
+            bth[buf[i++]] + bth[buf[i++]] + '-' +
+            bth[buf[i++]] + bth[buf[i++]] + '-' +
+            bth[buf[i++]] + bth[buf[i++]] +
+            bth[buf[i++]] + bth[buf[i++]] +
+            bth[buf[i++]] + bth[buf[i++]];
+    }
+    /**
+     * @return {?}
+     */
+    static getRandomFromMathRandom() {
+        /** @type {?} */
+        let result = new Array(16);
+        /** @type {?} */
+        let r = 0;
+        for (let i = 0; i < 16; i++) {
+            if ((i & 0x03) === 0) {
+                r = Math.random() * 0x100000000;
+            }
+            result[i] = r >>> ((i & 0x03) << 3) & 0xff;
+        }
+        return (/** @type {?} */ (result));
+    }
 }
+RandomStringGenerator.byteToHex = [];
+RandomStringGenerator.hexToByte = {};
+RandomStringGenerator.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RandomStringGenerator.ctorParameters = () => [];
 if (false) {
     /** @type {?} */
-    ByteHexMappings.prototype.byteToHex;
+    RandomStringGenerator.byteToHex;
     /** @type {?} */
-    ByteHexMappings.prototype.hexToByte;
-}
-/** @type {?} */
-const byteHexMappings = new ByteHexMappings();
-/**
- * @return {?}
- */
-function getUuidV4() {
-    /** @type {?} */
-    const result = getRandom();
-    // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-    result[6] = (result[6] & 0x0f) | 0x40;
-    result[8] = (result[8] & 0x3f) | 0x80;
-    return result;
-}
-/**
- * @param {?} buf
- * @param {?=} offset
- * @return {?}
- */
-function uuidToString(buf, offset = 0) {
-    /** @type {?} */
-    let i = offset;
-    /** @type {?} */
-    let bth = byteHexMappings.byteToHex;
-    return bth[buf[i++]] + bth[buf[i++]] +
-        bth[buf[i++]] + bth[buf[i++]] + '-' +
-        bth[buf[i++]] + bth[buf[i++]] + '-' +
-        bth[buf[i++]] + bth[buf[i++]] + '-' +
-        bth[buf[i++]] + bth[buf[i++]] + '-' +
-        bth[buf[i++]] + bth[buf[i++]] +
-        bth[buf[i++]] + bth[buf[i++]] +
-        bth[buf[i++]] + bth[buf[i++]];
-}
-/**
- * @return {?}
- */
-function getUuidV4String() {
-    return uuidToString(getUuidV4());
+    RandomStringGenerator.hexToByte;
 }
 
 /**
@@ -185,11 +153,12 @@ class Message {
      * @protected
      * @param {?} aggregateId
      * @param {?} messageType
+     * @param {?=} messageId
      */
-    constructor(aggregateId, messageType) {
+    constructor(aggregateId, messageType, messageId = RandomStringGenerator.generate()) {
         this.aggregateId = aggregateId;
         this.messageType = messageType;
-        this.messageId = getUuidV4String();
+        this.messageId = messageId;
     }
     /**
      * @return {?}
@@ -257,11 +226,6 @@ class Message {
     }
 }
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Message.prototype.messageId;
     /** @type {?} */
     Message.prototype.aggregateId;
     /**
@@ -269,6 +233,11 @@ if (false) {
      * @protected
      */
     Message.prototype.messageType;
+    /**
+     * @type {?}
+     * @private
+     */
+    Message.prototype.messageId;
 }
 
 /**
@@ -1435,37 +1404,41 @@ if (false) {
 const hermesApi = 'hermesApi';
 class HermesApi {
     /**
+     * @param {?} platformId
      * @param {?} commandLogger
      * @param {?} eventLogger
      */
-    constructor(commandLogger, eventLogger) {
+    constructor(platformId, commandLogger, eventLogger) {
+        this.platformId = platformId;
         this.commandLogger = commandLogger;
         this.eventLogger = eventLogger;
-        /** @type {?} */
-        const api = (/**
-         * @param {?} api
-         * @return {?}
-         */
-        (api) => {
-            return {
-                /**
-                 * @param {?} enabled
-                 * @return {?}
-                 */
-                set loggers(enabled) {
-                    if (enabled) {
-                        api.commandLogger.start();
-                        api.eventLogger.start();
+        if (isPlatformBrowser(this.platformId)) {
+            /** @type {?} */
+            const api = (/**
+             * @param {?} api
+             * @return {?}
+             */
+            (api) => {
+                return {
+                    /**
+                     * @param {?} enabled
+                     * @return {?}
+                     */
+                    set loggers(enabled) {
+                        if (enabled) {
+                            api.commandLogger.start();
+                            api.eventLogger.start();
+                        }
+                        else {
+                            api.commandLogger.stop();
+                            api.eventLogger.stop();
+                        }
                     }
-                    else {
-                        api.commandLogger.stop();
-                        api.eventLogger.stop();
-                    }
-                }
-            };
-        });
-        window[hermesApi] = api(this);
-        window[hermesApi].loggers = false;
+                };
+            });
+            window[hermesApi] = api(this);
+            window[hermesApi].loggers = false;
+        }
     }
 }
 HermesApi.decorators = [
@@ -1473,10 +1446,16 @@ HermesApi.decorators = [
 ];
 /** @nocollapse */
 HermesApi.ctorParameters = () => [
+    { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
     { type: CommandLogger },
     { type: DomainEventLogger }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesApi.prototype.platformId;
     /**
      * @type {?}
      * @private
@@ -2230,6 +2209,7 @@ class NoopEventLogger extends DomainEventLogger {
  */
 /** @type {?} */
 const hermesProviders = [
+    RandomStringGenerator,
     { provide: FILTERED_COMMAND_STREAM, useExisting: CommandStream },
     CommandBus,
     CommandStream,
@@ -2500,5 +2480,5 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Aggregate, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, ReactiveAggregateArchive, ReadModel, ReadModelStore, ReplayCommandDispatcher, StatusResponse, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, getUuidV4String, provideCommandHandlers, provideEventHandlers, getUuidV4 as ɵa, uuidToString as ɵb, commandLoggerFactory as ɵc, eventLoggerFactory as ɵd, Message as ɵe, DomainEventStore as ɵf, FILTERED_COMMAND_STREAM as ɵg, ConsoleCommandLogger as ɵh, NoopCommandLogger as ɵi, ConsoleEventLogger as ɵj, NoopEventLogger as ɵk };
+export { Aggregate, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReactiveAggregateArchive, ReadModel, ReadModelStore, ReplayCommandDispatcher, StatusResponse, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Message as ɵc, DomainEventStore as ɵd, FILTERED_COMMAND_STREAM as ɵe, ConsoleCommandLogger as ɵf, NoopCommandLogger as ɵg, ConsoleEventLogger as ɵh, NoopEventLogger as ɵi };
 //# sourceMappingURL=generic-ui-hermes.js.map
