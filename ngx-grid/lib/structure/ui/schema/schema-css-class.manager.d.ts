@@ -1,5 +1,5 @@
 import { ElementRef, OnDestroy, RendererFactory2 } from '@angular/core';
-import { SchemaQueryService } from '../../app/schema/schema-query.service';
+import { SchemaReadModelService } from '../../ui-api/schema/schema-read-model.service';
 import { StructureId } from '../../domain/structure-id';
 export declare class SchemaCssClassManager implements OnDestroy {
     private rendererFactory2;
@@ -16,7 +16,7 @@ export declare class SchemaCssClassManager implements OnDestroy {
     private cssClass;
     private cssHostRef;
     private unsubscribe$;
-    constructor(rendererFactory2: RendererFactory2, schemaQueryService: SchemaQueryService);
+    constructor(rendererFactory2: RendererFactory2, schemaQueryService: SchemaReadModelService);
     ngOnDestroy(): void;
     init(elementRef: ElementRef, structureId: StructureId): void;
     private updateState;

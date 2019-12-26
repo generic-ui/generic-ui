@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges } from '@angular/core';
-import { Paging } from '../../../../domain/paging/query/paging';
-import { PagingCommandService } from '../../../../app/paging/paging-command.service';
+import { Paging } from '../../../../domain/paging/read/paging';
+import { PagingCommandService } from '../../../../ui-api/paging/paging-command.service';
 export declare class StructureAlternativePagingNavigatorComponent implements OnChanges {
     private pagingCommandService;
     paging: Paging;

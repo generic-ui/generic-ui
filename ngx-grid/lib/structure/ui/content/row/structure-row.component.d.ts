@@ -1,7 +1,7 @@
-import { Entity } from '../../../domain/source/entity';
-import { CellTemplateWithAccessor } from '../../../domain/composition/query/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../domain/composition/read/definition/cell-template-with-accessor';
+import { ItemEntity } from '../../../domain/source/item.entity';
 export declare class StructureRowComponent {
-    entity: Entity;
+    entity: ItemEntity;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;

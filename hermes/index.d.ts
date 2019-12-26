@@ -1,4 +1,10 @@
 /**
+ * API
+ */
+export { HermesApi } from './ui-api/hermes-api';
+export { enableHermesLoggers, disableHermesLoggers } from './ui-api/hermes-api.helpers';
+export { provideCommandHandlers, provideEventHandlers } from './domain/provider.helpers';
+/**
  * Domain
  */
 export { COMMAND_HANDLERS } from './domain/command/command-handlers';
@@ -25,19 +31,14 @@ export { DomainEventLogger } from './domain/event/domain-event.logger';
 export { DomainEventPayload } from './domain/event/domain-event.payload';
 export { DomainEventStream } from './domain/event/domain-event.stream';
 export { DOMAIN_EVENT_HANDLERS } from './domain/event/domain-event-handlers';
-export { ReadModel } from './domain/query/read-model';
-export { ReadModelStore } from './domain/query/store/read-model.store';
+export { ReadModel } from './domain/read/read-model';
+export { ReadModelStore } from './domain/read/store/read-model.store';
+export { RootAggregate, Entity, ValueObject } from './domain/decorators';
 /**
  * COMMON
  */
-export { ReactiveAggregateArchive } from './common/reactive-aggregate.archive';
+export { AggregateArchive } from './common/aggregate.archive';
 export { RandomStringGenerator } from './common/random-string.generator';
-/**
- * APP
- */
-export { HermesApi } from './api/hermes-api';
-export { enableHermesLoggers, disableHermesLoggers } from './api/hermes-api.helpers';
-export { provideCommandHandlers, provideEventHandlers } from './domain/provider.helpers';
 /**
  * Infrastructure
  */
@@ -48,8 +49,8 @@ export { PersistAggregateStore } from './infrastructure/persist/command/persist-
 export { InMemoryAggregateStore } from './infrastructure/in-memory/command/in-memory.aggregate.store';
 export { InMemoryReadModelStore } from './infrastructure/in-memory/query/in-memory.read-model.store';
 export { InMemoryStore } from './infrastructure/in-memory/in-memory.store';
-export { HermesModule } from './hermes.module';
-export { HermesModuleConfig } from './hermes-module-config';
+export { HermesModule } from './ui-api/hermes.module';
+export { HermesModuleConfig } from './ui-api/hermes-module-config';
 export { COMMAND_LOGGER_ENABLED } from './domain/hermes-tokens';
 export { EVENT_LOGGER_ENABLED } from './domain/hermes-tokens';
 /**

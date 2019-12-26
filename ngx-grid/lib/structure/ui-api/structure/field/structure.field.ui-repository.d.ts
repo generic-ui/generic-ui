@@ -5,5 +5,5 @@ import { StructureFieldUiModel } from './structure.field.ui-model';
 export declare class StructureFieldUiRepository {
     private structureFieldUiArchive;
     constructor(structureFieldUiArchive: StructureFieldUiArchive);
-    selectFields(structureId: StructureId): Observable<Array<StructureFieldUiModel>>;
+    onFields(structureId: StructureId): Observable<Array<StructureFieldUiModel>>;
 }

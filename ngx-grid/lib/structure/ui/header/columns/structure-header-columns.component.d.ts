@@ -1,5 +1,5 @@
-import { CellTemplateWithContext } from '../../../domain/composition/query/definition/cell-template-with-context';
-import { StructureCommandService } from '../../../app/structure/structure-command.service';
+import { CellTemplateWithContext } from '../../../domain/composition/read/definition/cell-template-with-context';
+import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
 import { StructureColumnConfigService } from '../config/structure.column-config.service';
 export declare class StructureHeaderColumnsComponent {
     private structureCommandService;

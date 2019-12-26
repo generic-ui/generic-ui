@@ -1,4 +1,4 @@
-import { DomainEventHandler, DomainEvent } from '@generic-ui/hermes';
+import { DomainEvent, DomainEventHandler } from '@generic-ui/hermes';
 import { CompositionDispatcher } from '../../composition.dispatcher';
 import { ColumnFieldFactory } from '../field/colum-field.factory';
 export declare class CompositionFieldsInitedEventHandler extends DomainEventHandler {
@@ -6,4 +6,6 @@ export declare class CompositionFieldsInitedEventHandler extends DomainEventHand
     private readonly columnFieldFactory;
     constructor(compositionDispatcher: CompositionDispatcher, columnFieldFactory: ColumnFieldFactory);
     handle(event: DomainEvent): void;
+    private convertColumnFieldIds;
+    private convertColumns;
 }

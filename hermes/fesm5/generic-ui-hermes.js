@@ -1,8 +1,161 @@
-import { Injectable, InjectionToken, Inject, PLATFORM_ID, NgModule, Optional } from '@angular/core';
-import { __extends, __spread, __values } from 'tslib';
-import { Subject, isObservable, Observable, of, throwError, ReplaySubject } from 'rxjs';
-import { take, filter, first, map, takeUntil, distinctUntilChanged } from 'rxjs/operators';
+import { Injectable, Inject, PLATFORM_ID, InjectionToken, NgModule, Optional } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { __extends, __spread, __values } from 'tslib';
+import { Subject, isObservable, Observable, of, throwError, BehaviorSubject, ReplaySubject } from 'rxjs';
+import { take, filter, first, map, takeUntil, distinctUntilChanged } from 'rxjs/operators';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+CommandLogger = /** @class */ (function () {
+    function CommandLogger() {
+    }
+    return CommandLogger;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @return {?}
+     */
+    CommandLogger.prototype.start = function () { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    CommandLogger.prototype.stop = function () { };
+    /**
+     * @abstract
+     * @param {?} command
+     * @return {?}
+     */
+    CommandLogger.prototype.log = function (command) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+DomainEventLogger = /** @class */ (function () {
+    function DomainEventLogger() {
+    }
+    return DomainEventLogger;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @return {?}
+     */
+    DomainEventLogger.prototype.start = function () { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    DomainEventLogger.prototype.stop = function () { };
+    /**
+     * @abstract
+     * @param {?} event
+     * @return {?}
+     */
+    DomainEventLogger.prototype.log = function (event) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var hermesApi = 'hermesApi';
+var HermesApi = /** @class */ (function () {
+    function HermesApi(platformId, commandLogger, eventLogger) {
+        this.platformId = platformId;
+        this.commandLogger = commandLogger;
+        this.eventLogger = eventLogger;
+        if (isPlatformBrowser(this.platformId)) {
+            /** @type {?} */
+            var api = (/**
+             * @param {?} api
+             * @return {?}
+             */
+            function (api) {
+                return {
+                    /**
+                     * @param {?} enabled
+                     * @return {?}
+                     */
+                    set loggers(enabled) {
+                        if (enabled) {
+                            api.commandLogger.start();
+                            api.eventLogger.start();
+                        }
+                        else {
+                            api.commandLogger.stop();
+                            api.eventLogger.stop();
+                        }
+                    }
+                };
+            });
+            window[hermesApi] = api(this);
+            window[hermesApi].loggers = false;
+        }
+    }
+    HermesApi.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    HermesApi.ctorParameters = function () { return [
+        { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+        { type: CommandLogger },
+        { type: DomainEventLogger }
+    ]; };
+    return HermesApi;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesApi.prototype.platformId;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesApi.prototype.commandLogger;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesApi.prototype.eventLogger;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @return {?}
+ */
+function enableHermesLoggers() {
+    window[hermesApi].loggers = true;
+}
+/**
+ * @return {?}
+ */
+function disableHermesLoggers() {
+    window[hermesApi].loggers = false;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -13,6 +166,52 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
  * @type {?}
  */
 var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var DOMAIN_EVENT_HANDLERS = 'DOMAIN_EVENT_HANDLERS';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} handlers
+ * @return {?}
+ */
+function provideCommandHandlers(handlers) {
+    return (/** @type {?} */ (handlers.map((/**
+     * @param {?} handler
+     * @return {?}
+     */
+    function (handler) {
+        return {
+            provide: COMMAND_HANDLERS,
+            useClass: handler,
+            multi: true
+        };
+    }))));
+}
+/**
+ * @param {?} handlers
+ * @return {?}
+ */
+function provideEventHandlers(handlers) {
+    return (/** @type {?} */ (handlers.map((/**
+     * @param {?} handler
+     * @return {?}
+     */
+    function (handler) {
+        return {
+            provide: DOMAIN_EVENT_HANDLERS,
+            useClass: handler,
+            multi: true
+        };
+    }))));
+}
 
 /**
  * @fileoverview added by tsickle
@@ -82,10 +281,6 @@ if (false) {
  */
 var RandomStringGenerator = /** @class */ (function () {
     function RandomStringGenerator() {
-        for (var i = 0; i < 256; i++) {
-            RandomStringGenerator.byteToHex[i] = (i + 0x100).toString(16).substr(1);
-            RandomStringGenerator.hexToByte[RandomStringGenerator.byteToHex[i]] = i;
-        }
     }
     /**
      * @return {?}
@@ -94,79 +289,17 @@ var RandomStringGenerator = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + ("" + RandomStringGenerator.index++);
     };
-    /**
-     * @return {?}
-     */
-    RandomStringGenerator.getUuidV4 = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var result = this.getRandomFromMathRandom();
-        result[6] = (result[6] & 0x0f) | 0x40;
-        result[8] = (result[8] & 0x3f) | 0x80;
-        return result;
-    };
-    /**
-     * @param {?} buf
-     * @param {?=} offset
-     * @return {?}
-     */
-    RandomStringGenerator.uuidToString = /**
-     * @param {?} buf
-     * @param {?=} offset
-     * @return {?}
-     */
-    function (buf, offset) {
-        if (offset === void 0) { offset = 0; }
-        /** @type {?} */
-        var i = offset;
-        /** @type {?} */
-        var bth = this.byteToHex;
-        return bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] + '-' +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]] +
-            bth[buf[i++]] + bth[buf[i++]];
-    };
-    /**
-     * @return {?}
-     */
-    RandomStringGenerator.getRandomFromMathRandom = /**
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var result = new Array(16);
-        /** @type {?} */
-        var r = 0;
-        for (var i = 0; i < 16; i++) {
-            if ((i & 0x03) === 0) {
-                r = Math.random() * 0x100000000;
-            }
-            result[i] = r >>> ((i & 0x03) << 3) & 0xff;
-        }
-        return (/** @type {?} */ (result));
-    };
-    RandomStringGenerator.byteToHex = [];
-    RandomStringGenerator.hexToByte = {};
+    RandomStringGenerator.index = 0;
     RandomStringGenerator.decorators = [
         { type: Injectable }
     ];
-    /** @nocollapse */
-    RandomStringGenerator.ctorParameters = function () { return []; };
     return RandomStringGenerator;
 }());
 if (false) {
     /** @type {?} */
-    RandomStringGenerator.byteToHex;
-    /** @type {?} */
-    RandomStringGenerator.hexToByte;
+    RandomStringGenerator.index;
 }
 
 /**
@@ -571,40 +704,6 @@ var CommandBus = /** @class */ (function (_super) {
     ]; };
     return CommandBus;
 }(Observable));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-CommandLogger = /** @class */ (function () {
-    function CommandLogger() {
-    }
-    return CommandLogger;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @return {?}
-     */
-    CommandLogger.prototype.start = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    CommandLogger.prototype.stop = function () { };
-    /**
-     * @abstract
-     * @param {?} command
-     * @return {?}
-     */
-    CommandLogger.prototype.log = function (command) { };
-}
 
 /**
  * @fileoverview added by tsickle
@@ -1520,40 +1619,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-DomainEventLogger = /** @class */ (function () {
-    function DomainEventLogger() {
-    }
-    return DomainEventLogger;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @return {?}
-     */
-    DomainEventLogger.prototype.start = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    DomainEventLogger.prototype.stop = function () { };
-    /**
-     * @abstract
-     * @param {?} event
-     * @return {?}
-     */
-    DomainEventLogger.prototype.log = function (event) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var DomainEventPayload = /** @class */ (function () {
     function DomainEventPayload(value) {
         this.value = value;
@@ -1576,13 +1641,6 @@ if (false) {
      */
     DomainEventPayload.prototype.value;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var DOMAIN_EVENT_HANDLERS = 'DOMAIN_EVENT_HANDLERS';
 
 /**
  * @fileoverview added by tsickle
@@ -1648,6 +1706,120 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @param {?} target
+ * @return {?}
+ */
+function RootAggregate(target) { }
+/**
+ * @param {?} target
+ * @return {?}
+ */
+function Entity(target) { }
+/**
+ * @param {?} target
+ * @return {?}
+ */
+function ValueObject(target) { }
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+Reactive = /** @class */ (function () {
+    function Reactive() {
+        this.unsubscribe$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    Reactive.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.unsubscribe();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    Reactive.prototype.unsubscribe = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    Reactive.prototype.takeUntil = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return takeUntil(this.unsubscribe$);
+    };
+    return Reactive;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Reactive.prototype.unsubscribe$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+ReactiveService = /** @class */ (function (_super) {
+    __extends(ReactiveService, _super);
+    function ReactiveService() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @return {?}
+     */
+    ReactiveService.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.unsubscribe();
+    };
+    return ReactiveService;
+}(Reactive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DefaultAggregateValues() { }
+if (false) {
+    /** @type {?} */
+    DefaultAggregateValues.prototype.aggregateId;
+    /** @type {?} */
+    DefaultAggregateValues.prototype.value;
+}
+/**
  * @abstract
  * @template T
  */
@@ -1655,30 +1827,19 @@ var  /**
  * @abstract
  * @template T
  */
-ReactiveAggregateArchive = /** @class */ (function () {
-    function ReactiveAggregateArchive() {
-        this.archive = new Map();
-        this.archive$ = new ReplaySubject();
+AggregateArchive = /** @class */ (function (_super) {
+    __extends(AggregateArchive, _super);
+    function AggregateArchive(defaultValue) {
+        var _this = _super.call(this) || this;
+        _this.archive = new Map();
+        _this.initArchive(defaultValue);
+        return _this;
     }
     /**
      * @param {?} aggregateId
-     * @param {?} value
      * @return {?}
      */
-    ReactiveAggregateArchive.prototype.set = /**
-     * @param {?} aggregateId
-     * @param {?} value
-     * @return {?}
-     */
-    function (aggregateId, value) {
-        this.archive.set(aggregateId.toString(), value);
-        this.archive$.next(this.archive);
-    };
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    ReactiveAggregateArchive.prototype.select = /**
+    AggregateArchive.prototype.when = /**
      * @param {?} aggregateId
      * @return {?}
      */
@@ -1693,143 +1854,52 @@ ReactiveAggregateArchive = /** @class */ (function () {
             return map.get(aggregateId.toString());
         })), distinctUntilChanged());
     };
-    return ReactiveAggregateArchive;
-}());
-if (false) {
     /**
-     * @type {?}
-     * @private
+     * @param {?} aggregateId
+     * @param {?} value
+     * @return {?}
      */
-    ReactiveAggregateArchive.prototype.archive;
+    AggregateArchive.prototype.next = /**
+     * @param {?} aggregateId
+     * @param {?} value
+     * @return {?}
+     */
+    function (aggregateId, value) {
+        this.archive.set(aggregateId.toString(), value);
+        this.archive$.next(this.archive);
+    };
     /**
-     * @type {?}
      * @private
+     * @param {?=} defaultValue
+     * @return {?}
      */
-    ReactiveAggregateArchive.prototype.archive$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var hermesApi = 'hermesApi';
-var HermesApi = /** @class */ (function () {
-    function HermesApi(platformId, commandLogger, eventLogger) {
-        this.platformId = platformId;
-        this.commandLogger = commandLogger;
-        this.eventLogger = eventLogger;
-        if (isPlatformBrowser(this.platformId)) {
-            /** @type {?} */
-            var api = (/**
-             * @param {?} api
-             * @return {?}
-             */
-            function (api) {
-                return {
-                    /**
-                     * @param {?} enabled
-                     * @return {?}
-                     */
-                    set loggers(enabled) {
-                        if (enabled) {
-                            api.commandLogger.start();
-                            api.eventLogger.start();
-                        }
-                        else {
-                            api.commandLogger.stop();
-                            api.eventLogger.stop();
-                        }
-                    }
-                };
-            });
-            window[hermesApi] = api(this);
-            window[hermesApi].loggers = false;
+    AggregateArchive.prototype.initArchive = /**
+     * @private
+     * @param {?=} defaultValue
+     * @return {?}
+     */
+    function (defaultValue) {
+        if (defaultValue) {
+            this.archive.set(defaultValue.aggregateId.toString(), defaultValue.value);
+            this.archive$ = new BehaviorSubject(this.archive);
         }
-    }
-    HermesApi.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    HermesApi.ctorParameters = function () { return [
-        { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
-        { type: CommandLogger },
-        { type: DomainEventLogger }
-    ]; };
-    return HermesApi;
-}());
+        else {
+            this.archive$ = new ReplaySubject(1);
+        }
+    };
+    return AggregateArchive;
+}(ReactiveService));
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    HermesApi.prototype.platformId;
+    AggregateArchive.prototype.archive;
     /**
      * @type {?}
      * @private
      */
-    HermesApi.prototype.commandLogger;
-    /**
-     * @type {?}
-     * @private
-     */
-    HermesApi.prototype.eventLogger;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @return {?}
- */
-function enableHermesLoggers() {
-    window[hermesApi].loggers = true;
-}
-/**
- * @return {?}
- */
-function disableHermesLoggers() {
-    window[hermesApi].loggers = false;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @param {?} handlers
- * @return {?}
- */
-function provideCommandHandlers(handlers) {
-    return (/** @type {?} */ (handlers.map((/**
-     * @param {?} handler
-     * @return {?}
-     */
-    function (handler) {
-        return {
-            provide: COMMAND_HANDLERS,
-            useClass: handler,
-            multi: true
-        };
-    }))));
-}
-/**
- * @param {?} handlers
- * @return {?}
- */
-function provideEventHandlers(handlers) {
-    return (/** @type {?} */ (handlers.map((/**
-     * @param {?} handler
-     * @return {?}
-     */
-    function (handler) {
-        return {
-            provide: DOMAIN_EVENT_HANDLERS,
-            useClass: handler,
-            multi: true
-        };
-    }))));
+    AggregateArchive.prototype.archive$;
 }
 
 /**
@@ -3027,5 +3097,5 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Aggregate, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReactiveAggregateArchive, ReadModel, ReadModelStore, ReplayCommandDispatcher, StatusResponse, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Message as ɵc, DomainEventStore as ɵd, FILTERED_COMMAND_STREAM as ɵe, ConsoleCommandLogger as ɵf, NoopCommandLogger as ɵg, ConsoleEventLogger as ɵh, NoopEventLogger as ɵi };
+export { Aggregate, AggregateArchive, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Message as ɵc, DomainEventStore as ɵd, FILTERED_COMMAND_STREAM as ɵe, ReactiveService as ɵf, Reactive as ɵg, ConsoleCommandLogger as ɵh, NoopCommandLogger as ɵi, ConsoleEventLogger as ɵj, NoopEventLogger as ɵk };
 //# sourceMappingURL=generic-ui-hermes.js.map

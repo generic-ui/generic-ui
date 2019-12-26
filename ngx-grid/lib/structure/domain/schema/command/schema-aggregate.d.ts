@@ -4,7 +4,6 @@ import { SchemaRowColoring } from '../schema-row-coloring';
 export declare class SchemaAggregate {
     private width?;
     private height?;
-    static default(): SchemaAggregate;
     private headerHeight;
     private pagerHeight;
     private containerHeight;

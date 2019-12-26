@@ -6,7 +6,6 @@ export declare class FormationAggregate {
      * - sorting?
      * - filtering?
      */
-    static default(): FormationAggregate;
     constructor(selectedRows: Array<string>);
     getSelectedRows(): Array<string>;
     toggleRow(selectedRow: string): void;

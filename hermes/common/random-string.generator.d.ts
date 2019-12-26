@@ -1,11 +1,4 @@
 export declare class RandomStringGenerator {
-    static byteToHex: string[];
-    static hexToByte: {
-        [hex: string]: number;
-    };
-    constructor();
+    static index: number;
     static generate(): string;
-    static getUuidV4(): any;
-    static uuidToString(buf: Array<number>, offset?: number): string;
-    static getRandomFromMathRandom(): Array<number>;
 }

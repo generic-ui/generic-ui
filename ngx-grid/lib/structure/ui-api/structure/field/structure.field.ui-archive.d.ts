@@ -1,5 +1,5 @@
-import { ReactiveAggregateArchive } from '@generic-ui/hermes';
+import { AggregateArchive } from '@generic-ui/hermes';
 import { StructureFieldUiModel } from './structure.field.ui-model';
-export declare class StructureFieldUiArchive extends ReactiveAggregateArchive<Array<StructureFieldUiModel>> {
+export declare class StructureFieldUiArchive extends AggregateArchive<Array<StructureFieldUiModel>> {
     constructor();
 }

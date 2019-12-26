@@ -1,5 +1,5 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { StructureCommandService } from '../../../app/structure/structure-command.service';
+import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
 import { StructureId } from '../../../domain/structure-id';
 import { CompositionId } from '../../../domain/composition/composition-id';
 import { StructureFilterCommandService } from '../../../ui-api/structure/filter/structure.filter.command.service';

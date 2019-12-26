@@ -1,4 +1,4 @@
-import { ReactiveArchive } from '../../../../common/cdk/reactive.archive';
-export declare class StructureCellEditArchive extends ReactiveArchive<boolean> {
+import { Archive } from '../../../../common/cdk/archive';
+export declare class StructureCellEditArchive extends Archive<boolean> {
     constructor();
 }

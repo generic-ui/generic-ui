@@ -1,5 +1,5 @@
-import { Source } from './query/source';
-import { SourceCoordinator } from './command/source-coordinator';
+import { Source } from './read/source';
+import { SourceManager } from './command/source.manager';
 export declare class SourceConverter {
-    convert(aggregate: SourceCoordinator): Source;
+    convert(aggregate: SourceManager): Source;
 }

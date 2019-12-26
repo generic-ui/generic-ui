@@ -1,0 +1,55 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { COMMAND_HANDLERS } from '@generic-ui/hermes';
+import { PagingDispatcher } from '../../domain/paging/command/paging.dispatcher';
+import { SetPagingCommandHandler } from '../../domain/paging/command/set/set-paging.command-handler';
+import { NextPageCommandHandler } from '../../domain/paging/command/next-page/next-page.command-handler';
+import { PrevPageCommandHandler } from '../../domain/paging/command/prev-page/prev-page.command-handler';
+import { ChangePagesizeCommandHandler } from '../../domain/paging/command/change-pagesize/change-pagesize.command-handler';
+import { PagingRepository } from '../../domain/paging/read/paging.repository';
+import { PagingAggregateFactory } from '../../domain/paging/command/paging.aggregate-factory';
+import { PagingConverter } from '../../domain/paging/paging.converter';
+import { PagingCommandService } from './paging-command.service';
+import { PagingReadModelService } from './paging-read-model.service';
+import { PagingEventService } from './paging-event.service';
+/** @type {?} */
+const commandProviders = [
+    PagingDispatcher,
+    {
+        provide: COMMAND_HANDLERS,
+        useClass: SetPagingCommandHandler,
+        multi: true
+    },
+    {
+        provide: COMMAND_HANDLERS,
+        useClass: NextPageCommandHandler,
+        multi: true
+    },
+    {
+        provide: COMMAND_HANDLERS,
+        useClass: PrevPageCommandHandler,
+        multi: true
+    },
+    {
+        provide: COMMAND_HANDLERS,
+        useClass: ChangePagesizeCommandHandler,
+        multi: true
+    }
+];
+/** @type {?} */
+const readProviders = [
+    PagingRepository
+];
+/** @type {?} */
+export const pagingProviders = [
+    ...commandProviders,
+    ...readProviders,
+    PagingAggregateFactory,
+    PagingConverter,
+    PagingCommandService,
+    PagingReadModelService,
+    PagingEventService
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnaW5nLnByb3ZpZGVycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1ncmlkLyIsInNvdXJjZXMiOlsibGliL3N0cnVjdHVyZS91aS1hcGkvcGFnaW5nL3BhZ2luZy5wcm92aWRlcnMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBRXRELE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLCtDQUErQyxDQUFDO0FBQ2pGLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLDREQUE0RCxDQUFDO0FBQ3JHLE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLGlFQUFpRSxDQUFDO0FBQ3pHLE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLGlFQUFpRSxDQUFDO0FBQ3pHLE9BQU8sRUFBRSw0QkFBNEIsRUFBRSxNQUFNLDZFQUE2RSxDQUFDO0FBQzNILE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLDRDQUE0QyxDQUFDO0FBQzlFLE9BQU8sRUFBRSxzQkFBc0IsRUFBRSxNQUFNLHNEQUFzRCxDQUFDO0FBQzlGLE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSxzQ0FBc0MsQ0FBQztBQUN2RSxPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSwwQkFBMEIsQ0FBQztBQUNoRSxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSw2QkFBNkIsQ0FBQztBQUNyRSxPQUFPLEVBQUUsa0JBQWtCLEVBQUUsTUFBTSx3QkFBd0IsQ0FBQzs7TUFHdEQsZ0JBQWdCLEdBQUc7SUFDeEIsZ0JBQWdCO0lBQ2hCO1FBQ0MsT0FBTyxFQUFFLGdCQUFnQjtRQUN6QixRQUFRLEVBQUUsdUJBQXVCO1FBQ2pDLEtBQUssRUFBRSxJQUFJO0tBQ1g7SUFDRDtRQUNDLE9BQU8sRUFBRSxnQkFBZ0I7UUFDekIsUUFBUSxFQUFFLHNCQUFzQjtRQUNoQyxLQUFLLEVBQUUsSUFBSTtLQUNYO0lBQ0Q7UUFDQyxPQUFPLEVBQUUsZ0JBQWdCO1FBQ3pCLFFBQVEsRUFBRSxzQkFBc0I7UUFDaEMsS0FBSyxFQUFFLElBQUk7S0FDWDtJQUNEO1FBQ0MsT0FBTyxFQUFFLGdCQUFnQjtRQUN6QixRQUFRLEVBQUUsNEJBQTRCO1FBQ3RDLEtBQUssRUFBRSxJQUFJO0tBQ1g7Q0FDRDs7TUFFSyxhQUFhLEdBQUc7SUFDckIsZ0JBQWdCO0NBQ2hCOztBQUVELE1BQU0sT0FBTyxlQUFlLEdBQUc7SUFDOUIsR0FBRyxnQkFBZ0I7SUFDbkIsR0FBRyxhQUFhO0lBRWhCLHNCQUFzQjtJQUN0QixlQUFlO0lBRWYsb0JBQW9CO0lBQ3BCLHNCQUFzQjtJQUN0QixrQkFBa0I7Q0FDbEIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDT01NQU5EX0hBTkRMRVJTIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuaW1wb3J0IHsgUGFnaW5nRGlzcGF0Y2hlciB9IGZyb20gJy4uLy4uL2RvbWFpbi9wYWdpbmcvY29tbWFuZC9wYWdpbmcuZGlzcGF0Y2hlcic7XG5pbXBvcnQgeyBTZXRQYWdpbmdDb21tYW5kSGFuZGxlciB9IGZyb20gJy4uLy4uL2RvbWFpbi9wYWdpbmcvY29tbWFuZC9zZXQvc2V0LXBhZ2luZy5jb21tYW5kLWhhbmRsZXInO1xuaW1wb3J0IHsgTmV4dFBhZ2VDb21tYW5kSGFuZGxlciB9IGZyb20gJy4uLy4uL2RvbWFpbi9wYWdpbmcvY29tbWFuZC9uZXh0LXBhZ2UvbmV4dC1wYWdlLmNvbW1hbmQtaGFuZGxlcic7XG5pbXBvcnQgeyBQcmV2UGFnZUNvbW1hbmRIYW5kbGVyIH0gZnJvbSAnLi4vLi4vZG9tYWluL3BhZ2luZy9jb21tYW5kL3ByZXYtcGFnZS9wcmV2LXBhZ2UuY29tbWFuZC1oYW5kbGVyJztcbmltcG9ydCB7IENoYW5nZVBhZ2VzaXplQ29tbWFuZEhhbmRsZXIgfSBmcm9tICcuLi8uLi9kb21haW4vcGFnaW5nL2NvbW1hbmQvY2hhbmdlLXBhZ2VzaXplL2NoYW5nZS1wYWdlc2l6ZS5jb21tYW5kLWhhbmRsZXInO1xuaW1wb3J0IHsgUGFnaW5nUmVwb3NpdG9yeSB9IGZyb20gJy4uLy4uL2RvbWFpbi9wYWdpbmcvcmVhZC9wYWdpbmcucmVwb3NpdG9yeSc7XG5pbXBvcnQgeyBQYWdpbmdBZ2dyZWdhdGVGYWN0b3J5IH0gZnJvbSAnLi4vLi4vZG9tYWluL3BhZ2luZy9jb21tYW5kL3BhZ2luZy5hZ2dyZWdhdGUtZmFjdG9yeSc7XG5pbXBvcnQgeyBQYWdpbmdDb252ZXJ0ZXIgfSBmcm9tICcuLi8uLi9kb21haW4vcGFnaW5nL3BhZ2luZy5jb252ZXJ0ZXInO1xuaW1wb3J0IHsgUGFnaW5nQ29tbWFuZFNlcnZpY2UgfSBmcm9tICcuL3BhZ2luZy1jb21tYW5kLnNlcnZpY2UnO1xuaW1wb3J0IHsgUGFnaW5nUmVhZE1vZGVsU2VydmljZSB9IGZyb20gJy4vcGFnaW5nLXJlYWQtbW9kZWwuc2VydmljZSc7XG5pbXBvcnQgeyBQYWdpbmdFdmVudFNlcnZpY2UgfSBmcm9tICcuL3BhZ2luZy1ldmVudC5zZXJ2aWNlJztcblxuXG5jb25zdCBjb21tYW5kUHJvdmlkZXJzID0gW1xuXHRQYWdpbmdEaXNwYXRjaGVyLFxuXHR7XG5cdFx0cHJvdmlkZTogQ09NTUFORF9IQU5ETEVSUyxcblx0XHR1c2VDbGFzczogU2V0UGFnaW5nQ29tbWFuZEhhbmRsZXIsXG5cdFx0bXVsdGk6IHRydWVcblx0fSxcblx0e1xuXHRcdHByb3ZpZGU6IENPTU1BTkRfSEFORExFUlMsXG5cdFx0dXNlQ2xhc3M6IE5leHRQYWdlQ29tbWFuZEhhbmRsZXIsXG5cdFx0bXVsdGk6IHRydWVcblx0fSxcblx0e1xuXHRcdHByb3ZpZGU6IENPTU1BTkRfSEFORExFUlMsXG5cdFx0dXNlQ2xhc3M6IFByZXZQYWdlQ29tbWFuZEhhbmRsZXIsXG5cdFx0bXVsdGk6IHRydWVcblx0fSxcblx0e1xuXHRcdHByb3ZpZGU6IENPTU1BTkRfSEFORExFUlMsXG5cdFx0dXNlQ2xhc3M6IENoYW5nZVBhZ2VzaXplQ29tbWFuZEhhbmRsZXIsXG5cdFx0bXVsdGk6IHRydWVcblx0fVxuXTtcblxuY29uc3QgcmVhZFByb3ZpZGVycyA9IFtcblx0UGFnaW5nUmVwb3NpdG9yeVxuXTtcblxuZXhwb3J0IGNvbnN0IHBhZ2luZ1Byb3ZpZGVycyA9IFtcblx0Li4uY29tbWFuZFByb3ZpZGVycyxcblx0Li4ucmVhZFByb3ZpZGVycyxcblxuXHRQYWdpbmdBZ2dyZWdhdGVGYWN0b3J5LFxuXHRQYWdpbmdDb252ZXJ0ZXIsXG5cblx0UGFnaW5nQ29tbWFuZFNlcnZpY2UsXG5cdFBhZ2luZ1JlYWRNb2RlbFNlcnZpY2UsXG5cdFBhZ2luZ0V2ZW50U2VydmljZVxuXTtcbiJdfQ==

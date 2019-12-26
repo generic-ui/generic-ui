@@ -1,12 +1,13 @@
-import { ElementRef, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { Entity } from '../../domain/source/entity';
-import { CellTemplateWithAccessor } from '../../domain/composition/query/definition/cell-template-with-accessor';
-import { FormationCommandService } from '../../app/formation/formation-command.service';
+import { CellTemplateWithAccessor } from '../../domain/composition/read/definition/cell-template-with-accessor';
+import { FormationCommandService } from '../../ui-api/formation/formation-command.service';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
-import { FormationQueryService } from '../../app/formation/formation-query.service';
+import { FormationReadModelService } from '../../ui-api/formation/formation-read-model.service';
+import { ItemEntity } from '../../domain/source/item.entity';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
+    private platformId;
     private renderer;
     private elementRef;
     private changeDetectorRef;
@@ -14,14 +15,14 @@ export declare class StructureContentComponent extends SmartComponent implements
     private structureCellEditArchive;
     private structureEditModeArchive;
     private formationQueryService;
-    source: Array<Entity>;
+    source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;
-    constructor(renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationQueryService);
+    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;
-    toggleSelectedRow(entity: Entity): void;
+    toggleSelectedRow(entity: ItemEntity): void;
     private clearSelectedRows;
 }

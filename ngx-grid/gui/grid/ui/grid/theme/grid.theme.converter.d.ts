@@ -1,4 +1,4 @@
-import { GuiTheme } from '../../../../grid/app/grid.api';
+import { GuiTheme } from '../../../ui-api/grid.api';
 import { SchemaTheme } from '../../../../../lib/structure/domain/schema/schema-theme';
 export declare class GridThemeConverter {
     convert(theme: string | GuiTheme): SchemaTheme;

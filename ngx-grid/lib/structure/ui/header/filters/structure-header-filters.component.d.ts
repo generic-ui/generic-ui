@@ -2,7 +2,7 @@ import { ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { StructureFilterCommandService } from '../../../ui-api/structure/filter/structure.filter.command.service';
 import { StructureId } from '../../../domain/structure-id';
-import { CellTemplateWithContext } from '../../../domain/composition/query/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../domain/composition/read/definition/cell-template-with-context';
 export declare class StructureHeaderFiltersComponent {
     private structureFilterCommandService;
     private formBuilder;

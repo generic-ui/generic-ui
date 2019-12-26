@@ -2,7 +2,7 @@ import { EventEmitter, Input, Output, InjectionToken, Injectable, Component, Vie
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FabricDialogService, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, ResizeDetector } from '@generic-ui/fabric';
-import { AggregateId, Command, CommandDispatcher, AggregateEvent, Aggregate, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, ReadModel, InMemoryReadModelStore, DomainEvent, DomainEventBus, CommandHandler, DomainEventPublisher, DomainEventHandler, COMMAND_HANDLERS, DOMAIN_EVENT_HANDLERS, ReactiveAggregateArchive, RandomStringGenerator, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { AggregateId, Command, CommandDispatcher, AggregateEvent, Aggregate, RootAggregate, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, ReadModel, InMemoryReadModelStore, DomainEvent, DomainEventBus, CommandHandler, DomainEventPublisher, DomainEventHandler, COMMAND_HANDLERS, DOMAIN_EVENT_HANDLERS, AggregateArchive, RandomStringGenerator, Entity, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { Subject, ReplaySubject, BehaviorSubject, fromEvent, Observable, zip, timer, combineLatest } from 'rxjs';
 import { takeUntil, filter, map, take, distinctUntilChanged, debounceTime, skip, switchMap } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
@@ -1702,7 +1702,7 @@ if (false) {
      * @param {?} aggregateId
      * @return {?}
      */
-    StructureRepository.prototype.select = function (aggregateId) { };
+    StructureRepository.prototype.onStructure = function (aggregateId) { };
 }
 
 /**
@@ -1722,7 +1722,7 @@ class PagingRepository {
      */
     select(structureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(filter((/**
          * @param {?} structure
          * @return {?}
@@ -1773,7 +1773,7 @@ const globalStructureId = new StructureId('-1');
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PagingQueryService {
+class PagingReadModelService {
     /**
      * @param {?} pagingRepository
      */
@@ -1784,23 +1784,23 @@ class PagingQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    select(structureId = globalStructureId) {
+    onPaging(structureId = globalStructureId) {
         return this.pagingRepository.select(structureId);
     }
     /**
      * @param {?=} structureId
      * @return {?}
      */
-    selectOne(structureId = globalStructureId) {
-        return this.select(structureId)
+    onSinglePaging(structureId = globalStructureId) {
+        return this.onPaging(structureId)
             .pipe(take(1));
     }
 }
-PagingQueryService.decorators = [
+PagingReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-PagingQueryService.ctorParameters = () => [
+PagingReadModelService.ctorParameters = () => [
     { type: PagingRepository }
 ];
 if (false) {
@@ -1808,7 +1808,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    PagingQueryService.prototype.pagingRepository;
+    PagingReadModelService.prototype.pagingRepository;
 }
 
 /**
@@ -2110,7 +2110,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SourceQueryService {
+class SourceReadModelService {
     /**
      * @param {?} structureRepository
      * @param {?} structureSourceOriginRepository
@@ -2123,9 +2123,9 @@ class SourceQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    select(structureId = globalStructureId) {
+    onEntities(structureId = globalStructureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(map((/**
          * @param {?} structure
          * @return {?}
@@ -2159,7 +2159,15 @@ class SourceQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectOriginSize(structureId = globalStructureId) {
+    onSingleEntities(structureId = globalStructureId) {
+        return this.onEntities(structureId)
+            .pipe(take(1));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onOriginSize(structureId = globalStructureId) {
         return this.structureSourceOriginRepository
             .selectOrigin(structureId)
             .pipe(map((/**
@@ -2172,17 +2180,9 @@ class SourceQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectOne(structureId = globalStructureId) {
-        return this.select(structureId)
-            .pipe(take(1));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    selectLoading(structureId = globalStructureId) {
+    onLoading(structureId = globalStructureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(map((/**
          * @param {?} structure
          * @return {?}
@@ -2190,11 +2190,11 @@ class SourceQueryService {
         (structure) => structure.getSource().isLoading())));
     }
 }
-SourceQueryService.decorators = [
+SourceReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-SourceQueryService.ctorParameters = () => [
+SourceReadModelService.ctorParameters = () => [
     { type: StructureRepository },
     { type: StructureSourceOriginRepository }
 ];
@@ -2203,12 +2203,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    SourceQueryService.prototype.structureRepository;
+    SourceReadModelService.prototype.structureRepository;
     /**
      * @type {?}
      * @private
      */
-    SourceQueryService.prototype.structureSourceOriginRepository;
+    SourceReadModelService.prototype.structureSourceOriginRepository;
 }
 
 /**
@@ -2235,7 +2235,7 @@ class StructurePagingComponent extends SmartComponent {
      */
     ngOnInit() {
         this.pagingQueryService
-            .select()
+            .onPaging()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} paging
@@ -2246,7 +2246,7 @@ class StructurePagingComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.sourceQueryService
-            .selectOriginSize()
+            .onOriginSize()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} size
@@ -2290,9 +2290,9 @@ StructurePagingComponent.decorators = [
 /** @nocollapse */
 StructurePagingComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
-    { type: PagingQueryService },
+    { type: PagingReadModelService },
     { type: PagingCommandService },
-    { type: SourceQueryService }
+    { type: SourceReadModelService }
 ];
 if (false) {
     /** @type {?} */
@@ -2924,7 +2924,7 @@ StructureInfoPanel.decorators = [
                 template: `
 		<div class="gui-structure-info-panel">
 			<p>Generic UI Grid</p>
-			<p>version 0.5.1</p>
+			<p>version 0.5.2</p>
 
 			<p>Links:</p>
 			<ul>
@@ -2965,7 +2965,7 @@ StructureInfoPanel.decorators = [
  * @abstract
  * @template T
  */
-class ReactiveArchive {
+class Archive {
     /**
      * @protected
      * @param {?=} value
@@ -2979,17 +2979,17 @@ class ReactiveArchive {
         }
     }
     /**
+     * @return {?}
+     */
+    onValue() {
+        return this.archive$.asObservable();
+    }
+    /**
      * @param {?} value
      * @return {?}
      */
-    set(value) {
+    next(value) {
         this.archive$.next(value);
-    }
-    /**
-     * @return {?}
-     */
-    select() {
-        return this.archive$.asObservable();
     }
 }
 if (false) {
@@ -2997,14 +2997,14 @@ if (false) {
      * @type {?}
      * @private
      */
-    ReactiveArchive.prototype.archive$;
+    Archive.prototype.archive$;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSummaryEnabledArchive extends ReactiveArchive {
+class StructureSummaryEnabledArchive extends Archive {
     constructor() {
         super(false);
     }
@@ -3039,7 +3039,7 @@ class StructureSummaryComponent extends SmartComponent {
      */
     ngOnInit() {
         this.sourceQueryService
-            .selectOriginSize()
+            .onOriginSize()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} size
@@ -3080,7 +3080,7 @@ StructureSummaryComponent.decorators = [
 /** @nocollapse */
 StructureSummaryComponent.ctorParameters = () => [
     { type: StructureSummaryEnabledArchive },
-    { type: SourceQueryService },
+    { type: SourceReadModelService },
     { type: FabricDialogService },
     { type: ChangeDetectorRef }
 ];
@@ -4592,11 +4592,8 @@ class CompositionResizeWidthSetAggregateEvent extends AggregateEvent {
     }
 }
 
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class CompositionAggregate extends Aggregate {
+var CompositionAggregate_1;
+let CompositionAggregate = CompositionAggregate_1 = class CompositionAggregate extends Aggregate {
     /**
      * @param {?} id
      * @param {?=} columnsParams
@@ -4671,7 +4668,7 @@ class CompositionAggregate extends Aggregate {
         /** @type {?} */
         const activeColumns = [...this.activeColumns];
         /** @type {?} */
-        let composition = new CompositionAggregate(this.getId(), this.baseParams, this.width, this.resizeWidthEnabled);
+        let composition = new CompositionAggregate_1(this.getId(), this.baseParams, this.width, this.resizeWidthEnabled);
         composition.containerWidth = this.containerWidth;
         composition.activeColumns = activeColumns;
         composition.columnWidthCollection = this.columnWidthCollection;
@@ -4844,7 +4841,18 @@ class CompositionAggregate extends Aggregate {
         this.resizeWidthEnabled = enabled;
         this.addEvent(new CompositionResizeWidthSetAggregateEvent(this.getId()));
     }
-}
+};
+CompositionAggregate.ctorParameters = () => [
+    { type: AggregateId },
+    { type: Array },
+    { type: Number },
+    { type: Boolean }
+];
+CompositionAggregate = CompositionAggregate_1 = __decorate([
+    RootAggregate,
+    __metadata("design:paramtypes", [AggregateId,
+        Array, Number, Boolean])
+], CompositionAggregate);
 if (false) {
     /**
      * @type {?}
@@ -5755,7 +5763,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class InMemoryCompositionQueryStore extends InMemoryReadModelStore {
+class InMemoryCompositionReadStore extends InMemoryReadModelStore {
     /**
      * @param {?} inMemoryCompositionStore
      * @param {?} compositionConverter
@@ -5773,11 +5781,11 @@ class InMemoryCompositionQueryStore extends InMemoryReadModelStore {
         return this.compositionConverter.convert(aggregate);
     }
 }
-InMemoryCompositionQueryStore.decorators = [
+InMemoryCompositionReadStore.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-InMemoryCompositionQueryStore.ctorParameters = () => [
+InMemoryCompositionReadStore.ctorParameters = () => [
     { type: InMemoryCompositionStore },
     { type: CompositionConverter }
 ];
@@ -5786,12 +5794,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    InMemoryCompositionQueryStore.prototype.inMemoryCompositionStore;
+    InMemoryCompositionReadStore.prototype.inMemoryCompositionStore;
     /**
      * @type {?}
      * @private
      */
-    InMemoryCompositionQueryStore.prototype.compositionConverter;
+    InMemoryCompositionReadStore.prototype.compositionConverter;
 }
 
 /**
@@ -5973,7 +5981,7 @@ InMemoryCompositionRepository.decorators = [
 /** @nocollapse */
 InMemoryCompositionRepository.ctorParameters = () => [
     { type: DomainEventBus },
-    { type: InMemoryCompositionQueryStore }
+    { type: InMemoryCompositionReadStore }
 ];
 if (false) {
     /**
@@ -6012,7 +6020,7 @@ const inMemoryCompositionCommandProviders = [
 ];
 /** @type {?} */
 const inMemoryCompositionQueryProviders = [
-    InMemoryCompositionQueryStore,
+    InMemoryCompositionReadStore,
     {
         provide: CompositionRepository,
         useClass: InMemoryCompositionRepository
@@ -6868,7 +6876,7 @@ const globalCompositionId = new CompositionId('-1');
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CompositionQueryService {
+class CompositionReadModelService {
     /**
      * @param {?} compositionRepository
      */
@@ -6879,7 +6887,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectWidth(compositionId = globalCompositionId) {
+    onWidth(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6892,7 +6900,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectContainerWidth(compositionId = globalCompositionId) {
+    onContainerWidth(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6905,7 +6913,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectWidthForEachColumn(compositionId = globalCompositionId) {
+    onWidthForEachColumn(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6922,7 +6930,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectHeaderColumns(compositionId = globalCompositionId) {
+    onHeaderColumns(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6935,7 +6943,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectTemplateColumns(compositionId = globalCompositionId) {
+    onTemplateColumns(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6948,7 +6956,7 @@ class CompositionQueryService {
      * @param {?=} compositionId
      * @return {?}
      */
-    selectResizeWidth(compositionId = globalCompositionId) {
+    onResizeWidth(compositionId = globalCompositionId) {
         return this.compositionRepository
             .select(compositionId)
             .pipe(map((/**
@@ -6958,11 +6966,11 @@ class CompositionQueryService {
         (composition) => composition.isResizeWidthEnabled())));
     }
 }
-CompositionQueryService.decorators = [
+CompositionReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-CompositionQueryService.ctorParameters = () => [
+CompositionReadModelService.ctorParameters = () => [
     { type: CompositionRepository }
 ];
 if (false) {
@@ -6970,7 +6978,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    CompositionQueryService.prototype.compositionRepository;
+    CompositionReadModelService.prototype.compositionRepository;
 }
 
 /**
@@ -7278,30 +7286,54 @@ class CompositionFieldsInitedEventHandler extends DomainEventHandler {
             /** @type {?} */
             const fields = event.getFields();
             /** @type {?} */
-            const columnFieldIds = fields.map((/**
-             * @param {?} field
-             * @return {?}
-             */
-            (field) => new ColumnFieldId(field.getId().getId())));
+            const columnFieldIds = this.convertColumnFieldIds(fields);
             /** @type {?} */
             const columns = event.columns;
             /** @type {?} */
-            const params = columns.map((/**
-             * @param {?} column
-             * @param {?} index
-             * @return {?}
-             */
-            (column, index) => {
-                /** @type {?} */
-                const columnFieldId = columnFieldIds[index];
-                /** @type {?} */
-                const field = fields[index];
-                /** @type {?} */
-                const columnField = this.columnFieldFactory.create(columnFieldId, field.getAccessorMethod(), field.getDataType());
-                return new ColumnParams(column, columnField);
-            }));
+            const params = this.convertColumns(columns, fields, columnFieldIds);
             this.compositionDispatcher.setColumns(event.compositionId, params);
         }
+    }
+    /**
+     * @private
+     * @param {?} fields
+     * @return {?}
+     */
+    convertColumnFieldIds(fields) {
+        if (!fields) {
+            return [];
+        }
+        return fields.map((/**
+         * @param {?} field
+         * @return {?}
+         */
+        (field) => new ColumnFieldId(field.getId().getId())));
+    }
+    /**
+     * @private
+     * @param {?} columns
+     * @param {?} fields
+     * @param {?} columnFieldIds
+     * @return {?}
+     */
+    convertColumns(columns, fields, columnFieldIds) {
+        if (!columns) {
+            return [];
+        }
+        return columns.map((/**
+         * @param {?} column
+         * @param {?} index
+         * @return {?}
+         */
+        (column, index) => {
+            /** @type {?} */
+            const columnFieldId = columnFieldIds[index];
+            /** @type {?} */
+            const field = fields[index];
+            /** @type {?} */
+            const columnField = this.columnFieldFactory.create(columnFieldId, field.getAccessorMethod(), field.getDataType());
+            return new ColumnParams(column, columnField);
+        }));
     }
 }
 CompositionFieldsInitedEventHandler.decorators = [
@@ -7365,7 +7397,7 @@ const commandProviders = [
     ColumnFieldFactory
 ];
 /** @type {?} */
-const queryProviders = [
+const readProviders = [
     ...inMemoryCompositionQueryProviders,
     {
         provide: DOMAIN_EVENT_HANDLERS,
@@ -7386,10 +7418,10 @@ const queryProviders = [
 const compositionProviders = [
     ...inMemoryCompositionProviders,
     ...commandProviders,
-    ...queryProviders,
+    ...readProviders,
     CompositionConverter,
     CompositionCommandService,
-    CompositionQueryService,
+    CompositionReadModelService,
     CompositionEventService
 ];
 
@@ -7970,7 +8002,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalPagingQueryService extends PagingQueryService {
+class LocalPagingReadModelService extends PagingReadModelService {
     /**
      * @param {?} structureId
      * @param {?} pagingRepository
@@ -7982,22 +8014,22 @@ class LocalPagingQueryService extends PagingQueryService {
     /**
      * @return {?}
      */
-    select() {
-        return super.select(this.structureId);
+    onPaging() {
+        return super.onPaging(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectOne() {
-        return super.select(this.structureId)
+    onSinglePaging() {
+        return super.onPaging(this.structureId)
             .pipe(take(1));
     }
 }
-LocalPagingQueryService.decorators = [
+LocalPagingReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalPagingQueryService.ctorParameters = () => [
+LocalPagingReadModelService.ctorParameters = () => [
     { type: StructureId },
     { type: PagingRepository }
 ];
@@ -8006,19 +8038,19 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalPagingQueryService.prototype, "select", null);
+], LocalPagingReadModelService.prototype, "onPaging", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalPagingQueryService.prototype, "selectOne", null);
+], LocalPagingReadModelService.prototype, "onSinglePaging", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalPagingQueryService.prototype.structureId;
+    LocalPagingReadModelService.prototype.structureId;
 }
 
 /**
@@ -8275,7 +8307,7 @@ class SchemaRepository {
      */
     select(structureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(filter((/**
          * @param {?} structure
          * @return {?}
@@ -8306,7 +8338,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SchemaQueryService {
+class SchemaReadModelService {
     /**
      * @param {?} schemaRepository
      */
@@ -8317,14 +8349,22 @@ class SchemaQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    select(structureId = globalStructureId) {
+    onSchema(structureId = globalStructureId) {
         return this.schemaRepository.select(structureId);
     }
     /**
      * @param {?=} structureId
      * @return {?}
      */
-    selectHeight(structureId = globalStructureId) {
+    onSingleSchema(structureId = globalStructureId) {
+        return this.onSchema(structureId)
+            .pipe(take(1));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onHeight(structureId = globalStructureId) {
         return this.schemaRepository
             .select(structureId)
             .pipe(map((/**
@@ -8343,7 +8383,7 @@ class SchemaQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectContainerHeight(structureId = globalStructureId) {
+    onContainerHeight(structureId = globalStructureId) {
         return this.schemaRepository
             .select(structureId)
             .pipe(map((/**
@@ -8362,15 +8402,7 @@ class SchemaQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectOne(structureId = globalStructureId) {
-        return this.select(structureId)
-            .pipe(take(1));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    selectCssClasses(structureId = globalStructureId) {
+    onCssClasses(structureId = globalStructureId) {
         return this.schemaRepository
             .select(structureId)
             .pipe(map((/**
@@ -8385,7 +8417,7 @@ class SchemaQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectColumnHeader(structureId = globalStructureId) {
+    onColumnHeader(structureId = globalStructureId) {
         return this.schemaRepository
             .select(structureId)
             .pipe(map((/**
@@ -8397,11 +8429,11 @@ class SchemaQueryService {
         })));
     }
 }
-SchemaQueryService.decorators = [
+SchemaReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-SchemaQueryService.ctorParameters = () => [
+SchemaReadModelService.ctorParameters = () => [
     { type: SchemaRepository }
 ];
 if (false) {
@@ -8409,7 +8441,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    SchemaQueryService.prototype.schemaRepository;
+    SchemaReadModelService.prototype.schemaRepository;
 }
 
 /**
@@ -8503,7 +8535,7 @@ class SchemaCommandService {
      */
     toggleVerticalGrid(structureId = globalStructureId) {
         this.schemaQueryService
-            .selectCssClasses(structureId)
+            .onCssClasses(structureId)
             .pipe(map((/**
          * @param {?} css
          * @return {?}
@@ -8527,7 +8559,7 @@ class SchemaCommandService {
      */
     toggleHorizontalGrid(structureId = globalStructureId) {
         this.schemaQueryService
-            .selectCssClasses(structureId)
+            .onCssClasses(structureId)
             .pipe(map((/**
          * @param {?} css
          * @return {?}
@@ -8551,7 +8583,7 @@ class SchemaCommandService {
      */
     toggleTopHeader(structureId = globalStructureId) {
         this.schemaQueryService
-            .selectColumnHeader(structureId)
+            .onColumnHeader(structureId)
             .pipe(map((/**
          * @param {?} columnHeader
          * @return {?}
@@ -8571,7 +8603,7 @@ class SchemaCommandService {
      */
     toggleBottomHeader(structureId = globalStructureId) {
         this.schemaQueryService
-            .selectColumnHeader(structureId)
+            .onColumnHeader(structureId)
             .pipe(map((/**
          * @param {?} columnHeader
          * @return {?}
@@ -8592,7 +8624,7 @@ SchemaCommandService.decorators = [
 /** @nocollapse */
 SchemaCommandService.ctorParameters = () => [
     { type: SchemaDispatcher },
-    { type: SchemaQueryService }
+    { type: SchemaReadModelService }
 ];
 if (false) {
     /**
@@ -8737,7 +8769,7 @@ LocalSchemaCommandService.decorators = [
 /** @nocollapse */
 LocalSchemaCommandService.ctorParameters = () => [
     { type: StructureId },
-    { type: SchemaQueryService },
+    { type: SchemaReadModelService },
     { type: SchemaDispatcher }
 ];
 __decorate([
@@ -8824,7 +8856,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalSchemaQueryService extends SchemaQueryService {
+class LocalSchemaReadModelService extends SchemaReadModelService {
     /**
      * @param {?} structureId
      * @param {?} schemaRepository
@@ -8836,46 +8868,46 @@ class LocalSchemaQueryService extends SchemaQueryService {
     /**
      * @return {?}
      */
-    select() {
-        return super.select(this.structureId);
+    onSchema() {
+        return super.onSchema(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectHeight() {
-        return super.selectHeight(this.structureId);
+    onHeight() {
+        return super.onHeight(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectContainerHeight() {
-        return super.selectContainerHeight(this.structureId);
+    onContainerHeight() {
+        return super.onContainerHeight(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectOne() {
-        return super.selectOne(this.structureId);
+    onSingleSchema() {
+        return super.onSingleSchema(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectCssClasses() {
-        return super.selectCssClasses(this.structureId);
+    onCssClasses() {
+        return super.onCssClasses(this.structureId);
     }
     /**
      * @param {?=} structureId
      * @return {?}
      */
-    selectColumnHeader(structureId = globalStructureId) {
-        return super.selectColumnHeader(this.structureId);
+    onColumnHeader(structureId = globalStructureId) {
+        return super.onColumnHeader(this.structureId);
     }
 }
-LocalSchemaQueryService.decorators = [
+LocalSchemaReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalSchemaQueryService.ctorParameters = () => [
+LocalSchemaReadModelService.ctorParameters = () => [
     { type: StructureId },
     { type: SchemaRepository }
 ];
@@ -8884,43 +8916,43 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "select", null);
+], LocalSchemaReadModelService.prototype, "onSchema", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "selectHeight", null);
+], LocalSchemaReadModelService.prototype, "onHeight", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "selectContainerHeight", null);
+], LocalSchemaReadModelService.prototype, "onContainerHeight", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "selectOne", null);
+], LocalSchemaReadModelService.prototype, "onSingleSchema", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "selectCssClasses", null);
+], LocalSchemaReadModelService.prototype, "onCssClasses", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [StructureId]),
     __metadata("design:returntype", Observable)
-], LocalSchemaQueryService.prototype, "selectColumnHeader", null);
+], LocalSchemaReadModelService.prototype, "onColumnHeader", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalSchemaQueryService.prototype.structureId;
+    LocalSchemaReadModelService.prototype.structureId;
 }
 
 /**
@@ -9115,9 +9147,9 @@ class FormationRepository {
      * @param {?} structureId
      * @return {?}
      */
-    select(structureId) {
+    onFormation(structureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(filter((/**
          * @param {?} structure
          * @return {?}
@@ -9148,7 +9180,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormationQueryService {
+class FormationReadModelService {
     /**
      * @param {?} formationRepository
      */
@@ -9159,9 +9191,9 @@ class FormationQueryService {
      * @param {?=} structureId
      * @return {?}
      */
-    selectSelectedRows(structureId = globalStructureId) {
+    onSelectedRows(structureId = globalStructureId) {
         return this.formationRepository
-            .select(structureId)
+            .onFormation(structureId)
             .pipe(map((/**
          * @param {?} formation
          * @return {?}
@@ -9169,11 +9201,11 @@ class FormationQueryService {
         (formation) => formation.getSelectedRows())));
     }
 }
-FormationQueryService.decorators = [
+FormationReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-FormationQueryService.ctorParameters = () => [
+FormationReadModelService.ctorParameters = () => [
     { type: FormationRepository }
 ];
 if (false) {
@@ -9181,14 +9213,14 @@ if (false) {
      * @type {?}
      * @private
      */
-    FormationQueryService.prototype.formationRepository;
+    FormationReadModelService.prototype.formationRepository;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalFormationQueryService extends FormationQueryService {
+class LocalFormationReadModelService extends FormationReadModelService {
     /**
      * @param {?} structureId
      * @param {?} formationRepository
@@ -9200,15 +9232,15 @@ class LocalFormationQueryService extends FormationQueryService {
     /**
      * @return {?}
      */
-    selectSelectedRows() {
-        return super.selectSelectedRows(this.structureId);
+    onSelectedRows() {
+        return super.onSelectedRows(this.structureId);
     }
 }
-LocalFormationQueryService.decorators = [
+LocalFormationReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalFormationQueryService.ctorParameters = () => [
+LocalFormationReadModelService.ctorParameters = () => [
     { type: StructureId },
     { type: FormationRepository }
 ];
@@ -9217,13 +9249,13 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalFormationQueryService.prototype, "selectSelectedRows", null);
+], LocalFormationReadModelService.prototype, "onSelectedRows", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalFormationQueryService.prototype.structureId;
+    LocalFormationReadModelService.prototype.structureId;
 }
 
 /**
@@ -10006,7 +10038,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureQueryService {
+class StructureReadModelService {
     /**
      * @param {?} structureRepository
      */
@@ -10017,16 +10049,16 @@ class StructureQueryService {
      * @param {?=} aggregateId
      * @return {?}
      */
-    select(aggregateId = globalStructureId) {
-        return this.structureRepository.select(aggregateId);
+    onStructure(aggregateId = globalStructureId) {
+        return this.structureRepository.onStructure(aggregateId);
     }
     /**
      * @param {?=} aggregateId
      * @return {?}
      */
-    selectVerticalScrollEnabled(aggregateId = globalStructureId) {
+    onVerticalScrollEnabled(aggregateId = globalStructureId) {
         return this.structureRepository
-            .select(aggregateId)
+            .onStructure(aggregateId)
             .pipe(map((/**
          * @param {?} structure
          * @return {?}
@@ -10034,11 +10066,11 @@ class StructureQueryService {
         (structure) => structure.isVerticalScrollEnabled())), distinctUntilChanged());
     }
 }
-StructureQueryService.decorators = [
+StructureReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureQueryService.ctorParameters = () => [
+StructureReadModelService.ctorParameters = () => [
     { type: StructureRepository }
 ];
 if (false) {
@@ -10046,14 +10078,14 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureQueryService.prototype.structureRepository;
+    StructureReadModelService.prototype.structureRepository;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalStructureQueryService extends StructureQueryService {
+class LocalStructureReadModelService extends StructureReadModelService {
     /**
      * @param {?} structureId
      * @param {?} structureRepository
@@ -10065,21 +10097,21 @@ class LocalStructureQueryService extends StructureQueryService {
     /**
      * @return {?}
      */
-    select() {
-        return super.select(this.structureId);
+    onStructure() {
+        return super.onStructure(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectVerticalScrollEnabled() {
-        return super.selectVerticalScrollEnabled(this.structureId);
+    onVerticalScrollEnabled() {
+        return super.onVerticalScrollEnabled(this.structureId);
     }
 }
-LocalStructureQueryService.decorators = [
+LocalStructureReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalStructureQueryService.ctorParameters = () => [
+LocalStructureReadModelService.ctorParameters = () => [
     { type: StructureId },
     { type: StructureRepository }
 ];
@@ -10088,26 +10120,26 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalStructureQueryService.prototype, "select", null);
+], LocalStructureReadModelService.prototype, "onStructure", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalStructureQueryService.prototype, "selectVerticalScrollEnabled", null);
+], LocalStructureReadModelService.prototype, "onVerticalScrollEnabled", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalStructureQueryService.prototype.structureId;
+    LocalStructureReadModelService.prototype.structureId;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFieldUiArchive extends ReactiveAggregateArchive {
+class StructureFieldUiArchive extends AggregateArchive {
     constructor() {
         super();
     }
@@ -10133,8 +10165,8 @@ class StructureFieldUiRepository {
      * @param {?} structureId
      * @return {?}
      */
-    selectFields(structureId) {
-        return this.structureFieldUiArchive.select(structureId);
+    onFields(structureId) {
+        return this.structureFieldUiArchive.when(structureId);
     }
 }
 StructureFieldUiRepository.decorators = [
@@ -10255,7 +10287,7 @@ class SourceCommandService extends Reactive {
     editItemByIndex(itemIndex, fieldIndex, value, structureId = globalStructureId) {
         /** @type {?} */
         const itemId$ = this.sourceQueryService
-            .selectOne()
+            .onSingleEntities()
             .pipe(map((/**
          * @param {?} entities
          * @return {?}
@@ -10265,7 +10297,7 @@ class SourceCommandService extends Reactive {
         })));
         /** @type {?} */
         const fieldId$ = this.structureFieldUiRepository
-            .selectFields(structureId);
+            .onFields(structureId);
         zip(itemId$, fieldId$)
             .pipe(take(1), this.takeUntil())
             .subscribe((/**
@@ -10288,7 +10320,7 @@ SourceCommandService.decorators = [
 SourceCommandService.ctorParameters = () => [
     { type: SourceDispatcher },
     { type: StructureFieldUiRepository },
-    { type: SourceQueryService }
+    { type: SourceReadModelService }
 ];
 if (false) {
     /**
@@ -10362,7 +10394,7 @@ LocalSourceCommandService.ctorParameters = () => [
     { type: StructureId },
     { type: SourceDispatcher },
     { type: StructureFieldUiRepository },
-    { type: SourceQueryService }
+    { type: SourceReadModelService }
 ];
 __decorate([
     Override,
@@ -10400,7 +10432,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalSourceQueryService extends SourceQueryService {
+class LocalSourceReadModelService extends SourceReadModelService {
     /**
      * @param {?} structureId
      * @param {?} structureRepository
@@ -10413,33 +10445,33 @@ class LocalSourceQueryService extends SourceQueryService {
     /**
      * @return {?}
      */
-    select() {
-        return super.select(this.structureId);
+    onEntities() {
+        return super.onEntities(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectOriginSize() {
-        return super.selectOriginSize(this.structureId);
+    onOriginSize() {
+        return super.onOriginSize(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectOne() {
-        return super.selectOne(this.structureId);
+    onSingleEntities() {
+        return super.onSingleEntities(this.structureId);
     }
     /**
      * @return {?}
      */
-    selectLoading() {
-        return super.selectLoading(this.structureId);
+    onLoading() {
+        return super.onLoading(this.structureId);
     }
 }
-LocalSourceQueryService.decorators = [
+LocalSourceReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalSourceQueryService.ctorParameters = () => [
+LocalSourceReadModelService.ctorParameters = () => [
     { type: StructureId },
     { type: StructureRepository },
     { type: StructureSourceOriginRepository }
@@ -10449,31 +10481,31 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSourceQueryService.prototype, "select", null);
+], LocalSourceReadModelService.prototype, "onEntities", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSourceQueryService.prototype, "selectOriginSize", null);
+], LocalSourceReadModelService.prototype, "onOriginSize", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSourceQueryService.prototype, "selectOne", null);
+], LocalSourceReadModelService.prototype, "onSingleEntities", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSourceQueryService.prototype, "selectLoading", null);
+], LocalSourceReadModelService.prototype, "onLoading", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalSourceQueryService.prototype.structureId;
+    LocalSourceReadModelService.prototype.structureId;
 }
 
 /**
@@ -10578,7 +10610,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalCompositionQueryService extends CompositionQueryService {
+class LocalCompositionReadModelService extends CompositionReadModelService {
     /**
      * @param {?} compositionId
      * @param {?} compositionRepository
@@ -10590,46 +10622,46 @@ class LocalCompositionQueryService extends CompositionQueryService {
     /**
      * @return {?}
      */
-    selectHeaderColumns() {
-        return super.selectHeaderColumns(this.compositionId);
+    onHeaderColumns() {
+        return super.onHeaderColumns(this.compositionId);
     }
     /**
      * @return {?}
      */
-    selectTemplateColumns() {
-        return super.selectTemplateColumns(this.compositionId);
+    onTemplateColumns() {
+        return super.onTemplateColumns(this.compositionId);
     }
     /**
      * @return {?}
      */
-    selectWidthForEachColumn() {
-        return super.selectWidthForEachColumn(this.compositionId);
+    onWidthForEachColumn() {
+        return super.onWidthForEachColumn(this.compositionId);
     }
     /**
      * @return {?}
      */
-    selectWidth() {
-        return super.selectWidth(this.compositionId);
+    onWidth() {
+        return super.onWidth(this.compositionId);
     }
     /**
      * @param {?=} compositionId
      * @return {?}
      */
-    selectContainerWidth(compositionId = globalCompositionId) {
-        return super.selectContainerWidth(this.compositionId);
+    onContainerWidth(compositionId = globalCompositionId) {
+        return super.onContainerWidth(this.compositionId);
     }
     /**
      * @return {?}
      */
-    selectResizeWidth() {
-        return super.selectResizeWidth(this.compositionId);
+    onResizeWidth() {
+        return super.onResizeWidth(this.compositionId);
     }
 }
-LocalCompositionQueryService.decorators = [
+LocalCompositionReadModelService.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-LocalCompositionQueryService.ctorParameters = () => [
+LocalCompositionReadModelService.ctorParameters = () => [
     { type: CompositionId },
     { type: CompositionRepository }
 ];
@@ -10638,43 +10670,43 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectHeaderColumns", null);
+], LocalCompositionReadModelService.prototype, "onHeaderColumns", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectTemplateColumns", null);
+], LocalCompositionReadModelService.prototype, "onTemplateColumns", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectWidthForEachColumn", null);
+], LocalCompositionReadModelService.prototype, "onWidthForEachColumn", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectWidth", null);
+], LocalCompositionReadModelService.prototype, "onWidth", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [CompositionId]),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectContainerWidth", null);
+], LocalCompositionReadModelService.prototype, "onContainerWidth", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalCompositionQueryService.prototype, "selectResizeWidth", null);
+], LocalCompositionReadModelService.prototype, "onResizeWidth", null);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    LocalCompositionQueryService.prototype.compositionId;
+    LocalCompositionReadModelService.prototype.compositionId;
 }
 
 /**
@@ -10684,17 +10716,17 @@ if (false) {
 /** @type {?} */
 const localProviders = [
     { provide: PagingCommandService, useClass: LocalPagingCommandService },
-    { provide: PagingQueryService, useClass: LocalPagingQueryService },
+    { provide: PagingReadModelService, useClass: LocalPagingReadModelService },
     { provide: SchemaCommandService, useClass: LocalSchemaCommandService },
-    { provide: SchemaQueryService, useClass: LocalSchemaQueryService },
+    { provide: SchemaReadModelService, useClass: LocalSchemaReadModelService },
     { provide: FormationCommandService, useClass: LocalFormationCommandService },
-    { provide: FormationQueryService, useClass: LocalFormationQueryService },
+    { provide: FormationReadModelService, useClass: LocalFormationReadModelService },
     { provide: StructureCommandService, useClass: LocalStructureCommandService },
-    { provide: StructureQueryService, useClass: LocalStructureQueryService },
+    { provide: StructureReadModelService, useClass: LocalStructureReadModelService },
     { provide: SourceCommandService, useClass: LocalSourceCommandService },
-    { provide: SourceQueryService, useClass: LocalSourceQueryService },
+    { provide: SourceReadModelService, useClass: LocalSourceReadModelService },
     { provide: CompositionCommandService, useClass: LocalCompositionCommandService },
-    { provide: CompositionQueryService, useClass: LocalCompositionQueryService },
+    { provide: CompositionReadModelService, useClass: LocalCompositionReadModelService },
 ];
 
 /**
@@ -10736,7 +10768,7 @@ class SchemaCssClassManager {
     init(elementRef, structureId) {
         this.cssHostRef = elementRef;
         this.schemaQueryService
-            .selectCssClasses(structureId)
+            .onCssClasses(structureId)
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @param {?} classes
@@ -10935,7 +10967,7 @@ SchemaCssClassManager.decorators = [
 /** @nocollapse */
 SchemaCssClassManager.ctorParameters = () => [
     { type: RendererFactory2 },
-    { type: SchemaQueryService }
+    { type: SchemaReadModelService }
 ];
 if (false) {
     /**
@@ -11014,7 +11046,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureCellEditArchive extends ReactiveArchive {
+class StructureCellEditArchive extends Archive {
     constructor() {
         super();
     }
@@ -11029,7 +11061,7 @@ StructureCellEditArchive.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureCellEditStore extends ReactiveArchive {
+class StructureCellEditStore extends Archive {
     constructor() {
         super();
     }
@@ -11044,7 +11076,7 @@ StructureCellEditStore.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureEditModeArchive extends ReactiveArchive {
+class StructureEditModeArchive extends Archive {
     constructor() {
         super();
     }
@@ -11104,7 +11136,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureAggregationArchive extends ReactiveArchive {
+class StructureAggregationArchive extends Archive {
     constructor() {
         super(new StructureAggregationPanelConfig());
     }
@@ -11218,7 +11250,7 @@ class StructureAggregationConfigService {
     set(config) {
         /** @type {?} */
         const aggregationPanelConfig = this.structureAggregationPanelConfigConverter.convert(config);
-        this.structureAggregationArchive.set(aggregationPanelConfig);
+        this.structureAggregationArchive.next(aggregationPanelConfig);
         this.structureAggregationCommandService.setAggregationEnabled(config.enabled, this.structureId);
     }
 }
@@ -11345,16 +11377,16 @@ class StructureGateway extends SmartComponent {
      */
     ngOnChanges(simpleChanges) {
         if (simpleChanges.summaryPanel !== undefined && simpleChanges.summaryPanel.currentValue !== undefined) {
-            this.structureSummaryEnabledArchive.set(this.summaryPanel);
+            this.structureSummaryEnabledArchive.next(this.summaryPanel);
         }
         if (simpleChanges.aggregation !== undefined && simpleChanges.aggregation.currentValue !== undefined) {
             this.structureAggregationConfigService.set(this.aggregation);
         }
         if (simpleChanges.editMode !== undefined && simpleChanges.editMode.currentValue !== undefined) {
-            this.structureEditModeArchive.set(this.editMode);
+            this.structureEditModeArchive.next(this.editMode);
         }
         if (simpleChanges.cellEditing !== undefined && simpleChanges.cellEditing.currentValue !== undefined) {
-            this.structureCellEditArchive.set(this.cellEditing);
+            this.structureCellEditArchive.next(this.cellEditing);
         }
         if (simpleChanges.width !== undefined && simpleChanges.width.currentValue !== undefined) {
             this.compositionCommandService.setWidth(this.width);
@@ -11475,7 +11507,7 @@ class StructureGateway extends SmartComponent {
      */
     ngOnInit() {
         this.pagingEventService
-            .selectPageChange(this.structureId)
+            .onPageChange(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} pageNumber
@@ -11485,7 +11517,7 @@ class StructureGateway extends SmartComponent {
             this.pageChanged.emit(pageNumber);
         }));
         this.pagingEventService
-            .selectPageSizeChange(this.structureId)
+            .onPageSizeChange(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} pageSize
@@ -11495,7 +11527,7 @@ class StructureGateway extends SmartComponent {
             this.pageSizeChanged.emit(pageSize);
         }));
         this.formationEventService
-            .selectItemSelected(this.structureId)
+            .onItemSelected(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} items
@@ -11527,7 +11559,7 @@ class StructureGateway extends SmartComponent {
             this.containerWidthChanged.emit(containerWidth);
         }));
         this.sourceEventService
-            .selectSourceEdited(this.structureId)
+            .onSourceEdited(this.structureId)
             .pipe(
         // this.takeUntil()
         )
@@ -11539,7 +11571,7 @@ class StructureGateway extends SmartComponent {
             this.sourceEdited.emit(values);
         }));
         this.structureCellEditStore
-            .select()
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} state
@@ -11821,7 +11853,7 @@ class PagingEventService {
      * @param {?} structureId
      * @return {?}
      */
-    selectPageChange(structureId) {
+    onPageChange(structureId) {
         return this.domainEventBus
             .ofEvent(NextPageEvent, PrevPageEvent, PageChangedEvent)
             .pipe(filter((/**
@@ -11834,7 +11866,7 @@ class PagingEventService {
          */
         (event) => {
             return this.pagingQueryService
-                .select(structureId)
+                .onPaging(structureId)
                 .pipe(map((/**
              * @param {?} paging
              * @return {?}
@@ -11846,7 +11878,7 @@ class PagingEventService {
      * @param {?} structureId
      * @return {?}
      */
-    selectPageSizeChange(structureId) {
+    onPageSizeChange(structureId) {
         return this.domainEventBus
             .ofEvent(PagesizeChangedEvent)
             .pipe(filter((/**
@@ -11859,7 +11891,7 @@ class PagingEventService {
          */
         (event) => {
             return this.pagingQueryService
-                .select(structureId)
+                .onPaging(structureId)
                 .pipe(map((/**
              * @param {?} paging
              * @return {?}
@@ -11874,7 +11906,7 @@ PagingEventService.decorators = [
 /** @nocollapse */
 PagingEventService.ctorParameters = () => [
     { type: DomainEventBus },
-    { type: PagingQueryService }
+    { type: PagingReadModelService }
 ];
 if (false) {
     /**
@@ -11966,7 +11998,7 @@ class SourceEventService {
      * @param {?} structureId
      * @return {?}
      */
-    selectSourceEdited(structureId) {
+    onSourceEdited(structureId) {
         return this.domainEventBus
             .ofEvent((/** @type {?} */ (StructureSourceItemEditedEvent)))
             .pipe(filter((/**
@@ -12031,7 +12063,7 @@ class FormationEventService {
      * @param {?} structureId
      * @return {?}
      */
-    selectItemSelected(structureId) {
+    onItemSelected(structureId) {
         return this.domainEventBus
             .ofEvent(SelectedRowToggledEvent)
             .pipe(filter((/**
@@ -12044,8 +12076,8 @@ class FormationEventService {
          */
         (event) => {
             return this.structureQueryService
-                .select(structureId)
-                .pipe(map((/**
+                .onStructure(structureId)
+                .pipe(take(1), map((/**
              * @param {?} str
              * @return {?}
              */
@@ -12067,7 +12099,7 @@ FormationEventService.decorators = [
 /** @nocollapse */
 FormationEventService.ctorParameters = () => [
     { type: DomainEventBus },
-    { type: StructureQueryService }
+    { type: StructureReadModelService }
 ];
 if (false) {
     /**
@@ -12157,10 +12189,10 @@ class StructureComponent extends StructureGateway {
      * @param {?} structureDefinition
      * @param {?} structureQueryService
      * @param {?} compositionQueryService
-     * @param {?} schemaQueryService
+     * @param {?} schemaReadModelService
      * @param {?} schemaStylesManager
      */
-    constructor(structureId, compositionId, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandService, compositionCommandService, compositionEventService, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureSummaryEnabledArchive, structureAggregationConfigService, structureCellEditStore, elementRef, changeDetectorRef, renderer, structureDefinition, structureQueryService, compositionQueryService, schemaQueryService, schemaStylesManager) {
+    constructor(structureId, compositionId, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandService, compositionCommandService, compositionEventService, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureSummaryEnabledArchive, structureAggregationConfigService, structureCellEditStore, elementRef, changeDetectorRef, renderer, structureDefinition, structureQueryService, compositionQueryService, schemaReadModelService, schemaStylesManager) {
         super(structureId, compositionId, structureCommandService, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandService, compositionCommandService, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureSummaryEnabledArchive, structureAggregationConfigService, structureCellEditStore);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
@@ -12168,7 +12200,7 @@ class StructureComponent extends StructureGateway {
         this.structureDefinition = structureDefinition;
         this.structureQueryService = structureQueryService;
         this.compositionQueryService = compositionQueryService;
-        this.schemaQueryService = schemaQueryService;
+        this.schemaReadModelService = schemaReadModelService;
         this.schemaStylesManager = schemaStylesManager;
         this.loaderEnabled = false;
         this.circleLoaderEnabled = true;
@@ -12188,8 +12220,8 @@ class StructureComponent extends StructureGateway {
      */
     ngOnInit() {
         super.ngOnInit();
-        this.schemaQueryService
-            .selectHeight()
+        this.schemaReadModelService
+            .onHeight()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} height
@@ -12198,8 +12230,8 @@ class StructureComponent extends StructureGateway {
         (height) => {
             this.structureHeight = height;
         }));
-        this.schemaQueryService
-            .selectColumnHeader()
+        this.schemaReadModelService
+            .onColumnHeader()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} columnHeader
@@ -12209,7 +12241,7 @@ class StructureComponent extends StructureGateway {
             this.columnHeader = columnHeader;
         }));
         this.structureQueryService
-            .select()
+            .onStructure()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} structure
@@ -12252,7 +12284,7 @@ class StructureComponent extends StructureGateway {
         this.schemaStylesManager
             .init(this.elementRef, this.structureId);
         this.compositionQueryService
-            .selectWidth()
+            .onWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} width
@@ -12294,7 +12326,7 @@ StructureComponent.decorators = [
                         useExisting: StructureComponent
                     }
                 ],
-                styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", ".gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:32px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;cursor:pointer;line-height:1em;overflow:hidden;padding:0 16px 0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon{display:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC);height:16px;width:16px;margin-right:8px}.gui-header .gui-header-cell .gui-header-menu .gui-sort{display:none;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon{display:block}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;height:30px;border-bottom:1px solid #d6d6d6}gui-structure gui-structure-search-bar form .gui-search-icon{position:absolute;top:5px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACSSURBVDhPtZKLEUAwEAWD4lSgLYXQhxI0oAMNcM/cmUQuHwk78+bkczsizB8MlIVycCaey2akbBS7Cc+Yw1oS2RziKVdJvTbWcMwoOH+K4J6WaxUd156yU9Zr5CNHnbmqfPJhQeyK5b/JAk24KWnCjWBOxqqo4ZqDLXD63kiAKnorAZ6oRAIcUakE3KIaCSCRMSdEbCXGTdhJLAAAAABJRU5ErkJggg==);width:17px;height:17px}gui-structure gui-structure-search-bar form input{border:none;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{height:30px;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f6f7f8}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row:nth-child(even),.gui-rows-odd .gui-row:nth-child(odd){background:#f7f8f9}gui-structure-summary{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;line-height:30px;border-top:1px solid #d6d6d6}gui-structure-summary p{margin:0}gui-structure-summary p b{font-weight:700}gui-structure-summary div{color:#333;cursor:pointer}gui-structure-summary div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-summary div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-info-panel{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:160px;padding:16px;font-family:Roboto,sans-serif}.gui-structure-info-panel ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-panel p{font-weight:700;margin:0;color:#333}.gui-structure-info-panel p:nth-child(2){margin:0 0 12px}.gui-structure-info-panel p:nth-child(5){margin:8px 0 0}.gui-structure-info-panel a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-panel a:hover{color:#59a9e5}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;height:30px;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#000;box-shadow:0 1px 0 0 #000}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell{display:inline-block}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row:nth-child(even),.gui-dark.gui-rows-odd .gui-row:nth-child(odd){background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-summary{background:#383838;border-top-color:#666}.gui-dark gui-structure-summary div{color:#ccc}.gui-dark gui-structure-summary div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-info-panel p{color:#ccc}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover,.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row:nth-child(even),.gui-light.gui-rows-odd .gui-row:nth-child(odd){background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}"]
+                styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", ".gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:32px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;cursor:pointer;line-height:1em;overflow:hidden;padding:0 16px 0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon{display:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC);height:16px;width:16px;margin-right:8px}.gui-header .gui-header-cell .gui-header-menu .gui-sort{display:none;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon{display:block}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;height:30px;border-bottom:1px solid #d6d6d6}gui-structure gui-structure-search-bar form .gui-search-icon{position:absolute;top:5px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACSSURBVDhPtZKLEUAwEAWD4lSgLYXQhxI0oAMNcM/cmUQuHwk78+bkczsizB8MlIVycCaey2akbBS7Cc+Yw1oS2RziKVdJvTbWcMwoOH+K4J6WaxUd156yU9Zr5CNHnbmqfPJhQeyK5b/JAk24KWnCjWBOxqqo4ZqDLXD63kiAKnorAZ6oRAIcUakE3KIaCSCRMSdEbCXGTdhJLAAAAABJRU5ErkJggg==);width:17px;height:17px}gui-structure gui-structure-search-bar form input{border:none;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{height:30px;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f6f7f8}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row:nth-child(even),.gui-rows-odd .gui-row:nth-child(odd){background:#f7f8f9}gui-structure-summary{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;line-height:30px;border-top:1px solid #d6d6d6}gui-structure-summary p{margin:0}gui-structure-summary p b{font-weight:700}gui-structure-summary div{color:#333;cursor:pointer}gui-structure-summary div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-summary div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-info-panel{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:160px;padding:16px;font-family:Roboto,sans-serif}.gui-structure-info-panel ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-panel p{font-weight:700;margin:0;color:#333}.gui-structure-info-panel p:nth-child(2){margin:0 0 12px}.gui-structure-info-panel p:nth-child(5){margin:8px 0 0}.gui-structure-info-panel a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-panel a:hover{color:#59a9e5}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;height:30px;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#000;box-shadow:0 1px 0 0 #000}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell{display:inline-block}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row:nth-child(even),.gui-dark.gui-rows-odd .gui-row:nth-child(odd){background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-summary{background:#383838;border-top-color:#666}.gui-dark gui-structure-summary div{color:#ccc}.gui-dark gui-structure-summary div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-info-panel p{color:#ccc}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover,.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row:nth-child(even),.gui-light.gui-rows-odd .gui-row:nth-child(odd){background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}"]
             }] }
 ];
 /** @nocollapse */
@@ -12319,9 +12351,9 @@ StructureComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: Renderer2 },
     { type: StructureDefinition },
-    { type: StructureQueryService },
-    { type: CompositionQueryService },
-    { type: SchemaQueryService },
+    { type: StructureReadModelService },
+    { type: CompositionReadModelService },
+    { type: SchemaReadModelService },
     { type: SchemaCssClassManager }
 ];
 if (false) {
@@ -12377,7 +12409,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureComponent.prototype.schemaQueryService;
+    StructureComponent.prototype.schemaReadModelService;
     /**
      * @type {?}
      * @private
@@ -12584,14 +12616,14 @@ class StructureFilterReadModelRepository {
      * @param {?} structureId
      * @return {?}
      */
-    selectFilteringEnabled(structureId) {
+    onFilteringEnabled(structureId) {
         return this.structureFilterRepository.selectFilterEnabled(structureId);
     }
     /**
      * @param {?} structureId
      * @return {?}
      */
-    selectQuickFiltersEnabled(structureId) {
+    onQuickFiltersEnabled(structureId) {
         return this.structureQuickFilterRepository.selectQuickFilterEnabled(structureId);
     }
 }
@@ -12645,7 +12677,7 @@ class StructureHeaderComponent extends SmartComponent {
      */
     ngOnInit() {
         this.compositionQueryService
-            .selectHeaderColumns()
+            .onHeaderColumns()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} columns
@@ -12656,7 +12688,7 @@ class StructureHeaderComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.compositionQueryService
-            .selectContainerWidth()
+            .onContainerWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} width
@@ -12666,7 +12698,7 @@ class StructureHeaderComponent extends SmartComponent {
             this.renderer.setStyle(this.containerRef.nativeElement, 'width', width + 'px');
         }));
         this.structureFilterReadModelRepository
-            .selectFilteringEnabled(this.structureId)
+            .onFilteringEnabled(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -12693,7 +12725,7 @@ StructureHeaderComponent.ctorParameters = () => [
     { type: DomainEventBus },
     { type: StructureId },
     { type: StructureFilterReadModelRepository },
-    { type: CompositionQueryService }
+    { type: CompositionReadModelService }
 ];
 StructureHeaderComponent.propDecorators = {
     containerRef: [{ type: ViewChild, args: [StructureHeaderColumnsComponent, { read: ElementRef, static: true },] }]
@@ -12979,6 +13011,7 @@ if (false) {
  */
 class StructureContentComponent extends SmartComponent {
     /**
+     * @param {?} platformId
      * @param {?} renderer
      * @param {?} elementRef
      * @param {?} changeDetectorRef
@@ -12987,8 +13020,9 @@ class StructureContentComponent extends SmartComponent {
      * @param {?} structureEditModeArchive
      * @param {?} formationQueryService
      */
-    constructor(renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationQueryService) {
+    constructor(platformId, renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationQueryService) {
         super();
+        this.platformId = platformId;
         this.renderer = renderer;
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
@@ -13004,7 +13038,8 @@ class StructureContentComponent extends SmartComponent {
      */
     ngOnInit() {
         this.formationQueryService
-            .selectSelectedRows()
+            .onSelectedRows()
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} rowsList
          * @return {?}
@@ -13026,7 +13061,7 @@ class StructureContentComponent extends SmartComponent {
             }));
         }));
         this.structureEditModeArchive
-            .select()
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -13037,7 +13072,7 @@ class StructureContentComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.structureCellEditArchive
-            .select()
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -13075,13 +13110,15 @@ class StructureContentComponent extends SmartComponent {
     clearSelectedRows() {
         /** @type {?} */
         const selectedElements = this.elementRef.nativeElement.querySelectorAll('.selected');
-        selectedElements.forEach((/**
-         * @param {?} el
-         * @return {?}
-         */
-        (el) => {
-            this.renderer.removeClass(el, 'selected');
-        }));
+        if (isPlatformBrowser(this.platformId)) {
+            selectedElements.forEach((/**
+             * @param {?} el
+             * @return {?}
+             */
+            (el) => {
+                this.renderer.removeClass(el, 'selected');
+            }));
+        }
     }
 }
 StructureContentComponent.decorators = [
@@ -13094,13 +13131,14 @@ StructureContentComponent.decorators = [
 ];
 /** @nocollapse */
 StructureContentComponent.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
     { type: Renderer2 },
     { type: ElementRef },
     { type: ChangeDetectorRef },
     { type: FormationCommandService },
     { type: StructureCellEditArchive },
     { type: StructureEditModeArchive },
-    { type: FormationQueryService }
+    { type: FormationReadModelService }
 ];
 StructureContentComponent.propDecorators = {
     source: [{ type: Input }],
@@ -13115,6 +13153,11 @@ if (false) {
     StructureContentComponent.prototype.editMode;
     /** @type {?} */
     StructureContentComponent.prototype.cellEditing;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureContentComponent.prototype.platformId;
     /**
      * @type {?}
      * @private
@@ -13156,7 +13199,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class Entity {
+let ItemEntity = class ItemEntity {
     /**
      * @param {?} data
      * @param {?=} id
@@ -13211,23 +13254,32 @@ class Entity {
     equalsById(id) {
         return this.id === id;
     }
-}
+};
+ItemEntity.ctorParameters = () => [
+    { type: undefined },
+    { type: String },
+    { type: Number }
+];
+ItemEntity = __decorate([
+    Entity,
+    __metadata("design:paramtypes", [Object, String, Number])
+], ItemEntity);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    Entity.prototype.id;
+    ItemEntity.prototype.id;
     /**
      * @type {?}
      * @private
      */
-    Entity.prototype.data;
+    ItemEntity.prototype.data;
     /**
      * @type {?}
      * @private
      */
-    Entity.prototype.version;
+    ItemEntity.prototype.version;
 }
 
 /**
@@ -13397,7 +13449,7 @@ class StructureCellComponent extends SmartComponent {
      * @return {?}
      */
     publishEditState(state) {
-        this.structureCellEditStore.set(state);
+        this.structureCellEditStore.next(state);
     }
     /**
      * @private
@@ -13552,7 +13604,7 @@ class StructureContainerComponent extends SmartComponent {
          * There should only one sub here.
          */
         this.sourceQueryService
-            .select()
+            .onEntities()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} source
@@ -13564,7 +13616,7 @@ class StructureContainerComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.compositionQueryService
-            .selectTemplateColumns()
+            .onTemplateColumns()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} columns
@@ -13575,7 +13627,7 @@ class StructureContainerComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.compositionQueryService
-            .selectResizeWidth()
+            .onResizeWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -13584,7 +13636,7 @@ class StructureContainerComponent extends SmartComponent {
         (enabled) => {
             this.autoResizeWidthEnabled = enabled;
         }));
-        combineLatest(this.sourceQueryService.select(), this.schemaQueryService.selectContainerHeight())
+        combineLatest(this.sourceQueryService.onEntities(), this.schemaQueryService.onContainerHeight())
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} combine
@@ -13631,7 +13683,7 @@ class StructureContainerComponent extends SmartComponent {
             }));
         }
         this.compositionQueryService
-            .selectContainerWidth()
+            .onContainerWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} width
@@ -13641,7 +13693,7 @@ class StructureContainerComponent extends SmartComponent {
             this.renderer.setStyle(this.containerRef.nativeElement, 'width', width + 'px');
         }));
         this.structureQueryService
-            .selectVerticalScrollEnabled()
+            .onVerticalScrollEnabled()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -13657,7 +13709,7 @@ class StructureContainerComponent extends SmartComponent {
         }));
         // never runs ??
         this.structureQueryService
-            .select()
+            .onStructure()
             .pipe(filter((/**
          * @param {?} str
          * @return {?}
@@ -13753,12 +13805,12 @@ StructureContainerComponent.ctorParameters = () => [
     { type: NgZone },
     { type: StructureId },
     { type: StructureCommandService },
-    { type: StructureQueryService },
-    { type: SourceQueryService },
-    { type: SchemaQueryService },
+    { type: StructureReadModelService },
+    { type: SourceReadModelService },
+    { type: SchemaReadModelService },
     { type: CompositionCommandService },
-    { type: CompositionQueryService },
-    { type: FormationQueryService },
+    { type: CompositionReadModelService },
+    { type: FormationReadModelService },
     { type: ResizeDetector },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [structureParentComponent,] }] }
 ];
@@ -14006,7 +14058,7 @@ class StructureSearchReadModelRepository {
      * @param {?} structureId
      * @return {?}
      */
-    selectSearchEnabled(structureId) {
+    onSearchEnabled(structureId) {
         return this.structureSearchingRepository.selectSearchingEnabled(structureId);
     }
 }
@@ -14076,7 +14128,7 @@ class StructureBlueprintComponent extends SmartComponent {
      */
     ngOnInit() {
         this.structureQueryService
-            .select()
+            .onStructure()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} structure
@@ -14087,7 +14139,7 @@ class StructureBlueprintComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.pagingQueryService
-            .select()
+            .onPaging()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} paging
@@ -14098,7 +14150,7 @@ class StructureBlueprintComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.structureSearchReadModelRepository
-            .selectSearchEnabled(this.structureId)
+            .onSearchEnabled(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -14109,7 +14161,7 @@ class StructureBlueprintComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.structureFilterReadModelRepository
-            .selectQuickFiltersEnabled(this.structureId)
+            .onQuickFiltersEnabled(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -14120,7 +14172,7 @@ class StructureBlueprintComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.structureAggregationArchive
-            .select()
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} config
@@ -14132,7 +14184,7 @@ class StructureBlueprintComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
         this.structureSummaryEnabledArchive
-            .select()
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} enabled
@@ -14193,8 +14245,8 @@ StructureBlueprintComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: StructureDefinition },
     { type: StructureId },
-    { type: StructureQueryService },
-    { type: PagingQueryService },
+    { type: StructureReadModelService },
+    { type: PagingReadModelService },
     { type: StructureSummaryEnabledArchive },
     { type: StructureAggregationArchive },
     { type: StructureFilterReadModelRepository },
@@ -14318,7 +14370,7 @@ class StructureAggregationUiEventsRepository {
      * @param {?} structureId
      * @return {?}
      */
-    selectAggregationsChanged(structureId) {
+    onAggregationsChanged(structureId) {
         return this.domainEventBus
             .pipe(filter((/**
          * @param {?} event
@@ -14364,7 +14416,7 @@ class StructureAggregationPanelComponent extends SmartComponent {
         this.structureAggregationUiEventsRepository = structureAggregationUiEventsRepository;
         this.compositionQueryService = compositionQueryService;
         this.structureAggregationUiEventsRepository
-            .selectAggregationsChanged(this.structureId)
+            .onAggregationsChanged(this.structureId)
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} event
@@ -14380,7 +14432,7 @@ class StructureAggregationPanelComponent extends SmartComponent {
      */
     ngOnInit() {
         this.compositionQueryService
-            .selectHeaderColumns()
+            .onHeaderColumns()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} columns
@@ -14469,7 +14521,7 @@ StructureAggregationPanelComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: StructureId },
     { type: StructureAggregationUiEventsRepository },
-    { type: CompositionQueryService }
+    { type: CompositionReadModelService }
 ];
 StructureAggregationPanelComponent.propDecorators = {
     enabled: [{ type: Input }]
@@ -14502,106 +14554,6 @@ if (false) {
      */
     StructureAggregationPanelComponent.prototype.compositionQueryService;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class OriginItemEntity {
-    /**
-     * @param {?} id
-     * @param {?} rawData
-     * @param {?=} version
-     */
-    constructor(id, rawData, version = 0) {
-        this.id = id;
-        this.rawData = rawData;
-        this.version = version;
-    }
-    /**
-     * @return {?}
-     */
-    getData() {
-        return this.rawData;
-    }
-    /**
-     * @return {?}
-     */
-    getVersion() {
-        return this.version;
-    }
-    /**
-     * @return {?}
-     */
-    bumpVersion() {
-        this.version += 1;
-    }
-    /**
-     * @return {?}
-     */
-    clone() {
-        /** @type {?} */
-        const rawData = Object.assign({}, this.rawData);
-        return new OriginItemEntity(this.id, rawData, this.version);
-    }
-}
-if (false) {
-    /** @type {?} */
-    OriginItemEntity.prototype.id;
-    /** @type {?} */
-    OriginItemEntity.prototype.rawData;
-    /**
-     * @type {?}
-     * @private
-     */
-    OriginItemEntity.prototype.version;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class EntityFactory {
-    /**
-     * @param {?} data
-     * @return {?}
-     */
-    create(data) {
-        if (Array.isArray(data)) {
-            return this.createEntities(data);
-        }
-        else {
-            return this.createEntity(data);
-        }
-    }
-    /**
-     * @param {?} data
-     * @return {?}
-     */
-    createEntities(data) {
-        return data.map((/**
-         * @param {?} data
-         * @return {?}
-         */
-        (data) => this.createEntity(data)));
-    }
-    /**
-     * @private
-     * @param {?} item
-     * @return {?}
-     */
-    createEntity(item) {
-        if (item instanceof OriginItemEntity) {
-            return new Entity(item.rawData, item.id, item.getVersion());
-        }
-        else {
-            return new Entity(item);
-        }
-    }
-}
-EntityFactory.decorators = [
-    { type: Injectable }
-];
 
 /**
  * @fileoverview added by tsickle
@@ -15365,7 +15317,7 @@ class StructureConverter {
          * @param {?} originItem
          * @return {?}
          */
-        (originItem) => new Entity(originItem.rawData, originItem.id, originItem.getVersion())));
+        (originItem) => new ItemEntity(originItem.rawData, originItem.id, originItem.getVersion())));
     }
 }
 StructureConverter.decorators = [
@@ -15411,7 +15363,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class InMemoryStructureQueryStore extends InMemoryReadModelStore {
+class InMemoryStructureReadStore extends InMemoryReadModelStore {
     /**
      * @param {?} inMemoryProjectStore
      * @param {?} structureConverter
@@ -15429,11 +15381,11 @@ class InMemoryStructureQueryStore extends InMemoryReadModelStore {
         return this.structureConverter.convert(aggregate);
     }
 }
-InMemoryStructureQueryStore.decorators = [
+InMemoryStructureReadStore.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-InMemoryStructureQueryStore.ctorParameters = () => [
+InMemoryStructureReadStore.ctorParameters = () => [
     { type: InMemoryStructureStore },
     { type: StructureConverter }
 ];
@@ -15442,12 +15394,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    InMemoryStructureQueryStore.prototype.inMemoryProjectStore;
+    InMemoryStructureReadStore.prototype.inMemoryProjectStore;
     /**
      * @type {?}
      * @private
      */
-    InMemoryStructureQueryStore.prototype.structureConverter;
+    InMemoryStructureReadStore.prototype.structureConverter;
 }
 
 /**
@@ -15698,7 +15650,7 @@ class InMemoryStructureRepository extends StructureRepository {
      * @param {?} aggregateId
      * @return {?}
      */
-    select(aggregateId) {
+    onStructure(aggregateId) {
         return this.structure$
             .asObservable()
             .pipe(filter((/**
@@ -15729,7 +15681,7 @@ InMemoryStructureRepository.decorators = [
 /** @nocollapse */
 InMemoryStructureRepository.ctorParameters = () => [
     { type: DomainEventBus },
-    { type: InMemoryStructureQueryStore }
+    { type: InMemoryStructureReadStore }
 ];
 if (false) {
     /**
@@ -15772,8 +15724,8 @@ const inMemoryStructureCommandProviders = [
     },
 ];
 /** @type {?} */
-const inMemoryStructureQueryProviders = [
-    InMemoryStructureQueryStore,
+const inMemoryStructureReadProviders = [
+    InMemoryStructureReadStore,
     {
         provide: StructureRepository,
         useClass: InMemoryStructureRepository
@@ -15783,6 +15735,60 @@ const inMemoryStructureQueryProviders = [
 const inMemoryStructureProviders = [
     InMemoryStructureStore
 ];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class OriginItemEntity {
+    /**
+     * @param {?} id
+     * @param {?} rawData
+     * @param {?=} version
+     */
+    constructor(id, rawData, version = 0) {
+        this.id = id;
+        this.rawData = rawData;
+        this.version = version;
+    }
+    /**
+     * @return {?}
+     */
+    getData() {
+        return this.rawData;
+    }
+    /**
+     * @return {?}
+     */
+    getVersion() {
+        return this.version;
+    }
+    /**
+     * @return {?}
+     */
+    bumpVersion() {
+        this.version += 1;
+    }
+    /**
+     * @return {?}
+     */
+    clone() {
+        /** @type {?} */
+        const rawData = Object.assign({}, this.rawData);
+        return new OriginItemEntity(this.id, rawData, this.version);
+    }
+}
+if (false) {
+    /** @type {?} */
+    OriginItemEntity.prototype.id;
+    /** @type {?} */
+    OriginItemEntity.prototype.rawData;
+    /**
+     * @type {?}
+     * @private
+     */
+    OriginItemEntity.prototype.version;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -15857,7 +15863,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SourceCoordinator {
+class SourceManager {
     constructor() {
         this.loading = false;
         this.fetched = false;
@@ -16027,48 +16033,48 @@ if (false) {
      * @type {?}
      * @private
      */
-    SourceCoordinator.prototype.loading;
+    SourceManager.prototype.loading;
     /**
      * @type {?}
      * @private
      */
-    SourceCoordinator.prototype.fetched;
+    SourceManager.prototype.fetched;
     /**
      * @type {?}
      * @private
      */
-    SourceCoordinator.prototype.origin;
+    SourceManager.prototype.origin;
     /**
      * @type {?}
      * @private
      */
-    SourceCoordinator.prototype.entities;
+    SourceManager.prototype.entities;
     /**
      * @type {?}
      * @private
      */
-    SourceCoordinator.prototype.slicedEntities;
+    SourceManager.prototype.slicedEntities;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SourceCoordinatorFactory {
+class SourceManagerFactory {
     /**
      * @return {?}
      */
     createDefault() {
-        return new SourceCoordinator();
+        return new SourceManager();
     }
     /**
      * @return {?}
      */
     create() {
-        return new SourceCoordinator();
+        return new SourceManager();
     }
 }
-SourceCoordinatorFactory.decorators = [
+SourceManagerFactory.decorators = [
     { type: Injectable }
 ];
 
@@ -16677,7 +16683,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterContainer {
+class FilterCollection {
     /**
      * @param {?=} enabled
      */
@@ -16746,28 +16752,28 @@ if (false) {
      * @type {?}
      * @private
      */
-    FilterContainer.prototype.enabled;
+    FilterCollection.prototype.enabled;
     /**
      * @type {?}
      * @private
      */
-    FilterContainer.prototype.filters;
+    FilterCollection.prototype.filters;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterContainerFactory {
+class FilterCollectionFactory {
     /**
      * @param {?=} enabled
      * @return {?}
      */
     create(enabled = false) {
-        return new FilterContainer(enabled);
+        return new FilterCollection(enabled);
     }
 }
-FilterContainerFactory.decorators = [
+FilterCollectionFactory.decorators = [
     { type: Injectable }
 ];
 
@@ -17181,7 +17187,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldContainer {
+class FieldCollection {
     /**
      * @param {?} fieldFactory
      */
@@ -17252,19 +17258,19 @@ if (false) {
      * @type {?}
      * @private
      */
-    FieldContainer.prototype.fields;
+    FieldCollection.prototype.fields;
     /**
      * @type {?}
      * @private
      */
-    FieldContainer.prototype.fieldFactory;
+    FieldCollection.prototype.fieldFactory;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldContainerFactory {
+class FieldCollectionFactory {
     /**
      * @param {?} fieldFactory
      */
@@ -17275,14 +17281,14 @@ class FieldContainerFactory {
      * @return {?}
      */
     create() {
-        return new FieldContainer(this.fieldFactory);
+        return new FieldCollection(this.fieldFactory);
     }
 }
-FieldContainerFactory.decorators = [
+FieldCollectionFactory.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-FieldContainerFactory.ctorParameters = () => [
+FieldCollectionFactory.ctorParameters = () => [
     { type: FieldFactory }
 ];
 if (false) {
@@ -17290,7 +17296,323 @@ if (false) {
      * @type {?}
      * @private
      */
-    FieldContainerFactory.prototype.fieldFactory;
+    FieldCollectionFactory.prototype.fieldFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSorter {
+    /**
+     * @param {?} id
+     * @param {?} field
+     * @param {?=} direction
+     */
+    constructor(id, field, direction = true) {
+        this.rank = 1;
+        this.sorterId = id;
+        this.field = field;
+        this.direction = direction;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.sorterId;
+    }
+    /**
+     * @return {?}
+     */
+    getRank() {
+        return this.rank;
+    }
+    /**
+     * @return {?}
+     */
+    getField() {
+        return this.field;
+    }
+    /**
+     * @return {?}
+     */
+    getDirection() {
+        return this.direction;
+    }
+    /**
+     * @return {?}
+     */
+    changeDirection() {
+        this.direction = !this.direction;
+    }
+    /**
+     * @param {?} entities
+     * @return {?}
+     */
+    sort(entities) {
+        if (entities.length === 0) {
+            return entities;
+        }
+        return entities.sort((/**
+         * @param {?} entityOne
+         * @param {?} entityTwo
+         * @return {?}
+         */
+        (entityOne, entityTwo) => {
+            /** @type {?} */
+            let valueOne = this.direction ? this.field.getValue(entityOne) : this.field.getValue(entityTwo);
+            /** @type {?} */
+            let valueTwo = this.direction ? this.field.getValue(entityTwo) : this.field.getValue(entityOne);
+            if (this.field.getDataType() === DataType.NUMBER) {
+                return this.sortNumber(valueOne, valueTwo);
+            }
+            else if (this.field.getDataType() === DataType.BOOLEAN) {
+                return this.sortBoolean(valueOne, valueTwo);
+            }
+            else if (this.field.getDataType() === DataType.STRING) {
+                return this.sortString(valueOne, valueTwo);
+            }
+            else {
+                return this.sortUnknown(valueOne, valueTwo);
+            }
+        }));
+    }
+    /**
+     * @private
+     * @param {?} strOne
+     * @param {?} strTwo
+     * @return {?}
+     */
+    sortString(strOne, strTwo) {
+        /** @type {?} */
+        const sureStrOne = '' + strOne;
+        /** @type {?} */
+        const sureStrTwo = '' + strTwo;
+        return sureStrOne.localeCompare(sureStrTwo);
+    }
+    /**
+     * @private
+     * @param {?} numOne
+     * @param {?} numTwo
+     * @return {?}
+     */
+    sortNumber(numOne, numTwo) {
+        /** @type {?} */
+        const sureNumOne = +numOne;
+        /** @type {?} */
+        const sureNumTwo = +numTwo;
+        return sureNumOne - sureNumTwo;
+    }
+    /**
+     * @private
+     * @param {?} booleanOne
+     * @param {?} booleanTwo
+     * @return {?}
+     */
+    sortBoolean(booleanOne, booleanTwo) {
+        /** @type {?} */
+        const sureBoolOne = !!booleanOne;
+        /** @type {?} */
+        const sureBoolTwo = !!booleanTwo;
+        return (sureBoolOne === sureBoolTwo) ? 0 : sureBoolTwo ? -1 : 1;
+    }
+    /**
+     * @private
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    sortUnknown(a, b) {
+        return 0;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSorter.prototype.sorterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSorter.prototype.columnId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSorter.prototype.field;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSorter.prototype.rank;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSorter.prototype.direction;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SorterId {
+    /**
+     * @param {?} id
+     */
+    constructor(id) {
+        this.sorterId = id;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.sorterId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SorterId.prototype.sorterId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SorterCollection {
+    /**
+     * @param {?=} enabled
+     * @param {?=} multi
+     */
+    constructor(enabled = false, multi = false) {
+        this.sorters = new Map();
+        this.enabled = enabled;
+        this.multi = multi;
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.enabled = config.enabled;
+        }
+        if (config && config.multiSorting !== undefined && config.multiSorting !== null) {
+            this.multi = config.multiSorting;
+            this.sorters.clear();
+        }
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    toggle(field) {
+        /** @type {?} */
+        const fieldId = field.getId();
+        /** @type {?} */
+        const sorter = this.sorters.get(fieldId.getId());
+        if (sorter) {
+            if (sorter.getDirection()) {
+                sorter.changeDirection();
+            }
+            else {
+                this.delete(fieldId);
+            }
+        }
+        else {
+            this.add(field);
+        }
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    add(field) {
+        this.addSorter(field.getId(), new StructureSorter(new SorterId(RandomStringGenerator.generate()), field));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} sorter
+     * @return {?}
+     */
+    addSorter(fieldId, sorter) {
+        if (!this.multi) {
+            this.sorters.clear();
+        }
+        this.sorters.set(fieldId.getId(), sorter);
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    delete(fieldId) {
+        this.sorters.delete(fieldId.getId());
+    }
+    /**
+     * @return {?}
+     */
+    update() {
+    }
+    // TODO Remove the loop from sorter.sort
+    /**
+     * @param {?} entities
+     * @return {?}
+     */
+    sort(entities) {
+        /** @type {?} */
+        const sorters = this.getAll();
+        /** @type {?} */
+        let sortedEntities = [...entities];
+        for (let sorter of sorters) {
+            sortedEntities = sorter.sort(sortedEntities);
+        }
+        return sortedEntities;
+    }
+    /**
+     * @return {?}
+     */
+    getAll() {
+        if (!this.enabled) {
+            return [];
+        }
+        return Array.from(this.sorters)
+            .map((/**
+         * @param {?} arr
+         * @return {?}
+         */
+        (arr) => arr[1]))
+            .sort((/**
+         * @param {?} sorterOne
+         * @param {?} sorterTwo
+         * @return {?}
+         */
+        (sorterOne, sorterTwo) => {
+            return sorterOne.getRank() - sorterTwo.getRank();
+        }))
+            .reverse();
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SorterCollection.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    SorterCollection.prototype.multi;
+    /**
+     * @type {?}
+     * @private
+     */
+    SorterCollection.prototype.sorters;
 }
 
 /**
@@ -17299,20 +17621,14 @@ if (false) {
  */
 class FormationAggregate {
     /**
-     * @param {?} selectedRows
-     */
-    constructor(selectedRows) {
-        this.selectedRows = selectedRows;
-    }
-    /**
      * In the future this class can be responsible for managing:
      * - expanded / collapsed nodes
      * - sorting?
      * - filtering?
-     * @return {?}
+     * @param {?} selectedRows
      */
-    static default() {
-        return new FormationAggregate([]);
+    constructor(selectedRows) {
+        this.selectedRows = selectedRows;
     }
     /**
      * @return {?}
@@ -17416,12 +17732,6 @@ class SchemaAggregate {
         this.theme = SchemaTheme.FABRIC;
         this.rowColoring = SchemaRowColoring.EVEN;
         this.calculateContainerHeight();
-    }
-    /**
-     * @return {?}
-     */
-    static default() {
-        return new SchemaAggregate();
     }
     /**
      * @return {?}
@@ -17613,45 +17923,32 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureAggregate extends Aggregate {
+let StructureAggregate = class StructureAggregate extends Aggregate {
     /**
      * @param {?} structureId
      * @param {?} paging
-     * @param {?} source
+     * @param {?} formationAggregate
+     * @param {?} sourceManager
      * @param {?} verticalFormation
      * @param {?} aggregationManager
-     * @param {?} sorterContainer
-     * @param {?} filterContainer
-     * @param {?} fieldContainer
+     * @param {?} sorterCollection
+     * @param {?} filterCollection
+     * @param {?} fieldCollection
+     * @param {?} schema
      */
-    constructor(structureId, paging, source, verticalFormation, aggregationManager, sorterContainer, filterContainer, fieldContainer) {
+    constructor(structureId, paging, formationAggregate, sourceManager, verticalFormation, aggregationManager, sorterCollection, filterCollection, fieldCollection, schema) {
         super(structureId);
-        this.formation = FormationAggregate.default();
-        this.schema = SchemaAggregate.default();
         this.search = false;
         this.quickFilters = false;
         this.paging = paging;
-        this.sourceCoordinator = source;
+        this.formationAggregate = formationAggregate;
+        this.sourceManager = sourceManager;
         this.verticalFormation = verticalFormation;
         this.aggregationManager = aggregationManager;
-        this.sorterContainer = sorterContainer;
-        this.filterContainer = filterContainer;
-        this.fieldContainer = fieldContainer;
-    }
-    // TODO Get rid of
-    /**
-     * @param {?} uid
-     * @param {?} paging
-     * @param {?} sourceCoordinator
-     * @param {?} verticalFormation
-     * @param {?} aggregationManager
-     * @param {?} sorterContainer
-     * @param {?} filterContainer
-     * @param {?} fieldContainer
-     * @return {?}
-     */
-    static default(uid, paging, sourceCoordinator, verticalFormation, aggregationManager, sorterContainer, filterContainer, fieldContainer) {
-        return new StructureAggregate(uid, paging, sourceCoordinator, verticalFormation, aggregationManager, sorterContainer, filterContainer, fieldContainer);
+        this.sorterCollection = sorterCollection;
+        this.filterCollection = filterCollection;
+        this.fieldCollection = fieldCollection;
+        this.schema = schema;
     }
     /**
      * @return {?}
@@ -17673,7 +17970,7 @@ class StructureAggregate extends Aggregate {
      * @return {?}
      */
     setOrigin(items) {
-        this.addEvent(this.sourceCoordinator.setOrigin(items, this.getId()));
+        this.addEvent(this.sourceManager.setOrigin(items, this.getId()));
         this.calculateSource();
         return this.getEvents();
     }
@@ -17687,12 +17984,12 @@ class StructureAggregate extends Aggregate {
         /** @type {?} */
         const fieldId = editParams.getColumnFieldId();
         /** @type {?} */
-        const field = this.fieldContainer.getField((/** @type {?} */ (fieldId)));
+        const field = this.fieldCollection.getField((/** @type {?} */ (fieldId)));
         /** @type {?} */
         const // as FieldId
         value = editParams.getValue();
         /** @type {?} */
-        const editItemEvents = this.sourceCoordinator.editOriginItem(itemId, value, field, this.getId());
+        const editItemEvents = this.sourceManager.editOriginItem(itemId, value, field, this.getId());
         editItemEvents.forEach((/**
          * @param {?} e
          * @return {?}
@@ -17717,7 +18014,7 @@ class StructureAggregate extends Aggregate {
      * @return {?}
      */
     setFormation(formation) {
-        this.formation = formation;
+        this.formationAggregate = formation;
     }
     /**
      * @param {?} position
@@ -17731,7 +18028,7 @@ class StructureAggregate extends Aggregate {
      * @return {?}
      */
     getFormation() {
-        return this.formation;
+        return this.formationAggregate;
     }
     /**
      * @param {?} schema
@@ -17773,7 +18070,7 @@ class StructureAggregate extends Aggregate {
      */
     nextPage() {
         /** @type {?} */
-        const sourceSize = this.sourceCoordinator.getOriginSize();
+        const sourceSize = this.sourceManager.getOriginSize();
         this.paging.nextPage(sourceSize);
         this.calculateSource();
     }
@@ -17806,29 +18103,29 @@ class StructureAggregate extends Aggregate {
      * @return {?}
      */
     getEntities() {
-        return this.sourceCoordinator.getSlicedEntities();
+        return this.sourceManager.getSlicedEntities();
     }
     /**
      * @return {?}
      */
     getSource() {
-        return this.sourceCoordinator;
+        return this.sourceManager;
     }
     /**
      * @param {?} columns
      * @return {?}
      */
     createFields(columns) {
-        this.fieldContainer.initFields(columns);
+        this.fieldCollection.initFields(columns);
         // TODO Should throw event fields created
-        return this.fieldContainer.getAllFields();
+        return this.fieldCollection.getAllFields();
     }
     /**
      * @param {?} config
      * @return {?}
      */
     setSortingConfig(config) {
-        this.sorterContainer.setConfig(config);
+        this.sorterCollection.setConfig(config);
     }
     /**
      * @param {?} fieldId
@@ -17836,17 +18133,17 @@ class StructureAggregate extends Aggregate {
      */
     toggleSort(fieldId) {
         /** @type {?} */
-        const field = this.fieldContainer.getField(fieldId);
-        this.sorterContainer.toggle(field);
+        const field = this.fieldCollection.getField(fieldId);
+        this.sorterCollection.toggle(field);
         this.calculateSource();
-        return this.sorterContainer.getAll();
+        return this.sorterCollection.getAll();
     }
     /**
      * @param {?} config
      * @return {?}
      */
     setFilterConfig(config) {
-        this.filterContainer.setConfig(config);
+        this.filterCollection.setConfig(config);
     }
     /**
      * @param {?} config
@@ -17870,13 +18167,13 @@ class StructureAggregate extends Aggregate {
      */
     toggleFilter(fieldId, externalFilterId, filterValue) {
         /** @type {?} */
-        const field = this.fieldContainer.getField(fieldId);
+        const field = this.fieldCollection.getField(fieldId);
         // Field not found
         // TODO throw aggregate event
         if (field === undefined) {
             return [];
         }
-        this.filterContainer.addFilter(field, externalFilterId, filterValue);
+        this.filterCollection.addFilter(field, externalFilterId, filterValue);
         this.calculateSource();
         return [];
     }
@@ -17885,14 +18182,14 @@ class StructureAggregate extends Aggregate {
      * @return {?}
      */
     calculateSource() {
-        if (!this.sourceCoordinator.getOrigin() || !this.paging) {
+        if (!this.sourceManager.getOrigin() || !this.paging) {
             return;
         }
         // TODO Refactor
-        this.sourceCoordinator.setEntities(this.sourceCoordinator.getOrigin());
+        this.sourceManager.setEntities(this.sourceManager.getOrigin());
         // aggregations
         /** @type {?} */
-        const aggregationEvents = this.aggregationManager.calculate(this.fieldContainer.getAllFields(), this.sourceCoordinator.getEntities());
+        const aggregationEvents = this.aggregationManager.calculate(this.fieldCollection.getAllFields(), this.sourceManager.getEntities());
         aggregationEvents.forEach((/**
          * @param {?} ae
          * @return {?}
@@ -17901,13 +18198,13 @@ class StructureAggregate extends Aggregate {
             this.addEvent(ae);
         }));
         // filtering
-        this.sourceCoordinator.setEntities(this.filterContainer.filter(this.sourceCoordinator.getEntities()));
+        this.sourceManager.setEntities(this.filterCollection.filter(this.sourceManager.getEntities()));
         // search
         // sorting
-        this.sourceCoordinator.setEntities(this.sorterContainer.sort(this.sourceCoordinator.getEntities()));
+        this.sourceManager.setEntities(this.sorterCollection.sort(this.sourceManager.getEntities()));
         // paging
-        this.sourceCoordinator.setEntities(this.paging.sample(this.sourceCoordinator.getEntities()));
-        this.verticalFormation.setSourceSize(this.sourceCoordinator.getEntities().length);
+        this.sourceManager.setEntities(this.paging.sample(this.sourceManager.getEntities()));
+        this.verticalFormation.setSourceSize(this.sourceManager.getEntities().length);
         this.calculateSourceBasedOnVirtualScroll();
     }
     /**
@@ -17918,19 +18215,44 @@ class StructureAggregate extends Aggregate {
         if (this.verticalFormation.isEnabled()) {
             /** @type {?} */
             const range = this.verticalFormation.getRange();
-            this.sourceCoordinator.setSlicedEntities(this.sourceCoordinator.getEntities().slice(range.getStart(), range.getEnd()));
+            this.sourceManager.setSlicedEntities(this.sourceManager.getEntities().slice(range.getStart(), range.getEnd()));
         }
         else {
-            this.sourceCoordinator.setSlicedEntities(this.sourceCoordinator.getEntities());
+            this.sourceManager.setSlicedEntities(this.sourceManager.getEntities());
         }
     }
-}
+};
+StructureAggregate.ctorParameters = () => [
+    { type: StructureId },
+    { type: PagingAggregate },
+    { type: FormationAggregate },
+    { type: SourceManager },
+    { type: VerticalFormation },
+    { type: AggregationManager },
+    { type: SorterCollection },
+    { type: FilterCollection },
+    { type: FieldCollection },
+    { type: SchemaAggregate }
+];
+StructureAggregate = __decorate([
+    RootAggregate,
+    __metadata("design:paramtypes", [StructureId,
+        PagingAggregate,
+        FormationAggregate,
+        SourceManager,
+        VerticalFormation,
+        AggregationManager,
+        SorterCollection,
+        FilterCollection,
+        FieldCollection,
+        SchemaAggregate])
+], StructureAggregate);
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    StructureAggregate.prototype.formation;
+    StructureAggregate.prototype.formationAggregate;
     /**
      * @type {?}
      * @private
@@ -17945,17 +18267,17 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureAggregate.prototype.sourceCoordinator;
+    StructureAggregate.prototype.sourceManager;
     /**
      * @type {?}
      * @private
      */
-    StructureAggregate.prototype.sorterContainer;
+    StructureAggregate.prototype.sorterCollection;
     /**
      * @type {?}
      * @private
      */
-    StructureAggregate.prototype.filterContainer;
+    StructureAggregate.prototype.filterCollection;
     /**
      * @type {?}
      * @private
@@ -17965,7 +18287,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureAggregate.prototype.fieldContainer;
+    StructureAggregate.prototype.fieldCollection;
     /**
      * @type {?}
      * @private
@@ -17987,317 +18309,33 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSorter {
-    /**
-     * @param {?} id
-     * @param {?} field
-     * @param {?=} direction
-     */
-    constructor(id, field, direction = true) {
-        this.rank = 1;
-        this.sorterId = id;
-        this.field = field;
-        this.direction = direction;
-    }
+class SchemaAggregateFactory {
     /**
      * @return {?}
      */
-    getId() {
-        return this.sorterId;
-    }
-    /**
-     * @return {?}
-     */
-    getRank() {
-        return this.rank;
-    }
-    /**
-     * @return {?}
-     */
-    getField() {
-        return this.field;
-    }
-    /**
-     * @return {?}
-     */
-    getDirection() {
-        return this.direction;
-    }
-    /**
-     * @return {?}
-     */
-    changeDirection() {
-        this.direction = !this.direction;
-    }
-    /**
-     * @param {?} entities
-     * @return {?}
-     */
-    sort(entities) {
-        if (entities.length === 0) {
-            return entities;
-        }
-        return entities.sort((/**
-         * @param {?} entityOne
-         * @param {?} entityTwo
-         * @return {?}
-         */
-        (entityOne, entityTwo) => {
-            /** @type {?} */
-            let valueOne = this.direction ? this.field.getValue(entityOne) : this.field.getValue(entityTwo);
-            /** @type {?} */
-            let valueTwo = this.direction ? this.field.getValue(entityTwo) : this.field.getValue(entityOne);
-            if (this.field.getDataType() === DataType.NUMBER) {
-                return this.sortNumber(valueOne, valueTwo);
-            }
-            else if (this.field.getDataType() === DataType.BOOLEAN) {
-                return this.sortBoolean(valueOne, valueTwo);
-            }
-            else if (this.field.getDataType() === DataType.STRING) {
-                return this.sortString(valueOne, valueTwo);
-            }
-            else {
-                return this.sortUnknown(valueOne, valueTwo);
-            }
-        }));
-    }
-    /**
-     * @private
-     * @param {?} strOne
-     * @param {?} strTwo
-     * @return {?}
-     */
-    sortString(strOne, strTwo) {
-        /** @type {?} */
-        const sureStrOne = '' + strOne;
-        /** @type {?} */
-        const sureStrTwo = '' + strTwo;
-        return sureStrOne.localeCompare(sureStrTwo);
-    }
-    /**
-     * @private
-     * @param {?} numOne
-     * @param {?} numTwo
-     * @return {?}
-     */
-    sortNumber(numOne, numTwo) {
-        /** @type {?} */
-        const sureNumOne = +numOne;
-        /** @type {?} */
-        const sureNumTwo = +numTwo;
-        return sureNumOne - sureNumTwo;
-    }
-    /**
-     * @private
-     * @param {?} booleanOne
-     * @param {?} booleanTwo
-     * @return {?}
-     */
-    sortBoolean(booleanOne, booleanTwo) {
-        /** @type {?} */
-        const sureBoolOne = !!booleanOne;
-        /** @type {?} */
-        const sureBoolTwo = !!booleanTwo;
-        return (sureBoolOne === sureBoolTwo) ? 0 : sureBoolTwo ? -1 : 1;
-    }
-    /**
-     * @private
-     * @param {?} a
-     * @param {?} b
-     * @return {?}
-     */
-    sortUnknown(a, b) {
-        return 0;
+    create() {
+        return new SchemaAggregate();
     }
 }
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSorter.prototype.sorterId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSorter.prototype.columnId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSorter.prototype.field;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSorter.prototype.rank;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSorter.prototype.direction;
-}
+SchemaAggregateFactory.decorators = [
+    { type: Injectable }
+];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SorterId {
-    /**
-     * @param {?} id
-     */
-    constructor(id) {
-        this.sorterId = id;
-    }
+class FormationAggregateFactory {
     /**
      * @return {?}
      */
-    getId() {
-        return this.sorterId;
+    create() {
+        return new FormationAggregate([]);
     }
 }
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SorterId.prototype.sorterId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SorterContainer {
-    /**
-     * @param {?=} enabled
-     * @param {?=} multi
-     */
-    constructor(enabled = false, multi = false) {
-        this.sorters = new Map();
-        this.enabled = enabled;
-        this.multi = multi;
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.enabled = config.enabled;
-        }
-        if (config && config.multiSorting !== undefined && config.multiSorting !== null) {
-            this.multi = config.multiSorting;
-            this.sorters.clear();
-        }
-    }
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    toggle(field) {
-        /** @type {?} */
-        const fieldId = field.getId();
-        /** @type {?} */
-        const sorter = this.sorters.get(fieldId.getId());
-        if (sorter) {
-            if (sorter.getDirection()) {
-                sorter.changeDirection();
-            }
-            else {
-                this.delete(fieldId);
-            }
-        }
-        else {
-            this.add(field);
-        }
-    }
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    add(field) {
-        this.addSorter(field.getId(), new StructureSorter(new SorterId(RandomStringGenerator.generate()), field));
-    }
-    /**
-     * @param {?} fieldId
-     * @param {?} sorter
-     * @return {?}
-     */
-    addSorter(fieldId, sorter) {
-        if (!this.multi) {
-            this.sorters.clear();
-        }
-        this.sorters.set(fieldId.getId(), sorter);
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    delete(fieldId) {
-        this.sorters.delete(fieldId.getId());
-    }
-    /**
-     * @return {?}
-     */
-    update() {
-    }
-    // TODO Remove the loop from sorter.sort
-    /**
-     * @param {?} entities
-     * @return {?}
-     */
-    sort(entities) {
-        /** @type {?} */
-        const sorters = this.getAll();
-        /** @type {?} */
-        let sortedEntities = [...entities];
-        for (let sorter of sorters) {
-            sortedEntities = sorter.sort(sortedEntities);
-        }
-        return sortedEntities;
-    }
-    /**
-     * @return {?}
-     */
-    getAll() {
-        if (!this.enabled) {
-            return [];
-        }
-        return Array.from(this.sorters)
-            .map((/**
-         * @param {?} arr
-         * @return {?}
-         */
-        (arr) => arr[1]))
-            .sort((/**
-         * @param {?} sorterOne
-         * @param {?} sorterTwo
-         * @return {?}
-         */
-        (sorterOne, sorterTwo) => {
-            return sorterOne.getRank() - sorterTwo.getRank();
-        }))
-            .reverse();
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SorterContainer.prototype.enabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    SorterContainer.prototype.multi;
-    /**
-     * @type {?}
-     * @private
-     */
-    SorterContainer.prototype.sorters;
-}
+FormationAggregateFactory.decorators = [
+    { type: Injectable }
+];
 
 /**
  * @fileoverview added by tsickle
@@ -18306,19 +18344,23 @@ if (false) {
 class StructureAggregateFactory {
     /**
      * @param {?} pagingAggregateFactory
-     * @param {?} sourceCoordinatorFactory
+     * @param {?} sourceManagerFactory
+     * @param {?} formationAggregateFactory
      * @param {?} verticalFormationFactory
      * @param {?} aggregationManagerFactory
-     * @param {?} filterContainerFactory
-     * @param {?} fieldContainerFactory
+     * @param {?} filterCollectionFactory
+     * @param {?} fieldCollectionFactory
+     * @param {?} schemaAggregateFactory
      */
-    constructor(pagingAggregateFactory, sourceCoordinatorFactory, verticalFormationFactory, aggregationManagerFactory, filterContainerFactory, fieldContainerFactory) {
+    constructor(pagingAggregateFactory, sourceManagerFactory, formationAggregateFactory, verticalFormationFactory, aggregationManagerFactory, filterCollectionFactory, fieldCollectionFactory, schemaAggregateFactory) {
         this.pagingAggregateFactory = pagingAggregateFactory;
-        this.sourceCoordinatorFactory = sourceCoordinatorFactory;
+        this.sourceManagerFactory = sourceManagerFactory;
+        this.formationAggregateFactory = formationAggregateFactory;
         this.verticalFormationFactory = verticalFormationFactory;
         this.aggregationManagerFactory = aggregationManagerFactory;
-        this.filterContainerFactory = filterContainerFactory;
-        this.fieldContainerFactory = fieldContainerFactory;
+        this.filterCollectionFactory = filterCollectionFactory;
+        this.fieldCollectionFactory = fieldCollectionFactory;
+        this.schemaAggregateFactory = schemaAggregateFactory;
     }
     /**
      * @param {?} structureId
@@ -18328,18 +18370,22 @@ class StructureAggregateFactory {
         /** @type {?} */
         const paging = this.pagingAggregateFactory.createDefault();
         /** @type {?} */
-        const source = this.sourceCoordinatorFactory.createDefault();
+        const source = this.sourceManagerFactory.createDefault();
         /** @type {?} */
         const verticalFormation = this.verticalFormationFactory.create();
         /** @type {?} */
-        const sorterContainer = new SorterContainer();
+        const formationAggregate = this.formationAggregateFactory.create();
         /** @type {?} */
-        const filterContainer = this.filterContainerFactory.create(false);
+        const sorterContainer = new SorterCollection();
         /** @type {?} */
-        const fieldContainer = this.fieldContainerFactory.create();
+        const filterContainer = this.filterCollectionFactory.create(false);
+        /** @type {?} */
+        const fieldContainer = this.fieldCollectionFactory.create();
         /** @type {?} */
         const aggregationManager = this.aggregationManagerFactory.create(structureId);
-        return new StructureAggregate(structureId, paging, source, verticalFormation, aggregationManager, sorterContainer, filterContainer, fieldContainer);
+        /** @type {?} */
+        const schema = this.schemaAggregateFactory.create();
+        return new StructureAggregate(structureId, paging, formationAggregate, source, verticalFormation, aggregationManager, sorterContainer, filterContainer, fieldContainer, schema);
     }
 }
 StructureAggregateFactory.decorators = [
@@ -18348,11 +18394,13 @@ StructureAggregateFactory.decorators = [
 /** @nocollapse */
 StructureAggregateFactory.ctorParameters = () => [
     { type: PagingAggregateFactory },
-    { type: SourceCoordinatorFactory },
+    { type: SourceManagerFactory },
+    { type: FormationAggregateFactory },
     { type: VerticalFormationFactory },
     { type: AggregationManagerFactory },
-    { type: FilterContainerFactory },
-    { type: FieldContainerFactory }
+    { type: FilterCollectionFactory },
+    { type: FieldCollectionFactory },
+    { type: SchemaAggregateFactory }
 ];
 if (false) {
     /**
@@ -18364,7 +18412,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureAggregateFactory.prototype.sourceCoordinatorFactory;
+    StructureAggregateFactory.prototype.sourceManagerFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregateFactory.prototype.formationAggregateFactory;
     /**
      * @type {?}
      * @private
@@ -18379,12 +18432,17 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureAggregateFactory.prototype.filterContainerFactory;
+    StructureAggregateFactory.prototype.filterCollectionFactory;
     /**
      * @type {?}
      * @private
      */
-    StructureAggregateFactory.prototype.fieldContainerFactory;
+    StructureAggregateFactory.prototype.fieldCollectionFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregateFactory.prototype.schemaAggregateFactory;
 }
 
 /**
@@ -20047,7 +20105,7 @@ class StructureFieldsInitedEventHandler extends DomainEventHandler {
         if (event instanceof FieldsInitedEvent) {
             /** @type {?} */
             const fields = this.structureFieldUiConverter.convert(event.getFields());
-            this.structureFieldsRepository.set(event.getAggregateId(), fields);
+            this.structureFieldsRepository.next(event.getAggregateId(), fields);
         }
     }
 }
@@ -20328,17 +20386,17 @@ const commandProviders$1 = [
     }
 ];
 /** @type {?} */
-const queryProviders$1 = [
+const readProviders$1 = [
     PagingRepository
 ];
 /** @type {?} */
 const pagingProviders = [
     ...commandProviders$1,
-    ...queryProviders$1,
+    ...readProviders$1,
     PagingAggregateFactory,
     PagingConverter,
     PagingCommandService,
-    PagingQueryService,
+    PagingReadModelService,
     PagingEventService
 ];
 
@@ -20703,19 +20761,20 @@ const commandProviders$2 = [
         provide: COMMAND_HANDLERS,
         useClass: SetRowColoringCommandHandler,
         multi: true
-    }
+    },
+    SchemaAggregateFactory
 ];
 /** @type {?} */
-const queryProviders$2 = [
+const readProviders$2 = [
     SchemaRepository
 ];
 /** @type {?} */
 const schemaProviders = [
     ...commandProviders$2,
-    ...queryProviders$2,
+    ...readProviders$2,
     SchemaConverter,
     SchemaCommandService,
-    SchemaQueryService
+    SchemaReadModelService
 ];
 
 /**
@@ -20828,20 +20887,21 @@ const commandProviders$3 = [
         provide: COMMAND_HANDLERS,
         useClass: ToggleSelectedRowCommandHandler,
         multi: true
-    }
+    },
+    FormationAggregateFactory
 ];
 /** @type {?} */
-const queryProviders$3 = [
+const readProviders$3 = [
     FormationRepository
 ];
 /** @type {?} */
 const formationProviders = [
     ...commandProviders$3,
-    ...queryProviders$3,
+    ...readProviders$3,
     FormationEventService,
     FormationConverter,
     FormationCommandService,
-    FormationQueryService
+    FormationReadModelService
 ];
 
 /**
@@ -21016,7 +21076,7 @@ class SourceRepository {
      */
     select(structureId) {
         return this.structureRepository
-            .select(structureId)
+            .onStructure(structureId)
             .pipe(filter((/**
          * @param {?} structure
          * @return {?}
@@ -21096,7 +21156,7 @@ if (false) {
 /** @type {?} */
 const commandProviders$4 = [
     SourceDispatcher,
-    SourceCoordinatorFactory,
+    SourceManagerFactory,
     {
         provide: COMMAND_HANDLERS,
         useClass: SourceSetLoadingCommandHandler,
@@ -21113,7 +21173,7 @@ const commandProviders$4 = [
     StructureSourceDomainEventPublisher
 ];
 /** @type {?} */
-const queryProviders$4 = [
+const readProviders$4 = [
     SourceRepository,
     {
         provide: DOMAIN_EVENT_HANDLERS,
@@ -21125,10 +21185,10 @@ const queryProviders$4 = [
 /** @type {?} */
 const sourceProviders = [
     ...commandProviders$4,
-    ...queryProviders$4,
+    ...readProviders$4,
     SourceConverter,
     SourceCommandService,
-    SourceQueryService,
+    SourceReadModelService,
     SourceEventService
 ];
 
@@ -21185,15 +21245,15 @@ const commandProviders$5 = [
         multi: true
     },
     VerticalFormationFactory,
-    FieldContainerFactory,
-    FilterContainerFactory,
+    FieldCollectionFactory,
+    FilterCollectionFactory,
     FieldIdGenerator,
     StructureFilterCommandService,
     FieldFactory,
     ...aggregationProviders
 ];
 /** @type {?} */
-const queryProviders$5 = [
+const readProviders$5 = [
     {
         provide: DOMAIN_EVENT_HANDLERS,
         useClass: StructureConfigFilterSetEventHandler,
@@ -21211,7 +21271,7 @@ const queryProviders$5 = [
         useClass: StructureFieldsInitedEventHandler,
         multi: true
     },
-    ...inMemoryStructureQueryProviders,
+    ...inMemoryStructureReadProviders,
     VerticalFormationConverter,
     StructureFilterReadModelRepository,
     StructureFilterRepository,
@@ -21226,12 +21286,12 @@ const queryProviders$5 = [
 const structureProviders = [
     ...inMemoryStructureProviders,
     ...commandProviders$5,
-    ...queryProviders$5,
+    ...readProviders$5,
     StructureAggregationCommandService,
     StructureAggregationUiEventsRepository,
     StructureAggregateFactory,
     StructureConverter,
-    StructureQueryService,
+    StructureReadModelService,
     StructureCommandService,
     ...pagingProviders,
     ...schemaProviders,
@@ -21273,6 +21333,52 @@ LoggerModule.decorators = [
                         useClass: ConsoleLogger
                     }]
             },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ItemEntityFactory {
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    create(data) {
+        if (Array.isArray(data)) {
+            return this.createEntities(data);
+        }
+        else {
+            return this.createEntity(data);
+        }
+    }
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    createEntities(data) {
+        return data.map((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.createEntity(data)));
+    }
+    /**
+     * @private
+     * @param {?} item
+     * @return {?}
+     */
+    createEntity(item) {
+        if (item instanceof OriginItemEntity) {
+            return new ItemEntity(item.rawData, item.id, item.getVersion());
+        }
+        else {
+            return new ItemEntity(item);
+        }
+    }
+}
+ItemEntityFactory.decorators = [
+    { type: Injectable }
 ];
 
 /**
@@ -21330,8 +21436,8 @@ const providers = [
         provide: StructureDefinition,
         useFactory: createStructureDefinition
     },
-    EntityFactory,
-    SourceQueryService,
+    ItemEntityFactory,
+    SourceReadModelService,
     StructureIdGenerator,
     StructureAggregationPanelConfigConverter,
     StructureColumnConfigService,
@@ -21471,5 +21577,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GridComponent, GridModule, GuiCellView, GuiDataType, GuiRowColoring, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureInfoPanel as ɵba, CompositionModule as ɵbb, compositionProviders as ɵbc, inMemoryCompositionCommandProviders as ɵbd, inMemoryCompositionQueryProviders as ɵbe, inMemoryCompositionProviders as ɵbf, InMemoryCompositionStore as ɵbg, InMemoryCompositionAggregateStore as ɵbh, Override as ɵbi, CompositionAggregateRepository as ɵbj, InMemoryCompositionAggregateRepository as ɵbk, CompositionDispatcher as ɵbl, CompositionAggregateFactory as ɵbm, InitCompositionCommandHandler as ɵbn, SetColumnsCommandHandler as ɵbo, CompositionEventConverter as ɵbp, SetCompositionWidthCommandHandler as ɵbq, ColumnEntityFactory as ɵbr, SetCompositionResizeWidthCommandHandler as ɵbs, SetCompositionContainerWidthCommandHandler as ɵbt, CompositionChangeSortStatusCommandHandler as ɵbu, ColumnFieldFactory as ɵbv, InMemoryCompositionQueryStore as ɵbw, CompositionConverter as ɵbx, ColumnDefinitionFactory as ɵby, ViewTemplateRepository as ɵbz, StructureModule as ɵc, ViewTemplateFactory as ɵca, TemplateFactory as ɵcb, EditTemplateRepository as ɵcc, EditTemplateFactory as ɵcd, CompositionRepository as ɵce, InMemoryCompositionRepository as ɵcf, CompositionFieldsInitedEventHandler as ɵcg, CompositionChangeSortStatusEventHandler as ɵch, CompositionCommandService as ɵci, CompositionQueryService as ɵcj, CompositionEventService as ɵck, ViewTemplatesComponent as ɵcl, EditTemplatesComponent as ɵcm, StringEditTemplateComponent as ɵcn, InputEditTemplateComponent as ɵco, EditCommunicationComponent as ɵcp, NumberEditTemplateComponent as ɵcq, BooleanEditTemplateComponent as ɵcr, ColumnQueryComponent as ɵcs, FunctionViewComponent as ɵct, LoggerModule as ɵcu, Logger as ɵcv, ConsoleLogger as ɵcw, structureIdFactory as ɵcx, compositionIdFactory as ɵcy, structureComponentSelfProviders as ɵcz, fabricImports as ɵd, StructureComponent as ɵda, StructureGateway as ɵdb, StructureId as ɵdc, CompositionId as ɵdd, StructureCommandService as ɵde, StructureFilterCommandService as ɵdf, SourceDispatcher as ɵdg, PagingEventService as ɵdh, SourceCommandService as ɵdi, StructureFieldUiRepository as ɵdj, StructureFieldUiArchive as ɵdk, SourceEventService as ɵdl, SchemaCommandService as ɵdm, SchemaDispatcher as ɵdn, SchemaQueryService as ɵdo, SchemaRepository as ɵdp, FormationEventService as ɵdq, StructureQueryService as ɵdr, StructureEditModeArchive as ɵds, StructureCellEditArchive as ɵdt, StructureAggregationConfigService as ɵdu, StructureAggregationPanelConfigConverter as ɵdv, StructureAggregationArchive as ɵdw, StructureAggregationCommandService as ɵdx, StructureCellEditStore as ɵdy, StructureIdGenerator as ɵdz, StructurePagingModule as ɵe, localProviders as ɵea, LocalPagingCommandService as ɵeb, PagingAggregateFactory as ɵec, LocalPagingQueryService as ɵed, LocalSchemaCommandService as ɵee, LocalSchemaQueryService as ɵef, FormationCommandService as ɵeg, FormationDispatcher as ɵeh, LocalFormationCommandService as ɵei, FormationQueryService as ɵej, FormationRepository as ɵek, LocalFormationQueryService as ɵel, LocalStructureCommandService as ɵem, LocalStructureQueryService as ɵen, LocalSourceCommandService as ɵeo, LocalSourceQueryService as ɵep, LocalCompositionCommandService as ɵeq, LocalCompositionQueryService as ɵer, SchemaCssClassManager as ɵes, structureComponentToken as ɵet, StructureDefinition as ɵeu, StructurePagingDefinition as ɵev, StructureHeaderComponent as ɵew, StructureHeaderColumnsComponent as ɵex, StructureColumnConfigService as ɵey, StructureFilterReadModelRepository as ɵez, StructurePagingComponent as ɵf, StructureFilterRepository as ɵfa, StructureQuickFilterRepository as ɵfb, StructureHeaderFiltersComponent as ɵfc, StructureHeaderFilterComponent as ɵfd, StructureContentComponent as ɵfe, StructureRowComponent as ɵff, StructureCellComponent as ɵfg, StructureContainerComponent as ɵfh, structureParentComponent as ɵfi, StructureSearchComponent as ɵfj, StructureQuickFiltersComponent as ɵfk, StructureBlueprintComponent as ɵfl, STRUCTURE_CSS_CLASS_NAME as ɵfm, StructureSearchReadModelRepository as ɵfn, StructureSearchingRepository as ɵfo, StructureAggregationPanelComponent as ɵfp, StructureAggregationUiEventsRepository as ɵfq, StructureColumnConfigComponent as ɵfr, EntityFactory as ɵfs, structureProviders as ɵft, inMemoryStructureCommandProviders as ɵfu, inMemoryStructureQueryProviders as ɵfv, inMemoryStructureProviders as ɵfw, InMemoryStructureStore as ɵfx, InMemoryStructureAggregateStore as ɵfy, StructureAggregateRepository as ɵfz, SmartComponent as ɵg, InMemoryStructureAggregateRepository as ɵga, InitStructureCommandHandler as ɵgb, StructureAggregateFactory as ɵgc, SourceCoordinatorFactory as ɵgd, VerticalFormationFactory as ɵge, AggregationManagerFactory as ɵgf, AGGREGATION_CALCULATORS as ɵgg, AggregationCalculator as ɵgh, FilterContainerFactory as ɵgi, FieldContainerFactory as ɵgj, FieldFactory as ɵgk, FieldIdGenerator as ɵgl, SetVerticalScrollEnabledCommandHandler as ɵgm, SetScrollPositionCommandHandler as ɵgn, InitFieldsCommandHandler as ɵgo, ToggleSortCommandHandler as ɵgp, SetSortingCommandHandler as ɵgq, StructureSetConfigFilterCommandHandler as ɵgr, StructureSetConfigSearchingCommandHandler as ɵgs, StructureSetConfigQuickFilterCommandHandler as ɵgt, StructureToggleFilterCommandHandler as ɵgu, StructureSetAggregationEnabledCommandHandler as ɵgv, StructureSourceDomainEventPublisher as ɵgw, provideAggregationCalculator as ɵgx, aggregationProviders as ɵgy, BooleanAggregationCalculator as ɵgz, Reactive as ɵh, DateAggregationCalculator as ɵha, NumberAggregationCalculator as ɵhb, StringAggregationCalculator as ɵhc, UnknownAggregationCalculator as ɵhd, StructureConfigFilterSetEventHandler as ɵhe, StructureConfigSearchingSetEventHandler as ɵhf, StructureConfigQuickFilterSetEventHandler as ɵhg, StructureFieldsInitedEventHandler as ɵhh, StructureFieldUiConverter as ɵhi, InMemoryStructureQueryStore as ɵhj, StructureConverter as ɵhk, FormationConverter as ɵhl, SchemaConverter as ɵhm, PagingConverter as ɵhn, SourceConverter as ɵho, VerticalFormationConverter as ɵhp, InMemoryStructureRepository as ɵhq, pagingProviders as ɵhr, SetPagingCommandHandler as ɵhs, NextPageCommandHandler as ɵht, PrevPageCommandHandler as ɵhu, ChangePagesizeCommandHandler as ɵhv, schemaProviders as ɵhw, SetSchemaCommandHandler as ɵhx, SetSchemaVerticalGridCommandHandler as ɵhy, SetSchemaHorizontalGridCommandHandler as ɵhz, PagingQueryService as ɵi, SetSchemaThemeCommandHandler as ɵia, ChangeSchemaBottomHeaderCommandHandler as ɵib, ChangeSchemaTopHeaderCommandHandler as ɵic, SetRowColoringCommandHandler as ɵid, formationProviders as ɵie, SetFormationCommandHandler as ɵif, ToggleSelectedRowCommandHandler as ɵig, sourceProviders as ɵih, SourceSetLoadingCommandHandler as ɵii, SetOriginCommandHandler as ɵij, StructureEditSourceItemCommandHandler as ɵik, SourceRepository as ɵil, StructureOriginChangedEventHandler as ɵim, GridGateway as ɵin, gridProviders as ɵio, gridStructureDefinition as ɵip, GridRegister as ɵiq, GridIdGenerator as ɵir, PagingRepository as ɵj, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceQueryService as ɵn, StructureSourceOriginRepository as ɵo, StructurePagingNavigatorComponent as ɵp, StructurePagingSelectComponent as ɵq, StructurePagingStatsComponent as ɵr, StructureAlternativePagingNavigatorComponent as ɵs, StructureAlternativePagingPagesComponent as ɵt, StructureSummaryModule as ɵu, NumberFormatterModule as ɵv, NumberFormatterPipe as ɵw, StructureSummaryComponent as ɵx, StructureSummaryEnabledArchive as ɵy, ReactiveArchive as ɵz };
+export { GridComponent, GridModule, GuiCellView, GuiDataType, GuiRowColoring, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureInfoPanel as ɵba, CompositionModule as ɵbb, compositionProviders as ɵbc, inMemoryCompositionCommandProviders as ɵbd, inMemoryCompositionQueryProviders as ɵbe, inMemoryCompositionProviders as ɵbf, InMemoryCompositionStore as ɵbg, InMemoryCompositionAggregateStore as ɵbh, Override as ɵbi, CompositionAggregateRepository as ɵbj, InMemoryCompositionAggregateRepository as ɵbk, CompositionDispatcher as ɵbl, CompositionAggregateFactory as ɵbm, InitCompositionCommandHandler as ɵbn, SetColumnsCommandHandler as ɵbo, CompositionEventConverter as ɵbp, SetCompositionWidthCommandHandler as ɵbq, ColumnEntityFactory as ɵbr, SetCompositionResizeWidthCommandHandler as ɵbs, SetCompositionContainerWidthCommandHandler as ɵbt, CompositionChangeSortStatusCommandHandler as ɵbu, ColumnFieldFactory as ɵbv, InMemoryCompositionReadStore as ɵbw, CompositionConverter as ɵbx, ColumnDefinitionFactory as ɵby, ViewTemplateRepository as ɵbz, StructureModule as ɵc, ViewTemplateFactory as ɵca, TemplateFactory as ɵcb, EditTemplateRepository as ɵcc, EditTemplateFactory as ɵcd, CompositionRepository as ɵce, InMemoryCompositionRepository as ɵcf, CompositionFieldsInitedEventHandler as ɵcg, CompositionChangeSortStatusEventHandler as ɵch, CompositionCommandService as ɵci, CompositionReadModelService as ɵcj, CompositionEventService as ɵck, ViewTemplatesComponent as ɵcl, EditTemplatesComponent as ɵcm, StringEditTemplateComponent as ɵcn, InputEditTemplateComponent as ɵco, EditCommunicationComponent as ɵcp, NumberEditTemplateComponent as ɵcq, BooleanEditTemplateComponent as ɵcr, ColumnQueryComponent as ɵcs, FunctionViewComponent as ɵct, LoggerModule as ɵcu, Logger as ɵcv, ConsoleLogger as ɵcw, structureIdFactory as ɵcx, compositionIdFactory as ɵcy, structureComponentSelfProviders as ɵcz, fabricImports as ɵd, StructureComponent as ɵda, StructureGateway as ɵdb, StructureId as ɵdc, CompositionId as ɵdd, StructureCommandService as ɵde, StructureFilterCommandService as ɵdf, SourceDispatcher as ɵdg, PagingEventService as ɵdh, SourceCommandService as ɵdi, StructureFieldUiRepository as ɵdj, StructureFieldUiArchive as ɵdk, SourceEventService as ɵdl, SchemaCommandService as ɵdm, SchemaDispatcher as ɵdn, SchemaReadModelService as ɵdo, SchemaRepository as ɵdp, FormationEventService as ɵdq, StructureReadModelService as ɵdr, StructureEditModeArchive as ɵds, StructureCellEditArchive as ɵdt, StructureAggregationConfigService as ɵdu, StructureAggregationPanelConfigConverter as ɵdv, StructureAggregationArchive as ɵdw, StructureAggregationCommandService as ɵdx, StructureCellEditStore as ɵdy, StructureIdGenerator as ɵdz, StructurePagingModule as ɵe, localProviders as ɵea, LocalPagingCommandService as ɵeb, PagingAggregateFactory as ɵec, LocalPagingReadModelService as ɵed, LocalSchemaCommandService as ɵee, LocalSchemaReadModelService as ɵef, FormationCommandService as ɵeg, FormationDispatcher as ɵeh, LocalFormationCommandService as ɵei, FormationReadModelService as ɵej, FormationRepository as ɵek, LocalFormationReadModelService as ɵel, LocalStructureCommandService as ɵem, LocalStructureReadModelService as ɵen, LocalSourceCommandService as ɵeo, LocalSourceReadModelService as ɵep, LocalCompositionCommandService as ɵeq, LocalCompositionReadModelService as ɵer, SchemaCssClassManager as ɵes, structureComponentToken as ɵet, StructureDefinition as ɵeu, StructurePagingDefinition as ɵev, StructureHeaderComponent as ɵew, StructureHeaderColumnsComponent as ɵex, StructureColumnConfigService as ɵey, StructureFilterReadModelRepository as ɵez, StructurePagingComponent as ɵf, StructureFilterRepository as ɵfa, StructureQuickFilterRepository as ɵfb, StructureHeaderFiltersComponent as ɵfc, StructureHeaderFilterComponent as ɵfd, StructureContentComponent as ɵfe, StructureRowComponent as ɵff, StructureCellComponent as ɵfg, StructureContainerComponent as ɵfh, structureParentComponent as ɵfi, StructureSearchComponent as ɵfj, StructureQuickFiltersComponent as ɵfk, StructureBlueprintComponent as ɵfl, STRUCTURE_CSS_CLASS_NAME as ɵfm, StructureSearchReadModelRepository as ɵfn, StructureSearchingRepository as ɵfo, StructureAggregationPanelComponent as ɵfp, StructureAggregationUiEventsRepository as ɵfq, StructureColumnConfigComponent as ɵfr, ItemEntityFactory as ɵfs, structureProviders as ɵft, inMemoryStructureCommandProviders as ɵfu, inMemoryStructureReadProviders as ɵfv, inMemoryStructureProviders as ɵfw, InMemoryStructureStore as ɵfx, InMemoryStructureAggregateStore as ɵfy, StructureAggregateRepository as ɵfz, SmartComponent as ɵg, InMemoryStructureAggregateRepository as ɵga, InitStructureCommandHandler as ɵgb, StructureAggregateFactory as ɵgc, SourceManagerFactory as ɵgd, FormationAggregateFactory as ɵge, VerticalFormationFactory as ɵgf, AggregationManagerFactory as ɵgg, AGGREGATION_CALCULATORS as ɵgh, AggregationCalculator as ɵgi, FilterCollectionFactory as ɵgj, FieldCollectionFactory as ɵgk, FieldFactory as ɵgl, FieldIdGenerator as ɵgm, SchemaAggregateFactory as ɵgn, SetVerticalScrollEnabledCommandHandler as ɵgo, SetScrollPositionCommandHandler as ɵgp, InitFieldsCommandHandler as ɵgq, ToggleSortCommandHandler as ɵgr, SetSortingCommandHandler as ɵgs, StructureSetConfigFilterCommandHandler as ɵgt, StructureSetConfigSearchingCommandHandler as ɵgu, StructureSetConfigQuickFilterCommandHandler as ɵgv, StructureToggleFilterCommandHandler as ɵgw, StructureSetAggregationEnabledCommandHandler as ɵgx, StructureSourceDomainEventPublisher as ɵgy, provideAggregationCalculator as ɵgz, Reactive as ɵh, aggregationProviders as ɵha, BooleanAggregationCalculator as ɵhb, DateAggregationCalculator as ɵhc, NumberAggregationCalculator as ɵhd, StringAggregationCalculator as ɵhe, UnknownAggregationCalculator as ɵhf, StructureConfigFilterSetEventHandler as ɵhg, StructureConfigSearchingSetEventHandler as ɵhh, StructureConfigQuickFilterSetEventHandler as ɵhi, StructureFieldsInitedEventHandler as ɵhj, StructureFieldUiConverter as ɵhk, InMemoryStructureReadStore as ɵhl, StructureConverter as ɵhm, FormationConverter as ɵhn, SchemaConverter as ɵho, PagingConverter as ɵhp, SourceConverter as ɵhq, VerticalFormationConverter as ɵhr, InMemoryStructureRepository as ɵhs, pagingProviders as ɵht, SetPagingCommandHandler as ɵhu, NextPageCommandHandler as ɵhv, PrevPageCommandHandler as ɵhw, ChangePagesizeCommandHandler as ɵhx, schemaProviders as ɵhy, SetSchemaCommandHandler as ɵhz, PagingReadModelService as ɵi, SetSchemaVerticalGridCommandHandler as ɵia, SetSchemaHorizontalGridCommandHandler as ɵib, SetSchemaThemeCommandHandler as ɵic, ChangeSchemaBottomHeaderCommandHandler as ɵid, ChangeSchemaTopHeaderCommandHandler as ɵie, SetRowColoringCommandHandler as ɵif, formationProviders as ɵig, SetFormationCommandHandler as ɵih, ToggleSelectedRowCommandHandler as ɵii, sourceProviders as ɵij, SourceSetLoadingCommandHandler as ɵik, SetOriginCommandHandler as ɵil, StructureEditSourceItemCommandHandler as ɵim, SourceRepository as ɵin, StructureOriginChangedEventHandler as ɵio, GridGateway as ɵip, gridProviders as ɵiq, gridStructureDefinition as ɵir, GridRegister as ɵis, GridIdGenerator as ɵit, PagingRepository as ɵj, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceReadModelService as ɵn, StructureSourceOriginRepository as ɵo, StructurePagingNavigatorComponent as ɵp, StructurePagingSelectComponent as ɵq, StructurePagingStatsComponent as ɵr, StructureAlternativePagingNavigatorComponent as ɵs, StructureAlternativePagingPagesComponent as ɵt, StructureSummaryModule as ɵu, NumberFormatterModule as ɵv, NumberFormatterPipe as ɵw, StructureSummaryComponent as ɵx, StructureSummaryEnabledArchive as ɵy, Archive as ɵz };
 //# sourceMappingURL=generic-ui-ngx-grid.js.map

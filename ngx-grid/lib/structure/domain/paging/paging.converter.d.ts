@@ -1,5 +1,5 @@
 import { PagingAggregate } from './command/paging.aggregate';
-import { Paging } from './query/paging';
+import { Paging } from './read/paging';
 export declare class PagingConverter {
     convert(aggregate: PagingAggregate): Paging;
 }

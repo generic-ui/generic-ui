@@ -1,4 +1,4 @@
-import { GuiColumn } from '../../../../grid/app/grid.api';
+import { GuiColumn } from '../../../ui-api/grid.api';
 import { ColumnConfig } from '../../../../../lib/structure/domain/composition/column.config';
 export declare class GridColumnConverter {
     private readonly columnTypeConverter;

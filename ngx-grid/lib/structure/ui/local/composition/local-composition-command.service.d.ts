@@ -1,4 +1,4 @@
-import { CompositionCommandService } from '../../api/composition/composition.command-service';
+import { CompositionCommandService } from '../../../ui-api/composition/composition.command-service';
 import { CompositionId } from '../../../domain/composition/composition-id';
 import { CompositionDispatcher } from '../../../domain/composition/command/composition.dispatcher';
 import { ColumnParams } from '../../../domain/composition/command/column/set-columns/column.params';

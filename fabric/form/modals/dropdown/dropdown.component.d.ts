@@ -2,6 +2,7 @@ import { ChangeDetectorRef, ElementRef, OnChanges, OnInit, Renderer2, SimpleChan
 import { GeometryService } from './geometry.service';
 import { Placement } from './placement';
 export declare class FabricDropdownComponent implements OnChanges, OnInit {
+    private platformId;
     private elementRef;
     private renderer;
     private changeDetectorRef;
@@ -24,7 +25,7 @@ export declare class FabricDropdownComponent implements OnChanges, OnInit {
     private canOpenUpward;
     private open;
     private subscription;
-    constructor(elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, geometryService: GeometryService);
+    constructor(platformId: any, elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, geometryService: GeometryService);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngOnDestroy(): void;

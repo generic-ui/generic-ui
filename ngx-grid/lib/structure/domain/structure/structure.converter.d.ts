@@ -2,9 +2,9 @@ import { FormationConverter } from '../formation/formation.converter';
 import { SchemaConverter } from '../schema/schema.converter';
 import { PagingConverter } from '../paging/paging.converter';
 import { SourceConverter } from '../source/source.converter';
-import { VerticalFormationConverter } from './query/vertical-formation/vertical-formation.converter';
+import { VerticalFormationConverter } from './read/vertical-formation/vertical-formation.converter';
 import { StructureAggregate } from './command/structure.aggregate';
-import { Structure } from './query/structure';
+import { Structure } from './read/structure';
 export declare class StructureConverter {
     private formationConverter;
     private schemaConverter;

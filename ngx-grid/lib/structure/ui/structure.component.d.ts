@@ -11,18 +11,18 @@ import { StructureSummaryEnabledArchive } from './panel/summary/structure.summar
 import { StructureAggregationArchive } from './panel/aggregation/structure.aggregation.archive';
 import { StructureAggregationConfigService } from './panel/aggregation/structure.aggregation-config.service';
 import { StructureGateway } from './gateway/structure.gateway';
-import { PagingCommandService } from '../app/paging/paging-command.service';
-import { PagingEventService } from '../app/paging/paging-event.service';
-import { SourceCommandService } from '../app/source/source-command.service';
-import { SourceEventService } from '../app/source/event/source-event.service';
-import { SchemaCommandService } from '../app/schema/schema-command.service';
-import { CompositionCommandService } from './api/composition/composition.command-service';
-import { CompositionEventService } from './api/composition/composition.event-service';
-import { FormationEventService } from '../app/formation/formation-event.service';
-import { StructureCommandService } from '../app/structure/structure-command.service';
-import { StructureQueryService } from '../app/structure/structure-query.service';
-import { CompositionQueryService } from './api/composition/composition.query-service';
-import { SchemaQueryService } from '../app/schema/schema-query.service';
+import { PagingCommandService } from '../ui-api/paging/paging-command.service';
+import { PagingEventService } from '../ui-api/paging/paging-event.service';
+import { SourceCommandService } from '../ui-api/source/source-command.service';
+import { SourceEventService } from '../ui-api/source/event/source-event.service';
+import { SchemaCommandService } from '../ui-api/schema/schema-command.service';
+import { CompositionCommandService } from '../ui-api/composition/composition.command-service';
+import { CompositionEventService } from '../ui-api/composition/composition.event-service';
+import { FormationEventService } from '../ui-api/formation/formation-event.service';
+import { StructureCommandService } from '../ui-api/structure/structure-command.service';
+import { StructureReadModelService } from '../ui-api/structure/structure-read-model.service';
+import { CompositionReadModelService } from '../ui-api/composition/composition-read-model.service';
+import { SchemaReadModelService } from '../ui-api/schema/schema-read-model.service';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -32,38 +32,39 @@ export declare const structureComponentSelfProviders: ({
     provide: typeof PagingCommandService;
     useClass: typeof import("./local/paging/local-paging-command.service").LocalPagingCommandService;
 } | {
-    provide: typeof import("../app/paging/paging-query.service").PagingQueryService;
-    useClass: typeof import("./local/paging/local-paging-query.service").LocalPagingQueryService;
+    provide: typeof import("../ui-api/paging/paging-read-model.service").PagingReadModelService;
+    useClass: typeof import("./local/paging/local-paging-read-model.service").LocalPagingReadModelService;
 } | {
     provide: typeof SchemaCommandService;
     useClass: typeof import("./local/schema/local-schema-command.service").LocalSchemaCommandService;
 } | {
-    provide: typeof SchemaQueryService;
-    useClass: typeof import("./local/schema/local-schema-query.service").LocalSchemaQueryService;
+    provide: typeof SchemaReadModelService;
+    /** @internal */
+    useClass: typeof import("./local/schema/local-schema-read-model.service").LocalSchemaReadModelService;
 } | {
-    provide: typeof import("../app/formation/formation-command.service").FormationCommandService;
+    provide: typeof import("../ui-api/formation/formation-command.service").FormationCommandService;
     useClass: typeof import("./local/formation/local-formation-command.service").LocalFormationCommandService;
 } | {
-    provide: typeof import("../app/formation/formation-query.service").FormationQueryService;
-    useClass: typeof import("./local/formation/local-formation-query.service").LocalFormationQueryService;
+    provide: typeof import("../ui-api/formation/formation-read-model.service").FormationReadModelService;
+    useClass: typeof import("./local/formation/local-formation-read-model.service").LocalFormationReadModelService;
 } | {
     provide: typeof StructureCommandService;
     useClass: typeof import("./local/structure/local-structure-command.service").LocalStructureCommandService;
 } | {
-    provide: typeof StructureQueryService;
-    useClass: typeof import("./local/structure/local-structure-query.service").LocalStructureQueryService;
+    provide: typeof StructureReadModelService;
+    useClass: typeof import("./local/structure/local-structure-read-model.service").LocalStructureReadModelService;
 } | {
     provide: typeof SourceCommandService;
     useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService;
 } | {
-    provide: typeof import("../app/source/source-query.service").SourceQueryService;
-    useClass: typeof import("./local/source/local-source-query.service").LocalSourceQueryService;
+    provide: typeof import("../ui-api/source/source-read-model.service").SourceReadModelService;
+    useClass: typeof import("./local/source/local-source-read-model.service").LocalSourceReadModelService;
 } | {
     provide: typeof CompositionCommandService;
     useClass: typeof import("./local/composition/local-composition-command.service").LocalCompositionCommandService;
 } | {
-    provide: typeof CompositionQueryService;
-    useClass: typeof import("./local/composition/local-composition-query.service").LocalCompositionQueryService;
+    provide: typeof CompositionReadModelService;
+    useClass: typeof import("./local/composition/local-composition-read-model.service").LocalCompositionReadModelService;
 } | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | {
     provide: typeof StructureId;
     useFactory: typeof structureIdFactory;
@@ -77,7 +78,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     private structureDefinition;
     private structureQueryService;
     private compositionQueryService;
-    private schemaQueryService;
+    private schemaReadModelService;
     private schemaStylesManager;
     loaderEnabled: boolean;
     circleLoaderEnabled: boolean;
@@ -85,7 +86,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     structureHeight: number;
     private columnHeader;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureSummaryEnabledArchive: StructureSummaryEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureQueryService, compositionQueryService: CompositionQueryService, schemaQueryService: SchemaQueryService, schemaStylesManager: SchemaCssClassManager);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureSummaryEnabledArchive: StructureSummaryEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;

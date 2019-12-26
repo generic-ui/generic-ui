@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
 export declare class FabricSelectComponent implements OnChanges {
+    private platformId;
     private elementRef;
     private renderer;
     private changeDetectorRef;
@@ -19,7 +20,7 @@ export declare class FabricSelectComponent implements OnChanges {
     private canOpenUpward;
     private open;
     private readonly SELECTED_OPTION_CLASS_NAME;
-    constructor(elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef);
+    constructor(platformId: any, elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef);
     ngOnChanges(changes: SimpleChanges): void;
     calculateDirection(): void;
     tryToOpen(event: any): void;

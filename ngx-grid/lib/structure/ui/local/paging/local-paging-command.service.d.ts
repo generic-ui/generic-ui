@@ -1,4 +1,4 @@
-import { PagingCommandService } from '../../../app/paging/paging-command.service';
+import { PagingCommandService } from '../../../ui-api/paging/paging-command.service';
 import { StructureId } from '../../../domain/structure-id';
 import { PagingAggregateFactory } from '../../../domain/paging/command/paging.aggregate-factory';
 import { PagingDispatcher } from '../../../domain/paging/command/paging.dispatcher';

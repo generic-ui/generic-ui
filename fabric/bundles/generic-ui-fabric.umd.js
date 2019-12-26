@@ -2142,7 +2142,7 @@
                         selector: 'gui-date-picker',
                         template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input gui-input formControlName='date'\n\t\t\t   [value]=\"pickedDate| date: 'd/M/yyyy'\">\n\t</form>\n\t<div class=\"gui-date-picker-icon\" (click)=\"openDatePicker()\"></div>\n</div>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
+                        styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
                     }] }
         ];
         /** @nocollapse */
@@ -2232,7 +2232,7 @@
                         host: {
                             '[class.gui-input]': 'true'
                         },
-                        styles: [".gui-input{background:0 0;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-input{background:0 0;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
+                        styles: [".gui-input{background:#fefdfc;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
                     }] }
         ];
         return FabricInputComponent;
@@ -2472,7 +2472,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FabricDropdownComponent = /** @class */ (function () {
-        function FabricDropdownComponent(elementRef, renderer, changeDetectorRef, geometryService) {
+        function FabricDropdownComponent(platformId, elementRef, renderer, changeDetectorRef, geometryService) {
+            this.platformId = platformId;
             this.elementRef = elementRef;
             this.renderer = renderer;
             this.changeDetectorRef = changeDetectorRef;
@@ -2491,7 +2492,9 @@
          * @return {?}
          */
         function () {
-            this.windowSize = window.innerHeight;
+            if (common.isPlatformBrowser(this.platformId)) {
+                this.windowSize = window.innerHeight;
+            }
         };
         /**
          * @param {?} changes
@@ -2775,6 +2778,7 @@
         ];
         /** @nocollapse */
         FabricDropdownComponent.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
             { type: core.ElementRef },
             { type: core.Renderer2 },
             { type: core.ChangeDetectorRef },
@@ -2838,6 +2842,11 @@
          * @private
          */
         FabricDropdownComponent.prototype.subscription;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricDropdownComponent.prototype.platformId;
         /**
          * @type {?}
          * @private
@@ -2979,9 +2988,11 @@
          * @return {?}
          */
         function () {
-            this.applicationRef.detachView(this.dialogRef.hostView);
-            this.dialogRef.destroy();
-            this.dialogRef = null;
+            if (this.dialogRef) {
+                this.applicationRef.detachView(this.dialogRef.hostView);
+                this.dialogRef.destroy();
+                this.dialogRef = null;
+            }
         };
         FabricDialogService.decorators = [
             { type: core.Injectable }
@@ -4005,7 +4016,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FabricSelectComponent = /** @class */ (function () {
-        function FabricSelectComponent(elementRef, renderer, changeDetectorRef) {
+        function FabricSelectComponent(platformId, elementRef, renderer, changeDetectorRef) {
+            this.platformId = platformId;
             this.elementRef = elementRef;
             this.renderer = renderer;
             this.changeDetectorRef = changeDetectorRef;
@@ -4025,7 +4037,9 @@
          * @return {?}
          */
         function () {
-            this.windowSize = window.innerHeight;
+            if (common.isPlatformBrowser(this.platformId)) {
+                this.windowSize = window.innerHeight;
+            }
         };
         /**
          * @param {?} changes
@@ -4328,6 +4342,7 @@
         ];
         /** @nocollapse */
         FabricSelectComponent.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
             { type: core.ElementRef },
             { type: core.Renderer2 },
             { type: core.ChangeDetectorRef }
@@ -4388,6 +4403,11 @@
          * @private
          */
         FabricSelectComponent.prototype.SELECTED_OPTION_CLASS_NAME;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricSelectComponent.prototype.platformId;
         /**
          * @type {?}
          * @private
@@ -4825,12 +4845,15 @@
     /** @type {?} */
     var elementResizeDetectorMaker = elementResizeDetectorMaker_;
     var ResizeDetector = /** @class */ (function () {
-        function ResizeDetector() {
+        function ResizeDetector(platformId) {
+            this.platformId = platformId;
             this.throttleTime = 25;
             this.unsubscribe$ = new rxjs.Subject();
-            this.elementResizeDetector = elementResizeDetectorMaker({
-                strategy: 'scroll'
-            });
+            if (common.isPlatformBrowser(this.platformId)) {
+                this.elementResizeDetector = elementResizeDetectorMaker({
+                    strategy: 'scroll'
+                });
+            }
         }
         /**
          * @param {?} element
@@ -4842,27 +4865,30 @@
          */
         function (element) {
             var _this = this;
-            /** @type {?} */
-            var producer = (/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                _this.elementResizeDetector.listenTo(element, (/**
-                 * @param {?} htmlElement
+            if (common.isPlatformBrowser(this.platformId)) {
+                /** @type {?} */
+                var producer = (/**
+                 * @param {?} observer
                  * @return {?}
                  */
-                function (htmlElement) {
-                    observer.next(htmlElement);
-                }));
-            });
-            /** @type {?} */
-            var source$ = new rxjs.Observable(producer);
-            return source$.pipe(operators.throttleTime(this.throttleTime), operators.filter((/**
-             * @param {?} f
-             * @return {?}
-             */
-            function (f) { return f !== undefined; })), operators.takeUntil(this.unsubscribe$));
+                function (observer) {
+                    _this.elementResizeDetector.listenTo(element, (/**
+                     * @param {?} htmlElement
+                     * @return {?}
+                     */
+                    function (htmlElement) {
+                        observer.next(htmlElement);
+                    }));
+                });
+                /** @type {?} */
+                var source$ = new rxjs.Observable(producer);
+                return source$.pipe(operators.throttleTime(this.throttleTime), operators.filter((/**
+                 * @param {?} f
+                 * @return {?}
+                 */
+                function (f) { return f !== undefined; })), operators.takeUntil(this.unsubscribe$));
+            }
+            return rxjs.of(element);
         };
         /**
          * @param {?} element
@@ -4873,15 +4899,19 @@
          * @return {?}
          */
         function (element) {
-            this.unsubscribe$.next();
-            this.unsubscribe$.complete();
-            this.elementResizeDetector.uninstall(element);
+            if (this.elementResizeDetector) {
+                this.unsubscribe$.next();
+                this.unsubscribe$.complete();
+                this.elementResizeDetector.uninstall(element);
+            }
         };
         ResizeDetector.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
-        ResizeDetector.ctorParameters = function () { return []; };
+        ResizeDetector.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] }
+        ]; };
         return ResizeDetector;
     }());
     if (false) {
@@ -4900,6 +4930,11 @@
          * @private
          */
         ResizeDetector.prototype.unsubscribe$;
+        /**
+         * @type {?}
+         * @private
+         */
+        ResizeDetector.prototype.platformId;
     }
 
     /**

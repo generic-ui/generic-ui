@@ -1,61 +1,61 @@
-import { CompositionCommandService } from '../api/composition/composition.command-service';
-import { PagingCommandService } from '../../app/paging/paging-command.service';
+import { CompositionCommandService } from '../../ui-api/composition/composition.command-service';
+import { PagingCommandService } from '../../ui-api/paging/paging-command.service';
 import { LocalPagingCommandService } from './paging/local-paging-command.service';
-import { LocalPagingQueryService } from './paging/local-paging-query.service';
-import { SchemaCommandService } from '../../app/schema/schema-command.service';
+import { LocalPagingReadModelService } from './paging/local-paging-read-model.service';
+import { SchemaCommandService } from '../../ui-api/schema/schema-command.service';
 import { LocalSchemaCommandService } from './schema/local-schema-command.service';
-import { SchemaQueryService } from '../../app/schema/schema-query.service';
-import { LocalSchemaQueryService } from './schema/local-schema-query.service';
-import { FormationCommandService } from '../../app/formation/formation-command.service';
+import { SchemaReadModelService } from '../../ui-api/schema/schema-read-model.service';
+import { LocalSchemaReadModelService } from './schema/local-schema-read-model.service';
+import { FormationCommandService } from '../../ui-api/formation/formation-command.service';
 import { LocalFormationCommandService } from './formation/local-formation-command.service';
-import { FormationQueryService } from '../../app/formation/formation-query.service';
-import { LocalFormationQueryService } from './formation/local-formation-query.service';
-import { StructureCommandService } from '../../app/structure/structure-command.service';
+import { FormationReadModelService } from '../../ui-api/formation/formation-read-model.service';
+import { LocalFormationReadModelService } from './formation/local-formation-read-model.service';
+import { StructureCommandService } from '../../ui-api/structure/structure-command.service';
 import { LocalStructureCommandService } from './structure/local-structure-command.service';
-import { StructureQueryService } from '../../app/structure/structure-query.service';
-import { LocalStructureQueryService } from './structure/local-structure-query.service';
-import { SourceCommandService } from '../../app/source/source-command.service';
+import { StructureReadModelService } from '../../ui-api/structure/structure-read-model.service';
+import { LocalStructureReadModelService } from './structure/local-structure-read-model.service';
+import { SourceCommandService } from '../../ui-api/source/source-command.service';
 import { LocalSourceCommandService } from './source/local-source-command.service';
-import { SourceQueryService } from '../../app/source/source-query.service';
-import { LocalSourceQueryService } from './source/local-source-query.service';
+import { SourceReadModelService } from '../../ui-api/source/source-read-model.service';
+import { LocalSourceReadModelService } from './source/local-source-read-model.service';
 import { LocalCompositionCommandService } from './composition/local-composition-command.service';
-import { CompositionQueryService } from '../api/composition/composition.query-service';
-import { LocalCompositionQueryService } from './composition/local-composition-query.service';
-import { PagingQueryService } from '../../app/paging/paging-query.service';
+import { CompositionReadModelService } from '../../ui-api/composition/composition-read-model.service';
+import { LocalCompositionReadModelService } from './composition/local-composition-read-model.service';
+import { PagingReadModelService } from '../../ui-api/paging/paging-read-model.service';
 export declare const localProviders: ({
     provide: typeof PagingCommandService;
     useClass: typeof LocalPagingCommandService;
 } | {
-    provide: typeof PagingQueryService;
-    useClass: typeof LocalPagingQueryService;
+    provide: typeof PagingReadModelService;
+    useClass: typeof LocalPagingReadModelService;
 } | {
     provide: typeof SchemaCommandService;
     useClass: typeof LocalSchemaCommandService;
 } | {
-    provide: typeof SchemaQueryService;
-    useClass: typeof LocalSchemaQueryService;
+    provide: typeof SchemaReadModelService;
+    useClass: typeof LocalSchemaReadModelService;
 } | {
     provide: typeof FormationCommandService;
     useClass: typeof LocalFormationCommandService;
 } | {
-    provide: typeof FormationQueryService;
-    useClass: typeof LocalFormationQueryService;
+    provide: typeof FormationReadModelService;
+    useClass: typeof LocalFormationReadModelService;
 } | {
     provide: typeof StructureCommandService;
     useClass: typeof LocalStructureCommandService;
 } | {
-    provide: typeof StructureQueryService;
-    useClass: typeof LocalStructureQueryService;
+    provide: typeof StructureReadModelService;
+    useClass: typeof LocalStructureReadModelService;
 } | {
     provide: typeof SourceCommandService;
     useClass: typeof LocalSourceCommandService;
 } | {
-    provide: typeof SourceQueryService;
-    useClass: typeof LocalSourceQueryService;
+    provide: typeof SourceReadModelService;
+    useClass: typeof LocalSourceReadModelService;
 } | {
     provide: typeof CompositionCommandService;
     useClass: typeof LocalCompositionCommandService;
 } | {
-    provide: typeof CompositionQueryService;
-    useClass: typeof LocalCompositionQueryService;
+    provide: typeof CompositionReadModelService;
+    useClass: typeof LocalCompositionReadModelService;
 })[];

@@ -1,10 +1,10 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { Structure } from '../../domain/structure/query/structure';
+import { Structure } from '../../domain/structure/read/structure';
 import { StructureDefinition } from '../structure-definition';
 import { StructureId } from '../../domain/structure-id';
-import { StructureQueryService } from '../../app/structure/structure-query.service';
-import { PagingQueryService } from '../../app/paging/paging-query.service';
+import { StructureReadModelService } from '../../ui-api/structure/structure-read-model.service';
+import { PagingReadModelService } from '../../ui-api/paging/paging-read-model.service';
 import { StructureSummaryEnabledArchive } from '../panel/summary/structure.summary-enabled.archive';
 import { StructureAggregationArchive } from '../panel/aggregation/structure.aggregation.archive';
 import { StructureFilterReadModelRepository } from '../../ui-api/structure/filter/structure.filter.read-model.repository';
@@ -29,7 +29,7 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     readonly contentCssClass: string;
     readonly headerCssClass: string;
     private pagingReadModel;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureQueryService: StructureQueryService, pagingQueryService: PagingQueryService, structureSummaryEnabledArchive: StructureSummaryEnabledArchive, structureAggregationArchive: StructureAggregationArchive, structureFilterReadModelRepository: StructureFilterReadModelRepository, structureSearchReadModelRepository: StructureSearchReadModelRepository, className: string);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureQueryService: StructureReadModelService, pagingQueryService: PagingReadModelService, structureSummaryEnabledArchive: StructureSummaryEnabledArchive, structureAggregationArchive: StructureAggregationArchive, structureFilterReadModelRepository: StructureFilterReadModelRepository, structureSearchReadModelRepository: StructureSearchReadModelRepository, className: string);
     ngOnInit(): void;
     getHeaderTopClasses(): string;
     getHeaderBottomClasses(): string;
