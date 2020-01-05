@@ -7,12 +7,15 @@ export declare class SourceManager {
     private fetched;
     private origin;
     private entities;
+    private preparedEntities;
     private slicedEntities;
     isLoading(): boolean;
     isFetched(): boolean;
     setLoading(enabled: boolean): void;
     setEntities(ent: Array<OriginItemEntity>): void;
     getEntities(): Array<OriginItemEntity>;
+    setPreparedEntities(): void;
+    getPreparedEntities(): Array<OriginItemEntity>;
     setSlicedEntities(ent: Array<OriginItemEntity>): void;
     getSlicedEntities(): Array<OriginItemEntity>;
     setOrigin(items: Array<any>, structureId: StructureId): AggregateEvent;

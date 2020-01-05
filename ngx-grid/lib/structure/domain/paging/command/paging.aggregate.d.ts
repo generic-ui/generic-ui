@@ -9,6 +9,7 @@ export declare class PagingAggregate {
     private pageSizes;
     private pagerTop;
     private pagerBottom;
+    private sourceSize;
     private readonly events;
     static default(logger: Logger): PagingAggregate;
     private readonly logger;
@@ -21,14 +22,16 @@ export declare class PagingAggregate {
     getPageSizes(): Array<number>;
     isPagerTop(): boolean;
     isPagerBottom(): boolean;
+    getSourceSize(): number;
     change(pagingConfig: PagingConfig): void;
-    nextPage(sourceSize: number): void;
+    setSourceSize(size: number): void;
+    nextPage(): void;
     prevPage(): void;
     changePageSize(pageSize: number): ReadonlyArray<AggregateEvent>;
-    isNextPageDisabled(sourceSize: number): boolean;
+    isNextPageDisabled(): boolean;
     isPrevPageDisabled(): boolean;
-    calculateStart(sourceSize: number): number;
-    calculateEnd(sourceSize: number): number;
+    calculateStart(): number;
+    calculateEnd(): number;
     sample(source: Array<any>): Array<any>;
     private setPage;
     private setPageSize;

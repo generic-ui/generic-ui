@@ -25,4 +25,5 @@ export declare class LocalStructureCommandService extends StructureCommandServic
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
     setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>): void;
+    search(phrase: string): void;
 }

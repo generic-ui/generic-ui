@@ -7,7 +7,7 @@ import { SchemaCssClassManager } from './schema/schema-css-class.manager';
 import { StructureCellEditArchive } from './edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from './edit/structure.cell-edit.store';
 import { StructureEditModeArchive } from './edit/structure.edit-mode.archive';
-import { StructureSummaryEnabledArchive } from './panel/summary/structure.summary-enabled.archive';
+import { StructureInfoPanelEnabledArchive } from './panel/info/structure.info-panel-enabled.archive';
 import { StructureAggregationArchive } from './panel/aggregation/structure.aggregation.archive';
 import { StructureAggregationConfigService } from './panel/aggregation/structure.aggregation-config.service';
 import { StructureGateway } from './gateway/structure.gateway';
@@ -39,7 +39,6 @@ export declare const structureComponentSelfProviders: ({
     useClass: typeof import("./local/schema/local-schema-command.service").LocalSchemaCommandService;
 } | {
     provide: typeof SchemaReadModelService;
-    /** @internal */
     useClass: typeof import("./local/schema/local-schema-read-model.service").LocalSchemaReadModelService;
 } | {
     provide: typeof import("../ui-api/formation/formation-command.service").FormationCommandService;
@@ -86,7 +85,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     structureHeight: number;
     private columnHeader;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureSummaryEnabledArchive: StructureSummaryEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;

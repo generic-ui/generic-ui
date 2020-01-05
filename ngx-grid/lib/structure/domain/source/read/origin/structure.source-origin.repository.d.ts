@@ -4,7 +4,6 @@ import { StructureId } from '../../../structure-id';
 export declare class StructureSourceOriginRepository {
     private origin;
     private origin$;
-    constructor();
     setOrigin(origin: Array<OriginItemEntity>, structureId: StructureId): void;
-    selectOrigin(structureId: StructureId): Observable<Array<any>>;
+    onOrigin(structureId: StructureId): Observable<Array<any>>;
 }

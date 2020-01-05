@@ -40,7 +40,7 @@ export declare abstract class GridGateway implements OnChanges {
      * @experimental
      */
     cellEditing: boolean;
-    summaryPanel: boolean;
+    infoPanel: boolean;
     /**
      * @experimental
      */

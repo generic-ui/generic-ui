@@ -23,6 +23,7 @@ export declare class StructureCommandService {
     toggleSort(fieldId: FieldId, compositionId?: CompositionId, structureId?: StructureId): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
-    setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>, compositionId: CompositionId, structureId?: StructureId): void;
+    setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
+    search(phrase: string, structureId?: StructureId): void;
 }

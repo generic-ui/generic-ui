@@ -11,7 +11,9 @@ import { SourceEventService } from './event/source-event.service';
 import { SourceRepository } from '../../domain/source/read/source.repository';
 import { StructureSourceOriginRepository } from '../../domain/source/read/origin/structure.source-origin.repository';
 import { SourceSetLoadingCommandHandler } from '../../domain/source/command/loading/source-set-loading.command-handler';
-export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof SourceReadModelService | typeof SourceDispatcher | typeof SourceCommandService | typeof SourceEventService | typeof SourceConverter | typeof SourceManagerFactory | typeof StructureSourceDomainEventPublisher | typeof SourceRepository | {
+import { StructurePreparedItemsRepository } from '../../domain/source/read/prepared/structure.prepared-items.repository';
+import { StructurePreparedItemsEventHandler } from '../../domain/source/read/prepared/structure.prepared-items.event-handler';
+export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof StructurePreparedItemsRepository | typeof SourceReadModelService | typeof SourceDispatcher | typeof SourceCommandService | typeof SourceEventService | typeof SourceConverter | typeof SourceManagerFactory | typeof StructureSourceDomainEventPublisher | typeof SourceRepository | {
     provide: string;
     useClass: typeof SourceSetLoadingCommandHandler;
     multi: boolean;
@@ -26,5 +28,9 @@ export declare const sourceProviders: (typeof StructureSourceOriginRepository | 
 } | {
     provide: string;
     useClass: typeof StructureOriginChangedEventHandler;
+    multi: boolean;
+} | {
+    provide: string;
+    useClass: typeof StructurePreparedItemsEventHandler;
     multi: boolean;
 })[];

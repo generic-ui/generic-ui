@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, SimpleChanges, OnDestroy, OnChanges } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { CellTemplateWithAccessor } from '../../../domain/composition/read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourceCommandService } from '../../../ui-api/source/source-command.service';
 import { ItemEntity } from '../../../domain/source/item.entity';
-export declare class StructureCellComponent extends SmartComponent {
+export declare class StructureCellComponent extends SmartComponent implements OnChanges, OnDestroy {
     private changeDetectorRef;
     private structureCellEditArchive;
     private structureCellEditStore;
