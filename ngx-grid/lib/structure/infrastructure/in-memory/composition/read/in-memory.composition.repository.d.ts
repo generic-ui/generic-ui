@@ -11,5 +11,5 @@ export declare class InMemoryCompositionRepository extends CompositionRepository
     private readonly unsubscribe$;
     constructor(domainEventBus: DomainEventBus, inMemoryCompositionQueryStore: InMemoryCompositionReadStore);
     ngOnDestroy(): void;
-    select(aggregateId: AggregateId): Observable<Composition>;
+    on(aggregateId: AggregateId): Observable<Composition>;
 }

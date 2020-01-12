@@ -5,5 +5,5 @@ import { Paging } from './paging';
 export declare class PagingRepository {
     private structureRepository;
     constructor(structureRepository: StructureRepository);
-    select(structureId: StructureId): Observable<Paging>;
+    on(structureId: StructureId): Observable<Paging>;
 }

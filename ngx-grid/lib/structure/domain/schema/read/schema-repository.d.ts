@@ -5,5 +5,5 @@ import { Schema } from './schema';
 export declare class SchemaRepository {
     private structureRepository;
     constructor(structureRepository: StructureRepository);
-    select(structureId: StructureId): Observable<Schema>;
+    on(structureId: StructureId): Observable<Schema>;
 }

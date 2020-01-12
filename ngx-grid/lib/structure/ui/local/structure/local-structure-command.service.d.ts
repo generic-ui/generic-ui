@@ -10,6 +10,7 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { ColumnConfig } from '../../../domain/composition/column.config';
+import { SortStatus } from '../../../domain/composition/command/sort/sort-status';
 export declare class LocalStructureCommandService extends StructureCommandService {
     private readonly structureId;
     private readonly compositionId;
@@ -21,6 +22,7 @@ export declare class LocalStructureCommandService extends StructureCommandServic
     setScrollPosition(position: number): void;
     setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
     toggleSort(fieldId: FieldId): void;
+    setSortOrder(fieldId: FieldId, sortOrder: SortStatus): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
     setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;

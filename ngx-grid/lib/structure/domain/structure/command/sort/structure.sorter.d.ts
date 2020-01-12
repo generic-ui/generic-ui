@@ -11,8 +11,9 @@ export declare class StructureSorter {
     getId(): SorterId;
     getRank(): number;
     getField(): Field;
-    getDirection(): boolean;
+    hasDirection(): boolean;
     changeDirection(): void;
+    setDirection(direction: boolean): void;
     sort(entities: Array<OriginItemEntity>): Array<OriginItemEntity>;
     private sortString;
     private sortNumber;

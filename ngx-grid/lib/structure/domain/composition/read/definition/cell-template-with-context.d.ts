@@ -12,4 +12,7 @@ export declare class CellTemplateWithContext {
     constructor(viewTemplate: TemplateRef<any>, editTemplate: TemplateRef<any>, context: CellContext, width: number, fieldId: FieldId, sortStatus: SortStatus);
     getFieldId(): FieldId;
     getSortStatus(): SortStatus;
+    isAscSort(): boolean;
+    isDescSort(): boolean;
+    isNoSort(): boolean;
 }

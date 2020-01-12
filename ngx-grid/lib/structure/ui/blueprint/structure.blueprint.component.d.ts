@@ -37,4 +37,5 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     isColumnHeaderBottomEnabled(): boolean;
     isPagingTopEnabled(): boolean;
     isPagingBottomEnabled(): boolean;
+    isSourceEmpty(): boolean;
 }

@@ -96,3 +96,9 @@ export interface GuiColumnAggregation {
     enabled?: boolean;
     aggregationTypes?: Array<any>;
 }
+export interface GuiColumnMenu {
+    enabled?: boolean;
+    sort?: boolean;
+    filter?: boolean;
+    columns?: boolean;
+}

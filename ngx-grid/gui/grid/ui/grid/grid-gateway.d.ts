@@ -1,13 +1,14 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GuiAggregation, GuiColumn, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../ui-api/grid.api';
+import { GuiAggregation, GuiColumn, GuiColumnMenu, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../ui-api/grid.api';
 import { ColumnConfig } from '../../../../lib/structure/domain/composition/column.config';
+import { ColumnMenuConfig } from '../../../../lib/structure/ui-api/structure/column-menu-config';
 export declare abstract class GridGateway implements OnChanges {
     /**
      * INPUTS
      */
     columnHeaderTop: boolean;
     columnHeaderBottom: boolean;
-    height: number;
+    maxHeight: number;
     width: number;
     autoResizeWidth: boolean;
     source: Array<any>;
@@ -45,6 +46,7 @@ export declare abstract class GridGateway implements OnChanges {
      * @experimental
      */
     aggregation: GuiAggregation;
+    columnMenu: GuiColumnMenu;
     /**
      * OUTPUTS
      */
@@ -64,9 +66,11 @@ export declare abstract class GridGateway implements OnChanges {
     columnsConfig: Array<ColumnConfig>;
     themeConfig: any;
     rowColoringConfig: any;
+    columnMenuConfig: ColumnMenuConfig;
     private readonly gridColumnConverter;
     private readonly gridThemeConverter;
     private readonly gridRowColoringConverter;
+    private readonly gridColumnMenuConverter;
     protected constructor();
     ngOnChanges(changes: SimpleChanges): void;
     onPageChange(page: number): void;

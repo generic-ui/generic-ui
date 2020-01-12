@@ -9,6 +9,7 @@ import { FilterConfig } from './filter/filter-config';
 import { QuickFiltersConfig } from './filter/quick-filters.config';
 import { SearchConfig } from './search/search-config';
 import { ColumnConfig } from '../../domain/composition/column.config';
+import { SortStatus } from '../../domain/composition/command/sort/sort-status';
 export declare class StructureCommandService {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;
@@ -21,6 +22,7 @@ export declare class StructureCommandService {
     setOrigin(items: Array<any>, structureId?: StructureId): void;
     setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
     toggleSort(fieldId: FieldId, compositionId?: CompositionId, structureId?: StructureId): void;
+    setSortOrder(fieldId: FieldId, sortOrder: SortStatus, compositionId?: CompositionId, structureId?: StructureId): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>, compositionId: CompositionId, structureId?: StructureId): void;

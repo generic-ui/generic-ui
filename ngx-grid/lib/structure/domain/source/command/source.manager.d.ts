@@ -28,4 +28,5 @@ export declare class SourceManager {
     private createOriginChangedEvent;
     private findOriginItem;
     private findOriginItemIndex;
+    private recalculatePositions;
 }

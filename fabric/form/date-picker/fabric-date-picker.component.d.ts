@@ -1,7 +1,7 @@
 import { ElementRef, EventEmitter, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { FabricInlineDialogService } from '../modals/inline-dialog/fabric-inline-dialog.service';
+import { FabricInlineDialogService } from '../../layout/inline-dialog/fabric-inline-dialog.service';
 import { FabricDatePickerService } from './fabric-date-picker.service';
 export declare class FabricDatePickerComponent implements OnInit, OnDestroy {
     private inlineDialogService;

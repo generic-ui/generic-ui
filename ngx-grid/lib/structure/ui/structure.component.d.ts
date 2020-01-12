@@ -23,6 +23,7 @@ import { StructureCommandService } from '../ui-api/structure/structure-command.s
 import { StructureReadModelService } from '../ui-api/structure/structure-read-model.service';
 import { CompositionReadModelService } from '../ui-api/composition/composition-read-model.service';
 import { SchemaReadModelService } from '../ui-api/schema/schema-read-model.service';
+import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -54,7 +55,7 @@ export declare const structureComponentSelfProviders: ({
     useClass: typeof import("./local/structure/local-structure-read-model.service").LocalStructureReadModelService;
 } | {
     provide: typeof SourceCommandService;
-    useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService;
+    useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService; /** @internal */
 } | {
     provide: typeof import("../ui-api/source/source-read-model.service").SourceReadModelService;
     useClass: typeof import("./local/source/local-source-read-model.service").LocalSourceReadModelService;
@@ -64,7 +65,7 @@ export declare const structureComponentSelfProviders: ({
 } | {
     provide: typeof CompositionReadModelService;
     useClass: typeof import("./local/composition/local-composition-read-model.service").LocalCompositionReadModelService;
-} | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | {
+} | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | typeof StructureColumnMenuConfigArchive | {
     provide: typeof StructureId;
     useFactory: typeof structureIdFactory;
     deps: (typeof StructureIdGenerator)[];
@@ -85,7 +86,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     structureHeight: number;
     private columnHeader;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;
