@@ -5,7 +5,7 @@ import { SetColumnsCommandHandler } from '../../domain/composition/command/colum
 import { SetCompositionWidthCommandHandler } from '../../domain/composition/command/width/set-width/set-composition-width.command-handler';
 import { SetCompositionResizeWidthCommandHandler } from '../../domain/composition/command/width/resize-width/set-composition-resize-width.command-handler';
 import { SetCompositionContainerWidthCommandHandler } from '../../domain/composition/command/width/set-container-width/set-composition-container-width.command-handler';
-import { CompositionChangeSortStatusCommandHandler } from '../../domain/composition/command/sort/composition-change-sort-status.command-handler';
+import { CompositionChangeSortStatusCommandHandler } from '../../domain/composition/command/column/sort/composition-change-sort-status.command-handler';
 import { ColumnEntityFactory } from '../../domain/composition/command/column/column-entity.factory';
 import { CompositionEventConverter } from '../../domain/composition/command/composition-event.converter';
 import { ColumnFieldFactory } from '../../domain/composition/command/column/field/colum-field.factory';
@@ -18,11 +18,12 @@ import { EditTemplateFactory } from '../../domain/composition/read/edit/edit-tem
 import { ViewTemplateFactory } from '../../domain/composition/read/view/view-template.factory';
 import { ViewTemplateRepository } from '../../domain/composition/read/view/view-template.repository';
 import { ColumnDefinitionFactory } from '../../domain/composition/read/definition/column-definition.factory';
-import { CompositionChangeSortStatusEventHandler } from '../../domain/composition/command/sort/composition-change-sort-status.event-handler';
+import { CompositionChangeSortStatusEventHandler } from '../../domain/composition/command/column/sort/composition-change-sort-status.event-handler';
 import { CompositionFieldsInitedEventHandler } from '../../domain/composition/command/column/set-columns/composition-fields-inited.event-handler';
+import { CompositionSetColumnEnabledCommandHandler } from '../../domain/composition/command/column/set-enabled/composition.set-column-enabled.command-handler';
 export declare const compositionProviders: (typeof CompositionDispatcher | typeof CompositionCommandService | typeof CompositionReadModelService | typeof CompositionEventService | typeof ColumnEntityFactory | typeof import("../../../../generic-ui-ngx-grid").ɵbl | typeof import("../../../../generic-ui-ngx-grid").ɵbm | typeof ViewTemplateFactory | typeof ViewTemplateRepository | typeof EditTemplateFactory | typeof EditTemplateRepository | typeof ColumnDefinitionFactory | typeof CompositionConverter | typeof import("../../../../generic-ui-ngx-grid").ɵcb | {
-    provide: typeof import("../../../../generic-ui-ngx-grid").ɵbo;
-    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵbp;
+    provide: typeof import("../../../../generic-ui-ngx-grid").ɵbn;
+    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵbo;
 } | {
     provide: typeof import("../../../../generic-ui-ngx-grid").ɵcj;
     useClass: typeof import("../../../../generic-ui-ngx-grid").ɵck;
@@ -45,6 +46,10 @@ export declare const compositionProviders: (typeof CompositionDispatcher | typeo
 } | {
     provide: string;
     useClass: typeof SetCompositionContainerWidthCommandHandler;
+    multi: boolean;
+} | {
+    provide: string;
+    useClass: typeof CompositionSetColumnEnabledCommandHandler;
     multi: boolean;
 } | {
     provide: string;

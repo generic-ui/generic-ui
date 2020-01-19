@@ -7,5 +7,6 @@ export declare abstract class Aggregate {
     getId(): AggregateId;
     getEvents(): ReadonlyArray<AggregateEvent>;
     addEvent(event: AggregateEvent): void;
+    addEvent(events: Array<AggregateEvent>): void;
     clearEvents(): void;
 }

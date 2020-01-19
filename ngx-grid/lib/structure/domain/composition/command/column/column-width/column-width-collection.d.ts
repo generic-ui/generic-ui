@@ -11,7 +11,7 @@ export declare class ColumnWidthCollection {
     getWidths(): Array<number>;
     getMinWidth(): number;
     setWidth(width: number): void;
-    setColumns(columns: Array<ColumnConfig>): void;
+    setColumns(columnConfigs: Array<ColumnConfig>): void;
     private calculate;
     private setContainerWidth;
 }

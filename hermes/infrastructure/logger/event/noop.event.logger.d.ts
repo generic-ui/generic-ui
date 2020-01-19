@@ -3,5 +3,5 @@ import { DomainEvent } from '../../../domain/event/domain-event';
 export declare class NoopEventLogger extends DomainEventLogger {
     start(): void;
     stop(): void;
-    log(event: DomainEvent): void;
+    print(event: DomainEvent): void;
 }

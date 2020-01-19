@@ -1,4 +1,4 @@
-mport { Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 export declare class ResizeDetector {
     private platformId;
     private throttleTime;

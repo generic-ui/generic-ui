@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
 import { CellTemplateWithContext } from '../../../domain/composition/read/definition/cell-template-with-context';
-import { SortStatus } from '../../../domain/composition/command/sort/sort-status';
+import { SortStatus } from '../../../domain/composition/command/column/sort/sort-status';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { CompositionReadModelService } from '../../../ui-api/composition/composition-read-model.service';
 import { Placement } from '@generic-ui/fabric';

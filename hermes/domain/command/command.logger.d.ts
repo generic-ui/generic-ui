@@ -1,6 +1,4 @@
 import { Command } from './command';
-export declare abstract class CommandLogger {
-    abstract start(): void;
-    abstract stop(): void;
-    abstract log(command: Command): void;
+import { Logger } from '../../common/logger';
+export declare abstract class CommandLogger extends Logger<Command> {
 }

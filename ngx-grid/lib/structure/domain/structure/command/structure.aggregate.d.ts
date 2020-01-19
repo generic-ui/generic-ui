@@ -21,7 +21,7 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { SearchManager } from './search/search.manager';
-import { SortStatus } from '../../composition/command/sort/sort-status';
+import { SortStatus } from '../../composition/command/column/sort/sort-status';
 export declare class StructureAggregate extends Aggregate {
     private formationAggregate;
     private schema;

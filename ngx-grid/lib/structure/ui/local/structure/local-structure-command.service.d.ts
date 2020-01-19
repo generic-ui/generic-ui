@@ -10,7 +10,7 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { ColumnConfig } from '../../../domain/composition/column.config';
-import { SortStatus } from '../../../domain/composition/command/sort/sort-status';
+import { SortStatus } from '../../../domain/composition/command/column/sort/sort-status';
 export declare class LocalStructureCommandService extends StructureCommandService {
     private readonly structureId;
     private readonly compositionId;

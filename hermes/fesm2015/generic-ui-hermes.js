@@ -9,26 +9,62 @@ import { take, filter, first, map, takeUntil, distinctUntilChanged } from 'rxjs/
  */
 /**
  * @abstract
+ * @template M
  */
-class CommandLogger {
+class Logger {
+    /**
+     * @param {?} domainName
+     * @return {?}
+     */
+    setDomain(domainName) {
+        this.domainName = domainName;
+    }
+    /**
+     * @param {?} message
+     * @return {?}
+     */
+    log(message) {
+        if (this.shouldPrint(message)) {
+            this.print(message);
+        }
+    }
+    /**
+     * @protected
+     * @param {?} message
+     * @return {?}
+     */
+    shouldPrint(message) {
+        if (!this.domainName) {
+            return true;
+        }
+        /** @type {?} */
+        const log = message.toString();
+        return log.includes(this.domainName);
+    }
 }
 if (false) {
     /**
-     * @abstract
-     * @return {?}
+     * @type {?}
+     * @private
      */
-    CommandLogger.prototype.start = function () { };
+    Logger.prototype.domainName;
     /**
      * @abstract
      * @return {?}
      */
-    CommandLogger.prototype.stop = function () { };
+    Logger.prototype.start = function () { };
     /**
      * @abstract
-     * @param {?} command
      * @return {?}
      */
-    CommandLogger.prototype.log = function (command) { };
+    Logger.prototype.stop = function () { };
+    /**
+     * @abstract
+     * @protected
+     * @param {?} message
+     * @return {?}
+     */
+    Logger.prototype.print = function (message) { };
 }
 
 /**
@@ -38,25 +74,17 @@ if (false) {
 /**
  * @abstract
  */
-class DomainEventLogger {
+class CommandLogger extends Logger {
 }
-if (false) {
-    /**
-     * @abstract
-     * @return {?}
-     */
-    DomainEventLogger.prototype.start = function () { };
-    /**
-     * @abstract
-     * @return {?}
-     */
-    DomainEventLogger.prototype.stop = function () { };
-    /**
-     * @abstract
-     * @param {?} event
-     * @return {?}
-     */
-    DomainEventLogger.prototype.log = function (event) { };
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class DomainEventLogger extends Logger {
 }
 
 /**
@@ -95,6 +123,16 @@ class HermesApi {
                         else {
                             api.commandLogger.stop();
                             api.eventLogger.stop();
+                        }
+                    },
+                    /**
+                     * @param {?} domainName
+                     * @return {?}
+                     */
+                    set domain(domainName) {
+                        if (domainName) {
+                            api.commandLogger.setDomain(domainName);
+                            api.eventLogger.setDomain(domainName);
                         }
                     }
                 };
@@ -136,15 +174,20 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @param {?=} domainName
  * @return {?}
  */
-function enableHermesLoggers() {
+function enableHermesLoggers(domainName) {
+    if (domainName) {
+        window[hermesApi].domain = domainName;
+    }
     window[hermesApi].loggers = true;
 }
 /**
  * @return {?}
  */
 function disableHermesLoggers() {
+    delete window[hermesApi].domain;
     window[hermesApi].loggers = false;
 }
 
@@ -868,11 +911,18 @@ class Aggregate {
         return (/** @type {?} */ (this.events));
     }
     /**
-     * @param {?} event
+     * @param {?} args
      * @return {?}
      */
-    addEvent(event) {
-        this.events.push(event);
+    addEvent(args) {
+        if (Array.isArray(args)) {
+            for (let event of args) {
+                this.events.push(event);
+            }
+        }
+        else {
+            this.events.push((/** @type {?} */ (args)));
+        }
     }
     /**
      * @return {?}
@@ -1229,6 +1279,13 @@ class DomainEventPublisher {
      * @return {?}
      */
     publishEvent(event) {
+        if (!event) {
+            console.error(`${event} is not defined`);
+        }
+        if (!(event instanceof DomainEvent)) {
+            // throw new Error(`${event} is not a DomainEvent`);
+            console.error(`${event} is not a DomainEvent`);
+        }
         this.eventStream.next(event);
     }
 }
@@ -2103,10 +2160,11 @@ class ConsoleCommandLogger extends CommandLogger {
         this.enabled = false;
     }
     /**
+     * @protected
      * @param {?} command
      * @return {?}
      */
-    log(command) {
+    print(command) {
         console.log(command.toString(), command);
     }
 }
@@ -2146,10 +2204,11 @@ class NoopCommandLogger extends CommandLogger {
     stop() {
     }
     /**
+     * @protected
      * @param {?} command
      * @return {?}
      */
-    log(command) {
+    print(command) {
     }
 }
 
@@ -2200,10 +2259,11 @@ class ConsoleEventLogger extends DomainEventLogger {
         this.enabled = false;
     }
     /**
+     * @protected
      * @param {?} domainEvent
      * @return {?}
      */
-    log(domainEvent) {
+    print(domainEvent) {
         /** @type {?} */
         const aggregateId = domainEvent.aggregateId;
         /** @type {?} */
@@ -2256,7 +2316,7 @@ class NoopEventLogger extends DomainEventLogger {
      * @param {?} event
      * @return {?}
      */
-    log(event) {
+    print(event) {
     }
 }
 
@@ -2537,5 +2597,5 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Aggregate, AggregateArchive, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Message as ɵc, DomainEventStore as ɵd, FILTERED_COMMAND_STREAM as ɵe, ReactiveService as ɵf, Reactive as ɵg, ConsoleCommandLogger as ɵh, NoopCommandLogger as ɵi, ConsoleEventLogger as ɵj, NoopEventLogger as ɵk };
+export { Aggregate, AggregateArchive, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Logger as ɵc, Message as ɵd, DomainEventStore as ɵe, FILTERED_COMMAND_STREAM as ɵf, ReactiveService as ɵg, Reactive as ɵh, ConsoleCommandLogger as ɵi, NoopCommandLogger as ɵj, ConsoleEventLogger as ɵk, NoopEventLogger as ɵl };
 //# sourceMappingURL=generic-ui-hermes.js.map

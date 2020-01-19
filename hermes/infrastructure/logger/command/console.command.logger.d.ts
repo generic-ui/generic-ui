@@ -9,5 +9,5 @@ export declare class ConsoleCommandLogger extends CommandLogger implements OnDes
     ngOnDestroy(): void;
     start(): void;
     stop(): void;
-    log(command: Command): void;
+    protected print(command: Command): void;
 }

@@ -1,7 +1,8 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
 import { CompositionId } from '../composition-id';
 import { ColumnParams } from './column/set-columns/column.params';
-import { ChangeSortParams } from './sort/change-sort.params';
+import { ChangeSortParams } from './column/sort/change-sort.params';
+import { ColumnId } from './column/column.id';
 export declare class CompositionDispatcher {
     private commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);
@@ -11,4 +12,5 @@ export declare class CompositionDispatcher {
     setContainerWidth(compositionId: CompositionId, width: number): void;
     setResizeWidth(compositionId: CompositionId, enabled: boolean): void;
     changeSort(compositionId: CompositionId, params: Array<ChangeSortParams>): void;
+    setColumnEnabled(compositionId: CompositionId, columnId: ColumnId, enabled: boolean): void;
 }

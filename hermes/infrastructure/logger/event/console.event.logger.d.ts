@@ -11,5 +11,5 @@ export declare class ConsoleEventLogger extends DomainEventLogger implements OnD
     ngOnDestroy(): void;
     start(): void;
     stop(): void;
-    log(domainEvent: DomainEvent): void;
+    protected print(domainEvent: DomainEvent): void;
 }

@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DomainEventBus, AggregateId } from '@generic-ui/hermes';
+import { AggregateId, DomainEventBus } from '@generic-ui/hermes';
 import { CompositionRepository } from '../../../../domain/composition/read/composition.repository';
 import { Composition } from '../../../../domain/composition/read/composition';
 import { InMemoryCompositionReadStore } from './in-memory.composition.read-store';

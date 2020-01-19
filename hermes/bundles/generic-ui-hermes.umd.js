@@ -197,32 +197,82 @@
      */
     /**
      * @abstract
+     * @template M
      */
     var   /**
      * @abstract
+     * @template M
      */
-    CommandLogger = /** @class */ (function () {
-        function CommandLogger() {
+    Logger = /** @class */ (function () {
+        function Logger() {
         }
-        return CommandLogger;
+        /**
+         * @param {?} domainName
+         * @return {?}
+         */
+        Logger.prototype.setDomain = /**
+         * @param {?} domainName
+         * @return {?}
+         */
+        function (domainName) {
+            this.domainName = domainName;
+        };
+        /**
+         * @param {?} message
+         * @return {?}
+         */
+        Logger.prototype.log = /**
+         * @param {?} message
+         * @return {?}
+         */
+        function (message) {
+            if (this.shouldPrint(message)) {
+                this.print(message);
+            }
+        };
+        /**
+         * @protected
+         * @param {?} message
+         * @return {?}
+         */
+        Logger.prototype.shouldPrint = /**
+         * @protected
+         * @param {?} message
+         * @return {?}
+         */
+        function (message) {
+            if (!this.domainName) {
+                return true;
+            }
+            /** @type {?} */
+            var log = message.toString();
+            return log.includes(this.domainName);
+        };
+        return Logger;
     }());
     if (false) {
         /**
-         * @abstract
-         * @return {?}
+         * @type {?}
+         * @private
          */
-        CommandLogger.prototype.start = function () { };
+        Logger.prototype.domainName;
         /**
          * @abstract
          * @return {?}
          */
-        CommandLogger.prototype.stop = function () { };
+        Logger.prototype.start = function () { };
         /**
          * @abstract
-         * @param {?} command
          * @return {?}
          */
-        CommandLogger.prototype.log = function (command) { };
+        Logger.prototype.stop = function () { };
+        /**
+         * @abstract
+         * @protected
+         * @param {?} message
+         * @return {?}
+         */
+        Logger.prototype.print = function (message) { };
     }
 
     /**
@@ -235,29 +285,31 @@
     var   /**
      * @abstract
      */
-    DomainEventLogger = /** @class */ (function () {
+    CommandLogger = /** @class */ (function (_super) {
+        __extends(CommandLogger, _super);
+        function CommandLogger() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return CommandLogger;
+    }(Logger));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    DomainEventLogger = /** @class */ (function (_super) {
+        __extends(DomainEventLogger, _super);
         function DomainEventLogger() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         return DomainEventLogger;
-    }());
-    if (false) {
-        /**
-         * @abstract
-         * @return {?}
-         */
-        DomainEventLogger.prototype.start = function () { };
-        /**
-         * @abstract
-         * @return {?}
-         */
-        DomainEventLogger.prototype.stop = function () { };
-        /**
-         * @abstract
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventLogger.prototype.log = function (event) { };
-    }
+    }(Logger));
 
     /**
      * @fileoverview added by tsickle
@@ -290,6 +342,16 @@
                             else {
                                 api.commandLogger.stop();
                                 api.eventLogger.stop();
+                            }
+                        },
+                        /**
+                         * @param {?} domainName
+                         * @return {?}
+                         */
+                        set domain(domainName) {
+                            if (domainName) {
+                                api.commandLogger.setDomain(domainName);
+                                api.eventLogger.setDomain(domainName);
                             }
                         }
                     };
@@ -332,15 +394,20 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * @param {?=} domainName
      * @return {?}
      */
-    function enableHermesLoggers() {
+    function enableHermesLoggers(domainName) {
+        if (domainName) {
+            window[hermesApi].domain = domainName;
+        }
         window[hermesApi].loggers = true;
     }
     /**
      * @return {?}
      */
     function disableHermesLoggers() {
+        delete window[hermesApi].domain;
         window[hermesApi].loggers = false;
     }
 
@@ -1211,15 +1278,33 @@
             return (/** @type {?} */ (this.events));
         };
         /**
-         * @param {?} event
+         * @param {?} args
          * @return {?}
          */
         Aggregate.prototype.addEvent = /**
-         * @param {?} event
+         * @param {?} args
          * @return {?}
          */
-        function (event) {
-            this.events.push(event);
+        function (args) {
+            var e_1, _a;
+            if (Array.isArray(args)) {
+                try {
+                    for (var args_1 = __values(args), args_1_1 = args_1.next(); !args_1_1.done; args_1_1 = args_1.next()) {
+                        var event_1 = args_1_1.value;
+                        this.events.push(event_1);
+                    }
+                }
+                catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                finally {
+                    try {
+                        if (args_1_1 && !args_1_1.done && (_a = args_1.return)) _a.call(args_1);
+                    }
+                    finally { if (e_1) throw e_1.error; }
+                }
+            }
+            else {
+                this.events.push((/** @type {?} */ (args)));
+            }
         };
         /**
          * @return {?}
@@ -1665,6 +1750,13 @@
          * @return {?}
          */
         function (event) {
+            if (!event) {
+                console.error(event + " is not defined");
+            }
+            if (!(event instanceof DomainEvent)) {
+                // throw new Error(`${event} is not a DomainEvent`);
+                console.error(event + " is not a DomainEvent");
+            }
             this.eventStream.next(event);
         };
         DomainEventPublisher.decorators = [
@@ -2756,10 +2848,12 @@
             this.enabled = false;
         };
         /**
+         * @protected
          * @param {?} command
          * @return {?}
          */
-        ConsoleCommandLogger.prototype.log = /**
+        ConsoleCommandLogger.prototype.print = /**
+         * @protected
          * @param {?} command
          * @return {?}
          */
@@ -2814,10 +2908,12 @@
         function () {
         };
         /**
+         * @protected
          * @param {?} command
          * @return {?}
          */
-        NoopCommandLogger.prototype.log = /**
+        NoopCommandLogger.prototype.print = /**
+         * @protected
          * @param {?} command
          * @return {?}
          */
@@ -2880,10 +2976,12 @@
             this.enabled = false;
         };
         /**
+         * @protected
          * @param {?} domainEvent
          * @return {?}
          */
-        ConsoleEventLogger.prototype.log = /**
+        ConsoleEventLogger.prototype.print = /**
+         * @protected
          * @param {?} domainEvent
          * @return {?}
          */
@@ -2951,7 +3049,7 @@
          * @param {?} event
          * @return {?}
          */
-        NoopEventLogger.prototype.log = /**
+        NoopEventLogger.prototype.print = /**
          * @param {?} event
          * @return {?}
          */
@@ -3318,15 +3416,16 @@
     exports.provideEventHandlers = provideEventHandlers;
     exports.ɵa = commandLoggerFactory;
     exports.ɵb = eventLoggerFactory;
-    exports.ɵc = Message;
-    exports.ɵd = DomainEventStore;
-    exports.ɵe = FILTERED_COMMAND_STREAM;
-    exports.ɵf = ReactiveService;
-    exports.ɵg = Reactive;
-    exports.ɵh = ConsoleCommandLogger;
-    exports.ɵi = NoopCommandLogger;
-    exports.ɵj = ConsoleEventLogger;
-    exports.ɵk = NoopEventLogger;
+    exports.ɵc = Logger;
+    exports.ɵd = Message;
+    exports.ɵe = DomainEventStore;
+    exports.ɵf = FILTERED_COMMAND_STREAM;
+    exports.ɵg = ReactiveService;
+    exports.ɵh = Reactive;
+    exports.ɵi = ConsoleCommandLogger;
+    exports.ɵj = NoopCommandLogger;
+    exports.ɵk = ConsoleEventLogger;
+    exports.ɵl = NoopEventLogger;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

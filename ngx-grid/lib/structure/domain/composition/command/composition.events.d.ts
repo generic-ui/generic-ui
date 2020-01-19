@@ -3,4 +3,5 @@ export declare const CompositionAggregateEvents: {
     ColumnsSetAggregateEvent: string;
     CompositionContainerWidthSetAggregateEvent: string;
     CompositionWidthSetAggregateEvent: string;
+    CompositionColumnSetEnabledAggregateEvent: string;
 };

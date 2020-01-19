@@ -5,5 +5,6 @@ export declare class CompositionConverter {
     private columnDefinitionFactory;
     constructor(columnDefinitionFactory: ColumnDefinitionFactory);
     convert(aggregate: CompositionAggregate): Composition;
-    private convertColumnsToColumnDef;
+    private convertToColumnDef;
+    private convertActiveColumnsToColumnDef;
 }

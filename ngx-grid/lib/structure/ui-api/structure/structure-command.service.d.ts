@@ -9,7 +9,7 @@ import { FilterConfig } from './filter/filter-config';
 import { QuickFiltersConfig } from './filter/quick-filters.config';
 import { SearchConfig } from './search/search-config';
 import { ColumnConfig } from '../../domain/composition/column.config';
-import { SortStatus } from '../../domain/composition/command/sort/sort-status';
+import { SortStatus } from '../../domain/composition/command/column/sort/sort-status';
 export declare class StructureCommandService {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;

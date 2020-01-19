@@ -3,7 +3,7 @@ import { Injectable, EventEmitter, Input, Output, InjectionToken, Component, Vie
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricModule, FabricDialogService, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, Placement, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector } from '@generic-ui/fabric';
-import { AggregateId, Command, CommandDispatcher, AggregateEvent, RootAggregate, Aggregate, InMemoryStore, AggregateStoreRegister, InMemoryAggregateStore, ReadModel, InMemoryReadModelStore, DomainEvent, DomainEventBus, DomainEventPublisher, CommandHandler, DomainEventHandler, COMMAND_HANDLERS, DOMAIN_EVENT_HANDLERS, AggregateArchive, RandomStringGenerator, Entity, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { AggregateId, Command, CommandDispatcher, InMemoryStore, AggregateStoreRegister, InMemoryAggregateStore, ReadModel, InMemoryReadModelStore, DomainEvent, DomainEventBus, RandomStringGenerator, AggregateEvent, RootAggregate, Aggregate, DomainEventPublisher, CommandHandler, DomainEventHandler, COMMAND_HANDLERS, DOMAIN_EVENT_HANDLERS, AggregateArchive, Entity, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { Subject, ReplaySubject, fromEvent, Observable, zip, BehaviorSubject, timer, combineLatest } from 'rxjs';
 import { takeUntil, filter, map, take, distinctUntilChanged, debounceTime, skip, switchMap } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -3512,7 +3512,7 @@ var StructureInfoModalComponent = /** @class */ (function () {
     }
     StructureInfoModalComponent.decorators = [
         { type: Component, args: [{
-                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\t\t\t<p>Generic UI Grid</p>\n\t\t\t<p>version 0.5.4</p>\n\n\t\t\t<p>Links:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/\">Website</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\n\t\t\t<p>Feedback:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t</li>\n\n\t\t\t</ul>\n\t\t</div>\n\t",
+                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\t\t\t<p>Generic UI Grid</p>\n\t\t\t<p>version 0.5.5</p>\n\n\t\t\t<p>Links:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/\">Website</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\n\t\t\t<p>Feedback:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t</li>\n\n\t\t\t</ul>\n\t\t</div>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -4308,6 +4308,1659 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var InMemoryCompositionStore = /** @class */ (function (_super) {
+    __extends(InMemoryCompositionStore, _super);
+    function InMemoryCompositionStore() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    InMemoryCompositionStore.decorators = [
+        { type: Injectable }
+    ];
+    return InMemoryCompositionStore;
+}(InMemoryStore));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryCompositionAggregateStore = /** @class */ (function (_super) {
+    __extends(InMemoryCompositionAggregateStore, _super);
+    function InMemoryCompositionAggregateStore(inMemoryCompositionStore, aggregateStoreRegister) {
+        return _super.call(this, inMemoryCompositionStore, aggregateStoreRegister) || this;
+    }
+    InMemoryCompositionAggregateStore.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryCompositionAggregateStore.ctorParameters = function () { return [
+        { type: InMemoryCompositionStore },
+        { type: AggregateStoreRegister }
+    ]; };
+    return InMemoryCompositionAggregateStore;
+}(InMemoryAggregateStore));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+CompositionAggregateRepository = /** @class */ (function () {
+    function CompositionAggregateRepository() {
+    }
+    return CompositionAggregateRepository;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionAggregateRepository.prototype.getById = function (compositionId) { };
+    /**
+     * @abstract
+     * @param {?} aggregate
+     * @return {?}
+     */
+    CompositionAggregateRepository.prototype.save = function (aggregate) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryCompositionAggregateRepository = /** @class */ (function (_super) {
+    __extends(InMemoryCompositionAggregateRepository, _super);
+    function InMemoryCompositionAggregateRepository(inMemoryCompositionAggregateStore) {
+        var _this = _super.call(this) || this;
+        _this.inMemoryCompositionAggregateStore = inMemoryCompositionAggregateStore;
+        return _this;
+    }
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    InMemoryCompositionAggregateRepository.prototype.getById = /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    function (aggregateId) {
+        return this.inMemoryCompositionAggregateStore.getById(aggregateId);
+    };
+    /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    InMemoryCompositionAggregateRepository.prototype.save = /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    function (aggregate) {
+        this.inMemoryCompositionAggregateStore.save(aggregate);
+    };
+    InMemoryCompositionAggregateRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryCompositionAggregateRepository.ctorParameters = function () { return [
+        { type: InMemoryCompositionAggregateStore }
+    ]; };
+    return InMemoryCompositionAggregateRepository;
+}(CompositionAggregateRepository));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionAggregateRepository.prototype.inMemoryCompositionAggregateStore;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T
+ */
+var  /**
+ * @abstract
+ * @template T
+ */
+TemplateFactory = /** @class */ (function () {
+    function TemplateFactory(templatesComponentDefinition, componentFactoryResolver) {
+        this.templatesComponentDefinition = templatesComponentDefinition;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.templates = new Map();
+        this.templatesComponent = null;
+        this.createTemplatesComponent();
+    }
+    /**
+     * @return {?}
+     */
+    TemplateFactory.prototype.getTemplates = /**
+     * @return {?}
+     */
+    function () {
+        return this.templates;
+    };
+    /**
+     * @return {?}
+     */
+    TemplateFactory.prototype.destroy = /**
+     * @return {?}
+     */
+    function () {
+        if (this.templatesComponent) {
+            this.templatesComponent.destroy();
+            this.templatesComponent = null;
+        }
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    TemplateFactory.prototype.createTemplatesComponent = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.templatesComponentDefinition);
+        /** @type {?} */
+        var injector = Injector.create({ providers: [] });
+        this.templatesComponent = componentFactory.create(injector);
+        this.generateMap();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    TemplateFactory.prototype.generateMap = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.generateMapKeys()
+            .forEach((/**
+         * @param {?} type
+         * @return {?}
+         */
+        function (type) {
+            _this.findAndSetTemplate(type);
+        }));
+    };
+    ;
+    /**
+     * @private
+     * @param {?} dt
+     * @return {?}
+     */
+    TemplateFactory.prototype.findAndSetTemplate = /**
+     * @private
+     * @param {?} dt
+     * @return {?}
+     */
+    function (dt) {
+        /** @type {?} */
+        var template = this.templatesComponent.instance.getTemplate(dt);
+        this.templates.set(dt, template);
+    };
+    return TemplateFactory;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    TemplateFactory.prototype.templates;
+    /**
+     * @type {?}
+     * @private
+     */
+    TemplateFactory.prototype.templatesComponent;
+    /**
+     * @type {?}
+     * @private
+     */
+    TemplateFactory.prototype.templatesComponentDefinition;
+    /**
+     * @type {?}
+     * @private
+     */
+    TemplateFactory.prototype.componentFactoryResolver;
+    /* Skipping unhandled member: ;*/
+    /**
+     * @abstract
+     * @return {?}
+     */
+    TemplateFactory.prototype.generateMapKeys = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ViewTemplateFactory = /** @class */ (function (_super) {
+    __extends(ViewTemplateFactory, _super);
+    function ViewTemplateFactory(componentFactoryResolver) {
+        return _super.call(this, ViewTemplatesComponent, componentFactoryResolver) || this;
+    }
+    /**
+     * @return {?}
+     */
+    ViewTemplateFactory.prototype.generateMapKeys = /**
+     * @return {?}
+     */
+    function () {
+        return Object.keys(CellView)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return CellView[key]; }));
+    };
+    ViewTemplateFactory.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ViewTemplateFactory.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver }
+    ]; };
+    return ViewTemplateFactory;
+}(TemplateFactory));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ViewTemplateRepository = /** @class */ (function () {
+    function ViewTemplateRepository(columnTemplateFactory) {
+        this.columnTemplateFactory = columnTemplateFactory;
+    }
+    /**
+     * @param {?} view
+     * @return {?}
+     */
+    ViewTemplateRepository.prototype.findTemplate = /**
+     * @param {?} view
+     * @return {?}
+     */
+    function (view) {
+        /** @type {?} */
+        var typeToTemplate = this.columnTemplateFactory.getTemplates();
+        return typeToTemplate.get(view);
+    };
+    ViewTemplateRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ViewTemplateRepository.ctorParameters = function () { return [
+        { type: ViewTemplateFactory }
+    ]; };
+    return ViewTemplateRepository;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ViewTemplateRepository.prototype.columnTemplateFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var EditTemplateFactory = /** @class */ (function (_super) {
+    __extends(EditTemplateFactory, _super);
+    function EditTemplateFactory(componentFactoryResolver) {
+        return _super.call(this, EditTemplatesComponent, componentFactoryResolver) || this;
+    }
+    /**
+     * @return {?}
+     */
+    EditTemplateFactory.prototype.generateMapKeys = /**
+     * @return {?}
+     */
+    function () {
+        return Object.keys(DataType)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return DataType[key]; }));
+    };
+    EditTemplateFactory.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    EditTemplateFactory.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver }
+    ]; };
+    return EditTemplateFactory;
+}(TemplateFactory));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var EditTemplateRepository = /** @class */ (function () {
+    function EditTemplateRepository(editTemplateFactory) {
+        this.editTemplateFactory = editTemplateFactory;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    EditTemplateRepository.prototype.findTemplate = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        /** @type {?} */
+        var typeToTemplate = this.editTemplateFactory.getTemplates();
+        return typeToTemplate.get(dataType);
+    };
+    EditTemplateRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    EditTemplateRepository.ctorParameters = function () { return [
+        { type: EditTemplateFactory }
+    ]; };
+    return EditTemplateRepository;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    EditTemplateRepository.prototype.editTemplateFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {number} */
+var SortStatus = {
+    ASC: 0,
+    DESC: 1,
+    NONE: 2,
+};
+SortStatus[SortStatus.ASC] = 'ASC';
+SortStatus[SortStatus.DESC] = 'DESC';
+SortStatus[SortStatus.NONE] = 'NONE';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ViewEntity = /** @class */ (function () {
+    function ViewEntity(columnView) {
+        this.templateFunction = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value; });
+        if (typeof columnView === 'function') {
+            this.view = CellView.FUNCTION;
+            this.templateFunction = columnView;
+        }
+        else {
+            this.view = columnView;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ViewEntity.prototype.getCellView = /**
+     * @return {?}
+     */
+    function () {
+        return this.view;
+    };
+    /**
+     * @return {?}
+     */
+    ViewEntity.prototype.getTemplateFunction = /**
+     * @return {?}
+     */
+    function () {
+        return this.templateFunction;
+    };
+    return ViewEntity;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ViewEntity.prototype.view;
+    /**
+     * @type {?}
+     * @private
+     */
+    ViewEntity.prototype.templateFunction;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ColumnEntity = /** @class */ (function () {
+    function ColumnEntity(columnId, columnField, columnConfig, header, view, width) {
+        this.sortStatus = SortStatus.NONE;
+        this.enabled = true;
+        this.view = new ViewEntity(CellView.TEXT);
+        this.columnId = columnId;
+        this.columnField = columnField;
+        this.columnConfig = columnConfig;
+        if (header) {
+            this.header = header;
+        }
+        if (view) {
+            this.view = view;
+        }
+        if (width) {
+            this.width = width;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getColumnConfig = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnConfig;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getColumnId = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnId;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    ColumnEntity.prototype.setEnabled = /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (enabled) {
+        this.enabled = enabled;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getField = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnField;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getHeader = /**
+     * @return {?}
+     */
+    function () {
+        return this.header;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getDataType = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnField.getDataType();
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getCellView = /**
+     * @return {?}
+     */
+    function () {
+        return this.view.getCellView();
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getTemplateFunction = /**
+     * @return {?}
+     */
+    function () {
+        return this.view.getTemplateFunction();
+    };
+    /**
+     * @param {?} status
+     * @return {?}
+     */
+    ColumnEntity.prototype.setSortStatus = /**
+     * @param {?} status
+     * @return {?}
+     */
+    function (status) {
+        this.sortStatus = status;
+    };
+    /**
+     * @param {?} view
+     * @return {?}
+     */
+    ColumnEntity.prototype.setView = /**
+     * @param {?} view
+     * @return {?}
+     */
+    function (view) {
+        this.view = view;
+    };
+    /**
+     * @return {?}
+     */
+    ColumnEntity.prototype.getView = /**
+     * @return {?}
+     */
+    function () {
+        return this.view;
+    };
+    return ColumnEntity;
+}());
+if (false) {
+    /** @type {?} */
+    ColumnEntity.prototype.columnId;
+    /** @type {?} */
+    ColumnEntity.prototype.columnField;
+    /** @type {?} */
+    ColumnEntity.prototype.header;
+    /** @type {?} */
+    ColumnEntity.prototype.sortStatus;
+    /** @type {?} */
+    ColumnEntity.prototype.width;
+    /** @type {?} */
+    ColumnEntity.prototype.sortable;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnEntity.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnEntity.prototype.columnConfig;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnEntity.prototype.view;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CellTemplateWithContext = /** @class */ (function () {
+    function CellTemplateWithContext(viewTemplate, editTemplate, context, width, fieldId, columnId, sortStatus, enabled) {
+        this.viewTemplate = viewTemplate;
+        this.editTemplate = editTemplate;
+        this.context = context;
+        this.width = width;
+        this.fieldId = fieldId;
+        this.columnId = columnId;
+        this.sortStatus = sortStatus;
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.getColumnId = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnId;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.getFieldId = /**
+     * @return {?}
+     */
+    function () {
+        return this.fieldId;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.getSortStatus = /**
+     * @return {?}
+     */
+    function () {
+        return this.sortStatus;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.isAscSort = /**
+     * @return {?}
+     */
+    function () {
+        return this.sortStatus === SortStatus.ASC;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.isDescSort = /**
+     * @return {?}
+     */
+    function () {
+        return this.sortStatus === SortStatus.DESC;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.isNoSort = /**
+     * @return {?}
+     */
+    function () {
+        return this.sortStatus === SortStatus.NONE;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithContext.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return CellTemplateWithContext;
+}());
+if (false) {
+    /** @type {?} */
+    CellTemplateWithContext.prototype.viewTemplate;
+    /** @type {?} */
+    CellTemplateWithContext.prototype.editTemplate;
+    /** @type {?} */
+    CellTemplateWithContext.prototype.context;
+    /** @type {?} */
+    CellTemplateWithContext.prototype.width;
+    /**
+     * @type {?}
+     * @private
+     */
+    CellTemplateWithContext.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    CellTemplateWithContext.prototype.columnId;
+    /**
+     * @type {?}
+     * @private
+     */
+    CellTemplateWithContext.prototype.sortStatus;
+    /**
+     * @type {?}
+     * @private
+     */
+    CellTemplateWithContext.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CellContext = /** @class */ (function () {
+    function CellContext(element) {
+        this.element = element;
+    }
+    return CellContext;
+}());
+if (false) {
+    /** @type {?} */
+    CellContext.prototype.element;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FieldId = /** @class */ (function () {
+    function FieldId(id) {
+        this.id = id;
+    }
+    /**
+     * @return {?}
+     */
+    FieldId.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.id;
+    };
+    /**
+     * @return {?}
+     */
+    FieldId.prototype.toString = /**
+     * @return {?}
+     */
+    function () {
+        return this.id;
+    };
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    FieldId.prototype.equals = /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    function (fieldId) {
+        return fieldId.getId() === this.id;
+    };
+    return FieldId;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldId.prototype.id;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CellTemplateWithAccessor = /** @class */ (function () {
+    function CellTemplateWithAccessor(template, editTemplate, editable, accessor, width, columnFieldId) {
+        this.template = template;
+        this.editTemplate = editTemplate;
+        this.editable = editable;
+        this.accessor = accessor;
+        this.width = width;
+        this.columnFieldId = columnFieldId;
+    }
+    return CellTemplateWithAccessor;
+}());
+if (false) {
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.template;
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.editTemplate;
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.editable;
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.accessor;
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.width;
+    /** @type {?} */
+    CellTemplateWithAccessor.prototype.columnFieldId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ColumnDefinition = /** @class */ (function () {
+    function ColumnDefinition(field, columnId, enabled, header, sort) {
+        if (sort === void 0) { sort = SortStatus.NONE; }
+        this.field = field;
+        this.columnId = columnId;
+        this.enabled = enabled;
+        this.header = header;
+        this.sortStatus = sort;
+    }
+    /**
+     * @return {?}
+     */
+    ColumnDefinition.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    /**
+     * @param {?} header
+     * @return {?}
+     */
+    ColumnDefinition.prototype.setHeader = /**
+     * @param {?} header
+     * @return {?}
+     */
+    function (header) {
+        this.header = header;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    ColumnDefinition.prototype.setField = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        this.field = field;
+    };
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    ColumnDefinition.prototype.getHeaderCellTemplateWithContext = /**
+     * @param {?} index
+     * @return {?}
+     */
+    function (index) {
+        /** @type {?} */
+        var header = this.header;
+        /** @type {?} */
+        var headerCellContext;
+        if (typeof header === 'string') {
+            headerCellContext = new CellContext(header);
+        }
+        else if (typeof header === 'function') {
+            headerCellContext = new CellContext(header(index));
+        }
+        /** @type {?} */
+        var fieldId = new FieldId(this.field.getId().getId());
+        return new CellTemplateWithContext(this.headerTemplate, this.editTemplate, headerCellContext, this.width, fieldId, this.columnId, this.sortStatus, this.enabled);
+    };
+    /**
+     * @return {?}
+     */
+    ColumnDefinition.prototype.getContentCellTemplateWithAccessor = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        /** @type {?} */
+        var accessor = (/**
+         * @param {?} entity
+         * @return {?}
+         */
+        function (entity) {
+            return _this.templateFunction(_this.field.getAccessor()(entity));
+        });
+        return new CellTemplateWithAccessor(this.cellTemplate, this.editTemplate, true, accessor, this.width, this.field.getId());
+    };
+    /**
+     * @return {?}
+     */
+    ColumnDefinition.prototype.getColumn = /**
+     * @return {?}
+     */
+    function () {
+    };
+    return ColumnDefinition;
+}());
+if (false) {
+    /** @type {?} */
+    ColumnDefinition.prototype.cellTemplate;
+    /** @type {?} */
+    ColumnDefinition.prototype.headerTemplate;
+    /** @type {?} */
+    ColumnDefinition.prototype.editTemplate;
+    /** @type {?} */
+    ColumnDefinition.prototype.width;
+    /** @type {?} */
+    ColumnDefinition.prototype.templateFunction;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinition.prototype.columnId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinition.prototype.field;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinition.prototype.sortStatus;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinition.prototype.header;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinition.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ColumnDefinitionFactory = /** @class */ (function () {
+    function ColumnDefinitionFactory(viewTemplateRepository, editTemplateRepository) {
+        this.viewTemplateRepository = viewTemplateRepository;
+        this.editTemplateRepository = editTemplateRepository;
+    }
+    /**
+     * @param {?} column
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.create = /**
+     * @param {?} column
+     * @return {?}
+     */
+    function (column) {
+        if (column instanceof ColumnEntity) {
+            return this.createFromColumnEntity(column);
+        }
+        else {
+            return this.createFromActiveColumnEntity(column);
+        }
+    };
+    /**
+     * @private
+     * @param {?} column
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.createFromColumnEntity = /**
+     * @private
+     * @param {?} column
+     * @return {?}
+     */
+    function (column) {
+        /** @type {?} */
+        var columnDef = new ColumnDefinition(column.getField(), column.getColumnId(), column.isEnabled(), column.getHeader(), column.sortStatus);
+        columnDef.cellTemplate = this.findViewTemplate(column.getCellView());
+        columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        columnDef.templateFunction = column.getTemplateFunction();
+        columnDef.editTemplate = this.findEditTemplate(column.getDataType());
+        columnDef.width = +column.width;
+        return columnDef;
+    };
+    /**
+     * @private
+     * @param {?} activeColumn
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.createFromActiveColumnEntity = /**
+     * @private
+     * @param {?} activeColumn
+     * @return {?}
+     */
+    function (activeColumn) {
+        /** @type {?} */
+        var columnDef = new ColumnDefinition(activeColumn.getField(), activeColumn.getColumnId(), true, // remove
+        activeColumn.getHeader(), activeColumn.getSortStatus());
+        columnDef.cellTemplate = this.findViewTemplate(activeColumn.getCellView());
+        columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        columnDef.templateFunction = activeColumn.getTemplateFunction();
+        columnDef.editTemplate = this.findEditTemplate(activeColumn.getDataType());
+        columnDef.width = +activeColumn.getWidth();
+        return columnDef;
+    };
+    /**
+     * @param {?} columns
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.createColumns = /**
+     * @param {?} columns
+     * @return {?}
+     */
+    function (columns) {
+        var _this = this;
+        return columns.map((/**
+         * @param {?} column
+         * @return {?}
+         */
+        function (column) { return _this.create(column); }));
+    };
+    /**
+     * @private
+     * @param {?} view
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.findViewTemplate = /**
+     * @private
+     * @param {?} view
+     * @return {?}
+     */
+    function (view) {
+        if (view === CellView.FUNCTION) {
+            return this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
+        }
+        else {
+            return this.viewTemplateRepository.findTemplate(view);
+        }
+    };
+    /**
+     * @private
+     * @param {?} dataType
+     * @return {?}
+     */
+    ColumnDefinitionFactory.prototype.findEditTemplate = /**
+     * @private
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return this.editTemplateRepository.findTemplate(dataType);
+    };
+    ColumnDefinitionFactory.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ColumnDefinitionFactory.ctorParameters = function () { return [
+        { type: ViewTemplateRepository },
+        { type: EditTemplateRepository }
+    ]; };
+    return ColumnDefinitionFactory;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinitionFactory.prototype.viewTemplateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnDefinitionFactory.prototype.editTemplateRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var Composition = /** @class */ (function (_super) {
+    __extends(Composition, _super);
+    function Composition(uid, ready, allColumns, activeColumns, width, resizeWidth) {
+        var _this = _super.call(this, uid) || this;
+        _this.ready = ready;
+        _this.allColumns = allColumns;
+        _this.activeColumns = activeColumns;
+        _this.width = width;
+        _this.resizeWidth = resizeWidth;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getActiveColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.activeColumns;
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getAllColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.allColumns;
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getActiveHeaderColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.getActiveColumns()
+            .map((/**
+         * @param {?} column
+         * @param {?} index
+         * @return {?}
+         */
+        function (column, index) { return column.getHeaderCellTemplateWithContext(index); }));
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getHeaderColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.getAllColumns()
+            .map((/**
+         * @param {?} column
+         * @param {?} index
+         * @return {?}
+         */
+        function (column, index) { return column.getHeaderCellTemplateWithContext(index); }));
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getTemplateColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.getActiveColumns()
+            .map((/**
+         * @param {?} column
+         * @return {?}
+         */
+        function (column) { return column.getContentCellTemplateWithAccessor(); }));
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getWidth = /**
+     * @return {?}
+     */
+    function () {
+        return this.width;
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.getContainerWidth = /**
+     * @return {?}
+     */
+    function () {
+        return +this.width - 2;
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.isReady = /**
+     * @return {?}
+     */
+    function () {
+        return this.ready;
+    };
+    /**
+     * @return {?}
+     */
+    Composition.prototype.isResizeWidthEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.resizeWidth;
+    };
+    /**
+     * @param {?} composition
+     * @return {?}
+     */
+    Composition.prototype.equals = /**
+     * @param {?} composition
+     * @return {?}
+     */
+    function (composition) {
+        return this.width === composition.width &&
+            this.resizeWidth === composition.resizeWidth &&
+            this.equalsByColumns(composition.allColumns);
+    };
+    /**
+     * @param {?} columns
+     * @return {?}
+     */
+    Composition.prototype.equalsByColumns = /**
+     * @param {?} columns
+     * @return {?}
+     */
+    function (columns) {
+        return this.allColumns.length === columns.length;
+    };
+    return Composition;
+}(ReadModel));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Composition.prototype.ready;
+    /**
+     * @type {?}
+     * @private
+     */
+    Composition.prototype.allColumns;
+    /**
+     * @type {?}
+     * @private
+     */
+    Composition.prototype.activeColumns;
+    /**
+     * @type {?}
+     * @private
+     */
+    Composition.prototype.width;
+    /**
+     * @type {?}
+     * @private
+     */
+    Composition.prototype.resizeWidth;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionConverter = /** @class */ (function () {
+    function CompositionConverter(columnDefinitionFactory) {
+        this.columnDefinitionFactory = columnDefinitionFactory;
+    }
+    /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    CompositionConverter.prototype.convert = /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    function (aggregate) {
+        /** @type {?} */
+        var ready = aggregate.isReady();
+        /** @type {?} */
+        var allColumns = aggregate.getColumns();
+        /** @type {?} */
+        var activeColumns = aggregate.getActiveColumns();
+        /** @type {?} */
+        var allColumnDefs = this.convertToColumnDef(allColumns);
+        /** @type {?} */
+        var activeColumnDefs = this.convertActiveColumnsToColumnDef(activeColumns);
+        /** @type {?} */
+        var width = aggregate.getWidth();
+        /** @type {?} */
+        var resizeWidth = aggregate.isResizeEnabled();
+        /** @type {?} */
+        var id = aggregate.getId();
+        return new Composition(id, ready, allColumnDefs, activeColumnDefs, width, resizeWidth);
+    };
+    /**
+     * @private
+     * @param {?} columns
+     * @return {?}
+     */
+    CompositionConverter.prototype.convertToColumnDef = /**
+     * @private
+     * @param {?} columns
+     * @return {?}
+     */
+    function (columns) {
+        var _this = this;
+        /** @type {?} */
+        var columnDefs = [];
+        columns.forEach((/**
+         * @param {?} column
+         * @return {?}
+         */
+        function (column) {
+            /** @type {?} */
+            var columnDef = _this.columnDefinitionFactory.create(column);
+            columnDefs.push(columnDef);
+        }));
+        return columnDefs;
+    };
+    /**
+     * @private
+     * @param {?} activeColumns
+     * @return {?}
+     */
+    CompositionConverter.prototype.convertActiveColumnsToColumnDef = /**
+     * @private
+     * @param {?} activeColumns
+     * @return {?}
+     */
+    function (activeColumns) {
+        var _this = this;
+        /** @type {?} */
+        var columnDefs = [];
+        activeColumns.forEach((/**
+         * @param {?} column
+         * @return {?}
+         */
+        function (column) {
+            /** @type {?} */
+            var columnDef = _this.columnDefinitionFactory.create(column);
+            columnDefs.push(columnDef);
+        }));
+        return columnDefs;
+    };
+    CompositionConverter.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    CompositionConverter.ctorParameters = function () { return [
+        { type: ColumnDefinitionFactory }
+    ]; };
+    return CompositionConverter;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionConverter.prototype.columnDefinitionFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryCompositionReadStore = /** @class */ (function (_super) {
+    __extends(InMemoryCompositionReadStore, _super);
+    function InMemoryCompositionReadStore(inMemoryCompositionStore, compositionConverter) {
+        var _this = _super.call(this, inMemoryCompositionStore) || this;
+        _this.inMemoryCompositionStore = inMemoryCompositionStore;
+        _this.compositionConverter = compositionConverter;
+        return _this;
+    }
+    /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    InMemoryCompositionReadStore.prototype.toReadModel = /**
+     * @param {?} aggregate
+     * @return {?}
+     */
+    function (aggregate) {
+        return this.compositionConverter.convert(aggregate);
+    };
+    InMemoryCompositionReadStore.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryCompositionReadStore.ctorParameters = function () { return [
+        { type: InMemoryCompositionStore },
+        { type: CompositionConverter }
+    ]; };
+    return InMemoryCompositionReadStore;
+}(InMemoryReadModelStore));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionReadStore.prototype.inMemoryCompositionStore;
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionReadStore.prototype.compositionConverter;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+CompositionRepository = /** @class */ (function () {
+    function CompositionRepository() {
+    }
+    return CompositionRepository;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionRepository.prototype.on = function (compositionId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionInitedEvent = /** @class */ (function (_super) {
+    __extends(CompositionInitedEvent, _super);
+    function CompositionInitedEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionInitedEvent') || this;
+    }
+    return CompositionInitedEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionResizeWidthSetEvent = /** @class */ (function (_super) {
+    __extends(CompositionResizeWidthSetEvent, _super);
+    function CompositionResizeWidthSetEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionResizeWidthSetEvent') || this;
+    }
+    return CompositionResizeWidthSetEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionColumnsSetEvent = /** @class */ (function (_super) {
+    __extends(CompositionColumnsSetEvent, _super);
+    function CompositionColumnsSetEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionColumnsSetEvent') || this;
+    }
+    return CompositionColumnsSetEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionContainerWidthSetEvent = /** @class */ (function (_super) {
+    __extends(CompositionContainerWidthSetEvent, _super);
+    function CompositionContainerWidthSetEvent(aggregateId, payload) {
+        return _super.call(this, aggregateId, 'CompositionContainerWidthSetEvent', payload) || this;
+    }
+    return CompositionContainerWidthSetEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionWidthSetEvent = /** @class */ (function (_super) {
+    __extends(CompositionWidthSetEvent, _super);
+    function CompositionWidthSetEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionWidthSetEvent') || this;
+    }
+    return CompositionWidthSetEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionChangeSortStatusEvent = /** @class */ (function (_super) {
+    __extends(CompositionChangeSortStatusEvent, _super);
+    function CompositionChangeSortStatusEvent(aggregateId, activeColumns) {
+        var _this = _super.call(this, aggregateId, 'CompositionChangeSortStatusEvent') || this;
+        _this.activeColumns = activeColumns;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    CompositionChangeSortStatusEvent.prototype.getCompositionId = /**
+     * @return {?}
+     */
+    function () {
+        return this.aggregateId;
+    };
+    /**
+     * @return {?}
+     */
+    CompositionChangeSortStatusEvent.prototype.getActiveColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.activeColumns;
+    };
+    return CompositionChangeSortStatusEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionChangeSortStatusEvent.prototype.activeColumns;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionColumnSetEnabledEvent = /** @class */ (function (_super) {
+    __extends(CompositionColumnSetEnabledEvent, _super);
+    function CompositionColumnSetEnabledEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionColumnSetEnabledEvent') || this;
+    }
+    return CompositionColumnSetEnabledEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryCompositionRepository = /** @class */ (function (_super) {
+    __extends(InMemoryCompositionRepository, _super);
+    function InMemoryCompositionRepository(domainEventBus, inMemoryCompositionQueryStore) {
+        var _this = _super.call(this) || this;
+        _this.domainEventBus = domainEventBus;
+        _this.inMemoryCompositionQueryStore = inMemoryCompositionQueryStore;
+        _this.composition$ = new ReplaySubject(1);
+        _this.unsubscribe$ = new Subject();
+        _this.domainEventBus
+            .ofEvent(CompositionInitedEvent, CompositionResizeWidthSetEvent, CompositionColumnsSetEvent, CompositionContainerWidthSetEvent, CompositionWidthSetEvent, CompositionColumnSetEnabledEvent, (/** @type {?} */ (CompositionChangeSortStatusEvent)))
+            .pipe(takeUntil(_this.unsubscribe$))
+            .subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            /** @type {?} */
+            var aggregateId = event.aggregateId;
+            /** @type {?} */
+            var composition = _this.inMemoryCompositionQueryStore.getById(aggregateId);
+            _this.composition$.next(composition);
+        }));
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    InMemoryCompositionRepository.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    };
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    InMemoryCompositionRepository.prototype.on = /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    function (aggregateId) {
+        return this.composition$
+            .asObservable()
+            .pipe(filter((/**
+         * @param {?} composition
+         * @return {?}
+         */
+        function (composition) { return composition.getId().toString() === aggregateId.toString(); })), filter((/**
+         * @param {?} composition
+         * @return {?}
+         */
+        function (composition) { return composition.isReady(); })));
+    };
+    InMemoryCompositionRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryCompositionRepository.ctorParameters = function () { return [
+        { type: DomainEventBus },
+        { type: InMemoryCompositionReadStore }
+    ]; };
+    return InMemoryCompositionRepository;
+}(CompositionRepository));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionRepository.prototype.composition$;
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionRepository.prototype.unsubscribe$;
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionRepository.prototype.domainEventBus;
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryCompositionRepository.prototype.inMemoryCompositionQueryStore;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var inMemoryCompositionCommandProviders = [
+    InMemoryCompositionAggregateStore,
+    {
+        provide: CompositionAggregateRepository,
+        useClass: InMemoryCompositionAggregateRepository
+    },
+];
+/** @type {?} */
+var inMemoryCompositionQueryProviders = [
+    InMemoryCompositionReadStore,
+    {
+        provide: CompositionRepository,
+        useClass: InMemoryCompositionRepository
+    }
+];
+/** @type {?} */
+var inMemoryCompositionProviders = [
+    InMemoryCompositionStore
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @enum {number} */
 var ColumnWidthType = {
     PERCENTAGE: 0,
@@ -4830,20 +6483,20 @@ var ColumnWidthCollection = /** @class */ (function () {
         this.calculate();
     };
     /**
-     * @param {?} columns
+     * @param {?} columnConfigs
      * @return {?}
      */
     ColumnWidthCollection.prototype.setColumns = /**
-     * @param {?} columns
+     * @param {?} columnConfigs
      * @return {?}
      */
-    function (columns) {
-        this.baseColumnWidths = columns.map((/**
+    function (columnConfigs) {
+        this.baseColumnWidths = columnConfigs.map((/**
          * @param {?} column
          * @return {?}
          */
         function (column) { return new ColumnWidth(column.width); }));
-        this.columnWidths = columns.map((/**
+        this.columnWidths = columnConfigs.map((/**
          * @param {?} column
          * @return {?}
          */
@@ -4913,174 +6566,27 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @enum {number} */
-var SortStatus = {
-    ASC: 0,
-    DESC: 1,
-    NONE: 2,
-};
-SortStatus[SortStatus.ASC] = 'ASC';
-SortStatus[SortStatus.DESC] = 'DESC';
-SortStatus[SortStatus.NONE] = 'NONE';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ViewEntity = /** @class */ (function () {
-    function ViewEntity(columnView) {
-        this.templateFunction = (/**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) { return value; });
-        if (typeof columnView === 'function') {
-            this.view = CellView.FUNCTION;
-            this.templateFunction = columnView;
-        }
-        else {
-            this.view = columnView;
-        }
+var ColumnId = /** @class */ (function () {
+    function ColumnId(id) {
+        this.id = id;
     }
     /**
      * @return {?}
      */
-    ViewEntity.prototype.getCellView = /**
+    ColumnId.prototype.getId = /**
      * @return {?}
      */
     function () {
-        return this.view;
+        return this.id;
     };
-    /**
-     * @return {?}
-     */
-    ViewEntity.prototype.getTemplateFunction = /**
-     * @return {?}
-     */
-    function () {
-        return this.templateFunction;
-    };
-    return ViewEntity;
+    return ColumnId;
 }());
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ViewEntity.prototype.view;
-    /**
-     * @type {?}
-     * @private
-     */
-    ViewEntity.prototype.templateFunction;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ColumnEntity = /** @class */ (function () {
-    function ColumnEntity(columnField, header, view, width) {
-        this.sortStatus = SortStatus.NONE;
-        this.view = new ViewEntity(CellView.TEXT);
-        this.columnField = columnField;
-        if (header) {
-            this.header = header;
-        }
-        if (view) {
-            this.view = view;
-        }
-        if (width) {
-            this.width = width;
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ColumnEntity.prototype.getField = /**
-     * @return {?}
-     */
-    function () {
-        return this.columnField;
-    };
-    /**
-     * @return {?}
-     */
-    ColumnEntity.prototype.getHeader = /**
-     * @return {?}
-     */
-    function () {
-        return this.header;
-    };
-    /**
-     * @return {?}
-     */
-    ColumnEntity.prototype.getDataType = /**
-     * @return {?}
-     */
-    function () {
-        return this.columnField.getDataType();
-    };
-    /**
-     * @return {?}
-     */
-    ColumnEntity.prototype.getCellView = /**
-     * @return {?}
-     */
-    function () {
-        return this.view.getCellView();
-    };
-    /**
-     * @return {?}
-     */
-    ColumnEntity.prototype.getTemplateFunction = /**
-     * @return {?}
-     */
-    function () {
-        return this.view.getTemplateFunction();
-    };
-    /**
-     * @param {?} status
-     * @return {?}
-     */
-    ColumnEntity.prototype.setSortStatus = /**
-     * @param {?} status
-     * @return {?}
-     */
-    function (status) {
-        this.sortStatus = status;
-    };
-    /**
-     * @param {?} view
-     * @return {?}
-     */
-    ColumnEntity.prototype.setView = /**
-     * @param {?} view
-     * @return {?}
-     */
-    function (view) {
-        this.view = view;
-    };
-    return ColumnEntity;
-}());
-if (false) {
-    /** @type {?} */
-    ColumnEntity.prototype.columnId;
-    /** @type {?} */
-    ColumnEntity.prototype.columnField;
-    /** @type {?} */
-    ColumnEntity.prototype.header;
-    /** @type {?} */
-    ColumnEntity.prototype.sortStatus;
-    /** @type {?} */
-    ColumnEntity.prototype.width;
-    /** @type {?} */
-    ColumnEntity.prototype.sortable;
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnEntity.prototype.view;
+    ColumnId.prototype.id;
 }
 
 /**
@@ -5118,19 +6624,19 @@ var ColumnEntityFactory = /** @class */ (function () {
      */
     function (params) {
         /** @type {?} */
-        var column = params.getColumn();
+        var columnConfig = params.getColumn();
         /** @type {?} */
         var field = params.getField();
         /** @type {?} */
-        var columnEntity = new ColumnEntity(field);
-        if (column.header !== undefined) {
-            columnEntity.header = column.header;
+        var columnEntity = new ColumnEntity(new ColumnId(RandomStringGenerator.generate()), field, columnConfig);
+        if (columnConfig.header !== undefined) {
+            columnEntity.header = columnConfig.header;
         }
-        if (column.view !== undefined) {
-            columnEntity.setView(new ViewEntity(column.view));
+        if (columnConfig.view !== undefined) {
+            columnEntity.setView(new ViewEntity(columnConfig.view));
         }
-        if (column.width !== undefined) {
-            columnEntity.width = this.convertWidth(column.width);
+        if (columnConfig.width !== undefined) {
+            columnEntity.width = this.convertWidth(columnConfig.width);
         }
         return columnEntity;
     };
@@ -5243,6 +6749,431 @@ var CompositionResizeWidthSetAggregateEvent = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var CompositionColumnSetEnabledAggregateEvent = /** @class */ (function (_super) {
+    __extends(CompositionColumnSetEnabledAggregateEvent, _super);
+    function CompositionColumnSetEnabledAggregateEvent(aggregateId, activeColumns) {
+        var _this = _super.call(this, aggregateId, 'CompositionColumnSetEnabledAggregateEvent') || this;
+        _this.activeColumns = activeColumns;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    CompositionColumnSetEnabledAggregateEvent.prototype.getActiveColumns = /**
+     * @return {?}
+     */
+    function () {
+        return this.activeColumns;
+    };
+    return CompositionColumnSetEnabledAggregateEvent;
+}(AggregateEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionColumnSetEnabledAggregateEvent.prototype.activeColumns;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CompositionChangeSortStatusAggregateEvent = /** @class */ (function (_super) {
+    __extends(CompositionChangeSortStatusAggregateEvent, _super);
+    function CompositionChangeSortStatusAggregateEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'CompositionChangeSortStatusAggregateEvent') || this;
+    }
+    return CompositionChangeSortStatusAggregateEvent;
+}(AggregateEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ActiveColumnContainer = /** @class */ (function () {
+    function ActiveColumnContainer(compositionId, columns, gridWidth, columnConfigs) {
+        if (columns === void 0) { columns = []; }
+        this.compositionId = compositionId;
+        this.MIN_COLUMN_WIDTH = 50;
+        /**
+         * Columns taken from user config.
+         * This should not be modified and it should be used as a reference point.
+         */
+        this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH);
+        this.columns = columns;
+        if (gridWidth && columnConfigs) {
+            this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH, columnConfigs, gridWidth);
+        }
+    }
+    // REMOVE
+    // REMOVE
+    /**
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.getColumns = 
+    // REMOVE
+    /**
+     * @return {?}
+     */
+    function () {
+        return this.columns;
+    };
+    /**
+     * @param {?} width
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.setWidth = /**
+     * @param {?} width
+     * @return {?}
+     */
+    function (width) {
+        this.columnWidthCollection.setWidth(width);
+    };
+    /**
+     * @param {?} column
+     * @param {?} index
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.addColumn = /**
+     * @param {?} column
+     * @param {?} index
+     * @return {?}
+     */
+    function (column, index) {
+        this.columns.splice(index, 0, column);
+    };
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.removeColumn = /**
+     * @param {?} index
+     * @return {?}
+     */
+    function (index) {
+        this.columns.splice(index, 1);
+    };
+    /**
+     * @param {?} columns
+     * @param {?} columnConfigs
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.setColumns = /**
+     * @param {?} columns
+     * @param {?} columnConfigs
+     * @return {?}
+     */
+    function (columns, columnConfigs) {
+        this.columns = columns;
+        this.columnWidthCollection.setColumns(columnConfigs);
+        /** @type {?} */
+        var updatedWidths = this.columnWidthCollection.getWidths();
+        this.columns.forEach((/**
+         * @param {?} column
+         * @param {?} index
+         * @return {?}
+         */
+        function (column, index) {
+            column.setWidth(updatedWidths[index]);
+        }));
+        // TODO
+        //this.addEvent(new ColumnsSetAggregateEvent(this.getId(), columns));
+    };
+    /**
+     * @param {?} sortParams
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.changeSort = /**
+     * @param {?} sortParams
+     * @return {?}
+     */
+    function (sortParams) {
+        var e_1, _a;
+        this.columns.forEach((/**
+         * @param {?} column
+         * @return {?}
+         */
+        function (column) {
+            column.setSortStatus(SortStatus.NONE);
+        }));
+        var _loop_1 = function (param) {
+            /** @type {?} */
+            var fieldId = param.fieldId;
+            /** @type {?} */
+            var direction = param.direction;
+            /** @type {?} */
+            var sortStatus = direction ? SortStatus.ASC : SortStatus.DESC;
+            /** @type {?} */
+            var columns = this_1.columns.filter((/**
+             * @param {?} column
+             * @return {?}
+             */
+            function (column) {
+                return column.getField().getId().getId() === fieldId.getId();
+            }));
+            if (columns.length > 0) {
+                columns.forEach((/**
+                 * @param {?} column
+                 * @return {?}
+                 */
+                function (column) {
+                    column.setSortStatus(sortStatus);
+                }));
+            }
+        };
+        var this_1 = this;
+        try {
+            for (var sortParams_1 = __values(sortParams), sortParams_1_1 = sortParams_1.next(); !sortParams_1_1.done; sortParams_1_1 = sortParams_1.next()) {
+                var param = sortParams_1_1.value;
+                _loop_1(param);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (sortParams_1_1 && !sortParams_1_1.done && (_a = sortParams_1.return)) _a.call(sortParams_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return new CompositionChangeSortStatusAggregateEvent(this.getCompositionId());
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    ActiveColumnContainer.prototype.getCompositionId = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        return this.compositionId;
+    };
+    return ActiveColumnContainer;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnContainer.prototype.MIN_COLUMN_WIDTH;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnContainer.prototype.columns;
+    /**
+     * Columns taken from user config.
+     * This should not be modified and it should be used as a reference point.
+     * @type {?}
+     * @private
+     */
+    ActiveColumnContainer.prototype.columnWidthCollection;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnContainer.prototype.compositionId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ActiveColumnEntity = /** @class */ (function () {
+    function ActiveColumnEntity(columnId, columnField, header, view, config) {
+        this.sortStatus = SortStatus.NONE;
+        this.view = new ViewEntity(CellView.TEXT);
+        this.columnId = columnId;
+        this.columnField = columnField;
+        this.header = header;
+        this.view = view;
+        this.config = config;
+    }
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getConfig = /**
+     * @return {?}
+     */
+    function () {
+        return this.config;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getSortStatus = /**
+     * @return {?}
+     */
+    function () {
+        return this.sortStatus;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getField = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnField;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getWidth = /**
+     * @return {?}
+     */
+    function () {
+        return this.width;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getColumnId = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnId;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getHeader = /**
+     * @return {?}
+     */
+    function () {
+        return this.header;
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getDataType = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnField.getDataType();
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getCellView = /**
+     * @return {?}
+     */
+    function () {
+        return this.view.getCellView();
+    };
+    /**
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.getTemplateFunction = /**
+     * @return {?}
+     */
+    function () {
+        return this.view.getTemplateFunction();
+    };
+    /**
+     * @param {?} status
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.setSortStatus = /**
+     * @param {?} status
+     * @return {?}
+     */
+    function (status) {
+        this.sortStatus = status;
+    };
+    /**
+     * @param {?} width
+     * @return {?}
+     */
+    ActiveColumnEntity.prototype.setWidth = /**
+     * @param {?} width
+     * @return {?}
+     */
+    function (width) {
+        this.width = width;
+    };
+    return ActiveColumnEntity;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.columnId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.columnField;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.sortStatus;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.width;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.header;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.view;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveColumnEntity.prototype.config;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ActiveColumnEntityConverter = /** @class */ (function () {
+    function ActiveColumnEntityConverter() {
+    }
+    /**
+     * @param {?} entities
+     * @return {?}
+     */
+    ActiveColumnEntityConverter.prototype.convertMany = /**
+     * @param {?} entities
+     * @return {?}
+     */
+    function (entities) {
+        var _this = this;
+        return entities.map((/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return _this.convert(e); }));
+    };
+    /**
+     * @param {?} entity
+     * @return {?}
+     */
+    ActiveColumnEntityConverter.prototype.convert = /**
+     * @param {?} entity
+     * @return {?}
+     */
+    function (entity) {
+        return new ActiveColumnEntity(entity.getColumnId(), entity.getField(), entity.getHeader(), entity.getView(), entity.getColumnConfig());
+    };
+    return ActiveColumnEntityConverter;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var CompositionAggregate = /** @class */ (function (_super) {
     __extends(CompositionAggregate, _super);
     function CompositionAggregate(id, columnsParams, width, resizeWidth) {
@@ -5254,88 +7185,104 @@ var CompositionAggregate = /** @class */ (function (_super) {
          * This should not be modified and it should be used as a reference point.
          */
         _this.columnWidthCollection = new ColumnWidthCollection(_this.MIN_COLUMN_WIDTH);
-        /**
-         * Collection of columns which are used in the composition.
-         */
-        _this.activeColumns = [];
+        _this.allColumns = [];
         _this.resizeWidthEnabled = true;
         /**
          * Autowired
          */
         _this.columnFactory = new ColumnEntityFactory();
+        // = new ActiveColumnContainer();
+        _this.activeColumnEntityConverter = new ActiveColumnEntityConverter();
         /** @type {?} */
-        var columns = columnsParams.map((/**
+        var columnConfigs = columnsParams.map((/**
          * @param {?} param
          * @return {?}
          */
         function (param) { return param.getColumn(); }));
         _this.baseParams = columnsParams;
-        _this.baseColumns = columns;
+        _this.baseColumns = columnConfigs;
         _this.width = width;
-        _this.activeColumns = _this.columnFactory.create(columnsParams);
-        _this.columnWidthCollection = new ColumnWidthCollection(_this.MIN_COLUMN_WIDTH, columns, width);
+        _this.allColumns = _this.columnFactory.create(columnsParams);
+        // this.activeColumns = this.columnFactory.create(columnsParams);
+        /** @type {?} */
+        var activeColumns = _this.activeColumnEntityConverter.convertMany(_this.getEnabledColumns());
+        _this.activeColumnContainer = new ActiveColumnContainer(_this.getId(), activeColumns, width, columnConfigs);
+        // this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH, columnConfigs, width);
         if (resizeWidth !== undefined && resizeWidth !== null) {
             _this.resizeWidthEnabled = resizeWidth;
         }
         return _this;
     }
-    CompositionAggregate_1 = CompositionAggregate;
+    // REMOVE
+    // REMOVE
     /**
      * @return {?}
      */
-    CompositionAggregate.prototype.getColumns = /**
+    CompositionAggregate.prototype.getColumns = 
+    // REMOVE
+    /**
      * @return {?}
      */
     function () {
-        return this.activeColumns;
+        // return this.activeColumns;
+        return this.allColumns;
     };
+    // REMOVE
+    // REMOVE
     /**
      * @return {?}
      */
-    CompositionAggregate.prototype.getWidth = /**
+    CompositionAggregate.prototype.getActiveColumns = 
+    // REMOVE
+    /**
+     * @return {?}
+     */
+    function () {
+        return this.activeColumnContainer.getColumns();
+    };
+    // make private
+    // make private
+    /**
+     * @return {?}
+     */
+    CompositionAggregate.prototype.getWidth = 
+    // make private
+    /**
      * @return {?}
      */
     function () {
         if (this.resizeWidthEnabled) {
-            return this.containerWidth;
+            return this.containerInDOMWidth;
         }
         else {
             return this.width;
         }
     };
+    // REMOVE
+    // REMOVE
     /**
      * @return {?}
      */
-    CompositionAggregate.prototype.isResizeEnabled = /**
+    CompositionAggregate.prototype.isResizeEnabled = 
+    // REMOVE
+    /**
      * @return {?}
      */
     function () {
         return this.resizeWidthEnabled;
     };
+    // REMOVE
+    // REMOVE
     /**
      * @return {?}
      */
-    CompositionAggregate.prototype.isReady = /**
-     * @return {?}
-     */
-    function () {
-        return !!this.getWidth() && this.activeColumns.length > 0;
-    };
+    CompositionAggregate.prototype.isReady = 
+    // REMOVE
     /**
      * @return {?}
      */
-    CompositionAggregate.prototype.clone = /**
-     * @return {?}
-     */
     function () {
-        /** @type {?} */
-        var activeColumns = __spread(this.activeColumns);
-        /** @type {?} */
-        var composition = new CompositionAggregate_1(this.getId(), this.baseParams, this.width, this.resizeWidthEnabled);
-        composition.containerWidth = this.containerWidth;
-        composition.activeColumns = activeColumns;
-        composition.columnWidthCollection = this.columnWidthCollection;
-        return composition;
+        return !!this.getWidth() && this.getActiveColumns().length > 0;
     };
     /**
      * @param {?} params
@@ -5346,19 +7293,23 @@ var CompositionAggregate = /** @class */ (function (_super) {
      * @return {?}
      */
     function (params) {
+        this.allColumns = this.columnFactory.create(params);
         /** @type {?} */
-        var columns = params.map((/**
+        var columnConfigs = params.map((/**
          * @param {?} param
          * @return {?}
          */
         function (param) { return param.getColumn(); }));
-        this.columnWidthCollection.setColumns(columns);
+        this.columnWidthCollection.setColumns(columnConfigs);
         /** @type {?} */
         var newColumns = this.columnFactory.create(params);
         /** @type {?} */
         var widths = this.columnWidthCollection.getWidths();
         this.updateColumnsWidths(newColumns, widths);
         this.setActiveColumnsWithEvent(newColumns);
+        /** @type {?} */
+        var activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
+        this.activeColumnContainer.setColumns(activeColumns, columnConfigs);
     };
     /**
      * @param {?} containerWidth
@@ -5396,66 +7347,62 @@ var CompositionAggregate = /** @class */ (function (_super) {
     function (enabled) {
         this.setResizeWidthWithEvent(enabled);
     };
-    // TODO Aggregate events
-    // TODO Aggregate events
     /**
      * @param {?} sortParams
      * @return {?}
      */
-    CompositionAggregate.prototype.changeSort = 
-    // TODO Aggregate events
-    /**
+    CompositionAggregate.prototype.changeSort = /**
      * @param {?} sortParams
      * @return {?}
      */
     function (sortParams) {
-        var e_1, _a;
-        this.activeColumns.forEach((/**
+        this.addEvent(this.activeColumnContainer.changeSort(sortParams));
+    };
+    // DELEGATE
+    // DELEGATE
+    /**
+     * @param {?} columnId
+     * @param {?} enabled
+     * @return {?}
+     */
+    CompositionAggregate.prototype.enableColumn = 
+    // DELEGATE
+    /**
+     * @param {?} columnId
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (columnId, enabled) {
+        /** @type {?} */
+        var enabledIndex = -1;
+        this.allColumns.forEach((/**
          * @param {?} column
+         * @param {?} index
          * @return {?}
          */
-        function (column) {
-            column.setSortStatus(SortStatus.NONE);
+        function (column, index) {
+            if (column.getColumnId().getId() === columnId.getId()) {
+                /** @type {?} */
+                var prevState = column.isEnabled();
+                column.setEnabled(enabled);
+                if (prevState !== enabled) {
+                    enabledIndex = index;
+                }
+            }
         }));
-        var _loop_1 = function (param) {
-            /** @type {?} */
-            var fieldId = param.fieldId;
-            /** @type {?} */
-            var direction = param.direction;
-            /** @type {?} */
-            var sortStatus = direction ? SortStatus.ASC : SortStatus.DESC;
-            /** @type {?} */
-            var columns = this_1.activeColumns.filter((/**
-             * @param {?} column
-             * @return {?}
-             */
-            function (column) {
-                return column.getField().getId().getId() === fieldId.getId();
-            }));
-            if (columns.length > 0) {
-                columns.forEach((/**
-                 * @param {?} column
-                 * @return {?}
-                 */
-                function (column) {
-                    column.setSortStatus(sortStatus);
-                }));
+        if (enabledIndex > 0) {
+            if (enabled) {
+                // convert
+                /** @type {?} */
+                var columnToAdd = this.activeColumnEntityConverter.convert(this.allColumns[enabledIndex]);
+                this.activeColumnContainer.addColumn(columnToAdd, enabledIndex);
             }
-        };
-        var this_1 = this;
-        try {
-            for (var sortParams_1 = __values(sortParams), sortParams_1_1 = sortParams_1.next(); !sortParams_1_1.done; sortParams_1_1 = sortParams_1.next()) {
-                var param = sortParams_1_1.value;
-                _loop_1(param);
+            else {
+                this.activeColumnContainer.removeColumn(enabledIndex);
             }
         }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (sortParams_1_1 && !sortParams_1_1.done && (_a = sortParams_1.return)) _a.call(sortParams_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
+        this.recalculateColumns();
+        this.addEvent(new CompositionColumnSetEnabledAggregateEvent(this.getId(), this.getActiveColumns()));
     };
     /**
      * @private
@@ -5466,13 +7413,24 @@ var CompositionAggregate = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
+        /** @type {?} */
+        var activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
+        this.activeColumnContainer.setColumns(activeColumns, activeColumns.map((/**
+         * @param {?} c
+         * @return {?}
+         */
+        function (c) { return c.getConfig(); })));
         this.columnWidthCollection.setWidth(this.getWidth());
         /** @type {?} */
-        var newColumns = __spread(this.activeColumns);
-        /** @type {?} */
-        var widths = this.columnWidthCollection.getWidths();
-        this.updateColumnsWidths(newColumns, widths);
-        this.setActiveColumnsWithEvent(newColumns);
+        var newColumns = __spread(this.getActiveColumns());
+        // REFAC
+        // this.columnWidthCollection.setColumns(newColumns.map(c => c.getColumnConfig()));
+        //
+        // const widths = this.columnWidthCollection.getWidths();
+        //
+        // this.updateColumnsWidths(newColumns, widths);
+        //
+        // this.setActiveColumnsWithEvent(newColumns);
     };
     /**
      * @private
@@ -5507,7 +7465,8 @@ var CompositionAggregate = /** @class */ (function (_super) {
      * @return {?}
      */
     function (columns) {
-        this.activeColumns = columns;
+        // REFAC
+        // this.activeColumns = columns;
         this.addEvent(new ColumnsSetAggregateEvent(this.getId(), columns));
     };
     // TODO Refactor
@@ -5535,6 +7494,7 @@ var CompositionAggregate = /** @class */ (function (_super) {
         else {
             this.width = width;
         }
+        this.activeColumnContainer.setWidth(this.getWidth());
         this.addEvent(new CompositionWidthSetAggregateEvent(this.getId()));
     };
     // TODO Refactor
@@ -5557,11 +7517,12 @@ var CompositionAggregate = /** @class */ (function (_super) {
         /** @type {?} */
         var minWidth = calculator.calculateMinWidth(this.columnWidthCollection.getColumns());
         if (minWidth > containerWidth) {
-            this.containerWidth = minWidth;
+            this.containerInDOMWidth = minWidth;
         }
         else {
-            this.containerWidth = containerWidth;
+            this.containerInDOMWidth = containerWidth;
         }
+        this.activeColumnContainer.setWidth(this.getWidth());
         this.addEvent(new CompositionContainerWidthSetAggregateEvent(this.getId(), containerWidth));
     };
     /**
@@ -5576,16 +7537,35 @@ var CompositionAggregate = /** @class */ (function (_super) {
      */
     function (enabled) {
         this.resizeWidthEnabled = enabled;
+        this.activeColumnContainer.setWidth(this.getWidth());
         this.addEvent(new CompositionResizeWidthSetAggregateEvent(this.getId()));
     };
-    var CompositionAggregate_1;
+    // REMOVE -> move to allColumnsContainer
+    // REMOVE -> move to allColumnsContainer
+    /**
+     * @private
+     * @return {?}
+     */
+    CompositionAggregate.prototype.getEnabledColumns = 
+    // REMOVE -> move to allColumnsContainer
+    /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        return this.allColumns.filter((/**
+         * @param {?} c
+         * @return {?}
+         */
+        function (c) { return c.isEnabled(); }));
+    };
     CompositionAggregate.ctorParameters = function () { return [
         { type: AggregateId },
         { type: Array },
         { type: Number },
         { type: Boolean }
     ]; };
-    CompositionAggregate = CompositionAggregate_1 = __decorate([
+    CompositionAggregate = __decorate([
         RootAggregate,
         __metadata("design:paramtypes", [AggregateId,
             Array, Number, Boolean])
@@ -5606,12 +7586,12 @@ if (false) {
      */
     CompositionAggregate.prototype.columnWidthCollection;
     /**
-     * Collection of columns which are used in the composition.
      * @type {?}
      * @private
      */
-    CompositionAggregate.prototype.activeColumns;
+    CompositionAggregate.prototype.allColumns;
     /**
+     * Collection of columns which are used in the composition.
      * @type {?}
      * @private
      */
@@ -5628,11 +7608,10 @@ if (false) {
      */
     CompositionAggregate.prototype.width;
     /**
-     * DOM element's width
      * @type {?}
      * @private
      */
-    CompositionAggregate.prototype.containerWidth;
+    CompositionAggregate.prototype.containerInDOMWidth;
     /**
      * @type {?}
      * @private
@@ -5644,1281 +7623,17 @@ if (false) {
      * @private
      */
     CompositionAggregate.prototype.columnFactory;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionAggregate.prototype.activeColumnContainer;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionAggregate.prototype.activeColumnEntityConverter;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InMemoryCompositionStore = /** @class */ (function (_super) {
-    __extends(InMemoryCompositionStore, _super);
-    function InMemoryCompositionStore() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InMemoryCompositionStore.decorators = [
-        { type: Injectable }
-    ];
-    return InMemoryCompositionStore;
-}(InMemoryStore));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InMemoryCompositionAggregateStore = /** @class */ (function (_super) {
-    __extends(InMemoryCompositionAggregateStore, _super);
-    function InMemoryCompositionAggregateStore(inMemoryCompositionStore, aggregateStoreRegister) {
-        return _super.call(this, inMemoryCompositionStore, aggregateStoreRegister) || this;
-    }
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    InMemoryCompositionAggregateStore.prototype.getById = /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    function (aggregateId) {
-        /** @type {?} */
-        var composition = _super.prototype.getById.call(this, aggregateId);
-        if (composition) {
-            return composition.clone();
-        }
-        else {
-            return null;
-        }
-    };
-    InMemoryCompositionAggregateStore.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    InMemoryCompositionAggregateStore.ctorParameters = function () { return [
-        { type: InMemoryCompositionStore },
-        { type: AggregateStoreRegister }
-    ]; };
-    __decorate([
-        Override,
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [AggregateId]),
-        __metadata("design:returntype", CompositionAggregate)
-    ], InMemoryCompositionAggregateStore.prototype, "getById", null);
-    return InMemoryCompositionAggregateStore;
-}(InMemoryAggregateStore));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-CompositionAggregateRepository = /** @class */ (function () {
-    function CompositionAggregateRepository() {
-    }
-    return CompositionAggregateRepository;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} compositionId
-     * @return {?}
-     */
-    CompositionAggregateRepository.prototype.getById = function (compositionId) { };
-    /**
-     * @abstract
-     * @param {?} aggregate
-     * @return {?}
-     */
-    CompositionAggregateRepository.prototype.save = function (aggregate) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InMemoryCompositionAggregateRepository = /** @class */ (function (_super) {
-    __extends(InMemoryCompositionAggregateRepository, _super);
-    function InMemoryCompositionAggregateRepository(inMemoryCompositionAggregateStore) {
-        var _this = _super.call(this) || this;
-        _this.inMemoryCompositionAggregateStore = inMemoryCompositionAggregateStore;
-        return _this;
-    }
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    InMemoryCompositionAggregateRepository.prototype.getById = /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    function (aggregateId) {
-        return this.inMemoryCompositionAggregateStore.getById(aggregateId);
-    };
-    /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    InMemoryCompositionAggregateRepository.prototype.save = /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    function (aggregate) {
-        this.inMemoryCompositionAggregateStore.save(aggregate);
-    };
-    InMemoryCompositionAggregateRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    InMemoryCompositionAggregateRepository.ctorParameters = function () { return [
-        { type: InMemoryCompositionAggregateStore }
-    ]; };
-    return InMemoryCompositionAggregateRepository;
-}(CompositionAggregateRepository));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionAggregateRepository.prototype.inMemoryCompositionAggregateStore;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- * @template T
- */
-var  /**
- * @abstract
- * @template T
- */
-TemplateFactory = /** @class */ (function () {
-    function TemplateFactory(templatesComponentDefinition, componentFactoryResolver) {
-        this.templatesComponentDefinition = templatesComponentDefinition;
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.templates = new Map();
-        this.templatesComponent = null;
-        this.createTemplatesComponent();
-    }
-    /**
-     * @return {?}
-     */
-    TemplateFactory.prototype.getTemplates = /**
-     * @return {?}
-     */
-    function () {
-        return this.templates;
-    };
-    /**
-     * @return {?}
-     */
-    TemplateFactory.prototype.destroy = /**
-     * @return {?}
-     */
-    function () {
-        if (this.templatesComponent) {
-            this.templatesComponent.destroy();
-            this.templatesComponent = null;
-        }
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    TemplateFactory.prototype.createTemplatesComponent = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        /** @type {?} */
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.templatesComponentDefinition);
-        /** @type {?} */
-        var injector = Injector.create({ providers: [] });
-        this.templatesComponent = componentFactory.create(injector);
-        this.generateMap();
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    TemplateFactory.prototype.generateMap = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        this.generateMapKeys()
-            .forEach((/**
-         * @param {?} type
-         * @return {?}
-         */
-        function (type) {
-            _this.findAndSetTemplate(type);
-        }));
-    };
-    ;
-    /**
-     * @private
-     * @param {?} dt
-     * @return {?}
-     */
-    TemplateFactory.prototype.findAndSetTemplate = /**
-     * @private
-     * @param {?} dt
-     * @return {?}
-     */
-    function (dt) {
-        /** @type {?} */
-        var template = this.templatesComponent.instance.getTemplate(dt);
-        this.templates.set(dt, template);
-    };
-    return TemplateFactory;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    TemplateFactory.prototype.templates;
-    /**
-     * @type {?}
-     * @private
-     */
-    TemplateFactory.prototype.templatesComponent;
-    /**
-     * @type {?}
-     * @private
-     */
-    TemplateFactory.prototype.templatesComponentDefinition;
-    /**
-     * @type {?}
-     * @private
-     */
-    TemplateFactory.prototype.componentFactoryResolver;
-    /* Skipping unhandled member: ;*/
-    /**
-     * @abstract
-     * @return {?}
-     */
-    TemplateFactory.prototype.generateMapKeys = function () { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ViewTemplateFactory = /** @class */ (function (_super) {
-    __extends(ViewTemplateFactory, _super);
-    function ViewTemplateFactory(componentFactoryResolver) {
-        return _super.call(this, ViewTemplatesComponent, componentFactoryResolver) || this;
-    }
-    /**
-     * @return {?}
-     */
-    ViewTemplateFactory.prototype.generateMapKeys = /**
-     * @return {?}
-     */
-    function () {
-        return Object.keys(CellView)
-            .map((/**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) { return CellView[key]; }));
-    };
-    ViewTemplateFactory.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    ViewTemplateFactory.ctorParameters = function () { return [
-        { type: ComponentFactoryResolver }
-    ]; };
-    return ViewTemplateFactory;
-}(TemplateFactory));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ViewTemplateRepository = /** @class */ (function () {
-    function ViewTemplateRepository(columnTemplateFactory) {
-        this.columnTemplateFactory = columnTemplateFactory;
-    }
-    /**
-     * @param {?} view
-     * @return {?}
-     */
-    ViewTemplateRepository.prototype.findTemplate = /**
-     * @param {?} view
-     * @return {?}
-     */
-    function (view) {
-        /** @type {?} */
-        var typeToTemplate = this.columnTemplateFactory.getTemplates();
-        return typeToTemplate.get(view);
-    };
-    ViewTemplateRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    ViewTemplateRepository.ctorParameters = function () { return [
-        { type: ViewTemplateFactory }
-    ]; };
-    return ViewTemplateRepository;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ViewTemplateRepository.prototype.columnTemplateFactory;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var EditTemplateFactory = /** @class */ (function (_super) {
-    __extends(EditTemplateFactory, _super);
-    function EditTemplateFactory(componentFactoryResolver) {
-        return _super.call(this, EditTemplatesComponent, componentFactoryResolver) || this;
-    }
-    /**
-     * @return {?}
-     */
-    EditTemplateFactory.prototype.generateMapKeys = /**
-     * @return {?}
-     */
-    function () {
-        return Object.keys(DataType)
-            .map((/**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) { return DataType[key]; }));
-    };
-    EditTemplateFactory.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    EditTemplateFactory.ctorParameters = function () { return [
-        { type: ComponentFactoryResolver }
-    ]; };
-    return EditTemplateFactory;
-}(TemplateFactory));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var EditTemplateRepository = /** @class */ (function () {
-    function EditTemplateRepository(editTemplateFactory) {
-        this.editTemplateFactory = editTemplateFactory;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    EditTemplateRepository.prototype.findTemplate = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        /** @type {?} */
-        var typeToTemplate = this.editTemplateFactory.getTemplates();
-        return typeToTemplate.get(dataType);
-    };
-    EditTemplateRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    EditTemplateRepository.ctorParameters = function () { return [
-        { type: EditTemplateFactory }
-    ]; };
-    return EditTemplateRepository;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    EditTemplateRepository.prototype.editTemplateFactory;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CellTemplateWithContext = /** @class */ (function () {
-    function CellTemplateWithContext(viewTemplate, editTemplate, context, width, fieldId, sortStatus) {
-        this.viewTemplate = viewTemplate;
-        this.editTemplate = editTemplate;
-        this.context = context;
-        this.width = width;
-        this.fieldId = fieldId;
-        this.sortStatus = sortStatus;
-    }
-    /**
-     * @return {?}
-     */
-    CellTemplateWithContext.prototype.getFieldId = /**
-     * @return {?}
-     */
-    function () {
-        return this.fieldId;
-    };
-    /**
-     * @return {?}
-     */
-    CellTemplateWithContext.prototype.getSortStatus = /**
-     * @return {?}
-     */
-    function () {
-        return this.sortStatus;
-    };
-    /**
-     * @return {?}
-     */
-    CellTemplateWithContext.prototype.isAscSort = /**
-     * @return {?}
-     */
-    function () {
-        return this.sortStatus === SortStatus.ASC;
-    };
-    /**
-     * @return {?}
-     */
-    CellTemplateWithContext.prototype.isDescSort = /**
-     * @return {?}
-     */
-    function () {
-        return this.sortStatus === SortStatus.DESC;
-    };
-    /**
-     * @return {?}
-     */
-    CellTemplateWithContext.prototype.isNoSort = /**
-     * @return {?}
-     */
-    function () {
-        return this.sortStatus === SortStatus.NONE;
-    };
-    return CellTemplateWithContext;
-}());
-if (false) {
-    /** @type {?} */
-    CellTemplateWithContext.prototype.viewTemplate;
-    /** @type {?} */
-    CellTemplateWithContext.prototype.editTemplate;
-    /** @type {?} */
-    CellTemplateWithContext.prototype.context;
-    /** @type {?} */
-    CellTemplateWithContext.prototype.width;
-    /**
-     * @type {?}
-     * @private
-     */
-    CellTemplateWithContext.prototype.fieldId;
-    /**
-     * @type {?}
-     * @private
-     */
-    CellTemplateWithContext.prototype.sortStatus;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CellContext = /** @class */ (function () {
-    function CellContext(element) {
-        this.element = element;
-    }
-    return CellContext;
-}());
-if (false) {
-    /** @type {?} */
-    CellContext.prototype.element;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var FieldId = /** @class */ (function () {
-    function FieldId(id) {
-        this.id = id;
-    }
-    /**
-     * @return {?}
-     */
-    FieldId.prototype.getId = /**
-     * @return {?}
-     */
-    function () {
-        return this.id;
-    };
-    /**
-     * @return {?}
-     */
-    FieldId.prototype.toString = /**
-     * @return {?}
-     */
-    function () {
-        return this.id;
-    };
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    FieldId.prototype.equals = /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    function (fieldId) {
-        return fieldId.getId() === this.id;
-    };
-    return FieldId;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FieldId.prototype.id;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CellTemplateWithAccessor = /** @class */ (function () {
-    function CellTemplateWithAccessor(template, editTemplate, editable, accessor, width, columnFieldId) {
-        this.template = template;
-        this.editTemplate = editTemplate;
-        this.editable = editable;
-        this.accessor = accessor;
-        this.width = width;
-        this.columnFieldId = columnFieldId;
-    }
-    return CellTemplateWithAccessor;
-}());
-if (false) {
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.template;
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.editTemplate;
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.editable;
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.accessor;
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.width;
-    /** @type {?} */
-    CellTemplateWithAccessor.prototype.columnFieldId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ColumnDefinition = /** @class */ (function () {
-    function ColumnDefinition(field, header, sort) {
-        if (sort === void 0) { sort = SortStatus.NONE; }
-        this.field = field;
-        this.header = header;
-        this.sortStatus = sort;
-    }
-    /**
-     * @param {?} header
-     * @return {?}
-     */
-    ColumnDefinition.prototype.setHeader = /**
-     * @param {?} header
-     * @return {?}
-     */
-    function (header) {
-        this.header = header;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    ColumnDefinition.prototype.setField = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        this.field = field;
-    };
-    /**
-     * @param {?} index
-     * @return {?}
-     */
-    ColumnDefinition.prototype.getHeaderCellTemplateWithContext = /**
-     * @param {?} index
-     * @return {?}
-     */
-    function (index) {
-        /** @type {?} */
-        var header = this.header;
-        /** @type {?} */
-        var headerCellContext;
-        if (typeof header === 'string') {
-            headerCellContext = new CellContext(header);
-        }
-        else if (typeof header === 'function') {
-            headerCellContext = new CellContext(header(index));
-        }
-        /** @type {?} */
-        var fieldId = new FieldId(this.field.getId().getId());
-        return new CellTemplateWithContext(this.headerTemplate, this.editTemplate, headerCellContext, this.width, fieldId, this.sortStatus);
-    };
-    /**
-     * @return {?}
-     */
-    ColumnDefinition.prototype.getContentCellTemplateWithAccessor = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        /** @type {?} */
-        var accessor = (/**
-         * @param {?} entity
-         * @return {?}
-         */
-        function (entity) {
-            return _this.templateFunction(_this.field.getAccessor()(entity));
-        });
-        return new CellTemplateWithAccessor(this.cellTemplate, this.editTemplate, true, accessor, this.width, this.field.getId());
-    };
-    return ColumnDefinition;
-}());
-if (false) {
-    /** @type {?} */
-    ColumnDefinition.prototype.cellTemplate;
-    /** @type {?} */
-    ColumnDefinition.prototype.headerTemplate;
-    /** @type {?} */
-    ColumnDefinition.prototype.editTemplate;
-    /** @type {?} */
-    ColumnDefinition.prototype.width;
-    /** @type {?} */
-    ColumnDefinition.prototype.templateFunction;
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnDefinition.prototype.field;
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnDefinition.prototype.sortStatus;
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnDefinition.prototype.header;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ColumnDefinitionFactory = /** @class */ (function () {
-    function ColumnDefinitionFactory(viewTemplateRepository, editTemplateRepository) {
-        this.viewTemplateRepository = viewTemplateRepository;
-        this.editTemplateRepository = editTemplateRepository;
-    }
-    /**
-     * @param {?} column
-     * @return {?}
-     */
-    ColumnDefinitionFactory.prototype.create = /**
-     * @param {?} column
-     * @return {?}
-     */
-    function (column) {
-        /** @type {?} */
-        var columnDef = new ColumnDefinition(column.getField(), column.getHeader(), column.sortStatus);
-        columnDef.cellTemplate = this.findViewTemplate(column.getCellView());
-        columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
-        columnDef.templateFunction = column.getTemplateFunction();
-        columnDef.editTemplate = this.findEditTemplate(column.getDataType());
-        columnDef.width = +column.width;
-        return columnDef;
-    };
-    /**
-     * @param {?} columns
-     * @return {?}
-     */
-    ColumnDefinitionFactory.prototype.createColumns = /**
-     * @param {?} columns
-     * @return {?}
-     */
-    function (columns) {
-        var _this = this;
-        return columns.map((/**
-         * @param {?} column
-         * @return {?}
-         */
-        function (column) { return _this.create(column); }));
-    };
-    /**
-     * @private
-     * @param {?} view
-     * @return {?}
-     */
-    ColumnDefinitionFactory.prototype.findViewTemplate = /**
-     * @private
-     * @param {?} view
-     * @return {?}
-     */
-    function (view) {
-        if (view === CellView.FUNCTION) {
-            return this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
-        }
-        else {
-            return this.viewTemplateRepository.findTemplate(view);
-        }
-    };
-    /**
-     * @private
-     * @param {?} dataType
-     * @return {?}
-     */
-    ColumnDefinitionFactory.prototype.findEditTemplate = /**
-     * @private
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return this.editTemplateRepository.findTemplate(dataType);
-    };
-    ColumnDefinitionFactory.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    ColumnDefinitionFactory.ctorParameters = function () { return [
-        { type: ViewTemplateRepository },
-        { type: EditTemplateRepository }
-    ]; };
-    return ColumnDefinitionFactory;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnDefinitionFactory.prototype.viewTemplateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    ColumnDefinitionFactory.prototype.editTemplateRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var Composition = /** @class */ (function (_super) {
-    __extends(Composition, _super);
-    function Composition(uid, ready, columns, width, resizeWidth) {
-        var _this = _super.call(this, uid) || this;
-        _this.ready = ready;
-        _this.columns = columns;
-        _this.width = width;
-        _this.resizeWidth = resizeWidth;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    Composition.prototype.getColumns = /**
-     * @return {?}
-     */
-    function () {
-        return this.columns;
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.getHeaderColumns = /**
-     * @return {?}
-     */
-    function () {
-        return this.columns
-            .map((/**
-         * @param {?} column
-         * @param {?} index
-         * @return {?}
-         */
-        function (column, index) { return column.getHeaderCellTemplateWithContext(index); }));
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.getTemplateColumns = /**
-     * @return {?}
-     */
-    function () {
-        return this.columns
-            .map((/**
-         * @param {?} column
-         * @return {?}
-         */
-        function (column) { return column.getContentCellTemplateWithAccessor(); }));
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.getWidth = /**
-     * @return {?}
-     */
-    function () {
-        return this.width;
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.getContainerWidth = /**
-     * @return {?}
-     */
-    function () {
-        return +this.width - 2;
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.isReady = /**
-     * @return {?}
-     */
-    function () {
-        return this.ready;
-    };
-    /**
-     * @return {?}
-     */
-    Composition.prototype.isResizeWidthEnabled = /**
-     * @return {?}
-     */
-    function () {
-        return this.resizeWidth;
-    };
-    /**
-     * @param {?} composition
-     * @return {?}
-     */
-    Composition.prototype.equals = /**
-     * @param {?} composition
-     * @return {?}
-     */
-    function (composition) {
-        return this.width === composition.width &&
-            this.resizeWidth === composition.resizeWidth &&
-            this.equalsByColumns(composition.columns);
-    };
-    /**
-     * @param {?} columns
-     * @return {?}
-     */
-    Composition.prototype.equalsByColumns = /**
-     * @param {?} columns
-     * @return {?}
-     */
-    function (columns) {
-        return this.columns.length === columns.length;
-    };
-    return Composition;
-}(ReadModel));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Composition.prototype.ready;
-    /**
-     * @type {?}
-     * @private
-     */
-    Composition.prototype.columns;
-    /**
-     * @type {?}
-     * @private
-     */
-    Composition.prototype.width;
-    /**
-     * @type {?}
-     * @private
-     */
-    Composition.prototype.resizeWidth;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionConverter = /** @class */ (function () {
-    function CompositionConverter(columnDefinitionFactory) {
-        this.columnDefinitionFactory = columnDefinitionFactory;
-    }
-    /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    CompositionConverter.prototype.convert = /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    function (aggregate) {
-        /** @type {?} */
-        var ready = aggregate.isReady();
-        /** @type {?} */
-        var columns = aggregate.getColumns();
-        /** @type {?} */
-        var columnDefs = this.convertColumnsToColumnDef(columns);
-        /** @type {?} */
-        var width = aggregate.getWidth();
-        /** @type {?} */
-        var resizeWidth = aggregate.isResizeEnabled();
-        /** @type {?} */
-        var id = aggregate.getId();
-        return new Composition(id, ready, columnDefs, width, resizeWidth);
-    };
-    /**
-     * @private
-     * @param {?} columns
-     * @return {?}
-     */
-    CompositionConverter.prototype.convertColumnsToColumnDef = /**
-     * @private
-     * @param {?} columns
-     * @return {?}
-     */
-    function (columns) {
-        var _this = this;
-        /** @type {?} */
-        var columnDefs = [];
-        columns.forEach((/**
-         * @param {?} column
-         * @return {?}
-         */
-        function (column) {
-            /** @type {?} */
-            var columnDef = _this.columnDefinitionFactory.create(column);
-            columnDefs.push(columnDef);
-        }));
-        return columnDefs;
-    };
-    CompositionConverter.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    CompositionConverter.ctorParameters = function () { return [
-        { type: ColumnDefinitionFactory }
-    ]; };
-    return CompositionConverter;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    CompositionConverter.prototype.columnDefinitionFactory;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InMemoryCompositionReadStore = /** @class */ (function (_super) {
-    __extends(InMemoryCompositionReadStore, _super);
-    function InMemoryCompositionReadStore(inMemoryCompositionStore, compositionConverter) {
-        var _this = _super.call(this, inMemoryCompositionStore) || this;
-        _this.inMemoryCompositionStore = inMemoryCompositionStore;
-        _this.compositionConverter = compositionConverter;
-        return _this;
-    }
-    /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    InMemoryCompositionReadStore.prototype.toReadModel = /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    function (aggregate) {
-        return this.compositionConverter.convert(aggregate);
-    };
-    InMemoryCompositionReadStore.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    InMemoryCompositionReadStore.ctorParameters = function () { return [
-        { type: InMemoryCompositionStore },
-        { type: CompositionConverter }
-    ]; };
-    return InMemoryCompositionReadStore;
-}(InMemoryReadModelStore));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionReadStore.prototype.inMemoryCompositionStore;
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionReadStore.prototype.compositionConverter;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-CompositionRepository = /** @class */ (function () {
-    function CompositionRepository() {
-    }
-    return CompositionRepository;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} compositionId
-     * @return {?}
-     */
-    CompositionRepository.prototype.on = function (compositionId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionInitedEvent = /** @class */ (function (_super) {
-    __extends(CompositionInitedEvent, _super);
-    function CompositionInitedEvent(aggregateId) {
-        return _super.call(this, aggregateId, 'CompositionInitedEvent') || this;
-    }
-    return CompositionInitedEvent;
-}(DomainEvent));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionResizeWidthSetEvent = /** @class */ (function (_super) {
-    __extends(CompositionResizeWidthSetEvent, _super);
-    function CompositionResizeWidthSetEvent(aggregateId) {
-        return _super.call(this, aggregateId, 'CompositionResizeWidthSetEvent') || this;
-    }
-    return CompositionResizeWidthSetEvent;
-}(DomainEvent));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ColumnsSetEvent = /** @class */ (function (_super) {
-    __extends(ColumnsSetEvent, _super);
-    function ColumnsSetEvent(aggregateId) {
-        return _super.call(this, aggregateId, 'ColumnsSetEvent') || this;
-    }
-    return ColumnsSetEvent;
-}(DomainEvent));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionContainerWidthSetEvent = /** @class */ (function (_super) {
-    __extends(CompositionContainerWidthSetEvent, _super);
-    function CompositionContainerWidthSetEvent(aggregateId, payload) {
-        return _super.call(this, aggregateId, 'CompositionContainerWidthSetEvent', payload) || this;
-    }
-    return CompositionContainerWidthSetEvent;
-}(DomainEvent));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionWidthSetEvent = /** @class */ (function (_super) {
-    __extends(CompositionWidthSetEvent, _super);
-    function CompositionWidthSetEvent(aggregateId) {
-        return _super.call(this, aggregateId, 'CompositionWidthSetEvent') || this;
-    }
-    return CompositionWidthSetEvent;
-}(DomainEvent));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var CompositionChangeSortStatusEvent = /** @class */ (function (_super) {
-    __extends(CompositionChangeSortStatusEvent, _super);
-    function CompositionChangeSortStatusEvent(aggregateId, columns) {
-        var _this = _super.call(this, aggregateId, 'CompositionChangeSortStatusEvent') || this;
-        _this.columns = columns;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    CompositionChangeSortStatusEvent.prototype.getCompositionId = /**
-     * @return {?}
-     */
-    function () {
-        return this.aggregateId;
-    };
-    /**
-     * @return {?}
-     */
-    CompositionChangeSortStatusEvent.prototype.getColumns = /**
-     * @return {?}
-     */
-    function () {
-        return this.columns;
-    };
-    return CompositionChangeSortStatusEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    CompositionChangeSortStatusEvent.prototype.columns;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InMemoryCompositionRepository = /** @class */ (function (_super) {
-    __extends(InMemoryCompositionRepository, _super);
-    function InMemoryCompositionRepository(domainEventBus, inMemoryCompositionQueryStore) {
-        var _this = _super.call(this) || this;
-        _this.domainEventBus = domainEventBus;
-        _this.inMemoryCompositionQueryStore = inMemoryCompositionQueryStore;
-        _this.composition$ = new ReplaySubject(1);
-        _this.unsubscribe$ = new Subject();
-        _this.domainEventBus
-            .ofEvent(CompositionInitedEvent, CompositionResizeWidthSetEvent, ColumnsSetEvent, CompositionContainerWidthSetEvent, CompositionWidthSetEvent, (/** @type {?} */ (CompositionChangeSortStatusEvent)))
-            .pipe(takeUntil(_this.unsubscribe$))
-            .subscribe((/**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            /** @type {?} */
-            var aggregateId = event.aggregateId;
-            /** @type {?} */
-            var composition = _this.inMemoryCompositionQueryStore.getById(aggregateId);
-            _this.composition$.next(composition);
-        }));
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    InMemoryCompositionRepository.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-    };
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    InMemoryCompositionRepository.prototype.on = /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    function (aggregateId) {
-        return this.composition$
-            .asObservable()
-            .pipe(filter((/**
-         * @param {?} composition
-         * @return {?}
-         */
-        function (composition) { return composition.getId().toString() === aggregateId.toString(); })), filter((/**
-         * @param {?} composition
-         * @return {?}
-         */
-        function (composition) { return composition.isReady(); })));
-    };
-    InMemoryCompositionRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    InMemoryCompositionRepository.ctorParameters = function () { return [
-        { type: DomainEventBus },
-        { type: InMemoryCompositionReadStore }
-    ]; };
-    return InMemoryCompositionRepository;
-}(CompositionRepository));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionRepository.prototype.composition$;
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionRepository.prototype.unsubscribe$;
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionRepository.prototype.domainEventBus;
-    /**
-     * @type {?}
-     * @private
-     */
-    InMemoryCompositionRepository.prototype.inMemoryCompositionQueryStore;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var inMemoryCompositionCommandProviders = [
-    InMemoryCompositionAggregateStore,
-    {
-        provide: CompositionAggregateRepository,
-        useClass: InMemoryCompositionAggregateRepository
-    },
-];
-/** @type {?} */
-var inMemoryCompositionQueryProviders = [
-    InMemoryCompositionReadStore,
-    {
-        provide: CompositionRepository,
-        useClass: InMemoryCompositionRepository
-    }
-];
-/** @type {?} */
-var inMemoryCompositionProviders = [
-    InMemoryCompositionStore
-];
 
 /**
  * @fileoverview added by tsickle
@@ -7104,6 +7819,54 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var CompositionSetColumnEnabledCommand = /** @class */ (function (_super) {
+    __extends(CompositionSetColumnEnabledCommand, _super);
+    function CompositionSetColumnEnabledCommand(compositionId, columnId, enabled) {
+        var _this = _super.call(this, compositionId, 'CompositionSetColumnEnabledCommand') || this;
+        _this.compositionId = compositionId;
+        _this.columnId = columnId;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    CompositionSetColumnEnabledCommand.prototype.getColumnId = /**
+     * @return {?}
+     */
+    function () {
+        return this.columnId;
+    };
+    /**
+     * @return {?}
+     */
+    CompositionSetColumnEnabledCommand.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return CompositionSetColumnEnabledCommand;
+}(Command));
+if (false) {
+    /** @type {?} */
+    CompositionSetColumnEnabledCommand.prototype.compositionId;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionSetColumnEnabledCommand.prototype.columnId;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionSetColumnEnabledCommand.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var CompositionDispatcher = /** @class */ (function () {
     function CompositionDispatcher(commandDispatcher) {
         this.commandDispatcher = commandDispatcher;
@@ -7184,6 +7947,21 @@ var CompositionDispatcher = /** @class */ (function () {
     function (compositionId, params) {
         this.commandDispatcher.dispatch(new CompositionChangeSortStatusCommand(compositionId, params));
     };
+    /**
+     * @param {?} compositionId
+     * @param {?} columnId
+     * @param {?} enabled
+     * @return {?}
+     */
+    CompositionDispatcher.prototype.setColumnEnabled = /**
+     * @param {?} compositionId
+     * @param {?} columnId
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (compositionId, columnId, enabled) {
+        this.commandDispatcher.dispatch(new CompositionSetColumnEnabledCommand(compositionId, columnId, enabled));
+    };
     CompositionDispatcher.decorators = [
         { type: Injectable }
     ];
@@ -7262,6 +8040,7 @@ var CompositionAggregateEvents = {
     ColumnsSetAggregateEvent: 'ColumnsSetAggregateEvent',
     CompositionContainerWidthSetAggregateEvent: 'CompositionContainerWidthSetAggregateEvent',
     CompositionWidthSetAggregateEvent: 'CompositionWidthSetAggregateEvent',
+    CompositionColumnSetEnabledAggregateEvent: 'CompositionColumnSetEnabledAggregateEvent',
 };
 
 /**
@@ -7322,13 +8101,15 @@ var CompositionEventConverter = /** @class */ (function () {
             case CompositionAggregateEvents.CompositionResizeWidthSetAggregateEvent:
                 return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
             case CompositionAggregateEvents.ColumnsSetAggregateEvent:
-                return new ColumnsSetEvent(aggregateEvent.getAggregateId());
+                return new CompositionColumnsSetEvent(aggregateEvent.getAggregateId());
             case CompositionAggregateEvents.CompositionContainerWidthSetAggregateEvent:
                 /** @type {?} */
                 var payload = ((/** @type {?} */ (aggregateEvent))).containerWidth;
                 return new CompositionContainerWidthSetEvent(aggregateEvent.getAggregateId(), payload);
             case CompositionAggregateEvents.CompositionWidthSetAggregateEvent:
                 return new CompositionWidthSetEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.CompositionColumnSetEnabledAggregateEvent:
+                return new CompositionColumnSetEnabledEvent(aggregateEvent.getAggregateId());
             default:
                 break;
         }
@@ -7609,11 +8390,10 @@ if (false) {
  */
 var CompositionChangeSortStatusCommandHandler = /** @class */ (function (_super) {
     __extends(CompositionChangeSortStatusCommandHandler, _super);
-    function CompositionChangeSortStatusCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
+    function CompositionChangeSortStatusCommandHandler(compositionAggregateRepository, domainEventPublisher) {
         var _this = _super.call(this, CompositionChangeSortStatusCommand) || this;
         _this.compositionAggregateRepository = compositionAggregateRepository;
         _this.domainEventPublisher = domainEventPublisher;
-        _this.compositionEventConverter = compositionEventConverter;
         return _this;
     }
     /**
@@ -7631,10 +8411,11 @@ var CompositionChangeSortStatusCommandHandler = /** @class */ (function (_super)
         var sortParams = command.getSortParams();
         /** @type {?} */
         var composition = this.compositionAggregateRepository.getById(compositionId);
-        composition.changeSort(sortParams);
+        /** @type {?} */
+        var aggregateEvent = composition.changeSort(sortParams);
         this.compositionAggregateRepository.save(composition);
         /** @type {?} */
-        var columns = composition.getColumns();
+        var columns = composition.getActiveColumns();
         this.domainEventPublisher.publish(new CompositionChangeSortStatusEvent(compositionId, columns));
     };
     CompositionChangeSortStatusCommandHandler.decorators = [
@@ -7643,8 +8424,7 @@ var CompositionChangeSortStatusCommandHandler = /** @class */ (function (_super)
     /** @nocollapse */
     CompositionChangeSortStatusCommandHandler.ctorParameters = function () { return [
         { type: CompositionAggregateRepository },
-        { type: DomainEventPublisher },
-        { type: CompositionEventConverter }
+        { type: DomainEventPublisher }
     ]; };
     return CompositionChangeSortStatusCommandHandler;
 }(CommandHandler));
@@ -7659,11 +8439,6 @@ if (false) {
      * @protected
      */
     CompositionChangeSortStatusCommandHandler.prototype.domainEventPublisher;
-    /**
-     * @type {?}
-     * @private
-     */
-    CompositionChangeSortStatusCommandHandler.prototype.compositionEventConverter;
 }
 
 /**
@@ -7780,7 +8555,7 @@ var CompositionEventService = /** @class */ (function () {
      */
     function (compositionId) {
         return this.domainEventBus
-            .ofEvent(ColumnsSetEvent)
+            .ofEvent(CompositionColumnsSetEvent)
             .pipe(filter((/**
          * @param {?} event
          * @return {?}
@@ -7797,7 +8572,7 @@ var CompositionEventService = /** @class */ (function () {
      */
     function (compositionId) {
         return this.domainEventBus
-            .ofEvent(ColumnsSetEvent)
+            .ofEvent(CompositionColumnsSetEvent)
             .pipe(filter((/**
          * @param {?} event
          * @return {?}
@@ -7927,7 +8702,7 @@ var CompositionReadModelService = /** @class */ (function () {
          * @param {?} composition
          * @return {?}
          */
-        function (composition) { return composition.getColumns().map((/**
+        function (composition) { return composition.getAllColumns().map((/**
          * @param {?} c
          * @return {?}
          */
@@ -7938,6 +8713,24 @@ var CompositionReadModelService = /** @class */ (function () {
      * @return {?}
      */
     CompositionReadModelService.prototype.onHeaderColumns = /**
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(map((/**
+         * @param {?} composition
+         * @return {?}
+         */
+        function (composition) { return composition.getActiveHeaderColumns(); })));
+    };
+    /**
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    CompositionReadModelService.prototype.onAllColumns = /**
      * @param {?=} compositionId
      * @return {?}
      */
@@ -7969,7 +8762,7 @@ var CompositionReadModelService = /** @class */ (function () {
          * @param {?} composition
          * @return {?}
          */
-        function (composition) { return composition.getHeaderColumns(); })), map((/**
+        function (composition) { return composition.getActiveHeaderColumns(); })), map((/**
          * @param {?} columns
          * @return {?}
          */
@@ -8119,6 +8912,34 @@ var CompositionCommandService = /** @class */ (function () {
     function (enabled, compositionId) {
         if (compositionId === void 0) { compositionId = globalCompositionId; }
         this.compositionDispatcher.setResizeWidth(compositionId, enabled);
+    };
+    /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    CompositionCommandService.prototype.enableColumn = /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (columnId, compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        this.compositionDispatcher.setColumnEnabled(compositionId, columnId, true);
+    };
+    /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    CompositionCommandService.prototype.disableColumn = /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (columnId, compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        this.compositionDispatcher.setColumnEnabled(compositionId, columnId, false);
     };
     CompositionCommandService.decorators = [
         { type: Injectable }
@@ -8538,6 +9359,90 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var CompositionSetColumnEnabledCommandHandler = /** @class */ (function (_super) {
+    __extends(CompositionSetColumnEnabledCommandHandler, _super);
+    function CompositionSetColumnEnabledCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
+        var _this = _super.call(this, CompositionSetColumnEnabledCommand) || this;
+        _this.compositionAggregateRepository = compositionAggregateRepository;
+        _this.domainEventPublisher = domainEventPublisher;
+        _this.compositionEventConverter = compositionEventConverter;
+        return _this;
+    }
+    /**
+     * @param {?} command
+     * @return {?}
+     */
+    CompositionSetColumnEnabledCommandHandler.prototype.handle = /**
+     * @param {?} command
+     * @return {?}
+     */
+    function (command) {
+        /** @type {?} */
+        var aggregateId = command.getAggregateId();
+        /** @type {?} */
+        var columnId = command.getColumnId();
+        /** @type {?} */
+        var enabled = command.isEnabled();
+        /** @type {?} */
+        var composition = this.compositionAggregateRepository.getById(aggregateId);
+        composition.enableColumn(columnId, enabled);
+        this.compositionAggregateRepository.save(composition);
+        this.publishEvents(composition, command);
+    };
+    /**
+     * @private
+     * @param {?} composition
+     * @param {?} command
+     * @return {?}
+     */
+    CompositionSetColumnEnabledCommandHandler.prototype.publishEvents = /**
+     * @private
+     * @param {?} composition
+     * @param {?} command
+     * @return {?}
+     */
+    function (composition, command) {
+        /** @type {?} */
+        var events = (/** @type {?} */ (composition.getEvents()));
+        /** @type {?} */
+        var domainEvents = this.compositionEventConverter.convert(events);
+        if (domainEvents && domainEvents.length > 0) {
+            this.domainEventPublisher.publish(domainEvents);
+        }
+    };
+    CompositionSetColumnEnabledCommandHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    CompositionSetColumnEnabledCommandHandler.ctorParameters = function () { return [
+        { type: CompositionAggregateRepository },
+        { type: DomainEventPublisher },
+        { type: CompositionEventConverter }
+    ]; };
+    return CompositionSetColumnEnabledCommandHandler;
+}(CommandHandler));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionSetColumnEnabledCommandHandler.prototype.compositionAggregateRepository;
+    /**
+     * @type {?}
+     * @protected
+     */
+    CompositionSetColumnEnabledCommandHandler.prototype.domainEventPublisher;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionSetColumnEnabledCommandHandler.prototype.compositionEventConverter;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var commandProviders = __spread(inMemoryCompositionCommandProviders, [
     CompositionDispatcher,
@@ -8562,6 +9467,10 @@ var commandProviders = __spread(inMemoryCompositionCommandProviders, [
     }, {
         provide: COMMAND_HANDLERS,
         useClass: SetCompositionContainerWidthCommandHandler,
+        multi: true
+    }, {
+        provide: COMMAND_HANDLERS,
+        useClass: CompositionSetColumnEnabledCommandHandler,
         multi: true
     }, {
         provide: COMMAND_HANDLERS,
@@ -12497,6 +13406,34 @@ var LocalCompositionCommandService = /** @class */ (function (_super) {
         if (compositionId === void 0) { compositionId = globalCompositionId; }
         _super.prototype.setResizeWidth.call(this, enabled, this.compositionId);
     };
+    /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    LocalCompositionCommandService.prototype.enableColumn = /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (columnId, compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        _super.prototype.enableColumn.call(this, columnId, this.compositionId);
+    };
+    /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    LocalCompositionCommandService.prototype.disableColumn = /**
+     * @param {?} columnId
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (columnId, compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        _super.prototype.disableColumn.call(this, columnId, this.compositionId);
+    };
     LocalCompositionCommandService.decorators = [
         { type: Injectable }
     ];
@@ -12535,6 +13472,18 @@ var LocalCompositionCommandService = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [Boolean, CompositionId]),
         __metadata("design:returntype", void 0)
     ], LocalCompositionCommandService.prototype, "setResizeWidth", null);
+    __decorate([
+        Override,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [ColumnId, CompositionId]),
+        __metadata("design:returntype", void 0)
+    ], LocalCompositionCommandService.prototype, "enableColumn", null);
+    __decorate([
+        Override,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [ColumnId, CompositionId]),
+        __metadata("design:returntype", void 0)
+    ], LocalCompositionCommandService.prototype, "disableColumn", null);
     return LocalCompositionCommandService;
 }(CompositionCommandService));
 if (false) {
@@ -12564,6 +13513,18 @@ var LocalCompositionReadModelService = /** @class */ (function (_super) {
      */
     function () {
         return _super.prototype.onHeaderColumns.call(this, this.compositionId);
+    };
+    /**
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    LocalCompositionReadModelService.prototype.onAllColumns = /**
+     * @param {?=} compositionId
+     * @return {?}
+     */
+    function (compositionId) {
+        if (compositionId === void 0) { compositionId = globalCompositionId; }
+        return _super.prototype.onAllColumns.call(this, this.compositionId);
     };
     /**
      * @param {?} fieldId
@@ -12638,6 +13599,12 @@ var LocalCompositionReadModelService = /** @class */ (function (_super) {
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Observable)
     ], LocalCompositionReadModelService.prototype, "onHeaderColumns", null);
+    __decorate([
+        Override,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [CompositionId]),
+        __metadata("design:returntype", Observable)
+    ], LocalCompositionReadModelService.prototype, "onAllColumns", null);
     __decorate([
         Override,
         __metadata("design:type", Function),
@@ -14679,7 +15646,7 @@ var StructureComponent = /** @class */ (function (_super) {
                             useExisting: StructureComponent
                         }
                     ]),
-                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", "gui-structure input{font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:32px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;cursor:pointer;line-height:1em;overflow:hidden;padding:0 16px 0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon{display:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC);height:16px;width:16px;margin-right:8px;opacity:.8}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon:hover{box-shadow:0 0 2px 0 #999;opacity:1}.gui-header .gui-header-cell .gui-header-menu .gui-sort{display:none;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon{display:block}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom:1px solid #d6d6d6}gui-structure-search-bar{display:block;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;height:30px;position:relative}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrdM9SwNBFIXhVTF2kkbSSiCF2GkRlBR+kMJGrO1t7WxsLEQQC8HCThQRLETIT4gEtNQ6aCUKYgpBLAIW+p47E5LsJuugHniYuTB7d2aZjWKZwyWe8OV94BQFpGYE23hBFTOYQB4rOIEabqFvdqEGC1b1zjSa6NloFmqwaFV6itCOEker4MhNg3IMHa8rr1h206Bo7ZubtqPtjbtpULRWz4xZRQb9OOrHkLTWZvxoTR5RsiosU7jHs1U++7hz0x8zjBvsWNWRLD6xblV6NtBAzqpYdN31sfasSkYvOoBeltj1gB8V3Uj9N3rgHA94hy5YGfqfatjEFebRN6s4xDV0/gssQc2VNWjX+sf+lH9vdDZk5e9yi3oURZPfGPU3vvdwgY8AAAAASUVORK5CYII=);width:17px;height:17px}gui-structure-search-bar form input{border:1px solid #d6d6d6;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{height:30px;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f6f7f8}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:24px 8px}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;line-height:30px;border-top:1px solid #d6d6d6}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div{color:#333;cursor:pointer}gui-structure-info-panel div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:160px;padding:16px;font-size:16px;font-family:Roboto,sans-serif}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0;color:#333}.gui-structure-info-modal p:nth-child(2){margin:0 0 12px}.gui-structure-info-modal p:nth-child(5){margin:8px 0 0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;height:30px;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab hr{margin:0}.gui-header-menu-tab .gui-header-text-bold{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#f6f7f8}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#f6f7f8}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{color:#333;background:#fff}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#f6f7f8}.gui-header-menu-tab .gui-header-menu-item{cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#f6f7f8}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#000;box-shadow:0 1px 0 0 #000}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell{display:inline-block}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#ccc}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABHOSURBVHhe7V1rUxRXGhaYQa4BBkRuCoiIgCCaaDaagFmNifESMUIwmzUfkjVVu2Xtp/1s5U/k635Y4zVWUpWqVGUDctWNibuxoqtZTZUCAZyBGbkIyHDb5zn2YTsGZtjYM8PMOU9VV58+fbrp8z7P+5739IVZpqGhoaGhoaGhoR6ijLUyOHHihA2raIfDIfoeFxc309vbO/3hhx/OcFs1KCGA2dnZqPPnz0fn5eWllJWVbf3xxx+fR10m90VFRbkKCwuv3L179x+ff/75iGpCUEIAHR0dySUlJVu7u7t3xMTEbH706FElBJCEXez/GKLADWx/C4E09fT0XKmqqhoVByqAaGMdsaD39/f3p4PY2unp6Xe8Xu+Ldrs9J8ZmS7XZbCmxsbFZqHthamrqaFdX15GHDx9mGYcqgYgXwJUrV5K3b9++ZXJy8jmQnAtBPIPqaCiD4uAQwCiQBHFkY/u54uLibbdu3UoWByuAiBeAy+VKdTqdu+DtRVhiyPfMzAyJFwuIF2sMDdFAYV9f305Eggzj8IhHxAsA4T1hbGysBESnYjMaRP9MACyzDohCOQnt12NhlFACES8AeD1Jj2cuwG0j7Is1YS5DAFGIAstRx6miEoh4AUhIj5cCIMxikPtVgzIC0JgfWgCKQwtAcWgBKA4tAMWhBaA4tAAUhxaA4tACUBxaAIpDC0BxaAEoDi0AxaEFoDi0ABSHFoDi0AJQHFoAikMLQHFoASgOLQDFoQWgOLQAFIcWgOLQAlAcWgCKQwtAcWgBKA4tAMWhBaA4tAAUhxaA4tACUBxaAIpDC0BxaAEoDi0AxaEFoDi0ABSHFoDi0AJQHFoAikMLQHFoASgOLQDFoQWgOLQAFIcWgOLQAlAcWgCKQwtAcQTkR3JOnDgRXV5ebuvu7o6x2WwzHo9nMlQ/yfrZZ5+V5eXl/RXFZ7GInwdbCLOzszNRUVHf379///19+/b906gOKpqbm2337t2zwWZRSUlJUx988MGksSsgsFQAJB6raFx0bnR09ItOp3PD8uXLB7Ozs1suXbp0bc+ePV4Y+PFPdAUJ4SKAc+fOxYyOjtrr6+urfvrpp5cePXrkWLFixc24uLjWxsbGHtRPG00thWUCIPnvvfdeNojf5na7X5yent48MzOzFgYdjYmJ+RfW3+bm5rZfv3792o4dOyaCJYSlLgASD5KX19TUVMHzt8Nmm3EdVVin4Vo6EUG/S09Pb4IjXYIgeo3DLINlOcDx48dJ/isg/12o92104Fl0ZCXWBVNTU695vd4/9vT0/MXhcByH0jcx1BmHKguQH7t3795N+fn5fwL5f56cnPwDHGcPliLspu02wpb1AwMDx7DeG4jfNbZEACA6qre3t7S/v7+WP8QMj09HdTyWKJT5c63JWFZDCDsnJibeR4g7sn379qqrV6/axQkUhEF+JWxRB+LfxfIK7FiAXSkwmR3k83cMlyMCpMJmv4FtDyOnWv/4aOtgiQCQsOQhRD2PTpQjCqSRc2OX+FFGLkA01inoVBEiwKE7d+68XVpauvnGjRuxoqFCMMjf2NnZWT8yMlILsotRzZAvHIL2Qlmuo2JjY5PgPGWwazXarmIbq2CJAKDidSC1GuRnkXz+IDMhO2EG6mJQt3p8fPwNhL23CgsLN6oUCaTno+9vwgb7YYt82O1nTiAFwEXaEnZdMTw8XH3z5s1yUWERLBEAOpIEZWbhghMRBX5B+pPAfhva50M0BxDW6hEJKmkYY3fE4osvvlj++uuvb0Cfa8fGxvbDq9eg2m+/aVOA7VbA1g5uWAVLBIDstC8hIeE2iB3GMgtFG3vmB5WNNszICyCC2q6urrd3795dFckiIPnbtm2rQCJcj2ROhH14dSxt4QtoQ1sxEgwlJyf/kJWV1WfssgSWCAAXeBsX2o7ifX/km4HOx8AQBTDIAUy96hAaKyJxOCD51dXVZehjLcb8/ejzGthpUf1kNKVNYat+RII2JIX/NnZZAksEgHF8EAr9xm63X8OFiihg7FoQbEL1UwTYLIRhDjESYDjYFEmR4PLly/Hw/Ep6Pvp4EP0uBqH8iXphg0WYit4/iCT7e6yvZ2dnu4xqS2CJAAhMVX7ARbbiIhcVohja4AmiDIMwEuTTO2Cow4wE9BqxM4xB8gsKCsoxj69FArcftiH5wvPZd9qAQvAFtJtFGxc8vyMxMfEHo9oyWCaATZs2DWLVER8f/zVUPYDFp7S5m6GNa6PM2UHR0NDQISRJR2pqajaGcyS4du1aIsjfgBznMPpUi76VgHC7qb+L8n6SHxcX9w2EcHXt2rWWej9hmQAIdOpeTk7OJxBBEzYHqN7Hex4TTlDxVD+8QRiB4DbLWHivgMMBZweHmTGHowjo+ZmZmaXI9A8ODg5yzC9Gv23sI/tK0A60AbdZJmgjlrlGPVazLtiyHUn2pw6H4z+ikcWwVADr1q0bxoW3YZw6CdV+iaoBdPIXIqAhpBC45rbsPEWAJkXMCXjHELODsIoEhueXw/PrHjx4cAh9WofqaEms7Lssy75L2xhlEfZhw6a0tLTTSP5a4Vj9ooHFsFQABNQ6govvwAWfYQdQ5cZ8d25qSNX7G/uwT0aCN1wuV124RALD89fD82vh+ftQVYx+8Fb4gp19IhdaBltxox+2a8O5PkG5PS8vzy0aBACWC4BAuBpiJMCcVUQCdMzNkMZ9tAU6Kdr5Ao6JxjFrmRP09fU1MBI0NzfHGbuXHDB9TaDnj4+P0/OZ7a/DQs9fkHzsF7aQTdDfGQiC5F9MT08/g/O0BcrzJQIiAIKRABxSvafRoUZ0dk4EBDvvCzQKjo9CuzXwplrMod9Colm5FGcHFCaI4phf6/F4DqCqBAu4/N8zkflg1gbJR18HMJNqhuefQ1X7+vXrBx7vDRwCJgAiIyNjGCFcRAIkM4wEIidgx304hgDsYRYBc4JaRIIjmFNvZKg1moUc9PySkpJyXF89PLYWVcLzed3sgz+wj7CJ9Pwm5E+nICLmUQEnnwioAIjS0tIRt9vdtnr16lNQdxMM42GH/UUAtJuLEvQkGLMQc+kDzAkKCwsrl8JwQCHC88vg+YcwVPHBzjoQKsjntbMPvsA2tAWOccfGxjaD9LNIfNthMw/qfBvIIgRcAARF0Nvb244OnqYIQOgDVPvsoDQejWQYk0YthKEPwtsOl5eXl4UyMST5mJeLhA/XdADXxke6IuHj9RL+BADMoI0HNmlh2Hc6ne1VVVVDwSKfCIoACIoAIbJl1apVf7Pb7Y3opMcY98R+rs1lPgGjAdFODAcs22w2RoI1FAHyggY+Uw+FCBh9ysrKypmg4jrewDWth6htWMQsh+D1mp+MPtk/9h1Fev5F5kkDAwOtEPWDYJJPBE0ABO8TQOWtEMHHEEETOjtIQ5g9RZZJvDSYuYz9bCBE0NXV1cApYjAfIDEJRTJagaGIYf8gqkpwfTZJMK+VMJdln1jHMtbT2PcANmjJzc09gwQ3JOQTQRUAwUhAtTMSIPTxZpHH6/UKEdBgnBbB0+eMRkhDEixj4X2CoocPH1IER3DOoLxeRs/nI10MZ3Ugn57PbF+82yiv0bg+UWYf2Bc51WOEQFRgiGDYp+efwblaQkU+EXQBEDISQP0nYYivYKgHMOacARhG6S2+AIPxPoF4nwCJUwNEUBlIERieX9nf3/8mxn2O+Uz4fP499kEOCQSjHY4ZQthvYbYP8psrKioGQ0U+ERIBEIwEmNa1IRLwZtHfYSw3jCWmiLCTXwHQu+BRjAQFSAoPdnd3NyApqwrEO4b0/C1btlSCMD7YoeevwXWKe/u+wD6wL+wTs31UeUB+E8d89L31woULQU345kPIBEBs2LDhIYgTkQAi+IqzA4qAhqXRfIGGJdCWTxH5KJn3CRowRawAYZa9cs4kk56PYYueT/LX4m/apVB9gW3YF7SbZt8w5jejr/T8Fnp+qL6WMiOkAiAw7RllJKAI4B1fwmjiZpG/CCAFwnYoi9fLhoeHD3Z2djZs3bp1kxXDAcM+Zxr0fAjsAIgsIPny2uQ1LAS2I/koepALiGwfw5UgH8eG1PMlQi4AgpFAisDICTz+FEDPIgGGAFglXi8z3jEUOcHTRAKcN6qmpqYChB02PL8If0e8wycvjUmdH8ibPBel5wd7nu8PfnsQLHz00Ufeo0eP9sFQw8juE2HwbFTHw1iCXWl0SQD2izIXlikI4z5BCrLubJBmY3adkJAQw69qcGgOFn+C5x/hY9ivGhsbh3G+homJiTpEpDUI3yK34N+SxKNeis8sRFkWns/pLrN9Cpxj/ssvv7xkyCd8x7AQAElcEhLDaoTy38H4r8LgDhIrSafxnxQAtwlTeRqCuJecnHwRixNefAjbJdjHO3WijfkY03E47cxdiPBTDCcxEOKrqFuLZe7tXbaTZXkNvCY51aMQUea0dgCe35yTk3MKf79tqXm+xJITAHHr1q3klStX1sBw70AEu2DodOl1NLosSxLnA/ZNkYTExET34OBgAYyfgIU36s2Ez5V5XqxZOZGUlNSJv5sIIleg/YJPH3kswUjA8xIG+Z74+PiLmOqF9CbPYrAkBUDcvn37mYyMjBrMEhgJXoEBHTQyiSJYliTOB4NUNp7EsQzfc32VZEnIcxqYxfYkRMZGNkmyL/B443rEI114fhsTPpAf0ps8i8GSFQDBSJCZmVmNSPB7iGAnqtJhTDEckBhf5HAf2/F+PMb0uRsyJMt8HMuSQILRBTnDMozdc+dYCNwnrwXruYQP0essrrclPz+fD72WNJa0AIi7d++mIpxWu1yuBhCzE4ZmWIatF3fpJJe3YyXxXM8HGVG4lmJZzN/gMTgnw74LM5gORK0z2OQ9/qA90n0a+MuKQw5+dIKpXWtWVtbHyOj/DqPylXNheF+QbUg+CTW3J7HmRYJt2HYxOQbB/SCbdy8HINIWeP5pko/w70bdkiefWPICIIqKioZGRkY6+D4B35pB1f/1npyZ5PkgiTa383cMgeN419LFMd/hcJxHAsh7GR5jd1jAfy+XEJgTpKenVzudTg4Hr4GkDGPXgoBHzk0d59sm0eYsntuc0skosBBIPlb9zPZJPs7bSs9/vDd8EBYRQIIPkBgJMLfmm0V80dQpiSRILkESZZkwt+E+8zbLrJOQ21zzHHLfE2WegGO+8HxMGwP66nYgEVYRQII3izAcVPPhz9jYGG/WZMokjpDebCb610AKQYrCJIIe5CNtaWlpnyQmJrampKSEJflEWEUACT47cLvdHZginkVOcBEEuRDG5z4+MXvr00AKQJa54O/wfyG0knx6fjiTT4RlBJDgzaLU1NSXMEV8a3x8fDfIygRJc30yFX8VJPkm0PPp8WeSk5Mvhzv5RFhGAAm+WTQ4OMi3jc8iE29B1c8+PnlaUEAmETgRbRj2L0QK+URYC4CgCDActDMx5BQRwwC/OxBvFlkBCIDgE8J2zEDEt3qRQj4R1kOAGQMDA8+A9Jd6enrewXCwC+V0iOGp+iezfU71+KEmv9IN12x/IUSMAAiPx5Pi9Xp3OJ3OIyBrFzzXASH8qj7iWM4j+a1eK2/voswoE9APNUOBsB8CzOBXySQMOcFJu/HxiQjgxlSOoB5440fqwlyW7bDwwU4/znWR5A8PDwf8K91QIaIEQCBJG7TZbO28L48hoBFVbhA6l8nJqSJJl3f7WDaJgJ7vxjn4fX7QvtINFSJOAAQjAWcFGK9PgmTxVTJFQJL5eBieLTyd9wtYZhQgSD7bgvwmkH8mmF/phgoRKQCCIsDsoDU/P/8URMDP0MRXyRTBxMSEIJ8LywT3YeVBWyZ6ZzG9bC0N4le6oUJEJYHzQd427u7u5r+w/y2IToGXx6EsxI8yijNjIH4YC4eOs6H6UDMUiHgBEHyKiIjwQldX1y5sPgfS+Q+XE7CQ4HEsNzA0fIdo0YKocVkV8gklBECcO3cuBgSnFhcXv3Dnzp1tU1NTfO2cL4y4ioqKvr5582bH/fv3h+rq6vgOoRLkE8oIQIJCGB0dtXu93mhM7/iW8Ax/nOnYsWNTKhGvoaGhoaGhoaGhoaGhoaGhoaEUli37Lx5gaRc7ou1CAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-dark .gui-structure-info-panel p{color:#ccc}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover,.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}"]
+                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", "gui-structure input{font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:32px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;cursor:pointer;line-height:1em;overflow:hidden;padding:0 16px 0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon{display:none;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC);height:16px;width:16px;opacity:.8}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon:hover{box-shadow:0 0 2px 0 #999;opacity:1}.gui-header .gui-header-cell:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon{display:block}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom:1px solid #d6d6d6}gui-structure-search-bar{display:block;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;height:30px;position:relative}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrdM9SwNBFIXhVTF2kkbSSiCF2GkRlBR+kMJGrO1t7WxsLEQQC8HCThQRLETIT4gEtNQ6aCUKYgpBLAIW+p47E5LsJuugHniYuTB7d2aZjWKZwyWe8OV94BQFpGYE23hBFTOYQB4rOIEabqFvdqEGC1b1zjSa6NloFmqwaFV6itCOEker4MhNg3IMHa8rr1h206Bo7ZubtqPtjbtpULRWz4xZRQb9OOrHkLTWZvxoTR5RsiosU7jHs1U++7hz0x8zjBvsWNWRLD6xblV6NtBAzqpYdN31sfasSkYvOoBeltj1gB8V3Uj9N3rgHA94hy5YGfqfatjEFebRN6s4xDV0/gssQc2VNWjX+sf+lH9vdDZk5e9yi3oURZPfGPU3vvdwgY8AAAAASUVORK5CYII=);width:17px;height:17px}gui-structure-search-bar form input{border:1px solid #d6d6d6;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{height:30px;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f6f7f8}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:24px 8px}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;line-height:30px;border-top:1px solid #d6d6d6}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div{color:#333;cursor:pointer}gui-structure-info-panel div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;width:160px;padding:16px;font-size:16px;font-family:Roboto,sans-serif}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0;color:#333}.gui-structure-info-modal p:nth-child(2){margin:0 0 12px}.gui-structure-info-modal p:nth-child(5){margin:8px 0 0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;height:30px;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab hr{margin:0}.gui-header-menu-tab .gui-header-text-bold{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#f6f7f8}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#f6f7f8}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#333;background:#fff}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#f6f7f8}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort{display:inline-block;height:16px;width:16px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#f6f7f8}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}.gui-structure-menu-column-manager{color:#333;display:block}.gui-structure-menu-column-manager>div:hover{background:#f6f7f8}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#000;box-shadow:0 1px 0 0 #000}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell{display:inline-block}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#ccc}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-info-panel p{color:#ccc}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover,.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}"]
                 }] }
     ];
     /** @nocollapse */
@@ -14880,7 +15847,7 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
     };
     StructureColumnConfigComponent.decorators = [
         { type: Component, args: [{
-                    template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\t\t\t\t\t\t<div >\n\t\t\t\t\t\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t\t\t\t\t\t  [dropdownText]=\"'Column Sort'\"\n\t\t\t\t\t\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isAscSort()\">\n\t\t\t\t\t\t\t\t\tAscending\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isDescSort()\">\n\t\t\t\t\t\t\t\t\tDescending\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isNoneSort()\">\n\t\t\t\t\t\t\t\t\tTurned off\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t</gui-dropdown>\n\t\t\t\t\t\t</div>\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Autosize This Column</div>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Autosize All Column</div>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Reset Columns</div>-->\n<!--\t\t\t\t\t\t<hr>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">GenericUI is Great</div>-->\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilter()\">\n\t\t\t\t\t\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>\n\t\t\t\t\t</gui-tab-item>\n\t\t\t\t\t\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumns()\">\n\t\t\t\t\t\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getColumnMenu()}}</div>\n\t\t\t\t\t</gui-tab-item>\n\t\t\t\t\t\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t"
+                    template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\t\t\t\t\t\t<div >\n\t\t\t\t\t\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t\t\t\t\t\t  [dropdownText]=\"'Column Sort'\"\n\t\t\t\t\t\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isAscSort()\">\n\t\t\t\t\t\t\t\t\t<div class=\"gui-sort-title\">Ascending<span class=\"gui-sort gui-sort-asc\"></span></div>\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isDescSort()\">\n\t\t\t\t\t\t\t\t\t<div class=\"gui-sort-title\">Descending<span class=\"gui-sort gui-sort-desc\"></span></div>\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t\t\t\t\t\t   [class.gui-header-text-bold]=\"isNoneSort()\">\n\t\t\t\t\t\t\t\t\tTurned off\n\t\t\t\t\t\t\t\t</gui-dropdown-item>\n\n\t\t\t\t\t\t\t</gui-dropdown>\n\t\t\t\t\t\t</div>\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Autosize This Column</div>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Autosize All Column</div>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">Reset Columns</div>-->\n<!--\t\t\t\t\t\t<hr>-->\n<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">GenericUI is Great</div>-->\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilter()\">\n\t\t\t\t\t\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>\n\t\t\t\t\t</gui-tab-item>\n\t\t\t\t\t\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumns()\">\n\t\t\t\t\t\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t\t\t<gui-structure-menu-column-manager>\n\t\t\t\t\t\t</gui-structure-menu-column-manager>\n\t\t\t\t\t\t\n\t\t\t\t\t</gui-tab-item>\n\t\t\t\t\t\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t"
                 }] }
     ];
     /** @nocollapse */
@@ -15042,7 +16009,7 @@ var StructureHeaderColumnsComponent = /** @class */ (function () {
     StructureHeaderColumnsComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-header-columns',
-                    template: "<div *ngFor=\"let column of columns\"\n\t [style.width.px]=\"column.width\"\n\t (click)=\"toggleSort(column)\"\n\t class=\"gui-header-cell\">\n\n\t<span>\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\t</span>\n\n\t<div class=\"gui-header-menu\">\n\n\t\t<gui-structure-column-config-trigger\n\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc':  isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n</div>\n",
+                    template: "<div *ngFor=\"let column of columns\"\n\t [style.width.px]=\"column.width\"\n\t (click)=\"toggleSort(column)\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc':  isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     providers: [
@@ -21160,7 +22127,7 @@ var SchemaAggregate = /** @class */ (function () {
         this.verticalGrid = true;
         this.columnHeader = new ColumnHeaderEntity(true, false);
         this.theme = SchemaTheme.FABRIC;
-        this.rowColoring = SchemaRowColoring.EVEN;
+        this.rowColoring = SchemaRowColoring.ODD;
         this.calculateContainerHeight();
     }
     /**
@@ -26071,6 +27038,109 @@ var StructureEmptySourceComponent = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var StructureMenuColumnManagerComponent = /** @class */ (function (_super) {
+    __extends(StructureMenuColumnManagerComponent, _super);
+    function StructureMenuColumnManagerComponent(changeDetectorRef, compositionCommandService, compositionReadModelService) {
+        var _this = _super.call(this) || this;
+        _this.changeDetectorRef = changeDetectorRef;
+        _this.compositionCommandService = compositionCommandService;
+        _this.compositionReadModelService = compositionReadModelService;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureMenuColumnManagerComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.compositionReadModelService
+            .onAllColumns()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} columns
+         * @return {?}
+         */
+        function (columns) {
+            _this.columns = columns;
+            _this.enabledColumnsCount = _this.columns
+                .map((/**
+             * @param {?} c
+             * @return {?}
+             */
+            function (c) { return +c.isEnabled(); }))
+                .reduce((/**
+             * @param {?} accumulator
+             * @param {?} currentValue
+             * @return {?}
+             */
+            function (accumulator, currentValue) { return accumulator + currentValue; }));
+            _this.changeDetectorRef.detectChanges();
+        }));
+    };
+    /**
+     * @param {?} column
+     * @return {?}
+     */
+    StructureMenuColumnManagerComponent.prototype.toggleColumn = /**
+     * @param {?} column
+     * @return {?}
+     */
+    function (column) {
+        event.stopPropagation();
+        if (column.isEnabled()) {
+            this.compositionCommandService.disableColumn(column.getColumnId());
+        }
+        else {
+            this.compositionCommandService.enableColumn(column.getColumnId());
+        }
+    };
+    StructureMenuColumnManagerComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-menu-column-manager',
+                    template: "\n\n\t\t<div *ngFor=\"let column of columns\">\n\n\t\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t\t  [disabled]=\"enabledColumnsCount === 1 && column.isEnabled()\"\n\t\t\t\t\t\t  (click)=\"toggleColumn(column)\">\n\n\t\t\t\t<ng-container\n\t\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t\t</ng-container>\n\t\t\t</gui-checkbox>\n\t\t\t\n\t\t</div>\n\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-structure-menu-column-manager]': 'true'
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    StructureMenuColumnManagerComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef },
+        { type: CompositionCommandService },
+        { type: CompositionReadModelService }
+    ]; };
+    return StructureMenuColumnManagerComponent;
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    StructureMenuColumnManagerComponent.prototype.columns;
+    /** @type {?} */
+    StructureMenuColumnManagerComponent.prototype.enabledColumnsCount;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureMenuColumnManagerComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureMenuColumnManagerComponent.prototype.compositionCommandService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureMenuColumnManagerComponent.prototype.compositionReadModelService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @return {?}
  */
@@ -26105,7 +27175,8 @@ var declarations = [
     StructureBlueprintComponent,
     StructureAggregationPanelComponent,
     StructureColumnConfigComponent,
-    StructureColumnConfigTriggerComponent
+    StructureColumnConfigTriggerComponent,
+    StructureMenuColumnManagerComponent
 ];
 /** @type {?} */
 var entryComponents = [
@@ -26264,5 +27335,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiRowColoring, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureTopPanelModule as ɵba, StructureTopPanelComponent as ɵbb, StructureSearchComponent as ɵbc, StructureCommandService as ɵbd, StructureFilterCommandService as ɵbe, SourceDispatcher as ɵbf, CompositionModule as ɵbg, compositionProviders as ɵbh, inMemoryCompositionCommandProviders as ɵbi, inMemoryCompositionQueryProviders as ɵbj, inMemoryCompositionProviders as ɵbk, InMemoryCompositionStore as ɵbl, InMemoryCompositionAggregateStore as ɵbm, Override as ɵbn, CompositionAggregateRepository as ɵbo, InMemoryCompositionAggregateRepository as ɵbp, CompositionDispatcher as ɵbq, CompositionAggregateFactory as ɵbr, InitCompositionCommandHandler as ɵbs, SetColumnsCommandHandler as ɵbt, CompositionEventConverter as ɵbu, SetCompositionWidthCommandHandler as ɵbv, ColumnEntityFactory as ɵbw, SetCompositionResizeWidthCommandHandler as ɵbx, SetCompositionContainerWidthCommandHandler as ɵby, CompositionChangeSortStatusCommandHandler as ɵbz, StructureModule as ɵc, ColumnFieldFactory as ɵca, InMemoryCompositionReadStore as ɵcb, CompositionConverter as ɵcc, ColumnDefinitionFactory as ɵcd, ViewTemplateRepository as ɵce, ViewTemplateFactory as ɵcf, TemplateFactory as ɵcg, EditTemplateRepository as ɵch, EditTemplateFactory as ɵci, CompositionRepository as ɵcj, InMemoryCompositionRepository as ɵck, CompositionFieldsInitedEventHandler as ɵcl, CompositionChangeSortStatusEventHandler as ɵcm, CompositionCommandService as ɵcn, CompositionReadModelService as ɵco, CompositionEventService as ɵcp, ViewTemplatesComponent as ɵcq, EditTemplatesComponent as ɵcr, StringEditTemplateComponent as ɵcs, InputEditTemplateComponent as ɵct, EditCommunicationComponent as ɵcu, NumberEditTemplateComponent as ɵcv, BooleanEditTemplateComponent as ɵcw, ColumnQueryComponent as ɵcx, FunctionViewComponent as ɵcy, LoggerModule as ɵcz, fabricImports as ɵd, Logger as ɵda, ConsoleLogger as ɵdb, structureIdFactory as ɵdc, compositionIdFactory as ɵdd, structureComponentSelfProviders as ɵde, StructureComponent as ɵdf, StructureGateway as ɵdg, StructureId as ɵdh, CompositionId as ɵdi, PagingEventService as ɵdj, SourceCommandService as ɵdk, StructureFieldUiRepository as ɵdl, StructureFieldUiArchive as ɵdm, SourceEventService as ɵdn, SchemaCommandService as ɵdo, SchemaDispatcher as ɵdp, SchemaReadModelService as ɵdq, SchemaRepository as ɵdr, FormationEventService as ɵds, StructureReadModelService as ɵdt, StructureEditModeArchive as ɵdu, Archive as ɵdv, StructureCellEditArchive as ɵdw, StructureInfoPanelEnabledArchive as ɵdx, StructureAggregationConfigService as ɵdy, StructureAggregationPanelConfigConverter as ɵdz, StructurePagingModule as ɵe, StructureAggregationArchive as ɵea, StructureAggregationCommandService as ɵeb, StructureCellEditStore as ɵec, StructureColumnMenuConfigArchive as ɵed, StructureIdGenerator as ɵee, localProviders as ɵef, LocalPagingCommandService as ɵeg, PagingAggregateFactory as ɵeh, LocalPagingReadModelService as ɵei, LocalSchemaCommandService as ɵej, LocalSchemaReadModelService as ɵek, FormationCommandService as ɵel, FormationDispatcher as ɵem, LocalFormationCommandService as ɵen, FormationReadModelService as ɵeo, FormationRepository as ɵep, LocalFormationReadModelService as ɵeq, LocalStructureCommandService as ɵer, LocalStructureReadModelService as ɵes, LocalSourceCommandService as ɵet, LocalSourceReadModelService as ɵeu, LocalCompositionCommandService as ɵev, LocalCompositionReadModelService as ɵew, SchemaCssClassManager as ɵex, structureComponentToken as ɵey, StructureDefinition as ɵez, StructurePagingComponent as ɵf, StructurePagingDefinition as ɵfa, StructureHeaderComponent as ɵfb, StructureHeaderColumnsComponent as ɵfc, StructureColumnConfigService as ɵfd, StructureFilterReadModelRepository as ɵfe, StructureFilterRepository as ɵff, StructureQuickFilterRepository as ɵfg, StructureHeaderFiltersComponent as ɵfh, StructureHeaderFilterComponent as ɵfi, StructureContentComponent as ɵfj, StructureRowComponent as ɵfk, StructureCellComponent as ɵfl, StructureContainerComponent as ɵfm, structureParentComponent as ɵfn, StructureEmptySourceComponent as ɵfo, StructureQuickFiltersComponent as ɵfp, StructureBlueprintComponent as ɵfq, STRUCTURE_CSS_CLASS_NAME as ɵfr, StructureSearchReadModelRepository as ɵfs, StructureSearchingRepository as ɵft, StructureAggregationPanelComponent as ɵfu, StructureAggregationUiEventsRepository as ɵfv, StructureColumnConfigComponent as ɵfw, CellTemplateWithContext as ɵfx, CellContext as ɵfy, FieldId as ɵfz, SmartComponent as ɵg, SortStatus as ɵga, StructureColumnConfigTriggerComponent as ɵgb, ItemEntityFactory as ɵgc, structureProviders as ɵgd, inMemoryStructureCommandProviders as ɵge, inMemoryStructureReadProviders as ɵgf, inMemoryStructureProviders as ɵgg, InMemoryStructureStore as ɵgh, InMemoryStructureAggregateStore as ɵgi, StructureAggregateRepository as ɵgj, InMemoryStructureAggregateRepository as ɵgk, InitStructureCommandHandler as ɵgl, StructureAggregateFactory as ɵgm, SourceManagerFactory as ɵgn, FormationAggregateFactory as ɵgo, VerticalFormationFactory as ɵgp, AggregationManagerFactory as ɵgq, AGGREGATION_CALCULATORS as ɵgr, AggregationCalculator as ɵgs, FilterManagerFactory as ɵgt, SearchManagerFactory as ɵgu, FieldCollectionFactory as ɵgv, FieldFactory as ɵgw, FieldIdGenerator as ɵgx, SchemaAggregateFactory as ɵgy, SetVerticalScrollEnabledCommandHandler as ɵgz, Reactive as ɵh, SetScrollPositionCommandHandler as ɵha, InitFieldsCommandHandler as ɵhb, ToggleSortCommandHandler as ɵhc, SetSortingCommandHandler as ɵhd, StructureSetConfigFilterCommandHandler as ɵhe, StructureSetConfigSearchingCommandHandler as ɵhf, StructureSetConfigQuickFilterCommandHandler as ɵhg, StructureToggleFilterCommandHandler as ɵhh, StructureSetAggregationEnabledCommandHandler as ɵhi, StructureSourceDomainEventPublisher as ɵhj, StructureSetSearchPhraseCommandHandler as ɵhk, SetSortOrderCommandHandler as ɵhl, provideAggregationCalculator as ɵhm, aggregationProviders as ɵhn, BooleanAggregationCalculator as ɵho, DateAggregationCalculator as ɵhp, NumberAggregationCalculator as ɵhq, StringAggregationCalculator as ɵhr, UnknownAggregationCalculator as ɵhs, StructureConfigFilterSetEventHandler as ɵht, StructureConfigSearchingSetEventHandler as ɵhu, StructureConfigQuickFilterSetEventHandler as ɵhv, StructureFieldsInitedEventHandler as ɵhw, StructureFieldUiConverter as ɵhx, InMemoryStructureReadStore as ɵhy, StructureConverter as ɵhz, PagingReadModelService as ɵi, FormationConverter as ɵia, SchemaConverter as ɵib, PagingConverter as ɵic, SourceConverter as ɵid, VerticalFormationConverter as ɵie, InMemoryStructureRepository as ɵif, pagingProviders as ɵig, SetPagingCommandHandler as ɵih, NextPageCommandHandler as ɵii, PrevPageCommandHandler as ɵij, ChangePagesizeCommandHandler as ɵik, schemaProviders as ɵil, SetSchemaCommandHandler as ɵim, SetSchemaVerticalGridCommandHandler as ɵin, SetSchemaHorizontalGridCommandHandler as ɵio, SetSchemaThemeCommandHandler as ɵip, ChangeSchemaBottomHeaderCommandHandler as ɵiq, ChangeSchemaTopHeaderCommandHandler as ɵir, SetRowColoringCommandHandler as ɵis, formationProviders as ɵit, SetFormationCommandHandler as ɵiu, ToggleSelectedRowCommandHandler as ɵiv, sourceProviders as ɵiw, SourceSetLoadingCommandHandler as ɵix, SetOriginCommandHandler as ɵiy, StructureEditSourceItemCommandHandler as ɵiz, PagingRepository as ɵj, SourceRepository as ɵja, StructureOriginChangedEventHandler as ɵjb, StructurePreparedItemsEventHandler as ɵjc, GridGateway as ɵjd, gridProviders as ɵje, gridStructureDefinition as ɵjf, GridRegister as ɵjg, GridIdGenerator as ɵjh, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceReadModelService as ɵn, StructurePreparedItemsRepository as ɵo, StructureSourceOriginRepository as ɵp, StructurePagingNavigatorComponent as ɵq, StructurePagingSelectComponent as ɵr, StructurePagingStatsComponent as ɵs, StructureAlternativePagingNavigatorComponent as ɵt, StructureAlternativePagingPagesComponent as ɵu, StructureInfoPanelModule as ɵv, NumberFormatterModule as ɵw, NumberFormatterPipe as ɵx, StructureInfoPanelComponent as ɵy, StructureInfoModalComponent as ɵz };
+export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiRowColoring, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureTopPanelModule as ɵba, StructureTopPanelComponent as ɵbb, StructureSearchComponent as ɵbc, StructureCommandService as ɵbd, StructureFilterCommandService as ɵbe, SourceDispatcher as ɵbf, CompositionModule as ɵbg, compositionProviders as ɵbh, inMemoryCompositionCommandProviders as ɵbi, inMemoryCompositionQueryProviders as ɵbj, inMemoryCompositionProviders as ɵbk, InMemoryCompositionStore as ɵbl, InMemoryCompositionAggregateStore as ɵbm, CompositionAggregateRepository as ɵbn, InMemoryCompositionAggregateRepository as ɵbo, CompositionDispatcher as ɵbp, CompositionAggregateFactory as ɵbq, InitCompositionCommandHandler as ɵbr, SetColumnsCommandHandler as ɵbs, CompositionEventConverter as ɵbt, SetCompositionWidthCommandHandler as ɵbu, ColumnEntityFactory as ɵbv, SetCompositionResizeWidthCommandHandler as ɵbw, SetCompositionContainerWidthCommandHandler as ɵbx, CompositionSetColumnEnabledCommandHandler as ɵby, CompositionChangeSortStatusCommandHandler as ɵbz, StructureModule as ɵc, ColumnFieldFactory as ɵca, InMemoryCompositionReadStore as ɵcb, CompositionConverter as ɵcc, ColumnDefinitionFactory as ɵcd, ViewTemplateRepository as ɵce, ViewTemplateFactory as ɵcf, TemplateFactory as ɵcg, EditTemplateRepository as ɵch, EditTemplateFactory as ɵci, CompositionRepository as ɵcj, InMemoryCompositionRepository as ɵck, CompositionFieldsInitedEventHandler as ɵcl, CompositionChangeSortStatusEventHandler as ɵcm, CompositionCommandService as ɵcn, CompositionReadModelService as ɵco, CompositionEventService as ɵcp, ViewTemplatesComponent as ɵcq, EditTemplatesComponent as ɵcr, StringEditTemplateComponent as ɵcs, InputEditTemplateComponent as ɵct, EditCommunicationComponent as ɵcu, Override as ɵcv, NumberEditTemplateComponent as ɵcw, BooleanEditTemplateComponent as ɵcx, ColumnQueryComponent as ɵcy, FunctionViewComponent as ɵcz, fabricImports as ɵd, LoggerModule as ɵda, Logger as ɵdb, ConsoleLogger as ɵdc, structureIdFactory as ɵdd, compositionIdFactory as ɵde, structureComponentSelfProviders as ɵdf, StructureComponent as ɵdg, StructureGateway as ɵdh, StructureId as ɵdi, CompositionId as ɵdj, PagingEventService as ɵdk, SourceCommandService as ɵdl, StructureFieldUiRepository as ɵdm, StructureFieldUiArchive as ɵdn, SourceEventService as ɵdo, SchemaCommandService as ɵdp, SchemaDispatcher as ɵdq, SchemaReadModelService as ɵdr, SchemaRepository as ɵds, FormationEventService as ɵdt, StructureReadModelService as ɵdu, StructureEditModeArchive as ɵdv, Archive as ɵdw, StructureCellEditArchive as ɵdx, StructureInfoPanelEnabledArchive as ɵdy, StructureAggregationConfigService as ɵdz, StructurePagingModule as ɵe, StructureAggregationPanelConfigConverter as ɵea, StructureAggregationArchive as ɵeb, StructureAggregationCommandService as ɵec, StructureCellEditStore as ɵed, StructureColumnMenuConfigArchive as ɵee, StructureIdGenerator as ɵef, localProviders as ɵeg, LocalPagingCommandService as ɵeh, PagingAggregateFactory as ɵei, LocalPagingReadModelService as ɵej, LocalSchemaCommandService as ɵek, LocalSchemaReadModelService as ɵel, FormationCommandService as ɵem, FormationDispatcher as ɵen, LocalFormationCommandService as ɵeo, FormationReadModelService as ɵep, FormationRepository as ɵeq, LocalFormationReadModelService as ɵer, LocalStructureCommandService as ɵes, LocalStructureReadModelService as ɵet, LocalSourceCommandService as ɵeu, LocalSourceReadModelService as ɵev, LocalCompositionCommandService as ɵew, LocalCompositionReadModelService as ɵex, SchemaCssClassManager as ɵey, structureComponentToken as ɵez, StructurePagingComponent as ɵf, StructureDefinition as ɵfa, StructurePagingDefinition as ɵfb, StructureHeaderComponent as ɵfc, StructureHeaderColumnsComponent as ɵfd, StructureColumnConfigService as ɵfe, StructureFilterReadModelRepository as ɵff, StructureFilterRepository as ɵfg, StructureQuickFilterRepository as ɵfh, StructureHeaderFiltersComponent as ɵfi, StructureHeaderFilterComponent as ɵfj, StructureContentComponent as ɵfk, StructureRowComponent as ɵfl, StructureCellComponent as ɵfm, StructureContainerComponent as ɵfn, structureParentComponent as ɵfo, StructureEmptySourceComponent as ɵfp, StructureQuickFiltersComponent as ɵfq, StructureBlueprintComponent as ɵfr, STRUCTURE_CSS_CLASS_NAME as ɵfs, StructureSearchReadModelRepository as ɵft, StructureSearchingRepository as ɵfu, StructureAggregationPanelComponent as ɵfv, StructureAggregationUiEventsRepository as ɵfw, StructureColumnConfigComponent as ɵfx, CellTemplateWithContext as ɵfy, CellContext as ɵfz, SmartComponent as ɵg, FieldId as ɵga, ColumnId as ɵgb, SortStatus as ɵgc, StructureColumnConfigTriggerComponent as ɵgd, StructureMenuColumnManagerComponent as ɵge, ItemEntityFactory as ɵgf, structureProviders as ɵgg, inMemoryStructureCommandProviders as ɵgh, inMemoryStructureReadProviders as ɵgi, inMemoryStructureProviders as ɵgj, InMemoryStructureStore as ɵgk, InMemoryStructureAggregateStore as ɵgl, StructureAggregateRepository as ɵgm, InMemoryStructureAggregateRepository as ɵgn, InitStructureCommandHandler as ɵgo, StructureAggregateFactory as ɵgp, SourceManagerFactory as ɵgq, FormationAggregateFactory as ɵgr, VerticalFormationFactory as ɵgs, AggregationManagerFactory as ɵgt, AGGREGATION_CALCULATORS as ɵgu, AggregationCalculator as ɵgv, FilterManagerFactory as ɵgw, SearchManagerFactory as ɵgx, FieldCollectionFactory as ɵgy, FieldFactory as ɵgz, Reactive as ɵh, FieldIdGenerator as ɵha, SchemaAggregateFactory as ɵhb, SetVerticalScrollEnabledCommandHandler as ɵhc, SetScrollPositionCommandHandler as ɵhd, InitFieldsCommandHandler as ɵhe, ToggleSortCommandHandler as ɵhf, SetSortingCommandHandler as ɵhg, StructureSetConfigFilterCommandHandler as ɵhh, StructureSetConfigSearchingCommandHandler as ɵhi, StructureSetConfigQuickFilterCommandHandler as ɵhj, StructureToggleFilterCommandHandler as ɵhk, StructureSetAggregationEnabledCommandHandler as ɵhl, StructureSourceDomainEventPublisher as ɵhm, StructureSetSearchPhraseCommandHandler as ɵhn, SetSortOrderCommandHandler as ɵho, provideAggregationCalculator as ɵhp, aggregationProviders as ɵhq, BooleanAggregationCalculator as ɵhr, DateAggregationCalculator as ɵhs, NumberAggregationCalculator as ɵht, StringAggregationCalculator as ɵhu, UnknownAggregationCalculator as ɵhv, StructureConfigFilterSetEventHandler as ɵhw, StructureConfigSearchingSetEventHandler as ɵhx, StructureConfigQuickFilterSetEventHandler as ɵhy, StructureFieldsInitedEventHandler as ɵhz, PagingReadModelService as ɵi, StructureFieldUiConverter as ɵia, InMemoryStructureReadStore as ɵib, StructureConverter as ɵic, FormationConverter as ɵid, SchemaConverter as ɵie, PagingConverter as ɵif, SourceConverter as ɵig, VerticalFormationConverter as ɵih, InMemoryStructureRepository as ɵii, pagingProviders as ɵij, SetPagingCommandHandler as ɵik, NextPageCommandHandler as ɵil, PrevPageCommandHandler as ɵim, ChangePagesizeCommandHandler as ɵin, schemaProviders as ɵio, SetSchemaCommandHandler as ɵip, SetSchemaVerticalGridCommandHandler as ɵiq, SetSchemaHorizontalGridCommandHandler as ɵir, SetSchemaThemeCommandHandler as ɵis, ChangeSchemaBottomHeaderCommandHandler as ɵit, ChangeSchemaTopHeaderCommandHandler as ɵiu, SetRowColoringCommandHandler as ɵiv, formationProviders as ɵiw, SetFormationCommandHandler as ɵix, ToggleSelectedRowCommandHandler as ɵiy, sourceProviders as ɵiz, PagingRepository as ɵj, SourceSetLoadingCommandHandler as ɵja, SetOriginCommandHandler as ɵjb, StructureEditSourceItemCommandHandler as ɵjc, SourceRepository as ɵjd, StructureOriginChangedEventHandler as ɵje, StructurePreparedItemsEventHandler as ɵjf, GridGateway as ɵjg, gridProviders as ɵjh, gridStructureDefinition as ɵji, GridRegister as ɵjj, GridIdGenerator as ɵjk, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceReadModelService as ɵn, StructurePreparedItemsRepository as ɵo, StructureSourceOriginRepository as ɵp, StructurePagingNavigatorComponent as ɵq, StructurePagingSelectComponent as ɵr, StructurePagingStatsComponent as ɵs, StructureAlternativePagingNavigatorComponent as ɵt, StructureAlternativePagingPagesComponent as ɵu, StructureInfoPanelModule as ɵv, NumberFormatterModule as ɵw, NumberFormatterPipe as ɵx, StructureInfoPanelComponent as ɵy, StructureInfoModalComponent as ɵz };
 //# sourceMappingURL=generic-ui-ngx-grid.js.map
