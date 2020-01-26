@@ -1,7 +1,7 @@
 import { Field } from './data-type/field';
 import { FieldFactory } from './data-type/field.factory';
 import { FieldId } from './data-type/field.id';
-import { ColumnConfig } from '../../../composition/column.config';
+import { ColumnConfig } from '../../../../../composition/domain/column.config';
 export declare class FieldCollection {
     private readonly fieldFactory;
     private readonly fields;

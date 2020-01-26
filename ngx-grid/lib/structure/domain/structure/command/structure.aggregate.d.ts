@@ -12,7 +12,7 @@ import { StructureId } from '../../structure-id';
 import { StructureEditSourceItemParams } from '../../source/command/origin/edit/structure.edit-source-item.params';
 import { PagingConfig } from '../../paging/paging-config';
 import { OriginItemEntity } from '../../source/command/origin/origin-item-entity';
-import { ColumnConfig } from '../../composition/column.config';
+import { ColumnConfig } from '../../../../composition/domain/column.config';
 import { Field } from './field/data-type/field';
 import { SortingConfig } from '../../../ui-api/structure/sorting-config';
 import { FieldId } from './field/data-type/field.id';
@@ -21,7 +21,7 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { SearchManager } from './search/search.manager';
-import { SortStatus } from '../../composition/command/column/sort/sort-status';
+import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
 export declare class StructureAggregate extends Aggregate {
     private formationAggregate;
     private schema;

@@ -1,5 +1,5 @@
 import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-import { CompositionId } from '../../../../composition/composition-id';
+import { CompositionId } from '../../../../../../composition/domain/composition-id';
 import { FieldId } from '../../field/data-type/field.id';
 export declare class SortOrderSetEvent extends DomainEvent {
     private readonly compositionId;

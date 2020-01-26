@@ -1,5 +1,5 @@
 import { FieldIdGenerator } from '../field-id.generator';
-import { ColumnConfig } from '../../../../composition/column.config';
+import { ColumnConfig } from '../../../../../../composition/domain/column.config';
 import { Field } from './field';
 export declare class FieldFactory {
     private readonly fieldIdGenerator;

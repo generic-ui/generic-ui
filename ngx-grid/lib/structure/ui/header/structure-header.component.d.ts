@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { DomainEventBus } from '@generic-ui/hermes';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CellTemplateWithContext } from '../../domain/composition/read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../composition/domain/read/definition/cell-template-with-context';
 import { StructureId } from '../../domain/structure-id';
 import { StructureFilterReadModelRepository } from '../../ui-api/structure/filter/structure.filter.read-model.repository';
-import { CompositionReadModelService } from '../../ui-api/composition/composition-read-model.service';
+import { CompositionReadModelService } from '../../../composition/ui-api/composition-read-model.service';
 export declare class StructureHeaderComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly renderer;

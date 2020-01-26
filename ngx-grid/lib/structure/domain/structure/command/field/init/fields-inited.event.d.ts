@@ -1,7 +1,7 @@
 import { DomainEvent } from '@generic-ui/hermes';
 import { StructureId } from '../../../../structure-id';
-import { CompositionId } from '../../../../composition/composition-id';
-import { ColumnConfig } from '../../../../composition/column.config';
+import { CompositionId } from '../../../../../../composition/domain/composition-id';
+import { ColumnConfig } from '../../../../../../composition/domain/column.config';
 import { Field } from '../data-type/field';
 export declare class FieldsInitedEvent extends DomainEvent {
     readonly compositionId: CompositionId;

@@ -1938,7 +1938,12 @@ class InMemoryAggregateStore extends AggregateStore {
      * @return {?}
      */
     getById(aggregateId) {
-        return this.inMemoryStore.get(aggregateId);
+        /** @type {?} */
+        const aggregate = this.inMemoryStore.get(aggregateId);
+        if (aggregate) {
+            aggregate.clearEvents();
+        }
+        return aggregate;
     }
     /**
      * @return {?}

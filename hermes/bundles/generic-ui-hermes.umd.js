@@ -2562,7 +2562,12 @@
          * @return {?}
          */
         function (aggregateId) {
-            return this.inMemoryStore.get(aggregateId);
+            /** @type {?} */
+            var aggregate = this.inMemoryStore.get(aggregateId);
+            if (aggregate) {
+                aggregate.clearEvents();
+            }
+            return aggregate;
         };
         /**
          * @return {?}

@@ -1,5 +1,5 @@
 import { ElementRef, OnInit, ChangeDetectorRef } from '@angular/core';
-import { CellTemplateWithContext } from '../../../domain/composition/read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
 import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
 import { StructureColumnConfigService } from './structure.column-config.service';
 import { StructureColumnMenuConfig } from './config/structure.column-menu-config';

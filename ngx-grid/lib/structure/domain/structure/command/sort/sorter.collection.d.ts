@@ -3,7 +3,7 @@ import { SortingConfig } from '../../../../ui-api/structure/sorting-config';
 import { Field } from '../field/data-type/field';
 import { FieldId } from '../field/data-type/field.id';
 import { OriginItemEntity } from '../../../source/command/origin/origin-item-entity';
-import { SortStatus } from '../../../composition/command/column/sort/sort-status';
+import { SortStatus } from '../../../../../composition/domain/command/column/sort/sort-status';
 export declare class SorterCollection {
     private enabled;
     private multi;

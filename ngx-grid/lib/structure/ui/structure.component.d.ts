@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnInit, Render
 import { StructureDefinition } from './structure-definition';
 import { StructureIdGenerator } from './structure-id.generator';
 import { StructureId } from '../domain/structure-id';
-import { CompositionId } from '../domain/composition/composition-id';
+import { CompositionId } from '../../composition/domain/composition-id';
 import { SchemaCssClassManager } from './schema/schema-css-class.manager';
 import { StructureCellEditArchive } from './edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from './edit/structure.cell-edit.store';
@@ -16,12 +16,12 @@ import { PagingEventService } from '../ui-api/paging/paging-event.service';
 import { SourceCommandService } from '../ui-api/source/source-command.service';
 import { SourceEventService } from '../ui-api/source/event/source-event.service';
 import { SchemaCommandService } from '../ui-api/schema/schema-command.service';
-import { CompositionCommandService } from '../ui-api/composition/composition.command-service';
-import { CompositionEventService } from '../ui-api/composition/composition.event-service';
+import { CompositionCommandService } from '../../composition/ui-api/composition.command-service';
+import { CompositionEventService } from '../../composition/ui-api/composition.event-service';
 import { FormationEventService } from '../ui-api/formation/formation-event.service';
 import { StructureCommandService } from '../ui-api/structure/structure-command.service';
 import { StructureReadModelService } from '../ui-api/structure/structure-read-model.service';
-import { CompositionReadModelService } from '../ui-api/composition/composition-read-model.service';
+import { CompositionReadModelService } from '../../composition/ui-api/composition-read-model.service';
 import { SchemaReadModelService } from '../ui-api/schema/schema-read-model.service';
 import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
 /** @internal */
@@ -55,8 +55,9 @@ export declare const structureComponentSelfProviders: ({
     useClass: typeof import("./local/structure/local-structure-read-model.service").LocalStructureReadModelService;
 } | {
     provide: typeof SourceCommandService;
-    useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService; /** @internal */
+    useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService;
 } | {
+    /** @internal */
     provide: typeof import("../ui-api/source/source-read-model.service").SourceReadModelService;
     useClass: typeof import("./local/source/local-source-read-model.service").LocalSourceReadModelService;
 } | {

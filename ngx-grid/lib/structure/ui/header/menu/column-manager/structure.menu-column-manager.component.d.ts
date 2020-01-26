@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../../../common/cdk/smart-component';
-import { CompositionReadModelService } from '../../../../ui-api/composition/composition-read-model.service';
-import { CellTemplateWithContext } from '../../../../domain/composition/read/definition/cell-template-with-context';
-import { CompositionCommandService } from '../../../../ui-api/composition/composition.command-service';
+import { CompositionReadModelService } from '../../../../../composition/ui-api/composition-read-model.service';
+import { CellTemplateWithContext } from '../../../../../composition/domain/read/definition/cell-template-with-context';
+import { CompositionCommandService } from '../../../../../composition/ui-api/composition.command-service';
 export declare class StructureMenuColumnManagerComponent extends SmartComponent implements OnInit {
     private changeDetectorRef;
     private compositionCommandService;

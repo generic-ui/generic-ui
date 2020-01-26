@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { AggregateId, CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
 import { StructureAggregateRepository } from '../../structure-aggregate.repository';
 import { ToggleSortCommand } from './toggle-sort.command';
-import { CompositionId } from '../../../../composition/composition-id';
+import { CompositionId } from '../../../../../../composition/domain/composition-id';
 import { FieldId } from '../../field/data-type/field.id';
 import { StructureSorter } from '../structure.sorter';
 export declare class ToggleSortCommandHandler extends CommandHandler {

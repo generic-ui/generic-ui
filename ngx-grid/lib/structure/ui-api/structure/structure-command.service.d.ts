@@ -4,12 +4,12 @@ import { SourceDispatcher } from '../../domain/source/command/source.dispatcher'
 import { StructureId } from '../../domain/structure-id';
 import { SortingConfig } from './sorting-config';
 import { FieldId } from '../../domain/structure/command/field/data-type/field.id';
-import { CompositionId } from '../../domain/composition/composition-id';
+import { CompositionId } from '../../../composition/domain/composition-id';
 import { FilterConfig } from './filter/filter-config';
 import { QuickFiltersConfig } from './filter/quick-filters.config';
 import { SearchConfig } from './search/search-config';
-import { ColumnConfig } from '../../domain/composition/column.config';
-import { SortStatus } from '../../domain/composition/command/column/sort/sort-status';
+import { ColumnConfig } from '../../../composition/domain/column.config';
+import { SortStatus } from '../../../composition/domain/command/column/sort/sort-status';
 export declare class StructureCommandService {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;

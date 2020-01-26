@@ -1,7 +1,7 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
 import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
 import { StructureId } from '../../../domain/structure-id';
-import { CompositionId } from '../../../domain/composition/composition-id';
+import { CompositionId } from '../../../../composition/domain/composition-id';
 import { StructureFilterCommandService } from '../../../ui-api/structure/filter/structure.filter.command.service';
 import { SourceDispatcher } from '../../../domain/source/command/source.dispatcher';
 import { SortingConfig } from '../../../ui-api/structure/sorting-config';
@@ -9,8 +9,8 @@ import { FieldId } from '../../../domain/structure/command/field/data-type/field
 import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
-import { ColumnConfig } from '../../../domain/composition/column.config';
-import { SortStatus } from '../../../domain/composition/command/column/sort/sort-status';
+import { ColumnConfig } from '../../../../composition/domain/column.config';
+import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
 export declare class LocalStructureCommandService extends StructureCommandService {
     private readonly structureId;
     private readonly compositionId;

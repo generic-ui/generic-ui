@@ -2,7 +2,7 @@ import { FieldId } from './field.id';
 import { DataType } from './data-type';
 import { OriginItemEntity } from '../../../../source/command/origin/origin-item-entity';
 import { AggregationType } from '../../aggregation/aggregation.type';
-import { ColumnAggregationConfig } from '../../../../composition/column-aggregation.config';
+import { ColumnAggregationConfig } from '../../../../../../composition/domain/column-aggregation.config';
 export declare abstract class Field {
     private readonly id;
     private readonly accessor;

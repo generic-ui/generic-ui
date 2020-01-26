@@ -1,8 +1,8 @@
-import { CompositionCommandService } from '../../../ui-api/composition/composition.command-service';
-import { CompositionId } from '../../../domain/composition/composition-id';
-import { CompositionDispatcher } from '../../../domain/composition/command/composition.dispatcher';
-import { ColumnParams } from '../../../domain/composition/command/column/set-columns/column.params';
-import { ColumnId } from '../../../domain/composition/command/column/column.id';
+import { CompositionCommandService } from '../../../../composition/ui-api/composition.command-service';
+import { CompositionId } from '../../../../composition/domain/composition-id';
+import { CompositionDispatcher } from '../../../../composition/domain/command/composition.dispatcher';
+import { ColumnParams } from '../../../../composition/domain/command/column/set-columns/column.params';
+import { ColumnId } from '../../../../composition/domain/command/column/column.id';
 export declare class LocalCompositionCommandService extends CompositionCommandService {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionDispatcher: CompositionDispatcher);
@@ -13,4 +13,6 @@ export declare class LocalCompositionCommandService extends CompositionCommandSe
     setResizeWidth(enabled: boolean, compositionId?: CompositionId): void;
     enableColumn(columnId: ColumnId, compositionId?: CompositionId): void;
     disableColumn(columnId: ColumnId, compositionId?: CompositionId): void;
+    moveLeft(columnId: ColumnId, compositionId?: CompositionId): void;
+    moveRight(columnId: ColumnId, compositionId?: CompositionId): void;
 }

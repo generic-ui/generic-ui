@@ -1,11 +1,11 @@
 import { Observable } from 'rxjs';
-import { CompositionReadModelService } from '../../../ui-api/composition/composition-read-model.service';
-import { CompositionId } from '../../../domain/composition/composition-id';
-import { CompositionRepository } from '../../../domain/composition/read/composition.repository';
-import { CellTemplateWithContext } from '../../../domain/composition/read/definition/cell-template-with-context';
-import { CellTemplateWithAccessor } from '../../../domain/composition/read/definition/cell-template-with-accessor';
+import { CompositionReadModelService } from '../../../../composition/ui-api/composition-read-model.service';
+import { CompositionId } from '../../../../composition/domain/composition-id';
+import { CompositionRepository } from '../../../../composition/domain/read/composition.repository';
+import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
+import { CellTemplateWithAccessor } from '../../../../composition/domain/read/definition/cell-template-with-accessor';
 import { FieldId } from '../../../domain/structure/command/field/data-type/field.id';
-import { SortStatus } from '../../../domain/composition/command/column/sort/sort-status';
+import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
 export declare class LocalCompositionReadModelService extends CompositionReadModelService {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionRepository: CompositionRepository);

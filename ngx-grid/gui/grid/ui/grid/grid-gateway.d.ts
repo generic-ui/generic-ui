@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GuiAggregation, GuiColumn, GuiColumnMenu, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../ui-api/grid.api';
-import { ColumnConfig } from '../../../../lib/structure/domain/composition/column.config';
+import { ColumnConfig } from '../../../../lib/composition/domain/column.config';
 import { ColumnMenuConfig } from '../../../../lib/structure/ui-api/structure/column-menu-config';
 export declare abstract class GridGateway implements OnChanges {
     /**

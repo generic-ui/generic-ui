@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../domain/composition/read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../composition/domain/read/definition/cell-template-with-accessor';
 import { FormationCommandService } from '../../ui-api/formation/formation-command.service';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';

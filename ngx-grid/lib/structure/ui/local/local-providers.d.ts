@@ -1,4 +1,4 @@
-import { CompositionCommandService } from '../../ui-api/composition/composition.command-service';
+import { CompositionCommandService } from '../../../composition/ui-api/composition.command-service';
 import { PagingCommandService } from '../../ui-api/paging/paging-command.service';
 import { LocalPagingCommandService } from './paging/local-paging-command.service';
 import { LocalPagingReadModelService } from './paging/local-paging-read-model.service';
@@ -19,7 +19,7 @@ import { LocalSourceCommandService } from './source/local-source-command.service
 import { SourceReadModelService } from '../../ui-api/source/source-read-model.service';
 import { LocalSourceReadModelService } from './source/local-source-read-model.service';
 import { LocalCompositionCommandService } from './composition/local-composition-command.service';
-import { CompositionReadModelService } from '../../ui-api/composition/composition-read-model.service';
+import { CompositionReadModelService } from '../../../composition/ui-api/composition-read-model.service';
 import { LocalCompositionReadModelService } from './composition/local-composition-read-model.service';
 import { PagingReadModelService } from '../../ui-api/paging/paging-read-model.service';
 export declare const localProviders: ({
