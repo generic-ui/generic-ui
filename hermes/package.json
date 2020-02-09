@@ -1,6 +1,6 @@
 {
   "name": "@generic-ui/hermes",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",

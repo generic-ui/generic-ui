@@ -36,7 +36,7 @@ export class FabricRadioButtonComponent {
 FabricRadioButtonComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-radio-button',
-                template: "<label>\n\t<input\n\t\t[name]=name\n\t\t[checked]=checked\n\t\t[disabled]=disabled\n\t\ttype=\"radio\"\n\t\t(click)=\"check()\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
+                template: "<label>\n\t<input\n\t\t(click)=\"check()\"\n\t\t[checked]=checked\n\t\t[disabled]=disabled\n\t\t[name]=name\n\t\ttype=\"radio\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {

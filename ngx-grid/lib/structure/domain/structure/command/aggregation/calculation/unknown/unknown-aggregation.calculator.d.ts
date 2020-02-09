@@ -6,8 +6,8 @@ import { OriginItemEntity } from '../../../../../source/command/origin/origin-it
 export declare class UnknownAggregationCalculator extends AggregationCalculator<any, UnknownAggregatedValues> {
     constructor();
     forDataType(dataType: DataType): boolean;
-    aggregate(field: Field, value: any): void;
-    generateAggregatedValues(field: Field): UnknownAggregatedValues;
     prepare(field: Field): void;
     postCalculate(field: Field, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field, value: any): void;
+    generateAggregatedValues(field: Field): UnknownAggregatedValues;
 }

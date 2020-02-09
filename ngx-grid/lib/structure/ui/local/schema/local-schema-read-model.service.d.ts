@@ -9,9 +9,9 @@ export declare class LocalSchemaReadModelService extends SchemaReadModelService 
     private structureId;
     constructor(structureId: StructureId, schemaRepository: SchemaRepository);
     onSchema(): Observable<Schema>;
+    onSingleSchema(): Observable<Schema>;
     onHeight(): Observable<number>;
     onContainerHeight(): Observable<number>;
-    onSingleSchema(): Observable<Schema>;
     onCssClasses(): Observable<SchemaCssClass>;
     onColumnHeader(structureId?: StructureId): Observable<SchemaColumnHeader>;
 }

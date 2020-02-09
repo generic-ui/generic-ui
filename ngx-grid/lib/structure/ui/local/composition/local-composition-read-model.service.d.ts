@@ -9,12 +9,12 @@ import { SortStatus } from '../../../../composition/domain/command/column/sort/s
 export declare class LocalCompositionReadModelService extends CompositionReadModelService {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionRepository: CompositionRepository);
+    onWidth(): Observable<number>;
+    onContainerWidth(compositionId?: CompositionId): Observable<number>;
+    onWidthForEachColumn(): Observable<Array<number>>;
     onHeaderColumns(): Observable<Array<CellTemplateWithContext>>;
     onAllColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
     onSortOrder(fieldId: FieldId): Observable<SortStatus>;
     onTemplateColumns(): Observable<Array<CellTemplateWithAccessor>>;
-    onWidthForEachColumn(): Observable<Array<number>>;
-    onWidth(): Observable<number>;
-    onContainerWidth(compositionId?: CompositionId): Observable<number>;
     onResizeWidth(): Observable<boolean>;
 }

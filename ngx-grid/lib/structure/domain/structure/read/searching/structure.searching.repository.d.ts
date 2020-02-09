@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
 import { StructureId } from '../../../structure-id';
-export declare class StructureSearchingRepository {
+import { Reactive } from '../../../../../../common/cdk/reactive';
+export declare class StructureSearchingRepository extends Reactive {
     private enabled;
     private enabled$;
     constructor();
     setEnabled(enabled: boolean, structureId: StructureId): void;
-    selectSearchingEnabled(structureId: StructureId): Observable<boolean>;
+    onSearchingEnabled(structureId: StructureId): Observable<boolean>;
 }

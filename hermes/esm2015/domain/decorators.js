@@ -6,15 +6,18 @@
  * @param {?} target
  * @return {?}
  */
-export function RootAggregate(target) { }
+export function RootAggregate(target) {
+}
 /**
  * @param {?} target
  * @return {?}
  */
-export function Entity(target) { }
+export function Entity(target) {
+}
 /**
  * @param {?} target
  * @return {?}
  */
-export function ValueObject(target) { }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVjb3JhdG9ycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2hlcm1lcy8iLCJzb3VyY2VzIjpbImRvbWFpbi9kZWNvcmF0b3JzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsTUFBTSxVQUFVLGFBQWEsQ0FBQyxNQUFnQixJQUFHLENBQUM7Ozs7O0FBRWxELE1BQU0sVUFBVSxNQUFNLENBQUMsTUFBZ0IsSUFBRyxDQUFDOzs7OztBQUUzQyxNQUFNLFVBQVUsV0FBVyxDQUFDLE1BQWdCLElBQUcsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBmdW5jdGlvbiBSb290QWdncmVnYXRlKHRhcmdldDogRnVuY3Rpb24pIHt9XG5cbmV4cG9ydCBmdW5jdGlvbiBFbnRpdHkodGFyZ2V0OiBGdW5jdGlvbikge31cblxuZXhwb3J0IGZ1bmN0aW9uIFZhbHVlT2JqZWN0KHRhcmdldDogRnVuY3Rpb24pIHt9XG4iXX0=
+export function ValueObject(target) {
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVjb3JhdG9ycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2hlcm1lcy8iLCJzb3VyY2VzIjpbImRvbWFpbi9kZWNvcmF0b3JzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsTUFBTSxVQUFVLGFBQWEsQ0FBQyxNQUFnQjtBQUM5QyxDQUFDOzs7OztBQUVELE1BQU0sVUFBVSxNQUFNLENBQUMsTUFBZ0I7QUFDdkMsQ0FBQzs7Ozs7QUFFRCxNQUFNLFVBQVUsV0FBVyxDQUFDLE1BQWdCO0FBQzVDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZnVuY3Rpb24gUm9vdEFnZ3JlZ2F0ZSh0YXJnZXQ6IEZ1bmN0aW9uKSB7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBFbnRpdHkodGFyZ2V0OiBGdW5jdGlvbikge1xufVxuXG5leHBvcnQgZnVuY3Rpb24gVmFsdWVPYmplY3QodGFyZ2V0OiBGdW5jdGlvbikge1xufVxuIl19

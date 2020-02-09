@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { DomainEventPublisher, CommandHandler, ExecuteResponse } from '@generic-ui/hermes';
+import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../composition.aggregate-repository';
 import { CompositionEventConverter } from '../../composition-event.converter';
 import { SetColumnsCommand } from './set-columns.command';

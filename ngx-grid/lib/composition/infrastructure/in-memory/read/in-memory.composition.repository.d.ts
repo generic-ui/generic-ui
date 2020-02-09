@@ -7,6 +7,7 @@ import { InMemoryCompositionReadStore } from './in-memory.composition.read-store
 export declare class InMemoryCompositionRepository extends CompositionRepository implements OnDestroy {
     private domainEventBus;
     private inMemoryCompositionQueryStore;
+    private readonly compositionIdToComposition;
     private readonly composition$;
     private readonly unsubscribe$;
     constructor(domainEventBus: DomainEventBus, inMemoryCompositionQueryStore: InMemoryCompositionReadStore);

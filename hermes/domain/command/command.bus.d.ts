@@ -1,4 +1,4 @@
-import { Observable, Subject, Operator } from 'rxjs';
+import { Observable, Operator, Subject } from 'rxjs';
 import { Command } from './command';
 import { CommandHandler } from './command.handler';
 export declare class CommandBus<C = Command> extends Observable<C> {

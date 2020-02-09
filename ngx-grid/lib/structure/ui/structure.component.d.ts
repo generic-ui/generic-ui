@@ -24,12 +24,13 @@ import { StructureReadModelService } from '../ui-api/structure/structure-read-mo
 import { CompositionReadModelService } from '../../composition/ui-api/composition-read-model.service';
 import { SchemaReadModelService } from '../ui-api/schema/schema-read-model.service';
 import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
+import { StructurePagingDisplayModeArchive } from './paging/mode/structure-paging.display-mode.archive';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
 export declare function compositionIdFactory(generator: StructureIdGenerator): CompositionId;
 /** @internal */
-export declare const structureComponentSelfProviders: ({
+export declare const structureComponentSelfProviders: (typeof StructurePagingDisplayModeArchive | {
     provide: typeof PagingCommandService;
     useClass: typeof import("./local/paging/local-paging-command.service").LocalPagingCommandService;
 } | {
@@ -57,7 +58,6 @@ export declare const structureComponentSelfProviders: ({
     provide: typeof SourceCommandService;
     useClass: typeof import("./local/source/local-source-command.service").LocalSourceCommandService;
 } | {
-    /** @internal */
     provide: typeof import("../ui-api/source/source-read-model.service").SourceReadModelService;
     useClass: typeof import("./local/source/local-source-read-model.service").LocalSourceReadModelService;
 } | {
@@ -87,7 +87,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     structureHeight: number;
     private columnHeader;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;

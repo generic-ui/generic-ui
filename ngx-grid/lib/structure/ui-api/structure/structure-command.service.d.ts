@@ -28,4 +28,5 @@ export declare class StructureCommandService {
     initFields(columns: Array<ColumnConfig>, compositionId: CompositionId, structureId?: StructureId): void;
     setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
     search(phrase: string, structureId?: StructureId): void;
+    setRowHeight(rowHeight: number, structureId?: StructureId): void;
 }

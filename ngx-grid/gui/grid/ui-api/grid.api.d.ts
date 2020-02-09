@@ -59,6 +59,7 @@ export interface GuiPagingConfig {
     pageSizes?: Array<number>;
     pagerTop?: boolean;
     pagerBottom?: boolean;
+    display?: string | GuiPagingDisplay;
 }
 export declare enum GuiTheme {
     FABRIC = 0,
@@ -100,5 +101,9 @@ export interface GuiColumnMenu {
     enabled?: boolean;
     sort?: boolean;
     filter?: boolean;
-    columns?: boolean;
+    columnsManager?: boolean;
+}
+export declare enum GuiPagingDisplay {
+    BASIC = 0,
+    ADVANCED = 1
 }

@@ -1,4 +1,4 @@
-import { ElementRef, Renderer2, OnDestroy, AfterViewInit, ChangeDetectorRef, OnInit, NgZone } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ResizeDetector } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { CellTemplateWithAccessor } from '../../../composition/domain/read/definition/cell-template-with-accessor';

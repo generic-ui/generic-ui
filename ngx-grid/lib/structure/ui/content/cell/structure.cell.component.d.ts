@@ -1,9 +1,10 @@
-import { ChangeDetectorRef, SimpleChanges, OnDestroy, OnChanges } from '@angular/core';
+import { ChangeDetectorRef, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/domain/read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourceCommandService } from '../../../ui-api/source/source-command.service';
+import { ChangedValueEmitter } from '../../../../composition/domain/read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../domain/source/item.entity';
 export declare class StructureCellComponent extends SmartComponent implements OnChanges, OnDestroy {
     private changeDetectorRef;
@@ -16,8 +17,8 @@ export declare class StructureCellComponent extends SmartComponent implements On
     cellEditingEnabled: boolean;
     inEditMode: boolean;
     editContext: any;
-    valueChanges$: any;
-    status$: any;
+    valueChanges$: ChangedValueEmitter<any>;
+    status$: ChangedValueEmitter<any>;
     actualValue: any;
     constructor(changeDetectorRef: ChangeDetectorRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, sourceCommandService: SourceCommandService);
     ngOnChanges(changes: SimpleChanges): void;

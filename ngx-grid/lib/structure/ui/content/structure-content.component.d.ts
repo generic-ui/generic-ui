@@ -6,6 +6,8 @@ import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { FormationReadModelService } from '../../ui-api/formation/formation-read-model.service';
 import { ItemEntity } from '../../domain/source/item.entity';
+import { VerticalFormationRepository } from '../../domain/structure/read/vertical-formation/vertical-formation.repository';
+import { StructureReadModelService } from '../../ui-api/structure/structure-read-model.service';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private platformId;
     private renderer;
@@ -15,11 +17,14 @@ export declare class StructureContentComponent extends SmartComponent implements
     private structureCellEditArchive;
     private structureEditModeArchive;
     private formationQueryService;
+    private structureReadModelService;
+    private verticalFormationRepository;
     source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;
-    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService);
+    rowHeight: number;
+    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService, structureReadModelService: StructureReadModelService, verticalFormationRepository: VerticalFormationRepository);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;

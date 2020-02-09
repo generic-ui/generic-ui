@@ -1,4 +1,4 @@
-import { ReadModel, AggregateId } from '@generic-ui/hermes';
+import { AggregateId, ReadModel } from '@generic-ui/hermes';
 import { ColumnDefinition } from './definition/column-definition';
 import { CellTemplateWithContext } from './definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from './definition/cell-template-with-accessor';

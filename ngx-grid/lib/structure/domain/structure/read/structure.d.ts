@@ -18,6 +18,7 @@ export declare class Structure extends ReadModel {
     getPaging(): Paging;
     getEntities(): Array<ItemEntity>;
     getSource(): Source;
+    getVerticalFormation(): VerticalFormationReadModel;
     getSelectedEntities(): Array<ItemEntity>;
     getTopMargin(): number;
     getContainerHeight(): number;

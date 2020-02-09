@@ -1,16 +1,21 @@
-import { ChangeDetectorRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { StructureInfoModalComponent } from './structure-info-modal.component';
 import { SourceReadModelService } from '../../../ui-api/source/source-read-model.service';
+import { StructureReadModelService } from '../../../ui-api/structure/structure-read-model.service';
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
+    private changeDetectorRef;
+    private renderer;
+    private elementRef;
     private sourceQueryService;
     private dialog;
-    private changeDetectorRef;
+    private structureReadModelService;
     totalItemsSize: number;
     preparedItemsSize: number;
+    rowHeight: number;
     infoPanel: typeof StructureInfoModalComponent;
-    constructor(sourceQueryService: SourceReadModelService, dialog: FabricDialogService, changeDetectorRef: ChangeDetectorRef);
+    constructor(changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, elementRef: ElementRef, sourceQueryService: SourceReadModelService, dialog: FabricDialogService, structureReadModelService: StructureReadModelService);
     ngOnInit(): void;
     openInfo(): void;
 }

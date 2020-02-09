@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/jquery-grid",
-	"version": "0.5.6",
+	"version": "0.5.7",
 	"description": "Generic UI - jQuery Grid",
 	"license": "MIT",
 	"module": "dist/jquery.gui-grid.js",

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { CommandHandler, ExecuteResponse, DomainEventPublisher } from '@generic-ui/hermes';
+import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
 import { StructureEditSourceItemCommand } from './structure.edit-source-item.command';
 import { StructureAggregateRepository } from '../../../../structure/command/structure-aggregate.repository';
 import { StructureSourceDomainEventPublisher } from '../../structure.source.domain-event.publisher';

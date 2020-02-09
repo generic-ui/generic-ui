@@ -1,4 +1,4 @@
-import { AggregateId, AggregateEvent } from '@generic-ui/hermes';
+import { AggregateEvent, AggregateId } from '@generic-ui/hermes';
 export declare class ColumnsSetAggregateEvent extends AggregateEvent {
     constructor(aggregateId: AggregateId);
 }

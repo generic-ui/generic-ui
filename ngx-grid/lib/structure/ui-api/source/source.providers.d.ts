@@ -13,7 +13,7 @@ import { StructureSourceOriginRepository } from '../../domain/source/read/origin
 import { SourceSetLoadingCommandHandler } from '../../domain/source/command/loading/source-set-loading.command-handler';
 import { StructurePreparedItemsRepository } from '../../domain/source/read/prepared/structure.prepared-items.repository';
 import { StructurePreparedItemsEventHandler } from '../../domain/source/read/prepared/structure.prepared-items.event-handler';
-export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof StructurePreparedItemsRepository | typeof SourceReadModelService | typeof SourceDispatcher | typeof SourceCommandService | typeof SourceEventService | typeof SourceConverter | typeof SourceManagerFactory | typeof StructureSourceDomainEventPublisher | typeof SourceRepository | {
+export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof StructurePreparedItemsRepository | typeof SourceReadModelService | typeof SourceDispatcher | typeof SourceConverter | typeof SourceCommandService | typeof SourceEventService | typeof SourceManagerFactory | typeof StructureSourceDomainEventPublisher | typeof SourceRepository | {
     provide: string;
     useClass: typeof SourceSetLoadingCommandHandler;
     multi: boolean;

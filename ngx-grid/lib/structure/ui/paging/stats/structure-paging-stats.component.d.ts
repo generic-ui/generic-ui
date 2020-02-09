@@ -1,4 +1,4 @@
-import { SimpleChanges, OnChanges } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { Paging } from '../../../domain/paging/read/paging';
 export declare class StructurePagingStatsComponent implements OnChanges {
     paging: Paging;

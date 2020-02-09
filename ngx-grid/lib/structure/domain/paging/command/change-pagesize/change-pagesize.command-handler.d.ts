@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { CommandHandler, ExecuteResponse, DomainEventPublisher } from '@generic-ui/hermes';
+import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
 import { StructureAggregateRepository } from '../../../structure/command/structure-aggregate.repository';
 import { ChangePagesizeCommand } from './change-pagesize.command';
 export declare class ChangePagesizeCommandHandler extends CommandHandler {

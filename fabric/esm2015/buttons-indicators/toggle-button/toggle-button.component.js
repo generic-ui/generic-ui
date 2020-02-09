@@ -126,7 +126,7 @@ export class FabricToggleButtonComponent extends Indicator {
 FabricToggleButtonComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-button-toggle',
-                template: "<button gui-button\n\t\t[primary]=\"primary\"\n\t\t[secondary]=\"secondary\"\n\t\t[outline]=\"outline\"\n\t\t[disabled]=\"disabled\"\n\t\t(click)=\"tryToToggle($event)\">\n\t<ng-content></ng-content>\n</button>\n",
+                template: "<button (click)=\"tryToToggle($event)\"\n\t\t[disabled]=\"disabled\"\n\t\t[outline]=\"outline\"\n\t\t[primary]=\"primary\"\n\t\t[secondary]=\"secondary\"\n\t\tgui-button>\n\t<ng-content></ng-content>\n</button>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {

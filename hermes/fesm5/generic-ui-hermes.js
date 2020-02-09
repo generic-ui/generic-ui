@@ -1801,17 +1801,20 @@ if (false) {
  * @param {?} target
  * @return {?}
  */
-function RootAggregate(target) { }
+function RootAggregate(target) {
+}
 /**
  * @param {?} target
  * @return {?}
  */
-function Entity(target) { }
+function Entity(target) {
+}
 /**
  * @param {?} target
  * @return {?}
  */
-function ValueObject(target) { }
+function ValueObject(target) {
+}
 
 /**
  * @fileoverview added by tsickle
@@ -2880,6 +2883,91 @@ var NoopEventLogger = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var HermesLoggersInitializer = /** @class */ (function () {
+    function HermesLoggersInitializer(platformId, commandLogger, eventLogger) {
+        this.platformId = platformId;
+        this.commandLogger = commandLogger;
+        this.eventLogger = eventLogger;
+    }
+    /**
+     * @return {?}
+     */
+    HermesLoggersInitializer.prototype.start = /**
+     * @return {?}
+     */
+    function () {
+        this.loggersStart();
+    };
+    /**
+     * @return {?}
+     */
+    HermesLoggersInitializer.prototype.stop = /**
+     * @return {?}
+     */
+    function () {
+        this.loggersStop();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    HermesLoggersInitializer.prototype.loggersStart = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (isPlatformBrowser(this.platformId)) {
+            this.commandLogger.start();
+            this.eventLogger.start();
+        }
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    HermesLoggersInitializer.prototype.loggersStop = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (isPlatformBrowser(this.platformId)) {
+            this.commandLogger.stop();
+            this.eventLogger.stop();
+        }
+    };
+    HermesLoggersInitializer.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    HermesLoggersInitializer.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+        { type: CommandLogger },
+        { type: DomainEventLogger }
+    ]; };
+    return HermesLoggersInitializer;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesLoggersInitializer.prototype.platformId;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesLoggersInitializer.prototype.commandLogger;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesLoggersInitializer.prototype.eventLogger;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var hermesProviders = [
     RandomStringGenerator,
@@ -2903,7 +2991,8 @@ var providers = __spread([
     ConsoleCommandLogger,
     NoopCommandLogger,
     NoopEventLogger,
-    ConsoleEventLogger
+    ConsoleEventLogger,
+    HermesLoggersInitializer
 ], hermesProviders);
 /**
  * @param {?} enabled
@@ -2934,13 +3023,12 @@ function eventLoggerFactory(enabled, consoleEventLogger, noopEventLogger) {
     }
 }
 var HermesModule = /** @class */ (function () {
-    function HermesModule(commandHandlers, eventHandlers, commandBus, domainEventBus, commandLogger, eventLogger, hermesApi) {
+    function HermesModule(commandHandlers, eventHandlers, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
         var _this = this;
-        this.commandLogger = commandLogger;
-        this.eventLogger = eventLogger;
+        this.hermesLoggersInitializer = hermesLoggersInitializer;
         this.hermesApi = hermesApi;
         this.unsubscribe$ = new Subject();
-        this.loggersStart();
+        this.hermesLoggersInitializer.start();
         this.checkNullCommand(commandBus, commandHandlers);
         this.checkCommandHandlerIsCollection(commandHandlers);
         if (commandHandlers) {
@@ -3003,31 +3091,7 @@ var HermesModule = /** @class */ (function () {
     function () {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
-        this.loggersStop();
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    HermesModule.prototype.loggersStart = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        this.commandLogger.start();
-        this.eventLogger.start();
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    HermesModule.prototype.loggersStop = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        this.commandLogger.stop();
-        this.eventLogger.stop();
+        this.hermesLoggersInitializer.stop();
     };
     /**
      * @private
@@ -3082,8 +3146,7 @@ var HermesModule = /** @class */ (function () {
         { type: Array, decorators: [{ type: Optional }, { type: Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
         { type: CommandBus },
         { type: DomainEventBus },
-        { type: CommandLogger },
-        { type: DomainEventLogger },
+        { type: HermesLoggersInitializer },
         { type: HermesApi }
     ]; };
     return HermesModule;
@@ -3098,12 +3161,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    HermesModule.prototype.commandLogger;
-    /**
-     * @type {?}
-     * @private
-     */
-    HermesModule.prototype.eventLogger;
+    HermesModule.prototype.hermesLoggersInitializer;
     /**
      * @type {?}
      * @private
@@ -3200,5 +3258,5 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Aggregate, AggregateArchive, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Logger as ɵc, Message as ɵd, DomainEventStore as ɵe, FILTERED_COMMAND_STREAM as ɵf, ReactiveService as ɵg, Reactive as ɵh, ConsoleCommandLogger as ɵi, NoopCommandLogger as ɵj, ConsoleEventLogger as ɵk, NoopEventLogger as ɵl };
+export { Aggregate, AggregateArchive, AggregateEvent, AggregateId, AggregateStore, AggregateStoreRegister, COMMAND_HANDLERS, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandHandler, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideCommandHandlers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Logger as ɵc, Message as ɵd, DomainEventStore as ɵe, FILTERED_COMMAND_STREAM as ɵf, ReactiveService as ɵg, Reactive as ɵh, ConsoleCommandLogger as ɵi, NoopCommandLogger as ɵj, ConsoleEventLogger as ɵk, NoopEventLogger as ɵl, HermesLoggersInitializer as ɵm };
 //# sourceMappingURL=generic-ui-hermes.js.map

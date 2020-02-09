@@ -92,7 +92,7 @@ var StructureAlternativePagingNavigatorComponent = /** @class */ (function () {
     StructureAlternativePagingNavigatorComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-alternative-paging-navigator',
-                    template: "<button gui-button\n\t\t[disabled]=\"prevDisabled\"\n\t\t(click)=\"firstPage()\">\n\t<<\n</button>\n\n<button gui-button\n\t\t[disabled]=\"prevDisabled\"\n\t\t(click)=\"prevPage()\"\n\t\tclass=\"gui-structure-paging-navigator-prev\">\n\t< Prev\n</button>\n\n<ng-content></ng-content>\n\n<button gui-button\n\t\t[disabled]=\"nextDisabled\"\n\t\t(click)=\"nextPage()\"\n\t\tclass=\"gui-structure-paging-navigator-next\">\n\tNext >\n</button>\n\n<button gui-button\n\t\t[disabled]=\"nextDisabled\"\n\t\t(click)=\"lastPage()\">\n\t>>\n</button>\n",
+                    template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<<\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-prev\"\n\t\tgui-button>\n\t< Prev\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-next\"\n\t\tgui-button>\n\tNext >\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t>>\n</button>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];

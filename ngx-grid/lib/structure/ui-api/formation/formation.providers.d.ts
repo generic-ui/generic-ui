@@ -7,7 +7,7 @@ import { FormationConverter } from '../../domain/formation/formation.converter';
 import { FormationEventService } from './formation-event.service';
 import { FormationCommandService } from './formation-command.service';
 import { FormationReadModelService } from './formation-read-model.service';
-export declare const formationProviders: (typeof FormationDispatcher | typeof FormationCommandService | typeof FormationRepository | typeof FormationReadModelService | typeof FormationEventService | typeof FormationConverter | typeof FormationAggregateFactory | {
+export declare const formationProviders: (typeof FormationDispatcher | typeof FormationCommandService | typeof FormationRepository | typeof FormationReadModelService | typeof FormationConverter | typeof FormationEventService | typeof FormationAggregateFactory | {
     provide: string;
     useClass: typeof SetFormationCommandHandler;
     multi: boolean;

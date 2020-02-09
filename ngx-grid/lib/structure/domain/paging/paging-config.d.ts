@@ -1,3 +1,4 @@
+import { PagingDisplayMode } from '../../ui/paging/mode/paging-display-mode';
 export interface PagingConfig {
     enabled?: boolean;
     page?: number;
@@ -5,4 +6,5 @@ export interface PagingConfig {
     pageSizes?: Array<number>;
     pagerTop?: boolean;
     pagerBottom?: boolean;
+    displayMode?: PagingDisplayMode;
 }

@@ -1,4 +1,4 @@
-import { OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { Placement } from '@generic-ui/fabric';
 import { SortStatus } from '../../../../../../composition/domain/command/column/sort/sort-status';
 import { CellTemplateWithContext } from '../../../../../../composition/domain/read/definition/cell-template-with-context';

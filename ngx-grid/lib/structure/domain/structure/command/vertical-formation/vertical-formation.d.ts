@@ -12,6 +12,7 @@ export declare class VerticalFormation {
     private logger;
     constructor(enabled?: boolean, viewportHeight?: number, sourceSize?: number, scrollPosition?: number, rowHeight?: number, hiddenItemsTop?: number, hiddenItemsBottom?: number);
     isEnabled(): boolean;
+    getRowHeight(): number;
     getRange(): VerticalRange;
     getTopMargin(): number;
     calculateRange(): any;

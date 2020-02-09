@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ElementRef, OnDestroy, OnInit, Type, ViewContainerRef, Injector } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ElementRef, Injector, OnDestroy, OnInit, Type, ViewContainerRef } from '@angular/core';
 import { FabricInlineDialogService } from './fabric-inline-dialog.service';
 export declare class FabricInlineDialogComponent implements OnInit, AfterViewInit, OnDestroy {
     private componentFactoryResolver;

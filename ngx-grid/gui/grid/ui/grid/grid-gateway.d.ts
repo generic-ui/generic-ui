@@ -10,6 +10,7 @@ export declare abstract class GridGateway implements OnChanges {
     columnHeaderBottom: boolean;
     maxHeight: number;
     width: number;
+    rowHeight: number;
     autoResizeWidth: boolean;
     source: Array<any>;
     columns: Array<GuiColumn>;
@@ -21,6 +22,7 @@ export declare abstract class GridGateway implements OnChanges {
     loading: boolean;
     virtualScroll: boolean;
     sorting: boolean | GuiSorting;
+    searching: boolean | GuiSearching;
     /**
      * @experimental
      */
@@ -29,10 +31,6 @@ export declare abstract class GridGateway implements OnChanges {
      * @experimental
      */
     quickFilters: boolean | GuiQuickFilters;
-    /**
-     * @experimental
-     */
-    searching: boolean | GuiSearching;
     /**
      * @experimental
      */
@@ -71,6 +69,7 @@ export declare abstract class GridGateway implements OnChanges {
     private readonly gridThemeConverter;
     private readonly gridRowColoringConverter;
     private readonly gridColumnMenuConverter;
+    private readonly gridPagingConverter;
     protected constructor();
     ngOnChanges(changes: SimpleChanges): void;
     onPageChange(page: number): void;

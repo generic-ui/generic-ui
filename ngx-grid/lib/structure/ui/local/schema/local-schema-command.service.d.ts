@@ -12,12 +12,12 @@ export declare class LocalSchemaCommandService extends SchemaCommandService {
     setHeight(height: number): void;
     changeVerticalGrid(enabled: boolean): void;
     changeHorizontalGrid(enabled: boolean): void;
-    toggleVerticalGrid(): void;
-    toggleHorizontalGrid(): void;
     setTheme(theme: SchemaTheme): void;
     setRowColoring(coloring: SchemaRowColoring, structureId?: StructureId): void;
     changeTopHeader(enabled: boolean, structureId?: StructureId): void;
     changeBottomHeader(enabled: boolean, structureId?: StructureId): void;
+    toggleVerticalGrid(): void;
+    toggleHorizontalGrid(): void;
     toggleTopHeader(): void;
     toggleBottomHeader(): void;
 }

@@ -11,8 +11,8 @@ export declare class NumberAggregationCalculator extends AggregationCalculator<n
     private readonly median;
     constructor();
     forDataType(dataType: DataType): boolean;
-    aggregate(field: Field, value: number): void;
-    generateAggregatedValues(field: Field): NumberAggregatedValues;
     prepare(field: Field): void;
     postCalculate(field: Field, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field, value: number): void;
+    generateAggregatedValues(field: Field): NumberAggregatedValues;
 }

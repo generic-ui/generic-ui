@@ -18,14 +18,15 @@ export declare class LocalStructureCommandService extends StructureCommandServic
     init(): void;
     enableVerticalScroll(): void;
     disableVerticalScroll(): void;
-    setOrigin(items: Array<any>): void;
     setScrollPosition(position: number): void;
+    setOrigin(items: Array<any>): void;
     setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
     toggleSort(fieldId: FieldId): void;
     setSortOrder(fieldId: FieldId, sortOrder: SortStatus): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
-    setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>): void;
+    setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
     search(phrase: string): void;
+    setRowHeight(rowHeight: number): void;
 }

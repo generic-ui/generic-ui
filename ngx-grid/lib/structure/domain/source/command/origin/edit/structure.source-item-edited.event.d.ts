@@ -1,4 +1,4 @@
-import { DomainEvent, AggregateId } from '@generic-ui/hermes';
+import { AggregateId, DomainEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from '../origin-item-entity';
 export declare class StructureSourceItemEditedEvent extends DomainEvent {
     private readonly beforeItem;

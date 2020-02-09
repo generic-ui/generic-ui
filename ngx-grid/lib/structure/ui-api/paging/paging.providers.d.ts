@@ -9,7 +9,7 @@ import { PagingConverter } from '../../domain/paging/paging.converter';
 import { PagingCommandService } from './paging-command.service';
 import { PagingReadModelService } from './paging-read-model.service';
 import { PagingEventService } from './paging-event.service';
-export declare const pagingProviders: (typeof PagingRepository | typeof PagingReadModelService | typeof PagingDispatcher | typeof PagingCommandService | typeof PagingAggregateFactory | typeof PagingEventService | typeof PagingConverter | {
+export declare const pagingProviders: (typeof PagingRepository | typeof PagingReadModelService | typeof PagingDispatcher | typeof PagingCommandService | typeof PagingAggregateFactory | typeof PagingConverter | typeof PagingEventService | {
     provide: string;
     useClass: typeof SetPagingCommandHandler;
     multi: boolean;

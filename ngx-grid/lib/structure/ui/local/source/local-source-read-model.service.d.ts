@@ -10,8 +10,8 @@ export declare class LocalSourceReadModelService extends SourceReadModelService 
     constructor(structureId: StructureId, structureRepository: StructureRepository, structurePreparedItemsRepository: StructurePreparedItemsRepository, structureSourceOriginRepository: StructureSourceOriginRepository);
     onEntities(): Observable<Array<ItemEntity>>;
     onEntitiesSize(): Observable<number>;
-    onOriginSize(): Observable<number>;
     onSingleEntities(): Observable<Array<ItemEntity>>;
+    onOriginSize(): Observable<number>;
     onLoading(): Observable<boolean>;
     onPreparedEntities(): Observable<boolean>;
 }
