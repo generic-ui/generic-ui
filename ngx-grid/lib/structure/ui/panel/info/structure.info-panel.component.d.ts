@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, OnInit, Renderer2, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { StructureInfoModalComponent } from './structure-info-modal.component';

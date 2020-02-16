@@ -1649,7 +1649,7 @@ class GridComponent extends GridGateway {
 GridComponent.decorators = [
     { type: Component, args: [{
                 selector: gridSelector,
-                template: "<gui-structure\n\t#structure\n\t[aggregation]=\"aggregation\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\"\n\t[rowHeight]=\"rowHeight\"\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\">\n</gui-structure>\n",
+                template: "<gui-structure\n\t#structure\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\"\n\t[aggregation]=\"aggregation\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[rowHeight]=\"rowHeight\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\">\n</gui-structure>\n",
                 providers: [
                     ...gridProviders,
                     {
@@ -3213,10 +3213,10 @@ StructureInfoModalComponent.decorators = [
     { type: Component, args: [{
                 template: `
 		<div class="gui-structure-info-modal">
-			
+
 			<p class="gui-info-title">Generic UI Grid</p>
-			
-			<p class="gui-info-version">version 0.5.7</p>
+
+			<p class="gui-info-version">version 0.6.0</p>
 
 			<p>Links:</p>
 			<ul>
@@ -4436,7 +4436,7 @@ StructureInfoPanelComponent.decorators = [
                 template: `
 
 		<ng-container *ngIf="preparedItemsSize !== undefined && totalItemsSize !== undefined">
-			
+
 			<p *ngIf="preparedItemsSize === totalItemsSize">
 				Showing <b>{{totalItemsSize | numberFormatter}}</b> items
 			</p>
@@ -4444,7 +4444,7 @@ StructureInfoPanelComponent.decorators = [
 			<p *ngIf="preparedItemsSize !== totalItemsSize">
 				Showing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items
 			</p>
-			
+
 		</ng-container>
 		<div>
 			<p (click)="openInfo()">
@@ -4611,12 +4611,12 @@ ViewTemplatesComponent.decorators = [
 			<span class="gui-italic">{{ element }}</span>
 		</ng-template>
 
-		<ng-template #custom let-element="element" >
+		<ng-template #custom let-element="element">
 			{{ element }}
 		</ng-template>
 
-		<ng-template #function let-element="element" >
-			<gui-function-view [element]="element" ></gui-function-view>
+		<ng-template #function let-element="element">
+			<gui-function-view [element]="element"></gui-function-view>
 		</ng-template>
 
 	`
@@ -16523,7 +16523,7 @@ class StructureContentComponent extends SmartComponent {
 StructureContentComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure-content',
-                template: "<div class=\"gui-content\">\n\n\t<gui-structure-row *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
+                template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -16814,7 +16814,7 @@ StructureCellComponent.decorators = [
 					context: { element: cell.accessor(entity) }">
 			</ng-container>
 		</span>
-		
+
 		<span *ngIf="inEditMode" class="gui-cell-edit-mode">
 			<ng-container
 					*ngTemplateOutlet="cell.editTemplate;
@@ -17602,260 +17602,6 @@ if (false) {
      * @private
      */
     StructureBlueprintComponent.prototype.className;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureAggregationsChangedEvent extends DomainEvent {
-    /**
-     * @param {?} structureId
-     * @param {?} values
-     */
-    constructor(structureId, values) {
-        super(structureId, 'StructureAggregationsChangedEvent');
-        this.values = values;
-    }
-    /**
-     * @return {?}
-     */
-    getAggregations() {
-        return this.values;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationsChangedEvent.prototype.values;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureAggregationUiEventsRepository {
-    /**
-     * @param {?} domainEventBus
-     */
-    constructor(domainEventBus) {
-        this.domainEventBus = domainEventBus;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onAggregationsChanged(structureId) {
-        return this.domainEventBus
-            .pipe(filter((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => event instanceof StructureAggregationsChangedEvent)), filter((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => event.aggregateId.toString() === structureId.toString())));
-    }
-}
-StructureAggregationUiEventsRepository.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureAggregationUiEventsRepository.ctorParameters = () => [
-    { type: DomainEventBus }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationUiEventsRepository.prototype.domainEventBus;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureAggregationPanelComponent extends SmartComponent {
-    /**
-     * @param {?} changeDetectorRef
-     * @param {?} structureId
-     * @param {?} structureAggregationUiEventsRepository
-     * @param {?} sourceReadModelService
-     * @param {?} compositionQueryService
-     */
-    constructor(changeDetectorRef, structureId, structureAggregationUiEventsRepository, sourceReadModelService, compositionQueryService) {
-        super();
-        this.changeDetectorRef = changeDetectorRef;
-        this.structureId = structureId;
-        this.structureAggregationUiEventsRepository = structureAggregationUiEventsRepository;
-        this.sourceReadModelService = sourceReadModelService;
-        this.compositionQueryService = compositionQueryService;
-        this.sourceEmpty = false;
-        this.structureAggregationUiEventsRepository
-            .onAggregationsChanged(this.structureId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => {
-            this.aggregations = event.getAggregations();
-            this.changeDetectorRef.detectChanges();
-        }));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.sourceReadModelService
-            .onEntitiesSize()
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} size
-         * @return {?}
-         */
-        (size) => {
-            this.sourceEmpty = size === 0;
-            this.changeDetectorRef.detectChanges();
-        }));
-        this.compositionQueryService
-            .onHeaderColumns()
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} columns
-         * @return {?}
-         */
-        (columns) => {
-            this.headerColumns = columns;
-            this.changeDetectorRef.detectChanges();
-        }));
-    }
-    /**
-     * @param {?} aggregation
-     * @return {?}
-     */
-    isAggregateTypePresent(aggregation) {
-        return aggregation !== undefined && aggregation !== null;
-    }
-}
-StructureAggregationPanelComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-structure-aggregation-panel',
-                template: `
-
-		<ng-container *ngIf="enabled && aggregations && !sourceEmpty">
-
-			<div *ngFor="let column of headerColumns"
-				 [style.width.px]="column.width"
-				 class="gui-header-cell gui-structure-aggregation-cell">
-
-				<ng-container *ngIf="aggregations && !!aggregations.get(column.getFieldId().getId())">
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).count)" class="gui-structure-aggregation-value">
-						Count: <span>{{ aggregations.get(column.getFieldId().getId()).count }}</span>
-					</div>
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).distinct)" class="gui-structure-aggregation-value">
-						Distinct: <span>{{ aggregations.get(column.getFieldId().getId()).distinct }}</span>
-					</div>
-
-					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).sum)" class="gui-structure-aggregation-value">
-
-						<div><span class="gui-math-symbol">&sum;</span> Sum</div>
-						<span>{{ aggregations.get(column.getFieldId().getId()).sum }}</span>
-					</div>
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).average)" class="gui-structure-aggregation-value">
-
-						<div class="gui-mean"><span>_</span><span>X Average</span></div>
-						<span>{{ aggregations.get(column.getFieldId().getId()).average }}</span>
-					</div>
-
-					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).min)" class="gui-structure-aggregation-value">
-
-						<div><span class="gui-math-symbol">&and;</span> Min</div>
-						<span>{{ aggregations.get(column.getFieldId().getId()).min }}</span>
-					</div>
-
-					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).max)" class="gui-structure-aggregation-value">
-
-						<div><span class="gui-math-symbol">&or;</span> Max</div>
-						<span>{{ aggregations.get(column.getFieldId().getId()).max }}</span>
-					</div>
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).median)" class="gui-structure-aggregation-value">
-
-						<div class="gui-median"><span>~</span><span>X Median</span></div>
-						<span>{{ aggregations.get(column.getFieldId().getId()).median }}</span>
-					</div>
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).truthy)" class="gui-structure-aggregation-value">
-						Truthy: <span>{{ aggregations.get(column.getFieldId().getId()).truthy }}</span>
-					</div>
-
-					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).falsy)" class="gui-structure-aggregation-value">
-						Falsy: <span>{{ aggregations.get(column.getFieldId().getId()).falsy }}</span>
-					</div>
-
-				</ng-container>
-			</div>
-
-		</ng-container>
-
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-/** @nocollapse */
-StructureAggregationPanelComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef },
-    { type: StructureId },
-    { type: StructureAggregationUiEventsRepository },
-    { type: SourceReadModelService },
-    { type: CompositionReadModelService }
-];
-StructureAggregationPanelComponent.propDecorators = {
-    enabled: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    StructureAggregationPanelComponent.prototype.enabled;
-    /** @type {?} */
-    StructureAggregationPanelComponent.prototype.sourceEmpty;
-    /** @type {?} */
-    StructureAggregationPanelComponent.prototype.headerColumns;
-    /** @type {?} */
-    StructureAggregationPanelComponent.prototype.aggregations;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationPanelComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationPanelComponent.prototype.structureId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationPanelComponent.prototype.structureAggregationUiEventsRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationPanelComponent.prototype.sourceReadModelService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregationPanelComponent.prototype.compositionQueryService;
 }
 
 /**
@@ -21994,6 +21740,34 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class StructureAggregationsChangedEvent extends DomainEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} values
+     */
+    constructor(structureId, values) {
+        super(structureId, 'StructureAggregationsChangedEvent');
+        this.values = values;
+    }
+    /**
+     * @return {?}
+     */
+    getAggregations() {
+        return this.values;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationsChangedEvent.prototype.values;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class StructurePreparedEntitiesSetEvent extends DomainEvent {
     /**
      * @param {?} aggregateId
@@ -23064,6 +22838,49 @@ if (false) {
      * @private
      */
     StructureFieldsInitedEventHandler.prototype.structureFieldUiConverter;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureAggregationUiEventsRepository {
+    /**
+     * @param {?} domainEventBus
+     */
+    constructor(domainEventBus) {
+        this.domainEventBus = domainEventBus;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onAggregationsChanged(structureId) {
+        return this.domainEventBus
+            .pipe(filter((/**
+         * @param {?} event
+         * @return {?}
+         */
+        (event) => event instanceof StructureAggregationsChangedEvent)), filter((/**
+         * @param {?} event
+         * @return {?}
+         */
+        (event) => event.aggregateId.toString() === structureId.toString())));
+    }
+}
+StructureAggregationUiEventsRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructureAggregationUiEventsRepository.ctorParameters = () => [
+    { type: DomainEventBus }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationUiEventsRepository.prototype.domainEventBus;
 }
 
 /**
@@ -25254,6 +25071,229 @@ StructureColumnMenuModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class StructureAggregationPanelComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} structureAggregationUiEventsRepository
+     * @param {?} sourceReadModelService
+     * @param {?} compositionQueryService
+     */
+    constructor(changeDetectorRef, structureId, structureAggregationUiEventsRepository, sourceReadModelService, compositionQueryService) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.structureAggregationUiEventsRepository = structureAggregationUiEventsRepository;
+        this.sourceReadModelService = sourceReadModelService;
+        this.compositionQueryService = compositionQueryService;
+        this.sourceEmpty = false;
+        this.structureAggregationUiEventsRepository
+            .onAggregationsChanged(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} event
+         * @return {?}
+         */
+        (event) => {
+            this.aggregations = event.getAggregations();
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.sourceReadModelService
+            .onEntitiesSize()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} size
+         * @return {?}
+         */
+        (size) => {
+            this.sourceEmpty = size === 0;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.compositionQueryService
+            .onHeaderColumns()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} columns
+         * @return {?}
+         */
+        (columns) => {
+            this.headerColumns = columns;
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @param {?} aggregation
+     * @return {?}
+     */
+    isAggregateTypePresent(aggregation) {
+        return aggregation !== undefined && aggregation !== null;
+    }
+}
+StructureAggregationPanelComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-structure-aggregation-panel',
+                template: `
+
+		<ng-container *ngIf="enabled && aggregations && !sourceEmpty">
+
+			<div *ngFor="let column of headerColumns"
+				 [style.width.px]="column.width"
+				 class="gui-header-cell gui-structure-aggregation-cell">
+
+				<ng-container *ngIf="aggregations && !!aggregations.get(column.getFieldId().getId())">
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).count)" class="gui-structure-aggregation-value">
+						Count: <span>{{ aggregations.get(column.getFieldId().getId()).count }}</span>
+					</div>
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).distinct)" class="gui-structure-aggregation-value">
+						Distinct: <span>{{ aggregations.get(column.getFieldId().getId()).distinct }}</span>
+					</div>
+
+					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).sum)" class="gui-structure-aggregation-value">
+
+						<div>
+							<span [gui-tooltip]="'Sum'" 
+								  class="gui-math-symbol">&sum;</span>
+						</div>
+						<span>{{ aggregations.get(column.getFieldId().getId()).sum }}</span>
+					</div>
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).average)" class="gui-structure-aggregation-value">
+
+						<div [gui-tooltip]="'Average'"
+							 class="gui-mean">
+							<span>_</span><span>X</span>
+						</div>
+						<span>{{ aggregations.get(column.getFieldId().getId()).average }}</span>
+					</div>
+
+					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).min)" class="gui-structure-aggregation-value">
+
+						<div [gui-tooltip]="'Min'">
+							<span class="gui-math-symbol">&and;</span>
+						</div>
+						<span>{{ aggregations.get(column.getFieldId().getId()).min }}</span>
+					</div>
+
+					<div *ngIf=" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).max)" class="gui-structure-aggregation-value">
+
+						<div [gui-tooltip]="'Max'">
+							<span class="gui-math-symbol">&or;</span>
+						</div>
+						<span>{{ aggregations.get(column.getFieldId().getId()).max }}</span>
+					</div>
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).median)" class="gui-structure-aggregation-value">
+
+						<div [gui-tooltip]="'Median'"
+							 class="gui-median">
+							<span>~</span>
+							<span>X</span>
+						</div>
+						<span>{{ aggregations.get(column.getFieldId().getId()).median }}</span>
+					</div>
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).truthy)" class="gui-structure-aggregation-value">
+						Truthy: <span>{{ aggregations.get(column.getFieldId().getId()).truthy }}</span>
+					</div>
+
+					<div *ngIf="isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).falsy)" class="gui-structure-aggregation-value">
+						Falsy: <span>{{ aggregations.get(column.getFieldId().getId()).falsy }}</span>
+					</div>
+
+				</ng-container>
+			</div>
+
+		</ng-container>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+/** @nocollapse */
+StructureAggregationPanelComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: StructureAggregationUiEventsRepository },
+    { type: SourceReadModelService },
+    { type: CompositionReadModelService }
+];
+StructureAggregationPanelComponent.propDecorators = {
+    enabled: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureAggregationPanelComponent.prototype.enabled;
+    /** @type {?} */
+    StructureAggregationPanelComponent.prototype.sourceEmpty;
+    /** @type {?} */
+    StructureAggregationPanelComponent.prototype.headerColumns;
+    /** @type {?} */
+    StructureAggregationPanelComponent.prototype.aggregations;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationPanelComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationPanelComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationPanelComponent.prototype.structureAggregationUiEventsRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationPanelComponent.prototype.sourceReadModelService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregationPanelComponent.prototype.compositionQueryService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureAggregationPanelModule {
+}
+StructureAggregationPanelModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FabricModule
+                ],
+                declarations: [
+                    StructureAggregationPanelComponent
+                ],
+                exports: [
+                    StructureAggregationPanelComponent
+                ],
+                providers: [
+                    StructureAggregationArchive,
+                    StructureAggregationConfigService,
+                    StructureAggregationPanelConfigConverter
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @return {?}
  */
@@ -25271,6 +25311,7 @@ const imports = [
     ...fabricImports,
     StructurePagingModule,
     StructureInfoPanelModule,
+    StructureAggregationPanelModule,
     StructureTopPanelModule,
     StructureColumnMenuModule,
     CompositionModule,
@@ -25289,8 +25330,7 @@ const declarations$1 = [
     StructureContainerComponent,
     StructureEmptySourceComponent,
     StructureQuickFiltersComponent,
-    StructureBlueprintComponent,
-    StructureAggregationPanelComponent
+    StructureBlueprintComponent
 ];
 /** @type {?} */
 const entryComponents = [
@@ -25309,7 +25349,6 @@ const providers = [
     ItemEntityFactory,
     SourceReadModelService,
     StructureIdGenerator,
-    StructureAggregationPanelConfigConverter,
     ...structureProviders
 ];
 /** @type {?} */
@@ -25445,5 +25484,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureInfoPanelComponent as ɵba, StructureReadModelService as ɵbb, VerticalFormationRepository as ɵbc, InMemoryStructureReadStore as ɵbd, InMemoryStructureStore as ɵbe, StructureConverter as ɵbf, FormationConverter as ɵbg, SchemaConverter as ɵbh, PagingConverter as ɵbi, SourceConverter as ɵbj, VerticalFormationConverter as ɵbk, StructureInfoModalComponent as ɵbl, StructureTopPanelModule as ɵbm, StructureTopPanelComponent as ɵbn, StructureSearchComponent as ɵbo, StructureCommandService as ɵbp, StructureFilterCommandService as ɵbq, SourceDispatcher as ɵbr, StructureColumnMenuModule as ɵbs, StructureColumnConfigComponent as ɵbt, CompositionReadModelService as ɵbu, CompositionRepository as ɵbv, StructureColumnMenuConfigArchive as ɵbw, CellTemplateWithContext as ɵbx, CellContext as ɵby, FieldId as ɵbz, StructureModule as ɵc, ColumnId as ɵca, SortStatus as ɵcb, StructureColumnConfigTriggerComponent as ɵcc, StructureColumnConfigService as ɵcd, StructureMenuColumnManagerComponent as ɵce, CompositionCommandService as ɵcf, CompositionDispatcher as ɵcg, StructureColumnConfigSortComponent as ɵch, StructureColumnConfigColumnHideComponent as ɵci, StructureColumnConfigColumnMoveComponent as ɵcj, CompositionModule as ɵck, compositionProviders as ɵcl, inMemoryCompositionCommandProviders as ɵcm, inMemoryCompositionQueryProviders as ɵcn, inMemoryCompositionProviders as ɵco, InMemoryCompositionStore as ɵcp, InMemoryCompositionAggregateStore as ɵcq, CompositionAggregateRepository as ɵcr, InMemoryCompositionAggregateRepository as ɵcs, CompositionAggregateFactory as ɵct, InitCompositionCommandHandler as ɵcu, SetColumnsCommandHandler as ɵcv, CompositionEventConverter as ɵcw, SetCompositionWidthCommandHandler as ɵcx, ColumnEntityFactory as ɵcy, SetCompositionResizeWidthCommandHandler as ɵcz, fabricImports as ɵd, SetCompositionContainerWidthCommandHandler as ɵda, CompositionSetColumnEnabledCommandHandler as ɵdb, CompositionChangeSortStatusCommandHandler as ɵdc, CompositionMoveLeftColumnCommandHandler as ɵdd, CompositionMoveRightColumnCommandHandler as ɵde, ColumnFieldFactory as ɵdf, InMemoryCompositionReadStore as ɵdg, CompositionConverter as ɵdh, ColumnDefinitionFactory as ɵdi, ViewTemplateRepository as ɵdj, ViewTemplateFactory as ɵdk, TemplateFactory as ɵdl, EditTemplateRepository as ɵdm, EditTemplateFactory as ɵdn, InMemoryCompositionRepository as ɵdo, CompositionFieldsInitedEventHandler as ɵdp, CompositionChangeSortStatusEventHandler as ɵdq, CompositionEventService as ɵdr, ViewTemplatesComponent as ɵds, EditTemplatesComponent as ɵdt, StringEditTemplateComponent as ɵdu, InputEditTemplateComponent as ɵdv, EditCommunicationComponent as ɵdw, Override as ɵdx, NumberEditTemplateComponent as ɵdy, BooleanEditTemplateComponent as ɵdz, StructurePagingModule as ɵe, ColumnQueryComponent as ɵea, FunctionViewComponent as ɵeb, LoggerModule as ɵec, Logger as ɵed, ConsoleLogger as ɵee, structureIdFactory as ɵef, compositionIdFactory as ɵeg, structureComponentSelfProviders as ɵeh, StructureComponent as ɵei, StructureGateway as ɵej, StructureId as ɵek, CompositionId as ɵel, PagingEventService as ɵem, SourceCommandService as ɵen, StructureFieldUiRepository as ɵeo, StructureFieldUiArchive as ɵep, SourceEventService as ɵeq, SchemaCommandService as ɵer, SchemaDispatcher as ɵes, SchemaReadModelService as ɵet, SchemaRepository as ɵeu, FormationEventService as ɵev, StructureEditModeArchive as ɵew, StructureCellEditArchive as ɵex, StructureInfoPanelEnabledArchive as ɵey, StructureAggregationConfigService as ɵez, StructurePagingComponent as ɵf, StructureAggregationPanelConfigConverter as ɵfa, StructureAggregationArchive as ɵfb, StructureAggregationCommandService as ɵfc, StructureCellEditStore as ɵfd, StructureIdGenerator as ɵfe, localProviders as ɵff, LocalPagingCommandService as ɵfg, PagingAggregateFactory as ɵfh, LocalPagingReadModelService as ɵfi, LocalSchemaCommandService as ɵfj, LocalSchemaReadModelService as ɵfk, FormationCommandService as ɵfl, FormationDispatcher as ɵfm, LocalFormationCommandService as ɵfn, FormationReadModelService as ɵfo, FormationRepository as ɵfp, LocalFormationReadModelService as ɵfq, LocalStructureCommandService as ɵfr, LocalStructureReadModelService as ɵfs, LocalSourceCommandService as ɵft, LocalSourceReadModelService as ɵfu, LocalCompositionCommandService as ɵfv, LocalCompositionReadModelService as ɵfw, SchemaCssClassManager as ɵfx, structureComponentToken as ɵfy, StructureDefinition as ɵfz, SmartComponent as ɵg, StructurePagingDefinition as ɵga, StructureHeaderComponent as ɵgb, StructureHeaderColumnsComponent as ɵgc, StructureHeaderFiltersComponent as ɵgd, StructureFilterReadModelRepository as ɵge, StructureFilterRepository as ɵgf, StructureQuickFilterRepository as ɵgg, StructureHeaderFilterComponent as ɵgh, StructureContentComponent as ɵgi, StructureRowComponent as ɵgj, StructureCellComponent as ɵgk, StructureContainerComponent as ɵgl, structureParentComponent as ɵgm, StructureEmptySourceComponent as ɵgn, StructureQuickFiltersComponent as ɵgo, StructureBlueprintComponent as ɵgp, STRUCTURE_CSS_CLASS_NAME as ɵgq, StructureSearchReadModelRepository as ɵgr, StructureSearchingRepository as ɵgs, StructureAggregationPanelComponent as ɵgt, StructureAggregationUiEventsRepository as ɵgu, ItemEntityFactory as ɵgv, structureProviders as ɵgw, inMemoryStructureCommandProviders as ɵgx, inMemoryStructureReadProviders as ɵgy, inMemoryStructureProviders as ɵgz, Reactive as ɵh, InMemoryStructureAggregateStore as ɵha, StructureAggregateRepository as ɵhb, InMemoryStructureAggregateRepository as ɵhc, InitStructureCommandHandler as ɵhd, StructureAggregateFactory as ɵhe, SourceManagerFactory as ɵhf, FormationAggregateFactory as ɵhg, VerticalFormationFactory as ɵhh, AggregationManagerFactory as ɵhi, AGGREGATION_CALCULATORS as ɵhj, AggregationCalculator as ɵhk, FilterManagerFactory as ɵhl, SearchManagerFactory as ɵhm, FieldCollectionFactory as ɵhn, FieldFactory as ɵho, FieldIdGenerator as ɵhp, SchemaAggregateFactory as ɵhq, SetVerticalScrollEnabledCommandHandler as ɵhr, SetScrollPositionCommandHandler as ɵhs, InitFieldsCommandHandler as ɵht, ToggleSortCommandHandler as ɵhu, SetSortingCommandHandler as ɵhv, StructureSetConfigFilterCommandHandler as ɵhw, StructureSetConfigSearchingCommandHandler as ɵhx, StructureSetConfigQuickFilterCommandHandler as ɵhy, StructureToggleFilterCommandHandler as ɵhz, PagingReadModelService as ɵi, StructureSetAggregationEnabledCommandHandler as ɵia, StructureSourceDomainEventPublisher as ɵib, StructureSetSearchPhraseCommandHandler as ɵic, SetSortOrderCommandHandler as ɵid, SetRowHeightCommandHandler as ɵie, provideAggregationCalculator as ɵif, aggregationProviders as ɵig, BooleanAggregationCalculator as ɵih, DateAggregationCalculator as ɵii, NumberAggregationCalculator as ɵij, StringAggregationCalculator as ɵik, UnknownAggregationCalculator as ɵil, StructureConfigFilterSetEventHandler as ɵim, StructureConfigSearchingSetEventHandler as ɵin, StructureConfigQuickFilterSetEventHandler as ɵio, StructureFieldsInitedEventHandler as ɵip, StructureFieldUiConverter as ɵiq, InMemoryStructureRepository as ɵir, pagingProviders as ɵis, SetPagingCommandHandler as ɵit, NextPageCommandHandler as ɵiu, PrevPageCommandHandler as ɵiv, ChangePagesizeCommandHandler as ɵiw, schemaProviders as ɵix, SetSchemaCommandHandler as ɵiy, SetSchemaVerticalGridCommandHandler as ɵiz, PagingRepository as ɵj, SetSchemaHorizontalGridCommandHandler as ɵja, SetSchemaThemeCommandHandler as ɵjb, ChangeSchemaBottomHeaderCommandHandler as ɵjc, ChangeSchemaTopHeaderCommandHandler as ɵjd, SetRowColoringCommandHandler as ɵje, formationProviders as ɵjf, SetFormationCommandHandler as ɵjg, ToggleSelectedRowCommandHandler as ɵjh, sourceProviders as ɵji, SourceSetLoadingCommandHandler as ɵjj, SetOriginCommandHandler as ɵjk, StructureEditSourceItemCommandHandler as ɵjl, SourceRepository as ɵjm, StructureOriginChangedEventHandler as ɵjn, StructurePreparedItemsEventHandler as ɵjo, GridGateway as ɵjp, gridProviders as ɵjq, gridStructureDefinition as ɵjr, GridRegister as ɵjs, GridIdGenerator as ɵjt, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceReadModelService as ɵn, StructurePreparedItemsRepository as ɵo, StructureSourceOriginRepository as ɵp, StructurePagingDisplayModeArchive as ɵq, Archive as ɵr, StructurePagingNavigatorComponent as ɵs, StructurePagingSelectComponent as ɵt, StructurePagingStatsComponent as ɵu, StructureAlternativePagingNavigatorComponent as ɵv, StructureAlternativePagingPagesComponent as ɵw, StructureInfoPanelModule as ɵx, NumberFormatterModule as ɵy, NumberFormatterPipe as ɵz };
+export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, StructureInfoPanelComponent as ɵba, StructureReadModelService as ɵbb, VerticalFormationRepository as ɵbc, InMemoryStructureReadStore as ɵbd, InMemoryStructureStore as ɵbe, StructureConverter as ɵbf, FormationConverter as ɵbg, SchemaConverter as ɵbh, PagingConverter as ɵbi, SourceConverter as ɵbj, VerticalFormationConverter as ɵbk, StructureInfoModalComponent as ɵbl, StructureAggregationPanelModule as ɵbm, StructureAggregationPanelComponent as ɵbn, StructureId as ɵbo, StructureAggregationUiEventsRepository as ɵbp, CompositionReadModelService as ɵbq, CompositionRepository as ɵbr, StructureAggregationArchive as ɵbs, StructureAggregationConfigService as ɵbt, StructureAggregationPanelConfigConverter as ɵbu, StructureAggregationCommandService as ɵbv, StructureTopPanelModule as ɵbw, StructureTopPanelComponent as ɵbx, StructureSearchComponent as ɵby, StructureCommandService as ɵbz, StructureModule as ɵc, StructureFilterCommandService as ɵca, SourceDispatcher as ɵcb, StructureColumnMenuModule as ɵcc, StructureColumnConfigComponent as ɵcd, StructureColumnMenuConfigArchive as ɵce, CellTemplateWithContext as ɵcf, CellContext as ɵcg, FieldId as ɵch, ColumnId as ɵci, SortStatus as ɵcj, StructureColumnConfigTriggerComponent as ɵck, StructureColumnConfigService as ɵcl, StructureMenuColumnManagerComponent as ɵcm, CompositionCommandService as ɵcn, CompositionDispatcher as ɵco, StructureColumnConfigSortComponent as ɵcp, StructureColumnConfigColumnHideComponent as ɵcq, StructureColumnConfigColumnMoveComponent as ɵcr, CompositionModule as ɵcs, compositionProviders as ɵct, inMemoryCompositionCommandProviders as ɵcu, inMemoryCompositionQueryProviders as ɵcv, inMemoryCompositionProviders as ɵcw, InMemoryCompositionStore as ɵcx, InMemoryCompositionAggregateStore as ɵcy, CompositionAggregateRepository as ɵcz, fabricImports as ɵd, InMemoryCompositionAggregateRepository as ɵda, CompositionAggregateFactory as ɵdb, InitCompositionCommandHandler as ɵdc, SetColumnsCommandHandler as ɵdd, CompositionEventConverter as ɵde, SetCompositionWidthCommandHandler as ɵdf, ColumnEntityFactory as ɵdg, SetCompositionResizeWidthCommandHandler as ɵdh, SetCompositionContainerWidthCommandHandler as ɵdi, CompositionSetColumnEnabledCommandHandler as ɵdj, CompositionChangeSortStatusCommandHandler as ɵdk, CompositionMoveLeftColumnCommandHandler as ɵdl, CompositionMoveRightColumnCommandHandler as ɵdm, ColumnFieldFactory as ɵdn, InMemoryCompositionReadStore as ɵdo, CompositionConverter as ɵdp, ColumnDefinitionFactory as ɵdq, ViewTemplateRepository as ɵdr, ViewTemplateFactory as ɵds, TemplateFactory as ɵdt, EditTemplateRepository as ɵdu, EditTemplateFactory as ɵdv, InMemoryCompositionRepository as ɵdw, CompositionFieldsInitedEventHandler as ɵdx, CompositionChangeSortStatusEventHandler as ɵdy, CompositionEventService as ɵdz, StructurePagingModule as ɵe, ViewTemplatesComponent as ɵea, EditTemplatesComponent as ɵeb, StringEditTemplateComponent as ɵec, InputEditTemplateComponent as ɵed, EditCommunicationComponent as ɵee, Override as ɵef, NumberEditTemplateComponent as ɵeg, BooleanEditTemplateComponent as ɵeh, ColumnQueryComponent as ɵei, FunctionViewComponent as ɵej, LoggerModule as ɵek, Logger as ɵel, ConsoleLogger as ɵem, structureIdFactory as ɵen, compositionIdFactory as ɵeo, structureComponentSelfProviders as ɵep, StructureComponent as ɵeq, StructureGateway as ɵer, CompositionId as ɵes, PagingEventService as ɵet, SourceCommandService as ɵeu, StructureFieldUiRepository as ɵev, StructureFieldUiArchive as ɵew, SourceEventService as ɵex, SchemaCommandService as ɵey, SchemaDispatcher as ɵez, StructurePagingComponent as ɵf, SchemaReadModelService as ɵfa, SchemaRepository as ɵfb, FormationEventService as ɵfc, StructureEditModeArchive as ɵfd, StructureCellEditArchive as ɵfe, StructureInfoPanelEnabledArchive as ɵff, StructureCellEditStore as ɵfg, StructureIdGenerator as ɵfh, localProviders as ɵfi, LocalPagingCommandService as ɵfj, PagingAggregateFactory as ɵfk, LocalPagingReadModelService as ɵfl, LocalSchemaCommandService as ɵfm, LocalSchemaReadModelService as ɵfn, FormationCommandService as ɵfo, FormationDispatcher as ɵfp, LocalFormationCommandService as ɵfq, FormationReadModelService as ɵfr, FormationRepository as ɵfs, LocalFormationReadModelService as ɵft, LocalStructureCommandService as ɵfu, LocalStructureReadModelService as ɵfv, LocalSourceCommandService as ɵfw, LocalSourceReadModelService as ɵfx, LocalCompositionCommandService as ɵfy, LocalCompositionReadModelService as ɵfz, SmartComponent as ɵg, SchemaCssClassManager as ɵga, structureComponentToken as ɵgb, StructureDefinition as ɵgc, StructurePagingDefinition as ɵgd, StructureHeaderComponent as ɵge, StructureHeaderColumnsComponent as ɵgf, StructureHeaderFiltersComponent as ɵgg, StructureFilterReadModelRepository as ɵgh, StructureFilterRepository as ɵgi, StructureQuickFilterRepository as ɵgj, StructureHeaderFilterComponent as ɵgk, StructureContentComponent as ɵgl, StructureRowComponent as ɵgm, StructureCellComponent as ɵgn, StructureContainerComponent as ɵgo, structureParentComponent as ɵgp, StructureEmptySourceComponent as ɵgq, StructureQuickFiltersComponent as ɵgr, StructureBlueprintComponent as ɵgs, STRUCTURE_CSS_CLASS_NAME as ɵgt, StructureSearchReadModelRepository as ɵgu, StructureSearchingRepository as ɵgv, ItemEntityFactory as ɵgw, structureProviders as ɵgx, inMemoryStructureCommandProviders as ɵgy, inMemoryStructureReadProviders as ɵgz, Reactive as ɵh, inMemoryStructureProviders as ɵha, InMemoryStructureAggregateStore as ɵhb, StructureAggregateRepository as ɵhc, InMemoryStructureAggregateRepository as ɵhd, InitStructureCommandHandler as ɵhe, StructureAggregateFactory as ɵhf, SourceManagerFactory as ɵhg, FormationAggregateFactory as ɵhh, VerticalFormationFactory as ɵhi, AggregationManagerFactory as ɵhj, AGGREGATION_CALCULATORS as ɵhk, AggregationCalculator as ɵhl, FilterManagerFactory as ɵhm, SearchManagerFactory as ɵhn, FieldCollectionFactory as ɵho, FieldFactory as ɵhp, FieldIdGenerator as ɵhq, SchemaAggregateFactory as ɵhr, SetVerticalScrollEnabledCommandHandler as ɵhs, SetScrollPositionCommandHandler as ɵht, InitFieldsCommandHandler as ɵhu, ToggleSortCommandHandler as ɵhv, SetSortingCommandHandler as ɵhw, StructureSetConfigFilterCommandHandler as ɵhx, StructureSetConfigSearchingCommandHandler as ɵhy, StructureSetConfigQuickFilterCommandHandler as ɵhz, PagingReadModelService as ɵi, StructureToggleFilterCommandHandler as ɵia, StructureSetAggregationEnabledCommandHandler as ɵib, StructureSourceDomainEventPublisher as ɵic, StructureSetSearchPhraseCommandHandler as ɵid, SetSortOrderCommandHandler as ɵie, SetRowHeightCommandHandler as ɵif, provideAggregationCalculator as ɵig, aggregationProviders as ɵih, BooleanAggregationCalculator as ɵii, DateAggregationCalculator as ɵij, NumberAggregationCalculator as ɵik, StringAggregationCalculator as ɵil, UnknownAggregationCalculator as ɵim, StructureConfigFilterSetEventHandler as ɵin, StructureConfigSearchingSetEventHandler as ɵio, StructureConfigQuickFilterSetEventHandler as ɵip, StructureFieldsInitedEventHandler as ɵiq, StructureFieldUiConverter as ɵir, InMemoryStructureRepository as ɵis, pagingProviders as ɵit, SetPagingCommandHandler as ɵiu, NextPageCommandHandler as ɵiv, PrevPageCommandHandler as ɵiw, ChangePagesizeCommandHandler as ɵix, schemaProviders as ɵiy, SetSchemaCommandHandler as ɵiz, PagingRepository as ɵj, SetSchemaVerticalGridCommandHandler as ɵja, SetSchemaHorizontalGridCommandHandler as ɵjb, SetSchemaThemeCommandHandler as ɵjc, ChangeSchemaBottomHeaderCommandHandler as ɵjd, ChangeSchemaTopHeaderCommandHandler as ɵje, SetRowColoringCommandHandler as ɵjf, formationProviders as ɵjg, SetFormationCommandHandler as ɵjh, ToggleSelectedRowCommandHandler as ɵji, sourceProviders as ɵjj, SourceSetLoadingCommandHandler as ɵjk, SetOriginCommandHandler as ɵjl, StructureEditSourceItemCommandHandler as ɵjm, SourceRepository as ɵjn, StructureOriginChangedEventHandler as ɵjo, StructurePreparedItemsEventHandler as ɵjp, GridGateway as ɵjq, gridProviders as ɵjr, gridStructureDefinition as ɵjs, GridRegister as ɵjt, GridIdGenerator as ɵju, StructureRepository as ɵk, PagingCommandService as ɵl, PagingDispatcher as ɵm, SourceReadModelService as ɵn, StructurePreparedItemsRepository as ɵo, StructureSourceOriginRepository as ɵp, StructurePagingDisplayModeArchive as ɵq, Archive as ɵr, StructurePagingNavigatorComponent as ɵs, StructurePagingSelectComponent as ɵt, StructurePagingStatsComponent as ɵu, StructureAlternativePagingNavigatorComponent as ɵv, StructureAlternativePagingPagesComponent as ɵw, StructureInfoPanelModule as ɵx, NumberFormatterModule as ɵy, NumberFormatterPipe as ɵz };
 //# sourceMappingURL=generic-ui-ngx-grid.js.map

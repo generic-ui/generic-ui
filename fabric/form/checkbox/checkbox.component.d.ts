@@ -5,6 +5,7 @@ export declare class FabricCheckboxComponent implements OnChanges {
     name: string;
     checked: boolean;
     disabled: boolean;
+    readonly: boolean;
     changed: EventEmitter<boolean>;
     constructor(elementRef: ElementRef, renderer: Renderer2);
     ngOnChanges(changes: SimpleChanges): void;

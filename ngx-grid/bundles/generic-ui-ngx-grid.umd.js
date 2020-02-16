@@ -2080,7 +2080,7 @@
         GridComponent.decorators = [
             { type: core.Component, args: [{
                         selector: gridSelector,
-                        template: "<gui-structure\n\t#structure\n\t[aggregation]=\"aggregation\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\"\n\t[rowHeight]=\"rowHeight\"\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\">\n</gui-structure>\n",
+                        template: "<gui-structure\n\t#structure\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\"\n\t[aggregation]=\"aggregation\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[rowHeight]=\"rowHeight\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\">\n</gui-structure>\n",
                         providers: __spread(gridProviders, [
                             {
                                 provide: structureParentComponent,
@@ -3930,7 +3930,7 @@
         }
         StructureInfoModalComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\t\t\t\n\t\t\t<p class=\"gui-info-title\">Generic UI Grid</p>\n\t\t\t\n\t\t\t<p class=\"gui-info-version\">version 0.5.7</p>\n\n\t\t\t<p>Links:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/\">Website</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\n\t\t\t<p>Feedback:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t</li>\n\n\t\t\t</ul>\n\t\t</div>\n\t",
+                        template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-info-title\">Generic UI Grid</p>\n\n\t\t\t<p class=\"gui-info-version\">version 0.6.0</p>\n\n\t\t\t<p>Links:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/\">Website</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"http://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t</li>\n\t\t\t</ul>\n\n\t\t\t<p>Feedback:</p>\n\t\t\t<ul>\n\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t</li>\n\t\t\t\t<li>\n\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t</li>\n\n\t\t\t</ul>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -5295,7 +5295,7 @@
         StructureInfoPanelComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-info-panel',
-                        template: "\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\t\t\t\n\t\t\t<p *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\tShowing <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\n\t\t\t<p *ngIf=\"preparedItemsSize !== totalItemsSize\">\n\t\t\t\tShowing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\t\t\t\n\t\t</ng-container>\n\t\t<div>\n\t\t\t<p (click)=\"openInfo()\">\n\t\t\t\t<button>i</button>\n\t\t\t\tInfo\n\t\t\t</p>\n\t\t</div>\n\t",
+                        template: "\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t<p *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\tShowing <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\n\t\t\t<p *ngIf=\"preparedItemsSize !== totalItemsSize\">\n\t\t\t\tShowing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\n\t\t</ng-container>\n\t\t<div>\n\t\t\t<p (click)=\"openInfo()\">\n\t\t\t\t<button>i</button>\n\t\t\t\tInfo\n\t\t\t</p>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -5422,7 +5422,7 @@
         };
         ViewTemplatesComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "\n\n\t\t<ng-template #text let-element=\"element\">\n\t\t\t{{ element }}\n\t\t</ng-template>\n\n\t\t<ng-template #number let-element=\"element\">\n\t\t\t<span class=\"gui-cell-number\">\n\t\t\t\t{{ element }}\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #chip let-element=\"element\">\n\t\t\t<gui-chip>\n\t\t\t\t{{ element }}\n\t\t\t</gui-chip>\n\t\t</ng-template>\n\n\t\t<ng-template #link let-element=\"element\">\n\t\t\t<a gui-button link=\"true\" href=\"{{ element }}\">\n\t\t\t\t{{ element }}\n\t\t\t</a>\n\t\t</ng-template>\n\n\t\t<ng-template #image let-element=\"element\">\n\t\t\t<img src=\"{{ element }}\"/>\n\t\t</ng-template>\n\n\t\t<ng-template #checkbox let-element=\"element\">\n\t\t\t<span class=\"gui-cell-boolean\">\n\t\t\t\t<gui-checkbox [checked]=\"!!element\" [disabled]=\"true\"></gui-checkbox>\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bold let-element=\"element\">\n\t\t\t<span class=\"gui-bold\">{{ element }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #italic let-element=\"element\">\n\t\t\t<span class=\"gui-italic\">{{ element }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #custom let-element=\"element\" >\n\t\t\t{{ element }}\n\t\t</ng-template>\n\n\t\t<ng-template #function let-element=\"element\" >\n\t\t\t<gui-function-view [element]=\"element\" ></gui-function-view>\n\t\t</ng-template>\n\n\t"
+                        template: "\n\n\t\t<ng-template #text let-element=\"element\">\n\t\t\t{{ element }}\n\t\t</ng-template>\n\n\t\t<ng-template #number let-element=\"element\">\n\t\t\t<span class=\"gui-cell-number\">\n\t\t\t\t{{ element }}\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #chip let-element=\"element\">\n\t\t\t<gui-chip>\n\t\t\t\t{{ element }}\n\t\t\t</gui-chip>\n\t\t</ng-template>\n\n\t\t<ng-template #link let-element=\"element\">\n\t\t\t<a gui-button link=\"true\" href=\"{{ element }}\">\n\t\t\t\t{{ element }}\n\t\t\t</a>\n\t\t</ng-template>\n\n\t\t<ng-template #image let-element=\"element\">\n\t\t\t<img src=\"{{ element }}\"/>\n\t\t</ng-template>\n\n\t\t<ng-template #checkbox let-element=\"element\">\n\t\t\t<span class=\"gui-cell-boolean\">\n\t\t\t\t<gui-checkbox [checked]=\"!!element\" [disabled]=\"true\"></gui-checkbox>\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bold let-element=\"element\">\n\t\t\t<span class=\"gui-bold\">{{ element }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #italic let-element=\"element\">\n\t\t\t<span class=\"gui-italic\">{{ element }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #custom let-element=\"element\">\n\t\t\t{{ element }}\n\t\t</ng-template>\n\n\t\t<ng-template #function let-element=\"element\">\n\t\t\t<gui-function-view [element]=\"element\"></gui-function-view>\n\t\t</ng-template>\n\n\t"
                     }] }
         ];
         ViewTemplatesComponent.propDecorators = {
@@ -18930,7 +18930,7 @@
         StructureContentComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-content',
-                        template: "<div class=\"gui-content\">\n\n\t<gui-structure-row *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
+                        template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -19257,7 +19257,7 @@
         StructureCellComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-cell',
-                        template: "\n\n\t\t<span *ngIf=\"!inEditMode\"\n\t\t\t  (click)=\"enterEditMode()\">\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\t\tcontext: { element: cell.accessor(entity) }\">\n\t\t\t</ng-container>\n\t\t</span>\n\t\t\n\t\t<span *ngIf=\"inEditMode\" class=\"gui-cell-edit-mode\">\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t",
+                        template: "\n\n\t\t<span *ngIf=\"!inEditMode\"\n\t\t\t  (click)=\"enterEditMode()\">\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\t\tcontext: { element: cell.accessor(entity) }\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t\t<span *ngIf=\"inEditMode\" class=\"gui-cell-edit-mode\">\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -20084,207 +20084,6 @@
          * @private
          */
         StructureBlueprintComponent.prototype.className;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationsChangedEvent = /** @class */ (function (_super) {
-        __extends(StructureAggregationsChangedEvent, _super);
-        function StructureAggregationsChangedEvent(structureId, values) {
-            var _this = _super.call(this, structureId, 'StructureAggregationsChangedEvent') || this;
-            _this.values = values;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureAggregationsChangedEvent.prototype.getAggregations = /**
-         * @return {?}
-         */
-        function () {
-            return this.values;
-        };
-        return StructureAggregationsChangedEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationsChangedEvent.prototype.values;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationUiEventsRepository = /** @class */ (function () {
-        function StructureAggregationUiEventsRepository(domainEventBus) {
-            this.domainEventBus = domainEventBus;
-        }
-        /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        StructureAggregationUiEventsRepository.prototype.onAggregationsChanged = /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        function (structureId) {
-            return this.domainEventBus
-                .pipe(operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event instanceof StructureAggregationsChangedEvent; })), operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.aggregateId.toString() === structureId.toString(); })));
-        };
-        StructureAggregationUiEventsRepository.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureAggregationUiEventsRepository.ctorParameters = function () { return [
-            { type: hermes.DomainEventBus }
-        ]; };
-        return StructureAggregationUiEventsRepository;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationUiEventsRepository.prototype.domainEventBus;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationPanelComponent = /** @class */ (function (_super) {
-        __extends(StructureAggregationPanelComponent, _super);
-        function StructureAggregationPanelComponent(changeDetectorRef, structureId, structureAggregationUiEventsRepository, sourceReadModelService, compositionQueryService) {
-            var _this = _super.call(this) || this;
-            _this.changeDetectorRef = changeDetectorRef;
-            _this.structureId = structureId;
-            _this.structureAggregationUiEventsRepository = structureAggregationUiEventsRepository;
-            _this.sourceReadModelService = sourceReadModelService;
-            _this.compositionQueryService = compositionQueryService;
-            _this.sourceEmpty = false;
-            _this.structureAggregationUiEventsRepository
-                .onAggregationsChanged(_this.structureId)
-                .pipe(_this.takeUntil())
-                .subscribe((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                _this.aggregations = event.getAggregations();
-                _this.changeDetectorRef.detectChanges();
-            }));
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureAggregationPanelComponent.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
-            var _this = this;
-            this.sourceReadModelService
-                .onEntitiesSize()
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} size
-             * @return {?}
-             */
-            function (size) {
-                _this.sourceEmpty = size === 0;
-                _this.changeDetectorRef.detectChanges();
-            }));
-            this.compositionQueryService
-                .onHeaderColumns()
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} columns
-             * @return {?}
-             */
-            function (columns) {
-                _this.headerColumns = columns;
-                _this.changeDetectorRef.detectChanges();
-            }));
-        };
-        /**
-         * @param {?} aggregation
-         * @return {?}
-         */
-        StructureAggregationPanelComponent.prototype.isAggregateTypePresent = /**
-         * @param {?} aggregation
-         * @return {?}
-         */
-        function (aggregation) {
-            return aggregation !== undefined && aggregation !== null;
-        };
-        StructureAggregationPanelComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'gui-structure-aggregation-panel',
-                        template: "\n\n\t\t<ng-container *ngIf=\"enabled && aggregations && !sourceEmpty\">\n\n\t\t\t<div *ngFor=\"let column of headerColumns\"\n\t\t\t\t [style.width.px]=\"column.width\"\n\t\t\t\t class=\"gui-header-cell gui-structure-aggregation-cell\">\n\n\t\t\t\t<ng-container *ngIf=\"aggregations && !!aggregations.get(column.getFieldId().getId())\">\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).count)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tCount: <span>{{ aggregations.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).distinct)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tDistinct: <span>{{ aggregations.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).sum)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div><span class=\"gui-math-symbol\">&sum;</span> Sum</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).average)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div class=\"gui-mean\"><span>_</span><span>X Average</span></div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).min)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div><span class=\"gui-math-symbol\">&and;</span> Min</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).max)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div><span class=\"gui-math-symbol\">&or;</span> Max</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).median)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div class=\"gui-median\"><span>~</span><span>X Median</span></div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).truthy)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tTruthy: <span>{{ aggregations.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).falsy)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tFalsy: <span>{{ aggregations.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t</ng-container>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None
-                    }] }
-        ];
-        /** @nocollapse */
-        StructureAggregationPanelComponent.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
-            { type: StructureId },
-            { type: StructureAggregationUiEventsRepository },
-            { type: SourceReadModelService },
-            { type: CompositionReadModelService }
-        ]; };
-        StructureAggregationPanelComponent.propDecorators = {
-            enabled: [{ type: core.Input }]
-        };
-        return StructureAggregationPanelComponent;
-    }(SmartComponent));
-    if (false) {
-        /** @type {?} */
-        StructureAggregationPanelComponent.prototype.enabled;
-        /** @type {?} */
-        StructureAggregationPanelComponent.prototype.sourceEmpty;
-        /** @type {?} */
-        StructureAggregationPanelComponent.prototype.headerColumns;
-        /** @type {?} */
-        StructureAggregationPanelComponent.prototype.aggregations;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationPanelComponent.prototype.changeDetectorRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationPanelComponent.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationPanelComponent.prototype.structureAggregationUiEventsRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationPanelComponent.prototype.sourceReadModelService;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationPanelComponent.prototype.compositionQueryService;
     }
 
     /**
@@ -25190,6 +24989,36 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var StructureAggregationsChangedEvent = /** @class */ (function (_super) {
+        __extends(StructureAggregationsChangedEvent, _super);
+        function StructureAggregationsChangedEvent(structureId, values) {
+            var _this = _super.call(this, structureId, 'StructureAggregationsChangedEvent') || this;
+            _this.values = values;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureAggregationsChangedEvent.prototype.getAggregations = /**
+         * @return {?}
+         */
+        function () {
+            return this.values;
+        };
+        return StructureAggregationsChangedEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationsChangedEvent.prototype.values;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var StructurePreparedEntitiesSetEvent = /** @class */ (function (_super) {
         __extends(StructurePreparedEntitiesSetEvent, _super);
         function StructurePreparedEntitiesSetEvent(aggregateId, preparedItems) {
@@ -26456,6 +26285,51 @@
          * @private
          */
         StructureFieldsInitedEventHandler.prototype.structureFieldUiConverter;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationUiEventsRepository = /** @class */ (function () {
+        function StructureAggregationUiEventsRepository(domainEventBus) {
+            this.domainEventBus = domainEventBus;
+        }
+        /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        StructureAggregationUiEventsRepository.prototype.onAggregationsChanged = /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (structureId) {
+            return this.domainEventBus
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event instanceof StructureAggregationsChangedEvent; })), operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event.aggregateId.toString() === structureId.toString(); })));
+        };
+        StructureAggregationUiEventsRepository.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureAggregationUiEventsRepository.ctorParameters = function () { return [
+            { type: hermes.DomainEventBus }
+        ]; };
+        return StructureAggregationUiEventsRepository;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationUiEventsRepository.prototype.domainEventBus;
     }
 
     /**
@@ -28737,6 +28611,161 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var StructureAggregationPanelComponent = /** @class */ (function (_super) {
+        __extends(StructureAggregationPanelComponent, _super);
+        function StructureAggregationPanelComponent(changeDetectorRef, structureId, structureAggregationUiEventsRepository, sourceReadModelService, compositionQueryService) {
+            var _this = _super.call(this) || this;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.structureId = structureId;
+            _this.structureAggregationUiEventsRepository = structureAggregationUiEventsRepository;
+            _this.sourceReadModelService = sourceReadModelService;
+            _this.compositionQueryService = compositionQueryService;
+            _this.sourceEmpty = false;
+            _this.structureAggregationUiEventsRepository
+                .onAggregationsChanged(_this.structureId)
+                .pipe(_this.takeUntil())
+                .subscribe((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                _this.aggregations = event.getAggregations();
+                _this.changeDetectorRef.detectChanges();
+            }));
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureAggregationPanelComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.sourceReadModelService
+                .onEntitiesSize()
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} size
+             * @return {?}
+             */
+            function (size) {
+                _this.sourceEmpty = size === 0;
+                _this.changeDetectorRef.detectChanges();
+            }));
+            this.compositionQueryService
+                .onHeaderColumns()
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} columns
+             * @return {?}
+             */
+            function (columns) {
+                _this.headerColumns = columns;
+                _this.changeDetectorRef.detectChanges();
+            }));
+        };
+        /**
+         * @param {?} aggregation
+         * @return {?}
+         */
+        StructureAggregationPanelComponent.prototype.isAggregateTypePresent = /**
+         * @param {?} aggregation
+         * @return {?}
+         */
+        function (aggregation) {
+            return aggregation !== undefined && aggregation !== null;
+        };
+        StructureAggregationPanelComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'gui-structure-aggregation-panel',
+                        template: "\n\n\t\t<ng-container *ngIf=\"enabled && aggregations && !sourceEmpty\">\n\n\t\t\t<div *ngFor=\"let column of headerColumns\"\n\t\t\t\t [style.width.px]=\"column.width\"\n\t\t\t\t class=\"gui-header-cell gui-structure-aggregation-cell\">\n\n\t\t\t\t<ng-container *ngIf=\"aggregations && !!aggregations.get(column.getFieldId().getId())\">\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).count)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tCount: <span>{{ aggregations.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).distinct)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tDistinct: <span>{{ aggregations.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).sum)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div>\n\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" \n\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).average)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"\n\t\t\t\t\t\t\t class=\"gui-mean\">\n\t\t\t\t\t\t\t<span>_</span><span>X</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).min)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">\n\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).max)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">\n\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).median)\" class=\"gui-structure-aggregation-value\">\n\n\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"\n\t\t\t\t\t\t\t class=\"gui-median\">\n\t\t\t\t\t\t\t<span>~</span>\n\t\t\t\t\t\t\t<span>X</span>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<span>{{ aggregations.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).truthy)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tTruthy: <span>{{ aggregations.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isAggregateTypePresent(aggregations.get(column.getFieldId().getId()).falsy)\" class=\"gui-structure-aggregation-value\">\n\t\t\t\t\t\tFalsy: <span>{{ aggregations.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t</ng-container>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
+                    }] }
+        ];
+        /** @nocollapse */
+        StructureAggregationPanelComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: StructureId },
+            { type: StructureAggregationUiEventsRepository },
+            { type: SourceReadModelService },
+            { type: CompositionReadModelService }
+        ]; };
+        StructureAggregationPanelComponent.propDecorators = {
+            enabled: [{ type: core.Input }]
+        };
+        return StructureAggregationPanelComponent;
+    }(SmartComponent));
+    if (false) {
+        /** @type {?} */
+        StructureAggregationPanelComponent.prototype.enabled;
+        /** @type {?} */
+        StructureAggregationPanelComponent.prototype.sourceEmpty;
+        /** @type {?} */
+        StructureAggregationPanelComponent.prototype.headerColumns;
+        /** @type {?} */
+        StructureAggregationPanelComponent.prototype.aggregations;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationPanelComponent.prototype.changeDetectorRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationPanelComponent.prototype.structureId;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationPanelComponent.prototype.structureAggregationUiEventsRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationPanelComponent.prototype.sourceReadModelService;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationPanelComponent.prototype.compositionQueryService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationPanelModule = /** @class */ (function () {
+        function StructureAggregationPanelModule() {
+        }
+        StructureAggregationPanelModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule,
+                            fabric.FabricModule
+                        ],
+                        declarations: [
+                            StructureAggregationPanelComponent
+                        ],
+                        exports: [
+                            StructureAggregationPanelComponent
+                        ],
+                        providers: [
+                            StructureAggregationArchive,
+                            StructureAggregationConfigService,
+                            StructureAggregationPanelConfigConverter
+                        ]
+                    },] }
+        ];
+        return StructureAggregationPanelModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @return {?}
      */
@@ -28751,6 +28780,7 @@
     ], fabricImports, [
         StructurePagingModule,
         StructureInfoPanelModule,
+        StructureAggregationPanelModule,
         StructureTopPanelModule,
         StructureColumnMenuModule,
         CompositionModule,
@@ -28769,8 +28799,7 @@
         StructureContainerComponent,
         StructureEmptySourceComponent,
         StructureQuickFiltersComponent,
-        StructureBlueprintComponent,
-        StructureAggregationPanelComponent
+        StructureBlueprintComponent
     ];
     /** @type {?} */
     var entryComponents = [
@@ -28788,8 +28817,7 @@
         },
         ItemEntityFactory,
         SourceReadModelService,
-        StructureIdGenerator,
-        StructureAggregationPanelConfigConverter
+        StructureIdGenerator
     ], structureProviders);
     /** @type {?} */
     var exportDeclarations$1 = __spread([
@@ -28939,230 +28967,231 @@
     exports.ɵbj = SourceConverter;
     exports.ɵbk = VerticalFormationConverter;
     exports.ɵbl = StructureInfoModalComponent;
-    exports.ɵbm = StructureTopPanelModule;
-    exports.ɵbn = StructureTopPanelComponent;
-    exports.ɵbo = StructureSearchComponent;
-    exports.ɵbp = StructureCommandService;
-    exports.ɵbq = StructureFilterCommandService;
-    exports.ɵbr = SourceDispatcher;
-    exports.ɵbs = StructureColumnMenuModule;
-    exports.ɵbt = StructureColumnConfigComponent;
-    exports.ɵbu = CompositionReadModelService;
-    exports.ɵbv = CompositionRepository;
-    exports.ɵbw = StructureColumnMenuConfigArchive;
-    exports.ɵbx = CellTemplateWithContext;
-    exports.ɵby = CellContext;
-    exports.ɵbz = FieldId;
+    exports.ɵbm = StructureAggregationPanelModule;
+    exports.ɵbn = StructureAggregationPanelComponent;
+    exports.ɵbo = StructureId;
+    exports.ɵbp = StructureAggregationUiEventsRepository;
+    exports.ɵbq = CompositionReadModelService;
+    exports.ɵbr = CompositionRepository;
+    exports.ɵbs = StructureAggregationArchive;
+    exports.ɵbt = StructureAggregationConfigService;
+    exports.ɵbu = StructureAggregationPanelConfigConverter;
+    exports.ɵbv = StructureAggregationCommandService;
+    exports.ɵbw = StructureTopPanelModule;
+    exports.ɵbx = StructureTopPanelComponent;
+    exports.ɵby = StructureSearchComponent;
+    exports.ɵbz = StructureCommandService;
     exports.ɵc = StructureModule;
-    exports.ɵca = ColumnId;
-    exports.ɵcb = SortStatus;
-    exports.ɵcc = StructureColumnConfigTriggerComponent;
-    exports.ɵcd = StructureColumnConfigService;
-    exports.ɵce = StructureMenuColumnManagerComponent;
-    exports.ɵcf = CompositionCommandService;
-    exports.ɵcg = CompositionDispatcher;
-    exports.ɵch = StructureColumnConfigSortComponent;
-    exports.ɵci = StructureColumnConfigColumnHideComponent;
-    exports.ɵcj = StructureColumnConfigColumnMoveComponent;
-    exports.ɵck = CompositionModule;
-    exports.ɵcl = compositionProviders;
-    exports.ɵcm = inMemoryCompositionCommandProviders;
-    exports.ɵcn = inMemoryCompositionQueryProviders;
-    exports.ɵco = inMemoryCompositionProviders;
-    exports.ɵcp = InMemoryCompositionStore;
-    exports.ɵcq = InMemoryCompositionAggregateStore;
-    exports.ɵcr = CompositionAggregateRepository;
-    exports.ɵcs = InMemoryCompositionAggregateRepository;
-    exports.ɵct = CompositionAggregateFactory;
-    exports.ɵcu = InitCompositionCommandHandler;
-    exports.ɵcv = SetColumnsCommandHandler;
-    exports.ɵcw = CompositionEventConverter;
-    exports.ɵcx = SetCompositionWidthCommandHandler;
-    exports.ɵcy = ColumnEntityFactory;
-    exports.ɵcz = SetCompositionResizeWidthCommandHandler;
+    exports.ɵca = StructureFilterCommandService;
+    exports.ɵcb = SourceDispatcher;
+    exports.ɵcc = StructureColumnMenuModule;
+    exports.ɵcd = StructureColumnConfigComponent;
+    exports.ɵce = StructureColumnMenuConfigArchive;
+    exports.ɵcf = CellTemplateWithContext;
+    exports.ɵcg = CellContext;
+    exports.ɵch = FieldId;
+    exports.ɵci = ColumnId;
+    exports.ɵcj = SortStatus;
+    exports.ɵck = StructureColumnConfigTriggerComponent;
+    exports.ɵcl = StructureColumnConfigService;
+    exports.ɵcm = StructureMenuColumnManagerComponent;
+    exports.ɵcn = CompositionCommandService;
+    exports.ɵco = CompositionDispatcher;
+    exports.ɵcp = StructureColumnConfigSortComponent;
+    exports.ɵcq = StructureColumnConfigColumnHideComponent;
+    exports.ɵcr = StructureColumnConfigColumnMoveComponent;
+    exports.ɵcs = CompositionModule;
+    exports.ɵct = compositionProviders;
+    exports.ɵcu = inMemoryCompositionCommandProviders;
+    exports.ɵcv = inMemoryCompositionQueryProviders;
+    exports.ɵcw = inMemoryCompositionProviders;
+    exports.ɵcx = InMemoryCompositionStore;
+    exports.ɵcy = InMemoryCompositionAggregateStore;
+    exports.ɵcz = CompositionAggregateRepository;
     exports.ɵd = fabricImports;
-    exports.ɵda = SetCompositionContainerWidthCommandHandler;
-    exports.ɵdb = CompositionSetColumnEnabledCommandHandler;
-    exports.ɵdc = CompositionChangeSortStatusCommandHandler;
-    exports.ɵdd = CompositionMoveLeftColumnCommandHandler;
-    exports.ɵde = CompositionMoveRightColumnCommandHandler;
-    exports.ɵdf = ColumnFieldFactory;
-    exports.ɵdg = InMemoryCompositionReadStore;
-    exports.ɵdh = CompositionConverter;
-    exports.ɵdi = ColumnDefinitionFactory;
-    exports.ɵdj = ViewTemplateRepository;
-    exports.ɵdk = ViewTemplateFactory;
-    exports.ɵdl = TemplateFactory;
-    exports.ɵdm = EditTemplateRepository;
-    exports.ɵdn = EditTemplateFactory;
-    exports.ɵdo = InMemoryCompositionRepository;
-    exports.ɵdp = CompositionFieldsInitedEventHandler;
-    exports.ɵdq = CompositionChangeSortStatusEventHandler;
-    exports.ɵdr = CompositionEventService;
-    exports.ɵds = ViewTemplatesComponent;
-    exports.ɵdt = EditTemplatesComponent;
-    exports.ɵdu = StringEditTemplateComponent;
-    exports.ɵdv = InputEditTemplateComponent;
-    exports.ɵdw = EditCommunicationComponent;
-    exports.ɵdx = Override;
-    exports.ɵdy = NumberEditTemplateComponent;
-    exports.ɵdz = BooleanEditTemplateComponent;
+    exports.ɵda = InMemoryCompositionAggregateRepository;
+    exports.ɵdb = CompositionAggregateFactory;
+    exports.ɵdc = InitCompositionCommandHandler;
+    exports.ɵdd = SetColumnsCommandHandler;
+    exports.ɵde = CompositionEventConverter;
+    exports.ɵdf = SetCompositionWidthCommandHandler;
+    exports.ɵdg = ColumnEntityFactory;
+    exports.ɵdh = SetCompositionResizeWidthCommandHandler;
+    exports.ɵdi = SetCompositionContainerWidthCommandHandler;
+    exports.ɵdj = CompositionSetColumnEnabledCommandHandler;
+    exports.ɵdk = CompositionChangeSortStatusCommandHandler;
+    exports.ɵdl = CompositionMoveLeftColumnCommandHandler;
+    exports.ɵdm = CompositionMoveRightColumnCommandHandler;
+    exports.ɵdn = ColumnFieldFactory;
+    exports.ɵdo = InMemoryCompositionReadStore;
+    exports.ɵdp = CompositionConverter;
+    exports.ɵdq = ColumnDefinitionFactory;
+    exports.ɵdr = ViewTemplateRepository;
+    exports.ɵds = ViewTemplateFactory;
+    exports.ɵdt = TemplateFactory;
+    exports.ɵdu = EditTemplateRepository;
+    exports.ɵdv = EditTemplateFactory;
+    exports.ɵdw = InMemoryCompositionRepository;
+    exports.ɵdx = CompositionFieldsInitedEventHandler;
+    exports.ɵdy = CompositionChangeSortStatusEventHandler;
+    exports.ɵdz = CompositionEventService;
     exports.ɵe = StructurePagingModule;
-    exports.ɵea = ColumnQueryComponent;
-    exports.ɵeb = FunctionViewComponent;
-    exports.ɵec = LoggerModule;
-    exports.ɵed = Logger;
-    exports.ɵee = ConsoleLogger;
-    exports.ɵef = structureIdFactory;
-    exports.ɵeg = compositionIdFactory;
-    exports.ɵeh = structureComponentSelfProviders;
-    exports.ɵei = StructureComponent;
-    exports.ɵej = StructureGateway;
-    exports.ɵek = StructureId;
-    exports.ɵel = CompositionId;
-    exports.ɵem = PagingEventService;
-    exports.ɵen = SourceCommandService;
-    exports.ɵeo = StructureFieldUiRepository;
-    exports.ɵep = StructureFieldUiArchive;
-    exports.ɵeq = SourceEventService;
-    exports.ɵer = SchemaCommandService;
-    exports.ɵes = SchemaDispatcher;
-    exports.ɵet = SchemaReadModelService;
-    exports.ɵeu = SchemaRepository;
-    exports.ɵev = FormationEventService;
-    exports.ɵew = StructureEditModeArchive;
-    exports.ɵex = StructureCellEditArchive;
-    exports.ɵey = StructureInfoPanelEnabledArchive;
-    exports.ɵez = StructureAggregationConfigService;
+    exports.ɵea = ViewTemplatesComponent;
+    exports.ɵeb = EditTemplatesComponent;
+    exports.ɵec = StringEditTemplateComponent;
+    exports.ɵed = InputEditTemplateComponent;
+    exports.ɵee = EditCommunicationComponent;
+    exports.ɵef = Override;
+    exports.ɵeg = NumberEditTemplateComponent;
+    exports.ɵeh = BooleanEditTemplateComponent;
+    exports.ɵei = ColumnQueryComponent;
+    exports.ɵej = FunctionViewComponent;
+    exports.ɵek = LoggerModule;
+    exports.ɵel = Logger;
+    exports.ɵem = ConsoleLogger;
+    exports.ɵen = structureIdFactory;
+    exports.ɵeo = compositionIdFactory;
+    exports.ɵep = structureComponentSelfProviders;
+    exports.ɵeq = StructureComponent;
+    exports.ɵer = StructureGateway;
+    exports.ɵes = CompositionId;
+    exports.ɵet = PagingEventService;
+    exports.ɵeu = SourceCommandService;
+    exports.ɵev = StructureFieldUiRepository;
+    exports.ɵew = StructureFieldUiArchive;
+    exports.ɵex = SourceEventService;
+    exports.ɵey = SchemaCommandService;
+    exports.ɵez = SchemaDispatcher;
     exports.ɵf = StructurePagingComponent;
-    exports.ɵfa = StructureAggregationPanelConfigConverter;
-    exports.ɵfb = StructureAggregationArchive;
-    exports.ɵfc = StructureAggregationCommandService;
-    exports.ɵfd = StructureCellEditStore;
-    exports.ɵfe = StructureIdGenerator;
-    exports.ɵff = localProviders;
-    exports.ɵfg = LocalPagingCommandService;
-    exports.ɵfh = PagingAggregateFactory;
-    exports.ɵfi = LocalPagingReadModelService;
-    exports.ɵfj = LocalSchemaCommandService;
-    exports.ɵfk = LocalSchemaReadModelService;
-    exports.ɵfl = FormationCommandService;
-    exports.ɵfm = FormationDispatcher;
-    exports.ɵfn = LocalFormationCommandService;
-    exports.ɵfo = FormationReadModelService;
-    exports.ɵfp = FormationRepository;
-    exports.ɵfq = LocalFormationReadModelService;
-    exports.ɵfr = LocalStructureCommandService;
-    exports.ɵfs = LocalStructureReadModelService;
-    exports.ɵft = LocalSourceCommandService;
-    exports.ɵfu = LocalSourceReadModelService;
-    exports.ɵfv = LocalCompositionCommandService;
-    exports.ɵfw = LocalCompositionReadModelService;
-    exports.ɵfx = SchemaCssClassManager;
-    exports.ɵfy = structureComponentToken;
-    exports.ɵfz = StructureDefinition;
+    exports.ɵfa = SchemaReadModelService;
+    exports.ɵfb = SchemaRepository;
+    exports.ɵfc = FormationEventService;
+    exports.ɵfd = StructureEditModeArchive;
+    exports.ɵfe = StructureCellEditArchive;
+    exports.ɵff = StructureInfoPanelEnabledArchive;
+    exports.ɵfg = StructureCellEditStore;
+    exports.ɵfh = StructureIdGenerator;
+    exports.ɵfi = localProviders;
+    exports.ɵfj = LocalPagingCommandService;
+    exports.ɵfk = PagingAggregateFactory;
+    exports.ɵfl = LocalPagingReadModelService;
+    exports.ɵfm = LocalSchemaCommandService;
+    exports.ɵfn = LocalSchemaReadModelService;
+    exports.ɵfo = FormationCommandService;
+    exports.ɵfp = FormationDispatcher;
+    exports.ɵfq = LocalFormationCommandService;
+    exports.ɵfr = FormationReadModelService;
+    exports.ɵfs = FormationRepository;
+    exports.ɵft = LocalFormationReadModelService;
+    exports.ɵfu = LocalStructureCommandService;
+    exports.ɵfv = LocalStructureReadModelService;
+    exports.ɵfw = LocalSourceCommandService;
+    exports.ɵfx = LocalSourceReadModelService;
+    exports.ɵfy = LocalCompositionCommandService;
+    exports.ɵfz = LocalCompositionReadModelService;
     exports.ɵg = SmartComponent;
-    exports.ɵga = StructurePagingDefinition;
-    exports.ɵgb = StructureHeaderComponent;
-    exports.ɵgc = StructureHeaderColumnsComponent;
-    exports.ɵgd = StructureHeaderFiltersComponent;
-    exports.ɵge = StructureFilterReadModelRepository;
-    exports.ɵgf = StructureFilterRepository;
-    exports.ɵgg = StructureQuickFilterRepository;
-    exports.ɵgh = StructureHeaderFilterComponent;
-    exports.ɵgi = StructureContentComponent;
-    exports.ɵgj = StructureRowComponent;
-    exports.ɵgk = StructureCellComponent;
-    exports.ɵgl = StructureContainerComponent;
-    exports.ɵgm = structureParentComponent;
-    exports.ɵgn = StructureEmptySourceComponent;
-    exports.ɵgo = StructureQuickFiltersComponent;
-    exports.ɵgp = StructureBlueprintComponent;
-    exports.ɵgq = STRUCTURE_CSS_CLASS_NAME;
-    exports.ɵgr = StructureSearchReadModelRepository;
-    exports.ɵgs = StructureSearchingRepository;
-    exports.ɵgt = StructureAggregationPanelComponent;
-    exports.ɵgu = StructureAggregationUiEventsRepository;
-    exports.ɵgv = ItemEntityFactory;
-    exports.ɵgw = structureProviders;
-    exports.ɵgx = inMemoryStructureCommandProviders;
-    exports.ɵgy = inMemoryStructureReadProviders;
-    exports.ɵgz = inMemoryStructureProviders;
+    exports.ɵga = SchemaCssClassManager;
+    exports.ɵgb = structureComponentToken;
+    exports.ɵgc = StructureDefinition;
+    exports.ɵgd = StructurePagingDefinition;
+    exports.ɵge = StructureHeaderComponent;
+    exports.ɵgf = StructureHeaderColumnsComponent;
+    exports.ɵgg = StructureHeaderFiltersComponent;
+    exports.ɵgh = StructureFilterReadModelRepository;
+    exports.ɵgi = StructureFilterRepository;
+    exports.ɵgj = StructureQuickFilterRepository;
+    exports.ɵgk = StructureHeaderFilterComponent;
+    exports.ɵgl = StructureContentComponent;
+    exports.ɵgm = StructureRowComponent;
+    exports.ɵgn = StructureCellComponent;
+    exports.ɵgo = StructureContainerComponent;
+    exports.ɵgp = structureParentComponent;
+    exports.ɵgq = StructureEmptySourceComponent;
+    exports.ɵgr = StructureQuickFiltersComponent;
+    exports.ɵgs = StructureBlueprintComponent;
+    exports.ɵgt = STRUCTURE_CSS_CLASS_NAME;
+    exports.ɵgu = StructureSearchReadModelRepository;
+    exports.ɵgv = StructureSearchingRepository;
+    exports.ɵgw = ItemEntityFactory;
+    exports.ɵgx = structureProviders;
+    exports.ɵgy = inMemoryStructureCommandProviders;
+    exports.ɵgz = inMemoryStructureReadProviders;
     exports.ɵh = Reactive;
-    exports.ɵha = InMemoryStructureAggregateStore;
-    exports.ɵhb = StructureAggregateRepository;
-    exports.ɵhc = InMemoryStructureAggregateRepository;
-    exports.ɵhd = InitStructureCommandHandler;
-    exports.ɵhe = StructureAggregateFactory;
-    exports.ɵhf = SourceManagerFactory;
-    exports.ɵhg = FormationAggregateFactory;
-    exports.ɵhh = VerticalFormationFactory;
-    exports.ɵhi = AggregationManagerFactory;
-    exports.ɵhj = AGGREGATION_CALCULATORS;
-    exports.ɵhk = AggregationCalculator;
-    exports.ɵhl = FilterManagerFactory;
-    exports.ɵhm = SearchManagerFactory;
-    exports.ɵhn = FieldCollectionFactory;
-    exports.ɵho = FieldFactory;
-    exports.ɵhp = FieldIdGenerator;
-    exports.ɵhq = SchemaAggregateFactory;
-    exports.ɵhr = SetVerticalScrollEnabledCommandHandler;
-    exports.ɵhs = SetScrollPositionCommandHandler;
-    exports.ɵht = InitFieldsCommandHandler;
-    exports.ɵhu = ToggleSortCommandHandler;
-    exports.ɵhv = SetSortingCommandHandler;
-    exports.ɵhw = StructureSetConfigFilterCommandHandler;
-    exports.ɵhx = StructureSetConfigSearchingCommandHandler;
-    exports.ɵhy = StructureSetConfigQuickFilterCommandHandler;
-    exports.ɵhz = StructureToggleFilterCommandHandler;
+    exports.ɵha = inMemoryStructureProviders;
+    exports.ɵhb = InMemoryStructureAggregateStore;
+    exports.ɵhc = StructureAggregateRepository;
+    exports.ɵhd = InMemoryStructureAggregateRepository;
+    exports.ɵhe = InitStructureCommandHandler;
+    exports.ɵhf = StructureAggregateFactory;
+    exports.ɵhg = SourceManagerFactory;
+    exports.ɵhh = FormationAggregateFactory;
+    exports.ɵhi = VerticalFormationFactory;
+    exports.ɵhj = AggregationManagerFactory;
+    exports.ɵhk = AGGREGATION_CALCULATORS;
+    exports.ɵhl = AggregationCalculator;
+    exports.ɵhm = FilterManagerFactory;
+    exports.ɵhn = SearchManagerFactory;
+    exports.ɵho = FieldCollectionFactory;
+    exports.ɵhp = FieldFactory;
+    exports.ɵhq = FieldIdGenerator;
+    exports.ɵhr = SchemaAggregateFactory;
+    exports.ɵhs = SetVerticalScrollEnabledCommandHandler;
+    exports.ɵht = SetScrollPositionCommandHandler;
+    exports.ɵhu = InitFieldsCommandHandler;
+    exports.ɵhv = ToggleSortCommandHandler;
+    exports.ɵhw = SetSortingCommandHandler;
+    exports.ɵhx = StructureSetConfigFilterCommandHandler;
+    exports.ɵhy = StructureSetConfigSearchingCommandHandler;
+    exports.ɵhz = StructureSetConfigQuickFilterCommandHandler;
     exports.ɵi = PagingReadModelService;
-    exports.ɵia = StructureSetAggregationEnabledCommandHandler;
-    exports.ɵib = StructureSourceDomainEventPublisher;
-    exports.ɵic = StructureSetSearchPhraseCommandHandler;
-    exports.ɵid = SetSortOrderCommandHandler;
-    exports.ɵie = SetRowHeightCommandHandler;
-    exports.ɵif = provideAggregationCalculator;
-    exports.ɵig = aggregationProviders;
-    exports.ɵih = BooleanAggregationCalculator;
-    exports.ɵii = DateAggregationCalculator;
-    exports.ɵij = NumberAggregationCalculator;
-    exports.ɵik = StringAggregationCalculator;
-    exports.ɵil = UnknownAggregationCalculator;
-    exports.ɵim = StructureConfigFilterSetEventHandler;
-    exports.ɵin = StructureConfigSearchingSetEventHandler;
-    exports.ɵio = StructureConfigQuickFilterSetEventHandler;
-    exports.ɵip = StructureFieldsInitedEventHandler;
-    exports.ɵiq = StructureFieldUiConverter;
-    exports.ɵir = InMemoryStructureRepository;
-    exports.ɵis = pagingProviders;
-    exports.ɵit = SetPagingCommandHandler;
-    exports.ɵiu = NextPageCommandHandler;
-    exports.ɵiv = PrevPageCommandHandler;
-    exports.ɵiw = ChangePagesizeCommandHandler;
-    exports.ɵix = schemaProviders;
-    exports.ɵiy = SetSchemaCommandHandler;
-    exports.ɵiz = SetSchemaVerticalGridCommandHandler;
+    exports.ɵia = StructureToggleFilterCommandHandler;
+    exports.ɵib = StructureSetAggregationEnabledCommandHandler;
+    exports.ɵic = StructureSourceDomainEventPublisher;
+    exports.ɵid = StructureSetSearchPhraseCommandHandler;
+    exports.ɵie = SetSortOrderCommandHandler;
+    exports.ɵif = SetRowHeightCommandHandler;
+    exports.ɵig = provideAggregationCalculator;
+    exports.ɵih = aggregationProviders;
+    exports.ɵii = BooleanAggregationCalculator;
+    exports.ɵij = DateAggregationCalculator;
+    exports.ɵik = NumberAggregationCalculator;
+    exports.ɵil = StringAggregationCalculator;
+    exports.ɵim = UnknownAggregationCalculator;
+    exports.ɵin = StructureConfigFilterSetEventHandler;
+    exports.ɵio = StructureConfigSearchingSetEventHandler;
+    exports.ɵip = StructureConfigQuickFilterSetEventHandler;
+    exports.ɵiq = StructureFieldsInitedEventHandler;
+    exports.ɵir = StructureFieldUiConverter;
+    exports.ɵis = InMemoryStructureRepository;
+    exports.ɵit = pagingProviders;
+    exports.ɵiu = SetPagingCommandHandler;
+    exports.ɵiv = NextPageCommandHandler;
+    exports.ɵiw = PrevPageCommandHandler;
+    exports.ɵix = ChangePagesizeCommandHandler;
+    exports.ɵiy = schemaProviders;
+    exports.ɵiz = SetSchemaCommandHandler;
     exports.ɵj = PagingRepository;
-    exports.ɵja = SetSchemaHorizontalGridCommandHandler;
-    exports.ɵjb = SetSchemaThemeCommandHandler;
-    exports.ɵjc = ChangeSchemaBottomHeaderCommandHandler;
-    exports.ɵjd = ChangeSchemaTopHeaderCommandHandler;
-    exports.ɵje = SetRowColoringCommandHandler;
-    exports.ɵjf = formationProviders;
-    exports.ɵjg = SetFormationCommandHandler;
-    exports.ɵjh = ToggleSelectedRowCommandHandler;
-    exports.ɵji = sourceProviders;
-    exports.ɵjj = SourceSetLoadingCommandHandler;
-    exports.ɵjk = SetOriginCommandHandler;
-    exports.ɵjl = StructureEditSourceItemCommandHandler;
-    exports.ɵjm = SourceRepository;
-    exports.ɵjn = StructureOriginChangedEventHandler;
-    exports.ɵjo = StructurePreparedItemsEventHandler;
-    exports.ɵjp = GridGateway;
-    exports.ɵjq = gridProviders;
-    exports.ɵjr = gridStructureDefinition;
-    exports.ɵjs = GridRegister;
-    exports.ɵjt = GridIdGenerator;
+    exports.ɵja = SetSchemaVerticalGridCommandHandler;
+    exports.ɵjb = SetSchemaHorizontalGridCommandHandler;
+    exports.ɵjc = SetSchemaThemeCommandHandler;
+    exports.ɵjd = ChangeSchemaBottomHeaderCommandHandler;
+    exports.ɵje = ChangeSchemaTopHeaderCommandHandler;
+    exports.ɵjf = SetRowColoringCommandHandler;
+    exports.ɵjg = formationProviders;
+    exports.ɵjh = SetFormationCommandHandler;
+    exports.ɵji = ToggleSelectedRowCommandHandler;
+    exports.ɵjj = sourceProviders;
+    exports.ɵjk = SourceSetLoadingCommandHandler;
+    exports.ɵjl = SetOriginCommandHandler;
+    exports.ɵjm = StructureEditSourceItemCommandHandler;
+    exports.ɵjn = SourceRepository;
+    exports.ɵjo = StructureOriginChangedEventHandler;
+    exports.ɵjp = StructurePreparedItemsEventHandler;
+    exports.ɵjq = GridGateway;
+    exports.ɵjr = gridProviders;
+    exports.ɵjs = gridStructureDefinition;
+    exports.ɵjt = GridRegister;
+    exports.ɵju = GridIdGenerator;
     exports.ɵk = StructureRepository;
     exports.ɵl = PagingCommandService;
     exports.ɵm = PagingDispatcher;

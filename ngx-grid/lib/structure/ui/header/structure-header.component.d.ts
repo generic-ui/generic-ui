@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { DomainEventBus } from '@generic-ui/hermes';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { CellTemplateWithContext } from '../../../composition/domain/read/definition/cell-template-with-context';

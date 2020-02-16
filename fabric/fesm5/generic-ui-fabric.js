@@ -1,9 +1,9 @@
 import { __extends, __spread } from 'tslib';
-import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, ComponentFactoryResolver, ChangeDetectorRef, Inject, forwardRef, ViewChild, ViewContainerRef, Injectable, ApplicationRef, Injector, PLATFORM_ID, HostListener, ViewChildren, Optional } from '@angular/core';
+import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, ComponentFactoryResolver, ChangeDetectorRef, Inject, forwardRef, ViewChild, ViewContainerRef, Injectable, ApplicationRef, Injector, PLATFORM_ID, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { distinctUntilChanged, debounceTime, map, throttleTime, filter, takeUntil } from 'rxjs/operators';
-import { Subject, BehaviorSubject, Observable, of } from 'rxjs';
+import { distinctUntilChanged, debounceTime, map, takeUntil, throttleTime, filter } from 'rxjs/operators';
+import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
 import * as elementResizeDetectorMaker_ from 'element-resize-detector';
 
 /**
@@ -408,6 +408,7 @@ var FabricCheckboxComponent = /** @class */ (function () {
         this.renderer = renderer;
         this.checked = false;
         this.disabled = false;
+        this.readonly = false;
         this.changed = new EventEmitter();
     }
     /**
@@ -425,6 +426,14 @@ var FabricCheckboxComponent = /** @class */ (function () {
             }
             else {
                 this.renderer.removeClass(this.elementRef.nativeElement, 'gui-disabled');
+            }
+        }
+        if (changes.readonly) {
+            if (this.readonly) {
+                this.renderer.addClass(this.elementRef.nativeElement, 'gui-readonly');
+            }
+            else {
+                this.renderer.removeClass(this.elementRef.nativeElement, 'gui-readonly');
             }
         }
     };
@@ -447,7 +456,7 @@ var FabricCheckboxComponent = /** @class */ (function () {
                     host: {
                         '[class.gui-checkbox]': 'true'
                     },
-                    styles: [".gui-checkbox{display:inline-block;font:14px/22px Arial;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:1px solid #d6d6d6}.gui-checkbox input:checked+.gui-checkmark{border-color:#333}.gui-checkbox.gui-disabled.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#333;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}"]
+                    styles: [".gui-checkbox{display:inline-block;font:14px/22px Arial;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:1px solid #d6d6d6}.gui-checkbox input:checked+.gui-checkmark{border-color:#333}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#333;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
                 }] }
     ];
     /** @nocollapse */
@@ -459,6 +468,7 @@ var FabricCheckboxComponent = /** @class */ (function () {
         name: [{ type: Input }],
         checked: [{ type: Input }],
         disabled: [{ type: Input }],
+        readonly: [{ type: Input }],
         changed: [{ type: Output }]
     };
     return FabricCheckboxComponent;
@@ -470,6 +480,8 @@ if (false) {
     FabricCheckboxComponent.prototype.checked;
     /** @type {?} */
     FabricCheckboxComponent.prototype.disabled;
+    /** @type {?} */
+    FabricCheckboxComponent.prototype.readonly;
     /** @type {?} */
     FabricCheckboxComponent.prototype.changed;
     /**
@@ -3955,6 +3967,258 @@ var FabricTabModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var FabricTooltipComponent = /** @class */ (function () {
+    function FabricTooltipComponent() {
+    }
+    FabricTooltipComponent.decorators = [
+        { type: Component, args: [{
+                    template: "{{text}}",
+                    host: {
+                        '[class.gui-tooltip]': 'true',
+                        '[style.left.px]': 'left',
+                        '[style.top.px]': 'top'
+                    },
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    styles: [".gui-tooltip{position:absolute;background:#333;border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;height:23px;font-size:14px;padding:4px 8px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
+                }] }
+    ];
+    return FabricTooltipComponent;
+}());
+if (false) {
+    /** @type {?} */
+    FabricTooltipComponent.prototype.text;
+    /** @type {?} */
+    FabricTooltipComponent.prototype.left;
+    /** @type {?} */
+    FabricTooltipComponent.prototype.top;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricTooltipDirective = /** @class */ (function () {
+    function FabricTooltipDirective(componentFactoryResolver, injector, elementRef, applicationRef, document, platformId) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.injector = injector;
+        this.elementRef = elementRef;
+        this.applicationRef = applicationRef;
+        this.document = document;
+        this.platformId = platformId;
+        this.text = '';
+        this.tooltipRef = null;
+        this.destroy$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    FabricTooltipDirective.prototype.ngAfterViewInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        /** @type {?} */
+        var open$ = fromEvent(this.elementRef.nativeElement, 'mouseenter');
+        /** @type {?} */
+        var close$ = fromEvent(this.elementRef.nativeElement, 'mouseout');
+        open$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.appendTooltip(); }));
+        close$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () {
+            if (_this.tooltipRef) {
+                _this.removeTooltip();
+            }
+        }));
+    };
+    /**
+     * @return {?}
+     */
+    FabricTooltipDirective.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.destroy$.next();
+        this.destroy$.complete();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    FabricTooltipDirective.prototype.appendTooltip = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var tooltipRef = this.componentFactoryResolver
+            .resolveComponentFactory(FabricTooltipComponent)
+            .create(this.injector);
+        this.calculateCords();
+        tooltipRef.instance.text = this.text;
+        tooltipRef.instance.top = this.tooltipTopPosition;
+        tooltipRef.instance.left = this.tooltipLeftPosition;
+        tooltipRef.changeDetectorRef.detectChanges();
+        /** @type {?} */
+        var domElement = (/** @type {?} */ (((/** @type {?} */ (tooltipRef.hostView)))
+            .rootNodes[0]));
+        this.document.body.appendChild(domElement);
+        this.tooltipRef = tooltipRef;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    FabricTooltipDirective.prototype.removeTooltip = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.applicationRef.detachView(this.tooltipRef.hostView);
+        this.tooltipRef.destroy();
+        this.tooltipRef = null;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    FabricTooltipDirective.prototype.calculateCords = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var elementRef = this.elementRef.nativeElement;
+        /** @type {?} */
+        var elementRect = elementRef.getBoundingClientRect();
+        /** @type {?} */
+        var elementBottom = elementRect.bottom;
+        /** @type {?} */
+        var elementLeft = elementRect.left;
+        if (isPlatformBrowser(this.platformId)) {
+            this.tooltipTopPosition =
+                elementBottom + window.scrollY
+                    - elementRef.offsetHeight
+                    - FabricTooltipDirective.tooltipHeight
+                    - FabricTooltipDirective.tooltipOffset;
+            this.tooltipLeftPosition = window.scrollX + elementLeft + elementRef.offsetWidth / 2;
+        }
+    };
+    FabricTooltipDirective.tooltipHeight = 23;
+    FabricTooltipDirective.tooltipOffset = 6;
+    FabricTooltipDirective.decorators = [
+        { type: Directive, args: [{
+                    selector: '[gui-tooltip]'
+                },] }
+    ];
+    /** @nocollapse */
+    FabricTooltipDirective.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver },
+        { type: Injector },
+        { type: ElementRef },
+        { type: ApplicationRef },
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
+    ]; };
+    FabricTooltipDirective.propDecorators = {
+        text: [{ type: Input, args: ['gui-tooltip',] }]
+    };
+    return FabricTooltipDirective;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.tooltipHeight;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.tooltipOffset;
+    /** @type {?} */
+    FabricTooltipDirective.prototype.text;
+    /** @type {?} */
+    FabricTooltipDirective.prototype.tooltipRef;
+    /** @type {?} */
+    FabricTooltipDirective.prototype.tooltipTopPosition;
+    /** @type {?} */
+    FabricTooltipDirective.prototype.tooltipLeftPosition;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.elementRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.applicationRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipDirective.prototype.platformId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricTooltipModule = /** @class */ (function () {
+    function FabricTooltipModule() {
+    }
+    FabricTooltipModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [],
+                    declarations: [
+                        FabricTooltipDirective,
+                        FabricTooltipComponent
+                    ],
+                    exports: [
+                        FabricTooltipDirective,
+                        FabricTooltipComponent
+                    ],
+                    entryComponents: [
+                        FabricTooltipComponent
+                    ]
+                },] }
+    ];
+    return FabricTooltipModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var FabricSelectComponent = /** @class */ (function () {
     function FabricSelectComponent(platformId, elementRef, renderer, changeDetectorRef) {
         this.platformId = platformId;
@@ -4913,6 +5177,7 @@ var modules = [
     FabricRadioButtonModule,
     FabricRadioGroupModule,
     FabricTabModule,
+    FabricTooltipModule,
     FabricProgressBarModule,
     FabricProgressSpinnerModule,
     FabricSelectModule,
@@ -4952,5 +5217,5 @@ var FabricModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricToggleButtonGroupComponent as ɵba, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricDatePickerModule as ɵe, FabricInlineDialogComponent as ɵf, FabricDatePickerCalendarComponent as ɵg, FabricDatePickerService as ɵh, FabricDatePickerWeeks as ɵi, FabricDatePickerYears as ɵj, FabricDatePickerComponent as ɵk, FabricDropdownComponent as ɵl, GeometryService as ɵm, DropdownItemComponent as ɵn, FabricDialogComponent as ɵo, FabricRadioButtonComponent as ɵp, FabricRadioGroupComponent as ɵq, FabricTabComponent as ɵr, TabItemComponent as ɵs, FabricProgressBarComponent as ɵt, FabricProgressSpinnerComponent as ɵu, AbstractSpinner as ɵv, FabricSelectComponent as ɵw, FabricSpinnerComponent as ɵx, FabricToggleButtonComponent as ɵy, ToggleButtonGroupService as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricToggleButtonComponent as ɵba, ToggleButtonGroupService as ɵbb, FabricToggleButtonGroupComponent as ɵbc, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricDatePickerModule as ɵe, FabricInlineDialogComponent as ɵf, FabricDatePickerCalendarComponent as ɵg, FabricDatePickerService as ɵh, FabricDatePickerWeeks as ɵi, FabricDatePickerYears as ɵj, FabricDatePickerComponent as ɵk, FabricDropdownComponent as ɵl, GeometryService as ɵm, DropdownItemComponent as ɵn, FabricDialogComponent as ɵo, FabricRadioButtonComponent as ɵp, FabricRadioGroupComponent as ɵq, FabricTabComponent as ɵr, TabItemComponent as ɵs, FabricTooltipDirective as ɵt, FabricTooltipComponent as ɵu, FabricProgressBarComponent as ɵv, FabricProgressSpinnerComponent as ɵw, AbstractSpinner as ɵx, FabricSelectComponent as ɵy, FabricSpinnerComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

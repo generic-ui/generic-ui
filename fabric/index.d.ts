@@ -14,6 +14,7 @@ export { FabricRadioButtonModule } from './form/radio-button/fabric-radio-button
 export { FabricRadioGroupModule } from './form/radio-group/fabric-radio-group.module';
 export { FabricTabModule } from './layout/tab/fabric-tab.module';
 export { FabricSelectModule } from './form/select/fabric-select.module';
+export { FabricTooltipModule } from './layout/tooltip/fabric-tooltip.module';
 export { FabricDialogModule } from './layout/dialog/fabric-dialog.module';
 export { FabricDialogService } from './layout/dialog/fabric-dialog.service';
 export { FabricInlineDialogModule } from './layout/inline-dialog/fabric-inline-dialog.module';
