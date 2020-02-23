@@ -1,6 +1,6 @@
 {
   "name": "@generic-ui/fabric",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",

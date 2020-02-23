@@ -4,7 +4,7 @@
 **Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
  It offers many built-in features that work out of the box:
   editing, sorting, pagination, theming, summaries, column configuration, and many more.
-   Performance is the main focus point, grid is able to present huge sets of data.
+   Performance is the main focus point, grid is able to present huge sets of data up to 1 000 000 rows.
     It greatly integrates with the best <a href="https://angular.io">javascript framework there is Angular</a>.
      All of that makes this library a great free to use **Angular data
   table

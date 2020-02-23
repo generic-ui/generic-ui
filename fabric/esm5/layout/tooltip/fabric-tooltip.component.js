@@ -16,7 +16,7 @@ var FabricTooltipComponent = /** @class */ (function () {
                     },
                     encapsulation: ViewEncapsulation.None,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    styles: [".gui-tooltip{position:absolute;background:#333;border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;height:23px;font-size:14px;padding:4px 8px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
+                    styles: [".gui-tooltip{position:absolute;display:inline-block;background:#333;border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;height:24px;font-size:14px;line-height:16.8px;vertical-align:middle;padding:4px 8px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
                 }] }
     ];
     return FabricTooltipComponent;

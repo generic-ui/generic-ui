@@ -8,6 +8,9 @@ import { FormationReadModelService } from '../../ui-api/formation/formation-read
 import { ItemEntity } from '../../domain/source/item.entity';
 import { VerticalFormationRepository } from '../../domain/structure/read/vertical-formation/vertical-formation.repository';
 import { StructureReadModelService } from '../../ui-api/structure/structure-read-model.service';
+import { StructureRowSelectEnabledArchive } from './row/structure.row-select-enabled.archive';
+import { StructureId } from '../../domain/structure-id';
+import { StructureSearchPhraseRepository } from '../../domain/structure/read/searching/phrase/structure.search-phrase.repository';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private platformId;
     private renderer;
@@ -18,13 +21,19 @@ export declare class StructureContentComponent extends SmartComponent implements
     private structureEditModeArchive;
     private formationQueryService;
     private structureReadModelService;
+    private structureRowSelectEnabledArchive;
     private verticalFormationRepository;
+    private structureId;
+    private structureSearchPhraseRepository;
     source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;
     rowHeight: number;
-    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService, structureReadModelService: StructureReadModelService, verticalFormationRepository: VerticalFormationRepository);
+    searchPhrase: string;
+    rowSelecting: boolean;
+    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService, structureReadModelService: StructureReadModelService, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    structureSearchPhraseRepository: StructureSearchPhraseRepository);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;

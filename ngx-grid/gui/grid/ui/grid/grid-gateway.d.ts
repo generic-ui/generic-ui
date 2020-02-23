@@ -19,6 +19,7 @@ export declare abstract class GridGateway implements OnChanges {
     horizontalGrid: boolean;
     theme: string | GuiTheme;
     rowColoring: string | GuiRowColoring;
+    rowSelecting: boolean;
     loading: boolean;
     virtualScroll: boolean;
     sorting: boolean | GuiSorting;

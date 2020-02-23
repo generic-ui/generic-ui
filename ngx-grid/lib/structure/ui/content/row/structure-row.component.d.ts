@@ -5,5 +5,6 @@ export declare class StructureRowComponent {
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;
+    searchPhrase: string;
     trackByFn(): number;
 }

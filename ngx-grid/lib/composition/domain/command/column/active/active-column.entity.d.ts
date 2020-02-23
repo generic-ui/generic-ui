@@ -21,6 +21,7 @@ export declare class ActiveColumnEntity {
     getColumnId(): ColumnId;
     getHeader(): string | HeaderTemplate;
     getDataType(): DataType;
+    getView(): ViewEntity;
     getCellView(): CellView;
     getTemplateFunction(): any;
     setSortStatus(status: SortStatus): void;

@@ -3,7 +3,7 @@
 
 **Generic UI Grid** is one of the best free <a href="http://generic-ui.com">jQuery Grid plugin</a>.
  It offers many built-in features that work out of the box
-: editing, sorting, pagination, theming, summaries, column configuration, and many more. Performance is the main focus point, grid is able to present huge sets of data.
+: editing, sorting, pagination, theming, summaries, column configuration, and many more. Performance is the main focus point, grid is able to present huge sets of data up to 1 000 000 rows.
 All of that makes this library a great free to use **jQuery Grid plugin**.
 
 ![demo](http://generic-ui.com/assets/images/grid-example.png)
