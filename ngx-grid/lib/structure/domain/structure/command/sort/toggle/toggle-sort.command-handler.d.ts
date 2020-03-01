@@ -5,7 +5,8 @@ import { ToggleSortCommand } from './toggle-sort.command';
 import { CompositionId } from '../../../../../../composition/domain/composition-id';
 import { FieldId } from '../../field/data-type/field.id';
 import { StructureSorter } from '../structure.sorter';
-export declare class ToggleSortCommandHandler extends CommandHandler {
+import { StructureAggregate } from '../../structure.aggregate';
+export declare class ToggleSortCommandHandler extends CommandHandler<StructureAggregate> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);

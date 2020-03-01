@@ -1,7 +1,8 @@
 import { Command } from '@generic-ui/hermes';
 import { StructureId } from '../../../../../structure/domain/structure-id';
 export declare class SetCompositionWidthCommand extends Command {
-    readonly structureId: StructureId;
-    readonly width: number;
+    private readonly structureId;
+    private readonly width;
     constructor(structureId: StructureId, width: number);
+    getWidth(): number;
 }

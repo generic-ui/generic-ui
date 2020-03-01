@@ -10,5 +10,5 @@ export declare abstract class DomainEvent extends Message {
     setRequestCommand(command: Command): void;
     fromCommand(command: Command): boolean;
     setPayload(payload: DomainEventPayload): void;
-    getPayload(): DomainEventPayload;
+    getPayload(): any;
 }

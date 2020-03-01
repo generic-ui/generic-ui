@@ -5,7 +5,8 @@ import { SetSortOrderCommand } from './set-sort-order.command';
 import { CompositionId } from '../../../../../../composition/domain/composition-id';
 import { FieldId } from '../../field/data-type/field.id';
 import { StructureSorter } from '../structure.sorter';
-export declare class SetSortOrderCommandHandler extends CommandHandler {
+import { StructureAggregate } from '../../structure.aggregate';
+export declare class SetSortOrderCommandHandler extends CommandHandler<StructureAggregate> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);

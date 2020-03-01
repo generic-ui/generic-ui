@@ -5,7 +5,7 @@ import { CompositionRepository } from '../../../../composition/domain/read/compo
 import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from '../../../../composition/domain/read/definition/cell-template-with-accessor';
 import { FieldId } from '../../../domain/structure/command/field/data-type/field.id';
-import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
+import { SortOrder } from '../../../../composition/domain/command/column/sort/sort-order';
 export declare class LocalCompositionReadModelService extends CompositionReadModelService {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionRepository: CompositionRepository);
@@ -14,7 +14,7 @@ export declare class LocalCompositionReadModelService extends CompositionReadMod
     onWidthForEachColumn(): Observable<Array<number>>;
     onHeaderColumns(): Observable<Array<CellTemplateWithContext>>;
     onAllColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
-    onSortOrder(fieldId: FieldId): Observable<SortStatus>;
+    onSortOrder(fieldId: FieldId): Observable<SortOrder>;
     onTemplateColumns(): Observable<Array<CellTemplateWithAccessor>>;
     onResizeWidth(): Observable<boolean>;
 }

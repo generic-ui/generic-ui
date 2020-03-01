@@ -670,7 +670,10 @@
         return Message;
     }());
     if (false) {
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         Message.prototype.aggregateId;
         /**
          * @type {?}
@@ -701,19 +704,312 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * @template T
+     */
+    var   /**
+     * @template T
+     */
+    Optional = /** @class */ (function () {
+        function Optional(value) {
+            if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
+                return Optional.empty();
+            }
+            this.value = value;
+            return this;
+        }
+        /**
+         * @return {?}
+         */
+        Optional.empty = /**
+         * @return {?}
+         */
+        function () {
+            return new Optional(null);
+        };
+        /**
+         * @template U
+         * @param {?} value
+         * @return {?}
+         */
+        Optional.of = /**
+         * @template U
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            return new Optional(value);
+        };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        Optional.isEmpty = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            return typeof value === 'undefined' || value === null;
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.isEmpty = /**
+         * @return {?}
+         */
+        function () {
+            return Optional.isEmpty(this.value);
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.isPresent = /**
+         * @return {?}
+         */
+        function () {
+            return !this.isEmpty();
+        };
+        /**
+         * @param {?} filterer
+         * @return {?}
+         */
+        Optional.prototype.filter = /**
+         * @param {?} filterer
+         * @return {?}
+         */
+        function (filterer) {
+            if (this.isPresent() && filterer(this.value)) {
+                return this;
+            }
+            return Optional.empty();
+        };
+        /**
+         * @param {?} callback
+         * @return {?}
+         */
+        Optional.prototype.forEach = /**
+         * @param {?} callback
+         * @return {?}
+         */
+        function (callback) {
+            if (this.isPresent()) {
+                callback(this.value);
+            }
+        };
+        /**
+         * @template U
+         * @param {?} mapper
+         * @return {?}
+         */
+        Optional.prototype.map = /**
+         * @template U
+         * @param {?} mapper
+         * @return {?}
+         */
+        function (mapper) {
+            if (this.isPresent()) {
+                return new Optional(mapper(this.value));
+            }
+            return Optional.empty();
+        };
+        /**
+         * @deprecated
+         */
+        /**
+         * @deprecated
+         * @return {?}
+         */
+        Optional.prototype.getValueOrNullOrThrowError = /**
+         * @deprecated
+         * @return {?}
+         */
+        function () {
+            return this.value;
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.getOrThrow = /**
+         * @return {?}
+         */
+        function () {
+            if (this.isEmpty()) {
+                throw new Error('Called getOrThrow on an empty Optional');
+            }
+            return this.value;
+        };
+        /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        Optional.prototype.getOrElse = /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        function (other) {
+            if (this.isPresent()) {
+                return this.value;
+            }
+            return other();
+        };
+        /**
+         * @param {?} method
+         * @return {?}
+         */
+        Optional.prototype.ifPresent = /**
+         * @param {?} method
+         * @return {?}
+         */
+        function (method) {
+            if (this.isPresent()) {
+                method(this.value);
+            }
+        };
+        /**
+         * @param {?} method
+         * @return {?}
+         */
+        Optional.prototype.ifEmpty = /**
+         * @param {?} method
+         * @return {?}
+         */
+        function (method) {
+            if (this.isEmpty()) {
+                method();
+            }
+        };
+        /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        Optional.prototype.orElse = /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        function (other) {
+            if (this.isPresent()) {
+                return this;
+            }
+            return other();
+        };
+        return Optional;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        Optional.prototype.value;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
      * @abstract
+     * @template A
      */
     var   /**
      * @abstract
+     * @template A
      */
     CommandHandler = /** @class */ (function () {
         function CommandHandler(command, // any is required when inherited Command has more arguments than Command
-        domainEvent, eventPublisher) {
+        domainEvent, eventPublisher, aggregateRepository) {
             this.command = command;
             this.domainEvent = domainEvent;
             this.eventPublisher = eventPublisher;
+            this.aggregateRepository = aggregateRepository;
             this.commandType = this.createCommandInstance().getMessageType();
         }
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandler.prototype.handle = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+        };
+        // TODO change to abstract
+        // TODO change to abstract
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandler.prototype.handleAggregate = 
+        // TODO change to abstract
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandler.prototype.handleEmptyAggregate = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+        };
+        // TODO change to abstract
+        // TODO change to abstract
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandler.prototype.publishDomainEvents = 
+        // TODO change to abstract
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandler.prototype.handleCommandForAggregate = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+            var _this = this;
+            /** @type {?} */
+            var aggregateId = command.getAggregateId();
+            /** @type {?} */
+            var optAggregate = Optional.of(this.aggregateRepository.getById(aggregateId));
+            optAggregate.ifPresent((/**
+             * @param {?} aggregate
+             * @return {?}
+             */
+            function (aggregate) {
+                _this.handleAggregate(aggregate, command);
+                _this.aggregateRepository.save(aggregate);
+                _this.publishDomainEvents(aggregate, command);
+            }));
+            optAggregate.ifEmpty((/**
+             * @return {?}
+             */
+            function () {
+                _this.handleEmptyAggregate(command);
+            }));
+        };
         /**
          * @param {?} command
          * @return {?}
@@ -735,6 +1031,10 @@
          */
         function (command) {
             var _this = this;
+            if (this.aggregateRepository) {
+                this.handleCommandForAggregate(command);
+                return;
+            }
             /** @type {?} */
             var result = this.handle(command);
             if (rxjs.isObservable(result)) {
@@ -768,7 +1068,7 @@
         function (command, result) {
             if (this.domainEvent && this.eventPublisher) {
                 /** @type {?} */
-                var aggregateId = command.aggregateId;
+                var aggregateId = command.getAggregateId();
                 /** @type {?} */
                 var event_1 = new ((/** @type {?} */ (this.domainEvent)))(aggregateId);
                 event_1.setRequestCommand(command);
@@ -819,11 +1119,10 @@
          */
         CommandHandler.prototype.eventPublisher;
         /**
-         * @abstract
-         * @param {?} command
-         * @return {?}
+         * @type {?}
+         * @protected
          */
-        CommandHandler.prototype.handle = function (command) { };
+        CommandHandler.prototype.aggregateRepository;
     }
 
     /**
@@ -1139,6 +1438,38 @@
          * @private
          */
         AggregateEvent.prototype.type;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     * @template A
+     */
+    var   /**
+     * @abstract
+     * @template A
+     */
+    AggregateRepository = /** @class */ (function () {
+        function AggregateRepository() {
+        }
+        return AggregateRepository;
+    }());
+    if (false) {
+        /**
+         * @abstract
+         * @param {?} aggregateId
+         * @return {?}
+         */
+        AggregateRepository.prototype.getById = function (aggregateId) { };
+        /**
+         * @abstract
+         * @param {?} aggregate
+         * @return {?}
+         */
+        AggregateRepository.prototype.save = function (aggregate) { };
     }
 
     /**
@@ -1960,55 +2291,6 @@
      */
     /**
      * @abstract
-     * @template Q
-     */
-    var   /**
-     * @abstract
-     * @template Q
-     */
-    ReadModelStore = /** @class */ (function () {
-        function ReadModelStore() {
-        }
-        return ReadModelStore;
-    }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        ReadModelStore.prototype.getById = function (aggregateId) { };
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} target
-     * @return {?}
-     */
-    function RootAggregate(target) {
-    }
-    /**
-     * @param {?} target
-     * @return {?}
-     */
-    function Entity(target) {
-    }
-    /**
-     * @param {?} target
-     * @return {?}
-     */
-    function ValueObject(target) {
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
      */
     var   /**
      * @abstract
@@ -2057,6 +2339,103 @@
          * @private
          */
         Reactive.prototype.unsubscribe$;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    ReadModelRepository = /** @class */ (function (_super) {
+        __extends(ReadModelRepository, _super);
+        function ReadModelRepository(domainEventBus) {
+            var _this = _super.call(this) || this;
+            domainEventBus
+                .ofEvent.apply(domainEventBus, __spread(_this.forEvents())).pipe(_this.takeUntil())
+                .subscribe((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                try {
+                    _this.subscribe(event);
+                }
+                catch (e) {
+                    console.error(e);
+                }
+            }));
+            return _this;
+        }
+        return ReadModelRepository;
+    }(Reactive));
+    if (false) {
+        /**
+         * @abstract
+         * @protected
+         * @return {?}
+         */
+        ReadModelRepository.prototype.forEvents = function () { };
+        /**
+         * @abstract
+         * @protected
+         * @param {?} event
+         * @return {?}
+         */
+        ReadModelRepository.prototype.subscribe = function (event) { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     * @template Q
+     */
+    var   /**
+     * @abstract
+     * @template Q
+     */
+    ReadModelStore = /** @class */ (function () {
+        function ReadModelStore() {
+        }
+        return ReadModelStore;
+    }());
+    if (false) {
+        /**
+         * @abstract
+         * @param {?} aggregateId
+         * @return {?}
+         */
+        ReadModelStore.prototype.getById = function (aggregateId) { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} target
+     * @return {?}
+     */
+    function RootAggregate(target) {
+    }
+    /**
+     * @param {?} target
+     * @return {?}
+     */
+    function Entity(target) {
+    }
+    /**
+     * @param {?} target
+     * @return {?}
+     */
+    function ValueObject(target) {
     }
 
     /**
@@ -2214,7 +2593,7 @@
          * @return {?}
          */
         function () {
-            return this.aggregateId.toString();
+            return this.getAggregateId().toString();
         };
         return PersistAnemia;
     }());
@@ -2231,12 +2610,10 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * Rename
      * @abstract
      * @template A
      */
     var   /**
-     * Rename
      * @abstract
      * @template A
      */
@@ -2282,7 +2659,7 @@
          * @return {?}
          */
         function (aggregateId) {
-            return this.state.get(aggregateId.toString());
+            return Optional.of(this.state.get(aggregateId.toString()));
         };
         /**
          * @return {?}
@@ -2318,11 +2695,11 @@
      */
     /**
      * @abstract
-     * @template T, S
+     * @template R, A
      */
     var   /**
      * @abstract
-     * @template T, S
+     * @template R, A
      */
     PersistReadModelStore = /** @class */ (function (_super) {
         __extends(PersistReadModelStore, _super);
@@ -2361,13 +2738,13 @@
          */
         function () {
             var _this = this;
-            /** @type {?} */
-            var anemias = this.stateStore.getAll();
-            return anemias.map((/**
+            return this.stateStore
+                .getAll()
+                .map((/**
              * @param {?} anemia
              * @return {?}
              */
-            function (anemia) { return _this.fromAnemia(anemia); }));
+            function (anemia) { return _this.toReadModel(anemia); }));
         };
         /**
          * @private
@@ -2381,13 +2758,8 @@
          */
         function (aggregateId) {
             /** @type {?} */
-            var anemia = this.stateStore.get(aggregateId);
-            if (anemia) {
-                return this.fromAnemia(anemia);
-            }
-            else {
-                return null;
-            }
+            var optAnemia = this.stateStore.get(aggregateId);
+            return optAnemia.map(this.toReadModel);
         };
         return PersistReadModelStore;
     }(ReadModelStore));
@@ -2402,7 +2774,7 @@
          * @param {?} anemia
          * @return {?}
          */
-        PersistReadModelStore.prototype.fromAnemia = function (anemia) { };
+        PersistReadModelStore.prototype.toReadModel = function (anemia) { };
     }
 
     /**
@@ -2411,11 +2783,11 @@
      */
     /**
      * @abstract
-     * @template T, S
+     * @template D, A
      */
     var   /**
      * @abstract
-     * @template T, S
+     * @template D, A
      */
     PersistAggregateStore = /** @class */ (function (_super) {
         __extends(PersistAggregateStore, _super);
@@ -2475,13 +2847,8 @@
          */
         function (aggregateId) {
             /** @type {?} */
-            var anemia = this.stateStore.get(aggregateId);
-            if (anemia) {
-                return this.fromAnemia(anemia);
-            }
-            else {
-                return null;
-            }
+            var optAnemia = this.stateStore.get(aggregateId);
+            return optAnemia.map(this.fromAnemia);
         };
         return PersistAggregateStore;
     }(AggregateStore));
@@ -2566,11 +2933,13 @@
          */
         function (aggregateId) {
             /** @type {?} */
-            var aggregate = this.inMemoryStore.get(aggregateId);
-            if (aggregate) {
-                aggregate.clearEvents();
-            }
-            return aggregate;
+            var optAggregate = this.inMemoryStore.get(aggregateId);
+            optAggregate.ifPresent((/**
+             * @param {?} a
+             * @return {?}
+             */
+            function (a) { return a.clearEvents(); }));
+            return optAggregate;
         };
         /**
          * @return {?}
@@ -2613,11 +2982,11 @@
      */
     /**
      * @abstract
-     * @template T, S
+     * @template R, D
      */
     var   /**
      * @abstract
-     * @template T, S
+     * @template R, D
      */
     InMemoryReadModelStore = /** @class */ (function (_super) {
         __extends(InMemoryReadModelStore, _super);
@@ -2645,7 +3014,8 @@
          */
         function () {
             var _this = this;
-            return this.inMemoryStore.getAll()
+            return this.inMemoryStore
+                .getAll()
                 .map((/**
              * @param {?} aggregate
              * @return {?}
@@ -2664,13 +3034,8 @@
          */
         function (aggregateId) {
             /** @type {?} */
-            var aggregate = this.inMemoryStore.get(aggregateId);
-            if (aggregate) {
-                return this.toReadModel(aggregate);
-            }
-            else {
-                return null;
-            }
+            var optAggregate = this.inMemoryStore.get(aggregateId);
+            return optAggregate.map(this.toReadModel.bind(this));
         };
         return InMemoryReadModelStore;
     }(ReadModelStore));
@@ -2742,7 +3107,7 @@
          * @return {?}
          */
         function (aggregateId) {
-            return this.state.get(aggregateId.toString());
+            return Optional.of(this.state.get(aggregateId.toString()));
         };
         /**
          * @return {?}
@@ -2995,7 +3360,7 @@
          */
         function (domainEvent) {
             /** @type {?} */
-            var aggregateId = domainEvent.aggregateId;
+            var aggregateId = domainEvent.getAggregateId();
             /** @type {?} */
             var aggregates = this.aggregateStoreRegister.captureAggregatesSnapshot(aggregateId);
             console.log(domainEvent.toString(), domainEvent, aggregates);
@@ -3434,6 +3799,7 @@
     exports.AggregateArchive = AggregateArchive;
     exports.AggregateEvent = AggregateEvent;
     exports.AggregateId = AggregateId;
+    exports.AggregateRepository = AggregateRepository;
     exports.AggregateStore = AggregateStore;
     exports.AggregateStoreRegister = AggregateStoreRegister;
     exports.COMMAND_HANDLERS = COMMAND_HANDLERS;
@@ -3460,12 +3826,14 @@
     exports.InMemoryAggregateStore = InMemoryAggregateStore;
     exports.InMemoryReadModelStore = InMemoryReadModelStore;
     exports.InMemoryStore = InMemoryStore;
+    exports.Optional = Optional;
     exports.PersistAggregateStore = PersistAggregateStore;
     exports.PersistAnemia = PersistAnemia;
     exports.PersistReadModelStore = PersistReadModelStore;
     exports.PersistStateStore = PersistStateStore;
     exports.RandomStringGenerator = RandomStringGenerator;
     exports.ReadModel = ReadModel;
+    exports.ReadModelRepository = ReadModelRepository;
     exports.ReadModelStore = ReadModelStore;
     exports.ReplayCommandDispatcher = ReplayCommandDispatcher;
     exports.RootAggregate = RootAggregate;
@@ -3483,8 +3851,8 @@
     exports.ɵd = Message;
     exports.ɵe = DomainEventStore;
     exports.ɵf = FILTERED_COMMAND_STREAM;
-    exports.ɵg = ReactiveService;
-    exports.ɵh = Reactive;
+    exports.ɵg = Reactive;
+    exports.ɵh = ReactiveService;
     exports.ɵi = ConsoleCommandLogger;
     exports.ɵj = NoopCommandLogger;
     exports.ɵk = ConsoleEventLogger;

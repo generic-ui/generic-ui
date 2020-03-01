@@ -61,6 +61,7 @@ export declare abstract class GridGateway implements OnChanges {
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
+    searchPhraseChanged: EventEmitter<string>;
     /** @internal */
     columnsConfig: Array<ColumnConfig>;
     themeConfig: any;
@@ -82,4 +83,5 @@ export declare abstract class GridGateway implements OnChanges {
     onCellEditEnter(): void;
     onCellEditSubmit(): void;
     onCellEditCancel(): void;
+    onSearchPhrase(value: string): void;
 }

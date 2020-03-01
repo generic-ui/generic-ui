@@ -2,14 +2,14 @@ import { CellView } from '../../cell-view';
 import { ColumnId } from './column.id';
 import { ColumnField } from './field/column-field';
 import { ColumnConfig, HeaderTemplate } from '../../column.config';
-import { SortStatus } from './sort/sort-status';
+import { SortOrder } from './sort/sort-order';
 import { ViewEntity } from './view.entity';
 import { DataType } from '../../../../structure/domain/structure/command/field/data-type/data-type';
 export declare class ColumnEntity {
     columnId: ColumnId;
     columnField: ColumnField;
     header?: string | HeaderTemplate;
-    sortStatus: SortStatus;
+    sortOrder: SortOrder;
     width?: number;
     sortable?: boolean;
     private enabled;
@@ -25,7 +25,8 @@ export declare class ColumnEntity {
     getDataType(): DataType;
     getCellView(): CellView;
     getTemplateFunction(): any;
-    setSortStatus(status: SortStatus): void;
+    setSortStatus(status: SortOrder): void;
     setView(view: ViewEntity): void;
     getView(): ViewEntity;
+    getSortingEnabled(): boolean;
 }

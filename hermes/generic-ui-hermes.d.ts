@@ -3,8 +3,8 @@
  */
 export * from './public-api';
 export { Logger as ɵc } from './common/logger';
-export { Reactive as ɵh } from './common/reactive';
-export { ReactiveService as ɵg } from './common/reactive.service';
+export { Reactive as ɵg } from './common/reactive';
+export { ReactiveService as ɵh } from './common/reactive.service';
 export { FILTERED_COMMAND_STREAM as ɵf } from './domain/command/filtered-command-stream';
 export { DomainEventStore as ɵe } from './domain/event/domain-event.store';
 export { Message as ɵd } from './domain/message';

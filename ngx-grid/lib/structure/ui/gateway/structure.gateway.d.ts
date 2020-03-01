@@ -30,6 +30,7 @@ import { ColumnMenuConfig } from '../../ui-api/structure/column-menu-config';
 import { StructureColumnMenuConfigArchive } from '../header/menu/config/structure.column-menu-config.archive';
 import { StructurePagingDisplayModeArchive } from '../paging/mode/structure-paging.display-mode.archive';
 import { StructureRowSelectEnabledArchive } from '../content/row/structure.row-select-enabled.archive';
+import { StructureSearchEventService } from '../../ui-api/structure/search/structure-search-event.service';
 /** @internal */
 export declare abstract class StructureGateway extends SmartComponent implements OnChanges, OnInit {
     structureId: StructureId;
@@ -51,6 +52,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive;
     protected structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive;
     protected structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive;
+    protected structureSearchEventService: StructureSearchEventService;
     /***********************
      * INPUTS
      ***********************/
@@ -91,7 +93,8 @@ export declare abstract class StructureGateway extends SmartComponent implements
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
-    protected constructor(structureId: StructureId, compositionId: CompositionId, structureCommandService: StructureCommandService, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive);
+    searchPhraseChanged: EventEmitter<string>;
+    protected constructor(structureId: StructureId, compositionId: CompositionId, structureCommandService: StructureCommandService, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: StructureSearchEventService);
     ngOnChanges(simpleChanges: SimpleChanges): void;
     ngOnInit(): void;
     onPageChange(page: number): void;

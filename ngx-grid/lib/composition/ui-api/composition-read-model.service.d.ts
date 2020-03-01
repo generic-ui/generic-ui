@@ -3,7 +3,7 @@ import { CompositionRepository } from '../domain/read/composition.repository';
 import { CompositionId } from '../domain/composition-id';
 import { CellTemplateWithContext } from '../domain/read/definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from '../domain/read/definition/cell-template-with-accessor';
-import { SortStatus } from '../domain/command/column/sort/sort-status';
+import { SortOrder } from '../domain/command/column/sort/sort-order';
 import { FieldId } from '../../structure/domain/structure/command/field/data-type/field.id';
 export declare class CompositionReadModelService {
     private compositionRepository;
@@ -13,7 +13,7 @@ export declare class CompositionReadModelService {
     onWidthForEachColumn(compositionId?: CompositionId): Observable<Array<number>>;
     onHeaderColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
     onAllColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
-    onSortOrder(fieldId: FieldId, compositionId?: CompositionId): Observable<SortStatus>;
+    onSortOrder(fieldId: FieldId, compositionId?: CompositionId): Observable<SortOrder>;
     onTemplateColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithAccessor>>;
     onResizeWidth(compositionId?: CompositionId): Observable<boolean>;
 }

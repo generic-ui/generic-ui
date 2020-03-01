@@ -1,4 +1,8 @@
 import { ModuleWithProviders, OnDestroy } from '@angular/core';
+/**
+ * Command
+ */
+import { Aggregate } from '../domain/command/aggregate';
 import { CommandBus } from '../domain/command/command.bus';
 import { CommandHandler } from '../domain/command/command.handler';
 import { DomainEventBus } from '../domain/event/domain-event.bus';
@@ -23,7 +27,7 @@ export declare class HermesModule implements OnDestroy {
     private hermesApi;
     private unsubscribe$;
     static withConfig(config?: HermesModuleConfig): ModuleWithProviders;
-    constructor(commandHandlers: Array<CommandHandler>, eventHandlers: Array<DomainEventHandler>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
+    constructor(commandHandlers: Array<CommandHandler<Aggregate>>, eventHandlers: Array<DomainEventHandler>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     ngOnDestroy(): void;
     private checkNullCommand;
     private checkCommandHandlerIsCollection;

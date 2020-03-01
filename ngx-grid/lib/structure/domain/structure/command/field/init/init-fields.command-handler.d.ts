@@ -3,7 +3,8 @@ import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-
 import { StructureAggregateRepository } from '../../structure-aggregate.repository';
 import { StructureAggregateFactory } from '../../structure.aggregate-factory';
 import { InitFieldsCommand } from './init-fields.command';
-export declare class InitFieldsCommandHandler extends CommandHandler {
+import { StructureAggregate } from '../../structure.aggregate';
+export declare class InitFieldsCommandHandler extends CommandHandler<StructureAggregate> {
     private readonly structureAggregateRepository;
     private readonly structureAggregateFactory;
     private domainEventPublisher;

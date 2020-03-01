@@ -6,15 +6,11 @@ import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourceCommandService } from '../../../ui-api/source/source-command.service';
 import { ChangedValueEmitter } from '../../../../composition/domain/read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../domain/source/item.entity';
-import { StructureSearchPhraseRepository } from '../../../domain/structure/read/searching/phrase/structure.search-phrase.repository';
-import { StructureId } from '../../../domain/structure-id';
 export declare class StructureCellComponent extends SmartComponent implements OnChanges {
     private changeDetectorRef;
     private structureCellEditArchive;
     private structureCellEditStore;
     private sourceCommandService;
-    private id;
-    private structureSearchPhraseRepository;
     entity: ItemEntity;
     cell: CellTemplateWithAccessor;
     editMode: boolean;
@@ -25,7 +21,7 @@ export declare class StructureCellComponent extends SmartComponent implements On
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, sourceCommandService: SourceCommandService, id: StructureId, structureSearchPhraseRepository: StructureSearchPhraseRepository);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, sourceCommandService: SourceCommandService);
     ngOnChanges(changes: SimpleChanges): void;
     enterEditMode(forceCheck?: boolean): void;
     exitEditMode(): void;

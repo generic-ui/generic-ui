@@ -26,6 +26,7 @@ import { SchemaReadModelService } from '../ui-api/schema/schema-read-model.servi
 import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
 import { StructurePagingDisplayModeArchive } from './paging/mode/structure-paging.display-mode.archive';
 import { StructureRowSelectEnabledArchive } from './content/row/structure.row-select-enabled.archive';
+import { StructureSearchEventService } from '../ui-api/structure/search/structure-search-event.service';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -66,8 +67,10 @@ export declare const structureComponentSelfProviders: (typeof StructurePagingDis
     useClass: typeof import("./local/composition/local-composition-command.service").LocalCompositionCommandService;
 } | {
     provide: typeof CompositionReadModelService;
-    /** @internal */
     useClass: typeof import("./local/composition/local-composition-read-model.service").LocalCompositionReadModelService;
+} | {
+    provide: typeof import("../../../generic-ui-ngx-grid").ɵce;
+    useClass: typeof import("./local/search/local-structure-search.dispatcher").LocalStructureSearchDispatcher;
 } | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | typeof StructureColumnMenuConfigArchive | {
     provide: typeof StructureId;
     useFactory: typeof structureIdFactory;
@@ -89,7 +92,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     structureHeight: number;
     private columnHeader;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandService, pagingEventService: PagingEventService, sourceCommandService: SourceCommandService, sourceEventService: SourceEventService, schemaCommandService: SchemaCommandService, compositionCommandService: CompositionCommandService, compositionEventService: CompositionEventService, formationEventService: FormationEventService, structureCommandService: StructureCommandService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: StructureSearchEventService, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureQueryService: StructureReadModelService, compositionQueryService: CompositionReadModelService, schemaReadModelService: SchemaReadModelService, schemaStylesManager: SchemaCssClassManager);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;

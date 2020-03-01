@@ -3,7 +3,8 @@ import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-
 import { StructureEditSourceItemCommand } from './structure.edit-source-item.command';
 import { StructureAggregateRepository } from '../../../../structure/command/structure-aggregate.repository';
 import { StructureSourceDomainEventPublisher } from '../../structure.source.domain-event.publisher';
-export declare class StructureEditSourceItemCommandHandler extends CommandHandler {
+import { StructureAggregate } from '../../../../structure/command/structure.aggregate';
+export declare class StructureEditSourceItemCommandHandler extends CommandHandler<StructureAggregate> {
     private structureAggregateRepository;
     private domainEventPublisher;
     private structureSourceDomainEventPublisher;

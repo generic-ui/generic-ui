@@ -7,4 +7,5 @@ export declare class StructureSearchPhraseRepository extends Reactive {
     constructor();
     setPhrase(phrase: string, structureId: StructureId): void;
     onPhrase(structureId: StructureId): Observable<string>;
+    private observePhrases;
 }

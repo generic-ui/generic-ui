@@ -1,6 +1,6 @@
 import { AggregateId } from './aggregate-id';
 export declare abstract class Message {
-    aggregateId: AggregateId;
+    private readonly aggregateId;
     protected readonly messageType: string;
     private readonly messageId;
     protected constructor(aggregateId: AggregateId, messageType: string, messageId?: string);

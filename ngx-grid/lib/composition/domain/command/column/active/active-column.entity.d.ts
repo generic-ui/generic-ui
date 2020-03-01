@@ -1,4 +1,4 @@
-import { SortStatus } from '../sort/sort-status';
+import { SortOrder } from '../sort/sort-order';
 import { ColumnField } from '../field/column-field';
 import { ColumnId } from '../column.id';
 import { ColumnConfig, HeaderTemplate } from '../../../column.config';
@@ -15,7 +15,7 @@ export declare class ActiveColumnEntity {
     private config;
     constructor(columnId: ColumnId, columnField: ColumnField, header: string | HeaderTemplate, view: ViewEntity, config: ColumnConfig);
     getConfig(): ColumnConfig;
-    getSortStatus(): SortStatus;
+    getSortStatus(): SortOrder;
     getField(): ColumnField;
     getWidth(): number;
     getColumnId(): ColumnId;
@@ -24,6 +24,7 @@ export declare class ActiveColumnEntity {
     getView(): ViewEntity;
     getCellView(): CellView;
     getTemplateFunction(): any;
-    setSortStatus(status: SortStatus): void;
+    getSortingEnabled(): boolean;
+    setSortStatus(status: SortOrder): void;
     setWidth(width: number): void;
 }

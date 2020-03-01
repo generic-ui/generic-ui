@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
+import { Command, CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../composition.aggregate-repository';
 import { CompositionChangeSortStatusCommand } from './composition-change-sort-status.command';
-export declare class CompositionChangeSortStatusCommandHandler extends CommandHandler {
+import { CompositionAggregate } from '../../composition.aggregate';
+export declare class CompositionChangeSortStatusCommandHandler extends CommandHandler<CompositionAggregate> {
     private readonly compositionAggregateRepository;
     protected domainEventPublisher: DomainEventPublisher;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: CompositionChangeSortStatusCommand): ExecuteResponse | Observable<ExecuteResponse>;
+    handleAggregate(composition: CompositionAggregate, command: CompositionChangeSortStatusCommand): void;
+    publishDomainEvents(composition: CompositionAggregate, command: Command): void;
 }

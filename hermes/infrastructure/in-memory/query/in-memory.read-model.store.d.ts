@@ -3,11 +3,12 @@ import { Aggregate } from '../../../domain/command/aggregate';
 import { ReadModel } from '../../../domain/read/read-model';
 import { ReadModelStore } from '../../../domain/read/store/read-model.store';
 import { InMemoryStore } from '../in-memory.store';
-export declare abstract class InMemoryReadModelStore<T extends ReadModel, S extends Aggregate> extends ReadModelStore<T> {
+import { Optional } from '../../../common/optional';
+export declare abstract class InMemoryReadModelStore<R extends ReadModel, D extends Aggregate> extends ReadModelStore<R> {
     private readonly inMemoryStore;
-    protected constructor(inMemoryStore: InMemoryStore<S>);
-    abstract toReadModel(aggregate: S): T;
-    getById(aggregateId: AggregateId): T;
-    getAll(): Array<T>;
+    protected constructor(inMemoryStore: InMemoryStore<D>);
+    abstract toReadModel(aggregate: D): R;
+    getById(aggregateId: AggregateId): Optional<R>;
+    getAll(): ReadonlyArray<R>;
     private getValue;
 }

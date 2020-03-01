@@ -4,6 +4,7 @@ export declare class GridColumnConverter {
     private readonly columnTypeConverter;
     private readonly columnAggregationConverter;
     private readonly columnViewConverter;
+    private readonly columnSortingConverter;
     convert(config: Array<GuiColumn>): Array<ColumnConfig>;
     private convertColumn;
 }

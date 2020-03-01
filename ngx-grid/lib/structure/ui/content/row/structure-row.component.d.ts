@@ -6,5 +6,7 @@ export declare class StructureRowComponent {
     editMode: boolean;
     cellEditing: boolean;
     searchPhrase: string;
+    index: number;
+    detailsEnabled: boolean;
     trackByFn(): number;
 }

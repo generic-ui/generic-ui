@@ -22,6 +22,8 @@ import { LocalCompositionCommandService } from './composition/local-composition-
 import { CompositionReadModelService } from '../../../composition/ui-api/composition-read-model.service';
 import { LocalCompositionReadModelService } from './composition/local-composition-read-model.service';
 import { PagingReadModelService } from '../../ui-api/paging/paging-read-model.service';
+import { StructureSearchDispatcher } from '../../domain/structure/command/search/structure.search.dispatcher';
+import { LocalStructureSearchDispatcher } from './search/local-structure-search.dispatcher';
 export declare const localProviders: ({
     provide: typeof PagingCommandService;
     useClass: typeof LocalPagingCommandService;
@@ -58,4 +60,7 @@ export declare const localProviders: ({
 } | {
     provide: typeof CompositionReadModelService;
     useClass: typeof LocalCompositionReadModelService;
+} | {
+    provide: typeof StructureSearchDispatcher;
+    useClass: typeof LocalStructureSearchDispatcher;
 })[];

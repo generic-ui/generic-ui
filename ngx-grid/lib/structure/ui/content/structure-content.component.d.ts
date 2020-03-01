@@ -11,6 +11,7 @@ import { StructureReadModelService } from '../../ui-api/structure/structure-read
 import { StructureRowSelectEnabledArchive } from './row/structure.row-select-enabled.archive';
 import { StructureId } from '../../domain/structure-id';
 import { StructureSearchPhraseRepository } from '../../domain/structure/read/searching/phrase/structure.search-phrase.repository';
+import { StructureSearchHighlightArchive } from '../../domain/structure/read/searching/highlight/structure.search-highlight.archive';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private platformId;
     private renderer;
@@ -25,15 +26,19 @@ export declare class StructureContentComponent extends SmartComponent implements
     private verticalFormationRepository;
     private structureId;
     private structureSearchPhraseRepository;
+    private structureSearchHighlightArchive;
     source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
     cellEditing: boolean;
     rowHeight: number;
     searchPhrase: string;
+    highlighting: boolean;
+    phrase: boolean;
     rowSelecting: boolean;
+    rowDetailOpened: number;
     constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService, structureReadModelService: StructureReadModelService, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
-    structureSearchPhraseRepository: StructureSearchPhraseRepository);
+    structureSearchPhraseRepository: StructureSearchPhraseRepository, structureSearchHighlightArchive: StructureSearchHighlightArchive);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;

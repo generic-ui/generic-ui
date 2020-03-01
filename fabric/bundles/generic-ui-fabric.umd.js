@@ -641,7 +641,7 @@
                         host: {
                             '[class.gui-checkbox]': 'true'
                         },
-                        styles: [".gui-checkbox{display:inline-block;font:14px/22px Arial;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:1px solid #d6d6d6}.gui-checkbox input:checked+.gui-checkmark{border-color:#333}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#333;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
+                        styles: [".gui-checkbox{display:inline-block;font:14px/24px Arial;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:2px solid #575757}.gui-checkbox input:checked+.gui-checkmark{border-color:#575757}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#575757;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
                     }] }
         ];
         /** @nocollapse */
@@ -760,6 +760,42 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var InlineDialogGeometry = /** @class */ (function () {
+        function InlineDialogGeometry(inlineDialogRef) {
+            this.inlineDialogRef = inlineDialogRef;
+        }
+        /**
+         * @return {?}
+         */
+        InlineDialogGeometry.prototype.getHeight = /**
+         * @return {?}
+         */
+        function () {
+            return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetHeight;
+        };
+        /**
+         * @return {?}
+         */
+        InlineDialogGeometry.prototype.getWidth = /**
+         * @return {?}
+         */
+        function () {
+            return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetWidth;
+        };
+        return InlineDialogGeometry;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        InlineDialogGeometry.prototype.inlineDialogRef;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @enum {number} */
     var InlineDialogPlacement = {
         Bottom: 1,
@@ -777,12 +813,14 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var InlineDialogCords = /** @class */ (function () {
-        function InlineDialogCords(element, pageXOffset, pageYOffset, placement, inlineDialogOffset) {
+        function InlineDialogCords(element, inlineDialogGeometry, window, placement, inlineDialogOffset) {
             if (inlineDialogOffset === void 0) { inlineDialogOffset = InlineDialogCords.defaultInlineDialogOffset; }
             this.element = element;
+            this.inlineDialogGeometry = inlineDialogGeometry;
+            this.window = window;
             this.placement = placement;
             this.inlineDialogOffset = inlineDialogOffset;
-            this.calculateCords(element, pageXOffset, pageYOffset);
+            this.calculateCords(element, inlineDialogGeometry);
         }
         /**
          * @return {?}
@@ -805,18 +843,16 @@
         /**
          * @private
          * @param {?} element
-         * @param {?} pageXOffset
-         * @param {?} pageYOffset
+         * @param {?} inlineDialogGeometry
          * @return {?}
          */
         InlineDialogCords.prototype.calculateCords = /**
          * @private
          * @param {?} element
-         * @param {?} pageXOffset
-         * @param {?} pageYOffset
+         * @param {?} inlineDialogGeometry
          * @return {?}
          */
-        function (element, pageXOffset, pageYOffset) {
+        function (element, inlineDialogGeometry) {
             /** @type {?} */
             var elementRect = element.nativeElement.getBoundingClientRect();
             /** @type {?} */
@@ -829,24 +865,61 @@
             var elementTop = elementRect.top;
             switch (this.placement) {
                 case InlineDialogPlacement.Bottom:
-                    this.horizontalPosition = pageXOffset + elementLeft;
+                    this.horizontalPosition = this.window.pageXOffset + elementLeft;
                     this.verticalPosition = elementBottom + this.inlineDialogOffset;
                     break;
                 case InlineDialogPlacement.Top:
-                    this.horizontalPosition = pageXOffset + elementLeft;
-                    this.verticalPosition = pageYOffset + elementTop + this.inlineDialogOffset;
+                    this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                    this.verticalPosition = this.window.pageYOffset + elementTop + this.inlineDialogOffset;
                     break;
                 case InlineDialogPlacement.Right:
-                    this.horizontalPosition = pageXOffset + elementRight + this.inlineDialogOffset;
+                    this.horizontalPosition = this.window.pageXOffset + elementRight + this.inlineDialogOffset;
                     this.verticalPosition = elementTop;
                     break;
                 case InlineDialogPlacement.Left:
-                    this.horizontalPosition = elementLeft + pageXOffset + this.inlineDialogOffset;
+                    this.horizontalPosition = elementLeft + this.window.pageXOffset + this.inlineDialogOffset;
                     this.verticalPosition = elementTop;
                     break;
                 default:
-                    this.horizontalPosition = pageXOffset + elementLeft;
-                    this.verticalPosition = pageYOffset + elementBottom + this.inlineDialogOffset;
+                    this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                    this.verticalPosition = this.window.pageYOffset + elementBottom + this.inlineDialogOffset;
+            }
+            this.calculateDirection(inlineDialogGeometry, element);
+        };
+        /**
+         * @private
+         * @param {?} inlineDialogGeometry
+         * @param {?} element
+         * @return {?}
+         */
+        InlineDialogCords.prototype.calculateDirection = /**
+         * @private
+         * @param {?} inlineDialogGeometry
+         * @param {?} element
+         * @return {?}
+         */
+        function (inlineDialogGeometry, element) {
+            /** @type {?} */
+            var windowHeight = this.window.innerHeight;
+            /** @type {?} */
+            var windowWidth = this.window.innerWidth;
+            /** @type {?} */
+            var elementHeight = element.nativeElement.offsetHeight;
+            /** @type {?} */
+            var elementWidth = element.nativeElement.offsetWidth;
+            /** @type {?} */
+            var inlineDialogHeight = inlineDialogGeometry.getHeight();
+            /** @type {?} */
+            var inlineDialogWidth = inlineDialogGeometry.getWidth();
+            /** @type {?} */
+            var inlineDialogDoesNotFitHorizontally = (windowWidth - this.horizontalPosition - inlineDialogWidth) < 0;
+            /** @type {?} */
+            var inlineDialogDoesNotFitVertically = (windowHeight - this.verticalPosition - inlineDialogHeight) < 0;
+            if (inlineDialogDoesNotFitHorizontally) {
+                this.horizontalPosition -= inlineDialogWidth - elementWidth;
+            }
+            if (inlineDialogDoesNotFitVertically) {
+                this.verticalPosition -= inlineDialogHeight - elementHeight;
             }
         };
         InlineDialogCords.defaultInlineDialogOffset = 8;
@@ -871,6 +944,16 @@
          * @type {?}
          * @private
          */
+        InlineDialogCords.prototype.inlineDialogGeometry;
+        /**
+         * @type {?}
+         * @private
+         */
+        InlineDialogCords.prototype.window;
+        /**
+         * @type {?}
+         * @private
+         */
         InlineDialogCords.prototype.placement;
         /**
          * @type {?}
@@ -883,12 +966,88 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var InlineDialogGeometryService = /** @class */ (function () {
+        function InlineDialogGeometryService(platformId) {
+            this.platformId = platformId;
+            this.inlineDialogState$ = new rxjs.Subject();
+        }
+        /**
+         * @return {?}
+         */
+        InlineDialogGeometryService.prototype.observeInlineDialogCords = /**
+         * @return {?}
+         */
+        function () {
+            return this.inlineDialogState$.asObservable();
+        };
+        /**
+         * @param {?} inlineDialogRef
+         * @return {?}
+         */
+        InlineDialogGeometryService.prototype.changeGeometry = /**
+         * @param {?} inlineDialogRef
+         * @return {?}
+         */
+        function (inlineDialogRef) {
+            this.inlineDialogGeometry = new InlineDialogGeometry(inlineDialogRef);
+        };
+        /**
+         * @param {?} element
+         * @param {?=} placement
+         * @param {?=} offset
+         * @return {?}
+         */
+        InlineDialogGeometryService.prototype.getInlineDialogCords = /**
+         * @param {?} element
+         * @param {?=} placement
+         * @param {?=} offset
+         * @return {?}
+         */
+        function (element, placement, offset) {
+            if (common.isPlatformBrowser(this.platformId)) {
+                /** @type {?} */
+                var inlineDialogCords = new InlineDialogCords(element, this.inlineDialogGeometry, window, placement, offset);
+                this.inlineDialogState$.next(inlineDialogCords);
+            }
+        };
+        InlineDialogGeometryService.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        InlineDialogGeometryService.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] }
+        ]; };
+        return InlineDialogGeometryService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        InlineDialogGeometryService.prototype.inlineDialogGeometry;
+        /**
+         * @type {?}
+         * @private
+         */
+        InlineDialogGeometryService.prototype.inlineDialogState$;
+        /**
+         * @type {?}
+         * @private
+         */
+        InlineDialogGeometryService.prototype.platformId;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FabricInlineDialogComponent = /** @class */ (function () {
-        function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elementRef) {
+        function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elementRef, inlineDialogGeometryService) {
             this.componentFactoryResolver = componentFactoryResolver;
             this.changeDetectorRef = changeDetectorRef;
             this.inlineDialogService = inlineDialogService;
             this.elementRef = elementRef;
+            this.inlineDialogGeometryService = inlineDialogGeometryService;
         }
         /**
          * @return {?}
@@ -899,7 +1058,7 @@
         function () {
             var _this = this;
             this.inlineDialogCordsSubscription =
-                this.inlineDialogService
+                this.inlineDialogGeometryService
                     .observeInlineDialogCords()
                     .subscribe((/**
                  * @param {?} inlineDialogCords
@@ -919,6 +1078,7 @@
          */
         function () {
             this.createNestedComponent(this.inlineDialogNestedComponent);
+            this.inlineDialogGeometryService.changeGeometry(this.elementRef);
         };
         /**
          * @return {?}
@@ -976,6 +1136,7 @@
             else {
                 this.container.createComponent(componentFactory);
             }
+            this.changeDetectorRef.detectChanges();
         };
         FabricInlineDialogComponent.decorators = [
             { type: core.Component, args: [{
@@ -993,7 +1154,8 @@
                              * @return {?}
                              */
                             function () { return FabricInlineDialogService; })),] }] },
-            { type: core.ElementRef }
+            { type: core.ElementRef },
+            { type: InlineDialogGeometryService }
         ]; };
         FabricInlineDialogComponent.propDecorators = {
             container: [{ type: core.ViewChild, args: ['container', { read: core.ViewContainerRef, static: false },] }]
@@ -1036,6 +1198,11 @@
          * @private
          */
         FabricInlineDialogComponent.prototype.elementRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricInlineDialogComponent.prototype.inlineDialogGeometryService;
     }
 
     /**
@@ -1043,14 +1210,13 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FabricInlineDialogService = /** @class */ (function () {
-        function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, platformId, document) {
+        function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, document, inlineDialogGeometryService) {
             this.componentFactoryResolver = componentFactoryResolver;
             this.applicationRef = applicationRef;
             this.injector = injector;
-            this.platformId = platformId;
             this.document = document;
+            this.inlineDialogGeometryService = inlineDialogGeometryService;
             this.inlineDialogRef = null;
-            this.inlineDialogState$ = new rxjs.Subject();
         }
         /**
          * @return {?}
@@ -1081,7 +1247,7 @@
             event.stopPropagation();
             if (!this.inlineDialogRef) {
                 this.appendInlineDialogToElement(component, injector);
-                this.getInlineDialogCords(element, placement, offset);
+                this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
             }
             else {
                 this.close();
@@ -1095,15 +1261,6 @@
          */
         function () {
             this.removeInlineDialog();
-        };
-        /**
-         * @return {?}
-         */
-        FabricInlineDialogService.prototype.observeInlineDialogCords = /**
-         * @return {?}
-         */
-        function () {
-            return this.inlineDialogState$.asObservable();
         };
         /**
          * @private
@@ -1149,27 +1306,6 @@
                 this.inlineDialogRef = null;
             }
         };
-        /**
-         * @private
-         * @param {?} element
-         * @param {?=} placement
-         * @param {?=} offset
-         * @return {?}
-         */
-        FabricInlineDialogService.prototype.getInlineDialogCords = /**
-         * @private
-         * @param {?} element
-         * @param {?=} placement
-         * @param {?=} offset
-         * @return {?}
-         */
-        function (element, placement, offset) {
-            if (common.isPlatformBrowser(this.platformId)) {
-                /** @type {?} */
-                var inlineDialogCords = new InlineDialogCords(element, window.pageXOffset, window.pageYOffset, placement, offset);
-                this.inlineDialogState$.next(inlineDialogCords);
-            }
-        };
         FabricInlineDialogService.decorators = [
             { type: core.Injectable }
         ];
@@ -1178,19 +1314,14 @@
             { type: core.ComponentFactoryResolver },
             { type: core.ApplicationRef },
             { type: core.Injector },
-            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+            { type: InlineDialogGeometryService }
         ]; };
         return FabricInlineDialogService;
     }());
     if (false) {
         /** @type {?} */
         FabricInlineDialogService.prototype.inlineDialogRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        FabricInlineDialogService.prototype.inlineDialogState$;
         /**
          * @type {?}
          * @private
@@ -1210,12 +1341,12 @@
          * @type {?}
          * @private
          */
-        FabricInlineDialogService.prototype.platformId;
+        FabricInlineDialogService.prototype.document;
         /**
          * @type {?}
          * @private
          */
-        FabricInlineDialogService.prototype.document;
+        FabricInlineDialogService.prototype.inlineDialogGeometryService;
     }
 
     /**
@@ -2299,7 +2430,8 @@
                             FabricInlineDialogComponent
                         ],
                         providers: [
-                            FabricInlineDialogService
+                            FabricInlineDialogService,
+                            InlineDialogGeometryService
                         ],
                         entryComponents: [
                             FabricInlineDialogComponent
@@ -3059,6 +3191,7 @@
             this.injector = injector;
             this.document = document;
             this.dialogRef = null;
+            this.destroy$ = new rxjs.Subject();
         }
         /**
          * @return {?}
@@ -3071,15 +3204,18 @@
         };
         /**
          * @param {?} component
+         * @param {?=} injector
          * @return {?}
          */
         FabricDialogService.prototype.open = /**
          * @param {?} component
+         * @param {?=} injector
          * @return {?}
          */
-        function (component) {
+        function (component, injector) {
             if (!this.dialogRef) {
-                this.appendDialogToBody(component);
+                this.createAndAppend(component, injector);
+                this.closeOnEscKey();
             }
         };
         /**
@@ -3093,19 +3229,46 @@
         };
         /**
          * @private
-         * @param {?} component
          * @return {?}
          */
-        FabricDialogService.prototype.appendDialogToBody = /**
+        FabricDialogService.prototype.closeOnEscKey = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var close$ = rxjs.fromEvent(this.document, 'keyup');
+            close$
+                .pipe(operators.filter((/**
+             * @param {?} key
+             * @return {?}
+             */
+            function (key) { return key.code === 'Escape'; })), operators.takeUntil(this.destroy$))
+                .subscribe((/**
+             * @return {?}
+             */
+            function () { return _this.close(); }));
+        };
+        /**
          * @private
          * @param {?} component
+         * @param {?=} injector
          * @return {?}
          */
-        function (component) {
+        FabricDialogService.prototype.createAndAppend = /**
+         * @private
+         * @param {?} component
+         * @param {?=} injector
+         * @return {?}
+         */
+        function (component, injector) {
+            /** @type {?} */
+            var compInjector = injector || this.injector;
             /** @type {?} */
             var componentRef = this.componentFactoryResolver
                 .resolveComponentFactory(FabricDialogComponent)
-                .create(this.injector);
+                .create(compInjector);
             componentRef.instance.dialogNestedComponent = component;
             componentRef.changeDetectorRef.detectChanges();
             this.applicationRef.attachView(componentRef.hostView);
@@ -3128,6 +3291,8 @@
                 this.applicationRef.detachView(this.dialogRef.hostView);
                 this.dialogRef.destroy();
                 this.dialogRef = null;
+                this.destroy$.next();
+                this.destroy$.complete();
             }
         };
         FabricDialogService.decorators = [
@@ -3145,6 +3310,11 @@
     if (false) {
         /** @type {?} */
         FabricDialogService.prototype.dialogRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricDialogService.prototype.destroy$;
         /**
          * @type {?}
          * @private
@@ -3172,9 +3342,10 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var FabricDialogComponent = /** @class */ (function () {
-        function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, dialogService) {
+        function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, elementRef, dialogService) {
             this.componentFactoryResolver = componentFactoryResolver;
             this.changeDetectorRef = changeDetectorRef;
+            this.elementRef = elementRef;
             this.dialogService = dialogService;
         }
         /**
@@ -3197,6 +3368,36 @@
             this.dialogService.close();
         };
         /**
+         * @param {?} event
+         * @return {?}
+         */
+        FabricDialogComponent.prototype.clickOutside = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (this.isContainerClicked(event)) {
+                this.dialogService.close();
+            }
+        };
+        /**
+         * @private
+         * @param {?} event
+         * @return {?}
+         */
+        FabricDialogComponent.prototype.isContainerClicked = /**
+         * @private
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            /** @type {?} */
+            var dialogContentRef = this.elementRef.nativeElement.querySelector('.gui-dialog-content');
+            if (dialogContentRef) {
+                return !dialogContentRef.contains(event.target);
+            }
+        };
+        /**
          * @private
          * @param {?} component
          * @return {?}
@@ -3213,16 +3414,17 @@
         };
         FabricDialogComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<div class=\"gui-dialog-blanket\"></div>\n<div class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<a (click)=\"closeDialog()\" class=\"gui-dialog-close\"></a>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
+                        template: "<div class=\"gui-dialog-blanket\"></div>\n<div (click)=\"clickOutside($event)\"\n\t class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<a (click)=\"closeDialog()\" class=\"gui-dialog-close\"></a>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
-                        styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fff;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px;opacity:.4}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:hover{opacity:.8}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#333}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{background:#bdbdbd}"]
+                        styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;font-family:Arial;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fff;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog;padding:24px}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-title{color:#333;font-size:20px;margin:0 0 16px}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px;opacity:.4}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:hover{opacity:.8}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#333}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{background:#bdbdbd}"]
                     }] }
         ];
         /** @nocollapse */
         FabricDialogComponent.ctorParameters = function () { return [
             { type: core.ComponentFactoryResolver },
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: FabricDialogService, decorators: [{ type: core.Inject, args: [core.forwardRef((/**
                              * @return {?}
                              */
@@ -3248,6 +3450,11 @@
          * @private
          */
         FabricDialogComponent.prototype.changeDetectorRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricDialogComponent.prototype.elementRef;
         /**
          * @type {?}
          * @private
@@ -4165,7 +4372,7 @@
                         },
                         encapsulation: core.ViewEncapsulation.None,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        styles: [".gui-tooltip{position:absolute;display:inline-block;background:#333;border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;height:24px;font-size:14px;line-height:16.8px;vertical-align:middle;padding:4px 8px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
+                        styles: [".gui-tooltip{position:absolute;display:block;background:rgba(0,0,0,.8);border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;font:400 14px Arial;vertical-align:middle;padding:8px 12px;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
                     }] }
         ];
         return FabricTooltipComponent;
@@ -4297,8 +4504,8 @@
                 this.tooltipLeftPosition = window.scrollX + elementLeft + elementRef.offsetWidth / 2;
             }
         };
-        FabricTooltipDirective.tooltipHeight = 24;
-        FabricTooltipDirective.tooltipOffset = 6;
+        FabricTooltipDirective.tooltipHeight = 32;
+        FabricTooltipDirective.tooltipOffset = 8;
         FabricTooltipDirective.decorators = [
             { type: core.Directive, args: [{
                         selector: '[gui-tooltip]'
@@ -5421,33 +5628,34 @@
     exports.SpinnerMode = SpinnerMode;
     exports.ɵa = FabricBadgeComponent;
     exports.ɵb = Indicator;
-    exports.ɵba = FabricToggleButtonComponent;
-    exports.ɵbb = ToggleButtonGroupService;
-    exports.ɵbc = FabricToggleButtonGroupComponent;
+    exports.ɵba = FabricSpinnerComponent;
+    exports.ɵbb = FabricToggleButtonComponent;
+    exports.ɵbc = ToggleButtonGroupService;
+    exports.ɵbd = FabricToggleButtonGroupComponent;
     exports.ɵc = FabricButtonGroupComponent;
     exports.ɵd = FabricCardComponent;
     exports.ɵe = FabricDatePickerModule;
     exports.ɵf = FabricInlineDialogComponent;
-    exports.ɵg = FabricDatePickerCalendarComponent;
-    exports.ɵh = FabricDatePickerService;
-    exports.ɵi = FabricDatePickerWeeks;
-    exports.ɵj = FabricDatePickerYears;
-    exports.ɵk = FabricDatePickerComponent;
-    exports.ɵl = FabricDropdownComponent;
-    exports.ɵm = GeometryService;
-    exports.ɵn = DropdownItemComponent;
-    exports.ɵo = FabricDialogComponent;
-    exports.ɵp = FabricRadioButtonComponent;
-    exports.ɵq = FabricRadioGroupComponent;
-    exports.ɵr = FabricTabComponent;
-    exports.ɵs = TabItemComponent;
-    exports.ɵt = FabricTooltipDirective;
-    exports.ɵu = FabricTooltipComponent;
-    exports.ɵv = FabricProgressBarComponent;
-    exports.ɵw = FabricProgressSpinnerComponent;
-    exports.ɵx = AbstractSpinner;
-    exports.ɵy = FabricSelectComponent;
-    exports.ɵz = FabricSpinnerComponent;
+    exports.ɵg = InlineDialogGeometryService;
+    exports.ɵh = FabricDatePickerCalendarComponent;
+    exports.ɵi = FabricDatePickerService;
+    exports.ɵj = FabricDatePickerWeeks;
+    exports.ɵk = FabricDatePickerYears;
+    exports.ɵl = FabricDatePickerComponent;
+    exports.ɵm = FabricDropdownComponent;
+    exports.ɵn = GeometryService;
+    exports.ɵo = DropdownItemComponent;
+    exports.ɵp = FabricDialogComponent;
+    exports.ɵq = FabricRadioButtonComponent;
+    exports.ɵr = FabricRadioGroupComponent;
+    exports.ɵs = FabricTabComponent;
+    exports.ɵt = TabItemComponent;
+    exports.ɵu = FabricTooltipDirective;
+    exports.ɵv = FabricTooltipComponent;
+    exports.ɵw = FabricProgressBarComponent;
+    exports.ɵx = FabricProgressSpinnerComponent;
+    exports.ɵy = AbstractSpinner;
+    exports.ɵz = FabricSelectComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -4,5 +4,5 @@ import { StructureId } from '../../../domain/structure-id';
 export declare class StructureSearchReadModelRepository {
     private structureSearchingRepository;
     constructor(structureSearchingRepository: StructureSearchingRepository);
-    onSearchEnabled(structureId: StructureId): Observable<boolean>;
+    onSearchEnabled(structureId?: StructureId): Observable<boolean>;
 }

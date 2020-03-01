@@ -17,6 +17,7 @@ export { CommandStream } from './domain/command/command.stream';
 export { ExecuteResponse } from './domain/command/execute-response';
 export { ReplayCommandDispatcher } from './domain/command/replay-command.dispatcher';
 export { AggregateEvent } from './domain/command/aggregate-event';
+export { AggregateRepository } from './domain/command/aggregate-repository';
 export { AggregateStore } from './domain/command/store/aggregate.store';
 export { AggregateStoreRegister } from './domain/command/store/aggregate-store.register';
 export { Aggregate } from './domain/command/aggregate';
@@ -32,6 +33,7 @@ export { DomainEventPayload } from './domain/event/domain-event.payload';
 export { DomainEventStream } from './domain/event/domain-event.stream';
 export { DOMAIN_EVENT_HANDLERS } from './domain/event/domain-event-handlers';
 export { ReadModel } from './domain/read/read-model';
+export { ReadModelRepository } from './domain/read/read-model.repository';
 export { ReadModelStore } from './domain/read/store/read-model.store';
 export { RootAggregate, Entity, ValueObject } from './domain/decorators';
 /**
@@ -39,6 +41,7 @@ export { RootAggregate, Entity, ValueObject } from './domain/decorators';
  */
 export { AggregateArchive } from './common/aggregate.archive';
 export { RandomStringGenerator } from './common/random-string.generator';
+export { Optional } from './common/optional';
 /**
  * Infrastructure
  */

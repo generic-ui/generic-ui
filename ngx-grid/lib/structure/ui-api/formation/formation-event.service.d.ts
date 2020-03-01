@@ -6,5 +6,5 @@ export declare class FormationEventService {
     private readonly domainEventBus;
     private readonly structureQueryService;
     constructor(domainEventBus: DomainEventBus, structureQueryService: StructureReadModelService);
-    onItemSelected(structureId: StructureId): Observable<number>;
+    onItemSelected(structureId: StructureId): Observable<Array<any>>;
 }

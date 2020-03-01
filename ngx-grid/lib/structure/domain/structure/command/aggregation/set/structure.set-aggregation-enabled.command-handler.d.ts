@@ -4,7 +4,8 @@ import { StructureAggregateRepository } from '../../structure-aggregate.reposito
 import { StructureAggregateFactory } from '../../structure.aggregate-factory';
 import { StructureSourceDomainEventPublisher } from '../../../../source/command/structure.source.domain-event.publisher';
 import { StructureSetAggregationEnabledCommand } from './structure.set-aggregation-enabled.command';
-export declare class StructureSetAggregationEnabledCommandHandler extends CommandHandler {
+import { StructureAggregate } from '../../structure.aggregate';
+export declare class StructureSetAggregationEnabledCommandHandler extends CommandHandler<StructureAggregate> {
     private readonly structureAggregateRepository;
     private readonly structureAggregateFactory;
     private readonly structureSourceDomainEventPublisher;

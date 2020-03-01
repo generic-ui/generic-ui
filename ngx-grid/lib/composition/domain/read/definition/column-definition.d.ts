@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { ColumnField } from '../../command/column/field/column-field';
-import { SortStatus } from '../../command/column/sort/sort-status';
+import { SortOrder } from '../../command/column/sort/sort-order';
 import { HeaderTemplate } from '../../column.config';
 import { CellTemplateWithContext } from './cell-template-with-context';
 import { CellTemplateWithAccessor } from './cell-template-with-accessor';
@@ -18,11 +18,12 @@ export declare class ColumnDefinition {
     private readonly columnId;
     private field;
     private sortStatus;
+    private sortable;
     private header;
     private enabled;
     constructor(field: ColumnField, columnId: ColumnId, enabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity, // REFACTOR
-    header: string | HeaderTemplate, sort?: SortStatus);
+    header: string | HeaderTemplate, sort?: SortOrder, sortable?: boolean);
     isEnabled(): boolean;
     setHeader(header: string): void;
     setField(field: ColumnField): void;

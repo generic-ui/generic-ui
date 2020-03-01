@@ -9,12 +9,14 @@ import { FilterConfig } from './filter/filter-config';
 import { QuickFiltersConfig } from './filter/quick-filters.config';
 import { SearchConfig } from './search/search-config';
 import { ColumnConfig } from '../../../composition/domain/column.config';
-import { SortStatus } from '../../../composition/domain/command/column/sort/sort-status';
+import { SortOrder } from '../../../composition/domain/command/column/sort/sort-order';
+import { StructureSearchDispatcher } from '../../domain/structure/command/search/structure.search.dispatcher';
 export declare class StructureCommandService {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;
     private readonly sourceDispatcher;
-    constructor(commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher);
+    private readonly structureSearchDispatcher;
+    constructor(commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher, structureSearchDispatcher: StructureSearchDispatcher);
     init(structureId?: StructureId): void;
     enableVerticalScroll(structureId?: StructureId): void;
     disableVerticalScroll(structureId?: StructureId): void;
@@ -22,7 +24,7 @@ export declare class StructureCommandService {
     setOrigin(items: Array<any>, structureId?: StructureId): void;
     setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
     toggleSort(fieldId: FieldId, compositionId?: CompositionId, structureId?: StructureId): void;
-    setSortOrder(fieldId: FieldId, sortOrder: SortStatus, compositionId?: CompositionId, structureId?: StructureId): void;
+    setSortOrder(fieldId: FieldId, sortOrder: SortOrder, compositionId?: CompositionId, structureId?: StructureId): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>, compositionId: CompositionId, structureId?: StructureId): void;

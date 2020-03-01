@@ -7,7 +7,9 @@ export interface GuiColumn {
     header?: string;
     customTemplate?: string;
     width?: string | number;
+    enabled?: boolean;
     aggregation?: GuiColumnAggregation;
+    sorting?: GuiColumnSorting;
 }
 export declare enum GuiDataType {
     UNKNOWN = 0,
@@ -72,6 +74,11 @@ export declare enum GuiRowColoring {
     EVEN = 1,
     ODD = 2
 }
+export declare enum GuiSortingOrder {
+    NONE = 0,
+    ASC = 1,
+    DESC = 2
+}
 export interface GuiSorting {
     enabled?: boolean;
     /**
@@ -87,6 +94,9 @@ export interface GuiQuickFilters {
 }
 export interface GuiSearching {
     enabled?: boolean;
+    highlighting?: boolean;
+    placeholder?: string;
+    phrase?: string;
 }
 export interface GuiAggregation {
     enabled?: boolean;
@@ -96,6 +106,10 @@ export interface GuiAggregation {
 export interface GuiColumnAggregation {
     enabled?: boolean;
     aggregationTypes?: Array<any>;
+}
+export interface GuiColumnSorting {
+    enabled?: boolean;
+    order?: GuiSortingOrder;
 }
 export interface GuiColumnMenu {
     enabled?: boolean;

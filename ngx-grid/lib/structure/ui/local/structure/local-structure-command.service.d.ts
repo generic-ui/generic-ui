@@ -10,11 +10,12 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { ColumnConfig } from '../../../../composition/domain/column.config';
-import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
+import { SortOrder } from '../../../../composition/domain/command/column/sort/sort-order';
+import { StructureSearchDispatcher } from '../../../domain/structure/command/search/structure.search.dispatcher';
 export declare class LocalStructureCommandService extends StructureCommandService {
     private readonly structureId;
     private readonly compositionId;
-    constructor(structureId: StructureId, compositionId: CompositionId, commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher);
+    constructor(structureId: StructureId, compositionId: CompositionId, commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher, structureSearchDispatcher: StructureSearchDispatcher);
     init(): void;
     enableVerticalScroll(): void;
     disableVerticalScroll(): void;
@@ -22,7 +23,7 @@ export declare class LocalStructureCommandService extends StructureCommandServic
     setOrigin(items: Array<any>): void;
     setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
     toggleSort(fieldId: FieldId): void;
-    setSortOrder(fieldId: FieldId, sortOrder: SortStatus): void;
+    setSortOrder(fieldId: FieldId, sortOrder: SortOrder): void;
     setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
     setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
     initFields(columns: Array<ColumnConfig>): void;

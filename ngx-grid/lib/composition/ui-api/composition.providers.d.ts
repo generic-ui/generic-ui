@@ -23,12 +23,12 @@ import { CompositionFieldsInitedEventHandler } from '../domain/command/column/se
 import { CompositionSetColumnEnabledCommandHandler } from '../domain/command/column/set-enabled/composition.set-column-enabled.command-handler';
 import { CompositionMoveLeftColumnCommandHandler } from '../domain/command/column/move/left/composition.move-left-column.command-handler';
 import { CompositionMoveRightColumnCommandHandler } from '../domain/command/column/move/right/composition.move-right-column.command-handler';
-export declare const compositionProviders: (typeof CompositionDispatcher | typeof CompositionCommandService | typeof CompositionReadModelService | typeof CompositionEventService | typeof ColumnEntityFactory | typeof import("../infrastructure/in-memory/in-memory.composition.store").InMemoryCompositionStore | typeof import("../../../generic-ui-ngx-grid").ɵda | typeof ViewTemplateFactory | typeof ViewTemplateRepository | typeof EditTemplateFactory | typeof EditTemplateRepository | typeof ColumnDefinitionFactory | typeof CompositionConverter | typeof import("../../../generic-ui-ngx-grid").ɵdq | {
+export declare const compositionProviders: (typeof CompositionDispatcher | typeof CompositionCommandService | typeof CompositionReadModelService | typeof CompositionEventService | typeof ColumnEntityFactory | typeof import("../infrastructure/in-memory/in-memory.composition.store").InMemoryCompositionStore | typeof import("../../../generic-ui-ngx-grid").ɵdj | typeof ViewTemplateFactory | typeof ViewTemplateRepository | typeof EditTemplateFactory | typeof EditTemplateRepository | typeof ColumnDefinitionFactory | typeof CompositionConverter | typeof import("../../../generic-ui-ngx-grid").ɵdz | {
     provide: typeof import("../domain/command/composition.aggregate-repository").CompositionAggregateRepository;
-    useClass: typeof import("../../../generic-ui-ngx-grid").ɵdc;
+    useClass: typeof import("../../../generic-ui-ngx-grid").ɵdl;
 } | {
     provide: typeof import("../domain/read/composition.repository").CompositionRepository;
-    useClass: typeof import("../../../generic-ui-ngx-grid").ɵdy;
+    useClass: typeof import("../../../generic-ui-ngx-grid").ɵeh;
 } | typeof CompositionAggregateFactory | typeof CompositionEventConverter | typeof ColumnFieldFactory | {
     provide: string;
     useClass: typeof InitCompositionCommandHandler;

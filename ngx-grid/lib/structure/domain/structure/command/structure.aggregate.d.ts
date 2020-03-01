@@ -21,7 +21,7 @@ import { FilterConfig } from '../../../ui-api/structure/filter/filter-config';
 import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filters.config';
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { SearchManager } from './search/search.manager';
-import { SortStatus } from '../../../../composition/domain/command/column/sort/sort-status';
+import { SortOrder } from '../../../../composition/domain/command/column/sort/sort-order';
 export declare class StructureAggregate extends Aggregate {
     private formationAggregate;
     private schema;
@@ -55,7 +55,7 @@ export declare class StructureAggregate extends Aggregate {
     createFields(columns: Array<ColumnConfig>): Array<Field>;
     setSortingConfig(config: SortingConfig): void;
     toggleSort(fieldId: FieldId): Array<StructureSorter>;
-    setSortOrder(fieldId: FieldId, sortOrder: SortStatus): Array<StructureSorter>;
+    setSortOrder(fieldId: FieldId, sortOrder: SortOrder): Array<StructureSorter>;
     setFilterConfig(config: FilterConfig): void;
     setSearchingConfig(config: SearchConfig): void;
     setQuickFiltersConfig(config: QuickFiltersConfig): void;
