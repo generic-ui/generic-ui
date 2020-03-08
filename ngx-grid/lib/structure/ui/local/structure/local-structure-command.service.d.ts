@@ -16,7 +16,7 @@ export declare class LocalStructureCommandService extends StructureCommandServic
     private readonly structureId;
     private readonly compositionId;
     constructor(structureId: StructureId, compositionId: CompositionId, commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher, structureSearchDispatcher: StructureSearchDispatcher);
-    init(): void;
+    createStructure(): void;
     enableVerticalScroll(): void;
     disableVerticalScroll(): void;
     setScrollPosition(position: number): void;

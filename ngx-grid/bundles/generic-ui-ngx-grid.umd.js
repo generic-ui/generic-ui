@@ -2515,10 +2515,9 @@
      */
     var SetPagingCommand = /** @class */ (function (_super) {
         __extends(SetPagingCommand, _super);
-        function SetPagingCommand(structureId, payload) {
+        function SetPagingCommand(structureId, config) {
             var _this = _super.call(this, structureId, 'SetPagingCommand') || this;
-            _this.structureId = structureId;
-            _this.payload = payload;
+            _this.config = config;
             return _this;
         }
         /**
@@ -2528,7 +2527,7 @@
          * @return {?}
          */
         function () {
-            return this.payload;
+            return this.config;
         };
         return SetPagingCommand;
     }(hermes.Command));
@@ -2537,12 +2536,7 @@
          * @type {?}
          * @private
          */
-        SetPagingCommand.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetPagingCommand.prototype.payload;
+        SetPagingCommand.prototype.config;
     }
 
     /**
@@ -2553,7 +2547,6 @@
         __extends(ChangePagesizeCommand, _super);
         function ChangePagesizeCommand(structureId, pageSize) {
             var _this = _super.call(this, structureId, 'ChangePagesizeCommand') || this;
-            _this.structureId = structureId;
             _this.pageSize = pageSize;
             return _this;
         }
@@ -2573,11 +2566,6 @@
          * @type {?}
          * @private
          */
-        ChangePagesizeCommand.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
         ChangePagesizeCommand.prototype.pageSize;
     }
 
@@ -2588,16 +2576,10 @@
     var NextPageCommand = /** @class */ (function (_super) {
         __extends(NextPageCommand, _super);
         function NextPageCommand(structureId) {
-            var _this = _super.call(this, structureId, 'NextPageCommand') || this;
-            _this.structureId = structureId;
-            return _this;
+            return _super.call(this, structureId, 'NextPageCommand') || this;
         }
         return NextPageCommand;
     }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        NextPageCommand.prototype.structureId;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -2606,16 +2588,10 @@
     var PrevPageCommand = /** @class */ (function (_super) {
         __extends(PrevPageCommand, _super);
         function PrevPageCommand(structureId) {
-            var _this = _super.call(this, structureId, 'PrevPageCommand') || this;
-            _this.structureId = structureId;
-            return _this;
+            return _super.call(this, structureId, 'PrevPageCommand') || this;
         }
         return PrevPageCommand;
     }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        PrevPageCommand.prototype.structureId;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -3842,7 +3818,7 @@
         StructureAlternativePagingNavigatorComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-alternative-paging-navigator',
-                        template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<<\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-prev\"\n\t\tgui-button>\n\t< Prev\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-next\"\n\t\tgui-button>\n\tNext >\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t>>\n</button>\n",
+                        template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15.167\" height=\"13\" viewBox=\"0 0 15.167 13\">\n\t\t<g id=\"Group_43\" data-name=\"Group 43\" transform=\"translate(1830.267 629.79) rotate(180)\">\n\t\t\t<g id=\"Group_38\" data-name=\"Group 38\" transform=\"translate(1815.1 616.79)\">\n\t\t\t\t<path id=\"Path_57\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(-8.59 -6)\" fill=\"#333\"/>\n\t\t\t</g>\n\t\t\t<g id=\"Group_39\" data-name=\"Group 39\" transform=\"translate(1821.6 616.79)\">\n\t\t\t\t<path id=\"Path_57-2\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(-8.59 -6)\" fill=\"#333\"/>\n\t\t\t</g>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8.667\" height=\"13\" viewBox=\"0 0 8.667 13\">\n\t\t<g id=\"Group_42\" data-name=\"Group 42\" transform=\"translate(1842.767 640) rotate(180)\">\n\t\t\t<path id=\"Path_57\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(1825.51 621)\" fill=\"#333\"/>\n\t\t</g>\n\t</svg>\n\tPrev\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-structure-paging-navigator-next\"\n\t\tgui-button>\n\tNext\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8.667\" height=\"13\" viewBox=\"0 0 8.667 13\">\n\t\t<g id=\"Group_37\" data-name=\"Group 37\" transform=\"translate(-1834.1 -627)\">\n\t\t\t<path id=\"Path_57\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(1825.51 621)\" fill=\"#333\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"15.167\" height=\"13\" viewBox=\"0 0 15.167 13\">\n\t\t<g id=\"Group_41\" data-name=\"Group 41\" transform=\"translate(-1815.1 -616.79)\">\n\t\t\t<g id=\"Group_38\" data-name=\"Group 38\" transform=\"translate(1815.1 616.79)\">\n\t\t\t\t<path id=\"Path_57\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(-8.59 -6)\" fill=\"#333\"/>\n\t\t\t</g>\n\t\t\t<g id=\"Group_39\" data-name=\"Group 39\" transform=\"translate(1821.6 616.79)\">\n\t\t\t\t<path id=\"Path_57-2\" data-name=\"Path 57\" d=\"M8.59,17.473,13.947,12.5,8.59,7.528,10.239,6l7.018,6.5L10.239,19Z\" transform=\"translate(-8.59 -6)\" fill=\"#333\"/>\n\t\t\t</g>\n\t\t</g>\n\t</svg>\n</button>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -4085,7 +4061,7 @@
         StructureInfoModalComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-info-dialog',
-                        template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.8.0\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
+                        template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.8.1\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
@@ -4096,12 +4072,12 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureInitedEvent = /** @class */ (function (_super) {
-        __extends(StructureInitedEvent, _super);
-        function StructureInitedEvent(aggregateId) {
-            return _super.call(this, aggregateId, 'StructureInitedEvent') || this;
+    var StructureCreatedEvent = /** @class */ (function (_super) {
+        __extends(StructureCreatedEvent, _super);
+        function StructureCreatedEvent(aggregateId) {
+            return _super.call(this, aggregateId, 'StructureCreatedEvent') || this;
         }
-        return StructureInitedEvent;
+        return StructureCreatedEvent;
     }(hermes.DomainEvent));
 
     /**
@@ -5178,7 +5154,7 @@
             _this.verticalFormation = new Map();
             _this.verticalFormation$ = new rxjs.ReplaySubject();
             _this.domainEventBus
-                .ofEvent(StructureInitedEvent, VerticalScrollEnabledSetEvent, RowHeightSetEvent)
+                .ofEvent(StructureCreatedEvent, VerticalScrollEnabledSetEvent, RowHeightSetEvent)
                 .pipe(_this.takeUntil())
                 .subscribe((/**
              * @param {?} event
@@ -5545,7 +5521,7 @@
         StructureInfoPanelComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-info-panel',
-                        template: "\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t<p *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\tShowing <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\n\t\t\t<p *ngIf=\"preparedItemsSize !== totalItemsSize\">\n\t\t\t\tShowing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t</p>\n\n\t\t</ng-container>\n\t\t<div>\n\t\t\t<div class=\"gui-right-section\">\n\t\t\t\t<div [gui-tooltip]=\"'Manage Columns'\"\n\t\t\t\t\t\t(click)=\"openColumnManager()\">\n\t\t\t\t\t<button>C</button>\n\t\t\t\t</div>\n\n\t\t\t\t<span [gui-tooltip]=\"'Info'\"\n\t\t\t\t\t  (click)=\"openInfo()\">\n\t\t\t\t<button>i</button>\n\t\t\t\t\tInfo\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t",
+                        template: "\n\n\t\t<div>\n\n\t\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\t\t\t\t\n\t\t\t\t<ng-container *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\t\tShowing <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"preparedItemsSize !== totalItemsSize\">\n\t\t\t\t\tShowing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items\n\t\t\t\t</ng-container>\n\t\t\t\t\n\t\t\t</ng-container>\n\n\t\t</div>\n\t\t\n\t\t<div>\n\t\t\t<div class=\"gui-right-section\">\n\t\t\t\t<div [gui-tooltip]=\"'Manage Columns'\"\n\t\t\t\t\t (click)=\"openColumnManager()\">\n\t\t\t\t\t<button>C</button>\n\t\t\t\t</div>\n\n\t\t\t\t<span [gui-tooltip]=\"'Info'\"\n\t\t\t\t\t  (click)=\"openInfo()\">\n\t\t\t\t<button>i</button>\n\t\t\t\t\tInfo\n\t\t\t\t</span>\n\t\t\t</div>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -6352,11 +6328,13 @@
     var   /**
      * @abstract
      */
-    CompositionAggregateRepository = /** @class */ (function () {
+    CompositionAggregateRepository = /** @class */ (function (_super) {
+        __extends(CompositionAggregateRepository, _super);
         function CompositionAggregateRepository() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         return CompositionAggregateRepository;
-    }());
+    }(hermes.AggregateRepository));
     if (false) {
         /**
          * @abstract
@@ -6392,7 +6370,7 @@
          * @return {?}
          */
         function (aggregateId) {
-            return this.inMemoryCompositionAggregateStore.getById(aggregateId).getValueOrNullOrThrowError();
+            return this.inMemoryCompositionAggregateStore.getById(aggregateId);
         };
         /**
          * @param {?} aggregate
@@ -7882,12 +7860,12 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CompositionInitedEvent = /** @class */ (function (_super) {
-        __extends(CompositionInitedEvent, _super);
-        function CompositionInitedEvent(aggregateId) {
-            return _super.call(this, aggregateId, 'CompositionInitedEvent') || this;
+    var CompositionCreatedEvent = /** @class */ (function (_super) {
+        __extends(CompositionCreatedEvent, _super);
+        function CompositionCreatedEvent(aggregateId) {
+            return _super.call(this, aggregateId, 'CompositionCreatedEvent') || this;
         }
-        return CompositionInitedEvent;
+        return CompositionCreatedEvent;
     }(hermes.DomainEvent));
 
     /**
@@ -8061,7 +8039,7 @@
          */
         function () {
             return [
-                CompositionInitedEvent,
+                CompositionCreatedEvent,
                 CompositionResizeWidthSetEvent,
                 CompositionColumnsSetEvent,
                 CompositionContainerWidthSetEvent,
@@ -8151,6 +8129,466 @@
     var inMemoryCompositionProviders = [
         InMemoryCompositionStore
     ];
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CreateCompositionCommand = /** @class */ (function (_super) {
+        __extends(CreateCompositionCommand, _super);
+        function CreateCompositionCommand(compositionId) {
+            var _this = _super.call(this, compositionId, 'CreateCompositionCommand') || this;
+            _this.compositionId = compositionId;
+            return _this;
+        }
+        return CreateCompositionCommand;
+    }(hermes.Command));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CreateCompositionCommand.prototype.compositionId;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetColumnsCommand = /** @class */ (function (_super) {
+        __extends(SetColumnsCommand, _super);
+        function SetColumnsCommand(compositionId, columns) {
+            var _this = _super.call(this, compositionId, 'SetColumnsCommand') || this;
+            _this.compositionId = compositionId;
+            _this.columns = columns;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SetColumnsCommand.prototype.getParams = /**
+         * @return {?}
+         */
+        function () {
+            return this.columns;
+        };
+        return SetColumnsCommand;
+    }(hermes.Command));
+    if (false) {
+        /** @type {?} */
+        SetColumnsCommand.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetColumnsCommand.prototype.columns;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetCompositionWidthCommand = /** @class */ (function (_super) {
+        __extends(SetCompositionWidthCommand, _super);
+        function SetCompositionWidthCommand(structureId, width) {
+            var _this = _super.call(this, structureId, 'SetCompositionWidthCommand') || this;
+            _this.structureId = structureId;
+            _this.width = width;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SetCompositionWidthCommand.prototype.getWidth = /**
+         * @return {?}
+         */
+        function () {
+            return this.width;
+        };
+        return SetCompositionWidthCommand;
+    }(hermes.Command));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionWidthCommand.prototype.structureId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionWidthCommand.prototype.width;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetCompositionContainerWidthCommand = /** @class */ (function (_super) {
+        __extends(SetCompositionContainerWidthCommand, _super);
+        function SetCompositionContainerWidthCommand(structureId, width) {
+            var _this = _super.call(this, structureId, 'SetCompositionContainerWidthCommand') || this;
+            _this.structureId = structureId;
+            _this.width = width;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SetCompositionContainerWidthCommand.prototype.getWidth = /**
+         * @return {?}
+         */
+        function () {
+            return this.width;
+        };
+        return SetCompositionContainerWidthCommand;
+    }(hermes.Command));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionContainerWidthCommand.prototype.structureId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionContainerWidthCommand.prototype.width;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetCompositionResizeWidthCommand = /** @class */ (function (_super) {
+        __extends(SetCompositionResizeWidthCommand, _super);
+        function SetCompositionResizeWidthCommand(structureId, enabled) {
+            var _this = _super.call(this, structureId, 'SetCompositionResizeWidthCommand') || this;
+            _this.structureId = structureId;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SetCompositionResizeWidthCommand.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return SetCompositionResizeWidthCommand;
+    }(hermes.Command));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionResizeWidthCommand.prototype.structureId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionResizeWidthCommand.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionChangeSortStatusCommand = /** @class */ (function (_super) {
+        __extends(CompositionChangeSortStatusCommand, _super);
+        function CompositionChangeSortStatusCommand(compositionId, sortParams) {
+            var _this = _super.call(this, compositionId, 'CompositionChangeSortStatusCommand') || this;
+            _this.compositionId = compositionId;
+            _this.sortParams = sortParams;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        CompositionChangeSortStatusCommand.prototype.getCompositionId = /**
+         * @return {?}
+         */
+        function () {
+            return this.compositionId;
+        };
+        /**
+         * @return {?}
+         */
+        CompositionChangeSortStatusCommand.prototype.getSortParams = /**
+         * @return {?}
+         */
+        function () {
+            return this.sortParams;
+        };
+        return CompositionChangeSortStatusCommand;
+    }(hermes.Command));
+    if (false) {
+        /** @type {?} */
+        CompositionChangeSortStatusCommand.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionChangeSortStatusCommand.prototype.sortParams;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionSetColumnEnabledCommand = /** @class */ (function (_super) {
+        __extends(CompositionSetColumnEnabledCommand, _super);
+        function CompositionSetColumnEnabledCommand(compositionId, columnId, enabled) {
+            var _this = _super.call(this, compositionId, 'CompositionSetColumnEnabledCommand') || this;
+            _this.compositionId = compositionId;
+            _this.columnId = columnId;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        CompositionSetColumnEnabledCommand.prototype.getColumnId = /**
+         * @return {?}
+         */
+        function () {
+            return this.columnId;
+        };
+        /**
+         * @return {?}
+         */
+        CompositionSetColumnEnabledCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return CompositionSetColumnEnabledCommand;
+    }(hermes.Command));
+    if (false) {
+        /** @type {?} */
+        CompositionSetColumnEnabledCommand.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionSetColumnEnabledCommand.prototype.columnId;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionSetColumnEnabledCommand.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionMoveLeftColumnCommand = /** @class */ (function (_super) {
+        __extends(CompositionMoveLeftColumnCommand, _super);
+        function CompositionMoveLeftColumnCommand(compositionId, columnId) {
+            var _this = _super.call(this, compositionId, 'CompositionMoveLeftColumnCommand') || this;
+            _this.compositionId = compositionId;
+            _this.columnId = columnId;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        CompositionMoveLeftColumnCommand.prototype.getColumnId = /**
+         * @return {?}
+         */
+        function () {
+            return this.columnId;
+        };
+        return CompositionMoveLeftColumnCommand;
+    }(hermes.Command));
+    if (false) {
+        /** @type {?} */
+        CompositionMoveLeftColumnCommand.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionMoveLeftColumnCommand.prototype.columnId;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionMoveRightColumnCommand = /** @class */ (function (_super) {
+        __extends(CompositionMoveRightColumnCommand, _super);
+        function CompositionMoveRightColumnCommand(compositionId, columnId) {
+            var _this = _super.call(this, compositionId, 'CompositionMoveRightColumnCommand') || this;
+            _this.compositionId = compositionId;
+            _this.columnId = columnId;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        CompositionMoveRightColumnCommand.prototype.getColumnId = /**
+         * @return {?}
+         */
+        function () {
+            return this.columnId;
+        };
+        return CompositionMoveRightColumnCommand;
+    }(hermes.Command));
+    if (false) {
+        /** @type {?} */
+        CompositionMoveRightColumnCommand.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionMoveRightColumnCommand.prototype.columnId;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionDispatcher = /** @class */ (function () {
+        function CompositionDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.createComposition = /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            this.commandDispatcher.dispatch(new CreateCompositionCommand(compositionId));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} params
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.setColumns = /**
+         * @param {?} compositionId
+         * @param {?} params
+         * @return {?}
+         */
+        function (compositionId, params) {
+            this.commandDispatcher.dispatch(new SetColumnsCommand(compositionId, params));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} width
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.setWidth = /**
+         * @param {?} compositionId
+         * @param {?} width
+         * @return {?}
+         */
+        function (compositionId, width) {
+            this.commandDispatcher.dispatch(new SetCompositionWidthCommand(compositionId, width));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} width
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.setContainerWidth = /**
+         * @param {?} compositionId
+         * @param {?} width
+         * @return {?}
+         */
+        function (compositionId, width) {
+            this.commandDispatcher.dispatch(new SetCompositionContainerWidthCommand(compositionId, width));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} enabled
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.setResizeWidth = /**
+         * @param {?} compositionId
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (compositionId, enabled) {
+            this.commandDispatcher.dispatch(new SetCompositionResizeWidthCommand(compositionId, enabled));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} params
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.changeSort = /**
+         * @param {?} compositionId
+         * @param {?} params
+         * @return {?}
+         */
+        function (compositionId, params) {
+            this.commandDispatcher.dispatch(new CompositionChangeSortStatusCommand(compositionId, params));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @param {?} enabled
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.setColumnEnabled = /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (compositionId, columnId, enabled) {
+            this.commandDispatcher.dispatch(new CompositionSetColumnEnabledCommand(compositionId, columnId, enabled));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.moveLeft = /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @return {?}
+         */
+        function (compositionId, columnId) {
+            this.commandDispatcher.dispatch(new CompositionMoveLeftColumnCommand(compositionId, columnId));
+        };
+        /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @return {?}
+         */
+        CompositionDispatcher.prototype.moveRight = /**
+         * @param {?} compositionId
+         * @param {?} columnId
+         * @return {?}
+         */
+        function (compositionId, columnId) {
+            this.commandDispatcher.dispatch(new CompositionMoveRightColumnCommand(compositionId, columnId));
+        };
+        CompositionDispatcher.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionDispatcher.ctorParameters = function () { return [
+            { type: hermes.CommandDispatcher }
+        ]; };
+        return CompositionDispatcher;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionDispatcher.prototype.commandDispatcher;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -8284,6 +8722,1149 @@
             { type: core.Injectable }
         ];
         return ColumnEntityFactory;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var CompositionAggregateEvents = {
+        CompositionResizeWidthSetAggregateEvent: 'CompositionResizeWidthSetAggregateEvent',
+        ColumnsSetAggregateEvent: 'ColumnsSetAggregateEvent',
+        CompositionContainerWidthSetAggregateEvent: 'CompositionContainerWidthSetAggregateEvent',
+        CompositionWidthSetAggregateEvent: 'CompositionWidthSetAggregateEvent',
+        CompositionColumnSetEnabledAggregateEvent: 'CompositionColumnSetEnabledAggregateEvent',
+        CompositionColumnMovedLeftAggregateEvent: 'CompositionColumnMovedLeftAggregateEvent',
+        CompositionColumnMovedRightAggregateEvent: 'CompositionColumnMovedRightAggregateEvent'
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionEventConverter = /** @class */ (function () {
+        function CompositionEventConverter() {
+        }
+        /**
+         * @param {?} arg
+         * @return {?}
+         */
+        CompositionEventConverter.prototype.convert = /**
+         * @param {?} arg
+         * @return {?}
+         */
+        function (arg) {
+            if (Array.isArray(arg)) {
+                return this.convertEvents(arg);
+            }
+            else {
+                return this.convertEvent(arg);
+            }
+        };
+        /**
+         * @private
+         * @param {?} aggregateEvents
+         * @return {?}
+         */
+        CompositionEventConverter.prototype.convertEvents = /**
+         * @private
+         * @param {?} aggregateEvents
+         * @return {?}
+         */
+        function (aggregateEvents) {
+            var _this = this;
+            return aggregateEvents.map((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                return _this.convertEvent(event);
+            }));
+        };
+        /**
+         * @private
+         * @param {?} aggregateEvent
+         * @return {?}
+         */
+        CompositionEventConverter.prototype.convertEvent = /**
+         * @private
+         * @param {?} aggregateEvent
+         * @return {?}
+         */
+        function (aggregateEvent) {
+            switch (aggregateEvent.getType()) {
+                case CompositionAggregateEvents.CompositionResizeWidthSetAggregateEvent:
+                    return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
+                case CompositionAggregateEvents.ColumnsSetAggregateEvent:
+                    return new CompositionColumnsSetEvent(aggregateEvent.getAggregateId());
+                case CompositionAggregateEvents.CompositionContainerWidthSetAggregateEvent:
+                    /** @type {?} */
+                    var payload = ((/** @type {?} */ (aggregateEvent))).containerWidth;
+                    return new CompositionContainerWidthSetEvent(aggregateEvent.getAggregateId(), payload);
+                case CompositionAggregateEvents.CompositionWidthSetAggregateEvent:
+                    return new CompositionWidthSetEvent(aggregateEvent.getAggregateId());
+                case CompositionAggregateEvents.CompositionColumnSetEnabledAggregateEvent:
+                    return new CompositionColumnSetEnabledEvent(aggregateEvent.getAggregateId());
+                case CompositionAggregateEvents.CompositionColumnMovedLeftAggregateEvent:
+                    return new CompositionColumnMovedLeftEvent(aggregateEvent.getAggregateId());
+                case CompositionAggregateEvents.CompositionColumnMovedRightAggregateEvent:
+                    return new CompositionColumnMovedRightEvent(aggregateEvent.getAggregateId());
+                default:
+                    break;
+            }
+        };
+        CompositionEventConverter.decorators = [
+            { type: core.Injectable }
+        ];
+        return CompositionEventConverter;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ColumnField = /** @class */ (function () {
+        function ColumnField(fieldId, accessor, dataType) {
+            this.fieldId = fieldId;
+            this.accessor = accessor;
+            this.dataType = dataType;
+        }
+        /**
+         * @return {?}
+         */
+        ColumnField.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.fieldId;
+        };
+        /**
+         * @param {?} entity
+         * @return {?}
+         */
+        ColumnField.prototype.getValue = /**
+         * @param {?} entity
+         * @return {?}
+         */
+        function (entity) {
+            return this.accessor(entity);
+        };
+        /**
+         * @return {?}
+         */
+        ColumnField.prototype.getAccessor = /**
+         * @return {?}
+         */
+        function () {
+            return this.accessor;
+        };
+        /**
+         * @return {?}
+         */
+        ColumnField.prototype.getDataType = /**
+         * @return {?}
+         */
+        function () {
+            return this.dataType;
+        };
+        return ColumnField;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnField.prototype.fieldId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnField.prototype.accessor;
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnField.prototype.dataType;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ColumnFieldFactory = /** @class */ (function () {
+        function ColumnFieldFactory() {
+        }
+        /**
+         * @param {?} columnFieldId
+         * @param {?} accessor
+         * @param {?} dataType
+         * @return {?}
+         */
+        ColumnFieldFactory.prototype.create = /**
+         * @param {?} columnFieldId
+         * @param {?} accessor
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (columnFieldId, accessor, dataType) {
+            return new ColumnField(columnFieldId, accessor, dataType);
+        };
+        ColumnFieldFactory.decorators = [
+            { type: core.Injectable }
+        ];
+        return ColumnFieldFactory;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionEventService = /** @class */ (function () {
+        function CompositionEventService(domainEventBus) {
+            this.domainEventBus = domainEventBus;
+        }
+        /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        CompositionEventService.prototype.onColumnsChanged = /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            return this.domainEventBus
+                .ofEvent(CompositionColumnsSetEvent)
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event.getAggregateId().toString() === compositionId.toString(); })));
+        };
+        // onWidthChanged(compositionId: CompositionId): Observable<number> {
+        // 	return this.domainEventBus
+        // 			   .ofEvent(
+        // 				   CompositionColumnsSetEvent
+        // 			   )
+        // 			   .pipe(
+        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
+        // 			   );
+        // }
+        // onWidthChanged(compositionId: CompositionId): Observable<number> {
+        // 	return this.domainEventBus
+        // 			   .ofEvent(
+        // 				   CompositionColumnsSetEvent
+        // 			   )
+        // 			   .pipe(
+        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
+        // 			   );
+        // }
+        /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        CompositionEventService.prototype.onContainerWidthChanged = 
+        // onWidthChanged(compositionId: CompositionId): Observable<number> {
+        // 	return this.domainEventBus
+        // 			   .ofEvent(
+        // 				   CompositionColumnsSetEvent
+        // 			   )
+        // 			   .pipe(
+        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
+        // 			   );
+        // }
+        /**
+         * @param {?} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            return this.domainEventBus
+                .ofEvent(CompositionContainerWidthSetEvent)
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event.getAggregateId().equals(compositionId); })), operators.map((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                return event.getPayload();
+            })), operators.filter((/**
+             * @param {?} width
+             * @return {?}
+             */
+            function (width) { return !!width; })));
+        };
+        CompositionEventService.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionEventService.ctorParameters = function () { return [
+            { type: hermes.DomainEventBus }
+        ]; };
+        return CompositionEventService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionEventService.prototype.domainEventBus;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var globalCompositionId = new CompositionId('-1');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionReadModelService = /** @class */ (function () {
+        function CompositionReadModelService(compositionRepository) {
+            this.compositionRepository = compositionRepository;
+        }
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onWidth = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getWidth(); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onContainerWidth = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getContainerWidth(); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onWidthForEachColumn = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getAllColumns().map((/**
+             * @param {?} c
+             * @return {?}
+             */
+            function (c) { return c.width; })); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onHeaderColumns = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getActiveHeaderColumns(); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onAllColumns = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getHeaderColumns(); })));
+        };
+        /**
+         * @param {?} fieldId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onSortOrder = /**
+         * @param {?} fieldId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (fieldId, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getActiveHeaderColumns(); })), operators.map((/**
+             * @param {?} columns
+             * @return {?}
+             */
+            function (columns) {
+                return columns.filter((/**
+                 * @param {?} c
+                 * @return {?}
+                 */
+                function (c) { return c.getFieldId().equals(fieldId); }));
+            })), operators.filter((/**
+             * @param {?} columns
+             * @return {?}
+             */
+            function (columns) {
+                return columns.length > 0;
+            })), operators.map((/**
+             * @param {?} columns
+             * @return {?}
+             */
+            function (columns) { return columns[0].getSortStatus(); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onTemplateColumns = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.getTemplateColumns(); })));
+        };
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionReadModelService.prototype.onResizeWidth = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            return this.compositionRepository
+                .on(compositionId)
+                .pipe(operators.map((/**
+             * @param {?} composition
+             * @return {?}
+             */
+            function (composition) { return composition.isResizeWidthEnabled(); })));
+        };
+        CompositionReadModelService.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionReadModelService.ctorParameters = function () { return [
+            { type: CompositionRepository }
+        ]; };
+        return CompositionReadModelService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionReadModelService.prototype.compositionRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionCommandService = /** @class */ (function () {
+        function CompositionCommandService(compositionDispatcher) {
+            this.compositionDispatcher = compositionDispatcher;
+        }
+        /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.createComposition = /**
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.createComposition(compositionId);
+        };
+        /**
+         * @param {?} params
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.setColumns = /**
+         * @param {?} params
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (params, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setColumns(compositionId, params);
+        };
+        /**
+         * @param {?} width
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.setWidth = /**
+         * @param {?} width
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (width, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setWidth(compositionId, width);
+        };
+        /**
+         * @param {?} width
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.setContainerWidth = /**
+         * @param {?} width
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (width, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setContainerWidth(compositionId, width);
+        };
+        /**
+         * @param {?} enabled
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.setResizeWidth = /**
+         * @param {?} enabled
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (enabled, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setResizeWidth(compositionId, enabled);
+        };
+        /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.enableColumn = /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (columnId, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setColumnEnabled(compositionId, columnId, true);
+        };
+        /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.disableColumn = /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (columnId, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.setColumnEnabled(compositionId, columnId, false);
+        };
+        /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.moveLeft = /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (columnId, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.moveLeft(compositionId, columnId);
+        };
+        /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        CompositionCommandService.prototype.moveRight = /**
+         * @param {?} columnId
+         * @param {?=} compositionId
+         * @return {?}
+         */
+        function (columnId, compositionId) {
+            if (compositionId === void 0) { compositionId = globalCompositionId; }
+            this.compositionDispatcher.moveRight(compositionId, columnId);
+        };
+        CompositionCommandService.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionCommandService.ctorParameters = function () { return [
+            { type: CompositionDispatcher }
+        ]; };
+        return CompositionCommandService;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionCommandService.prototype.compositionDispatcher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SortToggledEvent = /** @class */ (function (_super) {
+        __extends(SortToggledEvent, _super);
+        function SortToggledEvent(aggregateId, compositionId, directions) {
+            var _this = _super.call(this, aggregateId, 'ToggleSortEvent') || this;
+            _this.compositionId = compositionId;
+            _this.directions = directions;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SortToggledEvent.prototype.getCompositionId = /**
+         * @return {?}
+         */
+        function () {
+            return this.compositionId;
+        };
+        /**
+         * @return {?}
+         */
+        SortToggledEvent.prototype.getDirections = /**
+         * @return {?}
+         */
+        function () {
+            return this.directions;
+        };
+        return SortToggledEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SortToggledEvent.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SortToggledEvent.prototype.directions;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ColumnFieldId = /** @class */ (function () {
+        function ColumnFieldId(id) {
+            this.id = id;
+        }
+        /**
+         * @return {?}
+         */
+        ColumnFieldId.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.id;
+        };
+        return ColumnFieldId;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnFieldId.prototype.id;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ChangeSortParams = /** @class */ (function () {
+        function ChangeSortParams(fieldId, direction) {
+            this.fieldId = fieldId;
+            this.direction = direction;
+        }
+        return ChangeSortParams;
+    }());
+    if (false) {
+        /** @type {?} */
+        ChangeSortParams.prototype.fieldId;
+        /** @type {?} */
+        ChangeSortParams.prototype.direction;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SortOrderSetEvent = /** @class */ (function (_super) {
+        __extends(SortOrderSetEvent, _super);
+        function SortOrderSetEvent(aggregateId, compositionId, directions) {
+            var _this = _super.call(this, aggregateId, 'SortOrderSetEvent') || this;
+            _this.compositionId = compositionId;
+            _this.directions = directions;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        SortOrderSetEvent.prototype.getCompositionId = /**
+         * @return {?}
+         */
+        function () {
+            return this.compositionId;
+        };
+        /**
+         * @return {?}
+         */
+        SortOrderSetEvent.prototype.getDirections = /**
+         * @return {?}
+         */
+        function () {
+            return this.directions;
+        };
+        return SortOrderSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SortOrderSetEvent.prototype.compositionId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SortOrderSetEvent.prototype.directions;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionChangeSortStatusEventHandler = /** @class */ (function (_super) {
+        __extends(CompositionChangeSortStatusEventHandler, _super);
+        function CompositionChangeSortStatusEventHandler(compositionDispatcher) {
+            var _this = _super.call(this) || this;
+            _this.compositionDispatcher = compositionDispatcher;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        CompositionChangeSortStatusEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof SortToggledEvent) {
+                /** @type {?} */
+                var compositionId = event.getCompositionId();
+                /** @type {?} */
+                var dirs = event.getDirections();
+                /** @type {?} */
+                var params = dirs.map((/**
+                 * @param {?} dir
+                 * @return {?}
+                 */
+                function (dir) {
+                    /** @type {?} */
+                    var columnFieldId = new ColumnFieldId(dir.fieldId.getId());
+                    return new ChangeSortParams(columnFieldId, dir.direction);
+                }));
+                this.compositionDispatcher.changeSort(compositionId, params);
+            }
+            if (event instanceof SortOrderSetEvent) {
+                /** @type {?} */
+                var compositionId = event.getCompositionId();
+                /** @type {?} */
+                var dirs = event.getDirections();
+                /** @type {?} */
+                var params = dirs.map((/**
+                 * @param {?} dir
+                 * @return {?}
+                 */
+                function (dir) {
+                    /** @type {?} */
+                    var columnFieldId = new ColumnFieldId(dir.fieldId.getId());
+                    return new ChangeSortParams(columnFieldId, dir.direction);
+                }));
+                this.compositionDispatcher.changeSort(compositionId, params);
+            }
+        };
+        CompositionChangeSortStatusEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionChangeSortStatusEventHandler.ctorParameters = function () { return [
+            { type: CompositionDispatcher }
+        ]; };
+        return CompositionChangeSortStatusEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionChangeSortStatusEventHandler.prototype.compositionDispatcher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FieldsInitedEvent = /** @class */ (function (_super) {
+        __extends(FieldsInitedEvent, _super);
+        function FieldsInitedEvent(aggregateId, compositionId, columns, // TODO merge
+        fields) {
+            var _this = _super.call(this, aggregateId, 'FieldsInitedEvent') || this;
+            _this.compositionId = compositionId;
+            _this.columns = columns;
+            _this.fields = fields;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        FieldsInitedEvent.prototype.getFields = /**
+         * @return {?}
+         */
+        function () {
+            return this.fields;
+        };
+        return FieldsInitedEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /** @type {?} */
+        FieldsInitedEvent.prototype.compositionId;
+        /** @type {?} */
+        FieldsInitedEvent.prototype.columns;
+        /**
+         * @type {?}
+         * @private
+         */
+        FieldsInitedEvent.prototype.fields;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ColumnParams = /** @class */ (function () {
+        function ColumnParams(column, field) {
+            this.column = column;
+            this.field = field;
+        }
+        /**
+         * @return {?}
+         */
+        ColumnParams.prototype.getColumn = /**
+         * @return {?}
+         */
+        function () {
+            return this.column;
+        };
+        /**
+         * @return {?}
+         */
+        ColumnParams.prototype.getField = /**
+         * @return {?}
+         */
+        function () {
+            return this.field;
+        };
+        return ColumnParams;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnParams.prototype.column;
+        /**
+         * @type {?}
+         * @private
+         */
+        ColumnParams.prototype.field;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionFieldsInitedEventHandler = /** @class */ (function (_super) {
+        __extends(CompositionFieldsInitedEventHandler, _super);
+        function CompositionFieldsInitedEventHandler(compositionDispatcher, columnFieldFactory) {
+            var _this = _super.call(this) || this;
+            _this.compositionDispatcher = compositionDispatcher;
+            _this.columnFieldFactory = columnFieldFactory;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        CompositionFieldsInitedEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof FieldsInitedEvent) {
+                // TODO Move to different layer
+                /** @type {?} */
+                var fields = event.getFields();
+                /** @type {?} */
+                var columnFieldIds = this.convertColumnFieldIds(fields);
+                /** @type {?} */
+                var columns = event.columns;
+                /** @type {?} */
+                var params = this.convertColumns(columns, fields, columnFieldIds);
+                this.compositionDispatcher.setColumns(event.compositionId, params);
+            }
+        };
+        /**
+         * @private
+         * @param {?} fields
+         * @return {?}
+         */
+        CompositionFieldsInitedEventHandler.prototype.convertColumnFieldIds = /**
+         * @private
+         * @param {?} fields
+         * @return {?}
+         */
+        function (fields) {
+            if (!fields) {
+                return [];
+            }
+            return fields.map((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) { return new ColumnFieldId(field.getId().getId()); }));
+        };
+        /**
+         * @private
+         * @param {?} columns
+         * @param {?} fields
+         * @param {?} columnFieldIds
+         * @return {?}
+         */
+        CompositionFieldsInitedEventHandler.prototype.convertColumns = /**
+         * @private
+         * @param {?} columns
+         * @param {?} fields
+         * @param {?} columnFieldIds
+         * @return {?}
+         */
+        function (columns, fields, columnFieldIds) {
+            var _this = this;
+            if (!columns) {
+                return [];
+            }
+            return columns.map((/**
+             * @param {?} column
+             * @param {?} index
+             * @return {?}
+             */
+            function (column, index) {
+                /** @type {?} */
+                var columnFieldId = columnFieldIds[index];
+                /** @type {?} */
+                var field = fields[index];
+                /** @type {?} */
+                var columnField = _this.columnFieldFactory.create(columnFieldId, field.getAccessorMethod(), field.getDataType());
+                return new ColumnParams(column, columnField);
+            }));
+        };
+        CompositionFieldsInitedEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CompositionFieldsInitedEventHandler.ctorParameters = function () { return [
+            { type: CompositionDispatcher },
+            { type: ColumnFieldFactory }
+        ]; };
+        return CompositionFieldsInitedEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionFieldsInitedEventHandler.prototype.compositionDispatcher;
+        /**
+         * @type {?}
+         * @private
+         */
+        CompositionFieldsInitedEventHandler.prototype.columnFieldFactory;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var commandProviders = __spread(inMemoryCompositionCommandProviders, [
+        CompositionDispatcher,
+        ColumnEntityFactory,
+        CompositionEventConverter,
+        ColumnFieldFactory
+    ]);
+    /** @type {?} */
+    var readProviders = __spread(inMemoryCompositionQueryProviders, [
+        {
+            provide: hermes.DOMAIN_EVENT_HANDLERS,
+            useClass: CompositionFieldsInitedEventHandler,
+            multi: true
+        }, {
+            provide: hermes.DOMAIN_EVENT_HANDLERS,
+            useClass: CompositionChangeSortStatusEventHandler,
+            multi: true
+        },
+        ColumnDefinitionFactory,
+        ViewTemplateRepository,
+        ViewTemplateFactory,
+        EditTemplateFactory,
+        EditTemplateRepository
+    ]);
+    /** @type {?} */
+    var compositionProviders = __spread(inMemoryCompositionProviders, commandProviders, readProviders, [
+        CompositionConverter,
+        CompositionCommandService,
+        CompositionReadModelService,
+        CompositionEventService
+    ]);
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SafePipe = /** @class */ (function () {
+        function SafePipe(sanitizer) {
+            this.sanitizer = sanitizer;
+        }
+        /**
+         * @param {?} value
+         * @param {?} type
+         * @return {?}
+         */
+        SafePipe.prototype.transform = /**
+         * @param {?} value
+         * @param {?} type
+         * @return {?}
+         */
+        function (value, type) {
+            switch (type) {
+                case 'html': return this.sanitizer.bypassSecurityTrustHtml(value);
+                case 'style': return this.sanitizer.bypassSecurityTrustStyle(value);
+                case 'script': return this.sanitizer.bypassSecurityTrustScript(value);
+                case 'url': return this.sanitizer.bypassSecurityTrustUrl(value);
+                case 'resourceUrl': return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+                default: throw new Error("Invalid safe type specified: " + type);
+            }
+        };
+        SafePipe.decorators = [
+            { type: core.Pipe, args: [{
+                        name: 'guiSafe'
+                    },] }
+        ];
+        /** @nocollapse */
+        SafePipe.ctorParameters = function () { return [
+            { type: platformBrowser.DomSanitizer }
+        ]; };
+        return SafePipe;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        SafePipe.prototype.sanitizer;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SanitizeModule = /** @class */ (function () {
+        function SanitizeModule() {
+        }
+        SanitizeModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ],
+                        declarations: [
+                            SafePipe
+                        ],
+                        exports: [
+                            SafePipe
+                        ]
+                    },] }
+        ];
+        return SanitizeModule;
     }());
 
     /**
@@ -9549,7 +11130,7 @@
         __extends(CompositionAggregate, _super);
         function CompositionAggregate(id, columnsParams, width, resizeWidth) {
             if (columnsParams === void 0) { columnsParams = []; }
-            var _this = _super.call(this, id) || this;
+            var _this = _super.call(this, id, 'CompositionAggregate') || this;
             _this.allColumns = [];
             _this.resizeWidthEnabled = true;
             /**
@@ -10051,1951 +11632,84 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var InitCompositionCommand = /** @class */ (function (_super) {
-        __extends(InitCompositionCommand, _super);
-        function InitCompositionCommand(compositionId) {
-            var _this = _super.call(this, compositionId, 'InitCompositionCommand') || this;
-            _this.compositionId = compositionId;
-            return _this;
+    var CreateCompositionCommandHandler = /** @class */ (function () {
+        function CreateCompositionCommandHandler(compositionAggregateRepository, domainEventPublisher) {
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
-        return InitCompositionCommand;
-    }(hermes.Command));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InitCompositionCommand.prototype.compositionId;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetColumnsCommand = /** @class */ (function (_super) {
-        __extends(SetColumnsCommand, _super);
-        function SetColumnsCommand(compositionId, columns) {
-            var _this = _super.call(this, compositionId, 'SetColumnsCommand') || this;
-            _this.compositionId = compositionId;
-            _this.columns = columns;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SetColumnsCommand.prototype.getParams = /**
-         * @return {?}
-         */
-        function () {
-            return this.columns;
-        };
-        return SetColumnsCommand;
-    }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        SetColumnsCommand.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetColumnsCommand.prototype.columns;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionWidthCommand = /** @class */ (function (_super) {
-        __extends(SetCompositionWidthCommand, _super);
-        function SetCompositionWidthCommand(structureId, width) {
-            var _this = _super.call(this, structureId, 'SetCompositionWidthCommand') || this;
-            _this.structureId = structureId;
-            _this.width = width;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SetCompositionWidthCommand.prototype.getWidth = /**
-         * @return {?}
-         */
-        function () {
-            return this.width;
-        };
-        return SetCompositionWidthCommand;
-    }(hermes.Command));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionWidthCommand.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionWidthCommand.prototype.width;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionContainerWidthCommand = /** @class */ (function (_super) {
-        __extends(SetCompositionContainerWidthCommand, _super);
-        function SetCompositionContainerWidthCommand(structureId, width) {
-            var _this = _super.call(this, structureId, 'SetCompositionContainerWidthCommand') || this;
-            _this.structureId = structureId;
-            _this.width = width;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SetCompositionContainerWidthCommand.prototype.getWidth = /**
-         * @return {?}
-         */
-        function () {
-            return this.width;
-        };
-        return SetCompositionContainerWidthCommand;
-    }(hermes.Command));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionContainerWidthCommand.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionContainerWidthCommand.prototype.width;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionResizeWidthCommand = /** @class */ (function (_super) {
-        __extends(SetCompositionResizeWidthCommand, _super);
-        function SetCompositionResizeWidthCommand(structureId, enabled) {
-            var _this = _super.call(this, structureId, 'SetCompositionResizeWidthCommand') || this;
-            _this.structureId = structureId;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SetCompositionResizeWidthCommand.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return SetCompositionResizeWidthCommand;
-    }(hermes.Command));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionResizeWidthCommand.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionResizeWidthCommand.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionChangeSortStatusCommand = /** @class */ (function (_super) {
-        __extends(CompositionChangeSortStatusCommand, _super);
-        function CompositionChangeSortStatusCommand(compositionId, sortParams) {
-            var _this = _super.call(this, compositionId, 'CompositionChangeSortStatusCommand') || this;
-            _this.compositionId = compositionId;
-            _this.sortParams = sortParams;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        CompositionChangeSortStatusCommand.prototype.getCompositionId = /**
-         * @return {?}
-         */
-        function () {
-            return this.compositionId;
-        };
-        /**
-         * @return {?}
-         */
-        CompositionChangeSortStatusCommand.prototype.getSortParams = /**
-         * @return {?}
-         */
-        function () {
-            return this.sortParams;
-        };
-        return CompositionChangeSortStatusCommand;
-    }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        CompositionChangeSortStatusCommand.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionChangeSortStatusCommand.prototype.sortParams;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionSetColumnEnabledCommand = /** @class */ (function (_super) {
-        __extends(CompositionSetColumnEnabledCommand, _super);
-        function CompositionSetColumnEnabledCommand(compositionId, columnId, enabled) {
-            var _this = _super.call(this, compositionId, 'CompositionSetColumnEnabledCommand') || this;
-            _this.compositionId = compositionId;
-            _this.columnId = columnId;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        CompositionSetColumnEnabledCommand.prototype.getColumnId = /**
-         * @return {?}
-         */
-        function () {
-            return this.columnId;
-        };
-        /**
-         * @return {?}
-         */
-        CompositionSetColumnEnabledCommand.prototype.isEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return CompositionSetColumnEnabledCommand;
-    }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        CompositionSetColumnEnabledCommand.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionSetColumnEnabledCommand.prototype.columnId;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionSetColumnEnabledCommand.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionMoveLeftColumnCommand = /** @class */ (function (_super) {
-        __extends(CompositionMoveLeftColumnCommand, _super);
-        function CompositionMoveLeftColumnCommand(compositionId, columnId) {
-            var _this = _super.call(this, compositionId, 'CompositionMoveLeftColumnCommand') || this;
-            _this.compositionId = compositionId;
-            _this.columnId = columnId;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        CompositionMoveLeftColumnCommand.prototype.getColumnId = /**
-         * @return {?}
-         */
-        function () {
-            return this.columnId;
-        };
-        return CompositionMoveLeftColumnCommand;
-    }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        CompositionMoveLeftColumnCommand.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionMoveLeftColumnCommand.prototype.columnId;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionMoveRightColumnCommand = /** @class */ (function (_super) {
-        __extends(CompositionMoveRightColumnCommand, _super);
-        function CompositionMoveRightColumnCommand(compositionId, columnId) {
-            var _this = _super.call(this, compositionId, 'CompositionMoveRightColumnCommand') || this;
-            _this.compositionId = compositionId;
-            _this.columnId = columnId;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        CompositionMoveRightColumnCommand.prototype.getColumnId = /**
-         * @return {?}
-         */
-        function () {
-            return this.columnId;
-        };
-        return CompositionMoveRightColumnCommand;
-    }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        CompositionMoveRightColumnCommand.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionMoveRightColumnCommand.prototype.columnId;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionDispatcher = /** @class */ (function () {
-        function CompositionDispatcher(commandDispatcher) {
-            this.commandDispatcher = commandDispatcher;
-        }
-        /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.init = /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            this.commandDispatcher.dispatch(new InitCompositionCommand(compositionId));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} params
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.setColumns = /**
-         * @param {?} compositionId
-         * @param {?} params
-         * @return {?}
-         */
-        function (compositionId, params) {
-            this.commandDispatcher.dispatch(new SetColumnsCommand(compositionId, params));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} width
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.setWidth = /**
-         * @param {?} compositionId
-         * @param {?} width
-         * @return {?}
-         */
-        function (compositionId, width) {
-            this.commandDispatcher.dispatch(new SetCompositionWidthCommand(compositionId, width));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} width
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.setContainerWidth = /**
-         * @param {?} compositionId
-         * @param {?} width
-         * @return {?}
-         */
-        function (compositionId, width) {
-            this.commandDispatcher.dispatch(new SetCompositionContainerWidthCommand(compositionId, width));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} enabled
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.setResizeWidth = /**
-         * @param {?} compositionId
-         * @param {?} enabled
-         * @return {?}
-         */
-        function (compositionId, enabled) {
-            this.commandDispatcher.dispatch(new SetCompositionResizeWidthCommand(compositionId, enabled));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} params
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.changeSort = /**
-         * @param {?} compositionId
-         * @param {?} params
-         * @return {?}
-         */
-        function (compositionId, params) {
-            this.commandDispatcher.dispatch(new CompositionChangeSortStatusCommand(compositionId, params));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @param {?} enabled
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.setColumnEnabled = /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @param {?} enabled
-         * @return {?}
-         */
-        function (compositionId, columnId, enabled) {
-            this.commandDispatcher.dispatch(new CompositionSetColumnEnabledCommand(compositionId, columnId, enabled));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.moveLeft = /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @return {?}
-         */
-        function (compositionId, columnId) {
-            this.commandDispatcher.dispatch(new CompositionMoveLeftColumnCommand(compositionId, columnId));
-        };
-        /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @return {?}
-         */
-        CompositionDispatcher.prototype.moveRight = /**
-         * @param {?} compositionId
-         * @param {?} columnId
-         * @return {?}
-         */
-        function (compositionId, columnId) {
-            this.commandDispatcher.dispatch(new CompositionMoveRightColumnCommand(compositionId, columnId));
-        };
-        CompositionDispatcher.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionDispatcher.ctorParameters = function () { return [
-            { type: hermes.CommandDispatcher }
-        ]; };
-        return CompositionDispatcher;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionDispatcher.prototype.commandDispatcher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var InitCompositionCommandHandler = /** @class */ (function (_super) {
-        __extends(InitCompositionCommandHandler, _super);
-        function InitCompositionCommandHandler(compositionAggregateRepository, compositionAggregateFactory, domainEventPublisher) {
-            var _this = _super.call(this, InitCompositionCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.compositionAggregateFactory = compositionAggregateFactory;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        InitCompositionCommandHandler.prototype.handleEmptyAggregate = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var aggregateId = command.getAggregateId();
-            /** @type {?} */
-            var compositionAggregate = this.compositionAggregateFactory.create(aggregateId);
-            this.compositionAggregateRepository.save(compositionAggregate);
-            this.publishDomainEvents(compositionAggregate, command);
-        };
         /**
          * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        InitCompositionCommandHandler.prototype.publishDomainEvents = /**
+        CreateCompositionCommandHandler.prototype.publishDomainEvents = /**
          * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
         function (aggregate, command) {
-            this.domainEventPublisher.publish(new CompositionInitedEvent(command.getAggregateId()));
+            this.domainEventPublisher.publish(new CompositionCreatedEvent(command.getAggregateId()));
         };
-        InitCompositionCommandHandler.decorators = [
+        /**
+         * @return {?}
+         */
+        CreateCompositionCommandHandler.prototype.getAggregateRepository = /**
+         * @return {?}
+         */
+        function () {
+            return this.compositionAggregateRepository;
+        };
+        /**
+         * @return {?}
+         */
+        CreateCompositionCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return CreateCompositionCommand;
+        };
+        CreateCompositionCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
-        InitCompositionCommandHandler.ctorParameters = function () { return [
-            { type: CompositionAggregateRepository },
-            { type: CompositionAggregateFactory },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return InitCompositionCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InitCompositionCommandHandler.prototype.compositionAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        InitCompositionCommandHandler.prototype.compositionAggregateFactory;
-        /**
-         * @type {?}
-         * @private
-         */
-        InitCompositionCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var CompositionAggregateEvents = {
-        CompositionResizeWidthSetAggregateEvent: 'CompositionResizeWidthSetAggregateEvent',
-        ColumnsSetAggregateEvent: 'ColumnsSetAggregateEvent',
-        CompositionContainerWidthSetAggregateEvent: 'CompositionContainerWidthSetAggregateEvent',
-        CompositionWidthSetAggregateEvent: 'CompositionWidthSetAggregateEvent',
-        CompositionColumnSetEnabledAggregateEvent: 'CompositionColumnSetEnabledAggregateEvent',
-        CompositionColumnMovedLeftAggregateEvent: 'CompositionColumnMovedLeftAggregateEvent',
-        CompositionColumnMovedRightAggregateEvent: 'CompositionColumnMovedRightAggregateEvent'
-    };
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionEventConverter = /** @class */ (function () {
-        function CompositionEventConverter() {
-        }
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        CompositionEventConverter.prototype.convert = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
-            if (Array.isArray(arg)) {
-                return this.convertEvents(arg);
-            }
-            else {
-                return this.convertEvent(arg);
-            }
-        };
-        /**
-         * @private
-         * @param {?} aggregateEvents
-         * @return {?}
-         */
-        CompositionEventConverter.prototype.convertEvents = /**
-         * @private
-         * @param {?} aggregateEvents
-         * @return {?}
-         */
-        function (aggregateEvents) {
-            var _this = this;
-            return aggregateEvents.map((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                return _this.convertEvent(event);
-            }));
-        };
-        /**
-         * @private
-         * @param {?} aggregateEvent
-         * @return {?}
-         */
-        CompositionEventConverter.prototype.convertEvent = /**
-         * @private
-         * @param {?} aggregateEvent
-         * @return {?}
-         */
-        function (aggregateEvent) {
-            switch (aggregateEvent.getType()) {
-                case CompositionAggregateEvents.CompositionResizeWidthSetAggregateEvent:
-                    return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
-                case CompositionAggregateEvents.ColumnsSetAggregateEvent:
-                    return new CompositionColumnsSetEvent(aggregateEvent.getAggregateId());
-                case CompositionAggregateEvents.CompositionContainerWidthSetAggregateEvent:
-                    /** @type {?} */
-                    var payload = ((/** @type {?} */ (aggregateEvent))).containerWidth;
-                    return new CompositionContainerWidthSetEvent(aggregateEvent.getAggregateId(), payload);
-                case CompositionAggregateEvents.CompositionWidthSetAggregateEvent:
-                    return new CompositionWidthSetEvent(aggregateEvent.getAggregateId());
-                case CompositionAggregateEvents.CompositionColumnSetEnabledAggregateEvent:
-                    return new CompositionColumnSetEnabledEvent(aggregateEvent.getAggregateId());
-                case CompositionAggregateEvents.CompositionColumnMovedLeftAggregateEvent:
-                    return new CompositionColumnMovedLeftEvent(aggregateEvent.getAggregateId());
-                case CompositionAggregateEvents.CompositionColumnMovedRightAggregateEvent:
-                    return new CompositionColumnMovedRightEvent(aggregateEvent.getAggregateId());
-                default:
-                    break;
-            }
-        };
-        CompositionEventConverter.decorators = [
-            { type: core.Injectable }
-        ];
-        return CompositionEventConverter;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetColumnsCommandHandler = /** @class */ (function (_super) {
-        __extends(SetColumnsCommandHandler, _super);
-        function SetColumnsCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
-            var _this = _super.call(this, SetColumnsCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.compositionEventConverter = compositionEventConverter;
-            return _this;
-        }
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetColumnsCommandHandler.prototype.handleAggregate = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var setColumnsParams = command.getParams();
-            aggregate.setColumns(setColumnsParams);
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetColumnsCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.publishEvents(aggregate, command);
-        };
-        /**
-         * @private
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        SetColumnsCommandHandler.prototype.publishEvents = /**
-         * @private
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var events = (/** @type {?} */ (composition.getEvents()));
-            /** @type {?} */
-            var domainEvents = this.compositionEventConverter.convert(events);
-            this.domainEventPublisher.publish(domainEvents);
-        };
-        SetColumnsCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetColumnsCommandHandler.ctorParameters = function () { return [
-            { type: CompositionAggregateRepository },
-            { type: hermes.DomainEventPublisher },
-            { type: CompositionEventConverter }
-        ]; };
-        return SetColumnsCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetColumnsCommandHandler.prototype.compositionAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
-         */
-        SetColumnsCommandHandler.prototype.domainEventPublisher;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetColumnsCommandHandler.prototype.compositionEventConverter;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionWidthCommandHandler = /** @class */ (function (_super) {
-        __extends(SetCompositionWidthCommandHandler, _super);
-        function SetCompositionWidthCommandHandler(compositionAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetCompositionWidthCommand, null, null, compositionAggregateRepository) || this;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionWidthCommandHandler.prototype.handleAggregate = /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var width = command.getWidth();
-            composition.setWidth(width);
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionWidthCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publish(new CompositionWidthSetEvent(command.getAggregateId()));
-        };
-        SetCompositionWidthCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetCompositionWidthCommandHandler.ctorParameters = function () { return [
+        CreateCompositionCommandHandler.ctorParameters = function () { return [
             { type: CompositionAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
-        return SetCompositionWidthCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionWidthCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionResizeWidthCommandHandler = /** @class */ (function (_super) {
-        __extends(SetCompositionResizeWidthCommandHandler, _super);
-        function SetCompositionResizeWidthCommandHandler(compositionAggregateRepository, columnConverter, domainEventPublisher) {
-            var _this = _super.call(this, SetCompositionResizeWidthCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.columnConverter = columnConverter;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionResizeWidthCommandHandler.prototype.handleAggregate = /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var enabled = command.getEnabled();
-            composition.setResizeWidth(enabled);
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionResizeWidthCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publish(new CompositionResizeWidthSetEvent(command.getAggregateId()));
-        };
-        SetCompositionResizeWidthCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetCompositionResizeWidthCommandHandler.ctorParameters = function () { return [
-            { type: CompositionAggregateRepository },
-            { type: ColumnEntityFactory },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetCompositionResizeWidthCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionResizeWidthCommandHandler.prototype.compositionAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionResizeWidthCommandHandler.prototype.columnConverter;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionResizeWidthCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetCompositionContainerWidthCommandHandler = /** @class */ (function (_super) {
-        __extends(SetCompositionContainerWidthCommandHandler, _super);
-        function SetCompositionContainerWidthCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
-            var _this = _super.call(this, SetCompositionContainerWidthCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.compositionEventConverter = compositionEventConverter;
-            return _this;
-        }
-        /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.handleAggregate = /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var width = command.getWidth();
-            composition.setContainerWidth(width);
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.publishAggregateEvents((/** @type {?} */ (aggregate.getEvents())));
-        };
-        /**
-         * @private
-         * @param {?} aggregateEvents
-         * @return {?}
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.publishAggregateEvents = /**
-         * @private
-         * @param {?} aggregateEvents
-         * @return {?}
-         */
-        function (aggregateEvents) {
-            /** @type {?} */
-            var domainEvents = this.compositionEventConverter.convert(aggregateEvents);
-            this.domainEventPublisher.publish(domainEvents);
-        };
-        SetCompositionContainerWidthCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetCompositionContainerWidthCommandHandler.ctorParameters = function () { return [
-            { type: CompositionAggregateRepository },
-            { type: hermes.DomainEventPublisher },
-            { type: CompositionEventConverter }
-        ]; };
-        return SetCompositionContainerWidthCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.compositionAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.domainEventPublisher;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetCompositionContainerWidthCommandHandler.prototype.compositionEventConverter;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionChangeSortStatusCommandHandler = /** @class */ (function (_super) {
-        __extends(CompositionChangeSortStatusCommandHandler, _super);
-        function CompositionChangeSortStatusCommandHandler(compositionAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, CompositionChangeSortStatusCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        CompositionChangeSortStatusCommandHandler.prototype.handleAggregate = /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var sortParams = command.getSortParams();
-            composition.changeSort(sortParams);
-        };
-        /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        CompositionChangeSortStatusCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} composition
-         * @param {?} command
-         * @return {?}
-         */
-        function (composition, command) {
-            /** @type {?} */
-            var compositionId = command.getAggregateId();
-            /** @type {?} */
-            var columns = composition.getActiveColumns();
-            this.domainEventPublisher.publish(new CompositionChangeSortStatusEvent(compositionId, columns));
-        };
-        CompositionChangeSortStatusCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionChangeSortStatusCommandHandler.ctorParameters = function () { return [
-            { type: CompositionAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return CompositionChangeSortStatusCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionChangeSortStatusCommandHandler.prototype.compositionAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
-         */
-        CompositionChangeSortStatusCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ColumnField = /** @class */ (function () {
-        function ColumnField(fieldId, accessor, dataType) {
-            this.fieldId = fieldId;
-            this.accessor = accessor;
-            this.dataType = dataType;
-        }
-        /**
-         * @return {?}
-         */
-        ColumnField.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.fieldId;
-        };
-        /**
-         * @param {?} entity
-         * @return {?}
-         */
-        ColumnField.prototype.getValue = /**
-         * @param {?} entity
-         * @return {?}
-         */
-        function (entity) {
-            return this.accessor(entity);
-        };
-        /**
-         * @return {?}
-         */
-        ColumnField.prototype.getAccessor = /**
-         * @return {?}
-         */
-        function () {
-            return this.accessor;
-        };
-        /**
-         * @return {?}
-         */
-        ColumnField.prototype.getDataType = /**
-         * @return {?}
-         */
-        function () {
-            return this.dataType;
-        };
-        return ColumnField;
+        return CreateCompositionCommandHandler;
     }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        ColumnField.prototype.fieldId;
+        CreateCompositionCommandHandler.prototype.compositionAggregateRepository;
         /**
          * @type {?}
          * @private
          */
-        ColumnField.prototype.accessor;
-        /**
-         * @type {?}
-         * @private
-         */
-        ColumnField.prototype.dataType;
+        CreateCompositionCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ColumnFieldFactory = /** @class */ (function () {
-        function ColumnFieldFactory() {
-        }
-        /**
-         * @param {?} columnFieldId
-         * @param {?} accessor
-         * @param {?} dataType
-         * @return {?}
-         */
-        ColumnFieldFactory.prototype.create = /**
-         * @param {?} columnFieldId
-         * @param {?} accessor
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (columnFieldId, accessor, dataType) {
-            return new ColumnField(columnFieldId, accessor, dataType);
-        };
-        ColumnFieldFactory.decorators = [
-            { type: core.Injectable }
-        ];
-        return ColumnFieldFactory;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionEventService = /** @class */ (function () {
-        function CompositionEventService(domainEventBus) {
-            this.domainEventBus = domainEventBus;
-        }
-        /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        CompositionEventService.prototype.onColumnsChanged = /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            return this.domainEventBus
-                .ofEvent(CompositionColumnsSetEvent)
-                .pipe(operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.getAggregateId().toString() === compositionId.toString(); })));
-        };
-        // onWidthChanged(compositionId: CompositionId): Observable<number> {
-        // 	return this.domainEventBus
-        // 			   .ofEvent(
-        // 				   CompositionColumnsSetEvent
-        // 			   )
-        // 			   .pipe(
-        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
-        // 			   );
-        // }
-        // onWidthChanged(compositionId: CompositionId): Observable<number> {
-        // 	return this.domainEventBus
-        // 			   .ofEvent(
-        // 				   CompositionColumnsSetEvent
-        // 			   )
-        // 			   .pipe(
-        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
-        // 			   );
-        // }
-        /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        CompositionEventService.prototype.onContainerWidthChanged = 
-        // onWidthChanged(compositionId: CompositionId): Observable<number> {
-        // 	return this.domainEventBus
-        // 			   .ofEvent(
-        // 				   CompositionColumnsSetEvent
-        // 			   )
-        // 			   .pipe(
-        // 				   filter((event: DomainEvent) => event.getAggregateId().toString() === compositionId.toString())
-        // 			   );
-        // }
-        /**
-         * @param {?} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            return this.domainEventBus
-                .ofEvent(CompositionContainerWidthSetEvent)
-                .pipe(operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.getAggregateId().equals(compositionId); })), operators.map((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                return event.getPayload();
-            })), operators.filter((/**
-             * @param {?} width
-             * @return {?}
-             */
-            function (width) { return !!width; })));
-        };
-        CompositionEventService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionEventService.ctorParameters = function () { return [
-            { type: hermes.DomainEventBus }
-        ]; };
-        return CompositionEventService;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionEventService.prototype.domainEventBus;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var globalCompositionId = new CompositionId('-1');
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionReadModelService = /** @class */ (function () {
-        function CompositionReadModelService(compositionRepository) {
-            this.compositionRepository = compositionRepository;
-        }
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onWidth = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getWidth(); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onContainerWidth = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getContainerWidth(); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onWidthForEachColumn = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getAllColumns().map((/**
-             * @param {?} c
-             * @return {?}
-             */
-            function (c) { return c.width; })); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onHeaderColumns = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getActiveHeaderColumns(); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onAllColumns = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getHeaderColumns(); })));
-        };
-        /**
-         * @param {?} fieldId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onSortOrder = /**
-         * @param {?} fieldId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (fieldId, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getActiveHeaderColumns(); })), operators.map((/**
-             * @param {?} columns
-             * @return {?}
-             */
-            function (columns) {
-                return columns.filter((/**
-                 * @param {?} c
-                 * @return {?}
-                 */
-                function (c) { return c.getFieldId().equals(fieldId); }));
-            })), operators.filter((/**
-             * @param {?} columns
-             * @return {?}
-             */
-            function (columns) {
-                return columns.length > 0;
-            })), operators.map((/**
-             * @param {?} columns
-             * @return {?}
-             */
-            function (columns) { return columns[0].getSortStatus(); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onTemplateColumns = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.getTemplateColumns(); })));
-        };
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionReadModelService.prototype.onResizeWidth = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            return this.compositionRepository
-                .on(compositionId)
-                .pipe(operators.map((/**
-             * @param {?} composition
-             * @return {?}
-             */
-            function (composition) { return composition.isResizeWidthEnabled(); })));
-        };
-        CompositionReadModelService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionReadModelService.ctorParameters = function () { return [
-            { type: CompositionRepository }
-        ]; };
-        return CompositionReadModelService;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionReadModelService.prototype.compositionRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionCommandService = /** @class */ (function () {
-        function CompositionCommandService(compositionDispatcher) {
-            this.compositionDispatcher = compositionDispatcher;
-        }
-        /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.init = /**
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.init(compositionId);
-        };
-        /**
-         * @param {?} params
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.setColumns = /**
-         * @param {?} params
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (params, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setColumns(compositionId, params);
-        };
-        /**
-         * @param {?} width
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.setWidth = /**
-         * @param {?} width
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (width, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setWidth(compositionId, width);
-        };
-        /**
-         * @param {?} width
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.setContainerWidth = /**
-         * @param {?} width
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (width, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setContainerWidth(compositionId, width);
-        };
-        /**
-         * @param {?} enabled
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.setResizeWidth = /**
-         * @param {?} enabled
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (enabled, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setResizeWidth(compositionId, enabled);
-        };
-        /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.enableColumn = /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (columnId, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setColumnEnabled(compositionId, columnId, true);
-        };
-        /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.disableColumn = /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (columnId, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.setColumnEnabled(compositionId, columnId, false);
-        };
-        /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.moveLeft = /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (columnId, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.moveLeft(compositionId, columnId);
-        };
-        /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        CompositionCommandService.prototype.moveRight = /**
-         * @param {?} columnId
-         * @param {?=} compositionId
-         * @return {?}
-         */
-        function (columnId, compositionId) {
-            if (compositionId === void 0) { compositionId = globalCompositionId; }
-            this.compositionDispatcher.moveRight(compositionId, columnId);
-        };
-        CompositionCommandService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionCommandService.ctorParameters = function () { return [
-            { type: CompositionDispatcher }
-        ]; };
-        return CompositionCommandService;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionCommandService.prototype.compositionDispatcher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SortToggledEvent = /** @class */ (function (_super) {
-        __extends(SortToggledEvent, _super);
-        function SortToggledEvent(aggregateId, compositionId, directions) {
-            var _this = _super.call(this, aggregateId, 'ToggleSortEvent') || this;
-            _this.compositionId = compositionId;
-            _this.directions = directions;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SortToggledEvent.prototype.getCompositionId = /**
-         * @return {?}
-         */
-        function () {
-            return this.compositionId;
-        };
-        /**
-         * @return {?}
-         */
-        SortToggledEvent.prototype.getDirections = /**
-         * @return {?}
-         */
-        function () {
-            return this.directions;
-        };
-        return SortToggledEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SortToggledEvent.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SortToggledEvent.prototype.directions;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ColumnFieldId = /** @class */ (function () {
-        function ColumnFieldId(id) {
-            this.id = id;
-        }
-        /**
-         * @return {?}
-         */
-        ColumnFieldId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.id;
-        };
-        return ColumnFieldId;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ColumnFieldId.prototype.id;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ChangeSortParams = /** @class */ (function () {
-        function ChangeSortParams(fieldId, direction) {
-            this.fieldId = fieldId;
-            this.direction = direction;
-        }
-        return ChangeSortParams;
-    }());
-    if (false) {
-        /** @type {?} */
-        ChangeSortParams.prototype.fieldId;
-        /** @type {?} */
-        ChangeSortParams.prototype.direction;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SortOrderSetEvent = /** @class */ (function (_super) {
-        __extends(SortOrderSetEvent, _super);
-        function SortOrderSetEvent(aggregateId, compositionId, directions) {
-            var _this = _super.call(this, aggregateId, 'SortOrderSetEvent') || this;
-            _this.compositionId = compositionId;
-            _this.directions = directions;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        SortOrderSetEvent.prototype.getCompositionId = /**
-         * @return {?}
-         */
-        function () {
-            return this.compositionId;
-        };
-        /**
-         * @return {?}
-         */
-        SortOrderSetEvent.prototype.getDirections = /**
-         * @return {?}
-         */
-        function () {
-            return this.directions;
-        };
-        return SortOrderSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SortOrderSetEvent.prototype.compositionId;
-        /**
-         * @type {?}
-         * @private
-         */
-        SortOrderSetEvent.prototype.directions;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionChangeSortStatusEventHandler = /** @class */ (function (_super) {
-        __extends(CompositionChangeSortStatusEventHandler, _super);
-        function CompositionChangeSortStatusEventHandler(compositionDispatcher) {
-            var _this = _super.call(this) || this;
-            _this.compositionDispatcher = compositionDispatcher;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        CompositionChangeSortStatusEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof SortToggledEvent) {
-                /** @type {?} */
-                var compositionId = event.getCompositionId();
-                /** @type {?} */
-                var dirs = event.getDirections();
-                /** @type {?} */
-                var params = dirs.map((/**
-                 * @param {?} dir
-                 * @return {?}
-                 */
-                function (dir) {
-                    /** @type {?} */
-                    var columnFieldId = new ColumnFieldId(dir.fieldId.getId());
-                    return new ChangeSortParams(columnFieldId, dir.direction);
-                }));
-                this.compositionDispatcher.changeSort(compositionId, params);
-            }
-            if (event instanceof SortOrderSetEvent) {
-                /** @type {?} */
-                var compositionId = event.getCompositionId();
-                /** @type {?} */
-                var dirs = event.getDirections();
-                /** @type {?} */
-                var params = dirs.map((/**
-                 * @param {?} dir
-                 * @return {?}
-                 */
-                function (dir) {
-                    /** @type {?} */
-                    var columnFieldId = new ColumnFieldId(dir.fieldId.getId());
-                    return new ChangeSortParams(columnFieldId, dir.direction);
-                }));
-                this.compositionDispatcher.changeSort(compositionId, params);
-            }
-        };
-        CompositionChangeSortStatusEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionChangeSortStatusEventHandler.ctorParameters = function () { return [
-            { type: CompositionDispatcher }
-        ]; };
-        return CompositionChangeSortStatusEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionChangeSortStatusEventHandler.prototype.compositionDispatcher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FieldsInitedEvent = /** @class */ (function (_super) {
-        __extends(FieldsInitedEvent, _super);
-        function FieldsInitedEvent(aggregateId, compositionId, columns, // TODO merge
-        fields) {
-            var _this = _super.call(this, aggregateId, 'FieldsInitedEvent') || this;
-            _this.compositionId = compositionId;
-            _this.columns = columns;
-            _this.fields = fields;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        FieldsInitedEvent.prototype.getFields = /**
-         * @return {?}
-         */
-        function () {
-            return this.fields;
-        };
-        return FieldsInitedEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /** @type {?} */
-        FieldsInitedEvent.prototype.compositionId;
-        /** @type {?} */
-        FieldsInitedEvent.prototype.columns;
-        /**
-         * @type {?}
-         * @private
-         */
-        FieldsInitedEvent.prototype.fields;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ColumnParams = /** @class */ (function () {
-        function ColumnParams(column, field) {
-            this.column = column;
-            this.field = field;
-        }
-        /**
-         * @return {?}
-         */
-        ColumnParams.prototype.getColumn = /**
-         * @return {?}
-         */
-        function () {
-            return this.column;
-        };
-        /**
-         * @return {?}
-         */
-        ColumnParams.prototype.getField = /**
-         * @return {?}
-         */
-        function () {
-            return this.field;
-        };
-        return ColumnParams;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ColumnParams.prototype.column;
-        /**
-         * @type {?}
-         * @private
-         */
-        ColumnParams.prototype.field;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionFieldsInitedEventHandler = /** @class */ (function (_super) {
-        __extends(CompositionFieldsInitedEventHandler, _super);
-        function CompositionFieldsInitedEventHandler(compositionDispatcher, columnFieldFactory) {
-            var _this = _super.call(this) || this;
-            _this.compositionDispatcher = compositionDispatcher;
-            _this.columnFieldFactory = columnFieldFactory;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        CompositionFieldsInitedEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof FieldsInitedEvent) {
-                // TODO Move to different layer
-                /** @type {?} */
-                var fields = event.getFields();
-                /** @type {?} */
-                var columnFieldIds = this.convertColumnFieldIds(fields);
-                /** @type {?} */
-                var columns = event.columns;
-                /** @type {?} */
-                var params = this.convertColumns(columns, fields, columnFieldIds);
-                this.compositionDispatcher.setColumns(event.compositionId, params);
-            }
-        };
-        /**
-         * @private
-         * @param {?} fields
-         * @return {?}
-         */
-        CompositionFieldsInitedEventHandler.prototype.convertColumnFieldIds = /**
-         * @private
-         * @param {?} fields
-         * @return {?}
-         */
-        function (fields) {
-            if (!fields) {
-                return [];
-            }
-            return fields.map((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) { return new ColumnFieldId(field.getId().getId()); }));
-        };
-        /**
-         * @private
-         * @param {?} columns
-         * @param {?} fields
-         * @param {?} columnFieldIds
-         * @return {?}
-         */
-        CompositionFieldsInitedEventHandler.prototype.convertColumns = /**
-         * @private
-         * @param {?} columns
-         * @param {?} fields
-         * @param {?} columnFieldIds
-         * @return {?}
-         */
-        function (columns, fields, columnFieldIds) {
-            var _this = this;
-            if (!columns) {
-                return [];
-            }
-            return columns.map((/**
-             * @param {?} column
-             * @param {?} index
-             * @return {?}
-             */
-            function (column, index) {
-                /** @type {?} */
-                var columnFieldId = columnFieldIds[index];
-                /** @type {?} */
-                var field = fields[index];
-                /** @type {?} */
-                var columnField = _this.columnFieldFactory.create(columnFieldId, field.getAccessorMethod(), field.getDataType());
-                return new ColumnParams(column, columnField);
-            }));
-        };
-        CompositionFieldsInitedEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CompositionFieldsInitedEventHandler.ctorParameters = function () { return [
-            { type: CompositionDispatcher },
-            { type: ColumnFieldFactory }
-        ]; };
-        return CompositionFieldsInitedEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionFieldsInitedEventHandler.prototype.compositionDispatcher;
-        /**
-         * @type {?}
-         * @private
-         */
-        CompositionFieldsInitedEventHandler.prototype.columnFieldFactory;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var CompositionSetColumnEnabledCommandHandler = /** @class */ (function (_super) {
-        __extends(CompositionSetColumnEnabledCommandHandler, _super);
+    var CompositionSetColumnEnabledCommandHandler = /** @class */ (function () {
         function CompositionSetColumnEnabledCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
-            var _this = _super.call(this, CompositionSetColumnEnabledCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.compositionEventConverter = compositionEventConverter;
-            return _this;
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+            this.compositionEventConverter = compositionEventConverter;
         }
+        /**
+         * @return {?}
+         */
+        CompositionSetColumnEnabledCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return CompositionSetColumnEnabledCommand;
+        };
         /**
          * @param {?} aggregate
          * @param {?} command
@@ -12057,7 +11771,7 @@
             { type: CompositionEventConverter }
         ]; };
         return CompositionSetColumnEnabledCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -12066,7 +11780,7 @@
         CompositionSetColumnEnabledCommandHandler.prototype.compositionAggregateRepository;
         /**
          * @type {?}
-         * @protected
+         * @private
          */
         CompositionSetColumnEnabledCommandHandler.prototype.domainEventPublisher;
         /**
@@ -12080,15 +11794,179 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CompositionMoveLeftColumnCommandHandler = /** @class */ (function (_super) {
-        __extends(CompositionMoveLeftColumnCommandHandler, _super);
-        function CompositionMoveLeftColumnCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
-            var _this = _super.call(this, CompositionMoveLeftColumnCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.compositionEventConverter = compositionEventConverter;
-            return _this;
+    var SetColumnsCommandHandler = /** @class */ (function () {
+        function SetColumnsCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+            this.compositionEventConverter = compositionEventConverter;
         }
+        /**
+         * @return {?}
+         */
+        SetColumnsCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetColumnsCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetColumnsCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var setColumnsParams = command.getParams();
+            aggregate.setColumns(setColumnsParams);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetColumnsCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.publishEvents(aggregate, command);
+        };
+        /**
+         * @private
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        SetColumnsCommandHandler.prototype.publishEvents = /**
+         * @private
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var events = (/** @type {?} */ (composition.getEvents()));
+            /** @type {?} */
+            var domainEvents = this.compositionEventConverter.convert(events);
+            this.domainEventPublisher.publish(domainEvents);
+        };
+        SetColumnsCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetColumnsCommandHandler.ctorParameters = function () { return [
+            { type: CompositionAggregateRepository },
+            { type: hermes.DomainEventPublisher },
+            { type: CompositionEventConverter }
+        ]; };
+        return SetColumnsCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetColumnsCommandHandler.prototype.compositionAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetColumnsCommandHandler.prototype.domainEventPublisher;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetColumnsCommandHandler.prototype.compositionEventConverter;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetCompositionWidthCommandHandler = /** @class */ (function () {
+        function SetCompositionWidthCommandHandler(compositionAggregateRepository, domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetCompositionWidthCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetCompositionWidthCommand;
+        };
+        /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionWidthCommandHandler.prototype.handleAggregate = /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var width = command.getWidth();
+            composition.setWidth(width);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionWidthCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new CompositionWidthSetEvent(command.getAggregateId()));
+        };
+        SetCompositionWidthCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetCompositionWidthCommandHandler.ctorParameters = function () { return [
+            { type: CompositionAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetCompositionWidthCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionWidthCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CompositionMoveLeftColumnCommandHandler = /** @class */ (function () {
+        function CompositionMoveLeftColumnCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+            this.compositionEventConverter = compositionEventConverter;
+        }
+        /**
+         * @return {?}
+         */
+        CompositionMoveLeftColumnCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return CompositionMoveLeftColumnCommand;
+        };
         /**
          * @param {?} aggregate
          * @param {?} command
@@ -12148,7 +12026,7 @@
             { type: CompositionEventConverter }
         ]; };
         return CompositionMoveLeftColumnCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -12171,15 +12049,21 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CompositionMoveRightColumnCommandHandler = /** @class */ (function (_super) {
-        __extends(CompositionMoveRightColumnCommandHandler, _super);
+    var CompositionMoveRightColumnCommandHandler = /** @class */ (function () {
         function CompositionMoveRightColumnCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
-            var _this = _super.call(this, CompositionMoveRightColumnCommand, null, null, compositionAggregateRepository) || this;
-            _this.compositionAggregateRepository = compositionAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.compositionEventConverter = compositionEventConverter;
-            return _this;
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+            this.compositionEventConverter = compositionEventConverter;
         }
+        /**
+         * @return {?}
+         */
+        CompositionMoveRightColumnCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return CompositionMoveRightColumnCommand;
+        };
         /**
          * @param {?} aggregate
          * @param {?} command
@@ -12239,7 +12123,7 @@
             { type: CompositionEventConverter }
         ]; };
         return CompositionMoveRightColumnCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -12262,146 +12146,220 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var commandProviders = __spread(inMemoryCompositionCommandProviders, [
-        CompositionDispatcher,
-        CompositionAggregateFactory,
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: InitCompositionCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetColumnsCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetCompositionWidthCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetCompositionResizeWidthCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetCompositionContainerWidthCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: CompositionSetColumnEnabledCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: CompositionChangeSortStatusCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: CompositionMoveLeftColumnCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: CompositionMoveRightColumnCommandHandler,
-            multi: true
-        },
-        ColumnEntityFactory,
-        CompositionEventConverter,
-        ColumnFieldFactory
-    ]);
-    /** @type {?} */
-    var readProviders = __spread(inMemoryCompositionQueryProviders, [
-        {
-            provide: hermes.DOMAIN_EVENT_HANDLERS,
-            useClass: CompositionFieldsInitedEventHandler,
-            multi: true
-        }, {
-            provide: hermes.DOMAIN_EVENT_HANDLERS,
-            useClass: CompositionChangeSortStatusEventHandler,
-            multi: true
-        },
-        ColumnDefinitionFactory,
-        ViewTemplateRepository,
-        ViewTemplateFactory,
-        EditTemplateFactory,
-        EditTemplateRepository
-    ]);
-    /** @type {?} */
-    var compositionProviders = __spread(inMemoryCompositionProviders, commandProviders, readProviders, [
-        CompositionConverter,
-        CompositionCommandService,
-        CompositionReadModelService,
-        CompositionEventService
-    ]);
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SafePipe = /** @class */ (function () {
-        function SafePipe(sanitizer) {
-            this.sanitizer = sanitizer;
+    var CompositionChangeSortStatusCommandHandler = /** @class */ (function () {
+        function CompositionChangeSortStatusCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
-         * @param {?} value
-         * @param {?} type
          * @return {?}
          */
-        SafePipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?} type
+        CompositionChangeSortStatusCommandHandler.prototype.forCommand = /**
          * @return {?}
          */
-        function (value, type) {
-            switch (type) {
-                case 'html': return this.sanitizer.bypassSecurityTrustHtml(value);
-                case 'style': return this.sanitizer.bypassSecurityTrustStyle(value);
-                case 'script': return this.sanitizer.bypassSecurityTrustScript(value);
-                case 'url': return this.sanitizer.bypassSecurityTrustUrl(value);
-                case 'resourceUrl': return this.sanitizer.bypassSecurityTrustResourceUrl(value);
-                default: throw new Error("Invalid safe type specified: " + type);
-            }
+        function () {
+            return CompositionChangeSortStatusCommand;
         };
-        SafePipe.decorators = [
-            { type: core.Pipe, args: [{
-                        name: 'guiSafe'
-                    },] }
+        /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        CompositionChangeSortStatusCommandHandler.prototype.handleAggregate = /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var sortParams = command.getSortParams();
+            composition.changeSort(sortParams);
+        };
+        /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        CompositionChangeSortStatusCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var compositionId = command.getAggregateId();
+            /** @type {?} */
+            var columns = composition.getActiveColumns();
+            this.domainEventPublisher.publish(new CompositionChangeSortStatusEvent(compositionId, columns));
+        };
+        CompositionChangeSortStatusCommandHandler.decorators = [
+            { type: core.Injectable }
         ];
         /** @nocollapse */
-        SafePipe.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer }
+        CompositionChangeSortStatusCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
         ]; };
-        return SafePipe;
+        return CompositionChangeSortStatusCommandHandler;
     }());
     if (false) {
         /**
          * @type {?}
-         * @protected
+         * @private
          */
-        SafePipe.prototype.sanitizer;
+        CompositionChangeSortStatusCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SanitizeModule = /** @class */ (function () {
-        function SanitizeModule() {
+    var SetCompositionContainerWidthCommandHandler = /** @class */ (function () {
+        function SetCompositionContainerWidthCommandHandler(compositionAggregateRepository, domainEventPublisher, compositionEventConverter) {
+            this.compositionAggregateRepository = compositionAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+            this.compositionEventConverter = compositionEventConverter;
         }
-        SanitizeModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule
-                        ],
-                        declarations: [
-                            SafePipe
-                        ],
-                        exports: [
-                            SafePipe
-                        ]
-                    },] }
+        /**
+         * @return {?}
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetCompositionContainerWidthCommand;
+        };
+        /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.handleAggregate = /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var width = command.getWidth();
+            composition.setContainerWidth(width);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.publishAggregateEvents((/** @type {?} */ (aggregate.getEvents())));
+        };
+        /**
+         * @private
+         * @param {?} aggregateEvents
+         * @return {?}
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.publishAggregateEvents = /**
+         * @private
+         * @param {?} aggregateEvents
+         * @return {?}
+         */
+        function (aggregateEvents) {
+            /** @type {?} */
+            var domainEvents = this.compositionEventConverter.convert(aggregateEvents);
+            this.domainEventPublisher.publish(domainEvents);
+        };
+        SetCompositionContainerWidthCommandHandler.decorators = [
+            { type: core.Injectable }
         ];
-        return SanitizeModule;
+        /** @nocollapse */
+        SetCompositionContainerWidthCommandHandler.ctorParameters = function () { return [
+            { type: CompositionAggregateRepository },
+            { type: hermes.DomainEventPublisher },
+            { type: CompositionEventConverter }
+        ]; };
+        return SetCompositionContainerWidthCommandHandler;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.compositionAggregateRepository;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.domainEventPublisher;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionContainerWidthCommandHandler.prototype.compositionEventConverter;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetCompositionResizeWidthCommandHandler = /** @class */ (function () {
+        function SetCompositionResizeWidthCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetCompositionResizeWidthCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetCompositionResizeWidthCommand;
+        };
+        /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionResizeWidthCommandHandler.prototype.handleAggregate = /**
+         * @param {?} composition
+         * @param {?} command
+         * @return {?}
+         */
+        function (composition, command) {
+            /** @type {?} */
+            var enabled = command.getEnabled();
+            composition.setResizeWidth(enabled);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetCompositionResizeWidthCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new CompositionResizeWidthSetEvent(command.getAggregateId()));
+        };
+        SetCompositionResizeWidthCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetCompositionResizeWidthCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetCompositionResizeWidthCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetCompositionResizeWidthCommandHandler.prototype.domainEventPublisher;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -12428,6 +12386,8 @@
         fabric.FabricInputModule,
         FunctionViewComponent
     ];
+    /** @type {?} */
+    var compositionKey = 'CompositionAggregate';
     var CompositionModule = /** @class */ (function () {
         function CompositionModule() {
         }
@@ -12440,7 +12400,8 @@
                             fabric.FabricChipModule,
                             fabric.FabricCheckboxModule,
                             fabric.FabricButtonModule,
-                            fabric.FabricInputModule
+                            fabric.FabricInputModule,
+                            hermes.HermesModule.defineAggregate(compositionKey, CompositionAggregateFactory, InMemoryCompositionAggregateRepository, CreateCompositionCommandHandler, __spread(hermes.HermesModule.registerCommandHandler(SetColumnsCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(SetCompositionWidthCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(SetCompositionResizeWidthCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(SetCompositionContainerWidthCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(CompositionSetColumnEnabledCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(CompositionChangeSortStatusCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(CompositionMoveLeftColumnCommandHandler, compositionKey), hermes.HermesModule.registerCommandHandler(CompositionMoveRightColumnCommandHandler, compositionKey))),
                         ],
                         providers: __spread(compositionProviders),
                         declarations: [
@@ -13166,16 +13127,25 @@
         __extends(SetSchemaCommand, _super);
         function SetSchemaCommand(structureId, height) {
             var _this = _super.call(this, structureId, 'SetSchemaCommand') || this;
-            _this.structureId = structureId;
             _this.height = height;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetSchemaCommand.prototype.getHeight = /**
+         * @return {?}
+         */
+        function () {
+            return this.height;
+        };
         return SetSchemaCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetSchemaCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetSchemaCommand.prototype.height;
     }
 
@@ -13187,16 +13157,25 @@
         __extends(SetSchemaVerticalGridCommand, _super);
         function SetSchemaVerticalGridCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'SetSchemaVerticalGridCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetSchemaVerticalGridCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return SetSchemaVerticalGridCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetSchemaVerticalGridCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetSchemaVerticalGridCommand.prototype.enabled;
     }
 
@@ -13208,16 +13187,25 @@
         __extends(SetSchemaHorizontalGridCommand, _super);
         function SetSchemaHorizontalGridCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'SetSchemaHorizontalGridCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetSchemaHorizontalGridCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return SetSchemaHorizontalGridCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetSchemaHorizontalGridCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetSchemaHorizontalGridCommand.prototype.enabled;
     }
 
@@ -13229,16 +13217,25 @@
         __extends(SetSchemaThemeCommand, _super);
         function SetSchemaThemeCommand(structureId, theme) {
             var _this = _super.call(this, structureId, 'SetSchemaThemeCommand') || this;
-            _this.structureId = structureId;
             _this.theme = theme;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetSchemaThemeCommand.prototype.getTheme = /**
+         * @return {?}
+         */
+        function () {
+            return this.theme;
+        };
         return SetSchemaThemeCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetSchemaThemeCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetSchemaThemeCommand.prototype.theme;
     }
 
@@ -13250,16 +13247,25 @@
         __extends(SetRowColoringCommand, _super);
         function SetRowColoringCommand(structureId, coloring) {
             var _this = _super.call(this, structureId, 'SetRowColoringCommand') || this;
-            _this.structureId = structureId;
             _this.coloring = coloring;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetRowColoringCommand.prototype.getColoring = /**
+         * @return {?}
+         */
+        function () {
+            return this.coloring;
+        };
         return SetRowColoringCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetRowColoringCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetRowColoringCommand.prototype.coloring;
     }
 
@@ -13271,16 +13277,25 @@
         __extends(ChangeSchemaTopHeaderCommand, _super);
         function ChangeSchemaTopHeaderCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'ChangeSchemaTopHeaderCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        ChangeSchemaTopHeaderCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return ChangeSchemaTopHeaderCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        ChangeSchemaTopHeaderCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         ChangeSchemaTopHeaderCommand.prototype.enabled;
     }
 
@@ -13292,16 +13307,25 @@
         __extends(ChangeSchemaBottomHeaderCommand, _super);
         function ChangeSchemaBottomHeaderCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'ChangeSchemaBottomHeaderCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        ChangeSchemaBottomHeaderCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return ChangeSchemaBottomHeaderCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        ChangeSchemaBottomHeaderCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         ChangeSchemaBottomHeaderCommand.prototype.enabled;
     }
 
@@ -14269,16 +14293,16 @@
         __extends(SetFormationCommand, _super);
         function SetFormationCommand(structureId, payload) {
             var _this = _super.call(this, structureId, 'SetFormationCommand') || this;
-            _this.structureId = structureId;
             _this.payload = payload;
             return _this;
         }
         return SetFormationCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetFormationCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetFormationCommand.prototype.payload;
     }
 
@@ -14290,16 +14314,25 @@
         __extends(ToggleSelectedRowCommand, _super);
         function ToggleSelectedRowCommand(structureId, selectedRow) {
             var _this = _super.call(this, structureId, 'ToggleSelectedRowCommand') || this;
-            _this.structureId = structureId;
             _this.selectedRow = selectedRow;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        ToggleSelectedRowCommand.prototype.getSelectedRow = /**
+         * @return {?}
+         */
+        function () {
+            return this.selectedRow;
+        };
         return ToggleSelectedRowCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        ToggleSelectedRowCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         ToggleSelectedRowCommand.prototype.selectedRow;
     }
 
@@ -14599,7 +14632,6 @@
         __extends(StructureSetConfigFilterCommand, _super);
         function StructureSetConfigFilterCommand(structureId, filterConfig) {
             var _this = _super.call(this, structureId, 'StructureSetConfigFilterCommand') || this;
-            _this.structureId = structureId;
             _this.filterConfig = filterConfig;
             return _this;
         }
@@ -14615,8 +14647,6 @@
         return StructureSetConfigFilterCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureSetConfigFilterCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -14632,22 +14662,55 @@
         __extends(StructureToggleFilterCommand, _super);
         function StructureToggleFilterCommand(structureId, fieldId, externalFilterId, filterValue) {
             var _this = _super.call(this, structureId, 'StructureToggleFilterCommand') || this;
-            _this.structureId = structureId;
             _this.fieldId = fieldId;
             _this.externalFilterId = externalFilterId;
             _this.filterValue = filterValue;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        StructureToggleFilterCommand.prototype.getFieldId = /**
+         * @return {?}
+         */
+        function () {
+            return this.fieldId;
+        };
+        /**
+         * @return {?}
+         */
+        StructureToggleFilterCommand.prototype.getExternalFilterId = /**
+         * @return {?}
+         */
+        function () {
+            return this.externalFilterId;
+        };
+        /**
+         * @return {?}
+         */
+        StructureToggleFilterCommand.prototype.getFilterValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterValue;
+        };
         return StructureToggleFilterCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureToggleFilterCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         StructureToggleFilterCommand.prototype.fieldId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         StructureToggleFilterCommand.prototype.externalFilterId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         StructureToggleFilterCommand.prototype.filterValue;
     }
 
@@ -14714,16 +14777,25 @@
         __extends(SourceSetLoadingCommand, _super);
         function SourceSetLoadingCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'SourceSetLoadingCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SourceSetLoadingCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return SourceSetLoadingCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SourceSetLoadingCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SourceSetLoadingCommand.prototype.enabled;
     }
 
@@ -14736,16 +14808,25 @@
         function SetOriginCommand(structureId, items) {
             if (items === void 0) { items = []; }
             var _this = _super.call(this, structureId, 'SetOriginCommand') || this;
-            _this.structureId = structureId;
             _this.items = items;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetOriginCommand.prototype.getItems = /**
+         * @return {?}
+         */
+        function () {
+            return this.items;
+        };
         return SetOriginCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetOriginCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetOriginCommand.prototype.items;
     }
 
@@ -14757,7 +14838,6 @@
         __extends(StructureEditSourceItemCommand, _super);
         function StructureEditSourceItemCommand(structureId, params) {
             var _this = _super.call(this, structureId, 'StructureEditSourceItemCommand') || this;
-            _this.structureId = structureId;
             _this.params = params;
             return _this;
         }
@@ -14773,11 +14853,6 @@
         return StructureEditSourceItemCommand;
     }(hermes.Command));
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureEditSourceItemCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -14853,19 +14928,13 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var InitStructureCommand = /** @class */ (function (_super) {
-        __extends(InitStructureCommand, _super);
-        function InitStructureCommand(structureId) {
-            var _this = _super.call(this, structureId, 'InitStructureCommand') || this;
-            _this.structureId = structureId;
-            return _this;
+    var CreateStructureCommand = /** @class */ (function (_super) {
+        __extends(CreateStructureCommand, _super);
+        function CreateStructureCommand(structureId) {
+            return _super.call(this, structureId, 'CreateStructureCommand') || this;
         }
-        return InitStructureCommand;
+        return CreateStructureCommand;
     }(hermes.Command));
-    if (false) {
-        /** @type {?} */
-        InitStructureCommand.prototype.structureId;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -14875,16 +14944,25 @@
         __extends(SetVerticalScrollEnabledCommand, _super);
         function SetVerticalScrollEnabledCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'SetVerticalScrollEnabledCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetVerticalScrollEnabledCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return SetVerticalScrollEnabledCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetVerticalScrollEnabledCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetVerticalScrollEnabledCommand.prototype.enabled;
     }
 
@@ -14896,16 +14974,25 @@
         __extends(SetScrollPositionCommand, _super);
         function SetScrollPositionCommand(structureId, position) {
             var _this = _super.call(this, structureId, 'SetScrollPositionCommand') || this;
-            _this.structureId = structureId;
             _this.position = position;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetScrollPositionCommand.prototype.getPosition = /**
+         * @return {?}
+         */
+        function () {
+            return this.position;
+        };
         return SetScrollPositionCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetScrollPositionCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetScrollPositionCommand.prototype.position;
     }
 
@@ -14917,7 +15004,6 @@
         __extends(SetSortingCommand, _super);
         function SetSortingCommand(structureId, sortingConfig) {
             var _this = _super.call(this, structureId, 'SetSortingCommand') || this;
-            _this.structureId = structureId;
             _this.sortingConfig = sortingConfig;
             return _this;
         }
@@ -14933,8 +15019,6 @@
         return SetSortingCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetSortingCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -14950,7 +15034,6 @@
         __extends(ToggleSortCommand, _super);
         function ToggleSortCommand(structureId, compositionId, fieldId) {
             var _this = _super.call(this, structureId, 'ToggleSortCommand') || this;
-            _this.structureId = structureId;
             _this.compositionId = compositionId;
             _this.fieldId = fieldId;
             return _this;
@@ -14976,8 +15059,6 @@
         return ToggleSortCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        ToggleSortCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -14998,7 +15079,6 @@
         __extends(StructureSetConfigQuickFilterCommand, _super);
         function StructureSetConfigQuickFilterCommand(structureId, quickFiltersConfig) {
             var _this = _super.call(this, structureId, 'StructureSetConfigQuickFilterCommand') || this;
-            _this.structureId = structureId;
             _this.quickFiltersConfig = quickFiltersConfig;
             return _this;
         }
@@ -15014,8 +15094,6 @@
         return StructureSetConfigQuickFilterCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureSetConfigQuickFilterCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -15031,19 +15109,40 @@
         __extends(InitFieldsCommand, _super);
         function InitFieldsCommand(structureId, compositionId, columns) {
             var _this = _super.call(this, structureId, 'InitFieldsCommand') || this;
-            _this.structureId = structureId;
             _this.compositionId = compositionId;
             _this.columns = columns;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        InitFieldsCommand.prototype.getCompositionId = /**
+         * @return {?}
+         */
+        function () {
+            return this.compositionId;
+        };
+        /**
+         * @return {?}
+         */
+        InitFieldsCommand.prototype.getColumns = /**
+         * @return {?}
+         */
+        function () {
+            return this.columns;
+        };
         return InitFieldsCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        InitFieldsCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         InitFieldsCommand.prototype.compositionId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         InitFieldsCommand.prototype.columns;
     }
 
@@ -15115,16 +15214,25 @@
         __extends(SetRowHeightCommand, _super);
         function SetRowHeightCommand(structureId, rowHeight) {
             var _this = _super.call(this, structureId, 'SetRowHeightCommand') || this;
-            _this.structureId = structureId;
             _this.rowHeight = rowHeight;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        SetRowHeightCommand.prototype.getRowHeight = /**
+         * @return {?}
+         */
+        function () {
+            return this.rowHeight;
+        };
         return SetRowHeightCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        SetRowHeightCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         SetRowHeightCommand.prototype.rowHeight;
     }
 
@@ -15136,7 +15244,6 @@
         __extends(StructureSetConfigSearchingCommand, _super);
         function StructureSetConfigSearchingCommand(structureId, searchConfig) {
             var _this = _super.call(this, structureId, 'StructureSetConfigSearchingCommand') || this;
-            _this.structureId = structureId;
             _this.searchConfig = searchConfig;
             return _this;
         }
@@ -15152,8 +15259,6 @@
         return StructureSetConfigSearchingCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureSetConfigSearchingCommand.prototype.structureId;
         /**
          * @type {?}
          * @private
@@ -15169,16 +15274,25 @@
         __extends(StructureSetSearchPhraseCommand, _super);
         function StructureSetSearchPhraseCommand(structureId, phrase) {
             var _this = _super.call(this, structureId, 'StructureSetSearchPhraseCommand') || this;
-            _this.structureId = structureId;
             _this.phrase = phrase;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        StructureSetSearchPhraseCommand.prototype.getPhrase = /**
+         * @return {?}
+         */
+        function () {
+            return this.phrase;
+        };
         return StructureSetSearchPhraseCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureSetSearchPhraseCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         StructureSetSearchPhraseCommand.prototype.phrase;
     }
 
@@ -15409,13 +15523,13 @@
          * @param {?=} structureId
          * @return {?}
          */
-        StructureCommandService.prototype.init = /**
+        StructureCommandService.prototype.createStructure = /**
          * @param {?=} structureId
          * @return {?}
          */
         function (structureId) {
             if (structureId === void 0) { structureId = globalStructureId; }
-            this.commandDispatcher.dispatch(new InitStructureCommand(structureId));
+            this.commandDispatcher.dispatch(new CreateStructureCommand(structureId));
         };
         /**
          * @param {?=} structureId
@@ -15601,7 +15715,7 @@
          */
         function (rowHeight, structureId) {
             if (structureId === void 0) { structureId = globalStructureId; }
-            this.commandDispatcher.dispatch(new SetRowHeightCommand(structureId, rowHeight));
+            this.commandDispatcher.dispatch(new SetRowHeightCommand(structureId, +rowHeight));
         };
         StructureCommandService.decorators = [
             { type: core.Injectable }
@@ -15653,11 +15767,11 @@
         /**
          * @return {?}
          */
-        LocalStructureCommandService.prototype.init = /**
+        LocalStructureCommandService.prototype.createStructure = /**
          * @return {?}
          */
         function () {
-            _super.prototype.init.call(this, this.structureId);
+            _super.prototype.createStructure.call(this, this.structureId);
         };
         /**
          * @return {?}
@@ -15829,7 +15943,7 @@
             __metadata("design:type", Function),
             __metadata("design:paramtypes", []),
             __metadata("design:returntype", void 0)
-        ], LocalStructureCommandService.prototype, "init", null);
+        ], LocalStructureCommandService.prototype, "createStructure", null);
         __decorate([
             Override,
             __metadata("design:type", Function),
@@ -16476,13 +16590,13 @@
          * @param {?=} compositionId
          * @return {?}
          */
-        LocalCompositionCommandService.prototype.init = /**
+        LocalCompositionCommandService.prototype.createComposition = /**
          * @param {?=} compositionId
          * @return {?}
          */
         function (compositionId) {
             if (compositionId === void 0) { compositionId = globalCompositionId; }
-            _super.prototype.init.call(this, this.compositionId);
+            _super.prototype.createComposition.call(this, this.compositionId);
         };
         /**
          * @param {?} params
@@ -16606,7 +16720,7 @@
             __metadata("design:type", Function),
             __metadata("design:paramtypes", [CompositionId]),
             __metadata("design:returntype", void 0)
-        ], LocalCompositionCommandService.prototype, "init", null);
+        ], LocalCompositionCommandService.prototype, "createComposition", null);
         __decorate([
             Override,
             __metadata("design:type", Function),
@@ -17444,16 +17558,25 @@
         __extends(StructureSetAggregationEnabledCommand, _super);
         function StructureSetAggregationEnabledCommand(structureId, enabled) {
             var _this = _super.call(this, structureId, 'StructureSetAggregationEnabledCommand') || this;
-            _this.structureId = structureId;
             _this.enabled = enabled;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        StructureSetAggregationEnabledCommand.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
         return StructureSetAggregationEnabledCommand;
     }(hermes.Command));
     if (false) {
-        /** @type {?} */
-        StructureSetAggregationEnabledCommand.prototype.structureId;
-        /** @type {?} */
+        /**
+         * @type {?}
+         * @private
+         */
         StructureSetAggregationEnabledCommand.prototype.enabled;
     }
 
@@ -18932,8 +19055,8 @@
             _this.loaderEnabled = false;
             _this.circleLoaderEnabled = true;
             _this.initialLoaderAnimation = false;
-            _this.structureCommandService.init();
-            compositionCommandService.init();
+            _this.structureCommandService.createStructure();
+            compositionCommandService.createComposition();
             return _this;
         }
         /**
@@ -19070,7 +19193,7 @@
                                 useExisting: StructureComponent
                             }
                         ]),
-                        styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", "gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:30px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;position:absolute;top:8px;right:8px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC) center no-repeat;height:16px;width:16px;opacity:.8}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper:hover .gui-header-menu-icon{opacity:1}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom:1px solid #d6d6d6}gui-structure-search-bar{display:block;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;position:relative}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrdM9SwNBFIXhVTF2kkbSSiCF2GkRlBR+kMJGrO1t7WxsLEQQC8HCThQRLETIT4gEtNQ6aCUKYgpBLAIW+p47E5LsJuugHniYuTB7d2aZjWKZwyWe8OV94BQFpGYE23hBFTOYQB4rOIEabqFvdqEGC1b1zjSa6NloFmqwaFV6itCOEker4MhNg3IMHa8rr1h206Bo7ZubtqPtjbtpULRWz4xZRQb9OOrHkLTWZvxoTR5RsiosU7jHs1U++7hz0x8zjBvsWNWRLD6xblV6NtBAzqpYdN31sfasSkYvOoBeltj1gB8V3Uj9N3rgHA94hy5YGfqfatjEFebRN6s4xDV0/gssQc2VNWjX+sf+lH9vdDZk5e9yi3oURZPfGPU3vvdwgY8AAAAASUVORK5CYII=);width:17px;height:17px}gui-structure-search-bar form input{border:1px solid #d6d6d6;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:42px 8px}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid #d6d6d6}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div{color:#333;cursor:pointer}gui-structure-info-panel div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left{position:relative;cursor:pointer;padding:12px 12px 12px 32px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover::before{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left::before{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASElEQVR4AWMY2cAdiA0oNSQfiP8DcTo1DOkfHoaEQw35DcT7CeBsfAalQw36TIRBzYRc1Q81LJ8YLwx9w8LJ044ZAQ4MIxcAAAffIk95XG/oAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;left:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right{position:relative;cursor:pointer;padding:12px 32px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover::after{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right::after{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAUUlEQVR4AWMY2cAGiN2pYVA7EP8H4nxKDWIB4tW0MCyYWob9JsawbCDejwcfhrrqNzgS8IBmkAYC+Dc1vNgPNaR/eBhSDjeEQuAPxOkMIxcAAK59IwsNdxXLAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;right:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title .gui-sort{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort{display:inline-block;height:16px;width:16px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-text-highlight{background:#fff799}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{padding:4px;cursor:pointer}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}.gui-structure-menu-column-manager ol li{padding:0}", ".gui-aggregation-value{font-weight:700}", "gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section div{margin-right:4px}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid #d6d6d6;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#333;box-shadow:0 1px 0 0 #333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:grey;opacity:.4}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABHOSURBVHhe7V1rUxRXGhaYQa4BBkRuCoiIgCCaaDaagFmNifESMUIwmzUfkjVVu2Xtp/1s5U/k635Y4zVWUpWqVGUDctWNibuxoqtZTZUCAZyBGbkIyHDb5zn2YTsGZtjYM8PMOU9VV58+fbrp8z7P+5739IVZpqGhoaGhoaGhoR6ijLUyOHHihA2raIfDIfoeFxc309vbO/3hhx/OcFs1KCGA2dnZqPPnz0fn5eWllJWVbf3xxx+fR10m90VFRbkKCwuv3L179x+ff/75iGpCUEIAHR0dySUlJVu7u7t3xMTEbH706FElBJCEXez/GKLADWx/C4E09fT0XKmqqhoVByqAaGMdsaD39/f3p4PY2unp6Xe8Xu+Ldrs9J8ZmS7XZbCmxsbFZqHthamrqaFdX15GHDx9mGYcqgYgXwJUrV5K3b9++ZXJy8jmQnAtBPIPqaCiD4uAQwCiQBHFkY/u54uLibbdu3UoWByuAiBeAy+VKdTqdu+DtRVhiyPfMzAyJFwuIF2sMDdFAYV9f305Eggzj8IhHxAsA4T1hbGysBESnYjMaRP9MACyzDohCOQnt12NhlFACES8AeD1Jj2cuwG0j7Is1YS5DAFGIAstRx6miEoh4AUhIj5cCIMxikPtVgzIC0JgfWgCKQwtAcWgBKA4tAMWhBaA4tAAUhxaA4tACUBxaAIpDC0BxaAEoDi0AxaEFoDi0ABSHFoDi0AJQHFoAikMLQHFoASgOLQDFoQWgOLQAFIcWgOLQAlAcWgCKQwtAcWgBKA4tAMWhBaA4tAAUhxaA4tACUBxaAIpDC0BxaAEoDi0AxaEFoDi0ABSHFoDi0AJQHFoAikMLQHFoASgOLQDFoQWgOLQAFIcWgOLQAlAcWgCKQwtAcQTkR3JOnDgRXV5ebuvu7o6x2WwzHo9nMlQ/yfrZZ5+V5eXl/RXFZ7GInwdbCLOzszNRUVHf379///19+/b906gOKpqbm2337t2zwWZRSUlJUx988MGksSsgsFQAJB6raFx0bnR09ItOp3PD8uXLB7Ozs1suXbp0bc+ePV4Y+PFPdAUJ4SKAc+fOxYyOjtrr6+urfvrpp5cePXrkWLFixc24uLjWxsbGHtRPG00thWUCIPnvvfdeNojf5na7X5yent48MzOzFgYdjYmJ+RfW3+bm5rZfv3792o4dOyaCJYSlLgASD5KX19TUVMHzt8Nmm3EdVVin4Vo6EUG/S09Pb4IjXYIgeo3DLINlOcDx48dJ/isg/12o92104Fl0ZCXWBVNTU695vd4/9vT0/MXhcByH0jcx1BmHKguQH7t3795N+fn5fwL5f56cnPwDHGcPliLspu02wpb1AwMDx7DeG4jfNbZEACA6qre3t7S/v7+WP8QMj09HdTyWKJT5c63JWFZDCDsnJibeR4g7sn379qqrV6/axQkUhEF+JWxRB+LfxfIK7FiAXSkwmR3k83cMlyMCpMJmv4FtDyOnWv/4aOtgiQCQsOQhRD2PTpQjCqSRc2OX+FFGLkA01inoVBEiwKE7d+68XVpauvnGjRuxoqFCMMjf2NnZWT8yMlILsotRzZAvHIL2Qlmuo2JjY5PgPGWwazXarmIbq2CJAKDidSC1GuRnkXz+IDMhO2EG6mJQt3p8fPwNhL23CgsLN6oUCaTno+9vwgb7YYt82O1nTiAFwEXaEnZdMTw8XH3z5s1yUWERLBEAOpIEZWbhghMRBX5B+pPAfhva50M0BxDW6hEJKmkYY3fE4osvvlj++uuvb0Cfa8fGxvbDq9eg2m+/aVOA7VbA1g5uWAVLBIDstC8hIeE2iB3GMgtFG3vmB5WNNszICyCC2q6urrd3795dFckiIPnbtm2rQCJcj2ROhH14dSxt4QtoQ1sxEgwlJyf/kJWV1WfssgSWCAAXeBsX2o7ifX/km4HOx8AQBTDIAUy96hAaKyJxOCD51dXVZehjLcb8/ejzGthpUf1kNKVNYat+RII2JIX/NnZZAksEgHF8EAr9xm63X8OFiihg7FoQbEL1UwTYLIRhDjESYDjYFEmR4PLly/Hw/Ep6Pvp4EP0uBqH8iXphg0WYit4/iCT7e6yvZ2dnu4xqS2CJAAhMVX7ARbbiIhcVohja4AmiDIMwEuTTO2Cow4wE9BqxM4xB8gsKCsoxj69FArcftiH5wvPZd9qAQvAFtJtFGxc8vyMxMfEHo9oyWCaATZs2DWLVER8f/zVUPYDFp7S5m6GNa6PM2UHR0NDQISRJR2pqajaGcyS4du1aIsjfgBznMPpUi76VgHC7qb+L8n6SHxcX9w2EcHXt2rWWej9hmQAIdOpeTk7OJxBBEzYHqN7Hex4TTlDxVD+8QRiB4DbLWHivgMMBZweHmTGHowjo+ZmZmaXI9A8ODg5yzC9Gv23sI/tK0A60AbdZJmgjlrlGPVazLtiyHUn2pw6H4z+ikcWwVADr1q0bxoW3YZw6CdV+iaoBdPIXIqAhpBC45rbsPEWAJkXMCXjHELODsIoEhueXw/PrHjx4cAh9WofqaEms7Lssy75L2xhlEfZhw6a0tLTTSP5a4Vj9ooHFsFQABNQ6govvwAWfYQdQ5cZ8d25qSNX7G/uwT0aCN1wuV124RALD89fD82vh+ftQVYx+8Fb4gp19IhdaBltxox+2a8O5PkG5PS8vzy0aBACWC4BAuBpiJMCcVUQCdMzNkMZ9tAU6Kdr5Ao6JxjFrmRP09fU1MBI0NzfHGbuXHDB9TaDnj4+P0/OZ7a/DQs9fkHzsF7aQTdDfGQiC5F9MT08/g/O0BcrzJQIiAIKRABxSvafRoUZ0dk4EBDvvCzQKjo9CuzXwplrMod9Colm5FGcHFCaI4phf6/F4DqCqBAu4/N8zkflg1gbJR18HMJNqhuefQ1X7+vXrBx7vDRwCJgAiIyNjGCFcRAIkM4wEIidgx304hgDsYRYBc4JaRIIjmFNvZKg1moUc9PySkpJyXF89PLYWVcLzed3sgz+wj7CJ9Pwm5E+nICLmUQEnnwioAIjS0tIRt9vdtnr16lNQdxMM42GH/UUAtJuLEvQkGLMQc+kDzAkKCwsrl8JwQCHC88vg+YcwVPHBzjoQKsjntbMPvsA2tAWOccfGxjaD9LNIfNthMw/qfBvIIgRcAARF0Nvb244OnqYIQOgDVPvsoDQejWQYk0YthKEPwtsOl5eXl4UyMST5mJeLhA/XdADXxke6IuHj9RL+BADMoI0HNmlh2Hc6ne1VVVVDwSKfCIoACIoAIbJl1apVf7Pb7Y3opMcY98R+rs1lPgGjAdFODAcs22w2RoI1FAHyggY+Uw+FCBh9ysrKypmg4jrewDWth6htWMQsh+D1mp+MPtk/9h1Fev5F5kkDAwOtEPWDYJJPBE0ABO8TQOWtEMHHEEETOjtIQ5g9RZZJvDSYuYz9bCBE0NXV1cApYjAfIDEJRTJagaGIYf8gqkpwfTZJMK+VMJdln1jHMtbT2PcANmjJzc09gwQ3JOQTQRUAwUhAtTMSIPTxZpHH6/UKEdBgnBbB0+eMRkhDEixj4X2CoocPH1IER3DOoLxeRs/nI10MZ3Ugn57PbF+82yiv0bg+UWYf2Bc51WOEQFRgiGDYp+efwblaQkU+EXQBEDISQP0nYYivYKgHMOacARhG6S2+AIPxPoF4nwCJUwNEUBlIERieX9nf3/8mxn2O+Uz4fP499kEOCQSjHY4ZQthvYbYP8psrKioGQ0U+ERIBEIwEmNa1IRLwZtHfYSw3jCWmiLCTXwHQu+BRjAQFSAoPdnd3NyApqwrEO4b0/C1btlSCMD7YoeevwXWKe/u+wD6wL+wTs31UeUB+E8d89L31woULQU345kPIBEBs2LDhIYgTkQAi+IqzA4qAhqXRfIGGJdCWTxH5KJn3CRowRawAYZa9cs4kk56PYYueT/LX4m/apVB9gW3YF7SbZt8w5jejr/T8Fnp+qL6WMiOkAiAw7RllJKAI4B1fwmjiZpG/CCAFwnYoi9fLhoeHD3Z2djZs3bp1kxXDAcM+Zxr0fAjsAIgsIPny2uQ1LAS2I/koepALiGwfw5UgH8eG1PMlQi4AgpFAisDICTz+FEDPIgGGAFglXi8z3jEUOcHTRAKcN6qmpqYChB02PL8If0e8wycvjUmdH8ibPBel5wd7nu8PfnsQLHz00Ufeo0eP9sFQw8juE2HwbFTHw1iCXWl0SQD2izIXlikI4z5BCrLubJBmY3adkJAQw69qcGgOFn+C5x/hY9ivGhsbh3G+homJiTpEpDUI3yK34N+SxKNeis8sRFkWns/pLrN9Cpxj/ssvv7xkyCd8x7AQAElcEhLDaoTy38H4r8LgDhIrSafxnxQAtwlTeRqCuJecnHwRixNefAjbJdjHO3WijfkY03E47cxdiPBTDCcxEOKrqFuLZe7tXbaTZXkNvCY51aMQUea0dgCe35yTk3MKf79tqXm+xJITAHHr1q3klStX1sBw70AEu2DodOl1NLosSxLnA/ZNkYTExET34OBgAYyfgIU36s2Ez5V5XqxZOZGUlNSJv5sIIleg/YJPH3kswUjA8xIG+Z74+PiLmOqF9CbPYrAkBUDcvn37mYyMjBrMEhgJXoEBHTQyiSJYliTOB4NUNp7EsQzfc32VZEnIcxqYxfYkRMZGNkmyL/B443rEI114fhsTPpAf0ps8i8GSFQDBSJCZmVmNSPB7iGAnqtJhTDEckBhf5HAf2/F+PMb0uRsyJMt8HMuSQILRBTnDMozdc+dYCNwnrwXruYQP0essrrclPz+fD72WNJa0AIi7d++mIpxWu1yuBhCzE4ZmWIatF3fpJJe3YyXxXM8HGVG4lmJZzN/gMTgnw74LM5gORK0z2OQ9/qA90n0a+MuKQw5+dIKpXWtWVtbHyOj/DqPylXNheF+QbUg+CTW3J7HmRYJt2HYxOQbB/SCbdy8HINIWeP5pko/w70bdkiefWPICIIqKioZGRkY6+D4B35pB1f/1npyZ5PkgiTa383cMgeN419LFMd/hcJxHAsh7GR5jd1jAfy+XEJgTpKenVzudTg4Hr4GkDGPXgoBHzk0d59sm0eYsntuc0skosBBIPlb9zPZJPs7bSs9/vDd8EBYRQIIPkBgJMLfmm0V80dQpiSRILkESZZkwt+E+8zbLrJOQ21zzHHLfE2WegGO+8HxMGwP66nYgEVYRQII3izAcVPPhz9jYGG/WZMokjpDebCb610AKQYrCJIIe5CNtaWlpnyQmJrampKSEJflEWEUACT47cLvdHZginkVOcBEEuRDG5z4+MXvr00AKQJa54O/wfyG0knx6fjiTT4RlBJDgzaLU1NSXMEV8a3x8fDfIygRJc30yFX8VJPkm0PPp8WeSk5Mvhzv5RFhGAAm+WTQ4OMi3jc8iE29B1c8+PnlaUEAmETgRbRj2L0QK+URYC4CgCDActDMx5BQRwwC/OxBvFlkBCIDgE8J2zEDEt3qRQj4R1kOAGQMDA8+A9Jd6enrewXCwC+V0iOGp+iezfU71+KEmv9IN12x/IUSMAAiPx5Pi9Xp3OJ3OIyBrFzzXASH8qj7iWM4j+a1eK2/voswoE9APNUOBsB8CzOBXySQMOcFJu/HxiQjgxlSOoB5440fqwlyW7bDwwU4/znWR5A8PDwf8K91QIaIEQCBJG7TZbO28L48hoBFVbhA6l8nJqSJJl3f7WDaJgJ7vxjn4fX7QvtINFSJOAAQjAWcFGK9PgmTxVTJFQJL5eBieLTyd9wtYZhQgSD7bgvwmkH8mmF/phgoRKQCCIsDsoDU/P/8URMDP0MRXyRTBxMSEIJ8LywT3YeVBWyZ6ZzG9bC0N4le6oUJEJYHzQd427u7u5r+w/y2IToGXx6EsxI8yijNjIH4YC4eOs6H6UDMUiHgBEHyKiIjwQldX1y5sPgfS+Q+XE7CQ4HEsNzA0fIdo0YKocVkV8gklBECcO3cuBgSnFhcXv3Dnzp1tU1NTfO2cL4y4ioqKvr5582bH/fv3h+rq6vgOoRLkE8oIQIJCGB0dtXu93mhM7/iW8Ax/nOnYsWNTKhGvoaGhoaGhoaGhoaGhoaGhoaEUli37Lx5gaRc7ou1CAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA6SURBVDhPY9y7d+9/BgoAE5QmG4BcYAFlI4N/UJr2AOQCMyibLDA4ApEiL1DFBUM8DCgGQz4hMTAAAD+tGg2EbfdcAAAAAElFTkSuQmCC) center no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#ccc}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#ccc}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left::before{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEnSURBVDhP3ZI9ToRAGIZhZNigRnFtlsKIiVrYmthaUHMAqz2FXsFzUEHDCQyFxTa7J7CSZoOJiYQC3TAs60vymUiGWX86fZoBXnh4Pwbt/6LT2kuSJIM0TSeu6557nrf2XkarBCS7eZ5nrSTLske6rKRXBIlbluV8DyyA4zhjipRIdSGxIHneAm/AsqwTjDWnWEmnESSHRVE8tZIVgOTqO5KWTqM4jh9s2z6l0y/5vAGdRmiwSYc/ptMIo91goltd15kQYhmG4XYQBAuK19L3sS8gueOc79R1vayq6tL3/QnFSqTtx9xTSK4hKA3D2DBN8z6KoiOKlUiNPkAz3jTNK2PMQDMB6QgveaFYQvln4yEByQFkFRry4XD/mKLfM53Nzujwz6Bp74BLdGY/IYqHAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right::after{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEuSURBVDhP5ZK/S4RgGMc9U7kwEocGOSKagojGlmiSFkH6L/oT+n9ucW1wdmiI6I649m4wCmzJFw/KH/lq35PnIDtR1+izvI9+4eP3eVH4e0ym00MaWxnQ2chs9njCWHjPOc9EUdwzTfONojVEOhsJw/f5F4BEKYrixfM8maI1WkVoEDLGDvI855BJWZYxyC4prtG62grXdU8VRbmRJGkDBReyLJ/jIxOKK1obrbBt+9ZxnC1IOCTbZVneodkVxRW1RghLGjtJ0/TVsqxdeuzXqIk4jj9prOh1R0vQ9gIrXQ9AFEULTdOOcU/PFPcTQTJCg6dN8AFUVd2BJKa4onM1SM6SJJn/kBz9lizpFAVBMB4C/E8MkhEkPkU1OkWGYez7vv+g67oBSUSv/w+C8A21tYGodvSadQAAAABJRU5ErkJggg==) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#ccc;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#ccc}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#ccc}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#ccc}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABFoSURBVHhe7V35b1TXFbbxAsbGHmbFK6AECJRGVEUhBa/gNFKkSKkIi8mi9C+J8nPbHypUpND8kqYBYhPMGioIae0E0kAoi7ENNmZsMNjGeLwvzIzH/b7rd6eDg2fceDzbvZ/09O7ce9/zved859xz3uKXpKGhoaGhoaGhoaGhoaGhoaGhBpKNvVKYmppKPnjwYOrIyEiqz+dblJ2dPZWenu7LzMz07N69e9LopgSUIgAVX1NTk7ZixYqcDRs2FLe1tb3q9XrtbEtNTe1as2bNpdbW1u87OjoGVCGCMgSg8hsbG5dbLJatUHB5Wlrar1C9EVsGNsphDN6gEfsfi4qKvna5XN+vX79+GL8TGkoQQCrfarWW9fT07JmcnCzBlr1o0aKlXALYB2UUfRMpKSmDKH9TWFh4qKurq37jxo0j4iQJioQnAJXf3NxsttlsJZ2dnfs8Hk8Fqs3JycnUOBUv+sky+vvQ1o8l4Tw8wWePHz/+NpE9QUITQCrfZDLR8nfB6rdD0VZYuVA+loEk1Im+qEtyu91ij7opkOEJtnMFBQVHQIZvzWbzoOiYYEhoAjx69MgGJRZ3d3dXwfLLQQgLLZ+Wjn0S6pIQ/ZMo/jIJwd/YptCnD4S4kJeXdxht/0pEEkz7vwTE7du3rdiVwIXvRqRfirJQPtsMBbPoVzhBryCBvjQOC+oq4T2qcI6S/v5+03Rr4iAhPQAtH7uSJ0+e7H369GkZylap/P8XhidwYbn42uFwJJwnSDgPgEDPArdd0tfX9/bExEQp9Gf7ucon6AngBcw41w54k704XzGIlW00xz0SigDGml8GRVWNj4/vgLLs+D1vL8dz4FwWeJPXHj58+B7KFS0tLQlBgoQhwODgoAU7afklMFw7rXe6dX6Awpkd+D0BiFZlsVhKEoEECUEAKn94eHgrgrSddPuocrCe+qfywgXDm1iQLpZ3dXXtQXoZ9ySIewIMDQ3ZRkdHy0CCvSABL/LkM82TYF4/XwSew/AEdvzN15FevhvvJIhrAtDyR0ZGmJ69PTY2Vgbl5NLipdWHywPwHJJUTBVJAsAOb7Md8cYeLAfFt27dyhId4gxxmwbS8ql8RORVCM5KoCQR8FHpzO2pMFnmPlCJBH+zPhAz66hsHmMoXbTLOoK/gZ7Fixf/Mz8//7OBgYGLL7zwQlyliHHpAZjqUfkul2sXlM813x/tBypaliUBApU787fsIxHYxnPINnlugn2wOTCGSgaGy5YtK25ubl5mNMcF/jfLOACUkAxB84peKVM9j8fjt3yjy08gFU3FSW/ATXqJQLAv62jlgccQ/D0beBy23iVLllyIN08QVx4AObg5NTW1lJaPSLwUippTqkcFSchyqMMCj5kjbEwRkR0IT9DW1pZj1Mc04sIDQBnJVD4ssty4vFtM5eM3F32j1+yQyuQ6Lq2b++eBVs/+3Hu93p94idnAY3BOXjYWnsButx8ZHx+vX7169YDRJSYRFx7g/v37Jlp+b28v1/wyCFson0KXyp0NVDY3KlOSRR4nf0sEno9tc3H/hDwOQ2JHeoLXenp69mVnZ2+L9ZggtPlEERCqeJJnxYoV5Qj8quj2oQxxY4cWPBfrNBTqhTJ96J+Gsn/OM4+f4RVw6JQb+zT0C+pp2CaP5TlZxrEuZAfnCwsLP4fXqlu7du2Q6BBjiFkPEKD8Ml5149U3CPaZu3oUfDDFEDjPU7j+bqzLTpaxCUZQUYHHsiwJwT74W2M5OTl34Xkeo8orGoKAx/LU3Hgu7M0YcyWI+47Vai2NVU8QkwSA8JKvX7+e43A4irH274FL5cMc5rS0NOH2aWFQjNhLN02wTYJlbG4ooy0jI6PGZDKdQvkhyMCnfaSSntkkCXBuH/p1gAC1IM4p1HWgfZJ9As7tL3MM3MsYgzDGZ2aKSO+Vl5dXEosXi+Z/nTTM+PDDDxdZLBYT0qkyKH8vUr0dUAxTPzFWKklCKpF7bhS+LEMpbiiuDUr5/OrVq38EefpRrsRhDrT7TyL7zwCDuQ70/xMUd2N0dDQFMQSvMvJBUmE0gX+X5ecBXXniDIwlb2hoKAtzGnz//fe7Dhw4wKUlJhBTHgCCTN65c2dObm5uGa2Gykc17/Lx2qvoQwSW+VwfQSukBVIZOM6Ncjutd926dec++OCDwb6+vnEc93xNzQJY7Pjly5evrly58nBmZuZxHN8Ot+7j3+DfkoSjtcsxcS/LBMriVjLG9NsHDx68g7mVxpIniBkCUPl0+7C4clj+Pgh6OwWHpqBjlEsAhU7FYBOWv3Tp0hMFBQVH6+rqGqgD0elnoKKiwov1+2ZRUdERkKAW525HtVgO5N+Ubn82kATGcsDnCd6NJRLEBAEgxOSGhgYTFCaifbjb7ahm3v+M5T8PVADBfhCyhwqC5Z8EkY6eOXPmxhtvvPFUdJgHNm/e7IEnuAZPcASp3XFUtePvTsqxyTHMBvaDx6AnsILYr0sSgPCZRpeoIeoE4JpP5UvLh6usgFUvp/JpWaGEi37SCqn8u7R8RN1fXrt27ebu3bvDttbSEzidzgYo7ggIVgulduBvCvfDMQSDMT5BAs6N1wlIAqSIZdH2BFElAATzzJoP6+Cab4agRLRPwYbyAAZJvOh7D1H7CVr+lStXbkJhE0aXsGHjxo3uu3fvXofiSAIRE0ChGELIJcBPVJIAsIAEjAmEJ4hmihg1AlD5huVXIM/nms9ULweC8o+JgVYoAuAYD/q0wPJP2mw2YfnhcPuzgcsBYwK+MCJjAowhKAM4B85FAscwJlguYwKku2XReqgkKgSg8nmRh24fls9r+2LNR0SfwqAO7SKy5uVbaV2s4ybLBmj5dwzLr7l06VLDQlj+TBgkuI7A8HBWVhY9QRvGJLIDicAy58C5cE6s5+/09HTKnoHh6/AE7/G9xWh4gogTAALwX+ED+5nn0/KXQ4hizZcWH6h4WSfL3FDm1Tkq/7jdbj8Gy29YSMufCZLgq6++usXsgGNA1T2MWQzaGB+Lz5TlnAiW6e3QZmK6yxQxGp4gogTAZP1v6RprPi3fQkFIJUsFyzLzfCk4ulF6CGy0/Nsmk+kEhH+sqampMRKWPxMMMplpYByCBBjTPVg6LyP713yWOYfZ5se5o58ZJKikJ1i+fHl5JD1BxAhA5RuXd8XrWnB9vLZvRlPQMUjlU1g4B02J6VcrBH4S634tgrLbW7duHRedogCSAKRuQlB4lCTA2JwYM68k+hUt5xAEIjuATMTzBFjOSiJFgogQgMrHhMwInEqMGzsVqOMbPCHv51N47EOhAnx1uwWCPgXlH3v06FFTNJUvQe+DFPEmlqKa7OzskzBqJxQq/L4xdtFvNrAPZYF+jAl23L9/f5/FYolIdhARAkDpVrPZXMpon0/NQDg2TnjaoIODrpTKh5AoxRa4SN6gqb5z504j1uGx6V7RB4mIIPQG0rrDxnWCNoO0Yg7BwD7cIBNmB9bx8XHxyDkIVbrQr6EtOAEC39IFuysgGCvXvenW6ckHg2FJvOByByQSbh+W3xyNNT8UGIQyDUWA+wXiApKAgaEgQTDQA0hANPgprhOIu4g4vqS3t3fBPMGCEgCKssFiS/v6+vZiQttp+VL5FErgTZTngZJDu3D7OM9x3tZtb2+PKcufCRLz3Llz9AQMDI9hunehxJBBgEwRCZIAh5AEwhPgN5+DXJBnDBeMAGCveFcPli/e0kXZhkmKJ3kI8gCEEOXnwVA+O7TCmk7T8nGuqAZ8cwUDQ6aIjAmwHJzAPJyYzqwkoOIpC2Y5BGUEWdEySAK+iyjeSl4IT7AgBKDlI/Up6+/vr+IEMHjx9C4g2rnnxolyY5lCCCwD9J20/GOZmZnC8jdt2jQqThAHIAnoCRD4MiY4hirGBOJikZw7yzQEOXeCbRKMCbCz0hMgfhKeINzXCRaEAHBX68DW3yGYEW/p0qVJxcoJysmT9SwT/G0Ihnk+LZ/R/nFYfnM8WP5MSE9QWFh4FCQ4ibkzRSTEXAmWKQP+lnKQMiJQL0jA191hWG+j/6rplvAg7ARAXk6FbwZrX8GExD9hDAZOlkLgnhtcIa/t8wpfLSz/KCz/VjxZ/kyQBHV1dTdAgsOMCTA3egJxK5mbnHswoJ0gCV7Fz2IEmmH7VzVhJ8Do6OhLXq+3mMo32DsryHiufQHW4IE1tCKXPmW1Wmvp9uPR8meC2cGZM2ca8vPz6QnEM4YkAds492CxUCAgm1xkUmWLFy9+yaiaN8JKAKxTdgzylxjky9iHZClYLTYSAQJ5inIrBHQcgqpGTn0zEZQvQU/Q3Nx8raio6JAREzgxb/+TRaGAPnygJNvj8WyCbF9xOp1h8QJhJQAs/xcI/sT/5ZmLa5Og5cMS7tE6kEPX1tfXN0Xyxk6kwBtI9ASYY01WVhavGIoni4zmkKBMgRXwGCUorxWV80RYCYCcNXd4ePglMDSHgw3l2sh+9OEzfK0QSK1h+RG9qxdpGNkBbyUf4vMEqGqHrPyPnM8GypNeAMgeGxtbiyA712iaF8JKgIyMDBd2vdjcvAM2B7iR795DpH8KQVItI+ZEVr6EsRzcxJyrQQJ6gg4oNujLJ2gXdxVBlFH074asw/I/jMNKgA0bNjQigKuHVZME/hSPGycQCDCaL210YCKnVq1a9SVcY1if4Yt1cDnAOn4Dc/8CMuDFovuQ0zMukzKTnoGyhFx5q7kbpKkvKChoEQ3zRFgJAGY+wCDrYdVNbrd7BIMXt0UDCYCyB7t+un2s+bUrV66s5j11lZQvwWcM4Qn+s2bNGi4HxyCbNsiJ/1eAl7+fMRpD+f3wAo0Isn8wm82dRtO8EFYCEHBrt20221GkKv9GUDiAST2FsjkBKn4Qk2rHJM5j+xQsrlHN8meCnuDixYvXecUQMvsExnMBMqM3GIbM6BHoAsZR7EtPT/8esq3Ny8trhhyDBw1zRNgJgGCue8mSJWeQxx/EvhrKv4HqHrgwvqZ1For/K9zenzs6Ov4C5V9TWfkSFRUVXniAay6Xaz8C4T9A0QdAhH9Adu1QdA/2VyHLQxaL5VN4gfP79+/vMg6dN+aWp/0MVFdXp1RWVuZPTEyUIWLdgAm4wPJvUX8dk434t3lOnz79a6Rfn8CyXoZQQxGfY7va2dn5+7feeqtpuioywPiSz549m75t27ZNXV1d5XD3JofDcQuK/+7jjz9+iC6+jz76KOTdxbliwQgggUGn8eNMWLOmYPlest1oiijihQASfGEGMkvDMroIy+pkY2OjN5yKl1hwAsQK4o0AkULYYwCN+IImgOLQBFAcmgCKQxNAcWgCKA5NAMWhCaA4NAEUhyaA4tAEUByaAIpDE0BxaAIoDk0AxaEJoDg0ARSHJoDi0ARQHJoAikMTQHFoAigOTQDFoQmgODQBFIcmgOLQBFAcmgCKQxNAcWgCKA5NAMWhCaA4NAEUhyaA4tAEUByaAIpDE0BxaAIoDk0AxaEJoDg0ARSHJoDi0ARQHJoAikMTQHFoAigOTQDFoQmgODQBFIcmgOLQBFAcyhFgKuBLpnIv62UdN1WgDAGgVK/P5+NHLIV2pbIDy5IM2E9NTk6Oe73esH+lK9agDAHS09OHsN0GAfjRZSqYn7r1WzzL0x/qTPKlpKQMLF269A76j7EikaEMAYqKip7k5uZegBdwQtE+Kj3w49aSDLD6SWxtDofja7vdPmAcnrBQhgDr168fbm1tvQT3/iMUz0+v+j9uDZ/PLvxg81BqaurDtLS0Hy9evHhly5Ytw2xIZCgVBPK7xvAEh6Hkv/FDzG63uxvWPgiTH/B4PI9Q9x3I8ff8/Pxam83Wx1jAODRhocyXQyX4SdY333xz2erVq3/jdDq3wAnYWQ9lP37xxRd/aGpqutzZ2Tm4a9cuegRNgEQFiZCXl5cyMTEhvKDL5aKy+WHmqHzbWENDQ0NDQ0NDQyNCSEr6L2/pkdEk0sbTAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#ccc}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#ccc}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#ccc;box-shadow:0 1px 0 0 #ccc}.gui-dark gui-structure-search-bar form{background:#525252}.gui-dark gui-structure-search-bar input{background:#525252;color:#ccc;border-color:#666}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f0f0f0}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}"]
+                        styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}", "gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid #d6d6d6;height:30px}.gui-header .gui-header-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;position:absolute;top:8px;right:8px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABj0lEQVQ4ja2T261UMQxFV2znxdwvyqASOpgzf0jUQC1UQSkUgUQFCHHPnCQOPzeH+R8sRZHysLaXt8O2bT9ijC8hBFFVQgiUUmitcblcXFUZYwCQc8bMfIxBjJHW2m8D3o8xXswMgDknvXfM7PwoIsw5AWitEWNcd8mAz6pqIQTcnRgjMUYA3J0QwrkASimIyErQeTbC7Xb7JCICYGaICCklzIw5JyKCqhJjRFXJOTPnJKVECMHN3b+KSBERROSU6u6oKiklFshHLsdxMOfczcx+ikgBGGOQUmLOSQgBVT3BvolkjIGI0HtHRPanGTwdYdu272ZWgBNUjBEzo9bKvu/knFHVs81rb63tBnwAirufta94fX0lpQT849B7J+dM7x13383dv4wxLMZ4gltGWQ5cHZlzYmYcx0FKCXf/D0a6Xq8fxxip1irLsrXW1UJXVWqt9N65XC7s++5Lbe+925zzWynlHcCaxiXdzFBVWmuICPf7nfXurcRfpqp/eu/ySPdxCtf5mtaU0gKIiBx/ARsJ0yTj9LIKAAAAAElFTkSuQmCC) center no-repeat;height:16px;width:16px;opacity:.8}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper:hover .gui-header-menu-icon{opacity:1}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid #d6d6d6}gui-structure{background:#fff;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom:1px solid #d6d6d6}gui-structure-search-bar{display:block;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;position:relative}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEgSURBVDhPrdM9SwNBFIXhVTF2kkbSSiCF2GkRlBR+kMJGrO1t7WxsLEQQC8HCThQRLETIT4gEtNQ6aCUKYgpBLAIW+p47E5LsJuugHniYuTB7d2aZjWKZwyWe8OV94BQFpGYE23hBFTOYQB4rOIEabqFvdqEGC1b1zjSa6NloFmqwaFV6itCOEker4MhNg3IMHa8rr1h206Bo7ZubtqPtjbtpULRWz4xZRQb9OOrHkLTWZvxoTR5RsiosU7jHs1U++7hz0x8zjBvsWNWRLD6xblV6NtBAzqpYdN31sfasSkYvOoBeltj1gB8V3Uj9N3rgHA94hy5YGfqfatjEFebRN6s4xDV0/gssQc2VNWjX+sf+lH9vdDZk5e9yi3oURZPfGPU3vvdwgY8AAAAASUVORK5CYII=);width:17px;height:17px}gui-structure-search-bar form input{border:1px solid #d6d6d6;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:absolute;top:4px;padding-left:22px;line-height:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:2px 8px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:42px 8px}.gui-vertical-grid .gui-structure-aggregation-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid #d6d6d6}.gui-vertical-grid .gui-structure-aggregation-cell:last-of-type,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom:1px solid #d6d6d6}.gui-horizontal-grid gui-structure-container .gui-row:last-of-type .gui-cell{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid #d6d6d6}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div{color:#333;cursor:pointer}gui-structure-info-panel div button{background:#999;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:\"Comic Sans MS\",cursive,sans-serif;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #999}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-aggregation-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-aggregation-panel.gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top:1px solid #d6d6d6}gui-structure-aggregation-panel.gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom:1px solid #d6d6d6}gui-structure-aggregation-panel .gui-structure-aggregation-cell{font-size:14px}gui-structure-aggregation-panel .gui-structure-aggregation-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 6px;overflow:hidden}gui-structure-aggregation-panel .gui-structure-aggregation-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean,gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-aggregation-panel .gui-structure-aggregation-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid transparent;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left{position:relative;cursor:pointer;padding:12px 12px 12px 32px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover::before{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left::before{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASElEQVR4AWMY2cAdiA0oNSQfiP8DcTo1DOkfHoaEQw35DcT7CeBsfAalQw36TIRBzYRc1Q81LJ8YLwx9w8LJ044ZAQ4MIxcAAAffIk95XG/oAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;left:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right{position:relative;cursor:pointer;padding:12px 32px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover::after{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right::after{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAUUlEQVR4AWMY2cAGiN2pYVA7EP8H4nxKDWIB4tW0MCyYWob9JsawbCDejwcfhrrqNzgS8IBmkAYC+Dc1vNgPNaR/eBhSDjeEQuAPxOkMIxcAAK59IwsNdxXLAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;right:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title .gui-sort{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort{display:inline-block;height:16px;width:16px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-text-highlight{background:#fff799}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-aggregation-value{font-weight:700}", "gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section div{margin-right:4px}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid #d6d6d6;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;line-height:34px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{font-weight:700;color:#333;box-shadow:0 1px 0 0 #333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{margin:0 2px;background:0 0;padding:0;font-family:Roboto,\"Helvetica Neue\",sans-serif}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button svg{opacity:.7;margin:0 2px -2px}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover svg{opacity:1}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:disabled svg{opacity:.3}gui-structure-paging gui-structure-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid #d6d6d6}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid #d6d6d6}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-material .gui-header,.gui-material.gui-structure{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-structure-header .gui-header{font-weight:700;color:grey}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:grey;opacity:.4}", ".gui-dark .gui-header,.gui-dark.gui-structure{background:#383838;color:#ccc}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA6SURBVDhPY9y7d+9/BgoAE5QmG4BcYAFlI4N/UJr2AOQCMyibLDA4ApEiL1DFBUM8DCgGQz4hMTAAAD+tGg2EbfdcAAAAAElFTkSuQmCC) center no-repeat}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#ccc}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#ccc}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left::before{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEnSURBVDhP3ZI9ToRAGIZhZNigRnFtlsKIiVrYmthaUHMAqz2FXsFzUEHDCQyFxTa7J7CSZoOJiYQC3TAs60vymUiGWX86fZoBXnh4Pwbt/6LT2kuSJIM0TSeu6557nrf2XkarBCS7eZ5nrSTLske6rKRXBIlbluV8DyyA4zhjipRIdSGxIHneAm/AsqwTjDWnWEmnESSHRVE8tZIVgOTqO5KWTqM4jh9s2z6l0y/5vAGdRmiwSYc/ptMIo91goltd15kQYhmG4XYQBAuK19L3sS8gueOc79R1vayq6tL3/QnFSqTtx9xTSK4hKA3D2DBN8z6KoiOKlUiNPkAz3jTNK2PMQDMB6QgveaFYQvln4yEByQFkFRry4XD/mKLfM53Nzujwz6Bp74BLdGY/IYqHAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right::after{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEuSURBVDhP5ZK/S4RgGMc9U7kwEocGOSKagojGlmiSFkH6L/oT+n9ucW1wdmiI6I649m4wCmzJFw/KH/lq35PnIDtR1+izvI9+4eP3eVH4e0ym00MaWxnQ2chs9njCWHjPOc9EUdwzTfONojVEOhsJw/f5F4BEKYrixfM8maI1WkVoEDLGDvI855BJWZYxyC4prtG62grXdU8VRbmRJGkDBReyLJ/jIxOKK1obrbBt+9ZxnC1IOCTbZVneodkVxRW1RghLGjtJ0/TVsqxdeuzXqIk4jj9prOh1R0vQ9gIrXQ9AFEULTdOOcU/PFPcTQTJCg6dN8AFUVd2BJKa4onM1SM6SJJn/kBz9lizpFAVBMB4C/E8MkhEkPkU1OkWGYez7vv+g67oBSUSv/w+C8A21tYGodvSadQAAAABJRU5ErkJggg==) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#ccc;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#ccc}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#ccc}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#2c2c2c}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-aggregation-cell{background:#383838;color:#ccc}.gui-dark .gui-structure-aggregation-panel-bottom .gui-structure-aggregation-cell{border-top-color:#666}.gui-dark .gui-structure-aggregation-panel-top .gui-structure-aggregation-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#ccc}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-header .gui-header-cell .gui-header-menu .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#ccc}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#ccc}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#ccc;box-shadow:0 1px 0 0 #ccc}.gui-dark gui-structure-search-bar form{background:#525252}.gui-dark gui-structure-search-bar input{background:#525252;color:#ccc;border-color:#666}", ".gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light.gui-structure-border{border-color:#ccc transparent}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid transparent}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f0f0f0}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f0f0f0}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-vertical-grid gui-structure-container .gui-row .gui-cell{border-right:none}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}"]
                     }] }
         ];
         /** @nocollapse */
@@ -21461,7 +21584,7 @@
          * @return {?}
          */
         function (aggregateId) {
-            return this.inMemoryStructureAggregateStore.getById(aggregateId).getValueOrNullOrThrowError();
+            return this.inMemoryStructureAggregateStore.getById(aggregateId);
         };
         /**
          * @param {?} aggregate
@@ -21713,7 +21836,7 @@
          */
         function () {
             return [
-                StructureInitedEvent,
+                StructureCreatedEvent,
                 SetSourceLoadingEvent,
                 SchemaSetEvent,
                 SchemaThemeSetEvent,
@@ -21822,522 +21945,986 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var OriginItemEntity = /** @class */ (function () {
-        function OriginItemEntity(id, rawData, position, version) {
-            if (version === void 0) { version = 0; }
-            this.id = id;
-            this.rawData = rawData;
-            this.position = position;
-            this.version = version;
+    var SetVerticalScrollEnabledCommandHandler = /** @class */ (function () {
+        function SetVerticalScrollEnabledCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
          * @return {?}
          */
-        OriginItemEntity.prototype.getData = /**
+        SetVerticalScrollEnabledCommandHandler.prototype.forCommand = /**
          * @return {?}
          */
         function () {
-            return this.rawData;
+            return SetVerticalScrollEnabledCommand;
         };
         /**
+         * @param {?} structure
+         * @param {?} command
          * @return {?}
          */
-        OriginItemEntity.prototype.getVersion = /**
+        SetVerticalScrollEnabledCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
          * @return {?}
          */
-        function () {
-            return this.version;
-        };
-        /**
-         * @return {?}
-         */
-        OriginItemEntity.prototype.getPosition = /**
-         * @return {?}
-         */
-        function () {
-            return this.position;
-        };
-        /**
-         * @return {?}
-         */
-        OriginItemEntity.prototype.bumpVersion = /**
-         * @return {?}
-         */
-        function () {
-            this.version += 1;
-        };
-        /**
-         * @param {?} position
-         * @return {?}
-         */
-        OriginItemEntity.prototype.setPosition = /**
-         * @param {?} position
-         * @return {?}
-         */
-        function (position) {
-            this.position = position;
-        };
-        /**
-         * @return {?}
-         */
-        OriginItemEntity.prototype.clone = /**
-         * @return {?}
-         */
-        function () {
+        function (structure, command) {
             /** @type {?} */
-            var rawData = __assign({}, this.rawData);
-            return new OriginItemEntity(this.id, rawData, this.version);
-        };
-        return OriginItemEntity;
-    }());
-    if (false) {
-        /** @type {?} */
-        OriginItemEntity.prototype.id;
-        /** @type {?} */
-        OriginItemEntity.prototype.rawData;
-        /**
-         * @type {?}
-         * @private
-         */
-        OriginItemEntity.prototype.version;
-        /**
-         * @type {?}
-         * @private
-         */
-        OriginItemEntity.prototype.position;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSourceItemEditedAggregateEvent = /** @class */ (function (_super) {
-        __extends(StructureSourceItemEditedAggregateEvent, _super);
-        function StructureSourceItemEditedAggregateEvent(aggregateId, beforeItem, afterItem) {
-            var _this = _super.call(this, aggregateId, 'StructureSourceItemEditedAggregateEvent') || this;
-            _this.beforeItem = beforeItem;
-            _this.afterItem = afterItem;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureSourceItemEditedAggregateEvent.prototype.getBeforeItem = /**
-         * @return {?}
-         */
-        function () {
-            return this.beforeItem;
-        };
-        /**
-         * @return {?}
-         */
-        StructureSourceItemEditedAggregateEvent.prototype.getAfterItem = /**
-         * @return {?}
-         */
-        function () {
-            return this.afterItem;
-        };
-        return StructureSourceItemEditedAggregateEvent;
-    }(hermes.AggregateEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSourceItemEditedAggregateEvent.prototype.beforeItem;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSourceItemEditedAggregateEvent.prototype.afterItem;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureOriginChangedAggregateEvent = /** @class */ (function (_super) {
-        __extends(StructureOriginChangedAggregateEvent, _super);
-        function StructureOriginChangedAggregateEvent(aggregateId, origin) {
-            var _this = _super.call(this, aggregateId, 'StructureOriginChangedAggregateEvent') || this;
-            _this.origin = origin;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureOriginChangedAggregateEvent.prototype.getOrigin = /**
-         * @return {?}
-         */
-        function () {
-            return this.origin;
-        };
-        return StructureOriginChangedAggregateEvent;
-    }(hermes.AggregateEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureOriginChangedAggregateEvent.prototype.origin;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SourceManager = /** @class */ (function () {
-        function SourceManager() {
-            this.loading = false;
-            this.fetched = false;
-            this.entities = [];
-            // Entities after filtering, searching
-            this.preparedEntities = [];
-            this.slicedEntities = [];
-        }
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.isLoading = /**
-         * @return {?}
-         */
-        function () {
-            return this.loading;
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.isFetched = /**
-         * @return {?}
-         */
-        function () {
-            return this.fetched;
-        };
-        /**
-         * @param {?} enabled
-         * @return {?}
-         */
-        SourceManager.prototype.setLoading = /**
-         * @param {?} enabled
-         * @return {?}
-         */
-        function (enabled) {
-            this.loading = enabled;
-        };
-        /**
-         * @param {?} ent
-         * @return {?}
-         */
-        SourceManager.prototype.setEntities = /**
-         * @param {?} ent
-         * @return {?}
-         */
-        function (ent) {
-            this.entities = ent;
-            this.recalculatePositions();
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.getEntities = /**
-         * @return {?}
-         */
-        function () {
-            return this.entities;
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.setPreparedEntities = /**
-         * @return {?}
-         */
-        function () {
-            this.preparedEntities = __spread(this.entities);
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.getPreparedEntities = /**
-         * @return {?}
-         */
-        function () {
-            return this.preparedEntities;
-        };
-        /**
-         * @param {?} ent
-         * @return {?}
-         */
-        SourceManager.prototype.setSlicedEntities = /**
-         * @param {?} ent
-         * @return {?}
-         */
-        function (ent) {
-            this.slicedEntities = ent;
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.getSlicedEntities = /**
-         * @return {?}
-         */
-        function () {
-            return this.slicedEntities;
-        };
-        /**
-         * @param {?=} items
-         * @param {?=} structureId
-         * @return {?}
-         */
-        SourceManager.prototype.setOrigin = /**
-         * @param {?=} items
-         * @param {?=} structureId
-         * @return {?}
-         */
-        function (items, structureId) {
-            if (items === void 0) { items = []; }
-            this.origin = this.convertItems(items);
-            return this.createOriginChangedEvent(structureId);
-        };
-        /**
-         * @param {?=} items
-         * @param {?=} structureId
-         * @return {?}
-         */
-        SourceManager.prototype.setConvertedOrigin = /**
-         * @param {?=} items
-         * @param {?=} structureId
-         * @return {?}
-         */
-        function (items, structureId) {
-            if (items === void 0) { items = []; }
-            this.origin = items;
-            return this.createOriginChangedEvent(structureId);
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.getOrigin = /**
-         * @return {?}
-         */
-        function () {
-            return this.origin;
-        };
-        /**
-         * @return {?}
-         */
-        SourceManager.prototype.getOriginSize = /**
-         * @return {?}
-         */
-        function () {
-            return this.origin.length;
-        };
-        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
-        //
-        // }
-        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
-        //
-        // }
-        /**
-         * @param {?} itemId
-         * @param {?} value
-         * @param {?} field
-         * @param {?} structureId
-         * @return {?}
-         */
-        SourceManager.prototype.editOriginItem = 
-        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
-        //
-        // }
-        /**
-         * @param {?} itemId
-         * @param {?} value
-         * @param {?} field
-         * @param {?} structureId
-         * @return {?}
-         */
-        function (itemId, value, field, structureId) {
+            var enabled = command.isEnabled();
             /** @type {?} */
-            var item = this.findOriginItem(itemId);
-            /** @type {?} */
-            var itemBeforeChange = item.clone();
-            if (item) {
-                item.rawData[field.getAccessor()] = value;
-                item.bumpVersion();
-            }
-            return [
-                new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
-                this.createOriginChangedEvent(structureId)
-            ];
+            var formation = structure.getVerticalFormation();
+            formation.setEnabled(enabled);
         };
         /**
-         * @param {?} itemId
-         * @param {?} structureId
+         * @param {?} aggregate
+         * @param {?} command
          * @return {?}
          */
-        SourceManager.prototype.removeOriginItem = /**
-         * @param {?} itemId
-         * @param {?} structureId
+        SetVerticalScrollEnabledCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
          * @return {?}
          */
-        function (itemId, structureId) {
-            /** @type {?} */
-            var index = this.findOriginItemIndex(itemId);
-            if (index > -1) {
-                this.origin.splice(index, 1);
-                return [this.createOriginChangedEvent(structureId)];
-            }
-            return [];
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new VerticalScrollEnabledSetEvent(command.getAggregateId()));
         };
-        /**
-         * @private
-         * @param {?} items
-         * @return {?}
-         */
-        SourceManager.prototype.convertItems = /**
-         * @private
-         * @param {?} items
-         * @return {?}
-         */
-        function (items) {
-            return items.map((/**
-             * @param {?} item
-             * @param {?} index
-             * @return {?}
-             */
-            function (item, index) {
-                return new OriginItemEntity(hermes.RandomStringGenerator.generate(), item, index);
-            }));
-        };
-        /**
-         * @private
-         * @param {?} structureId
-         * @return {?}
-         */
-        SourceManager.prototype.createOriginChangedEvent = /**
-         * @private
-         * @param {?} structureId
-         * @return {?}
-         */
-        function (structureId) {
-            return new StructureOriginChangedAggregateEvent(structureId, this.origin);
-        };
-        /**
-         * @private
-         * @param {?} itemId
-         * @return {?}
-         */
-        SourceManager.prototype.findOriginItem = /**
-         * @private
-         * @param {?} itemId
-         * @return {?}
-         */
-        function (itemId) {
-            return this.origin.find((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) { return item.id === itemId; }));
-        };
-        /**
-         * @private
-         * @param {?} itemId
-         * @return {?}
-         */
-        SourceManager.prototype.findOriginItemIndex = /**
-         * @private
-         * @param {?} itemId
-         * @return {?}
-         */
-        function (itemId) {
-            return this.origin.findIndex((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) { return item.id === itemId; }));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        SourceManager.prototype.recalculatePositions = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.entities.forEach((/**
-             * @param {?} ent
-             * @param {?} index
-             * @return {?}
-             */
-            function (ent, index) {
-                ent.setPosition(index);
-            }));
-        };
-        return SourceManager;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.loading;
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.fetched;
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.origin;
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.entities;
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.preparedEntities;
-        /**
-         * @type {?}
-         * @private
-         */
-        SourceManager.prototype.slicedEntities;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SourceManagerFactory = /** @class */ (function () {
-        function SourceManagerFactory() {
-        }
-        /**
-         * @return {?}
-         */
-        SourceManagerFactory.prototype.createDefault = /**
-         * @return {?}
-         */
-        function () {
-            return new SourceManager();
-        };
-        /**
-         * @return {?}
-         */
-        SourceManagerFactory.prototype.create = /**
-         * @return {?}
-         */
-        function () {
-            return new SourceManager();
-        };
-        SourceManagerFactory.decorators = [
+        SetVerticalScrollEnabledCommandHandler.decorators = [
             { type: core.Injectable }
         ];
-        return SourceManagerFactory;
+        /** @nocollapse */
+        SetVerticalScrollEnabledCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetVerticalScrollEnabledCommandHandler;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetVerticalScrollEnabledCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetScrollPositionCommandHandler = /** @class */ (function () {
+        function SetScrollPositionCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetScrollPositionCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetScrollPositionCommand;
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        SetScrollPositionCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var position = command.getPosition();
+            structure.setScrollPosition(position);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetScrollPositionCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new ScrollPositionSetEvent(command.getAggregateId()));
+        };
+        SetScrollPositionCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetScrollPositionCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetScrollPositionCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetScrollPositionCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var InitFieldsCommandHandler = /** @class */ (function () {
+        function InitFieldsCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        InitFieldsCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return InitFieldsCommand;
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        InitFieldsCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var columns = command.getColumns();
+            structure.createFields(columns);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        InitFieldsCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var compositionId = command.getCompositionId();
+            /** @type {?} */
+            var columns = command.getColumns();
+            /** @type {?} */
+            var aggregateEvents = aggregate.getEvents();
+            /** @type {?} */
+            var fields = ((/** @type {?} */ (aggregateEvents[0]))).getFields();
+            this.domainEventPublisher.publish(new FieldsInitedEvent(command.getAggregateId(), compositionId, columns, fields));
+        };
+        InitFieldsCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        InitFieldsCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return InitFieldsCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        InitFieldsCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ToggleSortCommandHandler = /** @class */ (function () {
+        function ToggleSortCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        ToggleSortCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ToggleSortCommand;
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        ToggleSortCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var aggregateId = command.getAggregateId();
+            /** @type {?} */
+            var compositionId = command.getCompositionId();
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var sorters = structure.toggleSort(fieldId);
+            this.publishSortEvent(aggregateId, compositionId, fieldId, sorters);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ToggleSortCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+        };
+        /**
+         * @private
+         * @param {?} aggregateId
+         * @param {?} compositionId
+         * @param {?} fieldId
+         * @param {?} sorters
+         * @return {?}
+         */
+        ToggleSortCommandHandler.prototype.publishSortEvent = /**
+         * @private
+         * @param {?} aggregateId
+         * @param {?} compositionId
+         * @param {?} fieldId
+         * @param {?} sorters
+         * @return {?}
+         */
+        function (aggregateId, compositionId, fieldId, sorters) {
+            /** @type {?} */
+            var directions = sorters.map((/**
+             * @param {?} sorter
+             * @return {?}
+             */
+            function (sorter) {
+                return {
+                    direction: sorter.hasDirection(),
+                    fieldId: sorter.getField().getId()
+                };
+            }));
+            this.domainEventPublisher.publish(new SortToggledEvent(aggregateId, compositionId, directions));
+        };
+        ToggleSortCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        ToggleSortCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return ToggleSortCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleSortCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleSortCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SortingSetEvent = /** @class */ (function (_super) {
+        __extends(SortingSetEvent, _super);
+        function SortingSetEvent(aggregateId) {
+            return _super.call(this, aggregateId, 'SortingSetEvent') || this;
+        }
+        return SortingSetEvent;
+    }(hermes.DomainEvent));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetSortingCommandHandler = /** @class */ (function () {
+        function SetSortingCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetSortingCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSortingCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSortingCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var sortingConfig = command.getSortingConfig();
+            aggregate.setSortingConfig(sortingConfig);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSortingCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SortingSetEvent(command.getAggregateId()));
+        };
+        SetSortingCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetSortingCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetSortingCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetSortingCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigFilterSetEvent = /** @class */ (function (_super) {
+        __extends(StructureConfigFilterSetEvent, _super);
+        function StructureConfigFilterSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'StructureConfigFilterSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureConfigFilterSetEvent.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return StructureConfigFilterSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigFilterSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSetConfigFilterCommandHandler = /** @class */ (function () {
+        function StructureSetConfigFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        StructureSetConfigFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureSetConfigFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var filterConfig = command.getConfig();
+            aggregate.setFilterConfig(filterConfig);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var filterConfig = command.getConfig();
+            this.domainEventPublisher.publish(new StructureConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
+        };
+        StructureSetConfigFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureSetConfigFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureSetConfigFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetConfigFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigSearchingSetEvent = /** @class */ (function (_super) {
+        __extends(StructureConfigSearchingSetEvent, _super);
+        function StructureConfigSearchingSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'StructureConfigSearchingSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureConfigSearchingSetEvent.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return StructureConfigSearchingSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigSearchingSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSetConfigSearchingCommandHandler = /** @class */ (function () {
+        function StructureSetConfigSearchingCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        StructureSetConfigSearchingCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureSetConfigSearchingCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigSearchingCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var searchingConfig = command.getConfig();
+            aggregate.setSearchingConfig(searchingConfig);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigSearchingCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var searchingConfig = command.getConfig();
+            this.domainEventPublisher.publish(new StructureConfigSearchingSetEvent(command.getAggregateId(), searchingConfig.enabled));
+        };
+        StructureSetConfigSearchingCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureSetConfigSearchingCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureSetConfigSearchingCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetConfigSearchingCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigQuickFilterSetEvent = /** @class */ (function (_super) {
+        __extends(StructureConfigQuickFilterSetEvent, _super);
+        function StructureConfigQuickFilterSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'StructureConfigQuickFilterSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureConfigQuickFilterSetEvent.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return StructureConfigQuickFilterSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigQuickFilterSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSetConfigQuickFilterCommandHandler = /** @class */ (function () {
+        function StructureSetConfigQuickFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        StructureSetConfigQuickFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureSetConfigQuickFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigQuickFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var quickFiltersConfig = command.getConfig();
+            aggregate.setQuickFiltersConfig(quickFiltersConfig);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetConfigQuickFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var structureId = command.getAggregateId();
+            /** @type {?} */
+            var quickFiltersConfig = command.getConfig();
+            this.domainEventPublisher.publish(new StructureConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
+        };
+        StructureSetConfigQuickFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureSetConfigQuickFilterCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureSetConfigQuickFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureToggleFilterCommandHandler = /** @class */ (function () {
+        function StructureToggleFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        StructureToggleFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureToggleFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureToggleFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var externalFieldId = command.getExternalFilterId();
+            /** @type {?} */
+            var filterValue = command.getFilterValue();
+            aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureToggleFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new StructureFilterToggledEvent(command.getAggregateId()));
+        };
+        StructureToggleFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureToggleFilterCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureToggleFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureToggleFilterCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureToggleFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationsChangedEvent = /** @class */ (function (_super) {
+        __extends(StructureAggregationsChangedEvent, _super);
+        function StructureAggregationsChangedEvent(structureId, values) {
+            var _this = _super.call(this, structureId, 'StructureAggregationsChangedEvent') || this;
+            _this.values = values;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureAggregationsChangedEvent.prototype.getAggregations = /**
+         * @return {?}
+         */
+        function () {
+            return this.values;
+        };
+        return StructureAggregationsChangedEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationsChangedEvent.prototype.values;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructurePreparedEntitiesSetEvent = /** @class */ (function (_super) {
+        __extends(StructurePreparedEntitiesSetEvent, _super);
+        function StructurePreparedEntitiesSetEvent(aggregateId, preparedItems) {
+            var _this = _super.call(this, aggregateId, 'StructurePreparedEntitiesSetEvent') || this;
+            _this.preparedItems = preparedItems;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructurePreparedEntitiesSetEvent.prototype.getPreparedItems = /**
+         * @return {?}
+         */
+        function () {
+            return this.preparedItems;
+        };
+        return StructurePreparedEntitiesSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructurePreparedEntitiesSetEvent.prototype.preparedItems;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSourceDomainEventPublisher = /** @class */ (function () {
+        function StructureSourceDomainEventPublisher(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @param {?} events
+         * @return {?}
+         */
+        StructureSourceDomainEventPublisher.prototype.publish = /**
+         * @param {?} events
+         * @return {?}
+         */
+        function (events) {
+            var _this = this;
+            events.forEach((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                _this.publishEvent(event);
+            }));
+        };
+        /**
+         * @private
+         * @param {?} event
+         * @return {?}
+         */
+        StructureSourceDomainEventPublisher.prototype.publishEvent = /**
+         * @private
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event.getType() === 'StructureOriginChangedAggregateEvent') {
+                /** @type {?} */
+                var structureOriginChangedAggregateEvent = ((/** @type {?} */ (event)));
+                /** @type {?} */
+                var domainEvent = new OriginSetEvent(structureOriginChangedAggregateEvent.getAggregateId(), structureOriginChangedAggregateEvent.getOrigin());
+                this.domainEventPublisher.publish(domainEvent);
+            }
+            if (event.getType() === 'StructureSourceItemEditedAggregateEvent') {
+                /** @type {?} */
+                var structureSourceItemEditedAggregateEvent = ((/** @type {?} */ (event)));
+                /** @type {?} */
+                var domainEvent = new StructureSourceItemEditedEvent(structureSourceItemEditedAggregateEvent.getAggregateId(), structureSourceItemEditedAggregateEvent.getBeforeItem(), structureSourceItemEditedAggregateEvent.getAfterItem());
+                this.domainEventPublisher.publish(domainEvent);
+            }
+            if (event.getType() === 'StructureAggregationsChangedAggregateEvent') {
+                /** @type {?} */
+                var structureAggregationsChangedAggregateEvent = ((/** @type {?} */ (event)));
+                /** @type {?} */
+                var domainEvent = new StructureAggregationsChangedEvent(structureAggregationsChangedAggregateEvent.getAggregateId(), structureAggregationsChangedAggregateEvent.getAggregations());
+                this.domainEventPublisher.publish(domainEvent);
+            }
+            if (event.getType() === 'StructurePreparedEntitiesSetAggregateEvent') {
+                /** @type {?} */
+                var structurePreparedEntitiesSetAggregateEvent = ((/** @type {?} */ (event)));
+                /** @type {?} */
+                var domainEvent = new StructurePreparedEntitiesSetEvent(structurePreparedEntitiesSetAggregateEvent.getAggregateId(), structurePreparedEntitiesSetAggregateEvent.getPreparedItems());
+                this.domainEventPublisher.publish(domainEvent);
+            }
+        };
+        StructureSourceDomainEventPublisher.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureSourceDomainEventPublisher.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureSourceDomainEventPublisher;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSourceDomainEventPublisher.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationEnabledSetEvent = /** @class */ (function (_super) {
+        __extends(StructureAggregationEnabledSetEvent, _super);
+        function StructureAggregationEnabledSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'StructureAggregationEnabledSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureAggregationEnabledSetEvent.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return StructureAggregationEnabledSetEvent;
+    }(hermes.DomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationEnabledSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSetAggregationEnabledCommandHandler = /** @class */ (function () {
+        function StructureSetAggregationEnabledCommandHandler(structureSourceDomainEventPublisher, domainEventPublisher) {
+            this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        StructureSetAggregationEnabledCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureSetAggregationEnabledCommand;
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetAggregationEnabledCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var enabled = command.isEnabled();
+            structure.setAggregationEnabled(enabled);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetAggregationEnabledCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var enabled = command.isEnabled();
+            /** @type {?} */
+            var aggregateEvents = aggregate.getEvents();
+            this.domainEventPublisher.publish(new StructureAggregationEnabledSetEvent(command.getAggregateId(), enabled));
+            this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+        };
+        StructureSetAggregationEnabledCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureSetAggregationEnabledCommandHandler.ctorParameters = function () { return [
+            { type: StructureSourceDomainEventPublisher },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return StructureSetAggregationEnabledCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetAggregationEnabledCommandHandler.prototype.structureSourceDomainEventPublisher;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSetAggregationEnabledCommandHandler.prototype.domainEventPublisher;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -22703,594 +23290,6 @@
          */
         VerticalFormationFactory.prototype.logger;
     }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var AGGREGATION_CALCULATORS = 'GUI - Aggregation Calculators';
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationsChangedAggregateEvent = /** @class */ (function (_super) {
-        __extends(StructureAggregationsChangedAggregateEvent, _super);
-        function StructureAggregationsChangedAggregateEvent(aggregateId, aggregatedValues) {
-            var _this = _super.call(this, aggregateId, 'StructureAggregationsChangedAggregateEvent') || this;
-            _this.aggregatedValues = aggregatedValues;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureAggregationsChangedAggregateEvent.prototype.getAggregations = /**
-         * @return {?}
-         */
-        function () {
-            return this.aggregatedValues;
-        };
-        return StructureAggregationsChangedAggregateEvent;
-    }(hermes.AggregateEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationsChangedAggregateEvent.prototype.aggregatedValues;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var AggregationManager = /** @class */ (function () {
-        function AggregationManager(structureId, calculators) {
-            this.calculators = calculators;
-            this.enabled = false;
-            this.values = new Map();
-            this.structureId = structureId;
-        }
-        /**
-         * @param {?} fields
-         * @param {?} entities
-         * @return {?}
-         */
-        AggregationManager.prototype.calculate = /**
-         * @param {?} fields
-         * @param {?} entities
-         * @return {?}
-         */
-        function (fields, entities) {
-            if (!this.enabled) {
-                return [];
-            }
-            /** @type {?} */
-            var calculations = new Map();
-            this.calculators.forEach((/**
-             * @param {?} calc
-             * @return {?}
-             */
-            function (calc) {
-                /** @type {?} */
-                var aggregatedValues = calc.calculate(fields, entities);
-                if (aggregatedValues) {
-                    Array.from(aggregatedValues.keys())
-                        .forEach((/**
-                     * @param {?} key
-                     * @return {?}
-                     */
-                    function (key) {
-                        calculations.set(key, aggregatedValues.get(key));
-                    }));
-                }
-            }));
-            if (calculations.size > 0) {
-                return [
-                    new StructureAggregationsChangedAggregateEvent(this.structureId, calculations)
-                ];
-            }
-            else {
-                return [];
-            }
-        };
-        /**
-         * @param {?} enabled
-         * @return {?}
-         */
-        AggregationManager.prototype.setEnabled = /**
-         * @param {?} enabled
-         * @return {?}
-         */
-        function (enabled) {
-            this.enabled = enabled;
-        };
-        /**
-         * @return {?}
-         */
-        AggregationManager.prototype.add = /**
-         * @return {?}
-         */
-        function () {
-        };
-        /**
-         * @return {?}
-         */
-        AggregationManager.prototype.remove = /**
-         * @return {?}
-         */
-        function () {
-        };
-        /**
-         * @return {?}
-         */
-        AggregationManager.prototype.update = /**
-         * @return {?}
-         */
-        function () {
-        };
-        return AggregationManager;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregationManager.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregationManager.prototype.enabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregationManager.prototype.values;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregationManager.prototype.calculators;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var AggregationManagerFactory = /** @class */ (function () {
-        function AggregationManagerFactory(calculators) {
-            this.calculators = calculators;
-        }
-        /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        AggregationManagerFactory.prototype.create = /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        function (structureId) {
-            return new AggregationManager(structureId, this.calculators);
-        };
-        AggregationManagerFactory.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        AggregationManagerFactory.ctorParameters = function () { return [
-            { type: Array, decorators: [{ type: core.Inject, args: [AGGREGATION_CALCULATORS,] }] }
-        ]; };
-        return AggregationManagerFactory;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregationManagerFactory.prototype.calculators;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureFilter = /** @class */ (function () {
-        function StructureFilter(id, field, filterValue) {
-            this.filterId = id;
-            this.field = field;
-            this.filterValue = filterValue;
-        }
-        /**
-         * @return {?}
-         */
-        StructureFilter.prototype.getFieldId = /**
-         * @return {?}
-         */
-        function () {
-            return this.field.getId();
-        };
-        /**
-         * @return {?}
-         */
-        StructureFilter.prototype.getFilterValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterValue;
-        };
-        /**
-         * @param {?} filterValue
-         * @return {?}
-         */
-        StructureFilter.prototype.setFilterValue = /**
-         * @param {?} filterValue
-         * @return {?}
-         */
-        function (filterValue) {
-            this.filterValue = filterValue;
-        };
-        // Move to container
-        // Move to container
-        /**
-         * @param {?} entities
-         * @return {?}
-         */
-        StructureFilter.prototype.filter = 
-        // Move to container
-        /**
-         * @param {?} entities
-         * @return {?}
-         */
-        function (entities) {
-            var _this = this;
-            if (entities.length === 0) {
-                return entities;
-            }
-            return entities.filter((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) {
-                if (_this.field.getDataType() === DataType.STRING) {
-                    return _this.filterString(item);
-                }
-                else if (_this.field.getDataType() === DataType.NUMBER) {
-                    return _this.filterNumber(item);
-                }
-                else if (_this.field.getDataType() === DataType.BOOLEAN) {
-                    return _this.filterBoolean(item);
-                }
-                else {
-                    return true;
-                }
-            }));
-        };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        StructureFilter.prototype.filterString = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            /** @type {?} */
-            var value = this.field.getValue(item);
-            if (typeof value === 'string') {
-                return value.toLowerCase().indexOf(this.filterValue.toLowerCase()) > -1;
-            }
-            else {
-                return true;
-            }
-        };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        StructureFilter.prototype.filterNumber = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            /** @type {?} */
-            var numberValue = this.field.getValue(item);
-            return numberValue > this.filterValue;
-        };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        StructureFilter.prototype.filterBoolean = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            /** @type {?} */
-            var booleanValue = this.field.getValue(item);
-            return booleanValue === this.filterValue;
-        };
-        return StructureFilter;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFilter.prototype.filterId;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFilter.prototype.field;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFilter.prototype.filterValue;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterId = /** @class */ (function () {
-        function FilterId(field, filterId) {
-            /** @type {?} */
-            var fieldId = field.getId().toString();
-            this.id = fieldId + '@' + filterId;
-        }
-        /**
-         * @return {?}
-         */
-        FilterId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.id;
-        };
-        return FilterId;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterId.prototype.id;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterSettings = /** @class */ (function () {
-        function FilterSettings(filteringEnabled, searchEnabled, quickFiltersEnabled) {
-            if (filteringEnabled === void 0) { filteringEnabled = false; }
-            if (searchEnabled === void 0) { searchEnabled = false; }
-            if (quickFiltersEnabled === void 0) { quickFiltersEnabled = false; }
-            this.filteringEnabled = false;
-            this.searchEnabled = false;
-            this.quickFiltersEnabled = false;
-            this.filteringEnabled = filteringEnabled;
-            this.searchEnabled = searchEnabled;
-            this.quickFiltersEnabled = quickFiltersEnabled;
-        }
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isFilteringEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.filteringEnabled;
-        };
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isQuickFilteringEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.quickFiltersEnabled;
-        };
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isSearchingEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.searchEnabled;
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setFilterConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.filteringEnabled = config.enabled;
-            }
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setSearchingConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.searchEnabled = config.enabled;
-            }
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setQuickFiltersConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.quickFiltersEnabled = config.enabled;
-            }
-        };
-        return FilterSettings;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.filteringEnabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.searchEnabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.quickFiltersEnabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterManager = /** @class */ (function () {
-        function FilterManager() {
-            this.filterSettings = new FilterSettings();
-            this.filters = new Map();
-        }
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
-            return Array.from(this.filters)
-                .map((/**
-             * @param {?} arr
-             * @return {?}
-             */
-            function (arr) { return arr[1]; }));
-        };
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.getSettings = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterSettings;
-        };
-        /**
-         * @param {?} field
-         * @param {?} externalFilterId
-         * @param {?} filterValue
-         * @return {?}
-         */
-        FilterManager.prototype.addFilter = /**
-         * @param {?} field
-         * @param {?} externalFilterId
-         * @param {?} filterValue
-         * @return {?}
-         */
-        function (field, externalFilterId, filterValue) {
-            /** @type {?} */
-            var filterId = new FilterId(field, externalFilterId);
-            /** @type {?} */
-            var filter = new StructureFilter(filterId, field, filterValue);
-            if (filterValue === '') {
-                this.filters.delete(filterId.getId());
-            }
-            else {
-                this.filters.set(filterId.getId(), filter);
-            }
-        };
-        /**
-         * @param {?} entities
-         * @return {?}
-         */
-        FilterManager.prototype.filter = /**
-         * @param {?} entities
-         * @return {?}
-         */
-        function (entities) {
-            var e_1, _a;
-            /** @type {?} */
-            var filters = this.getAll();
-            /** @type {?} */
-            var filteredEntities = __spread(entities);
-            try {
-                for (var filters_1 = __values(filters), filters_1_1 = filters_1.next(); !filters_1_1.done; filters_1_1 = filters_1.next()) {
-                    var filter = filters_1_1.value;
-                    filteredEntities = filter.filter(filteredEntities);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (filters_1_1 && !filters_1_1.done && (_a = filters_1.return)) _a.call(filters_1);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-            return filteredEntities;
-        };
-        return FilterManager;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.filterSettings;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.filters;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterManagerFactory = /** @class */ (function () {
-        function FilterManagerFactory() {
-        }
-        /**
-         * @param {?=} enabled
-         * @return {?}
-         */
-        FilterManagerFactory.prototype.create = /**
-         * @param {?=} enabled
-         * @return {?}
-         */
-        function (enabled) {
-            if (enabled === void 0) { enabled = false; }
-            return new FilterManager();
-        };
-        FilterManagerFactory.decorators = [
-            { type: core.Injectable }
-        ];
-        return FilterManagerFactory;
-    }());
 
     /**
      * @fileoverview added by tsickle
@@ -23903,6 +23902,2231 @@
          */
         FieldCollectionFactory.prototype.fieldFactory;
     }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureFilter = /** @class */ (function () {
+        function StructureFilter(id, field, filterValue) {
+            this.filterId = id;
+            this.field = field;
+            this.filterValue = filterValue;
+        }
+        /**
+         * @return {?}
+         */
+        StructureFilter.prototype.getFieldId = /**
+         * @return {?}
+         */
+        function () {
+            return this.field.getId();
+        };
+        /**
+         * @return {?}
+         */
+        StructureFilter.prototype.getFilterValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterValue;
+        };
+        /**
+         * @param {?} filterValue
+         * @return {?}
+         */
+        StructureFilter.prototype.setFilterValue = /**
+         * @param {?} filterValue
+         * @return {?}
+         */
+        function (filterValue) {
+            this.filterValue = filterValue;
+        };
+        // Move to container
+        // Move to container
+        /**
+         * @param {?} entities
+         * @return {?}
+         */
+        StructureFilter.prototype.filter = 
+        // Move to container
+        /**
+         * @param {?} entities
+         * @return {?}
+         */
+        function (entities) {
+            var _this = this;
+            if (entities.length === 0) {
+                return entities;
+            }
+            return entities.filter((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                if (_this.field.getDataType() === DataType.STRING) {
+                    return _this.filterString(item);
+                }
+                else if (_this.field.getDataType() === DataType.NUMBER) {
+                    return _this.filterNumber(item);
+                }
+                else if (_this.field.getDataType() === DataType.BOOLEAN) {
+                    return _this.filterBoolean(item);
+                }
+                else {
+                    return true;
+                }
+            }));
+        };
+        /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        StructureFilter.prototype.filterString = /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            /** @type {?} */
+            var value = this.field.getValue(item);
+            if (typeof value === 'string') {
+                return value.toLowerCase().indexOf(this.filterValue.toLowerCase()) > -1;
+            }
+            else {
+                return true;
+            }
+        };
+        /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        StructureFilter.prototype.filterNumber = /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            /** @type {?} */
+            var numberValue = this.field.getValue(item);
+            return numberValue > this.filterValue;
+        };
+        /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        StructureFilter.prototype.filterBoolean = /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            /** @type {?} */
+            var booleanValue = this.field.getValue(item);
+            return booleanValue === this.filterValue;
+        };
+        return StructureFilter;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFilter.prototype.filterId;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFilter.prototype.field;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFilter.prototype.filterValue;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterId = /** @class */ (function () {
+        function FilterId(field, filterId) {
+            /** @type {?} */
+            var fieldId = field.getId().toString();
+            this.id = fieldId + '@' + filterId;
+        }
+        /**
+         * @return {?}
+         */
+        FilterId.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.id;
+        };
+        return FilterId;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterId.prototype.id;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterSettings = /** @class */ (function () {
+        function FilterSettings(filteringEnabled, searchEnabled, quickFiltersEnabled) {
+            if (filteringEnabled === void 0) { filteringEnabled = false; }
+            if (searchEnabled === void 0) { searchEnabled = false; }
+            if (quickFiltersEnabled === void 0) { quickFiltersEnabled = false; }
+            this.filteringEnabled = false;
+            this.searchEnabled = false;
+            this.quickFiltersEnabled = false;
+            this.filteringEnabled = filteringEnabled;
+            this.searchEnabled = searchEnabled;
+            this.quickFiltersEnabled = quickFiltersEnabled;
+        }
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isFilteringEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.filteringEnabled;
+        };
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isQuickFilteringEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.quickFiltersEnabled;
+        };
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isSearchingEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.searchEnabled;
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setFilterConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.filteringEnabled = config.enabled;
+            }
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setSearchingConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.searchEnabled = config.enabled;
+            }
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setQuickFiltersConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.quickFiltersEnabled = config.enabled;
+            }
+        };
+        return FilterSettings;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.filteringEnabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.searchEnabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.quickFiltersEnabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterManager = /** @class */ (function () {
+        function FilterManager() {
+            this.filterSettings = new FilterSettings();
+            this.filters = new Map();
+        }
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.getAll = /**
+         * @return {?}
+         */
+        function () {
+            return Array.from(this.filters)
+                .map((/**
+             * @param {?} arr
+             * @return {?}
+             */
+            function (arr) { return arr[1]; }));
+        };
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.getSettings = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterSettings;
+        };
+        /**
+         * @param {?} field
+         * @param {?} externalFilterId
+         * @param {?} filterValue
+         * @return {?}
+         */
+        FilterManager.prototype.addFilter = /**
+         * @param {?} field
+         * @param {?} externalFilterId
+         * @param {?} filterValue
+         * @return {?}
+         */
+        function (field, externalFilterId, filterValue) {
+            /** @type {?} */
+            var filterId = new FilterId(field, externalFilterId);
+            /** @type {?} */
+            var filter = new StructureFilter(filterId, field, filterValue);
+            if (filterValue === '') {
+                this.filters.delete(filterId.getId());
+            }
+            else {
+                this.filters.set(filterId.getId(), filter);
+            }
+        };
+        /**
+         * @param {?} entities
+         * @return {?}
+         */
+        FilterManager.prototype.filter = /**
+         * @param {?} entities
+         * @return {?}
+         */
+        function (entities) {
+            var e_1, _a;
+            /** @type {?} */
+            var filters = this.getAll();
+            /** @type {?} */
+            var filteredEntities = __spread(entities);
+            try {
+                for (var filters_1 = __values(filters), filters_1_1 = filters_1.next(); !filters_1_1.done; filters_1_1 = filters_1.next()) {
+                    var filter = filters_1_1.value;
+                    filteredEntities = filter.filter(filteredEntities);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (filters_1_1 && !filters_1_1.done && (_a = filters_1.return)) _a.call(filters_1);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return filteredEntities;
+        };
+        return FilterManager;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.filterSettings;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.filters;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterManagerFactory = /** @class */ (function () {
+        function FilterManagerFactory() {
+        }
+        /**
+         * @param {?=} enabled
+         * @return {?}
+         */
+        FilterManagerFactory.prototype.create = /**
+         * @param {?=} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            if (enabled === void 0) { enabled = false; }
+            return new FilterManager();
+        };
+        FilterManagerFactory.decorators = [
+            { type: core.Injectable }
+        ];
+        return FilterManagerFactory;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var AGGREGATION_CALCULATORS = 'GUI - Aggregation Calculators';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     * @template T, A
+     */
+    var   /**
+     * @abstract
+     * @template T, A
+     */
+    AggregationCalculator = /** @class */ (function () {
+        function AggregationCalculator() {
+        }
+        /**
+         * @param {?} fields
+         * @param {?} items
+         * @return {?}
+         */
+        AggregationCalculator.prototype.calculate = /**
+         * @param {?} fields
+         * @param {?} items
+         * @return {?}
+         */
+        function (fields, items) {
+            var _this = this;
+            /** @type {?} */
+            var filteredFields = fields.filter((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) { return _this.forDataType(field.getDataType()); }));
+            if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
+                return null;
+            }
+            /** @type {?} */
+            var count = new Map();
+            /** @type {?} */
+            var distinct = new Map();
+            // init
+            filteredFields.forEach((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) {
+                /** @type {?} */
+                var key = field.getKey();
+                count.set(key, 0);
+                distinct.set(key, new Set());
+                _this.prepare(field);
+            }));
+            // calculate
+            items.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                filteredFields.forEach((/**
+                 * @param {?} field
+                 * @return {?}
+                 */
+                function (field) {
+                    /** @type {?} */
+                    var key = field.getKey();
+                    /** @type {?} */
+                    var value = field.getValue(item);
+                    if (value !== null || value !== undefined || value !== '') {
+                        if (field.isAggregation(AggregationType.COUNT)) {
+                            /** @type {?} */
+                            var countForField = count.get(key);
+                            count.set(key, countForField + 1);
+                        }
+                        if (field.isAggregation(AggregationType.DISTINCT)) {
+                            /** @type {?} */
+                            var distinctSet = distinct.get(key);
+                            distinctSet.add(value);
+                        }
+                    }
+                    _this.aggregate(field, value);
+                }));
+            }));
+            filteredFields.forEach((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) {
+                _this.postCalculate(field, items);
+            }));
+            /** @type {?} */
+            var aggregations = new Map();
+            filteredFields.forEach((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) {
+                /** @type {?} */
+                var key = field.getId().getId();
+                /** @type {?} */
+                var aggregatedValues = _this.generateAggregatedValues(field);
+                if (field.isAggregation(AggregationType.COUNT)) {
+                    aggregatedValues.setCount(count.get(key));
+                }
+                if (field.isAggregation(AggregationType.DISTINCT)) {
+                    aggregatedValues.setDistinct((distinct.get(key)).size);
+                }
+                aggregations.set(key, aggregatedValues);
+            }));
+            return aggregations;
+        };
+        return AggregationCalculator;
+    }());
+    if (false) {
+        /**
+         * @abstract
+         * @param {?} dataType
+         * @return {?}
+         */
+        AggregationCalculator.prototype.forDataType = function (dataType) { };
+        /**
+         * @abstract
+         * @param {?} field
+         * @return {?}
+         */
+        AggregationCalculator.prototype.prepare = function (field) { };
+        /**
+         * @abstract
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        AggregationCalculator.prototype.postCalculate = function (field, items) { };
+        /**
+         * @abstract
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        AggregationCalculator.prototype.aggregate = function (field, value) { };
+        /**
+         * @abstract
+         * @param {?} field
+         * @return {?}
+         */
+        AggregationCalculator.prototype.generateAggregatedValues = function (field) { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var /**
+     * @abstract
+     */
+    AggregatedValues = /** @class */ (function () {
+        function AggregatedValues() {
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        AggregatedValues.prototype.setCount = /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this.count = value;
+        };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        AggregatedValues.prototype.setDistinct = /**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            this.distinct = value;
+        };
+        return AggregatedValues;
+    }());
+    if (false) {
+        /** @type {?} */
+        AggregatedValues.prototype.count;
+        /** @type {?} */
+        AggregatedValues.prototype.distinct;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var BooleanAggregatedValues = /** @class */ (function (_super) {
+        __extends(BooleanAggregatedValues, _super);
+        function BooleanAggregatedValues(truthy, falsy) {
+            var _this = _super.call(this) || this;
+            _this.truthy = truthy;
+            _this.falsy = falsy;
+            return _this;
+        }
+        return BooleanAggregatedValues;
+    }(AggregatedValues));
+    if (false) {
+        /** @type {?} */
+        BooleanAggregatedValues.prototype.truthy;
+        /** @type {?} */
+        BooleanAggregatedValues.prototype.falsy;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var BooleanAggregationCalculator = /** @class */ (function (_super) {
+        __extends(BooleanAggregationCalculator, _super);
+        function BooleanAggregationCalculator() {
+            var _this = _super.call(this) || this;
+            _this.truthy = new Map();
+            _this.falsy = new Map();
+            return _this;
+        }
+        /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        BooleanAggregationCalculator.prototype.forDataType = /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (dataType) {
+            return dataType === DataType.BOOLEAN;
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        BooleanAggregationCalculator.prototype.prepare = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            if (field.isAggregation(AggregationType.TRUTHY)) {
+                this.truthy.set(key, 0);
+            }
+            if (field.isAggregation(AggregationType.FALSY)) {
+                this.falsy.set(key, 0);
+            }
+        };
+        /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        BooleanAggregationCalculator.prototype.postCalculate = /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        function (field, items) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        BooleanAggregationCalculator.prototype.aggregate = /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (field, value) {
+            /** @type {?} */
+            var booleanValue = value;
+            /** @type {?} */
+            var // (value as any === 'true'),
+            key = field.getKey();
+            /** @type {?} */
+            var truthyForField = this.truthy.get(key);
+            /** @type {?} */
+            var falsyForField = this.falsy.get(key);
+            if (booleanValue) {
+                if (field.isAggregation(AggregationType.TRUTHY)) {
+                    this.truthy.set(key, truthyForField + 1);
+                }
+            }
+            else {
+                if (field.isAggregation(AggregationType.FALSY)) {
+                    this.falsy.set(key, falsyForField + 1);
+                }
+            }
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        BooleanAggregationCalculator.prototype.generateAggregatedValues = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            return new BooleanAggregatedValues(this.truthy.get(key), this.falsy.get(key));
+        };
+        BooleanAggregationCalculator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        BooleanAggregationCalculator.ctorParameters = function () { return []; };
+        return BooleanAggregationCalculator;
+    }(AggregationCalculator));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        BooleanAggregationCalculator.prototype.truthy;
+        /**
+         * @type {?}
+         * @private
+         */
+        BooleanAggregationCalculator.prototype.falsy;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var DateAggregatedValues = /** @class */ (function (_super) {
+        __extends(DateAggregatedValues, _super);
+        function DateAggregatedValues() {
+            return _super.call(this) || this;
+        }
+        return DateAggregatedValues;
+    }(AggregatedValues));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var DateAggregationCalculator = /** @class */ (function (_super) {
+        __extends(DateAggregationCalculator, _super);
+        function DateAggregationCalculator() {
+            return _super.call(this) || this;
+        }
+        /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        DateAggregationCalculator.prototype.forDataType = /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (dataType) {
+            return dataType === DataType.DATE;
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        DateAggregationCalculator.prototype.prepare = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        DateAggregationCalculator.prototype.postCalculate = /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        function (field, items) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        DateAggregationCalculator.prototype.aggregate = /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (field, value) {
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        DateAggregationCalculator.prototype.generateAggregatedValues = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            return new DateAggregatedValues();
+        };
+        DateAggregationCalculator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        DateAggregationCalculator.ctorParameters = function () { return []; };
+        return DateAggregationCalculator;
+    }(AggregationCalculator));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var NumberAggregatedValues = /** @class */ (function (_super) {
+        __extends(NumberAggregatedValues, _super);
+        function NumberAggregatedValues(sum, min, max, average, median) {
+            var _this = _super.call(this) || this;
+            _this.sum = _this.setValueWithPrecision(sum);
+            _this.min = _this.setValueWithPrecision(min);
+            _this.max = _this.setValueWithPrecision(max);
+            _this.average = _this.setValueWithPrecision(average);
+            _this.median = _this.setValueWithPrecision(median);
+            return _this;
+        }
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        NumberAggregatedValues.prototype.setValueWithPrecision = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (!value && value !== 0) {
+                return null;
+            }
+            if (value === 0) {
+                return 0;
+            }
+            return +((value).toFixed(2));
+        };
+        return NumberAggregatedValues;
+    }(AggregatedValues));
+    if (false) {
+        /** @type {?} */
+        NumberAggregatedValues.prototype.sum;
+        /** @type {?} */
+        NumberAggregatedValues.prototype.min;
+        /** @type {?} */
+        NumberAggregatedValues.prototype.max;
+        /** @type {?} */
+        NumberAggregatedValues.prototype.average;
+        /** @type {?} */
+        NumberAggregatedValues.prototype.median;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var NumberAggregationCalculator = /** @class */ (function (_super) {
+        __extends(NumberAggregationCalculator, _super);
+        function NumberAggregationCalculator() {
+            var _this = _super.call(this) || this;
+            _this.sum = new Map();
+            _this.min = new Map();
+            _this.max = new Map();
+            _this.average = new Map();
+            _this.median = new Map();
+            return _this;
+        }
+        /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        NumberAggregationCalculator.prototype.forDataType = /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (dataType) {
+            return dataType === DataType.NUMBER;
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        NumberAggregationCalculator.prototype.prepare = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            this.sum.set(key, 0);
+            this.min.set(key, Number.MAX_SAFE_INTEGER);
+            this.max.set(key, 0);
+        };
+        /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        NumberAggregationCalculator.prototype.postCalculate = /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        function (field, items) {
+            /** @type {?} */
+            var key = field.getKey();
+            if (field.isAggregation(AggregationType.AVERAGE)) {
+                this.average.set(key, this.sum.get(key) / items.length);
+            }
+            if (field.isAggregation(AggregationType.MEDIAN)) {
+                this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
+            }
+        };
+        /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        NumberAggregationCalculator.prototype.aggregate = /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (field, value) {
+            /** @type {?} */
+            var numberValue = +value;
+            /** @type {?} */
+            var key = field.getKey();
+            /** @type {?} */
+            var sumForField = this.sum.get(key);
+            /** @type {?} */
+            var minForField = this.min.get(key);
+            /** @type {?} */
+            var maxForField = this.max.get(key);
+            if (field.isAggregation(AggregationType.SUM) || field.isAggregation(AggregationType.AVERAGE)) {
+                this.sum.set(key, sumForField + numberValue);
+            }
+            if (field.isAggregation(AggregationType.MIN)) {
+                if (minForField > numberValue) {
+                    this.min.set(key, numberValue);
+                }
+            }
+            if (field.isAggregation(AggregationType.MAX)) {
+                if (maxForField < numberValue) {
+                    this.max.set(key, numberValue);
+                }
+            }
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        NumberAggregationCalculator.prototype.generateAggregatedValues = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            /** @type {?} */
+            var sum = field.isAggregation(AggregationType.SUM) ? this.sum.get(key) : undefined;
+            /** @type {?} */
+            var min = field.isAggregation(AggregationType.MIN) ? this.min.get(key) : undefined;
+            /** @type {?} */
+            var max = field.isAggregation(AggregationType.MAX) ? this.max.get(key) : undefined;
+            /** @type {?} */
+            var average = field.isAggregation(AggregationType.AVERAGE) ? this.average.get(key) : undefined;
+            /** @type {?} */
+            var median = field.isAggregation(AggregationType.MEDIAN) ? this.median.get(key) : undefined;
+            return new NumberAggregatedValues(sum, min, max, average, median);
+        };
+        NumberAggregationCalculator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        NumberAggregationCalculator.ctorParameters = function () { return []; };
+        return NumberAggregationCalculator;
+    }(AggregationCalculator));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberAggregationCalculator.prototype.sum;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberAggregationCalculator.prototype.min;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberAggregationCalculator.prototype.max;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberAggregationCalculator.prototype.average;
+        /**
+         * @type {?}
+         * @private
+         */
+        NumberAggregationCalculator.prototype.median;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StringAggregatedValues = /** @class */ (function (_super) {
+        __extends(StringAggregatedValues, _super);
+        function StringAggregatedValues() {
+            return _super.call(this) || this;
+        }
+        return StringAggregatedValues;
+    }(AggregatedValues));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StringAggregationCalculator = /** @class */ (function (_super) {
+        __extends(StringAggregationCalculator, _super);
+        function StringAggregationCalculator() {
+            return _super.call(this) || this;
+        }
+        /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        StringAggregationCalculator.prototype.forDataType = /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (dataType) {
+            return dataType === DataType.STRING;
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        StringAggregationCalculator.prototype.prepare = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        StringAggregationCalculator.prototype.postCalculate = /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        function (field, items) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        StringAggregationCalculator.prototype.aggregate = /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (field, value) {
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        StringAggregationCalculator.prototype.generateAggregatedValues = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            return new StringAggregatedValues();
+        };
+        StringAggregationCalculator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StringAggregationCalculator.ctorParameters = function () { return []; };
+        return StringAggregationCalculator;
+    }(AggregationCalculator));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UnknownAggregatedValues = /** @class */ (function (_super) {
+        __extends(UnknownAggregatedValues, _super);
+        function UnknownAggregatedValues() {
+            return _super.call(this) || this;
+        }
+        return UnknownAggregatedValues;
+    }(AggregatedValues));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UnknownAggregationCalculator = /** @class */ (function (_super) {
+        __extends(UnknownAggregationCalculator, _super);
+        function UnknownAggregationCalculator() {
+            return _super.call(this) || this;
+        }
+        /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        UnknownAggregationCalculator.prototype.forDataType = /**
+         * @param {?} dataType
+         * @return {?}
+         */
+        function (dataType) {
+            return dataType === DataType.UNKNOWN;
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        UnknownAggregationCalculator.prototype.prepare = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        UnknownAggregationCalculator.prototype.postCalculate = /**
+         * @param {?} field
+         * @param {?} items
+         * @return {?}
+         */
+        function (field, items) {
+        };
+        /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        UnknownAggregationCalculator.prototype.aggregate = /**
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (field, value) {
+        };
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        UnknownAggregationCalculator.prototype.generateAggregatedValues = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            return new UnknownAggregatedValues();
+        };
+        UnknownAggregationCalculator.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        UnknownAggregationCalculator.ctorParameters = function () { return []; };
+        return UnknownAggregationCalculator;
+    }(AggregationCalculator));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationsChangedAggregateEvent = /** @class */ (function (_super) {
+        __extends(StructureAggregationsChangedAggregateEvent, _super);
+        function StructureAggregationsChangedAggregateEvent(aggregateId, aggregatedValues) {
+            var _this = _super.call(this, aggregateId, 'StructureAggregationsChangedAggregateEvent') || this;
+            _this.aggregatedValues = aggregatedValues;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureAggregationsChangedAggregateEvent.prototype.getAggregations = /**
+         * @return {?}
+         */
+        function () {
+            return this.aggregatedValues;
+        };
+        return StructureAggregationsChangedAggregateEvent;
+    }(hermes.AggregateEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationsChangedAggregateEvent.prototype.aggregatedValues;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AggregationManager = /** @class */ (function () {
+        function AggregationManager(structureId, calculators) {
+            this.calculators = calculators;
+            this.enabled = false;
+            this.values = new Map();
+            this.structureId = structureId;
+        }
+        /**
+         * @param {?} fields
+         * @param {?} entities
+         * @return {?}
+         */
+        AggregationManager.prototype.calculate = /**
+         * @param {?} fields
+         * @param {?} entities
+         * @return {?}
+         */
+        function (fields, entities) {
+            if (!this.enabled) {
+                return [];
+            }
+            /** @type {?} */
+            var calculations = new Map();
+            this.calculators.forEach((/**
+             * @param {?} calc
+             * @return {?}
+             */
+            function (calc) {
+                /** @type {?} */
+                var aggregatedValues = calc.calculate(fields, entities);
+                if (aggregatedValues) {
+                    Array.from(aggregatedValues.keys())
+                        .forEach((/**
+                     * @param {?} key
+                     * @return {?}
+                     */
+                    function (key) {
+                        calculations.set(key, aggregatedValues.get(key));
+                    }));
+                }
+            }));
+            if (calculations.size > 0) {
+                return [
+                    new StructureAggregationsChangedAggregateEvent(this.structureId, calculations)
+                ];
+            }
+            else {
+                return [];
+            }
+        };
+        /**
+         * @param {?} enabled
+         * @return {?}
+         */
+        AggregationManager.prototype.setEnabled = /**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            this.enabled = enabled;
+        };
+        /**
+         * @return {?}
+         */
+        AggregationManager.prototype.add = /**
+         * @return {?}
+         */
+        function () {
+        };
+        /**
+         * @return {?}
+         */
+        AggregationManager.prototype.remove = /**
+         * @return {?}
+         */
+        function () {
+        };
+        /**
+         * @return {?}
+         */
+        AggregationManager.prototype.update = /**
+         * @return {?}
+         */
+        function () {
+        };
+        return AggregationManager;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregationManager.prototype.structureId;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregationManager.prototype.enabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregationManager.prototype.values;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregationManager.prototype.calculators;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AggregationManagerFactory = /** @class */ (function () {
+        function AggregationManagerFactory(calculators) {
+            this.calculators = calculators;
+        }
+        /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        AggregationManagerFactory.prototype.create = /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (structureId) {
+            return new AggregationManager(structureId, this.calculators);
+        };
+        AggregationManagerFactory.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        AggregationManagerFactory.ctorParameters = function () { return [
+            { type: Array, decorators: [{ type: core.Inject, args: [AGGREGATION_CALCULATORS,] }] }
+        ]; };
+        return AggregationManagerFactory;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregationManagerFactory.prototype.calculators;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} clazz
+     * @return {?}
+     */
+    function provideAggregationCalculator(clazz) {
+        return {
+            provide: AGGREGATION_CALCULATORS,
+            useClass: clazz,
+            multi: true
+        };
+    }
+    /** @type {?} */
+    var aggregationProviders = [
+        provideAggregationCalculator(BooleanAggregationCalculator),
+        provideAggregationCalculator(DateAggregationCalculator),
+        provideAggregationCalculator(NumberAggregationCalculator),
+        provideAggregationCalculator(StringAggregationCalculator),
+        provideAggregationCalculator(UnknownAggregationCalculator),
+        AggregationManagerFactory
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigFilterSetEventHandler = /** @class */ (function (_super) {
+        __extends(StructureConfigFilterSetEventHandler, _super);
+        function StructureConfigFilterSetEventHandler(structureFilterRepository) {
+            var _this = _super.call(this) || this;
+            _this.structureFilterRepository = structureFilterRepository;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        StructureConfigFilterSetEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof StructureConfigFilterSetEvent) {
+                this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+            }
+        };
+        StructureConfigFilterSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureConfigFilterSetEventHandler.ctorParameters = function () { return [
+            { type: StructureFilterRepository }
+        ]; };
+        return StructureConfigFilterSetEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigFilterSetEventHandler.prototype.structureFilterRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigSearchingSetEventHandler = /** @class */ (function (_super) {
+        __extends(StructureConfigSearchingSetEventHandler, _super);
+        function StructureConfigSearchingSetEventHandler(structureSearchingRepository) {
+            var _this = _super.call(this) || this;
+            _this.structureSearchingRepository = structureSearchingRepository;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        StructureConfigSearchingSetEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof StructureConfigSearchingSetEvent) {
+                this.structureSearchingRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+            }
+        };
+        StructureConfigSearchingSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureConfigSearchingSetEventHandler.ctorParameters = function () { return [
+            { type: StructureSearchingRepository }
+        ]; };
+        return StructureConfigSearchingSetEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigSearchingSetEventHandler.prototype.structureSearchingRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureConfigQuickFilterSetEventHandler = /** @class */ (function (_super) {
+        __extends(StructureConfigQuickFilterSetEventHandler, _super);
+        function StructureConfigQuickFilterSetEventHandler(structureQuickFilterRepository) {
+            var _this = _super.call(this) || this;
+            _this.structureQuickFilterRepository = structureQuickFilterRepository;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        StructureConfigQuickFilterSetEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof StructureConfigQuickFilterSetEvent) {
+                this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+            }
+        };
+        StructureConfigQuickFilterSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureConfigQuickFilterSetEventHandler.ctorParameters = function () { return [
+            { type: StructureQuickFilterRepository }
+        ]; };
+        return StructureConfigQuickFilterSetEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureFieldUiModel = /** @class */ (function () {
+        function StructureFieldUiModel(id, dataType) {
+            this.id = id;
+            this.dataType = dataType;
+        }
+        /**
+         * @return {?}
+         */
+        StructureFieldUiModel.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.id.getId();
+        };
+        /**
+         * @return {?}
+         */
+        StructureFieldUiModel.prototype.getDataType = /**
+         * @return {?}
+         */
+        function () {
+            return this.dataType;
+        };
+        return StructureFieldUiModel;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFieldUiModel.prototype.id;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFieldUiModel.prototype.dataType;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureFieldUiConverter = /** @class */ (function () {
+        function StructureFieldUiConverter() {
+        }
+        /**
+         * @param {?} fields
+         * @return {?}
+         */
+        StructureFieldUiConverter.prototype.convert = /**
+         * @param {?} fields
+         * @return {?}
+         */
+        function (fields) {
+            var _this = this;
+            return fields.map((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) {
+                return _this.convertOne(field);
+            }));
+        };
+        /**
+         * @private
+         * @param {?} field
+         * @return {?}
+         */
+        StructureFieldUiConverter.prototype.convertOne = /**
+         * @private
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            return new StructureFieldUiModel(field.getId(), field.getDataType());
+        };
+        StructureFieldUiConverter.decorators = [
+            { type: core.Injectable }
+        ];
+        return StructureFieldUiConverter;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureFieldsInitedEventHandler = /** @class */ (function (_super) {
+        __extends(StructureFieldsInitedEventHandler, _super);
+        function StructureFieldsInitedEventHandler(structureFieldsRepository, structureFieldUiConverter) {
+            var _this = _super.call(this) || this;
+            _this.structureFieldsRepository = structureFieldsRepository;
+            _this.structureFieldUiConverter = structureFieldUiConverter;
+            return _this;
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        StructureFieldsInitedEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event instanceof FieldsInitedEvent) {
+                /** @type {?} */
+                var fields = this.structureFieldUiConverter.convert(event.getFields());
+                this.structureFieldsRepository.next(event.getAggregateId(), fields);
+            }
+        };
+        StructureFieldsInitedEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureFieldsInitedEventHandler.ctorParameters = function () { return [
+            { type: StructureFieldUiArchive },
+            { type: StructureFieldUiConverter }
+        ]; };
+        return StructureFieldsInitedEventHandler;
+    }(hermes.DomainEventHandler));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFieldsInitedEventHandler.prototype.structureFieldsRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFieldsInitedEventHandler.prototype.structureFieldUiConverter;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureAggregationUiEventsRepository = /** @class */ (function () {
+        function StructureAggregationUiEventsRepository(domainEventBus) {
+            this.domainEventBus = domainEventBus;
+        }
+        /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        StructureAggregationUiEventsRepository.prototype.onAggregationsChanged = /**
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (structureId) {
+            return this.domainEventBus
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event instanceof StructureAggregationsChangedEvent; })), operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event.getAggregateId().toString() === structureId.toString(); })));
+        };
+        StructureAggregationUiEventsRepository.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        StructureAggregationUiEventsRepository.ctorParameters = function () { return [
+            { type: hermes.DomainEventBus }
+        ]; };
+        return StructureAggregationUiEventsRepository;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureAggregationUiEventsRepository.prototype.domainEventBus;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var OriginItemEntity = /** @class */ (function () {
+        function OriginItemEntity(id, rawData, position, version) {
+            if (version === void 0) { version = 0; }
+            this.id = id;
+            this.rawData = rawData;
+            this.position = position;
+            this.version = version;
+        }
+        /**
+         * @return {?}
+         */
+        OriginItemEntity.prototype.getData = /**
+         * @return {?}
+         */
+        function () {
+            return this.rawData;
+        };
+        /**
+         * @return {?}
+         */
+        OriginItemEntity.prototype.getVersion = /**
+         * @return {?}
+         */
+        function () {
+            return this.version;
+        };
+        /**
+         * @return {?}
+         */
+        OriginItemEntity.prototype.getPosition = /**
+         * @return {?}
+         */
+        function () {
+            return this.position;
+        };
+        /**
+         * @return {?}
+         */
+        OriginItemEntity.prototype.bumpVersion = /**
+         * @return {?}
+         */
+        function () {
+            this.version += 1;
+        };
+        /**
+         * @param {?} position
+         * @return {?}
+         */
+        OriginItemEntity.prototype.setPosition = /**
+         * @param {?} position
+         * @return {?}
+         */
+        function (position) {
+            this.position = position;
+        };
+        /**
+         * @return {?}
+         */
+        OriginItemEntity.prototype.clone = /**
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var rawData = __assign({}, this.rawData);
+            return new OriginItemEntity(this.id, rawData, this.version);
+        };
+        return OriginItemEntity;
+    }());
+    if (false) {
+        /** @type {?} */
+        OriginItemEntity.prototype.id;
+        /** @type {?} */
+        OriginItemEntity.prototype.rawData;
+        /**
+         * @type {?}
+         * @private
+         */
+        OriginItemEntity.prototype.version;
+        /**
+         * @type {?}
+         * @private
+         */
+        OriginItemEntity.prototype.position;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSourceItemEditedAggregateEvent = /** @class */ (function (_super) {
+        __extends(StructureSourceItemEditedAggregateEvent, _super);
+        function StructureSourceItemEditedAggregateEvent(aggregateId, beforeItem, afterItem) {
+            var _this = _super.call(this, aggregateId, 'StructureSourceItemEditedAggregateEvent') || this;
+            _this.beforeItem = beforeItem;
+            _this.afterItem = afterItem;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureSourceItemEditedAggregateEvent.prototype.getBeforeItem = /**
+         * @return {?}
+         */
+        function () {
+            return this.beforeItem;
+        };
+        /**
+         * @return {?}
+         */
+        StructureSourceItemEditedAggregateEvent.prototype.getAfterItem = /**
+         * @return {?}
+         */
+        function () {
+            return this.afterItem;
+        };
+        return StructureSourceItemEditedAggregateEvent;
+    }(hermes.AggregateEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSourceItemEditedAggregateEvent.prototype.beforeItem;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSourceItemEditedAggregateEvent.prototype.afterItem;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureOriginChangedAggregateEvent = /** @class */ (function (_super) {
+        __extends(StructureOriginChangedAggregateEvent, _super);
+        function StructureOriginChangedAggregateEvent(aggregateId, origin) {
+            var _this = _super.call(this, aggregateId, 'StructureOriginChangedAggregateEvent') || this;
+            _this.origin = origin;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureOriginChangedAggregateEvent.prototype.getOrigin = /**
+         * @return {?}
+         */
+        function () {
+            return this.origin;
+        };
+        return StructureOriginChangedAggregateEvent;
+    }(hermes.AggregateEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureOriginChangedAggregateEvent.prototype.origin;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SourceManager = /** @class */ (function () {
+        function SourceManager() {
+            this.loading = false;
+            this.fetched = false;
+            this.entities = [];
+            // Entities after filtering, searching
+            this.preparedEntities = [];
+            this.slicedEntities = [];
+        }
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.isLoading = /**
+         * @return {?}
+         */
+        function () {
+            return this.loading;
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.isFetched = /**
+         * @return {?}
+         */
+        function () {
+            return this.fetched;
+        };
+        /**
+         * @param {?} enabled
+         * @return {?}
+         */
+        SourceManager.prototype.setLoading = /**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            this.loading = enabled;
+        };
+        /**
+         * @param {?} ent
+         * @return {?}
+         */
+        SourceManager.prototype.setEntities = /**
+         * @param {?} ent
+         * @return {?}
+         */
+        function (ent) {
+            this.entities = ent;
+            this.recalculatePositions();
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.getEntities = /**
+         * @return {?}
+         */
+        function () {
+            return this.entities;
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.setPreparedEntities = /**
+         * @return {?}
+         */
+        function () {
+            this.preparedEntities = __spread(this.entities);
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.getPreparedEntities = /**
+         * @return {?}
+         */
+        function () {
+            return this.preparedEntities;
+        };
+        /**
+         * @param {?} ent
+         * @return {?}
+         */
+        SourceManager.prototype.setSlicedEntities = /**
+         * @param {?} ent
+         * @return {?}
+         */
+        function (ent) {
+            this.slicedEntities = ent;
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.getSlicedEntities = /**
+         * @return {?}
+         */
+        function () {
+            return this.slicedEntities;
+        };
+        /**
+         * @param {?=} items
+         * @param {?=} structureId
+         * @return {?}
+         */
+        SourceManager.prototype.setOrigin = /**
+         * @param {?=} items
+         * @param {?=} structureId
+         * @return {?}
+         */
+        function (items, structureId) {
+            if (items === void 0) { items = []; }
+            this.origin = this.convertItems(items);
+            return this.createOriginChangedEvent(structureId);
+        };
+        /**
+         * @param {?=} items
+         * @param {?=} structureId
+         * @return {?}
+         */
+        SourceManager.prototype.setConvertedOrigin = /**
+         * @param {?=} items
+         * @param {?=} structureId
+         * @return {?}
+         */
+        function (items, structureId) {
+            if (items === void 0) { items = []; }
+            this.origin = items;
+            return this.createOriginChangedEvent(structureId);
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.getOrigin = /**
+         * @return {?}
+         */
+        function () {
+            return this.origin;
+        };
+        /**
+         * @return {?}
+         */
+        SourceManager.prototype.getOriginSize = /**
+         * @return {?}
+         */
+        function () {
+            return this.origin.length;
+        };
+        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
+        //
+        // }
+        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
+        //
+        // }
+        /**
+         * @param {?} itemId
+         * @param {?} value
+         * @param {?} field
+         * @param {?} structureId
+         * @return {?}
+         */
+        SourceManager.prototype.editOriginItem = 
+        // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
+        //
+        // }
+        /**
+         * @param {?} itemId
+         * @param {?} value
+         * @param {?} field
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (itemId, value, field, structureId) {
+            /** @type {?} */
+            var item = this.findOriginItem(itemId);
+            /** @type {?} */
+            var itemBeforeChange = item.clone();
+            if (item) {
+                item.rawData[field.getAccessor()] = value;
+                item.bumpVersion();
+            }
+            return [
+                new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
+                this.createOriginChangedEvent(structureId)
+            ];
+        };
+        /**
+         * @param {?} itemId
+         * @param {?} structureId
+         * @return {?}
+         */
+        SourceManager.prototype.removeOriginItem = /**
+         * @param {?} itemId
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (itemId, structureId) {
+            /** @type {?} */
+            var index = this.findOriginItemIndex(itemId);
+            if (index > -1) {
+                this.origin.splice(index, 1);
+                return [this.createOriginChangedEvent(structureId)];
+            }
+            return [];
+        };
+        /**
+         * @private
+         * @param {?} items
+         * @return {?}
+         */
+        SourceManager.prototype.convertItems = /**
+         * @private
+         * @param {?} items
+         * @return {?}
+         */
+        function (items) {
+            return items.map((/**
+             * @param {?} item
+             * @param {?} index
+             * @return {?}
+             */
+            function (item, index) {
+                return new OriginItemEntity(hermes.RandomStringGenerator.generate(), item, index);
+            }));
+        };
+        /**
+         * @private
+         * @param {?} structureId
+         * @return {?}
+         */
+        SourceManager.prototype.createOriginChangedEvent = /**
+         * @private
+         * @param {?} structureId
+         * @return {?}
+         */
+        function (structureId) {
+            return new StructureOriginChangedAggregateEvent(structureId, this.origin);
+        };
+        /**
+         * @private
+         * @param {?} itemId
+         * @return {?}
+         */
+        SourceManager.prototype.findOriginItem = /**
+         * @private
+         * @param {?} itemId
+         * @return {?}
+         */
+        function (itemId) {
+            return this.origin.find((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.id === itemId; }));
+        };
+        /**
+         * @private
+         * @param {?} itemId
+         * @return {?}
+         */
+        SourceManager.prototype.findOriginItemIndex = /**
+         * @private
+         * @param {?} itemId
+         * @return {?}
+         */
+        function (itemId) {
+            return this.origin.findIndex((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return item.id === itemId; }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        SourceManager.prototype.recalculatePositions = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.entities.forEach((/**
+             * @param {?} ent
+             * @param {?} index
+             * @return {?}
+             */
+            function (ent, index) {
+                ent.setPosition(index);
+            }));
+        };
+        return SourceManager;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.loading;
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.fetched;
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.origin;
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.entities;
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.preparedEntities;
+        /**
+         * @type {?}
+         * @private
+         */
+        SourceManager.prototype.slicedEntities;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SourceManagerFactory = /** @class */ (function () {
+        function SourceManagerFactory() {
+        }
+        /**
+         * @return {?}
+         */
+        SourceManagerFactory.prototype.createDefault = /**
+         * @return {?}
+         */
+        function () {
+            return new SourceManager();
+        };
+        /**
+         * @return {?}
+         */
+        SourceManagerFactory.prototype.create = /**
+         * @return {?}
+         */
+        function () {
+            return new SourceManager();
+        };
+        SourceManagerFactory.decorators = [
+            { type: core.Injectable }
+        ];
+        return SourceManagerFactory;
+    }());
 
     /**
      * @fileoverview added by tsickle
@@ -24913,10 +27137,56 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var FieldsInitedAggregateEvent = /** @class */ (function (_super) {
+        __extends(FieldsInitedAggregateEvent, _super);
+        function FieldsInitedAggregateEvent(structureId, columns, // TODO merge
+        fields) {
+            var _this = _super.call(this, structureId, 'FieldsInitedAggregateEvent') || this;
+            _this.columns = columns;
+            _this.fields = fields;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        FieldsInitedAggregateEvent.prototype.getColumns = /**
+         * @return {?}
+         */
+        function () {
+            return this.columns;
+        };
+        /**
+         * @return {?}
+         */
+        FieldsInitedAggregateEvent.prototype.getFields = /**
+         * @return {?}
+         */
+        function () {
+            return this.fields;
+        };
+        return FieldsInitedAggregateEvent;
+    }(hermes.AggregateEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FieldsInitedAggregateEvent.prototype.columns;
+        /**
+         * @type {?}
+         * @private
+         */
+        FieldsInitedAggregateEvent.prototype.fields;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var StructureAggregate = /** @class */ (function (_super) {
         __extends(StructureAggregate, _super);
         function StructureAggregate(structureId, pagingAggregate, formationAggregate, sourceManager, verticalFormation, aggregationManager, sorterCollection, filterCollection, searchManager, fieldCollection, schema) {
-            var _this = _super.call(this, structureId) || this;
+            var _this = _super.call(this, structureId, 'StructureAggregate') || this;
             _this.pagingAggregate = pagingAggregate;
             _this.formationAggregate = formationAggregate;
             _this.sourceManager = sourceManager;
@@ -25164,8 +27434,10 @@
          */
         function (columns) {
             this.fieldCollection.initFields(columns);
-            // TODO Should throw event fields created
-            return this.fieldCollection.getAllFields();
+            /** @type {?} */
+            var fields = this.fieldCollection.getAllFields();
+            this.addEvent(new FieldsInitedAggregateEvent(this.getId(), columns, fields));
+            return this.getEvents();
         };
         /**
          * @param {?} config
@@ -25507,17 +27779,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureAggregateFactory = /** @class */ (function () {
+    var StructureAggregateFactory = /** @class */ (function (_super) {
+        __extends(StructureAggregateFactory, _super);
         function StructureAggregateFactory(pagingAggregateFactory, sourceManagerFactory, formationAggregateFactory, verticalFormationFactory, aggregationManagerFactory, filterManagerFactory, searchManagerFactory, fieldCollectionFactory, schemaAggregateFactory) {
-            this.pagingAggregateFactory = pagingAggregateFactory;
-            this.sourceManagerFactory = sourceManagerFactory;
-            this.formationAggregateFactory = formationAggregateFactory;
-            this.verticalFormationFactory = verticalFormationFactory;
-            this.aggregationManagerFactory = aggregationManagerFactory;
-            this.filterManagerFactory = filterManagerFactory;
-            this.searchManagerFactory = searchManagerFactory;
-            this.fieldCollectionFactory = fieldCollectionFactory;
-            this.schemaAggregateFactory = schemaAggregateFactory;
+            var _this = _super.call(this) || this;
+            _this.pagingAggregateFactory = pagingAggregateFactory;
+            _this.sourceManagerFactory = sourceManagerFactory;
+            _this.formationAggregateFactory = formationAggregateFactory;
+            _this.verticalFormationFactory = verticalFormationFactory;
+            _this.aggregationManagerFactory = aggregationManagerFactory;
+            _this.filterManagerFactory = filterManagerFactory;
+            _this.searchManagerFactory = searchManagerFactory;
+            _this.fieldCollectionFactory = fieldCollectionFactory;
+            _this.schemaAggregateFactory = schemaAggregateFactory;
+            return _this;
         }
         /**
          * @param {?} structureId
@@ -25566,7 +27841,7 @@
             { type: SchemaAggregateFactory }
         ]; };
         return StructureAggregateFactory;
-    }());
+    }(hermes.AggregateFactory));
     if (false) {
         /**
          * @type {?}
@@ -25619,2047 +27894,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var InitStructureCommandHandler = /** @class */ (function (_super) {
-        __extends(InitStructureCommandHandler, _super);
-        function InitStructureCommandHandler(structureAggregateRepository, structureAggregateFactory, domainEventPublisher) {
-            var _this = _super.call(this, InitStructureCommand, StructureInitedEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.structureAggregateFactory = structureAggregateFactory;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        InitStructureCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var aggregateId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateFactory.create(aggregateId);
-            this.structureAggregateRepository.save(structure);
-        };
-        InitStructureCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        InitStructureCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: StructureAggregateFactory },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return InitStructureCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InitStructureCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        InitStructureCommandHandler.prototype.structureAggregateFactory;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetVerticalScrollEnabledCommandHandler = /** @class */ (function (_super) {
-        __extends(SetVerticalScrollEnabledCommandHandler, _super);
-        function SetVerticalScrollEnabledCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetVerticalScrollEnabledCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        SetVerticalScrollEnabledCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var enabled = command.enabled;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var formation = structure.getVerticalFormation();
-            formation.setEnabled(enabled);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new VerticalScrollEnabledSetEvent(structureId));
-        };
-        SetVerticalScrollEnabledCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetVerticalScrollEnabledCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetVerticalScrollEnabledCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetVerticalScrollEnabledCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
-         */
-        SetVerticalScrollEnabledCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetScrollPositionCommandHandler = /** @class */ (function (_super) {
-        __extends(SetScrollPositionCommandHandler, _super);
-        function SetScrollPositionCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetScrollPositionCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        SetScrollPositionCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var position = command.position;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setScrollPosition(position);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new ScrollPositionSetEvent(structureId));
-        };
-        SetScrollPositionCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetScrollPositionCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetScrollPositionCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetScrollPositionCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
-         */
-        SetScrollPositionCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var InitFieldsCommandHandler = /** @class */ (function (_super) {
-        __extends(InitFieldsCommandHandler, _super);
-        function InitFieldsCommandHandler(structureAggregateRepository, structureAggregateFactory, domainEventPublisher) {
-            var _this = _super.call(this, InitFieldsCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.structureAggregateFactory = structureAggregateFactory;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        InitFieldsCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var compositionId = command.compositionId;
-            /** @type {?} */
-            var columns = command.columns;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var fields = structure.createFields(columns);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new FieldsInitedEvent(structureId, compositionId, columns, fields));
-        };
-        InitFieldsCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        InitFieldsCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: StructureAggregateFactory },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return InitFieldsCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InitFieldsCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        InitFieldsCommandHandler.prototype.structureAggregateFactory;
-        /**
-         * @type {?}
-         * @private
-         */
-        InitFieldsCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ToggleSortCommandHandler = /** @class */ (function (_super) {
-        __extends(ToggleSortCommandHandler, _super);
-        function ToggleSortCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, ToggleSortCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        ToggleSortCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var aggregateId = command.structureId;
-            /** @type {?} */
-            var compositionId = command.getCompositionId();
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(aggregateId);
-            /** @type {?} */
-            var sorters = structure.toggleSort(fieldId);
-            this.structureAggregateRepository.save(structure);
-            this.publishSortEvent(aggregateId, compositionId, fieldId, sorters);
-        };
-        /**
-         * @param {?} aggregateId
-         * @param {?} compositionId
-         * @param {?} fieldId
-         * @param {?} sorters
-         * @return {?}
-         */
-        ToggleSortCommandHandler.prototype.publishSortEvent = /**
-         * @param {?} aggregateId
-         * @param {?} compositionId
-         * @param {?} fieldId
-         * @param {?} sorters
-         * @return {?}
-         */
-        function (aggregateId, compositionId, fieldId, sorters) {
-            /** @type {?} */
-            var directions = sorters.map((/**
-             * @param {?} sorter
-             * @return {?}
-             */
-            function (sorter) {
-                return {
-                    direction: sorter.hasDirection(),
-                    fieldId: sorter.getField().getId()
-                };
-            }));
-            this.domainEventPublisher.publish(new SortToggledEvent(aggregateId, compositionId, directions));
-        };
-        ToggleSortCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ToggleSortCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return ToggleSortCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleSortCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleSortCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SortingSetEvent = /** @class */ (function (_super) {
-        __extends(SortingSetEvent, _super);
-        function SortingSetEvent(aggregateId) {
-            return _super.call(this, aggregateId, 'SortingSetEvent') || this;
-        }
-        return SortingSetEvent;
-    }(hermes.DomainEvent));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetSortingCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSortingCommandHandler, _super);
-        function SetSortingCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSortingCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        SetSortingCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var sortingConfig = command.getSortingConfig();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setSortingConfig(sortingConfig);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new SortingSetEvent(structureId));
-        };
-        SetSortingCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetSortingCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetSortingCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetSortingCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetSortingCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigFilterSetEvent = /** @class */ (function (_super) {
-        __extends(StructureConfigFilterSetEvent, _super);
-        function StructureConfigFilterSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'StructureConfigFilterSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureConfigFilterSetEvent.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return StructureConfigFilterSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigFilterSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSetConfigFilterCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureSetConfigFilterCommandHandler, _super);
-        function StructureSetConfigFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, StructureSetConfigFilterCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        StructureSetConfigFilterCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var filterConfig = command.getConfig();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setFilterConfig(filterConfig);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureConfigFilterSetEvent(structureId, filterConfig.enabled));
-        };
-        StructureSetConfigFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureSetConfigFilterCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureSetConfigFilterCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigFilterCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigSearchingSetEvent = /** @class */ (function (_super) {
-        __extends(StructureConfigSearchingSetEvent, _super);
-        function StructureConfigSearchingSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'StructureConfigSearchingSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureConfigSearchingSetEvent.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return StructureConfigSearchingSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigSearchingSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSetConfigSearchingCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureSetConfigSearchingCommandHandler, _super);
-        function StructureSetConfigSearchingCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, StructureSetConfigSearchingCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        StructureSetConfigSearchingCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var searchingConfig = command.getConfig();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setSearchingConfig(searchingConfig);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureConfigSearchingSetEvent(structureId, searchingConfig.enabled));
-        };
-        StructureSetConfigSearchingCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureSetConfigSearchingCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureSetConfigSearchingCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigSearchingCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigSearchingCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigQuickFilterSetEvent = /** @class */ (function (_super) {
-        __extends(StructureConfigQuickFilterSetEvent, _super);
-        function StructureConfigQuickFilterSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'StructureConfigQuickFilterSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureConfigQuickFilterSetEvent.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return StructureConfigQuickFilterSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigQuickFilterSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSetConfigQuickFilterCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureSetConfigQuickFilterCommandHandler, _super);
-        function StructureSetConfigQuickFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, StructureSetConfigQuickFilterCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        StructureSetConfigQuickFilterCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var quickFiltersConfig = command.getConfig();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setQuickFiltersConfig(quickFiltersConfig);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
-        };
-        StructureSetConfigQuickFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureSetConfigQuickFilterCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureSetConfigQuickFilterCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureToggleFilterCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureToggleFilterCommandHandler, _super);
-        function StructureToggleFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, StructureToggleFilterCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        StructureToggleFilterCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var fieldId = command.fieldId;
-            /** @type {?} */
-            var externalFieldId = command.externalFilterId;
-            /** @type {?} */
-            var filterValue = command.filterValue;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.toggleFilter(fieldId, externalFieldId, filterValue);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureFilterToggledEvent(structureId));
-        };
-        StructureToggleFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureToggleFilterCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureToggleFilterCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureToggleFilterCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureToggleFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationsChangedEvent = /** @class */ (function (_super) {
-        __extends(StructureAggregationsChangedEvent, _super);
-        function StructureAggregationsChangedEvent(structureId, values) {
-            var _this = _super.call(this, structureId, 'StructureAggregationsChangedEvent') || this;
-            _this.values = values;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructureAggregationsChangedEvent.prototype.getAggregations = /**
-         * @return {?}
-         */
-        function () {
-            return this.values;
-        };
-        return StructureAggregationsChangedEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationsChangedEvent.prototype.values;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructurePreparedEntitiesSetEvent = /** @class */ (function (_super) {
-        __extends(StructurePreparedEntitiesSetEvent, _super);
-        function StructurePreparedEntitiesSetEvent(aggregateId, preparedItems) {
-            var _this = _super.call(this, aggregateId, 'StructurePreparedEntitiesSetEvent') || this;
-            _this.preparedItems = preparedItems;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        StructurePreparedEntitiesSetEvent.prototype.getPreparedItems = /**
-         * @return {?}
-         */
-        function () {
-            return this.preparedItems;
-        };
-        return StructurePreparedEntitiesSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructurePreparedEntitiesSetEvent.prototype.preparedItems;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSourceDomainEventPublisher = /** @class */ (function () {
-        function StructureSourceDomainEventPublisher(domainEventPublisher) {
+    var SetPagingCommandHandler = /** @class */ (function () {
+        function SetPagingCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
             this.domainEventPublisher = domainEventPublisher;
         }
         /**
-         * @param {?} events
          * @return {?}
          */
-        StructureSourceDomainEventPublisher.prototype.publish = /**
-         * @param {?} events
-         * @return {?}
-         */
-        function (events) {
-            var _this = this;
-            events.forEach((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                _this.publishEvent(event);
-            }));
-        };
-        /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        StructureSourceDomainEventPublisher.prototype.publishEvent = /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event.getType() === 'StructureOriginChangedAggregateEvent') {
-                /** @type {?} */
-                var structureOriginChangedAggregateEvent = ((/** @type {?} */ (event)));
-                /** @type {?} */
-                var domainEvent = new OriginSetEvent(structureOriginChangedAggregateEvent.getAggregateId(), structureOriginChangedAggregateEvent.getOrigin());
-                this.domainEventPublisher.publish(domainEvent);
-            }
-            if (event.getType() === 'StructureSourceItemEditedAggregateEvent') {
-                /** @type {?} */
-                var structureSourceItemEditedAggregateEvent = ((/** @type {?} */ (event)));
-                /** @type {?} */
-                var domainEvent = new StructureSourceItemEditedEvent(structureSourceItemEditedAggregateEvent.getAggregateId(), structureSourceItemEditedAggregateEvent.getBeforeItem(), structureSourceItemEditedAggregateEvent.getAfterItem());
-                this.domainEventPublisher.publish(domainEvent);
-            }
-            if (event.getType() === 'StructureAggregationsChangedAggregateEvent') {
-                /** @type {?} */
-                var structureAggregationsChangedAggregateEvent = ((/** @type {?} */ (event)));
-                /** @type {?} */
-                var domainEvent = new StructureAggregationsChangedEvent(structureAggregationsChangedAggregateEvent.getAggregateId(), structureAggregationsChangedAggregateEvent.getAggregations());
-                this.domainEventPublisher.publish(domainEvent);
-            }
-            if (event.getType() === 'StructurePreparedEntitiesSetAggregateEvent') {
-                /** @type {?} */
-                var structurePreparedEntitiesSetAggregateEvent = ((/** @type {?} */ (event)));
-                /** @type {?} */
-                var domainEvent = new StructurePreparedEntitiesSetEvent(structurePreparedEntitiesSetAggregateEvent.getAggregateId(), structurePreparedEntitiesSetAggregateEvent.getPreparedItems());
-                this.domainEventPublisher.publish(domainEvent);
-            }
-        };
-        StructureSourceDomainEventPublisher.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureSourceDomainEventPublisher.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureSourceDomainEventPublisher;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSourceDomainEventPublisher.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationEnabledSetEvent = /** @class */ (function (_super) {
-        __extends(StructureAggregationEnabledSetEvent, _super);
-        function StructureAggregationEnabledSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'StructureAggregationEnabledSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        return StructureAggregationEnabledSetEvent;
-    }(hermes.DomainEvent));
-    if (false) {
-        /** @type {?} */
-        StructureAggregationEnabledSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureSetAggregationEnabledCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureSetAggregationEnabledCommandHandler, _super);
-        function StructureSetAggregationEnabledCommandHandler(structureAggregateRepository, structureAggregateFactory, structureSourceDomainEventPublisher, domainEventPublisher) {
-            var _this = _super.call(this, StructureSetAggregationEnabledCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.structureAggregateFactory = structureAggregateFactory;
-            _this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        StructureSetAggregationEnabledCommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var enabled = command.enabled;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var aggregateEvents = structure.setAggregationEnabled(enabled);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureAggregationEnabledSetEvent(structureId, enabled));
-            this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-        };
-        StructureSetAggregationEnabledCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureSetAggregationEnabledCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: StructureAggregateFactory },
-            { type: StructureSourceDomainEventPublisher },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return StructureSetAggregationEnabledCommandHandler;
-    }(hermes.CommandHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetAggregationEnabledCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetAggregationEnabledCommandHandler.prototype.structureAggregateFactory;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetAggregationEnabledCommandHandler.prototype.structureSourceDomainEventPublisher;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetAggregationEnabledCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T, A
-     */
-    var   /**
-     * @abstract
-     * @template T, A
-     */
-    AggregationCalculator = /** @class */ (function () {
-        function AggregationCalculator() {
-        }
-        /**
-         * @param {?} fields
-         * @param {?} items
-         * @return {?}
-         */
-        AggregationCalculator.prototype.calculate = /**
-         * @param {?} fields
-         * @param {?} items
-         * @return {?}
-         */
-        function (fields, items) {
-            var _this = this;
-            /** @type {?} */
-            var filteredFields = fields.filter((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) { return _this.forDataType(field.getDataType()); }));
-            if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
-                return null;
-            }
-            /** @type {?} */
-            var count = new Map();
-            /** @type {?} */
-            var distinct = new Map();
-            // init
-            filteredFields.forEach((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) {
-                /** @type {?} */
-                var key = field.getKey();
-                count.set(key, 0);
-                distinct.set(key, new Set());
-                _this.prepare(field);
-            }));
-            // calculate
-            items.forEach((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) {
-                filteredFields.forEach((/**
-                 * @param {?} field
-                 * @return {?}
-                 */
-                function (field) {
-                    /** @type {?} */
-                    var key = field.getKey();
-                    /** @type {?} */
-                    var value = field.getValue(item);
-                    if (value !== null || value !== undefined || value !== '') {
-                        if (field.isAggregation(AggregationType.COUNT)) {
-                            /** @type {?} */
-                            var countForField = count.get(key);
-                            count.set(key, countForField + 1);
-                        }
-                        if (field.isAggregation(AggregationType.DISTINCT)) {
-                            /** @type {?} */
-                            var distinctSet = distinct.get(key);
-                            distinctSet.add(value);
-                        }
-                    }
-                    _this.aggregate(field, value);
-                }));
-            }));
-            filteredFields.forEach((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) {
-                _this.postCalculate(field, items);
-            }));
-            /** @type {?} */
-            var aggregations = new Map();
-            filteredFields.forEach((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) {
-                /** @type {?} */
-                var key = field.getId().getId();
-                /** @type {?} */
-                var aggregatedValues = _this.generateAggregatedValues(field);
-                if (field.isAggregation(AggregationType.COUNT)) {
-                    aggregatedValues.setCount(count.get(key));
-                }
-                if (field.isAggregation(AggregationType.DISTINCT)) {
-                    aggregatedValues.setDistinct((distinct.get(key)).size);
-                }
-                aggregations.set(key, aggregatedValues);
-            }));
-            return aggregations;
-        };
-        return AggregationCalculator;
-    }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} dataType
-         * @return {?}
-         */
-        AggregationCalculator.prototype.forDataType = function (dataType) { };
-        /**
-         * @abstract
-         * @param {?} field
-         * @return {?}
-         */
-        AggregationCalculator.prototype.prepare = function (field) { };
-        /**
-         * @abstract
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        AggregationCalculator.prototype.postCalculate = function (field, items) { };
-        /**
-         * @abstract
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        AggregationCalculator.prototype.aggregate = function (field, value) { };
-        /**
-         * @abstract
-         * @param {?} field
-         * @return {?}
-         */
-        AggregationCalculator.prototype.generateAggregatedValues = function (field) { };
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var /**
-     * @abstract
-     */
-    AggregatedValues = /** @class */ (function () {
-        function AggregatedValues() {
-        }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        AggregatedValues.prototype.setCount = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this.count = value;
-        };
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        AggregatedValues.prototype.setDistinct = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            this.distinct = value;
-        };
-        return AggregatedValues;
-    }());
-    if (false) {
-        /** @type {?} */
-        AggregatedValues.prototype.count;
-        /** @type {?} */
-        AggregatedValues.prototype.distinct;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var BooleanAggregatedValues = /** @class */ (function (_super) {
-        __extends(BooleanAggregatedValues, _super);
-        function BooleanAggregatedValues(truthy, falsy) {
-            var _this = _super.call(this) || this;
-            _this.truthy = truthy;
-            _this.falsy = falsy;
-            return _this;
-        }
-        return BooleanAggregatedValues;
-    }(AggregatedValues));
-    if (false) {
-        /** @type {?} */
-        BooleanAggregatedValues.prototype.truthy;
-        /** @type {?} */
-        BooleanAggregatedValues.prototype.falsy;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var BooleanAggregationCalculator = /** @class */ (function (_super) {
-        __extends(BooleanAggregationCalculator, _super);
-        function BooleanAggregationCalculator() {
-            var _this = _super.call(this) || this;
-            _this.truthy = new Map();
-            _this.falsy = new Map();
-            return _this;
-        }
-        /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        BooleanAggregationCalculator.prototype.forDataType = /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (dataType) {
-            return dataType === DataType.BOOLEAN;
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        BooleanAggregationCalculator.prototype.prepare = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            if (field.isAggregation(AggregationType.TRUTHY)) {
-                this.truthy.set(key, 0);
-            }
-            if (field.isAggregation(AggregationType.FALSY)) {
-                this.falsy.set(key, 0);
-            }
-        };
-        /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        BooleanAggregationCalculator.prototype.postCalculate = /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        function (field, items) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        BooleanAggregationCalculator.prototype.aggregate = /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (field, value) {
-            /** @type {?} */
-            var booleanValue = value;
-            /** @type {?} */
-            var // (value as any === 'true'),
-            key = field.getKey();
-            /** @type {?} */
-            var truthyForField = this.truthy.get(key);
-            /** @type {?} */
-            var falsyForField = this.falsy.get(key);
-            if (booleanValue) {
-                if (field.isAggregation(AggregationType.TRUTHY)) {
-                    this.truthy.set(key, truthyForField + 1);
-                }
-            }
-            else {
-                if (field.isAggregation(AggregationType.FALSY)) {
-                    this.falsy.set(key, falsyForField + 1);
-                }
-            }
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        BooleanAggregationCalculator.prototype.generateAggregatedValues = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            return new BooleanAggregatedValues(this.truthy.get(key), this.falsy.get(key));
-        };
-        BooleanAggregationCalculator.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        BooleanAggregationCalculator.ctorParameters = function () { return []; };
-        return BooleanAggregationCalculator;
-    }(AggregationCalculator));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        BooleanAggregationCalculator.prototype.truthy;
-        /**
-         * @type {?}
-         * @private
-         */
-        BooleanAggregationCalculator.prototype.falsy;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var DateAggregatedValues = /** @class */ (function (_super) {
-        __extends(DateAggregatedValues, _super);
-        function DateAggregatedValues() {
-            return _super.call(this) || this;
-        }
-        return DateAggregatedValues;
-    }(AggregatedValues));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var DateAggregationCalculator = /** @class */ (function (_super) {
-        __extends(DateAggregationCalculator, _super);
-        function DateAggregationCalculator() {
-            return _super.call(this) || this;
-        }
-        /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        DateAggregationCalculator.prototype.forDataType = /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (dataType) {
-            return dataType === DataType.DATE;
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        DateAggregationCalculator.prototype.prepare = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        DateAggregationCalculator.prototype.postCalculate = /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        function (field, items) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        DateAggregationCalculator.prototype.aggregate = /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (field, value) {
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        DateAggregationCalculator.prototype.generateAggregatedValues = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            return new DateAggregatedValues();
-        };
-        DateAggregationCalculator.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        DateAggregationCalculator.ctorParameters = function () { return []; };
-        return DateAggregationCalculator;
-    }(AggregationCalculator));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var NumberAggregatedValues = /** @class */ (function (_super) {
-        __extends(NumberAggregatedValues, _super);
-        function NumberAggregatedValues(sum, min, max, average, median) {
-            var _this = _super.call(this) || this;
-            _this.sum = _this.setValueWithPrecision(sum);
-            _this.min = _this.setValueWithPrecision(min);
-            _this.max = _this.setValueWithPrecision(max);
-            _this.average = _this.setValueWithPrecision(average);
-            _this.median = _this.setValueWithPrecision(median);
-            return _this;
-        }
-        /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        NumberAggregatedValues.prototype.setValueWithPrecision = /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            if (!value && value !== 0) {
-                return null;
-            }
-            if (value === 0) {
-                return 0;
-            }
-            return +((value).toFixed(2));
-        };
-        return NumberAggregatedValues;
-    }(AggregatedValues));
-    if (false) {
-        /** @type {?} */
-        NumberAggregatedValues.prototype.sum;
-        /** @type {?} */
-        NumberAggregatedValues.prototype.min;
-        /** @type {?} */
-        NumberAggregatedValues.prototype.max;
-        /** @type {?} */
-        NumberAggregatedValues.prototype.average;
-        /** @type {?} */
-        NumberAggregatedValues.prototype.median;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var NumberAggregationCalculator = /** @class */ (function (_super) {
-        __extends(NumberAggregationCalculator, _super);
-        function NumberAggregationCalculator() {
-            var _this = _super.call(this) || this;
-            _this.sum = new Map();
-            _this.min = new Map();
-            _this.max = new Map();
-            _this.average = new Map();
-            _this.median = new Map();
-            return _this;
-        }
-        /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        NumberAggregationCalculator.prototype.forDataType = /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (dataType) {
-            return dataType === DataType.NUMBER;
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        NumberAggregationCalculator.prototype.prepare = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            this.sum.set(key, 0);
-            this.min.set(key, Number.MAX_SAFE_INTEGER);
-            this.max.set(key, 0);
-        };
-        /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        NumberAggregationCalculator.prototype.postCalculate = /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        function (field, items) {
-            /** @type {?} */
-            var key = field.getKey();
-            if (field.isAggregation(AggregationType.AVERAGE)) {
-                this.average.set(key, this.sum.get(key) / items.length);
-            }
-            if (field.isAggregation(AggregationType.MEDIAN)) {
-                this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
-            }
-        };
-        /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        NumberAggregationCalculator.prototype.aggregate = /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (field, value) {
-            /** @type {?} */
-            var numberValue = +value;
-            /** @type {?} */
-            var key = field.getKey();
-            /** @type {?} */
-            var sumForField = this.sum.get(key);
-            /** @type {?} */
-            var minForField = this.min.get(key);
-            /** @type {?} */
-            var maxForField = this.max.get(key);
-            if (field.isAggregation(AggregationType.SUM) || field.isAggregation(AggregationType.AVERAGE)) {
-                this.sum.set(key, sumForField + numberValue);
-            }
-            if (field.isAggregation(AggregationType.MIN)) {
-                if (minForField > numberValue) {
-                    this.min.set(key, numberValue);
-                }
-            }
-            if (field.isAggregation(AggregationType.MAX)) {
-                if (maxForField < numberValue) {
-                    this.max.set(key, numberValue);
-                }
-            }
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        NumberAggregationCalculator.prototype.generateAggregatedValues = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            /** @type {?} */
-            var sum = field.isAggregation(AggregationType.SUM) ? this.sum.get(key) : undefined;
-            /** @type {?} */
-            var min = field.isAggregation(AggregationType.MIN) ? this.min.get(key) : undefined;
-            /** @type {?} */
-            var max = field.isAggregation(AggregationType.MAX) ? this.max.get(key) : undefined;
-            /** @type {?} */
-            var average = field.isAggregation(AggregationType.AVERAGE) ? this.average.get(key) : undefined;
-            /** @type {?} */
-            var median = field.isAggregation(AggregationType.MEDIAN) ? this.median.get(key) : undefined;
-            return new NumberAggregatedValues(sum, min, max, average, median);
-        };
-        NumberAggregationCalculator.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        NumberAggregationCalculator.ctorParameters = function () { return []; };
-        return NumberAggregationCalculator;
-    }(AggregationCalculator));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        NumberAggregationCalculator.prototype.sum;
-        /**
-         * @type {?}
-         * @private
-         */
-        NumberAggregationCalculator.prototype.min;
-        /**
-         * @type {?}
-         * @private
-         */
-        NumberAggregationCalculator.prototype.max;
-        /**
-         * @type {?}
-         * @private
-         */
-        NumberAggregationCalculator.prototype.average;
-        /**
-         * @type {?}
-         * @private
-         */
-        NumberAggregationCalculator.prototype.median;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StringAggregatedValues = /** @class */ (function (_super) {
-        __extends(StringAggregatedValues, _super);
-        function StringAggregatedValues() {
-            return _super.call(this) || this;
-        }
-        return StringAggregatedValues;
-    }(AggregatedValues));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StringAggregationCalculator = /** @class */ (function (_super) {
-        __extends(StringAggregationCalculator, _super);
-        function StringAggregationCalculator() {
-            return _super.call(this) || this;
-        }
-        /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        StringAggregationCalculator.prototype.forDataType = /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (dataType) {
-            return dataType === DataType.STRING;
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        StringAggregationCalculator.prototype.prepare = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        StringAggregationCalculator.prototype.postCalculate = /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        function (field, items) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        StringAggregationCalculator.prototype.aggregate = /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (field, value) {
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        StringAggregationCalculator.prototype.generateAggregatedValues = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            return new StringAggregatedValues();
-        };
-        StringAggregationCalculator.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StringAggregationCalculator.ctorParameters = function () { return []; };
-        return StringAggregationCalculator;
-    }(AggregationCalculator));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UnknownAggregatedValues = /** @class */ (function (_super) {
-        __extends(UnknownAggregatedValues, _super);
-        function UnknownAggregatedValues() {
-            return _super.call(this) || this;
-        }
-        return UnknownAggregatedValues;
-    }(AggregatedValues));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UnknownAggregationCalculator = /** @class */ (function (_super) {
-        __extends(UnknownAggregationCalculator, _super);
-        function UnknownAggregationCalculator() {
-            return _super.call(this) || this;
-        }
-        /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        UnknownAggregationCalculator.prototype.forDataType = /**
-         * @param {?} dataType
-         * @return {?}
-         */
-        function (dataType) {
-            return dataType === DataType.UNKNOWN;
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        UnknownAggregationCalculator.prototype.prepare = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        UnknownAggregationCalculator.prototype.postCalculate = /**
-         * @param {?} field
-         * @param {?} items
-         * @return {?}
-         */
-        function (field, items) {
-        };
-        /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        UnknownAggregationCalculator.prototype.aggregate = /**
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (field, value) {
-        };
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        UnknownAggregationCalculator.prototype.generateAggregatedValues = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            return new UnknownAggregatedValues();
-        };
-        UnknownAggregationCalculator.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        UnknownAggregationCalculator.ctorParameters = function () { return []; };
-        return UnknownAggregationCalculator;
-    }(AggregationCalculator));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} clazz
-     * @return {?}
-     */
-    function provideAggregationCalculator(clazz) {
-        return {
-            provide: AGGREGATION_CALCULATORS,
-            useClass: clazz,
-            multi: true
-        };
-    }
-    /** @type {?} */
-    var aggregationProviders = [
-        provideAggregationCalculator(BooleanAggregationCalculator),
-        provideAggregationCalculator(DateAggregationCalculator),
-        provideAggregationCalculator(NumberAggregationCalculator),
-        provideAggregationCalculator(StringAggregationCalculator),
-        provideAggregationCalculator(UnknownAggregationCalculator),
-        AggregationManagerFactory
-    ];
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigFilterSetEventHandler = /** @class */ (function (_super) {
-        __extends(StructureConfigFilterSetEventHandler, _super);
-        function StructureConfigFilterSetEventHandler(structureFilterRepository) {
-            var _this = _super.call(this) || this;
-            _this.structureFilterRepository = structureFilterRepository;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        StructureConfigFilterSetEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof StructureConfigFilterSetEvent) {
-                this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-            }
-        };
-        StructureConfigFilterSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureConfigFilterSetEventHandler.ctorParameters = function () { return [
-            { type: StructureFilterRepository }
-        ]; };
-        return StructureConfigFilterSetEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigFilterSetEventHandler.prototype.structureFilterRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigSearchingSetEventHandler = /** @class */ (function (_super) {
-        __extends(StructureConfigSearchingSetEventHandler, _super);
-        function StructureConfigSearchingSetEventHandler(structureSearchingRepository) {
-            var _this = _super.call(this) || this;
-            _this.structureSearchingRepository = structureSearchingRepository;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        StructureConfigSearchingSetEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof StructureConfigSearchingSetEvent) {
-                this.structureSearchingRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-            }
-        };
-        StructureConfigSearchingSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureConfigSearchingSetEventHandler.ctorParameters = function () { return [
-            { type: StructureSearchingRepository }
-        ]; };
-        return StructureConfigSearchingSetEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigSearchingSetEventHandler.prototype.structureSearchingRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureConfigQuickFilterSetEventHandler = /** @class */ (function (_super) {
-        __extends(StructureConfigQuickFilterSetEventHandler, _super);
-        function StructureConfigQuickFilterSetEventHandler(structureQuickFilterRepository) {
-            var _this = _super.call(this) || this;
-            _this.structureQuickFilterRepository = structureQuickFilterRepository;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        StructureConfigQuickFilterSetEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof StructureConfigQuickFilterSetEvent) {
-                this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-            }
-        };
-        StructureConfigQuickFilterSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureConfigQuickFilterSetEventHandler.ctorParameters = function () { return [
-            { type: StructureQuickFilterRepository }
-        ]; };
-        return StructureConfigQuickFilterSetEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureFieldUiModel = /** @class */ (function () {
-        function StructureFieldUiModel(id, dataType) {
-            this.id = id;
-            this.dataType = dataType;
-        }
-        /**
-         * @return {?}
-         */
-        StructureFieldUiModel.prototype.getId = /**
+        SetPagingCommandHandler.prototype.forCommand = /**
          * @return {?}
          */
         function () {
-            return this.id.getId();
+            return SetPagingCommand;
         };
-        /**
-         * @return {?}
-         */
-        StructureFieldUiModel.prototype.getDataType = /**
-         * @return {?}
-         */
-        function () {
-            return this.dataType;
-        };
-        return StructureFieldUiModel;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFieldUiModel.prototype.id;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFieldUiModel.prototype.dataType;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureFieldUiConverter = /** @class */ (function () {
-        function StructureFieldUiConverter() {
-        }
-        /**
-         * @param {?} fields
-         * @return {?}
-         */
-        StructureFieldUiConverter.prototype.convert = /**
-         * @param {?} fields
-         * @return {?}
-         */
-        function (fields) {
-            var _this = this;
-            return fields.map((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) {
-                return _this.convertOne(field);
-            }));
-        };
-        /**
-         * @private
-         * @param {?} field
-         * @return {?}
-         */
-        StructureFieldUiConverter.prototype.convertOne = /**
-         * @private
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            return new StructureFieldUiModel(field.getId(), field.getDataType());
-        };
-        StructureFieldUiConverter.decorators = [
-            { type: core.Injectable }
-        ];
-        return StructureFieldUiConverter;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureFieldsInitedEventHandler = /** @class */ (function (_super) {
-        __extends(StructureFieldsInitedEventHandler, _super);
-        function StructureFieldsInitedEventHandler(structureFieldsRepository, structureFieldUiConverter) {
-            var _this = _super.call(this) || this;
-            _this.structureFieldsRepository = structureFieldsRepository;
-            _this.structureFieldUiConverter = structureFieldUiConverter;
-            return _this;
-        }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        StructureFieldsInitedEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event instanceof FieldsInitedEvent) {
-                /** @type {?} */
-                var fields = this.structureFieldUiConverter.convert(event.getFields());
-                this.structureFieldsRepository.next(event.getAggregateId(), fields);
-            }
-        };
-        StructureFieldsInitedEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureFieldsInitedEventHandler.ctorParameters = function () { return [
-            { type: StructureFieldUiArchive },
-            { type: StructureFieldUiConverter }
-        ]; };
-        return StructureFieldsInitedEventHandler;
-    }(hermes.DomainEventHandler));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFieldsInitedEventHandler.prototype.structureFieldsRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFieldsInitedEventHandler.prototype.structureFieldUiConverter;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var StructureAggregationUiEventsRepository = /** @class */ (function () {
-        function StructureAggregationUiEventsRepository(domainEventBus) {
-            this.domainEventBus = domainEventBus;
-        }
-        /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        StructureAggregationUiEventsRepository.prototype.onAggregationsChanged = /**
-         * @param {?} structureId
-         * @return {?}
-         */
-        function (structureId) {
-            return this.domainEventBus
-                .pipe(operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event instanceof StructureAggregationsChangedEvent; })), operators.filter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.getAggregateId().toString() === structureId.toString(); })));
-        };
-        StructureAggregationUiEventsRepository.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        StructureAggregationUiEventsRepository.ctorParameters = function () { return [
-            { type: hermes.DomainEventBus }
-        ]; };
-        return StructureAggregationUiEventsRepository;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureAggregationUiEventsRepository.prototype.domainEventBus;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetPagingCommandHandler = /** @class */ (function (_super) {
-        __extends(SetPagingCommandHandler, _super);
-        function SetPagingCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetPagingCommand, null, null, structureAggregateRepository) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
-        }
         /**
          * @param {?} structureAggregate
          * @param {?} command
@@ -27697,7 +27945,7 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetPagingCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -27715,104 +27963,141 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var NextPageCommandHandler = /** @class */ (function (_super) {
-        __extends(NextPageCommandHandler, _super);
-        function NextPageCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, NextPageCommand, NextPageEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var NextPageCommandHandler = /** @class */ (function () {
+        function NextPageCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        NextPageCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return NextPageCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        NextPageCommandHandler.prototype.handle = /**
+        NextPageCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.nextPage();
-            this.structureAggregateRepository.save(structure);
+        function (aggregate, command) {
+            // missing implementation
+            aggregate.nextPage();
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        NextPageCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new NextPageEvent(command.getAggregateId()));
         };
         NextPageCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         NextPageCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return NextPageCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        NextPageCommandHandler.prototype.structureAggregateRepository;
+        NextPageCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var PrevPageCommandHandler = /** @class */ (function (_super) {
-        __extends(PrevPageCommandHandler, _super);
-        function PrevPageCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, PrevPageCommand, PrevPageEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var PrevPageCommandHandler = /** @class */ (function () {
+        function PrevPageCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        PrevPageCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return PrevPageCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        PrevPageCommandHandler.prototype.handle = /**
+        PrevPageCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+        function (structure, command) {
             structure.prevPage();
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        PrevPageCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new PrevPageEvent(command.getAggregateId()));
         };
         PrevPageCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         PrevPageCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return PrevPageCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        PrevPageCommandHandler.prototype.structureAggregateRepository;
+        PrevPageCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ChangePagesizeCommandHandler = /** @class */ (function (_super) {
-        __extends(ChangePagesizeCommandHandler, _super);
+    var ChangePagesizeCommandHandler = /** @class */ (function () {
         function ChangePagesizeCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, ChangePagesizeCommand, null, null, structureAggregateRepository) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
+        /**
+         * @return {?}
+         */
+        ChangePagesizeCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ChangePagesizeCommand;
+        };
         /**
          * @param {?} structureAggregate
          * @param {?} command
@@ -27915,7 +28200,7 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return ChangePagesizeCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -27935,32 +28220,14 @@
      */
     /** @type {?} */
     var commandProviders$1 = [
-        PagingDispatcher,
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetPagingCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: NextPageCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: PrevPageCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: ChangePagesizeCommandHandler,
-            multi: true
-        }
+        PagingDispatcher
     ];
     /** @type {?} */
     var readProviders$1 = [
         PagingRepository
     ];
+    /** @type {?} */
+    var pagingCommandHandlers = __spread(hermes.HermesModule.registerCommandHandler(SetPagingCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(NextPageCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(PrevPageCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(ChangePagesizeCommandHandler, 'StructureAggregate'));
     /** @type {?} */
     var pagingProviders = __spread(commandProviders$1, readProviders$1, [
         PagingAggregateFactory,
@@ -27974,130 +28241,177 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetSchemaVerticalGridCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSchemaVerticalGridCommandHandler, _super);
-        function SetSchemaVerticalGridCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSchemaVerticalGridCommand, SchemaVerticalGridSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SetSchemaVerticalGridCommandHandler = /** @class */ (function () {
+        function SetSchemaVerticalGridCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetSchemaVerticalGridCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSchemaVerticalGridCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        SetSchemaVerticalGridCommandHandler.prototype.handle = /**
+        SetSchemaVerticalGridCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var enabled = command.enabled;
+            var enabled = command.isEnabled();
             /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var schema = structure.getSchema();
+            var schema = aggregate.getSchema();
             schema.setVerticalGrid(enabled);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSchemaVerticalGridCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaVerticalGridSetEvent(command.getAggregateId()));
         };
         SetSchemaVerticalGridCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetSchemaVerticalGridCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetSchemaVerticalGridCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SetSchemaVerticalGridCommandHandler.prototype.structureAggregateRepository;
+        SetSchemaVerticalGridCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetSchemaHorizontalGridCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSchemaHorizontalGridCommandHandler, _super);
-        function SetSchemaHorizontalGridCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSchemaHorizontalGridCommand, SchemaHorizontalGridSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SetSchemaHorizontalGridCommandHandler = /** @class */ (function () {
+        function SetSchemaHorizontalGridCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetSchemaHorizontalGridCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSchemaHorizontalGridCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        SetSchemaHorizontalGridCommandHandler.prototype.handle = /**
+        SetSchemaHorizontalGridCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var enabled = command.enabled;
+            var schema = aggregate.getSchema();
             /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var schema = structure.getSchema();
+            var enabled = command.isEnabled();
             schema.setHorizontalGrid(enabled);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSchemaHorizontalGridCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaHorizontalGridSetEvent(command.getAggregateId()));
         };
         SetSchemaHorizontalGridCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetSchemaHorizontalGridCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetSchemaHorizontalGridCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SetSchemaHorizontalGridCommandHandler.prototype.structureAggregateRepository;
+        SetSchemaHorizontalGridCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetSchemaThemeCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSchemaThemeCommandHandler, _super);
+    var SetSchemaThemeCommandHandler = /** @class */ (function () {
         function SetSchemaThemeCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSchemaThemeCommand, SchemaThemeSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetSchemaThemeCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSchemaThemeCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        SetSchemaThemeCommandHandler.prototype.handle = /**
+        SetSchemaThemeCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var theme = command.theme;
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+        function (structure, command) {
             /** @type {?} */
             var schema = structure.getSchema();
+            /** @type {?} */
+            var theme = command.getTheme();
             schema.setTheme(theme);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSchemaThemeCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaThemeSetEvent(command.getAggregateId()));
         };
         SetSchemaThemeCommandHandler.decorators = [
             { type: core.Injectable }
@@ -28108,94 +28422,131 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetSchemaThemeCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
         SetSchemaThemeCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetSchemaThemeCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ChangeSchemaBottomHeaderCommandHandler = /** @class */ (function (_super) {
-        __extends(ChangeSchemaBottomHeaderCommandHandler, _super);
-        function ChangeSchemaBottomHeaderCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, ChangeSchemaBottomHeaderCommand, SchemaBottomHeaderChangedEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var ChangeSchemaBottomHeaderCommandHandler = /** @class */ (function () {
+        function ChangeSchemaBottomHeaderCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        ChangeSchemaBottomHeaderCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ChangeSchemaBottomHeaderCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        ChangeSchemaBottomHeaderCommandHandler.prototype.handle = /**
+        ChangeSchemaBottomHeaderCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var enabled = command.enabled;
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+        function (structure, command) {
             /** @type {?} */
             var schema = structure.getSchema();
+            /** @type {?} */
+            var enabled = command.isEnabled();
             schema.setHeaderBottom(enabled);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ChangeSchemaBottomHeaderCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaBottomHeaderChangedEvent(command.getAggregateId()));
         };
         ChangeSchemaBottomHeaderCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         ChangeSchemaBottomHeaderCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return ChangeSchemaBottomHeaderCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        ChangeSchemaBottomHeaderCommandHandler.prototype.structureAggregateRepository;
+        ChangeSchemaBottomHeaderCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ChangeSchemaTopHeaderCommandHandler = /** @class */ (function (_super) {
-        __extends(ChangeSchemaTopHeaderCommandHandler, _super);
+    var ChangeSchemaTopHeaderCommandHandler = /** @class */ (function () {
         function ChangeSchemaTopHeaderCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, ChangeSchemaTopHeaderCommand, SchemaTopHeaderChangedEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        ChangeSchemaTopHeaderCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ChangeSchemaTopHeaderCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        ChangeSchemaTopHeaderCommandHandler.prototype.handle = /**
+        ChangeSchemaTopHeaderCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var enabled = command.enabled;
+            var schema = aggregate.getSchema();
             /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var schema = structure.getSchema();
+            var enabled = command.isEnabled();
             schema.setHeaderTop(enabled);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ChangeSchemaTopHeaderCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaTopHeaderChangedEvent(command.getAggregateId()));
         };
         ChangeSchemaTopHeaderCommandHandler.decorators = [
             { type: core.Injectable }
@@ -28206,109 +28557,145 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return ChangeSchemaTopHeaderCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
         ChangeSchemaTopHeaderCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        ChangeSchemaTopHeaderCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetRowColoringCommandHandler = /** @class */ (function (_super) {
-        __extends(SetRowColoringCommandHandler, _super);
-        function SetRowColoringCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetRowColoringCommand, RowColoringSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SetRowColoringCommandHandler = /** @class */ (function () {
+        function SetRowColoringCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetRowColoringCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetRowColoringCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        SetRowColoringCommandHandler.prototype.handle = /**
+        SetRowColoringCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var coloring = command.coloring;
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+        function (structure, command) {
+            // missing implementation
             /** @type {?} */
             var schema = structure.getSchema();
+            /** @type {?} */
+            var coloring = command.getColoring();
             schema.setRowColoring(coloring);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetRowColoringCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new RowColoringSetEvent(command.getAggregateId()));
         };
         SetRowColoringCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetRowColoringCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetRowColoringCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SetRowColoringCommandHandler.prototype.structureAggregateRepository;
+        SetRowColoringCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetSchemaCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSchemaCommandHandler, _super);
-        function SetSchemaCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSchemaCommand, SchemaSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SetSchemaCommandHandler = /** @class */ (function () {
+        function SetSchemaCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetSchemaCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSchemaCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        SetSchemaCommandHandler.prototype.handle = /**
+        SetSchemaCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var height = command.height;
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.setHeight(height);
-            this.structureAggregateRepository.save(structure);
+            var height = command.getHeight();
+            aggregate.setHeight(height);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSchemaCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SchemaSetEvent(command.getAggregateId()));
         };
         SetSchemaCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetSchemaCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetSchemaCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SetSchemaCommandHandler.prototype.structureAggregateRepository;
+        SetSchemaCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
@@ -28318,47 +28705,14 @@
     /** @type {?} */
     var commandProviders$2 = [
         SchemaDispatcher,
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSchemaCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSchemaVerticalGridCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSchemaHorizontalGridCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSchemaThemeCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: ChangeSchemaBottomHeaderCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: ChangeSchemaTopHeaderCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetRowColoringCommandHandler,
-            multi: true
-        },
         SchemaAggregateFactory
     ];
     /** @type {?} */
     var readProviders$2 = [
         SchemaRepository
     ];
+    /** @type {?} */
+    var schemaCommandHandlers = __spread(hermes.HermesModule.registerCommandHandler(SetSchemaCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetSchemaVerticalGridCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetSchemaHorizontalGridCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetSchemaThemeCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(ChangeSchemaBottomHeaderCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(ChangeSchemaTopHeaderCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetRowColoringCommandHandler, 'StructureAggregate'));
     /** @type {?} */
     var schemaProviders = __spread(commandProviders$2, readProviders$2, [
         SchemaConverter,
@@ -28370,83 +28724,109 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetFormationCommandHandler = /** @class */ (function (_super) {
-        __extends(SetFormationCommandHandler, _super);
-        function SetFormationCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetFormationCommand, FormationSetEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SetFormationCommandHandler = /** @class */ (function () {
+        function SetFormationCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetFormationCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetFormationCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        SetFormationCommandHandler.prototype.handle = /**
+        SetFormationCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var rawFormation = (/** @type {?} */ (command.payload));
-            /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+        function (aggregate, command) {
             // missing implementation
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetFormationCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new FormationSetEvent(command.getAggregateId()));
         };
         SetFormationCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetFormationCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetFormationCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SetFormationCommandHandler.prototype.structureAggregateRepository;
+        SetFormationCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ToggleSelectedRowCommandHandler = /** @class */ (function (_super) {
-        __extends(ToggleSelectedRowCommandHandler, _super);
+    var ToggleSelectedRowCommandHandler = /** @class */ (function () {
         function ToggleSelectedRowCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, ToggleSelectedRowCommand, SelectedRowToggledEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        ToggleSelectedRowCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ToggleSelectedRowCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        ToggleSelectedRowCommandHandler.prototype.handle = /**
+        ToggleSelectedRowCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var selectedRow = command.selectedRow;
+            var formation = aggregate.getFormation();
             /** @type {?} */
-            var structureId = command.getAggregateId();
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            if (!structure) {
-                console.error("There is no aggregate 'Structure' for aggregateId: " + structureId);
-                return;
-            }
-            /** @type {?} */
-            var formation = structure.getFormation();
+            var selectedRow = command.getSelectedRow();
             formation.toggleRow(selectedRow);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ToggleSelectedRowCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SelectedRowToggledEvent(command.getAggregateId()));
         };
         ToggleSelectedRowCommandHandler.decorators = [
             { type: core.Injectable }
@@ -28457,13 +28837,18 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return ToggleSelectedRowCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
         ToggleSelectedRowCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleSelectedRowCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
@@ -28473,22 +28858,14 @@
     /** @type {?} */
     var commandProviders$3 = [
         FormationDispatcher,
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetFormationCommandHandler,
-            multi: true
-        },
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: ToggleSelectedRowCommandHandler,
-            multi: true
-        },
         FormationAggregateFactory
     ];
     /** @type {?} */
     var readProviders$3 = [
         FormationRepository
     ];
+    /** @type {?} */
+    var formationCommandHandlers = __spread(hermes.HermesModule.registerCommandHandler(SetFormationCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, 'StructureAggregate'));
     /** @type {?} */
     var formationProviders = __spread(commandProviders$3, readProviders$3, [
         FormationEventService,
@@ -28501,36 +28878,47 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetOriginCommandHandler = /** @class */ (function (_super) {
-        __extends(SetOriginCommandHandler, _super);
-        function SetOriginCommandHandler(structureAggregateRepository, structureSourceDomainEventPublisher) {
-            var _this = _super.call(this, SetOriginCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-            return _this;
+    var SetOriginCommandHandler = /** @class */ (function () {
+        function SetOriginCommandHandler(structureSourceDomainEventPublisher) {
+            this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetOriginCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetOriginCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        SetOriginCommandHandler.prototype.handle = /**
+        SetOriginCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (structure, command) {
             /** @type {?} */
-            var structureId = command.structureId;
+            var items = command.getItems();
+            structure.setOrigin(items);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetOriginCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
             /** @type {?} */
-            var items = (/** @type {?} */ (command.items));
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            if (!structure) {
-                console.error("There is no aggregate 'Structure' for aggregateId: " + structureId);
-                return;
-            }
-            /** @type {?} */
-            var aggregateEvents = structure.setOrigin(items);
-            this.structureAggregateRepository.save(structure);
+            var aggregateEvents = aggregate.getEvents();
             this.structureSourceDomainEventPublisher.publish(aggregateEvents);
         };
         SetOriginCommandHandler.decorators = [
@@ -28538,17 +28926,11 @@
         ];
         /** @nocollapse */
         SetOriginCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: StructureSourceDomainEventPublisher }
         ]; };
         return SetOriginCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetOriginCommandHandler.prototype.structureAggregateRepository;
         /**
          * @type {?}
          * @private
@@ -28560,33 +28942,47 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureEditSourceItemCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureEditSourceItemCommandHandler, _super);
-        function StructureEditSourceItemCommandHandler(structureAggregateRepository, domainEventPublisher, structureSourceDomainEventPublisher) {
-            var _this = _super.call(this, StructureEditSourceItemCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            _this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-            return _this;
+    var StructureEditSourceItemCommandHandler = /** @class */ (function () {
+        function StructureEditSourceItemCommandHandler(structureSourceDomainEventPublisher) {
+            this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        StructureEditSourceItemCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureEditSourceItemCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        StructureEditSourceItemCommandHandler.prototype.handle = /**
+        StructureEditSourceItemCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
-            /** @type {?} */
-            var structureId = command.getAggregateId();
+        function (structure, command) {
             /** @type {?} */
             var params = command.getParams();
+            structure.editItem(params);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureEditSourceItemCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
             /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var aggregateEvents = structure.editItem(params);
-            this.structureAggregateRepository.save(structure);
+            var aggregateEvents = aggregate.getEvents();
             this.structureSourceDomainEventPublisher.publish(aggregateEvents);
         };
         StructureEditSourceItemCommandHandler.decorators = [
@@ -28594,23 +28990,11 @@
         ];
         /** @nocollapse */
         StructureEditSourceItemCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher },
             { type: StructureSourceDomainEventPublisher }
         ]; };
         return StructureEditSourceItemCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureEditSourceItemCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureEditSourceItemCommandHandler.prototype.domainEventPublisher;
         /**
          * @type {?}
          * @private
@@ -28711,49 +29095,64 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SourceSetLoadingCommandHandler = /** @class */ (function (_super) {
-        __extends(SourceSetLoadingCommandHandler, _super);
-        function SourceSetLoadingCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SourceSetLoadingCommand, SetSourceLoadingEvent, domainEventPublisher) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            return _this;
+    var SourceSetLoadingCommandHandler = /** @class */ (function () {
+        function SourceSetLoadingCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SourceSetLoadingCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SourceSetLoadingCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        SourceSetLoadingCommandHandler.prototype.handle = /**
+        SourceSetLoadingCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var enabled = command.enabled;
+            var enabled = command.isEnabled();
             /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
-            var source = structure.getSource();
+            var source = aggregate.getSource();
             source.setLoading(enabled);
-            this.structureAggregateRepository.save(structure);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SourceSetLoadingCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new SetSourceLoadingEvent(command.getAggregateId()));
         };
         SourceSetLoadingCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SourceSetLoadingCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SourceSetLoadingCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SourceSetLoadingCommandHandler.prototype.structureAggregateRepository;
+        SourceSetLoadingCommandHandler.prototype.domainEventPublisher;
     }
 
     /**
@@ -28807,19 +29206,6 @@
     var commandProviders$4 = [
         SourceDispatcher,
         SourceManagerFactory,
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SourceSetLoadingCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetOriginCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureEditSourceItemCommandHandler,
-            multi: true
-        },
         StructureSourceDomainEventPublisher
     ];
     /** @type {?} */
@@ -28838,6 +29224,8 @@
         StructurePreparedItemsRepository
     ];
     /** @type {?} */
+    var sourceCommandHandlers = __spread(hermes.HermesModule.registerCommandHandler(SourceSetLoadingCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetOriginCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureEditSourceItemCommandHandler, 'StructureAggregate'));
+    /** @type {?} */
     var sourceProviders = __spread(commandProviders$4, readProviders$4, [
         SourceConverter,
         SourceCommandService,
@@ -28849,52 +29237,62 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureSetSearchPhraseCommandHandler = /** @class */ (function (_super) {
-        __extends(StructureSetSearchPhraseCommandHandler, _super);
-        function StructureSetSearchPhraseCommandHandler(structureAggregateRepository, structureSourceDomainEventPublisher, domainEventPublisher) {
-            var _this = _super.call(this, StructureSetSearchPhraseCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
+    var StructureSetSearchPhraseCommandHandler = /** @class */ (function () {
+        function StructureSetSearchPhraseCommandHandler(structureSourceDomainEventPublisher, domainEventPublisher) {
+            this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        StructureSetSearchPhraseCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return StructureSetSearchPhraseCommand;
+        };
+        /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        StructureSetSearchPhraseCommandHandler.prototype.handle = /**
+        StructureSetSearchPhraseCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (aggregate, command) {
             /** @type {?} */
-            var structureId = command.structureId;
+            var phrase = command.getPhrase();
+            aggregate.addSearchPhrase(phrase);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        StructureSetSearchPhraseCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
             /** @type {?} */
-            var phrase = command.phrase;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            structure.addSearchPhrase(phrase);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new StructureSearchPhraseSetDomainEvent(structureId, phrase));
-            this.structureSourceDomainEventPublisher.publish(structure.getEvents());
+            var phrase = command.getPhrase();
+            this.domainEventPublisher.publish(new StructureSearchPhraseSetDomainEvent(command.getAggregateId(), phrase));
+            this.structureSourceDomainEventPublisher.publish(aggregate.getEvents());
         };
         StructureSetSearchPhraseCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         StructureSetSearchPhraseCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: StructureSourceDomainEventPublisher },
             { type: hermes.DomainEventPublisher }
         ]; };
         return StructureSetSearchPhraseCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSetSearchPhraseCommandHandler.prototype.structureAggregateRepository;
         /**
          * @type {?}
          * @private
@@ -28911,23 +29309,31 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetSortOrderCommandHandler = /** @class */ (function (_super) {
-        __extends(SetSortOrderCommandHandler, _super);
+    var SetSortOrderCommandHandler = /** @class */ (function () {
         function SetSortOrderCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetSortOrderCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetSortOrderCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetSortOrderCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        SetSortOrderCommandHandler.prototype.handle = /**
+        SetSortOrderCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (structure, command) {
             /** @type {?} */
             var structureId = command.getAggregateId();
             /** @type {?} */
@@ -28937,13 +29343,23 @@
             /** @type {?} */
             var sortOrder = command.getSortOrder();
             /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
-            /** @type {?} */
             var sorters = structure.setSortOrder(fieldId, sortOrder);
-            this.structureAggregateRepository.save(structure);
             this.publishSortEvent(structureId, compositionId, fieldId, sorters);
         };
         /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetSortOrderCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+        };
+        /**
+         * @private
          * @param {?} aggregateId
          * @param {?} compositionId
          * @param {?} fieldId
@@ -28951,6 +29367,7 @@
          * @return {?}
          */
         SetSortOrderCommandHandler.prototype.publishSortEvent = /**
+         * @private
          * @param {?} aggregateId
          * @param {?} compositionId
          * @param {?} fieldId
@@ -28980,7 +29397,7 @@
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetSortOrderCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
@@ -28998,54 +29415,62 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SetRowHeightCommandHandler = /** @class */ (function (_super) {
-        __extends(SetRowHeightCommandHandler, _super);
-        function SetRowHeightCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            var _this = _super.call(this, SetRowHeightCommand) || this;
-            _this.structureAggregateRepository = structureAggregateRepository;
-            _this.domainEventPublisher = domainEventPublisher;
-            return _this;
+    var SetRowHeightCommandHandler = /** @class */ (function () {
+        function SetRowHeightCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
         }
         /**
+         * @return {?}
+         */
+        SetRowHeightCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetRowHeightCommand;
+        };
+        /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        SetRowHeightCommandHandler.prototype.handle = /**
+        SetRowHeightCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
          * @param {?} command
          * @return {?}
          */
-        function (command) {
+        function (structure, command) {
             /** @type {?} */
-            var structureId = command.structureId;
-            /** @type {?} */
-            var rowHeight = command.rowHeight;
-            /** @type {?} */
-            var structure = this.structureAggregateRepository.getById(structureId);
+            var rowHeight = command.getRowHeight();
             /** @type {?} */
             var formation = structure.getVerticalFormation();
             formation.setRowHeight(rowHeight);
-            this.structureAggregateRepository.save(structure);
-            this.domainEventPublisher.publish(new RowHeightSetEvent(structureId));
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetRowHeightCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new RowHeightSetEvent(command.getAggregateId()));
         };
         SetRowHeightCommandHandler.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SetRowHeightCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
             { type: hermes.DomainEventPublisher }
         ]; };
         return SetRowHeightCommandHandler;
-    }(hermes.CommandHandler));
+    }());
     if (false) {
         /**
          * @type {?}
          * @private
-         */
-        SetRowHeightCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @protected
          */
         SetRowHeightCommandHandler.prototype.domainEventPublisher;
     }
@@ -29097,63 +29522,6 @@
      */
     /** @type {?} */
     var commandProviders$5 = __spread(inMemoryStructureCommandProviders, [
-        {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: InitStructureCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetVerticalScrollEnabledCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetScrollPositionCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: InitFieldsCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: ToggleSortCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSortingCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureSetConfigFilterCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureSetConfigSearchingCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureSetConfigQuickFilterCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureToggleFilterCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureSetAggregationEnabledCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: StructureSetSearchPhraseCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetSortOrderCommandHandler,
-            multi: true
-        }, {
-            provide: hermes.COMMAND_HANDLERS,
-            useClass: SetRowHeightCommandHandler,
-            multi: true
-        },
         VerticalFormationFactory,
         FieldCollectionFactory,
         FilterManagerFactory,
@@ -29201,6 +29569,8 @@
         StructureSearchHighlightArchive,
         StructureSearchPlaceholderArchive
     ]);
+    /** @type {?} */
+    var structureCommandHandlers = __spread(hermes.HermesModule.registerCommandHandler(SetVerticalScrollEnabledCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetScrollPositionCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(InitFieldsCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(ToggleSortCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetSortingCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureSetConfigFilterCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureSetConfigSearchingCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureSetConfigQuickFilterCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureToggleFilterCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureSetAggregationEnabledCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(StructureSetSearchPhraseCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetSortOrderCommandHandler, 'StructureAggregate'), hermes.HermesModule.registerCommandHandler(SetRowHeightCommandHandler, 'StructureAggregate'));
     /** @type {?} */
     var structureProviders = __spread(inMemoryStructureProviders, commandProviders$5, readProviders$5, [
         StructureSearchEventService,
@@ -29365,7 +29735,7 @@
             _this.structureReadModelService = structureReadModelService;
             _this.structureSearchPhraseRepository = structureSearchPhraseRepository;
             _this.structureSearchPlaceholderArchive = structureSearchPlaceholderArchive;
-            _this.placeholder = 'Search ...';
+            _this.placeholder = 'Search';
             /** @type {?} */
             var controlsConfig = {};
             controlsConfig[StructureSearchComponent.FORM_SEARCH_NAME] = '';
@@ -29400,6 +29770,9 @@
              * @return {?}
              */
             function (phrase) {
+                if (phrase === undefined) {
+                    phrase = null;
+                }
                 /** @type {?} */
                 var controlsConfig = {};
                 controlsConfig[StructureSearchComponent.FORM_SEARCH_NAME] = phrase;
@@ -30278,6 +30651,69 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var CreateStructureCommandHandler = /** @class */ (function () {
+        function CreateStructureCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        CreateStructureCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new StructureCreatedEvent(command.getAggregateId()));
+        };
+        /**
+         * @return {?}
+         */
+        CreateStructureCommandHandler.prototype.getAggregateRepository = /**
+         * @return {?}
+         */
+        function () {
+            return this.structureAggregateRepository;
+        };
+        /**
+         * @return {?}
+         */
+        CreateStructureCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return CreateStructureCommand;
+        };
+        CreateStructureCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        CreateStructureCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return CreateStructureCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CreateStructureCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        CreateStructureCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @return {?}
      */
@@ -30285,10 +30721,13 @@
         return new StructureDefinition.DefaultBuilder().build();
     }
     /** @type {?} */
+    var structureKey = 'StructureAggregate';
+    /** @type {?} */
     var imports = __spread([
         common.CommonModule,
         forms.ReactiveFormsModule,
-        hermes.HermesModule
+        hermes.HermesModule,
+        hermes.HermesModule.defineAggregate(structureKey, StructureAggregateFactory, InMemoryStructureAggregateRepository, CreateStructureCommandHandler, __spread(formationCommandHandlers, pagingCommandHandlers, schemaCommandHandlers, sourceCommandHandlers, structureCommandHandlers))
     ], fabricImports, [
         StructurePagingModule,
         StructureInfoPanelModule,
@@ -30469,273 +30908,278 @@
     exports.GuiTheme = GuiTheme;
     exports.ɵa = gridSelector;
     exports.ɵb = createStructureDefinition;
-    exports.ɵba = StructureInfoPanelComponent;
-    exports.ɵbb = CompositionId;
-    exports.ɵbc = StructureDialogColumnManagerService;
-    exports.ɵbd = StructureReadModelService;
-    exports.ɵbe = VerticalFormationRepository;
-    exports.ɵbf = InMemoryStructureReadStore;
-    exports.ɵbg = InMemoryStructureStore;
-    exports.ɵbh = StructureConverter;
-    exports.ɵbi = FormationConverter;
-    exports.ɵbj = SchemaConverter;
-    exports.ɵbk = PagingConverter;
-    exports.ɵbl = SourceConverter;
-    exports.ɵbm = VerticalFormationConverter;
-    exports.ɵbn = StructureInfoModalComponent;
-    exports.ɵbo = StructureAggregationPanelModule;
-    exports.ɵbp = StructureAggregationPanelComponent;
-    exports.ɵbq = StructureId;
-    exports.ɵbr = StructureAggregationUiEventsRepository;
-    exports.ɵbs = CompositionReadModelService;
-    exports.ɵbt = CompositionRepository;
-    exports.ɵbu = StructureAggregationArchive;
-    exports.ɵbv = StructureAggregationConfigService;
-    exports.ɵbw = StructureAggregationPanelConfigConverter;
-    exports.ɵbx = StructureAggregationCommandService;
-    exports.ɵby = StructureTopPanelModule;
-    exports.ɵbz = StructureTopPanelComponent;
+    exports.ɵba = ToggleSelectedRowCommandHandler;
+    exports.ɵbb = pagingCommandHandlers;
+    exports.ɵbc = pagingProviders;
+    exports.ɵbd = SetPagingCommandHandler;
+    exports.ɵbe = NextPageCommandHandler;
+    exports.ɵbf = PrevPageCommandHandler;
+    exports.ɵbg = ChangePagesizeCommandHandler;
+    exports.ɵbh = schemaCommandHandlers;
+    exports.ɵbi = schemaProviders;
+    exports.ɵbj = SetSchemaCommandHandler;
+    exports.ɵbk = SetSchemaVerticalGridCommandHandler;
+    exports.ɵbl = SetSchemaHorizontalGridCommandHandler;
+    exports.ɵbm = SetSchemaThemeCommandHandler;
+    exports.ɵbn = ChangeSchemaBottomHeaderCommandHandler;
+    exports.ɵbo = ChangeSchemaTopHeaderCommandHandler;
+    exports.ɵbp = SetRowColoringCommandHandler;
+    exports.ɵbq = sourceCommandHandlers;
+    exports.ɵbr = sourceProviders;
+    exports.ɵbs = SourceSetLoadingCommandHandler;
+    exports.ɵbt = SetOriginCommandHandler;
+    exports.ɵbu = StructureSourceDomainEventPublisher;
+    exports.ɵbv = StructureEditSourceItemCommandHandler;
+    exports.ɵbw = structureCommandHandlers;
+    exports.ɵbx = structureProviders;
+    exports.ɵby = SetVerticalScrollEnabledCommandHandler;
+    exports.ɵbz = SetScrollPositionCommandHandler;
     exports.ɵc = StructureModule;
-    exports.ɵca = StructureSearchComponent;
-    exports.ɵcb = StructureCommandService;
-    exports.ɵcc = StructureFilterCommandService;
-    exports.ɵcd = SourceDispatcher;
-    exports.ɵce = StructureSearchDispatcher;
-    exports.ɵcf = StructureSearchHighlightArchive;
-    exports.ɵcg = StructureSearchPlaceholderArchive;
-    exports.ɵch = StructureSearchPhraseRepository;
-    exports.ɵci = StructureColumnMenuModule;
-    exports.ɵcj = StructureColumnManagerModule;
-    exports.ɵck = StructureColumnManagerComponent;
-    exports.ɵcl = CompositionCommandService;
-    exports.ɵcm = CompositionDispatcher;
-    exports.ɵcn = StructureDialogColumnManagerComponent;
-    exports.ɵco = StructureMenuColumnManagerComponent;
-    exports.ɵcp = StructureColumnConfigComponent;
-    exports.ɵcq = StructureColumnMenuConfigArchive;
-    exports.ɵcr = CellTemplateWithContext;
-    exports.ɵcs = CellContext;
-    exports.ɵct = FieldId;
-    exports.ɵcu = ColumnId;
-    exports.ɵcv = SortOrder;
-    exports.ɵcw = StructureColumnConfigTriggerComponent;
-    exports.ɵcx = StructureColumnConfigService;
-    exports.ɵcy = StructureColumnConfigSortComponent;
-    exports.ɵcz = StructureColumnConfigColumnHideComponent;
-    exports.ɵd = fabricImports;
-    exports.ɵda = StructureColumnConfigColumnMoveComponent;
-    exports.ɵdb = CompositionModule;
-    exports.ɵdc = SanitizeModule;
-    exports.ɵdd = SafePipe;
-    exports.ɵde = compositionProviders;
-    exports.ɵdf = inMemoryCompositionCommandProviders;
-    exports.ɵdg = inMemoryCompositionQueryProviders;
-    exports.ɵdh = inMemoryCompositionProviders;
-    exports.ɵdi = InMemoryCompositionStore;
-    exports.ɵdj = InMemoryCompositionAggregateStore;
-    exports.ɵdk = CompositionAggregateRepository;
-    exports.ɵdl = InMemoryCompositionAggregateRepository;
-    exports.ɵdm = CompositionAggregateFactory;
-    exports.ɵdn = InitCompositionCommandHandler;
-    exports.ɵdo = SetColumnsCommandHandler;
-    exports.ɵdp = CompositionEventConverter;
-    exports.ɵdq = SetCompositionWidthCommandHandler;
-    exports.ɵdr = SetCompositionResizeWidthCommandHandler;
-    exports.ɵds = ColumnEntityFactory;
-    exports.ɵdt = SetCompositionContainerWidthCommandHandler;
-    exports.ɵdu = CompositionSetColumnEnabledCommandHandler;
-    exports.ɵdv = CompositionChangeSortStatusCommandHandler;
-    exports.ɵdw = CompositionMoveLeftColumnCommandHandler;
-    exports.ɵdx = CompositionMoveRightColumnCommandHandler;
-    exports.ɵdy = ColumnFieldFactory;
-    exports.ɵdz = InMemoryCompositionReadStore;
-    exports.ɵe = StructurePagingModule;
-    exports.ɵea = CompositionConverter;
-    exports.ɵeb = ColumnDefinitionFactory;
-    exports.ɵec = ViewTemplateRepository;
-    exports.ɵed = ViewTemplateFactory;
-    exports.ɵee = TemplateFactory;
-    exports.ɵef = EditTemplateRepository;
-    exports.ɵeg = EditTemplateFactory;
-    exports.ɵeh = InMemoryCompositionRepository;
-    exports.ɵei = CompositionFieldsInitedEventHandler;
-    exports.ɵej = CompositionChangeSortStatusEventHandler;
-    exports.ɵek = CompositionEventService;
-    exports.ɵel = ViewTemplatesComponent;
-    exports.ɵem = EditTemplatesComponent;
-    exports.ɵen = StringEditTemplateComponent;
-    exports.ɵeo = InputEditTemplateComponent;
-    exports.ɵep = EditCommunicationComponent;
-    exports.ɵeq = Override;
-    exports.ɵer = NumberEditTemplateComponent;
-    exports.ɵes = BooleanEditTemplateComponent;
-    exports.ɵet = ColumnQueryComponent;
-    exports.ɵeu = FunctionViewComponent;
-    exports.ɵev = LoggerModule;
-    exports.ɵew = Logger;
-    exports.ɵex = ConsoleLogger;
-    exports.ɵey = structureIdFactory;
-    exports.ɵez = compositionIdFactory;
-    exports.ɵf = StructurePagingComponent;
-    exports.ɵfa = structureComponentSelfProviders;
-    exports.ɵfb = StructureComponent;
-    exports.ɵfc = StructureGateway;
-    exports.ɵfd = PagingEventService;
-    exports.ɵfe = SourceCommandService;
-    exports.ɵff = StructureFieldUiRepository;
-    exports.ɵfg = StructureFieldUiArchive;
-    exports.ɵfh = SourceEventService;
-    exports.ɵfi = SchemaCommandService;
-    exports.ɵfj = SchemaDispatcher;
-    exports.ɵfk = SchemaReadModelService;
-    exports.ɵfl = SchemaRepository;
-    exports.ɵfm = FormationEventService;
-    exports.ɵfn = StructureEditModeArchive;
-    exports.ɵfo = StructureCellEditArchive;
-    exports.ɵfp = StructureInfoPanelEnabledArchive;
-    exports.ɵfq = StructureCellEditStore;
-    exports.ɵfr = StructureRowSelectEnabledArchive;
-    exports.ɵfs = StructureSearchEventService;
-    exports.ɵft = StructureIdGenerator;
-    exports.ɵfu = localProviders;
-    exports.ɵfv = LocalPagingCommandService;
-    exports.ɵfw = PagingAggregateFactory;
-    exports.ɵfx = LocalPagingReadModelService;
-    exports.ɵfy = LocalSchemaCommandService;
-    exports.ɵfz = LocalSchemaReadModelService;
-    exports.ɵg = SmartComponent;
-    exports.ɵga = FormationCommandService;
-    exports.ɵgb = FormationDispatcher;
-    exports.ɵgc = LocalFormationCommandService;
-    exports.ɵgd = FormationReadModelService;
-    exports.ɵge = FormationRepository;
-    exports.ɵgf = LocalFormationReadModelService;
-    exports.ɵgg = LocalStructureCommandService;
-    exports.ɵgh = LocalStructureReadModelService;
-    exports.ɵgi = LocalSourceCommandService;
-    exports.ɵgj = LocalSourceReadModelService;
-    exports.ɵgk = LocalCompositionCommandService;
-    exports.ɵgl = LocalCompositionReadModelService;
-    exports.ɵgm = LocalStructureSearchDispatcher;
-    exports.ɵgn = SchemaCssClassManager;
-    exports.ɵgo = structureComponentToken;
-    exports.ɵgp = StructureDefinition;
-    exports.ɵgq = StructurePagingDefinition;
-    exports.ɵgr = StructureHeaderComponent;
-    exports.ɵgs = StructureHeaderColumnsComponent;
-    exports.ɵgt = StructureHeaderFiltersComponent;
-    exports.ɵgu = StructureFilterReadModelRepository;
-    exports.ɵgv = StructureFilterRepository;
-    exports.ɵgw = StructureQuickFilterRepository;
-    exports.ɵgx = StructureHeaderFilterComponent;
-    exports.ɵgy = StructureContentComponent;
-    exports.ɵgz = StructureRowComponent;
-    exports.ɵh = Reactive;
-    exports.ɵha = StructureCellComponent;
-    exports.ɵhb = StructureContainerComponent;
-    exports.ɵhc = structureParentComponent;
-    exports.ɵhd = StructureEmptySourceComponent;
-    exports.ɵhe = StructureQuickFiltersComponent;
-    exports.ɵhf = StructureBlueprintComponent;
-    exports.ɵhg = STRUCTURE_CSS_CLASS_NAME;
-    exports.ɵhh = StructureSearchReadModelRepository;
-    exports.ɵhi = StructureSearchingRepository;
-    exports.ɵhj = ItemEntityFactory;
-    exports.ɵhk = structureProviders;
-    exports.ɵhl = inMemoryStructureCommandProviders;
-    exports.ɵhm = inMemoryStructureReadProviders;
-    exports.ɵhn = inMemoryStructureProviders;
-    exports.ɵho = InMemoryStructureAggregateStore;
-    exports.ɵhp = StructureAggregateRepository;
-    exports.ɵhq = InMemoryStructureAggregateRepository;
-    exports.ɵhr = InitStructureCommandHandler;
-    exports.ɵhs = StructureAggregateFactory;
-    exports.ɵht = SourceManagerFactory;
-    exports.ɵhu = FormationAggregateFactory;
-    exports.ɵhv = VerticalFormationFactory;
-    exports.ɵhw = AggregationManagerFactory;
-    exports.ɵhx = AGGREGATION_CALCULATORS;
-    exports.ɵhy = AggregationCalculator;
-    exports.ɵhz = FilterManagerFactory;
-    exports.ɵi = PagingReadModelService;
-    exports.ɵia = SearchManagerFactory;
-    exports.ɵib = FieldCollectionFactory;
-    exports.ɵic = FieldFactory;
-    exports.ɵid = FieldIdGenerator;
-    exports.ɵie = SchemaAggregateFactory;
-    exports.ɵif = SetVerticalScrollEnabledCommandHandler;
-    exports.ɵig = SetScrollPositionCommandHandler;
-    exports.ɵih = InitFieldsCommandHandler;
-    exports.ɵii = ToggleSortCommandHandler;
-    exports.ɵij = SetSortingCommandHandler;
-    exports.ɵik = StructureSetConfigFilterCommandHandler;
-    exports.ɵil = StructureSetConfigSearchingCommandHandler;
-    exports.ɵim = StructureSetConfigQuickFilterCommandHandler;
-    exports.ɵin = StructureToggleFilterCommandHandler;
-    exports.ɵio = StructureSetAggregationEnabledCommandHandler;
-    exports.ɵip = StructureSourceDomainEventPublisher;
-    exports.ɵiq = StructureSetSearchPhraseCommandHandler;
-    exports.ɵir = SetSortOrderCommandHandler;
-    exports.ɵis = SetRowHeightCommandHandler;
-    exports.ɵit = provideAggregationCalculator;
-    exports.ɵiu = aggregationProviders;
-    exports.ɵiv = BooleanAggregationCalculator;
-    exports.ɵiw = DateAggregationCalculator;
-    exports.ɵix = NumberAggregationCalculator;
-    exports.ɵiy = StringAggregationCalculator;
-    exports.ɵiz = UnknownAggregationCalculator;
-    exports.ɵj = PagingRepository;
-    exports.ɵja = StructureConfigFilterSetEventHandler;
-    exports.ɵjb = StructureConfigSearchingSetEventHandler;
-    exports.ɵjc = StructureConfigQuickFilterSetEventHandler;
-    exports.ɵjd = StructureFieldsInitedEventHandler;
-    exports.ɵje = StructureFieldUiConverter;
-    exports.ɵjf = StructureSearchPhraseSetEventHandler;
-    exports.ɵjg = InMemoryStructureRepository;
-    exports.ɵjh = pagingProviders;
-    exports.ɵji = SetPagingCommandHandler;
-    exports.ɵjj = NextPageCommandHandler;
-    exports.ɵjk = PrevPageCommandHandler;
-    exports.ɵjl = ChangePagesizeCommandHandler;
-    exports.ɵjm = schemaProviders;
-    exports.ɵjn = SetSchemaCommandHandler;
-    exports.ɵjo = SetSchemaVerticalGridCommandHandler;
-    exports.ɵjp = SetSchemaHorizontalGridCommandHandler;
-    exports.ɵjq = SetSchemaThemeCommandHandler;
-    exports.ɵjr = ChangeSchemaBottomHeaderCommandHandler;
-    exports.ɵjs = ChangeSchemaTopHeaderCommandHandler;
-    exports.ɵjt = SetRowColoringCommandHandler;
-    exports.ɵju = formationProviders;
-    exports.ɵjv = SetFormationCommandHandler;
-    exports.ɵjw = ToggleSelectedRowCommandHandler;
-    exports.ɵjx = sourceProviders;
-    exports.ɵjy = SourceSetLoadingCommandHandler;
-    exports.ɵjz = SetOriginCommandHandler;
-    exports.ɵk = StructureRepository;
-    exports.ɵka = StructureEditSourceItemCommandHandler;
-    exports.ɵkb = SourceRepository;
-    exports.ɵkc = StructureOriginChangedEventHandler;
-    exports.ɵkd = StructurePreparedItemsEventHandler;
-    exports.ɵke = GridGateway;
-    exports.ɵkf = gridProviders;
-    exports.ɵkg = gridStructureDefinition;
-    exports.ɵkh = GridRegister;
-    exports.ɵki = GridIdGenerator;
-    exports.ɵl = PagingCommandService;
-    exports.ɵm = PagingDispatcher;
-    exports.ɵn = SourceReadModelService;
-    exports.ɵo = StructurePreparedItemsRepository;
-    exports.ɵp = StructureSourceOriginRepository;
-    exports.ɵq = StructurePagingDisplayModeArchive;
-    exports.ɵr = Archive;
-    exports.ɵs = StructurePagingNavigatorComponent;
-    exports.ɵt = StructurePagingSelectComponent;
-    exports.ɵu = StructurePagingStatsComponent;
-    exports.ɵv = StructureAlternativePagingNavigatorComponent;
-    exports.ɵw = StructureAlternativePagingPagesComponent;
-    exports.ɵx = StructureInfoPanelModule;
-    exports.ɵy = NumberFormatterModule;
-    exports.ɵz = NumberFormatterPipe;
+    exports.ɵca = InitFieldsCommandHandler;
+    exports.ɵcb = ToggleSortCommandHandler;
+    exports.ɵcc = SetSortingCommandHandler;
+    exports.ɵcd = StructureSetConfigFilterCommandHandler;
+    exports.ɵce = StructureSetConfigSearchingCommandHandler;
+    exports.ɵcf = StructureSetConfigQuickFilterCommandHandler;
+    exports.ɵcg = StructureToggleFilterCommandHandler;
+    exports.ɵch = StructureSetAggregationEnabledCommandHandler;
+    exports.ɵci = StructureSetSearchPhraseCommandHandler;
+    exports.ɵcj = SetSortOrderCommandHandler;
+    exports.ɵck = SetRowHeightCommandHandler;
+    exports.ɵcl = fabricImports;
+    exports.ɵcm = StructurePagingModule;
+    exports.ɵcn = StructurePagingComponent;
+    exports.ɵco = SmartComponent;
+    exports.ɵcp = Reactive;
+    exports.ɵcq = PagingReadModelService;
+    exports.ɵcr = PagingRepository;
+    exports.ɵcs = StructureRepository;
+    exports.ɵct = PagingCommandService;
+    exports.ɵcu = PagingDispatcher;
+    exports.ɵcv = SourceReadModelService;
+    exports.ɵcw = StructurePreparedItemsRepository;
+    exports.ɵcx = StructureSourceOriginRepository;
+    exports.ɵcy = StructurePagingDisplayModeArchive;
+    exports.ɵcz = Archive;
+    exports.ɵd = StructureAggregateFactory;
+    exports.ɵda = StructurePagingNavigatorComponent;
+    exports.ɵdb = StructurePagingSelectComponent;
+    exports.ɵdc = StructurePagingStatsComponent;
+    exports.ɵdd = StructureAlternativePagingNavigatorComponent;
+    exports.ɵde = StructureAlternativePagingPagesComponent;
+    exports.ɵdf = StructureInfoPanelModule;
+    exports.ɵdg = NumberFormatterModule;
+    exports.ɵdh = NumberFormatterPipe;
+    exports.ɵdi = StructureInfoPanelComponent;
+    exports.ɵdj = CompositionId;
+    exports.ɵdk = StructureDialogColumnManagerService;
+    exports.ɵdl = StructureReadModelService;
+    exports.ɵdm = VerticalFormationRepository;
+    exports.ɵdn = InMemoryStructureReadStore;
+    exports.ɵdo = StructureConverter;
+    exports.ɵdp = FormationConverter;
+    exports.ɵdq = SchemaConverter;
+    exports.ɵdr = PagingConverter;
+    exports.ɵds = SourceConverter;
+    exports.ɵdt = VerticalFormationConverter;
+    exports.ɵdu = StructureInfoModalComponent;
+    exports.ɵdv = StructureAggregationPanelModule;
+    exports.ɵdw = StructureAggregationPanelComponent;
+    exports.ɵdx = StructureId;
+    exports.ɵdy = StructureAggregationUiEventsRepository;
+    exports.ɵdz = CompositionReadModelService;
+    exports.ɵe = PagingAggregateFactory;
+    exports.ɵea = CompositionRepository;
+    exports.ɵeb = StructureAggregationArchive;
+    exports.ɵec = StructureAggregationConfigService;
+    exports.ɵed = StructureAggregationPanelConfigConverter;
+    exports.ɵee = StructureAggregationCommandService;
+    exports.ɵef = StructureTopPanelModule;
+    exports.ɵeg = StructureTopPanelComponent;
+    exports.ɵeh = StructureSearchComponent;
+    exports.ɵei = StructureCommandService;
+    exports.ɵej = StructureFilterCommandService;
+    exports.ɵek = SourceDispatcher;
+    exports.ɵel = StructureSearchDispatcher;
+    exports.ɵem = StructureSearchHighlightArchive;
+    exports.ɵen = StructureSearchPlaceholderArchive;
+    exports.ɵeo = StructureSearchPhraseRepository;
+    exports.ɵep = StructureColumnMenuModule;
+    exports.ɵeq = StructureColumnManagerModule;
+    exports.ɵer = StructureColumnManagerComponent;
+    exports.ɵes = CompositionCommandService;
+    exports.ɵet = CompositionDispatcher;
+    exports.ɵeu = StructureDialogColumnManagerComponent;
+    exports.ɵev = StructureMenuColumnManagerComponent;
+    exports.ɵew = StructureColumnConfigComponent;
+    exports.ɵex = StructureColumnMenuConfigArchive;
+    exports.ɵey = CellTemplateWithContext;
+    exports.ɵez = CellContext;
+    exports.ɵf = Logger;
+    exports.ɵfa = FieldId;
+    exports.ɵfb = ColumnId;
+    exports.ɵfc = SortOrder;
+    exports.ɵfd = StructureColumnConfigTriggerComponent;
+    exports.ɵfe = StructureColumnConfigService;
+    exports.ɵff = StructureColumnConfigSortComponent;
+    exports.ɵfg = StructureColumnConfigColumnHideComponent;
+    exports.ɵfh = StructureColumnConfigColumnMoveComponent;
+    exports.ɵfi = CompositionModule;
+    exports.ɵfj = SanitizeModule;
+    exports.ɵfk = SafePipe;
+    exports.ɵfl = CompositionAggregateFactory;
+    exports.ɵfm = InMemoryCompositionAggregateRepository;
+    exports.ɵfn = CompositionAggregateRepository;
+    exports.ɵfo = InMemoryCompositionAggregateStore;
+    exports.ɵfp = InMemoryCompositionStore;
+    exports.ɵfq = CreateCompositionCommandHandler;
+    exports.ɵfr = SetColumnsCommandHandler;
+    exports.ɵfs = CompositionEventConverter;
+    exports.ɵft = SetCompositionWidthCommandHandler;
+    exports.ɵfu = SetCompositionResizeWidthCommandHandler;
+    exports.ɵfv = SetCompositionContainerWidthCommandHandler;
+    exports.ɵfw = CompositionSetColumnEnabledCommandHandler;
+    exports.ɵfx = CompositionChangeSortStatusCommandHandler;
+    exports.ɵfy = CompositionMoveLeftColumnCommandHandler;
+    exports.ɵfz = CompositionMoveRightColumnCommandHandler;
+    exports.ɵg = SourceManagerFactory;
+    exports.ɵga = compositionProviders;
+    exports.ɵgb = inMemoryCompositionCommandProviders;
+    exports.ɵgc = inMemoryCompositionQueryProviders;
+    exports.ɵgd = inMemoryCompositionProviders;
+    exports.ɵge = ColumnEntityFactory;
+    exports.ɵgf = ColumnFieldFactory;
+    exports.ɵgg = InMemoryCompositionReadStore;
+    exports.ɵgh = CompositionConverter;
+    exports.ɵgi = ColumnDefinitionFactory;
+    exports.ɵgj = ViewTemplateRepository;
+    exports.ɵgk = ViewTemplateFactory;
+    exports.ɵgl = TemplateFactory;
+    exports.ɵgm = EditTemplateRepository;
+    exports.ɵgn = EditTemplateFactory;
+    exports.ɵgo = InMemoryCompositionRepository;
+    exports.ɵgp = CompositionFieldsInitedEventHandler;
+    exports.ɵgq = CompositionChangeSortStatusEventHandler;
+    exports.ɵgr = CompositionEventService;
+    exports.ɵgs = ViewTemplatesComponent;
+    exports.ɵgt = EditTemplatesComponent;
+    exports.ɵgu = StringEditTemplateComponent;
+    exports.ɵgv = InputEditTemplateComponent;
+    exports.ɵgw = EditCommunicationComponent;
+    exports.ɵgx = Override;
+    exports.ɵgy = NumberEditTemplateComponent;
+    exports.ɵgz = BooleanEditTemplateComponent;
+    exports.ɵh = FormationAggregateFactory;
+    exports.ɵha = ColumnQueryComponent;
+    exports.ɵhb = FunctionViewComponent;
+    exports.ɵhc = LoggerModule;
+    exports.ɵhd = ConsoleLogger;
+    exports.ɵhe = structureIdFactory;
+    exports.ɵhf = compositionIdFactory;
+    exports.ɵhg = structureComponentSelfProviders;
+    exports.ɵhh = StructureComponent;
+    exports.ɵhi = StructureGateway;
+    exports.ɵhj = PagingEventService;
+    exports.ɵhk = SourceCommandService;
+    exports.ɵhl = StructureFieldUiRepository;
+    exports.ɵhm = StructureFieldUiArchive;
+    exports.ɵhn = SourceEventService;
+    exports.ɵho = SchemaCommandService;
+    exports.ɵhp = SchemaDispatcher;
+    exports.ɵhq = SchemaReadModelService;
+    exports.ɵhr = SchemaRepository;
+    exports.ɵhs = FormationEventService;
+    exports.ɵht = StructureEditModeArchive;
+    exports.ɵhu = StructureCellEditArchive;
+    exports.ɵhv = StructureInfoPanelEnabledArchive;
+    exports.ɵhw = StructureCellEditStore;
+    exports.ɵhx = StructureRowSelectEnabledArchive;
+    exports.ɵhy = StructureSearchEventService;
+    exports.ɵhz = StructureIdGenerator;
+    exports.ɵi = VerticalFormationFactory;
+    exports.ɵia = localProviders;
+    exports.ɵib = LocalPagingCommandService;
+    exports.ɵic = LocalPagingReadModelService;
+    exports.ɵid = LocalSchemaCommandService;
+    exports.ɵie = LocalSchemaReadModelService;
+    exports.ɵif = FormationCommandService;
+    exports.ɵig = FormationDispatcher;
+    exports.ɵih = LocalFormationCommandService;
+    exports.ɵii = FormationReadModelService;
+    exports.ɵij = FormationRepository;
+    exports.ɵik = LocalFormationReadModelService;
+    exports.ɵil = LocalStructureCommandService;
+    exports.ɵim = LocalStructureReadModelService;
+    exports.ɵin = LocalSourceCommandService;
+    exports.ɵio = LocalSourceReadModelService;
+    exports.ɵip = LocalCompositionCommandService;
+    exports.ɵiq = LocalCompositionReadModelService;
+    exports.ɵir = LocalStructureSearchDispatcher;
+    exports.ɵis = SchemaCssClassManager;
+    exports.ɵit = structureComponentToken;
+    exports.ɵiu = StructureDefinition;
+    exports.ɵiv = StructurePagingDefinition;
+    exports.ɵiw = StructureHeaderComponent;
+    exports.ɵix = StructureHeaderColumnsComponent;
+    exports.ɵiy = StructureHeaderFiltersComponent;
+    exports.ɵiz = StructureFilterReadModelRepository;
+    exports.ɵj = AggregationManagerFactory;
+    exports.ɵja = StructureFilterRepository;
+    exports.ɵjb = StructureQuickFilterRepository;
+    exports.ɵjc = StructureHeaderFilterComponent;
+    exports.ɵjd = StructureContentComponent;
+    exports.ɵje = StructureRowComponent;
+    exports.ɵjf = StructureCellComponent;
+    exports.ɵjg = StructureContainerComponent;
+    exports.ɵjh = structureParentComponent;
+    exports.ɵji = StructureEmptySourceComponent;
+    exports.ɵjj = StructureQuickFiltersComponent;
+    exports.ɵjk = StructureBlueprintComponent;
+    exports.ɵjl = STRUCTURE_CSS_CLASS_NAME;
+    exports.ɵjm = StructureSearchReadModelRepository;
+    exports.ɵjn = StructureSearchingRepository;
+    exports.ɵjo = ItemEntityFactory;
+    exports.ɵjp = inMemoryStructureCommandProviders;
+    exports.ɵjq = inMemoryStructureReadProviders;
+    exports.ɵjr = inMemoryStructureProviders;
+    exports.ɵjs = provideAggregationCalculator;
+    exports.ɵjt = aggregationProviders;
+    exports.ɵju = BooleanAggregationCalculator;
+    exports.ɵjv = DateAggregationCalculator;
+    exports.ɵjw = NumberAggregationCalculator;
+    exports.ɵjx = StringAggregationCalculator;
+    exports.ɵjy = UnknownAggregationCalculator;
+    exports.ɵjz = StructureConfigFilterSetEventHandler;
+    exports.ɵk = AGGREGATION_CALCULATORS;
+    exports.ɵka = StructureConfigSearchingSetEventHandler;
+    exports.ɵkb = StructureConfigQuickFilterSetEventHandler;
+    exports.ɵkc = StructureFieldsInitedEventHandler;
+    exports.ɵkd = StructureFieldUiConverter;
+    exports.ɵke = StructureSearchPhraseSetEventHandler;
+    exports.ɵkf = InMemoryStructureRepository;
+    exports.ɵkg = SourceRepository;
+    exports.ɵkh = StructureOriginChangedEventHandler;
+    exports.ɵki = StructurePreparedItemsEventHandler;
+    exports.ɵkj = GridGateway;
+    exports.ɵkk = gridProviders;
+    exports.ɵkl = gridStructureDefinition;
+    exports.ɵkm = GridRegister;
+    exports.ɵkn = GridIdGenerator;
+    exports.ɵl = AggregationCalculator;
+    exports.ɵm = FilterManagerFactory;
+    exports.ɵn = SearchManagerFactory;
+    exports.ɵo = FieldCollectionFactory;
+    exports.ɵp = FieldFactory;
+    exports.ɵq = FieldIdGenerator;
+    exports.ɵr = SchemaAggregateFactory;
+    exports.ɵs = InMemoryStructureAggregateRepository;
+    exports.ɵt = StructureAggregateRepository;
+    exports.ɵu = InMemoryStructureAggregateStore;
+    exports.ɵv = InMemoryStructureStore;
+    exports.ɵw = CreateStructureCommandHandler;
+    exports.ɵx = formationCommandHandlers;
+    exports.ɵy = formationProviders;
+    exports.ɵz = SetFormationCommandHandler;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

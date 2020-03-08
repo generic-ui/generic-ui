@@ -1,5 +1,5 @@
 import { AggregateId } from '../../../domain/aggregate-id';
-import { Aggregate } from '../../../domain/command/aggregate';
+import { Aggregate } from '../../../domain/command/aggregate/aggregate';
 import { AggregateStore } from '../../../domain/command/store/aggregate.store';
 import { AggregateStoreRegister } from '../../../domain/command/store/aggregate-store.register';
 import { PersistAnemia } from '../persist-anemia';

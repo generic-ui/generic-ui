@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { SetSortingCommand } from './set-sorting.command';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class SetSortingCommandHandler extends CommandHandler<StructureAggregate> {
-    private readonly structureAggregateRepository;
+export declare class SetSortingCommandHandler implements CommandHandler<StructureAggregate, SetSortingCommand> {
     private domainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: SetSortingCommand): ExecuteResponse | Observable<ExecuteResponse>;
+    constructor(domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<SetSortingCommand>;
+    handleAggregate(aggregate: StructureAggregate, command: SetSortingCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: SetSortingCommand): void;
 }

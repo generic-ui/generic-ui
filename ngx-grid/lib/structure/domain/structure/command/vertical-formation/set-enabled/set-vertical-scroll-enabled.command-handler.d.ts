@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { SetVerticalScrollEnabledCommand } from './set-vertical-scroll-enabled.command';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class SetVerticalScrollEnabledCommandHandler extends CommandHandler<StructureAggregate> {
-    private readonly structureAggregateRepository;
-    protected domainEventPublisher: DomainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: SetVerticalScrollEnabledCommand): ExecuteResponse | Observable<ExecuteResponse>;
+export declare class SetVerticalScrollEnabledCommandHandler implements CommandHandler<StructureAggregate, SetVerticalScrollEnabledCommand> {
+    private readonly domainEventPublisher;
+    constructor(domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<SetVerticalScrollEnabledCommand>;
+    handleAggregate(structure: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
 }

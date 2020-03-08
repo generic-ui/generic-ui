@@ -1,13 +1,15 @@
+import { Type } from '@angular/core';
 import { Command, CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../composition.aggregate-repository';
 import { CompositionEventConverter } from '../../composition-event.converter';
 import { CompositionAggregate } from '../../composition.aggregate';
 import { SetColumnsCommand } from './set-columns.command';
-export declare class SetColumnsCommandHandler extends CommandHandler<CompositionAggregate> {
+export declare class SetColumnsCommandHandler implements CommandHandler<CompositionAggregate, SetColumnsCommand> {
     private readonly compositionAggregateRepository;
-    protected domainEventPublisher: DomainEventPublisher;
-    private compositionEventConverter;
+    private readonly domainEventPublisher;
+    private readonly compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
+    forCommand(): Type<SetColumnsCommand>;
     handleAggregate(aggregate: CompositionAggregate, command: SetColumnsCommand): void;
     publishDomainEvents(aggregate: CompositionAggregate, command: Command): void;
     private publishEvents;

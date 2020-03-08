@@ -415,16 +415,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * ngc for grid package for some reasons doesn't allow to use injection token
-     * @type {?}
-     */
-    var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS';
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /** @type {?} */
     var DOMAIN_EVENT_HANDLERS = 'DOMAIN_EVENT_HANDLERS';
 
@@ -432,23 +422,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * @param {?} handlers
-     * @return {?}
-     */
-    function provideCommandHandlers(handlers) {
-        return (/** @type {?} */ (handlers.map((/**
-         * @param {?} handler
-         * @return {?}
-         */
-        function (handler) {
-            return {
-                provide: COMMAND_HANDLERS,
-                useClass: handler,
-                multi: true
-            };
-        }))));
-    }
     /**
      * @param {?} handlers
      * @return {?}
@@ -704,214 +677,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    Optional = /** @class */ (function () {
-        function Optional(value) {
-            if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
-                return Optional.empty();
-            }
-            this.value = value;
-            return this;
-        }
-        /**
-         * @return {?}
-         */
-        Optional.empty = /**
-         * @return {?}
-         */
-        function () {
-            return new Optional(null);
-        };
-        /**
-         * @template U
-         * @param {?} value
-         * @return {?}
-         */
-        Optional.of = /**
-         * @template U
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            return new Optional(value);
-        };
-        /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        Optional.isEmpty = /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
-            return typeof value === 'undefined' || value === null;
-        };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.isEmpty = /**
-         * @return {?}
-         */
-        function () {
-            return Optional.isEmpty(this.value);
-        };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.isPresent = /**
-         * @return {?}
-         */
-        function () {
-            return !this.isEmpty();
-        };
-        /**
-         * @param {?} filterer
-         * @return {?}
-         */
-        Optional.prototype.filter = /**
-         * @param {?} filterer
-         * @return {?}
-         */
-        function (filterer) {
-            if (this.isPresent() && filterer(this.value)) {
-                return this;
-            }
-            return Optional.empty();
-        };
-        /**
-         * @param {?} callback
-         * @return {?}
-         */
-        Optional.prototype.forEach = /**
-         * @param {?} callback
-         * @return {?}
-         */
-        function (callback) {
-            if (this.isPresent()) {
-                callback(this.value);
-            }
-        };
-        /**
-         * @template U
-         * @param {?} mapper
-         * @return {?}
-         */
-        Optional.prototype.map = /**
-         * @template U
-         * @param {?} mapper
-         * @return {?}
-         */
-        function (mapper) {
-            if (this.isPresent()) {
-                return new Optional(mapper(this.value));
-            }
-            return Optional.empty();
-        };
-        /**
-         * @deprecated
-         */
-        /**
-         * @deprecated
-         * @return {?}
-         */
-        Optional.prototype.getValueOrNullOrThrowError = /**
-         * @deprecated
-         * @return {?}
-         */
-        function () {
-            return this.value;
-        };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.getOrThrow = /**
-         * @return {?}
-         */
-        function () {
-            if (this.isEmpty()) {
-                throw new Error('Called getOrThrow on an empty Optional');
-            }
-            return this.value;
-        };
-        /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        Optional.prototype.getOrElse = /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        function (other) {
-            if (this.isPresent()) {
-                return this.value;
-            }
-            return other();
-        };
-        /**
-         * @param {?} method
-         * @return {?}
-         */
-        Optional.prototype.ifPresent = /**
-         * @param {?} method
-         * @return {?}
-         */
-        function (method) {
-            if (this.isPresent()) {
-                method(this.value);
-            }
-        };
-        /**
-         * @param {?} method
-         * @return {?}
-         */
-        Optional.prototype.ifEmpty = /**
-         * @param {?} method
-         * @return {?}
-         */
-        function (method) {
-            if (this.isEmpty()) {
-                method();
-            }
-        };
-        /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        Optional.prototype.orElse = /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        function (other) {
-            if (this.isPresent()) {
-                return this;
-            }
-            return other();
-        };
-        return Optional;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Optional.prototype.value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * @abstract
      * @template A
      */
@@ -919,210 +684,18 @@
      * @abstract
      * @template A
      */
-    CommandHandler = /** @class */ (function () {
-        function CommandHandler(command, // any is required when inherited Command has more arguments than Command
-        domainEvent, eventPublisher, aggregateRepository) {
-            this.command = command;
-            this.domainEvent = domainEvent;
-            this.eventPublisher = eventPublisher;
-            this.aggregateRepository = aggregateRepository;
-            this.commandType = this.createCommandInstance().getMessageType();
+    AggregateFactory = /** @class */ (function () {
+        function AggregateFactory() {
         }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.handle = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-        };
-        // TODO change to abstract
-        // TODO change to abstract
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.handleAggregate = 
-        // TODO change to abstract
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-        };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.handleEmptyAggregate = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-        };
-        // TODO change to abstract
-        // TODO change to abstract
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.publishDomainEvents = 
-        // TODO change to abstract
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-        };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.handleCommandForAggregate = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            var _this = this;
-            /** @type {?} */
-            var aggregateId = command.getAggregateId();
-            /** @type {?} */
-            var optAggregate = Optional.of(this.aggregateRepository.getById(aggregateId));
-            optAggregate.ifPresent((/**
-             * @param {?} aggregate
-             * @return {?}
-             */
-            function (aggregate) {
-                _this.handleAggregate(aggregate, command);
-                _this.aggregateRepository.save(aggregate);
-                _this.publishDomainEvents(aggregate, command);
-            }));
-            optAggregate.ifEmpty((/**
-             * @return {?}
-             */
-            function () {
-                _this.handleEmptyAggregate(command);
-            }));
-        };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.forCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            return this.commandType === command.getMessageType();
-        };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandler.prototype.handleCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            var _this = this;
-            if (this.aggregateRepository) {
-                this.handleCommandForAggregate(command);
-                return;
-            }
-            /** @type {?} */
-            var result = this.handle(command);
-            if (rxjs.isObservable(result)) {
-                ((/** @type {?} */ (result)))
-                    .pipe(operators.take(1))
-                    .subscribe((/**
-                 * @param {?} res
-                 * @return {?}
-                 */
-                function (res) {
-                    // trigger event
-                    _this.dispatchEvent(command, res);
-                }));
-            }
-            else {
-                this.dispatchEvent(command, (/** @type {?} */ (result)));
-            }
-        };
-        /**
-         * @private
-         * @param {?} command
-         * @param {?=} result
-         * @return {?}
-         */
-        CommandHandler.prototype.dispatchEvent = /**
-         * @private
-         * @param {?} command
-         * @param {?=} result
-         * @return {?}
-         */
-        function (command, result) {
-            if (this.domainEvent && this.eventPublisher) {
-                /** @type {?} */
-                var aggregateId = command.getAggregateId();
-                /** @type {?} */
-                var event_1 = new ((/** @type {?} */ (this.domainEvent)))(aggregateId);
-                event_1.setRequestCommand(command);
-                if (result) {
-                    event_1.setPayload(result);
-                }
-                this.eventPublisher.publish(event_1);
-            }
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        CommandHandler.prototype.createCommandInstance = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a;
-            /** @type {?} */
-            var args = [];
-            /** @type {?} */
-            var argumentLength = this.command.constructor.length;
-            args.fill(undefined, 0, argumentLength);
-            return (new ((_a = ((/** @type {?} */ (this.command)))).bind.apply(_a, __spread([void 0], args)))());
-        };
-        return CommandHandler;
+        return AggregateFactory;
     }());
     if (false) {
         /**
-         * @type {?}
-         * @private
+         * @abstract
+         * @param {?} aggregateId
+         * @return {?}
          */
-        CommandHandler.prototype.commandType;
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandler.prototype.command;
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandler.prototype.domainEvent;
-        /**
-         * @type {?}
-         * @protected
-         */
-        CommandHandler.prototype.eventPublisher;
-        /**
-         * @type {?}
-         * @protected
-         */
-        CommandHandler.prototype.aggregateRepository;
+        AggregateFactory.prototype.create = function (aggregateId) { };
     }
 
     /**
@@ -1198,7 +771,35 @@
          * @param {...?} handlers
          * @return {?}
          */
-        CommandBus.prototype.ofHandler = /**
+        CommandBus.prototype.ofCommandHandler = /**
+         * @template C2
+         * @param {...?} handlers
+         * @return {?}
+         */
+        function () {
+            var handlers = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                handlers[_i] = arguments[_i];
+            }
+            return ((/** @type {?} */ (this)))
+                .pipe(operators.filter((/**
+             * @param {?} command
+             * @return {?}
+             */
+            function (command) {
+                return handlers.some((/**
+                 * @param {?} handler
+                 * @return {?}
+                 */
+                function (handler) { return handler.forCommand(command); }));
+            })));
+        };
+        /**
+         * @template C2
+         * @param {...?} handlers
+         * @return {?}
+         */
+        CommandBus.prototype.ofCreateAggregateHandler = /**
          * @template C2
          * @param {...?} handlers
          * @return {?}
@@ -1224,14 +825,16 @@
         /**
          * @template C2
          * @param {?} handlers
+         * @param {?} aggregateCommandHandlers
          * @return {?}
          */
         CommandBus.prototype.ofNullHandler = /**
          * @template C2
          * @param {?} handlers
+         * @param {?} aggregateCommandHandlers
          * @return {?}
          */
-        function (handlers) {
+        function (handlers, aggregateCommandHandlers) {
             return ((/** @type {?} */ (this)))
                 .pipe(operators.filter((/**
              * @param {?} command
@@ -1245,7 +848,12 @@
                  * @param {?} handler
                  * @return {?}
                  */
-                function (handler) { return handler.forCommand(command); }));
+                function (handler) { return handler.forCommand(command); })) &&
+                    !aggregateCommandHandlers.some((/**
+                     * @param {?} handler
+                     * @return {?}
+                     */
+                    function (handler) { return handler.forCommand(command); }));
             })));
         };
         CommandBus.decorators = [
@@ -1586,7 +1194,8 @@
      * @abstract
      */
     Aggregate = /** @class */ (function () {
-        function Aggregate(aggregateId) {
+        function Aggregate(aggregateId, type) {
+            this.type = type;
             this.aggregateId = aggregateId;
             this.events = [];
         }
@@ -1659,6 +1268,11 @@
          * @private
          */
         Aggregate.prototype.events;
+        /**
+         * @type {?}
+         * @private
+         */
+        Aggregate.prototype.type;
     }
 
     /**
@@ -2561,6 +2175,214 @@
          * @private
          */
         AggregateArchive.prototype.archive$;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @template T
+     */
+    var   /**
+     * @template T
+     */
+    Optional = /** @class */ (function () {
+        function Optional(value) {
+            if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
+                return Optional.empty();
+            }
+            this.value = value;
+            return this;
+        }
+        /**
+         * @return {?}
+         */
+        Optional.empty = /**
+         * @return {?}
+         */
+        function () {
+            return new Optional(null);
+        };
+        /**
+         * @template U
+         * @param {?} value
+         * @return {?}
+         */
+        Optional.of = /**
+         * @template U
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            return new Optional(value);
+        };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        Optional.isEmpty = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            return typeof value === 'undefined' || value === null;
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.isEmpty = /**
+         * @return {?}
+         */
+        function () {
+            return Optional.isEmpty(this.value);
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.isPresent = /**
+         * @return {?}
+         */
+        function () {
+            return !this.isEmpty();
+        };
+        /**
+         * @param {?} filterer
+         * @return {?}
+         */
+        Optional.prototype.filter = /**
+         * @param {?} filterer
+         * @return {?}
+         */
+        function (filterer) {
+            if (this.isPresent() && filterer(this.value)) {
+                return this;
+            }
+            return Optional.empty();
+        };
+        /**
+         * @param {?} callback
+         * @return {?}
+         */
+        Optional.prototype.forEach = /**
+         * @param {?} callback
+         * @return {?}
+         */
+        function (callback) {
+            if (this.isPresent()) {
+                callback(this.value);
+            }
+        };
+        /**
+         * @template U
+         * @param {?} mapper
+         * @return {?}
+         */
+        Optional.prototype.map = /**
+         * @template U
+         * @param {?} mapper
+         * @return {?}
+         */
+        function (mapper) {
+            if (this.isPresent()) {
+                return new Optional(mapper(this.value));
+            }
+            return Optional.empty();
+        };
+        /**
+         * @deprecated
+         */
+        /**
+         * @deprecated
+         * @return {?}
+         */
+        Optional.prototype.getValueOrNullOrThrowError = /**
+         * @deprecated
+         * @return {?}
+         */
+        function () {
+            return this.value;
+        };
+        /**
+         * @return {?}
+         */
+        Optional.prototype.getOrThrow = /**
+         * @return {?}
+         */
+        function () {
+            if (this.isEmpty()) {
+                throw new Error('Called getOrThrow on an empty Optional');
+            }
+            return this.value;
+        };
+        /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        Optional.prototype.getOrElse = /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        function (other) {
+            if (this.isPresent()) {
+                return this.value;
+            }
+            return other();
+        };
+        /**
+         * @param {?} method
+         * @return {?}
+         */
+        Optional.prototype.ifPresent = /**
+         * @param {?} method
+         * @return {?}
+         */
+        function (method) {
+            if (this.isPresent()) {
+                method(this.value);
+            }
+        };
+        /**
+         * @param {?} method
+         * @return {?}
+         */
+        Optional.prototype.ifEmpty = /**
+         * @param {?} method
+         * @return {?}
+         */
+        function (method) {
+            if (this.isEmpty()) {
+                method();
+            }
+        };
+        /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        Optional.prototype.orElse = /**
+         * @template U
+         * @param {?} other
+         * @return {?}
+         */
+        function (other) {
+            if (this.isPresent()) {
+                return this;
+            }
+            return other();
+        };
+        return Optional;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        Optional.prototype.value;
     }
 
     /**
@@ -3520,6 +3342,403 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @template A, C
+     * @param {?} createAggregateCommandHandler
+     * @param {?} factoryArchive
+     * @param {?} aggregateRepositoryArchive
+     * @param {?} aggregateName
+     * @return {?}
+     */
+    function aggregateCommandHandlerFactory(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName) {
+        return new AggregateCommandHandlerImpl(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName);
+    }
+    /**
+     * @template A, C
+     */
+    var   /**
+     * @template A, C
+     */
+    AggregateCommandHandlerImpl = /** @class */ (function () {
+        function AggregateCommandHandlerImpl(createAggregateCommandHandler, aggregateFactoryArchive, aggregateRepositoryArchive, aggregateType) {
+            this.createAggregateCommandHandler = createAggregateCommandHandler;
+            this.aggregateFactoryArchive = aggregateFactoryArchive;
+            this.aggregateRepositoryArchive = aggregateRepositoryArchive;
+            this.aggregateType = aggregateType;
+            this.commandType = this.createCommandInstance().getMessageType();
+        }
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        AggregateCommandHandlerImpl.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.createAggregateCommandHandler.publishDomainEvents(aggregate, command);
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        AggregateCommandHandlerImpl.prototype.handleCommand = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+            var _this = this;
+            /** @type {?} */
+            var aggregateId = command.getAggregateId();
+            /** @type {?} */
+            var optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
+            optFactory.ifPresent((/**
+             * @param {?} factory
+             * @return {?}
+             */
+            function (factory) {
+                /** @type {?} */
+                var aggregate = factory.create(aggregateId);
+                /** @type {?} */
+                var optRepository = _this.aggregateRepositoryArchive.get(_this.aggregateType);
+                optRepository.ifPresent((/**
+                 * @param {?} repo
+                 * @return {?}
+                 */
+                function (repo) {
+                    repo.save(aggregate);
+                    _this.publishDomainEvents(aggregate, command);
+                }));
+            }));
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        AggregateCommandHandlerImpl.prototype.forCommand = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+            return this.commandType === command.getMessageType();
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        AggregateCommandHandlerImpl.prototype.createCommandInstance = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a;
+            /** @type {?} */
+            var args = [];
+            /** @type {?} */
+            var argumentLength = this.createAggregateCommandHandler.forCommand().constructor.length;
+            args.fill(undefined, 0, argumentLength);
+            return (new ((_a = ((/** @type {?} */ (this.createAggregateCommandHandler.forCommand())))).bind.apply(_a, __spread([void 0], args)))());
+        };
+        return AggregateCommandHandlerImpl;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateCommandHandlerImpl.prototype.commandType;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateCommandHandlerImpl.prototype.createAggregateCommandHandler;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateCommandHandlerImpl.prototype.aggregateFactoryArchive;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateCommandHandlerImpl.prototype.aggregateRepositoryArchive;
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateCommandHandlerImpl.prototype.aggregateType;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * ngc for grid package for some reasons doesn't allow to use injection token
+     * @type {?}
+     */
+    var AGGREGATE_COMMAND_HANDLERS = 'HERMES - AGGREGATE_COMMAND_HANDLERS';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AggregateFactoryArchive = /** @class */ (function () {
+        function AggregateFactoryArchive() {
+            this.map = new Map();
+        }
+        /**
+         * @param {?} key
+         * @param {?} factory
+         * @return {?}
+         */
+        AggregateFactoryArchive.prototype.add = /**
+         * @param {?} key
+         * @param {?} factory
+         * @return {?}
+         */
+        function (key, factory) {
+            this.map.set(key, factory);
+        };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        AggregateFactoryArchive.prototype.get = /**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            return Optional.of(this.map.get(key));
+        };
+        return AggregateFactoryArchive;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateFactoryArchive.prototype.map;
+    }
+    var AggregateRepositoryArchive = /** @class */ (function () {
+        function AggregateRepositoryArchive() {
+            this.map = new Map();
+        }
+        /**
+         * @param {?} key
+         * @param {?} repository
+         * @return {?}
+         */
+        AggregateRepositoryArchive.prototype.add = /**
+         * @param {?} key
+         * @param {?} repository
+         * @return {?}
+         */
+        function (key, repository) {
+            this.map.set(key, repository);
+        };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        AggregateRepositoryArchive.prototype.get = /**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            return Optional.of(this.map.get(key));
+        };
+        return AggregateRepositoryArchive;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AggregateRepositoryArchive.prototype.map;
+    }
+    /**
+     * @record
+     */
+    function AggregateConfig() { }
+    if (false) {
+        /** @type {?} */
+        AggregateConfig.prototype.repository;
+        /** @type {?} */
+        AggregateConfig.prototype.factory;
+        /** @type {?} */
+        AggregateConfig.prototype.key;
+        /** @type {?} */
+        AggregateConfig.prototype.createHandler;
+        /** @type {?|undefined} */
+        AggregateConfig.prototype.handlers;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var aggregateDefinitionToken = 'Hermes - aggregateDefinitionToken';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var HermesDomainModule = /** @class */ (function () {
+        function HermesDomainModule() {
+        }
+        /**
+         * @return {?}
+         */
+        HermesDomainModule.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+        };
+        HermesDomainModule.decorators = [
+            { type: core.NgModule, args: [{},] }
+        ];
+        return HermesDomainModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @template A, C
+     * @param {?} commandHandler
+     * @param {?} aggregateRepositoryArchive
+     * @param {?} aggregateName
+     * @return {?}
+     */
+    function commandHandlerFactory(commandHandler, aggregateRepositoryArchive, aggregateName) {
+        return new CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateName);
+    }
+    /**
+     * @template A, C
+     */
+    var   /**
+     * @template A, C
+     */
+    CommandHandlerImpl = /** @class */ (function () {
+        function CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateType) {
+            this.commandHandler = commandHandler;
+            this.aggregateRepositoryArchive = aggregateRepositoryArchive;
+            this.aggregateType = aggregateType;
+            this.commandType = this.createCommandInstance().getMessageType();
+        }
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandlerImpl.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.commandHandler.publishDomainEvents(aggregate, command);
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandlerImpl.prototype.handleCommand = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+            var _this = this;
+            /** @type {?} */
+            var aggregateId = command.getAggregateId();
+            /** @type {?} */
+            var optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
+            optRepository.ifPresent((/**
+             * @param {?} repo
+             * @return {?}
+             */
+            function (repo) {
+                /** @type {?} */
+                var optAggregate = repo.getById(aggregateId);
+                optAggregate.ifPresent((/**
+                 * @param {?} aggregate
+                 * @return {?}
+                 */
+                function (aggregate) {
+                    _this.commandHandler.handleAggregate(aggregate, command);
+                    _this.publishDomainEvents(aggregate, command);
+                }));
+            }));
+        };
+        /**
+         * @param {?} command
+         * @return {?}
+         */
+        CommandHandlerImpl.prototype.forCommand = /**
+         * @param {?} command
+         * @return {?}
+         */
+        function (command) {
+            return this.commandType === command.getMessageType();
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        CommandHandlerImpl.prototype.createCommandInstance = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _a;
+            /** @type {?} */
+            var args = [];
+            /** @type {?} */
+            var argumentLength = this.commandHandler.forCommand().constructor.length;
+            args.fill(undefined, 0, argumentLength);
+            return (new ((_a = ((/** @type {?} */ (this.commandHandler.forCommand())))).bind.apply(_a, __spread([void 0], args)))());
+        };
+        return CommandHandlerImpl;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CommandHandlerImpl.prototype.commandType;
+        /**
+         * @type {?}
+         * @private
+         */
+        CommandHandlerImpl.prototype.commandHandler;
+        /**
+         * @type {?}
+         * @private
+         */
+        CommandHandlerImpl.prototype.aggregateRepositoryArchive;
+        /**
+         * @type {?}
+         * @private
+         */
+        CommandHandlerImpl.prototype.aggregateType;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var hermesProviders = [
         RandomStringGenerator,
@@ -3544,7 +3763,9 @@
         NoopCommandLogger,
         NoopEventLogger,
         ConsoleEventLogger,
-        HermesLoggersInitializer
+        HermesLoggersInitializer,
+        AggregateFactoryArchive,
+        AggregateRepositoryArchive
     ], hermesProviders);
     /**
      * @param {?} enabled
@@ -3575,22 +3796,54 @@
         }
     }
     var HermesModule = /** @class */ (function () {
-        function HermesModule(commandHandlers, eventHandlers, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
+        function HermesModule(eventHandlers, aggregateCommandHandlers, handlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
             var _this = this;
             this.hermesLoggersInitializer = hermesLoggersInitializer;
             this.hermesApi = hermesApi;
             this.unsubscribe$ = new rxjs.Subject();
             this.hermesLoggersInitializer.start();
-            this.checkNullCommand(commandBus, commandHandlers);
-            this.checkCommandHandlerIsCollection(commandHandlers);
-            if (commandHandlers) {
-                commandHandlers.forEach((/**
+            this.checkNullCommand(commandBus, handlers, aggregateCommandHandlers);
+            this.checkCommandHandlerIsCollection(handlers);
+            if (definedAggregate) {
+                definedAggregate.forEach((/**
+                 * @param {?} def
+                 * @return {?}
+                 */
+                function (def) {
+                    /** @type {?} */
+                    var factory = injector.get(def.factory);
+                    /** @type {?} */
+                    var repository = injector.get(def.repository);
+                    aggregateFactoryArchive.add(def.key, factory);
+                    aggregateRepositoryArchive.add(def.key, repository);
+                }));
+            }
+            if (aggregateCommandHandlers) {
+                aggregateCommandHandlers.forEach((/**
                  * @param {?} handler
                  * @return {?}
                  */
                 function (handler) {
                     commandBus
-                        .ofHandler(handler)
+                        .ofCreateAggregateHandler(handler)
+                        .pipe(operators.takeUntil(_this.unsubscribe$))
+                        .subscribe((/**
+                     * @param {?} command
+                     * @return {?}
+                     */
+                    function (command) {
+                        handler.handleCommand(command);
+                    }));
+                }));
+            }
+            if (handlers) {
+                handlers.forEach((/**
+                 * @param {?} handler
+                 * @return {?}
+                 */
+                function (handler) {
+                    commandBus
+                        .ofCommandHandler(handler)
                         .pipe(operators.takeUntil(_this.unsubscribe$))
                         .subscribe((/**
                      * @param {?} command
@@ -3620,6 +3873,43 @@
             }
         }
         /**
+         * @template A, C
+         * @param {?} aggregateKey
+         * @param {?} factory
+         * @param {?} repository
+         * @param {?} createHandler
+         * @param {?} handlers
+         * @return {?}
+         */
+        HermesModule.defineAggregate = /**
+         * @template A, C
+         * @param {?} aggregateKey
+         * @param {?} factory
+         * @param {?} repository
+         * @param {?} createHandler
+         * @param {?} handlers
+         * @return {?}
+         */
+        function (aggregateKey, factory, repository, createHandler, handlers) {
+            return {
+                ngModule: HermesDomainModule,
+                providers: __spread([{
+                        provide: aggregateDefinitionToken,
+                        multi: true,
+                        useValue: {
+                            key: aggregateKey,
+                            factory: factory,
+                            repository: repository
+                        }
+                    }, {
+                        provide: aggregateKey,
+                        useValue: aggregateKey
+                    },
+                    factory,
+                    repository], HermesModule.registerCreateCommandHandler(createHandler, aggregateKey), handlers)
+            };
+        };
+        /**
          * @param {?=} config
          * @return {?}
          */
@@ -3633,6 +3923,67 @@
                 ngModule: HermesModule,
                 providers: providers
             };
+        };
+        /**
+         * @template A, C
+         * @param {?} commandHandlerType
+         * @param {?} aggregateName
+         * @return {?}
+         */
+        HermesModule.registerCommandHandler = /**
+         * @template A, C
+         * @param {?} commandHandlerType
+         * @param {?} aggregateName
+         * @return {?}
+         */
+        function (commandHandlerType, aggregateName) {
+            return [
+                {
+                    provide: commandHandlerType,
+                    useClass: commandHandlerType
+                }, {
+                    provide: COMMAND_HANDLERS,
+                    useFactory: commandHandlerFactory,
+                    multi: true,
+                    deps: [
+                        commandHandlerType,
+                        AggregateRepositoryArchive,
+                        aggregateName
+                    ]
+                }
+            ];
+        };
+        /**
+         * @private
+         * @template A, C
+         * @param {?} createCommandHandlerType
+         * @param {?} aggregateName
+         * @return {?}
+         */
+        HermesModule.registerCreateCommandHandler = /**
+         * @private
+         * @template A, C
+         * @param {?} createCommandHandlerType
+         * @param {?} aggregateName
+         * @return {?}
+         */
+        function (createCommandHandlerType, aggregateName) {
+            return [
+                {
+                    provide: createCommandHandlerType,
+                    useClass: createCommandHandlerType
+                }, {
+                    provide: AGGREGATE_COMMAND_HANDLERS,
+                    useFactory: aggregateCommandHandlerFactory,
+                    multi: true,
+                    deps: [
+                        createCommandHandlerType,
+                        AggregateFactoryArchive,
+                        AggregateRepositoryArchive,
+                        aggregateName
+                    ]
+                }
+            ];
         };
         /**
          * @return {?}
@@ -3649,17 +4000,19 @@
          * @private
          * @param {?} commandBus
          * @param {?} commandHandlers
+         * @param {?} aggregateCommandHandlers
          * @return {?}
          */
         HermesModule.prototype.checkNullCommand = /**
          * @private
          * @param {?} commandBus
          * @param {?} commandHandlers
+         * @param {?} aggregateCommandHandlers
          * @return {?}
          */
-        function (commandBus, commandHandlers) {
+        function (commandBus, commandHandlers, aggregateCommandHandlers) {
             commandBus
-                .ofNullHandler(commandHandlers)
+                .ofNullHandler(commandHandlers, aggregateCommandHandlers)
                 .pipe(operators.takeUntil(this.unsubscribe$))
                 .subscribe((/**
              * @param {?} command
@@ -3694,8 +4047,13 @@
         ];
         /** @nocollapse */
         HermesModule.ctorParameters = function () { return [
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
             { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [AGGREGATE_COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
+            { type: core.Injector },
+            { type: AggregateFactoryArchive },
+            { type: AggregateRepositoryArchive },
             { type: CommandBus },
             { type: DomainEventBus },
             { type: HermesLoggersInitializer },
@@ -3798,16 +4156,15 @@
     exports.Aggregate = Aggregate;
     exports.AggregateArchive = AggregateArchive;
     exports.AggregateEvent = AggregateEvent;
+    exports.AggregateFactory = AggregateFactory;
     exports.AggregateId = AggregateId;
     exports.AggregateRepository = AggregateRepository;
     exports.AggregateStore = AggregateStore;
     exports.AggregateStoreRegister = AggregateStoreRegister;
-    exports.COMMAND_HANDLERS = COMMAND_HANDLERS;
     exports.COMMAND_LOGGER_ENABLED = COMMAND_LOGGER_ENABLED;
     exports.Command = Command;
     exports.CommandBus = CommandBus;
     exports.CommandDispatcher = CommandDispatcher;
-    exports.CommandHandler = CommandHandler;
     exports.CommandLogger = CommandLogger;
     exports.CommandStream = CommandStream;
     exports.DOMAIN_EVENT_HANDLERS = DOMAIN_EVENT_HANDLERS;
@@ -3843,14 +4200,13 @@
     exports.assertDomainEvents = assertDomainEvents;
     exports.disableHermesLoggers = disableHermesLoggers;
     exports.enableHermesLoggers = enableHermesLoggers;
-    exports.provideCommandHandlers = provideCommandHandlers;
     exports.provideEventHandlers = provideEventHandlers;
     exports.ɵa = commandLoggerFactory;
     exports.ɵb = eventLoggerFactory;
     exports.ɵc = Logger;
     exports.ɵd = Message;
-    exports.ɵe = DomainEventStore;
-    exports.ɵf = FILTERED_COMMAND_STREAM;
+    exports.ɵe = FILTERED_COMMAND_STREAM;
+    exports.ɵf = DomainEventStore;
     exports.ɵg = Reactive;
     exports.ɵh = ReactiveService;
     exports.ɵi = ConsoleCommandLogger;
@@ -3858,6 +4214,16 @@
     exports.ɵk = ConsoleEventLogger;
     exports.ɵl = NoopEventLogger;
     exports.ɵm = HermesLoggersInitializer;
+    exports.ɵn = AggregateFactoryArchive;
+    exports.ɵo = AggregateRepositoryArchive;
+    exports.ɵp = AGGREGATE_COMMAND_HANDLERS;
+    exports.ɵq = COMMAND_HANDLERS;
+    exports.ɵr = aggregateDefinitionToken;
+    exports.ɵt = HermesDomainModule;
+    exports.ɵu = commandHandlerFactory;
+    exports.ɵv = CommandHandlerImpl;
+    exports.ɵw = aggregateCommandHandlerFactory;
+    exports.ɵx = AggregateCommandHandlerImpl;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

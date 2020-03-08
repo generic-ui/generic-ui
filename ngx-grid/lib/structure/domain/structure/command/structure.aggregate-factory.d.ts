@@ -9,7 +9,8 @@ import { StructureAggregate } from './structure.aggregate';
 import { SchemaAggregateFactory } from '../../schema/command/schema.aggregate-factory';
 import { FormationAggregateFactory } from '../../formation/command/formation.aggregate-factory';
 import { SearchManagerFactory } from './search/search.manager-factory';
-export declare class StructureAggregateFactory {
+import { AggregateFactory } from '@generic-ui/hermes';
+export declare class StructureAggregateFactory extends AggregateFactory<StructureAggregate> {
     private readonly pagingAggregateFactory;
     private readonly sourceManagerFactory;
     private readonly formationAggregateFactory;

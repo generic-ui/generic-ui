@@ -1,13 +1,13 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { StructureSetSearchPhraseCommand } from './structure.set-search-phrase.command';
 import { StructureSourceDomainEventPublisher } from '../../../../source/command/structure.source.domain-event.publisher';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class StructureSetSearchPhraseCommandHandler extends CommandHandler<StructureAggregate> {
-    private readonly structureAggregateRepository;
-    private structureSourceDomainEventPublisher;
-    private domainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
-    handle(command: StructureSetSearchPhraseCommand): ExecuteResponse | Observable<ExecuteResponse>;
+export declare class StructureSetSearchPhraseCommandHandler implements CommandHandler<StructureAggregate, StructureSetSearchPhraseCommand> {
+    private readonly structureSourceDomainEventPublisher;
+    private readonly domainEventPublisher;
+    constructor(structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<StructureSetSearchPhraseCommand>;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetSearchPhraseCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: StructureSetSearchPhraseCommand): void;
 }

@@ -3,24 +3,24 @@
  */
 export { HermesApi } from './ui-api/hermes-api';
 export { enableHermesLoggers, disableHermesLoggers } from './ui-api/hermes-api.helpers';
-export { provideCommandHandlers, provideEventHandlers } from './domain/provider.helpers';
+export { provideEventHandlers } from './domain/provider.helpers';
 /**
  * Domain
  */
-export { COMMAND_HANDLERS } from './domain/command/command-handlers';
 export { CommandDispatcher } from './domain/command/command.dispatcher';
 export { Command } from './domain/command/command';
-export { CommandHandler } from './domain/command/command.handler';
+export { CommandHandler } from './domain/command/handler/command.handler';
+export { AggregateFactory } from './domain/command/create-handler/aggregate.factory';
 export { CommandBus } from './domain/command/command.bus';
 export { CommandLogger } from './domain/command/command.logger';
 export { CommandStream } from './domain/command/command.stream';
-export { ExecuteResponse } from './domain/command/execute-response';
+export { ExecuteResponse } from './domain/command/response/execute-response';
 export { ReplayCommandDispatcher } from './domain/command/replay-command.dispatcher';
-export { AggregateEvent } from './domain/command/aggregate-event';
-export { AggregateRepository } from './domain/command/aggregate-repository';
+export { AggregateEvent } from './domain/command/aggregate/aggregate-event';
+export { AggregateRepository } from './domain/command/aggregate/aggregate-repository';
 export { AggregateStore } from './domain/command/store/aggregate.store';
 export { AggregateStoreRegister } from './domain/command/store/aggregate-store.register';
-export { Aggregate } from './domain/command/aggregate';
+export { Aggregate } from './domain/command/aggregate/aggregate';
 export { AggregateId } from './domain/aggregate-id';
 export { DomainEventStatus } from './domain/event/status/domain-event-status';
 export { StatusResponse } from './domain/event/status/status.response';
@@ -60,3 +60,4 @@ export { EVENT_LOGGER_ENABLED } from './domain/hermes-tokens';
  * Testing
  */
 export { assertDomainEvents, assertAggregateEvents } from './testing/helpers';
+export { AggregateCommandHandler } from './domain/command/create-handler/aggregate-command.handler';

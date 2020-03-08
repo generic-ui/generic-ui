@@ -5,7 +5,7 @@ import { ColumnId } from '../domain/command/column/column.id';
 export declare class CompositionCommandService {
     private compositionDispatcher;
     constructor(compositionDispatcher: CompositionDispatcher);
-    init(compositionId?: CompositionId): void;
+    createComposition(compositionId?: CompositionId): void;
     setColumns(params: Array<ColumnParams>, compositionId?: CompositionId): void;
     setWidth(width: number, compositionId?: CompositionId): void;
     setContainerWidth(width: number, compositionId?: CompositionId): void;

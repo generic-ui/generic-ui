@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { SetRowHeightCommand } from './set-row-height.command';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class SetRowHeightCommandHandler extends CommandHandler<StructureAggregate> {
-    private readonly structureAggregateRepository;
-    protected domainEventPublisher: DomainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: SetRowHeightCommand): ExecuteResponse | Observable<ExecuteResponse>;
+export declare class SetRowHeightCommandHandler implements CommandHandler<StructureAggregate, SetRowHeightCommand> {
+    private readonly domainEventPublisher;
+    constructor(domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<SetRowHeightCommand>;
+    handleAggregate(structure: StructureAggregate, command: SetRowHeightCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: SetRowHeightCommand): void;
 }

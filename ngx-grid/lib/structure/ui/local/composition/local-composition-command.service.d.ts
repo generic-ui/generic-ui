@@ -6,7 +6,7 @@ import { ColumnId } from '../../../../composition/domain/command/column/column.i
 export declare class LocalCompositionCommandService extends CompositionCommandService {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionDispatcher: CompositionDispatcher);
-    init(compositionId?: CompositionId): void;
+    createComposition(compositionId?: CompositionId): void;
     setColumns(params: Array<ColumnParams>): void;
     setWidth(width: number, compositionId?: CompositionId): void;
     setContainerWidth(width: number, compositionId?: CompositionId): void;

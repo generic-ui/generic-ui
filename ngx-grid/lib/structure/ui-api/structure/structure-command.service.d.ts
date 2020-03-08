@@ -17,7 +17,7 @@ export declare class StructureCommandService {
     private readonly sourceDispatcher;
     private readonly structureSearchDispatcher;
     constructor(commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandService, sourceDispatcher: SourceDispatcher, structureSearchDispatcher: StructureSearchDispatcher);
-    init(structureId?: StructureId): void;
+    createStructure(structureId?: StructureId): void;
     enableVerticalScroll(structureId?: StructureId): void;
     disableVerticalScroll(structureId?: StructureId): void;
     setScrollPosition(position: number, structureId?: StructureId): void;

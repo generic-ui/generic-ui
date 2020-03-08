@@ -13,7 +13,6 @@ import { StructureEditSourceItemParams } from '../../source/command/origin/edit/
 import { PagingConfig } from '../../paging/paging-config';
 import { OriginItemEntity } from '../../source/command/origin/origin-item-entity';
 import { ColumnConfig } from '../../../../composition/domain/column.config';
-import { Field } from './field/data-type/field';
 import { SortingConfig } from '../../../ui-api/structure/sorting-config';
 import { FieldId } from './field/data-type/field.id';
 import { StructureSorter } from './sort/structure.sorter';
@@ -52,7 +51,7 @@ export declare class StructureAggregate extends Aggregate {
     changePageSize(pageSize: number): ReadonlyArray<AggregateEvent>;
     getEntities(): Array<OriginItemEntity>;
     getSource(): SourceManager;
-    createFields(columns: Array<ColumnConfig>): Array<Field>;
+    createFields(columns: Array<ColumnConfig>): ReadonlyArray<AggregateEvent>;
     setSortingConfig(config: SortingConfig): void;
     toggleSort(fieldId: FieldId): Array<StructureSorter>;
     setSortOrder(fieldId: FieldId, sortOrder: SortOrder): Array<StructureSorter>;

@@ -1,15 +1,14 @@
-import { Observable } from 'rxjs';
-import { AggregateId, CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { StructureAggregateRepository } from '../../structure-aggregate.repository';
 import { ToggleSortCommand } from './toggle-sort.command';
-import { CompositionId } from '../../../../../../composition/domain/composition-id';
-import { FieldId } from '../../field/data-type/field.id';
-import { StructureSorter } from '../structure.sorter';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class ToggleSortCommandHandler extends CommandHandler<StructureAggregate> {
+export declare class ToggleSortCommandHandler implements CommandHandler<StructureAggregate, ToggleSortCommand> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: ToggleSortCommand): ExecuteResponse | Observable<ExecuteResponse>;
-    publishSortEvent(aggregateId: AggregateId, compositionId: CompositionId, fieldId: FieldId, sorters: Array<StructureSorter>): void;
+    forCommand(): Type<ToggleSortCommand>;
+    handleAggregate(structure: StructureAggregate, command: ToggleSortCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: ToggleSortCommand): void;
+    private publishSortEvent;
 }

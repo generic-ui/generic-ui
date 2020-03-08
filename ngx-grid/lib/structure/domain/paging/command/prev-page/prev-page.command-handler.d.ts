@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../../structure/command/structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { PrevPageCommand } from './prev-page.command';
 import { StructureAggregate } from '../../../structure/command/structure.aggregate';
-export declare class PrevPageCommandHandler extends CommandHandler<StructureAggregate> {
-    private structureAggregateRepository;
-    constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: PrevPageCommand): ExecuteResponse | Observable<ExecuteResponse>;
+export declare class PrevPageCommandHandler implements CommandHandler<StructureAggregate, PrevPageCommand> {
+    private domainEventPublisher;
+    constructor(domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<PrevPageCommand>;
+    handleAggregate(structure: StructureAggregate, command: PrevPageCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: PrevPageCommand): void;
 }

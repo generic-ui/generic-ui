@@ -1,12 +1,12 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../../../structure/command/structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler } from '@generic-ui/hermes';
 import { StructureSourceDomainEventPublisher } from '../../structure.source.domain-event.publisher';
-import { SetOriginCommand } from './set-origin.command';
 import { StructureAggregate } from '../../../../structure/command/structure.aggregate';
-export declare class SetOriginCommandHandler extends CommandHandler<StructureAggregate> {
-    private structureAggregateRepository;
+import { SetOriginCommand } from './set-origin.command';
+export declare class SetOriginCommandHandler implements CommandHandler<StructureAggregate, SetOriginCommand> {
     private structureSourceDomainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher);
-    handle(command: SetOriginCommand): ExecuteResponse | Observable<ExecuteResponse>;
+    constructor(structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher);
+    forCommand(): Type<SetOriginCommand>;
+    handleAggregate(structure: StructureAggregate, command: SetOriginCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: SetOriginCommand): void;
 }

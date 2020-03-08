@@ -1,11 +1,11 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../structure-aggregate.repository';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { StructureSetConfigSearchingCommand } from './structure.set-config-searching.command';
 import { StructureAggregate } from '../../structure.aggregate';
-export declare class StructureSetConfigSearchingCommandHandler extends CommandHandler<StructureAggregate> {
-    private readonly structureAggregateRepository;
+export declare class StructureSetConfigSearchingCommandHandler implements CommandHandler<StructureAggregate, StructureSetConfigSearchingCommand> {
     private domainEventPublisher;
-    constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: StructureSetConfigSearchingCommand): ExecuteResponse | Observable<ExecuteResponse>;
+    constructor(domainEventPublisher: DomainEventPublisher);
+    forCommand(): Type<StructureSetConfigSearchingCommand>;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigSearchingCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: StructureSetConfigSearchingCommand): void;
 }

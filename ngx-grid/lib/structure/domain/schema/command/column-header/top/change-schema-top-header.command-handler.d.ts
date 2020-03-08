@@ -1,10 +1,13 @@
-import { Observable } from 'rxjs';
-import { CommandHandler, DomainEventPublisher, ExecuteResponse } from '@generic-ui/hermes';
+import { Type } from '@angular/core';
+import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { StructureAggregateRepository } from '../../../../structure/command/structure-aggregate.repository';
 import { ChangeSchemaTopHeaderCommand } from './change-schema-top-header.command';
 import { StructureAggregate } from '../../../../structure/command/structure.aggregate';
-export declare class ChangeSchemaTopHeaderCommandHandler extends CommandHandler<StructureAggregate> {
+export declare class ChangeSchemaTopHeaderCommandHandler implements CommandHandler<StructureAggregate, ChangeSchemaTopHeaderCommand> {
     private structureAggregateRepository;
+    private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
-    handle(command: ChangeSchemaTopHeaderCommand): ExecuteResponse | Observable<ExecuteResponse>;
+    forCommand(): Type<ChangeSchemaTopHeaderCommand>;
+    handleAggregate(aggregate: StructureAggregate, command: ChangeSchemaTopHeaderCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: ChangeSchemaTopHeaderCommand): void;
 }

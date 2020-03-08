@@ -1,5 +1,5 @@
 import { AggregateId } from '../../domain/aggregate-id';
-import { Aggregate } from '../../domain/command/aggregate';
+import { Aggregate } from '../../domain/command/aggregate/aggregate';
 import { Optional } from '../../common/optional';
 export declare abstract class InMemoryStore<S extends Aggregate> {
     private readonly state;

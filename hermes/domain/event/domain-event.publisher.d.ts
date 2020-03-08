@@ -1,5 +1,5 @@
 import { Command } from '../command/command';
-import { AggregateEvent } from '../command/aggregate-event';
+import { AggregateEvent } from '../command/aggregate/aggregate-event';
 import { DomainEventStream } from './domain-event.stream';
 import { DomainEvent } from './domain-event';
 export declare class DomainEventPublisher {

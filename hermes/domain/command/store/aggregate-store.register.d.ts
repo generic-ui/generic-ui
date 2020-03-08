@@ -1,4 +1,4 @@
-import { Aggregate } from '../aggregate';
+import { Aggregate } from '../aggregate/aggregate';
 import { AggregateStore } from './aggregate.store';
 import { AggregateId } from '../../aggregate-id';
 export declare class AggregateStoreRegister {
