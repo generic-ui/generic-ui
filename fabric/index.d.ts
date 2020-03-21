@@ -6,6 +6,7 @@ export { FabricButtonModule } from './buttons-indicators/button/fabric-button.mo
 export { FabricButtonGroupModule } from './buttons-indicators/button-group/fabric-button-group.module';
 export { FabricCardModule } from './layout/card/fabric-card.module';
 export { FabricCheckboxModule } from './form/checkbox/fabric-checkbox.module';
+export { FabricDatePickerModule } from './form/date-picker/fabric-date-picker.module';
 export { FabricChipModule } from './buttons-indicators/chip/fabric-chip.module';
 export { FabricDropdownModule } from './layout/dropdown/fabric-dropdown.module';
 export { FabricProgressBarModule } from './buttons-indicators/progress-bar/fabric-progress-bar.module';

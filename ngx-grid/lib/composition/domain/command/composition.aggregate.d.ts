@@ -9,8 +9,7 @@ export declare class CompositionAggregate extends Aggregate {
     private readonly baseColumns;
     private readonly baseParams;
     /**
-     * Value taken from user config [width]/tree-content.assert.ts
-
+     * Value taken from user config [width]
      */
     private width;
     private containerInDOMWidth;

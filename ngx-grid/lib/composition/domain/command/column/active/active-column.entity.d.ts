@@ -2,29 +2,12 @@ import { SortOrder } from '../sort/sort-order';
 import { ColumnField } from '../field/column-field';
 import { ColumnId } from '../column.id';
 import { ColumnConfig, HeaderTemplate } from '../../../column.config';
-import { DataType } from '../../../../../structure/domain/structure/command/field/data-type/data-type';
-import { CellView } from '../../../cell-view';
 import { ViewEntity } from '../view.entity';
-export declare class ActiveColumnEntity {
-    private columnId;
-    private columnField;
+import { ColumnAlign } from '../../../column-align';
+import { AbstractColumnEntity } from '../abstract-column.entity';
+export declare class ActiveColumnEntity extends AbstractColumnEntity {
     private sortStatus;
-    private width;
-    private header;
-    private view;
-    private config;
-    constructor(columnId: ColumnId, columnField: ColumnField, header: string | HeaderTemplate, view: ViewEntity, config: ColumnConfig);
-    getConfig(): ColumnConfig;
+    constructor(columnId: ColumnId, columnField: ColumnField, header: string | HeaderTemplate, align: ColumnAlign, view: ViewEntity, config: ColumnConfig);
     getSortStatus(): SortOrder;
-    getField(): ColumnField;
-    getWidth(): number;
-    getColumnId(): ColumnId;
-    getHeader(): string | HeaderTemplate;
-    getDataType(): DataType;
-    getView(): ViewEntity;
-    getCellView(): CellView;
-    getTemplateFunction(): any;
-    getSortingEnabled(): boolean;
     setSortStatus(status: SortOrder): void;
-    setWidth(width: number): void;
 }

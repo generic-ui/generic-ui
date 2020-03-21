@@ -18,5 +18,6 @@ export declare class StructureSorter {
     private sortString;
     private sortNumber;
     private sortBoolean;
+    private sortDate;
     private sortUnknown;
 }

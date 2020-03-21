@@ -3,6 +3,7 @@ import { DataType } from './data-type';
 import { OriginItemEntity } from '../../../../source/command/origin/origin-item-entity';
 import { AggregationType } from '../../aggregation/aggregation.type';
 import { ColumnAggregationConfig } from '../../../../../../composition/domain/column-aggregation.config';
+import { FieldMatchers } from '../matcher/field.matchers';
 export declare abstract class Field {
     private readonly id;
     private readonly accessor;
@@ -11,7 +12,8 @@ export declare abstract class Field {
     private aggregationEnabled;
     private aggregations;
     private readonly possibleAggregations;
-    protected constructor(id: FieldId, accessor: any, dataType: DataType, aggregationConfig?: ColumnAggregationConfig);
+    private readonly matchers;
+    protected constructor(id: FieldId, accessor: any, dataType: DataType, matchers: FieldMatchers, aggregationConfig?: ColumnAggregationConfig);
     abstract assignDefaultAggregations(): AggregationType;
     abstract assignPossibleAggregations(): AggregationType;
     getId(): FieldId;
@@ -19,7 +21,10 @@ export declare abstract class Field {
     getDataType(): DataType;
     getAccessor(): string;
     getAccessorMethod(): (entity: OriginItemEntity) => any;
+    getSearchAccessorMethod(): (entity: OriginItemEntity) => any;
     getValue(entity: OriginItemEntity): any;
+    getSortValue(entity: OriginItemEntity): any;
+    getSearchValue(entity: OriginItemEntity): any;
     isAggregation(type: AggregationType): boolean;
     isAggregationEnabled(): boolean;
     setAggregationEnabled(enabled: boolean): void;

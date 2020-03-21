@@ -27,6 +27,7 @@ import { StructureColumnMenuConfigArchive } from './header/menu/config/structure
 import { StructurePagingDisplayModeArchive } from './paging/mode/structure-paging.display-mode.archive';
 import { StructureRowSelectEnabledArchive } from './content/row/structure.row-select-enabled.archive';
 import { StructureSearchEventService } from '../ui-api/structure/search/structure-search-event.service';
+import { StructureCellEditCloseAllService } from './edit/structure.cell-edit-close-all.service';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -71,7 +72,7 @@ export declare const structureComponentSelfProviders: (typeof StructurePagingDis
 } | {
     provide: typeof import("../../../generic-ui-ngx-grid").ɵel;
     useClass: typeof import("./local/search/local-structure-search.dispatcher").LocalStructureSearchDispatcher;
-} | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | typeof StructureColumnMenuConfigArchive | {
+} | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | typeof StructureColumnMenuConfigArchive | typeof StructureCellEditCloseAllService | {
     provide: typeof StructureId;
     useFactory: typeof structureIdFactory;
     deps: (typeof StructureIdGenerator)[];

@@ -8,8 +8,11 @@ export interface GuiColumn {
     customTemplate?: string;
     width?: string | number;
     enabled?: boolean;
+    align?: string | GuiColumnAlign;
     aggregation?: GuiColumnAggregation;
     sorting?: GuiColumnSorting;
+    cellEditing?: GuiColumnCellEditing;
+    matcher?: (item: any) => any;
 }
 export declare enum GuiDataType {
     UNKNOWN = 0,
@@ -27,7 +30,10 @@ export declare enum GuiCellView {
     BOLD = 4,
     ITALIC = 5,
     CHECKBOX = 6,
-    CUSTOM = 7
+    CUSTOM = 7,
+    BAR = 8,
+    PERCENTAGE_BAR = 9,
+    PERCENTAGE = 10
 }
 export declare enum GuiNumberCellView {
     TEXT = 0,
@@ -109,7 +115,11 @@ export interface GuiColumnAggregation {
 }
 export interface GuiColumnSorting {
     enabled?: boolean;
+    matcher?: (item: any) => any;
     order?: GuiSortingOrder;
+}
+export interface GuiColumnCellEditing {
+    enabled?: boolean;
 }
 export interface GuiColumnMenu {
     enabled?: boolean;
@@ -120,4 +130,9 @@ export interface GuiColumnMenu {
 export declare enum GuiPagingDisplay {
     BASIC = 0,
     ADVANCED = 1
+}
+export declare enum GuiColumnAlign {
+    RIGHT = 0,
+    CENTER = 1,
+    LEFT = 2
 }

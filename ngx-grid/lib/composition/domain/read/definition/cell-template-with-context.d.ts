@@ -3,6 +3,7 @@ import { CellContext } from './cell-context';
 import { FieldId } from '../../../../structure/domain/structure/command/field/data-type/field.id';
 import { SortOrder } from '../../command/column/sort/sort-order';
 import { ColumnId } from '../../command/column/column.id';
+import { ColumnAlign } from '../../column-align';
 export declare class CellTemplateWithContext {
     viewTemplate: TemplateRef<any>;
     editTemplate: TemplateRef<any>;
@@ -13,7 +14,8 @@ export declare class CellTemplateWithContext {
     private readonly sortStatus;
     private readonly enabled;
     private readonly sortable;
-    constructor(viewTemplate: TemplateRef<any>, editTemplate: TemplateRef<any>, context: CellContext, width: number, fieldId: FieldId, columnId: ColumnId, sortStatus: SortOrder, enabled: boolean, sortable: boolean);
+    private readonly align;
+    constructor(viewTemplate: TemplateRef<any>, editTemplate: TemplateRef<any>, context: CellContext, width: number, fieldId: FieldId, columnId: ColumnId, sortStatus: SortOrder, enabled: boolean, sortable: boolean, align: ColumnAlign);
     getColumnId(): ColumnId;
     getFieldId(): FieldId;
     getSortStatus(): SortOrder;
@@ -22,4 +24,7 @@ export declare class CellTemplateWithContext {
     isDescSort(): boolean;
     isNoSort(): boolean;
     isEnabled(): boolean;
+    isAlignLeft(): boolean;
+    isAlignCenter(): boolean;
+    isAlignRight(): boolean;
 }

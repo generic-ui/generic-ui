@@ -1,8 +1,8 @@
 import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, Injectable, Inject, PLATFORM_ID, ComponentFactoryResolver, ChangeDetectorRef, forwardRef, ViewChild, ViewContainerRef, ApplicationRef, Injector, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { distinctUntilChanged, debounceTime, map, filter, takeUntil, throttleTime } from 'rxjs/operators';
 import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
+import { take, distinctUntilChanged, takeUntil, skip, map, filter, throttleTime } from 'rxjs/operators';
 import * as elementResizeDetectorMaker_ from 'element-resize-detector';
 
 /**
@@ -527,6 +527,752 @@ FabricChipModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const daysOfTheWeek = [
+    'Mo',
+    'Tu',
+    'We',
+    'Th',
+    'Fr',
+    'Sa',
+    'Su'
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const quarters = [
+    [{
+            nr: 0,
+            name: 'Jan'
+        }, {
+            nr: 1,
+            name: 'Feb'
+        }, {
+            nr: 2,
+            name: 'Mar'
+        }],
+    [{
+            nr: 3,
+            name: 'Apr'
+        }, {
+            nr: 4,
+            name: 'May'
+        }, {
+            nr: 5,
+            name: 'Jun'
+        }],
+    [{
+            nr: 6,
+            name: 'Jul'
+        }, {
+            nr: 7,
+            name: 'Aug'
+        }, {
+            nr: 8,
+            name: 'Sep'
+        }],
+    [{
+            nr: 9,
+            name: 'Oct'
+        }, {
+            nr: 10,
+            name: 'Nov'
+        }, {
+            nr: 11,
+            name: 'Dec'
+        }]
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricDatePickerService {
+    constructor() {
+        this.dateMonth$ = new Subject();
+        this.dateYear$ = new Subject();
+        this.initialDate = new Date();
+        this.selectedDate$ = new BehaviorSubject(this.initialDate);
+    }
+    /**
+     * @return {?}
+     */
+    observeDateMonth() {
+        return this.dateMonth$.asObservable();
+    }
+    /**
+     * @return {?}
+     */
+    observeDateYear() {
+        return this.dateYear$.asObservable();
+    }
+    /**
+     * @return {?}
+     */
+    observeSelectedDate() {
+        return this.selectedDate$.asObservable();
+    }
+    /**
+     * @param {?} date
+     * @return {?}
+     */
+    dateSelected(date) {
+        this.selectedDate = new Date(date.getTime());
+        this.selectedDate$.next(this.selectedDate);
+    }
+    /**
+     * @param {?} year
+     * @param {?} month
+     * @return {?}
+     */
+    nextMonth(year, month) {
+        if (month === 11) {
+            this.dateYear$.next(year + 1);
+            this.dateMonth$.next(0);
+        }
+        else {
+            this.dateMonth$.next(month + 1);
+        }
+    }
+    /**
+     * @param {?} year
+     * @param {?} month
+     * @return {?}
+     */
+    prevMonth(year, month) {
+        if (month === 0) {
+            this.dateYear$.next(year - 1);
+            this.dateMonth$.next(11);
+        }
+        else {
+            this.dateMonth$.next(month - 1);
+        }
+    }
+}
+FabricDatePickerService.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.dateMonth$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.dateYear$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.initialDate;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.selectedDate;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.selectedDate$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricDatePickerWeeks {
+    /**
+     * @param {?} year
+     * @param {?} month
+     * @return {?}
+     */
+    getDaysInMonths(year, month) {
+        this.resetWeeks();
+        /** @type {?} */
+        const numberOfDaysInMonth = (new Date(year, month + 1, 0)).getDate();
+        for (let i = 1; i <= numberOfDaysInMonth; i++) {
+            this.createWeeks(new Date(year, month, i));
+        }
+        return this.weeks;
+    }
+    /**
+     * @private
+     * @param {?} date
+     * @return {?}
+     */
+    createWeeks(date) {
+        /** @type {?} */
+        const day = date.getDate();
+        if (this.weeks[0].length === 0 && day === 1) {
+            this.createWeek(date, this.weeks[0]);
+        }
+        if (this.weeks[1].length === 0 && day > this.getLastDayNumber(this.weeks[0])) {
+            this.createWeek(this.getLastDayDate(this.weeks[0]), this.weeks[1]);
+        }
+        if (this.weeks[2].length === 0 && day > this.getLastDayNumber(this.weeks[1])) {
+            this.createWeek(this.getLastDayDate(this.weeks[1]), this.weeks[2]);
+        }
+        if (this.weeks[3].length === 0 && day > this.getLastDayNumber(this.weeks[2])) {
+            this.createWeek(this.getLastDayDate(this.weeks[2]), this.weeks[3]);
+        }
+        if (this.weeks[4].length === 0 && day >= this.getLastDayNumber(this.weeks[3])) {
+            this.createWeek(this.getLastDayDate(this.weeks[3]), this.weeks[4]);
+        }
+        if (this.weeks[5].length === 0 && day >= this.getLastDayNumber(this.weeks[4])) {
+            this.createWeek(this.getLastDayDate(this.weeks[4]), this.weeks[5]);
+        }
+        this.weeks = [this.weeks[0], this.weeks[1], this.weeks[2], this.weeks[3], this.weeks[4], this.weeks[5]];
+    }
+    /**
+     * @private
+     * @param {?} date
+     * @param {?} week
+     * @return {?}
+     */
+    createWeek(date, week) {
+        for (let i = 1; i <= 7; i++) {
+            /** @type {?} */
+            const isFirstDaySunday = date.getDay() === 0 && this.weeks[0].length === 0;
+            /** @type {?} */
+            let day;
+            if (isFirstDaySunday) {
+                day = date.getDate() - 6;
+            }
+            else {
+                day = date.getDate() - date.getDay() + i;
+            }
+            /** @type {?} */
+            let dayOfWeek = new Date(date.setDate(day));
+            if (week.length < 7) {
+                week.push(dayOfWeek);
+            }
+        }
+    }
+    /**
+     * @private
+     * @param {?} week
+     * @return {?}
+     */
+    getLastDayNumber(week) {
+        if (week.length === 7) {
+            return week[week.length - 1].getDate();
+        }
+    }
+    /**
+     * @private
+     * @param {?} week
+     * @return {?}
+     */
+    getLastDayDate(week) {
+        /** @type {?} */
+        let lastDay = week[week.length - 1].getDate();
+        return new Date(week[week.length - 1].setDate(lastDay));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    resetWeeks() {
+        this.weeks = [];
+        this.weeks[0] = [];
+        this.weeks[1] = [];
+        this.weeks[2] = [];
+        this.weeks[3] = [];
+        this.weeks[4] = [];
+        this.weeks[5] = [];
+    }
+}
+FabricDatePickerWeeks.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerWeeks.prototype.weeks;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricDatePickerYears {
+    constructor() {
+        this.year = new Date().getFullYear();
+        this.inc = 10;
+    }
+    /**
+     * @param {?} selectedYear
+     * @return {?}
+     */
+    getYears(selectedYear) {
+        this.minYear = selectedYear - 50;
+        this.maxYear = selectedYear + 50;
+        /** @type {?} */
+        let yearsRange = this.maxYear - this.minYear;
+        /** @type {?} */
+        let years = [];
+        /** @type {?} */
+        let rows = [];
+        years = this.createYearsPool(this.minYear, yearsRange, years);
+        rows = this.divideYearsPool(years, rows);
+        return this.rowsForDisplay = this.createRowsForDisplay(rows, selectedYear);
+    }
+    /**
+     * @return {?}
+     */
+    prevYearRange() {
+        if (this.year > this.minYear) {
+            this.year -= this.inc;
+        }
+        if (this.year > this.minYear) {
+            return this.getYears(this.year);
+        }
+        else {
+            return this.rowsForDisplay;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    nextYearRange() {
+        if (this.year < this.maxYear) {
+            this.year += this.inc;
+        }
+        if (this.year < this.maxYear) {
+            return this.getYears(this.year);
+        }
+        else {
+            return this.rowsForDisplay;
+        }
+    }
+    /**
+     * @private
+     * @param {?} minYear
+     * @param {?} yearsRange
+     * @param {?} years
+     * @return {?}
+     */
+    createYearsPool(minYear, yearsRange, years) {
+        for (let i = 0; i <= yearsRange; i++) {
+            years.push(minYear + i);
+        }
+        return years;
+    }
+    /**
+     * @private
+     * @param {?} years
+     * @param {?} rows
+     * @return {?}
+     */
+    divideYearsPool(years, rows) {
+        for (let i = 0; i < years.length; i += 5) {
+            rows.push(years.slice(i, i + 5));
+        }
+        return rows;
+    }
+    /**
+     * @private
+     * @param {?} rows
+     * @param {?} selectedYear
+     * @return {?}
+     */
+    createRowsForDisplay(rows, selectedYear) {
+        if (selectedYear >= this.minYear || selectedYear <= this.maxYear) {
+            for (let i = 0; i < rows.length; i++) {
+                if (rows[i].indexOf(selectedYear) > -1) {
+                    if (!rows[i - 1]) {
+                        return [rows[i], rows[i + 1], rows[i + 2], rows[i + 3], rows[i + 4]];
+                    }
+                    if (!rows[i - 2]) {
+                        return [rows[i - 1], rows[i], rows[i + 1], rows[i + 2], rows[i + 3]];
+                    }
+                    if (!rows[i + 1]) {
+                        return [rows[i - 4], rows[i - 3], rows[i - 2], rows[i - 1], rows[i]];
+                    }
+                    if (!rows[i + 2]) {
+                        return [rows[i - 3], rows[i - 2], rows[i - 1], rows[i], rows[i + 1]];
+                    }
+                    return this.rowsForDisplay = [rows[i - 2], rows[i - 1], rows[i], rows[i + 1], rows[i + 2]];
+                }
+            }
+        }
+    }
+}
+FabricDatePickerYears.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerYears.prototype.rowsForDisplay;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerYears.prototype.minYear;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerYears.prototype.maxYear;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerYears.prototype.year;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerYears.prototype.inc;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricDatePickerCalendarComponent {
+    /**
+     * @param {?} datePickerService
+     * @param {?} datePickerWeeks
+     * @param {?} datePickerYears
+     */
+    constructor(datePickerService, datePickerWeeks, datePickerYears) {
+        this.datePickerService = datePickerService;
+        this.datePickerWeeks = datePickerWeeks;
+        this.datePickerYears = datePickerYears;
+        this.currentDay = new Date();
+        this.daysOfTheWeek = daysOfTheWeek;
+        this.quarters = quarters;
+        this.selectedMonth = new Date().getMonth() + 1;
+        this.enableMonthSelection = false;
+        this.enableYearSelection = false;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (changes.minYear || changes.maxYear) {
+            this.years = this.datePickerYears.getYears(this.selectedYear);
+        }
+        if (changes.selectDate) {
+            this.calculateDatePickerData();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.monthSubscription =
+            this.datePickerService.observeDateMonth().subscribe((/**
+             * @param {?} month
+             * @return {?}
+             */
+            (month) => this.selectedMonth = month));
+        this.yearSubscription =
+            this.datePickerService.observeDateYear().subscribe((/**
+             * @param {?} year
+             * @return {?}
+             */
+            (year) => this.selectedYear = year));
+        this.selectedDateSubscription =
+            this.datePickerService.observeSelectedDate().subscribe((/**
+             * @param {?} date
+             * @return {?}
+             */
+            (date) => {
+                this.selectDate = date;
+                this.selectedYear = date.getFullYear();
+                this.selectedMonth = date.getMonth();
+            }));
+        this.calculateDatePickerData();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.monthSubscription.unsubscribe();
+        this.yearSubscription.unsubscribe();
+        this.selectedDateSubscription.unsubscribe();
+    }
+    /**
+     * @return {?}
+     */
+    calculateDatePickerData() {
+        this.selectedMonthName = months[this.selectedMonth];
+        this.weeks = this.datePickerWeeks.getDaysInMonths(this.selectedYear, this.selectedMonth);
+        this.years = this.datePickerYears.getYears(this.selectedYear);
+    }
+    /**
+     * @return {?}
+     */
+    prevCard() {
+        if (!this.enableMonthSelection && !this.enableYearSelection) {
+            this.datePickerService.prevMonth(this.selectedYear, this.selectedMonth);
+            this.calculateDatePickerData();
+        }
+        if (this.enableMonthSelection && this.selectedYear) {
+            this.selectedYear = this.selectedYear - 1;
+        }
+        if (this.enableYearSelection) {
+            this.years = this.datePickerYears.prevYearRange();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    nextCard() {
+        if (!this.enableMonthSelection && !this.enableYearSelection) {
+            this.datePickerService.nextMonth(this.selectedYear, this.selectedMonth);
+            this.calculateDatePickerData();
+        }
+        if (this.enableMonthSelection && this.selectedYear) {
+            this.selectedYear = this.selectedYear + 1;
+        }
+        if (this.enableYearSelection) {
+            this.years = this.datePickerYears.nextYearRange();
+        }
+    }
+    /**
+     * @param {?} date
+     * @return {?}
+     */
+    onSelect(date) {
+        this.datePickerService.dateSelected(date);
+        this.selectDate = date;
+    }
+    /**
+     * @return {?}
+     */
+    switchViewedList() {
+        if (event) {
+            event.stopPropagation();
+        }
+        if (this.enableMonthSelection) {
+            return 'monthList';
+        }
+        if (this.enableYearSelection) {
+            return 'yearsList';
+        }
+        if (!this.enableMonthSelection && !this.enableYearSelection) {
+            return 'daysList';
+        }
+    }
+    /**
+     * @param {?} day
+     * @return {?}
+     */
+    displayMonthDays(day) {
+        return day === this.selectedMonth;
+    }
+    /**
+     * @param {?} day
+     * @return {?}
+     */
+    isDateSelected(day) {
+        if (this.selectDate) {
+            return day.getDate() === this.selectDate.getDate() &&
+                day.getMonth() === this.selectDate.getMonth() &&
+                day.getFullYear() === this.selectDate.getFullYear();
+        }
+    }
+    /**
+     * @param {?} day
+     * @return {?}
+     */
+    isCurrentDay(day) {
+        return day.getDate() === this.currentDay.getDate() &&
+            day.getMonth() === this.currentDay.getMonth() &&
+            day.getFullYear() === this.currentDay.getFullYear();
+    }
+    /**
+     * @param {?} month
+     * @return {?}
+     */
+    isCurrentMonth(month) {
+        return month === this.currentDay.getMonth() &&
+            this.selectedYear === this.currentDay.getFullYear();
+    }
+    /**
+     * @param {?} month
+     * @return {?}
+     */
+    isSelectedMonth(month) {
+        if (this.selectDate) {
+            return this.selectDate.getMonth() === month &&
+                this.selectDate.getFullYear() === this.selectedYear;
+        }
+    }
+    /**
+     * @param {?} year
+     * @return {?}
+     */
+    isYearSelected(year) {
+        if (this.selectDate) {
+            return year === this.selectedYear;
+        }
+    }
+    /**
+     * @param {?} year
+     * @return {?}
+     */
+    isCurrentYear(year) {
+        return this.currentDay.getFullYear() === year;
+    }
+    /**
+     * @param {?} year
+     * @return {?}
+     */
+    selectYear(year) {
+        this.selectedYear = year;
+        this.enableYearSelection = false;
+        this.enableMonthSelection = true;
+        this.calculateDatePickerData();
+    }
+    /**
+     * @param {?} month
+     * @return {?}
+     */
+    selectMonth(month) {
+        this.selectedMonth = month;
+        this.enableMonthSelection = false;
+        this.calculateDatePickerData();
+    }
+    /**
+     * @return {?}
+     */
+    showMonthsList() {
+        this.enableMonthSelection = !this.enableMonthSelection;
+    }
+    /**
+     * @return {?}
+     */
+    showYearsList() {
+        this.enableMonthSelection = false;
+        this.enableYearSelection = !this.enableYearSelection;
+    }
+    /**
+     * @return {?}
+     */
+    getDisplayedYearRange() {
+        return this.years[0][0].toString() + '-' + this.years[4][this.years[4].length - 1].toString();
+    }
+}
+FabricDatePickerCalendarComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-date-picker-toggle',
+                template: "<div class=\"gui-date-picker-container\">\n\t<div [ngSwitch]=\"switchViewedList()\">\n\n\t\t<div *ngSwitchCase=\"'daysList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div (click)=\"showMonthsList()\"\n\t\t\t\t\t class=\"gui-date-picker-interface-date\">\n\t\t\t\t\t{{selectedMonthName}} {{selectedYear}}\n\t\t\t\t</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr>\n\t\t\t\t\t<th *ngFor=\"let dayOfTheWeek of daysOfTheWeek\">\n\t\t\t\t\t\t<span>{{dayOfTheWeek}}</span>\n\t\t\t\t\t</th>\n\t\t\t\t</tr>\n\n\t\t\t\t<tr *ngFor=\"let week of weeks\">\n\n\t\t\t\t\t<td *ngFor=\"let day of week\"\n\t\t\t\t\t\t[class.gui-date-picker-current-day]=\"isCurrentDay(day)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-day]=\"isDateSelected(day)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-month]=\"displayMonthDays(day.getMonth())\"\n\t\t\t\t\t\tclass=\"gui-date-picker-day\">\n\t\t\t\t<span (click)=\"onSelect(day)\">\n\t\t\t\t\t{{day.getDate()}}\n\t\t\t\t</span>\n\t\t\t\t\t</td>\n\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t\t<div *ngSwitchCase=\"'monthList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div (click)=\"showYearsList()\" class=\"gui-date-picker-interface-date\">\n\t\t\t\t\t{{selectedYear}}\n\t\t\t\t</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr *ngFor=\"let quarter of quarters\">\n\t\t\t\t\t<td (click)=\"selectMonth(month.nr)\"\n\t\t\t\t\t\t*ngFor=\"let month of quarter\"\n\t\t\t\t\t\t[class.gui-date-picker-current-month]=\"isCurrentMonth(month.nr)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-month]=\"isSelectedMonth(month.nr)\"\n\t\t\t\t\t\tclass=\"gui-date-picker-month\">\n\t\t\t\t<span>\n\t\t\t\t\t{{month.name}}\n\t\t\t\t</span>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t\t<div *ngSwitchCase=\"'yearsList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div class=\"gui-date-picker-interface-date gui-date-picker-no-pointer\">{{getDisplayedYearRange()}}</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr *ngFor=\"let yearsChunk of years\">\n\t\t\t\t\t<td (click)=\"selectYear(year)\"\n\t\t\t\t\t\t*ngFor=\"let year of yearsChunk\"\n\t\t\t\t\t\t[class.gui-date-picker-current-year]=\"isCurrentYear(year)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-year]=\"isYearSelected(year)\"\n\t\t\t\t\t\tclass=\"gui-date-picker-year\">\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t{{year}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t</div>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-date-picker-calendar]': 'true'
+                },
+                styles: [".gui-date-picker-calendar{box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-date-picker-calendar .gui-date-picker-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;border-radius:4px;width:250px;padding:0 0 12px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:24px 18px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface .gui-date-picker-interface-date{margin:0;font-size:18px;font-weight:700;cursor:pointer;pointer-events:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface .gui-date-picker-no-pointer{cursor:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{background:0 0;border:none;font-size:18px;margin-left:12px;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table{height:250px;width:250px}.gui-date-picker-calendar .gui-date-picker-container table th{font-size:16px;text-align:center}.gui-date-picker-calendar .gui-date-picker-container table td:first-child,.gui-date-picker-calendar .gui-date-picker-container table th:first-child{padding-left:12px}.gui-date-picker-calendar .gui-date-picker-container table td:last-child,.gui-date-picker-calendar .gui-date-picker-container table th:last-child{padding-right:12px}.gui-date-picker-calendar .gui-date-picker-container table td{font-size:16px;height:31px;width:31px;text-align:center;position:relative}.gui-date-picker-calendar .gui-date-picker-container table td span{border-radius:4px;padding:2px 4px;border:1px solid transparent}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day span{display:none;pointer-events:none}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year{cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year span{font-size:13px}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-month span{display:block;pointer-events:auto;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#c7e2f6}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border:1px solid #1a69a4}"]
+            }] }
+];
+/** @nocollapse */
+FabricDatePickerCalendarComponent.ctorParameters = () => [
+    { type: FabricDatePickerService },
+    { type: FabricDatePickerWeeks },
+    { type: FabricDatePickerYears }
+];
+if (false) {
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.currentDay;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.daysOfTheWeek;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.weeks;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.quarters;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.years;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.selectDate;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.selectedMonth;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.selectedMonthName;
+    /** @type {?} */
+    FabricDatePickerCalendarComponent.prototype.selectedYear;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.selectedDateSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.monthSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.yearSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.enableMonthSelection;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.enableYearSelection;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.datePickerService;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.datePickerWeeks;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.datePickerYears;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class InlineDialogGeometry {
     /**
      * @param {?} inlineDialogRef
@@ -945,6 +1691,8 @@ class FabricInlineDialogService {
         this.document = document;
         this.inlineDialogGeometryService = inlineDialogGeometryService;
         this.inlineDialogRef = null;
+        this.opened = false;
+        this.opened$ = new BehaviorSubject(false);
     }
     /**
      * @return {?}
@@ -961,8 +1709,11 @@ class FabricInlineDialogService {
      * @return {?}
      */
     open(element, component, injector, placement, offset) {
-        event.stopPropagation();
+        if (event) {
+            event.stopPropagation();
+        }
         if (!this.inlineDialogRef) {
+            this.setOpened(true);
             this.appendInlineDialogToElement(component, injector);
             this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
         }
@@ -975,6 +1726,19 @@ class FabricInlineDialogService {
      */
     close() {
         this.removeInlineDialog();
+        this.setOpened(false);
+    }
+    /**
+     * @return {?}
+     */
+    isOpened() {
+        return this.opened;
+    }
+    /**
+     * @return {?}
+     */
+    onOpened() {
+        return this.opened$.asObservable();
     }
     /**
      * @private
@@ -1010,6 +1774,15 @@ class FabricInlineDialogService {
             this.inlineDialogRef = null;
         }
     }
+    /**
+     * @private
+     * @param {?} opened
+     * @return {?}
+     */
+    setOpened(opened) {
+        this.opened = opened;
+        this.opened$.next(this.opened);
+    }
 }
 FabricInlineDialogService.decorators = [
     { type: Injectable }
@@ -1023,8 +1796,21 @@ FabricInlineDialogService.ctorParameters = () => [
     { type: InlineDialogGeometryService }
 ];
 if (false) {
-    /** @type {?} */
+    /**
+     * @type {?}
+     * @private
+     */
     FabricInlineDialogService.prototype.inlineDialogRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.opened;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.opened$;
     /**
      * @type {?}
      * @private
@@ -1056,738 +1842,56 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const daysOfTheWeek = [
-    'Mo',
-    'Tu',
-    'We',
-    'Th',
-    'Fr',
-    'Sa',
-    'Su'
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const quarters = [
-    [{
-            nr: 0,
-            name: 'Jan'
-        }, {
-            nr: 1,
-            name: 'Feb'
-        }, {
-            nr: 2,
-            name: 'Mar'
-        }],
-    [{
-            nr: 3,
-            name: 'Apr'
-        }, {
-            nr: 4,
-            name: 'May'
-        }, {
-            nr: 5,
-            name: 'Jun'
-        }],
-    [{
-            nr: 6,
-            name: 'Jul'
-        }, {
-            nr: 7,
-            name: 'Aug'
-        }, {
-            nr: 8,
-            name: 'Sep'
-        }],
-    [{
-            nr: 9,
-            name: 'Oct'
-        }, {
-            nr: 10,
-            name: 'Nov'
-        }, {
-            nr: 11,
-            name: 'Dec'
-        }]
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricDatePickerService {
-    constructor() {
-        this.dateMonth$ = new Subject();
-        this.dateYear$ = new Subject();
-        this.initialDate = new Date();
-        this.selectedDate$ = new BehaviorSubject(this.initialDate);
+class FabricDatePickerInlineDialogService {
+    /**
+     * @param {?} fabricInlineDialogService
+     */
+    constructor(fabricInlineDialogService) {
+        this.fabricInlineDialogService = fabricInlineDialogService;
+    }
+    /**
+     * @param {?} element
+     * @param {?} component
+     * @param {?=} injector
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    open(element, component, injector, placement, offset) {
+        this.fabricInlineDialogService.open(element, component);
     }
     /**
      * @return {?}
      */
-    observeDateMonth() {
-        return this.dateMonth$.asObservable();
+    close() {
+        this.fabricInlineDialogService.close();
     }
     /**
      * @return {?}
      */
-    observeDateYear() {
-        return this.dateYear$.asObservable();
+    isOpened() {
+        return this.fabricInlineDialogService.isOpened();
     }
     /**
      * @return {?}
      */
-    observeSelectedDate() {
-        return this.selectedDate$.asObservable();
-    }
-    /**
-     * @param {?} date
-     * @return {?}
-     */
-    dateSelected(date) {
-        this.selectedDate$.next(date);
-    }
-    /**
-     * @param {?} year
-     * @param {?} month
-     * @return {?}
-     */
-    nextMonth(year, month) {
-        if (month === 11) {
-            this.dateYear$.next(year + 1);
-            this.dateMonth$.next(0);
-        }
-        else {
-            this.dateMonth$.next(month + 1);
-        }
-    }
-    /**
-     * @param {?} year
-     * @param {?} month
-     * @return {?}
-     */
-    prevMonth(year, month) {
-        if (month === 0) {
-            this.dateYear$.next(year - 1);
-            this.dateMonth$.next(11);
-        }
-        else {
-            this.dateMonth$.next(month - 1);
-        }
+    onOpened() {
+        return this.fabricInlineDialogService.onOpened();
     }
 }
-FabricDatePickerService.decorators = [
+FabricDatePickerInlineDialogService.decorators = [
     { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerService.prototype.dateMonth$;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerService.prototype.dateYear$;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerService.prototype.initialDate;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerService.prototype.selectedDate$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricDatePickerWeeks {
-    /**
-     * @param {?} year
-     * @param {?} month
-     * @return {?}
-     */
-    getDaysInMonths(year, month) {
-        this.resetWeeks();
-        /** @type {?} */
-        const numberOfDaysInMonth = (new Date(year, month + 1, 0)).getDate();
-        for (let i = 1; i <= numberOfDaysInMonth; i++) {
-            this.createWeeks(new Date(year, month, i));
-        }
-        return this.weeks;
-    }
-    /**
-     * @private
-     * @param {?} date
-     * @return {?}
-     */
-    createWeeks(date) {
-        /** @type {?} */
-        const day = date.getDate();
-        if (this.weeks[0].length === 0 && day === 1) {
-            this.createWeek(date, this.weeks[0]);
-        }
-        if (this.weeks[1].length === 0 && day > this.getLastDayNumber(this.weeks[0])) {
-            this.createWeek(this.getLastDayDate(this.weeks[0]), this.weeks[1]);
-        }
-        if (this.weeks[2].length === 0 && day > this.getLastDayNumber(this.weeks[1])) {
-            this.createWeek(this.getLastDayDate(this.weeks[1]), this.weeks[2]);
-        }
-        if (this.weeks[3].length === 0 && day > this.getLastDayNumber(this.weeks[2])) {
-            this.createWeek(this.getLastDayDate(this.weeks[2]), this.weeks[3]);
-        }
-        if (this.weeks[4].length === 0 && day >= this.getLastDayNumber(this.weeks[3])) {
-            this.createWeek(this.getLastDayDate(this.weeks[3]), this.weeks[4]);
-        }
-        if (this.weeks[5].length === 0 && day >= this.getLastDayNumber(this.weeks[4])) {
-            this.createWeek(this.getLastDayDate(this.weeks[4]), this.weeks[5]);
-        }
-        this.weeks = [this.weeks[0], this.weeks[1], this.weeks[2], this.weeks[3], this.weeks[4], this.weeks[5]];
-    }
-    /**
-     * @private
-     * @param {?} date
-     * @param {?} week
-     * @return {?}
-     */
-    createWeek(date, week) {
-        for (let i = 1; i <= 7; i++) {
-            /** @type {?} */
-            const isFirstDaySunday = date.getDay() === 0 && this.weeks[0].length === 0;
-            /** @type {?} */
-            let day;
-            if (isFirstDaySunday) {
-                day = date.getDate() - 6;
-            }
-            else {
-                day = date.getDate() - date.getDay() + i;
-            }
-            /** @type {?} */
-            let dayOfWeek = new Date(date.setDate(day));
-            if (week.length < 7) {
-                week.push(dayOfWeek);
-            }
-        }
-    }
-    /**
-     * @private
-     * @param {?} week
-     * @return {?}
-     */
-    getLastDayNumber(week) {
-        if (week.length === 7) {
-            return week[week.length - 1].getDate();
-        }
-    }
-    /**
-     * @private
-     * @param {?} week
-     * @return {?}
-     */
-    getLastDayDate(week) {
-        /** @type {?} */
-        let lastDay = week[week.length - 1].getDate();
-        return new Date(week[week.length - 1].setDate(lastDay));
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    resetWeeks() {
-        this.weeks = [];
-        this.weeks[0] = [];
-        this.weeks[1] = [];
-        this.weeks[2] = [];
-        this.weeks[3] = [];
-        this.weeks[4] = [];
-        this.weeks[5] = [];
-    }
-}
-FabricDatePickerWeeks.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerWeeks.prototype.weeks;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricDatePickerYears {
-    constructor() {
-        this.year = new Date().getFullYear();
-        this.inc = 10;
-    }
-    /**
-     * @param {?} selectedYear
-     * @return {?}
-     */
-    getYears(selectedYear) {
-        this.minYear = selectedYear - 50;
-        this.maxYear = selectedYear + 50;
-        /** @type {?} */
-        let yearsRange = this.maxYear - this.minYear;
-        /** @type {?} */
-        let years = [];
-        /** @type {?} */
-        let rows = [];
-        years = this.createYearsPool(this.minYear, yearsRange, years);
-        rows = this.divideYearsPool(years, rows);
-        return this.rowsForDisplay = this.createRowsForDisplay(rows, selectedYear);
-    }
-    /**
-     * @return {?}
-     */
-    prevYearRange() {
-        if (this.year > this.minYear) {
-            this.year -= this.inc;
-        }
-        if (this.year > this.minYear) {
-            return this.getYears(this.year);
-        }
-        else {
-            return this.rowsForDisplay;
-        }
-    }
-    /**
-     * @return {?}
-     */
-    nextYearRange() {
-        if (this.year < this.maxYear) {
-            this.year += this.inc;
-        }
-        if (this.year < this.maxYear) {
-            return this.getYears(this.year);
-        }
-        else {
-            return this.rowsForDisplay;
-        }
-    }
-    /**
-     * @private
-     * @param {?} minYear
-     * @param {?} yearsRange
-     * @param {?} years
-     * @return {?}
-     */
-    createYearsPool(minYear, yearsRange, years) {
-        for (let i = 0; i <= yearsRange; i++) {
-            years.push(minYear + i);
-        }
-        return years;
-    }
-    /**
-     * @private
-     * @param {?} years
-     * @param {?} rows
-     * @return {?}
-     */
-    divideYearsPool(years, rows) {
-        for (let i = 0; i < years.length; i += 5) {
-            rows.push(years.slice(i, i + 5));
-        }
-        return rows;
-    }
-    /**
-     * @private
-     * @param {?} rows
-     * @param {?} selectedYear
-     * @return {?}
-     */
-    createRowsForDisplay(rows, selectedYear) {
-        if (selectedYear >= this.minYear || selectedYear <= this.maxYear) {
-            for (let i = 0; i < rows.length; i++) {
-                if (rows[i].indexOf(selectedYear) > -1) {
-                    if (!rows[i - 1]) {
-                        return [rows[i], rows[i + 1], rows[i + 2], rows[i + 3], rows[i + 4]];
-                    }
-                    if (!rows[i - 2]) {
-                        return [rows[i - 1], rows[i], rows[i + 1], rows[i + 2], rows[i + 3]];
-                    }
-                    if (!rows[i + 1]) {
-                        return [rows[i - 4], rows[i - 3], rows[i - 2], rows[i - 1], rows[i]];
-                    }
-                    if (!rows[i + 2]) {
-                        return [rows[i - 3], rows[i - 2], rows[i - 1], rows[i], rows[i + 1]];
-                    }
-                    return this.rowsForDisplay = [rows[i - 2], rows[i - 1], rows[i], rows[i + 1], rows[i + 2]];
-                }
-            }
-        }
-    }
-}
-FabricDatePickerYears.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYears.prototype.rowsForDisplay;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYears.prototype.minYear;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYears.prototype.maxYear;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYears.prototype.year;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYears.prototype.inc;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FabricDatePickerCalendarComponent {
-    /**
-     * @param {?} datePickerService
-     * @param {?} datePickerWeeks
-     * @param {?} datePickerYears
-     */
-    constructor(datePickerService, datePickerWeeks, datePickerYears) {
-        this.datePickerService = datePickerService;
-        this.datePickerWeeks = datePickerWeeks;
-        this.datePickerYears = datePickerYears;
-        this.currentDay = new Date();
-        this.daysOfTheWeek = daysOfTheWeek;
-        this.quarters = quarters;
-        this.selectedMonth = new Date().getMonth() + 1;
-        this.enableMonthSelection = false;
-        this.enableYearSelection = false;
-    }
-    /**
-     * @param {?} changes
-     * @return {?}
-     */
-    ngOnChanges(changes) {
-        if (changes.minYear || changes.maxYear) {
-            this.years = this.datePickerYears.getYears(this.selectedYear);
-        }
-        if (changes.selectDate) {
-            this.calculateDatePickerData();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.monthSubscription =
-            this.datePickerService.observeDateMonth().subscribe((/**
-             * @param {?} month
-             * @return {?}
-             */
-            (month) => this.selectedMonth = month));
-        this.yearSubscription =
-            this.datePickerService.observeDateYear().subscribe((/**
-             * @param {?} year
-             * @return {?}
-             */
-            (year) => this.selectedYear = year));
-        this.selectedDateSubscription =
-            this.datePickerService.observeSelectedDate().subscribe((/**
-             * @param {?} date
-             * @return {?}
-             */
-            (date) => {
-                this.selectDate = date;
-                this.selectedYear = date.getFullYear();
-                this.selectedMonth = date.getMonth();
-            }));
-        this.calculateDatePickerData();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.monthSubscription.unsubscribe();
-        this.yearSubscription.unsubscribe();
-        this.selectedDateSubscription.unsubscribe();
-    }
-    /**
-     * @return {?}
-     */
-    calculateDatePickerData() {
-        this.selectedMonthName = months[this.selectedMonth];
-        this.weeks = this.datePickerWeeks.getDaysInMonths(this.selectedYear, this.selectedMonth);
-        this.years = this.datePickerYears.getYears(this.selectedYear);
-    }
-    /**
-     * @return {?}
-     */
-    prevCard() {
-        if (!this.enableMonthSelection && !this.enableYearSelection) {
-            this.datePickerService.prevMonth(this.selectedYear, this.selectedMonth);
-            this.calculateDatePickerData();
-        }
-        if (this.enableMonthSelection && this.selectedYear) {
-            this.selectedYear = this.selectedYear - 1;
-        }
-        if (this.enableYearSelection) {
-            this.years = this.datePickerYears.prevYearRange();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    nextCard() {
-        if (!this.enableMonthSelection && !this.enableYearSelection) {
-            this.datePickerService.nextMonth(this.selectedYear, this.selectedMonth);
-            this.calculateDatePickerData();
-        }
-        if (this.enableMonthSelection && this.selectedYear) {
-            this.selectedYear = this.selectedYear + 1;
-        }
-        if (this.enableYearSelection) {
-            this.years = this.datePickerYears.nextYearRange();
-        }
-    }
-    /**
-     * @param {?} date
-     * @return {?}
-     */
-    onSelect(date) {
-        this.datePickerService.dateSelected(date);
-        this.selectDate = date;
-    }
-    /**
-     * @return {?}
-     */
-    switchViewedList() {
-        event.stopPropagation();
-        if (this.enableMonthSelection) {
-            return 'monthList';
-        }
-        if (this.enableYearSelection) {
-            return 'yearsList';
-        }
-        if (!this.enableMonthSelection && !this.enableYearSelection) {
-            return 'daysList';
-        }
-    }
-    /**
-     * @param {?} day
-     * @return {?}
-     */
-    displayMonthDays(day) {
-        return day === this.selectedMonth;
-    }
-    /**
-     * @param {?} day
-     * @return {?}
-     */
-    isDateSelected(day) {
-        if (this.selectDate) {
-            return day.getDate() === this.selectDate.getDate() &&
-                day.getMonth() === this.selectDate.getMonth() &&
-                day.getFullYear() === this.selectDate.getFullYear();
-        }
-    }
-    /**
-     * @param {?} day
-     * @return {?}
-     */
-    isCurrentDay(day) {
-        return day.getDate() === this.currentDay.getDate() &&
-            day.getMonth() === this.currentDay.getMonth() &&
-            day.getFullYear() === this.currentDay.getFullYear();
-    }
-    /**
-     * @param {?} month
-     * @return {?}
-     */
-    isCurrentMonth(month) {
-        return month === this.currentDay.getMonth() &&
-            this.selectedYear === this.currentDay.getFullYear();
-    }
-    /**
-     * @param {?} month
-     * @return {?}
-     */
-    isSelectedMonth(month) {
-        if (this.selectDate) {
-            return this.selectDate.getMonth() === month &&
-                this.selectDate.getFullYear() === this.selectedYear;
-        }
-    }
-    /**
-     * @param {?} year
-     * @return {?}
-     */
-    isYearSelected(year) {
-        if (this.selectDate) {
-            return year === this.selectedYear;
-        }
-    }
-    /**
-     * @param {?} year
-     * @return {?}
-     */
-    isCurrentYear(year) {
-        return this.currentDay.getFullYear() === year;
-    }
-    /**
-     * @param {?} year
-     * @return {?}
-     */
-    selectYear(year) {
-        this.selectedYear = year;
-        this.enableYearSelection = false;
-        this.enableMonthSelection = true;
-        this.calculateDatePickerData();
-    }
-    /**
-     * @param {?} month
-     * @return {?}
-     */
-    selectMonth(month) {
-        this.selectedMonth = month;
-        this.enableMonthSelection = false;
-        this.calculateDatePickerData();
-    }
-    /**
-     * @return {?}
-     */
-    showMonthsList() {
-        this.enableMonthSelection = !this.enableMonthSelection;
-    }
-    /**
-     * @return {?}
-     */
-    showYearsList() {
-        this.enableMonthSelection = false;
-        this.enableYearSelection = !this.enableYearSelection;
-    }
-    /**
-     * @return {?}
-     */
-    getDisplayedYearRange() {
-        return this.years[0][0].toString() + '-' + this.years[4][this.years[4].length - 1].toString();
-    }
-}
-FabricDatePickerCalendarComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-date-picker-toggle',
-                template: "<div class=\"gui-date-picker-container\">\n\t<div [ngSwitch]=\"switchViewedList()\">\n\n\t\t<div *ngSwitchCase=\"'daysList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div (click)=\"showMonthsList()\"\n\t\t\t\t\t class=\"gui-date-picker-interface-date\">\n\t\t\t\t\t{{selectedMonthName}} {{selectedYear}}\n\t\t\t\t</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr>\n\t\t\t\t\t<th *ngFor=\"let dayOfTheWeek of daysOfTheWeek\">\n\t\t\t\t\t\t<span>{{dayOfTheWeek}}</span>\n\t\t\t\t\t</th>\n\t\t\t\t</tr>\n\n\t\t\t\t<tr *ngFor=\"let week of weeks\">\n\n\t\t\t\t\t<td *ngFor=\"let day of week\"\n\t\t\t\t\t\t[class.gui-date-picker-current-day]=\"isCurrentDay(day)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-day]=\"isDateSelected(day)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-month]=\"displayMonthDays(day.getMonth())\"\n\t\t\t\t\t\tclass=\"gui-date-picker-day\">\n\t\t\t\t<span (click)=\"onSelect(day)\">\n\t\t\t\t\t{{day.getDate()}}\n\t\t\t\t</span>\n\t\t\t\t\t</td>\n\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t\t<div *ngSwitchCase=\"'monthList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div (click)=\"showYearsList()\" class=\"gui-date-picker-interface-date\">\n\t\t\t\t\t{{selectedYear}}\n\t\t\t\t</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr *ngFor=\"let quarter of quarters\">\n\t\t\t\t\t<td (click)=\"selectMonth(month.nr)\"\n\t\t\t\t\t\t*ngFor=\"let month of quarter\"\n\t\t\t\t\t\t[class.gui-date-picker-current-month]=\"isCurrentMonth(month.nr)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-month]=\"isSelectedMonth(month.nr)\"\n\t\t\t\t\t\tclass=\"gui-date-picker-month\">\n\t\t\t\t<span>\n\t\t\t\t\t{{month.name}}\n\t\t\t\t</span>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t\t<div *ngSwitchCase=\"'yearsList'\">\n\t\t\t<div class=\"gui-date-picker-interface\">\n\n\t\t\t\t<div class=\"gui-date-picker-interface-date gui-date-picker-no-pointer\">{{getDisplayedYearRange()}}</div>\n\n\t\t\t\t<div>\n\t\t\t\t\t<button (click)=\"prevCard()\"><</button>\n\t\t\t\t\t<button (click)=\"nextCard()\">></button>\n\t\t\t\t</div>\n\t\t\t</div>\n\n\t\t\t<table>\n\t\t\t\t<tr *ngFor=\"let yearsChunk of years\">\n\t\t\t\t\t<td (click)=\"selectYear(year)\"\n\t\t\t\t\t\t*ngFor=\"let year of yearsChunk\"\n\t\t\t\t\t\t[class.gui-date-picker-current-year]=\"isCurrentYear(year)\"\n\t\t\t\t\t\t[class.gui-date-picker-selected-year]=\"isYearSelected(year)\"\n\t\t\t\t\t\tclass=\"gui-date-picker-year\">\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t{{year}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t</td>\n\t\t\t\t</tr>\n\t\t\t</table>\n\t\t</div>\n\n\t</div>\n</div>\n",
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-date-picker-calendar]': 'true'
-                },
-                styles: [".gui-date-picker-calendar{box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-date-picker-calendar .gui-date-picker-container{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;border-radius:4px;width:250px;padding:0 0 12px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:24px 18px}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface .gui-date-picker-interface-date{margin:0;font-size:18px;font-weight:700;cursor:pointer;pointer-events:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface .gui-date-picker-no-pointer{cursor:auto}.gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{background:0 0;border:none;font-size:18px;margin-left:12px;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table{height:250px;width:250px}.gui-date-picker-calendar .gui-date-picker-container table th{font-size:16px;text-align:center}.gui-date-picker-calendar .gui-date-picker-container table td:first-child,.gui-date-picker-calendar .gui-date-picker-container table th:first-child{padding-left:12px}.gui-date-picker-calendar .gui-date-picker-container table td:last-child,.gui-date-picker-calendar .gui-date-picker-container table th:last-child{padding-right:12px}.gui-date-picker-calendar .gui-date-picker-container table td{font-size:16px;height:31px;width:31px;text-align:center;position:relative}.gui-date-picker-calendar .gui-date-picker-container table td span{border-radius:4px;padding:2px 4px;border:1px solid transparent}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day span{display:none;pointer-events:none}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year{cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year span{font-size:13px}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-month span{display:block;pointer-events:auto;cursor:pointer}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#c7e2f6}.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border:1px solid #1a69a4}"]
-            }] }
 ];
 /** @nocollapse */
-FabricDatePickerCalendarComponent.ctorParameters = () => [
-    { type: FabricDatePickerService },
-    { type: FabricDatePickerWeeks },
-    { type: FabricDatePickerYears }
+FabricDatePickerInlineDialogService.ctorParameters = () => [
+    { type: FabricInlineDialogService }
 ];
 if (false) {
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.currentDay;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.daysOfTheWeek;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.weeks;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.quarters;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.years;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.selectDate;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.selectedMonth;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.selectedMonthName;
-    /** @type {?} */
-    FabricDatePickerCalendarComponent.prototype.selectedYear;
     /**
      * @type {?}
      * @private
      */
-    FabricDatePickerCalendarComponent.prototype.selectedDateSubscription;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.monthSubscription;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.yearSubscription;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.enableMonthSelection;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.enableYearSelection;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.datePickerService;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.datePickerWeeks;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarComponent.prototype.datePickerYears;
+    FabricDatePickerInlineDialogService.prototype.fabricInlineDialogService;
 }
 
 /**
@@ -1796,15 +1900,21 @@ if (false) {
  */
 class FabricDatePickerComponent {
     /**
-     * @param {?} inlineDialogService
+     * @param {?} fabricDatePickerInlineDialogService
      * @param {?} datePickerService
      * @param {?} formBuilder
+     * @param {?} changeDetectorRef
      */
-    constructor(inlineDialogService, datePickerService, formBuilder) {
-        this.inlineDialogService = inlineDialogService;
+    constructor(fabricDatePickerInlineDialogService, datePickerService, formBuilder, changeDetectorRef) {
+        this.fabricDatePickerInlineDialogService = fabricDatePickerInlineDialogService;
         this.datePickerService = datePickerService;
         this.formBuilder = formBuilder;
+        this.changeDetectorRef = changeDetectorRef;
+        this.openDialog = false;
+        this.onlyDialog = false;
         this.dateSelected = new EventEmitter();
+        this.dialogOpened = new EventEmitter();
+        this.unsub$ = new Subject();
         this.datePickerForm = formBuilder.group({
             'date': ['']
         });
@@ -1817,14 +1927,18 @@ class FabricDatePickerComponent {
         if (changes.selectDate) {
             this.datePickerService.dateSelected(this.selectDate);
         }
+        if (changes.onlyDialog !== null) {
+            this.inputDisabled = this.onlyDialog ? 'disabled' : '';
+        }
     }
     /**
      * @return {?}
      */
     ngOnInit() {
         this.datePickerSubscription =
-            this.datePickerService.observeSelectedDate()
-                .pipe(distinctUntilChanged())
+            this.datePickerService
+                .observeSelectedDate()
+                .pipe(take(1), distinctUntilChanged(), takeUntil(this.unsub$))
                 .subscribe((/**
              * @param {?} date
              * @return {?}
@@ -1832,22 +1946,55 @@ class FabricDatePickerComponent {
             (date) => {
                 this.pickedDate = date;
                 this.dateSelected.emit(date);
-                this.inlineDialogService.close();
             }));
+        this.datePickerService
+            .observeSelectedDate()
+            .pipe(skip(1), takeUntil(this.unsub$))
+            .subscribe((/**
+         * @param {?} date
+         * @return {?}
+         */
+        (date) => {
+            this.pickedDate = date;
+            this.changeDetectorRef.detectChanges();
+            this.dateSelected.emit(date);
+            this.fabricDatePickerInlineDialogService.close();
+        }));
+        this.fabricDatePickerInlineDialogService
+            .onOpened()
+            .pipe(skip(1), takeUntil(this.unsub$))
+            .subscribe((/**
+         * @param {?} opened
+         * @return {?}
+         */
+        (opened) => {
+            this.dialogOpened.emit(opened);
+        }));
         this.observeDayChanges();
     }
     /**
      * @return {?}
      */
+    ngAfterViewInit() {
+        if (this.openDialog) {
+            this.openDatePicker();
+        }
+    }
+    /**
+     * @return {?}
+     */
     ngOnDestroy() {
+        this.fabricDatePickerInlineDialogService.close();
         this.datePickerSubscription.unsubscribe();
         this.datePickerDaySubscription.unsubscribe();
+        this.unsub$.next();
+        this.unsub$.complete();
     }
     /**
      * @return {?}
      */
     openDatePicker() {
-        this.inlineDialogService.open(this.datePickerRef, FabricDatePickerCalendarComponent);
+        this.fabricDatePickerInlineDialogService.open(this.datePickerRef, FabricDatePickerCalendarComponent);
     }
     /**
      * @private
@@ -1855,12 +2002,16 @@ class FabricDatePickerComponent {
      */
     observeDayChanges() {
         this.datePickerDaySubscription =
-            this.datePickerForm.controls['date'].valueChanges
-                .pipe(distinctUntilChanged(), debounceTime(1000), map((/**
+            this.datePickerForm
+                .controls['date']
+                .valueChanges
+                .pipe(distinctUntilChanged(), 
+            // debounceTime(1000),
+            map((/**
              * @param {?} day
              * @return {?}
              */
-            (day) => this.parse(day))))
+            (day) => this.parse(day))), takeUntil(this.unsub$))
                 .subscribe((/**
              * @param {?} day
              * @return {?}
@@ -1893,22 +2044,27 @@ class FabricDatePickerComponent {
 FabricDatePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker',
-                template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [value]=\"pickedDate| date: 'd/M/yyyy'\" formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
+                template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [value]=\"pickedDate | date: 'dd/MM/yyyy'\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   [name]=name\n\t\t\t   [attr.disabled]=\"inputDisabled\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
+                styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
             }] }
 ];
 /** @nocollapse */
 FabricDatePickerComponent.ctorParameters = () => [
-    { type: FabricInlineDialogService },
+    { type: FabricDatePickerInlineDialogService },
     { type: FabricDatePickerService },
-    { type: FormBuilder }
+    { type: FormBuilder },
+    { type: ChangeDetectorRef }
 ];
 FabricDatePickerComponent.propDecorators = {
     datePickerRef: [{ type: ViewChild, args: ['datePicker', { static: false },] }],
     selectDate: [{ type: Input }],
-    dateSelected: [{ type: Output }]
+    name: [{ type: Input }],
+    openDialog: [{ type: Input }],
+    onlyDialog: [{ type: Input }],
+    dateSelected: [{ type: Output }],
+    dialogOpened: [{ type: Output }]
 };
 if (false) {
     /** @type {?} */
@@ -1916,11 +2072,21 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.selectDate;
     /** @type {?} */
+    FabricDatePickerComponent.prototype.name;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.openDialog;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.onlyDialog;
+    /** @type {?} */
     FabricDatePickerComponent.prototype.dateSelected;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.dialogOpened;
     /** @type {?} */
     FabricDatePickerComponent.prototype.datePickerForm;
     /** @type {?} */
     FabricDatePickerComponent.prototype.pickedDate;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.inputDisabled;
     /** @type {?} */
     FabricDatePickerComponent.prototype.datePickerSubscription;
     /** @type {?} */
@@ -1929,7 +2095,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    FabricDatePickerComponent.prototype.inlineDialogService;
+    FabricDatePickerComponent.prototype.unsub$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerComponent.prototype.fabricDatePickerInlineDialogService;
     /**
      * @type {?}
      * @private
@@ -1940,6 +2111,11 @@ if (false) {
      * @private
      */
     FabricDatePickerComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerComponent.prototype.changeDetectorRef;
 }
 
 /**
@@ -2033,7 +2209,8 @@ FabricDatePickerModule.decorators = [
                 providers: [
                     FabricDatePickerService,
                     FabricDatePickerWeeks,
-                    FabricDatePickerYears
+                    FabricDatePickerYears,
+                    FabricDatePickerInlineDialogService
                 ]
             },] }
 ];
@@ -4686,5 +4863,5 @@ FabricModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricSpinnerComponent as ɵba, FabricToggleButtonComponent as ɵbb, ToggleButtonGroupService as ɵbc, FabricToggleButtonGroupComponent as ɵbd, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricDatePickerModule as ɵe, FabricInlineDialogComponent as ɵf, InlineDialogGeometryService as ɵg, FabricDatePickerCalendarComponent as ɵh, FabricDatePickerService as ɵi, FabricDatePickerWeeks as ɵj, FabricDatePickerYears as ɵk, FabricDatePickerComponent as ɵl, FabricDropdownComponent as ɵm, GeometryService as ɵn, DropdownItemComponent as ɵo, FabricDialogComponent as ɵp, FabricRadioButtonComponent as ɵq, FabricRadioGroupComponent as ɵr, FabricTabComponent as ɵs, TabItemComponent as ɵt, FabricTooltipDirective as ɵu, FabricTooltipComponent as ɵv, FabricProgressBarComponent as ɵw, FabricProgressSpinnerComponent as ɵx, AbstractSpinner as ɵy, FabricSelectComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricSpinnerComponent as ɵba, FabricToggleButtonComponent as ɵbb, ToggleButtonGroupService as ɵbc, FabricToggleButtonGroupComponent as ɵbd, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, InlineDialogGeometryService as ɵf, FabricDatePickerCalendarComponent as ɵg, FabricDatePickerService as ɵh, FabricDatePickerWeeks as ɵi, FabricDatePickerYears as ɵj, FabricDatePickerComponent as ɵk, FabricDatePickerInlineDialogService as ɵl, FabricDropdownComponent as ɵm, GeometryService as ɵn, DropdownItemComponent as ɵo, FabricDialogComponent as ɵp, FabricRadioButtonComponent as ɵq, FabricRadioGroupComponent as ɵr, FabricTabComponent as ɵs, TabItemComponent as ɵt, FabricTooltipDirective as ɵu, FabricTooltipComponent as ɵv, FabricProgressBarComponent as ɵw, FabricProgressSpinnerComponent as ɵx, AbstractSpinner as ɵy, FabricSelectComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

@@ -2,8 +2,8 @@ import { __extends, __spread } from 'tslib';
 import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, Injectable, Inject, PLATFORM_ID, ComponentFactoryResolver, ChangeDetectorRef, forwardRef, ViewChild, ViewContainerRef, ApplicationRef, Injector, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { distinctUntilChanged, debounceTime, map, filter, takeUntil, throttleTime } from 'rxjs/operators';
 import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
+import { take, distinctUntilChanged, takeUntil, skip, map, filter, throttleTime } from 'rxjs/operators';
 import * as elementResizeDetectorMaker_ from 'element-resize-detector';
 
 /**
@@ -575,599 +575,6 @@ var FabricChipModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var InlineDialogGeometry = /** @class */ (function () {
-    function InlineDialogGeometry(inlineDialogRef) {
-        this.inlineDialogRef = inlineDialogRef;
-    }
-    /**
-     * @return {?}
-     */
-    InlineDialogGeometry.prototype.getHeight = /**
-     * @return {?}
-     */
-    function () {
-        return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetHeight;
-    };
-    /**
-     * @return {?}
-     */
-    InlineDialogGeometry.prototype.getWidth = /**
-     * @return {?}
-     */
-    function () {
-        return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetWidth;
-    };
-    return InlineDialogGeometry;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogGeometry.prototype.inlineDialogRef;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-var InlineDialogPlacement = {
-    Bottom: 1,
-    Top: 2,
-    Right: 3,
-    Left: 4,
-};
-InlineDialogPlacement[InlineDialogPlacement.Bottom] = 'Bottom';
-InlineDialogPlacement[InlineDialogPlacement.Top] = 'Top';
-InlineDialogPlacement[InlineDialogPlacement.Right] = 'Right';
-InlineDialogPlacement[InlineDialogPlacement.Left] = 'Left';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InlineDialogCords = /** @class */ (function () {
-    function InlineDialogCords(element, inlineDialogGeometry, window, placement, inlineDialogOffset) {
-        if (inlineDialogOffset === void 0) { inlineDialogOffset = InlineDialogCords.defaultInlineDialogOffset; }
-        this.element = element;
-        this.inlineDialogGeometry = inlineDialogGeometry;
-        this.window = window;
-        this.placement = placement;
-        this.inlineDialogOffset = inlineDialogOffset;
-        this.calculateCords(element, inlineDialogGeometry);
-    }
-    /**
-     * @return {?}
-     */
-    InlineDialogCords.prototype.getVerticalPosition = /**
-     * @return {?}
-     */
-    function () {
-        return this.verticalPosition;
-    };
-    /**
-     * @return {?}
-     */
-    InlineDialogCords.prototype.getHorizontalPosition = /**
-     * @return {?}
-     */
-    function () {
-        return this.horizontalPosition;
-    };
-    /**
-     * @private
-     * @param {?} element
-     * @param {?} inlineDialogGeometry
-     * @return {?}
-     */
-    InlineDialogCords.prototype.calculateCords = /**
-     * @private
-     * @param {?} element
-     * @param {?} inlineDialogGeometry
-     * @return {?}
-     */
-    function (element, inlineDialogGeometry) {
-        /** @type {?} */
-        var elementRect = element.nativeElement.getBoundingClientRect();
-        /** @type {?} */
-        var elementBottom = elementRect.bottom;
-        /** @type {?} */
-        var elementLeft = elementRect.left;
-        /** @type {?} */
-        var elementRight = elementRect.right;
-        /** @type {?} */
-        var elementTop = elementRect.top;
-        switch (this.placement) {
-            case InlineDialogPlacement.Bottom:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
-                this.verticalPosition = elementBottom + this.inlineDialogOffset;
-                break;
-            case InlineDialogPlacement.Top:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
-                this.verticalPosition = this.window.pageYOffset + elementTop + this.inlineDialogOffset;
-                break;
-            case InlineDialogPlacement.Right:
-                this.horizontalPosition = this.window.pageXOffset + elementRight + this.inlineDialogOffset;
-                this.verticalPosition = elementTop;
-                break;
-            case InlineDialogPlacement.Left:
-                this.horizontalPosition = elementLeft + this.window.pageXOffset + this.inlineDialogOffset;
-                this.verticalPosition = elementTop;
-                break;
-            default:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
-                this.verticalPosition = this.window.pageYOffset + elementBottom + this.inlineDialogOffset;
-        }
-        this.calculateDirection(inlineDialogGeometry, element);
-    };
-    /**
-     * @private
-     * @param {?} inlineDialogGeometry
-     * @param {?} element
-     * @return {?}
-     */
-    InlineDialogCords.prototype.calculateDirection = /**
-     * @private
-     * @param {?} inlineDialogGeometry
-     * @param {?} element
-     * @return {?}
-     */
-    function (inlineDialogGeometry, element) {
-        /** @type {?} */
-        var windowHeight = this.window.innerHeight;
-        /** @type {?} */
-        var windowWidth = this.window.innerWidth;
-        /** @type {?} */
-        var elementHeight = element.nativeElement.offsetHeight;
-        /** @type {?} */
-        var elementWidth = element.nativeElement.offsetWidth;
-        /** @type {?} */
-        var inlineDialogHeight = inlineDialogGeometry.getHeight();
-        /** @type {?} */
-        var inlineDialogWidth = inlineDialogGeometry.getWidth();
-        /** @type {?} */
-        var inlineDialogDoesNotFitHorizontally = (windowWidth - this.horizontalPosition - inlineDialogWidth) < 0;
-        /** @type {?} */
-        var inlineDialogDoesNotFitVertically = (windowHeight - this.verticalPosition - inlineDialogHeight) < 0;
-        if (inlineDialogDoesNotFitHorizontally) {
-            this.horizontalPosition -= inlineDialogWidth - elementWidth;
-        }
-        if (inlineDialogDoesNotFitVertically) {
-            this.verticalPosition -= inlineDialogHeight - elementHeight;
-        }
-    };
-    InlineDialogCords.defaultInlineDialogOffset = 8;
-    return InlineDialogCords;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.defaultInlineDialogOffset;
-    /** @type {?} */
-    InlineDialogCords.prototype.verticalPosition;
-    /** @type {?} */
-    InlineDialogCords.prototype.horizontalPosition;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.element;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.inlineDialogGeometry;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.window;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.placement;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogCords.prototype.inlineDialogOffset;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var InlineDialogGeometryService = /** @class */ (function () {
-    function InlineDialogGeometryService(platformId) {
-        this.platformId = platformId;
-        this.inlineDialogState$ = new Subject();
-    }
-    /**
-     * @return {?}
-     */
-    InlineDialogGeometryService.prototype.observeInlineDialogCords = /**
-     * @return {?}
-     */
-    function () {
-        return this.inlineDialogState$.asObservable();
-    };
-    /**
-     * @param {?} inlineDialogRef
-     * @return {?}
-     */
-    InlineDialogGeometryService.prototype.changeGeometry = /**
-     * @param {?} inlineDialogRef
-     * @return {?}
-     */
-    function (inlineDialogRef) {
-        this.inlineDialogGeometry = new InlineDialogGeometry(inlineDialogRef);
-    };
-    /**
-     * @param {?} element
-     * @param {?=} placement
-     * @param {?=} offset
-     * @return {?}
-     */
-    InlineDialogGeometryService.prototype.getInlineDialogCords = /**
-     * @param {?} element
-     * @param {?=} placement
-     * @param {?=} offset
-     * @return {?}
-     */
-    function (element, placement, offset) {
-        if (isPlatformBrowser(this.platformId)) {
-            /** @type {?} */
-            var inlineDialogCords = new InlineDialogCords(element, this.inlineDialogGeometry, window, placement, offset);
-            this.inlineDialogState$.next(inlineDialogCords);
-        }
-    };
-    InlineDialogGeometryService.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    InlineDialogGeometryService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
-    ]; };
-    return InlineDialogGeometryService;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogGeometryService.prototype.inlineDialogGeometry;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogGeometryService.prototype.inlineDialogState$;
-    /**
-     * @type {?}
-     * @private
-     */
-    InlineDialogGeometryService.prototype.platformId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var FabricInlineDialogComponent = /** @class */ (function () {
-    function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elementRef, inlineDialogGeometryService) {
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.changeDetectorRef = changeDetectorRef;
-        this.inlineDialogService = inlineDialogService;
-        this.elementRef = elementRef;
-        this.inlineDialogGeometryService = inlineDialogGeometryService;
-    }
-    /**
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        this.inlineDialogCordsSubscription =
-            this.inlineDialogGeometryService
-                .observeInlineDialogCords()
-                .subscribe((/**
-             * @param {?} inlineDialogCords
-             * @return {?}
-             */
-            function (inlineDialogCords) {
-                _this.dialogTopAttribute = inlineDialogCords.getVerticalPosition();
-                _this.dialogLeftAttribute = inlineDialogCords.getHorizontalPosition();
-                _this.changeDetectorRef.detectChanges();
-            }));
-    };
-    /**
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.ngAfterViewInit = /**
-     * @return {?}
-     */
-    function () {
-        this.createNestedComponent(this.inlineDialogNestedComponent);
-        this.inlineDialogGeometryService.changeGeometry(this.elementRef);
-    };
-    /**
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        if (this.inlineDialogCordsSubscription) {
-            this.inlineDialogCordsSubscription.unsubscribe();
-        }
-    };
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.clickOutside = /**
-     * @param {?} event
-     * @return {?}
-     */
-    function (event) {
-        if (this.isContainerClicked(event)) {
-            this.inlineDialogService.close();
-        }
-    };
-    /**
-     * @private
-     * @param {?} event
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.isContainerClicked = /**
-     * @private
-     * @param {?} event
-     * @return {?}
-     */
-    function (event) {
-        return !this.elementRef.nativeElement.contains(event.target);
-    };
-    /**
-     * @private
-     * @param {?} component
-     * @return {?}
-     */
-    FabricInlineDialogComponent.prototype.createNestedComponent = /**
-     * @private
-     * @param {?} component
-     * @return {?}
-     */
-    function (component) {
-        /** @type {?} */
-        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-        if (this.inlineDialogNestedInjector) {
-            this.container.createComponent(componentFactory, null, this.inlineDialogNestedInjector);
-        }
-        else {
-            this.container.createComponent(componentFactory);
-        }
-        this.changeDetectorRef.detectChanges();
-    };
-    FabricInlineDialogComponent.decorators = [
-        { type: Component, args: [{
-                    template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-inline-dialog-wrapper{position:absolute;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
-                }] }
-    ];
-    /** @nocollapse */
-    FabricInlineDialogComponent.ctorParameters = function () { return [
-        { type: ComponentFactoryResolver },
-        { type: ChangeDetectorRef },
-        { type: FabricInlineDialogService, decorators: [{ type: Inject, args: [forwardRef((/**
-                         * @return {?}
-                         */
-                        function () { return FabricInlineDialogService; })),] }] },
-        { type: ElementRef },
-        { type: InlineDialogGeometryService }
-    ]; };
-    FabricInlineDialogComponent.propDecorators = {
-        container: [{ type: ViewChild, args: ['container', { read: ViewContainerRef, static: false },] }]
-    };
-    return FabricInlineDialogComponent;
-}());
-if (false) {
-    /** @type {?} */
-    FabricInlineDialogComponent.prototype.container;
-    /** @type {?} */
-    FabricInlineDialogComponent.prototype.inlineDialogNestedComponent;
-    /** @type {?} */
-    FabricInlineDialogComponent.prototype.inlineDialogNestedInjector;
-    /** @type {?} */
-    FabricInlineDialogComponent.prototype.dialogTopAttribute;
-    /** @type {?} */
-    FabricInlineDialogComponent.prototype.dialogLeftAttribute;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.inlineDialogCordsSubscription;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.componentFactoryResolver;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.inlineDialogService;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.elementRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogComponent.prototype.inlineDialogGeometryService;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var FabricInlineDialogService = /** @class */ (function () {
-    function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, document, inlineDialogGeometryService) {
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.applicationRef = applicationRef;
-        this.injector = injector;
-        this.document = document;
-        this.inlineDialogGeometryService = inlineDialogGeometryService;
-        this.inlineDialogRef = null;
-    }
-    /**
-     * @return {?}
-     */
-    FabricInlineDialogService.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        this.removeInlineDialog();
-    };
-    /**
-     * @param {?} element
-     * @param {?} component
-     * @param {?=} injector
-     * @param {?=} placement
-     * @param {?=} offset
-     * @return {?}
-     */
-    FabricInlineDialogService.prototype.open = /**
-     * @param {?} element
-     * @param {?} component
-     * @param {?=} injector
-     * @param {?=} placement
-     * @param {?=} offset
-     * @return {?}
-     */
-    function (element, component, injector, placement, offset) {
-        event.stopPropagation();
-        if (!this.inlineDialogRef) {
-            this.appendInlineDialogToElement(component, injector);
-            this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
-        }
-        else {
-            this.close();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    FabricInlineDialogService.prototype.close = /**
-     * @return {?}
-     */
-    function () {
-        this.removeInlineDialog();
-    };
-    /**
-     * @private
-     * @param {?} component
-     * @param {?=} injector
-     * @return {?}
-     */
-    FabricInlineDialogService.prototype.appendInlineDialogToElement = /**
-     * @private
-     * @param {?} component
-     * @param {?=} injector
-     * @return {?}
-     */
-    function (component, injector) {
-        /** @type {?} */
-        var componentRef = this.componentFactoryResolver
-            .resolveComponentFactory(FabricInlineDialogComponent)
-            .create(this.injector);
-        componentRef.instance.inlineDialogNestedComponent = component;
-        if (injector) {
-            componentRef.instance.inlineDialogNestedInjector = injector;
-        }
-        componentRef.changeDetectorRef.detectChanges();
-        this.applicationRef.attachView(componentRef.hostView);
-        /** @type {?} */
-        var domDialogElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
-            .rootNodes[0]));
-        this.document.body.appendChild(domDialogElement);
-        this.inlineDialogRef = componentRef;
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    FabricInlineDialogService.prototype.removeInlineDialog = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        if (this.inlineDialogRef) {
-            this.applicationRef.detachView(this.inlineDialogRef.hostView);
-            this.inlineDialogRef.destroy();
-            this.inlineDialogRef = null;
-        }
-    };
-    FabricInlineDialogService.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    FabricInlineDialogService.ctorParameters = function () { return [
-        { type: ComponentFactoryResolver },
-        { type: ApplicationRef },
-        { type: Injector },
-        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-        { type: InlineDialogGeometryService }
-    ]; };
-    return FabricInlineDialogService;
-}());
-if (false) {
-    /** @type {?} */
-    FabricInlineDialogService.prototype.inlineDialogRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogService.prototype.componentFactoryResolver;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogService.prototype.applicationRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogService.prototype.injector;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogService.prototype.document;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricInlineDialogService.prototype.inlineDialogGeometryService;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /** @type {?} */
 var daysOfTheWeek = [
     'Mo',
@@ -1294,7 +701,8 @@ var FabricDatePickerService = /** @class */ (function () {
      * @return {?}
      */
     function (date) {
-        this.selectedDate$.next(date);
+        this.selectedDate = new Date(date.getTime());
+        this.selectedDate$.next(this.selectedDate);
     };
     /**
      * @param {?} year
@@ -1355,6 +763,11 @@ if (false) {
      * @private
      */
     FabricDatePickerService.prototype.initialDate;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerService.prototype.selectedDate;
     /**
      * @type {?}
      * @private
@@ -1821,7 +1234,9 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        event.stopPropagation();
+        if (event) {
+            event.stopPropagation();
+        }
         if (this.enableMonthSelection) {
             return 'monthList';
         }
@@ -2061,12 +1476,732 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var FabricDatePickerComponent = /** @class */ (function () {
-    function FabricDatePickerComponent(inlineDialogService, datePickerService, formBuilder) {
+var InlineDialogGeometry = /** @class */ (function () {
+    function InlineDialogGeometry(inlineDialogRef) {
+        this.inlineDialogRef = inlineDialogRef;
+    }
+    /**
+     * @return {?}
+     */
+    InlineDialogGeometry.prototype.getHeight = /**
+     * @return {?}
+     */
+    function () {
+        return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetHeight;
+    };
+    /**
+     * @return {?}
+     */
+    InlineDialogGeometry.prototype.getWidth = /**
+     * @return {?}
+     */
+    function () {
+        return this.inlineDialogRef.nativeElement.querySelector('.gui-inline-dialog-wrapper').offsetWidth;
+    };
+    return InlineDialogGeometry;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogGeometry.prototype.inlineDialogRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {number} */
+var InlineDialogPlacement = {
+    Bottom: 1,
+    Top: 2,
+    Right: 3,
+    Left: 4,
+};
+InlineDialogPlacement[InlineDialogPlacement.Bottom] = 'Bottom';
+InlineDialogPlacement[InlineDialogPlacement.Top] = 'Top';
+InlineDialogPlacement[InlineDialogPlacement.Right] = 'Right';
+InlineDialogPlacement[InlineDialogPlacement.Left] = 'Left';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InlineDialogCords = /** @class */ (function () {
+    function InlineDialogCords(element, inlineDialogGeometry, window, placement, inlineDialogOffset) {
+        if (inlineDialogOffset === void 0) { inlineDialogOffset = InlineDialogCords.defaultInlineDialogOffset; }
+        this.element = element;
+        this.inlineDialogGeometry = inlineDialogGeometry;
+        this.window = window;
+        this.placement = placement;
+        this.inlineDialogOffset = inlineDialogOffset;
+        this.calculateCords(element, inlineDialogGeometry);
+    }
+    /**
+     * @return {?}
+     */
+    InlineDialogCords.prototype.getVerticalPosition = /**
+     * @return {?}
+     */
+    function () {
+        return this.verticalPosition;
+    };
+    /**
+     * @return {?}
+     */
+    InlineDialogCords.prototype.getHorizontalPosition = /**
+     * @return {?}
+     */
+    function () {
+        return this.horizontalPosition;
+    };
+    /**
+     * @private
+     * @param {?} element
+     * @param {?} inlineDialogGeometry
+     * @return {?}
+     */
+    InlineDialogCords.prototype.calculateCords = /**
+     * @private
+     * @param {?} element
+     * @param {?} inlineDialogGeometry
+     * @return {?}
+     */
+    function (element, inlineDialogGeometry) {
+        /** @type {?} */
+        var elementRect = element.nativeElement.getBoundingClientRect();
+        /** @type {?} */
+        var elementBottom = elementRect.bottom;
+        /** @type {?} */
+        var elementLeft = elementRect.left;
+        /** @type {?} */
+        var elementRight = elementRect.right;
+        /** @type {?} */
+        var elementTop = elementRect.top;
+        switch (this.placement) {
+            case InlineDialogPlacement.Bottom:
+                this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                this.verticalPosition = elementBottom + this.inlineDialogOffset;
+                break;
+            case InlineDialogPlacement.Top:
+                this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                this.verticalPosition = this.window.pageYOffset + elementTop + this.inlineDialogOffset;
+                break;
+            case InlineDialogPlacement.Right:
+                this.horizontalPosition = this.window.pageXOffset + elementRight + this.inlineDialogOffset;
+                this.verticalPosition = elementTop;
+                break;
+            case InlineDialogPlacement.Left:
+                this.horizontalPosition = elementLeft + this.window.pageXOffset + this.inlineDialogOffset;
+                this.verticalPosition = elementTop;
+                break;
+            default:
+                this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                this.verticalPosition = this.window.pageYOffset + elementBottom + this.inlineDialogOffset;
+        }
+        this.calculateDirection(inlineDialogGeometry, element);
+    };
+    /**
+     * @private
+     * @param {?} inlineDialogGeometry
+     * @param {?} element
+     * @return {?}
+     */
+    InlineDialogCords.prototype.calculateDirection = /**
+     * @private
+     * @param {?} inlineDialogGeometry
+     * @param {?} element
+     * @return {?}
+     */
+    function (inlineDialogGeometry, element) {
+        /** @type {?} */
+        var windowHeight = this.window.innerHeight;
+        /** @type {?} */
+        var windowWidth = this.window.innerWidth;
+        /** @type {?} */
+        var elementHeight = element.nativeElement.offsetHeight;
+        /** @type {?} */
+        var elementWidth = element.nativeElement.offsetWidth;
+        /** @type {?} */
+        var inlineDialogHeight = inlineDialogGeometry.getHeight();
+        /** @type {?} */
+        var inlineDialogWidth = inlineDialogGeometry.getWidth();
+        /** @type {?} */
+        var inlineDialogDoesNotFitHorizontally = (windowWidth - this.horizontalPosition - inlineDialogWidth) < 0;
+        /** @type {?} */
+        var inlineDialogDoesNotFitVertically = (windowHeight - this.verticalPosition - inlineDialogHeight) < 0;
+        if (inlineDialogDoesNotFitHorizontally) {
+            this.horizontalPosition -= inlineDialogWidth - elementWidth;
+        }
+        if (inlineDialogDoesNotFitVertically) {
+            this.verticalPosition -= inlineDialogHeight - elementHeight;
+        }
+    };
+    InlineDialogCords.defaultInlineDialogOffset = 8;
+    return InlineDialogCords;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.defaultInlineDialogOffset;
+    /** @type {?} */
+    InlineDialogCords.prototype.verticalPosition;
+    /** @type {?} */
+    InlineDialogCords.prototype.horizontalPosition;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.element;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.inlineDialogGeometry;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.window;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.placement;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogCords.prototype.inlineDialogOffset;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InlineDialogGeometryService = /** @class */ (function () {
+    function InlineDialogGeometryService(platformId) {
+        this.platformId = platformId;
+        this.inlineDialogState$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    InlineDialogGeometryService.prototype.observeInlineDialogCords = /**
+     * @return {?}
+     */
+    function () {
+        return this.inlineDialogState$.asObservable();
+    };
+    /**
+     * @param {?} inlineDialogRef
+     * @return {?}
+     */
+    InlineDialogGeometryService.prototype.changeGeometry = /**
+     * @param {?} inlineDialogRef
+     * @return {?}
+     */
+    function (inlineDialogRef) {
+        this.inlineDialogGeometry = new InlineDialogGeometry(inlineDialogRef);
+    };
+    /**
+     * @param {?} element
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    InlineDialogGeometryService.prototype.getInlineDialogCords = /**
+     * @param {?} element
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    function (element, placement, offset) {
+        if (isPlatformBrowser(this.platformId)) {
+            /** @type {?} */
+            var inlineDialogCords = new InlineDialogCords(element, this.inlineDialogGeometry, window, placement, offset);
+            this.inlineDialogState$.next(inlineDialogCords);
+        }
+    };
+    InlineDialogGeometryService.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InlineDialogGeometryService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
+    ]; };
+    return InlineDialogGeometryService;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogGeometryService.prototype.inlineDialogGeometry;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogGeometryService.prototype.inlineDialogState$;
+    /**
+     * @type {?}
+     * @private
+     */
+    InlineDialogGeometryService.prototype.platformId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricInlineDialogComponent = /** @class */ (function () {
+    function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elementRef, inlineDialogGeometryService) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.changeDetectorRef = changeDetectorRef;
         this.inlineDialogService = inlineDialogService;
+        this.elementRef = elementRef;
+        this.inlineDialogGeometryService = inlineDialogGeometryService;
+    }
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.inlineDialogCordsSubscription =
+            this.inlineDialogGeometryService
+                .observeInlineDialogCords()
+                .subscribe((/**
+             * @param {?} inlineDialogCords
+             * @return {?}
+             */
+            function (inlineDialogCords) {
+                _this.dialogTopAttribute = inlineDialogCords.getVerticalPosition();
+                _this.dialogLeftAttribute = inlineDialogCords.getHorizontalPosition();
+                _this.changeDetectorRef.detectChanges();
+            }));
+    };
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.ngAfterViewInit = /**
+     * @return {?}
+     */
+    function () {
+        this.createNestedComponent(this.inlineDialogNestedComponent);
+        this.inlineDialogGeometryService.changeGeometry(this.elementRef);
+    };
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        if (this.inlineDialogCordsSubscription) {
+            this.inlineDialogCordsSubscription.unsubscribe();
+        }
+    };
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.clickOutside = /**
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
+        if (this.isContainerClicked(event)) {
+            this.inlineDialogService.close();
+        }
+    };
+    /**
+     * @private
+     * @param {?} event
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.isContainerClicked = /**
+     * @private
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
+        return !this.elementRef.nativeElement.contains(event.target);
+    };
+    /**
+     * @private
+     * @param {?} component
+     * @return {?}
+     */
+    FabricInlineDialogComponent.prototype.createNestedComponent = /**
+     * @private
+     * @param {?} component
+     * @return {?}
+     */
+    function (component) {
+        /** @type {?} */
+        var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+        if (this.inlineDialogNestedInjector) {
+            this.container.createComponent(componentFactory, null, this.inlineDialogNestedInjector);
+        }
+        else {
+            this.container.createComponent(componentFactory);
+        }
+        this.changeDetectorRef.detectChanges();
+    };
+    FabricInlineDialogComponent.decorators = [
+        { type: Component, args: [{
+                    template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    styles: [".gui-inline-dialog-wrapper{position:absolute;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
+                }] }
+    ];
+    /** @nocollapse */
+    FabricInlineDialogComponent.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver },
+        { type: ChangeDetectorRef },
+        { type: FabricInlineDialogService, decorators: [{ type: Inject, args: [forwardRef((/**
+                         * @return {?}
+                         */
+                        function () { return FabricInlineDialogService; })),] }] },
+        { type: ElementRef },
+        { type: InlineDialogGeometryService }
+    ]; };
+    FabricInlineDialogComponent.propDecorators = {
+        container: [{ type: ViewChild, args: ['container', { read: ViewContainerRef, static: false },] }]
+    };
+    return FabricInlineDialogComponent;
+}());
+if (false) {
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.container;
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.inlineDialogNestedComponent;
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.inlineDialogNestedInjector;
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.dialogTopAttribute;
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.dialogLeftAttribute;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.inlineDialogCordsSubscription;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.inlineDialogService;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.elementRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogComponent.prototype.inlineDialogGeometryService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricInlineDialogService = /** @class */ (function () {
+    function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, document, inlineDialogGeometryService) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.applicationRef = applicationRef;
+        this.injector = injector;
+        this.document = document;
+        this.inlineDialogGeometryService = inlineDialogGeometryService;
+        this.inlineDialogRef = null;
+        this.opened = false;
+        this.opened$ = new BehaviorSubject(false);
+    }
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.removeInlineDialog();
+    };
+    /**
+     * @param {?} element
+     * @param {?} component
+     * @param {?=} injector
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.open = /**
+     * @param {?} element
+     * @param {?} component
+     * @param {?=} injector
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    function (element, component, injector, placement, offset) {
+        if (event) {
+            event.stopPropagation();
+        }
+        if (!this.inlineDialogRef) {
+            this.setOpened(true);
+            this.appendInlineDialogToElement(component, injector);
+            this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
+        }
+        else {
+            this.close();
+        }
+    };
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.close = /**
+     * @return {?}
+     */
+    function () {
+        this.removeInlineDialog();
+        this.setOpened(false);
+    };
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.isOpened = /**
+     * @return {?}
+     */
+    function () {
+        return this.opened;
+    };
+    /**
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.onOpened = /**
+     * @return {?}
+     */
+    function () {
+        return this.opened$.asObservable();
+    };
+    /**
+     * @private
+     * @param {?} component
+     * @param {?=} injector
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.appendInlineDialogToElement = /**
+     * @private
+     * @param {?} component
+     * @param {?=} injector
+     * @return {?}
+     */
+    function (component, injector) {
+        /** @type {?} */
+        var componentRef = this.componentFactoryResolver
+            .resolveComponentFactory(FabricInlineDialogComponent)
+            .create(this.injector);
+        componentRef.instance.inlineDialogNestedComponent = component;
+        if (injector) {
+            componentRef.instance.inlineDialogNestedInjector = injector;
+        }
+        componentRef.changeDetectorRef.detectChanges();
+        this.applicationRef.attachView(componentRef.hostView);
+        /** @type {?} */
+        var domDialogElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
+            .rootNodes[0]));
+        this.document.body.appendChild(domDialogElement);
+        this.inlineDialogRef = componentRef;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.removeInlineDialog = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (this.inlineDialogRef) {
+            this.applicationRef.detachView(this.inlineDialogRef.hostView);
+            this.inlineDialogRef.destroy();
+            this.inlineDialogRef = null;
+        }
+    };
+    /**
+     * @private
+     * @param {?} opened
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.setOpened = /**
+     * @private
+     * @param {?} opened
+     * @return {?}
+     */
+    function (opened) {
+        this.opened = opened;
+        this.opened$.next(this.opened);
+    };
+    FabricInlineDialogService.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    FabricInlineDialogService.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver },
+        { type: ApplicationRef },
+        { type: Injector },
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+        { type: InlineDialogGeometryService }
+    ]; };
+    return FabricInlineDialogService;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.inlineDialogRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.opened;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.opened$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.applicationRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.document;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.inlineDialogGeometryService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricDatePickerInlineDialogService = /** @class */ (function () {
+    function FabricDatePickerInlineDialogService(fabricInlineDialogService) {
+        this.fabricInlineDialogService = fabricInlineDialogService;
+    }
+    /**
+     * @param {?} element
+     * @param {?} component
+     * @param {?=} injector
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    FabricDatePickerInlineDialogService.prototype.open = /**
+     * @param {?} element
+     * @param {?} component
+     * @param {?=} injector
+     * @param {?=} placement
+     * @param {?=} offset
+     * @return {?}
+     */
+    function (element, component, injector, placement, offset) {
+        this.fabricInlineDialogService.open(element, component);
+    };
+    /**
+     * @return {?}
+     */
+    FabricDatePickerInlineDialogService.prototype.close = /**
+     * @return {?}
+     */
+    function () {
+        this.fabricInlineDialogService.close();
+    };
+    /**
+     * @return {?}
+     */
+    FabricDatePickerInlineDialogService.prototype.isOpened = /**
+     * @return {?}
+     */
+    function () {
+        return this.fabricInlineDialogService.isOpened();
+    };
+    /**
+     * @return {?}
+     */
+    FabricDatePickerInlineDialogService.prototype.onOpened = /**
+     * @return {?}
+     */
+    function () {
+        return this.fabricInlineDialogService.onOpened();
+    };
+    FabricDatePickerInlineDialogService.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    FabricDatePickerInlineDialogService.ctorParameters = function () { return [
+        { type: FabricInlineDialogService }
+    ]; };
+    return FabricDatePickerInlineDialogService;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerInlineDialogService.prototype.fabricInlineDialogService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricDatePickerComponent = /** @class */ (function () {
+    function FabricDatePickerComponent(fabricDatePickerInlineDialogService, datePickerService, formBuilder, changeDetectorRef) {
+        this.fabricDatePickerInlineDialogService = fabricDatePickerInlineDialogService;
         this.datePickerService = datePickerService;
         this.formBuilder = formBuilder;
+        this.changeDetectorRef = changeDetectorRef;
+        this.openDialog = false;
+        this.onlyDialog = false;
         this.dateSelected = new EventEmitter();
+        this.dialogOpened = new EventEmitter();
+        this.unsub$ = new Subject();
         this.datePickerForm = formBuilder.group({
             'date': ['']
         });
@@ -2083,6 +2218,9 @@ var FabricDatePickerComponent = /** @class */ (function () {
         if (changes.selectDate) {
             this.datePickerService.dateSelected(this.selectDate);
         }
+        if (changes.onlyDialog !== null) {
+            this.inputDisabled = this.onlyDialog ? 'disabled' : '';
+        }
     };
     /**
      * @return {?}
@@ -2093,8 +2231,9 @@ var FabricDatePickerComponent = /** @class */ (function () {
     function () {
         var _this = this;
         this.datePickerSubscription =
-            this.datePickerService.observeSelectedDate()
-                .pipe(distinctUntilChanged())
+            this.datePickerService
+                .observeSelectedDate()
+                .pipe(take(1), distinctUntilChanged(), takeUntil(this.unsub$))
                 .subscribe((/**
              * @param {?} date
              * @return {?}
@@ -2102,9 +2241,42 @@ var FabricDatePickerComponent = /** @class */ (function () {
             function (date) {
                 _this.pickedDate = date;
                 _this.dateSelected.emit(date);
-                _this.inlineDialogService.close();
             }));
+        this.datePickerService
+            .observeSelectedDate()
+            .pipe(skip(1), takeUntil(this.unsub$))
+            .subscribe((/**
+         * @param {?} date
+         * @return {?}
+         */
+        function (date) {
+            _this.pickedDate = date;
+            _this.changeDetectorRef.detectChanges();
+            _this.dateSelected.emit(date);
+            _this.fabricDatePickerInlineDialogService.close();
+        }));
+        this.fabricDatePickerInlineDialogService
+            .onOpened()
+            .pipe(skip(1), takeUntil(this.unsub$))
+            .subscribe((/**
+         * @param {?} opened
+         * @return {?}
+         */
+        function (opened) {
+            _this.dialogOpened.emit(opened);
+        }));
         this.observeDayChanges();
+    };
+    /**
+     * @return {?}
+     */
+    FabricDatePickerComponent.prototype.ngAfterViewInit = /**
+     * @return {?}
+     */
+    function () {
+        if (this.openDialog) {
+            this.openDatePicker();
+        }
     };
     /**
      * @return {?}
@@ -2113,8 +2285,11 @@ var FabricDatePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
+        this.fabricDatePickerInlineDialogService.close();
         this.datePickerSubscription.unsubscribe();
         this.datePickerDaySubscription.unsubscribe();
+        this.unsub$.next();
+        this.unsub$.complete();
     };
     /**
      * @return {?}
@@ -2123,7 +2298,7 @@ var FabricDatePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.inlineDialogService.open(this.datePickerRef, FabricDatePickerCalendarComponent);
+        this.fabricDatePickerInlineDialogService.open(this.datePickerRef, FabricDatePickerCalendarComponent);
     };
     /**
      * @private
@@ -2136,12 +2311,16 @@ var FabricDatePickerComponent = /** @class */ (function () {
     function () {
         var _this = this;
         this.datePickerDaySubscription =
-            this.datePickerForm.controls['date'].valueChanges
-                .pipe(distinctUntilChanged(), debounceTime(1000), map((/**
+            this.datePickerForm
+                .controls['date']
+                .valueChanges
+                .pipe(distinctUntilChanged(), 
+            // debounceTime(1000),
+            map((/**
              * @param {?} day
              * @return {?}
              */
-            function (day) { return _this.parse(day); })))
+            function (day) { return _this.parse(day); })), takeUntil(this.unsub$))
                 .subscribe((/**
              * @param {?} day
              * @return {?}
@@ -2178,22 +2357,27 @@ var FabricDatePickerComponent = /** @class */ (function () {
     FabricDatePickerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-date-picker',
-                    template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [value]=\"pickedDate| date: 'd/M/yyyy'\" formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
+                    template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [value]=\"pickedDate | date: 'dd/MM/yyyy'\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   [name]=name\n\t\t\t   [attr.disabled]=\"inputDisabled\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
+                    styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
                 }] }
     ];
     /** @nocollapse */
     FabricDatePickerComponent.ctorParameters = function () { return [
-        { type: FabricInlineDialogService },
+        { type: FabricDatePickerInlineDialogService },
         { type: FabricDatePickerService },
-        { type: FormBuilder }
+        { type: FormBuilder },
+        { type: ChangeDetectorRef }
     ]; };
     FabricDatePickerComponent.propDecorators = {
         datePickerRef: [{ type: ViewChild, args: ['datePicker', { static: false },] }],
         selectDate: [{ type: Input }],
-        dateSelected: [{ type: Output }]
+        name: [{ type: Input }],
+        openDialog: [{ type: Input }],
+        onlyDialog: [{ type: Input }],
+        dateSelected: [{ type: Output }],
+        dialogOpened: [{ type: Output }]
     };
     return FabricDatePickerComponent;
 }());
@@ -2203,11 +2387,21 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.selectDate;
     /** @type {?} */
+    FabricDatePickerComponent.prototype.name;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.openDialog;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.onlyDialog;
+    /** @type {?} */
     FabricDatePickerComponent.prototype.dateSelected;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.dialogOpened;
     /** @type {?} */
     FabricDatePickerComponent.prototype.datePickerForm;
     /** @type {?} */
     FabricDatePickerComponent.prototype.pickedDate;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.inputDisabled;
     /** @type {?} */
     FabricDatePickerComponent.prototype.datePickerSubscription;
     /** @type {?} */
@@ -2216,7 +2410,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    FabricDatePickerComponent.prototype.inlineDialogService;
+    FabricDatePickerComponent.prototype.unsub$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerComponent.prototype.fabricDatePickerInlineDialogService;
     /**
      * @type {?}
      * @private
@@ -2227,6 +2426,11 @@ if (false) {
      * @private
      */
     FabricDatePickerComponent.prototype.formBuilder;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerComponent.prototype.changeDetectorRef;
 }
 
 /**
@@ -2330,7 +2534,8 @@ var FabricDatePickerModule = /** @class */ (function () {
                     providers: [
                         FabricDatePickerService,
                         FabricDatePickerWeeks,
-                        FabricDatePickerYears
+                        FabricDatePickerYears,
+                        FabricDatePickerInlineDialogService
                     ]
                 },] }
     ];
@@ -5424,5 +5629,5 @@ var FabricModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricSpinnerComponent as ɵba, FabricToggleButtonComponent as ɵbb, ToggleButtonGroupService as ɵbc, FabricToggleButtonGroupComponent as ɵbd, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricDatePickerModule as ɵe, FabricInlineDialogComponent as ɵf, InlineDialogGeometryService as ɵg, FabricDatePickerCalendarComponent as ɵh, FabricDatePickerService as ɵi, FabricDatePickerWeeks as ɵj, FabricDatePickerYears as ɵk, FabricDatePickerComponent as ɵl, FabricDropdownComponent as ɵm, GeometryService as ɵn, DropdownItemComponent as ɵo, FabricDialogComponent as ɵp, FabricRadioButtonComponent as ɵq, FabricRadioGroupComponent as ɵr, FabricTabComponent as ɵs, TabItemComponent as ɵt, FabricTooltipDirective as ɵu, FabricTooltipComponent as ɵv, FabricProgressBarComponent as ɵw, FabricProgressSpinnerComponent as ɵx, AbstractSpinner as ɵy, FabricSelectComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricSpinnerComponent as ɵba, FabricToggleButtonComponent as ɵbb, ToggleButtonGroupService as ɵbc, FabricToggleButtonGroupComponent as ɵbd, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, InlineDialogGeometryService as ɵf, FabricDatePickerCalendarComponent as ɵg, FabricDatePickerService as ɵh, FabricDatePickerWeeks as ɵi, FabricDatePickerYears as ɵj, FabricDatePickerComponent as ɵk, FabricDatePickerInlineDialogService as ɵl, FabricDropdownComponent as ɵm, GeometryService as ɵn, DropdownItemComponent as ɵo, FabricDialogComponent as ɵp, FabricRadioButtonComponent as ɵq, FabricRadioGroupComponent as ɵr, FabricTabComponent as ɵs, TabItemComponent as ɵt, FabricTooltipDirective as ɵu, FabricTooltipComponent as ɵv, FabricProgressBarComponent as ɵw, FabricProgressSpinnerComponent as ɵx, AbstractSpinner as ɵy, FabricSelectComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

@@ -7,5 +7,9 @@ export declare enum CellView {
     ITALIC = 5,
     CHECKBOX = 6,
     CUSTOM = 7,
-    FUNCTION = 8
+    FUNCTION = 8,
+    DATE = 9,
+    BAR = 10,
+    PERCENTAGE_BAR = 11,
+    PERCENTAGE = 12
 }

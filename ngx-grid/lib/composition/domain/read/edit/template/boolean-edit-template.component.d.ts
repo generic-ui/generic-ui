@@ -4,6 +4,5 @@ export declare class BooleanEditTemplateComponent extends EditCommunicationCompo
     checkboxRef: ElementRef;
     readonly filterFieldName = "booleanEdit";
     constructor();
-    ngAfterViewInit(): void;
     toggle(changed: boolean): void;
 }

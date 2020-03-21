@@ -5,4 +5,5 @@ export declare class FieldFactory {
     private readonly fieldIdGenerator;
     constructor(fieldIdGenerator: FieldIdGenerator);
     create(column: ColumnConfig): Field;
+    private createMatchers;
 }

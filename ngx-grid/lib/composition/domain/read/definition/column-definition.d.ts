@@ -7,9 +7,11 @@ import { CellTemplateWithAccessor } from './cell-template-with-accessor';
 import { ColumnId } from '../../command/column/column.id';
 import { DataType } from '../../../../structure/domain/structure/command/field/data-type/data-type';
 import { ViewEntity } from '../../command/column/view.entity';
+import { ColumnAlign } from '../../column-align';
 export declare class ColumnDefinition {
     private readonly type;
     private readonly view;
+    private readonly align;
     cellTemplate: TemplateRef<any>;
     headerTemplate: TemplateRef<any>;
     editTemplate: TemplateRef<any>;
@@ -21,13 +23,14 @@ export declare class ColumnDefinition {
     private sortable;
     private header;
     private enabled;
+    private cellEditingEnabled;
     constructor(field: ColumnField, columnId: ColumnId, enabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity, // REFACTOR
-    header: string | HeaderTemplate, sort?: SortOrder, sortable?: boolean);
+    align: ColumnAlign, // REFACTOR
+    header: string | HeaderTemplate, cellEditingEnabled: boolean, sort?: SortOrder, sortable?: boolean);
     isEnabled(): boolean;
     setHeader(header: string): void;
     setField(field: ColumnField): void;
     getHeaderCellTemplateWithContext(index: number): CellTemplateWithContext;
     getContentCellTemplateWithAccessor(): CellTemplateWithAccessor;
-    getColumn(): any;
 }

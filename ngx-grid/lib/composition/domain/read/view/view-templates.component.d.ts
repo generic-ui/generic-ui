@@ -12,5 +12,9 @@ export declare class ViewTemplatesComponent implements TemplatesComponent {
     italicTemplate: TemplateRef<any>;
     customTemplate: TemplateRef<any>;
     functionTemplate: TemplateRef<any>;
+    dateTemplate: TemplateRef<any>;
+    barTemplate: TemplateRef<any>;
+    percentageBarTemplate: TemplateRef<any>;
+    percentageTemplate: TemplateRef<any>;
     getTemplate(view: CellView): TemplateRef<any>;
 }
