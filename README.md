@@ -2,7 +2,7 @@
 
 Generic UI is a lightweight data management tool that displays statistic figures in a tabular format. It was developed with ease of implementation and usage in mind. The data can be viewed in grid form. Using built-in functions, the data contained in the grid can easily be tracked and managed. Generic UI includes many user-friendly features like sorting, paging, data binding and theming. Additionally, the grid supports a variety of helpful elements such as buttons, check boxes, inputs, chips and dropdown menus.
 
-![demo](http://generic-ui.com/assets/images/grid-example.png)
+![demo](https://generic-ui.com/assets/example/grid.png)
 
 Supported libraries and frameworks:
  * jQuery - <a href="https://github.com/generic-ui/generic-ui/tree/master/jquery-grid" >Grid for jQuery</a>

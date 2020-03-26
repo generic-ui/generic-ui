@@ -1,7 +1,7 @@
 import { AggregateEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from './origin/origin-item-entity';
 import { StructureId } from '../../structure-id';
-import { Field } from '../../structure/command/field/data-type/field';
+import { TypeField } from '../../structure/command/field/data-type/type.field';
 export declare class SourceManager {
     private loading;
     private fetched;
@@ -22,7 +22,7 @@ export declare class SourceManager {
     setConvertedOrigin(items: Array<any>, structureId: StructureId): AggregateEvent;
     getOrigin(): Array<OriginItemEntity>;
     getOriginSize(): number;
-    editOriginItem(itemId: string, value: any, field: Field, structureId: StructureId): ReadonlyArray<AggregateEvent>;
+    editOriginItem(itemId: string, value: any, field: TypeField, structureId: StructureId): ReadonlyArray<AggregateEvent>;
     removeOriginItem(itemId: string, structureId: StructureId): Array<AggregateEvent>;
     private convertItems;
     private createOriginChangedEvent;

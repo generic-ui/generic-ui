@@ -1,6 +1,6 @@
-import { Field } from '../field/data-type/field';
+import { TypeField } from '../field/data-type/type.field';
 export declare class FilterId {
     private readonly id;
-    constructor(field: Field, filterId: string);
+    constructor(field: TypeField, filterId: string);
     getId(): string;
 }

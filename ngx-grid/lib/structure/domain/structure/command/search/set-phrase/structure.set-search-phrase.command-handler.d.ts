@@ -8,6 +8,6 @@ export declare class StructureSetSearchPhraseCommandHandler implements CommandHa
     private readonly domainEventPublisher;
     constructor(structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<StructureSetSearchPhraseCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: StructureSetSearchPhraseCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: StructureSetSearchPhraseCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetSearchPhraseCommand): void;
 }

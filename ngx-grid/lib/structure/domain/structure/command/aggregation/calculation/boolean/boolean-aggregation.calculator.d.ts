@@ -8,8 +8,8 @@ export declare class BooleanAggregationCalculator extends AggregationCalculator<
     private readonly falsy;
     constructor();
     forDataType(dataType: DataType): boolean;
-    prepare(field: Field): void;
-    postCalculate(field: Field, items: Array<OriginItemEntity>): void;
-    aggregate(field: Field, value: boolean): void;
-    generateAggregatedValues(field: Field): BooleanAggregatedValues;
+    prepare(field: Field<boolean>): void;
+    postCalculate(field: Field<boolean>, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field<boolean>, value: boolean): void;
+    generateAggregatedValues(field: Field<boolean>): BooleanAggregatedValues;
 }

@@ -73,7 +73,8 @@ export declare enum GuiTheme {
     FABRIC = 0,
     MATERIAL = 1,
     LIGHT = 2,
-    DARK = 3
+    DARK = 3,
+    GENERIC = 4
 }
 export declare enum GuiRowColoring {
     NONE = 0,

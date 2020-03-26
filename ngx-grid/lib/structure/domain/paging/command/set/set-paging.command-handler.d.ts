@@ -8,6 +8,6 @@ export declare class SetPagingCommandHandler implements CommandHandler<Structure
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SetPagingCommand>;
-    handleAggregate(structureAggregate: StructureAggregate, command: SetPagingCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: SetPagingCommand): void;
+    handleAggregate(structureAggregate: StructureAggregate, command: SetPagingCommand): void;
 }

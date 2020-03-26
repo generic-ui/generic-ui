@@ -8,6 +8,6 @@ export declare class StructureSetAggregationEnabledCommandHandler implements Com
     private domainEventPublisher;
     constructor(structureSourceDomainEventPublisher: StructureSourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<StructureSetAggregationEnabledCommand>;
-    handleAggregate(structure: StructureAggregate, command: StructureSetAggregationEnabledCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: StructureSetAggregationEnabledCommand): void;
+    handleAggregate(structure: StructureAggregate, command: StructureSetAggregationEnabledCommand): void;
 }

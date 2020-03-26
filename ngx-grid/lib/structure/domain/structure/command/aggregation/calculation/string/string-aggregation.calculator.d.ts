@@ -6,8 +6,8 @@ import { OriginItemEntity } from '../../../../../source/command/origin/origin-it
 export declare class StringAggregationCalculator extends AggregationCalculator<string, StringAggregatedValues> {
     constructor();
     forDataType(dataType: DataType): boolean;
-    prepare(field: Field): void;
-    postCalculate(field: Field, items: Array<OriginItemEntity>): void;
-    aggregate(field: Field, value: string): void;
-    generateAggregatedValues(field: Field): StringAggregatedValues;
+    prepare(field: Field<string>): void;
+    postCalculate(field: Field<string>, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field<string>, value: string): void;
+    generateAggregatedValues(field: Field<string>): StringAggregatedValues;
 }

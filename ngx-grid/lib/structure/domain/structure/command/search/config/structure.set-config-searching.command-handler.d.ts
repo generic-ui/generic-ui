@@ -6,6 +6,6 @@ export declare class StructureSetConfigSearchingCommandHandler implements Comman
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<StructureSetConfigSearchingCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigSearchingCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: StructureSetConfigSearchingCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigSearchingCommand): void;
 }

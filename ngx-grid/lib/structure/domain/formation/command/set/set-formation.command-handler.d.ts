@@ -6,6 +6,6 @@ export declare class SetFormationCommandHandler implements CommandHandler<Struct
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SetFormationCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: SetFormationCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: SetFormationCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: SetFormationCommand): void;
 }

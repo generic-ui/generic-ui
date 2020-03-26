@@ -6,6 +6,6 @@ export declare class SetRowColoringCommandHandler implements CommandHandler<Stru
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SetRowColoringCommand>;
-    handleAggregate(structure: StructureAggregate, command: SetRowColoringCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: Command): void;
+    handleAggregate(structure: StructureAggregate, command: SetRowColoringCommand): void;
 }

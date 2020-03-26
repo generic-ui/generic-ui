@@ -6,6 +6,6 @@ export declare class PrevPageCommandHandler implements CommandHandler<StructureA
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<PrevPageCommand>;
-    handleAggregate(structure: StructureAggregate, command: PrevPageCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: PrevPageCommand): void;
+    handleAggregate(structure: StructureAggregate, command: PrevPageCommand): void;
 }

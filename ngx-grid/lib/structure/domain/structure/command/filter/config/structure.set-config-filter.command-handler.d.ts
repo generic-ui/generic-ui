@@ -6,6 +6,6 @@ export declare class StructureSetConfigFilterCommandHandler implements CommandHa
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<StructureSetConfigFilterCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigFilterCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: StructureSetConfigFilterCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigFilterCommand): void;
 }

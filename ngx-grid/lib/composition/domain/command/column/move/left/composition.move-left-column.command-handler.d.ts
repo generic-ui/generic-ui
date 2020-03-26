@@ -10,7 +10,7 @@ export declare class CompositionMoveLeftColumnCommandHandler implements CommandH
     private compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
     forCommand(): Type<CompositionMoveLeftColumnCommand>;
-    handleAggregate(aggregate: CompositionAggregate, command: CompositionMoveLeftColumnCommand): void;
     publishDomainEvents(aggregate: CompositionAggregate, command: CompositionMoveLeftColumnCommand): void;
+    handleAggregate(aggregate: CompositionAggregate, command: CompositionMoveLeftColumnCommand): void;
     private publishEvents;
 }

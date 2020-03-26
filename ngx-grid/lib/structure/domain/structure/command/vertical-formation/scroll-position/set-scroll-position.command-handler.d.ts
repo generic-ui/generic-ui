@@ -6,6 +6,6 @@ export declare class SetScrollPositionCommandHandler implements CommandHandler<S
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SetScrollPositionCommand>;
-    handleAggregate(structure: StructureAggregate, command: SetScrollPositionCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: SetScrollPositionCommand): void;
+    handleAggregate(structure: StructureAggregate, command: SetScrollPositionCommand): void;
 }

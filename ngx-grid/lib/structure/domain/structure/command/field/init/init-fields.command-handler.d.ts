@@ -6,6 +6,6 @@ export declare class InitFieldsCommandHandler implements CommandHandler<Structur
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<InitFieldsCommand>;
-    handleAggregate(structure: StructureAggregate, command: InitFieldsCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: InitFieldsCommand): void;
+    handleAggregate(structure: StructureAggregate, command: InitFieldsCommand): void;
 }

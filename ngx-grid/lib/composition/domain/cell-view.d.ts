@@ -1,15 +1,16 @@
 export declare enum CellView {
     TEXT = 0,
-    CHIP = 1,
-    LINK = 2,
-    IMAGE = 3,
-    BOLD = 4,
-    ITALIC = 5,
-    CHECKBOX = 6,
-    CUSTOM = 7,
-    FUNCTION = 8,
-    DATE = 9,
-    BAR = 10,
-    PERCENTAGE_BAR = 11,
-    PERCENTAGE = 12
+    NUMBER = 1,
+    CHIP = 2,
+    LINK = 3,
+    IMAGE = 4,
+    BOLD = 5,
+    ITALIC = 6,
+    CHECKBOX = 7,
+    CUSTOM = 8,
+    FUNCTION = 9,
+    DATE = 10,
+    BAR = 11,
+    PERCENTAGE_BAR = 12,
+    PERCENTAGE = 13
 }

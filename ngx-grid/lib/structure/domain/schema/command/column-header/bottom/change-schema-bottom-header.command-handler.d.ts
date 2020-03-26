@@ -6,6 +6,6 @@ export declare class ChangeSchemaBottomHeaderCommandHandler implements CommandHa
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<ChangeSchemaBottomHeaderCommand>;
-    handleAggregate(structure: StructureAggregate, command: ChangeSchemaBottomHeaderCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: ChangeSchemaBottomHeaderCommand): void;
+    handleAggregate(structure: StructureAggregate, command: ChangeSchemaBottomHeaderCommand): void;
 }

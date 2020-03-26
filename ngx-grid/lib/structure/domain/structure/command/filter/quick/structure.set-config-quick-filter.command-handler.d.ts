@@ -8,6 +8,6 @@ export declare class StructureSetConfigQuickFilterCommandHandler implements Comm
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<StructureSetConfigQuickFilterCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigQuickFilterCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: StructureSetConfigQuickFilterCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: StructureSetConfigQuickFilterCommand): void;
 }

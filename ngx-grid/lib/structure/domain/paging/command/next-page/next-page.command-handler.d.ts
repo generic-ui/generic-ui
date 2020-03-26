@@ -6,6 +6,6 @@ export declare class NextPageCommandHandler implements CommandHandler<StructureA
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<NextPageCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: NextPageCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: NextPageCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: NextPageCommand): void;
 }

@@ -6,6 +6,6 @@ export declare class SourceSetLoadingCommandHandler implements CommandHandler<St
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SourceSetLoadingCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: SourceSetLoadingCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: SourceSetLoadingCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: SourceSetLoadingCommand): void;
 }

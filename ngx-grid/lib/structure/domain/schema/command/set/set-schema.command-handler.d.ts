@@ -6,6 +6,6 @@ export declare class SetSchemaCommandHandler implements CommandHandler<Structure
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<SetSchemaCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: SetSchemaCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: SetSchemaCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: SetSchemaCommand): void;
 }

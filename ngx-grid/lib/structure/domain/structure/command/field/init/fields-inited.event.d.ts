@@ -2,12 +2,12 @@ import { DomainEvent } from '@generic-ui/hermes';
 import { StructureId } from '../../../../structure-id';
 import { CompositionId } from '../../../../../../composition/domain/composition-id';
 import { ColumnConfig } from '../../../../../../composition/domain/column.config';
-import { Field } from '../data-type/field';
+import { TypeField } from '../data-type/type.field';
 export declare class FieldsInitedEvent extends DomainEvent {
     readonly compositionId: CompositionId;
     readonly columns: Array<ColumnConfig>;
     private readonly fields;
     constructor(aggregateId: StructureId, compositionId: CompositionId, columns: Array<ColumnConfig>, // TODO merge
-    fields: Array<Field>);
-    getFields(): Array<Field>;
+    fields: Array<TypeField>);
+    getFields(): Array<TypeField>;
 }

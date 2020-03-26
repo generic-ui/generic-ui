@@ -6,6 +6,6 @@ export declare class CompositionChangeSortStatusCommandHandler implements Comman
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<CompositionChangeSortStatusCommand>;
-    handleAggregate(composition: CompositionAggregate, command: CompositionChangeSortStatusCommand): void;
     publishDomainEvents(composition: CompositionAggregate, command: CompositionChangeSortStatusCommand): void;
+    handleAggregate(composition: CompositionAggregate, command: CompositionChangeSortStatusCommand): void;
 }

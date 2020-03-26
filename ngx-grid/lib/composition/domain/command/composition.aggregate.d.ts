@@ -1,6 +1,7 @@
 import { Aggregate, AggregateId } from '@generic-ui/hermes';
 import { ColumnEntity } from './column/column.entity';
 import { ColumnParams } from './column/set-columns/column.params';
+import { ColumnEntityFactory } from './column/column-entity.factory';
 import { ChangeSortParams } from './column/sort/change-sort.params';
 import { ColumnId } from './column/column.id';
 import { ActiveColumnEntity } from './column/active/active-column.entity';
@@ -14,13 +15,10 @@ export declare class CompositionAggregate extends Aggregate {
     private width;
     private containerInDOMWidth;
     private resizeWidthEnabled;
-    /**
-     * Autowired
-     */
     private readonly columnFactory;
     private readonly activeColumnContainer;
     private readonly activeColumnEntityConverter;
-    constructor(id: AggregateId, columnsParams?: Array<ColumnParams>, width?: number, resizeWidth?: boolean);
+    constructor(id: AggregateId, columnFactory: ColumnEntityFactory, columnsParams?: Array<ColumnParams>, width?: number, resizeWidth?: boolean);
     getColumns(): Array<ColumnEntity>;
     getActiveColumns(): Array<ActiveColumnEntity>;
     getWidth(): number;

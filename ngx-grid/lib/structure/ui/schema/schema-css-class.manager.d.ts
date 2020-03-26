@@ -10,6 +10,7 @@ export declare class SchemaCssClassManager implements OnDestroy {
     private readonly THEME_MATERIAL_CLASS_NAME;
     private readonly THEME_LIGHT_CLASS_NAME;
     private readonly THEME_DARK_CLASS_NAME;
+    private readonly THEME_GENERIC_CLASS_NAME;
     private readonly ROW_COLORING_ODD;
     private readonly ROW_COLORING_EVEN;
     private readonly renderer;

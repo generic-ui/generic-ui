@@ -21,6 +21,7 @@ import { QuickFiltersConfig } from '../../../ui-api/structure/filter/quick-filte
 import { SearchConfig } from '../../../ui-api/structure/search/search-config';
 import { SearchManager } from './search/search.manager';
 import { SortOrder } from '../../../../composition/domain/command/column/sort/sort-order';
+import { SchemaTheme } from '../../schema/schema-theme';
 export declare class StructureAggregate extends Aggregate {
     private formationAggregate;
     private schema;
@@ -38,6 +39,7 @@ export declare class StructureAggregate extends Aggregate {
     setOrigin(items: Array<any>): ReadonlyArray<AggregateEvent>;
     editItem(editParams: StructureEditSourceItemParams): ReadonlyArray<AggregateEvent>;
     setHeight(height: number): void;
+    setTheme(theme: SchemaTheme): void;
     setFormation(formation: FormationAggregate): void;
     setScrollPosition(position: number): void;
     getFormation(): FormationAggregate;

@@ -10,7 +10,7 @@ export declare class CompositionSetColumnEnabledCommandHandler implements Comman
     private readonly compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
     forCommand(): Type<CompositionSetColumnEnabledCommand>;
-    handleAggregate(aggregate: CompositionAggregate, command: CompositionSetColumnEnabledCommand): void;
     publishDomainEvents(aggregate: CompositionAggregate, command: Command): void;
+    handleAggregate(aggregate: CompositionAggregate, command: CompositionSetColumnEnabledCommand): void;
     private publishEvents;
 }

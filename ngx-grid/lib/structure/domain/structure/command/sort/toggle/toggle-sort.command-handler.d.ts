@@ -8,7 +8,7 @@ export declare class ToggleSortCommandHandler implements CommandHandler<Structur
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<ToggleSortCommand>;
-    handleAggregate(structure: StructureAggregate, command: ToggleSortCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: ToggleSortCommand): void;
+    handleAggregate(structure: StructureAggregate, command: ToggleSortCommand): void;
     private publishSortEvent;
 }

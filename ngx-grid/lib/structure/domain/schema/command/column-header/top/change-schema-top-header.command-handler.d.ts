@@ -8,6 +8,6 @@ export declare class ChangeSchemaTopHeaderCommandHandler implements CommandHandl
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): Type<ChangeSchemaTopHeaderCommand>;
-    handleAggregate(aggregate: StructureAggregate, command: ChangeSchemaTopHeaderCommand): void;
     publishDomainEvents(aggregate: StructureAggregate, command: ChangeSchemaTopHeaderCommand): void;
+    handleAggregate(aggregate: StructureAggregate, command: ChangeSchemaTopHeaderCommand): void;
 }
