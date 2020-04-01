@@ -70,7 +70,7 @@ export declare const structureComponentSelfProviders: (typeof StructurePagingDis
     provide: typeof CompositionReadModelService;
     useClass: typeof import("./local/composition/local-composition-read-model.service").LocalCompositionReadModelService;
 } | {
-    provide: typeof import("../../../generic-ui-ngx-grid").ɵet;
+    provide: typeof import("../../../generic-ui-ngx-grid").ɵey;
     useClass: typeof import("./local/search/local-structure-search.dispatcher").LocalStructureSearchDispatcher;
 } | typeof SchemaCssClassManager | typeof StructureCellEditArchive | typeof StructureCellEditStore | typeof StructureAggregationArchive | typeof StructureAggregationConfigService | typeof StructureColumnMenuConfigArchive | typeof StructureCellEditCloseAllService | {
     provide: typeof StructureId;

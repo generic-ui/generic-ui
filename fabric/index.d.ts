@@ -1,3 +1,4 @@
+export { Theme } from './themes/theme';
 export { FabricModule } from './fabric.module';
 export { ResizeDetector } from './behaviour/resize-detector/resize.detector';
 export { ResizeDetectorModule } from './behaviour/resize-detector/resize-detector.module';

@@ -34,6 +34,7 @@ export declare class StructureAggregate extends Aggregate {
     private fieldCollection;
     private aggregationManager;
     constructor(structureId: StructureId, pagingAggregate: PagingAggregate, formationAggregate: FormationAggregate, sourceManager: SourceManager, verticalFormation: VerticalFormation, aggregationManager: AggregationManager, sorterCollection: SorterCollection, filterCollection: FilterManager, searchManager: SearchManager, fieldCollection: FieldCollection, schema: SchemaAggregate);
+    init(): void;
     getVerticalFormation(): VerticalFormation;
     setAggregationEnabled(enabled: boolean): ReadonlyArray<AggregateEvent>;
     setOrigin(items: Array<any>): ReadonlyArray<AggregateEvent>;
@@ -65,4 +66,5 @@ export declare class StructureAggregate extends Aggregate {
     removeSearchPhrase(): Array<AggregateEvent>;
     private calculateSource;
     private calculateSourceBasedOnVirtualScroll;
+    private initTheme;
 }

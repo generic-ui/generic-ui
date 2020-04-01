@@ -22,4 +22,5 @@ export declare class StructureAggregateFactory extends AggregateFactory<Structur
     private readonly schemaAggregateFactory;
     constructor(pagingAggregateFactory: PagingAggregateFactory, sourceManagerFactory: SourceManagerFactory, formationAggregateFactory: FormationAggregateFactory, verticalFormationFactory: VerticalFormationFactory, aggregationManagerFactory: AggregationManagerFactory, filterManagerFactory: FilterManagerFactory, searchManagerFactory: SearchManagerFactory, fieldCollectionFactory: FieldCollectionFactory, schemaAggregateFactory: SchemaAggregateFactory);
     create(structureId: StructureId): StructureAggregate;
+    init(structureAggregate: StructureAggregate): void;
 }

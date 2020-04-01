@@ -6,6 +6,7 @@ import { SourceReadModelService } from '../../../ui-api/source/source-read-model
 import { StructureReadModelService } from '../../../ui-api/structure/structure-read-model.service';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
 import { CompositionId } from '../../../../composition/domain/composition-id';
+import { StructureId } from '../../../domain/structure-id';
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
     private changeDetectorRef;
     private renderer;
@@ -13,13 +14,14 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     private sourceQueryService;
     private dialog;
     private compositionId;
+    private structureId;
     private menuColumnManagerService;
     private structureReadModelService;
     totalItemsSize: number;
     preparedItemsSize: number;
     rowHeight: number;
     infoPanel: typeof StructureInfoModalComponent;
-    constructor(changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, elementRef: ElementRef, sourceQueryService: SourceReadModelService, dialog: FabricDialogService, compositionId: CompositionId, menuColumnManagerService: StructureDialogColumnManagerService, structureReadModelService: StructureReadModelService);
+    constructor(changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, elementRef: ElementRef, sourceQueryService: SourceReadModelService, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, menuColumnManagerService: StructureDialogColumnManagerService, structureReadModelService: StructureReadModelService);
     ngOnInit(): void;
     openInfo(): void;
     openColumnManager(): void;

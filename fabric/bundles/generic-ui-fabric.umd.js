@@ -195,6 +195,19 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @enum {string} */
+    var Theme = {
+        FABRIC: 'FABRIC',
+        MATERIAL: 'MATERIAL',
+        GENERIC: 'GENERIC',
+        LIGHT: 'LIGHT',
+        DARK: 'DARK',
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @abstract
      */
@@ -641,7 +654,7 @@
                         host: {
                             '[class.gui-checkbox]': 'true'
                         },
-                        styles: [".gui-checkbox{display:inline-block;font:14px/24px Arial;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:2px solid #575757}.gui-checkbox input:checked+.gui-checkmark{border-color:#575757}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#575757;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox label:hover .gui-checkmark{border-color:#575757}.gui-material .gui-checkbox .gui-checkmark{border-color:#999}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
+                        styles: [".gui-checkbox{display:inline-block;line-height:24px;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:2px solid #575757}.gui-checkbox input:checked+.gui-checkmark{border-color:#575757}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#575757;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox label:hover .gui-checkmark{border-color:#575757}.gui-material .gui-checkbox .gui-checkmark{border-color:#999}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
                     }] }
         ];
         /** @nocollapse */
@@ -1942,13 +1955,137 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FabricInlineDialogComponent = /** @class */ (function () {
-        function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elementRef, inlineDialogGeometryService) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            this.changeDetectorRef = changeDetectorRef;
-            this.inlineDialogService = inlineDialogService;
-            this.elementRef = elementRef;
-            this.inlineDialogGeometryService = inlineDialogGeometryService;
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    FabricReactive = /** @class */ (function () {
+        function FabricReactive() {
+            this.unsubscribe$ = new rxjs.Subject();
+        }
+        /**
+         * @return {?}
+         */
+        FabricReactive.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.unsubscribe();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FabricReactive.prototype.unsubscribe = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            if (this.unsubscribe$.isStopped) {
+                return;
+            }
+            this.unsubscribe$.next();
+            this.unsubscribe$.complete();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FabricReactive.prototype.takeUntil = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return operators.takeUntil(this.unsubscribe$);
+        };
+        return FabricReactive;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricReactive.prototype.unsubscribe$;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var DialogComponent = /** @class */ (function (_super) {
+        __extends(DialogComponent, _super);
+        function DialogComponent(elementRef, renderer, theme) {
+            var _this = _super.call(this) || this;
+            _this.elementRef = elementRef;
+            _this.renderer = renderer;
+            _this.theme = theme;
+            return _this;
+        }
+        /**
+         * @protected
+         * @return {?}
+         */
+        DialogComponent.prototype.addTheme = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var cssClass = DialogComponent.CSS_CLASS_PREFIX + this.theme.toLowerCase();
+            this.renderer.addClass(this.elementRef.nativeElement, cssClass);
+        };
+        DialogComponent.CSS_CLASS_PREFIX = 'gui-';
+        return DialogComponent;
+    }(FabricReactive));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DialogComponent.CSS_CLASS_PREFIX;
+        /**
+         * @type {?}
+         * @private
+         */
+        DialogComponent.prototype.elementRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        DialogComponent.prototype.renderer;
+        /**
+         * @type {?}
+         * @private
+         */
+        DialogComponent.prototype.theme;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var themeToken = new core.InjectionToken('Theme token');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FabricInlineDialogComponent = /** @class */ (function (_super) {
+        __extends(FabricInlineDialogComponent, _super);
+        function FabricInlineDialogComponent(componentFactoryResolver, changeDetectorRef, inlineDialogService, elRef, renderer, theme, inlineDialogGeometryService) {
+            var _this = _super.call(this, elRef, renderer, theme) || this;
+            _this.componentFactoryResolver = componentFactoryResolver;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.inlineDialogService = inlineDialogService;
+            _this.elRef = elRef;
+            _this.inlineDialogGeometryService = inlineDialogGeometryService;
+            return _this;
         }
         /**
          * @return {?}
@@ -1958,18 +2095,18 @@
          */
         function () {
             var _this = this;
-            this.inlineDialogCordsSubscription =
-                this.inlineDialogGeometryService
-                    .observeInlineDialogCords()
-                    .subscribe((/**
-                 * @param {?} inlineDialogCords
-                 * @return {?}
-                 */
-                function (inlineDialogCords) {
-                    _this.dialogTopAttribute = inlineDialogCords.getVerticalPosition();
-                    _this.dialogLeftAttribute = inlineDialogCords.getHorizontalPosition();
-                    _this.changeDetectorRef.detectChanges();
-                }));
+            this.inlineDialogGeometryService
+                .observeInlineDialogCords()
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} inlineDialogCords
+             * @return {?}
+             */
+            function (inlineDialogCords) {
+                _this.dialogTopAttribute = inlineDialogCords.getVerticalPosition();
+                _this.dialogLeftAttribute = inlineDialogCords.getHorizontalPosition();
+                _this.changeDetectorRef.detectChanges();
+            }));
         };
         /**
          * @return {?}
@@ -1979,7 +2116,8 @@
          */
         function () {
             this.createNestedComponent(this.inlineDialogNestedComponent);
-            this.inlineDialogGeometryService.changeGeometry(this.elementRef);
+            this.inlineDialogGeometryService.changeGeometry(this.elRef);
+            this.addTheme();
         };
         /**
          * @return {?}
@@ -1988,9 +2126,7 @@
          * @return {?}
          */
         function () {
-            if (this.inlineDialogCordsSubscription) {
-                this.inlineDialogCordsSubscription.unsubscribe();
-            }
+            this.unsubscribe();
         };
         /**
          * @param {?} event
@@ -2016,7 +2152,7 @@
          * @return {?}
          */
         function (event) {
-            return !this.elementRef.nativeElement.contains(event.target);
+            return !this.elRef.nativeElement.contains(event.target);
         };
         /**
          * @private
@@ -2056,13 +2192,15 @@
                              */
                             function () { return FabricInlineDialogService; })),] }] },
             { type: core.ElementRef },
+            { type: core.Renderer2 },
+            { type: Theme, decorators: [{ type: core.Inject, args: [themeToken,] }] },
             { type: InlineDialogGeometryService }
         ]; };
         FabricInlineDialogComponent.propDecorators = {
             container: [{ type: core.ViewChild, args: ['container', { read: core.ViewContainerRef, static: false },] }]
         };
         return FabricInlineDialogComponent;
-    }());
+    }(DialogComponent));
     if (false) {
         /** @type {?} */
         FabricInlineDialogComponent.prototype.container;
@@ -2074,11 +2212,6 @@
         FabricInlineDialogComponent.prototype.dialogTopAttribute;
         /** @type {?} */
         FabricInlineDialogComponent.prototype.dialogLeftAttribute;
-        /**
-         * @type {?}
-         * @private
-         */
-        FabricInlineDialogComponent.prototype.inlineDialogCordsSubscription;
         /**
          * @type {?}
          * @private
@@ -2098,7 +2231,7 @@
          * @type {?}
          * @private
          */
-        FabricInlineDialogComponent.prototype.elementRef;
+        FabricInlineDialogComponent.prototype.elRef;
         /**
          * @type {?}
          * @private
@@ -2110,16 +2243,37 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FabricInlineDialogService = /** @class */ (function () {
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    DialogService = /** @class */ (function (_super) {
+        __extends(DialogService, _super);
+        function DialogService() {
+            return _super.call(this) || this;
+        }
+        return DialogService;
+    }(FabricReactive));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FabricInlineDialogService = /** @class */ (function (_super) {
+        __extends(FabricInlineDialogService, _super);
         function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, document, inlineDialogGeometryService) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            this.applicationRef = applicationRef;
-            this.injector = injector;
-            this.document = document;
-            this.inlineDialogGeometryService = inlineDialogGeometryService;
-            this.inlineDialogRef = null;
-            this.opened = false;
-            this.opened$ = new rxjs.BehaviorSubject(false);
+            var _this = _super.call(this) || this;
+            _this.componentFactoryResolver = componentFactoryResolver;
+            _this.applicationRef = applicationRef;
+            _this.injector = injector;
+            _this.document = document;
+            _this.inlineDialogGeometryService = inlineDialogGeometryService;
+            _this.inlineDialogRef = null;
+            _this.opened = false;
+            _this.opened$ = new rxjs.BehaviorSubject(false);
+            return _this;
         }
         /**
          * @return {?}
@@ -2129,28 +2283,53 @@
          */
         function () {
             this.removeInlineDialog();
+            _super.prototype.ngOnDestroy.call(this);
         };
         /**
          * @param {?} element
          * @param {?} component
-         * @param {?=} injector
-         * @param {?=} placement
-         * @param {?=} offset
+         * @param {?=} config
          * @return {?}
          */
         FabricInlineDialogService.prototype.open = /**
          * @param {?} element
          * @param {?} component
-         * @param {?=} injector
-         * @param {?=} placement
-         * @param {?=} offset
+         * @param {?=} config
          * @return {?}
          */
-        function (element, component, injector, placement, offset) {
+        function (element, component, config) {
             if (event) {
                 event.stopPropagation();
             }
             if (!this.inlineDialogRef) {
+                /** @type {?} */
+                var parentInjector = this.injector;
+                /** @type {?} */
+                var placement = InlineDialogPlacement.Top;
+                /** @type {?} */
+                var offset = 0;
+                /** @type {?} */
+                var theme = Theme.FABRIC;
+                if (config && config.injector) {
+                    parentInjector = config.injector;
+                }
+                if (config && config.placement) {
+                    placement = config.placement;
+                }
+                if (config && config.offset) {
+                    offset = config.offset;
+                }
+                if (config && config.theme) {
+                    theme = config.theme;
+                }
+                /** @type {?} */
+                var injector = core.Injector.create({
+                    providers: [{
+                            provide: themeToken,
+                            useValue: theme
+                        }],
+                    parent: parentInjector
+                });
                 this.setOpened(true);
                 this.appendInlineDialogToElement(component, injector);
                 this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
@@ -2190,24 +2369,21 @@
         /**
          * @private
          * @param {?} component
-         * @param {?=} injector
+         * @param {?} injector
          * @return {?}
          */
         FabricInlineDialogService.prototype.appendInlineDialogToElement = /**
          * @private
          * @param {?} component
-         * @param {?=} injector
+         * @param {?} injector
          * @return {?}
          */
         function (component, injector) {
             /** @type {?} */
             var componentRef = this.componentFactoryResolver
                 .resolveComponentFactory(FabricInlineDialogComponent)
-                .create(this.injector);
+                .create(injector);
             componentRef.instance.inlineDialogNestedComponent = component;
-            if (injector) {
-                componentRef.instance.inlineDialogNestedInjector = injector;
-            }
             componentRef.changeDetectorRef.detectChanges();
             this.applicationRef.attachView(componentRef.hostView);
             /** @type {?} */
@@ -2257,7 +2433,7 @@
             { type: InlineDialogGeometryService }
         ]; };
         return FabricInlineDialogService;
-    }());
+    }(DialogService));
     if (false) {
         /**
          * @type {?}
@@ -3389,14 +3565,16 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FabricDialogService = /** @class */ (function () {
+    var FabricDialogService = /** @class */ (function (_super) {
+        __extends(FabricDialogService, _super);
         function FabricDialogService(componentFactoryResolver, applicationRef, injector, document) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            this.applicationRef = applicationRef;
-            this.injector = injector;
-            this.document = document;
-            this.dialogRef = null;
-            this.destroy$ = new rxjs.Subject();
+            var _this = _super.call(this) || this;
+            _this.componentFactoryResolver = componentFactoryResolver;
+            _this.applicationRef = applicationRef;
+            _this.injector = injector;
+            _this.document = document;
+            _this.dialogRef = null;
+            return _this;
         }
         /**
          * @return {?}
@@ -3406,19 +3584,38 @@
          */
         function () {
             this.removeDialog();
+            _super.prototype.ngOnDestroy.call(this);
         };
         /**
          * @param {?} component
-         * @param {?=} injector
+         * @param {?=} config
          * @return {?}
          */
         FabricDialogService.prototype.open = /**
          * @param {?} component
-         * @param {?=} injector
+         * @param {?=} config
          * @return {?}
          */
-        function (component, injector) {
+        function (component, config) {
             if (!this.dialogRef) {
+                /** @type {?} */
+                var theme = Theme.FABRIC;
+                /** @type {?} */
+                var parentInjector = this.injector;
+                if (config && config.theme) {
+                    theme = config.theme;
+                }
+                if (config && config.injector) {
+                    parentInjector = config.injector;
+                }
+                /** @type {?} */
+                var injector = core.Injector.create({
+                    providers: [{
+                            provide: themeToken,
+                            useValue: theme
+                        }],
+                    parent: parentInjector
+                });
                 this.createAndAppend(component, injector);
                 this.closeOnEscKey();
             }
@@ -3449,7 +3646,7 @@
              * @param {?} key
              * @return {?}
              */
-            function (key) { return key.code === 'Escape'; })), operators.takeUntil(this.destroy$))
+            function (key) { return key.code === 'Escape'; })), this.takeUntil())
                 .subscribe((/**
              * @return {?}
              */
@@ -3458,22 +3655,20 @@
         /**
          * @private
          * @param {?} component
-         * @param {?=} injector
+         * @param {?} injector
          * @return {?}
          */
         FabricDialogService.prototype.createAndAppend = /**
          * @private
          * @param {?} component
-         * @param {?=} injector
+         * @param {?} injector
          * @return {?}
          */
         function (component, injector) {
             /** @type {?} */
-            var compInjector = injector || this.injector;
-            /** @type {?} */
             var componentRef = this.componentFactoryResolver
                 .resolveComponentFactory(FabricDialogComponent)
-                .create(compInjector);
+                .create(injector);
             componentRef.instance.dialogNestedComponent = component;
             componentRef.changeDetectorRef.detectChanges();
             this.applicationRef.attachView(componentRef.hostView);
@@ -3496,8 +3691,6 @@
                 this.applicationRef.detachView(this.dialogRef.hostView);
                 this.dialogRef.destroy();
                 this.dialogRef = null;
-                this.destroy$.next();
-                this.destroy$.complete();
             }
         };
         FabricDialogService.decorators = [
@@ -3511,15 +3704,10 @@
             { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
         ]; };
         return FabricDialogService;
-    }());
+    }(DialogService));
     if (false) {
         /** @type {?} */
         FabricDialogService.prototype.dialogRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        FabricDialogService.prototype.destroy$;
         /**
          * @type {?}
          * @private
@@ -3546,12 +3734,15 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FabricDialogComponent = /** @class */ (function () {
-        function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, elementRef, dialogService) {
-            this.componentFactoryResolver = componentFactoryResolver;
-            this.changeDetectorRef = changeDetectorRef;
-            this.elementRef = elementRef;
-            this.dialogService = dialogService;
+    var FabricDialogComponent = /** @class */ (function (_super) {
+        __extends(FabricDialogComponent, _super);
+        function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, elRef, renderer, theme, dialogService) {
+            var _this = _super.call(this, elRef, renderer, theme) || this;
+            _this.componentFactoryResolver = componentFactoryResolver;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.elRef = elRef;
+            _this.dialogService = dialogService;
+            return _this;
         }
         /**
          * @return {?}
@@ -3562,6 +3753,7 @@
         function () {
             this.createNestedComponent(this.dialogNestedComponent);
             this.changeDetectorRef.detectChanges();
+            this.addTheme();
         };
         /**
          * @return {?}
@@ -3597,7 +3789,7 @@
          */
         function (event) {
             /** @type {?} */
-            var dialogContentRef = this.elementRef.nativeElement.querySelector('.gui-dialog-content');
+            var dialogContentRef = this.elRef.nativeElement.querySelector('.gui-dialog-content');
             if (dialogContentRef) {
                 return !dialogContentRef.contains(event.target);
             }
@@ -3630,6 +3822,8 @@
             { type: core.ComponentFactoryResolver },
             { type: core.ChangeDetectorRef },
             { type: core.ElementRef },
+            { type: core.Renderer2 },
+            { type: Theme, decorators: [{ type: core.Inject, args: [themeToken,] }] },
             { type: FabricDialogService, decorators: [{ type: core.Inject, args: [core.forwardRef((/**
                              * @return {?}
                              */
@@ -3639,7 +3833,7 @@
             container: [{ type: core.ViewChild, args: ['container', { read: core.ViewContainerRef, static: false },] }]
         };
         return FabricDialogComponent;
-    }());
+    }(DialogComponent));
     if (false) {
         /** @type {?} */
         FabricDialogComponent.prototype.container;
@@ -3659,7 +3853,7 @@
          * @type {?}
          * @private
          */
-        FabricDialogComponent.prototype.elementRef;
+        FabricDialogComponent.prototype.elRef;
         /**
          * @type {?}
          * @private
@@ -5833,36 +6027,41 @@
     exports.ResizeDetector = ResizeDetector;
     exports.ResizeDetectorModule = ResizeDetectorModule;
     exports.SpinnerMode = SpinnerMode;
+    exports.Theme = Theme;
     exports.ɵa = FabricBadgeComponent;
     exports.ɵb = Indicator;
-    exports.ɵba = FabricSpinnerComponent;
-    exports.ɵbb = FabricToggleButtonComponent;
-    exports.ɵbc = ToggleButtonGroupService;
-    exports.ɵbd = FabricToggleButtonGroupComponent;
+    exports.ɵba = FabricProgressBarComponent;
+    exports.ɵbb = FabricProgressSpinnerComponent;
+    exports.ɵbc = AbstractSpinner;
+    exports.ɵbd = FabricSelectComponent;
+    exports.ɵbe = FabricSpinnerComponent;
+    exports.ɵbf = FabricToggleButtonComponent;
+    exports.ɵbg = ToggleButtonGroupService;
+    exports.ɵbh = FabricToggleButtonGroupComponent;
     exports.ɵc = FabricButtonGroupComponent;
     exports.ɵd = FabricCardComponent;
     exports.ɵe = FabricInlineDialogComponent;
-    exports.ɵf = InlineDialogGeometryService;
-    exports.ɵg = FabricDatePickerCalendarComponent;
-    exports.ɵh = FabricDatePickerService;
-    exports.ɵi = FabricDatePickerWeeks;
-    exports.ɵj = FabricDatePickerYears;
-    exports.ɵk = FabricDatePickerComponent;
-    exports.ɵl = FabricDatePickerInlineDialogService;
-    exports.ɵm = FabricDropdownComponent;
-    exports.ɵn = GeometryService;
-    exports.ɵo = DropdownItemComponent;
-    exports.ɵp = FabricDialogComponent;
-    exports.ɵq = FabricRadioButtonComponent;
-    exports.ɵr = FabricRadioGroupComponent;
-    exports.ɵs = FabricTabComponent;
-    exports.ɵt = TabItemComponent;
-    exports.ɵu = FabricTooltipDirective;
-    exports.ɵv = FabricTooltipComponent;
-    exports.ɵw = FabricProgressBarComponent;
-    exports.ɵx = FabricProgressSpinnerComponent;
-    exports.ɵy = AbstractSpinner;
-    exports.ɵz = FabricSelectComponent;
+    exports.ɵf = DialogComponent;
+    exports.ɵg = FabricReactive;
+    exports.ɵh = DialogService;
+    exports.ɵi = InlineDialogGeometryService;
+    exports.ɵj = themeToken;
+    exports.ɵk = FabricDatePickerCalendarComponent;
+    exports.ɵl = FabricDatePickerService;
+    exports.ɵm = FabricDatePickerWeeks;
+    exports.ɵn = FabricDatePickerYears;
+    exports.ɵo = FabricDatePickerComponent;
+    exports.ɵp = FabricDatePickerInlineDialogService;
+    exports.ɵq = FabricDropdownComponent;
+    exports.ɵr = GeometryService;
+    exports.ɵs = DropdownItemComponent;
+    exports.ɵt = FabricDialogComponent;
+    exports.ɵu = FabricRadioButtonComponent;
+    exports.ɵv = FabricRadioGroupComponent;
+    exports.ɵw = FabricTabComponent;
+    exports.ɵx = TabItemComponent;
+    exports.ɵy = FabricTooltipDirective;
+    exports.ɵz = FabricTooltipComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

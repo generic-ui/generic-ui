@@ -4,6 +4,7 @@ import { StructureId } from '../../domain/structure-id';
 import { Schema } from '../../domain/schema/read/schema';
 import { SchemaColumnHeader } from '../../domain/schema/read/schema-column-header';
 import { SchemaCssClass } from '../../domain/schema/read/schema-css-class';
+import { SchemaTheme } from '../../domain/schema/schema-theme';
 export declare class SchemaReadModelService {
     private schemaRepository;
     constructor(schemaRepository: SchemaRepository);
@@ -12,5 +13,6 @@ export declare class SchemaReadModelService {
     onHeight(structureId?: StructureId): Observable<number>;
     onContainerHeight(structureId?: StructureId): Observable<number>;
     onCssClasses(structureId?: StructureId): Observable<SchemaCssClass>;
+    onSingleTheme(structureId?: StructureId): Observable<SchemaTheme>;
     onColumnHeader(structureId?: StructureId): Observable<SchemaColumnHeader>;
 }

@@ -1,8 +1,10 @@
 import { ApplicationRef, ComponentFactoryResolver, ElementRef, Injector, OnDestroy, Type } from '@angular/core';
+import { Observable } from 'rxjs';
 import { InlineDialogPlacement } from './placement';
 import { InlineDialogGeometryService } from './fabric-inline-dialog-geometry.service';
-import { Observable } from 'rxjs';
-export declare class FabricInlineDialogService implements OnDestroy {
+import { DialogService } from '../../common/dialog/dialog.service';
+import { Theme } from '../../themes/theme';
+export declare class FabricInlineDialogService extends DialogService implements OnDestroy {
     private componentFactoryResolver;
     private applicationRef;
     private injector;
@@ -13,7 +15,12 @@ export declare class FabricInlineDialogService implements OnDestroy {
     private opened$;
     constructor(componentFactoryResolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector, document: any, inlineDialogGeometryService: InlineDialogGeometryService);
     ngOnDestroy(): void;
-    open(element: ElementRef, component: Type<any>, injector?: Injector, placement?: InlineDialogPlacement, offset?: number): void;
+    open(element: ElementRef, component: Type<any>, config?: {
+        injector?: Injector;
+        placement?: InlineDialogPlacement;
+        offset?: number;
+        theme?: Theme;
+    }): void;
     close(): void;
     isOpened(): boolean;
     onOpened(): Observable<boolean>;

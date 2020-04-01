@@ -6,9 +6,3 @@
 *.log
 *.iml
 /.idea/
-/dist/
-/dist-aot/
-/aot/
-/node_modules/
-/coverage/
-/target/
