@@ -1,7 +1,7 @@
-import { Aggregate } from '../aggregate/aggregate';
+import { AggregateRoot } from '../aggregate/aggregate-root';
 import { AggregateId } from '../../aggregate-id';
 import { Optional } from '../../../common/optional';
-export declare abstract class AggregateStore<S extends Aggregate> {
+export declare abstract class AggregateStore<I extends AggregateId, S extends AggregateRoot<I>> {
     abstract save(aggregate: S): void;
-    abstract getById(aggregateId: AggregateId): Optional<S>;
+    abstract getById(aggregateId: I): Optional<S>;
 }

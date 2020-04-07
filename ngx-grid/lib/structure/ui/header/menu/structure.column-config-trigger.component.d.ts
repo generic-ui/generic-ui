@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
-import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
+import { CellTemplateWithContext } from '../../../../composition/read/definition/cell-template-with-context';
+import { StructureCommandDispatcher } from '../../../ui-api/structure/structure.command-dispatcher';
 import { StructureColumnConfigService } from './structure.column-config.service';
 import { StructureColumnMenuConfig } from './config/structure.column-menu-config';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
@@ -14,7 +14,7 @@ export declare class StructureColumnConfigTriggerComponent extends SmartComponen
     headerDialogContainer: ElementRef;
     column: CellTemplateWithContext;
     config: StructureColumnMenuConfig;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandService, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structureColumnConfigService: StructureColumnConfigService);
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandDispatcher, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structureColumnConfigService: StructureColumnConfigService);
     ngOnInit(): void;
     openConfigDialog(): void;
     closeConfigDialog(): void;

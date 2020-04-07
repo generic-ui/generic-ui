@@ -1,5 +1,5 @@
 import { EventEmitter, OnChanges } from '@angular/core';
-import { Paging } from '../../../domain/paging/read/paging';
+import { Paging } from '../../../read/paging/paging';
 export declare class StructurePagingNavigatorComponent implements OnChanges {
     paging: Paging;
     sourceSize: number;

@@ -1,9 +1,9 @@
-import { PagingDispatcher } from '../../domain/paging/command/paging.dispatcher';
-import { PagingRepository } from '../../domain/paging/read/paging.repository';
-import { PagingAggregateFactory } from '../../domain/paging/command/paging.aggregate-factory';
-import { PagingConverter } from '../../domain/paging/paging.converter';
-import { PagingCommandService } from './paging-command.service';
-import { PagingReadModelService } from './paging-read-model.service';
-import { PagingEventService } from './paging-event.service';
+import { PagingDispatcher } from '../../domain/paging/paging.dispatcher';
+import { PagingRepository } from '../../read/paging/paging.repository';
+import { PagingManagerFactory } from '../../domain/paging/paging.manager-factory';
+import { PagingConverter } from '../../read/paging/paging.converter';
+import { StructurePagingCommandDispatcher } from './structure-paging.command-dispatcher';
+import { StructurePagingReadModelWarehouse } from './structure-paging.read-model-warehouse';
+import { StructurePagingEventRepository } from './structure-paging.event-repository';
 export declare const pagingCommandHandlers: import("@angular/core").Provider[];
-export declare const pagingProviders: (typeof PagingRepository | typeof PagingReadModelService | typeof PagingDispatcher | typeof PagingCommandService | typeof PagingAggregateFactory | typeof PagingConverter | typeof PagingEventService)[];
+export declare const pagingProviders: (typeof PagingRepository | typeof StructurePagingReadModelWarehouse | typeof PagingDispatcher | typeof StructurePagingCommandDispatcher | typeof PagingManagerFactory | typeof PagingConverter | typeof StructurePagingEventRepository)[];

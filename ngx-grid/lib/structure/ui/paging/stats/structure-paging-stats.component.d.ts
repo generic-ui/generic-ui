@@ -1,5 +1,5 @@
 import { OnChanges, SimpleChanges } from '@angular/core';
-import { Paging } from '../../../domain/paging/read/paging';
+import { Paging } from '../../../read/paging/paging';
 export declare class StructurePagingStatsComponent implements OnChanges {
     paging: Paging;
     sourceSize: number;

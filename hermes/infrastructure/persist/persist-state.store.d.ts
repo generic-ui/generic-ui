@@ -1,7 +1,8 @@
-import { AggregateId } from '../../domain/aggregate-id';
 import { PersistAnemia } from './persist-anemia';
 import { Optional } from '../../common/optional';
-export declare abstract class PersistStateStore<A extends PersistAnemia> {
+import { ReadModelRootId } from '../../read/read-model-root-id';
+import { AggregateId } from '../../domain/aggregate-id';
+export declare abstract class PersistStateStore<I extends ReadModelRootId, A extends PersistAnemia<I>> {
     private readonly state;
     set(anemia: A): void;
     setMany(anemias: Array<A>): void;

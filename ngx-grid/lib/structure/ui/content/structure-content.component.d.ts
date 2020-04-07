@@ -1,17 +1,17 @@
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../../composition/domain/read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../composition/read/definition/cell-template-with-accessor';
 import { FormationCommandService } from '../../ui-api/formation/formation-command.service';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { FormationReadModelService } from '../../ui-api/formation/formation-read-model.service';
 import { ItemEntity } from '../../domain/source/item.entity';
-import { VerticalFormationRepository } from '../../domain/structure/read/vertical-formation/vertical-formation.repository';
-import { StructureReadModelService } from '../../ui-api/structure/structure-read-model.service';
+import { VerticalFormationRepository } from '../../read/structure/vertical-formation/vertical-formation.repository';
+import { StructureReadModelWarehouse } from '../../ui-api/structure/structure.read-model-warehouse';
 import { StructureRowSelectEnabledArchive } from './row/structure.row-select-enabled.archive';
-import { StructureId } from '../../domain/structure-id';
-import { StructureSearchPhraseRepository } from '../../domain/structure/read/searching/phrase/structure.search-phrase.repository';
-import { StructureSearchHighlightArchive } from '../../domain/structure/read/searching/highlight/structure.search-highlight.archive';
+import { StructureId } from '../../domain/structure.id';
+import { StructureSearchPhraseRepository } from '../../read/structure/searching/phrase/structure.search-phrase.repository';
+import { StructureSearchHighlightArchive } from '../../read/structure/searching/highlight/structure.search-highlight.archive';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private platformId;
     private renderer;
@@ -20,7 +20,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     private formationCommandService;
     private structureCellEditArchive;
     private structureEditModeArchive;
-    private formationQueryService;
+    private formationReadModelService;
     private structureReadModelService;
     private structureRowSelectEnabledArchive;
     private verticalFormationRepository;
@@ -37,7 +37,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     phrase: boolean;
     rowSelecting: boolean;
     rowDetailOpened: number;
-    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationQueryService: FormationReadModelService, structureReadModelService: StructureReadModelService, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandService, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationReadModelService: FormationReadModelService, structureReadModelService: StructureReadModelWarehouse, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
     structureSearchPhraseRepository: StructureSearchPhraseRepository, structureSearchHighlightArchive: StructureSearchHighlightArchive);
     ngOnInit(): void;
     trackByFn(): number;

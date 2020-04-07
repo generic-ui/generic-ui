@@ -1,8 +1,9 @@
-import { AggregateFactory } from '../create-handler/aggregate.factory';
+import { AggregateFactory } from '../aggregate/aggregate-factory';
 import { AggregateRepository } from '../aggregate/aggregate-repository';
-import { Aggregate } from '../aggregate/aggregate';
-export interface AggregateDefinition {
+import { AggregateRoot } from '../aggregate/aggregate-root';
+import { AggregateId } from '../../aggregate-id';
+export interface AggregateDefinition<I extends AggregateId, A extends AggregateRoot<I>> {
     key: string;
-    factory: AggregateFactory<any>;
-    repository: AggregateRepository<Aggregate>;
+    factory: AggregateFactory<I, A>;
+    repository: AggregateRepository<I, A>;
 }

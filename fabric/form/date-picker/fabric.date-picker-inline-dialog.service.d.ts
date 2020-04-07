@@ -1,7 +1,7 @@
 import { ElementRef, Injector, Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FabricInlineDialogService } from '../../layout/inline-dialog/fabric-inline-dialog.service';
-import { InlineDialogPlacement } from '../../layout/inline-dialog/placement';
+import { FabricInlineDialogService } from '../../modal/inline-dialog/fabric-inline-dialog.service';
+import { InlineDialogPlacement } from '../../modal/inline-dialog/placement';
 export declare class FabricDatePickerInlineDialogService {
     private readonly fabricInlineDialogService;
     constructor(fabricInlineDialogService: FabricInlineDialogService);

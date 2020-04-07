@@ -1,7 +1,7 @@
-import { AggregateId } from '../../domain/aggregate-id';
-export declare abstract class PersistAnemia {
-    private readonly aggregateId;
-    protected constructor(uid: AggregateId);
-    getAggregateId(): AggregateId;
+import { ReadModelRootId } from '../../read/read-model-root-id';
+export declare abstract class PersistAnemia<I extends ReadModelRootId> {
+    private readonly readModelRootId;
+    protected constructor(uid: I);
+    getReadModelRootId(): I;
     getId(): string;
 }

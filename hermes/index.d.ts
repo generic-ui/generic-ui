@@ -10,7 +10,7 @@ export { provideEventHandlers } from './domain/provider.helpers';
 export { CommandDispatcher } from './domain/command/command.dispatcher';
 export { Command } from './domain/command/command';
 export { CommandHandler } from './domain/command/handler/command.handler';
-export { AggregateFactory } from './domain/command/create-handler/aggregate.factory';
+export { AggregateFactory } from './domain/command/aggregate/aggregate-factory';
 export { CommandBus } from './domain/command/command.bus';
 export { CommandLogger } from './domain/command/command.logger';
 export { CommandStream } from './domain/command/command.stream';
@@ -20,7 +20,7 @@ export { AggregateEvent } from './domain/command/aggregate/aggregate-event';
 export { AggregateRepository } from './domain/command/aggregate/aggregate-repository';
 export { AggregateStore } from './domain/command/store/aggregate.store';
 export { AggregateStoreRegister } from './domain/command/store/aggregate-store.register';
-export { Aggregate } from './domain/command/aggregate/aggregate';
+export { AggregateRoot } from './domain/command/aggregate/aggregate-root';
 export { AggregateId } from './domain/aggregate-id';
 export { DomainEventStatus } from './domain/event/status/domain-event-status';
 export { StatusResponse } from './domain/event/status/status.response';
@@ -32,10 +32,17 @@ export { DomainEventLogger } from './domain/event/domain-event.logger';
 export { DomainEventPayload } from './domain/event/domain-event.payload';
 export { DomainEventStream } from './domain/event/domain-event.stream';
 export { DOMAIN_EVENT_HANDLERS } from './domain/event/domain-event-handlers';
-export { ReadModel } from './domain/read/read-model';
-export { ReadModelRepository } from './domain/read/read-model.repository';
-export { ReadModelStore } from './domain/read/store/read-model.store';
-export { RootAggregate, Entity, ValueObject } from './domain/decorators';
+export { ReadModelEntity } from './read/read-model-entity';
+export { ReadModelEntityId } from './read/read-model-entity-id';
+export { ReadModelRoot } from './read/read-model-root';
+export { ReadModelRootId } from './read/read-model-root-id';
+export { ReadModelRootRepository } from './read/read-model-root.repository';
+export { ReadModelStore } from './read/store/read-model.store';
+export { Entity } from './domain/tactical/entity';
+export { EntityId } from './domain/tactical/entity-id';
+export { ValueObject } from './domain/decorators';
+export { DomainObject } from './domain/decorators';
+export { ReadModelObject } from './domain/decorators';
 /**
  * COMMON
  */
@@ -47,10 +54,10 @@ export { Optional } from './common/optional';
  */
 export { PersistAnemia } from './infrastructure/persist/persist-anemia';
 export { PersistStateStore } from './infrastructure/persist/persist-state.store';
-export { PersistReadModelStore } from './infrastructure/persist/query/persist.read-model.store';
+export { PersistReadModelStore } from './infrastructure/persist/read/persist.read-model.store';
 export { PersistAggregateStore } from './infrastructure/persist/command/persist-aggregate.store';
 export { InMemoryAggregateStore } from './infrastructure/in-memory/command/in-memory.aggregate.store';
-export { InMemoryReadModelStore } from './infrastructure/in-memory/query/in-memory.read-model.store';
+export { InMemoryReadModelStore } from './infrastructure/in-memory/read/in-memory.read-model.store';
 export { InMemoryStore } from './infrastructure/in-memory/in-memory.store';
 export { HermesModule } from './ui-api/hermes.module';
 export { HermesModuleConfig } from './ui-api/hermes-module-config';
@@ -60,4 +67,4 @@ export { EVENT_LOGGER_ENABLED } from './domain/hermes-tokens';
  * Testing
  */
 export { assertDomainEvents, assertAggregateEvents } from './testing/helpers';
-export { AggregateCommandHandler } from './domain/command/create-handler/aggregate-command.handler';
+export { AggregateCommandHandler } from './domain/command/aggregate/create/aggregate-command-handler';

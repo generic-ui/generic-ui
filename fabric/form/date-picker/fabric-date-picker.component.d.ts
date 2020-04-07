@@ -9,6 +9,7 @@ export declare class FabricDatePickerComponent implements OnInit, OnDestroy {
     private readonly formBuilder;
     private readonly changeDetectorRef;
     datePickerRef: ElementRef;
+    parentElement: ElementRef;
     selectDate: Date;
     name: string;
     openDialog: boolean;

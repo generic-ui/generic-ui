@@ -491,11 +491,11 @@ var Command = /** @class */ (function (_super) {
  */
 /**
  * @abstract
- * @template A
+ * @template I, A
  */
 var  /**
  * @abstract
- * @template A
+ * @template I, A
  */
 AggregateFactory = /** @class */ (function () {
     function AggregateFactory() {
@@ -796,9 +796,11 @@ if (false) {
  */
 /**
  * @abstract
+ * @template T
  */
 var  /**
  * @abstract
+ * @template T
  */
 AggregateEvent = /** @class */ (function () {
     function AggregateEvent(aggregateId, type) {
@@ -867,11 +869,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template A
+ * @template I, A
  */
 var  /**
  * @abstract
- * @template A
+ * @template I, A
  */
 AggregateRepository = /** @class */ (function () {
     function AggregateRepository() {
@@ -899,11 +901,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template S
+ * @template I, S
  */
 var  /**
  * @abstract
- * @template S
+ * @template I, S
  */
 AggregateStore = /** @class */ (function () {
     function AggregateStore() {
@@ -1002,12 +1004,14 @@ if (false) {
  */
 /**
  * @abstract
+ * @template I
  */
 var  /**
  * @abstract
+ * @template I
  */
-Aggregate = /** @class */ (function () {
-    function Aggregate(aggregateId, type) {
+AggregateRoot = /** @class */ (function () {
+    function AggregateRoot(aggregateId, type) {
         this.type = type;
         this.aggregateId = aggregateId;
         this.events = [];
@@ -1015,7 +1019,7 @@ Aggregate = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Aggregate.prototype.getId = /**
+    AggregateRoot.prototype.getId = /**
      * @return {?}
      */
     function () {
@@ -1024,7 +1028,7 @@ Aggregate = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Aggregate.prototype.getEvents = /**
+    AggregateRoot.prototype.getEvents = /**
      * @return {?}
      */
     function () {
@@ -1034,7 +1038,7 @@ Aggregate = /** @class */ (function () {
      * @param {?} args
      * @return {?}
      */
-    Aggregate.prototype.addEvent = /**
+    AggregateRoot.prototype.addEvent = /**
      * @param {?} args
      * @return {?}
      */
@@ -1062,37 +1066,43 @@ Aggregate = /** @class */ (function () {
     /**
      * @return {?}
      */
-    Aggregate.prototype.clearEvents = /**
+    AggregateRoot.prototype.clearEvents = /**
      * @return {?}
      */
     function () {
         this.events.length = 0;
     };
-    return Aggregate;
+    return AggregateRoot;
 }());
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    Aggregate.prototype.aggregateId;
+    AggregateRoot.prototype.aggregateId;
     /**
      * @type {?}
      * @private
      */
-    Aggregate.prototype.events;
+    AggregateRoot.prototype.events;
     /**
      * @type {?}
      * @private
      */
-    Aggregate.prototype.type;
+    AggregateRoot.prototype.type;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var AggregateId = /** @class */ (function () {
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+AggregateId = /** @class */ (function () {
     function AggregateId(uid) {
         this.uid = uid;
     }
@@ -1133,6 +1143,11 @@ if (false) {
      * @private
      */
     AggregateId.prototype.uid;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    AggregateId.prototype.toReadModelRootId = function () { };
 }
 
 /**
@@ -1685,31 +1700,173 @@ if (false) {
  */
 /**
  * @abstract
+ * @template T
  */
 var  /**
  * @abstract
+ * @template T
  */
-ReadModel = /** @class */ (function () {
-    function ReadModel(gui) {
-        this.aggregateId = gui;
+ReadModelEntity = /** @class */ (function () {
+    function ReadModelEntity(gui) {
+        this.entityId = gui;
     }
     /**
      * @return {?}
      */
-    ReadModel.prototype.getId = /**
+    ReadModelEntity.prototype.getId = /**
      * @return {?}
      */
     function () {
-        return this.aggregateId;
+        return this.entityId;
     };
-    return ReadModel;
+    return ReadModelEntity;
 }());
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ReadModel.prototype.aggregateId;
+    ReadModelEntity.prototype.entityId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ReadModelEntityId = /** @class */ (function () {
+    function ReadModelEntityId(uid) {
+        this.uid = uid;
+    }
+    /**
+     * @return {?}
+     */
+    ReadModelEntityId.prototype.toString = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @return {?}
+     */
+    ReadModelEntityId.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    ReadModelEntityId.prototype.equals = /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    function (entityId) {
+        return this.uid === entityId.getId();
+    };
+    return ReadModelEntityId;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReadModelEntityId.prototype.uid;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T
+ */
+var  /**
+ * @abstract
+ * @template T
+ */
+ReadModelRoot = /** @class */ (function () {
+    function ReadModelRoot(gui) {
+        this.rootId = gui;
+    }
+    /**
+     * @return {?}
+     */
+    ReadModelRoot.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.rootId;
+    };
+    return ReadModelRoot;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReadModelRoot.prototype.rootId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+ReadModelRootId = /** @class */ (function () {
+    function ReadModelRootId(uid) {
+        this.uid = uid;
+    }
+    /**
+     * @return {?}
+     */
+    ReadModelRootId.prototype.toString = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @return {?}
+     */
+    ReadModelRootId.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    ReadModelRootId.prototype.equals = /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    function (entityId) {
+        return this.uid === entityId.getId();
+    };
+    return ReadModelRootId;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ReadModelRootId.prototype.uid;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    ReadModelRootId.prototype.toAggregateId = function () { };
 }
 
 /**
@@ -1778,9 +1935,9 @@ if (false) {
 var  /**
  * @abstract
  */
-ReadModelRepository = /** @class */ (function (_super) {
-    __extends(ReadModelRepository, _super);
-    function ReadModelRepository(domainEventBus) {
+ReadModelRootRepository = /** @class */ (function (_super) {
+    __extends(ReadModelRootRepository, _super);
+    function ReadModelRootRepository(domainEventBus) {
         var _this = _super.call(this) || this;
         domainEventBus
             .ofEvent.apply(domainEventBus, __spread(_this.forEvents())).pipe(_this.takeUntil())
@@ -1798,7 +1955,7 @@ ReadModelRepository = /** @class */ (function (_super) {
         }));
         return _this;
     }
-    return ReadModelRepository;
+    return ReadModelRootRepository;
 }(Reactive));
 if (false) {
     /**
@@ -1806,14 +1963,14 @@ if (false) {
      * @protected
      * @return {?}
      */
-    ReadModelRepository.prototype.forEvents = function () { };
+    ReadModelRootRepository.prototype.forEvents = function () { };
     /**
      * @abstract
      * @protected
      * @param {?} event
      * @return {?}
      */
-    ReadModelRepository.prototype.subscribe = function (event) { };
+    ReadModelRootRepository.prototype.subscribe = function (event) { };
 }
 
 /**
@@ -1822,11 +1979,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template Q
+ * @template I, R
  */
 var  /**
  * @abstract
- * @template Q
+ * @template I, R
  */
 ReadModelStore = /** @class */ (function () {
     function ReadModelStore() {
@@ -1836,10 +1993,109 @@ ReadModelStore = /** @class */ (function () {
 if (false) {
     /**
      * @abstract
-     * @param {?} aggregateId
+     * @param {?} readModelRootId
      * @return {?}
      */
-    ReadModelStore.prototype.getById = function (aggregateId) { };
+    ReadModelStore.prototype.getById = function (readModelRootId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T
+ */
+var  /**
+ * @abstract
+ * @template T
+ */
+Entity = /** @class */ (function () {
+    function Entity(id) {
+        this.entityId = id;
+    }
+    /**
+     * @return {?}
+     */
+    Entity.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.entityId;
+    };
+    /**
+     * @param {?} entity
+     * @return {?}
+     */
+    Entity.prototype.equals = /**
+     * @param {?} entity
+     * @return {?}
+     */
+    function (entity) {
+        return this.entityId.equals(entity.getId());
+    };
+    return Entity;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Entity.prototype.entityId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+EntityId = /** @class */ (function () {
+    function EntityId(uid) {
+        this.uid = uid;
+    }
+    /**
+     * @return {?}
+     */
+    EntityId.prototype.toString = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @return {?}
+     */
+    EntityId.prototype.getId = /**
+     * @return {?}
+     */
+    function () {
+        return this.uid;
+    };
+    /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    EntityId.prototype.equals = /**
+     * @param {?} entityId
+     * @return {?}
+     */
+    function (entityId) {
+        return this.uid === entityId.getId();
+    };
+    return EntityId;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    EntityId.prototype.uid;
 }
 
 /**
@@ -1850,19 +2106,19 @@ if (false) {
  * @param {?} target
  * @return {?}
  */
-function RootAggregate(target) {
-}
-/**
- * @param {?} target
- * @return {?}
- */
-function Entity(target) {
-}
-/**
- * @param {?} target
- * @return {?}
- */
 function ValueObject(target) {
+}
+/**
+ * @param {?} target
+ * @return {?}
+ */
+function DomainObject(target) {
+}
+/**
+ * @param {?} target
+ * @return {?}
+ */
+function ReadModelObject(target) {
 }
 
 /**
@@ -2204,22 +2460,24 @@ if (false) {
  */
 /**
  * @abstract
+ * @template I
  */
 var  /**
  * @abstract
+ * @template I
  */
 PersistAnemia = /** @class */ (function () {
     function PersistAnemia(uid) {
-        this.aggregateId = uid;
+        this.readModelRootId = uid;
     }
     /**
      * @return {?}
      */
-    PersistAnemia.prototype.getAggregateId = /**
+    PersistAnemia.prototype.getReadModelRootId = /**
      * @return {?}
      */
     function () {
-        return this.aggregateId;
+        return this.readModelRootId;
     };
     /**
      * @return {?}
@@ -2228,7 +2486,7 @@ PersistAnemia = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.getAggregateId().toString();
+        return this.getReadModelRootId().toString();
     };
     return PersistAnemia;
 }());
@@ -2237,7 +2495,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    PersistAnemia.prototype.aggregateId;
+    PersistAnemia.prototype.readModelRootId;
 }
 
 /**
@@ -2246,11 +2504,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template A
+ * @template I, A
  */
 var  /**
  * @abstract
- * @template A
+ * @template I, A
  */
 PersistStateStore = /** @class */ (function () {
     function PersistStateStore() {
@@ -2330,11 +2588,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template R, A
+ * @template I, R, A
  */
 var  /**
  * @abstract
- * @template R, A
+ * @template I, R, A
  */
 PersistReadModelStore = /** @class */ (function (_super) {
     __extends(PersistReadModelStore, _super);
@@ -2418,11 +2676,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template D, A
+ * @template I, D, A
  */
 var  /**
  * @abstract
- * @template D, A
+ * @template I, D, A
  */
 PersistAggregateStore = /** @class */ (function (_super) {
     __extends(PersistAggregateStore, _super);
@@ -2518,11 +2776,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template T
+ * @template I, T
  */
 var  /**
  * @abstract
- * @template T
+ * @template I, T
  */
 InMemoryAggregateStore = /** @class */ (function (_super) {
     __extends(InMemoryAggregateStore, _super);
@@ -2617,11 +2875,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template R, D
+ * @template I, R, B, A
  */
 var  /**
  * @abstract
- * @template R, D
+ * @template I, R, B, A
  */
 InMemoryReadModelStore = /** @class */ (function (_super) {
     __extends(InMemoryReadModelStore, _super);
@@ -2639,6 +2897,7 @@ InMemoryReadModelStore = /** @class */ (function (_super) {
      * @return {?}
      */
     function (aggregateId) {
+        // const aggregateId = readModelRootId.toAggregateId() as B; // TODO remove as
         return this.getValue(aggregateId);
     };
     /**
@@ -2694,11 +2953,11 @@ if (false) {
  */
 /**
  * @abstract
- * @template S
+ * @template I, S
  */
 var  /**
  * @abstract
- * @template S
+ * @template I, S
  */
 InMemoryStore = /** @class */ (function () {
     function InMemoryStore() {
@@ -3156,7 +3415,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @template A, C
+ * @template I, A, C
  * @param {?} createAggregateCommandHandler
  * @param {?} factoryArchive
  * @param {?} aggregateRepositoryArchive
@@ -3167,10 +3426,10 @@ function aggregateCommandHandlerFactory(createAggregateCommandHandler, factoryAr
     return new AggregateCommandHandlerImpl(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName);
 }
 /**
- * @template A, C
+ * @template I, A, C
  */
 var  /**
- * @template A, C
+ * @template I, A, C
  */
 AggregateCommandHandlerImpl = /** @class */ (function () {
     function AggregateCommandHandlerImpl(createAggregateCommandHandler, aggregateFactoryArchive, aggregateRepositoryArchive, aggregateType) {
@@ -3204,7 +3463,7 @@ AggregateCommandHandlerImpl = /** @class */ (function () {
     function (command) {
         var _this = this;
         /** @type {?} */
-        var aggregateId = command.getAggregateId();
+        var aggregateId = (/** @type {?} */ (command.getAggregateId()));
         /** @type {?} */
         var optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
         optFactory.ifPresent((/**
@@ -3298,7 +3557,13 @@ var AGGREGATE_COMMAND_HANDLERS = 'HERMES - AGGREGATE_COMMAND_HANDLERS';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var AggregateFactoryArchive = /** @class */ (function () {
+/**
+ * @template I, A
+ */
+var  /**
+ * @template I, A
+ */
+AggregateFactoryArchive = /** @class */ (function () {
     function AggregateFactoryArchive() {
         this.map = new Map();
     }
@@ -3335,7 +3600,13 @@ if (false) {
      */
     AggregateFactoryArchive.prototype.map;
 }
-var AggregateRepositoryArchive = /** @class */ (function () {
+/**
+ * @template I, A
+ */
+var  /**
+ * @template I, A
+ */
+AggregateRepositoryArchive = /** @class */ (function () {
     function AggregateRepositoryArchive() {
         this.map = new Map();
     }
@@ -3374,6 +3645,7 @@ if (false) {
 }
 /**
  * @record
+ * @template I, A, C
  */
 function AggregateConfig() { }
 if (false) {
@@ -3385,8 +3657,8 @@ if (false) {
     AggregateConfig.prototype.key;
     /** @type {?} */
     AggregateConfig.prototype.createHandler;
-    /** @type {?|undefined} */
-    AggregateConfig.prototype.handlers;
+    /** @type {?} */
+    AggregateConfig.prototype.commandHandlers;
 }
 
 /**
@@ -3429,7 +3701,7 @@ var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @template A, C
+ * @template I, A, C
  * @param {?} commandHandler
  * @param {?} aggregateRepositoryArchive
  * @param {?} aggregateName
@@ -3439,10 +3711,10 @@ function commandHandlerFactory(commandHandler, aggregateRepositoryArchive, aggre
     return new CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateName);
 }
 /**
- * @template A, C
+ * @template I, A, C
  */
 var  /**
- * @template A, C
+ * @template I, A, C
  */
 CommandHandlerImpl = /** @class */ (function () {
     function CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateType) {
@@ -3475,7 +3747,7 @@ CommandHandlerImpl = /** @class */ (function () {
     function (command) {
         var _this = this;
         /** @type {?} */
-        var aggregateId = command.getAggregateId();
+        var aggregateId = (/** @type {?} */ (command.getAggregateId()));
         /** @type {?} */
         var optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
         optRepository.ifPresent((/**
@@ -3608,15 +3880,18 @@ function eventLoggerFactory(enabled, consoleEventLogger, noopEventLogger) {
         return noopEventLogger;
     }
 }
-var HermesModule = /** @class */ (function () {
+/**
+ * @template I, A, C
+ */
+var HermesModule = /** @class */ (function (_super) {
+    __extends(HermesModule, _super);
     function HermesModule(eventHandlers, aggregateCommandHandlers, handlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
-        var _this = this;
-        this.hermesLoggersInitializer = hermesLoggersInitializer;
-        this.hermesApi = hermesApi;
-        this.unsubscribe$ = new Subject();
-        this.hermesLoggersInitializer.start();
-        this.checkNullCommand(commandBus, handlers, aggregateCommandHandlers);
-        this.checkCommandHandlerIsCollection(handlers);
+        var _this = _super.call(this) || this;
+        _this.hermesLoggersInitializer = hermesLoggersInitializer;
+        _this.hermesApi = hermesApi;
+        _this.hermesLoggersInitializer.start();
+        _this.checkNullCommand(commandBus, handlers, aggregateCommandHandlers);
+        _this.checkCommandHandlerIsCollection(handlers);
         if (definedAggregate) {
             definedAggregate.forEach((/**
              * @param {?} def
@@ -3639,7 +3914,7 @@ var HermesModule = /** @class */ (function () {
             function (handler) {
                 commandBus
                     .ofCreateAggregateHandler(handler)
-                    .pipe(takeUntil(_this.unsubscribe$))
+                    .pipe(_this.takeUntil())
                     .subscribe((/**
                  * @param {?} command
                  * @return {?}
@@ -3657,7 +3932,7 @@ var HermesModule = /** @class */ (function () {
             function (handler) {
                 commandBus
                     .ofCommandHandler(handler)
-                    .pipe(takeUntil(_this.unsubscribe$))
+                    .pipe(_this.takeUntil())
                     .subscribe((/**
                  * @param {?} command
                  * @return {?}
@@ -3669,7 +3944,7 @@ var HermesModule = /** @class */ (function () {
         }
         if (eventHandlers) {
             domainEventBus
-                .pipe(takeUntil(this.unsubscribe$))
+                .pipe(_this.takeUntil())
                 .subscribe((/**
              * @param {?} event
              * @return {?}
@@ -3684,9 +3959,10 @@ var HermesModule = /** @class */ (function () {
                 }));
             }));
         }
+        return _this;
     }
     /**
-     * @template A, C
+     * @template I, A, C
      * @param {?} aggregateKey
      * @param {?} factory
      * @param {?} repository
@@ -3695,7 +3971,7 @@ var HermesModule = /** @class */ (function () {
      * @return {?}
      */
     HermesModule.defineAggregate = /**
-     * @template A, C
+     * @template I, A, C
      * @param {?} aggregateKey
      * @param {?} factory
      * @param {?} repository
@@ -3738,13 +4014,13 @@ var HermesModule = /** @class */ (function () {
         };
     };
     /**
-     * @template A, C
+     * @template I, A, C
      * @param {?} commandHandlerType
      * @param {?} aggregateName
      * @return {?}
      */
     HermesModule.registerCommandHandler = /**
-     * @template A, C
+     * @template I, A, C
      * @param {?} commandHandlerType
      * @param {?} aggregateName
      * @return {?}
@@ -3768,14 +4044,14 @@ var HermesModule = /** @class */ (function () {
     };
     /**
      * @private
-     * @template A, C
+     * @template I, A, C
      * @param {?} createCommandHandlerType
      * @param {?} aggregateName
      * @return {?}
      */
     HermesModule.registerCreateCommandHandler = /**
      * @private
-     * @template A, C
+     * @template I, A, C
      * @param {?} createCommandHandlerType
      * @param {?} aggregateName
      * @return {?}
@@ -3805,8 +4081,7 @@ var HermesModule = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+        _super.prototype.ngOnDestroy.call(this);
         this.hermesLoggersInitializer.stop();
     };
     /**
@@ -3826,13 +4101,13 @@ var HermesModule = /** @class */ (function () {
     function (commandBus, commandHandlers, aggregateCommandHandlers) {
         commandBus
             .ofNullHandler(commandHandlers, aggregateCommandHandlers)
-            .pipe(takeUntil(this.unsubscribe$))
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} command
          * @return {?}
          */
         function (command) {
-            console.log("Command " + command.toString() + " was not intercepted by any CommandHandler.");
+            console.error("Command " + command.toString() + " was not intercepted by any CommandHandler.");
         }));
     };
     /**
@@ -3847,7 +4122,7 @@ var HermesModule = /** @class */ (function () {
      */
     function (commandHandlers) {
         if (commandHandlers && !Array.isArray(commandHandlers)) {
-            console.log("You might provided commandHandler without specifying \"multi: true\".");
+            console.warn("You might provided commandHandler without specifying \"multi: true\".");
         }
     };
     HermesModule.decorators = [
@@ -3873,13 +4148,8 @@ var HermesModule = /** @class */ (function () {
         { type: HermesApi }
     ]; };
     return HermesModule;
-}());
+}(Reactive));
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    HermesModule.prototype.unsubscribe$;
     /**
      * @type {?}
      * @private
@@ -3933,6 +4203,7 @@ function assertDomainEvents(actualEvents, expectedEvents) {
     }
 }
 /**
+ * @template T
  * @param {?} actualEvents
  * @param {?} expectedEvents
  * @return {?}
@@ -3981,5 +4252,5 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { Aggregate, AggregateArchive, AggregateEvent, AggregateFactory, AggregateId, AggregateRepository, AggregateStore, AggregateStoreRegister, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, EVENT_LOGGER_ENABLED, Entity, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModel, ReadModelRepository, ReadModelStore, ReplayCommandDispatcher, RootAggregate, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Logger as ɵc, Message as ɵd, FILTERED_COMMAND_STREAM as ɵe, DomainEventStore as ɵf, Reactive as ɵg, ReactiveService as ɵh, ConsoleCommandLogger as ɵi, NoopCommandLogger as ɵj, ConsoleEventLogger as ɵk, NoopEventLogger as ɵl, HermesLoggersInitializer as ɵm, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, AGGREGATE_COMMAND_HANDLERS as ɵp, COMMAND_HANDLERS as ɵq, aggregateDefinitionToken as ɵr, HermesDomainModule as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, aggregateCommandHandlerFactory as ɵw, AggregateCommandHandlerImpl as ɵx };
+export { AggregateArchive, AggregateEvent, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, DOMAIN_EVENT_HANDLERS, DomainEvent, DomainEventBus, DomainEventHandler, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ReplayCommandDispatcher, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, Logger as ɵc, Message as ɵd, FILTERED_COMMAND_STREAM as ɵe, DomainEventStore as ɵf, Reactive as ɵg, ReactiveService as ɵh, ConsoleCommandLogger as ɵi, NoopCommandLogger as ɵj, ConsoleEventLogger as ɵk, NoopEventLogger as ɵl, HermesLoggersInitializer as ɵm, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, AGGREGATE_COMMAND_HANDLERS as ɵp, COMMAND_HANDLERS as ɵq, aggregateDefinitionToken as ɵr, HermesDomainModule as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, aggregateCommandHandlerFactory as ɵw, AggregateCommandHandlerImpl as ɵx };
 //# sourceMappingURL=generic-ui-hermes.js.map

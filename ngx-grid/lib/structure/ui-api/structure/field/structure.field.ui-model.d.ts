@@ -1,5 +1,5 @@
-import { FieldId } from '../../../domain/structure/command/field/data-type/field.id';
-import { DataType } from '../../../domain/structure/command/field/data-type/data-type';
+import { FieldId } from '../../../domain/structure/field/data-type/field.id';
+import { DataType } from '../../../domain/structure/field/data-type/data-type';
 export declare class StructureFieldUiModel {
     private readonly id;
     private readonly dataType;

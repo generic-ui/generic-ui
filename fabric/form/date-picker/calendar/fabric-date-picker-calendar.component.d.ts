@@ -1,4 +1,4 @@
-import { OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FabricDatePickerService } from '../fabric-date-picker.service';
 import { FabricDatePickerWeeks } from './weeks/fabric-date-picker.weeks';
 import { FabricDatePickerYears } from './years/fabric-date-picker.years';
@@ -6,6 +6,7 @@ export declare class FabricDatePickerCalendarComponent implements OnChanges, OnI
     private datePickerService;
     private datePickerWeeks;
     private datePickerYears;
+    private changeDetectorRef;
     currentDay: Date;
     daysOfTheWeek: string[];
     weeks: Array<Array<Date>>;
@@ -20,7 +21,7 @@ export declare class FabricDatePickerCalendarComponent implements OnChanges, OnI
     private yearSubscription;
     private enableMonthSelection;
     private enableYearSelection;
-    constructor(datePickerService: FabricDatePickerService, datePickerWeeks: FabricDatePickerWeeks, datePickerYears: FabricDatePickerYears);
+    constructor(datePickerService: FabricDatePickerService, datePickerWeeks: FabricDatePickerWeeks, datePickerYears: FabricDatePickerYears, changeDetectorRef: ChangeDetectorRef);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngOnDestroy(): void;

@@ -1,5 +1,5 @@
 import { GuiColumn } from '../../../ui-api/grid.api';
-import { ColumnConfig } from '../../../../../lib/composition/domain/column.config';
+import { ColumnConfig } from '../../../../../lib/composition/domain/column/column.config';
 export declare class GridColumnConverter {
     private readonly columnTypeConverter;
     private readonly columnAggregationConverter;

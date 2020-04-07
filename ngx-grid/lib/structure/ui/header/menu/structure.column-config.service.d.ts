@@ -1,15 +1,15 @@
 import { ElementRef, Injector } from '@angular/core';
 import { FabricInlineDialogService } from '@generic-ui/fabric';
-import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
-import { SchemaReadModelService } from '../../../ui-api/schema/schema-read-model.service';
+import { CellTemplateWithContext } from '../../../../composition/read/definition/cell-template-with-context';
 import { Reactive } from '../../../../../common/cdk/reactive';
 import { StructureThemeConverter } from '../../schema/structure.theme.converter';
+import { SchemaReadModelWarehouse } from '../../../../schema/ui-api/schema.read-model-warehouse';
 export declare class StructureColumnConfigService extends Reactive {
     private readonly injector;
-    private readonly schemaReadModelService;
+    private readonly schemaReadModelRepository;
     private readonly structureThemeConverter;
     private readonly inlineDialogService;
-    constructor(injector: Injector, schemaReadModelService: SchemaReadModelService, structureThemeConverter: StructureThemeConverter, inlineDialogService: FabricInlineDialogService);
+    constructor(injector: Injector, schemaReadModelRepository: SchemaReadModelWarehouse, structureThemeConverter: StructureThemeConverter, inlineDialogService: FabricInlineDialogService);
     open(elementRef: ElementRef, column: CellTemplateWithContext): void;
     close(): void;
 }

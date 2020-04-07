@@ -1,5 +1,5 @@
 import { __extends, __spread } from 'tslib';
-import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, Injectable, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, ChangeDetectorRef, forwardRef, ViewChild, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
+import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, Injectable, ChangeDetectorRef, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, forwardRef, ViewChild, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
@@ -360,7 +360,7 @@ var FabricCardComponent = /** @class */ (function () {
     FabricCardComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-card',
-                    template: "<div [ngClass]=\"{'gui-content-block': isOnlyContentBlockEnabled()}\"\n\t class=\"gui-card-body\">\n\n\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
+                    template: "<div [ngClass]=\"{'gui-content-block': isOnlyContentBlockEnabled()}\"\n\t class=\"gui-card-body\">\n\n\t<div class=\"gui-card-image-wrapper\">\n\t\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     host: {
@@ -1111,10 +1111,11 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FabricDatePickerCalendarComponent = /** @class */ (function () {
-    function FabricDatePickerCalendarComponent(datePickerService, datePickerWeeks, datePickerYears) {
+    function FabricDatePickerCalendarComponent(datePickerService, datePickerWeeks, datePickerYears, changeDetectorRef) {
         this.datePickerService = datePickerService;
         this.datePickerWeeks = datePickerWeeks;
         this.datePickerYears = datePickerYears;
+        this.changeDetectorRef = changeDetectorRef;
         this.currentDay = new Date();
         this.daysOfTheWeek = daysOfTheWeek;
         this.quarters = quarters;
@@ -1209,6 +1210,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
         if (this.enableYearSelection) {
             this.years = this.datePickerYears.prevYearRange();
         }
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @return {?}
@@ -1227,6 +1229,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
         if (this.enableYearSelection) {
             this.years = this.datePickerYears.nextYearRange();
         }
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @param {?} date
@@ -1237,8 +1240,9 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
      * @return {?}
      */
     function (date) {
-        this.datePickerService.dateSelected(date);
         this.selectDate = date;
+        this.changeDetectorRef.detectChanges();
+        this.datePickerService.dateSelected(date);
     };
     /**
      * @return {?}
@@ -1362,6 +1366,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
         this.enableYearSelection = false;
         this.enableMonthSelection = true;
         this.calculateDatePickerData();
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @param {?} month
@@ -1375,6 +1380,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
         this.selectedMonth = month;
         this.enableMonthSelection = false;
         this.calculateDatePickerData();
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @return {?}
@@ -1384,6 +1390,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
      */
     function () {
         this.enableMonthSelection = !this.enableMonthSelection;
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @return {?}
@@ -1394,6 +1401,7 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
     function () {
         this.enableMonthSelection = false;
         this.enableYearSelection = !this.enableYearSelection;
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @return {?}
@@ -1420,7 +1428,8 @@ var FabricDatePickerCalendarComponent = /** @class */ (function () {
     FabricDatePickerCalendarComponent.ctorParameters = function () { return [
         { type: FabricDatePickerService },
         { type: FabricDatePickerWeeks },
-        { type: FabricDatePickerYears }
+        { type: FabricDatePickerYears },
+        { type: ChangeDetectorRef }
     ]; };
     return FabricDatePickerCalendarComponent;
 }());
@@ -1483,6 +1492,11 @@ if (false) {
      * @private
      */
     FabricDatePickerCalendarComponent.prototype.datePickerYears;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCalendarComponent.prototype.changeDetectorRef;
 }
 
 /**
@@ -1585,33 +1599,33 @@ var InlineDialogCords = /** @class */ (function () {
         /** @type {?} */
         var elementRect = element.nativeElement.getBoundingClientRect();
         /** @type {?} */
-        var elementBottom = elementRect.bottom;
+        var elementBottom = this.window.pageYOffset + elementRect.bottom;
         /** @type {?} */
-        var elementLeft = elementRect.left;
+        var elementLeft = this.window.pageXOffset + elementRect.left;
         /** @type {?} */
-        var elementRight = elementRect.right;
+        var elementRight = this.window.pageXOffset + elementRect.right;
         /** @type {?} */
-        var elementTop = elementRect.top;
+        var elementTop = this.window.pageYOffset + elementRect.top;
         switch (this.placement) {
             case InlineDialogPlacement.Bottom:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
+                this.horizontalPosition = elementLeft;
                 this.verticalPosition = elementBottom + this.inlineDialogOffset;
                 break;
             case InlineDialogPlacement.Top:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
-                this.verticalPosition = this.window.pageYOffset + elementTop + this.inlineDialogOffset;
+                this.horizontalPosition = elementLeft;
+                this.verticalPosition = elementTop + this.inlineDialogOffset;
                 break;
             case InlineDialogPlacement.Right:
-                this.horizontalPosition = this.window.pageXOffset + elementRight + this.inlineDialogOffset;
+                this.horizontalPosition = elementRight + this.inlineDialogOffset;
                 this.verticalPosition = elementTop;
                 break;
             case InlineDialogPlacement.Left:
-                this.horizontalPosition = elementLeft + this.window.pageXOffset + this.inlineDialogOffset;
+                this.horizontalPosition = elementLeft + this.inlineDialogOffset;
                 this.verticalPosition = elementTop;
                 break;
             default:
-                this.horizontalPosition = this.window.pageXOffset + elementLeft;
-                this.verticalPosition = this.window.pageYOffset + elementBottom + this.inlineDialogOffset;
+                this.horizontalPosition = elementLeft;
+                this.verticalPosition = elementBottom + this.inlineDialogOffset;
         }
         this.calculateDirection(inlineDialogGeometry, element);
     };
@@ -1629,9 +1643,9 @@ var InlineDialogCords = /** @class */ (function () {
      */
     function (inlineDialogGeometry, element) {
         /** @type {?} */
-        var windowHeight = this.window.innerHeight;
+        var windowHeight = this.window.innerHeight + this.window.pageYOffset;
         /** @type {?} */
-        var windowWidth = this.window.innerWidth;
+        var windowWidth = this.window.innerWidth + this.window.pageXOffset;
         /** @type {?} */
         var elementHeight = element.nativeElement.offsetHeight;
         /** @type {?} */
@@ -1933,6 +1947,7 @@ var FabricInlineDialogComponent = /** @class */ (function (_super) {
         this.createNestedComponent(this.inlineDialogNestedComponent);
         this.inlineDialogGeometryService.changeGeometry(this.elRef);
         this.addTheme();
+        this.changeDetectorRef.detectChanges();
     };
     /**
      * @return {?}
@@ -1995,7 +2010,7 @@ var FabricInlineDialogComponent = /** @class */ (function (_super) {
                     template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-inline-dialog-wrapper{position:absolute;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
+                    styles: [".gui-inline-dialog-wrapper{position:absolute;box-sizing:border-box;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{box-sizing:border-box;background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
                 }] }
     ];
     /** @nocollapse */
@@ -2317,7 +2332,7 @@ var FabricDatePickerInlineDialogService = /** @class */ (function () {
      * @return {?}
      */
     function (element, component, injector, placement, offset) {
-        this.fabricInlineDialogService.open(element, component);
+        this.fabricInlineDialogService.open(element, component, { placement: InlineDialogPlacement.Bottom, offset: 0 });
     };
     /**
      * @return {?}
@@ -2427,8 +2442,8 @@ var FabricDatePickerComponent = /** @class */ (function () {
          */
         function (date) {
             _this.pickedDate = date;
-            _this.changeDetectorRef.detectChanges();
             _this.dateSelected.emit(date);
+            _this.changeDetectorRef.detectChanges();
             _this.fabricDatePickerInlineDialogService.close();
         }));
         this.fabricDatePickerInlineDialogService
@@ -2461,11 +2476,11 @@ var FabricDatePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.fabricDatePickerInlineDialogService.close();
         this.datePickerSubscription.unsubscribe();
         this.datePickerDaySubscription.unsubscribe();
         this.unsub$.next();
         this.unsub$.complete();
+        this.fabricDatePickerInlineDialogService.close();
     };
     /**
      * @return {?}
@@ -2474,7 +2489,10 @@ var FabricDatePickerComponent = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.fabricDatePickerInlineDialogService.open(this.datePickerRef, FabricDatePickerCalendarComponent);
+        if (!this.parentElement) {
+            this.parentElement = this.datePickerRef;
+        }
+        this.fabricDatePickerInlineDialogService.open(this.parentElement, FabricDatePickerCalendarComponent);
     };
     /**
      * @private
@@ -2527,8 +2545,9 @@ var FabricDatePickerComponent = /** @class */ (function () {
             var date = +str[0];
             return new Date(year, month, date);
         }
-        else
+        else {
             return this.pickedDate;
+        }
     };
     FabricDatePickerComponent.decorators = [
         { type: Component, args: [{
@@ -2536,7 +2555,7 @@ var FabricDatePickerComponent = /** @class */ (function () {
                     template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: 'dd/MM/yyyy'\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);height:16px;width:16px;margin-left:-16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
+                    styles: [".gui-date-picker{display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex;position:relative;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);position:absolute;right:0;height:16px;width:16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
                 }] }
     ];
     /** @nocollapse */
@@ -2548,6 +2567,7 @@ var FabricDatePickerComponent = /** @class */ (function () {
     ]; };
     FabricDatePickerComponent.propDecorators = {
         datePickerRef: [{ type: ViewChild, args: ['datePicker', { static: false },] }],
+        parentElement: [{ type: Input }],
         selectDate: [{ type: Input }],
         name: [{ type: Input }],
         openDialog: [{ type: Input }],
@@ -2560,6 +2580,8 @@ var FabricDatePickerComponent = /** @class */ (function () {
 if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.datePickerRef;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.parentElement;
     /** @type {?} */
     FabricDatePickerComponent.prototype.selectDate;
     /** @type {?} */
@@ -3766,7 +3788,7 @@ var FabricProgressBarComponent = /** @class */ (function () {
     FabricProgressBarComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-progress-bar',
-                    template: "<div\n\t[style.height.px]=\"height\"\n\t[style.text-align]=\"textAlign\"\n\t[style.width.px]=\"width\"\n\tclass=\"gui-progress-bar\">\n\t<div\n\t\t[style.background]=\"color\"\n\t\t[style.width.%]=\"progress\"\n\t\tclass=\"gui-progress\">\n        <span\n\t\t\t[style.top]=\"textTop\"\n\t\t\tclass=\"gui-progress-text\">\n        <ng-content></ng-content>\n        </span>\n\t</div>\n</div>\n",
+                    template: "<div\n\t[style.height.px]=\"height\"\n\t[style.text-align]=\"textAlign\"\n\t[style.width.px]=\"width\"\n\tclass=\"gui-progress-bar\">\n\t<div\n\t\t[style.background]=\"color\"\n\t\t[style.width.%]=\"progress\"\n\t\tclass=\"gui-progress\">\n\t\t<span\n\t\t\t[style.top]=\"textTop\"\n\t\t\tclass=\"gui-progress-text\">\n\t\t\t<ng-content></ng-content>\n\t\t</span>\n\t</div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     host: {
@@ -5429,8 +5451,9 @@ var FabricToggleButtonComponent = /** @class */ (function (_super) {
         if (e.target.disabled) {
             e.stopPropagation();
         }
-        else
+        else {
             this.toggle();
+        }
     };
     /**
      * @return {?}
@@ -5813,6 +5836,17 @@ var FabricModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+FabricNestedDialogComponent = /** @class */ (function () {
+    function FabricNestedDialogComponent() {
+    }
+    return FabricNestedDialogComponent;
+}());
 
 /**
  * @fileoverview added by tsickle
@@ -5824,5 +5858,10 @@ var FabricModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricProgressBarComponent as ɵba, FabricProgressSpinnerComponent as ɵbb, AbstractSpinner as ɵbc, FabricSelectComponent as ɵbd, FabricSpinnerComponent as ɵbe, FabricToggleButtonComponent as ɵbf, ToggleButtonGroupService as ɵbg, FabricToggleButtonGroupComponent as ɵbh, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, DialogService as ɵh, InlineDialogGeometryService as ɵi, themeToken as ɵj, FabricDatePickerCalendarComponent as ɵk, FabricDatePickerService as ɵl, FabricDatePickerWeeks as ɵm, FabricDatePickerYears as ɵn, FabricDatePickerComponent as ɵo, FabricDatePickerInlineDialogService as ɵp, FabricDropdownComponent as ɵq, GeometryService as ɵr, DropdownItemComponent as ɵs, FabricDialogComponent as ɵt, FabricRadioButtonComponent as ɵu, FabricRadioGroupComponent as ɵv, FabricTabComponent as ɵw, TabItemComponent as ɵx, FabricTooltipDirective as ɵy, FabricTooltipComponent as ɵz };
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricProgressBarComponent as ɵba, FabricProgressSpinnerComponent as ɵbb, AbstractSpinner as ɵbc, FabricSelectComponent as ɵbd, FabricSpinnerComponent as ɵbe, FabricToggleButtonComponent as ɵbf, ToggleButtonGroupService as ɵbg, FabricToggleButtonGroupComponent as ɵbh, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, DialogService as ɵh, InlineDialogGeometryService as ɵi, themeToken as ɵj, FabricDatePickerCalendarComponent as ɵk, FabricDatePickerService as ɵl, FabricDatePickerWeeks as ɵm, FabricDatePickerYears as ɵn, FabricDatePickerComponent as ɵo, FabricDatePickerInlineDialogService as ɵp, FabricDropdownComponent as ɵq, GeometryService as ɵr, DropdownItemComponent as ɵs, FabricDialogComponent as ɵt, FabricRadioButtonComponent as ɵu, FabricRadioGroupComponent as ɵv, FabricTabComponent as ɵw, TabItemComponent as ɵx, FabricTooltipDirective as ɵy, FabricTooltipComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

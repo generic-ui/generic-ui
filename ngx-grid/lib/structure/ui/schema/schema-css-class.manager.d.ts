@@ -1,9 +1,10 @@
-import { ElementRef, OnDestroy, RendererFactory2 } from '@angular/core';
-import { SchemaReadModelService } from '../../ui-api/schema/schema-read-model.service';
-import { StructureId } from '../../domain/structure-id';
-export declare class SchemaCssClassManager implements OnDestroy {
-    private rendererFactory2;
-    private schemaQueryService;
+import { ElementRef, RendererFactory2 } from '@angular/core';
+import { SchemaReadModelWarehouse } from '../../../schema/ui-api/schema.read-model-warehouse';
+import { SchemaReadModelRootId } from '../../../schema/read/schema.read-model-root-id';
+import { Reactive } from '../../../../common/cdk/reactive';
+export declare class SchemaCssClassManager extends Reactive {
+    private readonly rendererFactory2;
+    private readonly schemaReadModelRepository;
     private readonly VERTICAL_GRID_CLASS_NAME;
     private readonly HORIZONTAL_GRID_CLASS_NAME;
     private readonly THEME_FABRIC_CLASS_NAME;
@@ -16,10 +17,8 @@ export declare class SchemaCssClassManager implements OnDestroy {
     private readonly renderer;
     private cssClass;
     private cssHostRef;
-    private unsubscribe$;
-    constructor(rendererFactory2: RendererFactory2, schemaQueryService: SchemaReadModelService);
-    ngOnDestroy(): void;
-    init(elementRef: ElementRef, structureId: StructureId): void;
+    constructor(rendererFactory2: RendererFactory2, schemaReadModelRepository: SchemaReadModelWarehouse);
+    init(elementRef: ElementRef, schemaReadModelRootId: SchemaReadModelRootId): void;
     private updateState;
     private renderCssClasses;
     private toggleCssClass;

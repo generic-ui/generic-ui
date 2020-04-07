@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CompositionReadModelService } from '../../../composition/ui-api/composition-read-model.service';
-import { CellTemplateWithContext } from '../../../composition/domain/read/definition/cell-template-with-context';
-import { CompositionCommandService } from '../../../composition/ui-api/composition.command-service';
-import { CompositionId } from '../../../composition/domain/composition-id';
+import { CompositionReadModelWarehouse } from '../../../composition/ui-api/composition.read-model-warehouse';
+import { CellTemplateWithContext } from '../../../composition/read/definition/cell-template-with-context';
+import { CompositionCommandDispatcher } from '../../../composition/ui-api/composition.command-dispatcher';
+import { CompositionId } from '../../../composition/domain/composition.id';
 export declare class StructureColumnManagerComponent extends SmartComponent implements OnInit {
     private changeDetectorRef;
     private compositionId;
@@ -11,7 +11,7 @@ export declare class StructureColumnManagerComponent extends SmartComponent impl
     private compositionReadModelService;
     columns: Array<CellTemplateWithContext>;
     enabledColumnsCount: number;
-    constructor(changeDetectorRef: ChangeDetectorRef, compositionId: CompositionId, compositionCommandService: CompositionCommandService, compositionReadModelService: CompositionReadModelService);
+    constructor(changeDetectorRef: ChangeDetectorRef, compositionId: CompositionId, compositionCommandService: CompositionCommandDispatcher, compositionReadModelService: CompositionReadModelWarehouse);
     ngOnInit(): void;
     toggleColumn(column: CellTemplateWithContext): void;
 }

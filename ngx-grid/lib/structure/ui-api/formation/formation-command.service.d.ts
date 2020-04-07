@@ -1,5 +1,5 @@
-import { FormationDispatcher } from '../../domain/formation/command/formation.dispatcher';
-import { StructureId } from '../../domain/structure-id';
+import { FormationDispatcher } from '../../domain/formation/formation.dispatcher';
+import { StructureId } from '../../domain/structure.id';
 export declare class FormationCommandService {
     private formationDispatcher;
     constructor(formationDispatcher: FormationDispatcher);

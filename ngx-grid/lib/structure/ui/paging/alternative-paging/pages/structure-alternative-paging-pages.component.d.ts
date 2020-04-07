@@ -1,6 +1,6 @@
 import { OnChanges, SimpleChanges } from '@angular/core';
-import { Paging } from '../../../../domain/paging/read/paging';
-import { PagingCommandService } from '../../../../ui-api/paging/paging-command.service';
+import { Paging } from '../../../../read/paging/paging';
+import { StructurePagingCommandDispatcher } from '../../../../ui-api/paging/structure-paging.command-dispatcher';
 export declare class StructureAlternativePagingPagesComponent implements OnChanges {
     private pagingCommandService;
     paging: Paging;
@@ -8,7 +8,7 @@ export declare class StructureAlternativePagingPagesComponent implements OnChang
     currentPage: number;
     pages: Array<number>;
     numberOfVisiblePages: number;
-    constructor(pagingCommandService: PagingCommandService);
+    constructor(pagingCommandService: StructurePagingCommandDispatcher);
     ngOnChanges(changes: SimpleChanges): void;
     calculate(): void;
     isSourceNotEmpty(): boolean;

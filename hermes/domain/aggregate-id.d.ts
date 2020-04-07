@@ -1,6 +1,8 @@
-export declare class AggregateId {
+import { ReadModelRootId } from '../read/read-model-root-id';
+export declare abstract class AggregateId {
     private readonly uid;
-    constructor(uid: string);
+    protected constructor(uid: string);
+    abstract toReadModelRootId(): ReadModelRootId;
     toString(): string;
     getId(): string;
     equals(aggregateId: AggregateId): boolean;

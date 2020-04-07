@@ -1,14 +1,15 @@
-import { ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../../../composition/domain/read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../../composition/read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
-import { SourceCommandService } from '../../../ui-api/source/source-command.service';
-import { ChangedValueEmitter } from '../../../../composition/domain/read/edit/changed-value.emitter';
+import { SourceCommandDispatcher } from '../../../ui-api/source/source.command-dispatcher';
+import { ChangedValueEmitter } from '../../../../composition/read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../domain/source/item.entity';
 import { StructureCellEditCloseAllService } from '../../edit/structure.cell-edit-close-all.service';
 export declare class StructureCellComponent extends SmartComponent implements OnChanges {
     private readonly changeDetectorRef;
+    private readonly elementRef;
     private readonly structureCellEditArchive;
     private readonly structureCellEditStore;
     private readonly cellEditCloseAllService;
@@ -23,7 +24,7 @@ export declare class StructureCellComponent extends SmartComponent implements On
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandService);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandDispatcher);
     ngOnChanges(changes: SimpleChanges): void;
     ngAfterViewInit(): void;
     isCellEditingEnabled(): boolean;

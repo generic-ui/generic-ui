@@ -1,14 +1,14 @@
 import { Observable } from 'rxjs';
 import { AggregateId, DomainEvent, DomainEventBus } from '@generic-ui/hermes';
-import { CompositionRepository } from '../../../domain/read/composition.repository';
-import { Composition } from '../../../domain/read/composition';
+import { CompositionReadModelRootRepository } from '../../../read/composition.read-model-root-repository';
+import { CompositionReadModeRoot } from '../../../read/composition.read-mode-root';
 import { InMemoryCompositionReadStore } from './in-memory.composition.read-store';
-export declare class InMemoryCompositionRepository extends CompositionRepository {
-    private inMemoryCompositionQueryStore;
+export declare class InMemoryCompositionRepository extends CompositionReadModelRootRepository {
+    private inMemoryCompositionReadStore;
     private readonly compositionIdToComposition;
     private readonly composition$;
-    constructor(domainEventBus: DomainEventBus, inMemoryCompositionQueryStore: InMemoryCompositionReadStore);
-    on(aggregateId: AggregateId): Observable<Readonly<Composition>>;
+    constructor(domainEventBus: DomainEventBus, inMemoryCompositionReadStore: InMemoryCompositionReadStore);
+    on(aggregateId: AggregateId): Observable<Readonly<CompositionReadModeRoot>>;
     protected forEvents(): Array<typeof DomainEvent>;
     protected subscribe(event: DomainEvent): void;
 }

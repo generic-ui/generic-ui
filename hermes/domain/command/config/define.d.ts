@@ -1,24 +1,27 @@
-import { AggregateFactory } from '../create-handler/aggregate.factory';
-import { Aggregate } from '../aggregate/aggregate';
+import { Provider } from '@angular/core';
+import { AggregateFactory } from '../aggregate/aggregate-factory';
+import { AggregateRoot } from '../aggregate/aggregate-root';
 import { Optional } from '../../../common/optional';
 import { AggregateRepository } from '../aggregate/aggregate-repository';
-import { AggregateCommandHandler } from '../create-handler/aggregate-command.handler';
-export declare class AggregateFactoryArchive {
+import { AggregateCommandHandler } from '../aggregate/create/aggregate-command-handler';
+import { AggregateId } from '../../aggregate-id';
+import { Command } from '../command';
+export declare class AggregateFactoryArchive<I extends AggregateId, A extends AggregateRoot<I>> {
     private readonly map;
     constructor();
-    add(key: string, factory: AggregateFactory<Aggregate>): void;
-    get(key: string): Optional<AggregateFactory<Aggregate>>;
+    add(key: string, factory: AggregateFactory<I, A>): void;
+    get(key: string): Optional<AggregateFactory<I, A>>;
 }
-export declare class AggregateRepositoryArchive {
+export declare class AggregateRepositoryArchive<I extends AggregateId, A extends AggregateRoot<I>> {
     private readonly map;
     constructor();
-    add(key: string, repository: AggregateRepository<Aggregate>): void;
-    get(key: string): Optional<AggregateRepository<Aggregate>>;
+    add(key: string, repository: AggregateRepository<I, A>): void;
+    get(key: string): Optional<AggregateRepository<I, A>>;
 }
-export interface AggregateConfig {
-    repository: AggregateRepository<Aggregate>;
-    factory: AggregateFactory<Aggregate>;
+export interface AggregateConfig<I extends AggregateId, A extends AggregateRoot<I>, C extends Command> {
+    repository: AggregateRepository<I, A>;
+    factory: AggregateFactory<I, A>;
     key: string;
-    createHandler: AggregateCommandHandler<any, any>;
-    handlers?: Array<any>;
+    createHandler: AggregateCommandHandler<A, C>;
+    commandHandlers: Array<Provider>;
 }

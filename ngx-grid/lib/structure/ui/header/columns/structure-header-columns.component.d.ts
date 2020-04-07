@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../composition/domain/read/definition/cell-template-with-context';
-import { StructureCommandService } from '../../../ui-api/structure/structure-command.service';
+import { CellTemplateWithContext } from '../../../../composition/read/definition/cell-template-with-context';
+import { StructureCommandDispatcher } from '../../../ui-api/structure/structure.command-dispatcher';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 export declare class StructureHeaderColumnsComponent extends SmartComponent implements OnInit {
     private elementRef;
@@ -9,7 +9,7 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent impl
     private structureCommandService;
     columns: Array<CellTemplateWithContext>;
     globalSearching: boolean;
-    constructor(elementRef: ElementRef, injector: Injector, changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandService);
+    constructor(elementRef: ElementRef, injector: Injector, changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandDispatcher);
     ngOnInit(): void;
     toggleSort(column: CellTemplateWithContext): void;
     isSortAsc(column: CellTemplateWithContext): boolean;
