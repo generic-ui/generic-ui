@@ -1,4 +1,5 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-export declare class PrevPageEvent extends DomainEvent {
-    constructor(aggregateId: AggregateId);
+import { DomainEvent } from '@generic-ui/hermes';
+import { StructureId } from '../../structure.id';
+export declare class PrevPageEvent extends DomainEvent<StructureId> {
+    constructor(aggregateId: StructureId);
 }

@@ -1,4 +1,5 @@
-import { AggregateRoot } from '@generic-ui/hermes';
+import { Type } from '@angular/core';
+import { AggregateEvent, AggregateRoot } from '@generic-ui/hermes';
 import { SchemaId } from './schema.id';
 import { SchemaTheme } from './schema-theme';
 import { SchemaRowColoring } from './schema-row-coloring';
@@ -12,11 +13,9 @@ export declare class SchemaAggregate extends AggregateRoot<SchemaId> {
     private theme;
     private rowColoring;
     constructor(id: SchemaId);
-    getRowColoring(): SchemaRowColoring;
-    getTheme(): SchemaTheme;
-    isVerticalGridEnabled(): boolean;
-    isHorizontalGridEnabled(): boolean;
-    setTheme(theme: SchemaTheme): void;
+    createEvent(): Type<AggregateEvent<SchemaId>>;
+    changeTheme(theme: SchemaTheme): void;
+    private setTheme;
     setRowColoring(coloring: SchemaRowColoring): void;
     setVerticalGrid(enabled: boolean): void;
     setHorizontalGrid(enabled: boolean): void;

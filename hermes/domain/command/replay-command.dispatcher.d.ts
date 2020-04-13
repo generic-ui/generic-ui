@@ -5,13 +5,14 @@ import { CommandDispatcher } from './command.dispatcher';
 import { DomainEvent } from '../event/domain-event';
 import { DomainEventBus } from '../event/domain-event.bus';
 import { StatusResponse } from '../event/status/status.response';
-export declare abstract class ReplayCommandDispatcher implements OnDestroy {
+import { AggregateId } from '../aggregate-id';
+export declare abstract class ReplayCommandDispatcher<I extends AggregateId> implements OnDestroy {
     private readonly dispatcher;
     private readonly bus;
     private unsubscribe$;
     private subscriptions;
     protected constructor(dispatcher: CommandDispatcher, bus: DomainEventBus);
-    protected abstract mapEventToResponse(event: DomainEvent): StatusResponse;
+    protected abstract mapEventToResponse(event: DomainEvent<I>): StatusResponse;
     dispatch(command: Command): string;
     dispatchAndWait(command: Command): Observable<StatusResponse>;
     ngOnDestroy(): void;

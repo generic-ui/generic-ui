@@ -1,6 +1,5 @@
-import { Command } from '@generic-ui/hermes';
+import { CreateAggregateCommand } from '@generic-ui/hermes';
 import { SchemaId } from '../schema.id';
-export declare class CreateSchemaCommand extends Command {
-    private readonly schemaId;
+export declare class CreateSchemaCommand extends CreateAggregateCommand {
     constructor(schemaId: SchemaId);
 }

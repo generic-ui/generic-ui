@@ -1,6 +1,7 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-export declare class StructureConfigSearchingSetEvent extends DomainEvent {
+import { DomainEvent } from '@generic-ui/hermes';
+import { StructureId } from '../../../structure.id';
+export declare class StructureConfigSearchingSetEvent extends DomainEvent<StructureId> {
     private readonly enabled;
-    constructor(aggregateId: AggregateId, enabled: boolean);
-    getEnabled(): boolean;
+    constructor(aggregateId: StructureId, enabled: boolean);
+    isEnabled(): boolean;
 }

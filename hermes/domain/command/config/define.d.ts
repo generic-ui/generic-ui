@@ -3,7 +3,7 @@ import { AggregateFactory } from '../aggregate/aggregate-factory';
 import { AggregateRoot } from '../aggregate/aggregate-root';
 import { Optional } from '../../../common/optional';
 import { AggregateRepository } from '../aggregate/aggregate-repository';
-import { AggregateCommandHandler } from '../aggregate/create/aggregate-command-handler';
+import { CreateAggregateCommandHandler } from '../aggregate/create/create-aggregate.command-handler';
 import { AggregateId } from '../../aggregate-id';
 import { Command } from '../command';
 export declare class AggregateFactoryArchive<I extends AggregateId, A extends AggregateRoot<I>> {
@@ -22,6 +22,6 @@ export interface AggregateConfig<I extends AggregateId, A extends AggregateRoot<
     repository: AggregateRepository<I, A>;
     factory: AggregateFactory<I, A>;
     key: string;
-    createHandler: AggregateCommandHandler<A, C>;
+    createHandler: CreateAggregateCommandHandler<A, C>;
     commandHandlers: Array<Provider>;
 }

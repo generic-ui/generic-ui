@@ -1,4 +1,5 @@
-import { AggregateId, AggregateRoot } from '@generic-ui/hermes';
+import { Type } from '@angular/core';
+import { AggregateEvent, AggregateId, AggregateRoot } from '@generic-ui/hermes';
 import { ColumnEntity } from './column/column.entity';
 import { ColumnParams } from './column/set-columns/column.params';
 import { ColumnEntityFactory } from './column/column-entity.factory';
@@ -20,6 +21,7 @@ export declare class CompositionAggregate extends AggregateRoot<CompositionId> {
     private readonly activeColumnContainer;
     private readonly activeColumnEntityConverter;
     constructor(id: AggregateId, columnFactory: ColumnEntityFactory, columnsParams?: Array<ColumnParams>, width?: number, resizeWidth?: boolean);
+    createEvent(): Type<AggregateEvent<CompositionId>>;
     getColumns(): Array<ColumnEntity>;
     getActiveColumns(): Array<ActiveColumnEntity>;
     getWidth(): number;

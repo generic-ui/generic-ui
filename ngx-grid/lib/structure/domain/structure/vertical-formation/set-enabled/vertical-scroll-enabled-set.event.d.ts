@@ -1,4 +1,5 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-export declare class VerticalScrollEnabledSetEvent extends DomainEvent {
-    constructor(aggregateId: AggregateId);
+import { DomainEvent } from '@generic-ui/hermes';
+import { StructureId } from '../../../structure.id';
+export declare class VerticalScrollEnabledSetEvent extends DomainEvent<StructureId> {
+    constructor(aggregateId: StructureId);
 }

@@ -4,15 +4,15 @@ import { ColumnConfig } from '../../../composition/domain/column/column.config';
 import { PagingConfig } from '../../domain/paging/paging-config';
 import { SchemaTheme } from '../../../schema/domain/schema-theme';
 import { SchemaRowColoring } from '../../../schema/domain/schema-row-coloring';
-import { SortingConfig } from '../../ui-api/structure/sorting-config';
-import { FilterConfig } from '../../ui-api/structure/filter/filter-config';
-import { QuickFiltersConfig } from '../../ui-api/structure/filter/quick-filters.config';
-import { SearchConfig } from '../../ui-api/structure/search/search-config';
-import { AggregationConfig } from '../../ui-api/structure/aggregation/aggregation-config';
+import { SortingConfig } from '../../ui-api/sorting-config';
+import { FilterConfig } from '../../ui-api/filter/filter-config';
+import { QuickFiltersConfig } from '../../ui-api/filter/quick-filters.config';
+import { SearchConfig } from '../../ui-api/search/search-config';
+import { SummariesConfig } from '../../ui-api/summaries/summaries-config';
 import { EditemItemValues } from '../../ui-api/source/event/editem-item.values';
 import { StructureId } from '../../domain/structure.id';
 import { CompositionId } from '../../../composition/domain/composition.id';
-import { StructureCommandDispatcher } from '../../ui-api/structure/structure.command-dispatcher';
+import { StructureCommandDispatcher } from '../../ui-api/structure.command-dispatcher';
 import { StructurePagingCommandDispatcher } from '../../ui-api/paging/structure-paging.command-dispatcher';
 import { StructurePagingEventRepository } from '../../ui-api/paging/structure-paging.event-repository';
 import { SourceCommandDispatcher } from '../../ui-api/source/source.command-dispatcher';
@@ -23,13 +23,13 @@ import { FormationEventService } from '../../ui-api/formation/formation-event.se
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureInfoPanelEnabledArchive } from '../panel/info/structure.info-panel-enabled.archive';
-import { StructureAggregationConfigService } from '../panel/aggregation/structure.aggregation-config.service';
+import { StructureSummariesConfigService } from '../panel/summaries/structure.summaries-config.service';
 import { StructureCellEditStore } from '../edit/structure.cell-edit.store';
-import { ColumnMenuConfig } from '../../ui-api/structure/column-menu-config';
+import { ColumnMenuConfig } from '../../ui-api/column-menu-config';
 import { StructureColumnMenuConfigArchive } from '../header/menu/config/structure.column-menu-config.archive';
 import { StructurePagingDisplayModeArchive } from '../paging/mode/structure-paging.display-mode.archive';
 import { StructureRowSelectEnabledArchive } from '../content/row/structure.row-select-enabled.archive';
-import { StructureSearchEventService } from '../../ui-api/structure/search/structure-search-event.service';
+import { StructureSearchEventService } from '../../ui-api/search/structure-search-event.service';
 import { SchemaCommandDispatcher } from '../../../schema/ui-api/schema.command-dispatcher';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
@@ -49,7 +49,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected structureEditModeArchive: StructureEditModeArchive;
     protected structureCellEditArchive: StructureCellEditArchive;
     protected structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive;
-    protected structureAggregationConfigService: StructureAggregationConfigService;
+    protected structureSummariesConfigService: StructureSummariesConfigService;
     protected structureCellEditStore: StructureCellEditStore;
     protected structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive;
     protected structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive;
@@ -83,7 +83,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     editMode: boolean;
     cellEditing: boolean;
     infoPanel: boolean;
-    aggregation: AggregationConfig;
+    summaries: SummariesConfig;
     columnMenu: ColumnMenuConfig;
     /***********************
      * OUTPUTS
@@ -98,7 +98,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
     searchPhraseChanged: EventEmitter<string>;
-    protected constructor(structureId: StructureId, compositionId: CompositionId, structureCommandService: StructureCommandDispatcher, pagingCommandService: StructurePagingCommandDispatcher, pagingEventService: StructurePagingEventRepository, sourceCommandService: SourceCommandDispatcher, sourceEventService: SourceEventService, schemaCommandDispatcher: SchemaCommandDispatcher, compositionCommandService: CompositionCommandDispatcher, compositionEventService: CompositionEventRepository, formationEventService: FormationEventService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationConfigService: StructureAggregationConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: StructureSearchEventService, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive);
+    protected constructor(structureId: StructureId, compositionId: CompositionId, structureCommandService: StructureCommandDispatcher, pagingCommandService: StructurePagingCommandDispatcher, pagingEventService: StructurePagingEventRepository, sourceCommandService: SourceCommandDispatcher, sourceEventService: SourceEventService, schemaCommandDispatcher: SchemaCommandDispatcher, compositionCommandService: CompositionCommandDispatcher, compositionEventService: CompositionEventRepository, formationEventService: FormationEventService, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: StructurePagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: StructureSearchEventService, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive);
     ngOnChanges(simpleChanges: SimpleChanges): void;
     ngOnInit(): void;
     onPageChange(page: number): void;

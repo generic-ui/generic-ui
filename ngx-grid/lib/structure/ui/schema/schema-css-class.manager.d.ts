@@ -1,5 +1,5 @@
 import { ElementRef, RendererFactory2 } from '@angular/core';
-import { SchemaReadModelWarehouse } from '../../../schema/ui-api/schema.read-model-warehouse';
+import { SchemaWarehouse } from '../../../schema/ui-api/schema.warehouse';
 import { SchemaReadModelRootId } from '../../../schema/read/schema.read-model-root-id';
 import { Reactive } from '../../../../common/cdk/reactive';
 export declare class SchemaCssClassManager extends Reactive {
@@ -17,7 +17,7 @@ export declare class SchemaCssClassManager extends Reactive {
     private readonly renderer;
     private cssClass;
     private cssHostRef;
-    constructor(rendererFactory2: RendererFactory2, schemaReadModelRepository: SchemaReadModelWarehouse);
+    constructor(rendererFactory2: RendererFactory2, schemaReadModelRepository: SchemaWarehouse);
     init(elementRef: ElementRef, schemaReadModelRootId: SchemaReadModelRootId): void;
     private updateState;
     private renderCssClasses;

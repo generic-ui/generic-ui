@@ -1,6 +1,7 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-export declare class StructureConfigQuickFilterSetEvent extends DomainEvent {
+import { DomainEvent } from '@generic-ui/hermes';
+import { StructureId } from '../../../structure.id';
+export declare class StructureConfigQuickFilterSetEvent extends DomainEvent<StructureId> {
     private readonly enabled;
-    constructor(aggregateId: AggregateId, enabled: boolean);
+    constructor(aggregateId: StructureId, enabled: boolean);
     getEnabled(): boolean;
 }

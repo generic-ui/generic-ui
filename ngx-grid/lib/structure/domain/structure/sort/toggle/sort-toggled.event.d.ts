@@ -1,10 +1,11 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
+import { DomainEvent } from '@generic-ui/hermes';
 import { CompositionId } from '../../../../../composition/domain/composition.id';
 import { FieldId } from '../../field/data-type/field.id';
-export declare class SortToggledEvent extends DomainEvent {
+import { StructureId } from '../../../structure.id';
+export declare class SortToggledEvent extends DomainEvent<StructureId> {
     private readonly compositionId;
     private readonly directions;
-    constructor(aggregateId: AggregateId, compositionId: CompositionId, directions: Array<{
+    constructor(aggregateId: StructureId, compositionId: CompositionId, directions: Array<{
         fieldId: FieldId;
         direction: boolean;
     }>);

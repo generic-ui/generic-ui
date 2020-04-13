@@ -9,7 +9,7 @@ export interface GuiColumn {
     width?: string | number;
     enabled?: boolean;
     align?: string | GuiColumnAlign;
-    aggregation?: GuiColumnAggregation;
+    summaries?: GuiColumnSummaries;
     sorting?: GuiColumnSorting;
     cellEditing?: GuiColumnCellEditing;
     matcher?: (item: any) => any;
@@ -105,14 +105,14 @@ export interface GuiSearching {
     placeholder?: string;
     phrase?: string;
 }
-export interface GuiAggregation {
+export interface GuiSummaries {
     enabled?: boolean;
     top?: boolean;
     bottom?: boolean;
 }
-export interface GuiColumnAggregation {
+export interface GuiColumnSummaries {
     enabled?: boolean;
-    aggregationTypes?: Array<any>;
+    summariesTypes?: Array<any>;
 }
 export interface GuiColumnSorting {
     enabled?: boolean;

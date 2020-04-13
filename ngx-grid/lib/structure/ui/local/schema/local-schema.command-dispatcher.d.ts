@@ -3,7 +3,7 @@ import { SchemaReadModelRootId } from '../../../../schema/read/schema.read-model
 import { SchemaTheme } from '../../../../schema/domain/schema-theme';
 import { SchemaCommandDispatcher } from '../../../../schema/ui-api/schema.command-dispatcher';
 import { SchemaRowColoring } from '../../../../schema/domain/schema-row-coloring';
-import { StructureCommandDispatcher } from '../../../ui-api/structure/structure.command-dispatcher';
+import { StructureCommandDispatcher } from '../../../ui-api/structure.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
 export declare class LocalSchemaCommandDispatcher extends SchemaCommandDispatcher {
     private readonly schemaReadModelRootId;

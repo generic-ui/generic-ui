@@ -1,13 +1,12 @@
-import { Command } from '../command/command';
-import { AggregateEvent } from '../command/aggregate/aggregate-event';
 import { DomainEventStream } from './domain-event.stream';
 import { DomainEvent } from './domain-event';
 import { AggregateId } from '../aggregate-id';
+import { AggregateRoot } from '../command/aggregate/aggregate-root';
 export declare class DomainEventPublisher {
     private eventStream;
     constructor(eventStream: DomainEventStream);
-    publish(event: DomainEvent): void;
-    publish(events: ReadonlyArray<DomainEvent>): void;
-    dispatchAggregateEvent(aggregateEvent: AggregateEvent<AggregateId>, command: Command): void;
+    publish(event: DomainEvent<AggregateId>): void;
+    publish(events: ReadonlyArray<DomainEvent<AggregateId>>): void;
+    publishFromAggregate(aggregate: AggregateRoot<AggregateId>): void;
     private publishEvent;
 }

@@ -1,7 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-export var AGGREGATION_CALCULATORS = 'GUI - Aggregation Calculators';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWdncmVnYXRpb24uY2FsY3VsYXRvcnMudG9rZW4uanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtZ3JpZC8iLCJzb3VyY2VzIjpbImxpYi9zdHJ1Y3R1cmUvZG9tYWluL3N0cnVjdHVyZS9hZ2dyZWdhdGlvbi9jYWxjdWxhdGlvbi9hZ2dyZWdhdGlvbi5jYWxjdWxhdG9ycy50b2tlbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sS0FBTyx1QkFBdUIsR0FBRywrQkFBK0IiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgQUdHUkVHQVRJT05fQ0FMQ1VMQVRPUlMgPSAnR1VJIC0gQWdncmVnYXRpb24gQ2FsY3VsYXRvcnMnO1xuIl19

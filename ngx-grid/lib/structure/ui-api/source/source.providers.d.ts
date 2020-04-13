@@ -4,13 +4,13 @@ import { StructureSourceDomainEventPublisher } from '../../domain/source/structu
 import { StructureOriginChangedEventHandler } from '../../read/source/origin/structure.origin-changed.event-handler';
 import { SourceConverter } from '../../read/source/source.converter';
 import { SourceCommandDispatcher } from './source.command-dispatcher';
-import { StructureSourceReadModelWarehouse } from './structure-source.read-model-warehouse';
+import { StructureSourceWarehouse } from './structure-source.warehouse';
 import { SourceEventService } from './event/source-event.service';
 import { StructureSourceOriginRepository } from '../../read/source/origin/structure.source-origin.repository';
 import { StructurePreparedItemsRepository } from '../../read/source/prepared/structure.prepared-items.repository';
 import { StructurePreparedItemsEventHandler } from '../../read/source/prepared/structure.prepared-items.event-handler';
 export declare const sourceCommandHandlers: import("@angular/core").Provider[];
-export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof StructurePreparedItemsRepository | typeof StructureSourceReadModelWarehouse | typeof SourceDispatcher | typeof SourceConverter | typeof SourceCommandDispatcher | typeof SourceEventService | typeof StructureSourceDomainEventPublisher | typeof SourceManagerFactory | {
+export declare const sourceProviders: (typeof StructureSourceOriginRepository | typeof StructurePreparedItemsRepository | typeof StructureSourceWarehouse | typeof SourceDispatcher | typeof SourceConverter | typeof SourceCommandDispatcher | typeof SourceEventService | typeof StructureSourceDomainEventPublisher | typeof SourceManagerFactory | {
     provide: string;
     useClass: typeof StructureOriginChangedEventHandler;
     multi: boolean;

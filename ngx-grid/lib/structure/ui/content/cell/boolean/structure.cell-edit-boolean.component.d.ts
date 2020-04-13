@@ -1,4 +1,4 @@
-import { SimpleChanges, ElementRef, OnChanges } from '@angular/core';
+import { ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { CellTemplateWithAccessor } from '../../../../../composition/read/definition/cell-template-with-accessor';
 import { ChangedValueEmitter } from '../../../../../composition/read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../../domain/source/item.entity';

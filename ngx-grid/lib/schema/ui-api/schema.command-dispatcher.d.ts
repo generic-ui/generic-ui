@@ -3,7 +3,7 @@ import { SchemaDispatcher } from '../domain/schema.dispatcher';
 import { SchemaReadModelRootId } from '../read/schema.read-model-root-id';
 import { SchemaRowColoring } from '../domain/schema-row-coloring';
 import { StructureId } from '../../structure/domain/structure.id';
-import { StructureCommandDispatcher } from '../../structure/ui-api/structure/structure.command-dispatcher';
+import { StructureCommandDispatcher } from '../../structure/ui-api/structure.command-dispatcher';
 export declare class SchemaCommandDispatcher {
     private readonly schemaDispatcher;
     private readonly structureCommandService;

@@ -12,6 +12,7 @@ export declare class VerticalFormationRepository extends Reactive {
     onVerticalScrollEnabled(structureId: StructureId): Observable<boolean>;
     onRowHeight(structureId: StructureId): Observable<number>;
     onContainerHeight(structureId: StructureId): Observable<number>;
+    onTopMargin(structureId: StructureId): Observable<number>;
     private onVerticalFormation;
     private next;
 }

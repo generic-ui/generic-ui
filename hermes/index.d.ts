@@ -47,6 +47,7 @@ export { ReadModelObject } from './domain/decorators';
  * COMMON
  */
 export { AggregateArchive } from './common/aggregate.archive';
+export { Archive } from './common/archive';
 export { RandomStringGenerator } from './common/random-string.generator';
 export { Optional } from './common/optional';
 /**
@@ -67,4 +68,5 @@ export { EVENT_LOGGER_ENABLED } from './domain/hermes-tokens';
  * Testing
  */
 export { assertDomainEvents, assertAggregateEvents } from './testing/helpers';
-export { AggregateCommandHandler } from './domain/command/aggregate/create/aggregate-command-handler';
+export { CreateAggregateCommand } from './domain/command/aggregate/create/create-aggregate.command';
+export { CreateAggregateCommandHandler } from './domain/command/aggregate/create/create-aggregate.command-handler';

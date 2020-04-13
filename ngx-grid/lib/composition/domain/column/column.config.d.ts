@@ -1,6 +1,6 @@
 import { DataType } from '../../../structure/domain/structure/field/data-type/data-type';
 import { CellView } from './cell-view';
-import { ColumnAggregationConfig } from './column-aggregation.config';
+import { ColumnSummariesConfig } from './column-summaries.config';
 import { ColumnSortingConfig } from '../sort/column-sorting.config';
 import { ColumnCellEditingConfig } from './column-cell-editing.config';
 import { ColumnAlign } from './column-align';
@@ -22,7 +22,7 @@ export interface ColumnConfig {
     width?: string | number;
     enabled?: boolean;
     align?: ColumnAlign;
-    aggregation?: ColumnAggregationConfig;
+    summaries?: ColumnSummariesConfig;
     sorting?: ColumnSortingConfig;
     cellEditing?: ColumnCellEditingConfig;
     matcher?: (item: any) => any;

@@ -1,7 +1,7 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GuiAggregation, GuiColumn, GuiColumnMenu, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../ui-api/grid.api';
+import { GuiSummaries, GuiColumn, GuiColumnMenu, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiSearching, GuiSorting, GuiTheme } from '../../ui-api/grid.api';
 import { ColumnConfig } from '../../../../lib/composition/domain/column/column.config';
-import { ColumnMenuConfig } from '../../../../lib/structure/ui-api/structure/column-menu-config';
+import { ColumnMenuConfig } from '../../../../lib/structure/ui-api/column-menu-config';
 export declare abstract class GridGateway implements OnChanges {
     /**
      * INPUTS
@@ -44,7 +44,7 @@ export declare abstract class GridGateway implements OnChanges {
     /**
      * @experimental
      */
-    aggregation: GuiAggregation;
+    summaries: GuiSummaries;
     columnMenu: GuiColumnMenu;
     /**
      * OUTPUTS

@@ -1,6 +1,7 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-export declare class StructureSearchPhraseSetDomainEvent extends DomainEvent {
+import { DomainEvent } from '@generic-ui/hermes';
+import { StructureId } from '../../../structure.id';
+export declare class StructureSearchPhraseSetDomainEvent extends DomainEvent<StructureId> {
     private readonly phrase;
-    constructor(aggregateId: AggregateId, phrase: string);
+    constructor(aggregateId: StructureId, phrase: string);
     getPhrase(): string;
 }

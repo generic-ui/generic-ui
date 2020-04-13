@@ -1,4 +1,5 @@
 import { DomainEvent } from './domain-event';
-export declare abstract class DomainEventHandler {
-    abstract handle(event: DomainEvent): void;
+import { AggregateId } from '../aggregate-id';
+export declare abstract class DomainEventHandler<I extends AggregateId> {
+    abstract handle(event: DomainEvent<I>): void;
 }

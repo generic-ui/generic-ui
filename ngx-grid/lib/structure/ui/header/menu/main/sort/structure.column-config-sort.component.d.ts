@@ -2,8 +2,8 @@ import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { Placement } from '@generic-ui/fabric';
 import { SortOrder } from '../../../../../../composition/domain/column/sort/sort-order';
 import { CellTemplateWithContext } from '../../../../../../composition/read/definition/cell-template-with-context';
-import { StructureCommandDispatcher } from '../../../../../ui-api/structure/structure.command-dispatcher';
-import { CompositionReadModelWarehouse } from '../../../../../../composition/ui-api/composition.read-model-warehouse';
+import { StructureCommandDispatcher } from '../../../../../ui-api/structure.command-dispatcher';
+import { CompositionWarehouse } from '../../../../../../composition/ui-api/composition.warehouse';
 import { SmartComponent } from '../../../../../../../common/cdk/smart-component';
 export declare class StructureColumnConfigSortComponent extends SmartComponent implements OnInit {
     private changeDetectorRef;
@@ -13,7 +13,7 @@ export declare class StructureColumnConfigSortComponent extends SmartComponent i
     placement: Placement;
     status: typeof SortOrder;
     sortStatus: SortOrder;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandDispatcher, compositionReadModelService: CompositionReadModelWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureCommandService: StructureCommandDispatcher, compositionReadModelService: CompositionWarehouse);
     ngOnInit(): void;
     isAscSort(): boolean;
     isDescSort(): boolean;

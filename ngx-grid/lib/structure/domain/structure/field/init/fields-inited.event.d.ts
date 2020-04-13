@@ -3,7 +3,7 @@ import { StructureId } from '../../../structure.id';
 import { CompositionId } from '../../../../../composition/domain/composition.id';
 import { ColumnConfig } from '../../../../../composition/domain/column/column.config';
 import { TypeField } from '../data-type/type.field';
-export declare class FieldsInitedEvent extends DomainEvent {
+export declare class FieldsInitedEvent extends DomainEvent<StructureId> {
     readonly compositionId: CompositionId;
     readonly columns: Array<ColumnConfig>;
     private readonly fields;

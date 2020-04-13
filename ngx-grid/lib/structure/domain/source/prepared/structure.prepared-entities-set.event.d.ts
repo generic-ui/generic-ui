@@ -1,7 +1,8 @@
-import { AggregateId, DomainEvent } from '@generic-ui/hermes';
+import { DomainEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from '../origin/origin-item-entity';
-export declare class StructurePreparedEntitiesSetEvent extends DomainEvent {
+import { StructureId } from '../../structure.id';
+export declare class StructurePreparedEntitiesSetEvent extends DomainEvent<StructureId> {
     private readonly preparedItems;
-    constructor(aggregateId: AggregateId, preparedItems: Array<OriginItemEntity>);
+    constructor(aggregateId: StructureId, preparedItems: Array<OriginItemEntity>);
     getPreparedItems(): Array<OriginItemEntity>;
 }

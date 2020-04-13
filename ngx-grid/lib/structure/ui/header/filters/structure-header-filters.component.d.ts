@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { StructureFilterCommandDispatcher } from '../../../ui-api/structure/filter/structure-filter.command-dispatcher';
+import { StructureFilterCommandDispatcher } from '../../../ui-api/filter/structure-filter.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
 import { CellTemplateWithContext } from '../../../../composition/read/definition/cell-template-with-context';
 export declare class StructureHeaderFiltersComponent {

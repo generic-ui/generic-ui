@@ -1,7 +1,8 @@
 import { DomainEvent, DomainEventHandler } from '@generic-ui/hermes';
 import { CompositionDispatcher } from '../../composition.dispatcher';
-export declare class CompositionChangeSortStatusEventHandler extends DomainEventHandler {
+import { CompositionId } from '../../composition.id';
+export declare class CompositionChangeSortStatusEventHandler extends DomainEventHandler<CompositionId> {
     private compositionDispatcher;
     constructor(compositionDispatcher: CompositionDispatcher);
-    handle(event: DomainEvent): void;
+    handle(event: DomainEvent<CompositionId>): void;
 }

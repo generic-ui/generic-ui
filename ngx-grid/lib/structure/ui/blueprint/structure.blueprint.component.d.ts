@@ -3,12 +3,12 @@ import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { StructureReadModelRoot } from '../../read/structure/structure.read-model-root';
 import { StructureDefinition } from '../structure-definition';
 import { StructureId } from '../../domain/structure.id';
-import { StructureReadModelWarehouse } from '../../ui-api/structure/structure.read-model-warehouse';
-import { StructurePagingReadModelWarehouse } from '../../ui-api/paging/structure-paging.read-model-warehouse';
+import { StructureWarehouse } from '../../ui-api/structure.warehouse';
+import { StructurePagingWarehouse } from '../../ui-api/paging/structure-paging.warehouse';
 import { StructureInfoPanelEnabledArchive } from '../panel/info/structure.info-panel-enabled.archive';
-import { StructureAggregationArchive } from '../panel/aggregation/structure.aggregation.archive';
-import { StructureFilterReadModelWarehouse } from '../../ui-api/structure/filter/structure-filter.read-model-warehouse';
-import { StructureSearchReadModelRepository } from '../../ui-api/structure/search/structure-search.read-model.repository';
+import { StructureSummariesArchive } from '../panel/summaries/structure.summaries.archive';
+import { StructureFilterWarehouse } from '../../ui-api/filter/structure-filter.warehouse';
+import { StructureSearchWarehouse } from '../../ui-api/search/structure-search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
 export declare class StructureBlueprintComponent extends SmartComponent {
@@ -18,7 +18,7 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     private readonly structureReadModelService;
     private readonly pagingReadModelService;
     private readonly structureInfoPanelEnabledArchive;
-    private readonly structureAggregationArchive;
+    private readonly structureSummariesArchive;
     private readonly structureFilterReadModelRepository;
     private readonly structureSearchReadModelRepository;
     private readonly structureHeaderTopEnabledArchive;
@@ -26,8 +26,8 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     private className;
     structure: StructureReadModelRoot;
     searchEnabled: boolean;
-    topAggregationPanelEnabled: boolean;
-    bottomAggregationPanelEnabled: boolean;
+    topSummariesPanelEnabled: boolean;
+    bottomSummariesPanelEnabled: boolean;
     quickFiltersEnabled: boolean;
     infoPanelEnabled: boolean;
     readonly contentCssClass: string;
@@ -35,7 +35,7 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     topHeaderEnabled: boolean;
     bottomHeaderEnabled: boolean;
     private pagingReadModel;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureReadModelService: StructureReadModelWarehouse, pagingReadModelService: StructurePagingReadModelWarehouse, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureAggregationArchive: StructureAggregationArchive, structureFilterReadModelRepository: StructureFilterReadModelWarehouse, structureSearchReadModelRepository: StructureSearchReadModelRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, className: string);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureReadModelService: StructureWarehouse, pagingReadModelService: StructurePagingWarehouse, structureInfoPanelEnabledArchive: StructureInfoPanelEnabledArchive, structureSummariesArchive: StructureSummariesArchive, structureFilterReadModelRepository: StructureFilterWarehouse, structureSearchReadModelRepository: StructureSearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, className: string);
     ngOnInit(): void;
     getHeaderTopClasses(): string;
     getHeaderBottomClasses(): string;

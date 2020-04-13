@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../composition/read/definition/cell-template-with-context';
-import { StructureCommandDispatcher } from '../../../ui-api/structure/structure.command-dispatcher';
+import { StructureCommandDispatcher } from '../../../ui-api/structure.command-dispatcher';
 import { StructureColumnConfigService } from './structure.column-config.service';
 import { StructureColumnMenuConfig } from './config/structure.column-menu-config';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';

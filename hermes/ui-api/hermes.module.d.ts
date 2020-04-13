@@ -20,12 +20,12 @@ import { NoopCommandLogger } from '../infrastructure/logger/command/noop.command
 import { ConsoleEventLogger } from '../infrastructure/logger/event/console.event.logger';
 import { NoopEventLogger } from '../infrastructure/logger/event/noop.event.logger';
 import { HermesLoggersInitializer } from './hermes.loggers.initializer';
-import { AggregateCommandHandlerImpl } from '../domain/command/aggregate/create/aggregate-command-handler.impl';
+import { CreateAggregateCommandHandlerImpl } from '../domain/command/aggregate/create/create-aggregate.command-handler-impl';
 import { AggregateFactoryArchive, AggregateRepositoryArchive } from '../domain/command/config/define';
 import { AggregateFactory } from '../domain/command/aggregate/aggregate-factory';
 import { AggregateDefinition } from '../domain/command/config/aggregate-definition';
 import { AggregateRepository } from '../domain/command/aggregate/aggregate-repository';
-import { AggregateCommandHandler } from '../domain/command/aggregate/create/aggregate-command-handler';
+import { CreateAggregateCommandHandler } from '../domain/command/aggregate/create/create-aggregate.command-handler';
 import { CommandHandlerImpl } from '../domain/command/handler/command-handler-impl';
 import { CommandHandler } from '../domain/command/handler/command.handler';
 import { AggregateId } from '../domain/aggregate-id';
@@ -35,11 +35,11 @@ export declare function eventLoggerFactory(enabled: boolean, consoleEventLogger:
 export declare class HermesModule<I extends AggregateId, A extends AggregateRoot<I>, C extends Command> extends Reactive implements OnDestroy {
     private hermesLoggersInitializer;
     private hermesApi;
-    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createHandler: Type<AggregateCommandHandler<A, C>>, handlers: Array<Provider>): ModuleWithProviders;
+    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createHandler: Type<CreateAggregateCommandHandler<A, C>>, handlers: Array<Provider>): ModuleWithProviders;
     static withConfig(config?: HermesModuleConfig): ModuleWithProviders;
     static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
     private static registerCreateCommandHandler;
-    constructor(eventHandlers: Array<DomainEventHandler>, aggregateCommandHandlers: Array<AggregateCommandHandlerImpl<I, A, C>>, handlers: Array<CommandHandlerImpl<I, A, C>>, definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
+    constructor(eventHandlers: Array<DomainEventHandler<I>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<I, A, C>>, handlers: Array<CommandHandlerImpl<I, A, C>>, definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     ngOnDestroy(): void;
     private checkNullCommand;
     private checkCommandHandlerIsCollection;

@@ -1,8 +1,9 @@
 import { DomainEvent } from '../domain/event/domain-event';
 import { DomainEventBus } from '../domain/event/domain-event.bus';
 import { Reactive } from '../common/reactive';
-export declare abstract class ReadModelRootRepository extends Reactive {
+import { AggregateId } from '../domain/aggregate-id';
+export declare abstract class ReadModelRootRepository<I extends AggregateId> extends Reactive {
     protected constructor(domainEventBus: DomainEventBus);
     protected abstract forEvents(): Array<typeof DomainEvent>;
-    protected abstract subscribe(event: DomainEvent): void;
+    protected abstract subscribe(event: DomainEvent<I>): void;
 }

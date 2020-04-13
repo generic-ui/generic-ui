@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
