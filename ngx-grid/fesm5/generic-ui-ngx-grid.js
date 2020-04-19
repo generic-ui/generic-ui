@@ -2,10 +2,10 @@ import { __extends, __spread, __decorate, __metadata, __values, __assign } from 
 import { Injectable, EventEmitter, Input, Output, InjectionToken, Component, ViewEncapsulation, Inject, PLATFORM_ID, ElementRef, ChangeDetectorRef, ViewChild, ChangeDetectionStrategy, NgModule, Pipe, Injector, Renderer2, TemplateRef, ContentChild, ComponentFactoryResolver, RendererFactory2, NgZone, Optional } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
-import { ReadModelRootId, AggregateId, Command, CommandDispatcher, Archive, ReadModelObject, ReadModelRootRepository, EntityId, InMemoryStore, AggregateStoreRegister, InMemoryAggregateStore, AggregateRepository, Entity, ReadModelEntity, ReadModelEntityId, ReadModelRoot, InMemoryReadModelStore, DomainEvent, DomainEventBus, RandomStringGenerator, DomainEventHandler, DOMAIN_EVENT_HANDLERS, AggregateEvent, AggregateRoot, AggregateFactory, DomainEventPublisher, HermesModule, AggregateArchive, CreateAggregateCommand, Optional as Optional$1, DomainObject, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, FabricDrawerService, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
+import { ReadModelRootId, AggregateId, Command, CommandDispatcher, Archive, ReadModelObject, ReadModelRootRepository, EntityId, InMemoryStore, AggregateStoreRegister, InMemoryAggregateStore, AggregateRepository, Entity, ReadModelEntity, ReadModelEntityId, ReadModelRoot, InMemoryReadModelStore, DomainEvent, DomainEventBus, RandomStringGenerator, DomainEventHandler, DOMAIN_EVENT_HANDLERS, AggregateEvent, AggregateRoot, AggregateFactory, DomainEventPublisher, HermesModule, AggregateArchive, CreateAggregateCommand, EventRepository, Optional as Optional$1, DomainObject, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { Subject, ReplaySubject, fromEvent, Observable, zip, timer, combineLatest } from 'rxjs';
-import { takeUntil, filter, map, take, distinctUntilChanged, skip, switchMap, debounceTime } from 'rxjs/operators';
+import { takeUntil, filter, map, take, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
 import { DomSanitizer } from '@angular/platform-browser';
 
 /**
@@ -294,6 +294,16 @@ var GuiColumnAlign = {
 GuiColumnAlign[GuiColumnAlign.RIGHT] = 'RIGHT';
 GuiColumnAlign[GuiColumnAlign.CENTER] = 'CENTER';
 GuiColumnAlign[GuiColumnAlign.LEFT] = 'LEFT';
+/**
+ * @record
+ */
+function GuiRowDetail() { }
+if (false) {
+    /** @type {?|undefined} */
+    GuiRowDetail.prototype.enabled;
+    /** @type {?|undefined} */
+    GuiRowDetail.prototype.template;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -950,6 +960,30 @@ var GridThemeConverter = /** @class */ (function () {
         }
     };
     /**
+     * @param {?} theme
+     * @return {?}
+     */
+    GridThemeConverter.prototype.convertToGuiTheme = /**
+     * @param {?} theme
+     * @return {?}
+     */
+    function (theme) {
+        switch (theme) {
+            case SchemaTheme.MATERIAL:
+                return GuiTheme.MATERIAL;
+            case SchemaTheme.FABRIC:
+                return GuiTheme.FABRIC;
+            case SchemaTheme.LIGHT:
+                return GuiTheme.LIGHT;
+            case SchemaTheme.DARK:
+                return GuiTheme.DARK;
+            case SchemaTheme.GENERIC:
+                return GuiTheme.GENERIC;
+            default:
+                return GuiTheme.GENERIC;
+        }
+    };
+    /**
      * @private
      * @param {?} theme
      * @return {?}
@@ -1041,6 +1075,26 @@ var GridRowColoringConverter = /** @class */ (function () {
         }
         else {
             return this.convertEnum(rowColoring);
+        }
+    };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    GridRowColoringConverter.prototype.convertToGuiRowColoring = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        switch (value) {
+            case RowColoring.NONE:
+                return GuiRowColoring.NONE;
+            case RowColoring.EVEN:
+                return GuiRowColoring.EVEN;
+            case RowColoring.ODD:
+                return GuiRowColoring.ODD;
+            default:
+                return GuiRowColoring.EVEN;
         }
     };
     /**
@@ -1256,6 +1310,10 @@ var GridGateway = /** @class */ (function () {
         this.cellEditCanceled = new EventEmitter();
         this.cellEditSubmitted = new EventEmitter();
         this.searchPhraseChanged = new EventEmitter();
+        this.themeChanged = new EventEmitter();
+        this.horizontalGridChanged = new EventEmitter();
+        this.verticalGridChanged = new EventEmitter();
+        this.rowColoringChanged = new EventEmitter();
         this.gridColumnConverter = new GridColumnConverter();
         this.gridThemeConverter = new GridThemeConverter();
         this.gridRowColoringConverter = new GridRowColoringConverter();
@@ -1392,6 +1450,50 @@ var GridGateway = /** @class */ (function () {
     function (value) {
         this.searchPhraseChanged.emit(value);
     };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    GridGateway.prototype.onTheme = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.themeChanged.emit(this.gridThemeConverter.convertToGuiTheme(value));
+    };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    GridGateway.prototype.onHorizontalGrid = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.horizontalGridChanged.emit(value);
+    };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    GridGateway.prototype.onVerticalGrid = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.verticalGridChanged.emit(value);
+    };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    GridGateway.prototype.onRowColoring = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.rowColoringChanged.emit(this.gridRowColoringConverter.convertToGuiRowColoring(value));
+    };
     GridGateway.propDecorators = {
         columnHeaderTop: [{ type: Input }],
         columnHeaderBottom: [{ type: Input }],
@@ -1418,6 +1520,7 @@ var GridGateway = /** @class */ (function () {
         infoPanel: [{ type: Input }],
         summaries: [{ type: Input }],
         columnMenu: [{ type: Input }],
+        rowDetail: [{ type: Input }],
         pageChanged: [{ type: Output }],
         pageSizeChanged: [{ type: Output }],
         itemsSelected: [{ type: Output }],
@@ -1427,7 +1530,11 @@ var GridGateway = /** @class */ (function () {
         cellEditEntered: [{ type: Output }],
         cellEditCanceled: [{ type: Output }],
         cellEditSubmitted: [{ type: Output }],
-        searchPhraseChanged: [{ type: Output }]
+        searchPhraseChanged: [{ type: Output }],
+        themeChanged: [{ type: Output }],
+        horizontalGridChanged: [{ type: Output }],
+        verticalGridChanged: [{ type: Output }],
+        rowColoringChanged: [{ type: Output }]
     };
     return GridGateway;
 }());
@@ -1500,6 +1607,8 @@ if (false) {
     GridGateway.prototype.summaries;
     /** @type {?} */
     GridGateway.prototype.columnMenu;
+    /** @type {?} */
+    GridGateway.prototype.rowDetail;
     /**
      * OUTPUTS
      * @type {?}
@@ -1523,6 +1632,14 @@ if (false) {
     GridGateway.prototype.cellEditSubmitted;
     /** @type {?} */
     GridGateway.prototype.searchPhraseChanged;
+    /** @type {?} */
+    GridGateway.prototype.themeChanged;
+    /** @type {?} */
+    GridGateway.prototype.horizontalGridChanged;
+    /** @type {?} */
+    GridGateway.prototype.verticalGridChanged;
+    /** @type {?} */
+    GridGateway.prototype.rowColoringChanged;
     /**
      * \@internal
      * @type {?}
@@ -2166,7 +2283,7 @@ var GridComponent = /** @class */ (function (_super) {
     GridComponent.decorators = [
         { type: Component, args: [{
                     selector: gridSelector,
-                    template: "<gui-structure\n\t#structure\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(searchPhraseChanged)=\"onSearchPhrase($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\"\n\t[summaries]=\"summaries\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[rowHeight]=\"rowHeight\"\n\t[rowSelecting]=\"rowSelecting\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\">\n</gui-structure>\n",
+                    template: "<gui-structure\n\t#structure\n\t(cellEditCanceled)=\"onCellEditCancel()\"\n\t(cellEditEntered)=\"onCellEditEnter()\"\n\t(cellEditSubmitted)=\"onCellEditSubmit()\"\n\t(columnsChanged)=\"onColumnsChange()\"\n\t(containerWidthChanged)=\"onContainerWidthChange($event)\"\n\t(itemsSelected)=\"onItemSelect($event)\"\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(searchPhraseChanged)=\"onSearchPhrase($event)\"\n\t(themeChanged)=\"onTheme($event)\"\n\t(horizontalGridChanged)=\"onHorizontalGrid($event)\"\n\t(verticalGridChanged)=\"onVerticalGrid($event)\"\n\t(rowColoringChanged)=\"onRowColoring($event)\"\n\t(sourceEdited)=\"onSourceEdit($event)\"\n\t[autoResizeWidth]=\"autoResizeWidth\"\n\t[cellEditing]=\"cellEditing\"\n\t[columnHeaderBottom]=\"columnHeaderBottom\"\n\t[columnHeaderTop]=\"columnHeaderTop\"\n\t[columnMenu]=\"columnMenuConfig\"\n\t[columns]=\"columnsConfig\"\n\t[editMode]=\"editMode\"\n\t[filtering]=\"filtering\"\n\t[horizontalGrid]=\"horizontalGrid\"\n\t[infoPanel]=\"infoPanel\"\n\t[loading]=\"loading\"\n\t[maxHeight]=\"maxHeight\"\n\t[paging]=\"paging\"\n\t[quickFilters]=\"quickFilters\"\n\t[rowColoring]=\"rowColoringConfig\"\n\t[rowHeight]=\"rowHeight\"\n\t[rowSelecting]=\"rowSelecting\"\n\t[rowDetail]=\"rowDetail\"\n\t[searching]=\"searching\"\n\t[sorting]=\"sorting\"\n\t[source]=\"source\"\n\t[summaries]=\"summaries\"\n\t[theme]=\"themeConfig\"\n\t[verticalGrid]=\"verticalGrid\"\n\t[virtualScroll]=\"virtualScroll\"\n\t[width]=\"width\">\n</gui-structure>\n",
                     providers: __spread(gridProviders, [
                         {
                             provide: structureParentComponent,
@@ -2243,6 +2360,7 @@ var fabricImports = [
     FabricButtonGroupModule,
     FabricCheckboxModule,
     FabricChipModule,
+    FabricDrawerModule,
     FabricDropdownModule,
     FabricRadioButtonModule,
     FabricRadioGroupModule,
@@ -4052,7 +4170,7 @@ var StructureInfoModalComponent = /** @class */ (function () {
     StructureInfoModalComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-info-dialog',
-                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.11.0\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
+                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.11.1\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -8306,8 +8424,8 @@ var CompositionResizeWidthSetEvent = /** @class */ (function (_super) {
  */
 var CompositionColumnsSetEvent = /** @class */ (function (_super) {
     __extends(CompositionColumnsSetEvent, _super);
-    function CompositionColumnsSetEvent(aggregateId) {
-        return _super.call(this, aggregateId, 'CompositionColumnsSetEvent') || this;
+    function CompositionColumnsSetEvent(compositionId) {
+        return _super.call(this, compositionId, 'CompositionColumnsSetEvent') || this;
     }
     return CompositionColumnsSetEvent;
 }(DomainEvent));
@@ -8425,14 +8543,14 @@ var InMemoryCompositionRepository = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * @param {?} aggregateId
+     * @param {?} compositionId
      * @return {?}
      */
     InMemoryCompositionRepository.prototype.on = /**
-     * @param {?} aggregateId
+     * @param {?} compositionId
      * @return {?}
      */
-    function (aggregateId) {
+    function (compositionId) {
         return this.composition$
             .asObservable()
             .pipe(filter((/**
@@ -8441,13 +8559,13 @@ var InMemoryCompositionRepository = /** @class */ (function (_super) {
          */
         function (compositionIdToComposition) {
             /** @type {?} */
-            var key = aggregateId.getId();
+            var key = compositionId.getId();
             return compositionIdToComposition.has(key);
         })), map((/**
          * @param {?} compositionIdToComposition
          * @return {?}
          */
-        function (compositionIdToComposition) { return compositionIdToComposition.get(aggregateId.getId()); })));
+        function (compositionIdToComposition) { return compositionIdToComposition.get(compositionId.getId()); })));
     };
     /**
      * @protected
@@ -8629,12 +8747,14 @@ var NumberColumnPresentation = /** @class */ (function (_super) {
         return CellView.NUMBER;
     };
     /**
+     * @param {?} view
      * @return {?}
      */
     NumberColumnPresentation.prototype.getDefaultAlign = /**
+     * @param {?} view
      * @return {?}
      */
-    function () {
+    function (view) {
         return ColumnAlign.RIGHT;
     };
     NumberColumnPresentation.instance = null;
@@ -17547,6 +17667,20 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {number} */
+var SchemaRowColoring = {
+    NONE: 0,
+    EVEN: 1,
+    ODD: 2,
+};
+SchemaRowColoring[SchemaRowColoring.NONE] = 'NONE';
+SchemaRowColoring[SchemaRowColoring.EVEN] = 'EVEN';
+SchemaRowColoring[SchemaRowColoring.ODD] = 'ODD';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var SchemaCommandDispatcher = /** @class */ (function () {
     function SchemaCommandDispatcher(schemaDispatcher, structureCommandService) {
         this.schemaDispatcher = schemaDispatcher;
@@ -17594,7 +17728,9 @@ var SchemaCommandDispatcher = /** @class */ (function () {
      */
     function (rowColoring, schemaId) {
         if (schemaId === void 0) { schemaId = schemaGlobalId; }
-        this.schemaDispatcher.setRowColoring(rowColoring, schemaId.toAggregateId());
+        /** @type {?} */
+        var schemaRowColoring = this.toSchemaRowColoring(rowColoring);
+        this.schemaDispatcher.setRowColoring(schemaRowColoring, schemaId.toAggregateId());
     };
     /**
      * @param {?} verticalGrid
@@ -17624,6 +17760,26 @@ var SchemaCommandDispatcher = /** @class */ (function () {
         if (schemaId === void 0) { schemaId = schemaGlobalId; }
         this.schemaDispatcher.setHorizontalGrid(horizontalGrid, schemaId.toAggregateId());
     };
+    /**
+     * @private
+     * @param {?} coloring
+     * @return {?}
+     */
+    SchemaCommandDispatcher.prototype.toSchemaRowColoring = /**
+     * @private
+     * @param {?} coloring
+     * @return {?}
+     */
+    function (coloring) {
+        switch (coloring) {
+            case RowColoring.NONE:
+                return SchemaRowColoring.NONE;
+            case RowColoring.ODD:
+                return SchemaRowColoring.ODD;
+            case RowColoring.EVEN:
+                return SchemaRowColoring.EVEN;
+        }
+    };
     SchemaCommandDispatcher.decorators = [
         { type: Injectable }
     ];
@@ -17646,20 +17802,6 @@ if (false) {
      */
     SchemaCommandDispatcher.prototype.structureCommandService;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-var SchemaRowColoring = {
-    NONE: 0,
-    EVEN: 1,
-    ODD: 2,
-};
-SchemaRowColoring[SchemaRowColoring.NONE] = 'NONE';
-SchemaRowColoring[SchemaRowColoring.EVEN] = 'EVEN';
-SchemaRowColoring[SchemaRowColoring.ODD] = 'ODD';
 
 /**
  * @fileoverview added by tsickle
@@ -18664,10 +18806,11 @@ if (false) {
  */
 var StructureGateway = /** @class */ (function (_super) {
     __extends(StructureGateway, _super);
-    function StructureGateway(structureId, compositionId, structureCommandService, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive) {
+    function StructureGateway(structureId, compositionId, schemaId, structureCommandService, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, schemaEventRepository) {
         var _this = _super.call(this) || this;
         _this.structureId = structureId;
         _this.compositionId = compositionId;
+        _this.schemaId = schemaId;
         _this.structureCommandService = structureCommandService;
         _this.pagingCommandService = pagingCommandService;
         _this.pagingEventService = pagingEventService;
@@ -18688,6 +18831,8 @@ var StructureGateway = /** @class */ (function (_super) {
         _this.structureSearchEventService = structureSearchEventService;
         _this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
         _this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
+        _this.structureDetailViewConfigArchive = structureDetailViewConfigArchive;
+        _this.schemaEventRepository = schemaEventRepository;
         _this.source = [];
         _this.columns = [];
         /**
@@ -18705,6 +18850,10 @@ var StructureGateway = /** @class */ (function (_super) {
         _this.cellEditCanceled = new EventEmitter();
         _this.cellEditSubmitted = new EventEmitter();
         _this.searchPhraseChanged = new EventEmitter();
+        _this.themeChanged = new EventEmitter();
+        _this.horizontalGridChanged = new EventEmitter();
+        _this.verticalGridChanged = new EventEmitter();
+        _this.rowColoringChanged = new EventEmitter();
         return _this;
     }
     /**
@@ -18718,6 +18867,9 @@ var StructureGateway = /** @class */ (function (_super) {
     function (simpleChanges) {
         if (simpleChanges.theme !== undefined && simpleChanges.theme.currentValue !== undefined) {
             this.schemaCommandDispatcher.setTheme(this.theme);
+        }
+        if (simpleChanges.rowDetail !== undefined && simpleChanges.rowDetail.currentValue !== undefined) {
+            this.structureDetailViewConfigArchive.next(this.rowDetail);
         }
         if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
             this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
@@ -18894,8 +19046,7 @@ var StructureGateway = /** @class */ (function (_super) {
         }));
         this.compositionEventService
             .onColumnsChanged(this.compositionId)
-            .pipe(skip(1), // TODO system should emit response that it is ready
-        this.takeUntil())
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @return {?}
          */
@@ -18904,9 +19055,7 @@ var StructureGateway = /** @class */ (function (_super) {
         }));
         this.compositionEventService
             .onContainerWidthChanged(this.compositionId)
-            .pipe(
-        // skip(1), // TODO system should emit response that it is ready
-        this.takeUntil())
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} containerWidth
          * @return {?}
@@ -18916,9 +19065,7 @@ var StructureGateway = /** @class */ (function (_super) {
         }));
         this.sourceEventService
             .onSourceEdited(this.structureId)
-            .pipe(
-        // this.takeUntil()
-        )
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} values
          * @return {?}
@@ -18956,6 +19103,7 @@ var StructureGateway = /** @class */ (function (_super) {
         function (phrase) {
             _this.searchPhraseChanged.emit(phrase);
         }));
+        this.connectSchemaEvents();
     };
     /**
      * @param {?} page
@@ -18967,6 +19115,57 @@ var StructureGateway = /** @class */ (function (_super) {
      */
     function (page) {
         this.pageChanged.emit(page);
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    StructureGateway.prototype.connectSchemaEvents = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.schemaEventRepository
+            .onThemeChanged(this.schemaId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} theme
+         * @return {?}
+         */
+        function (theme) {
+            _this.themeChanged.emit(theme);
+        }));
+        this.schemaEventRepository
+            .onHorizontalGridChanged(this.schemaId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            _this.horizontalGridChanged.emit(enabled);
+        }));
+        this.schemaEventRepository
+            .onVerticalGridChanged(this.schemaId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            _this.verticalGridChanged.emit(enabled);
+        }));
+        this.schemaEventRepository
+            .onRowColoring(this.schemaId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} coloring
+         * @return {?}
+         */
+        function (coloring) {
+            _this.rowColoringChanged.emit(coloring);
+        }));
     };
     StructureGateway.propDecorators = {
         columnHeaderTop: [{ type: Input }],
@@ -18994,6 +19193,7 @@ var StructureGateway = /** @class */ (function (_super) {
         infoPanel: [{ type: Input }],
         summaries: [{ type: Input }],
         columnMenu: [{ type: Input }],
+        rowDetail: [{ type: Input }],
         pageChanged: [{ type: Output }],
         pageSizeChanged: [{ type: Output }],
         itemsSelected: [{ type: Output }],
@@ -19003,7 +19203,11 @@ var StructureGateway = /** @class */ (function (_super) {
         cellEditEntered: [{ type: Output }],
         cellEditCanceled: [{ type: Output }],
         cellEditSubmitted: [{ type: Output }],
-        searchPhraseChanged: [{ type: Output }]
+        searchPhraseChanged: [{ type: Output }],
+        themeChanged: [{ type: Output }],
+        horizontalGridChanged: [{ type: Output }],
+        verticalGridChanged: [{ type: Output }],
+        rowColoringChanged: [{ type: Output }]
     };
     return StructureGateway;
 }(SmartComponent));
@@ -19063,6 +19267,8 @@ if (false) {
     StructureGateway.prototype.summaries;
     /** @type {?} */
     StructureGateway.prototype.columnMenu;
+    /** @type {?} */
+    StructureGateway.prototype.rowDetail;
     /**
      * ********************
      * OUTPUTS
@@ -19089,12 +19295,25 @@ if (false) {
     /** @type {?} */
     StructureGateway.prototype.searchPhraseChanged;
     /** @type {?} */
+    StructureGateway.prototype.themeChanged;
+    /** @type {?} */
+    StructureGateway.prototype.horizontalGridChanged;
+    /** @type {?} */
+    StructureGateway.prototype.verticalGridChanged;
+    /** @type {?} */
+    StructureGateway.prototype.rowColoringChanged;
+    /** @type {?} */
     StructureGateway.prototype.structureId;
     /**
      * @type {?}
      * @protected
      */
     StructureGateway.prototype.compositionId;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureGateway.prototype.schemaId;
     /**
      * @type {?}
      * @protected
@@ -19195,6 +19414,16 @@ if (false) {
      * @protected
      */
     StructureGateway.prototype.structureHeaderBottomEnabledArchive;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureGateway.prototype.structureDetailViewConfigArchive;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureGateway.prototype.schemaEventRepository;
 }
 
 /**
@@ -19445,9 +19674,9 @@ var SelectedRowToggledEvent = /** @class */ (function (_super) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FormationEventService = /** @class */ (function () {
-    function FormationEventService(domainEventBus, structureReadModelService) {
+    function FormationEventService(domainEventBus, structureWarehouse) {
         this.domainEventBus = domainEventBus;
-        this.structureReadModelService = structureReadModelService;
+        this.structureWarehouse = structureWarehouse;
     }
     /**
      * @param {?} structureId
@@ -19470,7 +19699,7 @@ var FormationEventService = /** @class */ (function () {
          * @return {?}
          */
         function (event) {
-            return _this.structureReadModelService
+            return _this.structureWarehouse
                 .onStructure(structureId)
                 .pipe(take(1), map((/**
              * @param {?} str
@@ -19507,7 +19736,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    FormationEventService.prototype.structureReadModelService;
+    FormationEventService.prototype.structureWarehouse;
 }
 
 /**
@@ -19956,6 +20185,406 @@ var StructureHeaderTopEnabledArchive = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var SchemaHorizontalGridSetEvent = /** @class */ (function (_super) {
+    __extends(SchemaHorizontalGridSetEvent, _super);
+    function SchemaHorizontalGridSetEvent(schemaId, horizontalGrid) {
+        var _this = _super.call(this, schemaId, 'SchemaHorizontalGridSetEvent') || this;
+        _this.horizontalGrid = horizontalGrid;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SchemaHorizontalGridSetEvent.prototype.getHorizontalGrid = /**
+     * @return {?}
+     */
+    function () {
+        return this.horizontalGrid;
+    };
+    return SchemaHorizontalGridSetEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SchemaHorizontalGridSetEvent.prototype.horizontalGrid;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SchemaVerticalGridSetEvent = /** @class */ (function (_super) {
+    __extends(SchemaVerticalGridSetEvent, _super);
+    function SchemaVerticalGridSetEvent(schemaId, verticalGrid) {
+        var _this = _super.call(this, schemaId, 'SchemaVerticalGridSetEvent') || this;
+        _this.verticalGrid = verticalGrid;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SchemaVerticalGridSetEvent.prototype.getVerticalGrid = /**
+     * @return {?}
+     */
+    function () {
+        return this.verticalGrid;
+    };
+    return SchemaVerticalGridSetEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SchemaVerticalGridSetEvent.prototype.verticalGrid;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var RowColoringSetEvent = /** @class */ (function (_super) {
+    __extends(RowColoringSetEvent, _super);
+    function RowColoringSetEvent(schemaId, rowColoring) {
+        var _this = _super.call(this, schemaId, 'RowColoringSetEvent') || this;
+        _this.rowColoring = rowColoring;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    RowColoringSetEvent.prototype.getRowColoring = /**
+     * @return {?}
+     */
+    function () {
+        return this.rowColoring;
+    };
+    return RowColoringSetEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RowColoringSetEvent.prototype.rowColoring;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SchemaEventRepository = /** @class */ (function (_super) {
+    __extends(SchemaEventRepository, _super);
+    function SchemaEventRepository(domainEventBus) {
+        return _super.call(this, domainEventBus) || this;
+    }
+    /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    SchemaEventRepository.prototype.onThemeChanged = /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    function (schemaId) {
+        if (schemaId === void 0) { schemaId = schemaGlobalId; }
+        return this.onEvent(schemaId, SchemaThemeSetEvent)
+            .pipe(map((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) { return event.getTheme(); })));
+    };
+    /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    SchemaEventRepository.prototype.onHorizontalGridChanged = /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    function (schemaId) {
+        if (schemaId === void 0) { schemaId = schemaGlobalId; }
+        return this.onEvent(schemaId, SchemaHorizontalGridSetEvent)
+            .pipe(map((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) { return event.getHorizontalGrid(); })));
+    };
+    /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    SchemaEventRepository.prototype.onVerticalGridChanged = /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    function (schemaId) {
+        if (schemaId === void 0) { schemaId = schemaGlobalId; }
+        return this.onEvent(schemaId, SchemaVerticalGridSetEvent)
+            .pipe(map((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) { return event.getVerticalGrid(); })));
+    };
+    /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    SchemaEventRepository.prototype.onRowColoring = /**
+     * @param {?=} schemaId
+     * @return {?}
+     */
+    function (schemaId) {
+        if (schemaId === void 0) { schemaId = schemaGlobalId; }
+        return this.onEvent(schemaId, RowColoringSetEvent)
+            .pipe(map((/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) { return event.getRowColoring(); })));
+    };
+    SchemaEventRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SchemaEventRepository.ctorParameters = function () { return [
+        { type: DomainEventBus }
+    ]; };
+    return SchemaEventRepository;
+}(EventRepository));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureDetailViewConfigArchive = /** @class */ (function (_super) {
+    __extends(StructureDetailViewConfigArchive, _super);
+    function StructureDetailViewConfigArchive() {
+        return _super.call(this, {
+            enabled: false,
+            template: ((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) { return 'Detail View'; }))
+        }) || this;
+    }
+    StructureDetailViewConfigArchive.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StructureDetailViewConfigArchive.ctorParameters = function () { return []; };
+    return StructureDetailViewConfigArchive;
+}(Archive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureDetailViewComponent = /** @class */ (function () {
+    function StructureDetailViewComponent(item, temp, sanitizer) {
+        this.item = item;
+        this.temp = temp;
+        this.sanitizer = sanitizer;
+        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.temp(this.item));
+    }
+    /**
+     * @return {?}
+     */
+    StructureDetailViewComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        this.selectedRowValues = this.item;
+    };
+    StructureDetailViewComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-detail-view',
+                    template: "\n\n\t\t<div [innerHTML]=\"safeHTML\"></div>\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    StructureDetailViewComponent.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: Inject, args: ['item',] }] },
+        { type: undefined, decorators: [{ type: Inject, args: ['template',] }] },
+        { type: DomSanitizer }
+    ]; };
+    return StructureDetailViewComponent;
+}());
+if (false) {
+    /** @type {?} */
+    StructureDetailViewComponent.prototype.selectedRowValues;
+    /** @type {?} */
+    StructureDetailViewComponent.prototype.safeHTML;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewComponent.prototype.item;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewComponent.prototype.temp;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewComponent.prototype.sanitizer;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureDetailViewService = /** @class */ (function (_super) {
+    __extends(StructureDetailViewService, _super);
+    function StructureDetailViewService(injector, structureId, structureDetailViewConfigArchive, formationEventService, drawerService) {
+        var _this = _super.call(this) || this;
+        _this.injector = injector;
+        _this.structureId = structureId;
+        _this.structureDetailViewConfigArchive = structureDetailViewConfigArchive;
+        _this.formationEventService = formationEventService;
+        _this.drawerService = drawerService;
+        _this.enabled = false;
+        return _this;
+    }
+    /**
+     * @param {?} ref
+     * @return {?}
+     */
+    StructureDetailViewService.prototype.init = /**
+     * @param {?} ref
+     * @return {?}
+     */
+    function (ref) {
+        var _this = this;
+        this.elementRef = ref;
+        this.structureDetailViewConfigArchive
+            .onValue()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            _this.config = config;
+            if (config.enabled === true) {
+                _this.turnOn();
+            }
+            else if (config.enabled === false) {
+                _this.turnOff();
+            }
+        }));
+        this.formationEventService
+            .onItemSelected(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} items
+         * @return {?}
+         */
+        function (items) {
+            if (!_this.enabled) {
+                return;
+            }
+            if (items.length === 0) {
+                return;
+            }
+            /** @type {?} */
+            var item = items[0];
+            /** @type {?} */
+            var injector = Injector.create({
+                parent: _this.injector,
+                providers: [
+                    { provide: 'item', useValue: item },
+                    { provide: 'template', useValue: _this.config.template }
+                ]
+            });
+            _this.drawerService.open(_this.elementRef, StructureDetailViewComponent, { injector: injector });
+            // this.drawerService.open(structureElement, StructureDetailViewComponent, { injector: this.injector });
+            console.log('Open', item);
+        }));
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    StructureDetailViewService.prototype.turnOn = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.enabled = true;
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    StructureDetailViewService.prototype.turnOff = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.enabled = false;
+    };
+    StructureDetailViewService.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StructureDetailViewService.ctorParameters = function () { return [
+        { type: Injector },
+        { type: StructureId },
+        { type: StructureDetailViewConfigArchive },
+        { type: FormationEventService },
+        { type: FabricDrawerService }
+    ]; };
+    return StructureDetailViewService;
+}(Reactive));
+if (false) {
+    /** @type {?} */
+    StructureDetailViewService.prototype.enabled;
+    /** @type {?} */
+    StructureDetailViewService.prototype.config;
+    /** @type {?} */
+    StructureDetailViewService.prototype.elementRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewService.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewService.prototype.structureDetailViewConfigArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewService.prototype.formationEventService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDetailViewService.prototype.drawerService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * \@internal
  * @param {?} generator
@@ -20019,15 +20648,17 @@ var structureComponentSelfProviders = __spread([
     StructurePagingDisplayModeArchive,
     StructureRowSelectEnabledArchive,
     StructureHeaderTopEnabledArchive,
-    StructureHeaderBottomEnabledArchive
+    StructureHeaderBottomEnabledArchive,
+    StructureDetailViewConfigArchive,
+    StructureDetailViewService
 ]);
 /**
  * \@internal
  */
 var StructureComponent = /** @class */ (function (_super) {
     __extends(StructureComponent, _super);
-    function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, elementRef, changeDetectorRef, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId) {
-        var _this = _super.call(this, structureId, compositionId, structureCommandService, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive) || this;
+    function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, schemaEventRepository, elementRef, changeDetectorRef, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, structureDetailViewService) {
+        var _this = _super.call(this, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventService, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandService, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureSummariesConfigService, structureCellEditStore, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, schemaEventRepository) || this;
         _this.elementRef = elementRef;
         _this.changeDetectorRef = changeDetectorRef;
         _this.renderer = renderer;
@@ -20036,6 +20667,7 @@ var StructureComponent = /** @class */ (function (_super) {
         _this.compositionReadModelService = compositionReadModelService;
         _this.schemaStylesManager = schemaStylesManager;
         _this.schemaReadModelRootId = schemaReadModelRootId;
+        _this.structureDetailViewService = structureDetailViewService;
         _this.loaderEnabled = false;
         _this.circleLoaderEnabled = true;
         _this.initialLoaderAnimation = false;
@@ -20079,6 +20711,7 @@ var StructureComponent = /** @class */ (function (_super) {
                 _this.initialLoaderAnimation = true;
             }
         }));
+        this.structureDetailViewService.init(this.elementRef);
     };
     /**
      * @return {?}
@@ -20140,6 +20773,15 @@ var StructureComponent = /** @class */ (function (_super) {
     function () {
         return this.structureId;
     };
+    /**
+     * @return {?}
+     */
+    StructureComponent.prototype.getElementRef = /**
+     * @return {?}
+     */
+    function () {
+        return this.elementRef;
+    };
     StructureComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure',
@@ -20157,7 +20799,7 @@ var StructureComponent = /** @class */ (function (_super) {
                             useExisting: StructureComponent
                         }
                     ]),
-                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}", "gui-structure,gui-structure *{border-color:#d6d6d6;font-size:14px}gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-webkit-box;display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-search-bar{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}gui-structure-search-bar form .gui-search-icon circle,gui-structure-search-bar form .gui-search-icon line{stroke:#ccc;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}gui-structure-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-search-bar form:hover .gui-search-icon circle,gui-structure-search-bar form:hover .gui-search-icon line{stroke:#333}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:42px 8px}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left{position:relative;cursor:pointer;padding:12px 12px 12px 32px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover::before{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left::before{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAASElEQVR4AWMY2cAdiA0oNSQfiP8DcTo1DOkfHoaEQw35DcT7CeBsfAalQw36TIRBzYRc1Q81LJ8YLwx9w8LJ044ZAQ4MIxcAAAffIk95XG/oAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;left:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right{position:relative;cursor:pointer;padding:12px 32px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover::after{opacity:1}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right::after{content:'';display:inline-block;position:absolute;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAUUlEQVR4AWMY2cAGiN2pYVA7EP8H4nxKDWIB4tW0MCyYWob9JsawbCDejwcfhrrqNzgS8IBmkAYC+Dc1vNgPNaR/eBhSDjeEQuAPxOkMIxcAAK59IwsNdxXLAAAAAElFTkSuQmCC) center/contain no-repeat;height:14px;width:14px;right:8px;top:13px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title .gui-sort{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort{display:inline-block;height:16px;width:16px;opacity:.6}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFnElEQVR4Xu2dO6slRRSFvxF8gIiZiI9ERgMFB00MTNRf4DMTTUxEMBcRFRFzUTMDxUwZnD8wGoggqIyCBiomPjFTUHyAypY+eBjuub27q6qratfq7HJ3n+5a6+u9uoruc06gbWgFTgw9eg0eATA4BAJAAAyuwODDVwcQAIMrMPjw1QEEwOAKDD58dQABMKwCVwG3wn9rIR8CP4yoxIgd4ErgFeDuyXzz/R/gDPAo8ONIIIwGwEngLHDtAZO/Ae4CvhoFgpEAMPPfBa6eMfdb4M5RIBgFAK/5OzaGgWAEAJaaPxQE0QFYa/4wEEQGINX8ISCICkAu88NDEBGA3OaHhiAaAKXMDwtBJACuB95xzPNT13i+A+6Isk4QBYCtzN/BEwaCCABsbX4oCHoHoJb5YSDoGYDa5oeAoFcAWjG/ewh6BKA187uGoDcAUsy3hz68411Suz+t7G524BUkde6cY/8U878HXgaed57Ik8BjgD02tnTrCoJeAEg13x7wuBl40+nmA8Cn08JSaAh6AMDMtyd51hhhV76Z/wVw/0IA3gJuSITAjv2lE7oqZa0DkMt8E3cNALZfaAhaBiCn+SkAhIagVQBym58KQFgIWgSghPk5AAgJQWsAlDI/FwDhIGgJgJLm5wQgFAStAFDa/NwAhIGgBQC2ML8EACEgqA1Ayhx7f5HHs4iydh1g7rNTx2CPl1VbLKoJQKpwuxW+OYN2/y8FQGonMJCrQVALgK3NLxUB+/CljqkKBDUASBVq6ZW/RQfYHSN1bJtDsDUAqQKtNX+LDtAlBFsCUNP8LQHo6p5gKwBqm781AN1AsAUALZhfA4AuICgNQCvm1wKgeQhKAtCS+TUByAFBys3vseskpQC4GPgIuMm7SrNXt3SFz3uIkgtBnnNIuSA+m77T8E/PgZbUlALgGeDpJScy1ZYyv3YHyDFFNE2fXaFplQ5wDji18GRLmt8KAClxYJreslDT2fISHeAC4Hfgwtmj/19Q2vyWAFgLwV/AJcDfC3SdLS0BgB3UXo7wPsa9hfmtAbAGAtP0mllHFxaUAuA0cI/jXLYyv0UAlkJgmt7n0HRRSSkA7O7fZgE2Gzi0bWl+qwB4IfhjmgV8vshdR3EpAOzQjwAvHYDApjX3Tm/sOE4zS0ntaeBxg7Apol3hR02bzXx7T/HVLCqc9yElAbBD3Qg8B9wGXAGY8W8DLwDZ57QzArUMgJ36RcAT09fYGwg/AR8ATwHZr/ydVqUB2PfEZgdZ72AXXhGtA1BFqy0BWOhX9vKeAMg++EMfKACOVsZeD7e3g8NvAkAAhId8N0BFwBFWqwOoA6gDHKGA7gECYqEIUAQs+pIozQKCdQF1AHUAdYDzGdAsQLOAYI3+8HAUAYoARYAiwNfwtA7g06mrKkWAIkARoAjwNS1FgE+nrqoUAYoARYAiwNe0FAE+nbqqUgQoAhQBigBf01IE+HTqqkoRoAhQBCgCfE1LEeDTqasqRYAiQBGgCPA1LUWAT6euqhQBigBFgCLA17QUAT6duqpSBCgCFAGKAF/TUgT4dOqqShGgCFAEKAJ8TUsR4NOpqypFgCJAEaAI8DUtRYBPp66qFAGKAEWAIsDXtBQBPp26qlIEKAIUAYoAX9NSBPh06qpKEaAIUAQoAnxNSxHg06mrKkWAIkARMHIE3A685+xZVvu+s7brspG+KvZS4BfAfr3suM1+2ewy4LeunXWe/EgAmCSvAQ/NaPM68LBTv+7LRgPgcuBj4LoDzn09/UTrz9076xzAaACYLAbBi8CDe3Fgbf8N4HFgGPNNjBEB2F0bdk9wavrjE+BX50UTqmxkAEIZuXYwAmCtckH2EwBBjFw7DAGwVrkg+wmAIEauHYYAWKtckP0EQBAj1w5DAKxVLsh+AiCIkWuHIQDWKhdkv38BCBOikK5+TTcAAAAASUVORK5CYII=) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFcElEQVR4Xu2dPatcVRSGnwhRQUIqwc8mqIVC/ECwsFH/gEk0nWhjpZJeFFREf4AoNjaKnSL+Ak0hgo2EgBZGbJKIYJWA4gcksmAGhuvcO+t87H322us97aw7s9f7PrPec/acO3MIHakVOJS6ezWPAEgOgQAQAMkVSN6+JoAASK5A8vY1AQRAcgWSt68JIADSKnAL8NCq+3PAHxmVyDgBjgLvAc8BN6xMvwZ8CpwBrmQCIRsAZv73wLF9TP4FeCQTBNkA+Bh4fsc7/BPghSxTIBMAlvlXN8b+fh5bHBwB/swAQSYAHge+cZpqtd86a0OXZQLgWeAzp1ungc+dtaHLBMB2+wRAaKy3L14TYIsumgCaAB2+1zUB3KZqAmgCuGGJXqhzAJ0D6DJwLwOKAEVA9MnuXr8iQBGgCFAE+AaGdgJ9OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVigBFgCJAEeAbWooAn06hqhQBigBFgCLAN7QUAT6dQlUpAhQBigBFgG9oKQJ8OoWqUgQoAhQBigDf0FIE+HQKVaUIUAQoAhQBvqGlCPDpFKpKEaAIUAQoAnxDSxHg0ylUlSJAEaAIUAT4hpYiwKdTqCpFgCJAEaAI8A0tRYBPp1BVioCFI8B+pNF+kWupIxIA1bQq/WXRDwBvA48BtwI/Al8C7wL/VCahdQBuAl4FTgD3A78D3wGvr3QrIldJAF4E3gessb3HD8Ap4KciXW1/0pYBuA/4ArA3zN7jb+AV4KMSWpUCwBqxn2i98YBF/wo8WRGCVgEw878G7jhAK4PAftLWJuisRykAjOaTjpXWhKBFADzmr2U0TZ9xaDqopBQAl3cQvbnIWhC0BsAQ800v0/SuQe46iksAYGewfwGHHa+/LqkBQUsADDXfdPoXuHnuK6kSANhizwEPDgDASktD0AoAY8xfa/rwQE13lpcC4E3gjZ2v/v+CkhC0AMBY800p0/StEZoe+CelALCzf7sK2HZZs6uHUhAsDcAU8+2y2a4CZt87KQWAmTyl4RIQLAnAVC2eAC7seueMebwkAK1BsBQAzZpvBpUGoCUIlgCgafNrAdAKBLUBaN78mgC0AEFNAEKYXxuApSGoBUAY85cAYEkIagAQyvylAFgKgtIAhDN/SQCWgKAkACHNXxqA2hCUAmCK+fYJn90TUWSTx7MxVGMfYNc67gXODvj4ePP5huwYlgAgtPktTIC1mTUgmBuA8Oa3BICtpTQEcwLQhfmtAVAagrkA6Mb8FgEoCcEcAHRlfqsAlIJgKgDdmd8yACUgmAJAl+a3DsDcEIwFoFvzIwCwhsD+ceLOXRsKWx7f3CcYA8BU8+1Onp9HrLvan7SwEeRp1i4Rp0JwHAZ9P8B5x3/s7Ld22+Fr3vwoE2Bzs2gKBB8A73hoA14DXh65OxnG/GgATI2D6wNugRtSu8lUKPMjAjAVAucAGFUWzvyoALQIQUjzIwPQEgRhzY8OQAsQhDa/BwCWhCC8+b0AsAQEXZjfEwDWyz2rO4vG7BgOOe2/tLqNq+kdPm9DUXYCvf2UhqAr83ubAGtISkHQnfm9AlAiDro0v2cA5oSgW/N7B2AOCLo2PwMAUyDo3vwsAIyBIIX5mQAYAkEa87MBsIbgK+DufTYWLgJPtX4bl3dTxFPX20aQp+fbgA+BpzduELEbQOxr7F8CfvM8SS81GQFYe3c78Chg5tt3GtoNpOmOzACkM3tbwwIgOQYCQAAkVyB5+5oAAiC5Asnb1wQQAMkVSN6+JoAASK5A8vb/A4djo5Dd1KQLAAAAAElFTkSuQmCC) center/contain no-repeat}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;line-height:21px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page{position:relative}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button svg{height:12px;width:auto;margin:0 2px}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button svg path{stroke:#ccc;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}gui-structure-paging gui-structure-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid;border-color:inherit}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid;border-color:inherit}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;text-align:right;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-paging,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-info-panel,.gui-material gui-structure-paging,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-search-bar form input,.gui-material gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover,.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-paging,.gui-dark gui-structure-top-panel{background:#444}.gui-dark gui-structure-info-panel,.gui-dark gui-structure-paging,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-structure-search-bar form{background:#444}.gui-dark gui-structure-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-structure-search-bar:hover .gui-search-icon circle,.gui-dark gui-structure-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light gui-structure-info-panel,.gui-light gui-structure-paging,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light gui-structure-info-panel,.gui-light gui-structure-paging,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-structure-search-bar form input{border:0;outline:0}", ".gui-generic,.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-generic .gui-header-cell,.gui-generic gui-structure-header-columns{height:46px}.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);-webkit-transition:.15s;transition:.15s}.gui-generic .gui-header-cell,.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-generic .gui-rows-even .gui-row.even,.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-generic .gui-cell .gui-badge,.gui-generic .gui-cell .gui-button{padding:0}.gui-generic gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-generic gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-generic gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-generic gui-structure-info-panel,.gui-generic gui-structure-paging,.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-generic gui-structure-top-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding-right:0}.gui-generic gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}.gui-generic .gui-rows-even .gui-row.even,.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-generic .gui-row:hover{background:#f9fafb;-webkit-transition:.15s;transition:.15s}"]
+                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}", "gui-structure,gui-structure *{border-color:#d6d6d6;font-size:14px}gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-webkit-box;display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-search-bar{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}gui-structure-search-bar form{display:-webkit-box;display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}gui-structure-search-bar form .gui-search-icon circle,gui-structure-search-bar form .gui-search-icon line{stroke:#ccc;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}gui-structure-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-search-bar form:hover .gui-search-icon circle,gui-structure-search-bar form:hover .gui-search-icon line{stroke:#333}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container gui-structure-cell>span{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-structure-empty-source{display:block;padding:42px 8px}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-webkit-box;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "gui-structure-paging{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:4px}gui-structure-paging>*{padding-left:16px}gui-structure-paging gui-structure-paging-select span{display:inline-block;margin:0 6px 0 0}gui-structure-paging gui-structure-paging-navigator button{margin-right:6px}gui-structure-paging gui-structure-paging-navigator button:last-of-type{margin-right:0}gui-structure-paging gui-structure-paging-stats span{display:inline-block;margin:0 2px 0 0}gui-structure-paging gui-structure-alternative-paging-navigator{display:-webkit-box;display:-ms-flexbox;display:flex;padding:0}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;line-height:21px}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page{position:relative}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}gui-structure-paging gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button svg{height:12px;width:auto;margin:0 2px}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button svg path{stroke:#ccc;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}gui-structure-paging gui-structure-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}gui-structure-paging gui-structure-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}gui-structure-paging.gui-structure-paging-bottom{border-top:1px solid;border-color:inherit}gui-structure-paging.gui-structure-paging-top{border-bottom:1px solid;border-color:inherit}", "@media (max-width:500px){gui-structure-paging gui-structure-paging-stats,gui-structure-paging>*{padding-left:4px}}", ".gui-header{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-webkit-box;display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-structure-filter-icon-wrapper{margin-right:24px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon{cursor:pointer}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg{height:16px;width:16px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon:hover .cls-1{stroke:#464646}.gui-structure-filter-menu{display:block;width:400px}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-paging,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-info-panel,.gui-material gui-structure-paging,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-search-bar form input,.gui-material gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover,.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-webkit-box;display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-bottom{border-top-color:#666}.gui-dark gui-structure-paging.gui-structure-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-paging,.gui-dark gui-structure-top-panel{background:#444}.gui-dark gui-structure-info-panel,.gui-dark gui-structure-paging,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-structure-search-bar form{background:#444}.gui-dark gui-structure-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-structure-search-bar:hover .gui-search-icon circle,.gui-dark gui-structure-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;-webkit-transition:stroke .3s ease-in-out;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light gui-structure-info-panel,.gui-light gui-structure-paging,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light gui-structure-info-panel,.gui-light gui-structure-paging,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-structure-search-bar form input{border:0;outline:0}", ".gui-generic,.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-generic .gui-header-cell,.gui-generic gui-structure-header-columns{height:46px}.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);-webkit-transition:.15s;transition:.15s}.gui-generic .gui-header-cell,.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-generic .gui-rows-even .gui-row.even,.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-generic .gui-cell .gui-badge,.gui-generic .gui-cell .gui-button{padding:0}.gui-generic gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-generic gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-generic gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-generic gui-structure-info-panel,.gui-generic gui-structure-paging,.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-generic gui-structure-top-panel{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;padding-right:0}.gui-generic gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}.gui-generic .gui-rows-even .gui-row.even,.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-generic .gui-row:hover{background:#f9fafb;-webkit-transition:.15s;transition:.15s}"]
                 }] }
     ];
     /** @nocollapse */
@@ -20184,6 +20826,8 @@ var StructureComponent = /** @class */ (function (_super) {
         { type: StructureSearchEventService },
         { type: StructureHeaderTopEnabledArchive },
         { type: StructureHeaderBottomEnabledArchive },
+        { type: StructureDetailViewConfigArchive },
+        { type: SchemaEventRepository },
         { type: ElementRef },
         { type: ChangeDetectorRef },
         { type: Renderer2 },
@@ -20191,7 +20835,8 @@ var StructureComponent = /** @class */ (function (_super) {
         { type: StructureWarehouse },
         { type: CompositionWarehouse },
         { type: SchemaCssClassManager },
-        { type: SchemaReadModelRootId }
+        { type: SchemaReadModelRootId },
+        { type: StructureDetailViewService }
     ]; };
     return StructureComponent;
 }(StructureGateway));
@@ -20247,6 +20892,11 @@ if (false) {
      * @private
      */
     StructureComponent.prototype.schemaReadModelRootId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureComponent.prototype.structureDetailViewService;
 }
 
 /**
@@ -20295,7 +20945,7 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
     };
     StructureColumnConfigComponent.decorators = [
         { type: Component, args: [{
-                    template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\n\t\t\t\t\t\t<gui-structure-column-config-sort *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-sort>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-hide\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-hide>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-move\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-move>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t\t\t<gui-structure-menu-column-manager>\n\t\t\t\t\t\t</gui-structure-menu-column-manager>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t"
+                    template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\n\t\t\t\t\t\t<gui-structure-column-config-sort *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t  [column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-sort>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-hide\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-hide>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-move\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-move>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t\t\t<gui-structure-menu-column-manager>\n\t\t\t\t\t\t</gui-structure-menu-column-manager>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t"
                 }] }
     ];
     /** @nocollapse */
@@ -21808,7 +22458,7 @@ if (false) {
  */
 var StructureContainerComponent = /** @class */ (function (_super) {
     __extends(StructureContainerComponent, _super);
-    function StructureContainerComponent(elementRef, renderer, changeDetectorRef, ngZone, structureId, structureCommandService, structureReadModelWarehouse, structureVerticalFormationWarehouse, sourceReadModelService, compositionCommandService, compositionReadModelService, formationReadModelService, resizeDetector, structureParent) {
+    function StructureContainerComponent(elementRef, renderer, changeDetectorRef, ngZone, structureId, structureCommandService, structureReadModelWarehouse, structureVerticalFormationWarehouse, sourceReadModelService, compositionCommandService, compositionWarehouse, formationReadModelService, resizeDetector, structureParent) {
         var _this = _super.call(this) || this;
         _this.elementRef = elementRef;
         _this.renderer = renderer;
@@ -21820,7 +22470,7 @@ var StructureContainerComponent = /** @class */ (function (_super) {
         _this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
         _this.sourceReadModelService = sourceReadModelService;
         _this.compositionCommandService = compositionCommandService;
-        _this.compositionReadModelService = compositionReadModelService;
+        _this.compositionWarehouse = compositionWarehouse;
         _this.formationReadModelService = formationReadModelService;
         _this.resizeDetector = resizeDetector;
         _this.structureParent = structureParent;
@@ -21859,7 +22509,7 @@ var StructureContainerComponent = /** @class */ (function (_super) {
             _this.source = source;
             _this.changeDetectorRef.detectChanges();
         }));
-        this.compositionReadModelService
+        this.compositionWarehouse
             .onTemplateColumns()
             .pipe(this.takeUntil())
             .subscribe((/**
@@ -21870,7 +22520,7 @@ var StructureContainerComponent = /** @class */ (function (_super) {
             _this.columns = columns;
             _this.changeDetectorRef.detectChanges();
         }));
-        this.compositionReadModelService
+        this.compositionWarehouse
             .onResizeWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
@@ -21909,7 +22559,7 @@ var StructureContainerComponent = /** @class */ (function (_super) {
                 _this.recalculateContainer(width);
             }));
         }
-        this.compositionReadModelService
+        this.compositionWarehouse
             .onContainerWidth()
             .pipe(this.takeUntil())
             .subscribe((/**
@@ -22157,7 +22807,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.compositionReadModelService;
+    StructureContainerComponent.prototype.compositionWarehouse;
     /**
      * @type {?}
      * @private
@@ -24109,7 +24759,7 @@ var VerticalFormation = /** @class */ (function () {
         this.enabled = enabled;
         this.rowHeight = 42;
         this.hiddenItemsTop = 5;
-        this.hiddenItemsBottom = 1;
+        this.hiddenItemsBottom = 2;
         this.container = new VerticalFormationContainerHeight();
         this.sourceSize = sourceSize;
         this.container.setSourceSize(this.sourceSize * this.rowHeight);
@@ -24198,7 +24848,7 @@ var VerticalFormation = /** @class */ (function () {
         /** @type {?} */
         var viewportPositionIndex = Math.floor(this.scrollPosition / this.rowHeight);
         /** @type {?} */
-        var end = viewportPositionIndex + itemsInViewport;
+        var end = (viewportPositionIndex + itemsInViewport + this.hiddenItemsBottom);
         /** @type {?} */
         var topMargin = viewportPositionIndex;
         if (topMargin + itemsInViewport >= this.sourceSize) {
@@ -27975,36 +28625,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var RowColoringSetEvent = /** @class */ (function (_super) {
-    __extends(RowColoringSetEvent, _super);
-    function RowColoringSetEvent(schemaId, rowColoring) {
-        var _this = _super.call(this, schemaId, 'RowColoringSetEvent') || this;
-        _this.rowColoring = rowColoring;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    RowColoringSetEvent.prototype.getRowColoring = /**
-     * @return {?}
-     */
-    function () {
-        return this.rowColoring;
-    };
-    return RowColoringSetEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    RowColoringSetEvent.prototype.rowColoring;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var RowColoringSetAggregateEvent = /** @class */ (function (_super) {
     __extends(RowColoringSetAggregateEvent, _super);
     function RowColoringSetAggregateEvent(schemaId, rowColoring) {
@@ -28035,36 +28655,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var SchemaVerticalGridSetEvent = /** @class */ (function (_super) {
-    __extends(SchemaVerticalGridSetEvent, _super);
-    function SchemaVerticalGridSetEvent(schemaId, verticalGrid) {
-        var _this = _super.call(this, schemaId, 'SchemaVerticalGridSetEvent') || this;
-        _this.verticalGrid = verticalGrid;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SchemaVerticalGridSetEvent.prototype.getVerticalGrid = /**
-     * @return {?}
-     */
-    function () {
-        return this.verticalGrid;
-    };
-    return SchemaVerticalGridSetEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SchemaVerticalGridSetEvent.prototype.verticalGrid;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var SchemaVerticalGridSetAggregateEvent = /** @class */ (function (_super) {
     __extends(SchemaVerticalGridSetAggregateEvent, _super);
     function SchemaVerticalGridSetAggregateEvent(schemaId, verticalGrid) {
@@ -28089,36 +28679,6 @@ if (false) {
      * @private
      */
     SchemaVerticalGridSetAggregateEvent.prototype.verticalGrid;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SchemaHorizontalGridSetEvent = /** @class */ (function (_super) {
-    __extends(SchemaHorizontalGridSetEvent, _super);
-    function SchemaHorizontalGridSetEvent(schemaId, horizontalGrid) {
-        var _this = _super.call(this, schemaId, 'SchemaHorizontalGridSetEvent') || this;
-        _this.horizontalGrid = horizontalGrid;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SchemaHorizontalGridSetEvent.prototype.getHorizontalGrid = /**
-     * @return {?}
-     */
-    function () {
-        return this.horizontalGrid;
-    };
-    return SchemaHorizontalGridSetEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SchemaHorizontalGridSetEvent.prototype.horizontalGrid;
 }
 
 /**
@@ -31191,7 +31751,7 @@ var StructureTopPanelComponent = /** @class */ (function (_super) {
     StructureTopPanelComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-top-panel',
-                    template: "\n\t\t\n\t\t<gui-structure-search-bar></gui-structure-search-bar>\n\t\t\n\t\t\n\t",
+                    template: "\n\n\t\t<gui-structure-search-bar></gui-structure-search-bar>\n<!--\t\t<gui-structure-filter-menu-trigger></gui-structure-filter-menu-trigger>-->\n\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -31309,7 +31869,7 @@ var StructureSearchComponent = /** @class */ (function (_super) {
     StructureSearchComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-search-bar',
-                    template: "\n\t\t<form #formRef\n\t\t\t  [formGroup]=\"searchForm\">\n\t\t\t<svg class=\"gui-search-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\" \n\t\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t\t</svg>\n\t\t\t<input formControlName=\"searchPhrase\" [placeholder]=\"placeholder\">\n\t\t</form>\n\t",
+                    template: "\n\t\t<form #formRef\n\t\t\t  [formGroup]=\"searchForm\">\n\t\t\t<svg class=\"gui-search-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\"\n\t\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t\t</svg>\n\t\t\t<input formControlName=\"searchPhrase\" [placeholder]=\"placeholder\">\n\t\t</form>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -31394,6 +31954,228 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+var selector$2 = 'gui-structure-filter-icon';
+var StructureFilterIconComponent = /** @class */ (function () {
+    function StructureFilterIconComponent() {
+    }
+    StructureFilterIconComponent.decorators = [
+        { type: Component, args: [{
+                    selector: selector$2,
+                    template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.32 7.23\">\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"0.75\" x2=\"0.75\" y2=\"0.75\"/>\n\t\t\t<line class=\"cls-1\" x1=\"8.14\" y1=\"3.62\" x2=\"2.18\" y2=\"3.62\"/>\n\t\t\t<line class=\"cls-1\" x1=\"6.71\" y1=\"6.48\" x2=\"3.62\" y2=\"6.48\"/>\n\t\t</svg>\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class]': "\"" + selector$2 + "\""
+                    }
+                }] }
+    ];
+    return StructureFilterIconComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureFilterMenuComponent = /** @class */ (function () {
+    function StructureFilterMenuComponent() {
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    StructureFilterMenuComponent.prototype.onColumnSelect = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.selectedColumnId = value;
+    };
+    StructureFilterMenuComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-filter-menu',
+                    template: "\n\t\t\n\t\t<gui-structure-column-selector\n\t\t\t\t(columnSelected)=\"onColumnSelect($event)\">\n\t\t</gui-structure-column-selector>\n\t\t\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-structure-filter-menu]': 'true'
+                    }
+                }] }
+    ];
+    return StructureFilterMenuComponent;
+}());
+if (false) {
+    /** @type {?} */
+    StructureFilterMenuComponent.prototype.selectedColumnId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureFilterMenuTriggerComponent = /** @class */ (function () {
+    function StructureFilterMenuTriggerComponent(injector, drawerService, structureComponent) {
+        this.injector = injector;
+        this.drawerService = drawerService;
+        this.structureComponent = structureComponent;
+    }
+    /**
+     * @return {?}
+     */
+    StructureFilterMenuTriggerComponent.prototype.openDrawer = /**
+     * @return {?}
+     */
+    function () {
+        /** @type {?} */
+        var structureElement = this.structureComponent.getElementRef();
+        this.drawerService.open(structureElement, StructureFilterMenuComponent, { injector: this.injector });
+    };
+    StructureFilterMenuTriggerComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-filter-menu-trigger',
+                    template: "\n\t\t<div [gui-tooltip]=\"'Filters'\"\n\t\t\t (click)=\"openDrawer()\"\n\t\t\t class=\"gui-structure-filter-icon-wrapper\">\n\t\t\t<gui-structure-filter-icon></gui-structure-filter-icon>\n\t\t</div>\n\t"
+                }] }
+    ];
+    /** @nocollapse */
+    StructureFilterMenuTriggerComponent.ctorParameters = function () { return [
+        { type: Injector },
+        { type: FabricDrawerService },
+        { type: StructureComponent, decorators: [{ type: Inject, args: [structureComponentToken,] }] }
+    ]; };
+    return StructureFilterMenuTriggerComponent;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureFilterMenuTriggerComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureFilterMenuTriggerComponent.prototype.drawerService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureFilterMenuTriggerComponent.prototype.structureComponent;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureColumnSelectorComponent = /** @class */ (function (_super) {
+    __extends(StructureColumnSelectorComponent, _super);
+    function StructureColumnSelectorComponent(compositionWarehouse) {
+        var _this = _super.call(this) || this;
+        _this.compositionWarehouse = compositionWarehouse;
+        _this.columnSelected = new EventEmitter();
+        _this.columns = [];
+        _this.options = [];
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureColumnSelectorComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.compositionWarehouse
+            .onHeaderColumns()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} columns
+         * @return {?}
+         */
+        function (columns) {
+            _this.columns = columns;
+            _this.options = columns.map((/**
+             * @param {?} column
+             * @return {?}
+             */
+            function (column) { return column.getColumnDefinitionId().toString(); }));
+        }));
+    };
+    /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    StructureColumnSelectorComponent.prototype.onSelectChange = /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    function (columnId) {
+        this.columnSelected.emit(columnId);
+    };
+    StructureColumnSelectorComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-column-selector',
+                    template: "\n\n\t\t<gui-select\n\t\t\t\t[options]=\"options\"\n\t\t\t\t(optionChanged)=\"onSelectChange($event)\">\n\t\t</gui-select>\n\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    StructureColumnSelectorComponent.ctorParameters = function () { return [
+        { type: CompositionWarehouse }
+    ]; };
+    StructureColumnSelectorComponent.propDecorators = {
+        columnSelected: [{ type: Output }]
+    };
+    return StructureColumnSelectorComponent;
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    StructureColumnSelectorComponent.prototype.columnSelected;
+    /** @type {?} */
+    StructureColumnSelectorComponent.prototype.columns;
+    /** @type {?} */
+    StructureColumnSelectorComponent.prototype.options;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnSelectorComponent.prototype.compositionWarehouse;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureFilterMenuModule = /** @class */ (function () {
+    function StructureFilterMenuModule() {
+    }
+    StructureFilterMenuModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FabricModule
+                    ],
+                    declarations: [
+                        StructureFilterIconComponent,
+                        StructureFilterMenuComponent,
+                        StructureFilterMenuTriggerComponent,
+                        StructureColumnSelectorComponent
+                    ],
+                    exports: [
+                        StructureFilterMenuTriggerComponent
+                    ],
+                    entryComponents: [
+                        StructureFilterMenuComponent
+                    ]
+                },] }
+    ];
+    return StructureFilterMenuModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var StructureTopPanelModule = /** @class */ (function () {
     function StructureTopPanelModule() {
     }
@@ -31401,7 +32183,8 @@ var StructureTopPanelModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [
                         CommonModule,
-                        ReactiveFormsModule
+                        ReactiveFormsModule,
+                        StructureFilterMenuModule
                     ],
                     declarations: [
                         StructureTopPanelComponent,
@@ -31633,7 +32416,7 @@ var StructureColumnConfigSortComponent = /** @class */ (function (_super) {
     StructureColumnConfigSortComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-column-config-sort',
-                    template: "\n\n\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t  [dropdownText]=\"'Column Sort'\"\n\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">Ascending<span class=\"gui-sort gui-sort-asc\"></span></div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">Descending<span class=\"gui-sort gui-sort-desc\"></span></div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t\t\tNone\n\t\t\t</gui-dropdown-item>\n\n\t\t</gui-dropdown>\n\t"
+                    template: "\n\n\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t  [dropdownText]=\"'Column Sort'\"\n\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">Ascending\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"0\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">Descending\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"180\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t\t\tNone\n\t\t\t</gui-dropdown-item>\n\n\t\t</gui-dropdown>\n\t"
                 }] }
     ];
     /** @nocollapse */
@@ -31761,7 +32544,7 @@ var StructureColumnConfigColumnMoveComponent = /** @class */ (function () {
     StructureColumnConfigColumnMoveComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-column-config-column-move',
-                    template: "\n\t\t<div class=\"gui-header-menu-column-move\">\n\t\t\t<div class=\"gui-header-menu-column-move-left\"\n\t\t\t\t (click)=\"moveLeft(column)\">\n\t\t\t\tMove Left\n\t\t\t</div>\n\n\t\t\t<div class=\"gui-header-menu-column-move-right\"\n\t\t\t\t (click)=\"moveRight(column)\">\n\t\t\t\tMove Right\n\t\t\t</div>\n\t\t</div>\n\t"
+                    template: "\n\t\t<div class=\"gui-header-menu-column-move\">\n\t\t\t<div class=\"gui-header-menu-column-move-item left\"\n\t\t\t\t (click)=\"moveLeft(column)\">\n\t\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"-90\"></gui-structure-column-menu-arrow-icon>\n\t\t\t\tMove Left\n\t\t\t</div>\n\n\t\t\t<div class=\"gui-header-menu-column-move-item right\"\n\t\t\t\t (click)=\"moveRight(column)\">\n\t\t\t\tMove Right\n\t\t\t\t<gui-structure-column-menu-arrow-icon></gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t"
                 }] }
     ];
     /** @nocollapse */
@@ -31794,13 +32577,13 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-var selector$2 = 'gui-structure-column-menu-icon';
+var selector$3 = 'gui-structure-column-menu-icon';
 var StructureColumnMenuIconComponent = /** @class */ (function () {
     function StructureColumnMenuIconComponent() {
     }
     StructureColumnMenuIconComponent.decorators = [
         { type: Component, args: [{
-                    selector: selector$2,
+                    selector: selector$3,
                     template: "\n\t\t<svg data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.32 7.46\">\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"3.73\" x2=\"0.75\" y2=\"3.73\"/>\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"0.75\" x2=\"0.75\" y2=\"0.75\"/>\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"6.71\" x2=\"0.75\" y2=\"6.71\"/>\n\t\t</svg>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
@@ -31818,13 +32601,48 @@ var StructureColumnMenuIconComponent = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
+var selector$4 = 'gui-structure-column-menu-arrow-icon';
+var StructureColumnMenuArrowIconComponent = /** @class */ (function () {
+    function StructureColumnMenuArrowIconComponent() {
+        this.rotateDeg = 90;
+    }
+    StructureColumnMenuArrowIconComponent.decorators = [
+        { type: Component, args: [{
+                    selector: selector$4,
+                    template: "\n\t\t<div [style.transform]=\"'rotate(' + rotateDeg + 'deg)'\"\n\t\t\t [class.gui-structure-column-menu-sort-icon]=\"sort\">\n\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.04 11.72\">\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"2.15\" x2=\"5.02\" y2=\"10.97\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"9.29\" y2=\"5.02\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"0.75\" y2=\"5.02\"/>\n\t\t\t</svg>\n\t\t</div>\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class]': "\"" + selector$4 + "\""
+                    }
+                }] }
+    ];
+    StructureColumnMenuArrowIconComponent.propDecorators = {
+        rotateDeg: [{ type: Input }],
+        sort: [{ type: Input }]
+    };
+    return StructureColumnMenuArrowIconComponent;
+}());
+if (false) {
+    /** @type {?} */
+    StructureColumnMenuArrowIconComponent.prototype.rotateDeg;
+    /** @type {?} */
+    StructureColumnMenuArrowIconComponent.prototype.sort;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 var declarations$1 = [
     StructureColumnConfigComponent,
     StructureColumnConfigTriggerComponent,
     StructureColumnConfigSortComponent,
     StructureColumnConfigColumnHideComponent,
     StructureColumnConfigColumnMoveComponent,
-    StructureColumnMenuIconComponent
+    StructureColumnMenuIconComponent,
+    StructureColumnMenuArrowIconComponent
 ];
 var StructureColumnMenuModule = /** @class */ (function () {
     function StructureColumnMenuModule() {
@@ -32297,23 +33115,10 @@ var SchemaAggregateFactory = /** @class */ (function (_super) {
 var CreateSchemaCommandHandler = /** @class */ (function () {
     function CreateSchemaCommandHandler() {
     }
-    //
-    // getAggregateRepository(): AggregateRepository<SchemaId, SchemaAggregate> {
-    // 	return this.schemaAggregateRepository;
-    // }
-    //
-    // getAggregateRepository(): AggregateRepository<SchemaId, SchemaAggregate> {
-    // 	return this.schemaAggregateRepository;
-    // }
     /**
      * @return {?}
      */
-    CreateSchemaCommandHandler.prototype.forCommand = 
-    //
-    // getAggregateRepository(): AggregateRepository<SchemaId, SchemaAggregate> {
-    // 	return this.schemaAggregateRepository;
-    // }
-    /**
+    CreateSchemaCommandHandler.prototype.forCommand = /**
      * @return {?}
      */
     function () {
@@ -32744,16 +33549,16 @@ var SchemaCssClassesEventHandler = /** @class */ (function (_super) {
      */
     function (event) {
         if (event instanceof RowColoringSetEvent) {
-            this.coloring = event.getRowColoring();
+            this.rowColoring = event.getRowColoring();
         }
         if (event instanceof SchemaHorizontalGridSetEvent) {
-            this.hgrid = event.getHorizontalGrid();
+            this.horizontalGrid = event.getHorizontalGrid();
         }
         if (event instanceof SchemaVerticalGridSetEvent) {
-            this.vgrid = event.getVerticalGrid();
+            this.verticalGrid = event.getVerticalGrid();
         }
         if (event instanceof SchemaThemeSetEvent) {
-            this.theme = event.getTheme();
+            this.schemaTheme = event.getTheme();
         }
         this.publish(event.getAggregateId());
     };
@@ -32768,8 +33573,8 @@ var SchemaCssClassesEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (aggregateId) {
-        if (this.coloring !== undefined && this.hgrid !== undefined && this.vgrid !== undefined && this.theme !== undefined) {
-            this.schemaCssClassesRepository.setTheme(new SchemaCssClass(this.vgrid, this.hgrid, this.theme, this.coloring), aggregateId);
+        if (this.rowColoring !== undefined && this.horizontalGrid !== undefined && this.verticalGrid !== undefined && this.schemaTheme !== undefined) {
+            this.schemaCssClassesRepository.setTheme(new SchemaCssClass(this.verticalGrid, this.horizontalGrid, this.schemaTheme, this.rowColoring), aggregateId);
         }
     };
     SchemaCssClassesEventHandler.decorators = [
@@ -32783,13 +33588,13 @@ var SchemaCssClassesEventHandler = /** @class */ (function (_super) {
 }(DomainEventHandler));
 if (false) {
     /** @type {?} */
-    SchemaCssClassesEventHandler.prototype.coloring;
+    SchemaCssClassesEventHandler.prototype.rowColoring;
     /** @type {?} */
-    SchemaCssClassesEventHandler.prototype.hgrid;
+    SchemaCssClassesEventHandler.prototype.horizontalGrid;
     /** @type {?} */
-    SchemaCssClassesEventHandler.prototype.vgrid;
+    SchemaCssClassesEventHandler.prototype.verticalGrid;
     /** @type {?} */
-    SchemaCssClassesEventHandler.prototype.theme;
+    SchemaCssClassesEventHandler.prototype.schemaTheme;
     /**
      * @type {?}
      * @private
@@ -32864,6 +33669,7 @@ var SchemaModule = /** @class */ (function () {
                         InMemorySchemaStore,
                         SchemaCommandDispatcher,
                         SchemaWarehouse,
+                        SchemaEventRepository,
                         {
                             provide: DOMAIN_EVENT_HANDLERS,
                             useClass: SchemaCssClassesEventHandler,
@@ -33053,11 +33859,13 @@ var declarations$2 = [
     StructureContainerComponent,
     StructureEmptySourceComponent,
     StructureQuickFiltersComponent,
-    StructureBlueprintComponent
+    StructureBlueprintComponent,
+    StructureDetailViewComponent
 ];
 /** @type {?} */
 var entryComponents = [
-    StructureColumnConfigComponent
+    StructureColumnConfigComponent,
+    StructureDetailViewComponent
 ];
 /** @type {?} */
 var providers = __spread([
@@ -33215,5 +34023,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiColumnAlign, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiSortingOrder, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, pagingCommandHandlers as ɵba, pagingProviders as ɵbb, SetPagingCommandHandler as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, sourceCommandHandlers as ɵbg, sourceProviders as ɵbh, SourceSetLoadingCommandHandler as ɵbi, SetOriginCommandHandler as ɵbj, StructureSourceDomainEventPublisher as ɵbk, StructureEditSourceItemCommandHandler as ɵbl, structureCommandHandlers as ɵbm, structureProviders as ɵbn, SetVerticalScrollEnabledCommandHandler as ɵbo, SetRowHeightBasedOnThemeCommandHandler as ɵbp, SetScrollPositionCommandHandler as ɵbq, InitFieldsCommandHandler as ɵbr, ToggleSortCommandHandler as ɵbs, SetSortingCommandHandler as ɵbt, StructureSetConfigFilterCommandHandler as ɵbu, StructureSetConfigSearchingCommandHandler as ɵbv, StructureSetConfigQuickFilterCommandHandler as ɵbw, StructureToggleFilterCommandHandler as ɵbx, StructureSetSummariesEnabledCommandHandler as ɵby, StructureSetSearchPhraseCommandHandler as ɵbz, StructureModule as ɵc, SetSortOrderCommandHandler as ɵca, SetRowHeightCommandHandler as ɵcb, StructureSetHeightCommandHandler as ɵcc, fabricImports as ɵcd, StructurePagingModule as ɵce, StructurePagingComponent as ɵcf, SmartComponent as ɵcg, Reactive as ɵch, StructurePagingWarehouse as ɵci, PagingRepository as ɵcj, StructureReadModelRepository as ɵck, StructurePagingCommandDispatcher as ɵcl, PagingDispatcher as ɵcm, StructureSourceWarehouse as ɵcn, StructurePreparedItemsRepository as ɵco, StructureSourceOriginRepository as ɵcp, StructurePagingDisplayModeArchive as ɵcq, StructurePagingNavigatorComponent as ɵcr, StructurePagingSelectComponent as ɵcs, StructurePagingStatsComponent as ɵct, StructureAlternativePagingNavigatorComponent as ɵcu, StructureAlternativePagingPagesComponent as ɵcv, StructureInfoPanelModule as ɵcw, NumberFormatterModule as ɵcx, NumberFormatterPipe as ɵcy, StructureColumnManagerModule as ɵcz, StructureAggregateFactory as ɵd, StructureColumnManagerComponent as ɵda, CompositionId as ɵdb, CompositionCommandDispatcher as ɵdc, CompositionDispatcher as ɵdd, CompositionWarehouse as ɵde, CompositionReadModelRootRepository as ɵdf, StructureDialogColumnManagerComponent as ɵdg, StructureMenuColumnManagerComponent as ɵdh, selector as ɵdi, StructureColumnManagerIconComponent as ɵdj, StructureDialogColumnManagerService as ɵdk, SchemaWarehouse as ɵdl, SchemaCssClassesRepository as ɵdm, SchemaThemeRepository as ɵdn, StructureThemeConverter as ɵdo, StructureInfoPanelComponent as ɵdp, StructureId as ɵdq, SchemaReadModelRootId as ɵdr, StructureInfoModalComponent as ɵds, selector$1 as ɵdt, StructureInfoIconComponent as ɵdu, StructureSummariesPanelModule as ɵdv, StructureSummariesPanelComponent as ɵdw, StructureSummariesUiEventsRepository as ɵdx, StructureSummariesArchive as ɵdy, StructureSummariesConfigService as ɵdz, PagingManagerFactory as ɵe, StructureSummariesPanelConfigConverter as ɵea, StructureSummariesCommandDispatcher as ɵeb, StructureTopPanelModule as ɵec, StructureTopPanelComponent as ɵed, StructureSearchComponent as ɵee, StructureCommandDispatcher as ɵef, StructureFilterCommandDispatcher as ɵeg, SourceDispatcher as ɵeh, StructureSearchDispatcher as ɵei, StructureSearchHighlightArchive as ɵej, StructureSearchPlaceholderArchive as ɵek, StructureWarehouse as ɵel, VerticalFormationRepository as ɵem, InMemoryStructureReadStore as ɵen, StructureReadModelRootConverter as ɵeo, FormationConverter as ɵep, PagingConverter as ɵeq, SourceConverter as ɵer, VerticalFormationConverter as ɵes, StructureVerticalFormationWarehouse as ɵet, StructureSearchPhraseRepository as ɵeu, StructureColumnMenuModule as ɵev, StructureColumnConfigComponent as ɵew, StructureColumnMenuConfigArchive as ɵex, CellTemplateWithContext as ɵey, CellContext as ɵez, Logger as ɵf, FieldId as ɵfa, ColumnDefinitionId as ɵfb, SortOrder as ɵfc, ColumnAlign as ɵfd, StructureColumnConfigTriggerComponent as ɵfe, StructureColumnConfigService as ɵff, StructureColumnConfigSortComponent as ɵfg, StructureColumnConfigColumnHideComponent as ɵfh, StructureColumnConfigColumnMoveComponent as ɵfi, selector$2 as ɵfj, StructureColumnMenuIconComponent as ɵfk, CompositionModule as ɵfl, SanitizeModule as ɵfm, SafePipe as ɵfn, CompositionAggregateFactory as ɵfo, ColumnEntityFactory as ɵfp, ColumnPresentationConverter as ɵfq, InMemoryCompositionAggregateRepository as ɵfr, CompositionAggregateRepository as ɵfs, InMemoryCompositionAggregateStore as ɵft, InMemoryCompositionStore as ɵfu, CreateCompositionCommandHandler as ɵfv, SetColumnsCommandHandler as ɵfw, CompositionEventConverter as ɵfx, SetCompositionWidthCommandHandler as ɵfy, SetCompositionResizeWidthCommandHandler as ɵfz, SourceManagerFactory as ɵg, SetCompositionContainerWidthCommandHandler as ɵga, CompositionSetColumnEnabledCommandHandler as ɵgb, CompositionChangeSortStatusCommandHandler as ɵgc, CompositionMoveLeftColumnCommandHandler as ɵgd, CompositionMoveRightColumnCommandHandler as ɵge, compositionProviders as ɵgf, inMemoryCompositionCommandProviders as ɵgg, inMemoryCompositionReadModelProviders as ɵgh, inMemoryCompositionProviders as ɵgi, ColumnFieldFactory as ɵgj, InMemoryCompositionReadStore as ɵgk, CompositionReadModelRootConverter as ɵgl, ColumnDefinitionFactory as ɵgm, ViewTemplateRepository as ɵgn, ViewTemplateFactory as ɵgo, TemplateFactory as ɵgp, EditTemplateRepository as ɵgq, EditTemplateFactory as ɵgr, InMemoryCompositionRepository as ɵgs, CompositionFieldsInitedEventHandler as ɵgt, CompositionChangeSortStatusEventHandler as ɵgu, CompositionEventRepository as ɵgv, ViewTemplatesComponent as ɵgw, EditTemplatesComponent as ɵgx, StringEditTemplateComponent as ɵgy, InputEditTemplateComponent as ɵgz, FormationAggregateFactory as ɵh, EditCommunicationComponent as ɵha, Override as ɵhb, NumberEditTemplateComponent as ɵhc, BooleanEditTemplateComponent as ɵhd, DateEditTemplateComponent as ɵhe, ColumnQueryComponent as ɵhf, FunctionViewComponent as ɵhg, BarViewComponent as ɵhh, PercentageViewComponent as ɵhi, SchemaModule as ɵhj, SchemaAggregateFactory as ɵhk, InMemorySchemaAggregateRepository as ɵhl, SchemaAggregateRepository as ɵhm, InMemorySchemaAggregateStore as ɵhn, InMemorySchemaStore as ɵho, CreateSchemaCommandHandler as ɵhp, SetSchemaThemeCommandHandler as ɵhq, SetRowColoringCommandHandler as ɵhr, SetSchemaHorizontalGridCommandHandler as ɵhs, SetSchemaVerticalGridCommandHandler as ɵht, SchemaDispatcher as ɵhu, SchemaCommandDispatcher as ɵhv, SchemaCssClassesEventHandler as ɵhw, SchemaThemeSetEventHandler as ɵhx, LoggerModule as ɵhy, ConsoleLogger as ɵhz, VerticalFormationFactory as ɵi, structureIdFactory as ɵia, compositionIdFactory as ɵib, schemaIdFactory as ɵic, structureComponentSelfProviders as ɵid, StructureComponent as ɵie, StructureGateway as ɵif, StructurePagingEventRepository as ɵig, SourceCommandDispatcher as ɵih, StructureFieldUiRepository as ɵii, StructureFieldUiArchive as ɵij, SourceEventService as ɵik, FormationEventService as ɵil, StructureEditModeArchive as ɵim, StructureCellEditArchive as ɵin, StructureInfoPanelEnabledArchive as ɵio, StructureCellEditStore as ɵip, StructureRowSelectEnabledArchive as ɵiq, StructureSearchEventService as ɵir, StructureHeaderTopEnabledArchive as ɵis, StructureHeaderBottomEnabledArchive as ɵit, StructureIdGenerator as ɵiu, localProviders as ɵiv, LocalPagingCommandDispatcher as ɵiw, LocalPagingWarehouse as ɵix, StructureFormationDispatcher as ɵiy, FormationDispatcher as ɵiz, SummariesManagerFactory as ɵj, LocalFormationCommandDispatcher as ɵja, StructureFormationWarehouse as ɵjb, FormationRepository as ɵjc, LocalFormationWarehouse as ɵjd, LocalStructureCommandDispatcher as ɵje, LocalStructureWarehouse as ɵjf, LocalSourceCommandDispatcher as ɵjg, LocalSourceWarehouse as ɵjh, LocalCompositionCommandDispatcher as ɵji, LocalCompositionWarehouse as ɵjj, LocalStructureSearchCommandDispatcher as ɵjk, LocalStructureVerticalFormationWarehouse as ɵjl, LocalSchemaWarehouse as ɵjm, LocalSchemaCommandDispatcher as ɵjn, SchemaCssClassManager as ɵjo, StructureCellEditCloseAllService as ɵjp, structureComponentToken as ɵjq, StructureDefinition as ɵjr, StructurePagingDefinition as ɵjs, StructureHeaderComponent as ɵjt, StructureHeaderColumnsComponent as ɵju, StructureHeaderFiltersComponent as ɵjv, StructureFilterWarehouse as ɵjw, StructureFilterRepository as ɵjx, StructureQuickFilterRepository as ɵjy, StructureHeaderFilterComponent as ɵjz, SUMMARIES_CALCULATORS as ɵk, StructureContentComponent as ɵka, StructureRowComponent as ɵkb, StructureCellComponent as ɵkc, StructureCellEditComponent as ɵkd, StructureCellEditBooleanComponent as ɵke, StructureContainerComponent as ɵkf, structureParentComponent as ɵkg, StructureEmptySourceComponent as ɵkh, StructureQuickFiltersComponent as ɵki, StructureBlueprintComponent as ɵkj, STRUCTURE_CSS_CLASS_NAME as ɵkk, StructureSearchWarehouse as ɵkl, StructureSearchingRepository as ɵkm, ItemEntityFactory as ɵkn, inMemoryStructureCommandProviders as ɵko, inMemoryStructureReadProviders as ɵkp, inMemoryStructureProviders as ɵkq, provideSummariesCalculator as ɵkr, summariesProviders as ɵks, BooleanSummariesCalculator as ɵkt, DateSummariesCalculator as ɵku, NumberSummariesCalculator as ɵkv, StringSummariesCalculator as ɵkw, UnknownSummariesCalculator as ɵkx, StructureConfigFilterSetEventHandler as ɵky, StructureConfigSearchingSetEventHandler as ɵkz, SummariesCalculator as ɵl, StructureConfigQuickFilterSetEventHandler as ɵla, StructureFieldsInitedEventHandler as ɵlb, StructureFieldUiConverter as ɵlc, StructureSearchPhraseSetEventHandler as ɵld, StructureCreatedEventHandler as ɵle, StructureSummariesRepository as ɵlf, StructureSummariesEnabledSetEventHandler as ɵlg, InMemoryStructureRepository as ɵlh, StructureSummariesWarehouse as ɵli, StructureOriginChangedEventHandler as ɵlj, StructurePreparedItemsEventHandler as ɵlk, GridGateway as ɵll, gridProviders as ɵlm, gridStructureDefinition as ɵln, GridRegister as ɵlo, GridIdGenerator as ɵlp, FilterManagerFactory as ɵm, SearchManagerFactory as ɵn, FieldCollectionFactory as ɵo, FieldFactory as ɵp, FieldIdGenerator as ɵq, InMemoryStructureAggregateRepository as ɵr, StructureAggregateRepository as ɵs, InMemoryStructureAggregateStore as ɵt, InMemoryStructureStore as ɵu, CreateStructureCommandHandler as ɵv, formationCommandHandlers as ɵw, formationProviders as ɵx, SetFormationCommandHandler as ɵy, ToggleSelectedRowCommandHandler as ɵz };
+export { GridComponent, GridModule, GuiBooleanCellView, GuiCellView, GuiColumnAlign, GuiDataType, GuiDateCellView, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiSortingOrder, GuiStringCellView, GuiTheme, gridSelector as ɵa, createStructureDefinition as ɵb, pagingCommandHandlers as ɵba, pagingProviders as ɵbb, SetPagingCommandHandler as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, sourceCommandHandlers as ɵbg, sourceProviders as ɵbh, SourceSetLoadingCommandHandler as ɵbi, SetOriginCommandHandler as ɵbj, StructureSourceDomainEventPublisher as ɵbk, StructureEditSourceItemCommandHandler as ɵbl, structureCommandHandlers as ɵbm, structureProviders as ɵbn, SetVerticalScrollEnabledCommandHandler as ɵbo, SetRowHeightBasedOnThemeCommandHandler as ɵbp, SetScrollPositionCommandHandler as ɵbq, InitFieldsCommandHandler as ɵbr, ToggleSortCommandHandler as ɵbs, SetSortingCommandHandler as ɵbt, StructureSetConfigFilterCommandHandler as ɵbu, StructureSetConfigSearchingCommandHandler as ɵbv, StructureSetConfigQuickFilterCommandHandler as ɵbw, StructureToggleFilterCommandHandler as ɵbx, StructureSetSummariesEnabledCommandHandler as ɵby, StructureSetSearchPhraseCommandHandler as ɵbz, StructureModule as ɵc, SetSortOrderCommandHandler as ɵca, SetRowHeightCommandHandler as ɵcb, StructureSetHeightCommandHandler as ɵcc, fabricImports as ɵcd, StructurePagingModule as ɵce, StructurePagingComponent as ɵcf, SmartComponent as ɵcg, Reactive as ɵch, StructurePagingWarehouse as ɵci, PagingRepository as ɵcj, StructureReadModelRepository as ɵck, StructurePagingCommandDispatcher as ɵcl, PagingDispatcher as ɵcm, StructureSourceWarehouse as ɵcn, StructurePreparedItemsRepository as ɵco, StructureSourceOriginRepository as ɵcp, StructurePagingDisplayModeArchive as ɵcq, StructurePagingNavigatorComponent as ɵcr, StructurePagingSelectComponent as ɵcs, StructurePagingStatsComponent as ɵct, StructureAlternativePagingNavigatorComponent as ɵcu, StructureAlternativePagingPagesComponent as ɵcv, StructureInfoPanelModule as ɵcw, NumberFormatterModule as ɵcx, NumberFormatterPipe as ɵcy, StructureColumnManagerModule as ɵcz, StructureAggregateFactory as ɵd, StructureColumnManagerComponent as ɵda, CompositionId as ɵdb, CompositionCommandDispatcher as ɵdc, CompositionDispatcher as ɵdd, CompositionWarehouse as ɵde, CompositionReadModelRootRepository as ɵdf, StructureDialogColumnManagerComponent as ɵdg, StructureMenuColumnManagerComponent as ɵdh, selector as ɵdi, StructureColumnManagerIconComponent as ɵdj, StructureDialogColumnManagerService as ɵdk, SchemaWarehouse as ɵdl, SchemaCssClassesRepository as ɵdm, SchemaThemeRepository as ɵdn, StructureThemeConverter as ɵdo, StructureInfoPanelComponent as ɵdp, StructureId as ɵdq, SchemaReadModelRootId as ɵdr, StructureInfoModalComponent as ɵds, selector$1 as ɵdt, StructureInfoIconComponent as ɵdu, StructureSummariesPanelModule as ɵdv, StructureSummariesPanelComponent as ɵdw, StructureSummariesUiEventsRepository as ɵdx, StructureSummariesArchive as ɵdy, StructureSummariesConfigService as ɵdz, PagingManagerFactory as ɵe, StructureSummariesPanelConfigConverter as ɵea, StructureSummariesCommandDispatcher as ɵeb, StructureTopPanelModule as ɵec, StructureFilterMenuModule as ɵed, selector$2 as ɵee, StructureFilterIconComponent as ɵef, StructureFilterMenuComponent as ɵeg, StructureFilterMenuTriggerComponent as ɵeh, structureComponentToken as ɵei, structureIdFactory as ɵej, compositionIdFactory as ɵek, schemaIdFactory as ɵel, structureComponentSelfProviders as ɵem, StructureComponent as ɵen, StructureGateway as ɵeo, StructureCommandDispatcher as ɵep, StructureFilterCommandDispatcher as ɵeq, SourceDispatcher as ɵer, StructureSearchDispatcher as ɵes, StructureSearchHighlightArchive as ɵet, StructureSearchPlaceholderArchive as ɵeu, StructurePagingEventRepository as ɵev, SourceCommandDispatcher as ɵew, StructureFieldUiRepository as ɵex, StructureFieldUiArchive as ɵey, SourceEventService as ɵez, Logger as ɵf, SchemaCommandDispatcher as ɵfa, SchemaDispatcher as ɵfb, CompositionEventRepository as ɵfc, FormationEventService as ɵfd, StructureWarehouse as ɵfe, VerticalFormationRepository as ɵff, InMemoryStructureReadStore as ɵfg, StructureReadModelRootConverter as ɵfh, FormationConverter as ɵfi, PagingConverter as ɵfj, SourceConverter as ɵfk, VerticalFormationConverter as ɵfl, StructureEditModeArchive as ɵfm, StructureCellEditArchive as ɵfn, StructureInfoPanelEnabledArchive as ɵfo, StructureCellEditStore as ɵfp, StructureColumnMenuConfigArchive as ɵfq, StructureRowSelectEnabledArchive as ɵfr, StructureSearchEventService as ɵfs, StructureSearchPhraseRepository as ɵft, StructureHeaderTopEnabledArchive as ɵfu, StructureHeaderBottomEnabledArchive as ɵfv, StructureDetailViewConfigArchive as ɵfw, SchemaEventRepository as ɵfx, StructureIdGenerator as ɵfy, localProviders as ɵfz, SourceManagerFactory as ɵg, LocalPagingCommandDispatcher as ɵga, Override as ɵgb, LocalPagingWarehouse as ɵgc, StructureFormationDispatcher as ɵgd, FormationDispatcher as ɵge, LocalFormationCommandDispatcher as ɵgf, StructureFormationWarehouse as ɵgg, FormationRepository as ɵgh, LocalFormationWarehouse as ɵgi, LocalStructureCommandDispatcher as ɵgj, LocalStructureWarehouse as ɵgk, LocalSourceCommandDispatcher as ɵgl, LocalSourceWarehouse as ɵgm, LocalCompositionCommandDispatcher as ɵgn, LocalCompositionWarehouse as ɵgo, LocalStructureSearchCommandDispatcher as ɵgp, StructureVerticalFormationWarehouse as ɵgq, LocalStructureVerticalFormationWarehouse as ɵgr, LocalSchemaWarehouse as ɵgs, LocalSchemaCommandDispatcher as ɵgt, SchemaCssClassManager as ɵgu, StructureCellEditCloseAllService as ɵgv, StructureDetailViewService as ɵgw, StructureDefinition as ɵgx, StructurePagingDefinition as ɵgy, StructureColumnSelectorComponent as ɵgz, FormationAggregateFactory as ɵh, StructureTopPanelComponent as ɵha, StructureSearchComponent as ɵhb, StructureColumnMenuModule as ɵhc, StructureColumnConfigComponent as ɵhd, CellTemplateWithContext as ɵhe, CellContext as ɵhf, FieldId as ɵhg, ColumnDefinitionId as ɵhh, SortOrder as ɵhi, ColumnAlign as ɵhj, StructureColumnConfigTriggerComponent as ɵhk, StructureColumnConfigService as ɵhl, StructureColumnConfigSortComponent as ɵhm, StructureColumnConfigColumnHideComponent as ɵhn, StructureColumnConfigColumnMoveComponent as ɵho, selector$3 as ɵhp, StructureColumnMenuIconComponent as ɵhq, selector$4 as ɵhr, StructureColumnMenuArrowIconComponent as ɵhs, CompositionModule as ɵht, SanitizeModule as ɵhu, SafePipe as ɵhv, CompositionAggregateFactory as ɵhw, ColumnEntityFactory as ɵhx, ColumnPresentationConverter as ɵhy, InMemoryCompositionAggregateRepository as ɵhz, VerticalFormationFactory as ɵi, CompositionAggregateRepository as ɵia, InMemoryCompositionAggregateStore as ɵib, InMemoryCompositionStore as ɵic, CreateCompositionCommandHandler as ɵid, SetColumnsCommandHandler as ɵie, CompositionEventConverter as ɵif, SetCompositionWidthCommandHandler as ɵig, SetCompositionResizeWidthCommandHandler as ɵih, SetCompositionContainerWidthCommandHandler as ɵii, CompositionSetColumnEnabledCommandHandler as ɵij, CompositionChangeSortStatusCommandHandler as ɵik, CompositionMoveLeftColumnCommandHandler as ɵil, CompositionMoveRightColumnCommandHandler as ɵim, compositionProviders as ɵin, inMemoryCompositionCommandProviders as ɵio, inMemoryCompositionReadModelProviders as ɵip, inMemoryCompositionProviders as ɵiq, ColumnFieldFactory as ɵir, InMemoryCompositionReadStore as ɵis, CompositionReadModelRootConverter as ɵit, ColumnDefinitionFactory as ɵiu, ViewTemplateRepository as ɵiv, ViewTemplateFactory as ɵiw, TemplateFactory as ɵix, EditTemplateRepository as ɵiy, EditTemplateFactory as ɵiz, SummariesManagerFactory as ɵj, InMemoryCompositionRepository as ɵja, CompositionFieldsInitedEventHandler as ɵjb, CompositionChangeSortStatusEventHandler as ɵjc, ViewTemplatesComponent as ɵjd, EditTemplatesComponent as ɵje, StringEditTemplateComponent as ɵjf, InputEditTemplateComponent as ɵjg, EditCommunicationComponent as ɵjh, NumberEditTemplateComponent as ɵji, BooleanEditTemplateComponent as ɵjj, DateEditTemplateComponent as ɵjk, ColumnQueryComponent as ɵjl, FunctionViewComponent as ɵjm, BarViewComponent as ɵjn, PercentageViewComponent as ɵjo, SchemaModule as ɵjp, SchemaAggregateFactory as ɵjq, InMemorySchemaAggregateRepository as ɵjr, SchemaAggregateRepository as ɵjs, InMemorySchemaAggregateStore as ɵjt, InMemorySchemaStore as ɵju, CreateSchemaCommandHandler as ɵjv, SetSchemaThemeCommandHandler as ɵjw, SetRowColoringCommandHandler as ɵjx, SetSchemaHorizontalGridCommandHandler as ɵjy, SetSchemaVerticalGridCommandHandler as ɵjz, SUMMARIES_CALCULATORS as ɵk, SchemaCssClassesEventHandler as ɵka, SchemaThemeSetEventHandler as ɵkb, LoggerModule as ɵkc, ConsoleLogger as ɵkd, StructureHeaderComponent as ɵke, StructureHeaderColumnsComponent as ɵkf, StructureHeaderFiltersComponent as ɵkg, StructureFilterWarehouse as ɵkh, StructureFilterRepository as ɵki, StructureQuickFilterRepository as ɵkj, StructureHeaderFilterComponent as ɵkk, StructureContentComponent as ɵkl, StructureRowComponent as ɵkm, StructureCellComponent as ɵkn, StructureCellEditComponent as ɵko, StructureCellEditBooleanComponent as ɵkp, StructureContainerComponent as ɵkq, structureParentComponent as ɵkr, StructureEmptySourceComponent as ɵks, StructureQuickFiltersComponent as ɵkt, StructureBlueprintComponent as ɵku, STRUCTURE_CSS_CLASS_NAME as ɵkv, StructureSearchWarehouse as ɵkw, StructureSearchingRepository as ɵkx, StructureDetailViewComponent as ɵky, ItemEntityFactory as ɵkz, SummariesCalculator as ɵl, inMemoryStructureCommandProviders as ɵla, inMemoryStructureReadProviders as ɵlb, inMemoryStructureProviders as ɵlc, provideSummariesCalculator as ɵld, summariesProviders as ɵle, BooleanSummariesCalculator as ɵlf, DateSummariesCalculator as ɵlg, NumberSummariesCalculator as ɵlh, StringSummariesCalculator as ɵli, UnknownSummariesCalculator as ɵlj, StructureConfigFilterSetEventHandler as ɵlk, StructureConfigSearchingSetEventHandler as ɵll, StructureConfigQuickFilterSetEventHandler as ɵlm, StructureFieldsInitedEventHandler as ɵln, StructureFieldUiConverter as ɵlo, StructureSearchPhraseSetEventHandler as ɵlp, StructureCreatedEventHandler as ɵlq, StructureSummariesRepository as ɵlr, StructureSummariesEnabledSetEventHandler as ɵls, InMemoryStructureRepository as ɵlt, StructureSummariesWarehouse as ɵlu, StructureOriginChangedEventHandler as ɵlv, StructurePreparedItemsEventHandler as ɵlw, GridGateway as ɵlx, gridProviders as ɵly, gridStructureDefinition as ɵlz, FilterManagerFactory as ɵm, GridRegister as ɵma, GridIdGenerator as ɵmb, SearchManagerFactory as ɵn, FieldCollectionFactory as ɵo, FieldFactory as ɵp, FieldIdGenerator as ɵq, InMemoryStructureAggregateRepository as ɵr, StructureAggregateRepository as ɵs, InMemoryStructureAggregateStore as ɵt, InMemoryStructureStore as ɵu, CreateStructureCommandHandler as ɵv, formationCommandHandlers as ɵw, formationProviders as ɵx, SetFormationCommandHandler as ɵy, ToggleSelectedRowCommandHandler as ɵz };
 //# sourceMappingURL=generic-ui-ngx-grid.js.map

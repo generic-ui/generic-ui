@@ -1,7 +1,7 @@
 {
   "name": "@generic-ui/ngx-grid",
   "description": "Generic UI - Angular Grid library",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^8.0.0",
@@ -18,7 +18,7 @@
     "generic",
     "angular"
   ],
-  "homepage": "http://generic-ui.com",
+  "homepage": "https://generic-ui.com",
   "bugs": "https://github.com/generic-ui/generic-ui/issues",
   "repository": {
     "type": "git",

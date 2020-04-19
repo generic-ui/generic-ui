@@ -1,8 +1,8 @@
 /**
  * API
  */
-export { HermesApi } from './ui-api/hermes-api';
-export { enableHermesLoggers, disableHermesLoggers } from './ui-api/hermes-api.helpers';
+export { HermesApi } from './feature-api/hermes-api';
+export { enableHermesLoggers, disableHermesLoggers } from './feature-api/hermes-api.helpers';
 export { provideEventHandlers } from './domain/provider.helpers';
 /**
  * Domain
@@ -32,12 +32,13 @@ export { DomainEventLogger } from './domain/event/domain-event.logger';
 export { DomainEventPayload } from './domain/event/domain-event.payload';
 export { DomainEventStream } from './domain/event/domain-event.stream';
 export { DOMAIN_EVENT_HANDLERS } from './domain/event/domain-event-handlers';
-export { ReadModelEntity } from './read/read-model-entity';
-export { ReadModelEntityId } from './read/read-model-entity-id';
-export { ReadModelRoot } from './read/read-model-root';
-export { ReadModelRootId } from './read/read-model-root-id';
-export { ReadModelRootRepository } from './read/read-model-root.repository';
-export { ReadModelStore } from './read/store/read-model.store';
+export { ReadModelEntity } from './feature-api/read/read-model-entity';
+export { ReadModelEntityId } from './feature-api/read/read-model-entity-id';
+export { ReadModelRoot } from './feature-api/read/read-model-root';
+export { ReadModelRootId } from './feature-api/read/read-model-root-id';
+export { ReadModelRootRepository } from './feature-api/read/read-model-root.repository';
+export { ReadModelStore } from './feature-api/read/store/read-model.store';
+export { EventRepository } from './feature-api/event/event.repository';
 export { Entity } from './domain/tactical/entity';
 export { EntityId } from './domain/tactical/entity-id';
 export { ValueObject } from './domain/decorators';
@@ -60,8 +61,8 @@ export { PersistAggregateStore } from './infrastructure/persist/command/persist-
 export { InMemoryAggregateStore } from './infrastructure/in-memory/command/in-memory.aggregate.store';
 export { InMemoryReadModelStore } from './infrastructure/in-memory/read/in-memory.read-model.store';
 export { InMemoryStore } from './infrastructure/in-memory/in-memory.store';
-export { HermesModule } from './ui-api/hermes.module';
-export { HermesModuleConfig } from './ui-api/hermes-module-config';
+export { HermesModule } from './feature-api/hermes.module';
+export { HermesModuleConfig } from './feature-api/hermes-module-config';
 export { COMMAND_LOGGER_ENABLED } from './domain/hermes-tokens';
 export { EVENT_LOGGER_ENABLED } from './domain/hermes-tokens';
 /**

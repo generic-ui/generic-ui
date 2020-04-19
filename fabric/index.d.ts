@@ -17,6 +17,8 @@ export { FabricRadioGroupModule } from './form/radio-group/fabric-radio-group.mo
 export { FabricTabModule } from './layout/tab/fabric-tab.module';
 export { FabricSelectModule } from './form/select/fabric-select.module';
 export { FabricTooltipModule } from './modal/tooltip/fabric-tooltip.module';
+export { FabricDrawerModule } from './modal/drawer/fabric-drawer.module';
+export { FabricDrawerService } from './modal/drawer/fabric-drawer.service';
 export { FabricDialogModule } from './modal/dialog/fabric-dialog.module';
 export { FabricDialogService } from './modal/dialog/fabric-dialog.service';
 export { FabricNestedDialogComponent } from './modal/common/fabric.nested-dialog.component';

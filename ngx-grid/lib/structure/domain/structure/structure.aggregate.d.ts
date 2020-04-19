@@ -13,15 +13,15 @@ import { StructureEditSourceItemParams } from '../source/origin/edit/structure.e
 import { PagingConfig } from '../paging/paging-config';
 import { OriginItemEntity } from '../source/origin/origin-item-entity';
 import { ColumnConfig } from '../../../composition/domain/column/column.config';
-import { SortingConfig } from '../../ui-api/sorting-config';
+import { SortingConfig } from '../../feature-api/sorting-config';
 import { FieldId } from './field/data-type/field.id';
 import { StructureSorter } from './sort/structure.sorter';
-import { FilterConfig } from '../../ui-api/filter/filter-config';
-import { QuickFiltersConfig } from '../../ui-api/filter/quick-filters.config';
-import { SearchConfig } from '../../ui-api/search/search-config';
+import { FilterConfig } from '../../feature-api/filter/filter-config';
+import { QuickFiltersConfig } from '../../feature-api/filter/quick-filters.config';
+import { SearchConfig } from '../../feature-api/search/search-config';
 import { SearchManager } from './search/search.manager';
 import { SortOrder } from '../../../composition/domain/column/sort/sort-order';
-import { SchemaTheme } from '../../../schema/domain/schema-theme';
+import { SchemaTheme } from '../../../schema/domain/theme/schema-theme';
 export declare class StructureAggregate extends AggregateRoot<StructureId> {
     private formationAggregate;
     private pagingManager;

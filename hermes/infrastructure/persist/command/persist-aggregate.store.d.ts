@@ -5,7 +5,7 @@ import { AggregateStoreRegister } from '../../../domain/command/store/aggregate-
 import { PersistAnemia } from '../persist-anemia';
 import { PersistStateStore } from '../persist-state.store';
 import { Optional } from '../../../common/optional';
-import { ReadModelRootId } from '../../../read/read-model-root-id';
+import { ReadModelRootId } from '../../../feature-api/read/read-model-root-id';
 export declare abstract class PersistAggregateStore<I extends AggregateId, D extends AggregateRoot<I>, A extends PersistAnemia<ReadModelRootId>> extends AggregateStore<I, D> {
     private readonly stateStore;
     private readonly aggregateStoreRegister;

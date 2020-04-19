@@ -1,6 +1,6 @@
 import { PersistAnemia } from './persist-anemia';
 import { Optional } from '../../common/optional';
-import { ReadModelRootId } from '../../read/read-model-root-id';
+import { ReadModelRootId } from '../../feature-api/read/read-model-root-id';
 import { AggregateId } from '../../domain/aggregate-id';
 export declare abstract class PersistStateStore<I extends ReadModelRootId, A extends PersistAnemia<I>> {
     private readonly state;

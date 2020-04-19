@@ -1,4 +1,4 @@
-import { ReadModelRootId } from '../../read/read-model-root-id';
+import { ReadModelRootId } from '../../feature-api/read/read-model-root-id';
 export declare abstract class PersistAnemia<I extends ReadModelRootId> {
     private readonly readModelRootId;
     protected constructor(uid: I);

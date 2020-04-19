@@ -1,7 +1,7 @@
-# <a href='http://generic-ui.com' >Generic UI - Grid for Angular</a>
+# <a href='https://generic-ui.com' >Generic UI - Grid for Angular</a>
 ## Grid component
 
-**Generic UI Grid** is one of the best free <a href="http://generic-ui.com">angular grid library</a>.
+**Generic UI Grid** is one of the best free <a href="https://generic-ui.com">angular grid library</a>.
  It offers many built-in features that work out of the box:
   editing, sorting, pagination, theming, summaries, column configuration, and many more.
    Performance is the main focus point, grid is able to present huge sets of data up to 1 000 000 rows.
@@ -10,12 +10,12 @@
   table
   plugin**.
 
-![demo](http://generic-ui.com/assets/images/grid-example.png)
+![demo](https://generic-ui.com/assets/example/grid.png)
 
 ## Quick Example
 Generic UI is easy to use, all you need to do is specify columns and source. Below is simple use of our grid with three columns and three items.
 
-![demo](http://generic-ui.com/assets/images/grid-basic.png)
+![demo](https://generic-ui.com/assets/images/grid-basic.png)
 
 The creation of an gui-grid will be done in these simple steps:
 

@@ -6,5 +6,4 @@ export declare class FabricCardComponent {
     isTitleEnabled(): boolean;
     isImgEnabled(): boolean;
     isContentBlockEnabled(): boolean;
-    isOnlyContentBlockEnabled(): boolean;
 }

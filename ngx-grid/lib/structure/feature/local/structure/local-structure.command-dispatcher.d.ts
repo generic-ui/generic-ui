@@ -1,0 +1,36 @@
+import { CommandDispatcher } from '@generic-ui/hermes';
+import { StructureCommandDispatcher } from '../../../feature-api/structure.command-dispatcher';
+import { StructureId } from '../../../domain/structure.id';
+import { CompositionId } from '../../../../composition/domain/composition.id';
+import { StructureFilterCommandDispatcher } from '../../../feature-api/filter/structure-filter.command-dispatcher';
+import { SourceDispatcher } from '../../../domain/source/source.dispatcher';
+import { SortingConfig } from '../../../feature-api/sorting-config';
+import { FieldId } from '../../../domain/structure/field/data-type/field.id';
+import { FilterConfig } from '../../../feature-api/filter/filter-config';
+import { QuickFiltersConfig } from '../../../feature-api/filter/quick-filters.config';
+import { SearchConfig } from '../../../feature-api/search/search-config';
+import { ColumnConfig } from '../../../../composition/domain/column/column.config';
+import { SortOrder } from '../../../../composition/domain/column/sort/sort-order';
+import { StructureSearchDispatcher } from '../../../domain/structure/search/structure.search.dispatcher';
+import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
+export declare class LocalStructureCommandDispatcher extends StructureCommandDispatcher {
+    private readonly structureId;
+    private readonly compositionId;
+    constructor(structureId: StructureId, compositionId: CompositionId, commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandDispatcher, sourceDispatcher: SourceDispatcher, structureSearchDispatcher: StructureSearchDispatcher);
+    createStructure(): void;
+    enableVerticalScroll(): void;
+    disableVerticalScroll(): void;
+    setScrollPosition(position: number): void;
+    setOrigin(items: Array<any>): void;
+    setSortingConfig(config: SortingConfig, structureId?: StructureId): void;
+    toggleSort(fieldId: FieldId): void;
+    setSortOrder(fieldId: FieldId, sortOrder: SortOrder): void;
+    setFilterConfig(config: FilterConfig, structureId?: StructureId): void;
+    setQuickFiltersConfig(config: QuickFiltersConfig, structureId?: StructureId): void;
+    initFields(columns: Array<ColumnConfig>): void;
+    setSearchingConfig(config: SearchConfig, structureId?: StructureId): void;
+    search(phrase: string): void;
+    setRowHeight(rowHeight: number): void;
+    setContainerHeight(rowHeight: number): void;
+    setRowHeightBasedOnTheme(theme: SchemaTheme): void;
+}

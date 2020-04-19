@@ -2222,6 +2222,53 @@
      */
     /**
      * @abstract
+     * @template R, I
+     */
+    var   /**
+     * @abstract
+     * @template R, I
+     */
+    EventRepository = /** @class */ (function () {
+        function EventRepository(domainEventBus) {
+            this.domainEventBus = domainEventBus;
+        }
+        /**
+         * @protected
+         * @param {?} aggregateId
+         * @param {?} eventType
+         * @return {?}
+         */
+        EventRepository.prototype.onEvent = /**
+         * @protected
+         * @param {?} aggregateId
+         * @param {?} eventType
+         * @return {?}
+         */
+        function (aggregateId, eventType) {
+            return this.domainEventBus
+                .ofEvent((/** @type {?} */ (eventType)))
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })));
+        };
+        return EventRepository;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        EventRepository.prototype.domainEventBus;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
      * @template T
      */
     var   /**
@@ -4555,6 +4602,7 @@
     exports.EVENT_LOGGER_ENABLED = EVENT_LOGGER_ENABLED;
     exports.Entity = Entity;
     exports.EntityId = EntityId;
+    exports.EventRepository = EventRepository;
     exports.HermesApi = HermesApi;
     exports.HermesModule = HermesModule;
     exports.InMemoryAggregateStore = InMemoryAggregateStore;

@@ -1,4 +1,4 @@
-import { PagingDisplayMode } from '../../ui/paging/mode/paging-display-mode';
+import { PagingDisplayMode } from '../../feature/paging/mode/paging-display-mode';
 export interface PagingConfig {
     enabled?: boolean;
     page?: number;

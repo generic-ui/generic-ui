@@ -1,8 +1,8 @@
 import { Type } from '@angular/core';
 import { AggregateEvent, AggregateRoot } from '@generic-ui/hermes';
 import { SchemaId } from './schema.id';
-import { SchemaTheme } from './schema-theme';
-import { SchemaRowColoring } from './schema-row-coloring';
+import { SchemaTheme } from './theme/schema-theme';
+import { SchemaRowColoring } from './coloring/schema-row-coloring';
 export declare class SchemaAggregate extends AggregateRoot<SchemaId> {
     static readonly DEFAULT_THEME = SchemaTheme.GENERIC;
     static readonly DEFAULT_ROW_COLORING = SchemaRowColoring.ODD;
