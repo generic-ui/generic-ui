@@ -4614,6 +4614,7 @@
     exports.PersistReadModelStore = PersistReadModelStore;
     exports.PersistStateStore = PersistStateStore;
     exports.RandomStringGenerator = RandomStringGenerator;
+    exports.Reactive = Reactive;
     exports.ReadModelEntity = ReadModelEntity;
     exports.ReadModelEntityId = ReadModelEntityId;
     exports.ReadModelObject = ReadModelObject;
@@ -4635,23 +4636,22 @@
     exports.ɵd = Message;
     exports.ɵe = FILTERED_COMMAND_STREAM;
     exports.ɵf = DomainEventStore;
-    exports.ɵg = Reactive;
-    exports.ɵh = ReactiveService;
-    exports.ɵi = ConsoleCommandLogger;
-    exports.ɵj = NoopCommandLogger;
-    exports.ɵk = ConsoleEventLogger;
-    exports.ɵl = NoopEventLogger;
-    exports.ɵm = HermesLoggersInitializer;
-    exports.ɵn = AggregateFactoryArchive;
-    exports.ɵo = AggregateRepositoryArchive;
-    exports.ɵp = CREATE_AGGREGATE_COMMAND_HANDLERS;
-    exports.ɵq = COMMAND_HANDLERS;
-    exports.ɵr = aggregateDefinitionToken;
-    exports.ɵt = HermesDomainModule;
-    exports.ɵu = commandHandlerFactory;
-    exports.ɵv = CommandHandlerImpl;
-    exports.ɵw = createAggregateCommandHandlerFactory;
-    exports.ɵx = CreateAggregateCommandHandlerImpl;
+    exports.ɵg = ReactiveService;
+    exports.ɵh = ConsoleCommandLogger;
+    exports.ɵi = NoopCommandLogger;
+    exports.ɵj = ConsoleEventLogger;
+    exports.ɵk = NoopEventLogger;
+    exports.ɵl = HermesLoggersInitializer;
+    exports.ɵm = AggregateFactoryArchive;
+    exports.ɵn = AggregateRepositoryArchive;
+    exports.ɵo = CREATE_AGGREGATE_COMMAND_HANDLERS;
+    exports.ɵp = COMMAND_HANDLERS;
+    exports.ɵq = aggregateDefinitionToken;
+    exports.ɵs = HermesDomainModule;
+    exports.ɵt = commandHandlerFactory;
+    exports.ɵu = CommandHandlerImpl;
+    exports.ɵv = createAggregateCommandHandlerFactory;
+    exports.ɵw = CreateAggregateCommandHandlerImpl;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

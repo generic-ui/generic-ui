@@ -141,3 +141,11 @@ export interface GuiRowDetail {
     enabled?: boolean;
     template?: (item: any) => string;
 }
+export interface GuiTitlePanel {
+    enabled?: boolean;
+    template?: string | ((title: any) => string);
+}
+export interface GuiFooterPanel {
+    enabled?: boolean;
+    template?: string | ((title: any) => string);
+}

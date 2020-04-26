@@ -51,6 +51,7 @@ export { AggregateArchive } from './common/aggregate.archive';
 export { Archive } from './common/archive';
 export { RandomStringGenerator } from './common/random-string.generator';
 export { Optional } from './common/optional';
+export { Reactive } from './common/reactive';
 /**
  * Infrastructure
  */

@@ -3,18 +3,18 @@ import { FabricDrawerService } from '@generic-ui/fabric';
 import { FormationEventService } from '../../feature-api/formation/formation-event.service';
 import { StructureId } from '../../domain/structure.id';
 import { Reactive } from '../../../../common/cdk/reactive';
-import { StructureDetailViewConfigArchive } from './structure.detail-view.config-archive';
-import { DetailViewConfig } from './detail-view.config';
-export declare class StructureDetailViewService extends Reactive {
+import { StructureRowDetailConfigArchive } from './structure.row-detail.config-archive';
+import { RowDetailConfig } from './row-detail.config';
+export declare class StructureRowDetailService extends Reactive {
     private readonly injector;
     private readonly structureId;
     private readonly structureDetailViewConfigArchive;
     private readonly formationEventService;
     private readonly drawerService;
     enabled: boolean;
-    config: DetailViewConfig;
+    config: RowDetailConfig;
     elementRef: ElementRef;
-    constructor(injector: Injector, structureId: StructureId, structureDetailViewConfigArchive: StructureDetailViewConfigArchive, formationEventService: FormationEventService, drawerService: FabricDrawerService);
+    constructor(injector: Injector, structureId: StructureId, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, formationEventService: FormationEventService, drawerService: FabricDrawerService);
     init(ref: ElementRef): void;
     private turnOn;
     private turnOff;

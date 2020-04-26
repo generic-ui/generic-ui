@@ -1,5 +1,5 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiSearching, GuiSorting, GuiSummaries, GuiTheme } from '../../feature-api/grid.api';
+import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiSearching, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../feature-api/grid.api';
 import { ColumnConfig } from '../../../../lib/composition/domain/column/column.config';
 import { ColumnMenuConfig } from '../../../../lib/structure/feature-api/column-menu-config';
 import { SchemaTheme } from '../../../../lib/schema/domain/theme/schema-theme';
@@ -26,6 +26,8 @@ export declare abstract class GridGateway implements OnChanges {
     virtualScroll: boolean;
     sorting: boolean | GuiSorting;
     searching: boolean | GuiSearching;
+    titlePanel: GuiTitlePanel;
+    footerPanel: GuiFooterPanel;
     /**
      * @experimental
      */
