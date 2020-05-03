@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { CreateAggregateCommand } from '@generic-ui/hermes';
+export class CreateSchemaCommand extends CreateAggregateCommand {
+    /**
+     * @param {?} schemaId
+     */
+    constructor(schemaId) {
+        super(schemaId, 'CreateSchemaCommand');
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3JlYXRlLXNjaGVtYS5jb21tYW5kLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJsaWIvc2NoZW1hL2RvbWFpbi9jcmVhdGUvY3JlYXRlLXNjaGVtYS5jb21tYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUs1RCxNQUFNLE9BQU8sbUJBQW9CLFNBQVEsc0JBQXNCOzs7O0lBRTlELFlBQVksUUFBa0I7UUFDN0IsS0FBSyxDQUFDLFFBQVEsRUFBRSxxQkFBcUIsQ0FBQyxDQUFDO0lBQ3hDLENBQUM7Q0FFRCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENyZWF0ZUFnZ3JlZ2F0ZUNvbW1hbmQgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5pbXBvcnQgeyBTY2hlbWFJZCB9IGZyb20gJy4uL3NjaGVtYS5pZCc7XG5cblxuZXhwb3J0IGNsYXNzIENyZWF0ZVNjaGVtYUNvbW1hbmQgZXh0ZW5kcyBDcmVhdGVBZ2dyZWdhdGVDb21tYW5kIHtcblxuXHRjb25zdHJ1Y3RvcihzY2hlbWFJZDogU2NoZW1hSWQpIHtcblx0XHRzdXBlcihzY2hlbWFJZCwgJ0NyZWF0ZVNjaGVtYUNvbW1hbmQnKTtcblx0fVxuXG59XG4iXX0=

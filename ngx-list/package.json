@@ -1,0 +1,40 @@
+{
+  "name": "@generic-ui/ngx-list",
+  "description": "Generic UI - Angular List library",
+  "version": "0.11.3",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
+    "@angular/forms": "^8.0.0",
+    "@angular/platform-browser": "^8.0.0",
+    "@generic-ui/fabric": "latest",
+    "@generic-ui/hermes": "latest",
+    "element-resize-detector": "1.1.14",
+    "rxjs": "^6.0.0"
+  },
+  "keywords": [
+    "list",
+    "generic",
+    "angular"
+  ],
+  "homepage": "https://generic-ui.com",
+  "bugs": "https://github.com/generic-ui/generic-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generic-ui/generic-ui.git"
+  },
+  "main": "bundles/generic-ui-ngx-list.umd.js",
+  "module": "fesm5/generic-ui-ngx-list.js",
+  "es2015": "fesm2015/generic-ui-ngx-list.js",
+  "esm5": "esm5/generic-ui-ngx-list.js",
+  "esm2015": "esm2015/generic-ui-ngx-list.js",
+  "fesm5": "fesm5/generic-ui-ngx-list.js",
+  "fesm2015": "fesm2015/generic-ui-ngx-list.js",
+  "typings": "generic-ui-ngx-list.d.ts",
+  "metadata": "generic-ui-ngx-list.metadata.json",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^1.9.0"
+  }
+}

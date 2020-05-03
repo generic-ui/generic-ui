@@ -1,0 +1,13 @@
+import { ColumnParams } from './set-columns/column.params';
+import { ColumnEntity } from './column.entity';
+import { ColumnPresentationConverter } from './presentation/column.presentation.converter';
+export declare class ColumnEntityFactory {
+    private readonly columnPresentationConverter;
+    constructor(columnPresentationConverter: ColumnPresentationConverter);
+    create(params: ColumnParams): ColumnEntity;
+    create(params: Array<ColumnParams>): Array<ColumnEntity>;
+    private createColumn;
+    private createColumns;
+    private convertWidth;
+    private getPresentation;
+}

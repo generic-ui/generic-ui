@@ -2703,16 +2703,36 @@ FabricCloseIconComponent.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FabricDrawerModule {
+class FabricCloseIconModule {
 }
-FabricDrawerModule.decorators = [
+FabricCloseIconModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule
                 ],
                 declarations: [
-                    FabricDrawerComponent,
                     FabricCloseIconComponent
+                ],
+                exports: [
+                    FabricCloseIconComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricDrawerModule {
+}
+FabricDrawerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FabricCloseIconModule
+                ],
+                declarations: [
+                    FabricDrawerComponent
                 ],
                 providers: [
                     FabricDrawerService
@@ -3514,7 +3534,7 @@ class FabricDialogComponent extends DialogComponent {
 }
 FabricDialogComponent.decorators = [
     { type: Component, args: [{
-                template: "<div class=\"gui-dialog-blanket\"></div>\n<div (click)=\"clickOutside($event)\"\n\t class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
+                template: "<div class=\"gui-dialog-blanket\"></div>\n<div (click)=\"clickOutside($event)\"\n\t class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<ng-template #container></ng-template>\n\t\t<gui-close-icon (click)=\"closeDialog()\"></gui-close-icon>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;font-family:Arial;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fff;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog;padding:24px}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-title{color:#333;font-size:20px;margin:0 0 16px}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{background:#bdbdbd}"]
@@ -3571,7 +3591,8 @@ class FabricDialogModule {
 FabricDialogModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
-                    CommonModule
+                    CommonModule,
+                    FabricCloseIconModule
                 ],
                 declarations: [
                     FabricDialogComponent
@@ -5434,5 +5455,5 @@ class FabricNestedDialogComponent {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioGroupComponent as ɵba, FabricTabComponent as ɵbb, TabItemComponent as ɵbc, FabricTooltipDirective as ɵbd, FabricTooltipComponent as ɵbe, FabricProgressBarComponent as ɵbf, FabricProgressSpinnerComponent as ɵbg, AbstractSpinner as ɵbh, FabricSelectComponent as ɵbi, FabricSpinnerComponent as ɵbj, FabricToggleButtonComponent as ɵbk, ToggleButtonGroupService as ɵbl, FabricToggleButtonGroupComponent as ɵbm, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, DialogService as ɵh, InlineDialogGeometryService as ɵi, themeToken as ɵj, FabricDatePickerCalendarComponent as ɵk, FabricDatePickerService as ɵl, FabricDatePickerWeeks as ɵm, FabricDatePickerYears as ɵn, FabricDatePickerComponent as ɵo, FabricDatePickerInlineDialogService as ɵp, FabricDrawerComponent as ɵq, selector as ɵr, FabricCloseIconComponent as ɵs, FabricDropdownComponent as ɵt, GeometryService as ɵu, DropdownItemComponent as ɵv, selector$1 as ɵw, FabricArrowIconComponent as ɵx, FabricDialogComponent as ɵy, FabricRadioButtonComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricTabComponent as ɵbc, TabItemComponent as ɵbd, FabricTooltipDirective as ɵbe, FabricTooltipComponent as ɵbf, FabricProgressBarComponent as ɵbg, FabricProgressSpinnerComponent as ɵbh, AbstractSpinner as ɵbi, FabricSelectComponent as ɵbj, FabricSpinnerComponent as ɵbk, FabricToggleButtonComponent as ɵbl, ToggleButtonGroupService as ɵbm, FabricToggleButtonGroupComponent as ɵbn, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, DialogService as ɵh, InlineDialogGeometryService as ɵi, themeToken as ɵj, FabricDatePickerCalendarComponent as ɵk, FabricDatePickerService as ɵl, FabricDatePickerWeeks as ɵm, FabricDatePickerYears as ɵn, FabricDatePickerComponent as ɵo, FabricDatePickerInlineDialogService as ɵp, FabricCloseIconModule as ɵq, selector as ɵr, FabricCloseIconComponent as ɵs, FabricDrawerComponent as ɵt, FabricDropdownComponent as ɵu, GeometryService as ɵv, DropdownItemComponent as ɵw, selector$1 as ɵx, FabricArrowIconComponent as ɵy, FabricDialogComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

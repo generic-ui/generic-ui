@@ -3271,17 +3271,40 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var FabricCloseIconModule = /** @class */ (function () {
+        function FabricCloseIconModule() {
+        }
+        FabricCloseIconModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ],
+                        declarations: [
+                            FabricCloseIconComponent
+                        ],
+                        exports: [
+                            FabricCloseIconComponent
+                        ]
+                    },] }
+        ];
+        return FabricCloseIconModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FabricDrawerModule = /** @class */ (function () {
         function FabricDrawerModule() {
         }
         FabricDrawerModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
-                            common.CommonModule
+                            common.CommonModule,
+                            FabricCloseIconModule
                         ],
                         declarations: [
-                            FabricDrawerComponent,
-                            FabricCloseIconComponent
+                            FabricDrawerComponent
                         ],
                         providers: [
                             FabricDrawerService
@@ -4226,7 +4249,7 @@
         };
         FabricDialogComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "<div class=\"gui-dialog-blanket\"></div>\n<div (click)=\"clickOutside($event)\"\n\t class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
+                        template: "<div class=\"gui-dialog-blanket\"></div>\n<div (click)=\"clickOutside($event)\"\n\t class=\"gui-dialog-wrapper\">\n\t<div class=\"gui-dialog-content\">\n\t\t<ng-template #container></ng-template>\n\t\t<gui-close-icon (click)=\"closeDialog()\"></gui-close-icon>\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         styles: [".gui-dialog-blanket{background:rgba(0,0,0,.32);position:fixed;height:100%;width:100%;left:0;top:0;pointer-events:none;z-index:1000}.gui-dialog-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;font-family:Arial;position:fixed;height:100%;width:100%;left:0;top:0;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:auto;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{background-color:#fff;max-width:400px;position:relative;border-radius:4px;box-shadow:0 3px 7px #999;-webkit-animation:.1s ease-in display-dialog;animation:.1s ease-in display-dialog;padding:24px}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-title{color:#333;font-size:20px;margin:0 0 16px}@-webkit-keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes display-dialog{from{-webkit-transform:scale(0);transform:scale(0)}to{-webkit-transform:scale(1);transform:scale(1)}}", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before{background:#bdbdbd}"]
@@ -4286,7 +4309,8 @@
         FabricDialogModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
-                            common.CommonModule
+                            common.CommonModule,
+                            FabricCloseIconModule
                         ],
                         declarations: [
                             FabricDialogComponent
@@ -6466,19 +6490,20 @@
     exports.Theme = Theme;
     exports.ɵa = FabricBadgeComponent;
     exports.ɵb = Indicator;
-    exports.ɵba = FabricRadioGroupComponent;
-    exports.ɵbb = FabricTabComponent;
-    exports.ɵbc = TabItemComponent;
-    exports.ɵbd = FabricTooltipDirective;
-    exports.ɵbe = FabricTooltipComponent;
-    exports.ɵbf = FabricProgressBarComponent;
-    exports.ɵbg = FabricProgressSpinnerComponent;
-    exports.ɵbh = AbstractSpinner;
-    exports.ɵbi = FabricSelectComponent;
-    exports.ɵbj = FabricSpinnerComponent;
-    exports.ɵbk = FabricToggleButtonComponent;
-    exports.ɵbl = ToggleButtonGroupService;
-    exports.ɵbm = FabricToggleButtonGroupComponent;
+    exports.ɵba = FabricRadioButtonComponent;
+    exports.ɵbb = FabricRadioGroupComponent;
+    exports.ɵbc = FabricTabComponent;
+    exports.ɵbd = TabItemComponent;
+    exports.ɵbe = FabricTooltipDirective;
+    exports.ɵbf = FabricTooltipComponent;
+    exports.ɵbg = FabricProgressBarComponent;
+    exports.ɵbh = FabricProgressSpinnerComponent;
+    exports.ɵbi = AbstractSpinner;
+    exports.ɵbj = FabricSelectComponent;
+    exports.ɵbk = FabricSpinnerComponent;
+    exports.ɵbl = FabricToggleButtonComponent;
+    exports.ɵbm = ToggleButtonGroupService;
+    exports.ɵbn = FabricToggleButtonGroupComponent;
     exports.ɵc = FabricButtonGroupComponent;
     exports.ɵd = FabricCardComponent;
     exports.ɵe = FabricInlineDialogComponent;
@@ -6493,16 +6518,16 @@
     exports.ɵn = FabricDatePickerYears;
     exports.ɵo = FabricDatePickerComponent;
     exports.ɵp = FabricDatePickerInlineDialogService;
-    exports.ɵq = FabricDrawerComponent;
+    exports.ɵq = FabricCloseIconModule;
     exports.ɵr = selector;
     exports.ɵs = FabricCloseIconComponent;
-    exports.ɵt = FabricDropdownComponent;
-    exports.ɵu = GeometryService;
-    exports.ɵv = DropdownItemComponent;
-    exports.ɵw = selector$1;
-    exports.ɵx = FabricArrowIconComponent;
-    exports.ɵy = FabricDialogComponent;
-    exports.ɵz = FabricRadioButtonComponent;
+    exports.ɵt = FabricDrawerComponent;
+    exports.ɵu = FabricDropdownComponent;
+    exports.ɵv = GeometryService;
+    exports.ɵw = DropdownItemComponent;
+    exports.ɵx = selector$1;
+    exports.ɵy = FabricArrowIconComponent;
+    exports.ɵz = FabricDialogComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
