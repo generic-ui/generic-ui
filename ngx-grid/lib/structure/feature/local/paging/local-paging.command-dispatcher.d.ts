@@ -1,9 +1,9 @@
-import { StructurePagingCommandDispatcher } from '../../../feature-api/paging/structure-paging.command-dispatcher';
+import { PagingCommandDispatcher } from '../../../../../structure/paging/domain-api/paging.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
-import { PagingManagerFactory } from '../../../domain/paging/paging.manager-factory';
-import { PagingDispatcher } from '../../../domain/paging/paging.dispatcher';
-import { PagingConfig } from '../../../domain/paging/paging-config';
-export declare class LocalPagingCommandDispatcher extends StructurePagingCommandDispatcher {
+import { PagingManagerFactory } from '../../../../../structure/paging/domain/paging.manager-factory';
+import { PagingDispatcher } from '../../../../../structure/paging/domain/paging.dispatcher';
+import { PagingConfig } from '../../../../../structure/paging/domain-api/paging-config';
+export declare class LocalPagingCommandDispatcher extends PagingCommandDispatcher {
     private structureId;
     private aggregateFactory;
     constructor(structureId: StructureId, aggregateFactory: PagingManagerFactory, pagingDispatcher: PagingDispatcher);

@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit
 import { ResizeDetector } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { CellTemplateWithAccessor } from '../../../composition/feature-api/read/definition/cell-template-with-accessor';
-import { SchemaRowColoring } from '../../../schema/domain/coloring/schema-row-coloring';
+import { SchemaRowColoring } from '../../../../schema/domain/coloring/schema-row-coloring';
 import { StructureId } from '../../domain/structure.id';
 import { StructureCommandDispatcher } from '../../feature-api/structure.command-dispatcher';
 import { StructureWarehouse } from '../../feature-api/structure.warehouse';

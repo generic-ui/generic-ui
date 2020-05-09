@@ -1,15 +1,15 @@
 import { GenericBuilder } from '../../../common/cdk/generic-builder';
-import { StructurePagingDefinition } from './paging/structure-paging-definition';
+import { PagingDefinition } from '../../../structure/paging/feature/paging-definition';
 export declare class StructureDefinitionBuilder extends GenericBuilder<StructureDefinition> {
     private headerEnabled;
     private bottomPaging;
     private topPaging;
     private border;
-    constructor(headerEnabled: boolean, bottomPaging: StructurePagingDefinition, topPaging: StructurePagingDefinition);
+    constructor(headerEnabled: boolean, bottomPaging: PagingDefinition, topPaging: PagingDefinition);
     protected buildObject(): StructureDefinition;
     withHeader(enabled: boolean): StructureDefinitionBuilder;
-    withBottomPaging(paging: StructurePagingDefinition): StructureDefinitionBuilder;
-    withTopPaging(paging: StructurePagingDefinition): StructureDefinitionBuilder;
+    withBottomPaging(paging: PagingDefinition): StructureDefinitionBuilder;
+    withTopPaging(paging: PagingDefinition): StructureDefinitionBuilder;
     withBorder(enabled: boolean): StructureDefinitionBuilder;
 }
 export declare class StructureDefinitionDefaultBuilder extends StructureDefinitionBuilder {
@@ -23,11 +23,11 @@ export declare class StructureDefinition {
     private readonly bottomPaging;
     private readonly topPaging;
     private readonly border;
-    constructor(headerEnabled: boolean, bottomPaging: StructurePagingDefinition, topPaging: StructurePagingDefinition, border: boolean);
+    constructor(headerEnabled: boolean, bottomPaging: PagingDefinition, topPaging: PagingDefinition, border: boolean);
     static Builder: typeof StructureDefinitionBuilder;
     static DefaultBuilder: typeof StructureDefinitionDefaultBuilder;
     isHeaderEnabled(): boolean;
     isBorderEnabled(): boolean;
-    getBottomPaging(): StructurePagingDefinition;
-    getTopPaging(): StructurePagingDefinition;
+    getBottomPaging(): PagingDefinition;
+    getTopPaging(): PagingDefinition;
 }

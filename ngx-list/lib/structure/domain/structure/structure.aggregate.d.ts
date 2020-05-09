@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
 import { AggregateEvent, AggregateRoot } from '@generic-ui/hermes';
-import { PagingManager } from '../paging/paging.manager';
+import { PagingManager } from '../../../../structure/paging/domain/paging.manager';
 import { SourceManager } from '../source/source.manager';
 import { VerticalFormation } from './vertical-formation/vertical-formation';
 import { SummariesManager } from './summaries/summaries.manager';
@@ -10,7 +10,7 @@ import { FieldCollection } from './field/field.collection';
 import { FormationAggregate } from '../formation/formation-aggregate';
 import { StructureId } from '../structure.id';
 import { StructureEditSourceItemParams } from '../source/origin/edit/structure.edit-source-item.params';
-import { PagingConfig } from '../paging/paging-config';
+import { PagingConfig } from '../../../../structure/paging/domain-api/paging-config';
 import { OriginItemEntity } from '../source/origin/origin-item-entity';
 import { ColumnConfig } from '../../../composition/domain/column/column.config';
 import { SortingConfig } from '../../feature-api/sorting-config';
@@ -21,7 +21,7 @@ import { QuickFiltersConfig } from '../../feature-api/filter/quick-filters.confi
 import { SearchConfig } from '../../feature-api/search/search-config';
 import { SearchManager } from './search/search.manager';
 import { SortOrder } from '../../../composition/domain/column/sort/sort-order';
-import { SchemaTheme } from '../../../schema/domain/theme/schema-theme';
+import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
 export declare class StructureAggregate extends AggregateRoot<StructureId> {
     private formationAggregate;
     private pagingManager;

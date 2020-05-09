@@ -4,5 +4,5 @@ export declare const structureProviders: (any[] | import("@angular/core").ClassP
     useClass: typeof import("../../../generic-ui-ngx-grid").ɵq;
 } | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../generic-ui-ngx-grid").ɵmc;
+    useClass: typeof import("../../../generic-ui-ngx-grid").ɵmf;
 })[];

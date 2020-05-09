@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { Injectable } from '@angular/core';
+import { Archive } from '@generic-ui/hermes';
+import { StructureInfoPanelConfig } from './structure.info-panel.config';
+export class StructureInfoPanelArchive extends Archive {
+    constructor() {
+        super(new StructureInfoPanelConfig());
+    }
+}
+StructureInfoPanelArchive.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructureInfoPanelArchive.ctorParameters = () => [];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmluZm8tcGFuZWwuYXJjaGl2ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsibGliL3N0cnVjdHVyZS9mZWF0dXJlL3BhbmVsL2luZm8vc3RydWN0dXJlLmluZm8tcGFuZWwuYXJjaGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUUzQyxPQUFPLEVBQUUsT0FBTyxFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFDN0MsT0FBTyxFQUFFLHdCQUF3QixFQUFFLE1BQU0sK0JBQStCLENBQUM7QUFJekUsTUFBTSxPQUFPLHlCQUEwQixTQUFRLE9BQWlDO0lBRS9FO1FBQ0MsS0FBSyxDQUFDLElBQUksd0JBQXdCLEVBQUUsQ0FBQyxDQUFDO0lBQ3ZDLENBQUM7OztZQUxELFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEFyY2hpdmUgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuaW1wb3J0IHsgU3RydWN0dXJlSW5mb1BhbmVsQ29uZmlnIH0gZnJvbSAnLi9zdHJ1Y3R1cmUuaW5mby1wYW5lbC5jb25maWcnO1xuXG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBTdHJ1Y3R1cmVJbmZvUGFuZWxBcmNoaXZlIGV4dGVuZHMgQXJjaGl2ZTxTdHJ1Y3R1cmVJbmZvUGFuZWxDb25maWc+IHtcblxuXHRjb25zdHJ1Y3RvcigpIHtcblx0XHRzdXBlcihuZXcgU3RydWN0dXJlSW5mb1BhbmVsQ29uZmlnKCkpO1xuXHR9XG59XG4iXX0=

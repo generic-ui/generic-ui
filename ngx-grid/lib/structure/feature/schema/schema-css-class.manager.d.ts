@@ -1,6 +1,6 @@
 import { ElementRef, RendererFactory2 } from '@angular/core';
-import { SchemaWarehouse } from '../../../schema/feature-api/schema.warehouse';
-import { SchemaReadModelRootId } from '../../../schema/feature-api/read/schema.read-model-root-id';
+import { SchemaWarehouse } from '../../../../schema/feature-api/schema.warehouse';
+import { SchemaReadModelRootId } from '../../../../schema/feature-api/read/schema.read-model-root-id';
 import { Reactive } from '../../../../common/cdk/reactive';
 export declare class SchemaCssClassManager extends Reactive {
     private readonly rendererFactory2;

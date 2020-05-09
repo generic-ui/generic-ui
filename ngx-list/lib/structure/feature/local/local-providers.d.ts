@@ -1,5 +1,5 @@
 import { CompositionCommandDispatcher } from '../../../composition/feature-api/composition.command-dispatcher';
-import { StructurePagingCommandDispatcher } from '../../feature-api/paging/structure-paging.command-dispatcher';
+import { PagingCommandDispatcher } from '../../../../structure/paging/domain-api/paging.command-dispatcher';
 import { LocalPagingCommandDispatcher } from './paging/local-paging.command-dispatcher';
 import { LocalPagingWarehouse } from './paging/local-paging.warehouse';
 import { StructureFormationDispatcher } from '../../feature-api/formation/structure-formation.dispatcher';
@@ -17,20 +17,21 @@ import { LocalSourceWarehouse } from './source/local-source.warehouse';
 import { LocalCompositionCommandDispatcher } from './composition/local-composition.command-dispatcher';
 import { CompositionWarehouse } from '../../../composition/feature-api/composition.warehouse';
 import { LocalCompositionWarehouse } from './composition/local-composition.warehouse';
-import { StructurePagingWarehouse } from '../../feature-api/paging/structure-paging.warehouse';
+import { PagingWarehouse } from '../../../../structure/paging/domain-api/paging.warehouse';
 import { StructureSearchDispatcher } from '../../domain/structure/search/structure.search.dispatcher';
 import { LocalStructureSearchCommandDispatcher } from './search/local-structure-search.command-dispatcher';
-import { SchemaWarehouse } from '../../../schema/feature-api/schema.warehouse';
+import { SchemaWarehouse } from '../../../../schema/feature-api/schema.warehouse';
 import { LocalSchemaWarehouse } from './schema/local-schema.warehouse';
-import { SchemaCommandDispatcher } from '../../../schema/feature-api/schema.command-dispatcher';
+import { SchemaCommandDispatcher } from '../../../../schema/feature-api/schema.command-dispatcher';
 import { LocalSchemaCommandDispatcher } from './schema/local-schema.command-dispatcher';
 import { StructureVerticalFormationWarehouse } from '../../feature-api/vertical-formation/structure-vertical-formation.warehouse';
 import { LocalStructureVerticalFormationWarehouse } from './vertical-formation/local-structure-vertical-formation.warehouse';
+import { Provider } from '@angular/core';
 export declare const localProviders: ({
-    provide: typeof StructurePagingCommandDispatcher;
+    provide: typeof PagingCommandDispatcher;
     useClass: typeof LocalPagingCommandDispatcher;
 } | {
-    provide: typeof StructurePagingWarehouse;
+    provide: typeof PagingWarehouse;
     useClass: typeof LocalPagingWarehouse;
 } | {
     provide: typeof StructureFormationDispatcher;
@@ -69,3 +70,4 @@ export declare const localProviders: ({
     provide: typeof SchemaCommandDispatcher;
     useClass: typeof LocalSchemaCommandDispatcher;
 })[];
+export declare function provideComponentServices(): Array<Provider>;

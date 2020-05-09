@@ -1,5 +1,5 @@
 import { FormationConverter } from '../formation/read/formation.converter';
-import { PagingConverter } from '../paging/read/paging.converter';
+import { PagingConverter } from '../../../../structure/paging/domain-api/read/paging.converter';
 import { SourceConverter } from '../source/source.converter';
 import { VerticalFormationConverter } from '../vertical-formation/vertical-formation.converter';
 import { StructureAggregate } from '../../domain/structure/structure.aggregate';

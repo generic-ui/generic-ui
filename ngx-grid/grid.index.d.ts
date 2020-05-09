@@ -1,3 +1,3 @@
-export { GridModule } from './gui/grid/feature-api/grid.module';
+export { GridModule } from './gui/grid/domain-api/grid.module';
 export { GridComponent } from './gui/grid/feature/grid/grid.component';
-export { GuiColumn, FieldAccessor, GuiDataType, GuiCellView, GuiNumberCellView, GuiStringCellView, GuiBooleanCellView, GuiDateCellView, GuiPagingConfig, GuiTheme, GuiRowColoring, GuiSorting, GuiFiltering, GuiQuickFilters, GuiSearching, GuiSummaries, GuiColumnSummaries, GuiColumnSorting, GuiColumnCellEditing, GuiSortingOrder, GuiColumnMenu, GuiPagingDisplay, GuiColumnAlign, GuiRowDetail, GuiTitlePanel, GuiFooterPanel } from './gui/grid/feature-api/grid.api';
+export { GuiColumn, FieldAccessor, GuiDataType, GuiCellView, GuiNumberCellView, GuiStringCellView, GuiBooleanCellView, GuiDateCellView, GuiPagingConfig, GuiTheme, GuiRowColoring, GuiSorting, GuiFiltering, GuiQuickFilters, GuiSearching, GuiSummaries, GuiColumnSummaries, GuiColumnSorting, GuiColumnCellEditing, GuiSortingOrder, GuiColumnMenu, GuiPagingDisplay, GuiColumnAlign, GuiRowDetail, GuiTitlePanel, GuiFooterPanel, GuiInfoPanel } from './gui/grid/domain-api/grid.api';

@@ -12,7 +12,7 @@ import { SearchConfig } from '../../../feature-api/search/search-config';
 import { ColumnConfig } from '../../../../composition/domain/column/column.config';
 import { SortOrder } from '../../../../composition/domain/column/sort/sort-order';
 import { StructureSearchDispatcher } from '../../../domain/structure/search/structure.search.dispatcher';
-import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
+import { SchemaTheme } from '../../../../../schema/domain/theme/schema-theme';
 export declare class LocalStructureCommandDispatcher extends StructureCommandDispatcher {
     private readonly structureId;
     private readonly compositionId;

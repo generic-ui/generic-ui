@@ -100,7 +100,7 @@ var FabricDrawerComponent = /** @class */ (function (_super) {
                     template: "<div (document:click)=\"clickOutside($event)\"\n\t class=\"gui-drawer-wrapper\">\n\t<div\n\t\tclass=\"gui-drawer-content\">\n<gui-close-icon (click)=\"closeDrawer()\"></gui-close-icon>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-drawer-wrapper{display:-webkit-box;display:-ms-flexbox;display:flex;font-family:Arial;position:absolute;height:100%;right:0;top:0;z-index:1000}.gui-drawer-wrapper .gui-drawer-content{background-color:#fff;max-width:400px;height:100%;position:relative;box-shadow:-3px 0 4px 0 #ccc}"]
+                    styles: [".gui-drawer-wrapper{display:-ms-flexbox;display:flex;font-family:Arial;position:absolute;height:100%;right:0;top:0;z-index:1000}.gui-drawer-wrapper .gui-drawer-content{background-color:#fff;max-width:400px;height:100%;position:relative;box-shadow:-3px 0 4px 0 #ccc}"]
                 }] }
     ];
     /** @nocollapse */

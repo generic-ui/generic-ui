@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { SchemaReadModelRootId } from './schema.read-model-root-id';
+/** @type {?} */
+export var schemaGlobalId = new SchemaReadModelRootId('-1');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmdsb2JhbC1pZC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsic2NoZW1hL2ZlYXR1cmUtYXBpL3JlYWQvc2NoZW1hLmdsb2JhbC1pZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sNkJBQTZCLENBQUM7O0FBRXBFLE1BQU0sS0FBTyxjQUFjLEdBQUcsSUFBSSxxQkFBcUIsQ0FBQyxJQUFJLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBTY2hlbWFSZWFkTW9kZWxSb290SWQgfSBmcm9tICcuL3NjaGVtYS5yZWFkLW1vZGVsLXJvb3QtaWQnO1xuXG5leHBvcnQgY29uc3Qgc2NoZW1hR2xvYmFsSWQgPSBuZXcgU2NoZW1hUmVhZE1vZGVsUm9vdElkKCctMScpO1xuIl19

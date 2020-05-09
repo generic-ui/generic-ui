@@ -1,5 +1,5 @@
-import { GuiPagingConfig } from '../../../feature-api/grid.api';
-import { PagingConfig } from '../../../../../lib/structure/domain/paging/paging-config';
+import { GuiPagingConfig } from '../../../domain-api/grid.api';
+import { PagingConfig } from '../../../../../structure/paging/domain-api/paging-config';
 export declare class GridPagingConverter {
     convert(guiPaging: GuiPagingConfig): PagingConfig;
     private convertDisplay;

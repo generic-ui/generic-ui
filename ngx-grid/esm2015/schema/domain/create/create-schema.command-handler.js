@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { Injectable } from '@angular/core';
+import { CreateSchemaCommand } from './create-schema.command';
+export class CreateSchemaCommandHandler {
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return CreateSchemaCommand;
+    }
+}
+CreateSchemaCommandHandler.decorators = [
+    { type: Injectable }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3JlYXRlLXNjaGVtYS5jb21tYW5kLWhhbmRsZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtZ3JpZC8iLCJzb3VyY2VzIjpbInNjaGVtYS9kb21haW4vY3JlYXRlL2NyZWF0ZS1zY2hlbWEuY29tbWFuZC1oYW5kbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsVUFBVSxFQUFRLE1BQU0sZUFBZSxDQUFDO0FBSWpELE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHlCQUF5QixDQUFDO0FBSzlELE1BQU0sT0FBTywwQkFBMEI7Ozs7SUFFdEMsVUFBVTtRQUNULE9BQU8sbUJBQW1CLENBQUM7SUFDNUIsQ0FBQzs7O1lBTEQsVUFBVSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUsIFR5cGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgQ3JlYXRlQWdncmVnYXRlQ29tbWFuZEhhbmRsZXIgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5pbXBvcnQgeyBDcmVhdGVTY2hlbWFDb21tYW5kIH0gZnJvbSAnLi9jcmVhdGUtc2NoZW1hLmNvbW1hbmQnO1xuaW1wb3J0IHsgU2NoZW1hQWdncmVnYXRlIH0gZnJvbSAnLi4vc2NoZW1hLmFnZ3JlZ2F0ZSc7XG5cblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIENyZWF0ZVNjaGVtYUNvbW1hbmRIYW5kbGVyIGltcGxlbWVudHMgQ3JlYXRlQWdncmVnYXRlQ29tbWFuZEhhbmRsZXI8U2NoZW1hQWdncmVnYXRlLCBDcmVhdGVTY2hlbWFDb21tYW5kPiB7XG5cblx0Zm9yQ29tbWFuZCgpOiBUeXBlPENyZWF0ZVNjaGVtYUNvbW1hbmQ+IHtcblx0XHRyZXR1cm4gQ3JlYXRlU2NoZW1hQ29tbWFuZDtcblx0fVxuXG59XG4iXX0=

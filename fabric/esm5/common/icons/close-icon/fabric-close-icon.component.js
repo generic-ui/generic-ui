@@ -17,7 +17,7 @@ var FabricCloseIconComponent = /** @class */ (function () {
                     host: {
                         '[class.gui-close-icon-wrapper]': 'true'
                     },
-                    styles: [".gui-close-icon-wrapper .gui-close-icon{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px}.gui-close-icon-wrapper .gui-close-icon::after,.gui-close-icon-wrapper .gui-close-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa}.gui-close-icon-wrapper .gui-close-icon::before{-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-close-icon-wrapper .gui-close-icon::after{-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-close-icon-wrapper .gui-close-icon:hover::after,.gui-close-icon-wrapper .gui-close-icon:hover::before{background-color:#464646}"]
+                    styles: [".gui-close-icon-wrapper .gui-close-icon{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px}.gui-close-icon-wrapper .gui-close-icon::after,.gui-close-icon-wrapper .gui-close-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa}.gui-close-icon-wrapper .gui-close-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-close-icon-wrapper .gui-close-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-close-icon-wrapper .gui-close-icon:hover::after,.gui-close-icon-wrapper .gui-close-icon:hover::before{background-color:#464646}"]
                 }] }
     ];
     return FabricCloseIconComponent;

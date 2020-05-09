@@ -1,5 +1,5 @@
 import { AggregateFactory } from '@generic-ui/hermes';
-import { PagingManagerFactory } from '../paging/paging.manager-factory';
+import { PagingManagerFactory } from '../../../../structure/paging/domain/paging.manager-factory';
 import { SourceManagerFactory } from '../source/source.manager-factory';
 import { VerticalFormationFactory } from './vertical-formation/vertical-formation.factory';
 import { SummariesManagerFactory } from './summaries/summaries.manager.factory';

@@ -1,9 +1,9 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiSearching, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../feature-api/grid.api';
+import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiInfoPanel, GuiPagingConfig, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiSearching, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../domain-api/grid.api';
 import { ColumnConfig } from '../../../../lib/composition/domain/column/column.config';
 import { ColumnMenuConfig } from '../../../../lib/structure/feature-api/column-menu-config';
-import { SchemaTheme } from '../../../../lib/schema/domain/theme/schema-theme';
-import { RowColoring } from '../../../../lib/schema/feature-api/row-coloring';
+import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
+import { RowColoring } from '../../../../schema/feature-api/row-coloring';
 export declare abstract class GridGateway implements OnChanges {
     /**
      * INPUTS
@@ -44,7 +44,7 @@ export declare abstract class GridGateway implements OnChanges {
      * @experimental
      */
     cellEditing: boolean;
-    infoPanel: boolean;
+    infoPanel: boolean | GuiInfoPanel;
     /**
      * @experimental
      */
