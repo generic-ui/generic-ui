@@ -13,24 +13,24 @@ import { StructureSummariesConfigService } from './panel/summaries/structure.sum
 import { StructureGateway } from './gateway/structure.gateway';
 import { PagingCommandDispatcher } from '../../../structure/paging/domain-api/paging.command-dispatcher';
 import { PagingEventRepository } from '../../../structure/paging/domain-api/paging.event-repository';
-import { SourceCommandDispatcher } from '../feature-api/source/source.command-dispatcher';
-import { SourceEventService } from '../feature-api/source/event/source-event.service';
-import { CompositionCommandDispatcher } from '../../composition/feature-api/composition.command-dispatcher';
-import { CompositionEventRepository } from '../../composition/feature-api/composition.event-repository';
-import { FormationEventService } from '../feature-api/formation/formation-event.service';
-import { StructureCommandDispatcher } from '../feature-api/structure.command-dispatcher';
-import { StructureWarehouse } from '../feature-api/structure.warehouse';
-import { CompositionWarehouse } from '../../composition/feature-api/composition.warehouse';
+import { SourceCommandDispatcher } from '../domain-api/source/source.command-dispatcher';
+import { SourceEventService } from '../domain-api/source/event/source-event.service';
+import { CompositionCommandDispatcher } from '../../composition/domain-api/composition.command-dispatcher';
+import { CompositionEventRepository } from '../../composition/domain-api/composition.event-repository';
+import { FormationEventService } from '../domain-api/formation/formation-event.service';
+import { StructureCommandDispatcher } from '../domain-api/structure.command-dispatcher';
+import { StructureWarehouse } from '../domain-api/structure.warehouse';
+import { CompositionWarehouse } from '../../composition/domain-api/composition.warehouse';
 import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
 import { PagingDisplayModeArchive } from '../../../structure/paging/feature/mode/paging-display-mode.archive';
 import { StructureRowSelectEnabledArchive } from './content/row/structure.row-select-enabled.archive';
-import { StructureSearchEventService } from '../feature-api/search/structure-search-event.service';
+import { StructureSearchEventService } from '../domain-api/search/structure-search-event.service';
 import { StructureCellEditCloseAllService } from './edit/structure.cell-edit-close-all.service';
-import { SchemaReadModelRootId } from '../../../schema/feature-api/read/schema.read-model-root-id';
-import { SchemaCommandDispatcher } from '../../../schema/feature-api/schema.command-dispatcher';
+import { SchemaReadModelRootId } from '../../../schema/domain-api/read/schema.read-model-root-id';
+import { SchemaCommandDispatcher } from '../../../schema/domain-api/schema.command-dispatcher';
 import { StructureHeaderBottomEnabledArchive } from './header/structure-header-bottom-enabled.archive';
 import { StructureHeaderTopEnabledArchive } from './header/structure-header-top-enabled.archive';
-import { SchemaEventRepository } from '../../../schema/feature-api/schema.event-repository';
+import { SchemaEventRepository } from '../../../schema/domain-api/schema.event-repository';
 import { StructureRowDetailConfigArchive } from './row-detail/structure.row-detail.config-archive';
 import { StructureRowDetailService } from './row-detail/structure.row-detail.service';
 import { StructureTitlePanelConfigArchive } from './panel/title-panel/structure.title-panel.config-archive';
@@ -50,10 +50,10 @@ export declare const structureComponentSelfProviders: (import("@angular/core").P
     provide: typeof import("../../../generic-ui-ngx-grid").ɵcg;
     useClass: typeof import("./local/paging/local-paging.warehouse").LocalPagingWarehouse;
 } | {
-    provide: typeof import("../feature-api/formation/structure-formation.dispatcher").StructureFormationDispatcher;
+    provide: typeof import("../domain-api/formation/structure-formation.dispatcher").StructureFormationDispatcher;
     useClass: typeof import("./local/formation/local-formation.command-dispatcher").LocalFormationCommandDispatcher;
 } | {
-    provide: typeof import("../feature-api/formation/structure-formation.warehouse").StructureFormationWarehouse;
+    provide: typeof import("../domain-api/formation/structure-formation.warehouse").StructureFormationWarehouse;
     useClass: typeof import("./local/formation/local-formation.warehouse").LocalFormationWarehouse;
 } | {
     provide: typeof StructureCommandDispatcher;
@@ -65,7 +65,7 @@ export declare const structureComponentSelfProviders: (import("@angular/core").P
     provide: typeof SourceCommandDispatcher;
     useClass: typeof import("./local/source/local-source.command-dispatcher").LocalSourceCommandDispatcher;
 } | {
-    provide: typeof import("../feature-api/source/structure-source.warehouse").StructureSourceWarehouse;
+    provide: typeof import("../domain-api/source/structure-source.warehouse").StructureSourceWarehouse;
     useClass: typeof import("./local/source/local-source.warehouse").LocalSourceWarehouse;
 } | {
     provide: typeof CompositionCommandDispatcher;
@@ -77,7 +77,7 @@ export declare const structureComponentSelfProviders: (import("@angular/core").P
     provide: typeof import("../../../generic-ui-ngx-grid").ɵew;
     useClass: typeof import("./local/search/local-structure-search.command-dispatcher").LocalStructureSearchCommandDispatcher;
 } | {
-    provide: typeof import("../feature-api/vertical-formation/structure-vertical-formation.warehouse").StructureVerticalFormationWarehouse;
+    provide: typeof import("../domain-api/vertical-formation/structure-vertical-formation.warehouse").StructureVerticalFormationWarehouse;
     useClass: typeof import("./local/vertical-formation/local-structure-vertical-formation.warehouse").LocalStructureVerticalFormationWarehouse;
 } | {
     provide: typeof import("../../../generic-ui-ngx-grid").ɵdn;

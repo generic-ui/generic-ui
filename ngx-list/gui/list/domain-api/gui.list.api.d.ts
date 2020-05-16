@@ -6,3 +6,11 @@ export interface GuiListPaging {
     pagerTop?: boolean;
     pagerBottom?: boolean;
 }
+export declare enum GuiListMode {
+    LIST = 0,
+    CARD = 1
+}
+export interface GuiListView {
+    active?: GuiListMode;
+    selector?: boolean;
+}

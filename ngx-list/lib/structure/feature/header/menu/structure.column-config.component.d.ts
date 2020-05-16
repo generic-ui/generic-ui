@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { StructureCommandDispatcher } from '../../../feature-api/structure.command-dispatcher';
-import { CellTemplateWithContext } from '../../../../composition/feature-api/read/definition/cell-template-with-context';
+import { StructureCommandDispatcher } from '../../../domain-api/structure.command-dispatcher';
+import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
-import { CompositionWarehouse } from '../../../../composition/feature-api/composition.warehouse';
+import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
 import { StructureColumnMenuConfigArchive } from './config/structure.column-menu-config.archive';
 import { StructureColumnMenuConfig } from './config/structure.column-menu-config';
 export declare class StructureColumnConfigComponent extends SmartComponent implements OnInit {

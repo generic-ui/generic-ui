@@ -1,17 +1,17 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ResizeDetector } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../../composition/feature-api/read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../composition/domain-api/read/definition/cell-template-with-accessor';
 import { SchemaRowColoring } from '../../../../schema/domain/coloring/schema-row-coloring';
 import { StructureId } from '../../domain/structure.id';
-import { StructureCommandDispatcher } from '../../feature-api/structure.command-dispatcher';
-import { StructureWarehouse } from '../../feature-api/structure.warehouse';
-import { StructureSourceWarehouse } from '../../feature-api/source/structure-source.warehouse';
-import { CompositionCommandDispatcher } from '../../../composition/feature-api/composition.command-dispatcher';
-import { CompositionWarehouse } from '../../../composition/feature-api/composition.warehouse';
-import { StructureFormationWarehouse } from '../../feature-api/formation/structure-formation.warehouse';
+import { StructureCommandDispatcher } from '../../domain-api/structure.command-dispatcher';
+import { StructureWarehouse } from '../../domain-api/structure.warehouse';
+import { StructureSourceWarehouse } from '../../domain-api/source/structure-source.warehouse';
+import { CompositionCommandDispatcher } from '../../../composition/domain-api/composition.command-dispatcher';
+import { CompositionWarehouse } from '../../../composition/domain-api/composition.warehouse';
+import { StructureFormationWarehouse } from '../../domain-api/formation/structure-formation.warehouse';
 import { ItemEntity } from '../../domain/source/item.entity';
-import { StructureVerticalFormationWarehouse } from '../../feature-api/vertical-formation/structure-vertical-formation.warehouse';
+import { StructureVerticalFormationWarehouse } from '../../domain-api/vertical-formation/structure-vertical-formation.warehouse';
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elementRef;
     private readonly renderer;

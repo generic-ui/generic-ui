@@ -4,5 +4,4 @@ export declare class GuiListWithGridModule {
 export declare class GuiListModule {
     static forRoot(): ModuleWithProviders;
     static forChild(): ModuleWithProviders;
-    static withoutGrid(): ModuleWithProviders;
 }

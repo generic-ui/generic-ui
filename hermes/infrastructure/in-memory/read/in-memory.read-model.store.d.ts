@@ -1,10 +1,10 @@
 import { AggregateId } from '../../../domain/aggregate-id';
 import { AggregateRoot } from '../../../domain/command/aggregate/aggregate-root';
-import { ReadModelRoot } from '../../../feature-api/read/read-model-root';
-import { ReadModelStore } from '../../../feature-api/read/store/read-model.store';
+import { ReadModelRoot } from '../../../domain-api/read/read-model-root';
+import { ReadModelStore } from '../../../domain-api/read/store/read-model.store';
 import { InMemoryStore } from '../in-memory.store';
 import { Optional } from '../../../common/optional';
-import { ReadModelRootId } from '../../../feature-api/read/read-model-root-id';
+import { ReadModelRootId } from '../../../domain-api/read/read-model-root-id';
 export declare abstract class InMemoryReadModelStore<I extends ReadModelRootId, R extends ReadModelRoot<I>, B extends AggregateId, A extends AggregateRoot<B>> extends ReadModelStore<I, R> {
     private readonly inMemoryStore;
     protected constructor(inMemoryStore: InMemoryStore<B, A>);

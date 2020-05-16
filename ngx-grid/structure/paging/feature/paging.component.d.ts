@@ -3,7 +3,7 @@ import { SmartComponent } from '../../../common/cdk/smart-component';
 import { Paging } from '../domain-api/read/paging';
 import { PagingWarehouse } from '../domain-api/paging.warehouse';
 import { PagingCommandDispatcher } from '../domain-api/paging.command-dispatcher';
-import { StructureSourceWarehouse } from '../../../lib/structure/feature-api/source/structure-source.warehouse';
+import { StructureSourceWarehouse } from '../../../lib/structure/domain-api/source/structure-source.warehouse';
 import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
 export declare class PagingComponent extends SmartComponent implements OnInit {
@@ -15,6 +15,7 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     private readonly structureSourceWarehouse;
     private readonly structurePagingDisplayModeArchive;
     position: PagingPosition;
+    minimal: boolean;
     sourceSize: number;
     paging: Paging;
     alternativeDisplay: boolean;

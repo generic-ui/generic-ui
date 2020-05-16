@@ -1,8 +1,8 @@
-import { CompositionCommandDispatcher } from '../../../../composition/feature-api/composition.command-dispatcher';
+import { CompositionCommandDispatcher } from '../../../../composition/domain-api/composition.command-dispatcher';
 import { CompositionId } from '../../../../composition/domain/composition.id';
 import { CompositionDispatcher } from '../../../../composition/domain/composition.dispatcher';
 import { ColumnParams } from '../../../../composition/domain/column/set-columns/column.params';
-import { ColumnDefinitionId } from '../../../../composition/feature-api/read/definition/column-definition-id';
+import { ColumnDefinitionId } from '../../../../composition/domain-api/read/definition/column-definition-id';
 export declare class LocalCompositionCommandDispatcher extends CompositionCommandDispatcher {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionDispatcher: CompositionDispatcher);

@@ -1,10 +1,10 @@
 import { ChangeDetectorRef } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../composition/feature-api/read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
 import { StructureId } from '../../../domain/structure.id';
-import { StructureSummariesUiEventsRepository } from '../../../feature-api/summaries/structure-summaries.ui-events-repository';
-import { CompositionWarehouse } from '../../../../composition/feature-api/composition.warehouse';
+import { StructureSummariesUiEventsRepository } from '../../../domain-api/summaries/structure-summaries.ui-events-repository';
+import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
-import { StructureSourceWarehouse } from '../../../feature-api/source/structure-source.warehouse';
+import { StructureSourceWarehouse } from '../../../domain-api/source/structure-source.warehouse';
 export declare class StructureSummariesPanelComponent extends SmartComponent {
     private changeDetectorRef;
     private structureId;

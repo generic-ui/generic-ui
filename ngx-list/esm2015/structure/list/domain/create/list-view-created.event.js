@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { DomainEvent } from '@generic-ui/hermes';
+export class ListViewCreatedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'ListViewCreatedEvent');
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LWNyZWF0ZWQuZXZlbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9saXN0L2RvbWFpbi9jcmVhdGUvbGlzdC12aWV3LWNyZWF0ZWQuZXZlbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUtqRCxNQUFNLE9BQU8sb0JBQXFCLFNBQVEsV0FBdUI7Ozs7SUFFaEUsWUFBWSxXQUF1QjtRQUNsQyxLQUFLLENBQUMsV0FBVyxFQUFFLHNCQUFzQixDQUFDLENBQUM7SUFDNUMsQ0FBQztDQUNEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRG9tYWluRXZlbnQgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5pbXBvcnQgeyBMaXN0Vmlld0lkIH0gZnJvbSAnLi4vbGlzdC12aWV3LmlkJztcblxuXG5leHBvcnQgY2xhc3MgTGlzdFZpZXdDcmVhdGVkRXZlbnQgZXh0ZW5kcyBEb21haW5FdmVudDxMaXN0Vmlld0lkPiB7XG5cblx0Y29uc3RydWN0b3IoYWdncmVnYXRlSWQ6IExpc3RWaWV3SWQpIHtcblx0XHRzdXBlcihhZ2dyZWdhdGVJZCwgJ0xpc3RWaWV3Q3JlYXRlZEV2ZW50Jyk7XG5cdH1cbn1cbiJdfQ==

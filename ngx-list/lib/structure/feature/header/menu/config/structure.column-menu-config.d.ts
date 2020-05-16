@@ -1,4 +1,4 @@
-import { ColumnMenuConfig } from '../../../../feature-api/column-menu-config';
+import { ColumnMenuConfig } from '../../../../domain-api/column-menu-config';
 export declare class StructureColumnMenuConfig {
     private enabled;
     private sort;

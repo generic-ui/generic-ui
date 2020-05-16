@@ -1,4 +1,4 @@
-import { StructureFormationDispatcher } from '../../../feature-api/formation/structure-formation.dispatcher';
+import { StructureFormationDispatcher } from '../../../domain-api/formation/structure-formation.dispatcher';
 import { StructureId } from '../../../domain/structure.id';
 import { FormationDispatcher } from '../../../domain/formation/formation.dispatcher';
 export declare class LocalFormationCommandDispatcher extends StructureFormationDispatcher {

@@ -1,18 +1,18 @@
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../../composition/feature-api/read/definition/cell-template-with-accessor';
-import { StructureFormationDispatcher } from '../../feature-api/formation/structure-formation.dispatcher';
+import { CellTemplateWithAccessor } from '../../../composition/domain-api/read/definition/cell-template-with-accessor';
+import { StructureFormationDispatcher } from '../../domain-api/formation/structure-formation.dispatcher';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
-import { StructureFormationWarehouse } from '../../feature-api/formation/structure-formation.warehouse';
+import { StructureFormationWarehouse } from '../../domain-api/formation/structure-formation.warehouse';
 import { ItemEntity } from '../../domain/source/item.entity';
-import { VerticalFormationRepository } from '../../feature-api/vertical-formation/vertical-formation.repository';
-import { StructureWarehouse } from '../../feature-api/structure.warehouse';
+import { VerticalFormationRepository } from '../../domain-api/vertical-formation/vertical-formation.repository';
+import { StructureWarehouse } from '../../domain-api/structure.warehouse';
 import { StructureRowSelectEnabledArchive } from './row/structure.row-select-enabled.archive';
 import { StructureId } from '../../domain/structure.id';
-import { StructureSearchPhraseRepository } from '../../feature-api/search/phrase/structure.search-phrase.repository';
-import { StructureSearchHighlightArchive } from '../../feature-api/search/highlight/structure.search-highlight.archive';
-import { StructureVerticalFormationWarehouse } from '../../feature-api/vertical-formation/structure-vertical-formation.warehouse';
+import { StructureSearchPhraseRepository } from '../../domain-api/search/phrase/structure.search-phrase.repository';
+import { StructureSearchHighlightArchive } from '../../domain-api/search/highlight/structure.search-highlight.archive';
+import { StructureVerticalFormationWarehouse } from '../../domain-api/vertical-formation/structure-vertical-formation.warehouse';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly platformId;
     private readonly renderer;

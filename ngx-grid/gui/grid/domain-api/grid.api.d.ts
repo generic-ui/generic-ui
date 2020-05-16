@@ -5,7 +5,6 @@ export interface GuiColumn {
     type?: string | GuiDataType;
     view?: string | GuiCellView | ViewTemplateMethod;
     header?: string;
-    customTemplate?: string;
     width?: string | number;
     enabled?: boolean;
     align?: string | GuiColumnAlign;
@@ -60,7 +59,7 @@ export declare enum GuiDateCellView {
     ITALIC = 2,
     CHIP = 3
 }
-export interface GuiPagingConfig {
+export interface GuiPaging {
     enabled?: boolean;
     page?: number;
     pageSize?: number;

@@ -17,7 +17,6 @@ export interface ColumnConfig {
      * Template accessor
      */
     field?: string | ElementData;
-    customTemplate?: string | CellTemplate;
     view?: CellView | any;
     width?: string | number;
     enabled?: boolean;

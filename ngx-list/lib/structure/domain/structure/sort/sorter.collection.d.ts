@@ -1,5 +1,5 @@
 import { StructureSorter } from './structure.sorter';
-import { SortingConfig } from '../../../feature-api/sorting-config';
+import { SortingConfig } from '../../../domain-api/sorting-config';
 import { FieldId } from '../field/data-type/field.id';
 import { OriginItemEntity } from '../../source/origin/origin-item-entity';
 import { SortOrder } from '../../../../composition/domain/column/sort/sort-order';

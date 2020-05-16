@@ -1,10 +1,10 @@
 import { SchemaDispatcher } from '../../../../../schema/domain/schema.dispatcher';
-import { SchemaReadModelRootId } from '../../../../../schema/feature-api/read/schema.read-model-root-id';
+import { SchemaReadModelRootId } from '../../../../../schema/domain-api/read/schema.read-model-root-id';
 import { SchemaTheme } from '../../../../../schema/domain/theme/schema-theme';
-import { SchemaCommandDispatcher } from '../../../../../schema/feature-api/schema.command-dispatcher';
-import { StructureCommandDispatcher } from '../../../feature-api/structure.command-dispatcher';
+import { SchemaCommandDispatcher } from '../../../../../schema/domain-api/schema.command-dispatcher';
+import { StructureCommandDispatcher } from '../../../domain-api/structure.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
-import { RowColoring } from '../../../../../schema/feature-api/row-coloring';
+import { RowColoring } from '../../../../../schema/domain-api/row-coloring';
 export declare class LocalSchemaCommandDispatcher extends SchemaCommandDispatcher {
     private readonly schemaReadModelRootId;
     private readonly structureId;

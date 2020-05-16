@@ -21,7 +21,7 @@ The creation of an gui-grid will be done in these simple steps:
 
 ### Setup template
 Specify columns and source in grid component
-Include GridModule
+Include GuiGridModule
 Setup template
 Add code below to you html template. Notice that `<gui-grid>` has two input `[columns]` and `[source]`. These will help you specify the shape of the grid and the data you wish to bind.
 
@@ -76,16 +76,16 @@ source: Array<any> = [{
 }];
 ```
 
-### Include GridModule
+### Include GuiGridModule
 The only thing that is left is to include `GridModule` in `app.module.ts` and we are done.
 
 **app.module.ts**
 ```
-import { GridModule } from '@generic-ui/ngx-grid';
+import { GuiGridModule } from '@generic-ui/ngx-grid';
 
 @NgModule({
 	imports: [
-		GridModule
+		GuiGridModule
 	]
 })
 export class BasicModule {

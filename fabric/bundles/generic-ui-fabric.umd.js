@@ -639,7 +639,7 @@
         FabricCheckboxComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-checkbox',
-                        template: "<label>\n\t<input\n\t\t(click)='check()'\n\t\t[checked]=checked\n\t\t[disabled]=disabled\n\t\t[name]=name\n\t\ttype=\"checkbox\">\n\t<span class=\"gui-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
+                        template: "<label>\n\t<input\n\t\t(click)=\"check()\"\n\t\t[checked]=\"checked\"\n\t\t[disabled]=\"disabled\"\n\t\t[name]=\"name\"\n\t\ttype=\"checkbox\">\n\t<span class=\"gui-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         host: {
@@ -3825,7 +3825,7 @@
                         providers: [
                             GeometryService
                         ],
-                        styles: [".gui-dropdown .gui-dropdown-container{background:#fff;box-sizing:border-box;border-radius:4px;cursor:pointer;color:#333;display:inline-block;font:14px Arial;padding:8px 32px 8px 12px;position:relative;width:auto;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container:hover{border-color:#999}.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow svg path{stroke:#464646}.gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{position:absolute;cursor:pointer;top:8px;right:12px}.gui-dropdown .gui-dropdown-container .gui-dropdown-arrow svg path{stroke:#aaa}.gui-dropdown .gui-dropdown-container .gui-dropdown-left.gui-dropdown-menu,.gui-dropdown .gui-dropdown-container .gui-dropdown-right.gui-dropdown-menu{margin:0}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{box-sizing:border-box;background:inherit;display:none;left:-1px;overflow:hidden;width:inherit;position:absolute;z-index:2;border-radius:4px;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{padding:8px 32px 8px 12px;width:inherit;list-style-type:none}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#ccc}.gui-dropdown.gui-menu-opened .gui-dropdown-container{border-color:#999}.gui-dropdown.gui-menu-opened .gui-dropdown-menu{display:block}.gui-dropdown .gui-disabled{color:#ccc;pointer-events:none}", ".gui-material .gui-dropdown .gui-dropdown-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-dropdown .gui-dropdown-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-dropdown .gui-dropdown-container:hover{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZJLCoAwDESruNRT9dw9lRvBhXbKEKTNpwsfSGLtY6I1/UIp5cHFW5eFtUlsGzlneaaxsg5EySLWhIOt4Mn9OHvdfLIXtLG195iSrQ8QypYIXNkTgSmbx0Eu1gEvcatpN3shGtWVgCaGEujFKQl8F6YlIItVGv5LSwLmcXjSAFK15B9J6QWDkUXx1vE/hQAAAABJRU5ErkJggg==) 0 0/contain no-repeat;border-color:#ce93d8 transparent transparent}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{border-top-color:#757575}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#616161}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-container{border-color:#ce93d8}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-arrow{border-color:transparent transparent #ce93d8}.gui-dark .gui-dropdown .gui-disabled{opacity:.36}"]
+                        styles: [".gui-dropdown .gui-dropdown-container{background:#fff;box-sizing:border-box;border-radius:4px;cursor:pointer;color:#333;display:inline-block;font:14px Arial;padding:8px 32px 8px 12px;position:relative;width:auto;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container:hover{border-color:#999}.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow svg path{stroke:#464646}.gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{position:absolute;cursor:pointer;top:8px;right:12px}.gui-dropdown .gui-dropdown-container .gui-dropdown-left.gui-dropdown-menu,.gui-dropdown .gui-dropdown-container .gui-dropdown-right.gui-dropdown-menu{margin:0}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{box-sizing:border-box;background:inherit;display:none;left:-1px;overflow:hidden;width:inherit;position:absolute;z-index:2;border-radius:4px;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{padding:8px 32px 8px 12px;width:inherit;list-style-type:none}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#ccc}.gui-dropdown.gui-menu-opened .gui-dropdown-container{border-color:#999}.gui-dropdown.gui-menu-opened .gui-dropdown-menu{display:block}.gui-dropdown .gui-disabled{color:#ccc;pointer-events:none}", ".gui-material .gui-dropdown .gui-dropdown-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-dropdown .gui-dropdown-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-dropdown .gui-dropdown-container:hover{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZJLCoAwDESruNRT9dw9lRvBhXbKEKTNpwsfSGLtY6I1/UIp5cHFW5eFtUlsGzlneaaxsg5EySLWhIOt4Mn9OHvdfLIXtLG195iSrQ8QypYIXNkTgSmbx0Eu1gEvcatpN3shGtWVgCaGEujFKQl8F6YlIItVGv5LSwLmcXjSAFK15B9J6QWDkUXx1vE/hQAAAABJRU5ErkJggg==) 0 0/contain no-repeat;border-color:#ce93d8 transparent transparent}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{border-top-color:#757575}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#616161}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-container{border-color:#ce93d8}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-arrow{border-color:transparent transparent #ce93d8}.gui-dark .gui-dropdown .gui-disabled{opacity:.36}"]
                     }] }
         ];
         /** @nocollapse */
@@ -3954,23 +3954,70 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var selector$1 = 'gui-arrow-icon';
+    /** @enum {number} */
+    var Direction = {
+        TOP: -90,
+        BOTTOM: 90,
+        LEFT: 180,
+        RIGHT: 0,
+    };
+    Direction[Direction.TOP] = 'TOP';
+    Direction[Direction.BOTTOM] = 'BOTTOM';
+    Direction[Direction.LEFT] = 'LEFT';
+    Direction[Direction.RIGHT] = 'RIGHT';
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FabricArrowIconComponent = /** @class */ (function () {
         function FabricArrowIconComponent() {
+            this.direction = Direction.RIGHT;
         }
         FabricArrowIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: selector$1,
-                        template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.081\" height=\"10.661\" viewBox=\"0 0 6.081 10.661\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\"\n\t\t\t\t  transform=\"translate(0.311 0.311)\"\n\t\t\t\t  fill=\"none\"\n\t\t\t\t  stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\"/>\n\t\t</svg>\n\t",
+                        selector: 'gui-arrow-icon',
+                        template: "\n\t\t<div [style.transform]=\"'rotate(' + direction + 'deg)'\">\n\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6.081\" height=\"10.661\" viewBox=\"0 0 6.081 10.661\">\n\t\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\"\n\t\t\t\t\t  transform=\"translate(0.311 0.311)\"\n\t\t\t\t\t  fill=\"none\"\n\t\t\t\t\t  stroke-linecap=\"round\"\n\t\t\t\t\t  stroke-linejoin=\"round\"\n\t\t\t\t\t  stroke-width=\"1.5\"/>\n\t\t\t</svg>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         host: {
-                            '[class]': "\"" + selector$1 + "\""
-                        }
+                            '[class.gui-arrow-icon]': 'true',
+                            '[class.gui-icon]': 'true'
+                        },
+                        styles: [".gui-arrow-icon{cursor:pointer}.gui-arrow-icon svg path{stroke:#aaa}.gui-arrow-icon:hover svg path{stroke:#464646}"]
                     }] }
         ];
+        FabricArrowIconComponent.propDecorators = {
+            direction: [{ type: core.Input }]
+        };
         return FabricArrowIconComponent;
+    }());
+    if (false) {
+        /** @type {?} */
+        FabricArrowIconComponent.prototype.direction;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FabricArrowIconModule = /** @class */ (function () {
+        function FabricArrowIconModule() {
+        }
+        FabricArrowIconModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ],
+                        declarations: [
+                            FabricArrowIconComponent
+                        ],
+                        exports: [
+                            FabricArrowIconComponent
+                        ]
+                    },] }
+        ];
+        return FabricArrowIconModule;
     }());
 
     /**
@@ -3983,12 +4030,12 @@
         FabricDropdownModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
-                            common.CommonModule
+                            common.CommonModule,
+                            FabricArrowIconModule
                         ],
                         declarations: [
                             FabricDropdownComponent,
-                            DropdownItemComponent,
-                            FabricArrowIconComponent
+                            DropdownItemComponent
                         ],
                         exports: [
                             FabricDropdownComponent,
@@ -4938,14 +4985,19 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FabricTabComponent = /** @class */ (function () {
-        function FabricTabComponent(renderer) {
-            this.renderer = renderer;
-            this.scrollActive = false;
-            this.listPosition = 0;
-            this.menuListWidth = 0;
-            this.scrollAmount = 60;
-            this.ACTIVE_TAB_CLASS_NAME = 'gui-active';
+    var FabricTabComponent = /** @class */ (function (_super) {
+        __extends(FabricTabComponent, _super);
+        function FabricTabComponent(renderer, changeDetectorRef, platformId) {
+            var _this = _super.call(this) || this;
+            _this.renderer = renderer;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.platformId = platformId;
+            _this.Direction = Direction;
+            _this.listPosition = 0;
+            _this.menuListWidth = 0;
+            _this.scrollAmount = 60;
+            _this.ACTIVE_TAB_CLASS_NAME = 'gui-active';
+            return _this;
         }
         /**
          * @return {?}
@@ -4956,6 +5008,8 @@
         function () {
             this.toggleTab(this.active);
             this.calculateMenuWidth();
+            this.showMenuArrows();
+            this.checkIfMenuFitsOnResize();
         };
         /**
          * @param {?} tab
@@ -5062,36 +5116,72 @@
          * @private
          * @return {?}
          */
+        FabricTabComponent.prototype.checkIfMenuFitsOnResize = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            if (common.isPlatformBrowser(this.platformId)) {
+                rxjs.fromEvent(window, 'resize')
+                    .pipe(this.takeUntil())
+                    .subscribe((/**
+                 * @return {?}
+                 */
+                function () { return _this.showMenuArrows(); }));
+            }
+        };
+        /**
+         * @private
+         * @return {?}
+         */
         FabricTabComponent.prototype.calculateMenuWidth = /**
          * @private
          * @return {?}
          */
         function () {
             var _this = this;
-            if (this.scrollActive) {
-                this.tabMenuList
-                    .forEach((/**
-                 * @param {?} listItem
-                 * @return {?}
-                 */
-                function (listItem) { return _this.menuListWidth += listItem.nativeElement.offsetWidth; }));
-            }
+            this.menuListWidth = 0;
+            this.tabMenuList
+                .forEach((/**
+             * @param {?} listItem
+             * @return {?}
+             */
+            function (listItem) {
+                _this.menuListWidth += listItem.nativeElement.offsetWidth;
+            }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FabricTabComponent.prototype.showMenuArrows = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var menuWidth = this.tabRef.nativeElement.querySelector('.gui-tab-menu').offsetWidth;
+            this.scrollActive = menuWidth < this.menuListWidth;
+            this.changeDetectorRef.detectChanges();
         };
         FabricTabComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-tab',
-                        template: "<div #tab>\n\n\t<div class=\"gui-tab-menu\">\n\n\t\t<div (click)=\"scrollTabList(false)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<\n\t\t</div>\n\n\t\t<div class=\"gui-tab-menu-list\">\n\t\t\t<div #tabMenuList\n\t\t\t\t (click)=\"toggleTab(tab)\"\n\t\t\t\t *ngFor=\"let tab of menu\"\n\t\t\t\t [attr.data-tab]=\"tab\"\n\t\t\t\t class=\"gui-tab-menu-item\">\n\t\t\t\t{{tab}}\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div (click)=\"scrollTabList(true)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t>\n\t\t</div>\n\n\t</div>\n\n\t<div #tabitem\n\t\t class=\"gui-tab-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
+                        template: "<div #tab>\n\n\t<div class=\"gui-tab-menu\">\n\n\t\t<div (click)=\"scrollTabList(false)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon [direction]=\"Direction.LEFT\"></gui-arrow-icon>\n\t\t</div>\n\n\t\t<div class=\"gui-tab-menu-list\">\n\t\t\t<div #tabMenuList\n\t\t\t\t (click)=\"toggleTab(tab)\"\n\t\t\t\t *ngFor=\"let tab of menu\"\n\t\t\t\t [attr.data-tab]=\"tab\"\n\t\t\t\t class=\"gui-tab-menu-item\">\n\t\t\t\t{{tab}}\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div (click)=\"scrollTabList(true)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon></gui-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div #tabitem\n\t\t class=\"gui-tab-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         host: {
                             '[class.gui-tab]': 'true'
                         },
-                        styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;-ms-transform:translateY(1px);transform:translateY(1px)}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden}.gui-tab .gui-tab-menu .gui-tab-menu-item{position:relative;cursor:pointer;display:inline-block;padding:8px 16px;text-align:center;border:1px solid transparent}.gui-tab .gui-tab-menu .scroll-button{color:#ccc;background:0 0;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent}"]
+                        styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;-ms-transform:translateY(1px);transform:translateY(1px)}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden}.gui-tab .gui-tab-menu .gui-tab-menu-item{box-sizing:border-box;height:34px;position:relative;cursor:pointer;display:inline-block;padding:8px 16px;text-align:center;white-space:nowrap;border:1px solid transparent}.gui-tab .gui-tab-menu .scroll-button{box-sizing:border-box;color:#ccc;background:0 0;height:34px;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-menu .scroll-button:hover svg path{stroke:#464646}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent}"]
                     }] }
         ];
         /** @nocollapse */
         FabricTabComponent.ctorParameters = function () { return [
-            { type: core.Renderer2 }
+            { type: core.Renderer2 },
+            { type: core.ChangeDetectorRef },
+            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] }
         ]; };
         FabricTabComponent.propDecorators = {
             tabRef: [{ type: core.ViewChild, args: ['tab', { static: false },] }],
@@ -5102,7 +5192,7 @@
             scrollActive: [{ type: core.Input }]
         };
         return FabricTabComponent;
-    }());
+    }(FabricReactive));
     if (false) {
         /** @type {?} */
         FabricTabComponent.prototype.tabRef;
@@ -5116,6 +5206,8 @@
         FabricTabComponent.prototype.active;
         /** @type {?} */
         FabricTabComponent.prototype.scrollActive;
+        /** @type {?} */
+        FabricTabComponent.prototype.Direction;
         /**
          * @type {?}
          * @private
@@ -5141,6 +5233,16 @@
          * @private
          */
         FabricTabComponent.prototype.renderer;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricTabComponent.prototype.changeDetectorRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        FabricTabComponent.prototype.platformId;
     }
 
     /**
@@ -5178,7 +5280,8 @@
         FabricTabModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
-                            common.CommonModule
+                            common.CommonModule,
+                            FabricArrowIconModule
                         ],
                         declarations: [
                             FabricTabComponent,
@@ -6522,11 +6625,11 @@
     exports.ɵr = selector;
     exports.ɵs = FabricCloseIconComponent;
     exports.ɵt = FabricDrawerComponent;
-    exports.ɵu = FabricDropdownComponent;
-    exports.ɵv = GeometryService;
-    exports.ɵw = DropdownItemComponent;
-    exports.ɵx = selector$1;
-    exports.ɵy = FabricArrowIconComponent;
+    exports.ɵu = FabricArrowIconModule;
+    exports.ɵv = FabricArrowIconComponent;
+    exports.ɵw = FabricDropdownComponent;
+    exports.ɵx = GeometryService;
+    exports.ɵy = DropdownItemComponent;
     exports.ɵz = FabricDialogComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });

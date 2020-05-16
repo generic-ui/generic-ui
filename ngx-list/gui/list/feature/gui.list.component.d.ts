@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { GuiListGateway } from './gui.list.gateway';
-import { StructureSourceWarehouse } from '../../../lib/structure/feature-api/source/structure-source.warehouse';
+import { StructureSourceWarehouse } from '../../../lib/structure/domain-api/source/structure-source.warehouse';
 export declare class GuiListComponent extends GuiListGateway {
     private platformId;
     private elementRef;

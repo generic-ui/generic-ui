@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { CompositionWarehouse } from '../../../../composition/feature-api/composition.warehouse';
+import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
 import { CompositionId } from '../../../../composition/domain/composition.id';
-import { CompositionReadModelRootRepository } from '../../../../composition/feature-api/read/composition.read-model-root-repository';
-import { CellTemplateWithContext } from '../../../../composition/feature-api/read/definition/cell-template-with-context';
-import { CellTemplateWithAccessor } from '../../../../composition/feature-api/read/definition/cell-template-with-accessor';
+import { CompositionReadModelRootRepository } from '../../../../composition/domain-api/read/composition.read-model-root-repository';
+import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
+import { CellTemplateWithAccessor } from '../../../../composition/domain-api/read/definition/cell-template-with-accessor';
 import { FieldId } from '../../../domain/structure/field/data-type/field.id';
 import { SortOrder } from '../../../../composition/domain/column/sort/sort-order';
 export declare class LocalCompositionWarehouse extends CompositionWarehouse {

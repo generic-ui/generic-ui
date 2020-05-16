@@ -1,4 +1,4 @@
-import { ReadModelRootId } from '../feature-api/read/read-model-root-id';
+import { ReadModelRootId } from '../domain-api/read/read-model-root-id';
 export declare abstract class AggregateId {
     private readonly uid;
     protected constructor(uid: string);

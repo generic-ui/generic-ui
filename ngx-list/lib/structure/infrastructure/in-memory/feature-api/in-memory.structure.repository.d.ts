@@ -1,8 +1,8 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AggregateId, DomainEvent, DomainEventBus } from '@generic-ui/hermes';
-import { StructureReadModelRepository } from '../../../feature-api/read/structure.read-model-repository';
-import { StructureReadModelRoot } from '../../../feature-api/read/structure.read-model-root';
+import { StructureReadModelRepository } from '../../../domain-api/read/structure.read-model-repository';
+import { StructureReadModelRoot } from '../../../domain-api/read/structure.read-model-root';
 import { InMemoryStructureReadStore } from './in-memory-structure.read-store';
 import { StructureId } from '../../../domain/structure.id';
 export declare class InMemoryStructureRepository extends StructureReadModelRepository implements OnDestroy {

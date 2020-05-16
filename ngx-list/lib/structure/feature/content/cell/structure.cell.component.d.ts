@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
-import { CellTemplateWithAccessor } from '../../../../composition/feature-api/read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../../composition/domain-api/read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
-import { SourceCommandDispatcher } from '../../../feature-api/source/source.command-dispatcher';
-import { ChangedValueEmitter } from '../../../../composition/feature-api/read/edit/changed-value.emitter';
+import { SourceCommandDispatcher } from '../../../domain-api/source/source.command-dispatcher';
+import { ChangedValueEmitter } from '../../../../composition/domain-api/read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../domain/source/item.entity';
 import { StructureCellEditCloseAllService } from '../../edit/structure.cell-edit-close-all.service';
 export declare class StructureCellComponent extends SmartComponent implements OnChanges {

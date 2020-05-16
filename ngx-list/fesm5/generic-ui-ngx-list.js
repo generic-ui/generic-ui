@@ -3,8 +3,8 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { __extends, __spread, __decorate, __metadata, __values, __assign } from 'tslib';
 import { takeUntil, map, distinctUntilChanged, take, filter, switchMap, debounceTime } from 'rxjs/operators';
 import { Subject, ReplaySubject, Observable, zip, timer, fromEvent, combineLatest } from 'rxjs';
-import { ReadModelRootId, AggregateId, Command, CommandDispatcher, EntityId, DomainEvent, AggregateEvent, InMemoryStore, ReadModelObject, ReadModelRoot, RandomStringGenerator, InMemoryReadModelStore, DomainEventBus, AggregateArchive, ReadModelEntityId, ReadModelRootRepository, CreateAggregateCommand, Archive, EventRepository, AggregateRepository, DomainEventPublisher, HermesModule, AggregateStoreRegister, InMemoryAggregateStore, Entity, ReadModelEntity, DomainEventHandler, DOMAIN_EVENT_HANDLERS, AggregateRoot, AggregateFactory, Optional as Optional$1, DomainObject, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
-import { FabricDrawerService, FabricModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
+import { ReadModelRootId, AggregateId, Command, CommandDispatcher, EntityId, DomainEvent, AggregateEvent, InMemoryStore, ReadModelObject, ReadModelRoot, RandomStringGenerator, InMemoryReadModelStore, DomainEventBus, AggregateArchive, ReadModelEntityId, ReadModelRootRepository, CreateAggregateCommand, Archive, EventRepository, AggregateRepository, DomainEventPublisher, HermesModule, DomainModule, ApiModule, FeatureModule, Reactive as Reactive$1, AggregateRoot, AggregateFactory, AggregateStoreRegister, InMemoryAggregateStore, DomainEventHandler, DOMAIN_EVENT_HANDLERS, Entity, ReadModelEntity, Optional as Optional$1, DomainObject, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { FabricDrawerService, FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
@@ -29,57 +29,6 @@ var GuiListItemComponent = /** @class */ (function () {
 if (false) {
     /** @type {?} */
     GuiListItemComponent.prototype.templateRef;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var ContanierTemplate = /** @class */ (function () {
-    function ContanierTemplate(template, templRef) {
-        this.template = template;
-        this.templRef = templRef;
-    }
-    /**
-     * @return {?}
-     */
-    ContanierTemplate.prototype.hasTemplateRef = /**
-     * @return {?}
-     */
-    function () {
-        return !!this.templRef;
-    };
-    /**
-     * @return {?}
-     */
-    ContanierTemplate.prototype.getTemplateRef = /**
-     * @return {?}
-     */
-    function () {
-        return this.templRef;
-    };
-    /**
-     * @return {?}
-     */
-    ContanierTemplate.prototype.getTemplateMethod = /**
-     * @return {?}
-     */
-    function () {
-        return this.template;
-    };
-    return ContanierTemplate;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ContanierTemplate.prototype.template;
-    /**
-     * @type {?}
-     * @private
-     */
-    ContanierTemplate.prototype.templRef;
 }
 
 /**
@@ -143,12 +92,214 @@ var GuiListPagingConverter = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var GuiListCardComponent = /** @class */ (function () {
+    function GuiListCardComponent() {
+    }
+    GuiListCardComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-list-card',
+                    template: ""
+                }] }
+    ];
+    GuiListCardComponent.propDecorators = {
+        templateRef: [{ type: ContentChild, args: [TemplateRef, { static: true },] }]
+    };
+    return GuiListCardComponent;
+}());
+if (false) {
+    /** @type {?} */
+    GuiListCardComponent.prototype.templateRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListCardTemplate = /** @class */ (function () {
+    function ListCardTemplate(template, templRef) {
+        this.template = template;
+        this.templRef = templRef;
+    }
+    /**
+     * @return {?}
+     */
+    ListCardTemplate.prototype.hasTemplateRef = /**
+     * @return {?}
+     */
+    function () {
+        return !!this.templRef;
+    };
+    /**
+     * @return {?}
+     */
+    ListCardTemplate.prototype.getTemplateRef = /**
+     * @return {?}
+     */
+    function () {
+        return this.templRef;
+    };
+    /**
+     * @return {?}
+     */
+    ListCardTemplate.prototype.getTemplateMethod = /**
+     * @return {?}
+     */
+    function () {
+        return this.template;
+    };
+    return ListCardTemplate;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListCardTemplate.prototype.template;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListCardTemplate.prototype.templRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ContainerTemplate = /** @class */ (function () {
+    function ContainerTemplate(template, templRef) {
+        this.template = template;
+        this.templRef = templRef;
+    }
+    /**
+     * @return {?}
+     */
+    ContainerTemplate.prototype.hasTemplateRef = /**
+     * @return {?}
+     */
+    function () {
+        return !!this.templRef;
+    };
+    /**
+     * @return {?}
+     */
+    ContainerTemplate.prototype.getTemplateRef = /**
+     * @return {?}
+     */
+    function () {
+        return this.templRef;
+    };
+    /**
+     * @return {?}
+     */
+    ContainerTemplate.prototype.getTemplateMethod = /**
+     * @return {?}
+     */
+    function () {
+        return this.template;
+    };
+    return ContainerTemplate;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerTemplate.prototype.template;
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerTemplate.prototype.templRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {string} */
+var ListViewMode = {
+    LIST: 'List',
+    CARD: 'Card',
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function GuiListPaging() { }
+if (false) {
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.enabled;
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.page;
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.pageSize;
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.pageSizes;
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.pagerTop;
+    /** @type {?|undefined} */
+    GuiListPaging.prototype.pagerBottom;
+}
+/** @enum {number} */
+var GuiListMode = {
+    LIST: 0,
+    CARD: 1,
+};
+GuiListMode[GuiListMode.LIST] = 'LIST';
+GuiListMode[GuiListMode.CARD] = 'CARD';
+/**
+ * @record
+ */
+function GuiListView() { }
+if (false) {
+    /** @type {?|undefined} */
+    GuiListView.prototype.active;
+    /** @type {?|undefined} */
+    GuiListView.prototype.selector;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var GuiListModeConverter = /** @class */ (function () {
+    function GuiListModeConverter() {
+    }
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    GuiListModeConverter.prototype.convert = /**
+     * @param {?} mode
+     * @return {?}
+     */
+    function (mode) {
+        if (mode === GuiListMode.LIST) {
+            return ListViewMode.LIST;
+        }
+        else {
+            return ListViewMode.CARD;
+        }
+    };
+    return GuiListModeConverter;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @abstract
  */
 var GuiListGateway = /** @class */ (function () {
     function GuiListGateway() {
         this.guiListPagingConverter = new GuiListPagingConverter();
+        this.guiListModeConverter = new GuiListModeConverter();
     }
     /**
      * @param {?} changes
@@ -161,18 +312,32 @@ var GuiListGateway = /** @class */ (function () {
     function (changes) {
         /** @type {?} */
         var templateRef = this.listItem ? this.listItem.templateRef : null;
-        this.containerTemplate = new ContanierTemplate(this.template, templateRef);
+        this.containerTemplate = new ContainerTemplate(this.template, templateRef);
+        /** @type {?} */
+        var cardTemplateRef = this.listCard ? this.listCard.templateRef : null;
+        this.listCardTemplate = new ListCardTemplate(this.cardTemplate, cardTemplateRef);
         if (changes.paging !== undefined && changes.paging.currentValue !== undefined) {
             if (typeof this.paging !== 'boolean') {
                 this.paging = this.guiListPagingConverter.convert(this.paging);
             }
         }
+        if (changes.view !== undefined && changes.view.currentValue !== undefined) {
+            if (this.view.active !== undefined) {
+                this.listViewMode = this.guiListModeConverter.convert(this.view.active);
+            }
+            if (this.view.selector !== undefined) {
+                this.listViewModeSelector = this.view.selector;
+            }
+        }
     };
     GuiListGateway.propDecorators = {
         listItem: [{ type: ContentChild, args: [GuiListItemComponent, { static: true },] }],
-        items: [{ type: Input }],
+        listCard: [{ type: ContentChild, args: [GuiListCardComponent, { static: true },] }],
+        source: [{ type: Input }],
         template: [{ type: Input }],
-        paging: [{ type: Input }]
+        cardTemplate: [{ type: Input }],
+        paging: [{ type: Input }],
+        view: [{ type: Input }]
     };
     return GuiListGateway;
 }());
@@ -180,15 +345,29 @@ if (false) {
     /** @type {?} */
     GuiListGateway.prototype.listItem;
     /** @type {?} */
-    GuiListGateway.prototype.items;
+    GuiListGateway.prototype.listCard;
+    /** @type {?} */
+    GuiListGateway.prototype.source;
     /** @type {?} */
     GuiListGateway.prototype.template;
     /** @type {?} */
+    GuiListGateway.prototype.cardTemplate;
+    /** @type {?} */
     GuiListGateway.prototype.paging;
+    /** @type {?} */
+    GuiListGateway.prototype.view;
     /** @type {?} */
     GuiListGateway.prototype.containerTemplate;
     /** @type {?} */
+    GuiListGateway.prototype.listCardTemplate;
+    /** @type {?} */
+    GuiListGateway.prototype.listViewMode;
+    /** @type {?} */
+    GuiListGateway.prototype.listViewModeSelector;
+    /** @type {?} */
     GuiListGateway.prototype.guiListPagingConverter;
+    /** @type {?} */
+    GuiListGateway.prototype.guiListModeConverter;
 }
 
 /**
@@ -657,7 +836,7 @@ var GuiListComponent = /** @class */ (function (_super) {
     GuiListComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-list',
-                    template: "<gui-container\n\t\t[items]=\"items\"\n\t\t[template]=\"containerTemplate\"\n\t\t[paging]=\"paging\"\n>\n</gui-container>\n",
+                    template: "<gui-container\n\t\t[items]=\"source\"\n\t\t[template]=\"containerTemplate\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[paging]=\"paging\"\n\t\t[mode]=\"listViewMode\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n>\n</gui-container>\n",
                     providers: __spread(guiListProviders),
                     host: {
                         '[class.gui-list]': "\"true\""
@@ -706,11 +885,14 @@ if (false) {
  * @abstract
  */
 var ContainerGateway = /** @class */ (function () {
-    function ContainerGateway(structureId, sourceCommandService, containerTemplateArchive, structurePagingCommandDispatcher) {
+    function ContainerGateway(structureId, listViewReadModelRootId, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structurePagingCommandDispatcher, listViewCommandDispatcher) {
         this.structureId = structureId;
+        this.listViewReadModelRootId = listViewReadModelRootId;
         this.sourceCommandService = sourceCommandService;
         this.containerTemplateArchive = containerTemplateArchive;
+        this.listCardTemplateArchive = listCardTemplateArchive;
         this.structurePagingCommandDispatcher = structurePagingCommandDispatcher;
+        this.listViewCommandDispatcher = listViewCommandDispatcher;
     }
     /**
      * @param {?} simpleChanges
@@ -723,6 +905,9 @@ var ContainerGateway = /** @class */ (function () {
     function (simpleChanges) {
         if (simpleChanges.template !== undefined && simpleChanges.template.currentValue !== undefined) {
             this.containerTemplateArchive.next(this.template);
+        }
+        if (simpleChanges.cardTemplate !== undefined && simpleChanges.cardTemplate.currentValue !== undefined) {
+            this.listCardTemplateArchive.next(this.cardTemplate);
         }
         if (simpleChanges.paging !== undefined && simpleChanges.paging.currentValue !== undefined) {
             /** @type {?} */
@@ -740,6 +925,12 @@ var ContainerGateway = /** @class */ (function () {
             }
             this.structurePagingCommandDispatcher.setPaging(pagingConfig);
         }
+        if (simpleChanges.mode !== undefined && simpleChanges.mode.currentValue !== undefined) {
+            this.listViewCommandDispatcher.setMode(this.mode, this.listViewReadModelRootId);
+        }
+        if (simpleChanges.modeSelector !== undefined && simpleChanges.modeSelector.currentValue !== undefined) {
+            this.listViewCommandDispatcher.toggleSelector(this.modeSelector, this.listViewReadModelRootId);
+        }
         /**
          * Setting source should be last step
          */
@@ -750,7 +941,10 @@ var ContainerGateway = /** @class */ (function () {
     ContainerGateway.propDecorators = {
         items: [{ type: Input }],
         template: [{ type: Input }],
-        paging: [{ type: Input }]
+        cardTemplate: [{ type: Input }],
+        paging: [{ type: Input }],
+        mode: [{ type: Input }],
+        modeSelector: [{ type: Input }]
     };
     return ContainerGateway;
 }());
@@ -760,9 +954,17 @@ if (false) {
     /** @type {?} */
     ContainerGateway.prototype.template;
     /** @type {?} */
+    ContainerGateway.prototype.cardTemplate;
+    /** @type {?} */
     ContainerGateway.prototype.paging;
     /** @type {?} */
+    ContainerGateway.prototype.mode;
+    /** @type {?} */
+    ContainerGateway.prototype.modeSelector;
+    /** @type {?} */
     ContainerGateway.prototype.structureId;
+    /** @type {?} */
+    ContainerGateway.prototype.listViewReadModelRootId;
     /**
      * @type {?}
      * @protected
@@ -777,7 +979,17 @@ if (false) {
      * @type {?}
      * @protected
      */
+    ContainerGateway.prototype.listCardTemplateArchive;
+    /**
+     * @type {?}
+     * @protected
+     */
     ContainerGateway.prototype.structurePagingCommandDispatcher;
+    /**
+     * @type {?}
+     * @protected
+     */
+    ContainerGateway.prototype.listViewCommandDispatcher;
 }
 
 /**
@@ -11350,7 +11562,7 @@ var PagingComponent = /** @class */ (function (_super) {
     PagingComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-paging[position]',
-                    template: "<ng-container *ngIf=\"isPagingVisible() && !alternativeDisplay\">\n\n\t<gui-paging-select\n\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-select>\n\n\t<gui-paging-stats\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-stats>\n\n\t<gui-paging-navigator\n\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t[paging]=\"paging\"\n\t\t\t[sourceSize]=\"sourceSize\">\n\t</gui-paging-navigator>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible() && alternativeDisplay\">\n\n\t<gui-paging-select\n\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-select>\n\n\t<gui-alternative-paging-navigator\n\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t[paging]=\"paging\"\n\t\t\t[sourceSize]=\"sourceSize\">\n\n\t\t<gui-alternative-paging-pages\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-alternative-paging-pages>\n\n\t</gui-alternative-paging-navigator>\n\n</ng-container>\n",
+                    template: "<ng-container *ngIf=\"isPagingVisible() && !alternativeDisplay\">\n\n\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t<gui-paging-select\n\t\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-select>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-container>\n\n\t<ng-template #minimalTemplate>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-template>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible() && alternativeDisplay\">\n\n\t<gui-paging-select\n\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-select>\n\n\t<gui-alternative-paging-navigator\n\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t[paging]=\"paging\"\n\t\t\t[sourceSize]=\"sourceSize\">\n\n\t\t<gui-alternative-paging-pages\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-alternative-paging-pages>\n\n\t</gui-alternative-paging-navigator>\n\n</ng-container>\n",
                     host: {
                         '[class.gui-paging]': "\"true\""
                     },
@@ -11370,13 +11582,16 @@ var PagingComponent = /** @class */ (function (_super) {
         { type: PagingDisplayModeArchive }
     ]; };
     PagingComponent.propDecorators = {
-        position: [{ type: Input }]
+        position: [{ type: Input }],
+        minimal: [{ type: Input }]
     };
     return PagingComponent;
 }(SmartComponent));
 if (false) {
     /** @type {?} */
     PagingComponent.prototype.position;
+    /** @type {?} */
+    PagingComponent.prototype.minimal;
     /** @type {?} */
     PagingComponent.prototype.sourceSize;
     /** @type {?} */
@@ -11424,107 +11639,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var PagingNavigatorComponent = /** @class */ (function () {
-    function PagingNavigatorComponent() {
-        this.nextPageChanged = new EventEmitter();
-        this.prevPageChanged = new EventEmitter();
-        this.prevDisabled = false;
-        this.nextDisabled = false;
-    }
-    /**
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.ngOnChanges = /**
-     * @return {?}
-     */
-    function () {
-        this.calculatePrev();
-        this.calculateNext();
-    };
-    /**
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.prevPage = /**
-     * @return {?}
-     */
-    function () {
-        this.prevPageChanged.emit();
-    };
-    /**
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.nextPage = /**
-     * @return {?}
-     */
-    function () {
-        this.nextPageChanged.emit();
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.calculatePrev = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        if (!this.paging) {
-            return;
-        }
-        this.prevDisabled = this.paging.isPrevPageDisabled();
-    };
-    /**
-     * @private
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.calculateNext = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        if (!this.paging && !this.sourceSize) {
-            return;
-        }
-        this.nextDisabled = this.paging.isNextPageDisabled();
-    };
-    PagingNavigatorComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'gui-paging-navigator',
-                    template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev\"\n\t\t\tgui-button>\n\t\tPrev\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next\"\n\t\t\tgui-button>\n\t\tNext\n\t</button>\n</gui-button-group>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    host: {
-                        '[class.gui-paging-navigator]': "\"true\""
-                    }
-                }] }
-    ];
-    PagingNavigatorComponent.propDecorators = {
-        paging: [{ type: Input }],
-        sourceSize: [{ type: Input }],
-        nextPageChanged: [{ type: Output }],
-        prevPageChanged: [{ type: Output }]
-    };
-    return PagingNavigatorComponent;
-}());
-if (false) {
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.paging;
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.sourceSize;
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.nextPageChanged;
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.prevPageChanged;
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.prevDisabled;
-    /** @type {?} */
-    PagingNavigatorComponent.prototype.nextDisabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var PagingSelectComponent = /** @class */ (function () {
     function PagingSelectComponent() {
         this.pageSizeChanged = new EventEmitter();
@@ -11562,137 +11676,6 @@ if (false) {
     PagingSelectComponent.prototype.paging;
     /** @type {?} */
     PagingSelectComponent.prototype.pageSizeChanged;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-PureComponent = /** @class */ (function () {
-    function PureComponent() {
-        this.subClassConstructor = this.constructor;
-        this.subClassNgOnInit = ((/** @type {?} */ (this))).ngOnInit;
-        if (this.isEmptyConstructor() || arguments.length !== 0) {
-            this.throwError('it should not inject services');
-        }
-        if (this.subClassNgOnInit) {
-            this.throwError('it should not use ngOnInit');
-        }
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    PureComponent.prototype.isEmptyConstructor = /**
-     * @private
-     * @return {?}
-     */
-    function () {
-        return this.subClassConstructor.toString().split('(')[1][0] !== ')';
-    };
-    /**
-     * @private
-     * @param {?} reason
-     * @return {?}
-     */
-    PureComponent.prototype.throwError = /**
-     * @private
-     * @param {?} reason
-     * @return {?}
-     */
-    function (reason) {
-        throw new Error("Component \"" + this.subClassConstructor.name + "\" is a PureComponent, " + reason + ".");
-    };
-    return PureComponent;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    PureComponent.prototype.subClassConstructor;
-    /**
-     * @type {?}
-     * @private
-     */
-    PureComponent.prototype.subClassNgOnInit;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var PagingStatsComponent = /** @class */ (function (_super) {
-    __extends(PagingStatsComponent, _super);
-    function PagingStatsComponent() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} changes
-     * @return {?}
-     */
-    PagingStatsComponent.prototype.ngOnChanges = /**
-     * @param {?} changes
-     * @return {?}
-     */
-    function (changes) {
-        this.calculate();
-    };
-    /**
-     * @return {?}
-     */
-    PagingStatsComponent.prototype.calculate = /**
-     * @return {?}
-     */
-    function () {
-        if (this.paging) {
-            this.firstItemIndex = this.paging.getStart();
-            this.lastItemIndex = this.paging.getEnd();
-            this.sourceSize = this.paging.getSourceSize();
-        }
-    };
-    /**
-     * @return {?}
-     */
-    PagingStatsComponent.prototype.isSourceNotEmpty = /**
-     * @return {?}
-     */
-    function () {
-        return this.sourceSize > 0;
-    };
-    PagingStatsComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'gui-paging-stats',
-                    template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\tof\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\tThere is no items.\n\t</span>\n</ng-template>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    host: {
-                        '[class.gui-paging-stats]': "\"true\""
-                    }
-                }] }
-    ];
-    /** @nocollapse */
-    PagingStatsComponent.ctorParameters = function () { return []; };
-    PagingStatsComponent.propDecorators = {
-        paging: [{ type: Input }]
-    };
-    return PagingStatsComponent;
-}(PureComponent));
-if (false) {
-    /** @type {?} */
-    PagingStatsComponent.prototype.paging;
-    /** @type {?} */
-    PagingStatsComponent.prototype.sourceSize;
-    /** @type {?} */
-    PagingStatsComponent.prototype.firstItemIndex;
-    /** @type {?} */
-    PagingStatsComponent.prototype.lastItemIndex;
 }
 
 /**
@@ -12314,8 +12297,10 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var PagingDomainModule = /** @class */ (function () {
+var PagingDomainModule = /** @class */ (function (_super) {
+    __extends(PagingDomainModule, _super);
     function PagingDomainModule() {
+        return _super.call(this) || this;
     }
     /**
      * @return {?}
@@ -12339,15 +12324,19 @@ var PagingDomainModule = /** @class */ (function () {
                     exports: []
                 },] }
     ];
+    /** @nocollapse */
+    PagingDomainModule.ctorParameters = function () { return []; };
     return PagingDomainModule;
-}());
+}(DomainModule));
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var PagingApiModule = /** @class */ (function () {
+var PagingApiModule = /** @class */ (function (_super) {
+    __extends(PagingApiModule, _super);
     function PagingApiModule() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     PagingApiModule.decorators = [
         { type: NgModule, args: [{
@@ -12367,14 +12356,248 @@ var PagingApiModule = /** @class */ (function () {
                 },] }
     ];
     return PagingApiModule;
-}());
+}(ApiModule));
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var PagingFeatureModule = /** @class */ (function () {
+var PagingNavigatorComponent = /** @class */ (function () {
+    function PagingNavigatorComponent() {
+        this.nextPageChanged = new EventEmitter();
+        this.prevPageChanged = new EventEmitter();
+        this.prevDisabled = false;
+        this.nextDisabled = false;
+    }
+    /**
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.ngOnChanges = /**
+     * @return {?}
+     */
+    function () {
+        this.calculatePrev();
+        this.calculateNext();
+    };
+    /**
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.prevPage = /**
+     * @return {?}
+     */
+    function () {
+        this.prevPageChanged.emit();
+    };
+    /**
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.nextPage = /**
+     * @return {?}
+     */
+    function () {
+        this.nextPageChanged.emit();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.calculatePrev = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (!this.paging) {
+            return;
+        }
+        this.prevDisabled = this.paging.isPrevPageDisabled();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.calculateNext = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (!this.paging && !this.sourceSize) {
+            return;
+        }
+        this.nextDisabled = this.paging.isNextPageDisabled();
+    };
+    PagingNavigatorComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-paging-navigator',
+                    template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev\"\n\t\t\tgui-button>\n\t\tPrev\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next\"\n\t\t\tgui-button>\n\t\tNext\n\t</button>\n</gui-button-group>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-paging-navigator]': "\"true\""
+                    }
+                }] }
+    ];
+    PagingNavigatorComponent.propDecorators = {
+        paging: [{ type: Input }],
+        sourceSize: [{ type: Input }],
+        nextPageChanged: [{ type: Output }],
+        prevPageChanged: [{ type: Output }]
+    };
+    return PagingNavigatorComponent;
+}());
+if (false) {
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.paging;
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.sourceSize;
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.nextPageChanged;
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.prevPageChanged;
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.prevDisabled;
+    /** @type {?} */
+    PagingNavigatorComponent.prototype.nextDisabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+PureComponent = /** @class */ (function () {
+    function PureComponent() {
+        this.subClassConstructor = this.constructor;
+        this.subClassNgOnInit = ((/** @type {?} */ (this))).ngOnInit;
+        if (this.isEmptyConstructor() || arguments.length !== 0) {
+            this.throwError('it should not inject services');
+        }
+        if (this.subClassNgOnInit) {
+            this.throwError('it should not use ngOnInit');
+        }
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    PureComponent.prototype.isEmptyConstructor = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        return this.subClassConstructor.toString().split('(')[1][0] !== ')';
+    };
+    /**
+     * @private
+     * @param {?} reason
+     * @return {?}
+     */
+    PureComponent.prototype.throwError = /**
+     * @private
+     * @param {?} reason
+     * @return {?}
+     */
+    function (reason) {
+        throw new Error("Component \"" + this.subClassConstructor.name + "\" is a PureComponent, " + reason + ".");
+    };
+    return PureComponent;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    PureComponent.prototype.subClassConstructor;
+    /**
+     * @type {?}
+     * @private
+     */
+    PureComponent.prototype.subClassNgOnInit;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var PagingStatsComponent = /** @class */ (function (_super) {
+    __extends(PagingStatsComponent, _super);
+    function PagingStatsComponent() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    PagingStatsComponent.prototype.ngOnChanges = /**
+     * @param {?} changes
+     * @return {?}
+     */
+    function (changes) {
+        this.calculate();
+    };
+    /**
+     * @return {?}
+     */
+    PagingStatsComponent.prototype.calculate = /**
+     * @return {?}
+     */
+    function () {
+        if (this.paging) {
+            this.firstItemIndex = this.paging.getStart();
+            this.lastItemIndex = this.paging.getEnd();
+            this.sourceSize = this.paging.getSourceSize();
+        }
+    };
+    /**
+     * @return {?}
+     */
+    PagingStatsComponent.prototype.isSourceNotEmpty = /**
+     * @return {?}
+     */
+    function () {
+        return this.sourceSize > 0;
+    };
+    PagingStatsComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-paging-stats',
+                    template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\tof\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\tThere is no items.\n\t</span>\n</ng-template>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-paging-stats]': "\"true\""
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    PagingStatsComponent.ctorParameters = function () { return []; };
+    PagingStatsComponent.propDecorators = {
+        paging: [{ type: Input }]
+    };
+    return PagingStatsComponent;
+}(PureComponent));
+if (false) {
+    /** @type {?} */
+    PagingStatsComponent.prototype.paging;
+    /** @type {?} */
+    PagingStatsComponent.prototype.sourceSize;
+    /** @type {?} */
+    PagingStatsComponent.prototype.firstItemIndex;
+    /** @type {?} */
+    PagingStatsComponent.prototype.lastItemIndex;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var PagingFeatureModule = /** @class */ (function (_super) {
+    __extends(PagingFeatureModule, _super);
     function PagingFeatureModule() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
      * @return {?}
@@ -12400,7 +12623,7 @@ var PagingFeatureModule = /** @class */ (function () {
                         PagingSelectComponent,
                         PagingStatsComponent,
                         AlternativePagingNavigatorComponent,
-                        AlternativePagingPagesComponent
+                        AlternativePagingPagesComponent,
                     ],
                     exports: [
                         PagingComponent,
@@ -12408,12 +12631,12 @@ var PagingFeatureModule = /** @class */ (function () {
                         PagingSelectComponent,
                         PagingStatsComponent,
                         AlternativePagingNavigatorComponent,
-                        AlternativePagingPagesComponent
+                        AlternativePagingPagesComponent,
                     ]
                 },] }
     ];
     return PagingFeatureModule;
-}());
+}(FeatureModule));
 
 /**
  * @fileoverview added by tsickle
@@ -12758,7 +12981,7 @@ var StructureComponent = /** @class */ (function (_super) {
                             useExisting: StructureComponent
                         }
                     ]),
-                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}", "gui-structure,gui-structure *{border-color:#d6d6d6;font-size:14px}gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-search-bar{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}gui-structure-search-bar form{display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}gui-structure-search-bar form .gui-search-icon circle,gui-structure-search-bar form .gui-search-icon line{stroke:#ccc;transition:stroke .3s ease-in-out}gui-structure-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-search-bar form:hover .gui-search-icon circle,gui-structure-search-bar form:hover .gui-search-icon line{stroke:#333}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container gui-structure-cell{display:inline-block}gui-structure-container gui-structure-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container gui-structure-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container gui-structure-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container gui-structure-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container gui-structure-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-footer-panel,.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{border-top:1px solid #d6d6d6}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-structure-filter-icon-wrapper{margin-right:24px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon{cursor:pointer}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg{height:16px;width:16px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon:hover .cls-1{stroke:#464646}.gui-structure-filter-menu{display:block;width:400px}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-search-bar form input,.gui-material gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover,.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-structure-search-bar form{background:#444}.gui-dark gui-structure-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-structure-search-bar:hover .gui-search-icon circle,.gui-dark gui-structure-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-structure-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
+                    styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa;border-radius:8px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-search-bar{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}gui-structure-search-bar form{display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}gui-structure-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}gui-structure-search-bar form .gui-search-icon circle,gui-structure-search-bar form .gui-search-icon line{stroke:#ccc;transition:stroke .3s ease-in-out}gui-structure-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}gui-structure-search-bar form:hover .gui-search-icon circle,gui-structure-search-bar form:hover .gui-search-icon line{stroke:#333}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container .gui-cell{display:inline-block}gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container .gui-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;border-width:1px 0 0}.gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-footer-panel,.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{border-top:1px solid #d6d6d6}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-structure-filter-icon-wrapper{margin-right:24px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon{cursor:pointer}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg{height:16px;width:16px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon:hover .cls-1{stroke:#464646}.gui-structure-filter-menu{display:block;width:400px}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-search-bar form input,.gui-material gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-left:hover,.gui-dark .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-right:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-structure-search-bar form{background:#444}.gui-dark gui-structure-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-structure-search-bar:hover .gui-search-icon circle,.gui-dark gui-structure-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-structure-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-structure-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
                 }] }
     ];
     /** @nocollapse */
@@ -12882,15 +13105,289 @@ var ContainerTemplateArchive = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var ListCardTemplateArchive = /** @class */ (function (_super) {
+    __extends(ListCardTemplateArchive, _super);
+    function ListCardTemplateArchive() {
+        return _super.call(this) || this;
+    }
+    ListCardTemplateArchive.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListCardTemplateArchive.ctorParameters = function () { return []; };
+    return ListCardTemplateArchive;
+}(Archive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var containerProviders = [
-    ContainerTemplateArchive
+    ContainerTemplateArchive,
+    ListCardTemplateArchive
 ];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var ListViewId = /** @class */ (function (_super) {
+    __extends(ListViewId, _super);
+    function ListViewId(id) {
+        return _super.call(this, id) || this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewId.prototype.toReadModelRootId = /**
+     * @return {?}
+     */
+    function () {
+        return new CompositionReadModelRootId(this.getId());
+    };
+    return ListViewId;
+}(AggregateId));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewReadModelRootId = /** @class */ (function (_super) {
+    __extends(ListViewReadModelRootId, _super);
+    function ListViewReadModelRootId(id) {
+        return _super.call(this, id) || this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewReadModelRootId.prototype.toAggregateId = /**
+     * @return {?}
+     */
+    function () {
+        return new ListViewId(this.getId());
+    };
+    return ListViewReadModelRootId;
+}(ReadModelRootId));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CreateListViewCommand = /** @class */ (function (_super) {
+    __extends(CreateListViewCommand, _super);
+    function CreateListViewCommand(listViewId) {
+        return _super.call(this, listViewId, 'CreateListViewCommand') || this;
+    }
+    return CreateListViewCommand;
+}(CreateAggregateCommand));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SetListViewModeCommand = /** @class */ (function (_super) {
+    __extends(SetListViewModeCommand, _super);
+    function SetListViewModeCommand(listViewId, mode) {
+        var _this = _super.call(this, listViewId, 'SetListViewModeCommand') || this;
+        _this.mode = mode;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SetListViewModeCommand.prototype.getMode = /**
+     * @return {?}
+     */
+    function () {
+        return this.mode;
+    };
+    return SetListViewModeCommand;
+}(Command));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetListViewModeCommand.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ToggleListViewSelectorCommand = /** @class */ (function (_super) {
+    __extends(ToggleListViewSelectorCommand, _super);
+    function ToggleListViewSelectorCommand(listViewId, enabled) {
+        var _this = _super.call(this, listViewId, 'ToggleListViewSelectorCommand') || this;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ToggleListViewSelectorCommand.prototype.iseEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return ToggleListViewSelectorCommand;
+}(Command));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleListViewSelectorCommand.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewDispatcher = /** @class */ (function () {
+    function ListViewDispatcher(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewDispatcher.prototype.create = /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (listViewId) {
+        this.commandDispatcher.dispatch(new CreateListViewCommand(listViewId));
+    };
+    /**
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewDispatcher.prototype.setMode = /**
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (mode, listViewId) {
+        this.commandDispatcher.dispatch(new SetListViewModeCommand(listViewId, mode));
+    };
+    /**
+     * @param {?} enabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewDispatcher.prototype.toggleSelector = /**
+     * @param {?} enabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (enabled, listViewId) {
+        this.commandDispatcher.dispatch(new ToggleListViewSelectorCommand(listViewId, enabled));
+    };
+    ListViewDispatcher.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewDispatcher.ctorParameters = function () { return [
+        { type: CommandDispatcher }
+    ]; };
+    return ListViewDispatcher;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewDispatcher.prototype.commandDispatcher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var listViewGlobalId = new ListViewReadModelRootId('-1');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewCommandDispatcher = /** @class */ (function () {
+    function ListViewCommandDispatcher(listViewDispatcher) {
+        this.listViewDispatcher = listViewDispatcher;
+    }
+    /**
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    ListViewCommandDispatcher.prototype.create = /**
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    function (listViewReadModelRootId) {
+        if (listViewReadModelRootId === void 0) { listViewReadModelRootId = listViewGlobalId; }
+        this.listViewDispatcher.create(listViewReadModelRootId.toAggregateId());
+    };
+    /**
+     * @param {?} mode
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    ListViewCommandDispatcher.prototype.setMode = /**
+     * @param {?} mode
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    function (mode, listViewReadModelRootId) {
+        if (listViewReadModelRootId === void 0) { listViewReadModelRootId = listViewGlobalId; }
+        this.listViewDispatcher.setMode(mode, listViewReadModelRootId.toAggregateId());
+    };
+    /**
+     * @param {?} enabled
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    ListViewCommandDispatcher.prototype.toggleSelector = /**
+     * @param {?} enabled
+     * @param {?=} listViewReadModelRootId
+     * @return {?}
+     */
+    function (enabled, listViewReadModelRootId) {
+        if (listViewReadModelRootId === void 0) { listViewReadModelRootId = listViewGlobalId; }
+        this.listViewDispatcher.toggleSelector(enabled, listViewReadModelRootId.toAggregateId());
+    };
+    ListViewCommandDispatcher.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewCommandDispatcher.ctorParameters = function () { return [
+        { type: ListViewDispatcher }
+    ]; };
+    return ListViewCommandDispatcher;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewCommandDispatcher.prototype.listViewDispatcher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * \@internal
+ * @param {?} generator
+ * @return {?}
+ */
+function listViewIdFactory(generator) {
+    return new ListViewReadModelRootId('gui-' + generator.generateId());
+}
 var ɵ0 = structureIdFactory;
 /** @type {?} */
 var componentProviders = __spread([{
@@ -12899,13 +13396,21 @@ var componentProviders = __spread([{
         deps: [
             StructureIdGenerator
         ]
+    }, {
+        provide: ListViewReadModelRootId,
+        useFactory: listViewIdFactory,
+        deps: [
+            StructureIdGenerator
+        ]
     }], containerProviders, provideComponentServices(), [PagingFeatureModule.forComponent()]);
 var ContainerComponent = /** @class */ (function (_super) {
     __extends(ContainerComponent, _super);
-    function ContainerComponent(structureId, sourceCommandService, containerTemplateArchive, structureCommandService, structurePagingCommandDispatcher) {
-        var _this = _super.call(this, structureId, sourceCommandService, containerTemplateArchive, structurePagingCommandDispatcher) || this;
+    function ContainerComponent(structureId, listViewReadModelRootId, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher) {
+        var _this = _super.call(this, structureId, listViewReadModelRootId, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structurePagingCommandDispatcher, listViewCommandDispatcher) || this;
         _this.structureId = structureId;
+        _this.listViewReadModelRootId = listViewReadModelRootId;
         structureCommandService.createStructure(_this.structureId);
+        listViewCommandDispatcher.create(_this.listViewReadModelRootId);
         return _this;
     }
     ContainerComponent.decorators = [
@@ -12920,22 +13425,27 @@ var ContainerComponent = /** @class */ (function (_super) {
                         '[class.gui-generic]': "\"true\"",
                         '[id]': 'structureId.toString()'
                     },
-                    styles: [".gui-container-source{display:block;padding:8px}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding:12px 16px}", ".gui-container.gui-generic .gui-paging{border:0}"]
+                    styles: [".gui-list-card-wrapper{border:1px solid transparent;min-height:100px;height:100%;margin:0;padding:0 12px;position:relative;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-panel-top{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-list-panel-top .gui-paging{margin-left:auto}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-container-source{display:block;padding:8px}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding-top:12px;padding-bottom:12px}.gui-list-container-card{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0;padding:0}.gui-list-card{cursor:pointer;display:block;padding:0;position:relative;margin:0}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-container.gui-generic .gui-paging{border:0}"]
                 }] }
     ];
     /** @nocollapse */
     ContainerComponent.ctorParameters = function () { return [
         { type: StructureId },
+        { type: ListViewReadModelRootId },
         { type: SourceCommandDispatcher },
         { type: ContainerTemplateArchive },
+        { type: ListCardTemplateArchive },
         { type: StructureCommandDispatcher },
-        { type: PagingCommandDispatcher }
+        { type: PagingCommandDispatcher },
+        { type: ListViewCommandDispatcher }
     ]; };
     return ContainerComponent;
 }(ContainerGateway));
 if (false) {
     /** @type {?} */
     ContainerComponent.prototype.structureId;
+    /** @type {?} */
+    ContainerComponent.prototype.listViewReadModelRootId;
 }
 
 /**
@@ -13039,22 +13549,256 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var ContainerLayoutComponent = /** @class */ (function () {
-    function ContainerLayoutComponent() {
+var ListViewModeRepository = /** @class */ (function (_super) {
+    __extends(ListViewModeRepository, _super);
+    function ListViewModeRepository() {
+        var _this = _super.call(this) || this;
+        _this.mode = new Map();
+        _this.mode$ = new ReplaySubject();
+        return _this;
     }
+    /**
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewModeRepository.prototype.setMode = /**
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (mode, listViewId) {
+        this.next(mode, listViewId);
+    };
+    /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewModeRepository.prototype.on = /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (listViewId) {
+        return this.mode$
+            .asObservable()
+            .pipe(this.takeUntil(), map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        function (map) {
+            return map.get(listViewId.toString());
+        })), distinctUntilChanged());
+    };
+    /**
+     * @private
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewModeRepository.prototype.next = /**
+     * @private
+     * @param {?} mode
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (mode, listViewId) {
+        this.mode.set(listViewId.toString(), mode);
+        this.mode$.next(this.mode);
+    };
+    ListViewModeRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewModeRepository.ctorParameters = function () { return []; };
+    return ListViewModeRepository;
+}(Reactive));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewModeRepository.prototype.mode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewModeRepository.prototype.mode$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewSelectorRepository = /** @class */ (function (_super) {
+    __extends(ListViewSelectorRepository, _super);
+    function ListViewSelectorRepository() {
+        var _this = _super.call(this) || this;
+        _this.selectorEnabled = new Map();
+        _this.selectorEnabled$ = new ReplaySubject();
+        return _this;
+    }
+    /**
+     * @param {?} selectorEnabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewSelectorRepository.prototype.setMode = /**
+     * @param {?} selectorEnabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (selectorEnabled, listViewId) {
+        this.next(selectorEnabled, listViewId);
+    };
+    /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewSelectorRepository.prototype.on = /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (listViewId) {
+        return this.selectorEnabled$
+            .asObservable()
+            .pipe(this.takeUntil(), map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        function (map) {
+            return map.get(listViewId.toString());
+        })), distinctUntilChanged());
+    };
+    /**
+     * @private
+     * @param {?} enabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewSelectorRepository.prototype.next = /**
+     * @private
+     * @param {?} enabled
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (enabled, listViewId) {
+        this.selectorEnabled.set(listViewId.toString(), enabled);
+        this.selectorEnabled$.next(this.selectorEnabled);
+    };
+    ListViewSelectorRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewSelectorRepository.ctorParameters = function () { return []; };
+    return ListViewSelectorRepository;
+}(Reactive$1));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewSelectorRepository.prototype.selectorEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewSelectorRepository.prototype.selectorEnabled$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ContainerLayoutComponent = /** @class */ (function (_super) {
+    __extends(ContainerLayoutComponent, _super);
+    function ContainerLayoutComponent(changeDetectorRef, listViewReadModelRootId, listViewModeRepository, listViewSelectorRepository) {
+        var _this = _super.call(this) || this;
+        _this.changeDetectorRef = changeDetectorRef;
+        _this.listViewReadModelRootId = listViewReadModelRootId;
+        _this.listViewModeRepository = listViewModeRepository;
+        _this.listViewSelectorRepository = listViewSelectorRepository;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ContainerLayoutComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.listViewModeRepository
+            .on(this.listViewReadModelRootId.toAggregateId())
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} mode
+         * @return {?}
+         */
+        function (mode) {
+            _this.listModeEnabled = mode === ListViewMode.LIST;
+            _this.cardModeEnabled = mode === ListViewMode.CARD;
+            _this.changeDetectorRef.detectChanges();
+        }));
+        this.listViewSelectorRepository
+            .on(this.listViewReadModelRootId.toAggregateId())
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            _this.selectorEnabled = enabled;
+            _this.changeDetectorRef.detectChanges();
+        }));
+    };
     ContainerLayoutComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-container-layout',
-                    template: "\n\n\t\t<gui-paging [position]=\"0\" ></gui-paging>\n\t\t\n\t\t<gui-container-source></gui-container-source>\n\t\t\n\t\t<gui-paging [position]=\"1\"></gui-paging>\n\n\t",
+                    template: "\n\n\t\t<div class=\"gui-list-panel-top\">\n\t\t\t<gui-list-mode-select *ngIf=\"selectorEnabled\"></gui-list-mode-select>\n\n\t\t\t<gui-paging [minimal]=\"true\" [position]=\"0\"></gui-paging>\n\t\t</div>\n\n\t\t<gui-container-source *ngIf=\"listModeEnabled\"></gui-container-source>\n\n\t\t<gui-list-container-card *ngIf=\"cardModeEnabled\"></gui-list-container-card>\n\n\t\t<gui-paging [position]=\"1\"></gui-paging>\n\n\t",
                     encapsulation: ViewEncapsulation.None,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     host: {
-                        '[class.gui-container-layout]': "\"true\"",
+                        '[class.gui-container-layout]': "\"true\""
                     }
                 }] }
     ];
+    /** @nocollapse */
+    ContainerLayoutComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef },
+        { type: ListViewReadModelRootId },
+        { type: ListViewModeRepository },
+        { type: ListViewSelectorRepository }
+    ]; };
     return ContainerLayoutComponent;
-}());
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    ContainerLayoutComponent.prototype.listModeEnabled;
+    /** @type {?} */
+    ContainerLayoutComponent.prototype.cardModeEnabled;
+    /** @type {?} */
+    ContainerLayoutComponent.prototype.selectorEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerLayoutComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerLayoutComponent.prototype.listViewReadModelRootId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerLayoutComponent.prototype.listViewModeRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ContainerLayoutComponent.prototype.listViewSelectorRepository;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -13167,14 +13911,1024 @@ var EmptySourceFeatureModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var ContainerModule = /** @class */ (function () {
-    function ContainerModule(paging) {
+var ListContainerCardComponent = /** @class */ (function (_super) {
+    __extends(ListContainerCardComponent, _super);
+    function ListContainerCardComponent(changeDetectorRef, structureId, structureSourceWarehouse, listCardTemplateArchive) {
+        var _this = _super.call(this) || this;
+        _this.changeDetectorRef = changeDetectorRef;
+        _this.structureId = structureId;
+        _this.structureSourceWarehouse = structureSourceWarehouse;
+        _this.listCardTemplateArchive = listCardTemplateArchive;
+        _this.items = [];
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListContainerCardComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.structureSourceWarehouse
+            .onEntities(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} items
+         * @return {?}
+         */
+        function (items) {
+            _this.items = items.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            function (i) { return i.getData(); }));
+            _this.changeDetectorRef.detectChanges();
+        }));
+        this.listCardTemplateArchive
+            .onValue()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} template
+         * @return {?}
+         */
+        function (template) {
+            _this.cardTemplate = template;
+            _this.changeDetectorRef.detectChanges();
+        }));
+    };
+    ListContainerCardComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-list-container-card',
+                    template: "\n\n\t\t<gui-list-card-item *ngFor=\"let element of items\"\n\t\t\t\t\t\t\t\t [item]=\"element\"\n\t\t\t\t\t\t\t\t [template]=\"cardTemplate\">\n\t\t</gui-list-card-item>\n\n\t\t<gui-empty-source [items]=\"items\">\n\t\t</gui-empty-source>\n\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    host: {
+                        '[class.gui-list-container-card]': "\"true\""
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    ListContainerCardComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef },
+        { type: StructureId },
+        { type: StructureSourceWarehouse },
+        { type: ListCardTemplateArchive }
+    ]; };
+    return ListContainerCardComponent;
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    ListContainerCardComponent.prototype.items;
+    /** @type {?} */
+    ListContainerCardComponent.prototype.cardTemplate;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerCardComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerCardComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerCardComponent.prototype.structureSourceWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerCardComponent.prototype.listCardTemplateArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListCardItemComponent = /** @class */ (function (_super) {
+    __extends(ListCardItemComponent, _super);
+    function ListCardItemComponent() {
+        var _this = _super.call(this) || this;
+        _this.context = 'Template not provided';
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListCardItemComponent.prototype.ngOnChanges = /**
+     * @return {?}
+     */
+    function () {
+        if (this.template && this.item) {
+            this.hasTemplateRef = this.template.hasTemplateRef();
+            if (!this.hasTemplateRef) {
+                this.context = this.template.getTemplateMethod()(this.item);
+            }
+        }
+    };
+    ListCardItemComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-list-card-item[item][template]',
+                    template: "\n\n\t\t<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t\t\t<div class=\"gui-list-card-wrapper\" >\n\t\t\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t\t\t</div>\n\t\t</ng-container>\n\n\t\t<ng-template #templateMethod>\n\t\t\t<div class=\"gui-list-card-wrapper\"\n\t\t\t\t [innerHTML]=\"context\"></div>\n\t\t</ng-template>\n\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    host: {
+                        '[class.gui-list-card]': "\"true\""
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    ListCardItemComponent.ctorParameters = function () { return []; };
+    ListCardItemComponent.propDecorators = {
+        item: [{ type: Input }],
+        template: [{ type: Input }]
+    };
+    return ListCardItemComponent;
+}(PureComponent));
+if (false) {
+    /** @type {?} */
+    ListCardItemComponent.prototype.item;
+    /** @type {?} */
+    ListCardItemComponent.prototype.template;
+    /** @type {?} */
+    ListCardItemComponent.prototype.context;
+    /** @type {?} */
+    ListCardItemComponent.prototype.hasTemplateRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListContainerModeSelectComponent = /** @class */ (function (_super) {
+    __extends(ListContainerModeSelectComponent, _super);
+    function ListContainerModeSelectComponent(changeDetectorRef, listViewReadModelRootId, listViewModeRepository) {
+        var _this = _super.call(this) || this;
+        _this.changeDetectorRef = changeDetectorRef;
+        _this.listViewReadModelRootId = listViewReadModelRootId;
+        _this.listViewModeRepository = listViewModeRepository;
+        _this.options = Object.keys(ListViewMode)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return ListViewMode[key]; }))
+            .filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) { return !Number.isInteger(val); }));
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListContainerModeSelectComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.listViewModeRepository
+            .on(this.listViewReadModelRootId.toAggregateId())
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} mode
+         * @return {?}
+         */
+        function (mode) {
+            _this.listContainerMode = mode;
+            _this.changeDetectorRef.detectChanges();
+        }));
+    };
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    ListContainerModeSelectComponent.prototype.changeContainerMode = /**
+     * @param {?} mode
+     * @return {?}
+     */
+    function (mode) {
+        this.listViewModeRepository.setMode(mode, this.listViewReadModelRootId.toAggregateId());
+    };
+    ListContainerModeSelectComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-list-mode-select',
+                    template: "\n\n\t\t<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t\t\t[options]=\"options\"\n\t\t\t\t\t[selected]=\"listContainerMode\">\n\t\t</gui-select>\n\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    host: {
+                        '[class.gui-list-mode-select]': "\"true\""
+                    }
+                }] }
+    ];
+    /** @nocollapse */
+    ListContainerModeSelectComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef },
+        { type: ListViewReadModelRootId },
+        { type: ListViewModeRepository }
+    ]; };
+    return ListContainerModeSelectComponent;
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    ListContainerModeSelectComponent.prototype.options;
+    /** @type {?} */
+    ListContainerModeSelectComponent.prototype.listContainerMode;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerModeSelectComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerModeSelectComponent.prototype.listViewReadModelRootId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListContainerModeSelectComponent.prototype.listViewModeRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewCreatedEvent = /** @class */ (function (_super) {
+    __extends(ListViewCreatedEvent, _super);
+    function ListViewCreatedEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'ListViewCreatedEvent') || this;
+    }
+    return ListViewCreatedEvent;
+}(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewCreatedAggregateEvent = /** @class */ (function (_super) {
+    __extends(ListViewCreatedAggregateEvent, _super);
+    function ListViewCreatedAggregateEvent(aggregateId) {
+        return _super.call(this, aggregateId, 'ListViewCreatedAggregateEvent') || this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewCreatedAggregateEvent.prototype.toDomainEvent = /**
+     * @return {?}
+     */
+    function () {
+        return new ListViewCreatedEvent(this.getAggregateId());
+    };
+    return ListViewCreatedAggregateEvent;
+}(AggregateEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewModeSetEvent = /** @class */ (function (_super) {
+    __extends(ListViewModeSetEvent, _super);
+    function ListViewModeSetEvent(schemaId, mode) {
+        var _this = _super.call(this, schemaId, 'ListViewModeSetEvent') || this;
+        _this.mode = mode;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewModeSetEvent.prototype.getTheme = /**
+     * @return {?}
+     */
+    function () {
+        return this.mode;
+    };
+    return ListViewModeSetEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewModeSetEvent.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewModeSetAggregateEvent = /** @class */ (function (_super) {
+    __extends(ListViewModeSetAggregateEvent, _super);
+    function ListViewModeSetAggregateEvent(listViewId, mode) {
+        var _this = _super.call(this, listViewId, 'ListViewModeSetAggregateEvent') || this;
+        _this.mode = mode;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewModeSetAggregateEvent.prototype.toDomainEvent = /**
+     * @return {?}
+     */
+    function () {
+        return new ListViewModeSetEvent(this.getAggregateId(), this.mode);
+    };
+    return ListViewModeSetAggregateEvent;
+}(AggregateEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewModeSetAggregateEvent.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SelectorVisibility = /** @class */ (function () {
+    function SelectorVisibility() {
+        this.enabled = null;
+        this.visible = false;
+    }
+    /**
+     * @return {?}
+     */
+    SelectorVisibility.prototype.isVisible = /**
+     * @return {?}
+     */
+    function () {
+        if (this.enabled !== null) {
+            return this.enabled;
+        }
+        return this.visible;
+    };
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    SelectorVisibility.prototype.setEnabled = /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (enabled) {
+        this.enabled = enabled;
+    };
+    /**
+     * @param {?} visible
+     * @return {?}
+     */
+    SelectorVisibility.prototype.setVisible = /**
+     * @param {?} visible
+     * @return {?}
+     */
+    function (visible) {
+        this.visible = visible;
+    };
+    return SelectorVisibility;
+}());
+if (false) {
+    /** @type {?} */
+    SelectorVisibility.prototype.enabled;
+    /** @type {?} */
+    SelectorVisibility.prototype.visible;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewSelectorToggledEvent = /** @class */ (function (_super) {
+    __extends(ListViewSelectorToggledEvent, _super);
+    function ListViewSelectorToggledEvent(schemaId, enabled) {
+        var _this = _super.call(this, schemaId, 'ListViewSelectorToggledEvent') || this;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewSelectorToggledEvent.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return ListViewSelectorToggledEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewSelectorToggledEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewSelectorToggledAggregateEvent = /** @class */ (function (_super) {
+    __extends(ListViewSelectorToggledAggregateEvent, _super);
+    function ListViewSelectorToggledAggregateEvent(listViewId, enabled) {
+        var _this = _super.call(this, listViewId, 'ListViewSelectorToggledAggregateEvent') || this;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewSelectorToggledAggregateEvent.prototype.toDomainEvent = /**
+     * @return {?}
+     */
+    function () {
+        return new ListViewSelectorToggledEvent(this.getAggregateId(), this.enabled);
+    };
+    return ListViewSelectorToggledAggregateEvent;
+}(AggregateEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewSelectorToggledAggregateEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewAggregate = /** @class */ (function (_super) {
+    __extends(ListViewAggregate, _super);
+    function ListViewAggregate(listViewId) {
+        var _this = _super.call(this, listViewId, 'ListViewAggregate') || this;
+        _this.setMode(ListViewMode.LIST);
+        _this.initSelectorVisibility();
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    ListViewAggregate.prototype.createEvent = /**
+     * @return {?}
+     */
+    function () {
+        return ListViewCreatedAggregateEvent;
+    };
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    ListViewAggregate.prototype.setMode = /**
+     * @param {?} mode
+     * @return {?}
+     */
+    function (mode) {
+        this.mode = mode;
+        this.addEvent(new ListViewModeSetAggregateEvent(this.getId(), this.mode));
+    };
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    ListViewAggregate.prototype.toggleModeSelector = /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (enabled) {
+        this.selectorVisibility.setEnabled(enabled);
+        this.emitEventAfterSelectorVisibilityChange();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    ListViewAggregate.prototype.initSelectorVisibility = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.selectorVisibility = new SelectorVisibility();
+        this.emitEventAfterSelectorVisibilityChange();
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    ListViewAggregate.prototype.emitEventAfterSelectorVisibilityChange = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.addEvent(new ListViewSelectorToggledAggregateEvent(this.getId(), this.selectorVisibility.isVisible()));
+    };
+    return ListViewAggregate;
+}(AggregateRoot));
+if (false) {
+    /** @type {?} */
+    ListViewAggregate.prototype.mode;
+    /** @type {?} */
+    ListViewAggregate.prototype.selectorVisibility;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewAggregateFactory = /** @class */ (function (_super) {
+    __extends(ListViewAggregateFactory, _super);
+    function ListViewAggregateFactory() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    ListViewAggregateFactory.prototype.create = /**
+     * @param {?} id
+     * @return {?}
+     */
+    function (id) {
+        return new ListViewAggregate(id);
+    };
+    ListViewAggregateFactory.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewAggregateFactory.ctorParameters = function () { return []; };
+    return ListViewAggregateFactory;
+}(AggregateFactory));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CreateListViewCommandHandler = /** @class */ (function () {
+    function CreateListViewCommandHandler() {
+    }
+    /**
+     * @return {?}
+     */
+    CreateListViewCommandHandler.prototype.forCommand = /**
+     * @return {?}
+     */
+    function () {
+        return CreateListViewCommand;
+    };
+    CreateListViewCommandHandler.decorators = [
+        { type: Injectable }
+    ];
+    return CreateListViewCommandHandler;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryListViewStore = /** @class */ (function (_super) {
+    __extends(InMemoryListViewStore, _super);
+    function InMemoryListViewStore() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    InMemoryListViewStore.decorators = [
+        { type: Injectable }
+    ];
+    return InMemoryListViewStore;
+}(InMemoryStore));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryListViewAggregateStore = /** @class */ (function (_super) {
+    __extends(InMemoryListViewAggregateStore, _super);
+    function InMemoryListViewAggregateStore(inMemorySchemaStore, aggregateStoreRegister) {
+        return _super.call(this, inMemorySchemaStore, aggregateStoreRegister) || this;
+    }
+    InMemoryListViewAggregateStore.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryListViewAggregateStore.ctorParameters = function () { return [
+        { type: InMemoryListViewStore },
+        { type: AggregateStoreRegister }
+    ]; };
+    return InMemoryListViewAggregateStore;
+}(InMemoryAggregateStore));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+ListViewAggregateRepository = /** @class */ (function (_super) {
+    __extends(ListViewAggregateRepository, _super);
+    function ListViewAggregateRepository() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ListViewAggregateRepository;
+}(AggregateRepository));
+if (false) {
+    /**
+     * @abstract
+     * @param {?} listViewId
+     * @return {?}
+     */
+    ListViewAggregateRepository.prototype.getById = function (listViewId) { };
+    /**
+     * @abstract
+     * @param {?} aggregate
+     * @return {?}
+     */
+    ListViewAggregateRepository.prototype.save = function (aggregate) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var InMemoryListViewAggregateRepository = /** @class */ (function (_super) {
+    __extends(InMemoryListViewAggregateRepository, _super);
+    function InMemoryListViewAggregateRepository(inMemorySchemaAggregateStore) {
+        var _this = _super.call(this) || this;
+        _this.inMemorySchemaAggregateStore = inMemorySchemaAggregateStore;
+        return _this;
+    }
+    /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    InMemoryListViewAggregateRepository.prototype.getById = /**
+     * @param {?} listViewId
+     * @return {?}
+     */
+    function (listViewId) {
+        return this.inMemorySchemaAggregateStore.getById(listViewId);
+    };
+    /**
+     * @param {?} listViewAggregate
+     * @return {?}
+     */
+    InMemoryListViewAggregateRepository.prototype.save = /**
+     * @param {?} listViewAggregate
+     * @return {?}
+     */
+    function (listViewAggregate) {
+        this.inMemorySchemaAggregateStore.save(listViewAggregate);
+    };
+    InMemoryListViewAggregateRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    InMemoryListViewAggregateRepository.ctorParameters = function () { return [
+        { type: InMemoryListViewAggregateStore }
+    ]; };
+    return InMemoryListViewAggregateRepository;
+}(ListViewAggregateRepository));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    InMemoryListViewAggregateRepository.prototype.inMemorySchemaAggregateStore;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewEventRepository = /** @class */ (function (_super) {
+    __extends(ListViewEventRepository, _super);
+    function ListViewEventRepository(domainEventBus) {
+        return _super.call(this, domainEventBus) || this;
+    }
+    ListViewEventRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewEventRepository.ctorParameters = function () { return [
+        { type: DomainEventBus }
+    ]; };
+    return ListViewEventRepository;
+}(EventRepository));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewWarehouse = /** @class */ (function () {
+    function ListViewWarehouse() {
+    }
+    ListViewWarehouse.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewWarehouse.ctorParameters = function () { return []; };
+    return ListViewWarehouse;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SetListViewModeCommandHandler = /** @class */ (function () {
+    function SetListViewModeCommandHandler(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    SetListViewModeCommandHandler.prototype.forCommand = /**
+     * @return {?}
+     */
+    function () {
+        return SetListViewModeCommand;
+    };
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    SetListViewModeCommandHandler.prototype.publishDomainEvents = /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    function (aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    };
+    /**
+     * @param {?} listViewAggregate
+     * @param {?} command
+     * @return {?}
+     */
+    SetListViewModeCommandHandler.prototype.handleAggregate = /**
+     * @param {?} listViewAggregate
+     * @param {?} command
+     * @return {?}
+     */
+    function (listViewAggregate, command) {
+        /** @type {?} */
+        var mode = command.getMode();
+        listViewAggregate.setMode(mode);
+    };
+    SetListViewModeCommandHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SetListViewModeCommandHandler.ctorParameters = function () { return [
+        { type: DomainEventPublisher }
+    ]; };
+    return SetListViewModeCommandHandler;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetListViewModeCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ToggleListViewSelectorCommandHandler = /** @class */ (function () {
+    function ToggleListViewSelectorCommandHandler(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    ToggleListViewSelectorCommandHandler.prototype.forCommand = /**
+     * @return {?}
+     */
+    function () {
+        return ToggleListViewSelectorCommand;
+    };
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    ToggleListViewSelectorCommandHandler.prototype.publishDomainEvents = /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    function (aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    };
+    /**
+     * @param {?} listViewAggregate
+     * @param {?} command
+     * @return {?}
+     */
+    ToggleListViewSelectorCommandHandler.prototype.handleAggregate = /**
+     * @param {?} listViewAggregate
+     * @param {?} command
+     * @return {?}
+     */
+    function (listViewAggregate, command) {
+        /** @type {?} */
+        var enabled = command.iseEnabled();
+        listViewAggregate.toggleModeSelector(enabled);
+    };
+    ToggleListViewSelectorCommandHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ToggleListViewSelectorCommandHandler.ctorParameters = function () { return [
+        { type: DomainEventPublisher }
+    ]; };
+    return ToggleListViewSelectorCommandHandler;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleListViewSelectorCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewDomainModule = /** @class */ (function () {
+    function ListViewDomainModule() {
+    }
+    /**
+     * @return {?}
+     */
+    ListViewDomainModule.commandHandlers = /**
+     * @return {?}
+     */
+    function () {
+        return __spread(HermesModule.registerCommandHandler(SetListViewModeCommandHandler, listViewKey), HermesModule.registerCommandHandler(ToggleListViewSelectorCommandHandler, listViewKey));
+    };
+    ListViewDomainModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [],
+                    providers: [
+                        ListViewDispatcher
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    return ListViewDomainModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewModeSetEventHandler = /** @class */ (function (_super) {
+    __extends(ListViewModeSetEventHandler, _super);
+    function ListViewModeSetEventHandler(listViewModeRepository) {
+        var _this = _super.call(this) || this;
+        _this.listViewModeRepository = listViewModeRepository;
+        return _this;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    ListViewModeSetEventHandler.prototype.handle = /**
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
+        if (event.ofMessageType('ListViewModeSetEvent')) {
+            this.listViewModeRepository.setMode(event.getTheme(), event.getAggregateId());
+        }
+    };
+    ListViewModeSetEventHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewModeSetEventHandler.ctorParameters = function () { return [
+        { type: ListViewModeRepository }
+    ]; };
+    return ListViewModeSetEventHandler;
+}(DomainEventHandler));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewModeSetEventHandler.prototype.listViewModeRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewSelectorToggledEventHandler = /** @class */ (function (_super) {
+    __extends(ListViewSelectorToggledEventHandler, _super);
+    function ListViewSelectorToggledEventHandler(listViewSelectorRepository) {
+        var _this = _super.call(this) || this;
+        _this.listViewSelectorRepository = listViewSelectorRepository;
+        return _this;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    ListViewSelectorToggledEventHandler.prototype.handle = /**
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
+        if (event.ofMessageType('ListViewSelectorToggledEvent')) {
+            this.listViewSelectorRepository.setMode(event.isEnabled(), event.getAggregateId());
+        }
+    };
+    ListViewSelectorToggledEventHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ListViewSelectorToggledEventHandler.ctorParameters = function () { return [
+        { type: ListViewSelectorRepository }
+    ]; };
+    return ListViewSelectorToggledEventHandler;
+}(DomainEventHandler));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewSelectorToggledEventHandler.prototype.listViewSelectorRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var listViewKey = 'ListViewKey';
+var ListViewApiModule = /** @class */ (function () {
+    function ListViewApiModule() {
+    }
+    ListViewApiModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        HermesModule,
+                        HermesModule.defineAggregate(listViewKey, ListViewAggregateFactory, InMemoryListViewAggregateRepository, CreateListViewCommandHandler, __spread(ListViewDomainModule.commandHandlers())),
+                        ListViewDomainModule
+                    ],
+                    providers: [
+                        ListViewCommandDispatcher,
+                        ListViewEventRepository,
+                        ListViewWarehouse,
+                        ListViewModeRepository,
+                        {
+                            provide: DOMAIN_EVENT_HANDLERS,
+                            useClass: ListViewModeSetEventHandler,
+                            multi: true
+                        },
+                        ListViewSelectorRepository,
+                        {
+                            provide: DOMAIN_EVENT_HANDLERS,
+                            useClass: ListViewSelectorToggledEventHandler,
+                            multi: true
+                        },
+                        InMemoryListViewAggregateStore,
+                        InMemoryListViewStore
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    return ListViewApiModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ListViewFeatureModule = /** @class */ (function () {
+    function ListViewFeatureModule(paging) {
         this.paging = paging;
     }
-    ContainerModule.decorators = [
+    ListViewFeatureModule.decorators = [
         { type: NgModule, args: [{
                     imports: [
                         CommonModule,
+                        ListViewApiModule,
+                        FabricSelectModule,
                         PagingFeatureModule,
                         EmptySourceFeatureModule
                     ],
@@ -13182,7 +14936,10 @@ var ContainerModule = /** @class */ (function () {
                         ContainerComponent,
                         ContainerListItemComponent,
                         ContainerLayoutComponent,
-                        ContainerSourceComponent
+                        ContainerSourceComponent,
+                        ListContainerCardComponent,
+                        ListCardItemComponent,
+                        ListContainerModeSelectComponent
                     ],
                     exports: [
                         ContainerComponent
@@ -13191,17 +14948,17 @@ var ContainerModule = /** @class */ (function () {
                 },] }
     ];
     /** @nocollapse */
-    ContainerModule.ctorParameters = function () { return [
+    ListViewFeatureModule.ctorParameters = function () { return [
         { type: PagingFeatureModule }
     ]; };
-    return ContainerModule;
+    return ListViewFeatureModule;
 }());
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    ContainerModule.prototype.paging;
+    ListViewFeatureModule.prototype.paging;
 }
 
 /**
@@ -13285,7 +15042,7 @@ var StructureInfoModalComponent = /** @class */ (function () {
     StructureInfoModalComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-info-dialog',
-                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.11.4\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
+                    template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.12.0\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
@@ -17390,51 +19147,6 @@ var ColumnFieldFactory = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var SortToggledEvent = /** @class */ (function (_super) {
-    __extends(SortToggledEvent, _super);
-    function SortToggledEvent(aggregateId, compositionId, directions) {
-        var _this = _super.call(this, aggregateId, 'ToggleSortEvent') || this;
-        _this.compositionId = compositionId;
-        _this.directions = directions;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SortToggledEvent.prototype.getCompositionId = /**
-     * @return {?}
-     */
-    function () {
-        return this.compositionId;
-    };
-    /**
-     * @return {?}
-     */
-    SortToggledEvent.prototype.getDirections = /**
-     * @return {?}
-     */
-    function () {
-        return this.directions;
-    };
-    return SortToggledEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SortToggledEvent.prototype.compositionId;
-    /**
-     * @type {?}
-     * @private
-     */
-    SortToggledEvent.prototype.directions;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var ColumnFieldId = /** @class */ (function () {
     function ColumnFieldId(id) {
         this.id = id;
@@ -17480,51 +19192,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var SortOrderSetEvent = /** @class */ (function (_super) {
-    __extends(SortOrderSetEvent, _super);
-    function SortOrderSetEvent(aggregateId, compositionId, directions) {
-        var _this = _super.call(this, aggregateId, 'SortOrderSetEvent') || this;
-        _this.compositionId = compositionId;
-        _this.directions = directions;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SortOrderSetEvent.prototype.getCompositionId = /**
-     * @return {?}
-     */
-    function () {
-        return this.compositionId;
-    };
-    /**
-     * @return {?}
-     */
-    SortOrderSetEvent.prototype.getDirections = /**
-     * @return {?}
-     */
-    function () {
-        return this.directions;
-    };
-    return SortOrderSetEvent;
-}(DomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SortOrderSetEvent.prototype.compositionId;
-    /**
-     * @type {?}
-     * @private
-     */
-    SortOrderSetEvent.prototype.directions;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var CompositionChangeSortStatusEventHandler = /** @class */ (function (_super) {
     __extends(CompositionChangeSortStatusEventHandler, _super);
     function CompositionChangeSortStatusEventHandler(compositionDispatcher) {
@@ -17541,7 +19208,7 @@ var CompositionChangeSortStatusEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof SortToggledEvent) {
+        if (event.ofMessageType('SortToggledEvent')) {
             /** @type {?} */
             var compositionId = event.getCompositionId();
             /** @type {?} */
@@ -17558,7 +19225,7 @@ var CompositionChangeSortStatusEventHandler = /** @class */ (function (_super) {
             }));
             this.compositionDispatcher.changeSort(compositionId, params);
         }
-        if (event instanceof SortOrderSetEvent) {
+        if (event.ofMessageType('SortOrderSetEvent')) {
             /** @type {?} */
             var compositionId = event.getCompositionId();
             /** @type {?} */
@@ -17591,43 +19258,6 @@ if (false) {
      * @private
      */
     CompositionChangeSortStatusEventHandler.prototype.compositionDispatcher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var FieldsInitedEvent = /** @class */ (function (_super) {
-    __extends(FieldsInitedEvent, _super);
-    function FieldsInitedEvent(aggregateId, compositionId, columns, // TODO merge
-    fields) {
-        var _this = _super.call(this, aggregateId, 'FieldsInitedEvent') || this;
-        _this.compositionId = compositionId;
-        _this.columns = columns;
-        _this.fields = fields;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    FieldsInitedEvent.prototype.getFields = /**
-     * @return {?}
-     */
-    function () {
-        return this.fields;
-    };
-    return FieldsInitedEvent;
-}(DomainEvent));
-if (false) {
-    /** @type {?} */
-    FieldsInitedEvent.prototype.compositionId;
-    /** @type {?} */
-    FieldsInitedEvent.prototype.columns;
-    /**
-     * @type {?}
-     * @private
-     */
-    FieldsInitedEvent.prototype.fields;
 }
 
 /**
@@ -17693,7 +19323,7 @@ var CompositionFieldsInitedEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof FieldsInitedEvent) {
+        if (event.ofMessageType('FieldsInitedEvent')) {
             // TODO Move to different layer
             /** @type {?} */
             var fields = event.getFields();
@@ -22003,14 +23633,12 @@ var StructureCellComponent = /** @class */ (function (_super) {
             _this.inEditMode = true;
             _this.valueChanges$ = new ChangedValueEmitter();
             _this.status$ = new ChangedValueEmitter();
-            /** @type {?} */
-            var parentElement = _this.elementRef.nativeElement.querySelector('.gui-cell-edit-mode');
             _this.editContext = {
                 status: _this.status$,
                 valueChanges: _this.valueChanges$,
                 value: _this.cell.getValue(_this.entity).value,
                 focus: forceCheck,
-                parent: parentElement
+                parent: _this.elementRef
             };
             _this.observeFieldStatus();
             _this.observeValueChanges();
@@ -23179,6 +24807,51 @@ var FormationSetEvent = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var SortToggledEvent = /** @class */ (function (_super) {
+    __extends(SortToggledEvent, _super);
+    function SortToggledEvent(aggregateId, compositionId, directions) {
+        var _this = _super.call(this, aggregateId, 'SortToggledEvent') || this;
+        _this.compositionId = compositionId;
+        _this.directions = directions;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SortToggledEvent.prototype.getCompositionId = /**
+     * @return {?}
+     */
+    function () {
+        return this.compositionId;
+    };
+    /**
+     * @return {?}
+     */
+    SortToggledEvent.prototype.getDirections = /**
+     * @return {?}
+     */
+    function () {
+        return this.directions;
+    };
+    return SortToggledEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SortToggledEvent.prototype.compositionId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SortToggledEvent.prototype.directions;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var StructureFilterToggledEvent = /** @class */ (function (_super) {
     __extends(StructureFilterToggledEvent, _super);
     function StructureFilterToggledEvent(aggregateId) {
@@ -23186,6 +24859,51 @@ var StructureFilterToggledEvent = /** @class */ (function (_super) {
     }
     return StructureFilterToggledEvent;
 }(DomainEvent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SortOrderSetEvent = /** @class */ (function (_super) {
+    __extends(SortOrderSetEvent, _super);
+    function SortOrderSetEvent(aggregateId, compositionId, directions) {
+        var _this = _super.call(this, aggregateId, 'SortOrderSetEvent') || this;
+        _this.compositionId = compositionId;
+        _this.directions = directions;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SortOrderSetEvent.prototype.getCompositionId = /**
+     * @return {?}
+     */
+    function () {
+        return this.compositionId;
+    };
+    /**
+     * @return {?}
+     */
+    SortOrderSetEvent.prototype.getDirections = /**
+     * @return {?}
+     */
+    function () {
+        return this.directions;
+    };
+    return SortOrderSetEvent;
+}(DomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SortOrderSetEvent.prototype.compositionId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SortOrderSetEvent.prototype.directions;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -23457,6 +25175,43 @@ if (false) {
      * @private
      */
     SetScrollPositionCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FieldsInitedEvent = /** @class */ (function (_super) {
+    __extends(FieldsInitedEvent, _super);
+    function FieldsInitedEvent(aggregateId, compositionId, columns, // TODO merge
+    fields) {
+        var _this = _super.call(this, aggregateId, 'FieldsInitedEvent') || this;
+        _this.compositionId = compositionId;
+        _this.columns = columns;
+        _this.fields = fields;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    FieldsInitedEvent.prototype.getFields = /**
+     * @return {?}
+     */
+    function () {
+        return this.fields;
+    };
+    return FieldsInitedEvent;
+}(DomainEvent));
+if (false) {
+    /** @type {?} */
+    FieldsInitedEvent.prototype.compositionId;
+    /** @type {?} */
+    FieldsInitedEvent.prototype.columns;
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldsInitedEvent.prototype.fields;
 }
 
 /**
@@ -27473,7 +29228,7 @@ var StructureConfigFilterSetEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructureConfigFilterSetEvent) {
+        if (event.ofMessageType('StructureConfigFilterSetEvent')) {
             this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
         }
     };
@@ -27514,7 +29269,7 @@ var StructureConfigSearchingSetEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructureConfigSearchingSetEvent) {
+        if (event.ofMessageType('StructureConfigSearchingSetEvent')) {
             this.structureSearchingRepository.setEnabled(event.isEnabled(), event.getAggregateId());
         }
     };
@@ -27555,7 +29310,7 @@ var StructureConfigQuickFilterSetEventHandler = /** @class */ (function (_super)
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructureConfigQuickFilterSetEvent) {
+        if (event.ofMessageType('StructureConfigQuickFilterSetEvent')) {
             this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
         }
     };
@@ -27683,7 +29438,7 @@ var StructureFieldsInitedEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof FieldsInitedEvent) {
+        if (event.ofMessageType('FieldsInitedEvent')) {
             /** @type {?} */
             var fields = this.structureFieldUiConverter.convert(event.getFields());
             this.structureFieldsRepository.next(event.getAggregateId(), fields);
@@ -27734,7 +29489,7 @@ var StructureSummariesUiEventsRepository = /** @class */ (function () {
          * @param {?} event
          * @return {?}
          */
-        function (event) { return event instanceof StructureSummariesChangedEvent; })), filter((/**
+        function (event) { return event.ofMessageType('StructureSummariesChangedEvent'); })), filter((/**
          * @param {?} event
          * @return {?}
          */
@@ -30236,7 +31991,7 @@ var StructureOriginChangedEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof OriginSetEvent) {
+        if (event.ofMessageType('OriginSetEvent')) {
             /** @type {?} */
             var origin_1 = event.getOrigin();
             this.structureSourceOriginRepository.setOrigin(origin_1, event.getAggregateId());
@@ -30343,7 +32098,7 @@ var StructurePreparedItemsEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructurePreparedEntitiesSetEvent) {
+        if (event.ofMessageType('StructurePreparedEntitiesSetEvent')) {
             /** @type {?} */
             var preparedItems = event.getPreparedItems();
             this.structurePreparedItemsRepository.setItems(preparedItems, event.getAggregateId());
@@ -30662,7 +32417,7 @@ var StructureSearchPhraseSetEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructureSearchPhraseSetDomainEvent) {
+        if (event.ofMessageType('StructureSearchPhraseSetDomainEvent')) {
             this.structureSearchPhraseRepository.setPhrase(event.getPhrase(), event.getAggregateId());
         }
     };
@@ -30955,9 +32710,9 @@ var StructureCreatedEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        /** @type {?} */
-        var structureId = event.getAggregateId();
-        if (event instanceof StructureCreatedEvent) {
+        if (event.ofMessageType('StructureCreatedEvent')) {
+            /** @type {?} */
+            var structureId = event.getAggregateId();
             this.structureSummariesRepository.init(structureId);
         }
     };
@@ -30998,7 +32753,7 @@ var StructureSummariesEnabledSetEventHandler = /** @class */ (function (_super) 
      * @return {?}
      */
     function (event) {
-        if (event instanceof StructureSummariesEnabledSetEvent) {
+        if (event.ofMessageType('StructureSummariesEnabledSetEvent')) {
             this.structureSummariesRepository.setEnabled(event.isEnabled(), event.getAggregateId());
         }
     };
@@ -31316,6 +33071,15 @@ var StructureSearchComponent = /** @class */ (function (_super) {
         }));
     };
     /**
+     * @return {?}
+     */
+    StructureSearchComponent.prototype.clear = /**
+     * @return {?}
+     */
+    function () {
+        this.searchForm.reset();
+    };
+    /**
      * @private
      * @return {?}
      */
@@ -31341,7 +33105,7 @@ var StructureSearchComponent = /** @class */ (function (_super) {
     StructureSearchComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-search-bar',
-                    template: "\n\t\t<form #formRef\n\t\t\t  [formGroup]=\"searchForm\">\n\t\t\t<svg class=\"gui-search-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\"\n\t\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t\t</svg>\n\t\t\t<input formControlName=\"searchPhrase\" [placeholder]=\"placeholder\">\n\t\t</form>\n\t",
+                    template: "\n\t\t<form #formRef\n\t\t\t  [formGroup]=\"searchForm\">\n\t\t\t<gui-structure-search-icon></gui-structure-search-icon>\n\t\t\t<input formControlName=\"searchPhrase\" [placeholder]=\"placeholder\">\n\t\t\t<span *ngIf=\"searchForm.controls['searchPhrase'].value\" class=\"gui-clear-search-icon\" (click)=\"clear()\"></span>\n\t\t</form>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -31648,6 +33412,27 @@ var StructureFilterMenuModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var StructureSearchIconComponent = /** @class */ (function () {
+    function StructureSearchIconComponent() {
+    }
+    StructureSearchIconComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-structure-search-icon',
+                    template: "\n\t\t<svg class=\"gui-search-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\"\n\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t</svg>\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-icon]': 'true'
+                    }
+                }] }
+    ];
+    return StructureSearchIconComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var StructureTopPanelModule = /** @class */ (function () {
     function StructureTopPanelModule() {
     }
@@ -31660,7 +33445,8 @@ var StructureTopPanelModule = /** @class */ (function () {
                     ],
                     declarations: [
                         StructureTopPanelComponent,
-                        StructureSearchComponent
+                        StructureSearchComponent,
+                        StructureSearchIconComponent
                     ],
                     exports: [
                         StructureTopPanelComponent,
@@ -32999,17 +34785,17 @@ var SchemaCssClassesEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof RowColoringSetEvent) {
-            this.rowColoring = event.getRowColoring();
+        if (event.ofMessageType('RowColoringSetEvent')) {
+            this.rowColoring = ((/** @type {?} */ (event))).getRowColoring();
         }
-        if (event instanceof SchemaHorizontalGridSetEvent) {
-            this.horizontalGrid = event.getHorizontalGrid();
+        if (event.ofMessageType('SchemaHorizontalGridSetEvent')) {
+            this.horizontalGrid = ((/** @type {?} */ (event))).getHorizontalGrid();
         }
-        if (event instanceof SchemaVerticalGridSetEvent) {
-            this.verticalGrid = event.getVerticalGrid();
+        if (event.ofMessageType('SchemaVerticalGridSetEvent')) {
+            this.verticalGrid = ((/** @type {?} */ (event))).getVerticalGrid();
         }
-        if (event instanceof SchemaThemeSetEvent) {
-            this.schemaTheme = event.getTheme();
+        if (event.ofMessageType('SchemaThemeSetEvent')) {
+            this.schemaTheme = ((/** @type {?} */ (event))).getTheme();
         }
         this.publish(event.getAggregateId());
     };
@@ -33073,7 +34859,7 @@ var SchemaThemeSetEventHandler = /** @class */ (function (_super) {
      * @return {?}
      */
     function (event) {
-        if (event instanceof SchemaThemeSetEvent) {
+        if (event.ofMessageType('SchemaThemeSetEvent')) {
             this.themeRepository.setTheme(event.getTheme(), event.getAggregateId());
         }
     };
@@ -33206,10 +34992,11 @@ var StructureCellEditBooleanComponent = /** @class */ (function (_super) {
         this.editContext = {
             status: this.status$,
             valueChanges: this.valueChanges$,
-            value: this.cell.getValue(this.entity),
+            value: this.cell.getValue(this.entity).value,
             focus: false,
             parent: this.cellContainerRef
         };
+        this.observeValueChanges();
         this.status$
             .on()
             .pipe(this.takeUntil())
@@ -33227,10 +35014,31 @@ var StructureCellEditBooleanComponent = /** @class */ (function (_super) {
             }
         }));
     };
+    /**
+     * @private
+     * @return {?}
+     */
+    StructureCellEditBooleanComponent.prototype.observeValueChanges = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.valueChanges$
+            .on()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            _this.actualValue = value;
+        }));
+    };
     StructureCellEditBooleanComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-structure-cell-edit-boolean[entity][cell]',
-                    template: "\n\n\t\t<span #cellContainer >\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t"
+                    template: "\n\n\t\t<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t"
                 }] }
     ];
     /** @nocollapse */
@@ -33526,19 +35334,27 @@ if (false) {
 /** @type {?} */
 var imports$1 = [
     CommonModule,
-    ContainerModule
+    ListViewFeatureModule,
+    StructureModule.withConfig({
+        cssClassName: 'list',
+        hermesModuleConfig: {
+            loggers: true
+        }
+    })
 ];
 /** @type {?} */
 var declarations$3 = [
     GuiListComponent,
-    GuiListItemComponent
+    GuiListItemComponent,
+    GuiListCardComponent
 ];
 /** @type {?} */
 var providers$1 = (/** @type {?} */ ([]));
 /** @type {?} */
 var exportDeclarations$2 = [
     GuiListComponent,
-    GuiListItemComponent
+    GuiListItemComponent,
+    GuiListCardComponent
 ];
 /** @type {?} */
 var entryComponents$1 = (/** @type {?} */ ([]));
@@ -33553,7 +35369,7 @@ var GuiListWithGridModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [
                         CommonModule,
-                        ContainerModule,
+                        ListViewFeatureModule,
                         StructureModule.withConfig({
                             cssClassName: 'list',
                             hermesModuleConfig: {
@@ -33592,18 +35408,6 @@ var GuiListModule = /** @class */ (function () {
             providers: []
         };
     };
-    /**
-     * @return {?}
-     */
-    GuiListModule.withoutGrid = /**
-     * @return {?}
-     */
-    function () {
-        return {
-            ngModule: GuiListWithGridModule,
-            providers: providers$1
-        };
-    };
     GuiListModule.decorators = [
         { type: NgModule, args: [{
                     imports: imports$1,
@@ -33625,5 +35429,5 @@ var GuiListModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GuiListComponent, GuiListModule, GuiListWithGridModule as ɵa, ContainerModule as ɵb, PagingNavigatorComponent as ɵba, PagingSelectComponent as ɵbb, PagingStatsComponent as ɵbc, PureComponent as ɵbd, AlternativePagingNavigatorComponent as ɵbe, AlternativePagingPagesComponent as ɵbf, EmptySourceFeatureModule as ɵbg, EmptySourceComponent as ɵbh, ContainerComponent as ɵbi, ContainerGateway as ɵbj, StructureId as ɵbk, SourceCommandDispatcher as ɵbl, SourceDispatcher as ɵbm, StructureFieldUiRepository as ɵbn, StructureFieldUiArchive as ɵbo, ContainerTemplateArchive as ɵbp, structureIdFactory as ɵbq, compositionIdFactory as ɵbr, schemaIdFactory as ɵbs, structureComponentSelfProviders as ɵbt, StructureComponent as ɵbu, StructureIdGenerator as ɵbv, containerProviders as ɵbw, localProviders as ɵbx, provideComponentServices as ɵby, LocalPagingCommandDispatcher as ɵbz, PagingFeatureModule as ɵc, Override as ɵca, LocalPagingWarehouse as ɵcb, StructureFormationDispatcher as ɵcc, FormationDispatcher as ɵcd, LocalFormationCommandDispatcher as ɵce, StructureFormationWarehouse as ɵcf, FormationRepository as ɵcg, LocalFormationWarehouse as ɵch, StructureWarehouse as ɵci, VerticalFormationRepository as ɵcj, InMemoryStructureReadStore as ɵck, InMemoryStructureStore as ɵcl, StructureReadModelRootConverter as ɵcm, FormationConverter as ɵcn, SourceConverter as ɵco, VerticalFormationConverter as ɵcp, LocalStructureWarehouse as ɵcq, LocalSourceCommandDispatcher as ɵcr, LocalSourceWarehouse as ɵcs, StructureSearchDispatcher as ɵct, StructureSearchHighlightArchive as ɵcu, StructureSearchPlaceholderArchive as ɵcv, LocalStructureSearchCommandDispatcher as ɵcw, StructureVerticalFormationWarehouse as ɵcx, LocalStructureVerticalFormationWarehouse as ɵcy, StructureCommandDispatcher as ɵcz, PagingApiModule as ɵd, StructureFilterCommandDispatcher as ɵda, ContainerListItemComponent as ɵdb, ContainerLayoutComponent as ɵdc, ContainerSourceComponent as ɵdd, GuiListGateway as ɵde, GuiListItemComponent as ɵdf, guiListProviders as ɵdg, createStructureDefinition as ɵdh, StructureModule as ɵdi, StructureAggregateFactory as ɵdj, SourceManagerFactory as ɵdk, FormationAggregateFactory as ɵdl, VerticalFormationFactory as ɵdm, SummariesManagerFactory as ɵdn, SUMMARIES_CALCULATORS as ɵdo, SummariesCalculator as ɵdp, FilterManagerFactory as ɵdq, SearchManagerFactory as ɵdr, FieldCollectionFactory as ɵds, FieldFactory as ɵdt, FieldIdGenerator as ɵdu, InMemoryStructureAggregateRepository as ɵdv, InMemoryStructureAggregateStore as ɵdw, CreateStructureCommandHandler as ɵdx, formationCommandHandlers as ɵdy, formationProviders as ɵdz, PagingDomainModule as ɵe, SetFormationCommandHandler as ɵea, ToggleSelectedRowCommandHandler as ɵeb, sourceCommandHandlers as ɵec, sourceProviders as ɵed, SourceSetLoadingCommandHandler as ɵee, SetOriginCommandHandler as ɵef, StructureSourceDomainEventPublisher as ɵeg, StructureEditSourceItemCommandHandler as ɵeh, structureCommandHandlers as ɵei, structureProviders as ɵej, SetVerticalScrollEnabledCommandHandler as ɵek, SetRowHeightBasedOnThemeCommandHandler as ɵel, SetScrollPositionCommandHandler as ɵem, InitFieldsCommandHandler as ɵen, ToggleSortCommandHandler as ɵeo, SetSortingCommandHandler as ɵep, StructureSetConfigFilterCommandHandler as ɵeq, StructureSetConfigSearchingCommandHandler as ɵer, StructureSetConfigQuickFilterCommandHandler as ɵes, StructureToggleFilterCommandHandler as ɵet, StructureSetSummariesEnabledCommandHandler as ɵeu, StructureSetSearchPhraseCommandHandler as ɵev, SetSortOrderCommandHandler as ɵew, SetRowHeightCommandHandler as ɵex, StructureSetHeightCommandHandler as ɵey, fabricImports as ɵez, PagingDispatcher as ɵf, StructureInfoPanelModule as ɵfa, NumberFormatterModule as ɵfb, NumberFormatterPipe as ɵfc, StructureColumnManagerModule as ɵfd, StructureColumnManagerComponent as ɵfe, CompositionId as ɵff, CompositionCommandDispatcher as ɵfg, CompositionDispatcher as ɵfh, CompositionWarehouse as ɵfi, CompositionReadModelRootRepository as ɵfj, StructureDialogColumnManagerComponent as ɵfk, StructureMenuColumnManagerComponent as ɵfl, selector as ɵfm, StructureColumnManagerIconComponent as ɵfn, StructureDialogColumnManagerService as ɵfo, SchemaWarehouse as ɵfp, SchemaCssClassesRepository as ɵfq, SchemaThemeRepository as ɵfr, StructureThemeConverter as ɵfs, StructureInfoPanelComponent as ɵft, SchemaReadModelRootId as ɵfu, StructureInfoPanelArchive as ɵfv, StructureInfoModalComponent as ɵfw, selector$1 as ɵfx, StructureInfoIconComponent as ɵfy, StructureInfoPanelConfigConverter as ɵfz, PagingManagerFactory as ɵg, StructureSummariesPanelModule as ɵga, StructureSummariesPanelComponent as ɵgb, StructureSummariesUiEventsRepository as ɵgc, StructureSummariesArchive as ɵgd, StructureSummariesConfigService as ɵge, StructureSummariesPanelConfigConverter as ɵgf, StructureSummariesCommandDispatcher as ɵgg, StructureTopPanelModule as ɵgh, StructureFilterMenuModule as ɵgi, selector$2 as ɵgj, StructureFilterIconComponent as ɵgk, StructureFilterMenuComponent as ɵgl, StructureFilterMenuTriggerComponent as ɵgm, structureComponentToken as ɵgn, StructureGateway as ɵgo, SourceEventService as ɵgp, SchemaCommandDispatcher as ɵgq, SchemaDispatcher as ɵgr, CompositionEventRepository as ɵgs, FormationEventService as ɵgt, StructureEditModeArchive as ɵgu, StructureCellEditArchive as ɵgv, StructureInfoPanelConfigService as ɵgw, StructureCellEditStore as ɵgx, StructureColumnMenuConfigArchive as ɵgy, StructureRowSelectEnabledArchive as ɵgz, Logger as ɵh, StructureSearchEventService as ɵha, StructureSearchPhraseRepository as ɵhb, StructureHeaderTopEnabledArchive as ɵhc, StructureHeaderBottomEnabledArchive as ɵhd, StructureRowDetailConfigArchive as ɵhe, StructureTitlePanelConfigArchive as ɵhf, StructureFooterPanelConfigArchive as ɵhg, SchemaEventRepository as ɵhh, LocalStructureCommandDispatcher as ɵhi, LocalCompositionCommandDispatcher as ɵhj, LocalCompositionWarehouse as ɵhk, LocalSchemaWarehouse as ɵhl, LocalSchemaCommandDispatcher as ɵhm, SchemaCssClassManager as ɵhn, StructureCellEditCloseAllService as ɵho, StructureRowDetailService as ɵhp, StructureDefinition as ɵhq, PagingDefinition as ɵhr, StructureColumnSelectorComponent as ɵhs, StructureTopPanelComponent as ɵht, StructureSearchComponent as ɵhu, StructureColumnMenuModule as ɵhv, StructureColumnConfigComponent as ɵhw, CellTemplateWithContext as ɵhx, CellContext as ɵhy, CellValueType as ɵhz, SetPagingCommandHandler as ɵi, CellValue as ɵia, FieldId as ɵib, ColumnDefinitionId as ɵic, SortOrder as ɵid, ColumnAlign as ɵie, StructureColumnConfigTriggerComponent as ɵif, StructureColumnConfigService as ɵig, StructureColumnConfigSortComponent as ɵih, StructureColumnConfigColumnHideComponent as ɵii, StructureColumnConfigColumnMoveComponent as ɵij, selector$3 as ɵik, StructureColumnMenuIconComponent as ɵil, selector$4 as ɵim, StructureColumnMenuArrowIconComponent as ɵin, CompositionModule as ɵio, SanitizeModule as ɵip, SafePipe as ɵiq, CompositionAggregateFactory as ɵir, ColumnEntityFactory as ɵis, ColumnPresentationConverter as ɵit, InMemoryCompositionAggregateRepository as ɵiu, CompositionAggregateRepository as ɵiv, InMemoryCompositionAggregateStore as ɵiw, InMemoryCompositionStore as ɵix, CreateCompositionCommandHandler as ɵiy, SetColumnsCommandHandler as ɵiz, StructureAggregateRepository as ɵj, CompositionEventConverter as ɵja, SetCompositionWidthCommandHandler as ɵjb, SetCompositionResizeWidthCommandHandler as ɵjc, SetCompositionContainerWidthCommandHandler as ɵjd, CompositionSetColumnEnabledCommandHandler as ɵje, CompositionChangeSortStatusCommandHandler as ɵjf, CompositionMoveLeftColumnCommandHandler as ɵjg, CompositionMoveRightColumnCommandHandler as ɵjh, compositionProviders as ɵji, inMemoryCompositionCommandProviders as ɵjj, inMemoryCompositionReadModelProviders as ɵjk, inMemoryCompositionProviders as ɵjl, ColumnFieldFactory as ɵjm, InMemoryCompositionReadStore as ɵjn, CompositionReadModelRootConverter as ɵjo, ColumnDefinitionFactory as ɵjp, ViewTemplateRepository as ɵjq, ViewTemplateFactory as ɵjr, TemplateFactory as ɵjs, EditTemplateRepository as ɵjt, EditTemplateFactory as ɵju, InMemoryCompositionRepository as ɵjv, CompositionFieldsInitedEventHandler as ɵjw, CompositionChangeSortStatusEventHandler as ɵjx, ViewTemplatesComponent as ɵjy, EditTemplatesComponent as ɵjz, NextPageCommandHandler as ɵk, StringEditTemplateComponent as ɵka, InputEditTemplateComponent as ɵkb, EditCommunicationComponent as ɵkc, NumberEditTemplateComponent as ɵkd, BooleanEditTemplateComponent as ɵke, DateEditTemplateComponent as ɵkf, ColumnQueryComponent as ɵkg, FunctionViewComponent as ɵkh, BarViewComponent as ɵki, PercentageViewComponent as ɵkj, TextViewComponent as ɵkk, SchemaModule as ɵkl, SchemaAggregateFactory as ɵkm, InMemorySchemaAggregateRepository as ɵkn, SchemaAggregateRepository as ɵko, InMemorySchemaAggregateStore as ɵkp, InMemorySchemaStore as ɵkq, CreateSchemaCommandHandler as ɵkr, SetSchemaThemeCommandHandler as ɵks, SetRowColoringCommandHandler as ɵkt, SetSchemaHorizontalGridCommandHandler as ɵku, SetSchemaVerticalGridCommandHandler as ɵkv, SchemaCssClassesEventHandler as ɵkw, SchemaThemeSetEventHandler as ɵkx, LoggerModule as ɵky, ConsoleLogger as ɵkz, PrevPageCommandHandler as ɵl, StructureHeaderComponent as ɵla, StructureHeaderColumnsComponent as ɵlb, StructureHeaderFiltersComponent as ɵlc, StructureFilterWarehouse as ɵld, StructureFilterRepository as ɵle, StructureQuickFilterRepository as ɵlf, StructureHeaderFilterComponent as ɵlg, StructureContentComponent as ɵlh, StructureRowComponent as ɵli, StructureCellComponent as ɵlj, StructureCellEditComponent as ɵlk, StructureCellEditBooleanComponent as ɵll, StructureContainerComponent as ɵlm, structureParentComponent as ɵln, StructureQuickFiltersComponent as ɵlo, StructureBlueprintComponent as ɵlp, STRUCTURE_CSS_CLASS_NAME as ɵlq, StructureSearchWarehouse as ɵlr, StructureSearchingRepository as ɵls, StructureRowDetailViewComponent as ɵlt, structureRowDetailViewItem as ɵlu, structureRowDetailViewTemplate as ɵlv, StructureTitlePanelComponent as ɵlw, StructureFooterPanelComponent as ɵlx, ItemEntityFactory as ɵly, inMemoryStructureCommandProviders as ɵlz, ChangePagesizeCommandHandler as ɵm, inMemoryStructureReadProviders as ɵma, inMemoryStructureProviders as ɵmb, provideSummariesCalculator as ɵmc, summariesProviders as ɵmd, BooleanSummariesCalculator as ɵme, DateSummariesCalculator as ɵmf, NumberSummariesCalculator as ɵmg, StringSummariesCalculator as ɵmh, UnknownSummariesCalculator as ɵmi, StructureConfigFilterSetEventHandler as ɵmj, StructureConfigSearchingSetEventHandler as ɵmk, StructureConfigQuickFilterSetEventHandler as ɵml, StructureFieldsInitedEventHandler as ɵmm, StructureFieldUiConverter as ɵmn, StructureSearchPhraseSetEventHandler as ɵmo, StructureCreatedEventHandler as ɵmp, StructureSummariesRepository as ɵmq, StructureSummariesEnabledSetEventHandler as ɵmr, InMemoryStructureRepository as ɵms, StructureSummariesWarehouse as ɵmt, StructureOriginChangedEventHandler as ɵmu, StructurePreparedItemsEventHandler as ɵmv, PagingCommandDispatcher as ɵn, PagingWarehouse as ɵo, PagingRepository as ɵp, StructureReadModelRepository as ɵq, Reactive as ɵr, PagingEventRepository as ɵs, PagingConverter as ɵt, PagingComponent as ɵu, SmartComponent as ɵv, StructureSourceWarehouse as ɵw, StructurePreparedItemsRepository as ɵx, StructureSourceOriginRepository as ɵy, PagingDisplayModeArchive as ɵz };
+export { GuiListComponent, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, Logger as ɵba, SetPagingCommandHandler as ɵbb, StructureAggregateRepository as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, PagingCommandDispatcher as ɵbg, PagingWarehouse as ɵbh, PagingRepository as ɵbi, StructureReadModelRepository as ɵbj, PagingEventRepository as ɵbk, PagingConverter as ɵbl, PagingComponent as ɵbm, SmartComponent as ɵbn, StructureSourceWarehouse as ɵbo, StructurePreparedItemsRepository as ɵbp, StructureSourceOriginRepository as ɵbq, PagingDisplayModeArchive as ɵbr, PagingNavigatorComponent as ɵbs, PagingSelectComponent as ɵbt, PagingStatsComponent as ɵbu, PureComponent as ɵbv, AlternativePagingNavigatorComponent as ɵbw, AlternativePagingPagesComponent as ɵbx, EmptySourceFeatureModule as ɵby, EmptySourceComponent as ɵbz, ListViewApiModule as ɵc, listViewIdFactory as ɵca, ContainerComponent as ɵcb, ContainerGateway as ɵcc, StructureId as ɵcd, ListViewReadModelRootId as ɵce, SourceCommandDispatcher as ɵcf, SourceDispatcher as ɵcg, StructureFieldUiRepository as ɵch, StructureFieldUiArchive as ɵci, ContainerTemplateArchive as ɵcj, ListCardTemplateArchive as ɵck, structureIdFactory as ɵcl, compositionIdFactory as ɵcm, schemaIdFactory as ɵcn, structureComponentSelfProviders as ɵco, StructureComponent as ɵcp, StructureIdGenerator as ɵcq, containerProviders as ɵcr, localProviders as ɵcs, provideComponentServices as ɵct, LocalPagingCommandDispatcher as ɵcu, Override as ɵcv, LocalPagingWarehouse as ɵcw, StructureFormationDispatcher as ɵcx, FormationDispatcher as ɵcy, LocalFormationCommandDispatcher as ɵcz, ListViewAggregateFactory as ɵd, StructureFormationWarehouse as ɵda, FormationRepository as ɵdb, LocalFormationWarehouse as ɵdc, StructureWarehouse as ɵdd, VerticalFormationRepository as ɵde, InMemoryStructureReadStore as ɵdf, InMemoryStructureStore as ɵdg, StructureReadModelRootConverter as ɵdh, FormationConverter as ɵdi, SourceConverter as ɵdj, VerticalFormationConverter as ɵdk, LocalStructureWarehouse as ɵdl, LocalSourceCommandDispatcher as ɵdm, LocalSourceWarehouse as ɵdn, StructureSearchDispatcher as ɵdo, StructureSearchHighlightArchive as ɵdp, StructureSearchPlaceholderArchive as ɵdq, LocalStructureSearchCommandDispatcher as ɵdr, StructureVerticalFormationWarehouse as ɵds, LocalStructureVerticalFormationWarehouse as ɵdt, StructureCommandDispatcher as ɵdu, StructureFilterCommandDispatcher as ɵdv, ContainerListItemComponent as ɵdw, ContainerLayoutComponent as ɵdx, ContainerSourceComponent as ɵdy, ListContainerCardComponent as ɵdz, InMemoryListViewAggregateRepository as ɵe, ListCardItemComponent as ɵea, ListContainerModeSelectComponent as ɵeb, createStructureDefinition as ɵec, StructureModule as ɵed, StructureAggregateFactory as ɵee, SourceManagerFactory as ɵef, FormationAggregateFactory as ɵeg, VerticalFormationFactory as ɵeh, SummariesManagerFactory as ɵei, SUMMARIES_CALCULATORS as ɵej, SummariesCalculator as ɵek, FilterManagerFactory as ɵel, SearchManagerFactory as ɵem, FieldCollectionFactory as ɵen, FieldFactory as ɵeo, FieldIdGenerator as ɵep, InMemoryStructureAggregateRepository as ɵeq, InMemoryStructureAggregateStore as ɵer, CreateStructureCommandHandler as ɵes, formationCommandHandlers as ɵet, formationProviders as ɵeu, SetFormationCommandHandler as ɵev, ToggleSelectedRowCommandHandler as ɵew, sourceCommandHandlers as ɵex, sourceProviders as ɵey, SourceSetLoadingCommandHandler as ɵez, ListViewAggregateRepository as ɵf, SetOriginCommandHandler as ɵfa, StructureSourceDomainEventPublisher as ɵfb, StructureEditSourceItemCommandHandler as ɵfc, structureCommandHandlers as ɵfd, structureProviders as ɵfe, SetVerticalScrollEnabledCommandHandler as ɵff, SetRowHeightBasedOnThemeCommandHandler as ɵfg, SetScrollPositionCommandHandler as ɵfh, InitFieldsCommandHandler as ɵfi, ToggleSortCommandHandler as ɵfj, SetSortingCommandHandler as ɵfk, StructureSetConfigFilterCommandHandler as ɵfl, StructureSetConfigSearchingCommandHandler as ɵfm, StructureSetConfigQuickFilterCommandHandler as ɵfn, StructureToggleFilterCommandHandler as ɵfo, StructureSetSummariesEnabledCommandHandler as ɵfp, StructureSetSearchPhraseCommandHandler as ɵfq, SetSortOrderCommandHandler as ɵfr, SetRowHeightCommandHandler as ɵfs, StructureSetHeightCommandHandler as ɵft, fabricImports as ɵfu, StructureInfoPanelModule as ɵfv, NumberFormatterModule as ɵfw, NumberFormatterPipe as ɵfx, StructureColumnManagerModule as ɵfy, StructureColumnManagerComponent as ɵfz, InMemoryListViewAggregateStore as ɵg, CompositionId as ɵga, CompositionCommandDispatcher as ɵgb, CompositionDispatcher as ɵgc, CompositionWarehouse as ɵgd, CompositionReadModelRootRepository as ɵge, StructureDialogColumnManagerComponent as ɵgf, StructureMenuColumnManagerComponent as ɵgg, selector as ɵgh, StructureColumnManagerIconComponent as ɵgi, StructureDialogColumnManagerService as ɵgj, SchemaWarehouse as ɵgk, SchemaCssClassesRepository as ɵgl, SchemaThemeRepository as ɵgm, StructureThemeConverter as ɵgn, StructureInfoPanelComponent as ɵgo, SchemaReadModelRootId as ɵgp, StructureInfoPanelArchive as ɵgq, StructureInfoModalComponent as ɵgr, selector$1 as ɵgs, StructureInfoIconComponent as ɵgt, StructureInfoPanelConfigConverter as ɵgu, StructureSummariesPanelModule as ɵgv, StructureSummariesPanelComponent as ɵgw, StructureSummariesUiEventsRepository as ɵgx, StructureSummariesArchive as ɵgy, StructureSummariesConfigService as ɵgz, InMemoryListViewStore as ɵh, StructureSummariesPanelConfigConverter as ɵha, StructureSummariesCommandDispatcher as ɵhb, StructureTopPanelModule as ɵhc, StructureFilterMenuModule as ɵhd, selector$2 as ɵhe, StructureFilterIconComponent as ɵhf, StructureFilterMenuComponent as ɵhg, StructureFilterMenuTriggerComponent as ɵhh, structureComponentToken as ɵhi, StructureGateway as ɵhj, SourceEventService as ɵhk, SchemaCommandDispatcher as ɵhl, SchemaDispatcher as ɵhm, CompositionEventRepository as ɵhn, FormationEventService as ɵho, StructureEditModeArchive as ɵhp, StructureCellEditArchive as ɵhq, StructureInfoPanelConfigService as ɵhr, StructureCellEditStore as ɵhs, StructureColumnMenuConfigArchive as ɵht, StructureRowSelectEnabledArchive as ɵhu, StructureSearchEventService as ɵhv, StructureSearchPhraseRepository as ɵhw, StructureHeaderTopEnabledArchive as ɵhx, StructureHeaderBottomEnabledArchive as ɵhy, StructureRowDetailConfigArchive as ɵhz, CreateListViewCommandHandler as ɵi, StructureTitlePanelConfigArchive as ɵia, StructureFooterPanelConfigArchive as ɵib, SchemaEventRepository as ɵic, LocalStructureCommandDispatcher as ɵid, LocalCompositionCommandDispatcher as ɵie, LocalCompositionWarehouse as ɵif, LocalSchemaWarehouse as ɵig, LocalSchemaCommandDispatcher as ɵih, SchemaCssClassManager as ɵii, StructureCellEditCloseAllService as ɵij, StructureRowDetailService as ɵik, StructureDefinition as ɵil, PagingDefinition as ɵim, StructureColumnSelectorComponent as ɵin, StructureTopPanelComponent as ɵio, StructureSearchComponent as ɵip, StructureSearchIconComponent as ɵiq, StructureColumnMenuModule as ɵir, StructureColumnConfigComponent as ɵis, CellTemplateWithContext as ɵit, CellContext as ɵiu, CellValueType as ɵiv, CellValue as ɵiw, FieldId as ɵix, ColumnDefinitionId as ɵiy, SortOrder as ɵiz, ListViewDomainModule as ɵj, ColumnAlign as ɵja, StructureColumnConfigTriggerComponent as ɵjb, StructureColumnConfigService as ɵjc, StructureColumnConfigSortComponent as ɵjd, StructureColumnConfigColumnHideComponent as ɵje, StructureColumnConfigColumnMoveComponent as ɵjf, selector$3 as ɵjg, StructureColumnMenuIconComponent as ɵjh, selector$4 as ɵji, StructureColumnMenuArrowIconComponent as ɵjj, CompositionModule as ɵjk, SanitizeModule as ɵjl, SafePipe as ɵjm, CompositionAggregateFactory as ɵjn, ColumnEntityFactory as ɵjo, ColumnPresentationConverter as ɵjp, InMemoryCompositionAggregateRepository as ɵjq, CompositionAggregateRepository as ɵjr, InMemoryCompositionAggregateStore as ɵjs, InMemoryCompositionStore as ɵjt, CreateCompositionCommandHandler as ɵju, SetColumnsCommandHandler as ɵjv, CompositionEventConverter as ɵjw, SetCompositionWidthCommandHandler as ɵjx, SetCompositionResizeWidthCommandHandler as ɵjy, SetCompositionContainerWidthCommandHandler as ɵjz, ListViewDispatcher as ɵk, CompositionSetColumnEnabledCommandHandler as ɵka, CompositionChangeSortStatusCommandHandler as ɵkb, CompositionMoveLeftColumnCommandHandler as ɵkc, CompositionMoveRightColumnCommandHandler as ɵkd, compositionProviders as ɵke, inMemoryCompositionCommandProviders as ɵkf, inMemoryCompositionReadModelProviders as ɵkg, inMemoryCompositionProviders as ɵkh, ColumnFieldFactory as ɵki, InMemoryCompositionReadStore as ɵkj, CompositionReadModelRootConverter as ɵkk, ColumnDefinitionFactory as ɵkl, ViewTemplateRepository as ɵkm, ViewTemplateFactory as ɵkn, TemplateFactory as ɵko, EditTemplateRepository as ɵkp, EditTemplateFactory as ɵkq, InMemoryCompositionRepository as ɵkr, CompositionFieldsInitedEventHandler as ɵks, CompositionChangeSortStatusEventHandler as ɵkt, ViewTemplatesComponent as ɵku, EditTemplatesComponent as ɵkv, StringEditTemplateComponent as ɵkw, InputEditTemplateComponent as ɵkx, EditCommunicationComponent as ɵky, NumberEditTemplateComponent as ɵkz, SetListViewModeCommandHandler as ɵl, BooleanEditTemplateComponent as ɵla, DateEditTemplateComponent as ɵlb, ColumnQueryComponent as ɵlc, FunctionViewComponent as ɵld, BarViewComponent as ɵle, PercentageViewComponent as ɵlf, TextViewComponent as ɵlg, SchemaModule as ɵlh, SchemaAggregateFactory as ɵli, InMemorySchemaAggregateRepository as ɵlj, SchemaAggregateRepository as ɵlk, InMemorySchemaAggregateStore as ɵll, InMemorySchemaStore as ɵlm, CreateSchemaCommandHandler as ɵln, SetSchemaThemeCommandHandler as ɵlo, SetRowColoringCommandHandler as ɵlp, SetSchemaHorizontalGridCommandHandler as ɵlq, SetSchemaVerticalGridCommandHandler as ɵlr, SchemaCssClassesEventHandler as ɵls, SchemaThemeSetEventHandler as ɵlt, LoggerModule as ɵlu, ConsoleLogger as ɵlv, StructureHeaderComponent as ɵlw, StructureHeaderColumnsComponent as ɵlx, StructureHeaderFiltersComponent as ɵly, StructureFilterWarehouse as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, StructureFilterRepository as ɵma, StructureQuickFilterRepository as ɵmb, StructureHeaderFilterComponent as ɵmc, StructureContentComponent as ɵmd, StructureRowComponent as ɵme, StructureCellComponent as ɵmf, StructureCellEditComponent as ɵmg, StructureCellEditBooleanComponent as ɵmh, StructureContainerComponent as ɵmi, structureParentComponent as ɵmj, StructureQuickFiltersComponent as ɵmk, StructureBlueprintComponent as ɵml, STRUCTURE_CSS_CLASS_NAME as ɵmm, StructureSearchWarehouse as ɵmn, StructureSearchingRepository as ɵmo, StructureRowDetailViewComponent as ɵmp, structureRowDetailViewItem as ɵmq, structureRowDetailViewTemplate as ɵmr, StructureTitlePanelComponent as ɵms, StructureFooterPanelComponent as ɵmt, ItemEntityFactory as ɵmu, inMemoryStructureCommandProviders as ɵmv, inMemoryStructureReadProviders as ɵmw, inMemoryStructureProviders as ɵmx, provideSummariesCalculator as ɵmy, summariesProviders as ɵmz, ListViewCommandDispatcher as ɵn, BooleanSummariesCalculator as ɵna, DateSummariesCalculator as ɵnb, NumberSummariesCalculator as ɵnc, StringSummariesCalculator as ɵnd, UnknownSummariesCalculator as ɵne, StructureConfigFilterSetEventHandler as ɵnf, StructureConfigSearchingSetEventHandler as ɵng, StructureConfigQuickFilterSetEventHandler as ɵnh, StructureFieldsInitedEventHandler as ɵni, StructureFieldUiConverter as ɵnj, StructureSearchPhraseSetEventHandler as ɵnk, StructureCreatedEventHandler as ɵnl, StructureSummariesRepository as ɵnm, StructureSummariesEnabledSetEventHandler as ɵnn, InMemoryStructureRepository as ɵno, StructureSummariesWarehouse as ɵnp, StructureOriginChangedEventHandler as ɵnq, StructurePreparedItemsEventHandler as ɵnr, GuiListGateway as ɵns, GuiListItemComponent as ɵnt, GuiListCardComponent as ɵnu, guiListProviders as ɵnv, ListViewEventRepository as ɵo, ListViewWarehouse as ɵp, ListViewModeRepository as ɵq, Reactive as ɵr, ListViewModeSetEventHandler as ɵs, ListViewSelectorRepository as ɵt, ListViewSelectorToggledEventHandler as ɵu, PagingFeatureModule as ɵv, PagingApiModule as ɵw, PagingDomainModule as ɵx, PagingDispatcher as ɵy, PagingManagerFactory as ɵz };
 //# sourceMappingURL=generic-ui-ngx-list.js.map

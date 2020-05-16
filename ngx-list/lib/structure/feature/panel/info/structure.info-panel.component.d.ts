@@ -2,11 +2,11 @@ import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core'
 import { FabricDialogService } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
 import { StructureInfoModalComponent } from './info-modal/structure-info-modal.component';
-import { StructureSourceWarehouse } from '../../../feature-api/source/structure-source.warehouse';
+import { StructureSourceWarehouse } from '../../../domain-api/source/structure-source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
 import { CompositionId } from '../../../../composition/domain/composition.id';
 import { StructureId } from '../../../domain/structure.id';
-import { SchemaReadModelRootId } from '../../../../../schema/feature-api/read/schema.read-model-root-id';
+import { SchemaReadModelRootId } from '../../../../../schema/domain-api/read/schema.read-model-root-id';
 import { StructureInfoPanelArchive } from './structure.info-panel.archive';
 import { StructureInfoPanelConfig } from './structure.info-panel.config';
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {

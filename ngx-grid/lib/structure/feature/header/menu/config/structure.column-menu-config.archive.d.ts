@@ -1,6 +1,6 @@
 import { Archive } from '@generic-ui/hermes';
 import { StructureColumnMenuConfig } from './structure.column-menu-config';
-import { ColumnMenuConfig } from '../../../../feature-api/column-menu-config';
+import { ColumnMenuConfig } from '../../../../domain-api/column-menu-config';
 export declare class StructureColumnMenuConfigArchive extends Archive<StructureColumnMenuConfig> {
     constructor();
     nextConfig(config: ColumnMenuConfig): void;

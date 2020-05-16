@@ -1,8 +1,8 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { SearchConfig } from '../../../feature-api/search/search-config';
+import { SearchConfig } from '../../../domain-api/search/search-config';
 import { StructureId } from '../../structure.id';
-import { StructureSearchHighlightArchive } from '../../../feature-api/search/highlight/structure.search-highlight.archive';
-import { StructureSearchPlaceholderArchive } from '../../../feature-api/search/placeholder/structure.search-placeholder.archive';
+import { StructureSearchHighlightArchive } from '../../../domain-api/search/highlight/structure.search-highlight.archive';
+import { StructureSearchPlaceholderArchive } from '../../../domain-api/search/placeholder/structure.search-placeholder.archive';
 export declare class StructureSearchDispatcher {
     private commandDispatcher;
     private structureSearchHighlightArchive;

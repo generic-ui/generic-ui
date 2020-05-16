@@ -1,8 +1,8 @@
 import { PureComponent } from '../../../../../common/cdk/pure-component';
-import { ContanierTemplate } from '../../template/contanier-template';
+import { ContainerTemplate } from '../template/container-template';
 export declare class ContainerListItemComponent extends PureComponent {
     item: any;
-    template: ContanierTemplate;
+    template: ContainerTemplate;
     context: string;
     hasTemplateRef: boolean;
     constructor();

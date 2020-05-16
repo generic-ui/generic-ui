@@ -3,9 +3,10 @@
  */
 export * from './public-api';
 export { FabricReactive as ɵg } from './common/fabric-reactive';
+export { FabricArrowIconComponent as ɵv } from './common/icons/arrow-icon/fabric-arrow-icon.component';
+export { FabricArrowIconModule as ɵu } from './common/icons/arrow-icon/fabric-arrow-icon.module';
 export { FabricCloseIconComponent as ɵs, selector as ɵr } from './common/icons/close-icon/fabric-close-icon.component';
 export { FabricCloseIconModule as ɵq } from './common/icons/close-icon/fabric-close-icon.module';
-export { FabricArrowIconComponent as ɵy, selector as ɵx } from './common/icons/fabric-arrow-icon.component';
 export { FabricDatePickerCalendarComponent as ɵk } from './form/date-picker/calendar/fabric-date-picker-calendar.component';
 export { FabricDatePickerWeeks as ɵm } from './form/date-picker/calendar/weeks/fabric-date-picker.weeks';
 export { FabricDatePickerYears as ɵn } from './form/date-picker/calendar/years/fabric-date-picker.years';
@@ -36,7 +37,7 @@ export { InlineDialogGeometryService as ɵi } from './modal/inline-dialog/fabric
 export { FabricInlineDialogComponent as ɵe } from './modal/inline-dialog/fabric-inline-dialog.component';
 export { FabricTooltipComponent as ɵbf } from './modal/tooltip/fabric-tooltip.component';
 export { FabricTooltipDirective as ɵbe } from './modal/tooltip/fabric-tooltip.directive';
-export { DropdownItemComponent as ɵw } from './navigation/dropdown/dropdown-items/dropdown-item.component';
-export { FabricDropdownComponent as ɵu } from './navigation/dropdown/dropdown.component';
-export { GeometryService as ɵv } from './navigation/dropdown/geometry.service';
+export { DropdownItemComponent as ɵy } from './navigation/dropdown/dropdown-items/dropdown-item.component';
+export { FabricDropdownComponent as ɵw } from './navigation/dropdown/dropdown.component';
+export { GeometryService as ɵx } from './navigation/dropdown/geometry.service';
 export { themeToken as ɵj } from './themes/theme.token';

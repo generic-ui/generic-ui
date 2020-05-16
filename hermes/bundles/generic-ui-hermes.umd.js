@@ -423,7 +423,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @template I
+     * @template I, E
      * @param {?} handlers
      * @return {?}
      */
@@ -1862,11 +1862,11 @@
      */
     /**
      * @abstract
-     * @template I
+     * @template I, E
      */
     var   /**
      * @abstract
-     * @template I
+     * @template I, E
      */
     DomainEventHandler = /** @class */ (function () {
         function DomainEventHandler() {
@@ -2384,6 +2384,54 @@
      */
     function ReadModelObject(target) {
     }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    DomainModule = /** @class */ (function () {
+        function DomainModule() {
+        }
+        return DomainModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    ApiModule = /** @class */ (function () {
+        function ApiModule() {
+        }
+        return ApiModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    FeatureModule = /** @class */ (function () {
+        function FeatureModule() {
+        }
+        return FeatureModule;
+    }());
 
     /**
      * @fileoverview added by tsickle
@@ -4197,7 +4245,7 @@
         }
     }
     /**
-     * @template I, A, C
+     * @template I, A, C, E
      */
     var HermesModule = /** @class */ (function (_super) {
         __extends(HermesModule, _super);
@@ -4581,6 +4629,7 @@
     exports.AggregateRoot = AggregateRoot;
     exports.AggregateStore = AggregateStore;
     exports.AggregateStoreRegister = AggregateStoreRegister;
+    exports.ApiModule = ApiModule;
     exports.Archive = Archive;
     exports.COMMAND_LOGGER_ENABLED = COMMAND_LOGGER_ENABLED;
     exports.Command = Command;
@@ -4598,11 +4647,13 @@
     exports.DomainEventPublisher = DomainEventPublisher;
     exports.DomainEventStatus = DomainEventStatus;
     exports.DomainEventStream = DomainEventStream;
+    exports.DomainModule = DomainModule;
     exports.DomainObject = DomainObject;
     exports.EVENT_LOGGER_ENABLED = EVENT_LOGGER_ENABLED;
     exports.Entity = Entity;
     exports.EntityId = EntityId;
     exports.EventRepository = EventRepository;
+    exports.FeatureModule = FeatureModule;
     exports.HermesApi = HermesApi;
     exports.HermesModule = HermesModule;
     exports.InMemoryAggregateStore = InMemoryAggregateStore;

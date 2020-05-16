@@ -1,8 +1,8 @@
 import { StructureSummariesPanelConfigConverter } from './structure.summaries-panel.config-converter';
 import { StructureSummariesArchive } from './structure.summaries.archive';
-import { StructureSummariesCommandDispatcher } from '../../../feature-api/summaries/structure-summaries.command-dispatcher';
+import { StructureSummariesCommandDispatcher } from '../../../domain-api/summaries/structure-summaries.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
-import { SummariesConfig } from '../../../feature-api/summaries/summaries-config';
+import { SummariesConfig } from '../../../domain-api/summaries/summaries-config';
 export declare class StructureSummariesConfigService {
     private structureSummariesPanelConfigConverter;
     private structureSummariesArchive;

@@ -1,17 +1,22 @@
-import { AfterViewInit, ElementRef, QueryList, Renderer2 } from '@angular/core';
-export declare class FabricTabComponent implements AfterViewInit {
+import { AfterViewInit, ChangeDetectorRef, ElementRef, QueryList, Renderer2 } from '@angular/core';
+import { Direction } from '../../common/icons/arrow-icon/direction';
+import { FabricReactive } from '../../common/fabric-reactive';
+export declare class FabricTabComponent extends FabricReactive implements AfterViewInit {
     private renderer;
+    private changeDetectorRef;
+    private platformId;
     tabRef: ElementRef;
     tabItemRef: ElementRef;
     tabMenuList: QueryList<ElementRef>;
     menu: Array<string>;
     active: string;
     scrollActive: boolean;
+    Direction: typeof Direction;
     private listPosition;
     private menuListWidth;
     private readonly scrollAmount;
     private readonly ACTIVE_TAB_CLASS_NAME;
-    constructor(renderer: Renderer2);
+    constructor(renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, platformId: any);
     ngAfterViewInit(): void;
     toggleTab(tab: string): void;
     scrollTabList(scrollRightClicked: boolean): void;
@@ -19,5 +24,7 @@ export declare class FabricTabComponent implements AfterViewInit {
     private removeActive;
     private addClass;
     private removeClass;
+    private checkIfMenuFitsOnResize;
     private calculateMenuWidth;
+    private showMenuArrows;
 }
