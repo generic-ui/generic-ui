@@ -24,7 +24,7 @@ import { CompositionWarehouse } from '../../composition/domain-api/composition.w
 import { StructureColumnMenuConfigArchive } from './header/menu/config/structure.column-menu-config.archive';
 import { PagingDisplayModeArchive } from '../../../structure/paging/feature/mode/paging-display-mode.archive';
 import { StructureRowSelectEnabledArchive } from './content/row/structure.row-select-enabled.archive';
-import { StructureSearchEventService } from '../domain-api/search/structure-search-event.service';
+import { SearchEventRepository } from '../../../structure/search/domain-api/search.event-repository';
 import { StructureCellEditCloseAllService } from './edit/structure.cell-edit-close-all.service';
 import { SchemaReadModelRootId } from '../../../schema/domain-api/read/schema.read-model-root-id';
 import { SchemaCommandDispatcher } from '../../../schema/domain-api/schema.command-dispatcher';
@@ -36,6 +36,11 @@ import { StructureRowDetailService } from './row-detail/structure.row-detail.ser
 import { StructureTitlePanelConfigArchive } from './panel/title-panel/structure.title-panel.config-archive';
 import { StructureFooterPanelConfigArchive } from './panel/footer-panel/structure.footer-panel.config-archive';
 import { StructureInfoPanelConfigService } from './panel/info/structure.info-panel-config.service';
+import { SortingCommandDispatcher } from '../../../structure/sorting/domain-api/sorting.command-dispatcher';
+import { SearchCommandDispatcher } from '../../../structure/search/domain-api/search.command-dispatcher';
+import { FieldCommandDispatcher } from '../../../structure/field/domain-api/field.command-dispatcher';
+import { CommandDispatcher, DomainEventBus } from '@generic-ui/hermes';
+import { ColumnFieldFactory } from '../../composition/domain/column/field/colum-field.factory';
 /** @internal */
 export declare function structureIdFactory(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -47,7 +52,7 @@ export declare const structureComponentSelfProviders: (import("@angular/core").P
     provide: typeof PagingCommandDispatcher;
     useClass: typeof import("./local/paging/local-paging.command-dispatcher").LocalPagingCommandDispatcher;
 } | {
-    provide: typeof import("../../../generic-ui-ngx-grid").ɵcg;
+    provide: typeof import("../../../generic-ui-ngx-grid").ɵdh;
     useClass: typeof import("./local/paging/local-paging.warehouse").LocalPagingWarehouse;
 } | {
     provide: typeof import("../domain-api/formation/structure-formation.dispatcher").StructureFormationDispatcher;
@@ -74,13 +79,13 @@ export declare const structureComponentSelfProviders: (import("@angular/core").P
     provide: typeof CompositionWarehouse;
     useClass: typeof import("./local/composition/local-composition.warehouse").LocalCompositionWarehouse;
 } | {
-    provide: typeof import("../../../generic-ui-ngx-grid").ɵew;
+    provide: typeof import("../../../generic-ui-ngx-grid").ɵbm;
     useClass: typeof import("./local/search/local-structure-search.command-dispatcher").LocalStructureSearchCommandDispatcher;
 } | {
     provide: typeof import("../domain-api/vertical-formation/structure-vertical-formation.warehouse").StructureVerticalFormationWarehouse;
     useClass: typeof import("./local/vertical-formation/local-structure-vertical-formation.warehouse").LocalStructureVerticalFormationWarehouse;
 } | {
-    provide: typeof import("../../../generic-ui-ngx-grid").ɵdn;
+    provide: typeof import("../../../generic-ui-ngx-grid").ɵfk;
     useClass: typeof import("./local/schema/local-schema.warehouse").LocalSchemaWarehouse;
 } | {
     provide: typeof SchemaCommandDispatcher;
@@ -109,7 +114,7 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     circleLoaderEnabled: boolean;
     initialLoaderAnimation: boolean;
     private structure;
-    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandDispatcher, pagingEventService: PagingEventRepository, sourceCommandService: SourceCommandDispatcher, sourceEventService: SourceEventService, schemaCommandDispatcher: SchemaCommandDispatcher, compositionCommandService: CompositionCommandDispatcher, compositionEventService: CompositionEventRepository, formationEventService: FormationEventService, structureCommandService: StructureCommandDispatcher, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: StructureSearchEventService, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureReadModelService: StructureWarehouse, compositionReadModelService: CompositionWarehouse, schemaStylesManager: SchemaCssClassManager, schemaReadModelRootId: SchemaReadModelRootId, structureDetailViewService: StructureRowDetailService);
+    constructor(structureId: StructureId, compositionId: CompositionId, pagingCommandService: PagingCommandDispatcher, pagingEventRepository: PagingEventRepository, sourceCommandDispatcher: SourceCommandDispatcher, sourceEventService: SourceEventService, sortingCommandDispatcher: SortingCommandDispatcher, searchCommandDispatcher: SearchCommandDispatcher, fieldCommandDispatcher: FieldCommandDispatcher, schemaCommandDispatcher: SchemaCommandDispatcher, compositionCommandDispatcher: CompositionCommandDispatcher, compositionEventRepository: CompositionEventRepository, formationEventService: FormationEventService, structureCommandService: StructureCommandDispatcher, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, columnFieldFactory: ColumnFieldFactory, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, structureSearchEventService: SearchEventRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, structureDefinition: StructureDefinition, structureReadModelService: StructureWarehouse, compositionReadModelService: CompositionWarehouse, schemaStylesManager: SchemaCssClassManager, schemaReadModelRootId: SchemaReadModelRootId, domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher, structureDetailViewService: StructureRowDetailService);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;

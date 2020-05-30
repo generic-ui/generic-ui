@@ -1,7 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { ColumnFieldId } from '../../../domain/column/field/column-field.id';
 import { ItemEntity } from '../../../../structure/domain/source/item.entity';
-import { DataType } from '../../../../structure/domain/structure/field/data-type/data-type';
+import { DataType } from '../../../../../structure/field/domain/data-type/data-type';
 import { ViewEntity } from '../../../domain/column/view.entity';
 import { ColumnAlign } from '../../../domain/column/column-align';
 import { CellValue } from './cell-value';

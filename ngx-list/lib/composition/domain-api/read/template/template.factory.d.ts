@@ -1,6 +1,6 @@
 import { ComponentFactoryResolver, TemplateRef, Type } from '@angular/core';
 import { TemplatesComponent } from './templates.component';
-import { DataType } from '../../../../structure/domain/structure/field/data-type/data-type';
+import { DataType } from '../../../../../structure/field/domain/data-type/data-type';
 import { CellView } from '../../../domain/column/cell-view';
 export declare abstract class TemplateFactory<T extends TemplatesComponent> {
     private readonly templatesComponentDefinition;

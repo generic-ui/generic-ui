@@ -7,5 +7,5 @@ import { DomainEventBus } from '../../domain/event/domain-event.bus';
 export declare abstract class EventRepository<R extends ReadModelRootId, I extends AggregateId> {
     private readonly domainEventBus;
     protected constructor(domainEventBus: DomainEventBus);
-    protected onEvent(aggregateId: R, eventType: Type<DomainEvent<I>>): Observable<DomainEvent<I>>;
+    protected onEvent(aggregateId: R, eventType: Type<DomainEvent<I>>): Observable<DomainEvent<any>>;
 }

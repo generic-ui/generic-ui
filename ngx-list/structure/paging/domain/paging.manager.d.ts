@@ -34,6 +34,7 @@ export declare class PagingManager {
     calculateStart(): number;
     calculateEnd(): number;
     sample(source: Array<any>): Array<any>;
+    clearEvents(): void;
     private setPage;
     private setPageSize;
 }

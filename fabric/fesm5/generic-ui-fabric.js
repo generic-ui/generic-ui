@@ -3,7 +3,7 @@ import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRe
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
-import { takeUntil, take, distinctUntilChanged, skip, map, filter, throttleTime } from 'rxjs/operators';
+import { takeUntil, filter, take, distinctUntilChanged, skip, map, throttleTime } from 'rxjs/operators';
 import * as elementResizeDetectorMaker_ from 'element-resize-detector';
 
 /**
@@ -1998,7 +1998,7 @@ var FabricInlineDialogComponent = /** @class */ (function (_super) {
     };
     FabricInlineDialogComponent.decorators = [
         { type: Component, args: [{
-                    template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
+                    template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t [ngClass]=\"customClass\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     styles: [".gui-inline-dialog-wrapper{position:absolute;box-sizing:border-box;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{box-sizing:border-box;background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
@@ -2025,6 +2025,8 @@ var FabricInlineDialogComponent = /** @class */ (function (_super) {
 if (false) {
     /** @type {?} */
     FabricInlineDialogComponent.prototype.container;
+    /** @type {?} */
+    FabricInlineDialogComponent.prototype.customClass;
     /** @type {?} */
     FabricInlineDialogComponent.prototype.inlineDialogNestedComponent;
     /** @type {?} */
@@ -2064,37 +2066,17 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @abstract
- */
-var  /**
- * @abstract
- */
-DialogService = /** @class */ (function (_super) {
-    __extends(DialogService, _super);
-    function DialogService() {
-        return _super.call(this) || this;
-    }
-    return DialogService;
-}(FabricReactive));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var FabricInlineDialogService = /** @class */ (function (_super) {
-    __extends(FabricInlineDialogService, _super);
+var FabricInlineDialogService = /** @class */ (function () {
     function FabricInlineDialogService(componentFactoryResolver, applicationRef, injector, document, inlineDialogGeometryService) {
-        var _this = _super.call(this) || this;
-        _this.componentFactoryResolver = componentFactoryResolver;
-        _this.applicationRef = applicationRef;
-        _this.injector = injector;
-        _this.document = document;
-        _this.inlineDialogGeometryService = inlineDialogGeometryService;
-        _this.inlineDialogRef = null;
-        _this.opened = false;
-        _this.opened$ = new BehaviorSubject(false);
-        return _this;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.applicationRef = applicationRef;
+        this.injector = injector;
+        this.document = document;
+        this.inlineDialogGeometryService = inlineDialogGeometryService;
+        this.inlineDialogRef = null;
+        this.opened = false;
+        this.opened$ = new BehaviorSubject(false);
+        this.unsub$ = new Subject();
     }
     /**
      * @return {?}
@@ -2104,7 +2086,6 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
      */
     function () {
         this.removeInlineDialog();
-        _super.prototype.ngOnDestroy.call(this);
     };
     /**
      * @param {?} element
@@ -2131,6 +2112,8 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
             var offset = 0;
             /** @type {?} */
             var theme = Theme.FABRIC;
+            /** @type {?} */
+            var customClass = void 0;
             if (config && config.injector) {
                 parentInjector = config.injector;
             }
@@ -2143,6 +2126,9 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
             if (config && config.theme) {
                 theme = config.theme;
             }
+            if (config && config.customClass) {
+                customClass = config.customClass;
+            }
             /** @type {?} */
             var injector = Injector.create({
                 providers: [{
@@ -2152,8 +2138,9 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
                 parent: parentInjector
             });
             this.setOpened(true);
-            this.appendInlineDialogToElement(component, injector);
+            this.appendInlineDialogToElement(component, injector, customClass);
             this.inlineDialogGeometryService.getInlineDialogCords(element, placement, offset);
+            this.closeOnEscKey();
         }
         else {
             this.close();
@@ -2167,6 +2154,8 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
      */
     function () {
         this.removeInlineDialog();
+        this.unsub$.next();
+        this.unsub$.complete();
         this.setOpened(false);
     };
     /**
@@ -2191,19 +2180,22 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
      * @private
      * @param {?} component
      * @param {?} injector
+     * @param {?=} customClass
      * @return {?}
      */
     FabricInlineDialogService.prototype.appendInlineDialogToElement = /**
      * @private
      * @param {?} component
      * @param {?} injector
+     * @param {?=} customClass
      * @return {?}
      */
-    function (component, injector) {
+    function (component, injector, customClass) {
         /** @type {?} */
         var componentRef = this.componentFactoryResolver
             .resolveComponentFactory(FabricInlineDialogComponent)
             .create(injector);
+        componentRef.instance.customClass = customClass;
         componentRef.instance.inlineDialogNestedComponent = component;
         componentRef.changeDetectorRef.detectChanges();
         this.applicationRef.attachView(componentRef.hostView);
@@ -2242,6 +2234,29 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
         this.opened = opened;
         this.opened$.next(this.opened);
     };
+    /**
+     * @private
+     * @return {?}
+     */
+    FabricInlineDialogService.prototype.closeOnEscKey = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        /** @type {?} */
+        var close$ = fromEvent(this.document, 'keyup');
+        close$
+            .pipe(filter((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return key.code === 'Escape'; })), takeUntil(this.unsub$))
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return _this.close(); }));
+    };
     FabricInlineDialogService.decorators = [
         { type: Injectable }
     ];
@@ -2254,7 +2269,7 @@ var FabricInlineDialogService = /** @class */ (function (_super) {
         { type: InlineDialogGeometryService }
     ]; };
     return FabricInlineDialogService;
-}(DialogService));
+}());
 if (false) {
     /**
      * @type {?}
@@ -2271,6 +2286,11 @@ if (false) {
      * @private
      */
     FabricInlineDialogService.prototype.opened$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricInlineDialogService.prototype.unsub$;
     /**
      * @type {?}
      * @private
@@ -2665,7 +2685,7 @@ var FabricInputComponent = /** @class */ (function () {
                     host: {
                         '[class.gui-input]': 'true'
                     },
-                    styles: [".gui-input{background:#fff;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
+                    styles: [".gui-input{background:#fff;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif;border-style:solid;border-width:0 0 1px;border-color:#ccc;border-radius:0;padding-left:0;transition:border-color .3s ease-in-out}.gui-material .gui-input:focus,.gui-material .gui-input:not(:placeholder-shown){border-color:#6200ee}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
                 }] }
     ];
     return FabricInputComponent;
@@ -2730,6 +2750,24 @@ var FabricDatePickerModule = /** @class */ (function () {
     ];
     return FabricDatePickerModule;
 }());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+DialogService = /** @class */ (function (_super) {
+    __extends(DialogService, _super);
+    function DialogService() {
+        return _super.call(this) || this;
+    }
+    return DialogService;
+}(FabricReactive));
 
 /**
  * @fileoverview added by tsickle
@@ -3640,7 +3678,7 @@ var FabricDropdownComponent = /** @class */ (function () {
                     providers: [
                         GeometryService
                     ],
-                    styles: [".gui-dropdown .gui-dropdown-container{background:#fff;box-sizing:border-box;border-radius:4px;cursor:pointer;color:#333;display:inline-block;font:14px Arial;padding:8px 32px 8px 12px;position:relative;width:auto;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container:hover{border-color:#999}.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow svg path{stroke:#464646}.gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{position:absolute;cursor:pointer;top:8px;right:12px}.gui-dropdown .gui-dropdown-container .gui-dropdown-left.gui-dropdown-menu,.gui-dropdown .gui-dropdown-container .gui-dropdown-right.gui-dropdown-menu{margin:0}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{box-sizing:border-box;background:inherit;display:none;left:-1px;overflow:hidden;width:inherit;position:absolute;z-index:2;border-radius:4px;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{padding:8px 32px 8px 12px;width:inherit;list-style-type:none}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#ccc}.gui-dropdown.gui-menu-opened .gui-dropdown-container{border-color:#999}.gui-dropdown.gui-menu-opened .gui-dropdown-menu{display:block}.gui-dropdown .gui-disabled{color:#ccc;pointer-events:none}", ".gui-material .gui-dropdown .gui-dropdown-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-dropdown .gui-dropdown-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-dropdown .gui-dropdown-container:hover{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAYAAAC9BQwsAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACMSURBVDhPrZJLCoAwDESruNRT9dw9lRvBhXbKEKTNpwsfSGLtY6I1/UIp5cHFW5eFtUlsGzlneaaxsg5EySLWhIOt4Mn9OHvdfLIXtLG195iSrQ8QypYIXNkTgSmbx0Eu1gEvcatpN3shGtWVgCaGEujFKQl8F6YlIItVGv5LSwLmcXjSAFK15B9J6QWDkUXx1vE/hQAAAABJRU5ErkJggg==) 0 0/contain no-repeat;border-color:#ce93d8 transparent transparent}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{border-top-color:#757575}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#616161}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-container{border-color:#ce93d8}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-arrow{border-color:transparent transparent #ce93d8}.gui-dark .gui-dropdown .gui-disabled{opacity:.36}"]
+                    styles: [".gui-dropdown .gui-dropdown-container{background:#fff;box-sizing:border-box;border-radius:4px;cursor:pointer;color:#333;display:inline-block;font:14px Arial;padding:8px 32px 8px 12px;position:relative;width:auto;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container:hover{border-color:#999}.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow svg path{stroke:#464646}.gui-dropdown .gui-dropdown-container .gui-dropdown-arrow{position:absolute;cursor:pointer;top:8px;right:12px}.gui-dropdown .gui-dropdown-container .gui-dropdown-left.gui-dropdown-menu,.gui-dropdown .gui-dropdown-container .gui-dropdown-right.gui-dropdown-menu{margin:0}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{box-sizing:border-box;background:inherit;display:none;left:-1px;overflow:hidden;width:inherit;position:absolute;z-index:2;border-radius:4px;border:1px solid #d6d6d6}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{padding:8px 32px 8px 12px;width:inherit;list-style-type:none}.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#ccc}.gui-dropdown.gui-menu-opened .gui-dropdown-container{border-color:#999}.gui-dropdown.gui-menu-opened .gui-dropdown-menu{display:block}.gui-dropdown .gui-disabled{color:#ccc;pointer-events:none}", ".gui-material .gui-dropdown .gui-dropdown-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-dropdown .gui-dropdown-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-dropdown .gui-dropdown-container:hover{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow svg path{stroke:#ce93d8}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#616161}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item{border-top-color:#757575}.gui-dark .gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover{background:#616161}.gui-dark .gui-dropdown.gui-options-opened .gui-dropdown-container{border-color:#ce93d8}.gui-dark .gui-dropdown .gui-disabled{opacity:.36}"]
                 }] }
     ];
     /** @nocollapse */
@@ -3865,16 +3903,14 @@ var FabricDropdownModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var FabricDialogService = /** @class */ (function (_super) {
-    __extends(FabricDialogService, _super);
+var FabricDialogService = /** @class */ (function () {
     function FabricDialogService(componentFactoryResolver, applicationRef, injector, document) {
-        var _this = _super.call(this) || this;
-        _this.componentFactoryResolver = componentFactoryResolver;
-        _this.applicationRef = applicationRef;
-        _this.injector = injector;
-        _this.document = document;
-        _this.dialogRef = null;
-        return _this;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.applicationRef = applicationRef;
+        this.injector = injector;
+        this.document = document;
+        this.dialogRef = null;
+        this.unsub$ = new Subject();
     }
     /**
      * @return {?}
@@ -3884,7 +3920,6 @@ var FabricDialogService = /** @class */ (function (_super) {
      */
     function () {
         this.removeDialog();
-        _super.prototype.ngOnDestroy.call(this);
     };
     /**
      * @param {?} component
@@ -3928,6 +3963,8 @@ var FabricDialogService = /** @class */ (function (_super) {
      */
     function () {
         this.removeDialog();
+        this.unsub$.next();
+        this.unsub$.complete();
     };
     /**
      * @private
@@ -3946,7 +3983,7 @@ var FabricDialogService = /** @class */ (function (_super) {
          * @param {?} key
          * @return {?}
          */
-        function (key) { return key.code === 'Escape'; })), this.takeUntil())
+        function (key) { return key.code === 'Escape'; })), takeUntil(this.unsub$))
             .subscribe((/**
          * @return {?}
          */
@@ -4004,10 +4041,15 @@ var FabricDialogService = /** @class */ (function (_super) {
         { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
     ]; };
     return FabricDialogService;
-}(DialogService));
+}());
 if (false) {
     /** @type {?} */
     FabricDialogService.prototype.dialogRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDialogService.prototype.unsub$;
     /**
      * @type {?}
      * @private
@@ -4989,7 +5031,7 @@ var FabricTabComponent = /** @class */ (function (_super) {
                     host: {
                         '[class.gui-tab]': 'true'
                     },
-                    styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;-ms-transform:translateY(1px);transform:translateY(1px)}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden}.gui-tab .gui-tab-menu .gui-tab-menu-item{box-sizing:border-box;height:34px;position:relative;cursor:pointer;display:inline-block;padding:8px 16px;text-align:center;white-space:nowrap;border:1px solid transparent}.gui-tab .gui-tab-menu .scroll-button{box-sizing:border-box;color:#ccc;background:0 0;height:34px;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-menu .scroll-button:hover svg path{stroke:#464646}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent}"]
+                    styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;margin-bottom:-1px}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden;border-radius:4px 4px 0 0}.gui-tab .gui-tab-menu .gui-tab-menu-item{background:#fafafa;box-sizing:border-box;position:relative;border-radius:4px 4px 0 0;cursor:pointer;display:inline-block;height:34px;margin-right:2px;padding:8px 16px;text-align:center;white-space:nowrap;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu .gui-tab-menu-item:nth-last-child(1){margin-right:0}.gui-tab .gui-tab-menu .scroll-button{box-sizing:border-box;color:#ccc;background:0 0;height:34px;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-menu .scroll-button:hover svg path{stroke:#464646}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0;color:#2185d0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{background:#616161;border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent;color:#ce93d8}"]
                 }] }
     ];
     /** @nocollapse */
@@ -6384,5 +6426,5 @@ FabricNestedDialogComponent = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricTabComponent as ɵbc, TabItemComponent as ɵbd, FabricTooltipDirective as ɵbe, FabricTooltipComponent as ɵbf, FabricProgressBarComponent as ɵbg, FabricProgressSpinnerComponent as ɵbh, AbstractSpinner as ɵbi, FabricSelectComponent as ɵbj, FabricSpinnerComponent as ɵbk, FabricToggleButtonComponent as ɵbl, ToggleButtonGroupService as ɵbm, FabricToggleButtonGroupComponent as ɵbn, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, DialogService as ɵh, InlineDialogGeometryService as ɵi, themeToken as ɵj, FabricDatePickerCalendarComponent as ɵk, FabricDatePickerService as ɵl, FabricDatePickerWeeks as ɵm, FabricDatePickerYears as ɵn, FabricDatePickerComponent as ɵo, FabricDatePickerInlineDialogService as ɵp, FabricCloseIconModule as ɵq, selector as ɵr, FabricCloseIconComponent as ɵs, FabricDrawerComponent as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricTabComponent as ɵbc, TabItemComponent as ɵbd, FabricTooltipDirective as ɵbe, FabricTooltipComponent as ɵbf, FabricProgressBarComponent as ɵbg, FabricProgressSpinnerComponent as ɵbh, AbstractSpinner as ɵbi, FabricSelectComponent as ɵbj, FabricSpinnerComponent as ɵbk, FabricToggleButtonComponent as ɵbl, ToggleButtonGroupService as ɵbm, FabricToggleButtonGroupComponent as ɵbn, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, FabricDatePickerCalendarComponent as ɵj, FabricDatePickerService as ɵk, FabricDatePickerWeeks as ɵl, FabricDatePickerYears as ɵm, FabricDatePickerComponent as ɵn, FabricDatePickerInlineDialogService as ɵo, FabricCloseIconModule as ɵp, selector as ɵq, FabricCloseIconComponent as ɵr, FabricDrawerComponent as ɵs, DialogService as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

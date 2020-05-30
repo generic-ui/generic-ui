@@ -1,5 +1,5 @@
 import { Message } from '../domain/message';
-export declare abstract class Logger<M extends Message> {
+export declare abstract class Logger<M extends Message<any>> {
     private domainName;
     abstract start(): void;
     abstract stop(): void;

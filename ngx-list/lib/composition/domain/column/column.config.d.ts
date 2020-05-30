@@ -1,4 +1,4 @@
-import { DataType } from '../../../structure/domain/structure/field/data-type/data-type';
+import { DataType } from '../../../../structure/field/domain/data-type/data-type';
 import { CellView } from './cell-view';
 import { ColumnSummariesConfig } from './column-summaries.config';
 import { ColumnSortingConfig } from '../sort/column-sorting.config';

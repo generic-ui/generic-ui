@@ -1,7 +1,7 @@
 import { SummariesValues } from './summaries.values';
-import { DataType } from '../../field/data-type/data-type';
+import { DataType } from '../../../../../../structure/field/domain/data-type/data-type';
 import { OriginItemEntity } from '../../../source/origin/origin-item-entity';
-import { AllFieldTypes } from '../../field/data-type/all-field-types';
+import { AllFieldTypes } from '../../../../../../structure/field/domain/data-type/all-field-types';
 export declare abstract class SummariesCalculator<T, A extends SummariesValues> {
     abstract forDataType(dataType: DataType): boolean;
     abstract prepare(field: AllFieldTypes): void;

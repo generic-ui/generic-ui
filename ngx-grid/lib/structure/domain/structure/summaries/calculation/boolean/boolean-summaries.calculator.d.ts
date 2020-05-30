@@ -1,7 +1,7 @@
 import { SummariesCalculator } from '../summaries.calculator';
 import { BooleanSummarizedValues } from './boolean-summarized.values';
-import { DataType } from '../../../field/data-type/data-type';
-import { Field } from '../../../field/data-type/field';
+import { DataType } from '../../../../../../../structure/field/domain/data-type/data-type';
+import { Field } from '../../../../../../../structure/field/domain/data-type/field';
 import { OriginItemEntity } from '../../../../source/origin/origin-item-entity';
 export declare class BooleanSummariesCalculator extends SummariesCalculator<boolean, BooleanSummarizedValues> {
     private readonly truthy;

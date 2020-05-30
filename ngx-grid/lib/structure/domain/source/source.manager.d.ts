@@ -1,7 +1,7 @@
 import { AggregateEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from './origin/origin-item-entity';
 import { StructureId } from '../structure.id';
-import { TypeField } from '../structure/field/data-type/type.field';
+import { TypeField } from '../../../../structure/field/domain/data-type/type.field';
 export declare class SourceManager {
     private loading;
     private fetched;

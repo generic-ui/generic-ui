@@ -416,7 +416,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DOMAIN_EVENT_HANDLERS = 'DOMAIN_EVENT_HANDLERS';
+    var DOMAIN_EVENT_HANDLERS = 'HERMES - DOMAIN_EVENT_HANDLERS_TOKEN';
 
     /**
      * @fileoverview added by tsickle
@@ -536,9 +536,11 @@
      */
     /**
      * @abstract
+     * @template I
      */
     var   /**
      * @abstract
+     * @template I
      */
     Message = /** @class */ (function () {
         function Message(aggregateId, messageType, messageId) {
@@ -1829,6 +1831,34 @@
             })));
         };
         /**
+         * @template E2
+         * @param {...?} handlers
+         * @return {?}
+         */
+        DomainEventBus.prototype.ofEventHandler = /**
+         * @template E2
+         * @param {...?} handlers
+         * @return {?}
+         */
+        function () {
+            var handlers = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                handlers[_i] = arguments[_i];
+            }
+            return ((/** @type {?} */ (this)))
+                .pipe(operators.filter((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                return handlers.some((/**
+                 * @param {?} handler
+                 * @return {?}
+                 */
+                function (handler) { return handler.forEvents([event]); }));
+            })));
+        };
+        /**
          * @private
          * @param {?} event
          * @return {?}
@@ -1855,32 +1885,6 @@
         ]; };
         return DomainEventBus;
     }(rxjs.Observable));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, E
-     */
-    var   /**
-     * @abstract
-     * @template I, E
-     */
-    DomainEventHandler = /** @class */ (function () {
-        function DomainEventHandler() {
-        }
-        return DomainEventHandler;
-    }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventHandler.prototype.handle = function (event) { };
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -2495,14 +2499,14 @@
          * @param {?} aggregateId
          * @return {?}
          */
-        AggregateArchive.prototype.when = /**
+        AggregateArchive.prototype.on = /**
          * @param {?} aggregateId
          * @return {?}
          */
         function (aggregateId) {
             return this.archive$
                 .asObservable()
-                .pipe(operators.map((/**
+                .pipe(this.takeUntil(), operators.map((/**
              * @param {?} map
              * @return {?}
              */
@@ -4188,6 +4192,140 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @template I, E
+     * @param {?} domainEventHandler
+     * @return {?}
+     */
+    function domainEventHandlerFactory(domainEventHandler) {
+        return new DomainEventHandlerImpl(domainEventHandler, [domainEventHandler.forEvent()]);
+    }
+    /**
+     * @template I, E
+     * @param {?} domainEventHandler
+     * @return {?}
+     */
+    function multiDomainEventHandlerFactory(domainEventHandler) {
+        return new DomainEventHandlerImpl(domainEventHandler, domainEventHandler.forEvents());
+    }
+    /**
+     * @template I, E
+     */
+    var   /**
+     * @template I, E
+     */
+    DomainEventHandlerImpl = /** @class */ (function () {
+        function DomainEventHandlerImpl(domainEventHandler, events) {
+            this.domainEventHandler = domainEventHandler;
+            this.events = events;
+            this.eventTypes = this.createDomainEventTypes();
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        DomainEventHandlerImpl.prototype.handleEvent = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            this.domainEventHandler.handle(event);
+        };
+        /**
+         * @param {?} events
+         * @return {?}
+         */
+        DomainEventHandlerImpl.prototype.forEvents = /**
+         * @param {?} events
+         * @return {?}
+         */
+        function (events) {
+            var _this = this;
+            return events.some((/**
+             * @param {?} event
+             * @return {?}
+             */
+            function (event) {
+                return _this.eventTypes.some((/**
+                 * @param {?} type
+                 * @return {?}
+                 */
+                function (type) {
+                    return type === event.getMessageType();
+                }));
+            }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        DomainEventHandlerImpl.prototype.createDomainEventTypes = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var e_1, _a;
+            /** @type {?} */
+            var types = [];
+            try {
+                for (var _b = __values(this.events), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var event_1 = _c.value;
+                    /** @type {?} */
+                    var instance = this.createDomainEventInstance(event_1);
+                    types.push(instance.getMessageType());
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return types;
+        };
+        /**
+         * @private
+         * @param {?} eventType
+         * @return {?}
+         */
+        DomainEventHandlerImpl.prototype.createDomainEventInstance = /**
+         * @private
+         * @param {?} eventType
+         * @return {?}
+         */
+        function (eventType) {
+            /** @type {?} */
+            var args = [];
+            /** @type {?} */
+            var argumentLength = eventType.constructor.length;
+            args.fill(undefined, 0, argumentLength);
+            return (new (((/** @type {?} */ (eventType))).bind.apply(((/** @type {?} */ (eventType))), __spread([void 0], args)))());
+        };
+        return DomainEventHandlerImpl;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DomainEventHandlerImpl.prototype.eventTypes;
+        /**
+         * @type {?}
+         * @private
+         */
+        DomainEventHandlerImpl.prototype.domainEventHandler;
+        /**
+         * @type {?}
+         * @private
+         */
+        DomainEventHandlerImpl.prototype.events;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var hermesProviders = [
         RandomStringGenerator,
@@ -4247,15 +4385,16 @@
     /**
      * @template I, A, C, E
      */
-    var HermesModule = /** @class */ (function (_super) {
-        __extends(HermesModule, _super);
-        function HermesModule(eventHandlers, aggregateCommandHandlers, handlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
+    var HermesBaseModule = /** @class */ (function (_super) {
+        __extends(HermesBaseModule, _super);
+        function HermesBaseModule(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
             var _this = _super.call(this) || this;
             _this.hermesLoggersInitializer = hermesLoggersInitializer;
             _this.hermesApi = hermesApi;
             _this.hermesLoggersInitializer.start();
-            _this.checkNullCommand(commandBus, handlers, aggregateCommandHandlers);
-            _this.checkCommandHandlerIsCollection(handlers);
+            _this.checkNullCommand(commandBus, commandHandlers, aggregateCommandHandlers);
+            _this.checkCommandHandlerIsCollection(commandHandlers);
+            _this.checkDomainEventHandlerIsCollection(eventHandlers);
             if (definedAggregate) {
                 definedAggregate.forEach((/**
                  * @param {?} def
@@ -4288,8 +4427,8 @@
                     }));
                 }));
             }
-            if (handlers) {
-                handlers.forEach((/**
+            if (commandHandlers) {
+                commandHandlers.forEach((/**
                  * @param {?} handler
                  * @return {?}
                  */
@@ -4307,6 +4446,22 @@
                 }));
             }
             if (eventHandlers) {
+                eventHandlers.forEach((/**
+                 * @param {?} handler
+                 * @return {?}
+                 */
+                function (handler) {
+                    domainEventBus
+                        .ofEventHandler(handler)
+                        .pipe(_this.takeUntil())
+                        .subscribe((/**
+                     * @param {?} event
+                     * @return {?}
+                     */
+                    function (event) {
+                        handler.handleEvent(event);
+                    }));
+                }));
                 domainEventBus
                     .pipe(_this.takeUntil())
                     .subscribe((/**
@@ -4319,11 +4474,110 @@
                      * @return {?}
                      */
                     function (handler) {
-                        handler.handle(event);
+                        handler.handleEvent(event);
                     }));
                 }));
             }
             return _this;
+        }
+        /**
+         * @return {?}
+         */
+        HermesBaseModule.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            _super.prototype.ngOnDestroy.call(this);
+            this.hermesLoggersInitializer.stop();
+        };
+        /**
+         * @private
+         * @param {?} commandBus
+         * @param {?} commandHandlers
+         * @param {?} aggregateCommandHandlers
+         * @return {?}
+         */
+        HermesBaseModule.prototype.checkNullCommand = /**
+         * @private
+         * @param {?} commandBus
+         * @param {?} commandHandlers
+         * @param {?} aggregateCommandHandlers
+         * @return {?}
+         */
+        function (commandBus, commandHandlers, aggregateCommandHandlers) {
+            commandBus
+                .ofNullHandler(commandHandlers, aggregateCommandHandlers)
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} command
+             * @return {?}
+             */
+            function (command) {
+                console.error("Command " + command.toString() + " was not intercepted by any CommandHandler.");
+            }));
+        };
+        /**
+         * @private
+         * @param {?} commandHandlers
+         * @return {?}
+         */
+        HermesBaseModule.prototype.checkCommandHandlerIsCollection = /**
+         * @private
+         * @param {?} commandHandlers
+         * @return {?}
+         */
+        function (commandHandlers) {
+            if (commandHandlers && !Array.isArray(commandHandlers)) {
+                console.warn("You might provided commandHandler without specifying \"multi: true\".");
+            }
+        };
+        /**
+         * @private
+         * @param {?} eventHandlers
+         * @return {?}
+         */
+        HermesBaseModule.prototype.checkDomainEventHandlerIsCollection = /**
+         * @private
+         * @param {?} eventHandlers
+         * @return {?}
+         */
+        function (eventHandlers) {
+            if (eventHandlers && !Array.isArray(eventHandlers)) {
+                console.warn("You might provided eventHandler without specifying \"multi: true\".");
+            }
+        };
+        /** @nocollapse */
+        HermesBaseModule.ctorParameters = function () { return [
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
+            { type: core.Injector },
+            { type: AggregateFactoryArchive },
+            { type: AggregateRepositoryArchive },
+            { type: CommandBus },
+            { type: DomainEventBus },
+            { type: HermesLoggersInitializer },
+            { type: HermesApi }
+        ]; };
+        return HermesBaseModule;
+    }(Reactive));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HermesBaseModule.prototype.hermesLoggersInitializer;
+        /**
+         * @type {?}
+         * @private
+         */
+        HermesBaseModule.prototype.hermesApi;
+    }
+    var HermesModule = /** @class */ (function (_super) {
+        __extends(HermesModule, _super);
+        function HermesModule() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         /**
          * @template I, A, C
@@ -4331,7 +4585,8 @@
          * @param {?} factory
          * @param {?} repository
          * @param {?} createHandler
-         * @param {?} handlers
+         * @param {?=} commandHandlers
+         * @param {?=} domainEventHandlers
          * @return {?}
          */
         HermesModule.defineAggregate = /**
@@ -4340,10 +4595,13 @@
          * @param {?} factory
          * @param {?} repository
          * @param {?} createHandler
-         * @param {?} handlers
+         * @param {?=} commandHandlers
+         * @param {?=} domainEventHandlers
          * @return {?}
          */
-        function (aggregateKey, factory, repository, createHandler, handlers) {
+        function (aggregateKey, factory, repository, createHandler, commandHandlers, domainEventHandlers) {
+            if (commandHandlers === void 0) { commandHandlers = []; }
+            if (domainEventHandlers === void 0) { domainEventHandlers = []; }
             return {
                 ngModule: HermesDomainModule,
                 providers: __spread([{
@@ -4359,7 +4617,7 @@
                         useValue: aggregateKey
                     },
                     factory,
-                    repository], HermesModule.registerCreateCommandHandler(createHandler, aggregateKey), handlers)
+                    repository], HermesModule.registerCreateCommandHandler(createHandler, aggregateKey), commandHandlers, domainEventHandlers)
             };
         };
         /**
@@ -4407,6 +4665,56 @@
             ];
         };
         /**
+         * @template I, E
+         * @param {?} domainEventHandlerType
+         * @return {?}
+         */
+        HermesModule.registerDomainEventHandler = /**
+         * @template I, E
+         * @param {?} domainEventHandlerType
+         * @return {?}
+         */
+        function (domainEventHandlerType) {
+            return [
+                {
+                    provide: domainEventHandlerType,
+                    useClass: domainEventHandlerType
+                }, {
+                    provide: DOMAIN_EVENT_HANDLERS,
+                    useFactory: domainEventHandlerFactory,
+                    multi: true,
+                    deps: [
+                        domainEventHandlerType
+                    ]
+                }
+            ];
+        };
+        /**
+         * @template I, E
+         * @param {?} domainEventHandlerType
+         * @return {?}
+         */
+        HermesModule.registerMultiDomainEventHandler = /**
+         * @template I, E
+         * @param {?} domainEventHandlerType
+         * @return {?}
+         */
+        function (domainEventHandlerType) {
+            return [
+                {
+                    provide: domainEventHandlerType,
+                    useClass: domainEventHandlerType
+                }, {
+                    provide: DOMAIN_EVENT_HANDLERS,
+                    useFactory: multiDomainEventHandlerFactory,
+                    multi: true,
+                    deps: [
+                        domainEventHandlerType
+                    ]
+                }
+            ];
+        };
+        /**
          * @private
          * @template I, A, C
          * @param {?} createCommandHandlerType
@@ -4439,57 +4747,6 @@
                 }
             ];
         };
-        /**
-         * @return {?}
-         */
-        HermesModule.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
-            _super.prototype.ngOnDestroy.call(this);
-            this.hermesLoggersInitializer.stop();
-        };
-        /**
-         * @private
-         * @param {?} commandBus
-         * @param {?} commandHandlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        HermesModule.prototype.checkNullCommand = /**
-         * @private
-         * @param {?} commandBus
-         * @param {?} commandHandlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        function (commandBus, commandHandlers, aggregateCommandHandlers) {
-            commandBus
-                .ofNullHandler(commandHandlers, aggregateCommandHandlers)
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
-                console.error("Command " + command.toString() + " was not intercepted by any CommandHandler.");
-            }));
-        };
-        /**
-         * @private
-         * @param {?} commandHandlers
-         * @return {?}
-         */
-        HermesModule.prototype.checkCommandHandlerIsCollection = /**
-         * @private
-         * @param {?} commandHandlers
-         * @return {?}
-         */
-        function (commandHandlers) {
-            if (commandHandlers && !Array.isArray(commandHandlers)) {
-                console.warn("You might provided commandHandler without specifying \"multi: true\".");
-            }
-        };
         HermesModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
@@ -4498,34 +4755,8 @@
                         providers: providers
                     },] }
         ];
-        /** @nocollapse */
-        HermesModule.ctorParameters = function () { return [
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
-            { type: core.Injector },
-            { type: AggregateFactoryArchive },
-            { type: AggregateRepositoryArchive },
-            { type: CommandBus },
-            { type: DomainEventBus },
-            { type: HermesLoggersInitializer },
-            { type: HermesApi }
-        ]; };
         return HermesModule;
-    }(Reactive));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesModule.prototype.hermesLoggersInitializer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesModule.prototype.hermesApi;
-    }
+    }(HermesBaseModule));
 
     /**
      * @fileoverview added by tsickle
@@ -4638,10 +4869,8 @@
     exports.CommandLogger = CommandLogger;
     exports.CommandStream = CommandStream;
     exports.CreateAggregateCommand = CreateAggregateCommand;
-    exports.DOMAIN_EVENT_HANDLERS = DOMAIN_EVENT_HANDLERS;
     exports.DomainEvent = DomainEvent;
     exports.DomainEventBus = DomainEventBus;
-    exports.DomainEventHandler = DomainEventHandler;
     exports.DomainEventLogger = DomainEventLogger;
     exports.DomainEventPayload = DomainEventPayload;
     exports.DomainEventPublisher = DomainEventPublisher;
@@ -4683,26 +4912,31 @@
     exports.provideEventHandlers = provideEventHandlers;
     exports.ɵa = commandLoggerFactory;
     exports.ɵb = eventLoggerFactory;
-    exports.ɵc = Logger;
-    exports.ɵd = Message;
-    exports.ɵe = FILTERED_COMMAND_STREAM;
-    exports.ɵf = DomainEventStore;
-    exports.ɵg = ReactiveService;
-    exports.ɵh = ConsoleCommandLogger;
-    exports.ɵi = NoopCommandLogger;
-    exports.ɵj = ConsoleEventLogger;
-    exports.ɵk = NoopEventLogger;
-    exports.ɵl = HermesLoggersInitializer;
-    exports.ɵm = AggregateFactoryArchive;
-    exports.ɵn = AggregateRepositoryArchive;
-    exports.ɵo = CREATE_AGGREGATE_COMMAND_HANDLERS;
-    exports.ɵp = COMMAND_HANDLERS;
-    exports.ɵq = aggregateDefinitionToken;
-    exports.ɵs = HermesDomainModule;
-    exports.ɵt = commandHandlerFactory;
-    exports.ɵu = CommandHandlerImpl;
-    exports.ɵv = createAggregateCommandHandlerFactory;
-    exports.ɵw = CreateAggregateCommandHandlerImpl;
+    exports.ɵba = createAggregateCommandHandlerFactory;
+    exports.ɵbb = CreateAggregateCommandHandlerImpl;
+    exports.ɵc = HermesBaseModule;
+    exports.ɵd = Logger;
+    exports.ɵe = Message;
+    exports.ɵf = FILTERED_COMMAND_STREAM;
+    exports.ɵg = DomainEventStore;
+    exports.ɵh = ReactiveService;
+    exports.ɵi = DOMAIN_EVENT_HANDLERS;
+    exports.ɵj = CREATE_AGGREGATE_COMMAND_HANDLERS;
+    exports.ɵk = COMMAND_HANDLERS;
+    exports.ɵl = aggregateDefinitionToken;
+    exports.ɵn = AggregateFactoryArchive;
+    exports.ɵo = AggregateRepositoryArchive;
+    exports.ɵp = HermesLoggersInitializer;
+    exports.ɵq = ConsoleCommandLogger;
+    exports.ɵr = NoopCommandLogger;
+    exports.ɵs = ConsoleEventLogger;
+    exports.ɵt = NoopEventLogger;
+    exports.ɵu = HermesDomainModule;
+    exports.ɵv = commandHandlerFactory;
+    exports.ɵw = CommandHandlerImpl;
+    exports.ɵx = domainEventHandlerFactory;
+    exports.ɵy = multiDomainEventHandlerFactory;
+    exports.ɵz = DomainEventHandlerImpl;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

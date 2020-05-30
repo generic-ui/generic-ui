@@ -1,4 +1,5 @@
-import { DomainEventHandler } from '@generic-ui/hermes';
+import { Type } from '@angular/core';
+import { MultiDomainEventHandler } from '@generic-ui/hermes';
 import { SchemaCssClassesRepository } from './schema.css-classes.repository';
 import { SchemaId } from '../../domain/schema.id';
 import { SchemaThemeSetEvent } from '../../domain/theme/schema-theme-set.event';
@@ -8,13 +9,14 @@ import { SchemaVerticalGridSetEvent } from '../../domain/grid/vertical/schema-ve
 import { SchemaRowColoring } from '../../domain/coloring/schema-row-coloring';
 import { SchemaTheme } from '../../domain/theme/schema-theme';
 export declare type SchemaCssClassesEventType = SchemaThemeSetEvent | RowColoringSetEvent | SchemaHorizontalGridSetEvent | SchemaVerticalGridSetEvent;
-export declare class SchemaCssClassesEventHandler extends DomainEventHandler<SchemaId, SchemaCssClassesEventType> {
+export declare class SchemaCssClassesEventHandler implements MultiDomainEventHandler<SchemaId, SchemaCssClassesEventType> {
     private schemaCssClassesRepository;
     rowColoring: SchemaRowColoring;
     horizontalGrid: boolean;
     verticalGrid: boolean;
     schemaTheme: SchemaTheme;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository);
-    handle(event: SchemaCssClassesEventType): void;
     private publish;
+    forEvents(): Array<Type<SchemaCssClassesEventType>>;
+    handle(event: SchemaCssClassesEventType): void;
 }

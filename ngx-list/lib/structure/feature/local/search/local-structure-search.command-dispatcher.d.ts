@@ -1,12 +1,12 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { StructureSearchDispatcher } from '../../../domain/structure/search/structure.search.dispatcher';
+import { SearchDispatcher } from '../../../../../structure/search/domain/search.dispatcher';
 import { StructureId } from '../../../domain/structure.id';
-import { SearchConfig } from '../../../domain-api/search/search-config';
-import { StructureSearchHighlightArchive } from '../../../domain-api/search/highlight/structure.search-highlight.archive';
-import { StructureSearchPlaceholderArchive } from '../../../domain-api/search/placeholder/structure.search-placeholder.archive';
-export declare class LocalStructureSearchCommandDispatcher extends StructureSearchDispatcher {
+import { SearchConfig } from '../../../../../structure/search/domain-api/search-config';
+import { SearchHighlightArchive } from '../../../../../structure/search/domain-api/highlight/search-highlight.archive';
+import { SearchPlaceholderArchive } from '../../../../../structure/search/domain-api/placeholder/search-placeholder.archive';
+export declare class LocalStructureSearchCommandDispatcher extends SearchDispatcher {
     private structureId;
-    constructor(structureId: StructureId, commandDispatcher: CommandDispatcher, structureSearchHighlightArchive: StructureSearchHighlightArchive, structureSearchPlaceholderArchive: StructureSearchPlaceholderArchive);
+    constructor(structureId: StructureId, commandDispatcher: CommandDispatcher, structureSearchHighlightArchive: SearchHighlightArchive, structureSearchPlaceholderArchive: SearchPlaceholderArchive);
     setSearchingConfig(config: SearchConfig): void;
     search(phrase: string): void;
 }

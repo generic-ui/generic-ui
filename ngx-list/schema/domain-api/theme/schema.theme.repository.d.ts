@@ -1,12 +1,5 @@
-import { Observable } from 'rxjs';
-import { SchemaId } from '../../domain/schema.id';
-import { Reactive } from '../../../common/cdk/reactive';
+import { AggregateArchive } from '@generic-ui/hermes';
 import { SchemaTheme } from '../../domain/theme/schema-theme';
-export declare class SchemaThemeRepository extends Reactive {
-    private theme;
-    private theme$;
+export declare class SchemaThemeRepository extends AggregateArchive<SchemaTheme> {
     constructor();
-    setTheme(theme: SchemaTheme, schemaId: SchemaId): void;
-    on(schemaId: SchemaId): Observable<SchemaTheme>;
-    private next;
 }

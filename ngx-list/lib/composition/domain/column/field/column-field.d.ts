@@ -1,6 +1,6 @@
 import { ColumnFieldId } from './column-field.id';
 import { ColumnFieldAccessor } from './column-field-accessor';
-import { DataType } from '../../../../structure/domain/structure/field/data-type/data-type';
+import { DataType } from '../../../../../structure/field/domain/data-type/data-type';
 import { OriginItemEntity } from '../../../../structure/domain/source/origin/origin-item-entity';
 export declare class ColumnField {
     private readonly fieldId;

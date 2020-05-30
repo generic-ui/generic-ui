@@ -2,7 +2,7 @@ import { AggregateEvent } from '@generic-ui/hermes';
 import { StructureId } from '../../structure.id';
 import { SummariesCalculator } from './calculation/summaries.calculator';
 import { OriginItemEntity } from '../../source/origin/origin-item-entity';
-import { TypeField } from '../field/data-type/type.field';
+import { TypeField } from '../../../../../structure/field/domain/data-type/type.field';
 export declare class SummariesManager {
     private readonly calculators;
     static DEFAULT_ENABLED: boolean;

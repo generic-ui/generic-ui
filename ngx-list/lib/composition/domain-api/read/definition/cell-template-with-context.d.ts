@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { CellContext } from './cell-context';
-import { FieldId } from '../../../../structure/domain/structure/field/data-type/field.id';
+import { FieldId } from '../../../../../structure/field/domain/data-type/field.id';
 import { SortOrder } from '../../../domain/column/sort/sort-order';
 import { ColumnAlign } from '../../../domain/column/column-align';
 import { ColumnDefinitionId } from './column-definition-id';

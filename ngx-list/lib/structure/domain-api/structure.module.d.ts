@@ -6,11 +6,12 @@ import { StructureContentComponent } from '../feature/content/structure-content.
 import { StructureContainerComponent } from '../feature/content/structure-container.component';
 import { StructureDefinition } from '../feature/structure-definition';
 import { StructureModuleConfig } from '../feature/structure-module-config';
+import { StructureThemeGateway } from '../feature/gateway/schema/structure-theme.gateway';
 export declare function createStructureDefinition(): StructureDefinition;
 export declare const structureKey = "StructureAggregate";
 export declare class StructureModule {
     private platformId;
-    static exportDeclarations: (typeof FabricModule | typeof StructureComponent | typeof StructureHeaderComponent | typeof StructureContentComponent | typeof StructureContainerComponent)[];
+    static exportDeclarations: (typeof FabricModule | typeof StructureComponent | typeof StructureThemeGateway | typeof StructureHeaderComponent | typeof StructureContentComponent | typeof StructureContainerComponent)[];
     static withConfig(structureConfig?: StructureModuleConfig): ModuleWithProviders;
     constructor(platformId: any);
 }

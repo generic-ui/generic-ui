@@ -1,5 +1,5 @@
 import { FilterConfig } from '../../../domain-api/filter/filter-config';
-import { SearchConfig } from '../../../domain-api/search/search-config';
+import { SearchConfig } from '../../../../../structure/search/domain-api/search-config';
 import { QuickFiltersConfig } from '../../../domain-api/filter/quick-filters.config';
 export declare class FilterSettings {
     private filteringEnabled;

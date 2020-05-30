@@ -4,11 +4,11 @@ import { SourceManagerFactory } from '../source/source.manager-factory';
 import { VerticalFormationFactory } from './vertical-formation/vertical-formation.factory';
 import { SummariesManagerFactory } from './summaries/summaries.manager.factory';
 import { FilterManagerFactory } from './filter/filter.manager-factory';
-import { FieldCollectionFactory } from './field/field-collection.factory';
+import { FieldCollectionFactory } from '../../../../structure/field/domain/field-collection.factory';
 import { StructureId } from '../structure.id';
 import { StructureAggregate } from './structure.aggregate';
 import { FormationAggregateFactory } from '../formation/formation.aggregate-factory';
-import { SearchManagerFactory } from './search/search.manager-factory';
+import { SearchManagerFactory } from '../../../../structure/search/domain/search.manager-factory';
 export declare class StructureAggregateFactory extends AggregateFactory<StructureId, StructureAggregate> {
     private readonly pagingAggregateFactory;
     private readonly sourceManagerFactory;

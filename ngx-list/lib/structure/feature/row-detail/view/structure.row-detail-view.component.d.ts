@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export declare class StructureRowDetailViewComponent implements OnInit {
     private item;
     private template;

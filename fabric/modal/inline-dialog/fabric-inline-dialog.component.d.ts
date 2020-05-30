@@ -11,6 +11,7 @@ export declare class FabricInlineDialogComponent extends DialogComponent impleme
     private readonly elRef;
     private readonly inlineDialogGeometryService;
     container: ViewContainerRef;
+    customClass: string;
     inlineDialogNestedComponent: Type<FabricNestedDialogComponent>;
     inlineDialogNestedInjector: Injector;
     dialogTopAttribute: number;

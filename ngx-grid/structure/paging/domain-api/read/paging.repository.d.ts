@@ -3,7 +3,7 @@ import { StructureReadModelRepository } from '../../../../lib/structure/domain-a
 import { StructureId } from '../../../../lib/structure/domain/structure.id';
 import { Paging } from './paging';
 export declare class PagingRepository {
-    private structureRepository;
+    private readonly structureRepository;
     constructor(structureRepository: StructureReadModelRepository);
     on(structureId: StructureId): Observable<Paging>;
 }

@@ -3,24 +3,53 @@
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 import * as tslib_1 from "tslib";
-import { ChangeDetectorRef, Component, ElementRef, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 import { GuiListGateway } from './gui.list.gateway';
 import { guiListProviders } from './gui.list.providers';
-import { StructureSourceWarehouse } from '../../../lib/structure/domain-api/source/structure-source.warehouse';
 var GuiListComponent = /** @class */ (function (_super) {
     tslib_1.__extends(GuiListComponent, _super);
-    function GuiListComponent(platformId, elementRef, changeDetectorRef, structureSourceWarehouse) {
+    function GuiListComponent(platformId) {
         var _this = _super.call(this) || this;
         _this.platformId = platformId;
-        _this.elementRef = elementRef;
-        _this.changeDetectorRef = changeDetectorRef;
-        _this.structureSourceWarehouse = structureSourceWarehouse;
         return _this;
     }
+    /**
+     * @param {?} page
+     * @return {?}
+     */
+    GuiListComponent.prototype.onPageChange = /**
+     * @param {?} page
+     * @return {?}
+     */
+    function (page) {
+        this.pageChanged.emit(page);
+    };
+    /**
+     * @param {?} pageSize
+     * @return {?}
+     */
+    GuiListComponent.prototype.onPageSizeChange = /**
+     * @param {?} pageSize
+     * @return {?}
+     */
+    function (pageSize) {
+        this.pageSizeChanged.emit(pageSize);
+    };
+    /**
+     * @param {?} phrase
+     * @return {?}
+     */
+    GuiListComponent.prototype.onSearchPhraseChange = /**
+     * @param {?} phrase
+     * @return {?}
+     */
+    function (phrase) {
+        this.searchPhraseChanged.emit(phrase);
+    };
     GuiListComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-list',
-                    template: "<gui-container\n\t\t[items]=\"source\"\n\t\t[template]=\"containerTemplate\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[paging]=\"paging\"\n\t\t[mode]=\"listViewMode\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n>\n</gui-container>\n",
+                    template: "<gui-list-view\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[template]=\"containerTemplate\"\n\t\t[paging]=\"paging\"\n\t\t[fields]=\"listFields\"\n\t\t[searching]=\"searchConfig\"\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n>\n</gui-list-view>\n",
                     providers: tslib_1.__spread(guiListProviders),
                     host: {
                         '[class.gui-list]': "\"true\""
@@ -31,10 +60,7 @@ var GuiListComponent = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     GuiListComponent.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
-        { type: ElementRef },
-        { type: ChangeDetectorRef },
-        { type: StructureSourceWarehouse }
+        { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
     ]; };
     return GuiListComponent;
 }(GuiListGateway));
@@ -45,20 +71,5 @@ if (false) {
      * @private
      */
     GuiListComponent.prototype.platformId;
-    /**
-     * @type {?}
-     * @private
-     */
-    GuiListComponent.prototype.elementRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    GuiListComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    GuiListComponent.prototype.structureSourceWarehouse;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3VpLmxpc3QuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJndWkvbGlzdC9mZWF0dXJlL2d1aS5saXN0LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxpQkFBaUIsRUFBRSxTQUFTLEVBQUUsVUFBVSxFQUFFLE1BQU0sRUFBRSxXQUFXLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFakgsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBQ3BELE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLHNCQUFzQixDQUFDO0FBRXhELE9BQU8sRUFBRSx3QkFBd0IsRUFBRSxNQUFNLHFFQUFxRSxDQUFDO0FBRy9HO0lBY3NDLDRDQUFjO0lBRW5ELDBCQUF5QyxVQUFlLEVBQzdDLFVBQXNCLEVBQ3RCLGlCQUFvQyxFQUMzQix3QkFBa0Q7UUFIdEUsWUFJQyxpQkFBTyxTQUNQO1FBTHdDLGdCQUFVLEdBQVYsVUFBVSxDQUFLO1FBQzdDLGdCQUFVLEdBQVYsVUFBVSxDQUFZO1FBQ3RCLHVCQUFpQixHQUFqQixpQkFBaUIsQ0FBbUI7UUFDM0IsOEJBQXdCLEdBQXhCLHdCQUF3QixDQUEwQjs7SUFFdEUsQ0FBQzs7Z0JBckJELFNBQVMsU0FBQztvQkFDVixRQUFRLEVBQUUsVUFBVTtvQkFDcEIsMlBBQXdDO29CQUl4QyxTQUFTLG1CQUNMLGdCQUFnQixDQUNuQjtvQkFDRCxJQUFJLEVBQUU7d0JBQ0wsa0JBQWtCLEVBQUUsVUFBUTtxQkFDNUI7b0JBQ0QsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUk7O2lCQUNyQzs7OztnREFHYSxNQUFNLFNBQUMsV0FBVztnQkF4Qk8sVUFBVTtnQkFBeEMsaUJBQWlCO2dCQUtqQix3QkFBd0I7O0lBMEJqQyx1QkFBQztDQUFBLEFBdkJELENBY3NDLGNBQWMsR0FTbkQ7U0FUWSxnQkFBZ0I7Ozs7OztJQUVoQixzQ0FBNEM7Ozs7O0lBQ3JELHNDQUE4Qjs7Ozs7SUFDOUIsNkNBQTRDOzs7OztJQUM1QyxvREFBbUUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3RvclJlZiwgQ29tcG9uZW50LCBFbGVtZW50UmVmLCBJbmplY3QsIFBMQVRGT1JNX0lELCBWaWV3RW5jYXBzdWxhdGlvbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBHdWlMaXN0R2F0ZXdheSB9IGZyb20gJy4vZ3VpLmxpc3QuZ2F0ZXdheSc7XG5pbXBvcnQgeyBndWlMaXN0UHJvdmlkZXJzIH0gZnJvbSAnLi9ndWkubGlzdC5wcm92aWRlcnMnO1xuXG5pbXBvcnQgeyBTdHJ1Y3R1cmVTb3VyY2VXYXJlaG91c2UgfSBmcm9tICcuLi8uLi8uLi9saWIvc3RydWN0dXJlL2RvbWFpbi1hcGkvc291cmNlL3N0cnVjdHVyZS1zb3VyY2Uud2FyZWhvdXNlJztcblxuXG5AQ29tcG9uZW50KHtcblx0c2VsZWN0b3I6ICdndWktbGlzdCcsXG5cdHRlbXBsYXRlVXJsOiAnLi9ndWkubGlzdC5jb21wb25lbnQuaHRtbCcsXG5cdHN0eWxlVXJsczogW1xuXHRcdCcuL2d1aS5saXN0Lm5neC5zY3NzJ1xuXHRdLFxuXHRwcm92aWRlcnM6IFtcblx0XHQuLi5ndWlMaXN0UHJvdmlkZXJzXG5cdF0sXG5cdGhvc3Q6IHtcblx0XHQnW2NsYXNzLmd1aS1saXN0XSc6IGBcInRydWVcImBcblx0fSxcblx0ZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZVxufSlcbmV4cG9ydCBjbGFzcyBHdWlMaXN0Q29tcG9uZW50IGV4dGVuZHMgR3VpTGlzdEdhdGV3YXkge1xuXG5cdGNvbnN0cnVjdG9yKEBJbmplY3QoUExBVEZPUk1fSUQpIHByaXZhdGUgcGxhdGZvcm1JZDogYW55LFxuXHRcdFx0XHRwcml2YXRlIGVsZW1lbnRSZWY6IEVsZW1lbnRSZWYsXG5cdFx0XHRcdHByaXZhdGUgY2hhbmdlRGV0ZWN0b3JSZWY6IENoYW5nZURldGVjdG9yUmVmLFxuXHRcdFx0XHRwcml2YXRlIHJlYWRvbmx5IHN0cnVjdHVyZVNvdXJjZVdhcmVob3VzZTogU3RydWN0dXJlU291cmNlV2FyZWhvdXNlKSB7XG5cdFx0c3VwZXIoKTtcblx0fVxuXG59XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3VpLmxpc3QuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJndWkvbGlzdC9mZWF0dXJlL2d1aS5saXN0LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsTUFBTSxFQUFFLFdBQVcsRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUVsRixPQUFPLEVBQUUsY0FBYyxFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFDcEQsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sc0JBQXNCLENBQUM7QUFHeEQ7SUFjc0MsNENBQWM7SUFFbkQsMEJBQXlDLFVBQWU7UUFBeEQsWUFDQyxpQkFBTyxTQUNQO1FBRndDLGdCQUFVLEdBQVYsVUFBVSxDQUFLOztJQUV4RCxDQUFDOzs7OztJQUVELHVDQUFZOzs7O0lBQVosVUFBYSxJQUFZO1FBQ3hCLElBQUksQ0FBQyxXQUFXLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxDQUFDO0lBQzdCLENBQUM7Ozs7O0lBRUQsMkNBQWdCOzs7O0lBQWhCLFVBQWlCLFFBQWdCO1FBQ2hDLElBQUksQ0FBQyxlQUFlLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQ3JDLENBQUM7Ozs7O0lBRUQsK0NBQW9COzs7O0lBQXBCLFVBQXFCLE1BQWM7UUFDbEMsSUFBSSxDQUFDLG1CQUFtQixDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsQ0FBQztJQUN2QyxDQUFDOztnQkE5QkQsU0FBUyxTQUFDO29CQUNWLFFBQVEsRUFBRSxVQUFVO29CQUNwQixzZEFBd0M7b0JBSXhDLFNBQVMsbUJBQ0wsZ0JBQWdCLENBQ25CO29CQUNELElBQUksRUFBRTt3QkFDTCxrQkFBa0IsRUFBRSxVQUFRO3FCQUM1QjtvQkFDRCxhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTs7aUJBQ3JDOzs7O2dEQUdhLE1BQU0sU0FBQyxXQUFXOztJQWdCaEMsdUJBQUM7Q0FBQSxBQWhDRCxDQWNzQyxjQUFjLEdBa0JuRDtTQWxCWSxnQkFBZ0I7Ozs7OztJQUVoQixzQ0FBNEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIEluamVjdCwgUExBVEZPUk1fSUQsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEd1aUxpc3RHYXRld2F5IH0gZnJvbSAnLi9ndWkubGlzdC5nYXRld2F5JztcbmltcG9ydCB7IGd1aUxpc3RQcm92aWRlcnMgfSBmcm9tICcuL2d1aS5saXN0LnByb3ZpZGVycyc7XG5cblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZ3VpLWxpc3QnLFxuXHR0ZW1wbGF0ZVVybDogJy4vZ3VpLmxpc3QuY29tcG9uZW50Lmh0bWwnLFxuXHRzdHlsZVVybHM6IFtcblx0XHQnLi9ndWkubGlzdC5uZ3guc2Nzcydcblx0XSxcblx0cHJvdmlkZXJzOiBbXG5cdFx0Li4uZ3VpTGlzdFByb3ZpZGVyc1xuXHRdLFxuXHRob3N0OiB7XG5cdFx0J1tjbGFzcy5ndWktbGlzdF0nOiBgXCJ0cnVlXCJgXG5cdH0sXG5cdGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmVcbn0pXG5leHBvcnQgY2xhc3MgR3VpTGlzdENvbXBvbmVudCBleHRlbmRzIEd1aUxpc3RHYXRld2F5IHtcblxuXHRjb25zdHJ1Y3RvcihASW5qZWN0KFBMQVRGT1JNX0lEKSBwcml2YXRlIHBsYXRmb3JtSWQ6IGFueSkge1xuXHRcdHN1cGVyKCk7XG5cdH1cblxuXHRvblBhZ2VDaGFuZ2UocGFnZTogbnVtYmVyKTogdm9pZCB7XG5cdFx0dGhpcy5wYWdlQ2hhbmdlZC5lbWl0KHBhZ2UpO1xuXHR9XG5cblx0b25QYWdlU2l6ZUNoYW5nZShwYWdlU2l6ZTogbnVtYmVyKTogdm9pZCB7XG5cdFx0dGhpcy5wYWdlU2l6ZUNoYW5nZWQuZW1pdChwYWdlU2l6ZSk7XG5cdH1cblxuXHRvblNlYXJjaFBocmFzZUNoYW5nZShwaHJhc2U6IHN0cmluZyk6IHZvaWQge1xuXHRcdHRoaXMuc2VhcmNoUGhyYXNlQ2hhbmdlZC5lbWl0KHBocmFzZSk7XG5cdH1cblxufVxuIl19

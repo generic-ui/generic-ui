@@ -1,12 +1,14 @@
-import { OnChanges, SimpleChanges } from '@angular/core';
+import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GuiListItemComponent } from './item/gui.list-item.component';
-import { GuiListPaging, GuiListView } from '../domain-api/gui.list.api';
+import { GuiListField, GuiListPaging, GuiListSearching, GuiListView } from '../domain-api/gui.list.api';
 import { GuiListPagingConverter } from './paging/gui-list.paging.converter';
 import { GuiListCardComponent } from './card/gui.list-card.component';
-import { ListCardTemplate } from '../../../structure/list/feature/card/template/list.card-template';
-import { ContainerTemplate } from '../../../structure/list/feature/source/template/container-template';
 import { GuiListModeConverter } from './mode/gui-list.mode.converter';
+import { ListViewCardTemplate } from '../../../structure/list/feature/card/template/list-view.card-template';
+import { ListViewTemplate } from '../../../structure/list/feature/source/template/list-view-template';
 import { ListViewMode } from '../../../structure/list/domain/mode/list-view-mode';
+import { FieldConfig } from '../../../structure/field/domain-api/field.config';
+import { SearchConfig } from '../../../structure/search/domain-api/search-config';
 export declare abstract class GuiListGateway implements OnChanges {
     listItem: GuiListItemComponent;
     listCard: GuiListCardComponent;
@@ -15,11 +17,18 @@ export declare abstract class GuiListGateway implements OnChanges {
     cardTemplate: (item: any) => string;
     paging: boolean | GuiListPaging;
     view: GuiListView;
-    containerTemplate: ContainerTemplate;
-    listCardTemplate: ListCardTemplate;
+    fields: Array<GuiListField>;
+    searching: GuiListSearching;
+    pageChanged: EventEmitter<number>;
+    pageSizeChanged: EventEmitter<number>;
+    searchPhraseChanged: EventEmitter<string>;
+    containerTemplate: ListViewTemplate;
+    listCardTemplate: ListViewCardTemplate;
     listViewMode: ListViewMode;
     listViewModeSelector: boolean;
     guiListPagingConverter: GuiListPagingConverter;
     guiListModeConverter: GuiListModeConverter;
+    listFields: Array<FieldConfig>;
+    searchConfig: SearchConfig;
     ngOnChanges(changes: SimpleChanges): void;
 }

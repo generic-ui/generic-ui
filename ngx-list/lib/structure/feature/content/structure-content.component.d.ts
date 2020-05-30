@@ -10,8 +10,8 @@ import { VerticalFormationRepository } from '../../domain-api/vertical-formation
 import { StructureWarehouse } from '../../domain-api/structure.warehouse';
 import { StructureRowSelectEnabledArchive } from './row/structure.row-select-enabled.archive';
 import { StructureId } from '../../domain/structure.id';
-import { StructureSearchPhraseRepository } from '../../domain-api/search/phrase/structure.search-phrase.repository';
-import { StructureSearchHighlightArchive } from '../../domain-api/search/highlight/structure.search-highlight.archive';
+import { SearchPhraseRepository } from '../../../../structure/search/domain-api/phrase/search-phrase.repository';
+import { SearchHighlightArchive } from '../../../../structure/search/domain-api/highlight/search-highlight.archive';
 import { StructureVerticalFormationWarehouse } from '../../domain-api/vertical-formation/structure-vertical-formation.warehouse';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly platformId;
@@ -40,7 +40,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     rowSelecting: boolean;
     rowDetailOpened: number;
     constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: StructureFormationDispatcher, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationReadModelService: StructureFormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, structureRowSelectEnabledArchive: StructureRowSelectEnabledArchive, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
-    structureSearchPhraseRepository: StructureSearchPhraseRepository, structureSearchHighlightArchive: StructureSearchHighlightArchive);
+    structureSearchPhraseRepository: SearchPhraseRepository, structureSearchHighlightArchive: SearchHighlightArchive);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;

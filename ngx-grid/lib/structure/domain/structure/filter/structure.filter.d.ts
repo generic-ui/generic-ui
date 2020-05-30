@@ -1,7 +1,7 @@
 import { FilterId } from './filter.id';
-import { FieldId } from '../field/data-type/field.id';
+import { FieldId } from '../../../../../structure/field/domain/data-type/field.id';
 import { OriginItemEntity } from '../../source/origin/origin-item-entity';
-import { TypeField } from '../field/data-type/type.field';
+import { TypeField } from '../../../../../structure/field/domain/data-type/type.field';
 export declare class StructureFilter {
     private readonly filterId;
     private field;

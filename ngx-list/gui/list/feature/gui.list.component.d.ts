@@ -1,10 +1,8 @@
-import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { GuiListGateway } from './gui.list.gateway';
-import { StructureSourceWarehouse } from '../../../lib/structure/domain-api/source/structure-source.warehouse';
 export declare class GuiListComponent extends GuiListGateway {
     private platformId;
-    private elementRef;
-    private changeDetectorRef;
-    private readonly structureSourceWarehouse;
-    constructor(platformId: any, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structureSourceWarehouse: StructureSourceWarehouse);
+    constructor(platformId: any);
+    onPageChange(page: number): void;
+    onPageSizeChange(pageSize: number): void;
+    onSearchPhraseChange(phrase: string): void;
 }

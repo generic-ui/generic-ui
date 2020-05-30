@@ -1,6 +1,6 @@
 import { Command } from '@generic-ui/hermes';
 import { StructureId } from '../../../structure.id';
-import { FieldId } from '../../field/data-type/field.id';
+import { FieldId } from '../../../../../../structure/field/domain/data-type/field.id';
 export declare class StructureToggleFilterCommand extends Command {
     private readonly fieldId;
     private readonly externalFilterId;

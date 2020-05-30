@@ -1,7 +1,7 @@
 import { StructureFilter } from './structure.filter';
 import { OriginItemEntity } from '../../source/origin/origin-item-entity';
 import { FilterSettings } from './filter.settings';
-import { TypeField } from '../field/data-type/type.field';
+import { TypeField } from '../../../../../structure/field/domain/data-type/type.field';
 export declare class FilterManager {
     private readonly filterSettings;
     private readonly filters;

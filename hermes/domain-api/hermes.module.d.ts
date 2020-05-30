@@ -7,7 +7,6 @@ import { Command } from '../domain/command/command';
 import { CommandBus } from '../domain/command/command.bus';
 import { DomainEvent } from '../domain/event/domain-event';
 import { DomainEventBus } from '../domain/event/domain-event.bus';
-import { DomainEventHandler } from '../domain/event/domain-event.handler';
 /**
  * APP
  */
@@ -31,17 +30,25 @@ import { CommandHandlerImpl } from '../domain/command/handler/command-handler-im
 import { CommandHandler } from '../domain/command/handler/command.handler';
 import { AggregateId } from '../domain/aggregate-id';
 import { Reactive } from '../common/reactive';
+import { DomainEventHandlerImpl } from '../domain/event/handler/domain-event-handler-impl';
+import { DomainEventHandler } from '../domain/event/handler/domain-event.handler';
+import { MultiDomainEventHandler } from '../domain/event/handler/multi-domain-event.handler';
 export declare function commandLoggerFactory(enabled: boolean, consoleCommandLogger: ConsoleCommandLogger, noopCommandLogger: NoopCommandLogger): ConsoleCommandLogger | NoopCommandLogger;
 export declare function eventLoggerFactory(enabled: boolean, consoleEventLogger: ConsoleEventLogger, noopEventLogger: NoopEventLogger): ConsoleEventLogger | NoopEventLogger;
-export declare class HermesModule<I extends AggregateId, A extends AggregateRoot<I>, C extends Command, E extends DomainEvent<I>> extends Reactive implements OnDestroy {
+export declare class HermesBaseModule<I extends AggregateId, A extends AggregateRoot<I>, C extends Command, E extends DomainEvent<I>> extends Reactive implements OnDestroy {
     private hermesLoggersInitializer;
     private hermesApi;
-    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createHandler: Type<CreateAggregateCommandHandler<A, C>>, handlers: Array<Provider>): ModuleWithProviders;
-    static withConfig(config?: HermesModuleConfig): ModuleWithProviders;
-    static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
-    private static registerCreateCommandHandler;
-    constructor(eventHandlers: Array<DomainEventHandler<I, E>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<I, A, C>>, handlers: Array<CommandHandlerImpl<I, A, C>>, definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
+    constructor(eventHandlers: Array<DomainEventHandlerImpl<I, E>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<I, A, C>>, commandHandlers: Array<CommandHandlerImpl<I, A, C>>, definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     ngOnDestroy(): void;
     private checkNullCommand;
     private checkCommandHandlerIsCollection;
+    private checkDomainEventHandlerIsCollection;
+}
+export declare class HermesModule extends HermesBaseModule<any, any, any, any> {
+    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createHandler: Type<CreateAggregateCommandHandler<A, C>>, commandHandlers?: Array<Provider>, domainEventHandlers?: Array<Provider>): ModuleWithProviders<any>;
+    static withConfig(config?: HermesModuleConfig): ModuleWithProviders<HermesModule>;
+    static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
+    static registerDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<DomainEventHandler<I, E>>): Array<Provider>;
+    static registerMultiDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<MultiDomainEventHandler<I, E>>): Array<Provider>;
+    private static registerCreateCommandHandler;
 }

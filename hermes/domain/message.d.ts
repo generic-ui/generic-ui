@@ -1,15 +1,15 @@
 import { AggregateId } from './aggregate-id';
-export declare abstract class Message {
+export declare abstract class Message<I extends AggregateId> {
     private readonly aggregateId;
     protected readonly messageType: string;
     private readonly messageId;
-    protected constructor(aggregateId: AggregateId, messageType: string, messageId?: string);
+    protected constructor(aggregateId: I, messageType: string, messageId?: string);
     getMessageType(): string;
-    getAggregateId(): AggregateId;
+    getAggregateId(): I;
     getMessageId(): string;
     toString(): string;
-    equalsByType(message: Message): boolean;
-    equals(message: Message): boolean;
+    equalsByType(message: Message<I>): boolean;
+    equals(message: Message<I>): boolean;
     ofMessageType(messageType: string): boolean;
     ofMessageType(messageTypes: Array<string>): boolean;
     private isMessageType;

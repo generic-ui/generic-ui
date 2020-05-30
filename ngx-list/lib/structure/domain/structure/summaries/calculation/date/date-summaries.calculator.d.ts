@@ -1,7 +1,7 @@
 import { SummariesCalculator } from '../summaries.calculator';
 import { DateSummarizedValues } from './date-summarized.values';
-import { DataType } from '../../../field/data-type/data-type';
-import { Field } from '../../../field/data-type/field';
+import { DataType } from '../../../../../../../structure/field/domain/data-type/data-type';
+import { Field } from '../../../../../../../structure/field/domain/data-type/field';
 import { OriginItemEntity } from '../../../../source/origin/origin-item-entity';
 export declare class DateSummariesCalculator extends SummariesCalculator<Date, DateSummarizedValues> {
     constructor();

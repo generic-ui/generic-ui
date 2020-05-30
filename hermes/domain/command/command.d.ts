@@ -1,3 +1,3 @@
 import { Message } from '../message';
-export declare class Command extends Message {
+export declare class Command extends Message<any> {
 }

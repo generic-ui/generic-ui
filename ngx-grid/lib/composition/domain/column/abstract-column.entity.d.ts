@@ -4,7 +4,7 @@ import { ColumnField } from './field/column-field';
 import { ColumnConfig, HeaderTemplate } from './column.config';
 import { ColumnAlign } from './column-align';
 import { ViewEntity } from './view.entity';
-import { DataType } from '../../../structure/domain/structure/field/data-type/data-type';
+import { DataType } from '../../../../structure/field/domain/data-type/data-type';
 import { CellView } from './cell-view';
 import { ColumnPresentation } from './presentation/column.presentation';
 export declare abstract class AbstractColumnEntity extends Entity<ColumnId> {

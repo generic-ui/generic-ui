@@ -18,7 +18,7 @@ import { LocalCompositionCommandDispatcher } from './composition/local-compositi
 import { CompositionWarehouse } from '../../../composition/domain-api/composition.warehouse';
 import { LocalCompositionWarehouse } from './composition/local-composition.warehouse';
 import { PagingWarehouse } from '../../../../structure/paging/domain-api/paging.warehouse';
-import { StructureSearchDispatcher } from '../../domain/structure/search/structure.search.dispatcher';
+import { SearchDispatcher } from '../../../../structure/search/domain/search.dispatcher';
 import { LocalStructureSearchCommandDispatcher } from './search/local-structure-search.command-dispatcher';
 import { SchemaWarehouse } from '../../../../schema/domain-api/schema.warehouse';
 import { LocalSchemaWarehouse } from './schema/local-schema.warehouse';
@@ -58,7 +58,7 @@ export declare const localProviders: ({
     provide: typeof CompositionWarehouse;
     useClass: typeof LocalCompositionWarehouse;
 } | {
-    provide: typeof StructureSearchDispatcher;
+    provide: typeof SearchDispatcher;
     useClass: typeof LocalStructureSearchCommandDispatcher;
 } | {
     provide: typeof StructureVerticalFormationWarehouse;

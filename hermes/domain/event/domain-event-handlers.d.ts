@@ -1,1 +1,0 @@
-export declare const DOMAIN_EVENT_HANDLERS = "DOMAIN_EVENT_HANDLERS";

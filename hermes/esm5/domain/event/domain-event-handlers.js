@@ -1,7 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-export var DOMAIN_EVENT_HANDLERS = 'DOMAIN_EVENT_HANDLERS';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tYWluLWV2ZW50LWhhbmRsZXJzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvaGVybWVzLyIsInNvdXJjZXMiOlsiZG9tYWluL2V2ZW50L2RvbWFpbi1ldmVudC1oYW5kbGVycy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE1BQU0sS0FBTyxxQkFBcUIsR0FBRyx1QkFBdUIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY29uc3QgRE9NQUlOX0VWRU5UX0hBTkRMRVJTID0gJ0RPTUFJTl9FVkVOVF9IQU5ETEVSUyc7XG4vLyBleHBvcnQgY29uc3QgRE9NQUlOX0VWRU5UX0hBTkRMRVJTID0gbmV3IEluamVjdGlvblRva2VuPEFycmF5PERvbWFpbkV2ZW50SGFuZGxlcj4+KCdET01BSU5fRVZFTlRfSEFORExFUlMnKTtcbiJdfQ==
