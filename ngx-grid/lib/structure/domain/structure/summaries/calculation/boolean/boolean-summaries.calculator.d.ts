@@ -1,15 +1,15 @@
 import { SummariesCalculator } from '../summaries.calculator';
 import { BooleanSummarizedValues } from './boolean-summarized.values';
-import { DataType } from '../../../../../../../structure/field/domain/data-type/data-type';
-import { Field } from '../../../../../../../structure/field/domain/data-type/field';
-import { OriginItemEntity } from '../../../../source/origin/origin-item-entity';
+import { DataType } from '../../../../../../../structure/field/domain/core/field/data/data-type';
+import { OriginItemEntity } from '../../../../../../../structure/source/domain/origin/origin-item-entity';
+import { Field } from '../../../../../../../structure/field/domain/core/field/field';
 export declare class BooleanSummariesCalculator extends SummariesCalculator<boolean, BooleanSummarizedValues> {
     private readonly truthy;
     private readonly falsy;
     constructor();
     forDataType(dataType: DataType): boolean;
-    prepare(field: Field<boolean>): void;
-    postCalculate(field: Field<boolean>, items: Array<OriginItemEntity>): void;
-    aggregate(field: Field<boolean>, value: boolean): void;
-    generateAggregatedValues(field: Field<boolean>): BooleanSummarizedValues;
+    prepare(field: Field): void;
+    postCalculate(field: Field, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field, value: boolean): void;
+    generateAggregatedValues(field: Field): BooleanSummarizedValues;
 }

@@ -1,1 +1,1 @@
-export * from './grid.index';
+export * from './gui.grid.index';

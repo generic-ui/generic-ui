@@ -5,7 +5,7 @@ import { SortOrder } from '../../../domain/column/sort/sort-order';
 import { HeaderTemplate } from '../../../domain/column/column.config';
 import { CellTemplateWithContext } from './cell-template-with-context';
 import { CellTemplateWithAccessor } from './cell-template-with-accessor';
-import { DataType } from '../../../../../structure/field/domain/data-type/data-type';
+import { DataType } from '../../../../../structure/field/domain/core/field/data/data-type';
 import { ViewEntity } from '../../../domain/column/view.entity';
 import { ColumnAlign } from '../../../domain/column/column-align';
 import { ColumnDefinitionId } from './column-definition-id';

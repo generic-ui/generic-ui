@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
+import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../../composition.aggregate-repository';
 import { CompositionEventConverter } from '../../../composition.event-converter';
 import { CompositionAggregate } from '../../../composition.aggregate';
@@ -9,7 +8,7 @@ export declare class CompositionMoveRightColumnCommandHandler implements Command
     protected domainEventPublisher: DomainEventPublisher;
     private compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
-    forCommand(): Type<CompositionMoveRightColumnCommand>;
+    forCommand(): CommandType<CompositionMoveRightColumnCommand>;
     publishDomainEvents(aggregate: CompositionAggregate, command: CompositionMoveRightColumnCommand): void;
     handleAggregate(aggregate: CompositionAggregate, command: CompositionMoveRightColumnCommand): void;
     private publishEvents;

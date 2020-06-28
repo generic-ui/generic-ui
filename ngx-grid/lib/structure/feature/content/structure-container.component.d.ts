@@ -6,11 +6,11 @@ import { SchemaRowColoring } from '../../../../schema/domain/coloring/schema-row
 import { StructureId } from '../../domain/structure.id';
 import { StructureCommandDispatcher } from '../../domain-api/structure.command-dispatcher';
 import { StructureWarehouse } from '../../domain-api/structure.warehouse';
-import { StructureSourceWarehouse } from '../../domain-api/source/structure-source.warehouse';
+import { SourceWarehouse } from '../../../../structure/source/domain-api/source.warehouse';
 import { CompositionCommandDispatcher } from '../../../composition/domain-api/composition.command-dispatcher';
 import { CompositionWarehouse } from '../../../composition/domain-api/composition.warehouse';
-import { StructureFormationWarehouse } from '../../domain-api/formation/structure-formation.warehouse';
-import { ItemEntity } from '../../domain/source/item.entity';
+import { FormationWarehouse } from '../../../../structure/source/domain-api/formation/formation.warehouse';
+import { ItemEntity } from '../../../../structure/source/domain/core/item/item.entity';
 import { StructureVerticalFormationWarehouse } from '../../domain-api/vertical-formation/structure-vertical-formation.warehouse';
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elementRef;
@@ -34,7 +34,7 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     rowColoring: SchemaRowColoring;
     private autoResizeWidthEnabled;
     private scrollObservation$;
-    constructor(elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandDispatcher, structureReadModelWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSourceWarehouse: StructureSourceWarehouse, compositionCommandService: CompositionCommandDispatcher, compositionWarehouse: CompositionWarehouse, structureFormationWarehouse: StructureFormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
+    constructor(elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandDispatcher, structureReadModelWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSourceWarehouse: SourceWarehouse, compositionCommandService: CompositionCommandDispatcher, compositionWarehouse: CompositionWarehouse, structureFormationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

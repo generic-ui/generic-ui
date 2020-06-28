@@ -1,0 +1,9 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { MessageType } from '../../message/message-type';
+/** @type {?} */
+export var DomainEventType = MessageType;
+// WARNING: interface has both a type and a value, skipping emit
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tYWluLWV2ZW50LXR5cGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9oZXJtZXMvIiwic291cmNlcyI6WyJkb21haW4vZXZlbnQvaGFuZGxlci9kb21haW4tZXZlbnQtdHlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLDRCQUE0QixDQUFDOztBQUV6RCxNQUFNLEtBQU8sZUFBZSxHQUFHLFdBQVciLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNZXNzYWdlVHlwZSB9IGZyb20gJy4uLy4uL21lc3NhZ2UvbWVzc2FnZS10eXBlJztcblxuZXhwb3J0IGNvbnN0IERvbWFpbkV2ZW50VHlwZSA9IE1lc3NhZ2VUeXBlO1xuXG5leHBvcnQgaW50ZXJmYWNlIERvbWFpbkV2ZW50VHlwZTxUPiBleHRlbmRzIE1lc3NhZ2VUeXBlPFQ+IHtcblx0bmV3KC4uLmFyZ3M6IGFueVtdKTogVDtcbn1cbiJdfQ==

@@ -10,6 +10,7 @@ export { provideEventHandlers } from './domain/provider.helpers';
 export { CommandDispatcher } from './domain/command/command.dispatcher';
 export { Command } from './domain/command/command';
 export { CommandHandler } from './domain/command/handler/command.handler';
+export { CommandType } from './domain/command/handler/command-type';
 export { AggregateFactory } from './domain/command/aggregate/aggregate-factory';
 export { CommandBus } from './domain/command/command.bus';
 export { CommandLogger } from './domain/command/command.logger';
@@ -17,6 +18,7 @@ export { CommandStream } from './domain/command/command.stream';
 export { ExecuteResponse } from './domain/command/response/execute-response';
 export { ReplayCommandDispatcher } from './domain/command/replay-command.dispatcher';
 export { AggregateEvent } from './domain/command/aggregate/aggregate-event';
+export { AggregateEventType } from './domain/command/aggregate/aggregate-event-type';
 export { AggregateRepository } from './domain/command/aggregate/aggregate-repository';
 export { AggregateStore } from './domain/command/store/aggregate.store';
 export { AggregateStoreRegister } from './domain/command/store/aggregate-store.register';
@@ -27,6 +29,7 @@ export { StatusResponse } from './domain/event/status/status.response';
 export { DomainEvent } from './domain/event/domain-event';
 export { DomainEventPublisher } from './domain/event/domain-event.publisher';
 export { DomainEventBus } from './domain/event/domain-event.bus';
+export { DomainEventType } from './domain/event/handler/domain-event-type';
 export { DomainEventHandler } from './domain/event/handler/domain-event.handler';
 export { MultiDomainEventHandler } from './domain/event/handler/multi-domain-event.handler';
 export { DomainEventLogger } from './domain/event/domain-event.logger';
@@ -55,6 +58,8 @@ export { Archive } from './common/archive';
 export { RandomStringGenerator } from './common/random-string.generator';
 export { Optional } from './common/optional';
 export { Reactive } from './common/reactive';
+export { KeyMap } from './common/collections/key-map';
+export { Key } from './common/collections/key';
 /**
  * Infrastructure
  */

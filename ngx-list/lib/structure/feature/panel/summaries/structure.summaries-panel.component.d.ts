@@ -4,7 +4,7 @@ import { StructureId } from '../../../domain/structure.id';
 import { StructureSummariesUiEventsRepository } from '../../../domain-api/summaries/structure-summaries.ui-events-repository';
 import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
 import { SmartComponent } from '../../../../../common/cdk/smart-component';
-import { StructureSourceWarehouse } from '../../../domain-api/source/structure-source.warehouse';
+import { SourceWarehouse } from '../../../../../structure/source/domain-api/source.warehouse';
 export declare class StructureSummariesPanelComponent extends SmartComponent {
     private changeDetectorRef;
     private structureId;
@@ -15,7 +15,7 @@ export declare class StructureSummariesPanelComponent extends SmartComponent {
     sourceEmpty: boolean;
     headerColumns: Array<CellTemplateWithContext>;
     summaries: Map<string, any>;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSummariesUiEventsRepository: StructureSummariesUiEventsRepository, sourceReadModelService: StructureSourceWarehouse, compositionReadModelService: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSummariesUiEventsRepository: StructureSummariesUiEventsRepository, sourceReadModelService: SourceWarehouse, compositionReadModelService: CompositionWarehouse);
     ngOnInit(): void;
     isSummariesTypePresent(summaries: number): boolean;
 }

@@ -24,6 +24,8 @@ export { FabricDialogService } from './modal/dialog/fabric-dialog.service';
 export { FabricNestedDialogComponent } from './modal/common/fabric.nested-dialog.component';
 export { FabricInlineDialogModule } from './modal/inline-dialog/fabric-inline-dialog.module';
 export { FabricInlineDialogService } from './modal/inline-dialog/fabric-inline-dialog.service';
+export { FabricNotificationModule } from './modal/notification/fabric-notification.module';
+export { FabricNotificationService } from './modal/notification/fabric-notification.service';
 export { FabricSpinnerModule } from './general/spinners/spinner/fabric-spinner.module';
 export { FabricToggleButtonModule } from './general/button/toggle-button/fabric-toggle-button.module';
 export { FabricToggleButtonGroupModule } from './general/button/toggle-button-group/fabric-toggle-button-group.module';

@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
+import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../composition.aggregate-repository';
 import { CompositionEventConverter } from '../../composition.event-converter';
 import { SetCompositionContainerWidthCommand } from './set-composition-container-width.command';
@@ -9,7 +8,7 @@ export declare class SetCompositionContainerWidthCommandHandler implements Comma
     protected domainEventPublisher: DomainEventPublisher;
     private compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
-    forCommand(): Type<SetCompositionContainerWidthCommand>;
+    forCommand(): CommandType<SetCompositionContainerWidthCommand>;
     publishDomainEvents(aggregate: CompositionAggregate, command: SetCompositionContainerWidthCommand): void;
     handleAggregate(composition: CompositionAggregate, command: SetCompositionContainerWidthCommand): void;
     private publishAggregateEvents;

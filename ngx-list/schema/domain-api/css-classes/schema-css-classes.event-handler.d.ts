@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { MultiDomainEventHandler } from '@generic-ui/hermes';
+import { DomainEventType, MultiDomainEventHandler } from '@generic-ui/hermes';
 import { SchemaCssClassesRepository } from './schema.css-classes.repository';
 import { SchemaId } from '../../domain/schema.id';
 import { SchemaThemeSetEvent } from '../../domain/theme/schema-theme-set.event';
@@ -17,6 +16,6 @@ export declare class SchemaCssClassesEventHandler implements MultiDomainEventHan
     schemaTheme: SchemaTheme;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository);
     private publish;
-    forEvents(): Array<Type<SchemaCssClassesEventType>>;
+    forEvents(): Array<DomainEventType<SchemaCssClassesEventType>>;
     handle(event: SchemaCssClassesEventType): void;
 }

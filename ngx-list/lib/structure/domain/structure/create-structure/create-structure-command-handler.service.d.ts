@@ -1,4 +1,4 @@
-import { AggregateRepository, Command, CreateAggregateCommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
+import { AggregateRepository, CommandType, CreateAggregateCommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { StructureAggregateRepository } from '../structure-aggregate.repository';
 import { CreateStructureCommand } from './create-structure.command';
 import { StructureAggregate } from '../structure.aggregate';
@@ -7,7 +7,7 @@ export declare class CreateStructureCommandHandler implements CreateAggregateCom
     private readonly structureAggregateRepository;
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
+    forCommand(): CommandType<CreateStructureCommand> | any;
     getAggregateRepository(): AggregateRepository<StructureId, StructureAggregate>;
-    forCommand(): Command | any;
     publishDomainEvents(aggregate: StructureAggregate, command: CreateStructureCommand): void;
 }

@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { AggregateRepository, CreateAggregateCommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
+import { AggregateRepository, CommandType, CreateAggregateCommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../composition.aggregate-repository';
 import { CreateCompositionCommand } from './create-composition.command';
 import { CompositionAggregate } from '../composition.aggregate';
@@ -8,7 +7,7 @@ export declare class CreateCompositionCommandHandler implements CreateAggregateC
     private readonly compositionAggregateRepository;
     private readonly domainEventPublisher;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher);
+    forCommand(): CommandType<CreateCompositionCommand>;
     getAggregateRepository(): AggregateRepository<CompositionId, CompositionAggregate>;
-    forCommand(): Type<CreateCompositionCommand>;
     publishDomainEvents(aggregate: CompositionAggregate, command: CreateCompositionCommand): void;
 }

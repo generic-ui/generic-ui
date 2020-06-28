@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { StructureFilterCommandDispatcher } from '../../../domain-api/filter/structure-filter.command-dispatcher';
+import { FilterCommandDispatcher } from '../../../../../structure/filter/domain-api/filter.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
 import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
 export declare class StructureHeaderFiltersComponent {
@@ -13,7 +13,7 @@ export declare class StructureHeaderFiltersComponent {
     readonly filterFieldName = "phrase";
     filterForm: FormGroup;
     filterMode: boolean;
-    constructor(structureFilterCommandService: StructureFilterCommandDispatcher, formBuilder: FormBuilder, cd: ChangeDetectorRef, structureId: StructureId);
+    constructor(structureFilterCommandService: FilterCommandDispatcher, formBuilder: FormBuilder, cd: ChangeDetectorRef, structureId: StructureId);
     ngOnInit(): void;
     filter(phrase: string): void;
     clearFilters(): void;

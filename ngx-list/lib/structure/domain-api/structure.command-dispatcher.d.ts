@@ -1,15 +1,15 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { StructureFilterCommandDispatcher } from './filter/structure-filter.command-dispatcher';
-import { SourceDispatcher } from '../domain/source/source.dispatcher';
+import { FilterCommandDispatcher } from '../../../structure/filter/domain-api/filter.command-dispatcher';
+import { SourceDispatcher } from '../../../structure/source/domain/source.dispatcher';
 import { StructureId } from '../domain/structure.id';
-import { FilterConfig } from './filter/filter-config';
-import { QuickFiltersConfig } from './filter/quick-filters.config';
+import { FilterConfig } from '../../../structure/filter/domain-api/filter-config';
+import { QuickFiltersConfig } from '../../../structure/filter/domain-api/quick-filters.config';
 import { SchemaTheme } from '../../../schema/domain/theme/schema-theme';
 export declare class StructureCommandDispatcher {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;
     private readonly sourceDispatcher;
-    constructor(commandDispatcher: CommandDispatcher, structureFilterCommandService: StructureFilterCommandDispatcher, sourceDispatcher: SourceDispatcher);
+    constructor(commandDispatcher: CommandDispatcher, structureFilterCommandService: FilterCommandDispatcher, sourceDispatcher: SourceDispatcher);
     createStructure(structureId?: StructureId): void;
     enableVerticalScroll(structureId?: StructureId): void;
     disableVerticalScroll(structureId?: StructureId): void;

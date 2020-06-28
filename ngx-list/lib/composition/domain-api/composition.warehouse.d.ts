@@ -4,7 +4,7 @@ import { CompositionId } from '../domain/composition.id';
 import { CellTemplateWithContext } from './read/definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from './read/definition/cell-template-with-accessor';
 import { SortOrder } from '../domain/column/sort/sort-order';
-import { FieldId } from '../../../structure/field/domain/data-type/field.id';
+import { FieldId } from '../../../structure/field/domain/core/field/field.id';
 export declare class CompositionWarehouse {
     private compositionRepository;
     constructor(compositionRepository: CompositionReadModelRootRepository);

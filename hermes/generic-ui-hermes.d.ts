@@ -18,7 +18,7 @@ export { COMMAND_HANDLERS as ɵk } from './domain/command/handler/command-handle
 export { DomainEventStore as ɵg } from './domain/event/domain-event.store';
 export { DomainEventHandlerImpl as ɵz, domainEventHandlerFactory as ɵx, multiDomainEventHandlerFactory as ɵy } from './domain/event/handler/domain-event-handler-impl';
 export { DOMAIN_EVENT_HANDLERS as ɵi } from './domain/event/handler/domain-event-handlers';
-export { Message as ɵe } from './domain/message';
+export { Message as ɵe } from './domain/message/message';
 export { ConsoleCommandLogger as ɵq } from './infrastructure/logger/command/console.command.logger';
 export { NoopCommandLogger as ɵr } from './infrastructure/logger/command/noop.command.logger';
 export { ConsoleEventLogger as ɵs } from './infrastructure/logger/event/console.event.logger';

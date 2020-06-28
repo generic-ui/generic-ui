@@ -1,13 +1,12 @@
-import { Type } from '@angular/core';
-import { DomainEventHandler } from '@generic-ui/hermes';
-import { FieldUiArchive } from './field.ui-archive';
+import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
+import { FieldReadModelRepository } from './field.read-model-repository';
 import { FieldUiConverter } from './field.ui-converter';
 import { FieldsInitedEvent } from '../../domain/init/fields-inited.event';
 import { StructureId } from '../../../../lib/structure/domain/structure.id';
 export declare class FieldsInitedEventHandler implements DomainEventHandler<StructureId, FieldsInitedEvent> {
-    private fieldUiArchive;
+    private fieldReadModelRepository;
     private fieldUiConverter;
-    constructor(fieldUiArchive: FieldUiArchive, fieldUiConverter: FieldUiConverter);
-    forEvent(): Type<FieldsInitedEvent>;
+    constructor(fieldReadModelRepository: FieldReadModelRepository, fieldUiConverter: FieldUiConverter);
+    forEvent(): DomainEventType<FieldsInitedEvent>;
     handle(event: FieldsInitedEvent): void;
 }

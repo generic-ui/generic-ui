@@ -407,6 +407,22 @@ class Command extends Message {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const MessageType = Function;
+// WARNING: interface has both a type and a value, skipping emit
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const CommandType = MessageType;
+// WARNING: interface has both a type and a value, skipping emit
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @abstract
  * @template I, A
@@ -716,6 +732,14 @@ if (false) {
      */
     AggregateEvent.prototype.toDomainEvent = function () { };
 }
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const AggregateEventType = MessageType;
+// WARNING: interface has both a type and a value, skipping emit
 
 /**
  * @fileoverview added by tsickle
@@ -1374,6 +1398,14 @@ DomainEventBus.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const DomainEventType = MessageType;
+// WARNING: interface has both a type and a value, skipping emit
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class DomainEventPayload {
     /**
      * @param {?} value
@@ -1910,7 +1942,18 @@ class AggregateArchive extends ReactiveService {
          */
         (map) => {
             return map.get(aggregateId.toString());
-        })), distinctUntilChanged());
+        })), filter((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => value !== undefined)), distinctUntilChanged());
+    }
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    get(aggregateId) {
+        return this.archive.get(aggregateId.toString());
     }
     /**
      * @param {?} aggregateId
@@ -2138,6 +2181,81 @@ if (false) {
      * @private
      */
     Optional.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template K, T
+ */
+class KeyMap {
+    constructor() {
+        this.keys = new Map();
+        this.values = new WeakMap();
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    get(key) {
+        /** @type {?} */
+        const internalKey = this.getInternalKey(key);
+        if (internalKey) {
+            return Optional.of(this.values.get(internalKey));
+        }
+        else {
+            return Optional.empty();
+        }
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    has(key) {
+        /** @type {?} */
+        const internalKey = this.getInternalKey(key);
+        return this.values.has(internalKey);
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    set(key, value) {
+        /** @type {?} */
+        const internalKey = this.getInternalKey(key);
+        this.values.set(internalKey, value);
+    }
+    /**
+     * @private
+     * @param {?} key
+     * @return {?}
+     */
+    getInternalKey(key) {
+        /** @type {?} */
+        const realKey = this.keys.get(key.toString());
+        if (!realKey) {
+            this.keys.set(key.toString(), key);
+            return key;
+        }
+        else {
+            return realKey;
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyMap.prototype.keys;
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyMap.prototype.values;
 }
 
 /**
@@ -3499,21 +3617,14 @@ class HermesBaseModule extends Reactive {
                     handler.handleEvent(event);
                 }));
             }));
-            domainEventBus
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} event
-             * @return {?}
-             */
-            (event) => {
-                eventHandlers.forEach((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                (handler) => {
-                    handler.handleEvent(event);
-                }));
-            }));
+            // domainEventBus
+            // 	.pipe(this.takeUntil())
+            // 	.subscribe((event: E) => {
+            //
+            // 		eventHandlers.forEach((handler: DomainEventHandlerImpl<I, E>) => {
+            // 			handler.handleEvent(event);
+            // 		});
+            // 	});
         }
     }
     /**
@@ -3813,5 +3924,5 @@ class CreateAggregateCommand extends Command {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AggregateArchive, AggregateEvent, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventRepository, FeatureModule, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ReplayCommandDispatcher, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, createAggregateCommandHandlerFactory as ɵba, CreateAggregateCommandHandlerImpl as ɵbb, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, ReactiveService as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, HermesDomainModule as ɵu, commandHandlerFactory as ɵv, CommandHandlerImpl as ɵw, domainEventHandlerFactory as ɵx, multiDomainEventHandlerFactory as ɵy, DomainEventHandlerImpl as ɵz };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventRepository, FeatureModule, HermesApi, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ReplayCommandDispatcher, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, createAggregateCommandHandlerFactory as ɵba, CreateAggregateCommandHandlerImpl as ɵbb, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, ReactiveService as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, HermesDomainModule as ɵu, commandHandlerFactory as ɵv, CommandHandlerImpl as ɵw, domainEventHandlerFactory as ɵx, multiDomainEventHandlerFactory as ɵy, DomainEventHandlerImpl as ɵz };
 //# sourceMappingURL=generic-ui-hermes.js.map

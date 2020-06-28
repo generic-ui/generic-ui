@@ -1,12 +1,12 @@
-import { Type } from '@angular/core';
 import { AggregateEvent } from './aggregate-event';
 import { AggregateId } from '../../aggregate-id';
+import { AggregateEventType } from './aggregate-event-type';
 export declare abstract class AggregateRoot<I extends AggregateId> {
     private readonly type;
     private readonly aggregateId;
     private readonly events;
     protected constructor(aggregateId: I, type: string);
-    abstract createEvent(): Type<AggregateEvent<I>>;
+    abstract createEvent(): AggregateEventType<AggregateEvent<I>>;
     getId(): I;
     getType(): string;
     getEvents(): ReadonlyArray<AggregateEvent<I>>;

@@ -1,7 +1,7 @@
-import { Type } from '@angular/core';
 import { AggregateId } from '../../aggregate-id';
 import { DomainEvent } from '../domain-event';
+import { DomainEventType } from './domain-event-type';
 export interface MultiDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>> {
-    forEvents(): Array<Type<E>>;
+    forEvents(): Array<DomainEventType<E>>;
     handle(event: E): void;
 }

@@ -1,5 +1,5 @@
 import { CellView } from './cell-view';
-import { DataType } from '../../../../structure/field/domain/data-type/data-type';
+import { DataType } from '../../../../structure/field/domain/core/field/data/data-type';
 export declare class ViewEntity {
     static fromDataType(dataType: DataType): ViewEntity;
     private readonly view;

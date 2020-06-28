@@ -679,6 +679,22 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var MessageType = Function;
+    // WARNING: interface has both a type and a value, skipping emit
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var CommandType = MessageType;
+    // WARNING: interface has both a type and a value, skipping emit
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @abstract
      * @template I, A
@@ -1059,6 +1075,14 @@
          */
         AggregateEvent.prototype.toDomainEvent = function () { };
     }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var AggregateEventType = MessageType;
+    // WARNING: interface has both a type and a value, skipping emit
 
     /**
      * @fileoverview added by tsickle
@@ -1890,6 +1914,14 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var DomainEventType = MessageType;
+    // WARNING: interface has both a type and a value, skipping emit
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var DomainEventPayload = /** @class */ (function () {
         function DomainEventPayload(value) {
             this.value = value;
@@ -2512,7 +2544,22 @@
              */
             function (map) {
                 return map.get(aggregateId.toString());
-            })), operators.distinctUntilChanged());
+            })), operators.filter((/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return value !== undefined; })), operators.distinctUntilChanged());
+        };
+        /**
+         * @param {?} aggregateId
+         * @return {?}
+         */
+        AggregateArchive.prototype.get = /**
+         * @param {?} aggregateId
+         * @return {?}
+         */
+        function (aggregateId) {
+            return this.archive.get(aggregateId.toString());
         };
         /**
          * @param {?} aggregateId
@@ -2819,6 +2866,103 @@
          * @private
          */
         Optional.prototype.value;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @template K, T
+     */
+    var   /**
+     * @template K, T
+     */
+    KeyMap = /** @class */ (function () {
+        function KeyMap() {
+            this.keys = new Map();
+            this.values = new WeakMap();
+        }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        KeyMap.prototype.get = /**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            /** @type {?} */
+            var internalKey = this.getInternalKey(key);
+            if (internalKey) {
+                return Optional.of(this.values.get(internalKey));
+            }
+            else {
+                return Optional.empty();
+            }
+        };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        KeyMap.prototype.has = /**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            /** @type {?} */
+            var internalKey = this.getInternalKey(key);
+            return this.values.has(internalKey);
+        };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
+        KeyMap.prototype.set = /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
+        function (key, value) {
+            /** @type {?} */
+            var internalKey = this.getInternalKey(key);
+            this.values.set(internalKey, value);
+        };
+        /**
+         * @private
+         * @param {?} key
+         * @return {?}
+         */
+        KeyMap.prototype.getInternalKey = /**
+         * @private
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) {
+            /** @type {?} */
+            var realKey = this.keys.get(key.toString());
+            if (!realKey) {
+                this.keys.set(key.toString(), key);
+                return key;
+            }
+            else {
+                return realKey;
+            }
+        };
+        return KeyMap;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        KeyMap.prototype.keys;
+        /**
+         * @type {?}
+         * @private
+         */
+        KeyMap.prototype.values;
     }
 
     /**
@@ -4462,21 +4606,14 @@
                         handler.handleEvent(event);
                     }));
                 }));
-                domainEventBus
-                    .pipe(_this.takeUntil())
-                    .subscribe((/**
-                 * @param {?} event
-                 * @return {?}
-                 */
-                function (event) {
-                    eventHandlers.forEach((/**
-                     * @param {?} handler
-                     * @return {?}
-                     */
-                    function (handler) {
-                        handler.handleEvent(event);
-                    }));
-                }));
+                // domainEventBus
+                // 	.pipe(this.takeUntil())
+                // 	.subscribe((event: E) => {
+                //
+                // 		eventHandlers.forEach((handler: DomainEventHandlerImpl<I, E>) => {
+                // 			handler.handleEvent(event);
+                // 		});
+                // 	});
             }
             return _this;
         }
@@ -4854,6 +4991,7 @@
 
     exports.AggregateArchive = AggregateArchive;
     exports.AggregateEvent = AggregateEvent;
+    exports.AggregateEventType = AggregateEventType;
     exports.AggregateFactory = AggregateFactory;
     exports.AggregateId = AggregateId;
     exports.AggregateRepository = AggregateRepository;
@@ -4868,6 +5006,7 @@
     exports.CommandDispatcher = CommandDispatcher;
     exports.CommandLogger = CommandLogger;
     exports.CommandStream = CommandStream;
+    exports.CommandType = CommandType;
     exports.CreateAggregateCommand = CreateAggregateCommand;
     exports.DomainEvent = DomainEvent;
     exports.DomainEventBus = DomainEventBus;
@@ -4876,6 +5015,7 @@
     exports.DomainEventPublisher = DomainEventPublisher;
     exports.DomainEventStatus = DomainEventStatus;
     exports.DomainEventStream = DomainEventStream;
+    exports.DomainEventType = DomainEventType;
     exports.DomainModule = DomainModule;
     exports.DomainObject = DomainObject;
     exports.EVENT_LOGGER_ENABLED = EVENT_LOGGER_ENABLED;
@@ -4888,6 +5028,7 @@
     exports.InMemoryAggregateStore = InMemoryAggregateStore;
     exports.InMemoryReadModelStore = InMemoryReadModelStore;
     exports.InMemoryStore = InMemoryStore;
+    exports.KeyMap = KeyMap;
     exports.Optional = Optional;
     exports.PersistAggregateStore = PersistAggregateStore;
     exports.PersistAnemia = PersistAnemia;

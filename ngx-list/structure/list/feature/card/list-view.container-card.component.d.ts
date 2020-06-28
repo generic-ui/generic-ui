@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { StructureSourceWarehouse } from '../../../../lib/structure/domain-api/source/structure-source.warehouse';
+import { SourceWarehouse } from '../../../source/domain-api/source.warehouse';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { StructureId } from '../../../../lib/structure/domain/structure.id';
 import { ListViewCardTemplate } from './template/list-view.card-template';
@@ -11,6 +11,6 @@ export declare class ListViewContainerCardComponent extends SmartComponent imple
     private readonly listCardTemplateArchive;
     items: Array<any>;
     cardTemplate: ListViewCardTemplate;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSourceWarehouse: StructureSourceWarehouse, listCardTemplateArchive: ListViewCardTemplateArchive);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSourceWarehouse: SourceWarehouse, listCardTemplateArchive: ListViewCardTemplateArchive);
     ngOnInit(): void;
 }

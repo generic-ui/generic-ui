@@ -1,12 +1,13 @@
-import { SourceCommandDispatcher } from '../../../domain-api/source/source.command-dispatcher';
+import { SourceCommandDispatcher } from '../../../../../structure/source/domain-api/source.command-dispatcher';
 import { StructureId } from '../../../domain/structure.id';
-import { SourceDispatcher } from '../../../domain/source/source.dispatcher';
-import { FieldUiRepository } from '../../../../../structure/field/domain-api/read/field.ui-repository';
-import { StructureSourceWarehouse } from '../../../domain-api/source/structure-source.warehouse';
-import { StructureEditSourceItemParams } from '../../../domain/source/origin/edit/structure.edit-source-item.params';
+import { SourceDispatcher } from '../../../../../structure/source/domain/source.dispatcher';
+import { SourceWarehouse } from '../../../../../structure/source/domain-api/source.warehouse';
+import { StructureEditSourceItemParams } from '../../../../../structure/source/domain/origin/edit/structure.edit-source-item.params';
+import { FieldWarehouse } from '../../../../../structure/field/domain-api/field.warehouse';
+import { CommandDispatcher } from '@generic-ui/hermes';
 export declare class LocalSourceCommandDispatcher extends SourceCommandDispatcher {
     private readonly structureId;
-    constructor(structureId: StructureId, sourceDispatcher: SourceDispatcher, structureFieldUiRepository: FieldUiRepository, sourceReadModelService: StructureSourceWarehouse);
+    constructor(structureId: StructureId, commandDispatcher: CommandDispatcher, sourceDispatcher: SourceDispatcher, fieldWarehouse: FieldWarehouse, sourceReadModelService: SourceWarehouse);
     setOrigin(items: Array<any>): void;
     setLoading(enabled: boolean): void;
     editItem(params: StructureEditSourceItemParams): void;

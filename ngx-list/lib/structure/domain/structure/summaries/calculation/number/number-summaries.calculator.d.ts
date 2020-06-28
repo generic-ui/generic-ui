@@ -1,8 +1,8 @@
 import { SummariesCalculator } from '../summaries.calculator';
 import { NumberSummarizedValues } from './number-summarized.values';
-import { DataType } from '../../../../../../../structure/field/domain/data-type/data-type';
-import { Field } from '../../../../../../../structure/field/domain/data-type/field';
-import { OriginItemEntity } from '../../../../source/origin/origin-item-entity';
+import { DataType } from '../../../../../../../structure/field/domain/core/field/data/data-type';
+import { OriginItemEntity } from '../../../../../../../structure/source/domain/origin/origin-item-entity';
+import { Field } from '../../../../../../../structure/field/domain/core/field/field';
 export declare class NumberSummariesCalculator extends SummariesCalculator<number, NumberSummarizedValues> {
     private readonly sum;
     private readonly min;
@@ -11,8 +11,8 @@ export declare class NumberSummariesCalculator extends SummariesCalculator<numbe
     private readonly median;
     constructor();
     forDataType(dataType: DataType): boolean;
-    prepare(field: Field<number>): void;
-    postCalculate(field: Field<number>, items: Array<OriginItemEntity>): void;
-    aggregate(field: Field<number>, value: number): void;
-    generateAggregatedValues(field: Field<number>): NumberSummarizedValues;
+    prepare(field: Field): void;
+    postCalculate(field: Field, items: Array<OriginItemEntity>): void;
+    aggregate(field: Field, value: number): void;
+    generateAggregatedValues(field: Field): NumberSummarizedValues;
 }

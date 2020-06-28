@@ -2,17 +2,17 @@ import { CompositionCommandDispatcher } from '../../../composition/domain-api/co
 import { PagingCommandDispatcher } from '../../../../structure/paging/domain-api/paging.command-dispatcher';
 import { LocalPagingCommandDispatcher } from './paging/local-paging.command-dispatcher';
 import { LocalPagingWarehouse } from './paging/local-paging.warehouse';
-import { StructureFormationDispatcher } from '../../domain-api/formation/structure-formation.dispatcher';
+import { FormationCommandDispatcher } from '../../../../structure/source/domain-api/formation/formation.command-dispatcher';
 import { LocalFormationCommandDispatcher } from './formation/local-formation.command-dispatcher';
-import { StructureFormationWarehouse } from '../../domain-api/formation/structure-formation.warehouse';
+import { FormationWarehouse } from '../../../../structure/source/domain-api/formation/formation.warehouse';
 import { LocalFormationWarehouse } from './formation/local-formation.warehouse';
 import { StructureCommandDispatcher } from '../../domain-api/structure.command-dispatcher';
 import { LocalStructureCommandDispatcher } from './structure/local-structure.command-dispatcher';
 import { StructureWarehouse } from '../../domain-api/structure.warehouse';
 import { LocalStructureWarehouse } from './structure/local-structure.warehouse';
-import { SourceCommandDispatcher } from '../../domain-api/source/source.command-dispatcher';
+import { SourceCommandDispatcher } from '../../../../structure/source/domain-api/source.command-dispatcher';
 import { LocalSourceCommandDispatcher } from './source/local-source.command-dispatcher';
-import { StructureSourceWarehouse } from '../../domain-api/source/structure-source.warehouse';
+import { SourceWarehouse } from '../../../../structure/source/domain-api/source.warehouse';
 import { LocalSourceWarehouse } from './source/local-source.warehouse';
 import { LocalCompositionCommandDispatcher } from './composition/local-composition.command-dispatcher';
 import { CompositionWarehouse } from '../../../composition/domain-api/composition.warehouse';
@@ -34,10 +34,10 @@ export declare const localProviders: ({
     provide: typeof PagingWarehouse;
     useClass: typeof LocalPagingWarehouse;
 } | {
-    provide: typeof StructureFormationDispatcher;
+    provide: typeof FormationCommandDispatcher;
     useClass: typeof LocalFormationCommandDispatcher;
 } | {
-    provide: typeof StructureFormationWarehouse;
+    provide: typeof FormationWarehouse;
     useClass: typeof LocalFormationWarehouse;
 } | {
     provide: typeof StructureCommandDispatcher;
@@ -49,7 +49,7 @@ export declare const localProviders: ({
     provide: typeof SourceCommandDispatcher;
     useClass: typeof LocalSourceCommandDispatcher;
 } | {
-    provide: typeof StructureSourceWarehouse;
+    provide: typeof SourceWarehouse;
     useClass: typeof LocalSourceWarehouse;
 } | {
     provide: typeof CompositionCommandDispatcher;

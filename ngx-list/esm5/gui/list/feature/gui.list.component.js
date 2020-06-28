@@ -49,7 +49,7 @@ var GuiListComponent = /** @class */ (function (_super) {
     GuiListComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-list',
-                    template: "<gui-list-view\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[template]=\"containerTemplate\"\n\t\t[paging]=\"paging\"\n\t\t[fields]=\"listFields\"\n\t\t[searching]=\"searchConfig\"\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n>\n</gui-list-view>\n",
+                    template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
                     providers: tslib_1.__spread(guiListProviders),
                     host: {
                         '[class.gui-list]': "\"true\""

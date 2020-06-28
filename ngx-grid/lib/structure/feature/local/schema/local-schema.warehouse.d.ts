@@ -12,10 +12,10 @@ import { SchemaRowColoring } from '../../../../../schema/domain/coloring/schema-
 export declare class LocalSchemaWarehouse extends SchemaWarehouse {
     private readonly schemaReadModelRootId;
     constructor(schemaReadModelRootId: SchemaReadModelRootId, schemaCssClassesRepository: SchemaCssClassesRepository, schemaThemeRepository: SchemaThemeRepository, schemaHorizontalGridRepository: SchemaHorizontalGridRepository, schemaRowColoringRepository: SchemaRowColoringRepository, schemaVerticalGridRepository: SchemaVerticalGridRepository);
-    onSingleTheme(): Observable<SchemaTheme>;
     onTheme(): Observable<SchemaTheme>;
     onHorizontalGrid(): Observable<boolean>;
     onVerticalGrid(): Observable<boolean>;
     onRowColoring(): Observable<SchemaRowColoring>;
+    onSingleTheme(): Observable<SchemaTheme>;
     onCssClasses(): Observable<SchemaCssClass>;
 }

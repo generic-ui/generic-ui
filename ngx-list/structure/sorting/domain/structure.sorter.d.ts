@@ -1,16 +1,16 @@
 import { SorterId } from './sorter.id';
-import { OriginItemEntity } from '../../../lib/structure/domain/source/origin/origin-item-entity';
-import { TypeField } from '../../field/domain/data-type/type.field';
+import { OriginItemEntity } from '../../source/domain/origin/origin-item-entity';
+import { Field } from '../../field/domain/core/field/field';
 export declare class StructureSorter {
     private readonly sorterId;
     private columnId;
     private field;
     private rank;
     private direction;
-    constructor(id: SorterId, field: TypeField, direction?: boolean);
+    constructor(id: SorterId, field: Field, direction?: boolean);
     getId(): SorterId;
     getRank(): number;
-    getField(): TypeField;
+    getField(): Field;
     hasDirection(): boolean;
     changeDirection(): void;
     setDirection(direction: boolean): void;

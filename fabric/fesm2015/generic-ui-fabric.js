@@ -1,7 +1,7 @@
-import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, Output, Injectable, ChangeDetectorRef, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, forwardRef, ViewChild, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
+import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, ViewChild, Output, Injectable, ChangeDetectorRef, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, forwardRef, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Subject, BehaviorSubject, fromEvent, Observable, of } from 'rxjs';
+import { Subject, BehaviorSubject, fromEvent, timer, Observable, of } from 'rxjs';
 import { takeUntil, filter, take, distinctUntilChanged, skip, map, throttleTime } from 'rxjs/operators';
 import * as elementResizeDetectorMaker_ from 'element-resize-detector';
 
@@ -188,6 +188,7 @@ class FabricButtonComponent extends Indicator {
     constructor(elementRef, renderer) {
         super(elementRef, renderer);
         this.link = false;
+        this.text = false;
     }
     /**
      * @param {?} changes
@@ -203,6 +204,14 @@ class FabricButtonComponent extends Indicator {
                 this.removeClass('gui-link');
             }
         }
+        if (changes.text) {
+            if (this.text) {
+                this.addClass('gui-text');
+            }
+            else {
+                this.removeClass('gui-text');
+            }
+        }
     }
 }
 FabricButtonComponent.decorators = [
@@ -214,7 +223,7 @@ FabricButtonComponent.decorators = [
                 host: {
                     '[class.gui-button]': 'true'
                 },
-                styles: [".gui-button{-webkit-writing-mode:horizontal-tb!important;-ms-flex-align:start;align-items:flex-start;background:#e6e6e6;box-sizing:border-box;border-style:none;border-radius:4px;color:#595959;cursor:pointer;display:inline-block;font-family:Arial;font-size:13.3333px;outline:0;padding:10px 20px;transition:background .2s;text-align:center;text-rendering:auto;text-transform:none;text-indent:0;text-shadow:none;letter-spacing:normal;word-spacing:normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-button:hover{background:#ccc;color:#333}.gui-button:active{background:#999;color:#333}.gui-button:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-button.gui-outline:focus{box-shadow:0 0 0 2px #d6d6d6}.gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 2px #439de1}.gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 2px #5ac88b}.gui-button.gui-primary{background:#2185d0;color:#fff}.gui-button.gui-primary.gui-outline{color:#2185d0}.gui-button.gui-primary:hover{background:#1e77ba}.gui-button.gui-primary:active{background:#1a69a4;color:#fff}.gui-button.gui-primary:disabled{background:#6fb4e8;color:#439de1}.gui-button.gui-primary.gui-badge{background:#439de1}.gui-button.gui-secondary{background:#3cb371;color:#fff}.gui-button.gui-secondary.gui-outline{color:#3cb371}.gui-button.gui-secondary.gui-button:hover{background:#36a065}.gui-button.gui-secondary.gui-button:active{background:#32945e;color:#fff}.gui-button.gui-secondary.gui-button:disabled{background:#80d5a6;color:#5ac88b}.gui-button.gui-secondary.gui-badge{background:#5ac88b}.gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-button.gui-link:focus{text-decoration:underline}.gui-button.gui-outline{color:#999;background:0 0;border:1px solid #d6d6d6}.gui-button.gui-outline.gui-button:hover{color:#fff;background:#ccc}.gui-button.gui-outline.gui-button:disabled{border-color:#ccc;color:#ccc}.gui-button.gui-outline.gui-badge{background:#fff}.gui-button.gui-outline.gui-primary{border-color:#439de1}.gui-button.gui-outline.gui-primary.gui-button:hover{background:#2185d0;border-color:#2185d0}.gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#6fb4e8;color:#6fb4e8}.gui-button.gui-outline.gui-primary.gui-badge{background:#fff;border-color:#439de1;color:#439de1}.gui-button.gui-outline.gui-secondary{border-color:#5ac88b}.gui-button.gui-outline.gui-secondary.gui-button:hover{background:#3cb371;border-color:#3cb371}.gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#80d5a6;color:#80d5a6}.gui-button.gui-outline.gui-secondary.gui-badge{background:#fff;border-color:#5ac88b;color:#5ac88b}", ".gui-dark .gui-button{background:#424242;color:#bdbdbd}.gui-dark .gui-button:hover{background:#616161}.gui-dark .gui-button:active{background:#212121}.gui-dark .gui-button:disabled{opacity:.36}.gui-dark .gui-button.gui-outline:focus{box-shadow:0 0 0 2px #616161}.gui-dark .gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 2px #ce93d8}.gui-dark .gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 2px #80cbc4}.gui-dark .gui-button.gui-primary{background:#ce93d8;color:#212121}.gui-dark .gui-button.gui-primary.gui-outline{color:#ce93d8}.gui-dark .gui-button.gui-primary.gui-button:hover{background:#c680d1}.gui-dark .gui-button.gui-primary.gui-button:active{background:#b55bc4;color:#212121}.gui-dark .gui-button.gui-primary.gui-button:disabled{background:#ce93d8;opacity:.5;color:#212121}.gui-dark .gui-button.gui-primary.gui-badge{background:#dfb8e6}.gui-dark .gui-button.gui-secondary{background:#80cbc4;color:#212121}.gui-dark .gui-button.gui-secondary.gui-outline{color:#80cbc4}.gui-dark .gui-button.gui-secondary.gui-button:hover{background:#6ec4bc}.gui-dark .gui-button.gui-secondary.gui-button:active{background:#26a69a;color:#212121}.gui-dark .gui-button.gui-secondary.gui-button:disabled{background:#80cbc4;opacity:.5;color:#212121}.gui-dark .gui-button.gui-secondary.gui-badge{background:#a4dad5}.gui-dark .gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-dark .gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-dark .gui-button.gui-link:focus{text-decoration:underline}.gui-dark .gui-button.gui-outline{color:#bdbdbd;background:0 0;border:1px solid #616161}.gui-dark .gui-button.gui-outline.gui-button:hover{color:#bdbdbd;background:#616161}.gui-dark .gui-button.gui-outline.gui-badge{background:#121212}.gui-dark .gui-button.gui-outline.gui-primary{border-color:#ce93d8}.gui-dark .gui-button.gui-outline.gui-primary.gui-button:hover{background:#ce93d8;border-color:#ce93d8;color:#212121}.gui-dark .gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#f0def3;color:#f0def3}.gui-dark .gui-button.gui-outline.gui-primary.gui-badge{background:#121212;border-color:#ce93d8;color:#dfb8e6}.gui-dark .gui-button.gui-outline.gui-secondary{border-color:#80cbc4}.gui-dark .gui-button.gui-outline.gui-secondary.gui-button:hover{background:#80cbc4;border-color:#80cbc4;color:#212121}.gui-dark .gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#b2ebf2;color:#b2ebf2}.gui-dark .gui-button.gui-outline.gui-secondary.gui-badge{background:#121212;border-color:#80cbc4;color:#80cbc4}", ".gui-light .gui-button{background:#f6f5f4;border-color:#d8d7d6;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light .gui-button:hover{background:#ecebeb}.gui-light .gui-button:active{background:#f6f5f4}.gui-light .gui-button:disabled{opacity:.5}.gui-light .gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-light .gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-light .gui-button.gui-link:focus{text-decoration:underline}", ".gui-material .gui-button{background:#3949ab;color:#fff;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-weight:500;padding:10px 16px}.gui-material .gui-button:hover{background:#5262c5}.gui-material .gui-button:active{background:#4051bf}.gui-material .gui-button:disabled{background:#c5cae9;color:#7885d2}.gui-material .gui-button.gui-outline:focus{box-shadow:0 0 0 1px #5262c5}.gui-material .gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 1px #6200ee}.gui-material .gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 1px #0097a7}.gui-material .gui-button.gui-primary{background:#6200ee;color:#fff}.gui-material .gui-button.gui-primary.gui-outline{color:#6200ee}.gui-material .gui-button.gui-primary.gui-button:hover{background:#974dff}.gui-material .gui-button.gui-primary.gui-button:active{background:#791aff;color:#fff}.gui-material .gui-button.gui-primary.gui-button:disabled{background:#d1c4e9;color:#7d22ff}.gui-material .gui-button.gui-primary.gui-badge{background:#6200ee}.gui-material .gui-button.gui-secondary{background:#0097a7;color:#fff}.gui-material .gui-button.gui-secondary.gui-outline{color:#0097a7}.gui-material .gui-button.gui-secondary.gui-button:hover{background:#00a1b3}.gui-material .gui-button.gui-secondary.gui-button:active{background:#00808e;color:#fff}.gui-material .gui-button.gui-secondary.gui-button:disabled{background:#b2ebf2;color:#00c5da}.gui-material .gui-button.gui-secondary.gui-badge{background:#0097a7}.gui-material .gui-button.gui-link{background:0 0;border:0;color:#3949ab}.gui-material .gui-button.gui-link:hover{color:#4051bf}.gui-material .gui-button.gui-outline{color:#3949ab;background:0 0;border-color:#5262c5}.gui-material .gui-button.gui-outline.gui-button:hover{background:#e8eaf6;color:#3949ab}.gui-material .gui-button.gui-outline.gui-button:active{background:#c5cae9}.gui-material .gui-button.gui-outline.gui-button:disabled{border-color:#c5cae9;color:#c5cae9}.gui-material .gui-button.gui-outline.gui-badge{background:#fff}.gui-material .gui-button.gui-outline.gui-primary{border-color:#6200ee}.gui-material .gui-button.gui-outline.gui-primary.gui-button:hover{background:#ede7f6;border-color:#6200ee;color:#6200ee}.gui-material .gui-button.gui-outline.gui-primary.gui-button:active{background:#d1c4e9}.gui-material .gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#d1c4e9;color:#d1c4e9}.gui-material .gui-button.gui-outline.gui-primary.gui-badge{background:#fff;border-color:#6200ee;color:#7d22ff}.gui-material .gui-button.gui-outline.gui-secondary{border-color:#0097a7}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:hover{background:#e0f7fa;border-color:#0097a7;color:#0097a7}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:active{background:#b2ebf2}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#b2ebf2;color:#b2ebf2}.gui-material .gui-button.gui-outline.gui-secondary.gui-badge{background:#fff;border-color:#0097a7;color:#0097a7}"]
+                styles: [".gui-button{-webkit-writing-mode:horizontal-tb!important;-ms-flex-align:start;align-items:flex-start;background:#e6e6e6;box-sizing:border-box;border-style:none;border-radius:4px;color:#595959;cursor:pointer;display:inline-block;font-family:Arial;font-size:13.3333px;outline:0;padding:10px 20px;transition:background .2s;text-align:center;text-rendering:auto;text-transform:none;text-indent:0;text-shadow:none;letter-spacing:normal;word-spacing:normal;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-button:hover{background:#ccc;color:#333}.gui-button:active{background:#999;color:#333}.gui-button:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-button.gui-outline:focus{box-shadow:0 0 0 2px #d6d6d6}.gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 2px #439de1}.gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 2px #5ac88b}.gui-button.gui-primary{background:#2185d0;color:#fff}.gui-button.gui-primary.gui-outline{color:#2185d0}.gui-button.gui-primary:hover{background:#1e77ba}.gui-button.gui-primary:active{background:#1a69a4;color:#fff}.gui-button.gui-primary:disabled{background:#6fb4e8;color:#439de1}.gui-button.gui-primary.gui-badge{background:#439de1}.gui-button.gui-secondary{background:#3cb371;color:#fff}.gui-button.gui-secondary.gui-outline{color:#3cb371}.gui-button.gui-secondary.gui-button:hover{background:#36a065}.gui-button.gui-secondary.gui-button:active{background:#32945e;color:#fff}.gui-button.gui-secondary.gui-button:disabled{background:#80d5a6;color:#5ac88b}.gui-button.gui-secondary.gui-badge{background:#5ac88b}.gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-button.gui-link:focus{text-decoration:underline}.gui-button.gui-outline{color:#999;background:0 0;border:1px solid #d6d6d6}.gui-button.gui-outline.gui-button:hover{color:#fff;background:#ccc}.gui-button.gui-outline.gui-button:disabled{border-color:#ccc;color:#ccc}.gui-button.gui-outline.gui-badge{background:#fff}.gui-button.gui-outline.gui-primary{border-color:#439de1}.gui-button.gui-outline.gui-primary.gui-button:hover{background:#2185d0;border-color:#2185d0}.gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#6fb4e8;color:#6fb4e8}.gui-button.gui-outline.gui-primary.gui-badge{background:#fff;border-color:#439de1;color:#439de1}.gui-button.gui-outline.gui-secondary{border-color:#5ac88b}.gui-button.gui-outline.gui-secondary.gui-button:hover{background:#3cb371;border-color:#3cb371}.gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#80d5a6;color:#80d5a6}.gui-button.gui-outline.gui-secondary.gui-badge{background:#fff;border-color:#5ac88b;color:#5ac88b}.gui-button.gui-text{background:0 0;border:0}.gui-button.gui-text:focus,.gui-button.gui-text:hover{background:#e6e6e6}.gui-button.gui-text.gui-primary{color:#2185d0}.gui-button.gui-text.gui-primary:focus,.gui-button.gui-text.gui-primary:hover{background:#2185d0;color:#fff}.gui-button.gui-text.gui-secondary{color:#3cb371}.gui-button.gui-text.gui-secondary:focus,.gui-button.gui-text.gui-secondary:hover{background:#3cb371;color:#fff}.gui-button.gui-text.gui-button:disabled{background:0 0}.gui-button.gui-text.gui-button:disabled .gui-text-disabled{display:inline-block}", ".gui-dark .gui-button{background:#424242;color:#bdbdbd}.gui-dark .gui-button:hover{background:#616161}.gui-dark .gui-button:active{background:#212121}.gui-dark .gui-button:disabled{opacity:.36}.gui-dark .gui-button.gui-outline:focus{box-shadow:0 0 0 2px #616161}.gui-dark .gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 2px #ce93d8}.gui-dark .gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 2px #80cbc4}.gui-dark .gui-button.gui-primary{background:#ce93d8;color:#212121}.gui-dark .gui-button.gui-primary.gui-outline{color:#ce93d8}.gui-dark .gui-button.gui-primary.gui-button:hover{background:#c680d1}.gui-dark .gui-button.gui-primary.gui-button:active{background:#b55bc4;color:#212121}.gui-dark .gui-button.gui-primary.gui-button:disabled{background:#ce93d8;opacity:.5;color:#212121}.gui-dark .gui-button.gui-primary.gui-badge{background:#dfb8e6}.gui-dark .gui-button.gui-secondary{background:#80cbc4;color:#212121}.gui-dark .gui-button.gui-secondary.gui-outline{color:#80cbc4}.gui-dark .gui-button.gui-secondary.gui-button:hover{background:#6ec4bc}.gui-dark .gui-button.gui-secondary.gui-button:active{background:#26a69a;color:#212121}.gui-dark .gui-button.gui-secondary.gui-button:disabled{background:#80cbc4;opacity:.5;color:#212121}.gui-dark .gui-button.gui-secondary.gui-badge{background:#a4dad5}.gui-dark .gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-dark .gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-dark .gui-button.gui-link:focus{text-decoration:underline}.gui-dark .gui-button.gui-outline{color:#bdbdbd;background:0 0;border:1px solid #616161}.gui-dark .gui-button.gui-outline.gui-button:hover{color:#bdbdbd;background:#616161}.gui-dark .gui-button.gui-outline.gui-badge{background:#121212}.gui-dark .gui-button.gui-outline.gui-primary{border-color:#ce93d8}.gui-dark .gui-button.gui-outline.gui-primary.gui-button:hover{background:#ce93d8;border-color:#ce93d8;color:#212121}.gui-dark .gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#f0def3;color:#f0def3}.gui-dark .gui-button.gui-outline.gui-primary.gui-badge{background:#121212;border-color:#ce93d8;color:#dfb8e6}.gui-dark .gui-button.gui-outline.gui-secondary{border-color:#80cbc4}.gui-dark .gui-button.gui-outline.gui-secondary.gui-button:hover{background:#80cbc4;border-color:#80cbc4;color:#212121}.gui-dark .gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#b2ebf2;color:#b2ebf2}.gui-dark .gui-button.gui-outline.gui-secondary.gui-badge{background:#121212;border-color:#80cbc4;color:#80cbc4}", ".gui-light .gui-button{background:#f6f5f4;border-color:#d8d7d6;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light .gui-button:hover{background:#ecebeb}.gui-light .gui-button:active{background:#f6f5f4}.gui-light .gui-button:disabled{opacity:.5}.gui-light .gui-button.gui-link{background:0 0;border:0;color:#2185d0}.gui-light .gui-button.gui-link:hover{background:0 0;color:#1e77ba;text-decoration:underline}.gui-light .gui-button.gui-link:focus{text-decoration:underline}", ".gui-material .gui-button{background:#3949ab;color:#fff;font-family:Roboto,\"Helvetica Neue\",sans-serif;font-weight:500;padding:10px 16px}.gui-material .gui-button:hover{background:#5262c5}.gui-material .gui-button:active{background:#4051bf}.gui-material .gui-button:disabled{background:#c5cae9;color:#7885d2}.gui-material .gui-button.gui-outline:focus{box-shadow:0 0 0 1px #5262c5}.gui-material .gui-button.gui-outline.gui-primary:focus{box-shadow:0 0 0 1px #6200ee}.gui-material .gui-button.gui-outline.gui-secondary:focus{box-shadow:0 0 0 1px #0097a7}.gui-material .gui-button.gui-primary{background:#6200ee;color:#fff}.gui-material .gui-button.gui-primary.gui-outline{color:#6200ee}.gui-material .gui-button.gui-primary.gui-button:hover{background:#974dff}.gui-material .gui-button.gui-primary.gui-button:active{background:#791aff;color:#fff}.gui-material .gui-button.gui-primary.gui-button:disabled{background:#d1c4e9;color:#7d22ff}.gui-material .gui-button.gui-primary.gui-badge{background:#6200ee}.gui-material .gui-button.gui-secondary{background:#0097a7;color:#fff}.gui-material .gui-button.gui-secondary.gui-outline{color:#0097a7}.gui-material .gui-button.gui-secondary.gui-button:hover{background:#00a1b3}.gui-material .gui-button.gui-secondary.gui-button:active{background:#00808e;color:#fff}.gui-material .gui-button.gui-secondary.gui-button:disabled{background:#b2ebf2;color:#00c5da}.gui-material .gui-button.gui-secondary.gui-badge{background:#0097a7}.gui-material .gui-button.gui-link{background:0 0;border:0;color:#3949ab}.gui-material .gui-button.gui-link:hover{color:#4051bf}.gui-material .gui-button.gui-outline{color:#3949ab;background:0 0;border-color:#5262c5}.gui-material .gui-button.gui-outline.gui-button:hover{background:#e8eaf6;color:#3949ab}.gui-material .gui-button.gui-outline.gui-button:active{background:#c5cae9}.gui-material .gui-button.gui-outline.gui-button:disabled{border-color:#c5cae9;color:#c5cae9}.gui-material .gui-button.gui-outline.gui-badge{background:#fff}.gui-material .gui-button.gui-outline.gui-primary{border-color:#6200ee}.gui-material .gui-button.gui-outline.gui-primary.gui-button:hover{background:#ede7f6;border-color:#6200ee;color:#6200ee}.gui-material .gui-button.gui-outline.gui-primary.gui-button:active{background:#d1c4e9}.gui-material .gui-button.gui-outline.gui-primary.gui-button:disabled{background:0 0;border-color:#d1c4e9;color:#d1c4e9}.gui-material .gui-button.gui-outline.gui-primary.gui-badge{background:#fff;border-color:#6200ee;color:#7d22ff}.gui-material .gui-button.gui-outline.gui-secondary{border-color:#0097a7}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:hover{background:#e0f7fa;border-color:#0097a7;color:#0097a7}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:active{background:#b2ebf2}.gui-material .gui-button.gui-outline.gui-secondary.gui-button:disabled{background:0 0;border-color:#b2ebf2;color:#b2ebf2}.gui-material .gui-button.gui-outline.gui-secondary.gui-badge{background:#fff;border-color:#0097a7;color:#0097a7}"]
             }] }
 ];
 /** @nocollapse */
@@ -223,11 +232,14 @@ FabricButtonComponent.ctorParameters = () => [
     { type: Renderer2 }
 ];
 FabricButtonComponent.propDecorators = {
-    link: [{ type: Input }]
+    link: [{ type: Input }],
+    text: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
     FabricButtonComponent.prototype.link;
+    /** @type {?} */
+    FabricButtonComponent.prototype.text;
 }
 
 /**
@@ -319,7 +331,7 @@ class FabricCardComponent {
 FabricCardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-card',
-                template: "<div class=\"gui-card-body\">\n\n\t<div class=\"gui-card-image-wrapper\">\n\t\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
+                template: "<div class=\"gui-card-body\">\n\n\t<div class=\"gui-card-image-wrapper\">\n\t\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -377,16 +389,18 @@ class FabricCheckboxComponent {
     constructor(elementRef, renderer) {
         this.elementRef = elementRef;
         this.renderer = renderer;
-        this.checked = false;
         this.disabled = false;
         this.readonly = false;
+        this.indeterminate = false;
         this.changed = new EventEmitter();
+        this.checked = false;
     }
     /**
      * @param {?} changes
      * @return {?}
      */
     ngOnChanges(changes) {
+        this.checked = this.inputChecked;
         if (changes.disabled) {
             if (this.disabled) {
                 this.renderer.addClass(this.elementRef.nativeElement, 'gui-disabled');
@@ -403,11 +417,30 @@ class FabricCheckboxComponent {
                 this.renderer.removeClass(this.elementRef.nativeElement, 'gui-readonly');
             }
         }
+        if (changes.indeterminate) {
+            if (this.inputRef) {
+                if (this.indeterminate) {
+                    this.inputRef.nativeElement.indeterminate = true;
+                }
+                else {
+                    this.inputRef.nativeElement.indeterminate = false;
+                    this.inputRef.nativeElement.checked = this.checked;
+                }
+            }
+        }
     }
     /**
      * @return {?}
      */
-    check() {
+    ngAfterViewInit() {
+        this.inputRef.nativeElement.indeterminate = this.indeterminate;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    check(event) {
+        event.stopPropagation();
         this.checked = !this.checked;
         this.changed.emit(this.checked);
     }
@@ -415,13 +448,13 @@ class FabricCheckboxComponent {
 FabricCheckboxComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-checkbox',
-                template: "<label>\n\t<input\n\t\t(click)=\"check()\"\n\t\t[checked]=\"checked\"\n\t\t[disabled]=\"disabled\"\n\t\t[name]=\"name\"\n\t\ttype=\"checkbox\">\n\t<span class=\"gui-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
+                template: "<label>\n\t<input #input\n\t\t\t(click)=\"check($event)\"\n\t\t\t[checked]=\"checked\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[name]=\"name\"\n\t\t\ttype=\"checkbox\">\n\t<span class=\"gui-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
                     '[class.gui-checkbox]': 'true'
                 },
-                styles: [".gui-checkbox{display:inline-block;line-height:24px;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;height:20px;width:20px;border:2px solid #575757}.gui-checkbox input:checked+.gui-checkmark{border-color:#575757}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#575757;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox label:hover .gui-checkmark{border-color:#575757}.gui-material .gui-checkbox .gui-checkmark{border-color:#999}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
+                styles: [".gui-checkbox{display:inline-block;line-height:24px;padding-left:32px;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-checkbox label{cursor:pointer}.gui-checkbox label:hover .gui-checkmark{border-color:#999}.gui-checkbox input{position:absolute;opacity:0;height:0;width:0}.gui-checkbox .gui-checkmark{box-sizing:content-box;border-radius:4px;position:absolute;left:0;top:0;height:20px;width:20px;border:2px solid #575757}.gui-checkbox input:checked+.gui-checkmark{border-color:#575757}.gui-checkbox.gui-disabled.gui-checkbox{color:#ccc;pointer-events:none}.gui-checkbox.gui-readonly.gui-checkbox{pointer-events:none}.gui-checkbox .gui-checkmark:after{content:\" \";display:none;position:absolute;left:6px;-ms-transform:rotate(45deg);transform:rotate(45deg);border-color:#575757;border-style:solid;border-width:0 3.2px 3.2px 0;width:5.2px;height:12px}.gui-checkbox input:checked+.gui-checkmark:after{box-sizing:content-box;display:block}.gui-checkbox input:indeterminate+.gui-checkmark::after{display:block;width:0;height:10px;left:9px;top:4px;-ms-transform:rotate(90deg);transform:rotate(90deg)}", ".gui-material .gui-checkbox{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-checkbox input:focus+.gui-checkmark{border-color:#3949ab}.gui-material .gui-checkbox label:hover .gui-checkmark{border-color:#575757}.gui-material .gui-checkbox .gui-checkmark{border-color:#999}.gui-material .gui-checkbox input:checked+.gui-checkmark{border-color:#3949ab;background:#3949ab}.gui-material .gui-checkbox .gui-checkmark:after{border-color:#fff}.gui-material .gui-checkbox.gui-indeterminate .gui-checkmark{background:#3949ab;border-color:#3949ab}", ".gui-dark .gui-checkbox{color:#bdbdbd}.gui-dark .gui-checkbox .gui-checkmark,.gui-dark .gui-checkbox .gui-checkmark:after,.gui-dark .gui-checkbox input:checked+.gui-checkmark{border-color:#878787}.gui-dark .gui-checkbox.gui-disabled.gui-checkbox{opacity:.36}"]
             }] }
 ];
 /** @nocollapse */
@@ -430,23 +463,31 @@ FabricCheckboxComponent.ctorParameters = () => [
     { type: Renderer2 }
 ];
 FabricCheckboxComponent.propDecorators = {
+    inputRef: [{ type: ViewChild, args: ['input', { static: false },] }],
     name: [{ type: Input }],
-    checked: [{ type: Input }],
+    inputChecked: [{ type: Input, args: ['checked',] }],
     disabled: [{ type: Input }],
     readonly: [{ type: Input }],
+    indeterminate: [{ type: Input }],
     changed: [{ type: Output }]
 };
 if (false) {
     /** @type {?} */
+    FabricCheckboxComponent.prototype.inputRef;
+    /** @type {?} */
     FabricCheckboxComponent.prototype.name;
     /** @type {?} */
-    FabricCheckboxComponent.prototype.checked;
+    FabricCheckboxComponent.prototype.inputChecked;
     /** @type {?} */
     FabricCheckboxComponent.prototype.disabled;
     /** @type {?} */
     FabricCheckboxComponent.prototype.readonly;
     /** @type {?} */
+    FabricCheckboxComponent.prototype.indeterminate;
+    /** @type {?} */
     FabricCheckboxComponent.prototype.changed;
+    /** @type {?} */
+    FabricCheckboxComponent.prototype.checked;
     /**
      * @type {?}
      * @private
@@ -1742,7 +1783,7 @@ class FabricInlineDialogComponent extends DialogComponent {
 }
 FabricInlineDialogComponent.decorators = [
     { type: Component, args: [{
-                template: "<div [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t [ngClass]=\"customClass\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
+                template: "<div [ngClass]=\"customClass\"\n\t [style.left.px]=\"dialogLeftAttribute\"\n\t [style.top.px]=\"dialogTopAttribute\"\n\t class=\"gui-inline-dialog-wrapper\">\n\n\t<div (document:click)=\"clickOutside($event)\"\n\t\t class=\"gui-inline-dialog-content\">\n\n\t\t<ng-template #container></ng-template>\n\n\t</div>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-inline-dialog-wrapper{position:absolute;box-sizing:border-box;z-index:1}.gui-inline-dialog-wrapper .gui-inline-dialog-content{box-sizing:border-box;background-color:#fff;max-width:400px;box-shadow:0 3px 7px #999;border-radius:4px;z-index:1000;display:block}", ".gui-dark .gui-inline-dialog-content{background:#424242;color:#bdbdbd;box-shadow:0 1px 2px #424242}"]
@@ -2662,7 +2703,7 @@ class FabricDrawerComponent extends DialogComponent {
 }
 FabricDrawerComponent.decorators = [
     { type: Component, args: [{
-                template: "<div (document:click)=\"clickOutside($event)\"\n\t class=\"gui-drawer-wrapper\">\n\t<div\n\t\tclass=\"gui-drawer-content\">\n<gui-close-icon (click)=\"closeDrawer()\"></gui-close-icon>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
+                template: "<div (document:click)=\"clickOutside($event)\"\n\t class=\"gui-drawer-wrapper\">\n\t<div class=\"gui-drawer-content\">\n\t\t<gui-close-icon (click)=\"closeDrawer()\"></gui-close-icon>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-drawer-wrapper{display:-ms-flexbox;display:flex;font-family:Arial;position:absolute;height:100%;right:0;top:0;z-index:1000}.gui-drawer-wrapper .gui-drawer-content{background-color:#fff;max-width:400px;height:100%;position:relative;box-shadow:-3px 0 4px 0 #ccc}"]
@@ -3749,7 +3790,7 @@ class FabricProgressBarComponent {
 FabricProgressBarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-progress-bar',
-                template: "<div\n\t[style.height.px]=\"height\"\n\t[style.text-align]=\"textAlign\"\n\t[style.width.px]=\"width\"\n\tclass=\"gui-progress-bar\">\n\t<div\n\t\t[style.background]=\"color\"\n\t\t[style.width.%]=\"progress\"\n\t\tclass=\"gui-progress\">\n\t\t<span\n\t\t\t[style.top]=\"textTop\"\n\t\t\tclass=\"gui-progress-text\">\n\t\t\t<ng-content></ng-content>\n\t\t</span>\n\t</div>\n</div>\n",
+                template: "<div\n\t\t[style.height.px]=\"height\"\n\t\t[style.text-align]=\"textAlign\"\n\t\t[style.width.px]=\"width\"\n\t\tclass=\"gui-progress-bar\">\n\t<div\n\t\t\t[style.background]=\"color\"\n\t\t\t[style.width.%]=\"progress\"\n\t\t\tclass=\"gui-progress\">\n\t\t<span\n\t\t\t\t[style.top]=\"textTop\"\n\t\t\t\tclass=\"gui-progress-text\">\n\t\t\t<ng-content></ng-content>\n\t\t</span>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -4035,7 +4076,7 @@ class FabricProgressSpinnerComponent extends AbstractSpinner {
 FabricProgressSpinnerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-progress-spinner',
-                template: "<div\n\t[style.height.px]=\"circleSize\"\n\t[style.width.px]=\"circleSize\"\n\tclass=\"gui-progress-spinner\">\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"circumference\"\n\t\t\t[style.stroke-dashoffset]=\"valuePercentage\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
+                template: "<div\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"gui-progress-spinner\">\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"circumference\"\n\t\t\t\t[style.stroke-dashoffset]=\"valuePercentage\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-progress-spinner{display:inline-block;position:relative;margin:4px;-ms-transform:rotate(-90deg);transform:rotate(-90deg)}.gui-progress-spinner circle{fill:transparent;stroke:#999}.gui-progress-spinner svg{position:absolute}.gui-progress-spinner .circle-inner{animation:2s linear infinite reverse forwards gui-spin-reverse}.gui-progress-spinner .circle-outer{-webkit-animation:2s linear infinite forwards gui-spin;animation:2s linear infinite forwards gui-spin}.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner .circle-outer,.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner.gui-progress-spinner{-webkit-animation:none;animation:none}.gui-second-circle-disabled .gui-progress-spinner.gui-progress-spinner .circle-inner{opacity:0}.gui-primary .gui-progress-spinner.gui-progress-spinner circle{stroke:#2185d0}.gui-secondary .gui-progress-spinner.gui-progress-spinner circle{stroke:#3cb371}", ".gui-material .gui-progress-spinner circle{stroke:#3949ab}.gui-material .gui-primary .gui-progress-spinner circle{stroke:#6200ee}.gui-material .gui-secondary .gui-progress-spinner circle{stroke:#0097a7}", ".gui-dark .gui-progress-spinner circle{stroke:#424242}.gui-dark .gui-primary .gui-progress-spinner circle{stroke:#ce93d8}.gui-dark .gui-secondary .gui-progress-spinner circle{stroke:#80cbc4}"]
@@ -4123,7 +4164,7 @@ class FabricRadioButtonComponent {
 FabricRadioButtonComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-radio-button',
-                template: "<label>\n\t<input\n\t\t(click)=\"check()\"\n\t\t[checked]=checked\n\t\t[disabled]=disabled\n\t\t[name]=name\n\t\ttype=\"radio\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
+                template: "<label>\n\t<input\n\t\t\t(click)=\"check()\"\n\t\t\t[checked]=checked\n\t\t\t[disabled]=disabled\n\t\t\t[name]=name\n\t\t\ttype=\"radio\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -4219,6 +4260,421 @@ FabricRadioGroupModule.decorators = [
                 ],
                 exports: [
                     FabricRadioGroupComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricNotification {
+    /**
+     * @param {?} description
+     * @param {?} index
+     * @param {?} timer
+     */
+    constructor(description, index, timer) {
+        this.description = description;
+        this.index = index;
+        this.timer = timer;
+    }
+}
+if (false) {
+    /** @type {?} */
+    FabricNotification.prototype.description;
+    /** @type {?} */
+    FabricNotification.prototype.index;
+    /** @type {?} */
+    FabricNotification.prototype.timer;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricNotificationComponent {
+    /**
+     * @param {?} renderer
+     */
+    constructor(renderer) {
+        this.renderer = renderer;
+        this.onNotificationClose = new EventEmitter();
+        this.unsub$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (this.notification.timer.enabled) {
+            timer(this.notification.timer.duration)
+                .pipe(takeUntil(this.unsub$))
+                .subscribe((/**
+             * @return {?}
+             */
+            () => this.closeNotification()));
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.unsub$.next();
+        this.unsub$.complete();
+    }
+    /**
+     * @return {?}
+     */
+    closeNotification() {
+        this.addCloseAnimation();
+        timer(200)
+            .pipe(takeUntil(this.unsub$))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.onNotificationClose.emit(this.notification.index)));
+    }
+    /**
+     * @return {?}
+     */
+    addCloseAnimation() {
+        /** @type {?} */
+        const notificationEl = this.notificationRef.nativeElement;
+        this.renderer.addClass(notificationEl, 'gui-notification-active');
+    }
+}
+FabricNotificationComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-notification',
+                template: `
+		<div #guiNotification class="gui-notification">
+			<gui-close-icon (click)="closeNotification()"></gui-close-icon>
+			{{notification.description}}
+		</div>
+	`,
+                encapsulation: ViewEncapsulation.None,
+                changeDetection: ChangeDetectionStrategy.OnPush
+            }] }
+];
+/** @nocollapse */
+FabricNotificationComponent.ctorParameters = () => [
+    { type: Renderer2 }
+];
+FabricNotificationComponent.propDecorators = {
+    notificationRef: [{ type: ViewChild, args: ['guiNotification', { static: false },] }],
+    notification: [{ type: Input }],
+    onNotificationClose: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    FabricNotificationComponent.prototype.notificationRef;
+    /** @type {?} */
+    FabricNotificationComponent.prototype.notification;
+    /** @type {?} */
+    FabricNotificationComponent.prototype.onNotificationClose;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationComponent.prototype.unsub$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationComponent.prototype.renderer;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricNotificationService {
+    /**
+     * @param {?} componentFactoryResolver
+     * @param {?} applicationRef
+     * @param {?} injector
+     * @param {?} document
+     */
+    constructor(componentFactoryResolver, applicationRef, injector, document) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.applicationRef = applicationRef;
+        this.injector = injector;
+        this.document = document;
+        this.notificationContainer = null;
+        this.notificationIndex = 0;
+        this.unsub$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.removeNotificationContainer();
+    }
+    /**
+     * @param {?} notification
+     * @param {?=} config
+     * @return {?}
+     */
+    open(notification, config) {
+        this.createFabricNotification(notification, config);
+        if (!this.notificationContainer) {
+            /** @type {?} */
+            let theme = Theme.FABRIC;
+            /** @type {?} */
+            let parentInjector = this.injector;
+            if (config && config.theme) {
+                theme = config.theme;
+            }
+            if (config && config.injector) {
+                parentInjector = config.injector;
+            }
+            /** @type {?} */
+            const injector = Injector.create({
+                providers: [{
+                        provide: themeToken,
+                        useValue: theme
+                    }],
+                parent: parentInjector
+            });
+            this.createAndAppend(injector);
+        }
+        else {
+            this.notificationContainer.instance.notifications.push(this.fabricNotification);
+            this.notificationContainer.instance.changeDetectorRef.detectChanges();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    close() {
+        this.removeNotificationContainer();
+        this.unsub$.next();
+        this.unsub$.complete();
+    }
+    /**
+     * @private
+     * @param {?} injector
+     * @return {?}
+     */
+    createAndAppend(injector) {
+        /** @type {?} */
+        const componentRef = this.componentFactoryResolver
+            .resolveComponentFactory(FabricNotificationsContainerComponent)
+            .create(injector);
+        componentRef.instance.notifications.push(this.fabricNotification);
+        componentRef.changeDetectorRef.detectChanges();
+        this.applicationRef.attachView(componentRef.hostView);
+        /** @type {?} */
+        const domNotificationContainerElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
+            .rootNodes[0]));
+        this.document.body.appendChild(domNotificationContainerElement);
+        this.notificationContainer = componentRef;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    removeNotificationContainer() {
+        if (this.notificationContainer) {
+            this.applicationRef.detachView(this.notificationContainer.hostView);
+            this.notificationContainer.destroy();
+            this.notificationContainer = null;
+            this.notificationIndex = 0;
+            this.fabricNotification = null;
+        }
+    }
+    /**
+     * @private
+     * @param {?} description
+     * @param {?} config
+     * @return {?}
+     */
+    createFabricNotification(description, config) {
+        /** @type {?} */
+        let duration = FabricNotificationService.DEFAULT_DURATION;
+        /** @type {?} */
+        let enabled = true;
+        if (config && config.timer) {
+            duration = config.timer.duration;
+            if (config.timer.enabled !== undefined) {
+                enabled = config.timer.enabled;
+            }
+        }
+        this.fabricNotification = new FabricNotification(description, this.notificationIndex, { duration: duration, enabled: enabled });
+        this.notificationIndex += 1;
+    }
+}
+FabricNotificationService.DEFAULT_DURATION = 4000;
+FabricNotificationService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FabricNotificationService.ctorParameters = () => [
+    { type: ComponentFactoryResolver },
+    { type: ApplicationRef },
+    { type: Injector },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.DEFAULT_DURATION;
+    /** @type {?} */
+    FabricNotificationService.prototype.notificationContainer;
+    /** @type {?} */
+    FabricNotificationService.prototype.fabricNotification;
+    /** @type {?} */
+    FabricNotificationService.prototype.notificationIndex;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.prototype.unsub$;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.prototype.applicationRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationService.prototype.document;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricNotificationsContainerComponent extends DialogComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} componentFactoryResolver
+     * @param {?} elRef
+     * @param {?} renderer
+     * @param {?} theme
+     * @param {?} notificationsService
+     */
+    constructor(changeDetectorRef, componentFactoryResolver, elRef, renderer, theme, notificationsService) {
+        super(elRef, renderer, theme);
+        this.changeDetectorRef = changeDetectorRef;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.elRef = elRef;
+        this.notificationsService = notificationsService;
+        this.notifications = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        this.addTheme();
+    }
+    /**
+     * @param {?} index
+     * @return {?}
+     */
+    removeNotification(index) {
+        this.notifications = this.notifications.filter((/**
+         * @param {?} notification
+         * @return {?}
+         */
+        (notification) => notification.index !== index));
+        this.changeDetectorRef.detectChanges();
+        this.checkNotificationsLength();
+    }
+    /**
+     * @return {?}
+     */
+    checkNotificationsLength() {
+        if (this.notifications.length === 0) {
+            this.notificationsService.close();
+        }
+    }
+}
+FabricNotificationsContainerComponent.decorators = [
+    { type: Component, args: [{
+                template: `
+		<div class="gui-notifications-container">
+			<div *ngFor="let notification of notifications; let index=index">
+				<gui-notification [notification]="notification"
+								  (onNotificationClose)="removeNotification($event)">
+				</gui-notification>
+			</div>
+		</div>
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                styles: [".gui-notifications-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-family:Arial;position:fixed;max-width:400px;right:0;top:0;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;z-index:1000}.gui-notifications-container .gui-notification{background:#fff;display:block;position:relative;margin:16px;padding:32px;box-shadow:0 3px 6px -4px rgba(0,0,0,.12),0 6px 16px 0 rgba(0,0,0,.08),0 9px 28px 8px rgba(0,0,0,.05);-webkit-animation:.1s forwards load;animation:.1s forwards load}@-webkit-keyframes load{0%{transform:translateX(50%)}100%{transform:translateX(0)}}@keyframes load{0%{transform:translateX(50%)}100%{transform:translateX(0)}}.gui-notifications-container .gui-notification.gui-notification-active{-webkit-animation:.2s forwards close;animation:.2s forwards close}@-webkit-keyframes close{0%{transform:translateX(0)}100%{transform:translateX(100%)}}@keyframes close{0%{transform:translateX(0)}100%{transform:translateX(100%)}}"]
+            }] }
+];
+/** @nocollapse */
+FabricNotificationsContainerComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ComponentFactoryResolver },
+    { type: ElementRef },
+    { type: Renderer2 },
+    { type: Theme, decorators: [{ type: Inject, args: [themeToken,] }] },
+    { type: FabricNotificationService, decorators: [{ type: Inject, args: [forwardRef((/**
+                     * @return {?}
+                     */
+                    () => FabricNotificationService)),] }] }
+];
+if (false) {
+    /** @type {?} */
+    FabricNotificationsContainerComponent.prototype.notifications;
+    /** @type {?} */
+    FabricNotificationsContainerComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationsContainerComponent.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationsContainerComponent.prototype.elRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricNotificationsContainerComponent.prototype.notificationsService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FabricNotificationModule {
+}
+FabricNotificationModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FabricCloseIconModule
+                ],
+                declarations: [
+                    FabricNotificationsContainerComponent,
+                    FabricNotificationComponent
+                ],
+                providers: [
+                    FabricNotificationService
+                ],
+                entryComponents: [
+                    FabricNotificationsContainerComponent,
+                    FabricNotificationComponent
                 ]
             },] }
 ];
@@ -5099,7 +5555,7 @@ class FabricSpinnerComponent extends AbstractSpinner {
 FabricSpinnerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-spinner',
-                template: "<div\n\t[style.height.px]=\"circleSize\"\n\t[style.width.px]=\"circleSize\"\n\tclass=\"gui-spinner\">\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
+                template: "<div\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"gui-spinner\">\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: ["@-webkit-keyframes gui-spin{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}@keyframes gui-spin{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}@-webkit-keyframes gui-spin-reverse{from{transform:rotate(-90deg) scale(.8)}to{transform:rotate(270deg) scale(.8)}}@keyframes gui-spin-reverse{from{transform:rotate(-90deg) scale(.8)}to{transform:rotate(270deg) scale(.8)}}.gui-spinner{display:inline-block;position:relative;margin:4px;-ms-transform:rotate(-90deg);transform:rotate(-90deg)}.gui-spinner circle{fill:transparent;stroke:#999}.gui-spinner svg{position:absolute}.gui-spinner .circle-inner{animation:2s linear infinite reverse forwards gui-spin-reverse}.gui-spinner .circle-outer{-webkit-animation:2s linear infinite forwards gui-spin;animation:2s linear infinite forwards gui-spin}.gui-primary .gui-spinner.gui-spinner circle{stroke:#2185d0}.gui-secondary .gui-spinner.gui-spinner circle{stroke:#3cb371}", ".gui-material .gui-spinner circle{stroke:#3949ab}.gui-material .gui-primary .gui-spinner circle{stroke:#6200ee}.gui-material .gui-secondary .gui-spinner circle{stroke:#0097a7}", ".gui-dark .gui-spinner circle{stroke:#424242}.gui-dark .gui-primary .gui-spinner circle{stroke:#ce93d8}.gui-dark .gui-secondary .gui-spinner circle{stroke:#80cbc4}"]
@@ -5535,6 +5991,7 @@ const modules = [
     FabricInlineDialogModule,
     FabricRadioButtonModule,
     FabricRadioGroupModule,
+    FabricNotificationModule,
     FabricTabModule,
     FabricTooltipModule,
     FabricProgressBarModule,
@@ -5572,7 +6029,8 @@ class FabricNestedDialogComponent {
     /**
      * @protected
      */
-    constructor() { }
+    constructor() {
+    }
 }
 
 /**
@@ -5590,5 +6048,5 @@ class FabricNestedDialogComponent {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricTabComponent as ɵbc, TabItemComponent as ɵbd, FabricTooltipDirective as ɵbe, FabricTooltipComponent as ɵbf, FabricProgressBarComponent as ɵbg, FabricProgressSpinnerComponent as ɵbh, AbstractSpinner as ɵbi, FabricSelectComponent as ɵbj, FabricSpinnerComponent as ɵbk, FabricToggleButtonComponent as ɵbl, ToggleButtonGroupService as ɵbm, FabricToggleButtonGroupComponent as ɵbn, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, FabricDatePickerCalendarComponent as ɵj, FabricDatePickerService as ɵk, FabricDatePickerWeeks as ɵl, FabricDatePickerYears as ɵm, FabricDatePickerComponent as ɵn, FabricDatePickerInlineDialogService as ɵo, FabricCloseIconModule as ɵp, selector as ɵq, FabricCloseIconComponent as ɵr, FabricDrawerComponent as ɵs, DialogService as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricNotificationModule, FabricNotificationService, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricNotificationsContainerComponent as ɵbc, FabricNotificationComponent as ɵbd, FabricTabComponent as ɵbe, TabItemComponent as ɵbf, FabricTooltipDirective as ɵbg, FabricTooltipComponent as ɵbh, FabricProgressBarComponent as ɵbi, FabricProgressSpinnerComponent as ɵbj, AbstractSpinner as ɵbk, FabricSelectComponent as ɵbl, FabricSpinnerComponent as ɵbm, FabricToggleButtonComponent as ɵbn, ToggleButtonGroupService as ɵbo, FabricToggleButtonGroupComponent as ɵbp, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, FabricDatePickerCalendarComponent as ɵj, FabricDatePickerService as ɵk, FabricDatePickerWeeks as ɵl, FabricDatePickerYears as ɵm, FabricDatePickerComponent as ɵn, FabricDatePickerInlineDialogService as ɵo, FabricCloseIconModule as ɵp, selector as ɵq, FabricCloseIconComponent as ɵr, FabricDrawerComponent as ɵs, DialogService as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

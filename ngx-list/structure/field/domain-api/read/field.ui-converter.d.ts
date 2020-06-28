@@ -1,6 +1,6 @@
-import { FieldUiModel } from './field.ui-model';
-import { TypeField } from '../../domain/data-type/type.field';
+import { FieldReadModel } from './field.read-model';
+import { Field } from '../../domain/core/field/field';
 export declare class FieldUiConverter {
-    convert(fields: Array<TypeField>): Array<FieldUiModel>;
+    convert(fields: Array<Field>): Array<FieldReadModel>;
     private convertOne;
 }

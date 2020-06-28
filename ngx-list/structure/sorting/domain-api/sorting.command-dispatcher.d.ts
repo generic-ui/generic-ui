@@ -1,6 +1,6 @@
 import { StructureId } from '../../../lib/structure/domain/structure.id';
 import { SortingConfig } from './sorting-config';
-import { FieldId } from '../../field/domain/data-type/field.id';
+import { FieldId } from '../../field/domain/core/field/field.id';
 import { CompositionId } from '../../../lib/composition/domain/composition.id';
 import { SortOrder } from '../../../lib/composition/domain/column/sort/sort-order';
 import { CommandDispatcher } from '@generic-ui/hermes';

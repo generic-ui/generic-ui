@@ -10,6 +10,7 @@ export declare abstract class AggregateArchive<T> extends ReactiveService {
     private archive$;
     protected constructor(defaultValue?: DefaultAggregateValues<T>);
     on(aggregateId: AggregateId): Observable<T>;
+    get(aggregateId: AggregateId): T;
     next(aggregateId: AggregateId, value: T): void;
     private initArchive;
 }

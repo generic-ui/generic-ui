@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { TemplatesComponent } from '../template/templates.component';
-import { DataType } from '../../../../../structure/field/domain/data-type/data-type';
+import { DataType } from '../../../../../structure/field/domain/core/field/data/data-type';
 export declare class EditTemplatesComponent implements TemplatesComponent {
     stringTemplate: TemplateRef<any>;
     numberTemplate: TemplateRef<any>;

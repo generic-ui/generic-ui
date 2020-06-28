@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GuiListItemComponent } from './item/gui.list-item.component';
-import { GuiListField, GuiListPaging, GuiListSearching, GuiListView } from '../domain-api/gui.list.api';
+import { GuiListField, GuiListPaging, GuiListSearching, GuiListView } from '../domain-api/gui.list.public-api';
 import { GuiListPagingConverter } from './paging/gui-list.paging.converter';
 import { GuiListCardComponent } from './card/gui.list-card.component';
 import { GuiListModeConverter } from './mode/gui-list.mode.converter';

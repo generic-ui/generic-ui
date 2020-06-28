@@ -1,7 +1,7 @@
-import { Component, ContentChild, TemplateRef, EventEmitter, Input, Output, ViewEncapsulation, Inject, PLATFORM_ID, Injectable, RendererFactory2, InjectionToken, ChangeDetectionStrategy, Injector, Renderer2, ElementRef, ChangeDetectorRef, NgModule, ViewChild, Directive, Pipe, ComponentFactoryResolver, Attribute, NgZone, Optional as Optional$1 } from '@angular/core';
+import { Component, ContentChild, TemplateRef, EventEmitter, Input, Output, ViewEncapsulation, Inject, PLATFORM_ID, Injectable, RendererFactory2, InjectionToken, ChangeDetectionStrategy, Injector, Renderer2, ElementRef, ChangeDetectorRef, NgModule, ViewChild, Optional as Optional$1, Directive, Pipe, ComponentFactoryResolver, Attribute, NgZone } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FabricDrawerService, FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
-import { ReadModelRootId, AggregateId, Command, CommandDispatcher, EntityId, DomainEvent, AggregateEvent, AggregateArchive, ReadModelEntityId, ReadModelRootRepository, CreateAggregateCommand, InMemoryStore, ReadModelObject, ReadModelRoot, RandomStringGenerator, InMemoryReadModelStore, DomainEventBus, Archive, EventRepository, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ApiModule, FeatureModule, Optional, Reactive as Reactive$1, AggregateRoot, AggregateFactory, InMemoryAggregateStore, AggregateStoreRegister, Entity, ReadModelEntity, DomainObject, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { FabricDrawerService, FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricDialogService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement } from '@generic-ui/fabric';
+import { ReadModelRootId, AggregateId, Command, CommandDispatcher, EntityId, DomainEvent, AggregateEvent, AggregateArchive, ReadModelEntityId, ReadModelRootRepository, CreateAggregateCommand, InMemoryStore, ReadModelObject, ReadModelRoot, RandomStringGenerator, InMemoryReadModelStore, DomainEventBus, Archive, EventRepository, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ApiModule, FeatureModule, Optional, Entity, Reactive as Reactive$1, AggregateRoot, AggregateFactory, InMemoryAggregateStore, AggregateStoreRegister, ReadModelEntity, DomainObject, KeyMap, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { Subject, Observable, ReplaySubject, zip, timer, fromEvent, combineLatest } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { takeUntil, filter, map, take, distinctUntilChanged, switchMap, debounceTime } from 'rxjs/operators';
@@ -451,7 +451,7 @@ class GuiListComponent extends GuiListGateway {
 GuiListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-list',
-                template: "<gui-list-view\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[template]=\"containerTemplate\"\n\t\t[paging]=\"paging\"\n\t\t[fields]=\"listFields\"\n\t\t[searching]=\"searchConfig\"\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n>\n</gui-list-view>\n",
+                template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
                 providers: [
                     ...guiListProviders
                 ],
@@ -2329,6 +2329,12 @@ if (false) {
      * @param {?} aggregateId
      * @return {?}
      */
+    StructureReadModelRepository.prototype.getStructure = function (aggregateId) { };
+    /**
+     * @abstract
+     * @param {?} aggregateId
+     * @return {?}
+     */
     StructureReadModelRepository.prototype.onStructure = function (aggregateId) { };
     /**
      * @abstract
@@ -2490,42 +2496,28 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SetFormationCommand extends Command {
-    /**
-     * @param {?} structureId
-     * @param {?=} payload
-     */
-    constructor(structureId, payload) {
-        super(structureId, 'SetFormationCommand');
-        this.payload = payload;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SetFormationCommand.prototype.payload;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ToggleSelectedRowCommand extends Command {
     /**
      * @param {?} structureId
      * @param {?} selectedRow
+     * @param {?} type
      */
-    constructor(structureId, selectedRow) {
+    constructor(structureId, selectedRow, type) {
         super(structureId, 'ToggleSelectedRowCommand');
         this.selectedRow = selectedRow;
+        this.type = type;
     }
     /**
      * @return {?}
      */
     getSelectedRow() {
         return this.selectedRow;
+    }
+    /**
+     * @return {?}
+     */
+    getType() {
+        return this.type;
     }
 }
 if (false) {
@@ -2534,6 +2526,11 @@ if (false) {
      * @private
      */
     ToggleSelectedRowCommand.prototype.selectedRow;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleSelectedRowCommand.prototype.type;
 }
 
 /**
@@ -2549,18 +2546,12 @@ class FormationDispatcher {
     }
     /**
      * @param {?} structureId
-     * @return {?}
-     */
-    setDefault(structureId) {
-        this.commandDispatcher.dispatch(new SetFormationCommand(structureId));
-    }
-    /**
-     * @param {?} structureId
      * @param {?} selectedRow
+     * @param {?} type
      * @return {?}
      */
-    toggleSelectedRow(structureId, selectedRow) {
-        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow));
+    toggleSelectedRow(structureId, selectedRow, type) {
+        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
     }
 }
 FormationDispatcher.decorators = [
@@ -2582,11 +2573,95 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFormationDispatcher {
+class SetEnabledSelectionCommand extends Command {
     /**
+     * @param {?} structureId
+     * @param {?} enabled
+     */
+    constructor(structureId, enabled) {
+        super(structureId, 'SetEnabledSelectionCommand');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetEnabledSelectionCommand.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetSelectionModeCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} mode
+     */
+    constructor(structureId, mode) {
+        super(structureId, 'SetSelectionModeCommand');
+        this.mode = mode;
+    }
+    /**
+     * @return {?}
+     */
+    getMode() {
+        return this.mode;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetSelectionModeCommand.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllRowsCommand extends Command {
+    /**
+     * @param {?} structureId
+     */
+    constructor(structureId) {
+        super(structureId, 'SelectAllRowsCommand');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectAllRowsCommand extends Command {
+    /**
+     * @param {?} structureId
+     */
+    constructor(structureId) {
+        super(structureId, 'UnselectAllRowsCommand');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FormationCommandDispatcher {
+    /**
+     * @param {?} commandDispatcher
      * @param {?} formationDispatcher
      */
-    constructor(formationDispatcher) {
+    constructor(commandDispatcher, formationDispatcher) {
+        this.commandDispatcher = commandDispatcher;
         this.formationDispatcher = formationDispatcher;
     }
     /**
@@ -2594,22 +2669,54 @@ class StructureFormationDispatcher {
      * @return {?}
      */
     setDefaultFormation(structureId = structureGlobalId) {
-        this.formationDispatcher.setDefault(structureId);
+        // this.commandDispatcher.dispatch(new )
     }
     /**
      * @param {?} selectedRow
+     * @param {?} type
      * @param {?=} structureId
      * @return {?}
      */
-    toggleSelectedRow(selectedRow, structureId = structureGlobalId) {
-        this.formationDispatcher.toggleSelectedRow(structureId, selectedRow);
+    toggleSelectedRow(selectedRow, type, structureId = structureGlobalId) {
+        this.formationDispatcher.toggleSelectedRow(structureId, selectedRow, type);
+    }
+    /**
+     * @param {?} mode
+     * @param {?=} structureId
+     * @return {?}
+     */
+    changeMode(mode, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
+    }
+    /**
+     * @param {?} enabled
+     * @param {?=} structureId
+     * @return {?}
+     */
+    setSelection(enabled, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    selectAll(structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    unselectAll(structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
     }
 }
-StructureFormationDispatcher.decorators = [
+FormationCommandDispatcher.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureFormationDispatcher.ctorParameters = () => [
+FormationCommandDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher },
     { type: FormationDispatcher }
 ];
 if (false) {
@@ -2617,20 +2724,40 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureFormationDispatcher.prototype.formationDispatcher;
+    FormationCommandDispatcher.prototype.commandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationCommandDispatcher.prototype.formationDispatcher;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalFormationCommandDispatcher extends StructureFormationDispatcher {
+/** @enum {number} */
+const RowSelectToggleType = {
+    NONE: 0,
+    ADD: 1,
+    RANGE: 2,
+};
+RowSelectToggleType[RowSelectToggleType.NONE] = 'NONE';
+RowSelectToggleType[RowSelectToggleType.ADD] = 'ADD';
+RowSelectToggleType[RowSelectToggleType.RANGE] = 'RANGE';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class LocalFormationCommandDispatcher extends FormationCommandDispatcher {
     /**
      * @param {?} structureId
+     * @param {?} commandDispatcher
      * @param {?} formationDispatcher
      */
-    constructor(structureId, formationDispatcher) {
-        super(formationDispatcher);
+    constructor(structureId, commandDispatcher, formationDispatcher) {
+        super(commandDispatcher, formationDispatcher);
         this.structureId = structureId;
     }
     /**
@@ -2641,10 +2768,11 @@ class LocalFormationCommandDispatcher extends StructureFormationDispatcher {
     }
     /**
      * @param {?} selectedRow
+     * @param {?} type
      * @return {?}
      */
-    toggleSelectedRow(selectedRow) {
-        super.toggleSelectedRow(selectedRow, this.structureId);
+    toggleSelectedRow(selectedRow, type) {
+        super.toggleSelectedRow(selectedRow, type, this.structureId);
     }
 }
 LocalFormationCommandDispatcher.decorators = [
@@ -2653,12 +2781,13 @@ LocalFormationCommandDispatcher.decorators = [
 /** @nocollapse */
 LocalFormationCommandDispatcher.ctorParameters = () => [
     { type: StructureId },
+    { type: CommandDispatcher },
     { type: FormationDispatcher }
 ];
 __decorate([
     Override,
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Number]),
     __metadata("design:returntype", void 0)
 ], LocalFormationCommandDispatcher.prototype, "toggleSelectedRow", null);
 if (false) {
@@ -2673,104 +2802,465 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormationRepository {
-    /**
-     * @param {?} structureRepository
-     */
-    constructor(structureRepository) {
-        this.structureRepository = structureRepository;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onFormation(structureId) {
-        return this.structureRepository
-            .onStructure(structureId)
-            .pipe(filter((/**
-         * @param {?} structure
-         * @return {?}
-         */
-        (structure) => structure.getId().toString() === structureId.toString())), map((/**
-         * @param {?} structure
-         * @return {?}
-         */
-        (structure) => structure.getFormation())));
+class RowSelectedRepository extends AggregateArchive {
+    constructor() {
+        super();
     }
 }
-FormationRepository.decorators = [
+RowSelectedRepository.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-FormationRepository.ctorParameters = () => [
-    { type: StructureReadModelRepository }
+RowSelectedRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RowSelectionModeRepository extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+RowSelectionModeRepository.decorators = [
+    { type: Injectable }
 ];
+/** @nocollapse */
+RowSelectionModeRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectedRow {
+    /**
+     * @param {?} data
+     * @param {?} index
+     * @param {?} itemId
+     */
+    constructor(data, index, itemId) {
+        this.data = data;
+        this.index = index;
+        this.itemId = itemId;
+    }
+    /**
+     * @return {?}
+     */
+    getData() {
+        return this.data;
+    }
+    /**
+     * @return {?}
+     */
+    getIndex() {
+        return this.index;
+    }
+    /**
+     * @return {?}
+     */
+    getItemId() {
+        return this.itemId;
+    }
+}
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    FormationRepository.prototype.structureRepository;
+    SelectedRow.prototype.index;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRow.prototype.itemId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRow.prototype.data;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFormationWarehouse {
+class StructureSourceOriginRepository {
+    constructor() {
+        this.origin = new Map();
+        this.origin$ = new ReplaySubject();
+    }
     /**
-     * @param {?} formationRepository
+     * @param {?} origin
+     * @param {?} structureId
+     * @return {?}
      */
-    constructor(formationRepository) {
-        this.formationRepository = formationRepository;
+    setOrigin(origin, structureId) {
+        this.origin.set(structureId.toString(), origin);
+        this.origin$.next(this.origin);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onOrigin(structureId) {
+        return this.origin$
+            .asObservable()
+            .pipe(map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        (map) => {
+            return map.get(structureId.toString());
+        })), distinctUntilChanged());
+    }
+}
+StructureSourceOriginRepository.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSourceOriginRepository.prototype.origin;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSourceOriginRepository.prototype.origin$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructurePreparedItemsRepository {
+    constructor() {
+        this.origin = new Map();
+        this.origin$ = new ReplaySubject();
+    }
+    /**
+     * @param {?} origin
+     * @param {?} structureId
+     * @return {?}
+     */
+    setItems(origin, structureId) {
+        this.origin.set(structureId.toString(), origin);
+        this.origin$.next(this.origin);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    getPreparedItems(structureId) {
+        return this.origin.get(structureId.getId());
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onPreparedItems(structureId) {
+        return this.origin$
+            .asObservable()
+            .pipe(map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        (map) => {
+            return map.get(structureId.toString());
+        })), distinctUntilChanged());
+    }
+}
+StructurePreparedItemsRepository.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePreparedItemsRepository.prototype.origin;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePreparedItemsRepository.prototype.origin$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceWarehouse {
+    /**
+     * @param {?} structureRepository
+     * @param {?} structurePreparedItemsRepository
+     * @param {?} structureSourceOriginRepository
+     */
+    constructor(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
+        this.structureRepository = structureRepository;
+        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
+        this.structureSourceOriginRepository = structureSourceOriginRepository;
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    getEntities(structureId = structureGlobalId) {
+        return this.structureRepository.getStructure(structureId).getEntities();
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onEntities(structureId = structureGlobalId) {
+        return this.structureRepository
+            .onStructure(structureId)
+            .pipe(map((/**
+         * @param {?} structure
+         * @return {?}
+         */
+        (structure) => structure.getEntities())), distinctUntilChanged((/**
+         * @param {?} ents1
+         * @param {?} ents2
+         * @return {?}
+         */
+        (ents1, ents2) => {
+            if (ents1.length !== ents2.length) {
+                return false;
+            }
+            /** @type {?} */
+            let flag = true;
+            ents1.forEach((/**
+             * @param {?} ent
+             * @param {?} index
+             * @return {?}
+             */
+            (ent, index) => {
+                if (!ent.equals(ents2[index])) {
+                    flag = false;
+                    return;
+                }
+            }));
+            return flag;
+        })));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onEntitiesSize(structureId = structureGlobalId) {
+        return this.onEntities(structureId)
+            .pipe(map((/**
+         * @param {?} entities
+         * @return {?}
+         */
+        (entities) => {
+            return entities.length;
+        })));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onSingleEntities(structureId = structureGlobalId) {
+        return this.onEntities(structureId)
+            .pipe(take(1));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onOriginSize(structureId = structureGlobalId) {
+        return this.structureSourceOriginRepository
+            .onOrigin(structureId)
+            .pipe(map((/**
+         * @param {?} origin
+         * @return {?}
+         */
+        origin => origin.length)));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onLoading(structureId = structureGlobalId) {
+        return this.structureRepository
+            .onStructure(structureId)
+            .pipe(map((/**
+         * @param {?} structure
+         * @return {?}
+         */
+        (structure) => structure.getSource().isLoading())));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onPreparedEntities(structureId = structureGlobalId) {
+        return this.structurePreparedItemsRepository.onPreparedItems(structureId);
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    getPreparedEntities(structureId = structureGlobalId) {
+        return this.structurePreparedItemsRepository.getPreparedItems(structureId);
+    }
+}
+SourceWarehouse.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SourceWarehouse.ctorParameters = () => [
+    { type: StructureReadModelRepository },
+    { type: StructurePreparedItemsRepository },
+    { type: StructureSourceOriginRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceWarehouse.prototype.structureRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceWarehouse.prototype.structurePreparedItemsRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceWarehouse.prototype.structureSourceOriginRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FormationWarehouse {
+    /**
+     * @param {?} rowSelectedRepository
+     * @param {?} rowSelectionModeRepository
+     * @param {?} sourceWarehouse
+     */
+    constructor(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
+        this.rowSelectedRepository = rowSelectedRepository;
+        this.rowSelectionModeRepository = rowSelectionModeRepository;
+        this.sourceWarehouse = sourceWarehouse;
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    getSelectedRows(structureId = structureGlobalId) {
+        /** @type {?} */
+        const items = this.sourceWarehouse.getPreparedEntities(structureId);
+        /** @type {?} */
+        const selectedItemIds = this.getSelectedItemIds(structureId);
+        /** @type {?} */
+        let selectedItems = [];
+        /** @type {?} */
+        let length = items.length;
+        for (let i = 0; i < length; i += 1) {
+            /** @type {?} */
+            let item = items[i];
+            if (selectedItemIds.some((/**
+             * @param {?} itemId
+             * @return {?}
+             */
+            (itemId) => itemId === item.getId().toString()))) {
+                selectedItems.push(new SelectedRow(item.getData(), i, item.getId()));
+            }
+        }
+        return selectedItems;
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onRowSelectedReadModel(structureId = structureGlobalId) {
+        return this.rowSelectedRepository
+            .on(structureId);
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    getSelectedItemIds(structureId = structureGlobalId) {
+        return this.rowSelectedRepository.get(structureId).getAll();
     }
     /**
      * @param {?=} structureId
      * @return {?}
      */
     onSelectedRows(structureId = structureGlobalId) {
-        return this.formationRepository
-            .onFormation(structureId)
+        return this.rowSelectedRepository
+            .on(structureId)
             .pipe(map((/**
-         * @param {?} formation
+         * @param {?} rm
          * @return {?}
          */
-        (formation) => formation.getSelectedRows())));
+        (rm) => {
+            return rm.getAll();
+        })));
+    }
+    /**
+     * @param {?=} structureId
+     * @return {?}
+     */
+    onMode(structureId = structureGlobalId) {
+        return this.rowSelectionModeRepository.on(structureId);
     }
 }
-StructureFormationWarehouse.decorators = [
+FormationWarehouse.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureFormationWarehouse.ctorParameters = () => [
-    { type: FormationRepository }
+FormationWarehouse.ctorParameters = () => [
+    { type: RowSelectedRepository },
+    { type: RowSelectionModeRepository },
+    { type: SourceWarehouse }
 ];
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    StructureFormationWarehouse.prototype.formationRepository;
+    FormationWarehouse.prototype.rowSelectedRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationWarehouse.prototype.rowSelectionModeRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationWarehouse.prototype.sourceWarehouse;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalFormationWarehouse extends StructureFormationWarehouse {
+class LocalFormationWarehouse extends FormationWarehouse {
     /**
      * @param {?} structureId
-     * @param {?} formationRepository
+     * @param {?} rowSelectedArchive
+     * @param {?} rowSelectionModeRepository
+     * @param {?} sourceWarehouse
      */
-    constructor(structureId, formationRepository) {
-        super(formationRepository);
+    constructor(structureId, rowSelectedArchive, rowSelectionModeRepository, sourceWarehouse) {
+        super(rowSelectedArchive, rowSelectionModeRepository, sourceWarehouse);
         this.structureId = structureId;
     }
     /**
      * @return {?}
      */
-    onSelectedRows() {
-        return super.onSelectedRows(this.structureId);
+    onRowSelectedReadModel() {
+        return super.onRowSelectedReadModel(this.structureId);
     }
 }
 LocalFormationWarehouse.decorators = [
@@ -2779,14 +3269,16 @@ LocalFormationWarehouse.decorators = [
 /** @nocollapse */
 LocalFormationWarehouse.ctorParameters = () => [
     { type: StructureId },
-    { type: FormationRepository }
+    { type: RowSelectedRepository },
+    { type: RowSelectionModeRepository },
+    { type: SourceWarehouse }
 ];
 __decorate([
     Override,
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalFormationWarehouse.prototype, "onSelectedRows", null);
+], LocalFormationWarehouse.prototype, "onRowSelectedReadModel", null);
 if (false) {
     /**
      * @type {?}
@@ -2799,13 +3291,13 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSetConfigFilterCommand extends Command {
+class SetConfigFilterCommand extends Command {
     /**
      * @param {?} structureId
      * @param {?} filterConfig
      */
     constructor(structureId, filterConfig) {
-        super(structureId, 'StructureSetConfigFilterCommand');
+        super(structureId, 'SetConfigFilterCommand');
         this.filterConfig = filterConfig;
     }
     /**
@@ -2820,25 +3312,38 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureSetConfigFilterCommand.prototype.filterConfig;
+    SetConfigFilterCommand.prototype.filterConfig;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureToggleFilterCommand extends Command {
+class RemoveAllFiltersCommand extends Command {
+    /**
+     * @param {?} structureId
+     */
+    constructor(structureId) {
+        super(structureId, 'RemoveAllFiltersCommand');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AddFilterCommand extends Command {
     /**
      * @param {?} structureId
      * @param {?} fieldId
-     * @param {?} externalFilterId
-     * @param {?} filterValue
+     * @param {?} filterTypeId
+     * @param {?} value
      */
-    constructor(structureId, fieldId, externalFilterId, filterValue) {
-        super(structureId, 'StructureToggleFilterCommand');
+    constructor(structureId, fieldId, filterTypeId, value) {
+        super(structureId, 'AddFilterCommand');
         this.fieldId = fieldId;
-        this.externalFilterId = externalFilterId;
-        this.filterValue = filterValue;
+        this.filterTypeId = filterTypeId;
+        this.value = value;
     }
     /**
      * @return {?}
@@ -2849,14 +3354,14 @@ class StructureToggleFilterCommand extends Command {
     /**
      * @return {?}
      */
-    getExternalFilterId() {
-        return this.externalFilterId;
+    getFilterTypeId() {
+        return this.filterTypeId;
     }
     /**
      * @return {?}
      */
-    getFilterValue() {
-        return this.filterValue;
+    getValue() {
+        return this.value;
     }
 }
 if (false) {
@@ -2864,24 +3369,190 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureToggleFilterCommand.prototype.fieldId;
+    AddFilterCommand.prototype.fieldId;
     /**
      * @type {?}
      * @private
      */
-    StructureToggleFilterCommand.prototype.externalFilterId;
+    AddFilterCommand.prototype.filterTypeId;
     /**
      * @type {?}
      * @private
      */
-    StructureToggleFilterCommand.prototype.filterValue;
+    AddFilterCommand.prototype.value;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFilterCommandDispatcher {
+class RemoveFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} filterId
+     */
+    constructor(structureId, filterId) {
+        super(structureId, 'RemoveFilterCommand');
+        this.filterId = filterId;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterId() {
+        return this.filterId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RemoveFilterCommand.prototype.filterId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllUniqueFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     */
+    constructor(structureId, fieldId) {
+        super(structureId, 'SelectAllUniqueFilterCommand');
+        this.fieldId = fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllUniqueFilterCommand.prototype.fieldId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectAllUniqueFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     */
+    constructor(structureId, fieldId) {
+        super(structureId, 'UnselectAllUniqueFilterCommand');
+        this.fieldId = fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectAllUniqueFilterCommand.prototype.fieldId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectUniqueFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     */
+    constructor(structureId, fieldId, uniqueValueId) {
+        super(structureId, 'SelectUniqueFilterCommand');
+        this.fieldId = fieldId;
+        this.uniqueValueId = uniqueValueId;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getUniqueValueId() {
+        return this.uniqueValueId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectUniqueFilterCommand.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectUniqueFilterCommand.prototype.uniqueValueId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectUniqueFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     */
+    constructor(structureId, fieldId, uniqueValueId) {
+        super(structureId, 'UnselectUniqueFilterCommand');
+        this.fieldId = fieldId;
+        this.uniqueValueId = uniqueValueId;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getUniqueValueId() {
+        return this.uniqueValueId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectUniqueFilterCommand.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectUniqueFilterCommand.prototype.uniqueValueId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterCommandDispatcher {
     /**
      * @param {?} commandDispatcher
      */
@@ -2894,24 +3565,73 @@ class StructureFilterCommandDispatcher {
      * @return {?}
      */
     setFilteringEnabled(config, structureId) {
-        this.commandDispatcher.dispatch(new StructureSetConfigFilterCommand(structureId, config));
+        this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
     }
     /**
      * @param {?} fieldId
-     * @param {?} externalFieldId
-     * @param {?} filterValue
+     * @param {?} filterTypeId
+     * @param {?} value
      * @param {?} structureId
      * @return {?}
      */
-    addFilter(fieldId, externalFieldId, filterValue, structureId) {
-        this.commandDispatcher.dispatch(new StructureToggleFilterCommand(structureId, fieldId, externalFieldId, filterValue));
+    add(fieldId, filterTypeId, value, structureId) {
+        this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    removeAllFilters(structureId) {
+        this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
+    }
+    /**
+     * @param {?} filterId
+     * @param {?} structureId
+     * @return {?}
+     */
+    removeFilter(filterId, structureId) {
+        this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} structureId
+     * @return {?}
+     */
+    selectAllUniqueFilter(fieldId, structureId) {
+        this.commandDispatcher.dispatch(new SelectAllUniqueFilterCommand(structureId, fieldId));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} structureId
+     * @return {?}
+     */
+    unselectAllUniqueFilter(fieldId, structureId) {
+        this.commandDispatcher.dispatch(new UnselectAllUniqueFilterCommand(structureId, fieldId));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @param {?} structureId
+     * @return {?}
+     */
+    selectUniqueFilter(fieldId, uniqueValueId, structureId) {
+        this.commandDispatcher.dispatch(new SelectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @param {?} structureId
+     * @return {?}
+     */
+    unselectUniqueFilter(fieldId, uniqueValueId, structureId) {
+        this.commandDispatcher.dispatch(new UnselectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
     }
 }
-StructureFilterCommandDispatcher.decorators = [
+FilterCommandDispatcher.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureFilterCommandDispatcher.ctorParameters = () => [
+FilterCommandDispatcher.ctorParameters = () => [
     { type: CommandDispatcher }
 ];
 if (false) {
@@ -2919,7 +3639,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureFilterCommandDispatcher.prototype.commandDispatcher;
+    FilterCommandDispatcher.prototype.commandDispatcher;
 }
 
 /**
@@ -3130,13 +3850,13 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSetConfigQuickFilterCommand extends Command {
+class SetConfigQuickFilterCommand extends Command {
     /**
      * @param {?} structureId
      * @param {?} quickFiltersConfig
      */
     constructor(structureId, quickFiltersConfig) {
-        super(structureId, 'StructureSetConfigQuickFilterCommand');
+        super(structureId, 'SetConfigQuickFilterCommand');
         this.quickFiltersConfig = quickFiltersConfig;
     }
     /**
@@ -3151,7 +3871,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureSetConfigQuickFilterCommand.prototype.quickFiltersConfig;
+    SetConfigQuickFilterCommand.prototype.quickFiltersConfig;
 }
 
 /**
@@ -3304,7 +4024,7 @@ class StructureCommandDispatcher {
      * @return {?}
      */
     setQuickFiltersConfig(config, structureId = structureGlobalId) {
-        this.commandDispatcher.dispatch(new StructureSetConfigQuickFilterCommand(structureId, config));
+        this.commandDispatcher.dispatch(new SetConfigQuickFilterCommand(structureId, config));
     }
     /**
      * @param {?} rowHeight
@@ -3337,7 +4057,7 @@ StructureCommandDispatcher.decorators = [
 /** @nocollapse */
 StructureCommandDispatcher.ctorParameters = () => [
     { type: CommandDispatcher },
-    { type: StructureFilterCommandDispatcher },
+    { type: FilterCommandDispatcher },
     { type: SourceDispatcher }
 ];
 if (false) {
@@ -3471,7 +4191,7 @@ LocalStructureCommandDispatcher.ctorParameters = () => [
     { type: StructureId },
     { type: CompositionId },
     { type: CommandDispatcher },
-    { type: StructureFilterCommandDispatcher },
+    { type: FilterCommandDispatcher },
     { type: SourceDispatcher }
 ];
 __decorate([
@@ -3627,289 +4347,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldUiArchive extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-FieldUiArchive.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-FieldUiArchive.ctorParameters = () => [];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FieldUiRepository {
-    /**
-     * @param {?} structureFieldUiArchive
-     */
-    constructor(structureFieldUiArchive) {
-        this.structureFieldUiArchive = structureFieldUiArchive;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onFields(structureId) {
-        return this.structureFieldUiArchive.on(structureId);
-    }
-}
-FieldUiRepository.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-FieldUiRepository.ctorParameters = () => [
-    { type: FieldUiArchive }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FieldUiRepository.prototype.structureFieldUiArchive;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureSourceOriginRepository {
-    constructor() {
-        this.origin = new Map();
-        this.origin$ = new ReplaySubject();
-    }
-    /**
-     * @param {?} origin
-     * @param {?} structureId
-     * @return {?}
-     */
-    setOrigin(origin, structureId) {
-        this.origin.set(structureId.toString(), origin);
-        this.origin$.next(this.origin);
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onOrigin(structureId) {
-        return this.origin$
-            .asObservable()
-            .pipe(map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        (map) => {
-            return map.get(structureId.toString());
-        })), distinctUntilChanged());
-    }
-}
-StructureSourceOriginRepository.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceOriginRepository.prototype.origin;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceOriginRepository.prototype.origin$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructurePreparedItemsRepository {
-    constructor() {
-        this.origin = new Map();
-        this.origin$ = new ReplaySubject();
-    }
-    /**
-     * @param {?} origin
-     * @param {?} structureId
-     * @return {?}
-     */
-    setItems(origin, structureId) {
-        this.origin.set(structureId.toString(), origin);
-        this.origin$.next(this.origin);
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onPreparedItems(structureId) {
-        return this.origin$
-            .asObservable()
-            .pipe(map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        (map) => {
-            return map.get(structureId.toString());
-        })), distinctUntilChanged());
-    }
-}
-StructurePreparedItemsRepository.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructurePreparedItemsRepository.prototype.origin;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructurePreparedItemsRepository.prototype.origin$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureSourceWarehouse {
-    /**
-     * @param {?} structureRepository
-     * @param {?} structurePreparedItemsRepository
-     * @param {?} structureSourceOriginRepository
-     */
-    constructor(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
-        this.structureRepository = structureRepository;
-        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
-        this.structureSourceOriginRepository = structureSourceOriginRepository;
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onEntities(structureId = structureGlobalId) {
-        return this.structureRepository
-            .onStructure(structureId)
-            .pipe(map((/**
-         * @param {?} structure
-         * @return {?}
-         */
-        (structure) => structure.getEntities())), distinctUntilChanged((/**
-         * @param {?} ents1
-         * @param {?} ents2
-         * @return {?}
-         */
-        (ents1, ents2) => {
-            if (ents1.length !== ents2.length) {
-                return false;
-            }
-            /** @type {?} */
-            let flag = true;
-            ents1.forEach((/**
-             * @param {?} ent
-             * @param {?} index
-             * @return {?}
-             */
-            (ent, index) => {
-                if (!ent.equals(ents2[index])) {
-                    flag = false;
-                    return;
-                }
-            }));
-            return flag;
-        })));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onEntitiesSize(structureId = structureGlobalId) {
-        return this.onEntities(structureId)
-            .pipe(map((/**
-         * @param {?} entities
-         * @return {?}
-         */
-        (entities) => {
-            return entities.length;
-        })));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onSingleEntities(structureId = structureGlobalId) {
-        return this.onEntities(structureId)
-            .pipe(take(1));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onOriginSize(structureId = structureGlobalId) {
-        return this.structureSourceOriginRepository
-            .onOrigin(structureId)
-            .pipe(map((/**
-         * @param {?} origin
-         * @return {?}
-         */
-        origin => origin.length)));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onLoading(structureId = structureGlobalId) {
-        return this.structureRepository
-            .onStructure(structureId)
-            .pipe(map((/**
-         * @param {?} structure
-         * @return {?}
-         */
-        (structure) => structure.getSource().isLoading())));
-    }
-    /**
-     * @param {?=} structureId
-     * @return {?}
-     */
-    onPreparedEntities(structureId = structureGlobalId) {
-        return this.structurePreparedItemsRepository.onPreparedItems(structureId);
-    }
-}
-StructureSourceWarehouse.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureSourceWarehouse.ctorParameters = () => [
-    { type: StructureReadModelRepository },
-    { type: StructurePreparedItemsRepository },
-    { type: StructureSourceOriginRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceWarehouse.prototype.structureRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceWarehouse.prototype.structurePreparedItemsRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceWarehouse.prototype.structureSourceOriginRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class StructureEditSourceItemParams {
     /**
      * @param {?} itemId
@@ -3963,16 +4400,151 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class FieldReadModelRepository extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+FieldReadModelRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FieldReadModelRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FieldWarehouse {
+    /**
+     * @param {?} fieldReadModelRepository
+     */
+    constructor(fieldReadModelRepository) {
+        this.fieldReadModelRepository = fieldReadModelRepository;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onFields(structureId) {
+        return this.fieldReadModelRepository.on(structureId);
+    }
+}
+FieldWarehouse.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FieldWarehouse.ctorParameters = () => [
+    { type: FieldReadModelRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldWarehouse.prototype.fieldReadModelRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {number} */
+const DeleteCommandPayloadType = {
+    INDEX: 0,
+    ITEM_ID: 1,
+    MANY_INDEX: 2,
+    MANY_ITEM_ID: 3,
+};
+DeleteCommandPayloadType[DeleteCommandPayloadType.INDEX] = 'INDEX';
+DeleteCommandPayloadType[DeleteCommandPayloadType.ITEM_ID] = 'ITEM_ID';
+DeleteCommandPayloadType[DeleteCommandPayloadType.MANY_INDEX] = 'MANY_INDEX';
+DeleteCommandPayloadType[DeleteCommandPayloadType.MANY_ITEM_ID] = 'MANY_ITEM_ID';
+class DeleteOriginItemCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} payload
+     * @param {?} type
+     */
+    constructor(structureId, payload, type) {
+        super(structureId, 'DeleteOriginItemCommand');
+        this.payload = payload;
+        this.type = type;
+    }
+    /**
+     * @param {?} structureId
+     * @param {?} index
+     * @return {?}
+     */
+    static byIndex(structureId, index) {
+        return new DeleteOriginItemCommand(structureId, index, DeleteCommandPayloadType.INDEX);
+    }
+    /**
+     * @param {?} structureId
+     * @param {?} indexes
+     * @return {?}
+     */
+    static byManyIndex(structureId, indexes) {
+        return new DeleteOriginItemCommand(structureId, indexes, DeleteCommandPayloadType.MANY_INDEX);
+    }
+    /**
+     * @param {?} structureId
+     * @param {?} itemId
+     * @return {?}
+     */
+    static byItemId(structureId, itemId) {
+        return new DeleteOriginItemCommand(structureId, itemId, DeleteCommandPayloadType.ITEM_ID);
+    }
+    /**
+     * @param {?} structureId
+     * @param {?} itemIds
+     * @return {?}
+     */
+    static byManyItemId(structureId, itemIds) {
+        return new DeleteOriginItemCommand(structureId, itemIds, DeleteCommandPayloadType.MANY_ITEM_ID);
+    }
+    /**
+     * @return {?}
+     */
+    getType() {
+        return this.type;
+    }
+    /**
+     * @return {?}
+     */
+    getPayload() {
+        return this.payload;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteOriginItemCommand.prototype.payload;
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteOriginItemCommand.prototype.type;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class SourceCommandDispatcher extends Reactive {
     /**
+     * @param {?} commandDispatcher
      * @param {?} sourceDispatcher
-     * @param {?} structureFieldUiRepository
+     * @param {?} fieldWarehouse
      * @param {?} sourceReadModelService
      */
-    constructor(sourceDispatcher, structureFieldUiRepository, sourceReadModelService) {
+    constructor(commandDispatcher, sourceDispatcher, fieldWarehouse, sourceReadModelService) {
         super();
+        this.commandDispatcher = commandDispatcher;
         this.sourceDispatcher = sourceDispatcher;
-        this.structureFieldUiRepository = structureFieldUiRepository;
+        this.fieldWarehouse = fieldWarehouse;
         this.sourceReadModelService = sourceReadModelService;
     }
     /**
@@ -4018,7 +4590,7 @@ class SourceCommandDispatcher extends Reactive {
             return entities[itemIndex].getId();
         })));
         /** @type {?} */
-        const fieldId$ = this.structureFieldUiRepository
+        const fieldId$ = this.fieldWarehouse
             .onFields(structureId);
         zip(itemId$, fieldId$)
             .pipe(take(1), this.takeUntil())
@@ -4034,17 +4606,91 @@ class SourceCommandDispatcher extends Reactive {
             this.editItem(new StructureEditSourceItemParams(itemId, fields[fieldIndex], value), structureId);
         }));
     }
+    /**
+     * @param {?} row
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteRow(row, structureId = structureGlobalId) {
+        if (row.getItemId() !== undefined) {
+            this.deleteItemById(row.getItemId(), structureId);
+        }
+        else if (row.getIndex() !== undefined) {
+            this.deleteItemByIndex(row.getIndex(), structureId);
+        }
+    }
+    /**
+     * @param {?} rows
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteRows(rows, structureId = structureGlobalId) {
+        if (rows.length > 0) {
+            if (rows[0].getItemId() !== undefined) {
+                this.deleteManyItemsByItemIds(rows.map((/**
+                 * @param {?} r
+                 * @return {?}
+                 */
+                r => r.getItemId())), structureId);
+            }
+            else if (rows[0].getIndex() !== undefined) {
+                this.deleteManyItemsByIndex(rows.map((/**
+                 * @param {?} r
+                 * @return {?}
+                 */
+                r => r.getIndex())), structureId);
+            }
+        }
+    }
+    /**
+     * @param {?} index
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteItemByIndex(index, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byIndex(structureId, index));
+    }
+    /**
+     * @param {?} itemId
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteItemById(itemId, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byItemId(structureId, itemId));
+    }
+    /**
+     * @param {?} indexes
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteManyItemsByIndex(indexes, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyIndex(structureId, indexes));
+    }
+    /**
+     * @param {?} itemIds
+     * @param {?=} structureId
+     * @return {?}
+     */
+    deleteManyItemsByItemIds(itemIds, structureId = structureGlobalId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyItemId(structureId, itemIds));
+    }
 }
 SourceCommandDispatcher.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
 SourceCommandDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher },
     { type: SourceDispatcher },
-    { type: FieldUiRepository },
-    { type: StructureSourceWarehouse }
+    { type: FieldWarehouse },
+    { type: SourceWarehouse }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceCommandDispatcher.prototype.commandDispatcher;
     /**
      * @type {?}
      * @private
@@ -4054,7 +4700,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    SourceCommandDispatcher.prototype.structureFieldUiRepository;
+    SourceCommandDispatcher.prototype.fieldWarehouse;
     /**
      * @type {?}
      * @private
@@ -4069,12 +4715,13 @@ if (false) {
 class LocalSourceCommandDispatcher extends SourceCommandDispatcher {
     /**
      * @param {?} structureId
+     * @param {?} commandDispatcher
      * @param {?} sourceDispatcher
-     * @param {?} structureFieldUiRepository
+     * @param {?} fieldWarehouse
      * @param {?} sourceReadModelService
      */
-    constructor(structureId, sourceDispatcher, structureFieldUiRepository, sourceReadModelService) {
-        super(sourceDispatcher, structureFieldUiRepository, sourceReadModelService);
+    constructor(structureId, commandDispatcher, sourceDispatcher, fieldWarehouse, sourceReadModelService) {
+        super(commandDispatcher, sourceDispatcher, fieldWarehouse, sourceReadModelService);
         this.structureId = structureId;
     }
     /**
@@ -4114,9 +4761,10 @@ LocalSourceCommandDispatcher.decorators = [
 /** @nocollapse */
 LocalSourceCommandDispatcher.ctorParameters = () => [
     { type: StructureId },
+    { type: CommandDispatcher },
     { type: SourceDispatcher },
-    { type: FieldUiRepository },
-    { type: StructureSourceWarehouse }
+    { type: FieldWarehouse },
+    { type: SourceWarehouse }
 ];
 __decorate([
     Override,
@@ -4154,7 +4802,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class LocalSourceWarehouse extends StructureSourceWarehouse {
+class LocalSourceWarehouse extends SourceWarehouse {
     /**
      * @param {?} structureId
      * @param {?} structureRepository
@@ -4164,6 +4812,12 @@ class LocalSourceWarehouse extends StructureSourceWarehouse {
     constructor(structureId, structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
         super(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository);
         this.structureId = structureId;
+    }
+    /**
+     * @return {?}
+     */
+    getEntities() {
+        return super.getEntities(this.structureId);
     }
     /**
      * @return {?}
@@ -4212,6 +4866,12 @@ LocalSourceWarehouse.ctorParameters = () => [
     { type: StructurePreparedItemsRepository },
     { type: StructureSourceOriginRepository }
 ];
+__decorate([
+    Override,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Array)
+], LocalSourceWarehouse.prototype, "getEntities", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
@@ -4622,17 +5282,17 @@ class FieldId {
         return this.id;
     }
     /**
-     * @return {?}
-     */
-    toString() {
-        return this.id;
-    }
-    /**
      * @param {?} fieldId
      * @return {?}
      */
     equals(fieldId) {
-        return fieldId.getId() === this.id;
+        return fieldId.toString() === this.id;
+    }
+    /**
+     * @return {?}
+     */
+    toString() {
+        return this.id;
     }
 }
 if (false) {
@@ -5384,12 +6044,6 @@ class LocalSchemaWarehouse extends SchemaWarehouse {
     /**
      * @return {?}
      */
-    onSingleTheme() {
-        return super.onSingleTheme(this.schemaReadModelRootId);
-    }
-    /**
-     * @return {?}
-     */
     onTheme() {
         return super.onTheme(this.schemaReadModelRootId);
     }
@@ -5410,6 +6064,12 @@ class LocalSchemaWarehouse extends SchemaWarehouse {
      */
     onRowColoring() {
         return super.onRowColoring(this.schemaReadModelRootId);
+    }
+    /**
+     * @return {?}
+     */
+    onSingleTheme() {
+        return super.onSingleTheme(this.schemaReadModelRootId);
     }
     /**
      * @return {?}
@@ -5435,12 +6095,6 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
-], LocalSchemaWarehouse.prototype, "onSingleTheme", null);
-__decorate([
-    Override,
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Observable)
 ], LocalSchemaWarehouse.prototype, "onTheme", null);
 __decorate([
     Override,
@@ -5460,6 +6114,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Observable)
 ], LocalSchemaWarehouse.prototype, "onRowColoring", null);
+__decorate([
+    Override,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Observable)
+], LocalSchemaWarehouse.prototype, "onSingleTheme", null);
 __decorate([
     Override,
     __metadata("design:type", Function),
@@ -5930,95 +6590,6 @@ InMemoryStructureStore.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SelectedRowsList {
-    /**
-     * @param {?} rowIds
-     */
-    constructor(rowIds) {
-        this.rowIds = rowIds;
-    }
-    /**
-     * @param {?} entity
-     * @return {?}
-     */
-    isRowSelected(entity) {
-        return !!(this.rowIds.find((/**
-         * @param {?} id
-         * @return {?}
-         */
-        (id) => entity.equalsById(id))));
-    }
-    /**
-     * @return {?}
-     */
-    getIds() {
-        return this.rowIds;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SelectedRowsList.prototype.rowIds;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-let Formation = class Formation {
-    /**
-     * @param {?} selectedRows
-     */
-    constructor(selectedRows) {
-        this.selectedRowsList = new SelectedRowsList(selectedRows);
-    }
-    /**
-     * @return {?}
-     */
-    getSelectedRows() {
-        return this.selectedRowsList;
-    }
-};
-Formation.ctorParameters = () => [
-    { type: Array }
-];
-Formation = __decorate([
-    ReadModelObject,
-    __metadata("design:paramtypes", [Array])
-], Formation);
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Formation.prototype.selectedRowsList;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FormationConverter {
-    /**
-     * @param {?} aggregate
-     * @return {?}
-     */
-    convert(aggregate) {
-        /** @type {?} */
-        const rows = aggregate.getSelectedRows();
-        return new Formation(rows);
-    }
-}
-FormationConverter.decorators = [
-    { type: Injectable }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 let Paging = class Paging {
     /**
      * @param {?} enabled
@@ -6399,25 +6970,17 @@ VerticalFormationConverter.decorators = [
 class StructureReadModelRoot extends ReadModelRoot {
     /**
      * @param {?} uid
-     * @param {?} formation
      * @param {?} paging
      * @param {?} entities
      * @param {?} source
      * @param {?} verticalFormation
      */
-    constructor(uid, formation, paging, entities, source, verticalFormation) {
+    constructor(uid, paging, entities, source, verticalFormation) {
         super(uid);
-        this.formation = formation;
         this.paging = paging;
         this.entities = entities;
         this.source = source;
         this.verticalFormation = verticalFormation;
-    }
-    /**
-     * @return {?}
-     */
-    getFormation() {
-        return this.formation;
     }
     /**
      * @return {?}
@@ -6442,24 +7005,6 @@ class StructureReadModelRoot extends ReadModelRoot {
      */
     getVerticalFormation() {
         return this.verticalFormation;
-    }
-    /**
-     * @return {?}
-     */
-    getSelectedEntities() {
-        /** @type {?} */
-        const selectedIds = this.formation.getSelectedRows().getIds();
-        return this.entities.filter((/**
-         * @param {?} entity
-         * @return {?}
-         */
-        (entity) => {
-            return selectedIds.some((/**
-             * @param {?} id
-             * @return {?}
-             */
-            (id) => entity.equalsById(id)));
-        }));
     }
     // TODO Remove
     /**
@@ -6495,11 +7040,6 @@ class StructureReadModelRoot extends ReadModelRoot {
     }
 }
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureReadModelRoot.prototype.formation;
     /**
      * @type {?}
      * @private
@@ -6578,6 +7118,12 @@ class ItemEntity {
     /**
      * @return {?}
      */
+    isSelected() {
+        return false;
+    }
+    /**
+     * @return {?}
+     */
     isEven() {
         return this.position % 2 === 0;
     }
@@ -6631,13 +7177,11 @@ if (false) {
  */
 class StructureReadModelRootConverter {
     /**
-     * @param {?} formationConverter
      * @param {?} pagingConverter
      * @param {?} sourceConverter
      * @param {?} verticalFormationConverter
      */
-    constructor(formationConverter, pagingConverter, sourceConverter, verticalFormationConverter) {
-        this.formationConverter = formationConverter;
+    constructor(pagingConverter, sourceConverter, verticalFormationConverter) {
         this.pagingConverter = pagingConverter;
         this.sourceConverter = sourceConverter;
         this.verticalFormationConverter = verticalFormationConverter;
@@ -6648,8 +7192,6 @@ class StructureReadModelRootConverter {
      */
     convert(aggregate) {
         /** @type {?} */
-        const formationAggregate = aggregate.getFormation();
-        /** @type {?} */
         const pagingAggregate = aggregate.getPaging();
         /** @type {?} */
         const originItemEntities = aggregate.getEntities();
@@ -6657,7 +7199,7 @@ class StructureReadModelRootConverter {
         const sourceCoordinator = aggregate.getSource();
         /** @type {?} */
         const verticalFormation = aggregate.getVerticalFormation();
-        return new StructureReadModelRoot(aggregate.getId().toReadModelRootId(), this.formationConverter.convert(formationAggregate), this.pagingConverter.convert(pagingAggregate), this.convertSource(originItemEntities), this.sourceConverter.convert(sourceCoordinator), this.verticalFormationConverter.convert(verticalFormation));
+        return new StructureReadModelRoot(aggregate.getId().toReadModelRootId(), this.pagingConverter.convert(pagingAggregate), this.convertSource(originItemEntities), this.sourceConverter.convert(sourceCoordinator), this.verticalFormationConverter.convert(verticalFormation));
     }
     /**
      * @private
@@ -6679,17 +7221,11 @@ StructureReadModelRootConverter.decorators = [
 ];
 /** @nocollapse */
 StructureReadModelRootConverter.ctorParameters = () => [
-    { type: FormationConverter },
     { type: PagingConverter },
     { type: SourceConverter },
     { type: VerticalFormationConverter }
 ];
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureReadModelRootConverter.prototype.formationConverter;
     /**
      * @type {?}
      * @private
@@ -7192,12 +7728,12 @@ if (false) {
 const localProviders = [
     { provide: PagingCommandDispatcher, useClass: LocalPagingCommandDispatcher },
     { provide: PagingWarehouse, useClass: LocalPagingWarehouse },
-    { provide: StructureFormationDispatcher, useClass: LocalFormationCommandDispatcher },
-    { provide: StructureFormationWarehouse, useClass: LocalFormationWarehouse },
+    { provide: FormationCommandDispatcher, useClass: LocalFormationCommandDispatcher },
+    { provide: FormationWarehouse, useClass: LocalFormationWarehouse },
     { provide: StructureCommandDispatcher, useClass: LocalStructureCommandDispatcher },
     { provide: StructureWarehouse, useClass: LocalStructureWarehouse },
     { provide: SourceCommandDispatcher, useClass: LocalSourceCommandDispatcher },
-    { provide: StructureSourceWarehouse, useClass: LocalSourceWarehouse },
+    { provide: SourceWarehouse, useClass: LocalSourceWarehouse },
     { provide: CompositionCommandDispatcher, useClass: LocalCompositionCommandDispatcher },
     { provide: CompositionWarehouse, useClass: LocalCompositionWarehouse },
     { provide: SearchDispatcher, useClass: LocalStructureSearchCommandDispatcher },
@@ -7212,12 +7748,12 @@ function provideComponentServices() {
     return [
         { provide: PagingCommandDispatcher, useClass: LocalPagingCommandDispatcher },
         { provide: PagingWarehouse, useClass: LocalPagingWarehouse },
-        { provide: StructureFormationDispatcher, useClass: LocalFormationCommandDispatcher },
-        { provide: StructureFormationWarehouse, useClass: LocalFormationWarehouse },
+        { provide: FormationCommandDispatcher, useClass: LocalFormationCommandDispatcher },
+        { provide: FormationWarehouse, useClass: LocalFormationWarehouse },
         // { provide: StructureCommandDispatcher, useClass: LocalStructureCommandDispatcher },
         { provide: StructureWarehouse, useClass: LocalStructureWarehouse },
         { provide: SourceCommandDispatcher, useClass: LocalSourceCommandDispatcher },
-        { provide: StructureSourceWarehouse, useClass: LocalSourceWarehouse },
+        { provide: SourceWarehouse, useClass: LocalSourceWarehouse },
         { provide: SearchDispatcher, useClass: LocalStructureSearchCommandDispatcher },
         { provide: StructureVerticalFormationWarehouse, useClass: LocalStructureVerticalFormationWarehouse }
     ];
@@ -7587,12 +8123,14 @@ class StructureInfoPanelConfig {
      * @param {?=} enabled
      * @param {?=} infoDialog
      * @param {?=} columnsManager
+     * @param {?=} schemaManager
      * @param {?=} sourceSize
      */
-    constructor(enabled, infoDialog, columnsManager, sourceSize) {
+    constructor(enabled, infoDialog, columnsManager, schemaManager, sourceSize) {
         this.enabled = false;
         this.infoDialog = true;
         this.columnsManager = true;
+        this.schemaManager = true;
         this.sourceSize = true;
         if (this.isNotUndefinedOrNull(enabled)) {
             this.enabled = enabled;
@@ -7605,6 +8143,9 @@ class StructureInfoPanelConfig {
         }
         if (this.isNotUndefinedOrNull(sourceSize)) {
             this.sourceSize = sourceSize;
+        }
+        if (this.isNotUndefinedOrNull(schemaManager)) {
+            this.schemaManager = schemaManager;
         }
     }
     /**
@@ -7632,6 +8173,12 @@ class StructureInfoPanelConfig {
         return this.sourceSize;
     }
     /**
+     * @return {?}
+     */
+    isSchemaManagerEnabled() {
+        return this.schemaManager;
+    }
+    /**
      * @private
      * @param {?} config
      * @return {?}
@@ -7656,6 +8203,11 @@ if (false) {
      * @private
      */
     StructureInfoPanelConfig.prototype.columnsManager;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureInfoPanelConfig.prototype.schemaManager;
     /**
      * @type {?}
      * @private
@@ -8085,8 +8637,6 @@ class StructureColumnInputHandler {
      */
     handle(simpleChanges) {
         /** @type {?} */
-        const columns = simpleChanges.columns.currentValue;
-        /** @type {?} */
         const fieldConfigs = simpleChanges.columns.currentValue;
         /** @type {?} */
         const initCommand = new InitFieldsCommand(this.structureId, (/** @type {?} */ (fieldConfigs)));
@@ -8193,6 +8743,136 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {number} */
+const RowSelectionType = {
+    ROW: 0,
+    CHECKBOX: 1,
+};
+RowSelectionType[RowSelectionType.ROW] = 'ROW';
+RowSelectionType[RowSelectionType.CHECKBOX] = 'CHECKBOX';
+/** @enum {number} */
+const RowSelectionMode = {
+    SINGLE: 0,
+    MULTIPLE: 1,
+};
+RowSelectionMode[RowSelectionMode.SINGLE] = 'SINGLE';
+RowSelectionMode[RowSelectionMode.MULTIPLE] = 'MULTIPLE';
+class RowSelection {
+    /**
+     * @private
+     * @param {?} config
+     */
+    constructor(config) {
+        if (config.enabled !== undefined) {
+            this.enabled = config.enabled;
+        }
+        if (config.mode !== undefined) {
+            this.mode = config.mode;
+        }
+        if (config.type !== undefined) {
+            this.type = config.type;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    isModeDefined() {
+        return this.mode !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isTypeDefined() {
+        return this.type !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabledDefined() {
+        return this.enabled !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getMode() {
+        return this.mode;
+    }
+    /**
+     * @return {?}
+     */
+    getType() {
+        return this.type;
+    }
+}
+RowSelection.Builder = class RowSelectionBuilder extends GenericBuilder {
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    buildObject() {
+        return new RowSelection({
+            enabled: this.enabled,
+            type: this.type,
+            mode: this.mode
+        });
+    }
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    withEnabled(enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+    /**
+     * @param {?} type
+     * @return {?}
+     */
+    withType(type) {
+        this.type = type;
+        return this;
+    }
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    withMode(mode) {
+        this.mode = mode;
+        return this;
+    }
+};
+if (false) {
+    /** @type {?} */
+    RowSelection.Builder;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.type;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * \@internal
  * @abstract
@@ -8226,7 +8906,9 @@ class StructureGateway extends SmartComponent {
      * @param {?} columnFieldFactory
      * @param {?} structureColumnMenuConfigArchive
      * @param {?} structurePagingDisplayModeArchive
-     * @param {?} structureRowSelectEnabledArchive
+     * @param {?} rowSelectEnabledArchive
+     * @param {?} rowSelectionTypeArchive
+     * @param {?} formationCommandDispatcher
      * @param {?} searchEventRepository
      * @param {?} structureHeaderTopEnabledArchive
      * @param {?} structureHeaderBottomEnabledArchive
@@ -8235,7 +8917,7 @@ class StructureGateway extends SmartComponent {
      * @param {?} structureFooterPanelConfigArchive
      * @param {?} schemaEventRepository
      */
-    constructor(domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository) {
+    constructor(domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository) {
         super();
         this.domainEventBus = domainEventBus;
         this.commandDispatcher = commandDispatcher;
@@ -8263,7 +8945,9 @@ class StructureGateway extends SmartComponent {
         this.columnFieldFactory = columnFieldFactory;
         this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
         this.structurePagingDisplayModeArchive = structurePagingDisplayModeArchive;
-        this.structureRowSelectEnabledArchive = structureRowSelectEnabledArchive;
+        this.rowSelectEnabledArchive = rowSelectEnabledArchive;
+        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+        this.formationCommandDispatcher = formationCommandDispatcher;
         this.searchEventRepository = searchEventRepository;
         this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
         this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
@@ -8281,6 +8965,7 @@ class StructureGateway extends SmartComponent {
         this.pageChanged = new EventEmitter();
         this.pageSizeChanged = new EventEmitter();
         this.itemsSelected = new EventEmitter();
+        this.selectedRows = new EventEmitter();
         this.columnsChanged = new EventEmitter();
         this.containerWidthChanged = new EventEmitter();
         this.sourceEdited = new EventEmitter();
@@ -8314,8 +8999,16 @@ class StructureGateway extends SmartComponent {
         if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
             this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
         }
-        if (simpleChanges.rowSelecting !== undefined && simpleChanges.rowSelecting.currentValue !== undefined) {
-            this.structureRowSelectEnabledArchive.next(this.rowSelecting);
+        if (simpleChanges.rowSelection !== undefined && simpleChanges.rowSelection.currentValue !== undefined) {
+            if (this.rowSelection.isEnabledDefined()) {
+                this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
+            }
+            if (this.rowSelection.isTypeDefined()) {
+                this.rowSelectionTypeArchive.next(this.rowSelection.getType());
+            }
+            if (this.rowSelection.isModeDefined()) {
+                this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
+            }
         }
         if (simpleChanges.infoPanel !== undefined && simpleChanges.infoPanel.currentValue !== undefined) {
             if (typeof this.infoPanel === 'boolean') {
@@ -8482,7 +9175,12 @@ class StructureGateway extends SmartComponent {
          * @return {?}
          */
         (items) => {
-            this.itemsSelected.emit(items);
+            this.itemsSelected.emit(items.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i.getData())));
+            this.selectedRows.emit(items);
         }));
         this.compositionEventService
             .onColumnsChanged(this.compositionId)
@@ -8613,7 +9311,7 @@ StructureGateway.propDecorators = {
     horizontalGrid: [{ type: Input }],
     theme: [{ type: Input }],
     rowColoring: [{ type: Input }],
-    rowSelecting: [{ type: Input }],
+    rowSelection: [{ type: Input }],
     loading: [{ type: Input }],
     virtualScroll: [{ type: Input }],
     sorting: [{ type: Input }],
@@ -8631,6 +9329,7 @@ StructureGateway.propDecorators = {
     pageChanged: [{ type: Output }],
     pageSizeChanged: [{ type: Output }],
     itemsSelected: [{ type: Output }],
+    selectedRows: [{ type: Output }],
     columnsChanged: [{ type: Output }],
     containerWidthChanged: [{ type: Output }],
     sourceEdited: [{ type: Output }],
@@ -8676,7 +9375,7 @@ if (false) {
     /** @type {?} */
     StructureGateway.prototype.rowColoring;
     /** @type {?} */
-    StructureGateway.prototype.rowSelecting;
+    StructureGateway.prototype.rowSelection;
     /** @type {?} */
     StructureGateway.prototype.loading;
     /** @type {?} */
@@ -8716,6 +9415,8 @@ if (false) {
     StructureGateway.prototype.pageSizeChanged;
     /** @type {?} */
     StructureGateway.prototype.itemsSelected;
+    /** @type {?} */
+    StructureGateway.prototype.selectedRows;
     /** @type {?} */
     StructureGateway.prototype.columnsChanged;
     /** @type {?} */
@@ -8871,7 +9572,17 @@ if (false) {
      * @type {?}
      * @protected
      */
-    StructureGateway.prototype.structureRowSelectEnabledArchive;
+    StructureGateway.prototype.rowSelectEnabledArchive;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureGateway.prototype.rowSelectionTypeArchive;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureGateway.prototype.formationCommandDispatcher;
     /**
      * @type {?}
      * @protected
@@ -9226,13 +9937,54 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SelectedRowToggledEvent extends DomainEvent {
+class SelectedRowChangedEvent extends DomainEvent {
     /**
      * @param {?} structureId
+     * @param {?} selectedRows
+     * @param {?} allSelected
+     * @param {?} allUnselected
      */
-    constructor(structureId) {
-        super(structureId, 'SelectedRowToggledEvent');
+    constructor(structureId, selectedRows, allSelected, allUnselected) {
+        super(structureId, 'SelectedRowChangedEvent');
+        this.selectedRows = selectedRows;
+        this.allSelected = allSelected;
+        this.allUnselected = allUnselected;
     }
+    /**
+     * @return {?}
+     */
+    getSelectedRows() {
+        return this.selectedRows;
+    }
+    /**
+     * @return {?}
+     */
+    isAllSelected() {
+        return this.allSelected;
+    }
+    /**
+     * @return {?}
+     */
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedEvent.prototype.selectedRows;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedEvent.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedEvent.prototype.allUnselected;
 }
 
 /**
@@ -9242,11 +9994,11 @@ class SelectedRowToggledEvent extends DomainEvent {
 class FormationEventService {
     /**
      * @param {?} domainEventBus
-     * @param {?} structureWarehouse
+     * @param {?} sourceWarehouse
      */
-    constructor(domainEventBus, structureWarehouse) {
+    constructor(domainEventBus, sourceWarehouse) {
         this.domainEventBus = domainEventBus;
-        this.structureWarehouse = structureWarehouse;
+        this.sourceWarehouse = sourceWarehouse;
     }
     /**
      * @param {?} structureId
@@ -9254,7 +10006,7 @@ class FormationEventService {
      */
     onItemSelected(structureId) {
         return this.domainEventBus
-            .ofEvent((/** @type {?} */ (SelectedRowToggledEvent)))
+            .ofEvent((/** @type {?} */ (SelectedRowChangedEvent)))
             .pipe(filter((/**
          * @param {?} event
          * @return {?}
@@ -9264,21 +10016,32 @@ class FormationEventService {
          * @return {?}
          */
         (event) => {
-            return this.structureWarehouse
-                .onStructure(structureId)
+            /** @type {?} */
+            const selectedRows = event.getSelectedRows();
+            return this.sourceWarehouse
+                .onPreparedEntities(structureId)
                 .pipe(take(1), map((/**
-             * @param {?} str
+             * @param {?} items
              * @return {?}
              */
-            (str) => str.getSelectedEntities())), map((/**
-             * @param {?} entities
-             * @return {?}
-             */
-            (entities) => entities.map((/**
-             * @param {?} ent
-             * @return {?}
-             */
-            ent => ent.getData())))));
+            (items) => {
+                /** @type {?} */
+                let selectedItems = [];
+                /** @type {?} */
+                let length = items.length;
+                for (let i = 0; i < length; i += 1) {
+                    /** @type {?} */
+                    let item = items[i];
+                    if (selectedRows.some((/**
+                     * @param {?} row
+                     * @return {?}
+                     */
+                    (row) => row === item.getId().toString()))) {
+                        selectedItems.push(new SelectedRow(item.getData(), i, item.getId()));
+                    }
+                }
+                return selectedItems;
+            })));
         })));
     }
 }
@@ -9288,7 +10051,7 @@ FormationEventService.decorators = [
 /** @nocollapse */
 FormationEventService.ctorParameters = () => [
     { type: DomainEventBus },
-    { type: StructureWarehouse }
+    { type: SourceWarehouse }
 ];
 if (false) {
     /**
@@ -9300,7 +10063,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    FormationEventService.prototype.structureWarehouse;
+    FormationEventService.prototype.sourceWarehouse;
 }
 
 /**
@@ -9499,21 +10262,16 @@ PagingDisplayModeArchive.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureRowSelectEnabledArchive extends Archive {
+class RowSelectEnabledRepository extends AggregateArchive {
     constructor() {
-        super(StructureRowSelectEnabledArchive.DEFAULT_ROW_SELECT);
+        super();
     }
 }
-StructureRowSelectEnabledArchive.DEFAULT_ROW_SELECT = true;
-StructureRowSelectEnabledArchive.decorators = [
+RowSelectEnabledRepository.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureRowSelectEnabledArchive.ctorParameters = () => [];
-if (false) {
-    /** @type {?} */
-    StructureRowSelectEnabledArchive.DEFAULT_ROW_SELECT;
-}
+RowSelectEnabledRepository.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
@@ -10136,7 +10894,7 @@ PagingComponent.decorators = [
                 },
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-paging{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-align:center;align-items:center;padding:4px}.gui-paging>*{padding-left:16px}.gui-paging .gui-paging-select span{display:inline-block;margin:0 6px 0 0}.gui-paging .gui-paging-navigator button{margin-right:6px}.gui-paging .gui-paging-navigator button:last-of-type{margin-right:0}.gui-paging .gui-paging-stats span{display:inline-block;margin:0 2px 0 0}.gui-paging .gui-alternative-paging-navigator{display:-ms-flexbox;display:flex;padding:0}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page{position:relative}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}.gui-paging .gui-alternative-paging-navigator .gui-button{display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-button svg{height:12px;width:auto;margin:0 2px}.gui-paging .gui-alternative-paging-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-paging .gui-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}.gui-paging .gui-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}.gui-paging .gui-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging.gui-paging-bottom{border-top:1px solid;border-color:inherit}.gui-paging.gui-paging-top{border-bottom:1px solid;border-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
+                styles: [".gui-paging{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-align:center;align-items:center;padding:4px}.gui-paging>*{padding-left:16px}.gui-paging .gui-paging-select span{display:inline-block;margin:0 6px 0 0}.gui-paging .gui-paging-navigator button{margin-right:6px}.gui-paging .gui-paging-navigator button:last-of-type{margin-right:0}.gui-paging .gui-paging-stats span{display:inline-block;margin:0 2px 0 0}.gui-paging .gui-alternative-paging-navigator{display:-ms-flexbox;display:flex;padding:0}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page{position:relative}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}.gui-paging .gui-alternative-paging-navigator .gui-button{display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-button svg{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;height:12px;width:auto;margin:-1px 2px 0}.gui-paging .gui-alternative-paging-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-paging .gui-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}.gui-paging .gui-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}.gui-paging .gui-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging.gui-paging-bottom{border-top:1px solid;border-color:inherit}.gui-paging.gui-paging-top{border-bottom:1px solid;border-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
             }] }
 ];
 /** @nocollapse */
@@ -10146,7 +10904,7 @@ PagingComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: PagingWarehouse },
     { type: PagingCommandDispatcher },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: PagingDisplayModeArchive }
 ];
 PagingComponent.propDecorators = {
@@ -11088,16 +11846,21 @@ class StructureInfoPanelConfigConverter {
         let columnsManager;
         /** @type {?} */
         let sourceSize;
+        /** @type {?} */
+        let schemaManager;
         if (config.infoDialog !== undefined) {
             infoDialog = config.infoDialog;
         }
         if (config.columnsManager !== undefined) {
             columnsManager = config.columnsManager;
         }
+        if (config.schemaManager !== undefined) {
+            schemaManager = config.schemaManager;
+        }
         if (config.sourceSize !== undefined) {
             sourceSize = config.sourceSize;
         }
-        return new StructureInfoPanelConfig(config.enabled, infoDialog, columnsManager, sourceSize);
+        return new StructureInfoPanelConfig(config.enabled, infoDialog, columnsManager, schemaManager, sourceSize);
     }
 }
 StructureInfoPanelConfigConverter.decorators = [
@@ -11943,7 +12706,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSourceDomainEventPublisher {
+class SourceDomainEventPublisher {
     /**
      * @param {?} domainEventPublisher
      */
@@ -11997,13 +12760,20 @@ class StructureSourceDomainEventPublisher {
             const domainEvent = new StructurePreparedEntitiesSetEvent(structurePreparedEntitiesSetAggregateEvent.getAggregateId(), structurePreparedEntitiesSetAggregateEvent.getPreparedItems());
             this.domainEventPublisher.publish(domainEvent);
         }
+        if (event.getType() === 'UniqueFilterCalculatedAggregateEvent') {
+            /** @type {?} */
+            const uniqueFilterCalculatedAggregateEvent = ((/** @type {?} */ (event)));
+            /** @type {?} */
+            const domainEvent = uniqueFilterCalculatedAggregateEvent.toDomainEvent();
+            this.domainEventPublisher.publish(domainEvent);
+        }
     }
 }
-StructureSourceDomainEventPublisher.decorators = [
+SourceDomainEventPublisher.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
-StructureSourceDomainEventPublisher.ctorParameters = () => [
+SourceDomainEventPublisher.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
 if (false) {
@@ -12011,7 +12781,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureSourceDomainEventPublisher.prototype.domainEventPublisher;
+    SourceDomainEventPublisher.prototype.domainEventPublisher;
 }
 
 /**
@@ -12062,7 +12832,7 @@ StructureSetSearchPhraseCommandHandler.decorators = [
 ];
 /** @nocollapse */
 StructureSetSearchPhraseCommandHandler.ctorParameters = () => [
-    { type: StructureSourceDomainEventPublisher },
+    { type: SourceDomainEventPublisher },
     { type: DomainEventPublisher }
 ];
 if (false) {
@@ -12417,7 +13187,7 @@ class SearchDomainModule extends DomainModule {
     static commandHandlers() {
         return [
             ...HermesModule.registerCommandHandler(SetConfigSearchingCommandHandler, 'StructureAggregate'),
-            ...HermesModule.registerCommandHandler(StructureSetSearchPhraseCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(StructureSetSearchPhraseCommandHandler, 'StructureAggregate')
         ];
     }
     /**
@@ -12426,7 +13196,7 @@ class SearchDomainModule extends DomainModule {
     static domainEventHandlers() {
         return [
             ...HermesModule.registerDomainEventHandler(SearchPhraseSetEventHandler),
-            ...HermesModule.registerDomainEventHandler(ConfigSearchingSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(ConfigSearchingSetEventHandler)
         ];
     }
 }
@@ -12437,7 +13207,7 @@ SearchDomainModule.decorators = [
                 ],
                 providers: [
                     SearchManagerFactory,
-                    SearchDispatcher,
+                    SearchDispatcher
                 ],
                 declarations: [],
                 exports: []
@@ -12674,22 +13444,6 @@ class SearchComponent extends SmartComponent {
     /**
      * @return {?}
      */
-    ngAfterViewInit() {
-        // REMOVE
-        this.verticalFormationWarehouse
-            .onRowHeight(this.structureId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} rowHeight
-         * @return {?}
-         */
-        (rowHeight) => {
-            // this.renderer2.setStyle(this.formRef.nativeElement, 'height', '30px');
-        }));
-    }
-    /**
-     * @return {?}
-     */
     clear() {
         this.searchForm.reset();
     }
@@ -12700,7 +13454,7 @@ class SearchComponent extends SmartComponent {
     observeChanges() {
         this.searchInputSubscription =
             this.searchForm
-                .controls['searchPhrase']
+                .controls[SearchComponent.FORM_SEARCH_NAME]
                 .valueChanges
                 .pipe(debounceTime(200), this.takeUntil())
                 .subscribe((/**
@@ -12867,14 +13621,22 @@ SearchFeatureModule.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldUiModel {
+class FieldReadModel {
     /**
      * @param {?} id
      * @param {?} dataType
+     * @param {?} name
      */
-    constructor(id, dataType) {
+    constructor(id, dataType, name) {
         this.id = id;
         this.dataType = dataType;
+        this.name = name;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.id;
     }
     /**
      * @return {?}
@@ -12888,18 +13650,29 @@ class FieldUiModel {
     getDataType() {
         return this.dataType;
     }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return this.name;
+    }
 }
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    FieldUiModel.prototype.id;
+    FieldReadModel.prototype.id;
     /**
      * @type {?}
      * @private
      */
-    FieldUiModel.prototype.dataType;
+    FieldReadModel.prototype.dataType;
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldReadModel.prototype.name;
 }
 
 /**
@@ -12926,7 +13699,7 @@ class FieldUiConverter {
      * @return {?}
      */
     convertOne(field) {
-        return new FieldUiModel(field.getId(), field.getDataType());
+        return new FieldReadModel(field.getId(), field.getDataType(), field.getName());
     }
 }
 FieldUiConverter.decorators = [
@@ -12937,15 +13710,273 @@ FieldUiConverter.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldIdGenerator {
+class FieldCollection {
+    /**
+     * @param {?} fieldFactory
+     */
+    constructor(fieldFactory) {
+        this.fieldFactory = fieldFactory;
+        this.fields = new Map();
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    getField(fieldId) {
+        if (fieldId === null) {
+            return this.getAllFields()[0];
+        }
+        return this.fields.get(fieldId.getId());
+    }
     /**
      * @return {?}
      */
-    generateId() {
-        /** @type {?} */
-        const id = RandomStringGenerator.generate();
-        return new FieldId(id);
+    getAllFieldIds() {
+        return Array.from(this.fields.keys());
     }
+    /**
+     * @return {?}
+     */
+    getAllFields() {
+        return Array.from(this.fields.values());
+    }
+    /**
+     * @return {?}
+     */
+    getFieldsAsMap() {
+        return this.fields;
+    }
+    /**
+     * @param {?} fieldConfigs
+     * @return {?}
+     */
+    initFields(fieldConfigs) {
+        /** @type {?} */
+        const fields = this.fieldFactory.create(fieldConfigs);
+        this.addFields(fields);
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    addFields(fields) {
+        for (let field of fields) {
+            this.addField(field);
+        }
+    }
+    /**
+     * @private
+     * @param {?} field
+     * @return {?}
+     */
+    addField(field) {
+        this.fields.set(field.getId().toString(), field);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldCollection.prototype.fields;
+    /**
+     * @type {?}
+     * @private
+     */
+    FieldCollection.prototype.fieldFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class Field {
+    /**
+     * @param {?} id
+     * @param {?} dataField
+     * @param {?} name
+     * @return {?}
+     */
+    static of(id, dataField, name) {
+        return new Field(id, dataField, name);
+    }
+    /**
+     * @param {?} id
+     * @param {?} field
+     * @param {?} name
+     */
+    constructor(id, field, name) {
+        this.id = id;
+        this.field = field;
+        this.name = name;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.id;
+    }
+    /**
+     * @return {?}
+     */
+    getKey() {
+        return this.getId().toString();
+    }
+    /**
+     * @return {?}
+     */
+    getDataType() {
+        return this.field.getDataType();
+    }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return this.name;
+    }
+    /**
+     * @deprecated
+     * @return {?}
+     */
+    getField() {
+        return this.field;
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     * @return {?}
+     */
+    getAccessor() {
+        return this.field.getAccessor();
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     * @return {?}
+     */
+    getAccessorMethod() {
+        return this.field.getAccessorMethod();
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     * @return {?}
+     */
+    getSearchAccessorMethod() {
+        return this.field.getSearchAccessorMethod();
+    }
+    /**
+     * @param {?} entity
+     * @return {?}
+     */
+    getValue(entity) {
+        return this.field.getValue(entity);
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    getDisplayValue(value) {
+        return ((/** @type {?} */ (this.field))).getDisplayValue(value);
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     * @param {?} type
+     * @return {?}
+     */
+    isSummaries(type) {
+        return this.field.isSummaries(type);
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     * @return {?}
+     */
+    isSummariesEnabled() {
+        return this.field.isSummariesEnabled();
+    }
+    /**
+     * @param {?} item
+     * @param {?} searchPhrase
+     * @return {?}
+     */
+    search(item, searchPhrase) {
+        return this.field.search(item, searchPhrase);
+    }
+    /**
+     * @param {?} item
+     * @param {?} filterPhrase
+     * @return {?}
+     */
+    filter(item, filterPhrase) {
+        /** @type {?} */
+        const value = this.field.getValue(item);
+        if (this.field.getDataType() === DataType.NUMBER) {
+            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.BOOLEAN) {
+            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.STRING) {
+            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.DATE) {
+            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
+        }
+        else {
+            return true;
+        }
+    }
+    /**
+     * @param {?} entityOne
+     * @param {?} entityTwo
+     * @param {?} direction
+     * @return {?}
+     */
+    sort(entityOne, entityTwo, direction) {
+        /** @type {?} */
+        let valueOne = direction ? this.field.getSortValue(entityOne) : this.field.getSortValue(entityTwo);
+        /** @type {?} */
+        let valueTwo = direction ? this.field.getSortValue(entityTwo) : this.field.getSortValue(entityOne);
+        if (this.field.getDataType() === DataType.NUMBER) {
+            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.BOOLEAN) {
+            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.STRING) {
+            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.DATE) {
+            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
+        }
+        else {
+            return 0;
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Field.prototype.id;
+    /**
+     * @type {?}
+     * @private
+     */
+    Field.prototype.field;
+    /**
+     * @type {?}
+     * @private
+     */
+    Field.prototype.name;
 }
 
 /**
@@ -12955,16 +13986,14 @@ class FieldIdGenerator {
 /**
  * @abstract
  */
-class BaseField {
+class BaseDataField {
     /**
      * @protected
-     * @param {?} id
      * @param {?} accessor
      * @param {?} dataType
      * @param {?} matchers
      */
-    constructor(id, accessor, dataType, matchers) {
-        this.id = id;
+    constructor(accessor, dataType, matchers) {
         this.accessor = accessor;
         this.dataType = dataType;
         this.matchers = matchers;
@@ -12982,18 +14011,6 @@ class BaseField {
              */
             (entity) => accessor(entity.getData()));
         }
-    }
-    /**
-     * @return {?}
-     */
-    getId() {
-        return this.id;
-    }
-    /**
-     * @return {?}
-     */
-    getKey() {
-        return this.getId().getId();
     }
     /**
      * @return {?}
@@ -13104,27 +14121,22 @@ if (false) {
      * @type {?}
      * @private
      */
-    BaseField.prototype.id;
+    BaseDataField.prototype.accessor;
     /**
      * @type {?}
      * @private
      */
-    BaseField.prototype.accessor;
+    BaseDataField.prototype.dataType;
     /**
      * @type {?}
      * @private
      */
-    BaseField.prototype.dataType;
+    BaseDataField.prototype.accessorMethod;
     /**
      * @type {?}
      * @private
      */
-    BaseField.prototype.accessorMethod;
-    /**
-     * @type {?}
-     * @private
-     */
-    BaseField.prototype.matchers;
+    BaseDataField.prototype.matchers;
 }
 
 /**
@@ -13135,17 +14147,16 @@ if (false) {
  * @abstract
  * @template T
  */
-class Field extends BaseField {
+class DataField extends BaseDataField {
     /**
      * @protected
-     * @param {?} id
      * @param {?} accessor
      * @param {?} dataType
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, dataType, matchers, summariesConfig) {
-        super(id, accessor, dataType, matchers);
+    constructor(accessor, dataType, matchers, summariesConfig) {
+        super(accessor, dataType, matchers);
         this.summariesEnabled = true;
         this.possibleSummaries = this.assignPossibleSummaries();
         this.assignSummaries(summariesConfig);
@@ -13207,48 +14218,61 @@ if (false) {
      * @type {?}
      * @private
      */
-    Field.prototype.summariesEnabled;
+    DataField.prototype.summariesEnabled;
     /**
      * @type {?}
      * @private
      */
-    Field.prototype.summariesTypes;
+    DataField.prototype.summariesTypes;
     /**
      * @type {?}
      * @private
      */
-    Field.prototype.possibleSummaries;
+    DataField.prototype.possibleSummaries;
     /**
      * @abstract
      * @return {?}
      */
-    Field.prototype.assignDefaultSummaries = function () { };
+    DataField.prototype.assignDefaultSummaries = function () { };
     /**
      * @abstract
      * @return {?}
      */
-    Field.prototype.assignPossibleSummaries = function () { };
+    DataField.prototype.assignPossibleSummaries = function () { };
     /**
      * @abstract
      * @param {?} item
      * @param {?} searchPhrase
      * @return {?}
      */
-    Field.prototype.search = function (item, searchPhrase) { };
+    DataField.prototype.search = function (item, searchPhrase) { };
     /**
      * @abstract
      * @param {?} one
      * @param {?} two
      * @return {?}
      */
-    Field.prototype.sort = function (one, two) { };
+    DataField.prototype.sort = function (one, two) { };
     /**
      * @abstract
      * @param {?} value
      * @param {?} filterPhrase
      * @return {?}
      */
-    Field.prototype.filter = function (value, filterPhrase) { };
+    DataField.prototype.filter = function (value, filterPhrase) { };
+    /**
+     * @abstract
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    DataField.prototype.equals = function (item, value) { };
+    /**
+     * @abstract
+     * @param {?} item
+     * @return {?}
+     */
+    DataField.prototype.getDisplayValue = function (item) { };
 }
 
 /**
@@ -13285,15 +14309,14 @@ SummariesType[SummariesType.LATEST] = 'LATEST';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class UnknownField extends Field {
+class UnknownDataField extends DataField {
     /**
-     * @param {?} id
      * @param {?} accessor
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, matchers, summariesConfig) {
-        super(id, accessor, DataType.UNKNOWN, matchers, summariesConfig);
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.UNKNOWN, matchers, summariesConfig);
     }
     /**
      * @return {?}
@@ -13334,21 +14357,35 @@ class UnknownField extends Field {
     filter(value, filterPhrase) {
         return false;
     }
+    /**
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    equals(item, value) {
+        return false;
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    getDisplayValue(item) {
+        return item;
+    }
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class NumberField extends Field {
+class NumberDataField extends DataField {
     /**
-     * @param {?} id
      * @param {?} accessor
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, matchers, summariesConfig) {
-        super(id, accessor, DataType.NUMBER, matchers, summariesConfig);
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.NUMBER, matchers, summariesConfig);
     }
     /**
      * @return {?}
@@ -13409,21 +14446,35 @@ class NumberField extends Field {
     filter(value, filterPhrase) {
         return value > filterPhrase;
     }
+    /**
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    getDisplayValue(item) {
+        return `${item}`;
+    }
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StringField extends Field {
+class StringDataField extends DataField {
     /**
-     * @param {?} id
      * @param {?} accessor
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, matchers, summariesConfig) {
-        super(id, accessor, DataType.STRING, matchers, summariesConfig);
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.STRING, matchers, summariesConfig);
     }
     /**
      * @return {?}
@@ -13475,21 +14526,35 @@ class StringField extends Field {
     filter(value, filterPhrase) {
         return value.toLowerCase().indexOf(filterPhrase.toLowerCase()) > -1;
     }
+    /**
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    getDisplayValue(item) {
+        return item;
+    }
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class BooleanField extends Field {
+class BooleanDataField extends DataField {
     /**
-     * @param {?} id
      * @param {?} accessor
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, matchers, summariesConfig) {
-        super(id, accessor, DataType.BOOLEAN, matchers, summariesConfig);
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.BOOLEAN, matchers, summariesConfig);
     }
     /**
      * @return {?}
@@ -13538,21 +14603,35 @@ class BooleanField extends Field {
     filter(value, filterPhrase) {
         return value === filterPhrase;
     }
+    /**
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    getDisplayValue(item) {
+        return item ? 'True' : 'False';
+    }
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class DateField extends Field {
+class DateDataField extends DataField {
     /**
-     * @param {?} id
      * @param {?} accessor
      * @param {?} matchers
      * @param {?=} summariesConfig
      */
-    constructor(id, accessor, matchers, summariesConfig) {
-        super(id, accessor, DataType.DATE, matchers, summariesConfig);
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.DATE, matchers, summariesConfig);
     }
     /**
      * @return {?}
@@ -13592,6 +14671,21 @@ class DateField extends Field {
      */
     filter(value, filterPhrase) {
         return false;
+    }
+    /**
+     * @param {?} item
+     * @param {?} value
+     * @return {?}
+     */
+    equals(item, value) {
+        return this.getValue(item).getTime() === value.getTime();
+    }
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    getDisplayValue(item) {
+        return item.toDateString();
     }
 }
 
@@ -13667,13 +14761,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldFactory {
-    /**
-     * @param {?} fieldIdGenerator
-     */
-    constructor(fieldIdGenerator) {
-        this.fieldIdGenerator = fieldIdGenerator;
-    }
+class DataFieldFactory {
     /**
      * @param {?} fieldConfig
      * @return {?}
@@ -13687,19 +14775,19 @@ class FieldFactory {
             columnType = DataType.STRING;
         }
         if (columnType === DataType.UNKNOWN) {
-            return new UnknownField(this.fieldIdGenerator.generateId(), (/** @type {?} */ (fieldConfig.field)), fieldMatchers, fieldConfig.summaries);
+            return new UnknownDataField((/** @type {?} */ (fieldConfig.field)), fieldMatchers, fieldConfig.summaries);
         }
         if (columnType === DataType.NUMBER) {
-            return new NumberField(this.fieldIdGenerator.generateId(), (/** @type {?} */ (fieldConfig.field)), fieldMatchers, fieldConfig.summaries);
+            return new NumberDataField((/** @type {?} */ (fieldConfig.field)), fieldMatchers, fieldConfig.summaries);
         }
         if (columnType === DataType.STRING) {
-            return new StringField(this.fieldIdGenerator.generateId(), (/** @type {?} */ (fieldConfig.field)), fieldMatchers);
+            return new StringDataField((/** @type {?} */ (fieldConfig.field)), fieldMatchers);
         }
         if (columnType === DataType.BOOLEAN) {
-            return new BooleanField(this.fieldIdGenerator.generateId(), (/** @type {?} */ (fieldConfig.field)), fieldMatchers);
+            return new BooleanDataField((/** @type {?} */ (fieldConfig.field)), fieldMatchers);
         }
         if (columnType === DataType.DATE) {
-            return new DateField(this.fieldIdGenerator.generateId(), (/** @type {?} */ (fieldConfig.field)), fieldMatchers);
+            return new DateDataField((/** @type {?} */ (fieldConfig.field)), fieldMatchers);
         }
     }
     /**
@@ -13718,12 +14806,81 @@ class FieldFactory {
         return new FieldMatchers(matcher, sortMatcher);
     }
 }
+DataFieldFactory.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FieldIdGenerator {
+    /**
+     * @return {?}
+     */
+    generateId() {
+        /** @type {?} */
+        const id = RandomStringGenerator.generate();
+        return new FieldId(id);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FieldFactory {
+    /**
+     * @param {?} fieldIdGenerator
+     * @param {?} dataFieldFactory
+     */
+    constructor(fieldIdGenerator, dataFieldFactory) {
+        this.fieldIdGenerator = fieldIdGenerator;
+        this.dataFieldFactory = dataFieldFactory;
+    }
+    /**
+     * @param {?} configs
+     * @return {?}
+     */
+    create(configs) {
+        if (!configs) {
+            return [];
+        }
+        return configs.map((/**
+         * @param {?} fieldConfig
+         * @param {?} index
+         * @return {?}
+         */
+        (fieldConfig, index) => {
+            /** @type {?} */
+            const fieldId = this.fieldIdGenerator.generateId();
+            /** @type {?} */
+            const dataField = this.dataFieldFactory.create(fieldConfig);
+            return new Field(fieldId, dataField, this.getFieldName(fieldConfig, index));
+        }));
+    }
+    /**
+     * @private
+     * @param {?} fieldConfig
+     * @param {?} index
+     * @return {?}
+     */
+    getFieldName(fieldConfig, index) {
+        if (typeof fieldConfig.field === 'string') {
+            return fieldConfig.field.toLowerCase();
+        }
+        else {
+            return 'Field #' + index;
+        }
+    }
+}
 FieldFactory.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
 FieldFactory.ctorParameters = () => [
-    { type: FieldIdGenerator }
+    { type: FieldIdGenerator },
+    { type: DataFieldFactory }
 ];
 if (false) {
     /**
@@ -13731,203 +14888,11 @@ if (false) {
      * @private
      */
     FieldFactory.prototype.fieldIdGenerator;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class TypeField extends BaseField {
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    static of(field) {
-        return new TypeField(field);
-    }
-    /**
-     * @param {?} field
-     */
-    constructor(field) {
-        super(field.getId(), field.getAccessor(), field.getDataType(), field.getMatchers());
-        this.field = field;
-    }
-    /**
-     * @template U
-     * @param {?} callback
-     * @return {?}
-     */
-    mapNumber(callback) {
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return callback((/** @type {?} */ (this.field)));
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ifNumber() {
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return ((/** @type {?} */ (this.field)));
-        }
-    }
-    /**
-     * @deprecated
-     * @return {?}
-     */
-    getField() {
-        return this.field;
-    }
-    /**
-     * @param {?} item
-     * @param {?} searchPhrase
-     * @return {?}
-     */
-    search(item, searchPhrase) {
-        return this.field.search(item, searchPhrase);
-    }
-    /**
-     * @param {?} item
-     * @param {?} filterPhrase
-     * @return {?}
-     */
-    filter(item, filterPhrase) {
-        /** @type {?} */
-        const value = this.field.getValue(item);
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.BOOLEAN) {
-            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.STRING) {
-            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.DATE) {
-            return ((/** @type {?} */ (this.field))).filter(value, filterPhrase);
-        }
-        else {
-            return true;
-        }
-    }
-    /**
-     * @param {?} entityOne
-     * @param {?} entityTwo
-     * @param {?} direction
-     * @return {?}
-     */
-    sort(entityOne, entityTwo, direction) {
-        /** @type {?} */
-        let valueOne = direction ? this.field.getSortValue(entityOne) : this.field.getSortValue(entityTwo);
-        /** @type {?} */
-        let valueTwo = direction ? this.field.getSortValue(entityTwo) : this.field.getSortValue(entityOne);
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.BOOLEAN) {
-            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.STRING) {
-            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.DATE) {
-            return ((/** @type {?} */ (this.field))).sort(valueOne, valueTwo);
-        }
-        else {
-            return 0;
-        }
-    }
-}
-if (false) {
     /**
      * @type {?}
      * @private
      */
-    TypeField.prototype.field;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FieldCollection {
-    /**
-     * @param {?} fieldFactory
-     */
-    constructor(fieldFactory) {
-        this.fieldFactory = fieldFactory;
-        this.fields = new Map();
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    getField(fieldId) {
-        if (fieldId === null) {
-            return this.getAllFields()[0];
-        }
-        return this.fields.get(fieldId.getId());
-    }
-    /**
-     * @return {?}
-     */
-    getAllFieldIds() {
-        return Array.from(this.fields.keys());
-    }
-    /**
-     * @return {?}
-     */
-    getAllFields() {
-        return Array.from(this.fields.values());
-    }
-    /**
-     * @param {?} fieldConfigs
-     * @return {?}
-     */
-    initFields(fieldConfigs) {
-        if (!fieldConfigs) {
-            return;
-        }
-        fieldConfigs.forEach((/**
-         * @param {?} fieldConfig
-         * @return {?}
-         */
-        (fieldConfig) => {
-            /** @type {?} */
-            const field = this.fieldFactory.create(fieldConfig);
-            /** @type {?} */
-            const typeField = new TypeField(field);
-            this.addField(typeField);
-        }));
-    }
-    /**
-     * @param {?} fields
-     * @return {?}
-     */
-    addFields(fields) {
-        for (let field of fields) {
-            this.addField(field);
-        }
-    }
-    /**
-     * @private
-     * @param {?} field
-     * @return {?}
-     */
-    addField(field) {
-        this.fields.set(field.getId().toString(), field);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FieldCollection.prototype.fields;
-    /**
-     * @type {?}
-     * @private
-     */
-    FieldCollection.prototype.fieldFactory;
+    FieldFactory.prototype.dataFieldFactory;
 }
 
 /**
@@ -13981,6 +14946,14 @@ class InitFieldsCommandHandler {
         return InitFieldsCommand;
     }
     /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
      * @param {?} structure
      * @param {?} command
      * @return {?}
@@ -13989,20 +14962,6 @@ class InitFieldsCommandHandler {
         /** @type {?} */
         const fieldConfigs = command.getFieldConfigs();
         structure.createFields(fieldConfigs);
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const fieldConfigs = command.getFieldConfigs();
-        /** @type {?} */
-        const aggregateEvents = aggregate.getEvents();
-        /** @type {?} */
-        const fieldTypes = ((/** @type {?} */ (aggregateEvents[0]))).getFields();
-        this.domainEventPublisher.publish(new FieldsInitedEvent(command.getAggregateId(), fieldConfigs, fieldTypes));
     }
 }
 InitFieldsCommandHandler.decorators = [
@@ -14033,22 +14992,18 @@ class FieldDomainModule extends DomainModule {
      */
     static commandHandlers() {
         return [
-            ...HermesModule.registerCommandHandler(InitFieldsCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(InitFieldsCommandHandler, 'StructureAggregate')
         ];
     }
 }
 FieldDomainModule.decorators = [
     { type: NgModule, args: [{
-                imports: [
-                    CommonModule
-                ],
                 providers: [
                     FieldCollectionFactory,
                     FieldFactory,
-                    FieldIdGenerator
-                ],
-                declarations: [],
-                exports: []
+                    FieldIdGenerator,
+                    DataFieldFactory
+                ]
             },] }
 ];
 /** @nocollapse */
@@ -14111,12 +15066,10 @@ FieldApiModule.decorators = [
                 ],
                 providers: [
                     FieldCommandDispatcher,
-                    FieldUiArchive,
+                    FieldReadModelRepository,
                     FieldUiConverter,
-                    FieldUiRepository
-                ],
-                declarations: [],
-                exports: []
+                    FieldWarehouse
+                ]
             },] }
 ];
 
@@ -14239,6 +15192,1714 @@ ColumnFieldFactory.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const filterContainerToken = new InjectionToken('Filter container token');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RowSelectionTypeArchive extends Archive {
+    constructor() {
+        super(RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE);
+    }
+}
+RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE = RowSelectionType.ROW;
+RowSelectionTypeArchive.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RowSelectionTypeArchive.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetSourceLoadingEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'SetSourceLoadingEvent');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceSetLoadingCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SourceSetLoadingCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publish(new SetSourceLoadingEvent(command.getAggregateId()));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const enabled = command.isEnabled();
+        /** @type {?} */
+        const source = aggregate.getSource();
+        source.setLoading(enabled);
+    }
+}
+SourceSetLoadingCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SourceSetLoadingCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceSetLoadingCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetOriginCommandHandler {
+    /**
+     * @param {?} structureSourceDomainEventPublisher
+     */
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetOriginCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const aggregateEvents = aggregate.getEvents();
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const items = command.getItems();
+        structure.setOrigin(items);
+    }
+}
+SetOriginCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetOriginCommandHandler.ctorParameters = () => [
+    { type: SourceDomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetOriginCommandHandler.prototype.structureSourceDomainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureEditSourceItemCommandHandler {
+    /**
+     * @param {?} structureSourceDomainEventPublisher
+     */
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return StructureEditSourceItemCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const aggregateEvents = aggregate.getEvents();
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const params = command.getParams();
+        structure.editItem(params);
+    }
+}
+StructureEditSourceItemCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructureEditSourceItemCommandHandler.ctorParameters = () => [
+    { type: SourceDomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureEditSourceItemCommandHandler.prototype.structureSourceDomainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class OriginItemEntity extends Entity {
+    /**
+     * @param {?} id
+     * @param {?} rawData
+     * @param {?} position
+     * @param {?=} version
+     */
+    constructor(id, rawData, position, version = 0) {
+        super(id);
+        this.rawData = rawData;
+        this.position = position;
+        this.version = version;
+    }
+    /**
+     * @return {?}
+     */
+    getData() {
+        return this.rawData;
+    }
+    /**
+     * @return {?}
+     */
+    getVersion() {
+        return this.version;
+    }
+    /**
+     * @return {?}
+     */
+    getPosition() {
+        return this.position;
+    }
+    /**
+     * @return {?}
+     */
+    bumpVersion() {
+        this.version += 1;
+    }
+    /**
+     * @param {?} position
+     * @return {?}
+     */
+    setPosition(position) {
+        this.position = position;
+    }
+    /**
+     * @return {?}
+     */
+    clone() {
+        /** @type {?} */
+        const rawData = Object.assign({}, this.rawData);
+        return new OriginItemEntity(this.getId(), rawData, this.version);
+    }
+}
+if (false) {
+    /** @type {?} */
+    OriginItemEntity.prototype.rawData;
+    /**
+     * @type {?}
+     * @private
+     */
+    OriginItemEntity.prototype.version;
+    /**
+     * @type {?}
+     * @private
+     */
+    OriginItemEntity.prototype.position;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSourceItemEditedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} beforeItem
+     * @param {?} afterItem
+     */
+    constructor(aggregateId, beforeItem, afterItem) {
+        super(aggregateId, 'StructureSourceItemEditedAggregateEvent');
+        this.beforeItem = beforeItem;
+        this.afterItem = afterItem;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new StructureSourceItemEditedEvent(this.getAggregateId(), this.beforeItem, this.afterItem);
+    }
+    /**
+     * @return {?}
+     */
+    getBeforeItem() {
+        return this.beforeItem;
+    }
+    /**
+     * @return {?}
+     */
+    getAfterItem() {
+        return this.afterItem;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSourceItemEditedAggregateEvent.prototype.beforeItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSourceItemEditedAggregateEvent.prototype.afterItem;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureOriginChangedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} origin
+     */
+    constructor(aggregateId, origin) {
+        super(aggregateId, 'StructureOriginChangedAggregateEvent');
+        this.origin = origin;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new OriginSetEvent(this.getAggregateId(), this.origin);
+    }
+    /**
+     * @return {?}
+     */
+    getOrigin() {
+        return this.origin;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureOriginChangedAggregateEvent.prototype.origin;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class OriginId extends EntityId {
+    /**
+     * @param {?} id
+     */
+    constructor(id) {
+        super(id);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceManager {
+    /**
+     * @param {?} formationManager
+     */
+    constructor(formationManager) {
+        this.loading = false;
+        this.fetched = false;
+        this.entities = [];
+        // Entities after filtering, searching
+        this.preparedEntities = [];
+        this.slicedEntities = [];
+        this.formationManager = formationManager;
+    }
+    /**
+     * @return {?}
+     */
+    isLoading() {
+        return this.loading;
+    }
+    /**
+     * @return {?}
+     */
+    isFetched() {
+        return this.fetched;
+    }
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    setLoading(enabled) {
+        this.loading = enabled;
+    }
+    /**
+     * @param {?} ent
+     * @return {?}
+     */
+    setEntities(ent) {
+        this.entities = ent;
+        this.recalculatePositions();
+    }
+    /**
+     * @return {?}
+     */
+    getEntities() {
+        return this.entities;
+    }
+    /**
+     * @return {?}
+     */
+    setPreparedEntities() {
+        this.preparedEntities = [...this.entities];
+    }
+    /**
+     * @return {?}
+     */
+    getPreparedEntities() {
+        return this.preparedEntities;
+    }
+    /**
+     * @param {?} ent
+     * @return {?}
+     */
+    setSlicedEntities(ent) {
+        this.slicedEntities = ent;
+    }
+    /**
+     * @return {?}
+     */
+    getSlicedEntities() {
+        return this.slicedEntities;
+    }
+    /**
+     * @param {?=} items
+     * @param {?=} structureId
+     * @return {?}
+     */
+    setOrigin(items = [], structureId) {
+        this.origin = this.convertItems(items);
+        return this.createOriginChangedEvent(structureId);
+    }
+    /**
+     * @param {?=} items
+     * @param {?=} structureId
+     * @return {?}
+     */
+    setConvertedOrigin(items = [], structureId) {
+        this.origin = items;
+        return this.createOriginChangedEvent(structureId);
+    }
+    /**
+     * @return {?}
+     */
+    getOrigin() {
+        return this.origin;
+    }
+    /**
+     * @return {?}
+     */
+    getOriginSize() {
+        return this.origin.length;
+    }
+    // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
+    //
+    // }
+    /**
+     * @param {?} itemId
+     * @param {?} value
+     * @param {?} field
+     * @param {?} structureId
+     * @return {?}
+     */
+    editOriginItem(itemId, value, field, structureId) {
+        /** @type {?} */
+        const item = this.findOriginItem(itemId);
+        /** @type {?} */
+        const itemBeforeChange = item.clone();
+        if (item) {
+            item.rawData[field.getAccessor()] = value;
+            item.bumpVersion();
+        }
+        return [
+            new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
+            this.createOriginChangedEvent(structureId)
+        ];
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteAllSelected(structureId) {
+        /** @type {?} */
+        let events = [];
+        /** @type {?} */
+        const rows = this.formationManager.getSelectedRows();
+        rows.forEach((/**
+         * @param {?} r
+         * @return {?}
+         */
+        (r) => {
+            events.push(...this.deleteOriginItemByItemId(new OriginId(r), structureId));
+        }));
+        return events;
+    }
+    /**
+     * @param {?} payload
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteOriginItem(payload, structureId) {
+        if (payload instanceof OriginId) {
+            return this.deleteOriginItemByItemId(payload, structureId);
+        }
+        else if (Array.isArray(payload)) {
+            /** @type {?} */
+            let events = [];
+            payload.forEach((/**
+             * @param {?} item
+             * @return {?}
+             */
+            (item) => {
+                events.push(...this.deleteOneOriginItem(item, structureId));
+            }));
+            return events;
+        }
+        else if (Number.isInteger(payload)) {
+            return this.deleteOriginItemByIndex(payload, structureId);
+        }
+    }
+    /**
+     * @private
+     * @param {?} item
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteOneOriginItem(item, structureId) {
+        if (item instanceof OriginId) {
+            return this.deleteOriginItemByItemId(item, structureId);
+        }
+        else if (Number.isInteger(item)) {
+            return this.deleteOriginItemByIndex(item, structureId);
+        }
+        else {
+            return [];
+        }
+    }
+    /**
+     * @private
+     * @param {?} itemId
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteOriginItemByItemId(itemId, structureId) {
+        /** @type {?} */
+        const index = this.findOriginItemIndex(itemId.toString());
+        return this.deleteOriginItemByIndex(index, structureId);
+    }
+    /**
+     * @private
+     * @param {?} index
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteOriginItemByIndex(index, structureId) {
+        if (index > -1) {
+            /** @type {?} */
+            const removedElements = this.origin.splice(index, 1);
+            if (removedElements.length > 0) {
+                for (let element of removedElements) {
+                    this.formationManager.unselectRow(element.getId().toString());
+                }
+            }
+            return [
+                this.createOriginChangedEvent(structureId)
+            ];
+        }
+        return [];
+    }
+    /**
+     * @private
+     * @param {?} indexes
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteManyOriginItemByIndex(indexes, structureId) {
+        /** @type {?} */
+        let events = [];
+        indexes.forEach((/**
+         * @param {?} index
+         * @return {?}
+         */
+        (index) => {
+            events.push(...this.deleteOriginItemByIndex(index, structureId));
+        }));
+        return events;
+    }
+    /**
+     * @private
+     * @param {?} itemIds
+     * @param {?} structureId
+     * @return {?}
+     */
+    deleteManyOriginItemByItemID(itemIds, structureId) {
+        /** @type {?} */
+        let events = [];
+        itemIds.forEach((/**
+         * @param {?} itemId
+         * @return {?}
+         */
+        (itemId) => {
+            events.push(...this.deleteOriginItemByItemId(itemId, structureId));
+        }));
+        return events;
+    }
+    /**
+     * @param {?} item
+     * @param {?} structureId
+     * @return {?}
+     */
+    addOriginItem(item, structureId) {
+        this.origin.push(item);
+        return [this.createOriginChangedEvent(structureId)];
+    }
+    /**
+     * @return {?}
+     */
+    selectAll() {
+        this.formationManager.selectAll(this.getEntities().map((/**
+         * @param {?} e
+         * @return {?}
+         */
+        e => e.getId().toString())));
+    }
+    /**
+     * @return {?}
+     */
+    unselectAll() {
+        this.formationManager.unselectAll();
+    }
+    /**
+     * @param {?} itemId
+     * @param {?} type
+     * @return {?}
+     */
+    toggleRow(itemId, type) {
+        this.formationManager.toggleRow(itemId, type, this.getEntities().map((/**
+         * @param {?} e
+         * @return {?}
+         */
+        e => e.getId().toString())));
+    }
+    /**
+     * @return {?}
+     */
+    getFormation() {
+        return this.formationManager;
+    }
+    /**
+     * @private
+     * @param {?} items
+     * @return {?}
+     */
+    convertItems(items) {
+        return items.map((/**
+         * @param {?} item
+         * @param {?} index
+         * @return {?}
+         */
+        (item, index) => {
+            return new OriginItemEntity(new OriginId(RandomStringGenerator.generate()), item, index);
+        }));
+    }
+    /**
+     * @private
+     * @param {?} structureId
+     * @return {?}
+     */
+    createOriginChangedEvent(structureId) {
+        return new StructureOriginChangedAggregateEvent(structureId, this.origin);
+    }
+    /**
+     * @private
+     * @param {?} itemId
+     * @return {?}
+     */
+    findOriginItem(itemId) {
+        return this.origin.find((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => item.getId().toString() === itemId));
+    }
+    /**
+     * @private
+     * @param {?} itemId
+     * @return {?}
+     */
+    findOriginItemIndex(itemId) {
+        return this.origin.findIndex((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => item.getId().toString() === itemId));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    recalculatePositions() {
+        this.entities.forEach((/**
+         * @param {?} ent
+         * @param {?} index
+         * @return {?}
+         */
+        (ent, index) => {
+            ent.setPosition(index);
+        }));
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.loading;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.fetched;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.origin;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.entities;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.preparedEntities;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.slicedEntities;
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManager.prototype.formationManager;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FormationManager {
+    /**
+     * @param {?} selectedRows
+     */
+    constructor(selectedRows) {
+        this.enabled = true;
+        this.mode = RowSelectionMode.SINGLE;
+        this.selectedRows = selectedRows;
+    }
+    /**
+     * @return {?}
+     */
+    isAllSelected() {
+        return this.allSelected;
+    }
+    /**
+     * @return {?}
+     */
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    setSelection(enabled) {
+        this.enabled = enabled;
+    }
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    setMode(mode) {
+        this.mode = mode;
+    }
+    /**
+     * @return {?}
+     */
+    getSelectedRows() {
+        return Array.from(this.selectedRows);
+    }
+    /**
+     * @param {?} allItemIds
+     * @return {?}
+     */
+    selectAll(allItemIds) {
+        this.selectedRows = new Set(allItemIds);
+        this.allSelected = true;
+        this.allUnselected = false;
+    }
+    /**
+     * @return {?}
+     */
+    unselectAll() {
+        this.selectedRows.clear();
+        this.allSelected = false;
+        this.allUnselected = true;
+    }
+    /**
+     * @param {?} itemId
+     * @param {?} type
+     * @param {?} allItemIds
+     * @return {?}
+     */
+    toggleRow(itemId, type, allItemIds) {
+        if (!this.enabled) {
+            return;
+        }
+        if (type === RowSelectToggleType.ADD && this.mode === RowSelectionMode.SINGLE) {
+            type = RowSelectToggleType.NONE;
+        }
+        switch (type) {
+            case RowSelectToggleType.NONE:
+                if (this.selectedRows.has(itemId)) {
+                    this.selectedRows.delete(itemId);
+                }
+                else {
+                    this.selectedRows.clear();
+                    this.selectedRows.add(itemId);
+                }
+                break;
+            case RowSelectToggleType.ADD:
+                if (this.selectedRows.has(itemId)) {
+                    this.selectedRows.delete(itemId);
+                }
+                else {
+                    this.selectedRows.add(itemId);
+                }
+                break;
+            case RowSelectToggleType.RANGE:
+                break;
+        }
+        this.calculateAllSelected(allItemIds);
+        this.calculateAllUnselected();
+    }
+    /**
+     * @param {?} allItemIds
+     * @return {?}
+     */
+    calculateAllSelected(allItemIds) {
+        if (allItemIds.length !== this.selectedRows.size) {
+            this.allSelected = false;
+        }
+        else {
+            /** @type {?} */
+            let rows = Array.from(this.selectedRows);
+            /** @type {?} */
+            let equal = true;
+            rows.sort();
+            allItemIds.sort();
+            for (let i = 0; i < rows.length; i += 1) {
+                if (rows[i] !== allItemIds[i]) {
+                    equal = false;
+                    break;
+                }
+            }
+            this.allSelected = equal;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    calculateAllUnselected() {
+        this.allUnselected = this.selectedRows.size === 0;
+    }
+    /**
+     * @param {?} itemId
+     * @return {?}
+     */
+    unselectRow(itemId) {
+        if (this.selectedRows.has(itemId)) {
+            this.selectedRows.delete(itemId);
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationManager.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationManager.prototype.mode;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationManager.prototype.selectedRows;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationManager.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    FormationManager.prototype.allUnselected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FormationManagerFactory {
+    /**
+     * @return {?}
+     */
+    create() {
+        return new FormationManager(new Set());
+    }
+}
+FormationManagerFactory.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceManagerFactory {
+    /**
+     * @param {?} formationManagerFactory
+     */
+    constructor(formationManagerFactory) {
+        this.formationManagerFactory = formationManagerFactory;
+    }
+    /**
+     * @return {?}
+     */
+    createDefault() {
+        /** @type {?} */
+        const fm = this.formationManagerFactory.create();
+        return new SourceManager(fm);
+    }
+    /**
+     * @return {?}
+     */
+    create() {
+        /** @type {?} */
+        const fm = this.formationManagerFactory.create();
+        return new SourceManager(fm);
+    }
+}
+SourceManagerFactory.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SourceManagerFactory.ctorParameters = () => [
+    { type: FormationManagerFactory }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SourceManagerFactory.prototype.formationManagerFactory;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureOriginChangedEventHandler {
+    /**
+     * @param {?} structureSourceOriginRepository
+     */
+    constructor(structureSourceOriginRepository) {
+        this.structureSourceOriginRepository = structureSourceOriginRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return OriginSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('OriginSetEvent')) {
+            /** @type {?} */
+            const origin = event.getOrigin();
+            this.structureSourceOriginRepository.setOrigin(origin, event.getAggregateId());
+        }
+    }
+}
+StructureOriginChangedEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructureOriginChangedEventHandler.ctorParameters = () => [
+    { type: StructureSourceOriginRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureOriginChangedEventHandler.prototype.structureSourceOriginRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructurePreparedItemsEventHandler {
+    /**
+     * @param {?} structurePreparedItemsRepository
+     */
+    constructor(structurePreparedItemsRepository) {
+        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return StructurePreparedEntitiesSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('StructurePreparedEntitiesSetEvent')) {
+            /** @type {?} */
+            const preparedItems = event.getPreparedItems();
+            this.structurePreparedItemsRepository.setItems(preparedItems, event.getAggregateId());
+        }
+    }
+}
+StructurePreparedItemsEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructurePreparedItemsEventHandler.ctorParameters = () => [
+    { type: StructurePreparedItemsRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePreparedItemsEventHandler.prototype.structurePreparedItemsRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetEnabledSelectionCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetEnabledSelectionCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        aggregate.setSelection(command.isEnabled());
+    }
+}
+SetEnabledSelectionCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetEnabledSelectionCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetEnabledSelectionCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ToggleSelectedRowCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return ToggleSelectedRowCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const selectedRow = command.getSelectedRow();
+        /** @type {?} */
+        const type = command.getType();
+        aggregate.toggleRow(selectedRow, type);
+    }
+}
+ToggleSelectedRowCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ToggleSelectedRowCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleSelectedRowCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleSelectedRowCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RowSelectedReadModel {
+    /**
+     * @param {?} itemIds
+     * @param {?} allSelected
+     * @param {?} allUnselected
+     */
+    constructor(itemIds, allSelected, allUnselected) {
+        this.itemIds = new Array();
+        this.itemIds = itemIds;
+        this.allSelected = allSelected;
+        this.allUnselected = allUnselected;
+    }
+    /**
+     * @return {?}
+     */
+    getAll() {
+        return this.itemIds;
+    }
+    /**
+     * @param {?} id
+     * @return {?}
+     */
+    isSelected(id) {
+        return this.itemIds.some((/**
+         * @param {?} itemId
+         * @return {?}
+         */
+        (itemId) => itemId === id));
+    }
+    /**
+     * @return {?}
+     */
+    isAllSelected() {
+        return this.allSelected;
+    }
+    /**
+     * @return {?}
+     */
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+    /**
+     * @return {?}
+     */
+    isIndeterminate() {
+        return !(this.isAllSelected() || this.isAllUnselected());
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelectedReadModel.prototype.itemIds;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelectedReadModel.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelectedReadModel.prototype.allUnselected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectedRowChangedEventHandler {
+    /**
+     * @param {?} rowSelectedRepository
+     */
+    constructor(rowSelectedRepository) {
+        this.rowSelectedRepository = rowSelectedRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return SelectedRowChangedEvent;
+    }
+    /**
+     * @param {?} rowChangedEvent
+     * @return {?}
+     */
+    handle(rowChangedEvent) {
+        if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
+            /** @type {?} */
+            const rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
+            this.rowSelectedRepository.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
+        }
+    }
+}
+SelectedRowChangedEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectedRowChangedEventHandler.ctorParameters = () => [
+    { type: RowSelectedRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedEventHandler.prototype.rowSelectedRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetSelectionModeCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetSelectionModeCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        aggregate.setSelectionMode(command.getMode());
+    }
+}
+SetSelectionModeCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetSelectionModeCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetSelectionModeCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllRowsCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SelectAllRowsCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        aggregate.selectAll();
+    }
+}
+SelectAllRowsCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectAllRowsCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllRowsCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllRowsCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectAllRowsCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return UnselectAllRowsCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        aggregate.unselectAll();
+    }
+}
+UnselectAllRowsCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UnselectAllRowsCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectAllRowsCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectAllRowsCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectionModeSetEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} mode
+     */
+    constructor(aggregateId, mode) {
+        super(aggregateId, 'SelectionModeSetEvent');
+        this.mode = mode;
+    }
+    /**
+     * @return {?}
+     */
+    getMode() {
+        return this.mode;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionModeSetEvent.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectionModeSetEventHandler {
+    /**
+     * @param {?} rowSelectionModeRepository
+     */
+    constructor(rowSelectionModeRepository) {
+        this.rowSelectionModeRepository = rowSelectionModeRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return SelectionModeSetEvent;
+    }
+    /**
+     * @param {?} modeSetEvent
+     * @return {?}
+     */
+    handle(modeSetEvent) {
+        if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
+            this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
+        }
+    }
+}
+SelectionModeSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectionModeSetEventHandler.ctorParameters = () => [
+    { type: RowSelectionModeRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionModeSetEventHandler.prototype.rowSelectionModeRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class DeleteOriginItemCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return DeleteOriginItemCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        aggregate.deleteItem(command.getPayload());
+    }
+}
+DeleteOriginItemCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+DeleteOriginItemCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DeleteOriginItemCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceDomainModule extends DomainModule {
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    static commandHandlers() {
+        return [
+            ...HermesModule.registerCommandHandler(SourceSetLoadingCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SetOriginCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(StructureEditSourceItemCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SetEnabledSelectionCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SetSelectionModeCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SelectAllRowsCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(UnselectAllRowsCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(DeleteOriginItemCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, 'StructureAggregate')
+        ];
+    }
+    /**
+     * @return {?}
+     */
+    static domainEventHandlers() {
+        return [
+            ...HermesModule.registerDomainEventHandler(StructureOriginChangedEventHandler),
+            ...HermesModule.registerDomainEventHandler(SelectedRowChangedEventHandler),
+            ...HermesModule.registerDomainEventHandler(SelectionModeSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(StructurePreparedItemsEventHandler)
+        ];
+    }
+}
+SourceDomainModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                providers: [
+                    SourceDispatcher,
+                    SourceManagerFactory,
+                    SourceDomainEventPublisher,
+                    FormationDispatcher,
+                    FormationManagerFactory
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+/** @nocollapse */
+SourceDomainModule.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceApiModule extends ApiModule {
+}
+SourceApiModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    SourceDomainModule
+                ],
+                providers: [
+                    StructureSourceOriginRepository,
+                    StructurePreparedItemsRepository,
+                    SourceConverter,
+                    SourceCommandDispatcher,
+                    SourceWarehouse,
+                    SourceEventService,
+                    RowSelectedRepository,
+                    FormationEventService,
+                    FormationCommandDispatcher,
+                    FormationWarehouse,
+                    RowSelectionModeRepository
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceFeatureModule extends FeatureModule {
+    /**
+     * @param {?} sourceApiModule
+     */
+    constructor(sourceApiModule) {
+        super();
+        if (sourceApiModule === null) {
+            throw new Error('SourceApiModule is required');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [
+            RowSelectionTypeArchive,
+        ];
+    }
+}
+SourceFeatureModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    SourceApiModule
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+/** @nocollapse */
+SourceFeatureModule.ctorParameters = () => [
+    { type: SourceApiModule, decorators: [{ type: Optional$1 }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * \@internal
  * @param {?} generator
@@ -14304,7 +16965,8 @@ const structureComponentSelfProviders = [
     SortingFeatureModule.forComponent(),
     FieldFeatureModule.forComponent(),
     SearchFeatureModule.forComponent(),
-    StructureRowSelectEnabledArchive,
+    SourceFeatureModule.forComponent(),
+    RowSelectEnabledRepository,
     StructureHeaderTopEnabledArchive,
     StructureHeaderBottomEnabledArchive,
     StructureRowDetailConfigArchive,
@@ -14339,9 +17001,11 @@ class StructureComponent extends StructureGateway {
      * @param {?} structureCellEditStore
      * @param {?} columnFieldFactory
      * @param {?} structureColumnMenuConfigArchive
-     * @param {?} structurePagingDisplayModeArchive
-     * @param {?} structureRowSelectEnabledArchive
-     * @param {?} structureSearchEventService
+     * @param {?} pagingDisplayModeArchive
+     * @param {?} rowSelectEnabledArchive
+     * @param {?} rowSelectionTypeArchive
+     * @param {?} formationCommandDispatcher
+     * @param {?} searchEventRepository
      * @param {?} structureHeaderTopEnabledArchive
      * @param {?} structureHeaderBottomEnabledArchive
      * @param {?} structureDetailViewConfigArchive
@@ -14360,8 +17024,8 @@ class StructureComponent extends StructureGateway {
      * @param {?} commandDispatcher
      * @param {?} structureDetailViewService
      */
-    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, elementRef, changeDetectorRef, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
-        super(domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, structureRowSelectEnabledArchive, structureSearchEventService, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository);
+    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, elementRef, changeDetectorRef, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
+        super(domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
         this.renderer = renderer;
@@ -14480,9 +17144,13 @@ StructureComponent.decorators = [
                     {
                         provide: structureComponentToken,
                         useExisting: StructureComponent
+                    },
+                    {
+                        provide: filterContainerToken,
+                        useExisting: StructureComponent
                     }
                 ],
-                styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa;border-radius:8px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container .gui-cell{display:inline-block}gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container .gui-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{padding:8px;border-top:1px solid #d6d6d6}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;box-shadow:0 3px 7px #ccc}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-structure-filter-icon-wrapper{margin-right:24px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon{cursor:pointer}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg{height:16px;width:16px}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-structure-filter-icon-wrapper .gui-structure-filter-icon:hover .cls-1{stroke:#464646}.gui-structure-filter-menu{display:block;width:400px}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-search-bar form input,.gui-material gui-structure-top-panel gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-search-bar form{background:#444}.gui-dark gui-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-search-bar:hover .gui-search-icon circle,.gui-dark gui-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
+                styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{position:absolute;cursor:pointer;right:8px;top:8px;width:16px;height:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa;border-radius:8px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container .gui-cell{display:inline-block}gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container .gui-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{padding:8px;border-top:1px solid #d6d6d6}.gui-schema-manager-dialog{padding-right:16px}.gui-schema-manager-dialog .gui-schema-manager{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333;margin-bottom:16px}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select span{margin-bottom:4px}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;width:18px;margin-bottom:-1px}.gui-row-checkbox{cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;width:24px;padding:0;margin:0}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;box-shadow:0 3px 7px #ccc}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:86%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-search-bar form input,.gui-material gui-structure-top-panel gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-search-bar form{background:#444}.gui-dark gui-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-search-bar:hover .gui-search-icon circle,.gui-dark gui-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
             }] }
 ];
 /** @nocollapse */
@@ -14510,7 +17178,9 @@ StructureComponent.ctorParameters = () => [
     { type: ColumnFieldFactory },
     { type: StructureColumnMenuConfigArchive },
     { type: PagingDisplayModeArchive },
-    { type: StructureRowSelectEnabledArchive },
+    { type: RowSelectEnabledRepository },
+    { type: RowSelectionTypeArchive },
+    { type: FormationCommandDispatcher },
     { type: SearchEventRepository },
     { type: StructureHeaderTopEnabledArchive },
     { type: StructureHeaderBottomEnabledArchive },
@@ -14878,6 +17548,7 @@ class ListViewComponent extends ListViewGateway {
     /**
      * @param {?} structureId
      * @param {?} listViewReadModelRootId
+     * @param {?} elementRef
      * @param {?} sourceCommandService
      * @param {?} containerTemplateArchive
      * @param {?} listCardTemplateArchive
@@ -14885,12 +17556,19 @@ class ListViewComponent extends ListViewGateway {
      * @param {?} structurePagingCommandDispatcher
      * @param {?} listViewCommandDispatcher
      */
-    constructor(structureId, listViewReadModelRootId, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher) {
+    constructor(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher) {
         super(structureId, sourceCommandService);
         this.structureId = structureId;
         this.listViewReadModelRootId = listViewReadModelRootId;
+        this.elementRef = elementRef;
         structureCommandService.createStructure(this.structureId);
         listViewCommandDispatcher.create(this.listViewReadModelRootId);
+    }
+    /**
+     * @return {?}
+     */
+    getElementRef() {
+        return this.elementRef;
     }
 }
 ListViewComponent.decorators = [
@@ -14902,19 +17580,26 @@ ListViewComponent.decorators = [
 	`,
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                providers: componentProviders,
+                providers: [
+                    ...componentProviders,
+                    {
+                        provide: filterContainerToken,
+                        useExisting: ListViewComponent
+                    }
+                ],
                 host: {
                     '[class.gui-list-view]': `"true"`,
                     '[class.gui-generic]': `"true"`,
                     '[id]': 'structureId.toString()'
                 },
-                styles: [".gui-list-view,.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-panel-search{padding-left:8px;padding-right:8px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;height:100%;margin:0;padding:0 12px;position:relative;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-panel-top{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding-left:8px;padding-right:8px}.gui-list-panel-top .gui-paging{margin-left:auto}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-view-source{display:block;padding:8px}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding-top:12px;padding-bottom:12px}.gui-list-container-card{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0;padding:0}.gui-list-card{cursor:pointer;display:block;padding:0;position:relative;margin:0}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
+                styles: [".gui-list-view,.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-panel-search{display:-ms-flexbox;display:flex;padding-left:8px;padding-right:8px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;height:100%;margin:0;padding:0 12px;position:relative;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-panel-top{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding-left:8px;padding-right:8px}.gui-list-panel-top .gui-paging{margin-left:auto}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-view-source{display:block}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding-top:12px;padding-bottom:12px}.gui-list-container-card{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0;padding:0}.gui-list-card{cursor:pointer;display:block;padding:0;position:relative;margin:0}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
             }] }
 ];
 /** @nocollapse */
 ListViewComponent.ctorParameters = () => [
     { type: StructureId },
     { type: ListViewReadModelRootId },
+    { type: ElementRef },
     { type: SourceCommandDispatcher },
     { type: ListViewTemplateArchive },
     { type: ListViewCardTemplateArchive },
@@ -14927,6 +17612,11 @@ if (false) {
     ListViewComponent.prototype.structureId;
     /** @type {?} */
     ListViewComponent.prototype.listViewReadModelRootId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewComponent.prototype.elementRef;
 }
 
 /**
@@ -15005,7 +17695,7 @@ ListViewSourceComponent.decorators = [
 ListViewSourceComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: StructureId },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: ListViewTemplateArchive }
 ];
 if (false) {
@@ -15215,11 +17905,14 @@ ListViewLayoutComponent.decorators = [
 		<div class="gui-list-panel-search">
 
 			<gui-search-bar *ngIf="searchBarEnabled"></gui-search-bar>
-			
+
+			<!--			<gui-sorting-selector></gui-sorting-selector>-->
+			<!--			<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
+			<gui-filter-menu-trigger></gui-filter-menu-trigger>
 		</div>
 		<div class="gui-list-panel-top">
 			<gui-list-mode-select *ngIf="selectorEnabled"></gui-list-mode-select>
-			
+
 			<gui-paging [minimal]="true" [position]="0"></gui-paging>
 		</div>
 
@@ -15445,8 +18138,8 @@ ListViewContainerCardComponent.decorators = [
                 template: `
 
 		<gui-list-card-item *ngFor="let element of items"
-								 [item]="element"
-								 [template]="cardTemplate">
+							[item]="element"
+							[template]="cardTemplate">
 		</gui-list-card-item>
 
 		<gui-empty-source [items]="items">
@@ -15464,7 +18157,7 @@ ListViewContainerCardComponent.decorators = [
 ListViewContainerCardComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: StructureId },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: ListViewCardTemplateArchive }
 ];
 if (false) {
@@ -16254,6 +18947,12 @@ class ListViewSelectorToggledEventHandler {
         this.listViewSelectorRepository = listViewSelectorRepository;
     }
     /**
+     * @return {?}
+     */
+    forEvent() {
+        return ListViewSelectorToggledEvent;
+    }
+    /**
      * @param {?} event
      * @return {?}
      */
@@ -16261,12 +18960,6 @@ class ListViewSelectorToggledEventHandler {
         if (event.ofMessageType('ListViewSelectorToggledEvent')) {
             this.listViewSelectorRepository.setMode(event.isEnabled(), event.getAggregateId());
         }
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return ListViewSelectorToggledEvent;
     }
 }
 ListViewSelectorToggledEventHandler.decorators = [
@@ -16300,7 +18993,7 @@ ListViewApiModule.decorators = [
                         ...ListViewDomainModule.commandHandlers()
                     ], [
                         ...HermesModule.registerDomainEventHandler(ListViewModeSetEventHandler),
-                        ...HermesModule.registerDomainEventHandler(ListViewSelectorToggledEventHandler),
+                        ...HermesModule.registerDomainEventHandler(ListViewSelectorToggledEventHandler)
                     ]),
                     ListViewDomainModule
                 ],
@@ -16716,6 +19409,1129 @@ const listViewGatewayDeclarations = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class SortingSelectorComponent {
+    constructor() {
+        this.sortingOptions = [
+            'Name: A-Z',
+            'Name: Z-A',
+            'Price: Low to High',
+            'Price: High to Low',
+            'None'
+        ];
+        this.selectedSorting = this.sortingOptions[0];
+    }
+    /**
+     * @param {?} sorting
+     * @return {?}
+     */
+    changeSorting(sorting) {
+        console.log(sorting);
+    }
+}
+SortingSelectorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-sorting-selector',
+                template: `
+
+		<gui-select (optionChanged)="changeSorting($event)"
+					[options]="sortingOptions"
+					[selected]="selectedSorting"
+					[width]="200">
+		</gui-select>
+
+	`
+            }] }
+];
+if (false) {
+    /** @type {?} */
+    SortingSelectorComponent.prototype.sortingOptions;
+    /** @type {?} */
+    SortingSelectorComponent.prototype.selectedSorting;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SortingSelectorFeatureModule {
+}
+SortingSelectorFeatureModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FabricSelectModule
+                ],
+                declarations: [
+                    SortingSelectorComponent
+                ],
+                exports: [
+                    SortingSelectorComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterIconComponent {
+}
+FilterIconComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-filter-icon',
+                template: `
+		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.23">
+			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
+			<line class="cls-1" x1="8.14" y1="3.62" x2="2.18" y2="3.62"/>
+			<line class="cls-1" x1="6.71" y1="6.48" x2="3.62" y2="6.48"/>
+		</svg>
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-filter-icon]': 'true'
+                }
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterEnabledRepository {
+    constructor() {
+        this.enabled = new Map();
+        this.enabled$ = new ReplaySubject();
+    }
+    /**
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    setEnabled(enabled, structureId) {
+        this.enabled.set(structureId.toString(), enabled);
+        this.enabled$.next(this.enabled);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onFilterEnabled(structureId) {
+        return this.enabled$
+            .asObservable()
+            .pipe(map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        (map) => {
+            return map.get(structureId.toString());
+        })), distinctUntilChanged());
+    }
+}
+FilterEnabledRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FilterEnabledRepository.ctorParameters = () => [];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterEnabledRepository.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterEnabledRepository.prototype.enabled$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class QuickFilterEnabledRepository {
+    constructor() {
+        this.enabled = new Map();
+        this.enabled$ = new ReplaySubject();
+    }
+    /**
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    setEnabled(enabled, structureId) {
+        this.enabled.set(structureId.toString(), enabled);
+        this.enabled$.next(this.enabled);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onQuickFilterEnabled(structureId) {
+        return this.enabled$
+            .asObservable()
+            .pipe(map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        (map) => {
+            return map.get(structureId.toString());
+        })), distinctUntilChanged());
+    }
+}
+QuickFilterEnabledRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+QuickFilterEnabledRepository.ctorParameters = () => [];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickFilterEnabledRepository.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    QuickFilterEnabledRepository.prototype.enabled$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeRepository extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+FilterTypeRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FilterTypeRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterRepository extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+ActiveFilterRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ActiveFilterRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValuesRepository extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+UniqueValuesRepository.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UniqueValuesRepository.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterWarehouse {
+    /**
+     * @param {?} structureFilterRepository
+     * @param {?} structureQuickFilterRepository
+     * @param {?} filterTypeRepository
+     * @param {?} uniqueValuesRepository
+     * @param {?} activeFilterRepository
+     */
+    constructor(structureFilterRepository, structureQuickFilterRepository, filterTypeRepository, uniqueValuesRepository, activeFilterRepository) {
+        this.structureFilterRepository = structureFilterRepository;
+        this.structureQuickFilterRepository = structureQuickFilterRepository;
+        this.filterTypeRepository = filterTypeRepository;
+        this.uniqueValuesRepository = uniqueValuesRepository;
+        this.activeFilterRepository = activeFilterRepository;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onFilteringEnabled(structureId) {
+        return this.structureFilterRepository.onFilterEnabled(structureId);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onQuickFiltersEnabled(structureId) {
+        return this.structureQuickFilterRepository.onQuickFilterEnabled(structureId);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onFilterTypes(structureId) {
+        return this.filterTypeRepository.on(structureId);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onActiveFilters(structureId) {
+        return this.activeFilterRepository.on(structureId);
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    onUniqueValues(structureId) {
+        return this.uniqueValuesRepository.on(structureId);
+    }
+}
+FilterWarehouse.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FilterWarehouse.ctorParameters = () => [
+    { type: FilterEnabledRepository },
+    { type: QuickFilterEnabledRepository },
+    { type: FilterTypeRepository },
+    { type: UniqueValuesRepository },
+    { type: ActiveFilterRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterWarehouse.prototype.structureFilterRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterWarehouse.prototype.structureQuickFilterRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterWarehouse.prototype.filterTypeRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterWarehouse.prototype.uniqueValuesRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterWarehouse.prototype.activeFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterMenuComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} fieldWarehouse
+     * @param {?} filterWarehouse
+     * @param {?} filterCommandDispatcher
+     * @param {?} compositionWarehouse
+     */
+    constructor(changeDetectorRef, structureId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.fieldWarehouse = fieldWarehouse;
+        this.filterWarehouse = filterWarehouse;
+        this.filterCommandDispatcher = filterCommandDispatcher;
+        this.compositionWarehouse = compositionWarehouse;
+        this.columns = [];
+        this.fields = [];
+        this.activeFilters = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.filterWarehouse
+            .onActiveFilters(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} activeFilters
+         * @return {?}
+         */
+        (activeFilters) => {
+            this.activeFilters = activeFilters;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.filterWarehouse
+            .onFilterTypes(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} filterTypeMap
+         * @return {?}
+         */
+        (filterTypeMap) => {
+            this.filterTypeMap = filterTypeMap;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.fieldWarehouse
+            .onFields(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} fieldReadModels
+         * @return {?}
+         */
+        (fieldReadModels) => {
+            this.fields = fieldReadModels;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.compositionWarehouse
+            .onHeaderColumns()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} columns
+         * @return {?}
+         */
+        (columns) => {
+            this.columns = columns;
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @param {?} selectedColumn
+     * @return {?}
+     */
+    onColumnSelect(selectedColumn) {
+        this.selectedColumn = selectedColumn;
+        this.filterTypes = this.filterTypeMap.getFilterTypes(this.selectedColumn.getFieldId());
+        this.changeDetectorRef.detectChanges();
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    onFieldSelect(field) {
+        this.selectedField = field;
+        this.filterTypes = this.filterTypeMap.getFilterTypes(this.selectedField.getFieldId());
+        this.changeDetectorRef.detectChanges();
+    }
+    /**
+     * @param {?} filterTypeId
+     * @return {?}
+     */
+    onFilterTypeSelect(filterTypeId) {
+        this.selectedFilterTypeId = filterTypeId;
+        this.changeDetectorRef.detectChanges();
+    }
+    /**
+     * @return {?}
+     */
+    removeAllFilters() {
+        this.filterCommandDispatcher.removeAllFilters(this.structureId);
+    }
+    /**
+     * @return {?}
+     */
+    addFilter() {
+        /** @type {?} */
+        const fieldId = this.selectedField.getFieldId();
+        /** @type {?} */
+        const filterTypeId = this.selectedFilterTypeId;
+        /** @type {?} */
+        const value = this.selectedValue;
+        this.filterCommandDispatcher.add(fieldId, filterTypeId, value, this.structureId);
+        this.clearAddFilterForm();
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    onValueChanged(value) {
+        this.selectedValue = value;
+    }
+    /**
+     * @return {?}
+     */
+    clearAddFilterForm() {
+        this.selectedColumn = null;
+        this.selectedField = null;
+        this.selectedFilterTypeId = null;
+        this.selectedValue = null;
+        this.changeDetectorRef.detectChanges();
+    }
+}
+FilterMenuComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-filter-menu',
+                template: `
+
+		<div>
+			<gui-active-filter-list></gui-active-filter-list>
+		</div>
+
+		<!--		<div>-->
+		<!--			<gui-column-selector-->
+		<!--					[columns]="columns"-->
+		<!--					(columnSelected)="onColumnSelect($event)">-->
+		<!--			</gui-column-selector>-->
+
+		<!--			<ng-container *ngIf="selectedColumn">-->
+		<!--				{{selectedColumn.getFieldId()}}-->
+		<!--			</ng-container>-->
+		<!--		</div>-->
+
+		<div>
+			<gui-field-selector
+					[fields]="fields"
+					(fieldSelected)="onFieldSelect($event)">
+			</gui-field-selector>
+
+			<ng-container *ngIf="selectedColumn">
+				{{selectedColumn.getFieldId()}}
+			</ng-container>
+		</div>
+
+		<div>
+			<gui-filter-type-selector
+					[filterTypes]="filterTypes"
+					(filterTypeSelected)="onFilterTypeSelect($event)">
+			</gui-filter-type-selector>
+
+			<ng-container *ngIf="selectedFilterTypeId">
+				{{selectedFilterTypeId.toString()}}
+			</ng-container>
+		</div>
+
+		<div>
+
+			<gui-filter-value *ngIf="selectedFilterTypeId"
+							  (valueChanged)="onValueChanged($event)">
+			</gui-filter-value>
+
+		</div>
+
+		<div>
+			<button gui-button
+					[primary]="true"
+					[disabled]="!selectedFilterTypeId"
+					(click)="addFilter()">
+				Filter
+			</button>
+		</div>
+
+		<div>
+			<button gui-button
+					[secondary]="true"
+					(click)="removeAllFilters()">
+				Clear filters
+			</button>
+		</div>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-filter-menu]': 'true'
+                }
+            }] }
+];
+/** @nocollapse */
+FilterMenuComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: FieldWarehouse },
+    { type: FilterWarehouse },
+    { type: FilterCommandDispatcher },
+    { type: CompositionWarehouse }
+];
+if (false) {
+    /** @type {?} */
+    FilterMenuComponent.prototype.selectedColumn;
+    /** @type {?} */
+    FilterMenuComponent.prototype.columns;
+    /** @type {?} */
+    FilterMenuComponent.prototype.selectedField;
+    /** @type {?} */
+    FilterMenuComponent.prototype.fields;
+    /** @type {?} */
+    FilterMenuComponent.prototype.filterTypeMap;
+    /** @type {?} */
+    FilterMenuComponent.prototype.filterTypes;
+    /** @type {?} */
+    FilterMenuComponent.prototype.selectedFilterTypeId;
+    /** @type {?} */
+    FilterMenuComponent.prototype.selectedValue;
+    /** @type {?} */
+    FilterMenuComponent.prototype.activeFilters;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.fieldWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.filterWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.filterCommandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuComponent.prototype.compositionWarehouse;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterMenuTriggerComponent {
+    /**
+     * @param {?} injector
+     * @param {?} drawerService
+     * @param {?} filterContainerRef
+     */
+    constructor(injector, drawerService, filterContainerRef) {
+        this.injector = injector;
+        this.drawerService = drawerService;
+        this.filterContainerRef = filterContainerRef;
+    }
+    /**
+     * @return {?}
+     */
+    openDrawer() {
+        /** @type {?} */
+        const elementRef = this.filterContainerRef.getElementRef();
+        this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
+    }
+}
+FilterMenuTriggerComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-filter-menu-trigger',
+                template: `
+		<div [gui-tooltip]="'Filters'"
+			 (click)="openDrawer()"
+			 class="gui-filter-icon-wrapper">
+			<gui-filter-icon></gui-filter-icon>
+		</div>
+	`,
+                encapsulation: ViewEncapsulation.None,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                host: {
+                    '[class.gui-filter-menu-trigger]': 'true'
+                },
+                styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-icon-wrapper .gui-filter-icon{cursor:pointer}.gui-filter-icon-wrapper .gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon-wrapper .gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon-wrapper .gui-filter-icon:hover .cls-1{stroke:#464646}.gui-filter-menu{display:block;width:400px}"]
+            }] }
+];
+/** @nocollapse */
+FilterMenuTriggerComponent.ctorParameters = () => [
+    { type: Injector },
+    { type: FabricDrawerService },
+    { type: undefined, decorators: [{ type: Inject, args: [filterContainerToken,] }] }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuTriggerComponent.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuTriggerComponent.prototype.drawerService;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterMenuTriggerComponent.prototype.filterContainerRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ColumnSelectorComponent {
+    constructor() {
+        this.columnSelected = new EventEmitter();
+    }
+    /**
+     * @param {?} column
+     * @return {?}
+     */
+    onSelectChange(column) {
+        this.columnSelected.emit(column);
+    }
+}
+ColumnSelectorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-column-selector[columns]',
+                template: `
+
+		Column:
+
+		<gui-dropdown>
+			<gui-dropdown-item *ngFor="let column of columns"
+							   (click)="onSelectChange(column)">
+				<ng-container
+						*ngTemplateOutlet="column.viewTemplate;
+						   context: column.context">
+				</ng-container>
+			</gui-dropdown-item>
+		</gui-dropdown>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+ColumnSelectorComponent.propDecorators = {
+    columns: [{ type: Input }],
+    columnSelected: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    ColumnSelectorComponent.prototype.columns;
+    /** @type {?} */
+    ColumnSelectorComponent.prototype.columnSelected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeSelectorComponent extends PureComponent {
+    constructor() {
+        super(...arguments);
+        this.filterTypeSelected = new EventEmitter();
+    }
+    /**
+     * @param {?} filterType
+     * @return {?}
+     */
+    onSelectChange(filterType) {
+        this.filterTypeSelected.emit(filterType.getId());
+    }
+}
+FilterTypeSelectorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-filter-type-selector[filterTypes]',
+                template: `
+
+		<ng-container>
+			Filter Type:
+		</ng-container>
+
+		<gui-dropdown>
+			<gui-dropdown-item *ngFor="let filterType of filterTypes"
+							   (click)="onSelectChange(filterType)">
+				{{filterType.getName()}}
+			</gui-dropdown-item>
+		</gui-dropdown>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+FilterTypeSelectorComponent.propDecorators = {
+    filterTypes: [{ type: Input }],
+    filterTypeSelected: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    FilterTypeSelectorComponent.prototype.filterTypes;
+    /** @type {?} */
+    FilterTypeSelectorComponent.prototype.filterTypeSelected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterValueComponent {
+    /**
+     * @param {?} formBuilder
+     */
+    constructor(formBuilder) {
+        this.formBuilder = formBuilder;
+        this.valueChanged = new EventEmitter();
+        /** @type {?} */
+        let controlsConfig = {};
+        controlsConfig[FilterValueComponent.FORM_FILTER_VALUE] = '';
+        this.filterForm = this.formBuilder.group(controlsConfig);
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.filterForm
+            .controls[FilterValueComponent.FORM_FILTER_VALUE]
+            .valueChanges
+            // .pipe(
+            // 	this.takeUntil()
+            // )
+            .subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
+            this.valueChanged.emit(value);
+        }));
+    }
+}
+FilterValueComponent.FORM_FILTER_VALUE = 'filterValue';
+FilterValueComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-filter-value',
+                template: `
+
+		<form #formRef
+			  [formGroup]="filterForm">
+
+			<input formControlName="filterValue"/>
+		</form>
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-filter-value]': `"true"`
+                }
+            }] }
+];
+/** @nocollapse */
+FilterValueComponent.ctorParameters = () => [
+    { type: FormBuilder }
+];
+FilterValueComponent.propDecorators = {
+    formRef: [{ type: ViewChild, args: ['formRef', { static: false },] }],
+    valueChanged: [{ type: Output }]
+};
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterValueComponent.FORM_FILTER_VALUE;
+    /** @type {?} */
+    FilterValueComponent.prototype.formRef;
+    /** @type {?} */
+    FilterValueComponent.prototype.valueChanged;
+    /** @type {?} */
+    FilterValueComponent.prototype.filterForm;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterValueComponent.prototype.formBuilder;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterListComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} filterWarehouse
+     * @param {?} filterCommandDispatcher
+     */
+    constructor(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.filterWarehouse = filterWarehouse;
+        this.filterCommandDispatcher = filterCommandDispatcher;
+        this.activeFilters = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.filterWarehouse
+            .onActiveFilters(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} activeFilters
+         * @return {?}
+         */
+        (activeFilters) => {
+            this.activeFilters = activeFilters;
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @param {?} filter
+     * @return {?}
+     */
+    removeFilter(filter) {
+        this.filterCommandDispatcher.removeFilter(filter.getFilterId(), this.structureId);
+    }
+}
+ActiveFilterListComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-active-filter-list',
+                template: `
+
+		<div *ngFor="let filter of activeFilters">
+			{{filter.getText()}}
+			<span (click)="removeFilter(filter)">X</span>
+		</div>
+
+		<gui-active-search></gui-active-search>
+
+
+	`
+            }] }
+];
+/** @nocollapse */
+ActiveFilterListComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: FilterWarehouse },
+    { type: FilterCommandDispatcher }
+];
+if (false) {
+    /** @type {?} */
+    ActiveFilterListComponent.prototype.activeFilters;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterListComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterListComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterListComponent.prototype.filterWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterListComponent.prototype.filterCommandDispatcher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FieldSelectorComponent {
+    constructor() {
+        this.fieldSelected = new EventEmitter();
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    onSelectChange(field) {
+        this.fieldSelected.emit(field);
+    }
+}
+FieldSelectorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-field-selector[fields]',
+                template: `
+
+		Field:
+
+		<gui-dropdown>
+			<gui-dropdown-item *ngFor="let field of fields"
+							   (click)="onSelectChange(field)">
+				{{field.getName()}}
+			</gui-dropdown-item>
+		</gui-dropdown>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+FieldSelectorComponent.propDecorators = {
+    fields: [{ type: Input }],
+    fieldSelected: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    FieldSelectorComponent.prototype.fields;
+    /** @type {?} */
+    FieldSelectorComponent.prototype.fieldSelected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveSearchComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} searchCommandDispatcher
+     * @param {?} searchWarehouse
+     */
+    constructor(changeDetectorRef, structureId, searchCommandDispatcher, searchWarehouse) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.searchCommandDispatcher = searchCommandDispatcher;
+        this.searchWarehouse = searchWarehouse;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.searchWarehouse
+            .onPhrase(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} phrase
+         * @return {?}
+         */
+        (phrase) => {
+            this.phrase = phrase;
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    clearSearch() {
+        event.stopPropagation();
+        this.searchCommandDispatcher.search('', this.structureId);
+    }
+}
+ActiveSearchComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-active-search',
+                template: `
+
+		<ng-container *ngIf="phrase">
+			<div>
+				Active search by:
+			</div>
+
+			<div>
+				<gui-chip>{{phrase}}</gui-chip>
+			</div>
+
+			<div>
+				<button gui-button
+						[outline]="true"
+						[primary]="true"
+						(click)="clearSearch()">
+					Clear search
+				</button>
+			</div>
+		</ng-container>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+/** @nocollapse */
+ActiveSearchComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: SearchCommandDispatcher },
+    { type: SearchWarehouse }
+];
+if (false) {
+    /** @type {?} */
+    ActiveSearchComponent.prototype.phrase;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveSearchComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveSearchComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveSearchComponent.prototype.searchCommandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveSearchComponent.prototype.searchWarehouse;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterMenuFeatureModule {
+}
+FilterMenuFeatureModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FabricModule,
+                    ReactiveFormsModule
+                ],
+                declarations: [
+                    FilterIconComponent,
+                    FilterMenuComponent,
+                    FilterMenuTriggerComponent,
+                    ColumnSelectorComponent,
+                    FilterTypeSelectorComponent,
+                    FilterValueComponent,
+                    ActiveFilterListComponent,
+                    FieldSelectorComponent,
+                    ActiveSearchComponent
+                ],
+                exports: [
+                    FilterMenuTriggerComponent,
+                    ActiveFilterListComponent
+                ],
+                entryComponents: [
+                    FilterMenuComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class ListViewFeatureModule {
     /**
      * @param {?} paging
@@ -16732,7 +20548,9 @@ ListViewFeatureModule.decorators = [
                     FabricSelectModule,
                     PagingFeatureModule,
                     SearchFeatureModule,
-                    EmptySourceFeatureModule
+                    EmptySourceFeatureModule,
+                    SortingSelectorFeatureModule,
+                    FilterMenuFeatureModule
                 ],
                 declarations: [
                     ListViewComponent,
@@ -16783,6 +20601,7 @@ const fabricImports = [
     FabricSelectModule,
     FabricSpinnerModule,
     FabricTabModule,
+    FabricTooltipModule,
     FabricToggleButtonModule,
     FabricInputModule,
     FabricDialogModule,
@@ -16840,7 +20659,7 @@ StructureInfoModalComponent.decorators = [
 
 
 			<p class="gui-info-version">
-				ver. 0.12.1
+				ver. 0.12.2
 			</p>
 
 			<p class="gui-quote">
@@ -17010,6 +20829,98 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class StructureDialogSchemaManagerComponent {
+}
+StructureDialogSchemaManagerComponent.decorators = [
+    { type: Component, args: [{
+                template: `
+		<div class="gui-schema-manager-dialog">
+			<gui-structure-schema-manager></gui-structure-schema-manager>
+		</div>
+	`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureDialogSchemaManagerService extends Reactive {
+    /**
+     * @param {?} injector
+     * @param {?} schemaReadModelRepository
+     * @param {?} structureThemeConverter
+     * @param {?} fabricDialogService
+     */
+    constructor(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+        super();
+        this.injector = injector;
+        this.schemaReadModelRepository = schemaReadModelRepository;
+        this.structureThemeConverter = structureThemeConverter;
+        this.fabricDialogService = fabricDialogService;
+    }
+    /**
+     * @param {?} readModelId
+     * @return {?}
+     */
+    open(readModelId) {
+        /** @type {?} */
+        const injector = Injector.create({
+            parent: this.injector,
+            providers: [{ provide: SchemaReadModelRootId, useValue: readModelId }]
+        });
+        this.schemaReadModelRepository
+            .onSingleTheme(readModelId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} theme
+         * @return {?}
+         */
+        (theme) => {
+            this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
+                injector: injector,
+                theme: this.structureThemeConverter.convertTheme(theme)
+            });
+        }));
+    }
+}
+StructureDialogSchemaManagerService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+StructureDialogSchemaManagerService.ctorParameters = () => [
+    { type: Injector },
+    { type: SchemaWarehouse },
+    { type: StructureThemeConverter },
+    { type: FabricDialogService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDialogSchemaManagerService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDialogSchemaManagerService.prototype.schemaReadModelRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDialogSchemaManagerService.prototype.structureThemeConverter;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureDialogSchemaManagerService.prototype.fabricDialogService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class StructureInfoPanelComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
@@ -17021,9 +20932,10 @@ class StructureInfoPanelComponent extends SmartComponent {
      * @param {?} structureId
      * @param {?} schemaReadModelRootId
      * @param {?} menuColumnManagerService
+     * @param {?} schemaManagerService
      * @param {?} structureInfoPanelEnabledArchive
      */
-    constructor(changeDetectorRef, renderer, elementRef, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, structureInfoPanelEnabledArchive) {
+    constructor(changeDetectorRef, renderer, elementRef, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, schemaManagerService, structureInfoPanelEnabledArchive) {
         super();
         this.changeDetectorRef = changeDetectorRef;
         this.renderer = renderer;
@@ -17034,6 +20946,7 @@ class StructureInfoPanelComponent extends SmartComponent {
         this.structureId = structureId;
         this.schemaReadModelRootId = schemaReadModelRootId;
         this.menuColumnManagerService = menuColumnManagerService;
+        this.schemaManagerService = schemaManagerService;
         this.structureInfoPanelEnabledArchive = structureInfoPanelEnabledArchive;
         this.infoModal = StructureInfoModalComponent;
     }
@@ -17087,6 +21000,12 @@ class StructureInfoPanelComponent extends SmartComponent {
     openColumnManager() {
         this.menuColumnManagerService.open(this.compositionId, this.schemaReadModelRootId);
     }
+    /**
+     * @return {?}
+     */
+    openSchemaManager() {
+        this.schemaManagerService.open(this.schemaReadModelRootId);
+    }
 }
 StructureInfoPanelComponent.decorators = [
     { type: Component, args: [{
@@ -17102,9 +21021,10 @@ StructureInfoPanelComponent.decorators = [
 						Showing <b>{{totalItemsSize | numberFormatter}}</b> items
 					</ng-container>
 
-					<ng-container *ngIf="preparedItemsSize !== totalItemsSize">
+					<span *ngIf="preparedItemsSize !== totalItemsSize"
+						  gui-active-filter-menu-trigger>
 						Showing <b>{{preparedItemsSize | numberFormatter}}</b> out of <b>{{totalItemsSize | numberFormatter}}</b> items
-					</ng-container>
+					</span>
 
 				</ng-container>
 
@@ -17113,6 +21033,11 @@ StructureInfoPanelComponent.decorators = [
 
 		<div>
 			<div class="gui-right-section">
+
+				<span *ngIf="infoPanelConfig.isSchemaManagerEnabled()"
+					  (click)="openSchemaManager()">
+					<gui-structure-schema-manager-icon></gui-structure-schema-manager-icon>
+				</span>
 
 				<span *ngIf="infoPanelConfig.isColumnsManagerEnabled()"
 					  (click)="openColumnManager()">
@@ -17137,12 +21062,13 @@ StructureInfoPanelComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: Renderer2 },
     { type: ElementRef },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: FabricDialogService },
     { type: CompositionId },
     { type: StructureId },
     { type: SchemaReadModelRootId },
     { type: StructureDialogColumnManagerService },
+    { type: StructureDialogSchemaManagerService },
     { type: StructureInfoPanelArchive }
 ];
 if (false) {
@@ -17201,6 +21127,11 @@ if (false) {
      * @private
      */
     StructureInfoPanelComponent.prototype.menuColumnManagerService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureInfoPanelComponent.prototype.schemaManagerService;
     /**
      * @type {?}
      * @private
@@ -17443,6 +21374,513 @@ StructureInfoIconComponent.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class StructureSchemaMangerComponent extends Reactive {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} schemaReadModelRootId
+     * @param {?} schemaCommandService
+     * @param {?} schemaReadModelService
+     */
+    constructor(changeDetectorRef, schemaReadModelRootId, schemaCommandService, schemaReadModelService) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.schemaReadModelRootId = schemaReadModelRootId;
+        this.schemaCommandService = schemaCommandService;
+        this.schemaReadModelService = schemaReadModelService;
+        this.coloring = Object.keys(SchemaRowColoring)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        (key) => SchemaRowColoring[key]))
+            .filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        (val) => !Number.isInteger(val)));
+        this.themes = Object.keys(SchemaTheme)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        (key) => SchemaTheme[key]))
+            .filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        (val) => !Number.isInteger(val)));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.schemaReadModelService
+            .onRowColoring(this.schemaReadModelRootId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} rowColoring
+         * @return {?}
+         */
+        (rowColoring) => {
+            this.selectedRowColoring = SchemaRowColoring[rowColoring];
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.schemaReadModelService
+            .onTheme(this.schemaReadModelRootId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} schemaTheme
+         * @return {?}
+         */
+        (schemaTheme) => {
+            this.selectedTheme = SchemaTheme[schemaTheme];
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.schemaReadModelService
+            .onVerticalGrid(this.schemaReadModelRootId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} verticalGrid
+         * @return {?}
+         */
+        (verticalGrid) => {
+            this.verticalGrid = verticalGrid;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.schemaReadModelService
+            .onHorizontalGrid(this.schemaReadModelRootId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} horizontalGrid
+         * @return {?}
+         */
+        (horizontalGrid) => {
+            this.horizontalGrid = horizontalGrid;
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @param {?} theme
+     * @return {?}
+     */
+    toggleTheme(theme) {
+        this.schemaCommandService.setTheme(this.toTheme(theme), this.schemaReadModelRootId);
+    }
+    /**
+     * @param {?} schemaRowColoring
+     * @return {?}
+     */
+    toggleRowColoring(schemaRowColoring) {
+        this.schemaCommandService.setRowColoring(this.toRowColoring(schemaRowColoring), this.schemaReadModelRootId);
+    }
+    /**
+     * @param {?} verticalGrid
+     * @return {?}
+     */
+    toggleVerticalGrid(verticalGrid) {
+        this.schemaCommandService.setVerticalGrid(verticalGrid, this.schemaReadModelRootId);
+    }
+    /**
+     * @param {?} horizontalGrid
+     * @return {?}
+     */
+    toggleHorizontalGrid(horizontalGrid) {
+        this.schemaCommandService.setHorizontalGrid(horizontalGrid, this.schemaReadModelRootId);
+    }
+    /**
+     * @private
+     * @param {?} theme
+     * @return {?}
+     */
+    toTheme(theme) {
+        switch (theme.toLowerCase()) {
+            case 'fabric':
+                return SchemaTheme.FABRIC;
+            case 'material':
+                return SchemaTheme.MATERIAL;
+            case 'generic':
+                return SchemaTheme.GENERIC;
+            case 'light':
+                return SchemaTheme.LIGHT;
+            case 'dark':
+                return SchemaTheme.DARK;
+        }
+    }
+    /**
+     * @private
+     * @param {?} coloring
+     * @return {?}
+     */
+    toRowColoring(coloring) {
+        switch (coloring.toLowerCase()) {
+            case 'none':
+                return RowColoring.NONE;
+            case 'odd':
+                return RowColoring.ODD;
+            case 'even':
+                return RowColoring.EVEN;
+        }
+    }
+}
+StructureSchemaMangerComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-structure-schema-manager',
+                template: `
+		<div class="gui-schema-manager">
+			<div class="gui-dialog-title">Theme manager:</div>
+			<div class="gui-structure-schema-manager-select">
+				<span>Theme:</span>
+				<gui-select [options]="themes"
+							[selected]="selectedTheme"
+							[placeholder]="'Select theme'"
+							(optionChanged)="toggleTheme($event)">
+				</gui-select>
+			</div>
+			<div class="gui-structure-schema-manager-select">
+				<span>Row coloring:</span>
+				<gui-select [options]="coloring"
+							[selected]="selectedRowColoring"
+							(optionChanged)="toggleRowColoring($event)">
+				</gui-select>
+			</div>
+			<gui-checkbox [checked]="verticalGrid"
+						  (changed)="toggleVerticalGrid($event)">Vertical grid
+			</gui-checkbox>
+			<gui-checkbox [checked]="horizontalGrid"
+						  (changed)="toggleHorizontalGrid($event)">Horizontal grid
+			</gui-checkbox>
+		</div>
+	`,
+                encapsulation: ViewEncapsulation.None,
+                changeDetection: ChangeDetectionStrategy.OnPush
+            }] }
+];
+/** @nocollapse */
+StructureSchemaMangerComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: SchemaReadModelRootId },
+    { type: SchemaCommandDispatcher },
+    { type: SchemaWarehouse }
+];
+if (false) {
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.coloring;
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.themes;
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.selectedRowColoring;
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.selectedTheme;
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.verticalGrid;
+    /** @type {?} */
+    StructureSchemaMangerComponent.prototype.horizontalGrid;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSchemaMangerComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSchemaMangerComponent.prototype.schemaReadModelRootId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSchemaMangerComponent.prototype.schemaCommandService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSchemaMangerComponent.prototype.schemaReadModelService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const selector$2 = 'gui-structure-schema-manager-icon';
+class StructureSchemaManagerIconComponent {
+}
+StructureSchemaManagerIconComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-structure-schema-manager-icon',
+                template: `
+		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
+			<g transform="translate(0 -4)">
+				<path id="Path_303" data-name="Path 303" d="M23.337,4H32v6H23.337Z"/>
+				<path id="Path_304" data-name="Path 304" d="M11.662,4h8.662v6H11.662Z"/>
+				<path id="Path_305" data-name="Path 305" d="M0,4H8.662v6H0Z"/>
+				<path id="Path_306" data-name="Path 306" d="M23.337,22H32v6H23.337Z"/>
+				<path id="Path_307" data-name="Path 307" d="M0,22H8.662v6H0Z"/>
+				<path id="Path_308" data-name="Path 308" d="M11.662,22h8.662v6H11.662Z"/>
+				<path id="Path_309" data-name="Path 309" d="M23.337,13H32v6H23.337Z"/>
+				<path id="Path_310" data-name="Path 310" d="M11.662,13h8.662v6H11.662Z"/>
+				<path id="Path_311" data-name="Path 311" d="M0,13H8.662v6H0Z"/>
+			</g>
+		</svg>
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                host: {
+                    '[class.gui-structure-schema-manager-icon]': 'true',
+                    '[class.gui-icon]': 'true'
+                }
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSchemaManagerModule {
+}
+StructureSchemaManagerModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    fabricImports
+                ],
+                declarations: [
+                    StructureSchemaMangerComponent,
+                    StructureDialogSchemaManagerComponent,
+                    StructureSchemaManagerIconComponent
+                ],
+                exports: [
+                    StructureSchemaManagerIconComponent
+                ],
+                entryComponents: [
+                    StructureDialogSchemaManagerComponent,
+                    StructureSchemaMangerComponent
+                ],
+                providers: [
+                    StructureDialogSchemaManagerService
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterMenuComponent {
+}
+ActiveFilterMenuComponent.decorators = [
+    { type: Component, args: [{
+                template: `
+		
+		<h3>Active filters</h3>
+
+		<gui-active-filter-list></gui-active-filter-list>
+
+		<div>
+			
+			<button gui-button
+					[text]="true">
+				Cancel
+			</button>
+			
+			<button gui-button
+					[outline]="true"
+					[primary]="true">
+				Clear All
+			</button>
+		</div>
+	`
+            }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterService extends Reactive {
+    /**
+     * @param {?} injector
+     * @param {?} schemaReadModelRepository
+     * @param {?} structureThemeConverter
+     * @param {?} fabricDialogService
+     */
+    constructor(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+        super();
+        this.injector = injector;
+        this.schemaReadModelRepository = schemaReadModelRepository;
+        this.structureThemeConverter = structureThemeConverter;
+        this.fabricDialogService = fabricDialogService;
+    }
+    /**
+     * @param {?} readModelId
+     * @param {?} structureId
+     * @return {?}
+     */
+    open(readModelId, structureId) {
+        /** @type {?} */
+        const injector = Injector.create({
+            parent: this.injector,
+            providers: [
+                { provide: SchemaReadModelRootId, useValue: readModelId },
+                { provide: StructureId, useValue: structureId }
+            ]
+        });
+        this.schemaReadModelRepository
+            .onSingleTheme(readModelId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} theme
+         * @return {?}
+         */
+        (theme) => {
+            this.fabricDialogService.open(ActiveFilterMenuComponent, {
+                injector: injector,
+                theme: this.structureThemeConverter.convertTheme(theme)
+            });
+        }));
+    }
+}
+ActiveFilterService.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ActiveFilterService.ctorParameters = () => [
+    { type: Injector },
+    { type: SchemaWarehouse },
+    { type: StructureThemeConverter },
+    { type: FabricDialogService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterService.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterService.prototype.schemaReadModelRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterService.prototype.structureThemeConverter;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterService.prototype.fabricDialogService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterMenuTriggerDirective {
+    /**
+     * @param {?} renderer
+     * @param {?} el
+     * @param {?} structureId
+     * @param {?} activeFilterService
+     * @param {?} schemaReadModelRootId
+     */
+    constructor(renderer, el, structureId, activeFilterService, schemaReadModelRootId) {
+        this.renderer = renderer;
+        this.el = el;
+        this.structureId = structureId;
+        this.activeFilterService = activeFilterService;
+        this.schemaReadModelRootId = schemaReadModelRootId;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        // this.renderer.listen(this.el.nativeElement, 'click', () => {
+        // 	this.activeFilterService.open(this.schemaReadModelRootId, this.structureId);
+        // });
+    }
+}
+ActiveFilterMenuTriggerDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[gui-active-filter-menu-trigger]'
+            },] }
+];
+/** @nocollapse */
+ActiveFilterMenuTriggerDirective.ctorParameters = () => [
+    { type: Renderer2 },
+    { type: ElementRef },
+    { type: StructureId },
+    { type: ActiveFilterService },
+    { type: SchemaReadModelRootId }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterMenuTriggerDirective.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterMenuTriggerDirective.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterMenuTriggerDirective.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterMenuTriggerDirective.prototype.activeFilterService;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterMenuTriggerDirective.prototype.schemaReadModelRootId;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SourceCounterFeatureModule extends FeatureModule {
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [];
+    }
+}
+SourceCounterFeatureModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FilterMenuFeatureModule,
+                    FabricButtonModule
+                ],
+                declarations: [
+                    ActiveFilterMenuTriggerDirective,
+                    ActiveFilterMenuComponent
+                ],
+                exports: [
+                    ActiveFilterMenuTriggerDirective
+                ],
+                providers: [
+                    ActiveFilterService
+                ],
+                entryComponents: [
+                    ActiveFilterMenuComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class StructureInfoPanelModule {
 }
 StructureInfoPanelModule.decorators = [
@@ -17451,7 +21889,9 @@ StructureInfoPanelModule.decorators = [
                     CommonModule,
                     NumberFormatterModule,
                     FabricModule,
-                    StructureColumnManagerModule
+                    StructureColumnManagerModule,
+                    StructureSchemaManagerModule,
+                    SourceCounterFeatureModule
                 ],
                 declarations: [
                     StructureInfoPanelComponent,
@@ -22079,14 +26519,14 @@ class CreateCompositionCommandHandler {
     /**
      * @return {?}
      */
-    getAggregateRepository() {
-        return this.compositionAggregateRepository;
+    forCommand() {
+        return CreateCompositionCommand;
     }
     /**
      * @return {?}
      */
-    forCommand() {
-        return CreateCompositionCommand;
+    getAggregateRepository() {
+        return this.compositionAggregateRepository;
     }
     /**
      * @param {?} aggregate
@@ -23120,23 +27560,39 @@ CompositionModule.decorators = [
 class StructureColumnConfigComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} structureId
      * @param {?} structureCommandService
      * @param {?} compositionReadModelService
+     * @param {?} filterWarehouse
      * @param {?} structureColumnMenuConfigArchive
      * @param {?} column
      */
-    constructor(changeDetectorRef, structureCommandService, compositionReadModelService, structureColumnMenuConfigArchive, column) {
+    constructor(changeDetectorRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, structureColumnMenuConfigArchive, column) {
         super();
         this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
         this.structureCommandService = structureCommandService;
         this.compositionReadModelService = compositionReadModelService;
+        this.filterWarehouse = filterWarehouse;
         this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
         this.column = column;
+        this.uniqueValues = [];
     }
     /**
      * @return {?}
      */
     ngOnInit() {
+        this.filterWarehouse
+            .onUniqueValues(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} uniqueValuesReadModel
+         * @return {?}
+         */
+        (uniqueValuesReadModel) => {
+            this.uniqueValues = uniqueValuesReadModel.getValues(this.column.getFieldId());
+            this.changeDetectorRef.detectChanges();
+        }));
         this.structureColumnMenuConfigArchive
             .onValue()
             .pipe(this.takeUntil())
@@ -23187,7 +27643,13 @@ StructureColumnConfigComponent.decorators = [
 				<ng-container *ngIf="config.isFilteringEnabled()">
 
 					<gui-tab-item [tab]="config.getFilterMenu()">
-						<div class="gui-header-menu-item">{{config.getFilterMenu()}}</div>
+
+						<!--						<div class="gui-header-menu-item">{{config.getFilterMenu()}}</div>-->
+
+						<gui-unique-value-list
+								[fieldId]="column.getFieldId()">
+						</gui-unique-value-list>
+
 					</gui-tab-item>
 
 				</ng-container>
@@ -23211,8 +27673,10 @@ StructureColumnConfigComponent.decorators = [
 /** @nocollapse */
 StructureColumnConfigComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: StructureId },
     { type: StructureCommandDispatcher },
     { type: CompositionWarehouse },
+    { type: FilterWarehouse },
     { type: StructureColumnMenuConfigArchive },
     { type: CellTemplateWithContext, decorators: [{ type: Inject, args: ['column',] }] }
 ];
@@ -23224,11 +27688,18 @@ if (false) {
     StructureColumnConfigComponent.prototype.headerSortMenu;
     /** @type {?} */
     StructureColumnConfigComponent.prototype.config;
+    /** @type {?} */
+    StructureColumnConfigComponent.prototype.uniqueValues;
     /**
      * @type {?}
      * @private
      */
     StructureColumnConfigComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.structureId;
     /**
      * @type {?}
      * @private
@@ -23239,6 +27710,11 @@ if (false) {
      * @private
      */
     StructureColumnConfigComponent.prototype.compositionReadModelService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.filterWarehouse;
     /**
      * @type {?}
      * @private
@@ -23349,31 +27825,20 @@ class StructureHeaderColumnsComponent extends SmartComponent {
      * @param {?} changeDetectorRef
      * @param {?} compositionId
      * @param {?} structureId
+     * @param {?} formationCommandDispatcher
      * @param {?} sortingCommandDispatcher
      */
-    constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, sortingCommandDispatcher) {
+    constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
         super();
         this.elementRef = elementRef;
         this.injector = injector;
         this.changeDetectorRef = changeDetectorRef;
         this.compositionId = compositionId;
         this.structureId = structureId;
+        this.formationCommandDispatcher = formationCommandDispatcher;
         this.sortingCommandDispatcher = sortingCommandDispatcher;
+        this.checkboxSelection = false;
         this.globalSearching = false;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        // 	this.structureSearchReadModelRepository
-        // 		.onSearchEnabled()
-        // 		.pipe(
-        // 			this.takeUntil()
-        // 		)
-        // 		.subscribe((searching: boolean) => {
-        // 			this.globalSearching = searching;
-        // 			this.changeDetectorRef.detectChanges();
-        // 		});
     }
     /**
      * @param {?} column
@@ -23408,7 +27873,7 @@ class StructureHeaderColumnsComponent extends SmartComponent {
 StructureHeaderColumnsComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure-header-columns',
-                template: "<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
+                template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 providers: [
@@ -23423,14 +27888,18 @@ StructureHeaderColumnsComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: CompositionId },
     { type: StructureId },
+    { type: FormationCommandDispatcher },
     { type: SortingCommandDispatcher }
 ];
 StructureHeaderColumnsComponent.propDecorators = {
-    columns: [{ type: Input }]
+    columns: [{ type: Input }],
+    checkboxSelection: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
     StructureHeaderColumnsComponent.prototype.columns;
+    /** @type {?} */
+    StructureHeaderColumnsComponent.prototype.checkboxSelection;
     /** @type {?} */
     StructureHeaderColumnsComponent.prototype.globalSearching;
     /**
@@ -23462,160 +27931,12 @@ if (false) {
      * @type {?}
      * @private
      */
+    StructureHeaderColumnsComponent.prototype.formationCommandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
     StructureHeaderColumnsComponent.prototype.sortingCommandDispatcher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureFilterRepository {
-    constructor() {
-        this.enabled = new Map();
-        this.enabled$ = new ReplaySubject();
-    }
-    /**
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    setEnabled(enabled, structureId) {
-        this.enabled.set(structureId.toString(), enabled);
-        this.enabled$.next(this.enabled);
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    selectFilterEnabled(structureId) {
-        return this.enabled$
-            .asObservable()
-            .pipe(map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        (map) => {
-            return map.get(structureId.toString());
-        })), distinctUntilChanged());
-    }
-}
-StructureFilterRepository.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureFilterRepository.ctorParameters = () => [];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterRepository.prototype.enabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterRepository.prototype.enabled$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureQuickFilterRepository {
-    constructor() {
-        this.enabled = new Map();
-        this.enabled$ = new ReplaySubject();
-    }
-    /**
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    setEnabled(enabled, structureId) {
-        this.enabled.set(structureId.toString(), enabled);
-        this.enabled$.next(this.enabled);
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    selectQuickFilterEnabled(structureId) {
-        return this.enabled$
-            .asObservable()
-            .pipe(map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        (map) => {
-            return map.get(structureId.toString());
-        })), distinctUntilChanged());
-    }
-}
-StructureQuickFilterRepository.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureQuickFilterRepository.ctorParameters = () => [];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureQuickFilterRepository.prototype.enabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureQuickFilterRepository.prototype.enabled$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureFilterWarehouse {
-    /**
-     * @param {?} structureFilterRepository
-     * @param {?} structureQuickFilterRepository
-     */
-    constructor(structureFilterRepository, structureQuickFilterRepository) {
-        this.structureFilterRepository = structureFilterRepository;
-        this.structureQuickFilterRepository = structureQuickFilterRepository;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onFilteringEnabled(structureId) {
-        return this.structureFilterRepository.selectFilterEnabled(structureId);
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    onQuickFiltersEnabled(structureId) {
-        return this.structureQuickFilterRepository.selectQuickFilterEnabled(structureId);
-    }
-}
-StructureFilterWarehouse.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureFilterWarehouse.ctorParameters = () => [
-    { type: StructureFilterRepository },
-    { type: StructureQuickFilterRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterWarehouse.prototype.structureFilterRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterWarehouse.prototype.structureQuickFilterRepository;
 }
 
 /**
@@ -23666,7 +27987,7 @@ class StructureHeaderFiltersComponent {
         if (phrase === undefined || phrase === null) {
             phrase = '';
         }
-        this.structureFilterCommandService.addFilter(this.columns[0].getFieldId(), '1', phrase, this.structureId);
+        // this.structureFilterCommandService.addFilter(this.columns[0].getFieldId(), '1', phrase, this.structureId);
     }
     /**
      * @return {?}
@@ -23731,7 +28052,7 @@ StructureHeaderFiltersComponent.decorators = [
 ];
 /** @nocollapse */
 StructureHeaderFiltersComponent.ctorParameters = () => [
-    { type: StructureFilterCommandDispatcher },
+    { type: FilterCommandDispatcher },
     { type: FormBuilder },
     { type: ChangeDetectorRef },
     { type: StructureId }
@@ -23785,10 +28106,11 @@ class StructureHeaderComponent extends SmartComponent {
      * @param {?} structureId
      * @param {?} structureFilterReadModelRepository
      * @param {?} structureWarehouse
+     * @param {?} rowSelectionTypeArchive
      * @param {?} structureVerticalFormationWarehouse
      * @param {?} compositionReadModelService
      */
-    constructor(changeDetectorRef, renderer, eventBus, structureId, structureFilterReadModelRepository, structureWarehouse, structureVerticalFormationWarehouse, compositionReadModelService) {
+    constructor(changeDetectorRef, renderer, eventBus, structureId, structureFilterReadModelRepository, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionReadModelService) {
         super();
         this.changeDetectorRef = changeDetectorRef;
         this.renderer = renderer;
@@ -23796,15 +28118,28 @@ class StructureHeaderComponent extends SmartComponent {
         this.structureId = structureId;
         this.structureFilterReadModelRepository = structureFilterReadModelRepository;
         this.structureWarehouse = structureWarehouse;
+        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
         this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
         this.compositionReadModelService = compositionReadModelService;
         this.headerColumns = [];
         this.filterRowEnabled = false;
+        this.checkboxSelection = false;
     }
     /**
      * @return {?}
      */
     ngOnInit() {
+        this.rowSelectionTypeArchive
+            .onValue()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} type
+         * @return {?}
+         */
+        (type) => {
+            this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+            this.changeDetectorRef.detectChanges();
+        }));
         this.compositionReadModelService
             .onHeaderColumns()
             .pipe(this.takeUntil())
@@ -23864,7 +28199,7 @@ class StructureHeaderComponent extends SmartComponent {
 StructureHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure-header',
-                template: "<gui-structure-header-columns\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-columns>\n\n<gui-structure-header-filters\n\t\t*ngIf=\"filterRowEnabled\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-filters>\n",
+                template: "<gui-structure-header-columns\n\t\t[checkboxSelection]=\"checkboxSelection\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-columns>\n\n<gui-structure-header-filters\n\t\t*ngIf=\"filterRowEnabled\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-filters>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -23875,8 +28210,9 @@ StructureHeaderComponent.ctorParameters = () => [
     { type: Renderer2 },
     { type: DomainEventBus },
     { type: StructureId },
-    { type: StructureFilterWarehouse },
+    { type: FilterWarehouse },
     { type: StructureWarehouse },
+    { type: RowSelectionTypeArchive },
     { type: StructureVerticalFormationWarehouse },
     { type: CompositionWarehouse }
 ];
@@ -23893,6 +28229,8 @@ if (false) {
     StructureHeaderComponent.prototype.headerColumns;
     /** @type {?} */
     StructureHeaderComponent.prototype.filterRowEnabled;
+    /** @type {?} */
+    StructureHeaderComponent.prototype.checkboxSelection;
     /**
      * @type {?}
      * @private
@@ -23923,6 +28261,11 @@ if (false) {
      * @private
      */
     StructureHeaderComponent.prototype.structureWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureHeaderComponent.prototype.rowSelectionTypeArchive;
     /**
      * @type {?}
      * @private
@@ -23970,7 +28313,7 @@ class StructureHeaderFilterComponent extends SmartComponent {
      * @return {?}
      */
     filter(phrase) {
-        this.structureFilterCommandService.addFilter(this.column.getFieldId(), '1', phrase, this.structureId);
+        // this.structureFilterCommandService.addFilter(this.column.getFieldId(), '1', phrase, this.structureId);
     }
 }
 StructureHeaderFilterComponent.decorators = [
@@ -23991,7 +28334,7 @@ StructureHeaderFilterComponent.decorators = [
 ];
 /** @nocollapse */
 StructureHeaderFilterComponent.ctorParameters = () => [
-    { type: StructureFilterCommandDispatcher },
+    { type: FilterCommandDispatcher },
     { type: StructureId }
 ];
 StructureHeaderFilterComponent.propDecorators = {
@@ -24029,17 +28372,17 @@ class StructureContentComponent extends SmartComponent {
      * @param {?} formationCommandService
      * @param {?} structureCellEditArchive
      * @param {?} structureEditModeArchive
-     * @param {?} formationReadModelService
+     * @param {?} formationWarehouse
      * @param {?} structureWarehouse
      * @param {?} structureVerticalFormationWarehouse
-     * @param {?} structureRowSelectEnabledArchive
      * @param {?} verticalFormationRepository
      * @param {?} structureId
+     * @param {?} rowSelectionTypeArchive
      * @param {?} structureSearchPhraseRepository
      * @param {?} structureSearchHighlightArchive
      */
-    constructor(platformId, renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationReadModelService, structureWarehouse, structureVerticalFormationWarehouse, structureRowSelectEnabledArchive, verticalFormationRepository, structureId, // REfactor
-    structureSearchPhraseRepository, structureSearchHighlightArchive) {
+    constructor(platformId, renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
+    rowSelectionTypeArchive, structureSearchPhraseRepository, structureSearchHighlightArchive) {
         super();
         this.platformId = platformId;
         this.renderer = renderer;
@@ -24048,12 +28391,12 @@ class StructureContentComponent extends SmartComponent {
         this.formationCommandService = formationCommandService;
         this.structureCellEditArchive = structureCellEditArchive;
         this.structureEditModeArchive = structureEditModeArchive;
-        this.formationReadModelService = formationReadModelService;
+        this.formationWarehouse = formationWarehouse;
         this.structureWarehouse = structureWarehouse;
         this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
-        this.structureRowSelectEnabledArchive = structureRowSelectEnabledArchive;
         this.verticalFormationRepository = verticalFormationRepository;
         this.structureId = structureId;
+        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
         this.structureSearchPhraseRepository = structureSearchPhraseRepository;
         this.structureSearchHighlightArchive = structureSearchHighlightArchive;
         this.editMode = false;
@@ -24061,36 +28404,45 @@ class StructureContentComponent extends SmartComponent {
         this.searchPhrase = '';
         this.highlighting = true;
         this.phrase = true;
-        this.rowSelecting = StructureRowSelectEnabledArchive.DEFAULT_ROW_SELECT;
         this.rowDetailOpened = 4;
+        this.checkboxSelection = false;
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.formationReadModelService
-            .onSelectedRows()
+        this.rowSelectionTypeArchive
+            .onValue()
             .pipe(this.takeUntil())
             .subscribe((/**
-         * @param {?} rowsList
+         * @param {?} type
          * @return {?}
          */
-        (rowsList) => {
-            this.clearSelectedRows();
-            rowsList.getIds().forEach((/**
-             * @param {?} id
-             * @return {?}
-             */
-            (id) => {
-                /** @type {?} */
-                const strippedId = 'gui' + id.replace(/-/g, '');
-                /** @type {?} */
-                const selectedRowEl = this.elementRef.nativeElement.querySelector(`#${strippedId}`);
-                if (selectedRowEl) {
-                    this.renderer.addClass(selectedRowEl, 'selected');
-                }
-            }));
+        (type) => {
+            this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+            this.changeDetectorRef.detectChanges();
         }));
+        // this.formationWarehouse
+        // 	.onRowSelectedReadModel()
+        // 	.pipe(
+        // 		filter(() => !this.checkboxSelection),
+        // 		this.takeUntil()
+        // 	)
+        // 	.subscribe((rowSelected: RowSelectedReadModel) => {
+        //
+        // 		this.clearSelectedRows();
+        //
+        // 		rowSelected.getAll()
+        // 				   .forEach((id: string) => {
+        //
+        // 					   const strippedId = 'gui' + id.replace(/-/g, ''),
+        // 						   selectedRowEl = this.elementRef.nativeElement.querySelector(`#${strippedId}`);
+        //
+        // 					   if (selectedRowEl) {
+        // 						   this.renderer.addClass(selectedRowEl, 'selected');
+        // 					   }
+        // 				   });
+        // 	});
         this.structureEditModeArchive
             .onValue()
             .pipe(this.takeUntil())
@@ -24123,16 +28475,6 @@ class StructureContentComponent extends SmartComponent {
         (rowHeight) => {
             this.rowHeight = rowHeight;
             this.changeDetectorRef.detectChanges();
-        }));
-        this.structureRowSelectEnabledArchive
-            .onValue()
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} rowSelecting
-         * @return {?}
-         */
-        (rowSelecting) => {
-            this.rowSelecting = rowSelecting;
         }));
         combineLatest(this.structureSearchPhraseRepository
             .onPhrase(this.structureId), this.structureSearchHighlightArchive
@@ -24177,8 +28519,8 @@ class StructureContentComponent extends SmartComponent {
      * @return {?}
      */
     toggleSelectedRow(entity) {
-        if (this.rowSelecting) {
-            this.formationCommandService.toggleSelectedRow(((/** @type {?} */ (entity))).id);
+        if (!this.checkboxSelection) {
+            this.formationCommandService.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE);
         }
     }
     /**
@@ -24202,7 +28544,7 @@ class StructureContentComponent extends SmartComponent {
 StructureContentComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure-content',
-                template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [index]=\"index\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
+                template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [checkboxSelection]=\"checkboxSelection\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [index]=\"index\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -24213,15 +28555,15 @@ StructureContentComponent.ctorParameters = () => [
     { type: Renderer2 },
     { type: ElementRef },
     { type: ChangeDetectorRef },
-    { type: StructureFormationDispatcher },
+    { type: FormationCommandDispatcher },
     { type: StructureCellEditArchive },
     { type: StructureEditModeArchive },
-    { type: StructureFormationWarehouse },
+    { type: FormationWarehouse },
     { type: StructureWarehouse },
     { type: StructureVerticalFormationWarehouse },
-    { type: StructureRowSelectEnabledArchive },
     { type: VerticalFormationRepository },
     { type: StructureId },
+    { type: RowSelectionTypeArchive },
     { type: SearchPhraseRepository },
     { type: SearchHighlightArchive }
 ];
@@ -24247,9 +28589,9 @@ if (false) {
     /** @type {?} */
     StructureContentComponent.prototype.phrase;
     /** @type {?} */
-    StructureContentComponent.prototype.rowSelecting;
-    /** @type {?} */
     StructureContentComponent.prototype.rowDetailOpened;
+    /** @type {?} */
+    StructureContentComponent.prototype.checkboxSelection;
     /**
      * @type {?}
      * @private
@@ -24289,7 +28631,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContentComponent.prototype.formationReadModelService;
+    StructureContentComponent.prototype.formationWarehouse;
     /**
      * @type {?}
      * @private
@@ -24304,17 +28646,17 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContentComponent.prototype.structureRowSelectEnabledArchive;
-    /**
-     * @type {?}
-     * @private
-     */
     StructureContentComponent.prototype.verticalFormationRepository;
     /**
      * @type {?}
      * @private
      */
     StructureContentComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureContentComponent.prototype.rowSelectionTypeArchive;
     /**
      * @type {?}
      * @private
@@ -24331,9 +28673,62 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureRowComponent {
-    constructor() {
+class StructureRowComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} elRef
+     * @param {?} renderer2
+     * @param {?} structureId
+     * @param {?} formationWarehouse
+     * @param {?} formationCommandDispatcher
+     */
+    constructor(changeDetectorRef, elRef, renderer2, structureId, formationWarehouse, formationCommandDispatcher) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.elRef = elRef;
+        this.renderer2 = renderer2;
+        this.structureId = structureId;
+        this.formationWarehouse = formationWarehouse;
+        this.formationCommandDispatcher = formationCommandDispatcher;
         this.detailsEnabled = false;
+        this.checkboxSelection = false;
+        this.selectedItem = false;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (changes.entity !== undefined && changes.entity.currentValue !== undefined) {
+            this.checkSelectedItem();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.formationWarehouse
+            .onRowSelectedReadModel(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} row
+         * @return {?}
+         */
+        (row) => {
+            this.row = row;
+            /** @type {?} */
+            let prevValue = this.selectedItem;
+            this.checkSelectedItem();
+            if (prevValue !== this.selectedItem) {
+                if (prevValue) {
+                    this.renderer2.removeClass(this.elRef.nativeElement, 'selected');
+                }
+                else {
+                    this.renderer2.addClass(this.elRef.nativeElement, 'selected');
+                }
+                this.changeDetectorRef.detectChanges();
+            }
+        }));
     }
     /**
      * @return {?}
@@ -24341,14 +28736,48 @@ class StructureRowComponent {
     trackByFn() {
         return 0;
     }
+    /**
+     * @return {?}
+     */
+    selectRow() {
+        event.stopPropagation();
+        this.formationCommandDispatcher.toggleSelectedRow(this.entity.getId(), RowSelectToggleType.ADD, this.structureId);
+    }
+    /**
+     * @return {?}
+     */
+    checkSelectedItem() {
+        if (this.row) {
+            /** @type {?} */
+            let prevValue = this.selectedItem;
+            this.selectedItem = this.row.isSelected(this.entity.getId());
+            if (prevValue !== this.selectedItem) {
+                if (prevValue) {
+                    this.renderer2.removeClass(this.elRef.nativeElement, 'selected');
+                }
+                else {
+                    this.renderer2.addClass(this.elRef.nativeElement, 'selected');
+                }
+            }
+        }
+    }
 }
 StructureRowComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure-row',
-                template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<gui-structure-cell *ngFor=\"let column of columns; trackBy: trackByFn\"\n\t\t\t\t\t[cellEditingEnabled]=\"cellEditing\"\n\t\t\t\t\t[cell]=\"column\"\n\t\t\t\t\t[editMode]=\"editMode\"\n\t\t\t\t\t[entity]=\"entity\"\n\t\t\t\t\t[searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t[style.width.px]=\"column.width\"\n\t\t\t\t\tclass=\"gui-cell\">\n</gui-structure-cell>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
+                template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<gui-structure-cell *ngFor=\"let column of columns; trackBy: trackByFn\"\n\t\t\t\t\t[cellEditingEnabled]=\"cellEditing\"\n\t\t\t\t\t[cell]=\"column\"\n\t\t\t\t\t[editMode]=\"editMode\"\n\t\t\t\t\t[entity]=\"entity\"\n\t\t\t\t\t[searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t[style.width.px]=\"column.width\"\n\t\t\t\t\tclass=\"gui-cell\">\n</gui-structure-cell>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureRowComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef },
+    { type: Renderer2 },
+    { type: StructureId },
+    { type: FormationWarehouse },
+    { type: FormationCommandDispatcher }
 ];
 StructureRowComponent.propDecorators = {
     entity: [{ type: Input }],
@@ -24357,7 +28786,8 @@ StructureRowComponent.propDecorators = {
     cellEditing: [{ type: Input }],
     searchPhrase: [{ type: Input }],
     index: [{ type: Input }],
-    detailsEnabled: [{ type: Input }]
+    detailsEnabled: [{ type: Input }],
+    checkboxSelection: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
@@ -24374,6 +28804,45 @@ if (false) {
     StructureRowComponent.prototype.index;
     /** @type {?} */
     StructureRowComponent.prototype.detailsEnabled;
+    /** @type {?} */
+    StructureRowComponent.prototype.checkboxSelection;
+    /** @type {?} */
+    StructureRowComponent.prototype.selectedItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.row;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.elRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.renderer2;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.formationWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.formationCommandDispatcher;
 }
 
 /**
@@ -24897,10 +29366,10 @@ StructureContainerComponent.ctorParameters = () => [
     { type: StructureCommandDispatcher },
     { type: StructureWarehouse },
     { type: StructureVerticalFormationWarehouse },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: CompositionCommandDispatcher },
     { type: CompositionWarehouse },
-    { type: StructureFormationWarehouse },
+    { type: FormationWarehouse },
     { type: ResizeDetector },
     { type: undefined, decorators: [{ type: Optional$1 }, { type: Inject, args: [structureParentComponent,] }] }
 ];
@@ -25249,7 +29718,7 @@ StructureBlueprintComponent.ctorParameters = () => [
     { type: StructureInfoPanelArchive },
     { type: PagingWarehouse },
     { type: StructureSummariesArchive },
-    { type: StructureFilterWarehouse },
+    { type: FilterWarehouse },
     { type: SearchWarehouse },
     { type: StructureHeaderTopEnabledArchive },
     { type: StructureHeaderBottomEnabledArchive },
@@ -25429,12 +29898,40 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SetSourceLoadingEvent extends DomainEvent {
+class SelectionEnabledSetEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} enabled
+     */
+    constructor(aggregateId, enabled) {
+        super(aggregateId, 'SelectionEnabledSetEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionEnabledSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterToggledEvent extends DomainEvent {
     /**
      * @param {?} aggregateId
      */
     constructor(aggregateId) {
-        super(aggregateId, 'SetSourceLoadingEvent');
+        super(aggregateId, 'FilterToggledEvent');
     }
 }
 
@@ -25442,12 +29939,76 @@ class SetSourceLoadingEvent extends DomainEvent {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormationSetEvent extends DomainEvent {
+class FilterAddedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} value
+     */
+    constructor(aggregateId, fieldId, filterTypeId, value) {
+        super(aggregateId, 'FilterAddedEvent');
+        this.fieldId = fieldId;
+        this.filterTypeId = filterTypeId;
+        this.value = value;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterAddedEvent.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterAddedEvent.prototype.filterTypeId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterAddedEvent.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFiltersSetEvent extends DomainEvent {
     /**
      * @param {?} structureId
+     * @param {?} filters
      */
-    constructor(structureId) {
-        super(structureId, 'FormationSetEvent');
+    constructor(structureId, filters) {
+        super(structureId, 'ActiveFiltersSetEvent');
+        this.filters = filters;
+    }
+    /**
+     * @return {?}
+     */
+    getFilters() {
+        return this.filters;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFiltersSetEvent.prototype.filters;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterSelectedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'UniqueFilterSelectedEvent');
     }
 }
 
@@ -25455,12 +30016,38 @@ class FormationSetEvent extends DomainEvent {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFilterToggledEvent extends DomainEvent {
+class AllUniqueFilterSelectedEvent extends DomainEvent {
     /**
      * @param {?} aggregateId
      */
     constructor(aggregateId) {
-        super(aggregateId, 'StructureFilterToggledEvent');
+        super(aggregateId, 'AllUniqueFilterSelectedEvent');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterUnselectedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'UniqueFilterUnselectedEvent');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AllUniqueFilterUnselectedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'AllUniqueFilterUnselectedEvent');
     }
 }
 
@@ -25478,6 +30065,13 @@ class InMemoryStructureRepository extends StructureReadModelRepository {
         this.inMemoryStructureReadStore = inMemoryStructureReadStore;
         this.structureIdToStructure = new Map();
         this.structure$ = new ReplaySubject(1);
+    }
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    getStructure(aggregateId) {
+        return this.structureIdToStructure.get(aggregateId.getId());
     }
     /**
      * @param {?} aggregateId
@@ -25512,18 +30106,23 @@ class InMemoryStructureRepository extends StructureReadModelRepository {
             PrevPageEvent,
             NextPageEvent,
             PagesizeChangedEvent,
-            FormationSetEvent,
-            SelectedRowToggledEvent,
+            SelectionEnabledSetEvent,
             VerticalScrollEnabledSetEvent,
             ScrollPositionSetEvent,
             (/** @type {?} */ (SortToggledEvent)),
-            StructureFilterToggledEvent,
+            FilterToggledEvent,
             SearchPhraseSetDomainEvent,
             (/** @type {?} */ (SortOrderSetEvent)),
             (/** @type {?} */ (OriginSetEvent)),
             RowHeightSetEvent,
             StructureHeightSetEvent,
-            RowHeightSetBasedOnThemeEvent
+            RowHeightSetBasedOnThemeEvent,
+            FilterAddedEvent,
+            ActiveFiltersSetEvent,
+            UniqueFilterSelectedEvent,
+            AllUniqueFilterSelectedEvent,
+            UniqueFilterUnselectedEvent,
+            AllUniqueFilterUnselectedEvent
         ];
     }
     /**
@@ -25705,241 +30304,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureConfigFilterSetEvent extends DomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} enabled
-     */
-    constructor(aggregateId, enabled) {
-        super(aggregateId, 'StructureConfigFilterSetEvent');
-        this.enabled = enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getEnabled() {
-        return this.enabled;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureConfigFilterSetEvent.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureSetConfigFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return StructureSetConfigFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const filterConfig = command.getConfig();
-        this.domainEventPublisher.publish(new StructureConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const filterConfig = command.getConfig();
-        aggregate.setFilterConfig(filterConfig);
-    }
-}
-StructureSetConfigFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureSetConfigFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetConfigFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureConfigQuickFilterSetEvent extends DomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} enabled
-     */
-    constructor(aggregateId, enabled) {
-        super(aggregateId, 'StructureConfigQuickFilterSetEvent');
-        this.enabled = enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getEnabled() {
-        return this.enabled;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureConfigQuickFilterSetEvent.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureSetConfigQuickFilterCommandHandler {
-    /**
-     * @param {?} structureAggregateRepository
-     * @param {?} domainEventPublisher
-     */
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return StructureSetConfigQuickFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const structureId = command.getAggregateId();
-        /** @type {?} */
-        const quickFiltersConfig = command.getConfig();
-        this.domainEventPublisher.publish(new StructureConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const quickFiltersConfig = command.getConfig();
-        aggregate.setQuickFiltersConfig(quickFiltersConfig);
-    }
-}
-StructureSetConfigQuickFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureSetConfigQuickFilterCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureToggleFilterCommandHandler {
-    /**
-     * @param {?} structureAggregateRepository
-     * @param {?} domainEventPublisher
-     */
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return StructureToggleFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new StructureFilterToggledEvent(command.getAggregateId()));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        /** @type {?} */
-        const externalFieldId = command.getExternalFilterId();
-        /** @type {?} */
-        const filterValue = command.getFilterValue();
-        aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
-    }
-}
-StructureToggleFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureToggleFilterCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureToggleFilterCommandHandler.prototype.structureAggregateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureToggleFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /** @type {?} */
 const StructureSummariesEnabledSetEventName = 'StructureSummariesEnabledSetEvent';
 class StructureSummariesEnabledSetEvent extends DomainEvent {
@@ -26014,7 +30378,7 @@ StructureSetSummariesEnabledCommandHandler.decorators = [
 ];
 /** @nocollapse */
 StructureSetSummariesEnabledCommandHandler.ctorParameters = () => [
-    { type: StructureSourceDomainEventPublisher },
+    { type: SourceDomainEventPublisher },
     { type: DomainEventPublisher }
 ];
 if (false) {
@@ -26458,276 +30822,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFilter {
-    /**
-     * @param {?} id
-     * @param {?} field
-     * @param {?} filterValue
-     */
-    constructor(id, field, filterValue) {
-        this.filterId = id;
-        this.field = field;
-        this.filterValue = filterValue;
-    }
-    /**
-     * @return {?}
-     */
-    getFieldId() {
-        return this.field.getId();
-    }
-    /**
-     * @return {?}
-     */
-    getFilterValue() {
-        return this.filterValue;
-    }
-    /**
-     * @param {?} filterValue
-     * @return {?}
-     */
-    setFilterValue(filterValue) {
-        this.filterValue = filterValue;
-    }
-    // Move to container
-    /**
-     * @param {?} entities
-     * @return {?}
-     */
-    filter(entities) {
-        if (entities.length === 0) {
-            return entities;
-        }
-        return entities.filter((/**
-         * @param {?} item
-         * @return {?}
-         */
-        (item) => {
-            return this.field.filter(item, this.filterValue);
-        }));
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilter.prototype.filterId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilter.prototype.field;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilter.prototype.filterValue;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterId {
-    /**
-     * @param {?} field
-     * @param {?} filterId
-     */
-    constructor(field, filterId) {
-        /** @type {?} */
-        const fieldId = field.getId().toString();
-        this.id = fieldId + '@' + filterId;
-    }
-    /**
-     * @return {?}
-     */
-    getId() {
-        return this.id;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterId.prototype.id;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterSettings {
-    /**
-     * @param {?=} filteringEnabled
-     * @param {?=} searchEnabled
-     * @param {?=} quickFiltersEnabled
-     */
-    constructor(filteringEnabled = false, searchEnabled = false, quickFiltersEnabled = false) {
-        this.filteringEnabled = false;
-        this.searchEnabled = false;
-        this.quickFiltersEnabled = false;
-        this.filteringEnabled = filteringEnabled;
-        this.searchEnabled = searchEnabled;
-        this.quickFiltersEnabled = quickFiltersEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isFilteringEnabled() {
-        return this.filteringEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isQuickFilteringEnabled() {
-        return this.quickFiltersEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isSearchingEnabled() {
-        return this.searchEnabled;
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setFilterConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.filteringEnabled = config.enabled;
-        }
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setSearchingConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.searchEnabled = config.enabled;
-        }
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setQuickFiltersConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.quickFiltersEnabled = config.enabled;
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.filteringEnabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.searchEnabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.quickFiltersEnabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterManager {
-    constructor() {
-        this.filterSettings = new FilterSettings();
-        this.filters = new Map();
-    }
-    /**
-     * @return {?}
-     */
-    getAll() {
-        return Array.from(this.filters)
-            .map((/**
-         * @param {?} arr
-         * @return {?}
-         */
-        (arr) => arr[1]));
-    }
-    /**
-     * @return {?}
-     */
-    getSettings() {
-        return this.filterSettings;
-    }
-    /**
-     * @param {?} field
-     * @param {?} externalFilterId
-     * @param {?} filterValue
-     * @return {?}
-     */
-    addFilter(field, externalFilterId, filterValue) {
-        /** @type {?} */
-        const filterId = new FilterId(field, externalFilterId);
-        /** @type {?} */
-        const filter = new StructureFilter(filterId, field, filterValue);
-        if (filterValue === '') {
-            this.filters.delete(filterId.getId());
-        }
-        else {
-            this.filters.set(filterId.getId(), filter);
-        }
-    }
-    /**
-     * @param {?} entities
-     * @return {?}
-     */
-    filter(entities) {
-        /** @type {?} */
-        const filters = this.getAll();
-        /** @type {?} */
-        let filteredEntities = [...entities];
-        for (let filter of filters) {
-            filteredEntities = filter.filter(filteredEntities);
-        }
-        return filteredEntities;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.filterSettings;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.filters;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterManagerFactory {
-    /**
-     * @param {?=} enabled
-     * @return {?}
-     */
-    create(enabled = false) {
-        return new FilterManager();
-    }
-}
-FilterManagerFactory.decorators = [
-    { type: Injectable }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /** @type {?} */
 const SUMMARIES_CALCULATORS = 'GUI - Summaries Calculators';
 
@@ -26816,7 +30910,7 @@ class SummariesCalculator {
          */
         (field) => {
             /** @type {?} */
-            const key = field.getId().getId();
+            const key = field.getKey();
             /** @type {?} */
             let aggregatedValues = this.generateAggregatedValues(field);
             if (field.isSummaries(SummariesType.COUNT)) {
@@ -27395,13 +31489,7 @@ class SummariesManager {
          */
         (calc) => {
             /** @type {?} */
-            const allFields = fields.map((/**
-             * @param {?} typeField
-             * @return {?}
-             */
-            (typeField) => typeField.getField()));
-            /** @type {?} */
-            const aggregatedValues = calc.calculate(allFields, entities);
+            const aggregatedValues = calc.calculate(fields, entities);
             if (aggregatedValues) {
                 Array.from(aggregatedValues.keys())
                     .forEach((/**
@@ -27534,97 +31622,13 @@ const summariesProviders = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureConfigFilterSetEventHandler {
-    /**
-     * @param {?} structureFilterRepository
-     */
-    constructor(structureFilterRepository) {
-        this.structureFilterRepository = structureFilterRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return StructureConfigFilterSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('StructureConfigFilterSetEvent')) {
-            this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-        }
-    }
-}
-StructureConfigFilterSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureConfigFilterSetEventHandler.ctorParameters = () => [
-    { type: StructureFilterRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureConfigFilterSetEventHandler.prototype.structureFilterRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureConfigQuickFilterSetEventHandler {
-    /**
-     * @param {?} structureQuickFilterRepository
-     */
-    constructor(structureQuickFilterRepository) {
-        this.structureQuickFilterRepository = structureQuickFilterRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return StructureConfigQuickFilterSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('StructureConfigQuickFilterSetEvent')) {
-            this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-        }
-    }
-}
-StructureConfigQuickFilterSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureConfigQuickFilterSetEventHandler.ctorParameters = () => [
-    { type: StructureQuickFilterRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FieldsInitedEventHandler {
     /**
-     * @param {?} fieldUiArchive
+     * @param {?} fieldReadModelRepository
      * @param {?} fieldUiConverter
      */
-    constructor(fieldUiArchive, fieldUiConverter) {
-        this.fieldUiArchive = fieldUiArchive;
+    constructor(fieldReadModelRepository, fieldUiConverter) {
+        this.fieldReadModelRepository = fieldReadModelRepository;
         this.fieldUiConverter = fieldUiConverter;
     }
     /**
@@ -27641,7 +31645,7 @@ class FieldsInitedEventHandler {
         if (event.ofMessageType('FieldsInitedEvent')) {
             /** @type {?} */
             const fields = this.fieldUiConverter.convert(event.getFields());
-            this.fieldUiArchive.next(event.getAggregateId(), fields);
+            this.fieldReadModelRepository.next(event.getAggregateId(), fields);
         }
     }
 }
@@ -27650,7 +31654,7 @@ FieldsInitedEventHandler.decorators = [
 ];
 /** @nocollapse */
 FieldsInitedEventHandler.ctorParameters = () => [
-    { type: FieldUiArchive },
+    { type: FieldReadModelRepository },
     { type: FieldUiConverter }
 ];
 if (false) {
@@ -27658,7 +31662,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    FieldsInitedEventHandler.prototype.fieldUiArchive;
+    FieldsInitedEventHandler.prototype.fieldReadModelRepository;
     /**
      * @type {?}
      * @private
@@ -27713,367 +31717,268 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class OriginItemEntity extends Entity {
+class Filter {
     /**
-     * @param {?} id
-     * @param {?} rawData
-     * @param {?} position
-     * @param {?=} version
+     * @param {?} filterId
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} filterValue
      */
-    constructor(id, rawData, position, version = 0) {
-        super(id);
-        this.rawData = rawData;
-        this.position = position;
-        this.version = version;
+    constructor(filterId, fieldId, filterTypeId, filterValue) {
+        this.filterId = filterId;
+        this.fieldId = fieldId;
+        this.filterTypeId = filterTypeId;
+        this.filterValue = filterValue;
     }
     /**
      * @return {?}
      */
-    getData() {
-        return this.rawData;
+    getFilterId() {
+        return this.filterId;
     }
     /**
      * @return {?}
      */
-    getVersion() {
-        return this.version;
+    getFilterTypeId() {
+        return this.filterTypeId;
     }
     /**
      * @return {?}
      */
-    getPosition() {
-        return this.position;
+    getFieldId() {
+        return this.fieldId;
     }
     /**
      * @return {?}
      */
-    bumpVersion() {
-        this.version += 1;
+    getFilterValue() {
+        return this.filterValue;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterTypeId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterSettings {
+    /**
+     * @param {?=} filteringEnabled
+     * @param {?=} searchEnabled
+     * @param {?=} quickFiltersEnabled
+     */
+    constructor(filteringEnabled = false, searchEnabled = false, quickFiltersEnabled = false) {
+        this.filteringEnabled = false;
+        this.searchEnabled = false;
+        this.quickFiltersEnabled = false;
+        this.filteringEnabled = filteringEnabled;
+        this.searchEnabled = searchEnabled;
+        this.quickFiltersEnabled = quickFiltersEnabled;
     }
     /**
-     * @param {?} position
      * @return {?}
      */
-    setPosition(position) {
-        this.position = position;
+    isFilteringEnabled() {
+        return this.filteringEnabled;
     }
     /**
      * @return {?}
      */
-    clone() {
+    isQuickFilteringEnabled() {
+        return this.quickFiltersEnabled;
+    }
+    /**
+     * @return {?}
+     */
+    isSearchingEnabled() {
+        return this.searchEnabled;
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setFilterConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.filteringEnabled = config.enabled;
+        }
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setSearchingConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.searchEnabled = config.enabled;
+        }
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setQuickFiltersConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.quickFiltersEnabled = config.enabled;
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.filteringEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.searchEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.quickFiltersEnabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T
+ */
+class BaseFilterType {
+    /**
+     * @protected
+     * @param {?} filterTypeId
+     */
+    constructor(filterTypeId) {
+        this.filterTypeId = filterTypeId;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.filterTypeId;
+    }
+    /**
+     * @param {?} entities
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterMany(entities, field, value) {
+        if (entities.length === 0) {
+            return entities;
+        }
+        return entities.filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
+            return this.filterEntity(item, field, value);
+        }));
+    }
+    /**
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterOne(entity, field, value) {
+        return this.filterEntity(entity, field, value);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    BaseFilterType.prototype.filterTypeId;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    BaseFilterType.prototype.getName = function () { };
+    /**
+     * @abstract
+     * @protected
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    BaseFilterType.prototype.filterEntity = function (entity, field, value) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ContainsFilterType extends BaseFilterType {
+    /**
+     * @param {?} filterTypeId
+     */
+    constructor(filterTypeId) {
+        super(filterTypeId);
+    }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return 'Contains';
+    }
+    /**
+     * @protected
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterEntity(entity, field, value) {
         /** @type {?} */
-        const rawData = Object.assign({}, this.rawData);
-        return new OriginItemEntity(this.getId(), rawData, this.version);
+        const fieldValue = field.getValue(entity);
+        return !!fieldValue.includes(value);
     }
-}
-if (false) {
-    /** @type {?} */
-    OriginItemEntity.prototype.rawData;
-    /**
-     * @type {?}
-     * @private
-     */
-    OriginItemEntity.prototype.version;
-    /**
-     * @type {?}
-     * @private
-     */
-    OriginItemEntity.prototype.position;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSourceItemEditedAggregateEvent extends AggregateEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} beforeItem
-     * @param {?} afterItem
-     */
-    constructor(aggregateId, beforeItem, afterItem) {
-        super(aggregateId, 'StructureSourceItemEditedAggregateEvent');
-        this.beforeItem = beforeItem;
-        this.afterItem = afterItem;
-    }
-    /**
-     * @return {?}
-     */
-    toDomainEvent() {
-        return new StructureSourceItemEditedEvent(this.getAggregateId(), this.beforeItem, this.afterItem);
-    }
-    /**
-     * @return {?}
-     */
-    getBeforeItem() {
-        return this.beforeItem;
-    }
-    /**
-     * @return {?}
-     */
-    getAfterItem() {
-        return this.afterItem;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceItemEditedAggregateEvent.prototype.beforeItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSourceItemEditedAggregateEvent.prototype.afterItem;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureOriginChangedAggregateEvent extends AggregateEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} origin
-     */
-    constructor(aggregateId, origin) {
-        super(aggregateId, 'StructureOriginChangedAggregateEvent');
-        this.origin = origin;
-    }
-    /**
-     * @return {?}
-     */
-    toDomainEvent() {
-        return new OriginSetEvent(this.getAggregateId(), this.origin);
-    }
-    /**
-     * @return {?}
-     */
-    getOrigin() {
-        return this.origin;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureOriginChangedAggregateEvent.prototype.origin;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class OriginId extends EntityId {
+class FilterTypeId {
     /**
      * @param {?} id
      */
     constructor(id) {
-        super(id);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SourceManager {
-    constructor() {
-        this.loading = false;
-        this.fetched = false;
-        this.entities = [];
-        // Entities after filtering, searching
-        this.preparedEntities = [];
-        this.slicedEntities = [];
+        this.id = id;
     }
     /**
      * @return {?}
      */
-    isLoading() {
-        return this.loading;
-    }
-    /**
-     * @return {?}
-     */
-    isFetched() {
-        return this.fetched;
-    }
-    /**
-     * @param {?} enabled
-     * @return {?}
-     */
-    setLoading(enabled) {
-        this.loading = enabled;
-    }
-    /**
-     * @param {?} ent
-     * @return {?}
-     */
-    setEntities(ent) {
-        this.entities = ent;
-        this.recalculatePositions();
-    }
-    /**
-     * @return {?}
-     */
-    getEntities() {
-        return this.entities;
-    }
-    /**
-     * @return {?}
-     */
-    setPreparedEntities() {
-        this.preparedEntities = [...this.entities];
-    }
-    /**
-     * @return {?}
-     */
-    getPreparedEntities() {
-        return this.preparedEntities;
-    }
-    /**
-     * @param {?} ent
-     * @return {?}
-     */
-    setSlicedEntities(ent) {
-        this.slicedEntities = ent;
-    }
-    /**
-     * @return {?}
-     */
-    getSlicedEntities() {
-        return this.slicedEntities;
-    }
-    /**
-     * @param {?=} items
-     * @param {?=} structureId
-     * @return {?}
-     */
-    setOrigin(items = [], structureId) {
-        this.origin = this.convertItems(items);
-        return this.createOriginChangedEvent(structureId);
-    }
-    /**
-     * @param {?=} items
-     * @param {?=} structureId
-     * @return {?}
-     */
-    setConvertedOrigin(items = [], structureId) {
-        this.origin = items;
-        return this.createOriginChangedEvent(structureId);
-    }
-    /**
-     * @return {?}
-     */
-    getOrigin() {
-        return this.origin;
-    }
-    /**
-     * @return {?}
-     */
-    getOriginSize() {
-        return this.origin.length;
-    }
-    // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
-    //
-    // }
-    /**
-     * @param {?} itemId
-     * @param {?} value
-     * @param {?} field
-     * @param {?} structureId
-     * @return {?}
-     */
-    editOriginItem(itemId, value, field, structureId) {
-        /** @type {?} */
-        const item = this.findOriginItem(itemId);
-        /** @type {?} */
-        const itemBeforeChange = item.clone();
-        if (item) {
-            item.rawData[field.getAccessor()] = value;
-            item.bumpVersion();
-        }
-        return [
-            new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
-            this.createOriginChangedEvent(structureId)
-        ];
-    }
-    /**
-     * @param {?} itemId
-     * @param {?} structureId
-     * @return {?}
-     */
-    removeOriginItem(itemId, structureId) {
-        /** @type {?} */
-        const index = this.findOriginItemIndex(itemId);
-        if (index > -1) {
-            this.origin.splice(index, 1);
-            return [this.createOriginChangedEvent(structureId)];
-        }
-        return [];
-    }
-    /**
-     * @private
-     * @param {?} items
-     * @return {?}
-     */
-    convertItems(items) {
-        return items.map((/**
-         * @param {?} item
-         * @param {?} index
-         * @return {?}
-         */
-        (item, index) => {
-            return new OriginItemEntity(new OriginId(RandomStringGenerator.generate()), item, index);
-        }));
-    }
-    /**
-     * @private
-     * @param {?} structureId
-     * @return {?}
-     */
-    createOriginChangedEvent(structureId) {
-        return new StructureOriginChangedAggregateEvent(structureId, this.origin);
-    }
-    /**
-     * @private
-     * @param {?} itemId
-     * @return {?}
-     */
-    findOriginItem(itemId) {
-        return this.origin.find((/**
-         * @param {?} item
-         * @return {?}
-         */
-        (item) => item.getId().toString() === itemId));
-    }
-    /**
-     * @private
-     * @param {?} itemId
-     * @return {?}
-     */
-    findOriginItemIndex(itemId) {
-        return this.origin.findIndex((/**
-         * @param {?} item
-         * @return {?}
-         */
-        (item) => item.getId().toString() === itemId));
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    recalculatePositions() {
-        this.entities.forEach((/**
-         * @param {?} ent
-         * @param {?} index
-         * @return {?}
-         */
-        (ent, index) => {
-            ent.setPosition(index);
-        }));
+    toString() {
+        return this.id;
     }
 }
 if (false) {
@@ -28081,53 +31986,490 @@ if (false) {
      * @type {?}
      * @private
      */
-    SourceManager.prototype.loading;
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceManager.prototype.fetched;
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceManager.prototype.origin;
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceManager.prototype.entities;
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceManager.prototype.preparedEntities;
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceManager.prototype.slicedEntities;
+    FilterTypeId.prototype.id;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SourceManagerFactory {
+class FilterTypeIdGenerator {
     /**
      * @return {?}
      */
-    createDefault() {
-        return new SourceManager();
-    }
-    /**
-     * @return {?}
-     */
-    create() {
-        return new SourceManager();
+    generate() {
+        FilterTypeIdGenerator.index += 1;
+        return new FilterTypeId(`${FilterTypeIdGenerator.index}`);
     }
 }
-SourceManagerFactory.decorators = [
+FilterTypeIdGenerator.index = 0;
+if (false) {
+    /** @type {?} */
+    FilterTypeIdGenerator.index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeReadModel {
+    /**
+     * @param {?} id
+     * @param {?} name
+     */
+    constructor(id, name) {
+        this.filterTypeId = id;
+        this.name = name;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.filterTypeId;
+    }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return this.name;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeReadModel.prototype.filterTypeId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeReadModel.prototype.name;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeManager {
+    /**
+     * @param {?} fields
+     */
+    constructor(fields) {
+        this.fieldIds = [];
+        this.map = new WeakMap();
+        this.filterTypeMap = new WeakMap();
+        this.dataTypeToFilterType = new Map();
+        this.filterTypeIdGenerator = new FilterTypeIdGenerator();
+        this.assignFilterTypes();
+        this.addFields(fields);
+    }
+    /**
+     * @param {?} filterTypeId
+     * @return {?}
+     */
+    getFilterType(filterTypeId) {
+        return this.filterTypeMap.get(filterTypeId);
+    }
+    /**
+     * @return {?}
+     */
+    getFieldIdsToFilterTypes() {
+        /** @type {?} */
+        const map = new Map();
+        for (let fieldId of this.fieldIds) {
+            /** @type {?} */
+            const filterTypes = this.map.get(fieldId);
+            /** @type {?} */
+            const readModels = filterTypes.map((/**
+             * @param {?} f
+             * @return {?}
+             */
+            f => {
+                return new FilterTypeReadModel(f.getId(), f.getName());
+            }));
+            map.set(fieldId.toString(), readModels);
+        }
+        return map;
+    }
+    /**
+     * @private
+     * @param {?} fields
+     * @return {?}
+     */
+    addFields(fields) {
+        for (let field of fields) {
+            this.addField(field);
+        }
+    }
+    /**
+     * @private
+     * @param {?} field
+     * @return {?}
+     */
+    addField(field) {
+        /** @type {?} */
+        const fieldId = field.getId();
+        /** @type {?} */
+        const dataType = field.getDataType();
+        /** @type {?} */
+        const filterTypesFromDataType = this.dataTypeToFilterType.get(dataType);
+        this.fieldIds.push(fieldId);
+        this.map.set(fieldId, [...filterTypesFromDataType]);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypes() {
+        this.assignFilterTypesForDataTypeUnknown();
+        this.assignFilterTypesForDataTypeNumber();
+        this.assignFilterTypesForDataTypeString();
+        this.assignFilterTypesForDataTypeBoolean();
+        this.assignFilterTypesForDataTypeDate();
+        this.assignFilterTypesForDataTypeCustom();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeUnknown() {
+        this.dataTypeToFilterType.set(DataType.UNKNOWN, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeNumber() {
+        this.dataTypeToFilterType.set(DataType.NUMBER, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeString() {
+        /** @type {?} */
+        const filterTypes = [
+            new ContainsFilterType(this.generateId())
+        ];
+        this.dataTypeToFilterType.set(DataType.STRING, filterTypes);
+        this.addFilterTypes(filterTypes);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeBoolean() {
+        this.dataTypeToFilterType.set(DataType.BOOLEAN, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeDate() {
+        this.dataTypeToFilterType.set(DataType.DATE, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeCustom() {
+        this.dataTypeToFilterType.set(DataType.CUSTOM, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    generateId() {
+        return this.filterTypeIdGenerator.generate();
+    }
+    /**
+     * @private
+     * @param {?} filterTypes
+     * @return {?}
+     */
+    addFilterTypes(filterTypes) {
+        for (let filterType of filterTypes) {
+            this.filterTypeMap.set(filterType.getId(), filterType);
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.fieldIds;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.map;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.filterTypeMap;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.dataTypeToFilterType;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.filterTypeIdGenerator;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterId {
+    /**
+     * @param {?} filterId
+     */
+    constructor(filterId) {
+        this.id = filterId;
+    }
+    /**
+     * @return {?}
+     */
+    toString() {
+        return this.id;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterId.prototype.id;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterIdGenerator {
+    /**
+     * @return {?}
+     */
+    static generateId() {
+        return new FilterId(`${FilterIdGenerator.index}`);
+    }
+}
+FilterIdGenerator.index = 0;
+if (false) {
+    /** @type {?} */
+    FilterIdGenerator.index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterReadModel {
+    /**
+     * @param {?} filterId
+     * @param {?} fieldName
+     * @param {?} filterTypeName
+     * @param {?} value
+     */
+    constructor(filterId, fieldName, filterTypeName, value) {
+        this.filterId = filterId;
+        this.fieldName = fieldName;
+        this.filterTypeName = filterTypeName;
+        this.value = value;
+    }
+    /**
+     * @return {?}
+     */
+    getText() {
+        return `${this.fieldName}: ${this.filterTypeName}: ${this.value}`;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterId() {
+        return this.filterId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.filterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.fieldName;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.filterTypeName;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterManager {
+    constructor() {
+        this.filterSettings = new FilterSettings();
+        // string -> FilterId
+        this.filters = new Map();
+        this.activeFilters = [];
+    }
+    /**
+     * @return {?}
+     */
+    getSettings() {
+        return this.filterSettings;
+    }
+    /**
+     * @return {?}
+     */
+    getAll() {
+        return Array.from(this.filters)
+            .map((/**
+         * @param {?} arr
+         * @return {?}
+         */
+        (arr) => arr[1]));
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    getAllActiveFilters(fields) {
+        return this.activeFilters
+            .map((/**
+         * @param {?} af
+         * @return {?}
+         */
+        (af) => {
+            return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    getFilterTypes() {
+        return this.filterTypeManager.getFieldIdsToFilterTypes();
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    assignFilterTypes(fields) {
+        this.filterTypeManager = new FilterTypeManager(fields);
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} value
+     * @return {?}
+     */
+    add(fieldId, filterTypeId, value) {
+        /** @type {?} */
+        const filter = new Filter(FilterIdGenerator.generateId(), fieldId, filterTypeId, value);
+        this.activeFilters.push(filter);
+    }
+    /**
+     * @param {?} entities
+     * @param {?} fields
+     * @return {?}
+     */
+    filter(entities, fields) {
+        /** @type {?} */
+        let filteredEntities = [...entities];
+        for (let filter of this.activeFilters) {
+            /** @type {?} */
+            const filterTypeId = filter.getFilterTypeId();
+            /** @type {?} */
+            const filterType = this.getFilterType(filterTypeId);
+            /** @type {?} */
+            const value = filter.getFilterValue();
+            filteredEntities = filterType.filterMany(filteredEntities, fields.get(filter.getFieldId().toString()), value);
+        }
+        return filteredEntities;
+    }
+    /**
+     * @return {?}
+     */
+    removeAll() {
+        this.activeFilters.length = 0;
+    }
+    /**
+     * @param {?} filterId
+     * @return {?}
+     */
+    remove(filterId) {
+        this.activeFilters =
+            this.activeFilters.filter((/**
+             * @param {?} filter
+             * @return {?}
+             */
+            (filter) => {
+                return filter.getFilterId() !== filterId;
+            }));
+    }
+    /**
+     * @private
+     * @param {?} filterTypeId
+     * @return {?}
+     */
+    getFilterType(filterTypeId) {
+        return this.filterTypeManager.getFilterType(filterTypeId);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filterSettings;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filters;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.activeFilters;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filterTypeManager;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterManagerFactory {
+    /**
+     * @param {?=} enabled
+     * @return {?}
+     */
+    create(enabled = false) {
+        return new FilterManager();
+    }
+}
+FilterManagerFactory.decorators = [
     { type: Injectable }
 ];
 
@@ -28492,28 +32834,395 @@ class StructureCreatedAggregateEvent extends AggregateEvent {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class FilterTypesInitedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} map
+     */
+    constructor(aggregateId, map) {
+        super(aggregateId, 'FilterTypesInitedEvent');
+        this.map = map;
+    }
+    /**
+     * @return {?}
+     */
+    getMap() {
+        return this.map;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypesInitedEvent.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypesInitedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} filterTypes
+     */
+    constructor(structureId, filterTypes) {
+        super(structureId, 'FilterTypesInitedAggregateEvent');
+        this.filterTypes = filterTypes;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new FilterTypesInitedEvent(this.getAggregateId(), this.filterTypes);
+    }
+    /**
+     * @return {?}
+     */
+    getFilterTypes() {
+        return this.filterTypes;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypesInitedAggregateEvent.prototype.filterTypes;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AllFiltersRemovedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'FilterAddedEvent');
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new ActiveFiltersSetEvent(this.getAggregateId(), []);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterAddedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} activeFilters
+     */
+    constructor(aggregateId, activeFilters) {
+        super(aggregateId, 'FilterAddedEvent');
+        this.activeFilters = activeFilters;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new ActiveFiltersSetEvent(this.getAggregateId(), this.activeFilters);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterAddedAggregateEvent.prototype.activeFilters;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterRemovedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} activeFilters
+     */
+    constructor(aggregateId, activeFilters) {
+        super(aggregateId, 'FilterRemovedAggregateEvent');
+        this.activeFilters = activeFilters;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new ActiveFiltersSetEvent(this.getAggregateId(), this.activeFilters);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterRemovedAggregateEvent.prototype.activeFilters;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterCalculatedEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} map
+     */
+    constructor(aggregateId, map) {
+        super(aggregateId, 'UniqueFilterCalculatedEvent');
+        this.map = map;
+    }
+    /**
+     * @return {?}
+     */
+    getUniqueValues() {
+        return this.map;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterCalculatedEvent.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterCalculatedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} map
+     */
+    constructor(aggregateId, map) {
+        super(aggregateId, 'UniqueFilterCalculatedAggregateEvent');
+        this.map = map;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new UniqueFilterCalculatedEvent(this.getAggregateId(), this.map);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterCalculatedAggregateEvent.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterSelectedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'UniqueFilterSelectedAggregateEvent');
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new UniqueFilterSelectedEvent(this.getAggregateId());
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterUnselectedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'UniqueFilterUnselectedAggregateEvent');
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new UniqueFilterUnselectedEvent(this.getAggregateId());
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AllUniqueFilterUnselectedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'AllUniqueFilterUnselectedAggregateEvent');
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new AllUniqueFilterUnselectedEvent(this.getAggregateId());
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AllUniqueFilterSelectedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'AllUniqueFilterSelectedAggregateEvent');
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new AllUniqueFilterSelectedEvent(this.getAggregateId());
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectedRowChangedAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} selectedRows
+     * @param {?} allSelected
+     * @param {?} allUnselected
+     */
+    constructor(structureId, selectedRows, allSelected, allUnselected) {
+        super(structureId, 'SelectedRowChangedAggregateEvent');
+        this.selectedRows = selectedRows;
+        this.allSelected = allSelected;
+        this.allUnselected = allUnselected;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new SelectedRowChangedEvent(this.getAggregateId(), this.selectedRows, this.allSelected, this.allUnselected);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedAggregateEvent.prototype.selectedRows;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedAggregateEvent.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectedRowChangedAggregateEvent.prototype.allUnselected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectionEnabledSetAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} enabled
+     */
+    constructor(structureId, enabled) {
+        super(structureId, 'SelectionEnabledSetAggregateEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new SelectionEnabledSetEvent(this.getAggregateId(), this.enabled);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionEnabledSetAggregateEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectionModeSetAggregateEvent extends AggregateEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} mode
+     */
+    constructor(structureId, mode) {
+        super(structureId, 'SelectionModeSetAggregateEvent');
+        this.mode = mode;
+    }
+    /**
+     * @return {?}
+     */
+    toDomainEvent() {
+        return new SelectionModeSetEvent(this.getAggregateId(), this.mode);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionModeSetAggregateEvent.prototype.mode;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class StructureAggregate extends AggregateRoot {
     /**
      * @param {?} structureId
      * @param {?} pagingAggregate
-     * @param {?} formationAggregate
      * @param {?} sourceManager
      * @param {?} verticalFormation
      * @param {?} summariesManager
      * @param {?} sorterCollection
-     * @param {?} filterCollection
+     * @param {?} filterManager
+     * @param {?} uniqueFilterManager
      * @param {?} searchManager
      * @param {?} fieldCollection
      */
-    constructor(structureId, pagingAggregate, formationAggregate, sourceManager, verticalFormation, summariesManager, sorterCollection, filterCollection, searchManager, fieldCollection) {
+    constructor(structureId, pagingAggregate, sourceManager, verticalFormation, summariesManager, sorterCollection, filterManager, uniqueFilterManager, searchManager, fieldCollection) {
         super(structureId, 'StructureAggregate');
         this.pagingManager = pagingAggregate;
-        this.formationAggregate = formationAggregate;
         this.sourceManager = sourceManager;
         this.verticalFormation = verticalFormation;
         this.summariesManager = summariesManager;
         this.sorterCollection = sorterCollection;
-        this.filterManager = filterCollection;
+        this.filterManager = filterManager;
+        this.uniqueFilterManager = uniqueFilterManager;
         this.searchManager = searchManager;
         this.fieldCollection = fieldCollection;
     }
@@ -28522,6 +33231,13 @@ class StructureAggregate extends AggregateRoot {
      */
     createEvent() {
         return StructureCreatedAggregateEvent;
+    }
+    /**
+     * @return {?}
+     */
+    clearEvents() {
+        super.clearEvents();
+        this.pagingManager.clearEvents();
     }
     /**
      * @return {?}
@@ -28558,8 +33274,23 @@ class StructureAggregate extends AggregateRoot {
      */
     setOrigin(items) {
         this.addEvent(this.sourceManager.setOrigin(items, this.getId()));
+        this.calculateUniqueValues();
         this.calculateSource();
         return this.getEvents();
+    }
+    /**
+     * @return {?}
+     */
+    deleteAllSelected() {
+    }
+    /**
+     * @param {?} payload
+     * @return {?}
+     */
+    deleteItem(payload) {
+        this.addEvent(this.sourceManager.deleteOriginItem(payload, this.getId()));
+        this.generateSelectedRowChangedEvent();
+        this.calculateSource();
     }
     /**
      * @param {?} editParams
@@ -28582,6 +33313,8 @@ class StructureAggregate extends AggregateRoot {
          * @return {?}
          */
         (e) => this.addEvent(e)));
+        // TODO
+        // this.calculateUniqueValues();
         this.calculateSource();
         return this.getEvents();
     }
@@ -28616,13 +33349,6 @@ class StructureAggregate extends AggregateRoot {
         }
     }
     /**
-     * @param {?} formation
-     * @return {?}
-     */
-    setFormation(formation) {
-        this.formationAggregate = formation;
-    }
-    /**
      * @param {?} position
      * @return {?}
      */
@@ -28631,10 +33357,49 @@ class StructureAggregate extends AggregateRoot {
         this.calculateSourceBasedOnVirtualScroll();
     }
     /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    setSelection(enabled) {
+        this.sourceManager.getFormation().setSelection(enabled);
+        this.addEvent(new SelectionEnabledSetAggregateEvent(this.getId(), enabled));
+    }
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    setSelectionMode(mode) {
+        this.sourceManager.getFormation().setMode(mode);
+        this.addEvent(new SelectionModeSetAggregateEvent(this.getId(), mode));
+    }
+    /**
+     * @param {?} selectedRow
+     * @param {?} type
+     * @return {?}
+     */
+    toggleRow(selectedRow, type) {
+        this.sourceManager.toggleRow(selectedRow, type);
+        this.generateSelectedRowChangedEvent();
+    }
+    /**
+     * @return {?}
+     */
+    selectAll() {
+        this.sourceManager.selectAll();
+        this.generateSelectedRowChangedEvent();
+    }
+    /**
+     * @return {?}
+     */
+    unselectAll() {
+        this.sourceManager.unselectAll();
+        this.generateSelectedRowChangedEvent();
+    }
+    /**
      * @return {?}
      */
     getFormation() {
-        return this.formationAggregate;
+        return this.sourceManager.getFormation();
     }
     /**
      * @return {?}
@@ -28709,8 +33474,10 @@ class StructureAggregate extends AggregateRoot {
     createFields(fieldConfigs) {
         this.fieldCollection.initFields(fieldConfigs);
         /** @type {?} */
-        const typeFields = this.fieldCollection.getAllFields();
-        this.addEvent(new FieldsInitedAggregateEvent(this.getId(), fieldConfigs, typeFields));
+        const fields = this.fieldCollection.getAllFields();
+        this.addEvent(new FieldsInitedAggregateEvent(this.getId(), fieldConfigs, fields));
+        this.filterManager.assignFilterTypes(fields);
+        this.addEvent(new FilterTypesInitedAggregateEvent(this.getId(), this.filterManager.getFilterTypes()));
         return this.getEvents();
     }
     /**
@@ -28771,9 +33538,46 @@ class StructureAggregate extends AggregateRoot {
         if (field === undefined) {
             return [];
         }
-        this.filterManager.addFilter(field, externalFilterId, filterValue);
+        // this.filterManager.addFilter(field, externalFilterId, filterValue);
+        // this.filterManager.a
         this.calculateSource();
         return [];
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} value
+     * @return {?}
+     */
+    addFilter(fieldId, filterTypeId, value) {
+        this.filterManager.add(fieldId, filterTypeId, value);
+        /** @type {?} */
+        const fields = this.fieldCollection.getFieldsAsMap();
+        /** @type {?} */
+        let activeFilters = this.filterManager.getAllActiveFilters(fields);
+        this.addEvent(new FilterAddedAggregateEvent(this.getId(), activeFilters));
+        this.calculateSource();
+    }
+    /**
+     * @return {?}
+     */
+    removeAllFilters() {
+        this.filterManager.removeAll();
+        this.addEvent(new AllFiltersRemovedAggregateEvent(this.getId()));
+        this.calculateSource();
+    }
+    /**
+     * @param {?} filterId
+     * @return {?}
+     */
+    removeFilter(filterId) {
+        this.filterManager.remove(filterId);
+        /** @type {?} */
+        const fields = this.fieldCollection.getFieldsAsMap();
+        /** @type {?} */
+        let activeFilters = this.filterManager.getAllActiveFilters(fields);
+        this.addEvent(new FilterRemovedAggregateEvent(this.getId(), activeFilters));
+        this.calculateSource();
     }
     /**
      * @param {?} config
@@ -28802,11 +33606,46 @@ class StructureAggregate extends AggregateRoot {
         return [];
     }
     /**
+     * @param {?} fieldId
      * @return {?}
      */
-    clearEvents() {
-        super.clearEvents();
-        this.pagingManager.clearEvents();
+    selectAllUniqueFilter(fieldId) {
+        this.uniqueFilterManager.selectAll(fieldId);
+        this.addEvent(new AllUniqueFilterSelectedAggregateEvent(this.getId()));
+        this.generateCalculateUniqueValuesAggregateEvent();
+        this.calculateSource();
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    selectUniqueFilter(fieldId, uniqueValueId) {
+        this.uniqueFilterManager.select(fieldId, uniqueValueId);
+        this.addEvent(new UniqueFilterSelectedAggregateEvent(this.getId()));
+        this.generateCalculateUniqueValuesAggregateEvent();
+        this.calculateSource();
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    unselectAllUniqueFilter(fieldId) {
+        this.uniqueFilterManager.unselectAll(fieldId);
+        this.addEvent(new AllUniqueFilterUnselectedAggregateEvent(this.getId()));
+        this.generateCalculateUniqueValuesAggregateEvent();
+        this.calculateSource();
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    unselectUniqueFilter(fieldId, uniqueValueId) {
+        this.uniqueFilterManager.unselect(fieldId, uniqueValueId);
+        this.addEvent(new UniqueFilterUnselectedAggregateEvent(this.getId()));
+        this.generateCalculateUniqueValuesAggregateEvent();
+        this.calculateSource();
     }
     /**
      * @private
@@ -28819,11 +33658,13 @@ class StructureAggregate extends AggregateRoot {
         // TODO Refactor
         this.sourceManager.setEntities(this.sourceManager.getOrigin());
         // filtering
-        this.sourceManager.setEntities(this.filterManager.filter(this.sourceManager.getEntities()));
+        this.sourceManager.setEntities(this.filterManager.filter(this.sourceManager.getEntities(), this.fieldCollection.getFieldsAsMap()));
         // search
         /** @type {?} */
         const searchedEntities = this.searchManager.search(this.sourceManager.getEntities());
         this.sourceManager.setEntities(searchedEntities);
+        // unique filtering
+        this.sourceManager.setEntities(this.uniqueFilterManager.filterAll(this.sourceManager.getEntities(), this.fieldCollection.getAllFields()));
         // sorting
         /** @type {?} */
         const ents = this.sorterCollection.sort(this.sourceManager.getEntities());
@@ -28871,6 +33712,32 @@ class StructureAggregate extends AggregateRoot {
         const theme = SchemaAggregate.DEFAULT_THEME;
         this.setTheme(theme);
     }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculateUniqueValues() {
+        /** @type {?} */
+        const fields = this.fieldCollection.getAllFields();
+        /** @type {?} */
+        const items = this.sourceManager.getOrigin();
+        this.uniqueFilterManager.calculateAll(items, fields);
+        this.generateCalculateUniqueValuesAggregateEvent();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    generateCalculateUniqueValuesAggregateEvent() {
+        this.addEvent(new UniqueFilterCalculatedAggregateEvent(this.getId(), this.uniqueFilterManager.getAll(this.fieldCollection.getAllFields())));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    generateSelectedRowChangedEvent() {
+        this.addEvent(new SelectedRowChangedAggregateEvent(this.getId(), this.sourceManager.getFormation().getSelectedRows(), this.sourceManager.getFormation().isAllSelected(), this.sourceManager.getFormation().isAllUnselected()));
+    }
 }
 __decorate([
     Override,
@@ -28879,11 +33746,6 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StructureAggregate.prototype, "clearEvents", null);
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregate.prototype.formationAggregate;
     /**
      * @type {?}
      * @private
@@ -28924,6 +33786,11 @@ if (false) {
      * @private
      */
     StructureAggregate.prototype.summariesManager;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureAggregate.prototype.uniqueFilterManager;
 }
 
 /**
@@ -29211,35 +34078,60 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormationAggregate {
+class UniqueValue {
     /**
-     * In the future this class can be responsible for managing:
-     * - expanded / collapsed nodes
-     * - sorting?
-     * - filtering?
-     * @param {?} selectedRows
+     * @param {?} id
+     * @param {?} value
+     * @param {?} displayValue
+     * @param {?} enabled
      */
-    constructor(selectedRows) {
-        this.selectedRows = selectedRows;
+    constructor(id, value, displayValue, enabled) {
+        this.id = id;
+        this.value = value;
+        this.displayValue = displayValue;
+        this.enabled = enabled;
     }
     /**
      * @return {?}
      */
-    getSelectedRows() {
-        return this.selectedRows;
+    getId() {
+        return this.id;
     }
     /**
-     * @param {?} selectedRow
      * @return {?}
      */
-    toggleRow(selectedRow) {
-        if (this.selectedRows.length > 0) {
-            if (this.selectedRows[0] === selectedRow) {
-                this.selectedRows = [];
-                return;
-            }
-        }
-        this.selectedRows = [selectedRow];
+    getValue() {
+        return this.value;
+    }
+    /**
+     * @return {?}
+     */
+    getDisplayValue() {
+        return this.displayValue;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+    /**
+     * @return {?}
+     */
+    isDisabled() {
+        return !this.enabled;
+    }
+    /**
+     * @return {?}
+     */
+    select() {
+        this.enabled = true;
+    }
+    /**
+     * @return {?}
+     */
+    unselect() {
+        this.enabled = false;
     }
 }
 if (false) {
@@ -29247,24 +34139,439 @@ if (false) {
      * @type {?}
      * @private
      */
-    FormationAggregate.prototype.selectedRows;
+    UniqueValue.prototype.id;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValue.prototype.value;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValue.prototype.displayValue;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValue.prototype.enabled;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormationAggregateFactory {
+class UniqueValueId {
+    /**
+     * @param {?} uniqueValueId
+     */
+    constructor(uniqueValueId) {
+        this.id = uniqueValueId;
+    }
     /**
      * @return {?}
      */
-    create() {
-        return new FormationAggregate([]);
+    toString() {
+        return this.id;
+    }
+    /**
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    equals(uniqueValueId) {
+        return uniqueValueId.toString() === this.id;
     }
 }
-FormationAggregateFactory.decorators = [
-    { type: Injectable }
-];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueId.prototype.id;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValueIdGenerator {
+    /**
+     * @return {?}
+     */
+    static generate() {
+        UniqueValueIdGenerator.index += 1;
+        return new UniqueValueId(`${UniqueValueIdGenerator.index}`);
+    }
+}
+UniqueValueIdGenerator.index = 0;
+if (false) {
+    /** @type {?} */
+    UniqueValueIdGenerator.index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValueCollection {
+    /**
+     * @param {?} values
+     * @param {?} field
+     */
+    constructor(values, field) {
+        this.values = [];
+        for (let value of values) {
+            this.values.push(new UniqueValue(UniqueValueIdGenerator.generate(), value, field.getDisplayValue(value), true));
+        }
+        this.calculateAllSelected();
+        this.calculateAllDisabled();
+    }
+    /**
+     * @return {?}
+     */
+    getAll() {
+        return this.values;
+    }
+    /**
+     * @return {?}
+     */
+    isAllSelected() {
+        return this.allSelected;
+    }
+    /**
+     * @return {?}
+     */
+    isAllDisabled() {
+        return this.allDisabled;
+    }
+    /**
+     * @return {?}
+     */
+    getNotSelected() {
+        return this.values.filter((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => uv.isDisabled()));
+    }
+    /**
+     * @return {?}
+     */
+    selectAll() {
+        this.values.forEach((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => {
+            uv.select();
+        }));
+        this.allSelected = true;
+        this.allDisabled = false;
+    }
+    /**
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    select(uniqueValueId) {
+        this.values
+            .filter((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => uv.getId().equals(uniqueValueId)))
+            .forEach((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => {
+            uv.select();
+        }));
+        this.calculateAllSelected();
+        this.calculateAllDisabled();
+    }
+    /**
+     * @return {?}
+     */
+    unselectAll() {
+        this.values.forEach((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => {
+            uv.unselect();
+        }));
+        this.allSelected = false;
+        this.allDisabled = true;
+    }
+    /**
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    unselect(uniqueValueId) {
+        this.values
+            .filter((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => uv.getId().equals(uniqueValueId)))
+            .forEach((/**
+         * @param {?} uv
+         * @return {?}
+         */
+        (uv) => {
+            uv.unselect();
+        }));
+        this.calculateAllSelected();
+        this.calculateAllDisabled();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculateAllSelected() {
+        this.allSelected = !this.values.some((/**
+         * @param {?} f
+         * @return {?}
+         */
+        (f) => f.isDisabled()));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculateAllDisabled() {
+        this.allDisabled = !this.values.some((/**
+         * @param {?} f
+         * @return {?}
+         */
+        (f) => f.isEnabled()));
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueCollection.prototype.values;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueCollection.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueCollection.prototype.allDisabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterManager {
+    constructor() {
+        this.uniqueValueMap = new KeyMap();
+    }
+    /**
+     * @param {?} entities
+     * @param {?} field
+     * @return {?}
+     */
+    calculate(entities, field) {
+        /** @type {?} */
+        const fieldId = field.getId();
+        /** @type {?} */
+        const optUVM = this.uniqueValueMap.get(fieldId);
+        optUVM.ifEmpty((/**
+         * @return {?}
+         */
+        () => {
+            /** @type {?} */
+            const set = new Set();
+            for (let entity of entities) {
+                set.add(field.getValue(entity));
+            }
+            // sort
+            /** @type {?} */
+            const sortedValues = Array.from(set.values()).sort((/**
+             * @param {?} a
+             * @param {?} b
+             * @return {?}
+             */
+            (a, b) => {
+                return ((/** @type {?} */ (field))).getField().sort(a, b);
+            }));
+            /** @type {?} */
+            const uvc = new UniqueValueCollection(sortedValues, field);
+            this.uniqueValueMap.set(field.getId(), uvc);
+        }));
+    }
+    /**
+     * @param {?} entities
+     * @param {?} fields
+     * @return {?}
+     */
+    calculateAll(entities, fields) {
+        for (let field of fields) {
+            this.calculate(entities, field);
+        }
+    }
+    /**
+     * @param {?} entities
+     * @param {?} fields
+     * @return {?}
+     */
+    filterAll(entities, fields) {
+        /** @type {?} */
+        let values = entities;
+        for (let field of fields) {
+            values = this.filter(values, field);
+        }
+        return values;
+    }
+    /**
+     * @param {?} entities
+     * @param {?} field
+     * @return {?}
+     */
+    filter(entities, field) {
+        /** @type {?} */
+        let values = [];
+        this.uniqueValueMap
+            .get(field.getId())
+            .ifPresent((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            if (uvc.isAllSelected()) {
+                values = entities;
+            }
+            else if (uvc.isAllDisabled()) {
+                values = [];
+            }
+            else {
+                values = entities.filter((/**
+                 * @param {?} itemEntity
+                 * @return {?}
+                 */
+                (itemEntity) => {
+                    for (let notSelectedValue of uvc.getNotSelected()) {
+                        if (((/** @type {?} */ (field.getField()))).equals(itemEntity, ((/** @type {?} */ (notSelectedValue))).getValue())) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }));
+            }
+        }));
+        return values;
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    selectAll(fieldId) {
+        this.uniqueValueMap
+            .get(fieldId)
+            .ifPresent((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            uvc.selectAll();
+        }));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    select(fieldId, uniqueValueId) {
+        this.uniqueValueMap
+            .get(fieldId)
+            .ifPresent((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            uvc.select(uniqueValueId);
+        }));
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    unselectAll(fieldId) {
+        this.uniqueValueMap
+            .get(fieldId)
+            .ifPresent((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            uvc.unselectAll();
+        }));
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} uniqueValueId
+     * @return {?}
+     */
+    unselect(fieldId, uniqueValueId) {
+        this.uniqueValueMap
+            .get(fieldId)
+            .ifPresent((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            uvc.unselect(uniqueValueId);
+        }));
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    getAll(fields) {
+        /** @type {?} */
+        let map = new Map();
+        for (let field of fields) {
+            this.getValues(field)
+                .ifPresent((/**
+             * @param {?} v
+             * @return {?}
+             */
+            (v) => {
+                map.set(field.getId().toString(), v);
+            }));
+        }
+        return map;
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    getValues(field) {
+        return this.uniqueValueMap
+            .get(field.getId())
+            .map((/**
+         * @param {?} uvc
+         * @return {?}
+         */
+        (uvc) => {
+            return uvc.getAll();
+        }));
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterManager.prototype.uniqueValueMap;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -29274,18 +34581,16 @@ class StructureAggregateFactory extends AggregateFactory {
     /**
      * @param {?} pagingAggregateFactory
      * @param {?} sourceManagerFactory
-     * @param {?} formationAggregateFactory
      * @param {?} verticalFormationFactory
      * @param {?} summariesManagerFactory
      * @param {?} filterManagerFactory
      * @param {?} searchManagerFactory
      * @param {?} fieldCollectionFactory
      */
-    constructor(pagingAggregateFactory, sourceManagerFactory, formationAggregateFactory, verticalFormationFactory, summariesManagerFactory, filterManagerFactory, searchManagerFactory, fieldCollectionFactory) {
+    constructor(pagingAggregateFactory, sourceManagerFactory, verticalFormationFactory, summariesManagerFactory, filterManagerFactory, searchManagerFactory, fieldCollectionFactory) {
         super();
         this.pagingAggregateFactory = pagingAggregateFactory;
         this.sourceManagerFactory = sourceManagerFactory;
-        this.formationAggregateFactory = formationAggregateFactory;
         this.verticalFormationFactory = verticalFormationFactory;
         this.summariesManagerFactory = summariesManagerFactory;
         this.filterManagerFactory = filterManagerFactory;
@@ -29304,8 +34609,6 @@ class StructureAggregateFactory extends AggregateFactory {
         /** @type {?} */
         const verticalFormation = this.verticalFormationFactory.create();
         /** @type {?} */
-        const formationAggregate = this.formationAggregateFactory.create();
-        /** @type {?} */
         const sorterContainer = new SorterCollection();
         /** @type {?} */
         const filterContainer = this.filterManagerFactory.create(false);
@@ -29316,7 +34619,7 @@ class StructureAggregateFactory extends AggregateFactory {
         /** @type {?} */
         const searchManager = this.searchManagerFactory.create();
         /** @type {?} */
-        const structureAggregate = new StructureAggregate(structureId, paging, formationAggregate, source, verticalFormation, summariesManager, sorterContainer, filterContainer, searchManager, fieldContainer);
+        const structureAggregate = new StructureAggregate(structureId, paging, source, verticalFormation, summariesManager, sorterContainer, filterContainer, new UniqueFilterManager(), searchManager, fieldContainer);
         this.init(structureAggregate);
         return structureAggregate;
     }
@@ -29335,7 +34638,6 @@ StructureAggregateFactory.decorators = [
 StructureAggregateFactory.ctorParameters = () => [
     { type: PagingManagerFactory },
     { type: SourceManagerFactory },
-    { type: FormationAggregateFactory },
     { type: VerticalFormationFactory },
     { type: SummariesManagerFactory },
     { type: FilterManagerFactory },
@@ -29353,11 +34655,6 @@ if (false) {
      * @private
      */
     StructureAggregateFactory.prototype.sourceManagerFactory;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureAggregateFactory.prototype.formationAggregateFactory;
     /**
      * @type {?}
      * @private
@@ -29384,427 +34681,6 @@ if (false) {
      */
     StructureAggregateFactory.prototype.fieldCollectionFactory;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SetFormationCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SetFormationCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new FormationSetEvent(command.getAggregateId()));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        // missing implementation
-    }
-}
-SetFormationCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SetFormationCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SetFormationCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ToggleSelectedRowCommandHandler {
-    /**
-     * @param {?} structureAggregateRepository
-     * @param {?} domainEventPublisher
-     */
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return ToggleSelectedRowCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new SelectedRowToggledEvent(command.getAggregateId()));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const formation = aggregate.getFormation();
-        /** @type {?} */
-        const selectedRow = command.getSelectedRow();
-        formation.toggleRow(selectedRow);
-    }
-}
-ToggleSelectedRowCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ToggleSelectedRowCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleSelectedRowCommandHandler.prototype.structureAggregateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleSelectedRowCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const commandProviders$1 = [
-    FormationDispatcher,
-    FormationAggregateFactory
-];
-/** @type {?} */
-const readProviders$1 = [
-    FormationRepository
-];
-/** @type {?} */
-const formationCommandHandlers = [
-    ...HermesModule.registerCommandHandler(SetFormationCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, 'StructureAggregate')
-];
-/** @type {?} */
-const formationProviders = [
-    ...commandProviders$1,
-    ...readProviders$1,
-    FormationEventService,
-    FormationConverter,
-    StructureFormationDispatcher,
-    StructureFormationWarehouse
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SetOriginCommandHandler {
-    /**
-     * @param {?} structureSourceDomainEventPublisher
-     */
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SetOriginCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const aggregateEvents = aggregate.getEvents();
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const items = command.getItems();
-        structure.setOrigin(items);
-    }
-}
-SetOriginCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SetOriginCommandHandler.ctorParameters = () => [
-    { type: StructureSourceDomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SetOriginCommandHandler.prototype.structureSourceDomainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureEditSourceItemCommandHandler {
-    /**
-     * @param {?} structureSourceDomainEventPublisher
-     */
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return StructureEditSourceItemCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const aggregateEvents = aggregate.getEvents();
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const params = command.getParams();
-        structure.editItem(params);
-    }
-}
-StructureEditSourceItemCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureEditSourceItemCommandHandler.ctorParameters = () => [
-    { type: StructureSourceDomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureEditSourceItemCommandHandler.prototype.structureSourceDomainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureOriginChangedEventHandler {
-    /**
-     * @param {?} structureSourceOriginRepository
-     */
-    constructor(structureSourceOriginRepository) {
-        this.structureSourceOriginRepository = structureSourceOriginRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return OriginSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('OriginSetEvent')) {
-            /** @type {?} */
-            const origin = event.getOrigin();
-            this.structureSourceOriginRepository.setOrigin(origin, event.getAggregateId());
-        }
-    }
-}
-StructureOriginChangedEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureOriginChangedEventHandler.ctorParameters = () => [
-    { type: StructureSourceOriginRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureOriginChangedEventHandler.prototype.structureSourceOriginRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SourceSetLoadingCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SourceSetLoadingCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new SetSourceLoadingEvent(command.getAggregateId()));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const enabled = command.isEnabled();
-        /** @type {?} */
-        const source = aggregate.getSource();
-        source.setLoading(enabled);
-    }
-}
-SourceSetLoadingCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SourceSetLoadingCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SourceSetLoadingCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructurePreparedItemsEventHandler {
-    /**
-     * @param {?} structurePreparedItemsRepository
-     */
-    constructor(structurePreparedItemsRepository) {
-        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return StructurePreparedEntitiesSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('StructurePreparedEntitiesSetEvent')) {
-            /** @type {?} */
-            const preparedItems = event.getPreparedItems();
-            this.structurePreparedItemsRepository.setItems(preparedItems, event.getAggregateId());
-        }
-    }
-}
-StructurePreparedItemsEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructurePreparedItemsEventHandler.ctorParameters = () => [
-    { type: StructurePreparedItemsRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructurePreparedItemsEventHandler.prototype.structurePreparedItemsRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const commandProviders$2 = [
-    SourceDispatcher,
-    SourceManagerFactory,
-    StructureSourceDomainEventPublisher
-];
-/** @type {?} */
-const readProviders$2 = [
-    StructureSourceOriginRepository,
-    StructurePreparedItemsRepository
-];
-/** @type {?} */
-const sourceCommandHandlers = [
-    ...HermesModule.registerCommandHandler(SourceSetLoadingCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(SetOriginCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(StructureEditSourceItemCommandHandler, 'StructureAggregate')
-];
-/** @type {?} */
-const sourceDomainEventHandlers = [
-    ...HermesModule.registerDomainEventHandler(StructureOriginChangedEventHandler),
-    ...HermesModule.registerDomainEventHandler(StructurePreparedItemsEventHandler)
-];
-/** @type {?} */
-const sourceProviders = [
-    ...commandProviders$2,
-    ...readProviders$2,
-    SourceConverter,
-    SourceCommandDispatcher,
-    StructureSourceWarehouse,
-    SourceEventService
-];
 
 /**
  * @fileoverview added by tsickle
@@ -30155,21 +35031,16 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const commandProviders$3 = [
+const commandProviders$1 = [
     ...inMemoryStructureCommandProviders,
     VerticalFormationFactory,
-    FilterManagerFactory,
-    StructureFilterCommandDispatcher,
     ...summariesProviders
 ];
 /** @type {?} */
-const readProviders$3 = [
+const readProviders$1 = [
     ...inMemoryStructureReadProviders,
     VerticalFormationConverter,
     VerticalFormationRepository,
-    StructureFilterWarehouse,
-    StructureFilterRepository,
-    StructureQuickFilterRepository,
     StructureSummariesRepository,
     StructureSummariesWarehouse
 ];
@@ -30178,9 +35049,6 @@ const structureCommandHandlers = [
     ...HermesModule.registerCommandHandler(SetVerticalScrollEnabledCommandHandler, 'StructureAggregate'),
     ...HermesModule.registerCommandHandler(SetRowHeightBasedOnThemeCommandHandler, 'StructureAggregate'),
     ...HermesModule.registerCommandHandler(SetScrollPositionCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(StructureSetConfigFilterCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(StructureSetConfigQuickFilterCommandHandler, 'StructureAggregate'),
-    ...HermesModule.registerCommandHandler(StructureToggleFilterCommandHandler, 'StructureAggregate'),
     ...HermesModule.registerCommandHandler(StructureSetSummariesEnabledCommandHandler, 'StructureAggregate'),
     ...HermesModule.registerCommandHandler(SetRowHeightCommandHandler, 'StructureAggregate'),
     ...HermesModule.registerCommandHandler(StructureSetHeightCommandHandler, 'StructureAggregate')
@@ -30189,24 +35057,20 @@ const structureCommandHandlers = [
 const structureDomainEventHandlers = [
     ...HermesModule.registerDomainEventHandler(StructureSummariesEnabledSetEventHandler),
     ...HermesModule.registerDomainEventHandler(StructureCreatedEventHandler),
-    ...HermesModule.registerDomainEventHandler(FieldsInitedEventHandler),
-    ...HermesModule.registerDomainEventHandler(StructureConfigQuickFilterSetEventHandler),
-    ...HermesModule.registerDomainEventHandler(StructureConfigFilterSetEventHandler),
+    ...HermesModule.registerDomainEventHandler(FieldsInitedEventHandler)
 ];
 /** @type {?} */
 const structureProviders = [
     ...inMemoryStructureProviders,
-    ...commandProviders$3,
-    ...readProviders$3,
+    ...commandProviders$1,
+    ...readProviders$1,
     StructureSummariesCommandDispatcher,
     StructureSummariesUiEventsRepository,
     StructureAggregateFactory,
     StructureReadModelRootConverter,
     StructureVerticalFormationWarehouse,
     StructureWarehouse,
-    StructureCommandDispatcher,
-    ...formationProviders,
-    ...sourceProviders
+    StructureCommandDispatcher
 ];
 
 /**
@@ -30306,7 +35170,7 @@ StructureTopPanelComponent.decorators = [
                 template: `
 
 		<gui-search-bar></gui-search-bar>
-<!--		<gui-structure-filter-menu-trigger></gui-structure-filter-menu-trigger>-->
+<!--		<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30320,233 +35184,6 @@ StructureTopPanelComponent.ctorParameters = () => [];
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const selector$2 = 'gui-structure-filter-icon';
-class StructureFilterIconComponent {
-}
-StructureFilterIconComponent.decorators = [
-    { type: Component, args: [{
-                selector: selector$2,
-                template: `
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.23">
-			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
-			<line class="cls-1" x1="8.14" y1="3.62" x2="2.18" y2="3.62"/>
-			<line class="cls-1" x1="6.71" y1="6.48" x2="3.62" y2="6.48"/>
-		</svg>
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class]': `"${selector$2}"`
-                }
-            }] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureFilterMenuComponent {
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    onColumnSelect(value) {
-        this.selectedColumnId = value;
-    }
-}
-StructureFilterMenuComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-structure-filter-menu',
-                template: `
-		
-		<gui-structure-column-selector
-				(columnSelected)="onColumnSelect($event)">
-		</gui-structure-column-selector>
-		
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-filter-menu]': 'true'
-                }
-            }] }
-];
-if (false) {
-    /** @type {?} */
-    StructureFilterMenuComponent.prototype.selectedColumnId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureFilterMenuTriggerComponent {
-    /**
-     * @param {?} injector
-     * @param {?} drawerService
-     * @param {?} structureComponent
-     */
-    constructor(injector, drawerService, structureComponent) {
-        this.injector = injector;
-        this.drawerService = drawerService;
-        this.structureComponent = structureComponent;
-    }
-    /**
-     * @return {?}
-     */
-    openDrawer() {
-        /** @type {?} */
-        const structureElement = this.structureComponent.getElementRef();
-        this.drawerService.open(structureElement, StructureFilterMenuComponent, { injector: this.injector });
-    }
-}
-StructureFilterMenuTriggerComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-structure-filter-menu-trigger',
-                template: `
-		<div [gui-tooltip]="'Filters'"
-			 (click)="openDrawer()"
-			 class="gui-structure-filter-icon-wrapper">
-			<gui-structure-filter-icon></gui-structure-filter-icon>
-		</div>
-	`
-            }] }
-];
-/** @nocollapse */
-StructureFilterMenuTriggerComponent.ctorParameters = () => [
-    { type: Injector },
-    { type: FabricDrawerService },
-    { type: StructureComponent, decorators: [{ type: Inject, args: [structureComponentToken,] }] }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterMenuTriggerComponent.prototype.injector;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterMenuTriggerComponent.prototype.drawerService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFilterMenuTriggerComponent.prototype.structureComponent;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureColumnSelectorComponent extends SmartComponent {
-    /**
-     * @param {?} compositionWarehouse
-     */
-    constructor(compositionWarehouse) {
-        super();
-        this.compositionWarehouse = compositionWarehouse;
-        this.columnSelected = new EventEmitter();
-        this.columns = [];
-        this.options = [];
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        this.compositionWarehouse
-            .onHeaderColumns()
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} columns
-         * @return {?}
-         */
-        (columns) => {
-            this.columns = columns;
-            this.options = columns.map((/**
-             * @param {?} column
-             * @return {?}
-             */
-            (column) => column.getColumnDefinitionId().toString()));
-        }));
-    }
-    /**
-     * @param {?} columnId
-     * @return {?}
-     */
-    onSelectChange(columnId) {
-        this.columnSelected.emit(columnId);
-    }
-}
-StructureColumnSelectorComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-structure-column-selector',
-                template: `
-
-		<gui-select
-				[options]="options"
-				(optionChanged)="onSelectChange($event)">
-		</gui-select>
-
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-/** @nocollapse */
-StructureColumnSelectorComponent.ctorParameters = () => [
-    { type: CompositionWarehouse }
-];
-StructureColumnSelectorComponent.propDecorators = {
-    columnSelected: [{ type: Output }]
-};
-if (false) {
-    /** @type {?} */
-    StructureColumnSelectorComponent.prototype.columnSelected;
-    /** @type {?} */
-    StructureColumnSelectorComponent.prototype.columns;
-    /** @type {?} */
-    StructureColumnSelectorComponent.prototype.options;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnSelectorComponent.prototype.compositionWarehouse;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class StructureFilterMenuModule {
-}
-StructureFilterMenuModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    FabricModule
-                ],
-                declarations: [
-                    StructureFilterIconComponent,
-                    StructureFilterMenuComponent,
-                    StructureFilterMenuTriggerComponent,
-                    StructureColumnSelectorComponent
-                ],
-                exports: [
-                    StructureFilterMenuTriggerComponent
-                ],
-                entryComponents: [
-                    StructureFilterMenuComponent
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class StructureTopPanelModule {
 }
 StructureTopPanelModule.decorators = [
@@ -30554,7 +35191,7 @@ StructureTopPanelModule.decorators = [
                 imports: [
                     CommonModule,
                     ReactiveFormsModule,
-                    StructureFilterMenuModule,
+                    FilterMenuFeatureModule,
                     SearchFeatureModule
                 ],
                 declarations: [
@@ -31036,6 +35673,177 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class UniqueValueListComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} filterWarehouse
+     * @param {?} filterCommandDispatcher
+     */
+    constructor(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.filterWarehouse = filterWarehouse;
+        this.filterCommandDispatcher = filterCommandDispatcher;
+        this.uniqueValues = [];
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.filterWarehouse
+            .onUniqueValues(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} uniqueValuesReadModel
+         * @return {?}
+         */
+        (uniqueValuesReadModel) => {
+            this.uniqueValues = uniqueValuesReadModel.getValues(this.fieldId);
+            this.selectAllChecked = uniqueValuesReadModel.isSelectAllChecked(this.fieldId);
+            this.selectAllIndeterminate = uniqueValuesReadModel.isIndeterminate(this.fieldId);
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    toggleAllSelect() {
+        event.stopPropagation();
+        if (this.selectAllChecked) {
+            this.filterCommandDispatcher.unselectAllUniqueFilter(this.fieldId, this.structureId);
+        }
+        else {
+            this.filterCommandDispatcher.selectAllUniqueFilter(this.fieldId, this.structureId);
+        }
+    }
+    /**
+     * @param {?} uniqueValueReadModel
+     * @return {?}
+     */
+    toggleSelect(uniqueValueReadModel) {
+        event.stopPropagation();
+        if (uniqueValueReadModel.isEnabled()) {
+            this.filterCommandDispatcher.unselectUniqueFilter(this.fieldId, uniqueValueReadModel.getId(), this.structureId);
+        }
+        else {
+            this.filterCommandDispatcher.selectUniqueFilter(this.fieldId, uniqueValueReadModel.getId(), this.structureId);
+        }
+    }
+    /**
+     * @return {?}
+     */
+    clearFilters() {
+        this.filterCommandDispatcher.selectAllUniqueFilter(this.fieldId, this.structureId);
+    }
+}
+UniqueValueListComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-unique-value-list',
+                template: `
+
+		<gui-checkbox [checked]="selectAllChecked"
+					  [indeterminate]="selectAllIndeterminate"
+					  (changed)="toggleAllSelect()">
+			Select all
+		</gui-checkbox>
+		<div class="gui-unique-value-list">
+			<div *ngFor="let value of uniqueValues">
+				<gui-checkbox [checked]="value.isEnabled()"
+							  (changed)="toggleSelect(value)">
+					{{value.getValue()}}
+				</gui-checkbox>
+			</div>
+		</div>
+		
+		<div class="gui-unique-value-list-actions">
+<!--			<button gui-button-->
+<!--					[outline]="true"-->
+<!--					(click)="clearFilters()">-->
+<!--				Cancel-->
+<!--			</button>-->
+			
+			<button gui-button
+					[outline]="true"
+					[primary]="true"
+					(click)="clearFilters()">
+				Clear
+			</button>
+		</div>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+                styles: [".gui-unique-value-list{max-height:300px;overflow-y:scroll;overflow-x:hidden}.gui-unique-value-list-actions{padding:8px;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}"]
+            }] }
+];
+/** @nocollapse */
+UniqueValueListComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: FilterWarehouse },
+    { type: FilterCommandDispatcher }
+];
+UniqueValueListComponent.propDecorators = {
+    fieldId: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    UniqueValueListComponent.prototype.fieldId;
+    /** @type {?} */
+    UniqueValueListComponent.prototype.selectAllChecked;
+    /** @type {?} */
+    UniqueValueListComponent.prototype.selectAllIndeterminate;
+    /** @type {?} */
+    UniqueValueListComponent.prototype.uniqueValues;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueListComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueListComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueListComponent.prototype.filterWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueListComponent.prototype.filterCommandDispatcher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValueListModule {
+}
+UniqueValueListModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    fabricImports
+                ],
+                declarations: [
+                    UniqueValueListComponent
+                ],
+                exports: [
+                    UniqueValueListComponent
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 const declarations$1 = [
     StructureColumnConfigComponent,
@@ -31053,7 +35861,8 @@ StructureColumnMenuModule.decorators = [
                 imports: [
                     CommonModule,
                     fabricImports,
-                    StructureColumnManagerModule
+                    StructureColumnManagerModule,
+                    UniqueValueListModule
                 ],
                 declarations: declarations$1,
                 exports: declarations$1
@@ -31243,7 +36052,7 @@ StructureSummariesPanelComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: StructureId },
     { type: StructureSummariesUiEventsRepository },
-    { type: StructureSourceWarehouse },
+    { type: SourceWarehouse },
     { type: CompositionWarehouse }
 ];
 StructureSummariesPanelComponent.propDecorators = {
@@ -31327,14 +36136,14 @@ class CreateStructureCommandHandler {
     /**
      * @return {?}
      */
-    getAggregateRepository() {
-        return this.structureAggregateRepository;
+    forCommand() {
+        return CreateStructureCommand;
     }
     /**
      * @return {?}
      */
-    forCommand() {
-        return CreateStructureCommand;
+    getAggregateRepository() {
+        return this.structureAggregateRepository;
     }
     /**
      * @param {?} aggregate
@@ -32116,6 +36925,48 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class SchemaVerticalGridSetEventHandler {
+    /**
+     * @param {?} schemaVerticalGridRepository
+     */
+    constructor(schemaVerticalGridRepository) {
+        this.schemaVerticalGridRepository = schemaVerticalGridRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return SchemaVerticalGridSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('SchemaVerticalGridSetEvent')) {
+            this.schemaVerticalGridRepository.next(event.getAggregateId(), event.getVerticalGrid());
+        }
+    }
+}
+SchemaVerticalGridSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SchemaVerticalGridSetEventHandler.ctorParameters = () => [
+    { type: SchemaVerticalGridRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SchemaVerticalGridSetEventHandler.prototype.schemaVerticalGridRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 const schemaKey = 'SchemaAggregate';
 class SchemaModule {
@@ -32133,7 +36984,7 @@ SchemaModule.decorators = [
                         ...HermesModule.registerDomainEventHandler(SchemaThemeSetEventHandler),
                         ...HermesModule.registerDomainEventHandler(SchemaHorizontalGridSetEventHandler),
                         ...HermesModule.registerDomainEventHandler(SchemaRowColoringSetEventHandler),
-                        ...HermesModule.registerDomainEventHandler(SchemaThemeSetEventHandler),
+                        ...HermesModule.registerDomainEventHandler(SchemaVerticalGridSetEventHandler),
                         ...HermesModule.registerMultiDomainEventHandler(SchemaCssClassesEventHandler)
                     ])
                 ],
@@ -32153,7 +37004,7 @@ SchemaModule.decorators = [
                     SchemaThemeRepository,
                     SchemaHorizontalGridRepository,
                     SchemaRowColoringRepository,
-                    SchemaVerticalGridRepository,
+                    SchemaVerticalGridRepository
                 ]
             },] }
 ];
@@ -32465,6 +37316,1313 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class ToggleFilterCommand extends Command {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     * @param {?} externalFilterId
+     * @param {?} filterValue
+     */
+    constructor(structureId, fieldId, externalFilterId, filterValue) {
+        super(structureId, 'ToggleFilterCommand');
+        this.fieldId = fieldId;
+        this.externalFilterId = externalFilterId;
+        this.filterValue = filterValue;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getExternalFilterId() {
+        return this.externalFilterId;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterValue() {
+        return this.filterValue;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.externalFilterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.filterValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ToggleFilterCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return ToggleFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const externalFieldId = command.getExternalFilterId();
+        /** @type {?} */
+        const filterValue = command.getFilterValue();
+        aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
+    }
+}
+ToggleFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ToggleFilterCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AddFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return AddFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const filterTypeId = command.getFilterTypeId();
+        /** @type {?} */
+        const value = command.getValue();
+        structure.addFilter(fieldId, filterTypeId, value);
+    }
+}
+AddFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+AddFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RemoveAllFiltersCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return RemoveAllFiltersCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        structure.removeAllFilters();
+    }
+}
+RemoveAllFiltersCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RemoveAllFiltersCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RemoveAllFiltersCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RemoveFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return RemoveFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const filterId = command.getFilterId();
+        structure.removeFilter(filterId);
+    }
+}
+RemoveFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RemoveFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RemoveFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigFilterSetEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} enabled
+     */
+    constructor(aggregateId, enabled) {
+        super(aggregateId, 'ConfigFilterSetEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigFilterSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetConfigFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetConfigFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const filterConfig = command.getConfig();
+        this.domainEventPublisher.publish(new ConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const filterConfig = command.getConfig();
+        aggregate.setFilterConfig(filterConfig);
+    }
+}
+SetConfigFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetConfigFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigQuickFilterSetEvent extends DomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} enabled
+     */
+    constructor(aggregateId, enabled) {
+        super(aggregateId, 'ConfigQuickFilterSetEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigQuickFilterSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetConfigQuickFilterCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetConfigQuickFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const structureId = command.getAggregateId();
+        /** @type {?} */
+        const quickFiltersConfig = command.getConfig();
+        this.domainEventPublisher.publish(new ConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const quickFiltersConfig = command.getConfig();
+        aggregate.setQuickFiltersConfig(quickFiltersConfig);
+    }
+}
+SetConfigQuickFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetConfigQuickFilterCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigQuickFilterSetEventHandler {
+    /**
+     * @param {?} structureQuickFilterRepository
+     */
+    constructor(structureQuickFilterRepository) {
+        this.structureQuickFilterRepository = structureQuickFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ConfigQuickFilterSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('ConfigQuickFilterSetEvent')) {
+            this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+        }
+    }
+}
+ConfigQuickFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ConfigQuickFilterSetEventHandler.ctorParameters = () => [
+    { type: QuickFilterEnabledRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigFilterSetEventHandler {
+    /**
+     * @param {?} structureFilterRepository
+     */
+    constructor(structureFilterRepository) {
+        this.structureFilterRepository = structureFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ConfigFilterSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('ConfigFilterSetEvent')) {
+            this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+        }
+    }
+}
+ConfigFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ConfigFilterSetEventHandler.ctorParameters = () => [
+    { type: FilterEnabledRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigFilterSetEventHandler.prototype.structureFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeMap {
+    // = new WeakMap<FieldId, Array<FilterTypeReadModel>>();
+    /**
+     * @param {?} map
+     */
+    constructor(map) {
+        this.map = map;
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    getFilterTypes(fieldId) {
+        return this.map.get(fieldId.toString());
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeMap.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeConfigFilterSetEventHandler {
+    /**
+     * @param {?} filterTypeRepository
+     */
+    constructor(filterTypeRepository) {
+        this.filterTypeRepository = filterTypeRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return FilterTypesInitedEvent;
+    }
+    /**
+     * @param {?} filterTypesInitedEvent
+     * @return {?}
+     */
+    handle(filterTypesInitedEvent) {
+        if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
+            /** @type {?} */
+            const map = filterTypesInitedEvent.getMap();
+            this.filterTypeRepository.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
+        }
+    }
+}
+FilterTypeConfigFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FilterTypeConfigFilterSetEventHandler.ctorParameters = () => [
+    { type: FilterTypeRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeConfigFilterSetEventHandler.prototype.filterTypeRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFiltersSetEventHandler {
+    /**
+     * @param {?} activeFilterRepository
+     */
+    constructor(activeFilterRepository) {
+        this.activeFilterRepository = activeFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ActiveFiltersSetEvent;
+    }
+    /**
+     * @param {?} activeFiltersSetEvent
+     * @return {?}
+     */
+    handle(activeFiltersSetEvent) {
+        if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
+            /** @type {?} */
+            let activeFilters = activeFiltersSetEvent.getFilters();
+            this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
+        }
+    }
+}
+ActiveFiltersSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ActiveFiltersSetEventHandler.ctorParameters = () => [
+    { type: ActiveFilterRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValuesReadModel {
+    /**
+     * @param {?} map
+     */
+    constructor(map) {
+        this.map = new Map();
+        this.allSelected = new Map();
+        this.allDisabled = new Map();
+        this.map = map;
+        this.calculateSelection();
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    getValues(fieldId) {
+        return this.map.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    areAllSelected(fieldId) {
+        return this.allSelected.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    areAllDisabled(fieldId) {
+        return this.allDisabled.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    isSelectAllChecked(fieldId) {
+        return this.areAllSelected(fieldId);
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    isIndeterminate(fieldId) {
+        return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculateSelection() {
+        for (let key of Array.from(this.map.keys())) {
+            /** @type {?} */
+            const values = this.map.get(key);
+            this.allSelected.set(key, !values.some((/**
+             * @param {?} r
+             * @return {?}
+             */
+            (r) => !r.isEnabled())));
+            this.allDisabled.set(key, !values.some((/**
+             * @param {?} r
+             * @return {?}
+             */
+            (r) => r.isEnabled())));
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.map;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.allDisabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValueReadModel {
+    /**
+     * @param {?} id
+     * @param {?} value
+     * @param {?} enabled
+     */
+    constructor(id, value, enabled) {
+        this.id = id;
+        this.value = value;
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.id;
+    }
+    /**
+     * @return {?}
+     */
+    getValue() {
+        return this.value;
+    }
+    /**
+     * @return {?}
+     */
+    geDisplayValue() {
+        return this.displayValue;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.id;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.value;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.displayValue;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterCalculatedEventHandler {
+    /**
+     * @param {?} uniqueValuesRepository
+     */
+    constructor(uniqueValuesRepository) {
+        this.uniqueValuesRepository = uniqueValuesRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return UniqueFilterCalculatedEvent;
+    }
+    /**
+     * @param {?} calculatedEvent
+     * @return {?}
+     */
+    handle(calculatedEvent) {
+        if (calculatedEvent.ofMessageType('UniqueFilterCalculatedEvent')) {
+            /** @type {?} */
+            let uvRM = new Map();
+            calculatedEvent.getUniqueValues()
+                .forEach((/**
+             * @param {?} values
+             * @param {?} key
+             * @return {?}
+             */
+            (values, key) => {
+                /** @type {?} */
+                const valuesRM = values.map((/**
+                 * @param {?} uv
+                 * @return {?}
+                 */
+                (uv) => {
+                    return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
+                }));
+                uvRM.set(key, valuesRM);
+            }));
+            /** @type {?} */
+            let uniqueValues = new UniqueValuesReadModel(uvRM);
+            this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
+        }
+    }
+}
+UniqueFilterCalculatedEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UniqueFilterCalculatedEventHandler.ctorParameters = () => [
+    { type: UniqueValuesRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterCalculatedEventHandler.prototype.uniqueValuesRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+// TODO Remove
+class FilterTypeFieldsInitedEventHandler {
+    // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
+    // 			private readonly domainEventPublisher: DomainEventPublisher) {
+    // }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return FieldsInitedEvent;
+    }
+    /**
+     * @param {?} fieldsInitedEvent
+     * @return {?}
+     */
+    handle(fieldsInitedEvent) {
+        // if (fieldsInitedEvent.ofMessageType('FieldsInitedEvent')) {
+        //
+        // 	const fields = fieldsInitedEvent.getFields();
+        //
+        // 	const manager = new FilterTypeManager(fields);
+        //
+        // 	this.filterTypeManagerRepository.next(fieldsInitedEvent.getAggregateId(), manager);
+        //
+        // 	this.domainEventPublisher.publish(new FilterTypesInitedEvent(fieldsInitedEvent.getAggregateId(), manager.getFieldIdsToFieldTypes()));
+        // }
+    }
+}
+FilterTypeFieldsInitedEventHandler.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectAllUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return UnselectAllUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        structure.unselectAllUniqueFilter(fieldId);
+    }
+}
+UnselectAllUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UnselectAllUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return UnselectUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const uniqueValueId = command.getUniqueValueId();
+        structure.unselectUniqueFilter(fieldId, uniqueValueId);
+    }
+}
+UnselectUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UnselectUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SelectAllUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        structure.selectAllUniqueFilter(fieldId);
+    }
+}
+SelectAllUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectAllUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SelectUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const uniqueValueId = command.getUniqueValueId();
+        structure.selectUniqueFilter(fieldId, uniqueValueId);
+    }
+}
+SelectUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterDomainModule extends DomainModule {
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    static commandHandlers() {
+        return [
+            ...HermesModule.registerCommandHandler(SetConfigFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SetConfigQuickFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(ToggleFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(AddFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(RemoveAllFiltersCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(RemoveFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SelectUniqueFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(SelectAllUniqueFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(UnselectUniqueFilterCommandHandler, 'StructureAggregate'),
+            ...HermesModule.registerCommandHandler(UnselectAllUniqueFilterCommandHandler, 'StructureAggregate')
+        ];
+    }
+    /**
+     * @return {?}
+     */
+    static domainEventHandlers() {
+        return [
+            ...HermesModule.registerDomainEventHandler(ConfigQuickFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(ConfigFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(FilterTypeConfigFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(ActiveFiltersSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(UniqueFilterCalculatedEventHandler),
+            ...HermesModule.registerDomainEventHandler(FilterTypeFieldsInitedEventHandler)
+        ];
+    }
+}
+FilterDomainModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                providers: [
+                    FilterManagerFactory
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+/** @nocollapse */
+FilterDomainModule.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterApiModule extends ApiModule {
+}
+FilterApiModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FilterDomainModule
+                ],
+                providers: [
+                    FilterCommandDispatcher,
+                    FilterWarehouse,
+                    FilterTypeRepository,
+                    ActiveFilterRepository,
+                    UniqueValuesRepository,
+                    FilterEnabledRepository,
+                    QuickFilterEnabledRepository
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllComponent extends SmartComponent {
+    /**
+     * @param {?} changeDetectorRef
+     * @param {?} structureId
+     * @param {?} rowSelectionModeRepository
+     * @param {?} formationCommandDispatcher
+     * @param {?} formationWarehouse
+     */
+    constructor(changeDetectorRef, structureId, rowSelectionModeRepository, formationCommandDispatcher, formationWarehouse) {
+        super();
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureId = structureId;
+        this.rowSelectionModeRepository = rowSelectionModeRepository;
+        this.formationCommandDispatcher = formationCommandDispatcher;
+        this.formationWarehouse = formationWarehouse;
+        this.modeMulti = false;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.formationWarehouse
+            .onMode(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} mode
+         * @return {?}
+         */
+        (mode) => {
+            this.modeMulti = mode === RowSelectionMode.MULTIPLE;
+            this.changeDetectorRef.detectChanges();
+        }));
+        this.formationWarehouse
+            .onRowSelectedReadModel(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} rowSelectedReadModel
+         * @return {?}
+         */
+        (rowSelectedReadModel) => {
+            this.selectAllChecked = rowSelectedReadModel.isAllSelected();
+            this.selectAllIndeterminate = rowSelectedReadModel.isIndeterminate();
+            this.changeDetectorRef.detectChanges();
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    toggleSelectAll() {
+        if (this.selectAllIndeterminate) {
+            this.formationCommandDispatcher.unselectAll(this.structureId);
+        }
+        else {
+            if (this.selectAllChecked) {
+                this.formationCommandDispatcher.unselectAll(this.structureId);
+            }
+            else {
+                this.formationCommandDispatcher.selectAll(this.structureId);
+            }
+        }
+    }
+}
+SelectAllComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'gui-select-all',
+                template: `
+
+		<gui-checkbox *ngIf="modeMulti"
+					  [checked]="selectAllChecked"
+					  [indeterminate]="selectAllIndeterminate"
+					  [gui-tooltip]="'Select'"
+					  (changed)="toggleSelectAll()">
+		</gui-checkbox>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush
+            }] }
+];
+/** @nocollapse */
+SelectAllComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: StructureId },
+    { type: RowSelectionModeRepository },
+    { type: FormationCommandDispatcher },
+    { type: FormationWarehouse }
+];
+if (false) {
+    /** @type {?} */
+    SelectAllComponent.prototype.selectAllChecked;
+    /** @type {?} */
+    SelectAllComponent.prototype.selectAllIndeterminate;
+    /** @type {?} */
+    SelectAllComponent.prototype.modeMulti;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllComponent.prototype.rowSelectionModeRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllComponent.prototype.formationCommandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllComponent.prototype.formationWarehouse;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @return {?}
  */
@@ -32479,17 +38637,18 @@ const imports = [
     ReactiveFormsModule,
     HermesModule,
     HermesModule.defineAggregate(structureKey, StructureAggregateFactory, InMemoryStructureAggregateRepository, CreateStructureCommandHandler, [
-        ...formationCommandHandlers,
         ...PagingDomainModule.commandHandlers(),
         ...SortingDomainModule.commandHandlers(),
         ...FieldDomainModule.commandHandlers(),
         ...SearchDomainModule.commandHandlers(),
-        ...sourceCommandHandlers,
+        ...FilterDomainModule.commandHandlers(),
+        ...SourceDomainModule.commandHandlers(),
         ...structureCommandHandlers
     ], [
         ...structureDomainEventHandlers,
-        ...sourceDomainEventHandlers,
-        ...SearchDomainModule.domainEventHandlers()
+        ...SearchDomainModule.domainEventHandlers(),
+        ...FilterDomainModule.domainEventHandlers(),
+        ...SourceDomainModule.domainEventHandlers()
     ]),
     // .withConfig({
     // 	loggers: false
@@ -32500,11 +38659,14 @@ const imports = [
     FieldFeatureModule,
     SearchFeatureModule,
     SearchApiModule,
+    FilterApiModule,
+    SourceApiModule,
     StructureInfoPanelModule,
     StructureSummariesPanelModule,
     StructureTopPanelModule,
     StructureColumnMenuModule,
     StructureColumnManagerModule,
+    StructureSchemaManagerModule,
     EmptySourceFeatureModule,
     CompositionModule,
     SchemaModule,
@@ -32517,6 +38679,7 @@ const declarations$2 = [
     StructureHeaderColumnsComponent,
     StructureHeaderFiltersComponent,
     StructureHeaderFilterComponent,
+    SelectAllComponent,
     StructureContentComponent,
     StructureRowComponent,
     StructureCellComponent,
@@ -32547,7 +38710,7 @@ const providers = [
     },
     ItemEntityFactory,
     StructureThemeConverter,
-    StructureSourceWarehouse,
+    SourceWarehouse,
     StructureIdGenerator,
     ...structureProviders
 ];
@@ -32711,5 +38874,5 @@ GuiListModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GuiListComponent, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, Logger as ɵba, SetPagingCommandHandler as ɵbb, StructureAggregateRepository as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, PagingCommandDispatcher as ɵbg, PagingWarehouse as ɵbh, PagingRepository as ɵbi, StructureReadModelRepository as ɵbj, PagingEventRepository as ɵbk, PagingConverter as ɵbl, PagingComponent as ɵbm, SmartComponent as ɵbn, StructureSourceWarehouse as ɵbo, StructurePreparedItemsRepository as ɵbp, StructureSourceOriginRepository as ɵbq, PagingDisplayModeArchive as ɵbr, PagingNavigatorComponent as ɵbs, PagingSelectComponent as ɵbt, PagingStatsComponent as ɵbu, PureComponent as ɵbv, AlternativePagingNavigatorComponent as ɵbw, AlternativePagingPagesComponent as ɵbx, SearchFeatureModule as ɵby, SearchIconComponent as ɵbz, ListViewApiModule as ɵc, SearchComponent as ɵca, StructureId as ɵcb, SearchCommandDispatcher as ɵcc, SearchDispatcher as ɵcd, SearchHighlightArchive as ɵce, SearchPlaceholderArchive as ɵcf, StructureWarehouse as ɵcg, SearchWarehouse as ɵch, SearchingRepository as ɵci, SearchPhraseRepository as ɵcj, StructureVerticalFormationWarehouse as ɵck, VerticalFormationRepository as ɵcl, InMemoryStructureReadStore as ɵcm, InMemoryStructureStore as ɵcn, StructureReadModelRootConverter as ɵco, FormationConverter as ɵcp, SourceConverter as ɵcq, VerticalFormationConverter as ɵcr, SearchApiModule as ɵcs, SearchDomainModule as ɵct, SearchManagerFactory as ɵcu, SetConfigSearchingCommandHandler as ɵcv, StructureSetSearchPhraseCommandHandler as ɵcw, StructureSourceDomainEventPublisher as ɵcx, SearchPhraseSetEventHandler as ɵcy, ConfigSearchingSetEventHandler as ɵcz, ListViewAggregateFactory as ɵd, SearchEventRepository as ɵda, EmptySourceFeatureModule as ɵdb, EmptySourceComponent as ɵdc, listViewIdFactory as ɵdd, ListViewComponent as ɵde, ListViewGateway as ɵdf, SourceCommandDispatcher as ɵdg, SourceDispatcher as ɵdh, FieldUiRepository as ɵdi, FieldUiArchive as ɵdj, structureIdFactory as ɵdk, compositionIdFactory as ɵdl, schemaIdFactory as ɵdm, structureComponentSelfProviders as ɵdn, StructureComponent as ɵdo, StructureIdGenerator as ɵdp, ListViewReadModelRootId as ɵdq, listViewProviders as ɵdr, ListViewTemplateArchive as ɵds, ListViewCardTemplateArchive as ɵdt, localProviders as ɵdu, provideComponentServices as ɵdv, LocalPagingCommandDispatcher as ɵdw, Override as ɵdx, LocalPagingWarehouse as ɵdy, StructureFormationDispatcher as ɵdz, InMemoryListViewAggregateRepository as ɵe, FormationDispatcher as ɵea, LocalFormationCommandDispatcher as ɵeb, StructureFormationWarehouse as ɵec, FormationRepository as ɵed, LocalFormationWarehouse as ɵee, LocalStructureWarehouse as ɵef, LocalSourceCommandDispatcher as ɵeg, LocalSourceWarehouse as ɵeh, LocalStructureSearchCommandDispatcher as ɵei, LocalStructureVerticalFormationWarehouse as ɵej, StructureCommandDispatcher as ɵek, StructureFilterCommandDispatcher as ɵel, ListViewItemComponent as ɵem, ListViewLayoutComponent as ɵen, ListViewSourceComponent as ɵeo, ListViewContainerCardComponent as ɵep, ListViewCardItemComponent as ɵeq, ListViewContainerModeSelectComponent as ɵer, listViewGatewayDeclarations as ɵes, ListViewPagingGate as ɵet, Gate as ɵeu, ListViewModeGate as ɵev, ListViewTemplateGate as ɵew, ListViewFieldGate as ɵex, FieldCommandDispatcher as ɵey, ListViewSearchingGate as ɵez, ListViewAggregateRepository as ɵf, createStructureDefinition as ɵfa, StructureModule as ɵfb, StructureAggregateFactory as ɵfc, SourceManagerFactory as ɵfd, FormationAggregateFactory as ɵfe, VerticalFormationFactory as ɵff, SummariesManagerFactory as ɵfg, SUMMARIES_CALCULATORS as ɵfh, SummariesCalculator as ɵfi, FilterManagerFactory as ɵfj, FieldCollectionFactory as ɵfk, FieldFactory as ɵfl, FieldIdGenerator as ɵfm, InMemoryStructureAggregateRepository as ɵfn, InMemoryStructureAggregateStore as ɵfo, CreateStructureCommandHandler as ɵfp, formationCommandHandlers as ɵfq, formationProviders as ɵfr, SetFormationCommandHandler as ɵfs, ToggleSelectedRowCommandHandler as ɵft, SortingDomainModule as ɵfu, ToggleSortCommandHandler as ɵfv, SetSortingCommandHandler as ɵfw, SetSortOrderCommandHandler as ɵfx, FieldDomainModule as ɵfy, InitFieldsCommandHandler as ɵfz, InMemoryListViewAggregateStore as ɵg, sourceCommandHandlers as ɵga, sourceDomainEventHandlers as ɵgb, sourceProviders as ɵgc, SourceSetLoadingCommandHandler as ɵgd, SetOriginCommandHandler as ɵge, StructureEditSourceItemCommandHandler as ɵgf, structureCommandHandlers as ɵgg, structureDomainEventHandlers as ɵgh, structureProviders as ɵgi, SetVerticalScrollEnabledCommandHandler as ɵgj, SetRowHeightBasedOnThemeCommandHandler as ɵgk, SetScrollPositionCommandHandler as ɵgl, StructureSetConfigFilterCommandHandler as ɵgm, StructureSetConfigQuickFilterCommandHandler as ɵgn, StructureToggleFilterCommandHandler as ɵgo, StructureSetSummariesEnabledCommandHandler as ɵgp, SetRowHeightCommandHandler as ɵgq, StructureSetHeightCommandHandler as ɵgr, StructureSummariesEnabledSetEventHandler as ɵgs, StructureSummariesRepository as ɵgt, StructureCreatedEventHandler as ɵgu, FieldsInitedEventHandler as ɵgv, FieldUiConverter as ɵgw, StructureConfigQuickFilterSetEventHandler as ɵgx, StructureQuickFilterRepository as ɵgy, StructureConfigFilterSetEventHandler as ɵgz, InMemoryListViewStore as ɵh, StructureFilterRepository as ɵha, StructureOriginChangedEventHandler as ɵhb, StructurePreparedItemsEventHandler as ɵhc, fabricImports as ɵhd, SortingFeatureModule as ɵhe, SortingApiModule as ɵhf, SortingCommandDispatcher as ɵhg, SortingWarehouse as ɵhh, SortingEventRepository as ɵhi, FieldFeatureModule as ɵhj, FieldApiModule as ɵhk, StructureInfoPanelModule as ɵhl, NumberFormatterModule as ɵhm, NumberFormatterPipe as ɵhn, StructureColumnManagerModule as ɵho, StructureColumnManagerComponent as ɵhp, CompositionId as ɵhq, CompositionCommandDispatcher as ɵhr, CompositionDispatcher as ɵhs, CompositionWarehouse as ɵht, CompositionReadModelRootRepository as ɵhu, StructureDialogColumnManagerComponent as ɵhv, StructureMenuColumnManagerComponent as ɵhw, selector as ɵhx, StructureColumnManagerIconComponent as ɵhy, StructureDialogColumnManagerService as ɵhz, CreateListViewCommandHandler as ɵi, SchemaWarehouse as ɵia, SchemaCssClassesRepository as ɵib, SchemaThemeRepository as ɵic, SchemaHorizontalGridRepository as ɵid, SchemaRowColoringRepository as ɵie, SchemaVerticalGridRepository as ɵif, StructureThemeConverter as ɵig, StructureInfoPanelComponent as ɵih, SchemaReadModelRootId as ɵii, StructureInfoPanelArchive as ɵij, StructureInfoModalComponent as ɵik, selector$1 as ɵil, StructureInfoIconComponent as ɵim, StructureInfoPanelConfigConverter as ɵin, StructureSummariesPanelModule as ɵio, StructureSummariesPanelComponent as ɵip, StructureSummariesUiEventsRepository as ɵiq, StructureSummariesArchive as ɵir, StructureSummariesConfigService as ɵis, StructureSummariesPanelConfigConverter as ɵit, StructureSummariesCommandDispatcher as ɵiu, StructureTopPanelModule as ɵiv, StructureFilterMenuModule as ɵiw, selector$2 as ɵix, StructureFilterIconComponent as ɵiy, StructureFilterMenuComponent as ɵiz, ListViewDomainModule as ɵj, StructureFilterMenuTriggerComponent as ɵja, structureComponentToken as ɵjb, StructureGateway as ɵjc, SourceEventService as ɵjd, SchemaCommandDispatcher as ɵje, SchemaDispatcher as ɵjf, CompositionEventRepository as ɵjg, FormationEventService as ɵjh, StructureEditModeArchive as ɵji, StructureCellEditArchive as ɵjj, StructureInfoPanelConfigService as ɵjk, StructureCellEditStore as ɵjl, ColumnFieldFactory as ɵjm, StructureColumnMenuConfigArchive as ɵjn, StructureRowSelectEnabledArchive as ɵjo, StructureHeaderTopEnabledArchive as ɵjp, StructureHeaderBottomEnabledArchive as ɵjq, StructureRowDetailConfigArchive as ɵjr, StructureTitlePanelConfigArchive as ɵjs, StructureFooterPanelConfigArchive as ɵjt, SchemaEventRepository as ɵju, LocalStructureCommandDispatcher as ɵjv, LocalCompositionCommandDispatcher as ɵjw, LocalCompositionWarehouse as ɵjx, LocalSchemaWarehouse as ɵjy, LocalSchemaCommandDispatcher as ɵjz, ListViewDispatcher as ɵk, SchemaCssClassManager as ɵka, StructureCellEditCloseAllService as ɵkb, StructureRowDetailService as ɵkc, StructureDefinition as ɵkd, PagingDefinition as ɵke, StructureColumnSelectorComponent as ɵkf, StructureTopPanelComponent as ɵkg, StructureColumnMenuModule as ɵkh, StructureColumnConfigComponent as ɵki, CellTemplateWithContext as ɵkj, CellContext as ɵkk, CellValueType as ɵkl, CellValue as ɵkm, FieldId as ɵkn, ColumnDefinitionId as ɵko, SortOrder as ɵkp, ColumnAlign as ɵkq, StructureColumnConfigTriggerComponent as ɵkr, StructureColumnConfigService as ɵks, StructureColumnConfigSortComponent as ɵkt, StructureColumnConfigColumnHideComponent as ɵku, StructureColumnConfigColumnMoveComponent as ɵkv, selector$3 as ɵkw, StructureColumnMenuIconComponent as ɵkx, selector$4 as ɵky, StructureColumnMenuArrowIconComponent as ɵkz, SetListViewModeCommandHandler as ɵl, CompositionModule as ɵla, SanitizeModule as ɵlb, SafePipe as ɵlc, CompositionAggregateFactory as ɵld, ColumnEntityFactory as ɵle, ColumnPresentationConverter as ɵlf, InMemoryCompositionAggregateRepository as ɵlg, CompositionAggregateRepository as ɵlh, InMemoryCompositionAggregateStore as ɵli, InMemoryCompositionStore as ɵlj, CreateCompositionCommandHandler as ɵlk, SetColumnsCommandHandler as ɵll, CompositionEventConverter as ɵlm, SetCompositionWidthCommandHandler as ɵln, SetCompositionResizeWidthCommandHandler as ɵlo, SetCompositionContainerWidthCommandHandler as ɵlp, CompositionSetColumnEnabledCommandHandler as ɵlq, CompositionChangeSortStatusCommandHandler as ɵlr, CompositionMoveLeftColumnCommandHandler as ɵls, CompositionMoveRightColumnCommandHandler as ɵlt, CompositionChangeSortStatusEventHandler as ɵlu, compositionProviders as ɵlv, inMemoryCompositionCommandProviders as ɵlw, inMemoryCompositionReadModelProviders as ɵlx, inMemoryCompositionProviders as ɵly, InMemoryCompositionReadStore as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, CompositionReadModelRootConverter as ɵma, ColumnDefinitionFactory as ɵmb, ViewTemplateRepository as ɵmc, ViewTemplateFactory as ɵmd, TemplateFactory as ɵme, EditTemplateRepository as ɵmf, EditTemplateFactory as ɵmg, InMemoryCompositionRepository as ɵmh, ViewTemplatesComponent as ɵmi, EditTemplatesComponent as ɵmj, StringEditTemplateComponent as ɵmk, InputEditTemplateComponent as ɵml, EditCommunicationComponent as ɵmm, NumberEditTemplateComponent as ɵmn, BooleanEditTemplateComponent as ɵmo, DateEditTemplateComponent as ɵmp, ColumnQueryComponent as ɵmq, FunctionViewComponent as ɵmr, BarViewComponent as ɵms, PercentageViewComponent as ɵmt, TextViewComponent as ɵmu, SchemaModule as ɵmv, SchemaAggregateFactory as ɵmw, InMemorySchemaAggregateRepository as ɵmx, SchemaAggregateRepository as ɵmy, InMemorySchemaAggregateStore as ɵmz, ListViewModeSetEventHandler as ɵn, InMemorySchemaStore as ɵna, CreateSchemaCommandHandler as ɵnb, SetSchemaThemeCommandHandler as ɵnc, SetRowColoringCommandHandler as ɵnd, SetSchemaHorizontalGridCommandHandler as ɵne, SetSchemaVerticalGridCommandHandler as ɵnf, SchemaThemeSetEventHandler as ɵng, SchemaHorizontalGridSetEventHandler as ɵnh, SchemaRowColoringSetEventHandler as ɵni, SchemaCssClassesEventHandler as ɵnj, LoggerModule as ɵnk, ConsoleLogger as ɵnl, StructureHeaderComponent as ɵnm, StructureHeaderColumnsComponent as ɵnn, StructureHeaderFiltersComponent as ɵno, StructureFilterWarehouse as ɵnp, StructureHeaderFilterComponent as ɵnq, StructureContentComponent as ɵnr, StructureRowComponent as ɵns, StructureCellComponent as ɵnt, StructureCellEditComponent as ɵnu, StructureCellEditBooleanComponent as ɵnv, StructureContainerComponent as ɵnw, structureParentComponent as ɵnx, StructureQuickFiltersComponent as ɵny, StructureBlueprintComponent as ɵnz, ListViewModeRepository as ɵo, STRUCTURE_CSS_CLASS_NAME as ɵoa, StructureRowDetailViewComponent as ɵob, structureRowDetailViewItem as ɵoc, structureRowDetailViewTemplate as ɵod, StructureTitlePanelComponent as ɵoe, StructureFooterPanelComponent as ɵof, StructureThemeGateway as ɵog, ItemEntityFactory as ɵoh, inMemoryStructureCommandProviders as ɵoi, inMemoryStructureReadProviders as ɵoj, inMemoryStructureProviders as ɵok, provideSummariesCalculator as ɵol, summariesProviders as ɵom, BooleanSummariesCalculator as ɵon, DateSummariesCalculator as ɵoo, NumberSummariesCalculator as ɵop, StringSummariesCalculator as ɵoq, UnknownSummariesCalculator as ɵor, InMemoryStructureRepository as ɵos, StructureSummariesWarehouse as ɵot, GuiListGateway as ɵou, GuiListItemComponent as ɵov, GuiListCardComponent as ɵow, guiListProviders as ɵox, Reactive as ɵp, ListViewSelectorToggledEventHandler as ɵq, ListViewSelectorRepository as ɵr, ListViewCommandDispatcher as ɵs, ListViewEventRepository as ɵt, ListViewWarehouse as ɵu, PagingFeatureModule as ɵv, PagingApiModule as ɵw, PagingDomainModule as ɵx, PagingDispatcher as ɵy, PagingManagerFactory as ɵz };
+export { GuiListComponent, GuiListFieldType, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, Logger as ɵba, SetPagingCommandHandler as ɵbb, StructureAggregateRepository as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, PagingCommandDispatcher as ɵbg, PagingWarehouse as ɵbh, PagingRepository as ɵbi, StructureReadModelRepository as ɵbj, PagingEventRepository as ɵbk, PagingConverter as ɵbl, PagingComponent as ɵbm, SmartComponent as ɵbn, SourceWarehouse as ɵbo, StructurePreparedItemsRepository as ɵbp, StructureSourceOriginRepository as ɵbq, PagingDisplayModeArchive as ɵbr, PagingNavigatorComponent as ɵbs, PagingSelectComponent as ɵbt, PagingStatsComponent as ɵbu, PureComponent as ɵbv, AlternativePagingNavigatorComponent as ɵbw, AlternativePagingPagesComponent as ɵbx, SearchFeatureModule as ɵby, SearchIconComponent as ɵbz, ListViewApiModule as ɵc, SearchComponent as ɵca, StructureId as ɵcb, SearchCommandDispatcher as ɵcc, SearchDispatcher as ɵcd, SearchHighlightArchive as ɵce, SearchPlaceholderArchive as ɵcf, StructureWarehouse as ɵcg, SearchWarehouse as ɵch, SearchingRepository as ɵci, SearchPhraseRepository as ɵcj, StructureVerticalFormationWarehouse as ɵck, VerticalFormationRepository as ɵcl, InMemoryStructureReadStore as ɵcm, InMemoryStructureStore as ɵcn, StructureReadModelRootConverter as ɵco, SourceConverter as ɵcp, VerticalFormationConverter as ɵcq, SearchApiModule as ɵcr, SearchDomainModule as ɵcs, SearchManagerFactory as ɵct, SetConfigSearchingCommandHandler as ɵcu, StructureSetSearchPhraseCommandHandler as ɵcv, SourceDomainEventPublisher as ɵcw, SearchPhraseSetEventHandler as ɵcx, ConfigSearchingSetEventHandler as ɵcy, SearchEventRepository as ɵcz, ListViewAggregateFactory as ɵd, EmptySourceFeatureModule as ɵda, EmptySourceComponent as ɵdb, SortingSelectorFeatureModule as ɵdc, SortingSelectorComponent as ɵdd, FilterMenuFeatureModule as ɵde, FilterIconComponent as ɵdf, FilterMenuComponent as ɵdg, FieldWarehouse as ɵdh, FieldReadModelRepository as ɵdi, FilterWarehouse as ɵdj, FilterEnabledRepository as ɵdk, QuickFilterEnabledRepository as ɵdl, FilterTypeRepository as ɵdm, UniqueValuesRepository as ɵdn, ActiveFilterRepository as ɵdo, FilterCommandDispatcher as ɵdp, CompositionWarehouse as ɵdq, CompositionReadModelRootRepository as ɵdr, FilterMenuTriggerComponent as ɵds, filterContainerToken as ɵdt, ColumnSelectorComponent as ɵdv, FilterTypeSelectorComponent as ɵdw, FilterValueComponent as ɵdx, ActiveFilterListComponent as ɵdy, FieldSelectorComponent as ɵdz, InMemoryListViewAggregateRepository as ɵe, ActiveSearchComponent as ɵea, listViewIdFactory as ɵeb, ListViewComponent as ɵec, ListViewGateway as ɵed, SourceCommandDispatcher as ɵee, SourceDispatcher as ɵef, structureIdFactory as ɵeg, compositionIdFactory as ɵeh, schemaIdFactory as ɵei, structureComponentSelfProviders as ɵej, StructureComponent as ɵek, StructureIdGenerator as ɵel, ListViewReadModelRootId as ɵem, listViewProviders as ɵen, ListViewTemplateArchive as ɵeo, ListViewCardTemplateArchive as ɵep, localProviders as ɵeq, provideComponentServices as ɵer, LocalPagingCommandDispatcher as ɵes, Override as ɵet, LocalPagingWarehouse as ɵeu, FormationCommandDispatcher as ɵev, FormationDispatcher as ɵew, LocalFormationCommandDispatcher as ɵex, FormationWarehouse as ɵey, RowSelectedRepository as ɵez, ListViewAggregateRepository as ɵf, RowSelectionModeRepository as ɵfa, LocalFormationWarehouse as ɵfb, LocalStructureWarehouse as ɵfc, LocalSourceCommandDispatcher as ɵfd, LocalSourceWarehouse as ɵfe, LocalStructureSearchCommandDispatcher as ɵff, LocalStructureVerticalFormationWarehouse as ɵfg, StructureCommandDispatcher as ɵfh, ListViewItemComponent as ɵfi, ListViewLayoutComponent as ɵfj, ListViewSourceComponent as ɵfk, ListViewContainerCardComponent as ɵfl, ListViewCardItemComponent as ɵfm, ListViewContainerModeSelectComponent as ɵfn, listViewGatewayDeclarations as ɵfo, ListViewPagingGate as ɵfp, Gate as ɵfq, ListViewModeGate as ɵfr, ListViewTemplateGate as ɵfs, ListViewFieldGate as ɵft, FieldCommandDispatcher as ɵfu, ListViewSearchingGate as ɵfv, createStructureDefinition as ɵfw, StructureModule as ɵfx, StructureAggregateFactory as ɵfy, SourceManagerFactory as ɵfz, InMemoryListViewAggregateStore as ɵg, FormationManagerFactory as ɵga, VerticalFormationFactory as ɵgb, SummariesManagerFactory as ɵgc, SUMMARIES_CALCULATORS as ɵgd, SummariesCalculator as ɵge, FilterManagerFactory as ɵgf, FieldCollectionFactory as ɵgg, FieldFactory as ɵgh, FieldIdGenerator as ɵgi, DataFieldFactory as ɵgj, InMemoryStructureAggregateRepository as ɵgk, InMemoryStructureAggregateStore as ɵgl, CreateStructureCommandHandler as ɵgm, SortingDomainModule as ɵgn, ToggleSortCommandHandler as ɵgo, SetSortingCommandHandler as ɵgp, SetSortOrderCommandHandler as ɵgq, FieldDomainModule as ɵgr, InitFieldsCommandHandler as ɵgs, FilterDomainModule as ɵgt, SetConfigFilterCommandHandler as ɵgu, SetConfigQuickFilterCommandHandler as ɵgv, ToggleFilterCommandHandler as ɵgw, AddFilterCommandHandler as ɵgx, RemoveAllFiltersCommandHandler as ɵgy, RemoveFilterCommandHandler as ɵgz, InMemoryListViewStore as ɵh, SelectUniqueFilterCommandHandler as ɵha, SelectAllUniqueFilterCommandHandler as ɵhb, UnselectUniqueFilterCommandHandler as ɵhc, UnselectAllUniqueFilterCommandHandler as ɵhd, ConfigQuickFilterSetEventHandler as ɵhe, ConfigFilterSetEventHandler as ɵhf, FilterTypeConfigFilterSetEventHandler as ɵhg, ActiveFiltersSetEventHandler as ɵhh, UniqueFilterCalculatedEventHandler as ɵhi, FilterTypeFieldsInitedEventHandler as ɵhj, SourceDomainModule as ɵhk, SourceSetLoadingCommandHandler as ɵhl, SetOriginCommandHandler as ɵhm, StructureEditSourceItemCommandHandler as ɵhn, SetEnabledSelectionCommandHandler as ɵho, SetSelectionModeCommandHandler as ɵhp, SelectAllRowsCommandHandler as ɵhq, UnselectAllRowsCommandHandler as ɵhr, DeleteOriginItemCommandHandler as ɵhs, ToggleSelectedRowCommandHandler as ɵht, StructureOriginChangedEventHandler as ɵhu, SelectedRowChangedEventHandler as ɵhv, SelectionModeSetEventHandler as ɵhw, StructurePreparedItemsEventHandler as ɵhx, structureCommandHandlers as ɵhy, structureDomainEventHandlers as ɵhz, CreateListViewCommandHandler as ɵi, structureProviders as ɵia, SetVerticalScrollEnabledCommandHandler as ɵib, SetRowHeightBasedOnThemeCommandHandler as ɵic, SetScrollPositionCommandHandler as ɵid, StructureSetSummariesEnabledCommandHandler as ɵie, SetRowHeightCommandHandler as ɵif, StructureSetHeightCommandHandler as ɵig, StructureSummariesEnabledSetEventHandler as ɵih, StructureSummariesRepository as ɵii, StructureCreatedEventHandler as ɵij, FieldsInitedEventHandler as ɵik, FieldUiConverter as ɵil, fabricImports as ɵim, SortingFeatureModule as ɵin, SortingApiModule as ɵio, SortingCommandDispatcher as ɵip, SortingWarehouse as ɵiq, SortingEventRepository as ɵir, FieldFeatureModule as ɵis, FieldApiModule as ɵit, FilterApiModule as ɵiu, SourceApiModule as ɵiv, SourceEventService as ɵiw, FormationEventService as ɵix, StructureInfoPanelModule as ɵiy, NumberFormatterModule as ɵiz, ListViewDomainModule as ɵj, NumberFormatterPipe as ɵja, StructureColumnManagerModule as ɵjb, StructureColumnManagerComponent as ɵjc, CompositionId as ɵjd, CompositionCommandDispatcher as ɵje, CompositionDispatcher as ɵjf, StructureDialogColumnManagerComponent as ɵjg, StructureMenuColumnManagerComponent as ɵjh, selector as ɵji, StructureColumnManagerIconComponent as ɵjj, StructureDialogColumnManagerService as ɵjk, SchemaWarehouse as ɵjl, SchemaCssClassesRepository as ɵjm, SchemaThemeRepository as ɵjn, SchemaHorizontalGridRepository as ɵjo, SchemaRowColoringRepository as ɵjp, SchemaVerticalGridRepository as ɵjq, StructureThemeConverter as ɵjr, StructureSchemaManagerModule as ɵjs, StructureSchemaMangerComponent as ɵjt, SchemaReadModelRootId as ɵju, SchemaCommandDispatcher as ɵjv, SchemaDispatcher as ɵjw, StructureDialogSchemaManagerComponent as ɵjx, StructureSchemaManagerIconComponent as ɵjy, StructureDialogSchemaManagerService as ɵjz, ListViewDispatcher as ɵk, SourceCounterFeatureModule as ɵka, ActiveFilterMenuTriggerDirective as ɵkb, ActiveFilterService as ɵkc, ActiveFilterMenuComponent as ɵkd, StructureInfoPanelComponent as ɵke, StructureInfoPanelArchive as ɵkf, StructureInfoModalComponent as ɵkg, selector$1 as ɵkh, StructureInfoIconComponent as ɵki, StructureInfoPanelConfigConverter as ɵkj, StructureSummariesPanelModule as ɵkk, StructureSummariesPanelComponent as ɵkl, StructureSummariesUiEventsRepository as ɵkm, StructureSummariesArchive as ɵkn, StructureSummariesConfigService as ɵko, StructureSummariesPanelConfigConverter as ɵkp, StructureSummariesCommandDispatcher as ɵkq, StructureTopPanelModule as ɵkr, StructureTopPanelComponent as ɵks, StructureColumnMenuModule as ɵkt, UniqueValueListModule as ɵku, UniqueValueListComponent as ɵkv, StructureColumnConfigComponent as ɵkw, StructureColumnMenuConfigArchive as ɵkx, CellTemplateWithContext as ɵky, CellContext as ɵkz, SetListViewModeCommandHandler as ɵl, CellValueType as ɵla, CellValue as ɵlb, FieldId as ɵlc, ColumnDefinitionId as ɵld, SortOrder as ɵle, ColumnAlign as ɵlf, StructureColumnConfigTriggerComponent as ɵlg, StructureColumnConfigService as ɵlh, StructureColumnConfigSortComponent as ɵli, StructureColumnConfigColumnHideComponent as ɵlj, StructureColumnConfigColumnMoveComponent as ɵlk, selector$3 as ɵll, StructureColumnMenuIconComponent as ɵlm, selector$4 as ɵln, StructureColumnMenuArrowIconComponent as ɵlo, CompositionModule as ɵlp, SanitizeModule as ɵlq, SafePipe as ɵlr, CompositionAggregateFactory as ɵls, ColumnEntityFactory as ɵlt, ColumnPresentationConverter as ɵlu, InMemoryCompositionAggregateRepository as ɵlv, CompositionAggregateRepository as ɵlw, InMemoryCompositionAggregateStore as ɵlx, InMemoryCompositionStore as ɵly, CreateCompositionCommandHandler as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, SetColumnsCommandHandler as ɵma, CompositionEventConverter as ɵmb, SetCompositionWidthCommandHandler as ɵmc, SetCompositionResizeWidthCommandHandler as ɵmd, SetCompositionContainerWidthCommandHandler as ɵme, CompositionSetColumnEnabledCommandHandler as ɵmf, CompositionChangeSortStatusCommandHandler as ɵmg, CompositionMoveLeftColumnCommandHandler as ɵmh, CompositionMoveRightColumnCommandHandler as ɵmi, CompositionChangeSortStatusEventHandler as ɵmj, compositionProviders as ɵmk, inMemoryCompositionCommandProviders as ɵml, inMemoryCompositionReadModelProviders as ɵmm, inMemoryCompositionProviders as ɵmn, ColumnFieldFactory as ɵmo, InMemoryCompositionReadStore as ɵmp, CompositionReadModelRootConverter as ɵmq, ColumnDefinitionFactory as ɵmr, ViewTemplateRepository as ɵms, ViewTemplateFactory as ɵmt, TemplateFactory as ɵmu, EditTemplateRepository as ɵmv, EditTemplateFactory as ɵmw, InMemoryCompositionRepository as ɵmx, CompositionEventRepository as ɵmy, ViewTemplatesComponent as ɵmz, ListViewModeSetEventHandler as ɵn, EditTemplatesComponent as ɵna, StringEditTemplateComponent as ɵnb, InputEditTemplateComponent as ɵnc, EditCommunicationComponent as ɵnd, NumberEditTemplateComponent as ɵne, BooleanEditTemplateComponent as ɵnf, DateEditTemplateComponent as ɵng, ColumnQueryComponent as ɵnh, FunctionViewComponent as ɵni, BarViewComponent as ɵnj, PercentageViewComponent as ɵnk, TextViewComponent as ɵnl, SchemaModule as ɵnm, SchemaAggregateFactory as ɵnn, InMemorySchemaAggregateRepository as ɵno, SchemaAggregateRepository as ɵnp, InMemorySchemaAggregateStore as ɵnq, InMemorySchemaStore as ɵnr, CreateSchemaCommandHandler as ɵns, SetSchemaThemeCommandHandler as ɵnt, SetRowColoringCommandHandler as ɵnu, SetSchemaHorizontalGridCommandHandler as ɵnv, SetSchemaVerticalGridCommandHandler as ɵnw, SchemaThemeSetEventHandler as ɵnx, SchemaHorizontalGridSetEventHandler as ɵny, SchemaRowColoringSetEventHandler as ɵnz, ListViewModeRepository as ɵo, SchemaVerticalGridSetEventHandler as ɵoa, SchemaCssClassesEventHandler as ɵob, SchemaEventRepository as ɵoc, LoggerModule as ɵod, ConsoleLogger as ɵoe, StructureGateway as ɵof, StructureEditModeArchive as ɵog, StructureCellEditArchive as ɵoh, StructureInfoPanelConfigService as ɵoi, StructureCellEditStore as ɵoj, RowSelectEnabledRepository as ɵok, RowSelectionTypeArchive as ɵol, StructureHeaderTopEnabledArchive as ɵom, StructureHeaderBottomEnabledArchive as ɵon, StructureRowDetailConfigArchive as ɵoo, StructureTitlePanelConfigArchive as ɵop, StructureFooterPanelConfigArchive as ɵoq, LocalStructureCommandDispatcher as ɵor, LocalCompositionCommandDispatcher as ɵos, LocalCompositionWarehouse as ɵot, LocalSchemaWarehouse as ɵou, LocalSchemaCommandDispatcher as ɵov, SchemaCssClassManager as ɵow, StructureCellEditCloseAllService as ɵox, SourceFeatureModule as ɵoy, StructureRowDetailService as ɵoz, Reactive as ɵp, structureComponentToken as ɵpa, StructureDefinition as ɵpb, PagingDefinition as ɵpc, StructureHeaderComponent as ɵpd, StructureHeaderColumnsComponent as ɵpe, StructureHeaderFiltersComponent as ɵpf, StructureHeaderFilterComponent as ɵpg, SelectAllComponent as ɵph, StructureContentComponent as ɵpi, StructureRowComponent as ɵpj, StructureCellComponent as ɵpk, StructureCellEditComponent as ɵpl, StructureCellEditBooleanComponent as ɵpm, StructureContainerComponent as ɵpn, structureParentComponent as ɵpo, StructureQuickFiltersComponent as ɵpp, StructureBlueprintComponent as ɵpq, STRUCTURE_CSS_CLASS_NAME as ɵpr, StructureRowDetailViewComponent as ɵps, structureRowDetailViewItem as ɵpt, structureRowDetailViewTemplate as ɵpu, StructureTitlePanelComponent as ɵpv, StructureFooterPanelComponent as ɵpw, StructureThemeGateway as ɵpx, ItemEntityFactory as ɵpy, inMemoryStructureCommandProviders as ɵpz, ListViewSelectorToggledEventHandler as ɵq, inMemoryStructureReadProviders as ɵqa, inMemoryStructureProviders as ɵqb, provideSummariesCalculator as ɵqc, summariesProviders as ɵqd, BooleanSummariesCalculator as ɵqe, DateSummariesCalculator as ɵqf, NumberSummariesCalculator as ɵqg, StringSummariesCalculator as ɵqh, UnknownSummariesCalculator as ɵqi, InMemoryStructureRepository as ɵqj, StructureSummariesWarehouse as ɵqk, GuiListGateway as ɵql, GuiListItemComponent as ɵqm, GuiListCardComponent as ɵqn, guiListProviders as ɵqo, ListViewSelectorRepository as ɵr, ListViewCommandDispatcher as ɵs, ListViewEventRepository as ɵt, ListViewWarehouse as ɵu, PagingFeatureModule as ɵv, PagingApiModule as ɵw, PagingDomainModule as ɵx, PagingDispatcher as ɵy, PagingManagerFactory as ɵz };
 //# sourceMappingURL=generic-ui-ngx-list.js.map

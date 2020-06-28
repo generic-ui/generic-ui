@@ -7,7 +7,7 @@ import { StructureWarehouse } from '../../domain-api/structure.warehouse';
 import { PagingWarehouse } from '../../../../structure/paging/domain-api/paging.warehouse';
 import { StructureInfoPanelArchive } from '../panel/info/structure.info-panel.archive';
 import { StructureSummariesArchive } from '../panel/summaries/structure.summaries.archive';
-import { StructureFilterWarehouse } from '../../domain-api/filter/structure-filter.warehouse';
+import { FilterWarehouse } from '../../../../structure/filter/domain-api/filter.warehouse';
 import { SearchWarehouse } from '../../../../structure/search/domain-api/search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
@@ -42,7 +42,7 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     titlePanelEnabled: boolean;
     footerPanelEnabled: boolean;
     items: Array<any>;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureReadModelService: StructureWarehouse, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, pagingReadModelService: PagingWarehouse, structureSummariesArchive: StructureSummariesArchive, structureFilterReadModelRepository: StructureFilterWarehouse, structureSearchReadModelRepository: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureReadModelService: StructureWarehouse, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, pagingReadModelService: PagingWarehouse, structureSummariesArchive: StructureSummariesArchive, structureFilterReadModelRepository: FilterWarehouse, structureSearchReadModelRepository: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
     ngOnInit(): void;
     getHeaderTopClasses(): string;
     getHeaderBottomClasses(): string;

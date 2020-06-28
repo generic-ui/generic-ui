@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { StructureSourceWarehouse } from '../../../../lib/structure/domain-api/source/structure-source.warehouse';
+import { SourceWarehouse } from '../../../source/domain-api/source.warehouse';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
 import { StructureId } from '../../../../lib/structure/domain/structure.id';
 import { ListViewTemplate } from './template/list-view-template';
@@ -11,6 +11,6 @@ export declare class ListViewSourceComponent extends SmartComponent implements O
     private readonly containerTemplateArchive;
     source: Array<any>;
     template: ListViewTemplate;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSourceWarehouse: StructureSourceWarehouse, containerTemplateArchive: ListViewTemplateArchive);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureSourceWarehouse: SourceWarehouse, containerTemplateArchive: ListViewTemplateArchive);
     ngOnInit(): void;
 }

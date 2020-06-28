@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { MultiDomainEventHandler } from '@generic-ui/hermes';
+import { DomainEventType, MultiDomainEventHandler } from '@generic-ui/hermes';
 import { SortToggledEvent } from '../../../../../structure/sorting/domain/toggle/sort-toggled.event';
 import { CompositionDispatcher } from '../../composition.dispatcher';
 import { SortOrderSetEvent } from '../../../../../structure/sorting/domain/order/sort-order-set.event';
@@ -8,6 +7,6 @@ export declare type CompositionChangeSortStatusEventType = SortToggledEvent | So
 export declare class CompositionChangeSortStatusEventHandler implements MultiDomainEventHandler<CompositionId, CompositionChangeSortStatusEventType> {
     private compositionDispatcher;
     constructor(compositionDispatcher: CompositionDispatcher);
-    forEvents(): Array<Type<CompositionChangeSortStatusEventType>>;
+    forEvents(): Array<DomainEventType<CompositionChangeSortStatusEventType>>;
     handle(event: CompositionChangeSortStatusEventType): void;
 }

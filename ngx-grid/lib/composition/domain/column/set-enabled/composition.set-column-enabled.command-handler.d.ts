@@ -1,5 +1,4 @@
-import { Type } from '@angular/core';
-import { Command, CommandHandler, DomainEventPublisher } from '@generic-ui/hermes';
+import { Command, CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { CompositionAggregateRepository } from '../../composition.aggregate-repository';
 import { CompositionEventConverter } from '../../composition.event-converter';
 import { CompositionAggregate } from '../../composition.aggregate';
@@ -9,7 +8,7 @@ export declare class CompositionSetColumnEnabledCommandHandler implements Comman
     private readonly domainEventPublisher;
     private readonly compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
-    forCommand(): Type<CompositionSetColumnEnabledCommand>;
+    forCommand(): CommandType<CompositionSetColumnEnabledCommand>;
     publishDomainEvents(aggregate: CompositionAggregate, command: Command): void;
     handleAggregate(aggregate: CompositionAggregate, command: CompositionSetColumnEnabledCommand): void;
     private publishEvents;
