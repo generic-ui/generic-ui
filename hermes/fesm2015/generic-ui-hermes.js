@@ -3702,6 +3702,22 @@ if (false) {
 }
 class HermesModule extends HermesBaseModule {
     /**
+     * @param {?} eventHandlers
+     * @param {?} aggregateCommandHandlers
+     * @param {?} commandHandlers
+     * @param {?} definedAggregate
+     * @param {?} injector
+     * @param {?} aggregateFactoryArchive
+     * @param {?} aggregateRepositoryArchive
+     * @param {?} commandBus
+     * @param {?} domainEventBus
+     * @param {?} hermesLoggersInitializer
+     * @param {?} hermesApi
+     */
+    constructor(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
+        super(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi);
+    }
+    /**
      * @template I, A, C
      * @param {?} aggregateKey
      * @param {?} factory
@@ -3841,6 +3857,20 @@ HermesModule.decorators = [
                 ],
                 providers: providers
             },] }
+];
+/** @nocollapse */
+HermesModule.ctorParameters = () => [
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [aggregateDefinitionToken,] }] },
+    { type: Injector },
+    { type: AggregateFactoryArchive },
+    { type: AggregateRepositoryArchive },
+    { type: CommandBus },
+    { type: DomainEventBus },
+    { type: HermesLoggersInitializer },
+    { type: HermesApi }
 ];
 
 /**

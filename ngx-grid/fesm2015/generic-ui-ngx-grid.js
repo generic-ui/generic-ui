@@ -6126,7 +6126,7 @@ StructureInfoModalComponent.decorators = [
 
 
 			<p class="gui-info-version">
-				ver. 0.12.2
+				ver. 0.12.3
 			</p>
 
 			<p class="gui-quote">
@@ -25159,7 +25159,7 @@ class SourceManager {
      * @return {?}
      */
     setConvertedOrigin(items = [], structureId) {
-        this.origin = items;
+        this.origin = [...items];
         return this.createOriginChangedEvent(structureId);
     }
     /**
@@ -25283,6 +25283,12 @@ class SourceManager {
                 for (let element of removedElements) {
                     this.formationManager.unselectRow(element.getId().toString());
                 }
+                this.formationManager.calculateAllSelected(removedElements.map((/**
+                 * @param {?} f
+                 * @return {?}
+                 */
+                (f) => f.getId().toString())));
+                this.formationManager.calculateAllUnselected();
             }
             return [
                 this.createOriginChangedEvent(structureId)

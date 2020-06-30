@@ -50,5 +50,6 @@ export declare class HermesModule extends HermesBaseModule<any, any, any, any> {
     static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
     static registerDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<DomainEventHandler<I, E>>): Array<Provider>;
     static registerMultiDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<MultiDomainEventHandler<I, E>>): Array<Provider>;
+    constructor(eventHandlers: Array<DomainEventHandlerImpl<any, any>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<any, any, any>>, commandHandlers: Array<CommandHandlerImpl<any, any, any>>, definedAggregate: Array<AggregateDefinition<any, any>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<any, any>, aggregateRepositoryArchive: AggregateRepositoryArchive<any, any>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     private static registerCreateCommandHandler;
 }

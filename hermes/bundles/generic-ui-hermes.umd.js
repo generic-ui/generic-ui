@@ -4713,8 +4713,8 @@
     }
     var HermesModule = /** @class */ (function (_super) {
         __extends(HermesModule, _super);
-        function HermesModule() {
-            return _super !== null && _super.apply(this, arguments) || this;
+        function HermesModule(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
+            return _super.call(this, eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) || this;
         }
         /**
          * @template I, A, C
@@ -4892,6 +4892,20 @@
                         providers: providers
                     },] }
         ];
+        /** @nocollapse */
+        HermesModule.ctorParameters = function () { return [
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
+            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
+            { type: core.Injector },
+            { type: AggregateFactoryArchive },
+            { type: AggregateRepositoryArchive },
+            { type: CommandBus },
+            { type: DomainEventBus },
+            { type: HermesLoggersInitializer },
+            { type: HermesApi }
+        ]; };
         return HermesModule;
     }(HermesBaseModule));
 

@@ -15643,7 +15643,7 @@ class SourceManager {
      * @return {?}
      */
     setConvertedOrigin(items = [], structureId) {
-        this.origin = items;
+        this.origin = [...items];
         return this.createOriginChangedEvent(structureId);
     }
     /**
@@ -15767,6 +15767,12 @@ class SourceManager {
                 for (let element of removedElements) {
                     this.formationManager.unselectRow(element.getId().toString());
                 }
+                this.formationManager.calculateAllSelected(removedElements.map((/**
+                 * @param {?} f
+                 * @return {?}
+                 */
+                (f) => f.getId().toString())));
+                this.formationManager.calculateAllUnselected();
             }
             return [
                 this.createOriginChangedEvent(structureId)
@@ -17908,7 +17914,7 @@ ListViewLayoutComponent.decorators = [
 
 			<!--			<gui-sorting-selector></gui-sorting-selector>-->
 			<!--			<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
-			<gui-filter-menu-trigger></gui-filter-menu-trigger>
+<!--			<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
 		</div>
 		<div class="gui-list-panel-top">
 			<gui-list-mode-select *ngIf="selectorEnabled"></gui-list-mode-select>
@@ -20659,7 +20665,7 @@ StructureInfoModalComponent.decorators = [
 
 
 			<p class="gui-info-version">
-				ver. 0.12.2
+				ver. 0.12.3
 			</p>
 
 			<p class="gui-quote">
