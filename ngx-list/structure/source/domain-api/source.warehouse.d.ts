@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
-import { StructureReadModelRepository } from '../../../lib/structure/domain-api/read/structure.read-model-repository';
+import { StructureReadModelRepository } from '../../core/domain-api/read/structure.read-model-repository';
 import { StructureSourceOriginRepository } from './origin/structure.source-origin.repository';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../core/domain/structure.id';
 import { ItemEntity } from '../domain/core/item/item.entity';
 import { StructurePreparedItemsRepository } from './prepared/structure.prepared-items.repository';
 import { OriginItemEntity } from '../domain/origin/origin-item-entity';
-export declare class SourceWarehouse {
+import { Warehouse } from '@generic-ui/hermes';
+export declare class SourceWarehouse implements Warehouse {
     private structureRepository;
     private structurePreparedItemsRepository;
     private structureSourceOriginRepository;

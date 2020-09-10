@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { SourceWarehouse } from '../../../source/domain-api/source.warehouse';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { ListViewTemplate } from './template/list-view-template';
 import { ListViewTemplateArchive } from './template/list-view-template.archive';
 export declare class ListViewSourceComponent extends SmartComponent implements OnInit {

@@ -1,5 +1,5 @@
 import { DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { UniqueValue } from '../unique-value';
 export declare class UniqueFilterCalculatedEvent extends DomainEvent<StructureId> {
     private readonly map;

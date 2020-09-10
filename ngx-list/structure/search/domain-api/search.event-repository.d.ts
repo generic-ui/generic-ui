@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { DomainEventBus } from '@generic-ui/hermes';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
-export declare class SearchEventRepository {
-    private readonly domainEventBus;
+import { DomainEventBus, EventRepository } from '@generic-ui/hermes';
+import { StructureId } from '../../core/domain/structure.id';
+import { StructureReadModelRootId } from '../../core/domain-api/read/structure.read-model-root-id';
+export declare class SearchEventRepository extends EventRepository<StructureReadModelRootId, StructureId> {
     constructor(domainEventBus: DomainEventBus);
-    onSearchPhrase(structureId: StructureId): Observable<string>;
+    onSearchPhrase(structureId: StructureReadModelRootId): Observable<string>;
 }

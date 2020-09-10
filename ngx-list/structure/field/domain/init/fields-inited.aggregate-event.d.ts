@@ -1,5 +1,5 @@
 import { AggregateEvent, DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { Field } from '../core/field/field';
 import { FieldConfig } from '../../domain-api/field.config';
 export declare class FieldsInitedAggregateEvent extends AggregateEvent<StructureId> {

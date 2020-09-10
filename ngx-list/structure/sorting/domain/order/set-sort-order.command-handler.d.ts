@@ -1,7 +1,7 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../../../lib/structure/domain/structure/structure-aggregate.repository';
+import { StructureAggregateRepository } from '../../../core/domain/structure-aggregate.repository';
 import { SetSortOrderCommand } from './set-sort-order.command';
-import { StructureAggregate } from '../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregate } from '../../../core/domain/structure.aggregate';
 export declare class SetSortOrderCommandHandler implements CommandHandler<StructureAggregate, SetSortOrderCommand> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;

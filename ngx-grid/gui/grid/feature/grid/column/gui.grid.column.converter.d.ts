@@ -1,5 +1,5 @@
 import { GuiColumn } from '../../../domain-api/gui.grid.public-api';
-import { ColumnConfig } from '../../../../../lib/composition/domain/column/column.config';
+import { ColumnConfig } from '../../../../../composition/domain/column/column.config';
 export declare class GuiGridColumnConverter {
     private readonly columnTypeConverter;
     private readonly columnSummariesConverter;

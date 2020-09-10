@@ -1,7 +1,7 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../../../../lib/structure/domain/structure/structure-aggregate.repository';
+import { StructureAggregateRepository } from '../../../../core/domain/structure-aggregate.repository';
 import { ToggleSelectedRowCommand } from './toggle-selected-row.command';
-import { StructureAggregate } from '../../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregate } from '../../../../core/domain/structure.aggregate';
 export declare class ToggleSelectedRowCommandHandler implements CommandHandler<StructureAggregate, ToggleSelectedRowCommand> {
     private structureAggregateRepository;
     private domainEventPublisher;

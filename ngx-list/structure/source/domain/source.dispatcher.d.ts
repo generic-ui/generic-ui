@@ -1,5 +1,5 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../core/domain/structure.id';
 import { StructureEditSourceItemParams } from './origin/edit/structure.edit-source-item.params';
 export declare class SourceDispatcher {
     private commandDispatcher;

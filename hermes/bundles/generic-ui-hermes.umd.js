@@ -2157,10 +2157,12 @@
         };
         /**
          * @protected
+         * @template T
          * @return {?}
          */
         Reactive.prototype.takeUntil = /**
          * @protected
+         * @template T
          * @return {?}
          */
         function () {
@@ -2258,15 +2260,45 @@
      */
     /**
      * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    ReactiveService = /** @class */ (function (_super) {
+        __extends(ReactiveService, _super);
+        function ReactiveService() {
+            return _super.call(this) || this;
+        }
+        /**
+         * @return {?}
+         */
+        ReactiveService.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.unsubscribe();
+        };
+        return ReactiveService;
+    }(Reactive));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
      * @template R, I
      */
     var   /**
      * @abstract
      * @template R, I
      */
-    EventRepository = /** @class */ (function () {
+    EventRepository = /** @class */ (function (_super) {
+        __extends(EventRepository, _super);
         function EventRepository(domainEventBus) {
-            this.domainEventBus = domainEventBus;
+            var _this = _super.call(this) || this;
+            _this.domainEventBus = domainEventBus;
+            return _this;
         }
         /**
          * @protected
@@ -2287,10 +2319,10 @@
              * @param {?} event
              * @return {?}
              */
-            function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })));
+            function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })), this.takeUntil());
         };
         return EventRepository;
-    }());
+    }(ReactiveService));
     if (false) {
         /**
          * @type {?}
@@ -2468,33 +2500,6 @@
         }
         return FeatureModule;
     }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    ReactiveService = /** @class */ (function (_super) {
-        __extends(ReactiveService, _super);
-        function ReactiveService() {
-            return _super.call(this) || this;
-        }
-        /**
-         * @return {?}
-         */
-        ReactiveService.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
-            this.unsubscribe();
-        };
-        return ReactiveService;
-    }(Reactive));
 
     /**
      * @fileoverview added by tsickle

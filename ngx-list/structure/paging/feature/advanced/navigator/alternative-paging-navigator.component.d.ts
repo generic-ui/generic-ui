@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges } from '@angular/core';
 import { Paging } from '../../../domain-api/read/paging';
-import { PagingCommandDispatcher } from '../../../domain-api/paging.command-dispatcher';
+import { PagingCommandInvoker } from '../../../domain-api/paging.command-invoker';
 export declare class AlternativePagingNavigatorComponent implements OnChanges {
     private pagingCommandService;
     paging: Paging;
@@ -9,7 +9,7 @@ export declare class AlternativePagingNavigatorComponent implements OnChanges {
     prevPageChanged: EventEmitter<any>;
     prevDisabled: boolean;
     nextDisabled: boolean;
-    constructor(pagingCommandService: PagingCommandDispatcher);
+    constructor(pagingCommandService: PagingCommandInvoker);
     ngOnChanges(): void;
     prevPage(): void;
     nextPage(): void;

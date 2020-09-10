@@ -4,6 +4,8 @@
 export { HermesApi } from './domain-api/hermes-api';
 export { enableHermesLoggers, disableHermesLoggers } from './domain-api/hermes-api.helpers';
 export { provideEventHandlers } from './domain/provider.helpers';
+export { CommandInvoker } from './domain-api/command-invoker';
+export { Warehouse } from './domain-api/warehouse';
 /**
  * Domain
  */

@@ -1,6 +1,6 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { NextPageCommand } from './next-page.command';
-import { StructureAggregate } from '../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregate } from '../../../core/domain/structure.aggregate';
 export declare class NextPageCommandHandler implements CommandHandler<StructureAggregate, NextPageCommand> {
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);

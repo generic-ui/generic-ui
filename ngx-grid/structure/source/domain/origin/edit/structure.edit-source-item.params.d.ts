@@ -1,4 +1,4 @@
-import { ColumnFieldId } from '../../../../../lib/composition/domain/column/field/column-field.id';
+import { ColumnFieldId } from '../../../../../composition/domain/column/field/column-field.id';
 export declare class StructureEditSourceItemParams {
     private readonly itemId;
     private readonly columnFieldId;

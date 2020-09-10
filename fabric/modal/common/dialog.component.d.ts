@@ -7,5 +7,6 @@ export declare abstract class DialogComponent extends FabricReactive {
     private readonly theme;
     private static readonly CSS_CLASS_PREFIX;
     protected constructor(elementRef: ElementRef, renderer: Renderer2, theme: Theme);
-    protected addTheme(): void;
+    protected addTheme(theme?: Theme): void;
+    protected removeThemes(): void;
 }

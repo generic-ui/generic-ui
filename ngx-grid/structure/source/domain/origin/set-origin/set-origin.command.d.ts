@@ -1,5 +1,5 @@
 import { Command } from '@generic-ui/hermes';
-import { StructureId } from '../../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 export declare class SetOriginCommand extends Command {
     private readonly items;
     constructor(structureId: StructureId, items?: Array<any>);

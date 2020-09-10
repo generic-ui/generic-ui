@@ -1,3 +1,3 @@
-import { StructureDefinition } from '../../../../lib/structure/feature/structure-definition';
+import { StructureDefinition } from '../../../../structure/core/feature/structure-definition';
 /** @internal */
 export declare const guiGridStructureDefinition: StructureDefinition;

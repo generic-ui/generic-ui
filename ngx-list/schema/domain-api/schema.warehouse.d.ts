@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { Warehouse } from '@generic-ui/hermes';
 import { SchemaTheme } from '../domain/theme/schema-theme';
 import { SchemaReadModelRootId } from './read/schema.read-model-root-id';
 import { SchemaCssClass } from './css-classes/schema-css-class';
@@ -8,7 +9,7 @@ import { SchemaRowColoring } from '../domain/coloring/schema-row-coloring';
 import { SchemaHorizontalGridRepository } from './horizontal-grid/schema.horizontal-grid.repository';
 import { SchemaRowColoringRepository } from './row-coloring/schema.row-coloring.repository';
 import { SchemaVerticalGridRepository } from './vertical-grid/schema.vertical-grid.repository';
-export declare class SchemaWarehouse {
+export declare class SchemaWarehouse implements Warehouse {
     private readonly schemaCssClassesRepository;
     private readonly schemaThemeRepository;
     private readonly schemaHorizontalGridRepository;

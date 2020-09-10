@@ -1,12 +1,13 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { Warehouse } from '@generic-ui/hermes';
+import { StructureId } from '../../../core/domain/structure.id';
 import { RowSelectedRepository } from './row-selected/row-selected.repository';
 import { RowSelectedReadModel } from './row-selected.read-model';
 import { RowSelectionModeRepository } from './mode/row-selection-mode.repository';
 import { RowSelectionMode } from '../row-selection';
 import { SelectedRow } from './selected-row';
 import { SourceWarehouse } from '../source.warehouse';
-export declare class FormationWarehouse {
+export declare class FormationWarehouse implements Warehouse {
     private readonly rowSelectedRepository;
     private readonly rowSelectionModeRepository;
     private readonly sourceWarehouse;

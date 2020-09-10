@@ -1,0 +1,35 @@
+import { Entity } from '@generic-ui/hermes';
+import { ColumnId } from './column.id';
+import { ColumnField } from './field/column-field';
+import { ColumnConfig, HeaderTemplate } from './column.config';
+import { ColumnAlign } from './column-align';
+import { ViewEntity } from './view.entity';
+import { DataType } from '../../../structure/field/domain/core/field/data/data-type';
+import { CellView } from './cell-view';
+import { ColumnPresentation } from './presentation/column.presentation';
+export declare abstract class AbstractColumnEntity extends Entity<ColumnId> {
+    private columnField;
+    private header?;
+    private width?;
+    protected align: ColumnAlign;
+    private columnConfig;
+    protected view: ViewEntity;
+    protected presentation: ColumnPresentation;
+    protected constructor(columnId: ColumnId, columnField: ColumnField, columnConfig: ColumnConfig, presentation: ColumnPresentation, header?: string | HeaderTemplate, align?: ColumnAlign, view?: ViewEntity, width?: number);
+    getPresentation(): ColumnPresentation;
+    getColumnConfig(): ColumnConfig;
+    getField(): ColumnField;
+    getHeader(): string | HeaderTemplate;
+    getDataType(): DataType;
+    getCellView(): CellView;
+    getTemplateFunction(): any;
+    setView(view: ViewEntity): void;
+    setHeader(header: string | HeaderTemplate): void;
+    getView(): ViewEntity;
+    getAlign(): ColumnAlign;
+    setWidth(width: number): void;
+    getWidth(): number;
+    getSortingEnabled(): boolean;
+    isCellEditingEnabled(): boolean;
+    private setInitialAlign;
+}

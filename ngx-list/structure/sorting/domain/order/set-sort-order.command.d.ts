@@ -1,8 +1,8 @@
 import { Command } from '@generic-ui/hermes';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
-import { SortOrder } from '../../../../lib/composition/domain/column/sort/sort-order';
+import { StructureId } from '../../../core/domain/structure.id';
+import { SortOrder } from '../../../../composition/domain/column/sort/sort-order';
 import { FieldId } from '../../../field/domain/core/field/field.id';
-import { CompositionId } from '../../../../lib/composition/domain/composition.id';
+import { CompositionId } from '../../../../composition/domain/composition.id';
 export declare class SetSortOrderCommand extends Command {
     private readonly compositionId;
     private readonly fieldId;

@@ -1,5 +1,5 @@
 import { DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { ActiveFilterReadModel } from '../../domain-api/active/active-filter.read-model';
 export declare class ActiveFiltersSetEvent extends DomainEvent<StructureId> {
     private readonly filters;

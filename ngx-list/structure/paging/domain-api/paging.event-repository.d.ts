@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
-import { DomainEventBus } from '@generic-ui/hermes';
+import { DomainEventBus, EventRepository } from '@generic-ui/hermes';
 import { PagingWarehouse } from './paging.warehouse';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
-export declare class PagingEventRepository {
-    private readonly domainEventBus;
+import { StructureId } from '../../core/domain/structure.id';
+import { StructureReadModelRootId } from '../../core/domain-api/read/structure.read-model-root-id';
+export declare class PagingEventRepository extends EventRepository<StructureReadModelRootId, StructureId> {
+    private readonly eventBus;
     private readonly pagingReadModelService;
-    constructor(domainEventBus: DomainEventBus, pagingReadModelService: PagingWarehouse);
-    onPageChange(structureId: StructureId): Observable<number>;
-    onPageSizeChange(structureId: StructureId): Observable<number>;
+    constructor(eventBus: DomainEventBus, pagingReadModelService: PagingWarehouse);
+    onPageChange(structureId: StructureReadModelRootId): Observable<number>;
+    onPageSizeChange(structureId: StructureReadModelRootId): Observable<number>;
 }

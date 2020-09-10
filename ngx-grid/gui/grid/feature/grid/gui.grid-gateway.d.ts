@@ -1,9 +1,15 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiInfoPanel, GuiPaging, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiRowSelection, GuiSearching, GuiSelectedRow, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../domain-api/gui.grid.public-api';
-import { ColumnConfig } from '../../../../lib/composition/domain/column/column.config';
-import { ColumnMenuConfig } from '../../../../lib/structure/domain-api/column-menu-config';
+import { ColumnConfig } from '../../../../composition/domain/column/column.config';
+import { GuiGridColumnConverter } from './column/gui.grid.column.converter';
+import { GuiGridThemeConverter } from './theme/gui.grid.theme.converter';
+import { GuiGridRowColoringConverter } from './theme/coloring/gui.grid.row-coloring.converter';
+import { ColumnMenuConfig } from '../../../../structure/core/domain-api/column-menu-config';
+import { GuiGridColumnMenuConverter } from './column/menu/gui.grid.column-menu.converter';
+import { GuiGridPagingConverter } from './paging/gui.grid.paging.converter';
 import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
 import { RowColoring } from '../../../../schema/domain-api/row-coloring';
+import { GuiGridRowSelectionConverter } from './row-selection/gui.grid.row-selection.converter';
 import { RowSelection } from '../../../../structure/source/domain-api/row-selection';
 import { SelectedRow } from '../../../../structure/source/domain-api/formation/selected-row';
 export declare abstract class GuiGridGateway implements OnChanges {
@@ -80,12 +86,12 @@ export declare abstract class GuiGridGateway implements OnChanges {
     rowColoringConfig: any;
     columnMenuConfig: ColumnMenuConfig;
     rowSelectionConfig: RowSelection;
-    private readonly gridColumnConverter;
-    private readonly gridThemeConverter;
-    private readonly gridRowColoringConverter;
-    private readonly gridColumnMenuConverter;
-    private readonly gridPagingConverter;
-    private readonly gridRowSelectionConverter;
+    protected readonly gridColumnConverter: GuiGridColumnConverter;
+    protected readonly gridThemeConverter: GuiGridThemeConverter;
+    protected readonly gridRowColoringConverter: GuiGridRowColoringConverter;
+    protected readonly gridColumnMenuConverter: GuiGridColumnMenuConverter;
+    protected readonly gridPagingConverter: GuiGridPagingConverter;
+    protected readonly gridRowSelectionConverter: GuiGridRowSelectionConverter;
     protected constructor();
     ngOnChanges(changes: SimpleChanges): void;
     onPageChange(page: number): void;

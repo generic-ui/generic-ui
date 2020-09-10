@@ -1,0 +1,19 @@
+import { Observable } from 'rxjs';
+import { SourceWarehouse } from '../../../../source/domain-api/source.warehouse';
+import { StructureId } from '../../../domain/structure.id';
+import { StructureReadModelRepository } from '../../../domain-api/read/structure.read-model-repository';
+import { StructureSourceOriginRepository } from '../../../../source/domain-api/origin/structure.source-origin.repository';
+import { ItemEntity } from '../../../../source/domain/core/item/item.entity';
+import { StructurePreparedItemsRepository } from '../../../../source/domain-api/prepared/structure.prepared-items.repository';
+import { OriginItemEntity } from '../../../../source/domain/origin/origin-item-entity';
+export declare class LocalSourceWarehouse extends SourceWarehouse {
+    private structureId;
+    constructor(structureId: StructureId, structureRepository: StructureReadModelRepository, structurePreparedItemsRepository: StructurePreparedItemsRepository, structureSourceOriginRepository: StructureSourceOriginRepository);
+    getEntities(): Array<ItemEntity>;
+    onEntities(): Observable<Array<ItemEntity>>;
+    onEntitiesSize(): Observable<number>;
+    onSingleEntities(): Observable<Array<ItemEntity>>;
+    onOriginSize(): Observable<number>;
+    onLoading(): Observable<boolean>;
+    onPreparedEntities(): Observable<Array<OriginItemEntity>>;
+}

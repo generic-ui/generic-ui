@@ -1,6 +1,6 @@
 import { DataField } from '../data-field';
-import { ColumnSummariesConfig } from '../../../../../../../lib/composition/domain/column/column-summaries.config';
-import { SummariesType } from '../../../../../../../lib/structure/domain/structure/summaries/summaries.type';
+import { ColumnSummariesConfig } from '../../../../../../../composition/domain/column/column-summaries.config';
+import { SummariesType } from '../../../../../../core/domain/summaries/summaries.type';
 import { FieldMatchers } from '../../../matcher/field.matchers';
 import { OriginItemEntity } from '../../../../../../source/domain/origin/origin-item-entity';
 export declare class UnknownDataField extends DataField<any> {

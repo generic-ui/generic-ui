@@ -1,6 +1,6 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { UnselectUniqueFilterCommand } from './unselect-unique-filter.command';
-import { StructureAggregate } from '../../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregate } from '../../../../core/domain/structure.aggregate';
 export declare class UnselectUniqueFilterCommandHandler implements CommandHandler<StructureAggregate, UnselectUniqueFilterCommand> {
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);

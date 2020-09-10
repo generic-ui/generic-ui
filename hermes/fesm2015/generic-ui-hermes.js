@@ -1608,6 +1608,7 @@ class Reactive {
     }
     /**
      * @protected
+     * @template T
      * @return {?}
      */
     takeUntil() {
@@ -1695,14 +1696,37 @@ if (false) {
  */
 /**
  * @abstract
+ */
+class ReactiveService extends Reactive {
+    /**
+     * @protected
+     */
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.unsubscribe();
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
  * @template R, I
  */
-class EventRepository {
+class EventRepository extends ReactiveService {
     /**
      * @protected
      * @param {?} domainEventBus
      */
     constructor(domainEventBus) {
+        super();
         this.domainEventBus = domainEventBus;
     }
     /**
@@ -1718,7 +1742,7 @@ class EventRepository {
          * @param {?} event
          * @return {?}
          */
-        (event) => event.getAggregateId().toString() === aggregateId.toString())));
+        (event) => event.getAggregateId().toString() === aggregateId.toString())), this.takeUntil());
     }
 }
 if (false) {
@@ -1875,28 +1899,6 @@ class FeatureModule {
      * @protected
      */
     constructor() {
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class ReactiveService extends Reactive {
-    /**
-     * @protected
-     */
-    constructor() {
-        super();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.unsubscribe();
     }
 }
 

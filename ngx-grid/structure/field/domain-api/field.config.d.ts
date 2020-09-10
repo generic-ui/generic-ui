@@ -1,6 +1,6 @@
 import { DataType } from '../domain/core/field/data/data-type';
-import { ColumnSummariesConfig } from '../../../lib/composition/domain/column/column-summaries.config';
-import { ColumnSortingConfig } from '../../../lib/composition/domain/sort/column-sorting.config';
+import { ColumnSummariesConfig } from '../../../composition/domain/column/column-summaries.config';
+import { ColumnSortingConfig } from '../../../composition/domain/sort/column-sorting.config';
 export interface FieldConfig {
     field: string;
     type?: DataType;

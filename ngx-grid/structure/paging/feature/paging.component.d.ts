@@ -2,7 +2,7 @@ import { ChangeDetectorRef, ElementRef, OnInit, Renderer2, SimpleChanges } from 
 import { SmartComponent } from '../../../common/cdk/smart-component';
 import { Paging } from '../domain-api/read/paging';
 import { PagingWarehouse } from '../domain-api/paging.warehouse';
-import { PagingCommandDispatcher } from '../domain-api/paging.command-dispatcher';
+import { PagingCommandInvoker } from '../domain-api/paging.command-invoker';
 import { SourceWarehouse } from '../../source/domain-api/source.warehouse';
 import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
@@ -19,7 +19,7 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     sourceSize: number;
     paging: Paging;
     alternativeDisplay: boolean;
-    constructor(renderer2: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structurePagingWarehouse: PagingWarehouse, pagingCommandService: PagingCommandDispatcher, structureSourceWarehouse: SourceWarehouse, structurePagingDisplayModeArchive: PagingDisplayModeArchive);
+    constructor(renderer2: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structurePagingWarehouse: PagingWarehouse, pagingCommandService: PagingCommandInvoker, structureSourceWarehouse: SourceWarehouse, structurePagingDisplayModeArchive: PagingDisplayModeArchive);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     isPagingVisible(): boolean;

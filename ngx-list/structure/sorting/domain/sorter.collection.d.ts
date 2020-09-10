@@ -2,7 +2,7 @@ import { StructureSorter } from './structure.sorter';
 import { SortingConfig } from '../domain-api/sorting-config';
 import { FieldId } from '../../field/domain/core/field/field.id';
 import { OriginItemEntity } from '../../source/domain/origin/origin-item-entity';
-import { SortOrder } from '../../../lib/composition/domain/column/sort/sort-order';
+import { SortOrder } from '../../../composition/domain/column/sort/sort-order';
 import { Field } from '../../field/domain/core/field/field';
 export declare class SorterCollection {
     private enabled;

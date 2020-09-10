@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 export declare class SearchPlaceholderArchive {
     private static readonly PLACEHOLDER;
     private readonly idToPlaceholder;

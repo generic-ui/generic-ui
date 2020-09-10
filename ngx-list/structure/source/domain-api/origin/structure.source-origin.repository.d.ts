@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { OriginItemEntity } from '../../domain/origin/origin-item-entity';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 export declare class StructureSourceOriginRepository {
     private origin;
     private origin$;

@@ -2,11 +2,11 @@ import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SmartComponent } from '../../../common/cdk/smart-component';
-import { StructureWarehouse } from '../../../lib/structure/domain-api/structure.warehouse';
+import { StructureWarehouse } from '../../core/domain-api/structure.warehouse';
 import { SearchPlaceholderArchive } from '../domain-api/placeholder/search-placeholder.archive';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
-import { StructureVerticalFormationWarehouse } from '../../../lib/structure/domain-api/vertical-formation/structure-vertical-formation.warehouse';
-import { SearchCommandDispatcher } from '../domain-api/search.command-dispatcher';
+import { StructureId } from '../../core/domain/structure.id';
+import { StructureVerticalFormationWarehouse } from '../../core/domain-api/vertical-formation/structure-vertical-formation.warehouse';
+import { SearchCommandInvoker } from '../domain-api/search.command-invoker';
 import { SearchWarehouse } from '../domain-api/search.warehouse';
 export declare class SearchComponent extends SmartComponent implements OnInit {
     private readonly formBuilder;
@@ -24,7 +24,7 @@ export declare class SearchComponent extends SmartComponent implements OnInit {
     placeholder: string;
     searchingEnabled: boolean;
     searchInputSubscription: Subscription;
-    constructor(formBuilder: FormBuilder, renderer2: Renderer2, changeDetectorRef: ChangeDetectorRef, structureId: StructureId, searchCommandDispatcher: SearchCommandDispatcher, structureWarehouse: StructureWarehouse, searchWarehouse: SearchWarehouse, verticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSearchPlaceholderArchive: SearchPlaceholderArchive);
+    constructor(formBuilder: FormBuilder, renderer2: Renderer2, changeDetectorRef: ChangeDetectorRef, structureId: StructureId, searchCommandDispatcher: SearchCommandInvoker, structureWarehouse: StructureWarehouse, searchWarehouse: SearchWarehouse, verticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSearchPlaceholderArchive: SearchPlaceholderArchive);
     ngOnInit(): void;
     clear(): void;
     private observeChanges;

@@ -2,8 +2,8 @@ import { DataType } from './data-type';
 import { FieldMatchers } from '../../matcher/field.matchers';
 import { BaseDataField } from './base-data-field';
 import { OriginItemEntity } from '../../../../../source/domain/origin/origin-item-entity';
-import { SummariesType } from '../../../../../../lib/structure/domain/structure/summaries/summaries.type';
-import { ColumnSummariesConfig } from '../../../../../../lib/composition/domain/column/column-summaries.config';
+import { SummariesType } from '../../../../../core/domain/summaries/summaries.type';
+import { ColumnSummariesConfig } from '../../../../../../composition/domain/column/column-summaries.config';
 export declare abstract class DataField<T> extends BaseDataField {
     private summariesEnabled;
     private summariesTypes;

@@ -1,8 +1,8 @@
 import { EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { StructureId } from '../../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { Gate } from '../../../../../common/cdk/gate';
 import { SearchConfig } from '../../../../search/domain-api/search-config';
-import { SearchCommandDispatcher } from '../../../../search/domain-api/search.command-dispatcher';
+import { SearchCommandInvoker } from '../../../../search/domain-api/search.command-invoker';
 import { SearchEventRepository } from '../../../../search/domain-api/search.event-repository';
 export declare class ListViewSearchingGate extends Gate implements OnChanges, OnInit {
     private readonly structureId;
@@ -10,7 +10,7 @@ export declare class ListViewSearchingGate extends Gate implements OnChanges, On
     private readonly searchEventRepository;
     searching: SearchConfig;
     searchPhraseChanged: EventEmitter<string>;
-    constructor(structureId: StructureId, searchCommandDispatcher: SearchCommandDispatcher, searchEventRepository: SearchEventRepository);
+    constructor(structureId: StructureId, searchCommandDispatcher: SearchCommandInvoker, searchEventRepository: SearchEventRepository);
     ngOnChanges(simpleChanges: SimpleChanges): void;
     ngOnInit(): void;
 }

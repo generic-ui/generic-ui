@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../lib/composition/domain-api/read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CompositionWarehouse } from '../../../../lib/composition/domain-api/composition.warehouse';
+import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
 import { FieldWarehouse } from '../../../field/domain-api/field.warehouse';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { FieldReadModel } from '../../../field/domain-api/read/field.read-model';
 import { FilterWarehouse } from '../../domain-api/filter.warehouse';
 import { FilterTypeMap } from '../../domain-api/type/filter-type-map';
 import { FilterTypeReadModel } from '../../domain-api/type/filter-type.read-model';
 import { FilterTypeId } from '../../domain/type/filter-type.id';
-import { FilterCommandDispatcher } from '../../domain-api/filter.command-dispatcher';
+import { FilterCommandInvoker } from '../../domain-api/filter.command-invoker';
 import { ActiveFilterReadModel } from '../../domain-api/active/active-filter.read-model';
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
@@ -27,7 +27,7 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     selectedFilterTypeId: FilterTypeId;
     selectedValue: string;
     activeFilters: Array<ActiveFilterReadModel>;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandDispatcher, compositionWarehouse: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
     onColumnSelect(selectedColumn: CellTemplateWithContext): void;
     onFieldSelect(field: FieldReadModel): void;

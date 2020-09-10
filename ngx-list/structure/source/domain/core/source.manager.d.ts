@@ -1,6 +1,6 @@
 import { AggregateEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from '../origin/origin-item-entity';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { Field } from '../../../field/domain/core/field/field';
 import { OriginId } from '../origin/origin-id';
 import { FormationManager } from '../formation/core/formation-manager';

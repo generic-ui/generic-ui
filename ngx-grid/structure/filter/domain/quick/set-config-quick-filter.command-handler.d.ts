@@ -1,7 +1,7 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { SetConfigQuickFilterCommand } from './set-config-quick-filter.command';
-import { StructureAggregateRepository } from '../../../../lib/structure/domain/structure/structure-aggregate.repository';
-import { StructureAggregate } from '../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregateRepository } from '../../../core/domain/structure-aggregate.repository';
+import { StructureAggregate } from '../../../core/domain/structure.aggregate';
 export declare class SetConfigQuickFilterCommandHandler implements CommandHandler<StructureAggregate, SetConfigQuickFilterCommand> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;

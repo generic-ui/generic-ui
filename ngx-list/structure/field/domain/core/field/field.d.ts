@@ -2,7 +2,7 @@ import { DataFieldTypes } from './data/data-field-types';
 import { DataType } from './data/data-type';
 import { FieldId } from './field.id';
 import { OriginItemEntity } from '../../../../source/domain/origin/origin-item-entity';
-import { SummariesType } from '../../../../../lib/structure/domain/structure/summaries/summaries.type';
+import { SummariesType } from '../../../../core/domain/summaries/summaries.type';
 export declare class Field {
     static of(id: FieldId, dataField: DataFieldTypes, name: string): Field;
     private readonly id;

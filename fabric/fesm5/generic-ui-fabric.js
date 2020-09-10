@@ -1893,16 +1893,54 @@ var DialogComponent = /** @class */ (function (_super) {
     }
     /**
      * @protected
+     * @param {?=} theme
      * @return {?}
      */
     DialogComponent.prototype.addTheme = /**
      * @protected
+     * @param {?=} theme
+     * @return {?}
+     */
+    function (theme) {
+        if (!theme) {
+            theme = this.theme;
+        }
+        this.removeThemes();
+        /** @type {?} */
+        var cssClass = DialogComponent.CSS_CLASS_PREFIX + theme.toLowerCase();
+        this.renderer.addClass(this.elementRef.nativeElement, cssClass);
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    DialogComponent.prototype.removeThemes = /**
+     * @protected
      * @return {?}
      */
     function () {
+        var _this = this;
         /** @type {?} */
-        var cssClass = DialogComponent.CSS_CLASS_PREFIX + this.theme.toLowerCase();
-        this.renderer.addClass(this.elementRef.nativeElement, cssClass);
+        var themes = Object.keys(Theme)
+            .map((/**
+         * @param {?} key
+         * @return {?}
+         */
+        function (key) { return Theme[key].toLowerCase(); }))
+            .filter((/**
+         * @param {?} val
+         * @return {?}
+         */
+        function (val) { return !Number.isInteger(val); }));
+        themes.forEach((/**
+         * @param {?} theme
+         * @return {?}
+         */
+        function (theme) {
+            /** @type {?} */
+            var cssClass = DialogComponent.CSS_CLASS_PREFIX + theme;
+            _this.renderer.removeClass(_this.elementRef.nativeElement, cssClass);
+        }));
     };
     DialogComponent.CSS_CLASS_PREFIX = 'gui-';
     return DialogComponent;
@@ -4121,16 +4159,101 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var FabricDialogThemeService = /** @class */ (function () {
+    function FabricDialogThemeService() {
+        this.theme$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    FabricDialogThemeService.prototype.onTheme = /**
+     * @return {?}
+     */
+    function () {
+        return this.theme$.asObservable();
+    };
+    /**
+     * @param {?} theme
+     * @return {?}
+     */
+    FabricDialogThemeService.prototype.nextTheme = /**
+     * @param {?} theme
+     * @return {?}
+     */
+    function (theme) {
+        this.theme$.next(this.toTheme(theme));
+    };
+    /**
+     * @private
+     * @param {?} theme
+     * @return {?}
+     */
+    FabricDialogThemeService.prototype.toTheme = /**
+     * @private
+     * @param {?} theme
+     * @return {?}
+     */
+    function (theme) {
+        switch (theme.toLowerCase()) {
+            case 'fabric':
+                return Theme.FABRIC;
+            case 'material':
+                return Theme.MATERIAL;
+            case 'generic':
+                return Theme.GENERIC;
+            case 'light':
+                return Theme.LIGHT;
+            case 'dark':
+                return Theme.DARK;
+        }
+    };
+    FabricDialogThemeService.decorators = [
+        { type: Injectable }
+    ];
+    return FabricDialogThemeService;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDialogThemeService.prototype.theme$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var FabricDialogComponent = /** @class */ (function (_super) {
     __extends(FabricDialogComponent, _super);
-    function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, elRef, renderer, theme, dialogService) {
+    function FabricDialogComponent(componentFactoryResolver, changeDetectorRef, elRef, themeService, renderer, theme, dialogService) {
         var _this = _super.call(this, elRef, renderer, theme) || this;
         _this.componentFactoryResolver = componentFactoryResolver;
         _this.changeDetectorRef = changeDetectorRef;
         _this.elRef = elRef;
+        _this.themeService = themeService;
         _this.dialogService = dialogService;
         return _this;
     }
+    /**
+     * @return {?}
+     */
+    FabricDialogComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.themeService
+            .onTheme()
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} theme
+         * @return {?}
+         */
+        function (theme) {
+            _this.addTheme(theme);
+        }));
+    };
     /**
      * @return {?}
      */
@@ -4209,6 +4332,7 @@ var FabricDialogComponent = /** @class */ (function (_super) {
         { type: ComponentFactoryResolver },
         { type: ChangeDetectorRef },
         { type: ElementRef },
+        { type: FabricDialogThemeService },
         { type: Renderer2 },
         { type: Theme, decorators: [{ type: Inject, args: [themeToken,] }] },
         { type: FabricDialogService, decorators: [{ type: Inject, args: [forwardRef((/**
@@ -4245,6 +4369,11 @@ if (false) {
      * @type {?}
      * @private
      */
+    FabricDialogComponent.prototype.themeService;
+    /**
+     * @type {?}
+     * @private
+     */
     FabricDialogComponent.prototype.dialogService;
 }
 
@@ -4265,7 +4394,8 @@ var FabricDialogModule = /** @class */ (function () {
                         FabricDialogComponent
                     ],
                     providers: [
-                        FabricDialogService
+                        FabricDialogService,
+                        FabricDialogThemeService
                     ],
                     entryComponents: [
                         FabricDialogComponent
@@ -5326,6 +5456,251 @@ var FabricNotificationModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @abstract
+ * @template T
+ */
+var FabricModal = /** @class */ (function () {
+    function FabricModal(componentFactoryResolver, applicationRef, injector, document) {
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.applicationRef = applicationRef;
+        this.injector = injector;
+        this.document = document;
+        this.componentRef = null;
+    }
+    /**
+     * @return {?}
+     */
+    FabricModal.prototype.ngOnDestroy = /**
+     * @return {?}
+     */
+    function () {
+        this.removeComponent();
+    };
+    /**
+     * @return {?}
+     */
+    FabricModal.prototype.createAndAppend = /**
+     * @return {?}
+     */
+    function () {
+        if (this.componentRef) {
+            this.removeComponent();
+        }
+        /** @type {?} */
+        var componentRef = this.componentFactoryResolver
+            .resolveComponentFactory(this.getComponent())
+            .create(this.injector);
+        componentRef.changeDetectorRef.detectChanges();
+        this.applicationRef.attachView(componentRef.hostView);
+        /** @type {?} */
+        var domNotificationContainerElement = (/** @type {?} */ (((/** @type {?} */ (componentRef.hostView)))
+            .rootNodes[0]));
+        this.document.body.appendChild(domNotificationContainerElement);
+        this.componentRef = componentRef;
+    };
+    /**
+     * @return {?}
+     */
+    FabricModal.prototype.removeComponent = /**
+     * @return {?}
+     */
+    function () {
+        if (this.componentRef) {
+            this.applicationRef.detachView(this.componentRef.hostView);
+            this.componentRef.destroy();
+            this.componentRef = null;
+        }
+    };
+    /**
+     * @return {?}
+     */
+    FabricModal.prototype.getComponentRef = /**
+     * @return {?}
+     */
+    function () {
+        return this.componentRef;
+    };
+    /** @nocollapse */
+    FabricModal.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver },
+        { type: ApplicationRef },
+        { type: Injector },
+        { type: Document, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+    ]; };
+    return FabricModal;
+}());
+if (false) {
+    /** @type {?} */
+    FabricModal.prototype.componentRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricModal.prototype.componentFactoryResolver;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricModal.prototype.applicationRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricModal.prototype.injector;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricModal.prototype.document;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    FabricModal.prototype.getComponent = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricMessageService = /** @class */ (function (_super) {
+    __extends(FabricMessageService, _super);
+    function FabricMessageService(componentFactoryResolver, applicationRef, injector, document) {
+        return _super.call(this, componentFactoryResolver, applicationRef, injector, document) || this;
+    }
+    /**
+     * @return {?}
+     */
+    FabricMessageService.prototype.getComponent = /**
+     * @return {?}
+     */
+    function () {
+        return FabricMessageComponent;
+    };
+    /**
+     * @param {?} text
+     * @return {?}
+     */
+    FabricMessageService.prototype.open = /**
+     * @param {?} text
+     * @return {?}
+     */
+    function (text) {
+        this.createAndAppend();
+        this.getComponentRef().instance.text = text;
+        this.getComponentRef().instance.detectChanges();
+    };
+    /**
+     * @return {?}
+     */
+    FabricMessageService.prototype.close = /**
+     * @return {?}
+     */
+    function () {
+        this.removeComponent();
+    };
+    FabricMessageService.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    FabricMessageService.ctorParameters = function () { return [
+        { type: ComponentFactoryResolver },
+        { type: ApplicationRef },
+        { type: Injector },
+        { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+    ]; };
+    return FabricMessageService;
+}(FabricModal));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricMessageComponent = /** @class */ (function () {
+    function FabricMessageComponent(messageService, changeDetectorRef) {
+        this.messageService = messageService;
+        this.changeDetectorRef = changeDetectorRef;
+    }
+    /**
+     * @return {?}
+     */
+    FabricMessageComponent.prototype.detectChanges = /**
+     * @return {?}
+     */
+    function () {
+        this.changeDetectorRef.detectChanges();
+    };
+    /**
+     * @return {?}
+     */
+    FabricMessageComponent.prototype.close = /**
+     * @return {?}
+     */
+    function () {
+        this.messageService.close();
+    };
+    FabricMessageComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-message',
+                    template: "\n\t\t<div class=\" gui-message\">\n\t\t\t{{text}}\n\t\t\t<button (click)=\"close()\">X</button>\n\t\t</div>\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    styles: [".gui-message{position:fixed;top:50%;left:50%}"]
+                }] }
+    ];
+    /** @nocollapse */
+    FabricMessageComponent.ctorParameters = function () { return [
+        { type: FabricMessageService },
+        { type: ChangeDetectorRef }
+    ]; };
+    return FabricMessageComponent;
+}());
+if (false) {
+    /** @type {?} */
+    FabricMessageComponent.prototype.text;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricMessageComponent.prototype.messageService;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricMessageComponent.prototype.changeDetectorRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricMessageModule = /** @class */ (function () {
+    function FabricMessageModule() {
+    }
+    FabricMessageModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [
+                        FabricMessageComponent
+                    ],
+                    entryComponents: [
+                        FabricMessageComponent
+                    ],
+                    providers: [
+                        FabricMessageService
+                    ]
+                },] }
+    ];
+    return FabricMessageModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var FabricTabComponent = /** @class */ (function (_super) {
     __extends(FabricTabComponent, _super);
     function FabricTabComponent(renderer, changeDetectorRef, platformId) {
@@ -5365,6 +5740,28 @@ var FabricTabComponent = /** @class */ (function (_super) {
         this.setActive(tab);
     };
     /**
+     * @param {?} item
+     * @return {?}
+     */
+    FabricTabComponent.prototype.isSvg = /**
+     * @param {?} item
+     * @return {?}
+     */
+    function (item) {
+        return typeof item === 'object';
+    };
+    /**
+     * @param {?} item
+     * @return {?}
+     */
+    FabricTabComponent.prototype.getTabName = /**
+     * @param {?} item
+     * @return {?}
+     */
+    function (item) {
+        return typeof item === 'object' ? item.name : item;
+    };
+    /**
      * @param {?} scrollRightClicked
      * @return {?}
      */
@@ -5396,6 +5793,9 @@ var FabricTabComponent = /** @class */ (function (_super) {
      * @return {?}
      */
     function (tab) {
+        if (typeof tab === 'object') {
+            tab = tab.name;
+        }
         /** @type {?} */
         var navMenuTabEl = this.tabRef.nativeElement.querySelector('[data-tab="' + tab + '"]');
         /** @type {?} */
@@ -5509,13 +5909,13 @@ var FabricTabComponent = /** @class */ (function (_super) {
     FabricTabComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-tab',
-                    template: "<div #tab>\n\n\t<div class=\"gui-tab-menu\">\n\n\t\t<div (click)=\"scrollTabList(false)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon [direction]=\"Direction.LEFT\"></gui-arrow-icon>\n\t\t</div>\n\n\t\t<div class=\"gui-tab-menu-list\">\n\t\t\t<div #tabMenuList\n\t\t\t\t (click)=\"toggleTab(tab)\"\n\t\t\t\t *ngFor=\"let tab of menu\"\n\t\t\t\t [attr.data-tab]=\"tab\"\n\t\t\t\t class=\"gui-tab-menu-item\">\n\t\t\t\t{{tab}}\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div (click)=\"scrollTabList(true)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon></gui-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div #tabitem\n\t\t class=\"gui-tab-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
+                    template: "<div #tab>\n\n\t<div class=\"gui-tab-menu\">\n\n\t\t<div (click)=\"scrollTabList(false)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon [direction]=\"Direction.LEFT\"></gui-arrow-icon>\n\t\t</div>\n\n\t\t<div class=\"gui-tab-menu-list\">\n\t\t\t<div #tabMenuList\n\t\t\t\t (click)=\"toggleTab(tab)\"\n\t\t\t\t *ngFor=\"let tab of menu\"\n\t\t\t\t [attr.data-tab]=\"getTabName(tab)\"\n\t\t\t\t class=\"gui-tab-menu-item\">\n\t\t\t\t<span *ngIf=\"!isSvg(tab)\">{{tab}}</span>\n\t\t\t\t<ng-container *ngIf=\"isSvg(tab)\">\n\t\t\t\t\t<gui-svg-template [svg]=\"tab.svg\"></gui-svg-template>\n\t\t\t\t</ng-container>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div (click)=\"scrollTabList(true)\"\n\t\t\t *ngIf=\"scrollActive\"\n\t\t\t class=\"scroll-button\">\n\t\t\t<gui-arrow-icon></gui-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div #tabItem\n\t\t class=\"gui-tab-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     host: {
                         '[class.gui-tab]': 'true'
                     },
-                    styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;margin-bottom:-1px}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden;border-radius:4px 4px 0 0}.gui-tab .gui-tab-menu .gui-tab-menu-item{background:#fafafa;box-sizing:border-box;position:relative;border-radius:4px 4px 0 0;cursor:pointer;display:inline-block;height:34px;margin-right:2px;padding:8px 16px;text-align:center;white-space:nowrap;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu .gui-tab-menu-item:nth-last-child(1){margin-right:0}.gui-tab .gui-tab-menu .scroll-button{box-sizing:border-box;color:#ccc;background:0 0;height:34px;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-menu .scroll-button:hover svg path{stroke:#464646}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0;color:#2185d0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{background:#616161;border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent;color:#ce93d8}"]
+                    styles: [".gui-tab{font:14px Arial}.gui-tab .gui-tab-content{background:#fff;border-radius:0 0 4px 4px;padding:12px;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu{display:-ms-flexbox;display:flex;margin-bottom:-1px}.gui-tab .gui-tab-menu .gui-tab-menu-list{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:nowrap;flex-wrap:nowrap;overflow:hidden;border-radius:4px 4px 0 0}.gui-tab .gui-tab-menu .gui-tab-menu-item{background:#fafafa;box-sizing:border-box;position:relative;border-radius:4px 4px 0 0;cursor:pointer;display:inline-block;height:34px;margin-right:2px;padding:8px 16px;text-align:center;white-space:nowrap;border:1px solid #d6d6d6}.gui-tab .gui-tab-menu .gui-tab-menu-item:nth-last-child(1){margin-right:0}.gui-tab .gui-tab-menu .gui-tab-menu-item svg{height:16px;width:16px}.gui-tab .gui-tab-menu .gui-tab-menu-item svg path{fill:#aaa}.gui-tab .gui-tab-menu .scroll-button{box-sizing:border-box;color:#ccc;background:0 0;height:34px;font-weight:700;padding:8px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-tab .gui-tab-menu .scroll-button:hover svg path{stroke:#464646}.gui-tab .gui-tab-item{display:none}.gui-tab .gui-active.gui-tab-menu-item{background:#fff;border-color:#d6d6d6 #d6d6d6 #fff;border-style:solid;border-width:1px;border-radius:4px 4px 0 0;color:#2185d0}.gui-tab .gui-active.gui-tab-menu-item svg path{fill:#2185d0}.gui-tab .gui-active.gui-tab-item{display:block}", ".gui-material .gui-tab{font:14px Roboto,\"Helvetica Neue\",sans-serif}", ".gui-dark .gui-tab{color:#bdbdbd}.gui-dark .gui-tab .gui-tab-content{background:#424242;border-color:#616161}.gui-dark .gui-tab .gui-tab-menu-item{background:#616161;border-color:transparent}.gui-dark .gui-tab .gui-active.gui-tab-menu-item{background:#424242;border-color:#616161 #616161 transparent;color:#ce93d8}"]
                 }] }
     ];
     /** @nocollapse */
@@ -5526,7 +5926,7 @@ var FabricTabComponent = /** @class */ (function (_super) {
     ]; };
     FabricTabComponent.propDecorators = {
         tabRef: [{ type: ViewChild, args: ['tab', { static: false },] }],
-        tabItemRef: [{ type: ViewChild, args: ['tabitem', { static: false },] }],
+        tabItemRef: [{ type: ViewChild, args: ['tabItem', { static: false },] }],
         tabMenuList: [{ type: ViewChildren, args: ['tabMenuList',] }],
         menu: [{ type: Input }],
         active: [{ type: Input }],
@@ -5615,6 +6015,66 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var FabricSvgTemplate = /** @class */ (function () {
+    function FabricSvgTemplate() {
+    }
+    /**
+     * @return {?}
+     */
+    FabricSvgTemplate.prototype.ngAfterViewInit = /**
+     * @return {?}
+     */
+    function () {
+        this.svgRef.nativeElement.innerHTML = this.svg;
+    };
+    FabricSvgTemplate.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-svg-template',
+                    template: "\n\t\t<div #svgEl></div>\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush
+                }] }
+    ];
+    FabricSvgTemplate.propDecorators = {
+        svgRef: [{ type: ViewChild, args: ['svgEl', { static: false },] }],
+        svg: [{ type: Input }]
+    };
+    return FabricSvgTemplate;
+}());
+if (false) {
+    /** @type {?} */
+    FabricSvgTemplate.prototype.svgRef;
+    /** @type {?} */
+    FabricSvgTemplate.prototype.svg;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricSvgTemplateModule = /** @class */ (function () {
+    function FabricSvgTemplateModule() {
+    }
+    FabricSvgTemplateModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [
+                        FabricSvgTemplate
+                    ],
+                    exports: [
+                        FabricSvgTemplate
+                    ]
+                },] }
+    ];
+    return FabricSvgTemplateModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var FabricTabModule = /** @class */ (function () {
     function FabricTabModule() {
     }
@@ -5622,7 +6082,8 @@ var FabricTabModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [
                         CommonModule,
-                        FabricArrowIconModule
+                        FabricArrowIconModule,
+                        FabricSvgTemplateModule
                     ],
                     declarations: [
                         FabricTabComponent,
@@ -5642,11 +6103,21 @@ var FabricTabModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var FabricTooltipComponent = /** @class */ (function () {
-    function FabricTooltipComponent() {
+    function FabricTooltipComponent(elementRef) {
+        this.elementRef = elementRef;
     }
+    /**
+     * @return {?}
+     */
+    FabricTooltipComponent.prototype.correctPosition = /**
+     * @return {?}
+     */
+    function () {
+        this.top -= this.elementRef.nativeElement.offsetHeight;
+    };
     FabricTooltipComponent.decorators = [
         { type: Component, args: [{
-                    template: "{{text}}",
+                    template: "\n\t\t{{text}}\n\t",
                     host: {
                         '[class.gui-tooltip]': 'true',
                         '[style.left.px]': 'left',
@@ -5657,6 +6128,10 @@ var FabricTooltipComponent = /** @class */ (function () {
                     styles: [".gui-tooltip{position:absolute;display:block;background:rgba(0,0,0,.8);border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;font:400 14px Arial;vertical-align:middle;padding:8px 12px;-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
                 }] }
     ];
+    /** @nocollapse */
+    FabricTooltipComponent.ctorParameters = function () { return [
+        { type: ElementRef }
+    ]; };
     return FabricTooltipComponent;
 }());
 if (false) {
@@ -5666,23 +6141,30 @@ if (false) {
     FabricTooltipComponent.prototype.left;
     /** @type {?} */
     FabricTooltipComponent.prototype.top;
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricTooltipComponent.prototype.elementRef;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var FabricTooltipDirective = /** @class */ (function () {
+var FabricTooltipDirective = /** @class */ (function (_super) {
+    __extends(FabricTooltipDirective, _super);
     function FabricTooltipDirective(componentFactoryResolver, injector, elementRef, applicationRef, document, platformId) {
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.injector = injector;
-        this.elementRef = elementRef;
-        this.applicationRef = applicationRef;
-        this.document = document;
-        this.platformId = platformId;
-        this.text = '';
-        this.tooltipRef = null;
-        this.destroy$ = new Subject();
+        var _this = _super.call(this) || this;
+        _this.componentFactoryResolver = componentFactoryResolver;
+        _this.injector = injector;
+        _this.elementRef = elementRef;
+        _this.applicationRef = applicationRef;
+        _this.document = document;
+        _this.platformId = platformId;
+        _this.text = '';
+        _this.tooltipRef = null;
+        return _this;
     }
     /**
      * @return {?}
@@ -5697,13 +6179,13 @@ var FabricTooltipDirective = /** @class */ (function () {
         /** @type {?} */
         var close$ = fromEvent(this.elementRef.nativeElement, 'mouseleave');
         open$
-            .pipe(takeUntil(this.destroy$))
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @return {?}
          */
         function () { return _this.show(); }));
         close$
-            .pipe(takeUntil(this.destroy$))
+            .pipe(this.takeUntil())
             .subscribe((/**
          * @return {?}
          */
@@ -5712,16 +6194,6 @@ var FabricTooltipDirective = /** @class */ (function () {
                 _this.hide();
             }
         }));
-    };
-    /**
-     * @return {?}
-     */
-    FabricTooltipDirective.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        this.destroy$.next();
-        this.destroy$.complete();
     };
     /**
      * @private
@@ -5736,16 +6208,16 @@ var FabricTooltipDirective = /** @class */ (function () {
         var tooltipRef = this.componentFactoryResolver
             .resolveComponentFactory(FabricTooltipComponent)
             .create(this.injector);
-        this.calculateCords();
         tooltipRef.instance.text = this.text;
-        tooltipRef.instance.top = this.tooltipTopPosition;
-        tooltipRef.instance.left = this.tooltipLeftPosition;
         tooltipRef.changeDetectorRef.detectChanges();
         /** @type {?} */
         var domElement = (/** @type {?} */ (((/** @type {?} */ (tooltipRef.hostView)))
             .rootNodes[0]));
         this.document.body.appendChild(domElement);
         this.tooltipRef = tooltipRef;
+        this.calculateCords();
+        this.tooltipRef.instance.correctPosition();
+        this.tooltipRef.changeDetectorRef.detectChanges();
     };
     /**
      * @private
@@ -5781,12 +6253,13 @@ var FabricTooltipDirective = /** @class */ (function () {
             this.tooltipTopPosition =
                 elementBottom + window.scrollY
                     - elementRef.offsetHeight
-                    - FabricTooltipDirective.tooltipHeight
                     - FabricTooltipDirective.tooltipOffset;
             this.tooltipLeftPosition = window.scrollX + elementLeft + elementRef.offsetWidth / 2;
+            this.tooltipRef.instance.top = this.tooltipTopPosition;
+            this.tooltipRef.instance.left = this.tooltipLeftPosition;
+            this.tooltipRef.changeDetectorRef.detectChanges();
         }
     };
-    FabricTooltipDirective.tooltipHeight = 32;
     FabricTooltipDirective.tooltipOffset = 8;
     FabricTooltipDirective.decorators = [
         { type: Directive, args: [{
@@ -5807,13 +6280,8 @@ var FabricTooltipDirective = /** @class */ (function () {
         text: [{ type: Input, args: ['gui-tooltip',] }]
     };
     return FabricTooltipDirective;
-}());
+}(FabricReactive));
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricTooltipDirective.tooltipHeight;
     /**
      * @type {?}
      * @private
@@ -5827,11 +6295,6 @@ if (false) {
     FabricTooltipDirective.prototype.tooltipTopPosition;
     /** @type {?} */
     FabricTooltipDirective.prototype.tooltipLeftPosition;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricTooltipDirective.prototype.destroy$;
     /**
      * @type {?}
      * @private
@@ -6838,6 +7301,191 @@ var ResizeDetectorModule = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var FabricRatingComponent = /** @class */ (function () {
+    function FabricRatingComponent() {
+        this.rating = 3;
+        this.onRatingChange = new EventEmitter();
+        this.stars = [];
+        this.previewRating = 0;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.ngOnChanges = /**
+     * @param {?} changes
+     * @return {?}
+     */
+    function (changes) {
+        if (changes.starsLength) {
+            if (this.starsLength) {
+                this.createStarsArray(this.starsLength);
+            }
+        }
+    };
+    /**
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        if (this.stars.length === 0) {
+            this.createStarsArray(5);
+        }
+    };
+    /**
+     * @param {?} starNumber
+     * @param {?} rating
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.isRating = /**
+     * @param {?} starNumber
+     * @param {?} rating
+     * @return {?}
+     */
+    function (starNumber, rating) {
+        return !(rating >= starNumber);
+    };
+    /**
+     * @param {?} star
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.changeRating = /**
+     * @param {?} star
+     * @return {?}
+     */
+    function (star) {
+        this.rating = star;
+        this.onRatingChange.emit(star);
+    };
+    /**
+     * @param {?} star
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.changePreviewRating = /**
+     * @param {?} star
+     * @return {?}
+     */
+    function (star) {
+        this.previewRating = star + 1;
+    };
+    /**
+     * @param {?} length
+     * @return {?}
+     */
+    FabricRatingComponent.prototype.createStarsArray = /**
+     * @param {?} length
+     * @return {?}
+     */
+    function (length) {
+        for (var i = 1; i <= length; i++) {
+            this.stars.push(i);
+        }
+    };
+    FabricRatingComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-rating',
+                    template: "<div class=\"gui-rating-container\">\n\t<gui-star-icon *ngFor=\"let star of stars\"\n\t\t\t\t   [class.star-icon-gray]=\"isRating(star, rating)\"\n\t\t\t\t   [class.star-icon-hover]=\"isRating(previewRating, star)\"\n\t\t\t\t   (click)=\"changeRating(star)\"\n\t\t\t\t   (mouseenter)=\"changePreviewRating(star)\"\n\t\t\t\t   (mouseleave)=\"changePreviewRating(0)\">\n\t</gui-star-icon>\n</div>\n",
+                    host: {
+                        '[class.gui-rating]': 'true'
+                    },
+                    encapsulation: ViewEncapsulation.None,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    styles: [".gui-rating .gui-star-icon{cursor:pointer;padding-right:8px}.gui-rating .gui-star-icon svg{height:24px;width:24px}.gui-rating .gui-star-icon svg path{transition:fill .3s ease-in-out}.gui-rating .gui-rating-container{display:-ms-flexbox;display:flex}.gui-rating .gui-rating-container .star-icon-gray svg path{fill:#dedede}.gui-rating .gui-rating-container .star-icon-hover svg path{fill:#fc0}"]
+                }] }
+    ];
+    FabricRatingComponent.propDecorators = {
+        starsLength: [{ type: Input }],
+        rating: [{ type: Input }],
+        onRatingChange: [{ type: Output }]
+    };
+    return FabricRatingComponent;
+}());
+if (false) {
+    /** @type {?} */
+    FabricRatingComponent.prototype.starsLength;
+    /** @type {?} */
+    FabricRatingComponent.prototype.rating;
+    /** @type {?} */
+    FabricRatingComponent.prototype.onRatingChange;
+    /** @type {?} */
+    FabricRatingComponent.prototype.stars;
+    /** @type {?} */
+    FabricRatingComponent.prototype.previewRating;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StarIconComponent = /** @class */ (function () {
+    function StarIconComponent() {
+    }
+    StarIconComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'gui-star-icon',
+                    template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"34.542\" height=\"32.852\" viewBox=\"0 0 34.542 32.852\">\n\t\t\t<path data-name=\"Path 572\"\n\t\t\t\t  d=\"M-121.168-469.432l5.337,10.814,11.934,1.734-8.636,8.418,2.039,11.886-10.674-5.612-10.674,5.612,2.039-11.886-8.636-8.418,11.934-1.734Z\"\n\t\t\t\t  transform=\"translate(138.44 469.432)\" fill=\"#ffe623\" fill-rule=\"evenodd\"/>\n\t\t</svg>\n\t",
+                    encapsulation: ViewEncapsulation.None,
+                    host: {
+                        '[class.gui-star-icon]': 'true'
+                    }
+                }] }
+    ];
+    return StarIconComponent;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StarIconModule = /** @class */ (function () {
+    function StarIconModule() {
+    }
+    StarIconModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [
+                        StarIconComponent
+                    ],
+                    exports: [
+                        StarIconComponent
+                    ]
+                },] }
+    ];
+    return StarIconModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var FabricRatingModule = /** @class */ (function () {
+    function FabricRatingModule() {
+    }
+    FabricRatingModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        StarIconModule
+                    ],
+                    declarations: [
+                        FabricRatingComponent
+                    ],
+                    exports: [
+                        FabricRatingComponent
+                    ]
+                },] }
+    ];
+    return FabricRatingModule;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var modules = [
     FabricBadgeModule,
@@ -6853,7 +7501,9 @@ var modules = [
     FabricInlineDialogModule,
     FabricRadioButtonModule,
     FabricRadioGroupModule,
+    FabricRatingModule,
     FabricNotificationModule,
+    FabricMessageModule,
     FabricTabModule,
     FabricTooltipModule,
     FabricProgressBarModule,
@@ -6911,5 +7561,5 @@ FabricNestedDialogComponent = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricModule, FabricNestedDialogComponent, FabricNotificationModule, FabricNotificationService, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, FabricNotificationsContainerComponent as ɵbc, FabricNotificationComponent as ɵbd, FabricTabComponent as ɵbe, TabItemComponent as ɵbf, FabricTooltipDirective as ɵbg, FabricTooltipComponent as ɵbh, FabricProgressBarComponent as ɵbi, FabricProgressSpinnerComponent as ɵbj, AbstractSpinner as ɵbk, FabricSelectComponent as ɵbl, FabricSpinnerComponent as ɵbm, FabricToggleButtonComponent as ɵbn, ToggleButtonGroupService as ɵbo, FabricToggleButtonGroupComponent as ɵbp, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, FabricDatePickerCalendarComponent as ɵj, FabricDatePickerService as ɵk, FabricDatePickerWeeks as ɵl, FabricDatePickerYears as ɵm, FabricDatePickerComponent as ɵn, FabricDatePickerInlineDialogService as ɵo, FabricCloseIconModule as ɵp, selector as ɵq, FabricCloseIconComponent as ɵr, FabricDrawerComponent as ɵs, DialogService as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDialogThemeService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricMessageModule, FabricMessageService, FabricModule, FabricNestedDialogComponent, FabricNotificationModule, FabricNotificationService, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricRatingModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, InlineDialogPlacement, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricRadioButtonComponent as ɵba, FabricRadioGroupComponent as ɵbb, StarIconModule as ɵbc, StarIconComponent as ɵbd, FabricRatingComponent as ɵbe, FabricNotificationsContainerComponent as ɵbf, FabricNotificationComponent as ɵbg, FabricMessageComponent as ɵbh, FabricModal as ɵbi, FabricSvgTemplateModule as ɵbj, FabricSvgTemplate as ɵbk, FabricTabComponent as ɵbl, TabItemComponent as ɵbm, FabricTooltipDirective as ɵbn, FabricTooltipComponent as ɵbo, FabricProgressBarComponent as ɵbp, FabricProgressSpinnerComponent as ɵbq, AbstractSpinner as ɵbr, FabricSelectComponent as ɵbs, FabricSpinnerComponent as ɵbt, FabricToggleButtonComponent as ɵbu, ToggleButtonGroupService as ɵbv, FabricToggleButtonGroupComponent as ɵbw, FabricButtonGroupComponent as ɵc, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, DialogComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, FabricDatePickerCalendarComponent as ɵj, FabricDatePickerService as ɵk, FabricDatePickerWeeks as ɵl, FabricDatePickerYears as ɵm, FabricDatePickerComponent as ɵn, FabricDatePickerInlineDialogService as ɵo, FabricCloseIconModule as ɵp, selector as ɵq, FabricCloseIconComponent as ɵr, FabricDrawerComponent as ɵs, DialogService as ɵt, FabricArrowIconModule as ɵu, FabricArrowIconComponent as ɵv, FabricDropdownComponent as ɵw, GeometryService as ɵx, DropdownItemComponent as ɵy, FabricDialogComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

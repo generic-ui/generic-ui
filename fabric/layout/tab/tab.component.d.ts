@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, QueryList, Renderer2 } from '@angular/core';
 import { Direction } from '../../common/icons/arrow-icon/direction';
 import { FabricReactive } from '../../common/fabric-reactive';
+import { GuiTabItem } from './fabric-tab-item';
 export declare class FabricTabComponent extends FabricReactive implements AfterViewInit {
     private renderer;
     private changeDetectorRef;
@@ -8,7 +9,7 @@ export declare class FabricTabComponent extends FabricReactive implements AfterV
     tabRef: ElementRef;
     tabItemRef: ElementRef;
     tabMenuList: QueryList<ElementRef>;
-    menu: Array<string>;
+    menu: Array<string | GuiTabItem>;
     active: string;
     scrollActive: boolean;
     Direction: typeof Direction;
@@ -19,6 +20,8 @@ export declare class FabricTabComponent extends FabricReactive implements AfterV
     constructor(renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, platformId: any);
     ngAfterViewInit(): void;
     toggleTab(tab: string): void;
+    isSvg(item: string | GuiTabItem): boolean;
+    getTabName(item: string | GuiTabItem): string;
     scrollTabList(scrollRightClicked: boolean): void;
     private setActive;
     private removeActive;

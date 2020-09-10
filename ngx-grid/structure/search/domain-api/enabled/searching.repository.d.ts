@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { Reactive } from '../../../../common/cdk/reactive';
 export declare class SearchingRepository extends Reactive {
     private enabled;

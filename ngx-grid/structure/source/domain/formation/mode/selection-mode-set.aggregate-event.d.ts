@@ -1,5 +1,5 @@
 import { AggregateEvent, DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { RowSelectionMode } from '../../../domain-api/row-selection';
 export declare class SelectionModeSetAggregateEvent extends AggregateEvent<StructureId> {
     private readonly mode;

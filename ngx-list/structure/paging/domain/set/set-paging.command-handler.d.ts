@@ -1,7 +1,7 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
-import { StructureAggregateRepository } from '../../../../lib/structure/domain/structure/structure-aggregate.repository';
+import { StructureAggregateRepository } from '../../../core/domain/structure-aggregate.repository';
 import { SetPagingCommand } from './set-paging.command';
-import { StructureAggregate } from '../../../../lib/structure/domain/structure/structure.aggregate';
+import { StructureAggregate } from '../../../core/domain/structure.aggregate';
 export declare class SetPagingCommandHandler implements CommandHandler<StructureAggregate, SetPagingCommand> {
     private structureAggregateRepository;
     private domainEventPublisher;

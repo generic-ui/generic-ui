@@ -1,14 +1,15 @@
 import { Observable } from 'rxjs';
+import { Warehouse } from '@generic-ui/hermes';
 import { FilterEnabledRepository } from './read/filter-enabled.repository';
 import { QuickFilterEnabledRepository } from './read/quick-filter-enabled.repository';
-import { StructureId } from '../../../lib/structure/domain/structure.id';
+import { StructureId } from '../../core/domain/structure.id';
 import { FilterTypeRepository } from './type/filter-type.repository';
 import { FilterTypeMap } from './type/filter-type-map';
 import { ActiveFilterReadModel } from './active/active-filter.read-model';
 import { ActiveFilterRepository } from './active/active-filter.repository';
 import { UniqueValuesReadModel } from './unique/unique-values.read-model';
 import { UniqueValuesRepository } from './unique/unique-values.repository';
-export declare class FilterWarehouse {
+export declare class FilterWarehouse implements Warehouse {
     private readonly structureFilterRepository;
     private readonly structureQuickFilterRepository;
     private readonly filterTypeRepository;

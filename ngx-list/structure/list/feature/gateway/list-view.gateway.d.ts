@@ -1,10 +1,10 @@
 import { OnChanges, SimpleChanges } from '@angular/core';
-import { SourceCommandDispatcher } from '../../../source/domain-api/source.command-dispatcher';
-import { StructureId } from '../../../../lib/structure/domain/structure.id';
+import { SourceCommandInvoker } from '../../../source/domain-api/source.command-invoker';
+import { StructureId } from '../../../core/domain/structure.id';
 export declare abstract class ListViewGateway implements OnChanges {
     readonly structureId: StructureId;
-    protected readonly sourceCommandService: SourceCommandDispatcher;
+    protected readonly sourceCommandService: SourceCommandInvoker;
     items: Array<any>;
-    protected constructor(structureId: StructureId, sourceCommandService: SourceCommandDispatcher);
+    protected constructor(structureId: StructureId, sourceCommandService: SourceCommandInvoker);
     ngOnChanges(simpleChanges: SimpleChanges): void;
 }
