@@ -1,10 +1,10 @@
 import { Injector } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
 import { Reactive } from '../../../../common/cdk/reactive';
-import { SchemaWarehouse } from '../../../../schema/domain-api/schema.warehouse';
-import { StructureThemeConverter } from '../../../core/feature/schema/structure.theme.converter';
-import { SchemaReadModelRootId } from '../../../../schema/domain-api/read/schema.read-model-root-id';
-import { StructureId } from '../../../core/domain/structure.id';
+import { SchemaWarehouse } from '../../../../schema/core/api/schema.warehouse';
+import { StructureThemeConverter } from '../../../grid/feature/schema/structure.theme.converter';
+import { SchemaReadModelRootId } from '../../../../schema/core/domain-read/schema.read-model-root-id';
+import { StructureId } from '../../../core/api/structure.id';
 export declare class ActiveFilterService extends Reactive {
     private readonly injector;
     private readonly schemaReadModelRepository;

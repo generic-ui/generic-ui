@@ -667,7 +667,15 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var Command = /** @class */ (function (_super) {
+    /**
+     * @abstract
+     * @template I
+     */
+    var   /**
+     * @abstract
+     * @template I
+     */
+    Command = /** @class */ (function (_super) {
         __extends(Command, _super);
         function Command() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -1333,13 +1341,65 @@
      */
     /**
      * @abstract
+     * @template T
+     */
+    var   /**
+     * @abstract
+     * @template T
+     */
+    HermesId = /** @class */ (function () {
+        function HermesId(uid) {
+            this.uid = uid;
+        }
+        /**
+         * @return {?}
+         */
+        HermesId.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.uid;
+        };
+        /**
+         * @param {?} hermesId
+         * @return {?}
+         */
+        HermesId.prototype.equals = /**
+         * @param {?} hermesId
+         * @return {?}
+         */
+        function (hermesId) {
+            return this.uid === hermesId.getId();
+        };
+        return HermesId;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HermesId.prototype.uid;
+        /**
+         * @abstract
+         * @return {?}
+         */
+        HermesId.prototype.toString = function () { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
      */
     var   /**
      * @abstract
      */
-    AggregateId = /** @class */ (function () {
+    AggregateId = /** @class */ (function (_super) {
+        __extends(AggregateId, _super);
         function AggregateId(uid) {
-            this.uid = uid;
+            return _super.call(this, uid) || this;
         }
         /**
          * @return {?}
@@ -1348,36 +1408,11 @@
          * @return {?}
          */
         function () {
-            return this.uid;
-        };
-        /**
-         * @return {?}
-         */
-        AggregateId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.uid;
-        };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        AggregateId.prototype.equals = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
-            return this.uid === aggregateId.getId();
+            return _super.prototype.getId.call(this);
         };
         return AggregateId;
-    }());
+    }(HermesId));
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateId.prototype.uid;
         /**
          * @abstract
          * @return {?}
@@ -2383,52 +2418,19 @@
      */
     /**
      * @abstract
+     * @template T
      */
     var   /**
      * @abstract
+     * @template T
      */
-    EntityId = /** @class */ (function () {
-        function EntityId(uid) {
-            this.uid = uid;
+    EntityId = /** @class */ (function (_super) {
+        __extends(EntityId, _super);
+        function EntityId() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @return {?}
-         */
-        EntityId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
-            return this.uid;
-        };
-        /**
-         * @return {?}
-         */
-        EntityId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.uid;
-        };
-        /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        EntityId.prototype.equals = /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        function (entityId) {
-            return this.uid === entityId.getId();
-        };
         return EntityId;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        EntityId.prototype.uid;
-    }
+    }(HermesId));
 
     /**
      * @fileoverview added by tsickle
@@ -5043,6 +5045,7 @@
     exports.EventRepository = EventRepository;
     exports.FeatureModule = FeatureModule;
     exports.HermesApi = HermesApi;
+    exports.HermesId = HermesId;
     exports.HermesModule = HermesModule;
     exports.InMemoryAggregateStore = InMemoryAggregateStore;
     exports.InMemoryReadModelStore = InMemoryReadModelStore;

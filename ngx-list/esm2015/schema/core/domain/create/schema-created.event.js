@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { SchemaDomainEvent } from '../schema.domain-event';
+export class SchemaCreatedEvent extends SchemaDomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'SchemaCreatedEvent');
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLWNyZWF0ZWQuZXZlbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbInNjaGVtYS9jb3JlL2RvbWFpbi9jcmVhdGUvc2NoZW1hLWNyZWF0ZWQuZXZlbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUNBLE9BQU8sRUFBRSxpQkFBaUIsRUFBRSxNQUFNLHdCQUF3QixDQUFDO0FBRzNELE1BQU0sT0FBTyxrQkFBbUIsU0FBUSxpQkFBaUI7Ozs7SUFFeEQsWUFBWSxXQUFxQjtRQUNoQyxLQUFLLENBQUMsV0FBVyxFQUFFLG9CQUFvQixDQUFDLENBQUM7SUFDMUMsQ0FBQztDQUNEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgU2NoZW1hSWQgfSBmcm9tICcuLi8uLi9hcGkvc2NoZW1hLmlkJztcbmltcG9ydCB7IFNjaGVtYURvbWFpbkV2ZW50IH0gZnJvbSAnLi4vc2NoZW1hLmRvbWFpbi1ldmVudCc7XG5cblxuZXhwb3J0IGNsYXNzIFNjaGVtYUNyZWF0ZWRFdmVudCBleHRlbmRzIFNjaGVtYURvbWFpbkV2ZW50IHtcblxuXHRjb25zdHJ1Y3RvcihhZ2dyZWdhdGVJZDogU2NoZW1hSWQpIHtcblx0XHRzdXBlcihhZ2dyZWdhdGVJZCwgJ1NjaGVtYUNyZWF0ZWRFdmVudCcpO1xuXHR9XG59XG4iXX0=

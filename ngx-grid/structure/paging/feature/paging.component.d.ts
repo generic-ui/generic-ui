@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, ElementRef, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { SmartComponent } from '../../../common/cdk/smart-component';
-import { Paging } from '../domain-api/read/paging';
-import { PagingWarehouse } from '../domain-api/paging.warehouse';
-import { PagingCommandInvoker } from '../domain-api/paging.command-invoker';
-import { SourceWarehouse } from '../../source/domain-api/source.warehouse';
+import { Paging } from '../core/api/read/paging';
+import { PagingWarehouse } from '../core/api/paging.warehouse';
+import { PagingCommandInvoker } from '../core/api/paging.command-invoker';
+import { SourceWarehouse } from '../../source/core/api/source.warehouse';
 import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
 export declare class PagingComponent extends SmartComponent implements OnInit {

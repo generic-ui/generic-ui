@@ -1,7 +1,7 @@
 import { ElementRef, Renderer2 } from '@angular/core';
 import { ActiveFilterService } from './active-filter.service';
-import { SchemaReadModelRootId } from '../../../../schema/domain-api/read/schema.read-model-root-id';
-import { StructureId } from '../../../core/domain/structure.id';
+import { SchemaReadModelRootId } from '../../../../schema/core/domain-read/schema.read-model-root-id';
+import { StructureId } from '../../../core/api/structure.id';
 export declare class ActiveFilterMenuTriggerDirective {
     private readonly renderer;
     private readonly el;

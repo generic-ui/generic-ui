@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * ngc for grid package for some reasons doesn't allow to use injection token
+ * @type {?}
+ */
+export const CREATE_AGGREGATE_COMMAND_HANDLERS = 'HERMES - CREATE_AGGREGATE_COMMAND_HANDLERS';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3JlYXRlLWFnZ3JlZ2F0ZS5jb21tYW5kLWhhbmRsZXJzLXRva2VuLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvaGVybWVzLyIsInNvdXJjZXMiOlsiY29yZS9kb21haW4vY29tbWFuZC9jcmVhdGUtYWdncmVnYXRlL2NyZWF0ZS1hZ2dyZWdhdGUuY29tbWFuZC1oYW5kbGVycy10b2tlbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUdBLE1BQU0sT0FBTyxpQ0FBaUMsR0FBRyw0Q0FBNEMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIG5nYyBmb3IgZ3JpZCBwYWNrYWdlIGZvciBzb21lIHJlYXNvbnMgZG9lc24ndCBhbGxvdyB0byB1c2UgaW5qZWN0aW9uIHRva2VuXG4gKi9cbmV4cG9ydCBjb25zdCBDUkVBVEVfQUdHUkVHQVRFX0NPTU1BTkRfSEFORExFUlMgPSAnSEVSTUVTIC0gQ1JFQVRFX0FHR1JFR0FURV9DT01NQU5EX0hBTkRMRVJTJztcbiJdfQ==

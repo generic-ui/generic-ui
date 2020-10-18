@@ -1,7 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-export const aggregateDefinitionToken = 'Hermes - aggregateDefinitionToken';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWdncmVnYXRlLWRlZmluaXRpb24udG9rZW4uanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9oZXJtZXMvIiwic291cmNlcyI6WyJkb21haW4vY29tbWFuZC9jb25maWcvYWdncmVnYXRlLWRlZmluaXRpb24udG9rZW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxNQUFNLE9BQU8sd0JBQXdCLEdBQUcsbUNBQW1DIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNvbnN0IGFnZ3JlZ2F0ZURlZmluaXRpb25Ub2tlbiA9ICdIZXJtZXMgLSBhZ2dyZWdhdGVEZWZpbml0aW9uVG9rZW4nO1xuIl19

@@ -1,6 +1,6 @@
 import { OnChanges, SimpleChanges } from '@angular/core';
-import { Paging } from '../../../domain-api/read/paging';
-import { PagingCommandInvoker } from '../../../domain-api/paging.command-invoker';
+import { Paging } from '../../../core/api/read/paging';
+import { PagingCommandInvoker } from '../../../core/api/paging.command-invoker';
 export declare class AlternativePagingPagesComponent implements OnChanges {
     private pagingCommandService;
     paging: Paging;

@@ -1,9 +1,9 @@
 import { ChangeDetectorRef } from '@angular/core';
-import { Reactive } from '../../../common/cdk/reactive';
-import { SchemaWarehouse } from '../../domain-api/schema.warehouse';
-import { SchemaCommandInvoker } from '../../domain-api/schema.command-invoker';
-import { SchemaReadModelRootId } from '../../domain-api/read/schema.read-model-root-id';
 import { FabricDialogThemeService } from '@generic-ui/fabric';
+import { Reactive } from '../../../common/cdk/reactive';
+import { SchemaWarehouse } from '../../core/api/schema.warehouse';
+import { SchemaCommandInvoker } from '../../core/api/schema.command-invoker';
+import { SchemaReadModelRootId } from '../../core/domain-read/schema.read-model-root-id';
 export declare class StructureSchemaMangerComponent extends Reactive {
     private readonly changeDetectorRef;
     private readonly schemaReadModelRootId;

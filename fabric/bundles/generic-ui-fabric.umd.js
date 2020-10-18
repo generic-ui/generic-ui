@@ -2831,10 +2831,10 @@
         FabricDatePickerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-date-picker',
-                        template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: 'dd/MM/yyyy'\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<div (click)=\"openDatePicker()\" class=\"gui-date-picker-icon\"></div>\n</div>\n",
+                        template: "<div #datePicker class=\"gui-date-picker\">\n\t<form [formGroup]=\"datePickerForm\">\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: 'dd/MM/yyyy'\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\t<gui-date-picker-icon (click)=\"openDatePicker()\"\n\t\t\t\t\t\t  class=\"gui-date-picker-icon\"></gui-date-picker-icon>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
-                        styles: [".gui-date-picker{display:-ms-inline-flexbox;display:inline-flex;position:relative;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABHSURBVDhPY0AGERER/6FMnABdDSOIIEYjNrBixQpGJiibbECxAWBAjhdgegbeCygGgJwFw1AhgmA0FgaDARRnJiiTXMDAAABL+xpWANMN2gAAAABJRU5ErkJggg==);position:absolute;right:0;height:16px;width:16px;cursor:pointer;opacity:.8}.gui-date-picker .gui-date-picker-icon:hover{opacity:1}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-icon{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPY0AGe/fu/Q9l4gToahhBBC6NbOzsDP//szDcuP6Qwcxcg+HtmzdQGQhwdnZmZIKysYJfP38xCPBzM1hZ6zL8+PEDKooK8BrAwPCf4fXrVwyvXr5g+PrlC1QMCyDG7+gApoeACwgD6hoAchYMQ4UIgoH3AhgMo1ggB+DNTIQAKDNBmeQCBgYAklU89fLLqHkAAAAASUVORK5CYII=)}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
+                        styles: [".gui-date-picker{display:-ms-inline-flexbox;display:inline-flex;position:relative;-ms-flex-align:center;align-items:center}.gui-date-picker input{background:0 0;font-family:Arial;font-size:14px;padding:4px;border-radius:0;border-width:0 0 1px}.gui-date-picker input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon{position:absolute;right:0;cursor:pointer}", ".gui-dark .gui-input{background:0 0}.gui-dark .gui-date-picker-calendar .gui-date-picker-container .gui-date-picker-interface button{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-selected-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-selected-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-selected-year span{border-color:#ce93d8}.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-day.gui-date-picker-current-day span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-month.gui-date-picker-current-month span,.gui-dark .gui-date-picker-calendar .gui-date-picker-container table .gui-date-picker-year.gui-date-picker-current-year span{background:#757575}"]
                     }] }
         ];
         /** @nocollapse */
@@ -2953,7 +2953,7 @@
                         host: {
                             '[class.gui-input]': 'true'
                         },
-                        styles: [".gui-input{background:#fff;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif;border-style:solid;border-width:0 0 1px;border-color:#ccc;border-radius:0;padding-left:0;transition:border-color .3s ease-in-out}.gui-material .gui-input:focus,.gui-material .gui-input:not(:placeholder-shown){border-color:#6200ee}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
+                        styles: [".gui-input{background:#fff;border-radius:4px;color:#333;font:14px Arial;margin:0;max-width:100%;outline:0;padding:8px 12px;text-align:left;transition:border-color .3s ease-in-out;border:1px solid #d6d6d6}.gui-input:hover{border-color:#999}.gui-input:focus{border-color:#6fb4e8}.gui-input:disabled{color:#ccc;cursor:default;pointer-events:none}.gui-input:disabled::-webkit-input-placeholder{color:#ccc}.gui-input:disabled::-moz-placeholder{color:#ccc}.gui-input:disabled:-ms-input-placeholder{color:#ccc}.gui-input:disabled::-ms-input-placeholder{color:#ccc}.gui-input:disabled::placeholder{color:#ccc}", ".gui-material .gui-input{font-family:Roboto,\"Helvetica Neue\",sans-serif;border-style:solid;border-width:0 0 1px;border-color:#ccc;border-radius:0;padding-left:0;transition:border-color .3s ease-in-out}.gui-material .gui-input:focus,.gui-material .gui-input:not(:placeholder-shown){border-color:#6200ee}", ".gui-dark .gui-input{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-input:hover{border-color:#757575}.gui-dark .gui-input:focus{border-color:#ce93d8}.gui-dark .gui-input:disabled{opacity:.36}"]
                     }] }
         ];
         return FabricInputComponent;
@@ -2986,6 +2986,50 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var DatePickerIconComponent = /** @class */ (function () {
+        function DatePickerIconComponent() {
+        }
+        DatePickerIconComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'gui-date-picker-icon',
+                        template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8.76\" height=\"9.82\" viewBox=\"0 0 8.76 9.82\">\n\t\t\t<path\n\t\t\t\td=\"M401.41,308.63l-.46.15h-.15a.34.34,0,0,1-.08-.67l.68-.22a1.539,1.539,0,0,1,.38-.07h0a.39.39,0,0,1,.39.39V312a.38.38,0,0,1-.39.39.39.39,0,0,1-.39-.39Z\"\n\t\t\t\ttransform=\"translate(-397.19 -304.36)\" fill=\"#8c8b8b\"/>\n\t\t\t<line x1=\"7.39\" transform=\"translate(0.64 9.32)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t\t<line x1=\"7.39\" transform=\"translate(0.64 2.16)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t\t<line y2=\"8.82\" transform=\"translate(0.5 0.5)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t\t<line y2=\"1.66\" transform=\"translate(3.09 0.5)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t\t<line y2=\"1.66\" transform=\"translate(5.68 0.5)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t\t<line y2=\"8.82\" transform=\"translate(8.26 0.5)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1\"/>\n\t\t</svg>\n\t",
+                        encapsulation: core.ViewEncapsulation.None,
+                        host: {
+                            '[class.gui-date-picker-icon]': 'true'
+                        },
+                        styles: [".gui-date-picker-icon svg{height:16px;width:16px}.gui-date-picker-icon svg line,.gui-date-picker-icon svg path{transition:.3s ease-in-out}.gui-date-picker-icon svg line{stroke:#aaa}.gui-date-picker-icon svg path{fill:#aaa}.gui-date-picker-icon svg:hover line{stroke:#464646}.gui-date-picker-icon svg:hover path{fill:#464646}", ".gui-dark .gui-date-picker-icon svg line{stroke:#bdbdbd}.gui-dark .gui-date-picker-icon svg path{fill:#bdbdbd}.gui-dark .gui-date-picker-icon svg:hover line{stroke:#616161}.gui-dark .gui-date-picker-icon svg:hover path{fill:#616161}"]
+                    }] }
+        ];
+        return DatePickerIconComponent;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var DatePickerIconModule = /** @class */ (function () {
+        function DatePickerIconModule() {
+        }
+        DatePickerIconModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ],
+                        declarations: [
+                            DatePickerIconComponent
+                        ],
+                        exports: [
+                            DatePickerIconComponent
+                        ]
+                    },] }
+        ];
+        return DatePickerIconModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FabricDatePickerModule = /** @class */ (function () {
         function FabricDatePickerModule() {
         }
@@ -2995,7 +3039,8 @@
                             common.CommonModule,
                             FabricInlineDialogModule,
                             forms.ReactiveFormsModule,
-                            FabricInputModule
+                            FabricInputModule,
+                            DatePickerIconModule
                         ],
                         declarations: [
                             FabricDatePickerCalendarComponent,
@@ -7776,29 +7821,31 @@
     exports.Theme = Theme;
     exports.ɵa = FabricBadgeComponent;
     exports.ɵb = Indicator;
-    exports.ɵba = FabricRadioButtonComponent;
-    exports.ɵbb = FabricRadioGroupComponent;
-    exports.ɵbc = StarIconModule;
-    exports.ɵbd = StarIconComponent;
-    exports.ɵbe = FabricRatingComponent;
-    exports.ɵbf = FabricNotificationsContainerComponent;
-    exports.ɵbg = FabricNotificationComponent;
-    exports.ɵbh = FabricMessageComponent;
-    exports.ɵbi = FabricModal;
-    exports.ɵbj = FabricSvgTemplateModule;
-    exports.ɵbk = FabricSvgTemplate;
-    exports.ɵbl = FabricTabComponent;
-    exports.ɵbm = TabItemComponent;
-    exports.ɵbn = FabricTooltipDirective;
-    exports.ɵbo = FabricTooltipComponent;
-    exports.ɵbp = FabricProgressBarComponent;
-    exports.ɵbq = FabricProgressSpinnerComponent;
-    exports.ɵbr = AbstractSpinner;
-    exports.ɵbs = FabricSelectComponent;
-    exports.ɵbt = FabricSpinnerComponent;
-    exports.ɵbu = FabricToggleButtonComponent;
-    exports.ɵbv = ToggleButtonGroupService;
-    exports.ɵbw = FabricToggleButtonGroupComponent;
+    exports.ɵba = DropdownItemComponent;
+    exports.ɵbb = FabricDialogComponent;
+    exports.ɵbc = FabricRadioButtonComponent;
+    exports.ɵbd = FabricRadioGroupComponent;
+    exports.ɵbe = StarIconModule;
+    exports.ɵbf = StarIconComponent;
+    exports.ɵbg = FabricRatingComponent;
+    exports.ɵbh = FabricNotificationsContainerComponent;
+    exports.ɵbi = FabricNotificationComponent;
+    exports.ɵbj = FabricMessageComponent;
+    exports.ɵbk = FabricModal;
+    exports.ɵbl = FabricSvgTemplateModule;
+    exports.ɵbm = FabricSvgTemplate;
+    exports.ɵbn = FabricTabComponent;
+    exports.ɵbo = TabItemComponent;
+    exports.ɵbp = FabricTooltipDirective;
+    exports.ɵbq = FabricTooltipComponent;
+    exports.ɵbr = FabricProgressBarComponent;
+    exports.ɵbs = FabricProgressSpinnerComponent;
+    exports.ɵbt = AbstractSpinner;
+    exports.ɵbu = FabricSelectComponent;
+    exports.ɵbv = FabricSpinnerComponent;
+    exports.ɵbw = FabricToggleButtonComponent;
+    exports.ɵbx = ToggleButtonGroupService;
+    exports.ɵby = FabricToggleButtonGroupComponent;
     exports.ɵc = FabricButtonGroupComponent;
     exports.ɵd = FabricCardComponent;
     exports.ɵe = FabricInlineDialogComponent;
@@ -7806,23 +7853,23 @@
     exports.ɵg = FabricReactive;
     exports.ɵh = InlineDialogGeometryService;
     exports.ɵi = themeToken;
-    exports.ɵj = FabricDatePickerCalendarComponent;
-    exports.ɵk = FabricDatePickerService;
-    exports.ɵl = FabricDatePickerWeeks;
-    exports.ɵm = FabricDatePickerYears;
-    exports.ɵn = FabricDatePickerComponent;
-    exports.ɵo = FabricDatePickerInlineDialogService;
-    exports.ɵp = FabricCloseIconModule;
-    exports.ɵq = selector;
-    exports.ɵr = FabricCloseIconComponent;
-    exports.ɵs = FabricDrawerComponent;
-    exports.ɵt = DialogService;
-    exports.ɵu = FabricArrowIconModule;
-    exports.ɵv = FabricArrowIconComponent;
-    exports.ɵw = FabricDropdownComponent;
-    exports.ɵx = GeometryService;
-    exports.ɵy = DropdownItemComponent;
-    exports.ɵz = FabricDialogComponent;
+    exports.ɵj = DatePickerIconModule;
+    exports.ɵk = DatePickerIconComponent;
+    exports.ɵl = FabricDatePickerCalendarComponent;
+    exports.ɵm = FabricDatePickerService;
+    exports.ɵn = FabricDatePickerWeeks;
+    exports.ɵo = FabricDatePickerYears;
+    exports.ɵp = FabricDatePickerComponent;
+    exports.ɵq = FabricDatePickerInlineDialogService;
+    exports.ɵr = FabricCloseIconModule;
+    exports.ɵs = selector;
+    exports.ɵt = FabricCloseIconComponent;
+    exports.ɵu = FabricDrawerComponent;
+    exports.ɵv = DialogService;
+    exports.ɵw = FabricArrowIconModule;
+    exports.ɵx = FabricArrowIconComponent;
+    exports.ɵy = FabricDropdownComponent;
+    exports.ɵz = GeometryService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

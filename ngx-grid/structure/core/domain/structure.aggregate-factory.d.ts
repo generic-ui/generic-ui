@@ -1,13 +1,13 @@
 import { AggregateFactory } from '@generic-ui/hermes';
-import { PagingManagerFactory } from '../../paging/domain/paging.manager-factory';
-import { SourceManagerFactory } from '../../source/domain/core/source.manager-factory';
-import { VerticalFormationFactory } from './vertical-formation/vertical-formation.factory';
-import { SummariesManagerFactory } from './summaries/summaries.manager.factory';
-import { FilterManagerFactory } from '../../filter/domain/filter.manager-factory';
-import { FieldCollectionFactory } from '../../field/domain/core/field-collection.factory';
-import { StructureId } from './structure.id';
+import { PagingManagerFactory } from '../../paging/core/domain/paging.manager-factory';
+import { SourceManagerFactory } from '../../source/core/domain/core/source.manager-factory';
+import { VerticalFormationFactory } from '../../vertical-formation/core/domain/vertical-formation.factory';
+import { SummariesManagerFactory } from '../../summaries/core/domain/summaries.manager.factory';
+import { FilterManagerFactory } from '../../filter/core/domain/filter.manager-factory';
+import { FieldCollectionFactory } from '../../field/core/domain/field-collection.factory';
+import { StructureId } from '../api/structure.id';
 import { StructureAggregate } from './structure.aggregate';
-import { SearchManagerFactory } from '../../search/domain/search.manager-factory';
+import { SearchManagerFactory } from '../../search/core/domain/search.manager-factory';
 export declare class StructureAggregateFactory extends AggregateFactory<StructureId, StructureAggregate> {
     private readonly pagingAggregateFactory;
     private readonly sourceManagerFactory;

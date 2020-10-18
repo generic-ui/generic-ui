@@ -1,17 +1,17 @@
 import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiInfoPanel, GuiPaging, GuiQuickFilters, GuiRowColoring, GuiRowDetail, GuiRowSelection, GuiSearching, GuiSelectedRow, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../domain-api/gui.grid.public-api';
-import { ColumnConfig } from '../../../../composition/domain/column/column.config';
+import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiInfoPanel, GuiLocalization, GuiMultiColumn, GuiPaging, GuiQuickFilters, GuiRowClass, GuiRowColoring, GuiRowDetail, GuiRowSelection, GuiRowStyle, GuiSearching, GuiSelectedRow, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../core/api/gui.grid.public-api';
+import { ColumnConfig, MultiColumnConfig } from '../../../../composition/core/api/column/column.config';
 import { GuiGridColumnConverter } from './column/gui.grid.column.converter';
 import { GuiGridThemeConverter } from './theme/gui.grid.theme.converter';
 import { GuiGridRowColoringConverter } from './theme/coloring/gui.grid.row-coloring.converter';
-import { ColumnMenuConfig } from '../../../../structure/core/domain-api/column-menu-config';
+import { ColumnMenuConfig } from '../../../../structure/grid/core/api/column-menu-config';
 import { GuiGridColumnMenuConverter } from './column/menu/gui.grid.column-menu.converter';
 import { GuiGridPagingConverter } from './paging/gui.grid.paging.converter';
-import { SchemaTheme } from '../../../../schema/domain/theme/schema-theme';
-import { RowColoring } from '../../../../schema/domain-api/row-coloring';
+import { SchemaTheme } from '../../../../schema/core/api/schema-theme';
+import { RowColoring } from '../../../../schema/core/api/row-coloring';
 import { GuiGridRowSelectionConverter } from './row-selection/gui.grid.row-selection.converter';
-import { RowSelection } from '../../../../structure/source/domain-api/row-selection';
-import { SelectedRow } from '../../../../structure/source/domain-api/formation/selected-row';
+import { RowSelection } from '../../../../structure/source/core/api/row-selection';
+import { SelectedRow } from '../../../../structure/source/core/api/formation/selected-row';
 export declare abstract class GuiGridGateway implements OnChanges {
     /**
      * INPUTS
@@ -23,13 +23,15 @@ export declare abstract class GuiGridGateway implements OnChanges {
     rowHeight: number;
     autoResizeWidth: boolean;
     source: Array<any>;
-    columns: Array<GuiColumn>;
+    columns: Array<GuiColumn | GuiMultiColumn>;
     paging: boolean | GuiPaging;
     verticalGrid: boolean;
     horizontalGrid: boolean;
     theme: string | GuiTheme;
     rowColoring: string | GuiRowColoring;
     rowSelection: boolean | GuiRowSelection;
+    rowStyle: GuiRowStyle;
+    rowClass: GuiRowClass;
     loading: boolean;
     virtualScroll: boolean;
     sorting: boolean | GuiSorting;
@@ -59,6 +61,7 @@ export declare abstract class GuiGridGateway implements OnChanges {
     summaries: GuiSummaries;
     columnMenu: GuiColumnMenu;
     rowDetail: GuiRowDetail;
+    localization: GuiLocalization;
     /**
      * OUTPUTS
      */
@@ -81,7 +84,7 @@ export declare abstract class GuiGridGateway implements OnChanges {
     verticalGridChanged: EventEmitter<boolean>;
     rowColoringChanged: EventEmitter<GuiRowColoring>;
     /** @internal */
-    columnsConfig: Array<ColumnConfig>;
+    columnsConfig: Array<ColumnConfig | MultiColumnConfig>;
     themeConfig: any;
     rowColoringConfig: any;
     columnMenuConfig: ColumnMenuConfig;

@@ -1,0 +1,15 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { CompositionDomainEvent } from '../../composition.domain-event';
+export class CompositionContainerWidthSetEvent extends CompositionDomainEvent {
+    /**
+     * @param {?} compositionId
+     * @param {?} payload
+     */
+    constructor(compositionId, payload) {
+        super(compositionId, 'CompositionContainerWidthSetEvent', payload);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9zaXRpb24tY29udGFpbmVyLXdpZHRoLXNldC5ldmVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsiY29tcG9zaXRpb24vY29yZS9kb21haW4vd2lkdGgvc2V0LWNvbnRhaW5lci13aWR0aC9jb21wb3NpdGlvbi1jb250YWluZXItd2lkdGgtc2V0LmV2ZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFDQSxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSxnQ0FBZ0MsQ0FBQztBQUV4RSxNQUFNLE9BQU8saUNBQWtDLFNBQVEsc0JBQXNCOzs7OztJQUU1RSxZQUFZLGFBQTRCLEVBQ3JDLE9BQVk7UUFDZCxLQUFLLENBQUMsYUFBYSxFQUFFLG1DQUFtQyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQ3BFLENBQUM7Q0FFRCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvc2l0aW9uSWQgfSBmcm9tICcuLi8uLi8uLi9hcGkvY29tcG9zaXRpb24uaWQnO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25Eb21haW5FdmVudCB9IGZyb20gJy4uLy4uL2NvbXBvc2l0aW9uLmRvbWFpbi1ldmVudCc7XG5cbmV4cG9ydCBjbGFzcyBDb21wb3NpdGlvbkNvbnRhaW5lcldpZHRoU2V0RXZlbnQgZXh0ZW5kcyBDb21wb3NpdGlvbkRvbWFpbkV2ZW50IHtcblxuXHRjb25zdHJ1Y3Rvcihjb21wb3NpdGlvbklkOiBDb21wb3NpdGlvbklkLFxuXHRcdFx0XHRwYXlsb2FkOiBhbnkpIHtcblx0XHRzdXBlcihjb21wb3NpdGlvbklkLCAnQ29tcG9zaXRpb25Db250YWluZXJXaWR0aFNldEV2ZW50JywgcGF5bG9hZCk7XG5cdH1cblxufVxuIl19

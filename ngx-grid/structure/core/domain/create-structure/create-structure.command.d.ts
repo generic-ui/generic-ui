@@ -1,5 +1,5 @@
-import { Command } from '@generic-ui/hermes';
-import { StructureId } from '../structure.id';
-export declare class CreateStructureCommand extends Command {
+import { StructureId } from '../../api/structure.id';
+import { StructureCommand } from '../structure.command';
+export declare class CreateStructureCommand extends StructureCommand {
     constructor(structureId: StructureId);
 }

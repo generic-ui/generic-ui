@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { AggregateId } from '../domain/aggregate-id';
+import { AggregateId } from '../core/domain/tactical/aggregate/aggregate-id';
 import { ReactiveService } from './reactive.service';
 export interface DefaultAggregateValues<T> {
     aggregateId: AggregateId;

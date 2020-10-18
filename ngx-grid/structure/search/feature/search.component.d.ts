@@ -2,12 +2,12 @@ import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core'
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SmartComponent } from '../../../common/cdk/smart-component';
-import { StructureWarehouse } from '../../core/domain-api/structure.warehouse';
-import { SearchPlaceholderArchive } from '../domain-api/placeholder/search-placeholder.archive';
-import { StructureId } from '../../core/domain/structure.id';
-import { StructureVerticalFormationWarehouse } from '../../core/domain-api/vertical-formation/structure-vertical-formation.warehouse';
-import { SearchCommandInvoker } from '../domain-api/search.command-invoker';
-import { SearchWarehouse } from '../domain-api/search.warehouse';
+import { StructureWarehouse } from '../../grid/core/api/structure.warehouse';
+import { SearchPlaceholderArchive } from '../core/api/placeholder/search-placeholder.archive';
+import { StructureId } from '../../core/api/structure.id';
+import { StructureVerticalFormationWarehouse } from '../../vertical-formation/core/api/structure-vertical-formation.warehouse';
+import { SearchCommandInvoker } from '../core/api/search.command-invoker';
+import { SearchWarehouse } from '../core/api/search.warehouse';
 export declare class SearchComponent extends SmartComponent implements OnInit {
     private readonly formBuilder;
     private readonly renderer2;

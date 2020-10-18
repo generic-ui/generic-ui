@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../composition/domain-api/read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { CompositionWarehouse } from '../../../../composition/domain-api/composition.warehouse';
-import { FieldWarehouse } from '../../../field/domain-api/field.warehouse';
-import { StructureId } from '../../../core/domain/structure.id';
-import { FieldReadModel } from '../../../field/domain-api/read/field.read-model';
-import { FilterWarehouse } from '../../domain-api/filter.warehouse';
-import { FilterTypeMap } from '../../domain-api/type/filter-type-map';
-import { FilterTypeReadModel } from '../../domain-api/type/filter-type.read-model';
-import { FilterTypeId } from '../../domain/type/filter-type.id';
-import { FilterCommandInvoker } from '../../domain-api/filter.command-invoker';
-import { ActiveFilterReadModel } from '../../domain-api/active/active-filter.read-model';
+import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
+import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
+import { StructureId } from '../../../core/api/structure.id';
+import { FieldReadModel } from '../../../field/core/api/read/field.read-model';
+import { FilterWarehouse } from '../../core/api/filter.warehouse';
+import { FilterTypeMap } from '../../core/api/type/filter-type-map';
+import { FilterTypeReadModel } from '../../core/api/type/filter-type.read-model';
+import { FilterTypeId } from '../../core/domain/type/filter-type.id';
+import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
+import { ActiveFilterReadModel } from '../../core/api/active/active-filter.read-model';
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { SourceWarehouse } from '../../../source/domain-api/source.warehouse';
+import { SourceWarehouse } from '../../../source/core/api/source.warehouse';
 import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { ListViewCardTemplate } from './template/list-view.card-template';
 import { ListViewCardTemplateArchive } from './template/list-view.card-template.archive';
 export declare class ListViewContainerCardComponent extends SmartComponent implements OnInit {

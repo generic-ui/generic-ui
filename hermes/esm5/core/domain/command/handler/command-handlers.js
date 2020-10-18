@@ -1,0 +1,7 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+export var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tbWFuZC1oYW5kbGVycy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2hlcm1lcy8iLCJzb3VyY2VzIjpbImNvcmUvZG9tYWluL2NvbW1hbmQvaGFuZGxlci9jb21tYW5kLWhhbmRsZXJzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsTUFBTSxLQUFPLGdCQUFnQixHQUFHLGlDQUFpQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBDT01NQU5EX0hBTkRMRVJTID0gJ0hFUk1FUyAtIENPTU1BTkRfSEFORExFUlNfVE9LRU4nO1xuIl19

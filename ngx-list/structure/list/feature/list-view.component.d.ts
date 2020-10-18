@@ -1,14 +1,14 @@
 import { ElementRef } from '@angular/core';
 import { ListViewGateway } from './gateway/list-view.gateway';
-import { StructureId } from '../../core/domain/structure.id';
-import { StructureIdGenerator } from '../../core/feature/structure-id.generator';
-import { StructureCommandDispatcher } from '../../core/domain-api/structure.command-dispatcher';
-import { SourceCommandInvoker } from '../../source/domain-api/source.command-invoker';
-import { PagingCommandInvoker } from '../../paging/domain-api/paging.command-invoker';
+import { StructureId } from '../../core/api/structure.id';
+import { StructureIdGenerator } from '../../grid/feature/structure-id.generator';
+import { StructureCommandDispatcher } from '../../core/api/structure.command-dispatcher';
+import { SourceCommandInvoker } from '../../source/core/api/source.command-invoker';
+import { PagingCommandInvoker } from '../../paging/core/api/paging.command-invoker';
 import { ListViewTemplateArchive } from './source/template/list-view-template.archive';
 import { ListViewCardTemplateArchive } from './card/template/list-view.card-template.archive';
-import { ListViewReadModelRootId } from '../domain-api/read/list-view.read-model-root-id';
-import { ListViewCommandInvoker } from '../domain-api/list-view.command-invoker';
+import { ListViewReadModelRootId } from '../core/api/read/list-view.read-model-root-id';
+import { ListViewCommandInvoker } from '../core/api/list-view.command-invoker';
 import { FilterContainerRef } from '../../filter/feature/config/filter-container-ref';
 /** @internal */
 export declare function listViewIdFactory(generator: StructureIdGenerator): ListViewReadModelRootId;

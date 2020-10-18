@@ -1,8 +1,8 @@
 import { Injector } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
-import { SchemaWarehouse } from '../../../domain-api/schema.warehouse';
-import { StructureThemeConverter } from '../../../../structure/core/feature/schema/structure.theme.converter';
-import { SchemaReadModelRootId } from '../../../domain-api/read/schema.read-model-root-id';
+import { SchemaWarehouse } from '../../../core/api/schema.warehouse';
+import { StructureThemeConverter } from '../../../../structure/grid/feature/schema/structure.theme.converter';
+import { SchemaReadModelRootId } from '../../../core/domain-read/schema.read-model-root-id';
 import { Reactive } from '../../../../common/cdk/reactive';
 export declare class StructureDialogSchemaManagerService extends Reactive {
     private readonly injector;
@@ -10,5 +10,5 @@ export declare class StructureDialogSchemaManagerService extends Reactive {
     private readonly structureThemeConverter;
     private readonly fabricDialogService;
     constructor(injector: Injector, schemaReadModelRepository: SchemaWarehouse, structureThemeConverter: StructureThemeConverter, fabricDialogService: FabricDialogService);
-    open(readModelId: SchemaReadModelRootId): void;
+    open(readModelId: SchemaReadModelRootId, parentInjector?: Injector): void;
 }

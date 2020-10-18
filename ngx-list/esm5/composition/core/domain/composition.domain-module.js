@@ -1,0 +1,72 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import * as tslib_1 from "tslib";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { DomainModule, HermesModule } from '@generic-ui/hermes';
+import { SetColumnsCommandHandler } from './column/set-columns/set-columns.command-handler';
+import { compositionKey } from '../api/composition.api';
+import { SetCompositionWidthCommandHandler } from './width/set-width/set-composition-width.command-handler';
+import { SetCompositionResizeWidthCommandHandler } from './width/resize-width/set-composition-resize-width.command-handler';
+import { SetCompositionContainerWidthCommandHandler } from './width/set-container-width/set-composition-container-width.command-handler';
+import { CompositionSetColumnEnabledCommandHandler } from './column/set-enabled/composition.set-column-enabled.command-handler';
+import { CompositionChangeSortStatusCommandHandler } from './column/sort/composition-change-sort-status.command-handler';
+import { CompositionMoveLeftColumnCommandHandler } from './column/move/left/composition.move-left-column.command-handler';
+import { CompositionMoveRightColumnCommandHandler } from './column/move/right/composition.move-right-column.command-handler';
+import { CompositionChangeSortStatusEventHandler } from './column/sort/composition-change-sort-status.event-handler';
+import { inMemoryCompositionCommandProviders } from '../infrastructure/in-memory/in-memory.composition.providers';
+import { CompositionDispatcher } from './composition.dispatcher';
+import { ColumnEntityFactory } from './column/column-entity.factory';
+import { ColumnPresentationConverter } from './column/presentation/column.presentation.converter';
+import { CompositionEventConverter } from './composition.event-converter';
+import { ColumnFieldFactory } from './column/field/colum-field.factory';
+import { CompositionGroupFactory } from './group/composition.group.factory';
+import { SetGroupsCommandHandler } from './group/set-groups/set-groups.command-handler';
+var CompositionDomainModule = /** @class */ (function (_super) {
+    tslib_1.__extends(CompositionDomainModule, _super);
+    function CompositionDomainModule() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @return {?}
+     */
+    CompositionDomainModule.commandHandlers = /**
+     * @return {?}
+     */
+    function () {
+        return tslib_1.__spread(HermesModule.registerCommandHandler(SetColumnsCommandHandler, compositionKey), HermesModule.registerCommandHandler(SetCompositionWidthCommandHandler, compositionKey), HermesModule.registerCommandHandler(SetCompositionResizeWidthCommandHandler, compositionKey), HermesModule.registerCommandHandler(SetCompositionContainerWidthCommandHandler, compositionKey), HermesModule.registerCommandHandler(CompositionSetColumnEnabledCommandHandler, compositionKey), HermesModule.registerCommandHandler(CompositionChangeSortStatusCommandHandler, compositionKey), HermesModule.registerCommandHandler(CompositionMoveLeftColumnCommandHandler, compositionKey), HermesModule.registerCommandHandler(CompositionMoveRightColumnCommandHandler, compositionKey), HermesModule.registerCommandHandler(SetGroupsCommandHandler, compositionKey));
+    };
+    /**
+     * @return {?}
+     */
+    CompositionDomainModule.domainEventHandlers = /**
+     * @return {?}
+     */
+    function () {
+        return tslib_1.__spread(HermesModule.registerMultiDomainEventHandler(CompositionChangeSortStatusEventHandler));
+    };
+    CompositionDomainModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    providers: tslib_1.__spread(inMemoryCompositionCommandProviders, [
+                        CompositionDispatcher,
+                        ColumnEntityFactory,
+                        ColumnPresentationConverter,
+                        CompositionEventConverter,
+                        ColumnFieldFactory,
+                        CompositionGroupFactory
+                    ]),
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    /** @nocollapse */
+    CompositionDomainModule.ctorParameters = function () { return []; };
+    return CompositionDomainModule;
+}(DomainModule));
+export { CompositionDomainModule };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29tcG9zaXRpb24uZG9tYWluLW1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsiY29tcG9zaXRpb24vY29yZS9kb21haW4vY29tcG9zaXRpb24uZG9tYWluLW1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUMvQyxPQUFPLEVBQUUsUUFBUSxFQUFZLE1BQU0sZUFBZSxDQUFDO0FBRW5ELE9BQU8sRUFBRSxZQUFZLEVBQUUsWUFBWSxFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFFaEUsT0FBTyxFQUFFLHdCQUF3QixFQUFFLE1BQU0sa0RBQWtELENBQUM7QUFDNUYsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLHdCQUF3QixDQUFDO0FBQ3hELE9BQU8sRUFBRSxpQ0FBaUMsRUFBRSxNQUFNLHlEQUF5RCxDQUFDO0FBQzVHLE9BQU8sRUFBRSx1Q0FBdUMsRUFBRSxNQUFNLG1FQUFtRSxDQUFDO0FBQzVILE9BQU8sRUFBRSwwQ0FBMEMsRUFBRSxNQUFNLDZFQUE2RSxDQUFDO0FBQ3pJLE9BQU8sRUFBRSx5Q0FBeUMsRUFBRSxNQUFNLHFFQUFxRSxDQUFDO0FBQ2hJLE9BQU8sRUFBRSx5Q0FBeUMsRUFBRSxNQUFNLDhEQUE4RCxDQUFDO0FBQ3pILE9BQU8sRUFBRSx1Q0FBdUMsRUFBRSxNQUFNLGlFQUFpRSxDQUFDO0FBQzFILE9BQU8sRUFBRSx3Q0FBd0MsRUFBRSxNQUFNLG1FQUFtRSxDQUFDO0FBQzdILE9BQU8sRUFBRSx1Q0FBdUMsRUFBRSxNQUFNLDREQUE0RCxDQUFDO0FBQ3JILE9BQU8sRUFBRSxtQ0FBbUMsRUFBRSxNQUFNLDZEQUE2RCxDQUFDO0FBQ2xILE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxNQUFNLDBCQUEwQixDQUFDO0FBQ2pFLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLGdDQUFnQyxDQUFDO0FBQ3JFLE9BQU8sRUFBRSwyQkFBMkIsRUFBRSxNQUFNLHFEQUFxRCxDQUFDO0FBQ2xHLE9BQU8sRUFBRSx5QkFBeUIsRUFBRSxNQUFNLCtCQUErQixDQUFDO0FBQzFFLE9BQU8sRUFBRSxrQkFBa0IsRUFBRSxNQUFNLG9DQUFvQyxDQUFDO0FBQ3hFLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLG1DQUFtQyxDQUFDO0FBQzVFLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLCtDQUErQyxDQUFDO0FBRXhGO0lBZ0I2QyxtREFBWTtJQUV4RDtlQUNDLGlCQUFPO0lBQ1IsQ0FBQzs7OztJQUVNLHVDQUFlOzs7SUFBdEI7UUFDQyx3QkFDSSxZQUFZLENBQUMsc0JBQXNCLENBQUMsd0JBQXdCLEVBQUUsY0FBYyxDQUFDLEVBQzdFLFlBQVksQ0FBQyxzQkFBc0IsQ0FBQyxpQ0FBaUMsRUFBRSxjQUFjLENBQUMsRUFDdEYsWUFBWSxDQUFDLHNCQUFzQixDQUFDLHVDQUF1QyxFQUFFLGNBQWMsQ0FBQyxFQUM1RixZQUFZLENBQUMsc0JBQXNCLENBQUMsMENBQTBDLEVBQUUsY0FBYyxDQUFDLEVBQy9GLFlBQVksQ0FBQyxzQkFBc0IsQ0FBQyx5Q0FBeUMsRUFBRSxjQUFjLENBQUMsRUFDOUYsWUFBWSxDQUFDLHNCQUFzQixDQUFDLHlDQUF5QyxFQUFFLGNBQWMsQ0FBQyxFQUM5RixZQUFZLENBQUMsc0JBQXNCLENBQUMsdUNBQXVDLEVBQUUsY0FBYyxDQUFDLEVBQzVGLFlBQVksQ0FBQyxzQkFBc0IsQ0FBQyx3Q0FBd0MsRUFBRSxjQUFjLENBQUMsRUFDN0YsWUFBWSxDQUFDLHNCQUFzQixDQUFDLHVCQUF1QixFQUFFLGNBQWMsQ0FBQyxFQUM5RTtJQUNILENBQUM7Ozs7SUFFTSwyQ0FBbUI7OztJQUExQjtRQUNDLHdCQUNJLFlBQVksQ0FBQywrQkFBK0IsQ0FBQyx1Q0FBdUMsQ0FBQyxFQUN2RjtJQUNILENBQUM7O2dCQXhDRCxRQUFRLFNBQUM7b0JBQ1QsT0FBTyxFQUFFO3dCQUNSLFlBQVk7cUJBQ1o7b0JBQ0QsU0FBUyxtQkFDTCxtQ0FBbUM7d0JBQ3RDLHFCQUFxQjt3QkFDckIsbUJBQW1CO3dCQUNuQiwyQkFBMkI7d0JBQzNCLHlCQUF5Qjt3QkFDekIsa0JBQWtCO3dCQUNsQix1QkFBdUI7c0JBQ3ZCO29CQUNELFlBQVksRUFBRSxFQUFFO29CQUNoQixPQUFPLEVBQUUsRUFBRTtpQkFDWDs7OztJQTJCRCw4QkFBQztDQUFBLEFBMUNELENBZ0I2QyxZQUFZLEdBMEJ4RDtTQTFCWSx1QkFBdUIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21tb25Nb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb21tb24nO1xuaW1wb3J0IHsgTmdNb2R1bGUsIFByb3ZpZGVyIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IERvbWFpbk1vZHVsZSwgSGVybWVzTW9kdWxlIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuaW1wb3J0IHsgU2V0Q29sdW1uc0NvbW1hbmRIYW5kbGVyIH0gZnJvbSAnLi9jb2x1bW4vc2V0LWNvbHVtbnMvc2V0LWNvbHVtbnMuY29tbWFuZC1oYW5kbGVyJztcbmltcG9ydCB7IGNvbXBvc2l0aW9uS2V5IH0gZnJvbSAnLi4vYXBpL2NvbXBvc2l0aW9uLmFwaSc7XG5pbXBvcnQgeyBTZXRDb21wb3NpdGlvbldpZHRoQ29tbWFuZEhhbmRsZXIgfSBmcm9tICcuL3dpZHRoL3NldC13aWR0aC9zZXQtY29tcG9zaXRpb24td2lkdGguY29tbWFuZC1oYW5kbGVyJztcbmltcG9ydCB7IFNldENvbXBvc2l0aW9uUmVzaXplV2lkdGhDb21tYW5kSGFuZGxlciB9IGZyb20gJy4vd2lkdGgvcmVzaXplLXdpZHRoL3NldC1jb21wb3NpdGlvbi1yZXNpemUtd2lkdGguY29tbWFuZC1oYW5kbGVyJztcbmltcG9ydCB7IFNldENvbXBvc2l0aW9uQ29udGFpbmVyV2lkdGhDb21tYW5kSGFuZGxlciB9IGZyb20gJy4vd2lkdGgvc2V0LWNvbnRhaW5lci13aWR0aC9zZXQtY29tcG9zaXRpb24tY29udGFpbmVyLXdpZHRoLmNvbW1hbmQtaGFuZGxlcic7XG5pbXBvcnQgeyBDb21wb3NpdGlvblNldENvbHVtbkVuYWJsZWRDb21tYW5kSGFuZGxlciB9IGZyb20gJy4vY29sdW1uL3NldC1lbmFibGVkL2NvbXBvc2l0aW9uLnNldC1jb2x1bW4tZW5hYmxlZC5jb21tYW5kLWhhbmRsZXInO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25DaGFuZ2VTb3J0U3RhdHVzQ29tbWFuZEhhbmRsZXIgfSBmcm9tICcuL2NvbHVtbi9zb3J0L2NvbXBvc2l0aW9uLWNoYW5nZS1zb3J0LXN0YXR1cy5jb21tYW5kLWhhbmRsZXInO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25Nb3ZlTGVmdENvbHVtbkNvbW1hbmRIYW5kbGVyIH0gZnJvbSAnLi9jb2x1bW4vbW92ZS9sZWZ0L2NvbXBvc2l0aW9uLm1vdmUtbGVmdC1jb2x1bW4uY29tbWFuZC1oYW5kbGVyJztcbmltcG9ydCB7IENvbXBvc2l0aW9uTW92ZVJpZ2h0Q29sdW1uQ29tbWFuZEhhbmRsZXIgfSBmcm9tICcuL2NvbHVtbi9tb3ZlL3JpZ2h0L2NvbXBvc2l0aW9uLm1vdmUtcmlnaHQtY29sdW1uLmNvbW1hbmQtaGFuZGxlcic7XG5pbXBvcnQgeyBDb21wb3NpdGlvbkNoYW5nZVNvcnRTdGF0dXNFdmVudEhhbmRsZXIgfSBmcm9tICcuL2NvbHVtbi9zb3J0L2NvbXBvc2l0aW9uLWNoYW5nZS1zb3J0LXN0YXR1cy5ldmVudC1oYW5kbGVyJztcbmltcG9ydCB7IGluTWVtb3J5Q29tcG9zaXRpb25Db21tYW5kUHJvdmlkZXJzIH0gZnJvbSAnLi4vaW5mcmFzdHJ1Y3R1cmUvaW4tbWVtb3J5L2luLW1lbW9yeS5jb21wb3NpdGlvbi5wcm92aWRlcnMnO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25EaXNwYXRjaGVyIH0gZnJvbSAnLi9jb21wb3NpdGlvbi5kaXNwYXRjaGVyJztcbmltcG9ydCB7IENvbHVtbkVudGl0eUZhY3RvcnkgfSBmcm9tICcuL2NvbHVtbi9jb2x1bW4tZW50aXR5LmZhY3RvcnknO1xuaW1wb3J0IHsgQ29sdW1uUHJlc2VudGF0aW9uQ29udmVydGVyIH0gZnJvbSAnLi9jb2x1bW4vcHJlc2VudGF0aW9uL2NvbHVtbi5wcmVzZW50YXRpb24uY29udmVydGVyJztcbmltcG9ydCB7IENvbXBvc2l0aW9uRXZlbnRDb252ZXJ0ZXIgfSBmcm9tICcuL2NvbXBvc2l0aW9uLmV2ZW50LWNvbnZlcnRlcic7XG5pbXBvcnQgeyBDb2x1bW5GaWVsZEZhY3RvcnkgfSBmcm9tICcuL2NvbHVtbi9maWVsZC9jb2x1bS1maWVsZC5mYWN0b3J5JztcbmltcG9ydCB7IENvbXBvc2l0aW9uR3JvdXBGYWN0b3J5IH0gZnJvbSAnLi9ncm91cC9jb21wb3NpdGlvbi5ncm91cC5mYWN0b3J5JztcbmltcG9ydCB7IFNldEdyb3Vwc0NvbW1hbmRIYW5kbGVyIH0gZnJvbSAnLi9ncm91cC9zZXQtZ3JvdXBzL3NldC1ncm91cHMuY29tbWFuZC1oYW5kbGVyJztcblxuQE5nTW9kdWxlKHtcblx0aW1wb3J0czogW1xuXHRcdENvbW1vbk1vZHVsZVxuXHRdLFxuXHRwcm92aWRlcnM6IFtcblx0XHQuLi5pbk1lbW9yeUNvbXBvc2l0aW9uQ29tbWFuZFByb3ZpZGVycyxcblx0XHRDb21wb3NpdGlvbkRpc3BhdGNoZXIsXG5cdFx0Q29sdW1uRW50aXR5RmFjdG9yeSxcblx0XHRDb2x1bW5QcmVzZW50YXRpb25Db252ZXJ0ZXIsXG5cdFx0Q29tcG9zaXRpb25FdmVudENvbnZlcnRlcixcblx0XHRDb2x1bW5GaWVsZEZhY3RvcnksXG5cdFx0Q29tcG9zaXRpb25Hcm91cEZhY3Rvcnlcblx0XSxcblx0ZGVjbGFyYXRpb25zOiBbXSxcblx0ZXhwb3J0czogW11cbn0pXG5leHBvcnQgY2xhc3MgQ29tcG9zaXRpb25Eb21haW5Nb2R1bGUgZXh0ZW5kcyBEb21haW5Nb2R1bGUge1xuXG5cdGNvbnN0cnVjdG9yKCkge1xuXHRcdHN1cGVyKCk7XG5cdH1cblxuXHRzdGF0aWMgY29tbWFuZEhhbmRsZXJzKCk6IEFycmF5PFByb3ZpZGVyPiB7XG5cdFx0cmV0dXJuIFtcblx0XHRcdC4uLkhlcm1lc01vZHVsZS5yZWdpc3RlckNvbW1hbmRIYW5kbGVyKFNldENvbHVtbnNDb21tYW5kSGFuZGxlciwgY29tcG9zaXRpb25LZXkpLFxuXHRcdFx0Li4uSGVybWVzTW9kdWxlLnJlZ2lzdGVyQ29tbWFuZEhhbmRsZXIoU2V0Q29tcG9zaXRpb25XaWR0aENvbW1hbmRIYW5kbGVyLCBjb21wb3NpdGlvbktleSksXG5cdFx0XHQuLi5IZXJtZXNNb2R1bGUucmVnaXN0ZXJDb21tYW5kSGFuZGxlcihTZXRDb21wb3NpdGlvblJlc2l6ZVdpZHRoQ29tbWFuZEhhbmRsZXIsIGNvbXBvc2l0aW9uS2V5KSxcblx0XHRcdC4uLkhlcm1lc01vZHVsZS5yZWdpc3RlckNvbW1hbmRIYW5kbGVyKFNldENvbXBvc2l0aW9uQ29udGFpbmVyV2lkdGhDb21tYW5kSGFuZGxlciwgY29tcG9zaXRpb25LZXkpLFxuXHRcdFx0Li4uSGVybWVzTW9kdWxlLnJlZ2lzdGVyQ29tbWFuZEhhbmRsZXIoQ29tcG9zaXRpb25TZXRDb2x1bW5FbmFibGVkQ29tbWFuZEhhbmRsZXIsIGNvbXBvc2l0aW9uS2V5KSxcblx0XHRcdC4uLkhlcm1lc01vZHVsZS5yZWdpc3RlckNvbW1hbmRIYW5kbGVyKENvbXBvc2l0aW9uQ2hhbmdlU29ydFN0YXR1c0NvbW1hbmRIYW5kbGVyLCBjb21wb3NpdGlvbktleSksXG5cdFx0XHQuLi5IZXJtZXNNb2R1bGUucmVnaXN0ZXJDb21tYW5kSGFuZGxlcihDb21wb3NpdGlvbk1vdmVMZWZ0Q29sdW1uQ29tbWFuZEhhbmRsZXIsIGNvbXBvc2l0aW9uS2V5KSxcblx0XHRcdC4uLkhlcm1lc01vZHVsZS5yZWdpc3RlckNvbW1hbmRIYW5kbGVyKENvbXBvc2l0aW9uTW92ZVJpZ2h0Q29sdW1uQ29tbWFuZEhhbmRsZXIsIGNvbXBvc2l0aW9uS2V5KSxcblx0XHRcdC4uLkhlcm1lc01vZHVsZS5yZWdpc3RlckNvbW1hbmRIYW5kbGVyKFNldEdyb3Vwc0NvbW1hbmRIYW5kbGVyLCBjb21wb3NpdGlvbktleSlcblx0XHRdO1xuXHR9XG5cblx0c3RhdGljIGRvbWFpbkV2ZW50SGFuZGxlcnMoKTogQXJyYXk8UHJvdmlkZXI+IHtcblx0XHRyZXR1cm4gW1xuXHRcdFx0Li4uSGVybWVzTW9kdWxlLnJlZ2lzdGVyTXVsdGlEb21haW5FdmVudEhhbmRsZXIoQ29tcG9zaXRpb25DaGFuZ2VTb3J0U3RhdHVzRXZlbnRIYW5kbGVyKVxuXHRcdF07XG5cdH1cblxufVxuIl19

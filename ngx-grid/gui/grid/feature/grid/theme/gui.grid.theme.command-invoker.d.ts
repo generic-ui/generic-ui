@@ -1,7 +1,7 @@
-import { SchemaCommandInvoker } from '../../../../../schema/domain-api/schema.command-invoker';
-import { SchemaReadModelRootId } from '../../../../../schema/domain-api/read/schema.read-model-root-id';
-import { StructureId } from '../../../../../structure/core/domain/structure.id';
-import { GuiRowColoring, GuiTheme } from '../../../domain-api/gui.grid.public-api';
+import { SchemaCommandInvoker } from '../../../../../schema/core/api/schema.command-invoker';
+import { SchemaReadModelRootId } from '../../../../../schema/core/domain-read/schema.read-model-root-id';
+import { StructureId } from '../../../../../structure/core/api/structure.id';
+import { GuiRowColoring, GuiTheme } from '../../../core/api/gui.grid.public-api';
 import { GuiGridThemeConverter } from './gui.grid.theme.converter';
 import { GuiGridRowColoringConverter } from './coloring/gui.grid.row-coloring.converter';
 export declare class GuiGridThemeCommandInvoker {

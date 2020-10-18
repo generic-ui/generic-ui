@@ -1,0 +1,23 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { Injectable } from '@angular/core';
+import { Archive } from '@generic-ui/hermes';
+import { RowSelectionType } from '../../row-selection';
+export class RowSelectionTypeArchive extends Archive {
+    constructor() {
+        super(RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE);
+    }
+}
+RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE = RowSelectionType.ROW;
+RowSelectionTypeArchive.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RowSelectionTypeArchive.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicm93LXNlbGVjdGlvbi10eXBlLmFyY2hpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9zb3VyY2UvY29yZS9hcGkvZm9ybWF0aW9uL3R5cGUvcm93LXNlbGVjdGlvbi10eXBlLmFyY2hpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFFLE9BQU8sRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBRTdDLE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLHFCQUFxQixDQUFDO0FBR3ZELE1BQU0sT0FBTyx1QkFBd0IsU0FBUSxPQUF5QjtJQUlyRTtRQUNDLEtBQUssQ0FBQyx1QkFBdUIsQ0FBQywwQkFBMEIsQ0FBQyxDQUFDO0lBQzNELENBQUM7O0FBSmUsa0RBQTBCLEdBQUcsZ0JBQWdCLENBQUMsR0FBRyxDQUFDOztZQUhsRSxVQUFVOzs7Ozs7SUFHVixtREFBa0UiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEFyY2hpdmUgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5pbXBvcnQgeyBSb3dTZWxlY3Rpb25UeXBlIH0gZnJvbSAnLi4vLi4vcm93LXNlbGVjdGlvbic7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBSb3dTZWxlY3Rpb25UeXBlQXJjaGl2ZSBleHRlbmRzIEFyY2hpdmU8Um93U2VsZWN0aW9uVHlwZT4ge1xuXG5cdHN0YXRpYyByZWFkb25seSBERUZBVUxUX1JPV19TRUxFQ1RJT05fVFlQRSA9IFJvd1NlbGVjdGlvblR5cGUuUk9XO1xuXG5cdGNvbnN0cnVjdG9yKCkge1xuXHRcdHN1cGVyKFJvd1NlbGVjdGlvblR5cGVBcmNoaXZlLkRFRkFVTFRfUk9XX1NFTEVDVElPTl9UWVBFKTtcblx0fVxufVxuIl19

@@ -1,5 +1,5 @@
-import { GuiListPaging } from '../../domain-api/gui.list.public-api';
-import { PagingConfig } from '../../../../structure/paging/domain-api/paging-config';
+import { GuiListPaging } from '../../core/api/gui.list.public-api';
+import { PagingConfig } from '../../../../structure/paging/core/api/paging-config';
 export declare class GuiListPagingConverter {
     convert(guiListPaging: GuiListPaging): PagingConfig;
 }

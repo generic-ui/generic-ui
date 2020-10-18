@@ -1,5 +1,5 @@
-import { DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../structure.id';
-export declare class StructureCreatedEvent extends DomainEvent<StructureId> {
+import { StructureId } from '../../api/structure.id';
+import { StructureDomainEvent } from '../structure.domain-event';
+export declare class StructureCreatedEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
