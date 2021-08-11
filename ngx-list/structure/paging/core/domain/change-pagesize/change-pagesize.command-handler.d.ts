@@ -5,8 +5,8 @@ export declare class ChangePagesizeCommandHandler implements CommandHandler<Stru
     protected domainEventPublisher: DomainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<ChangePagesizeCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: ChangePagesizeCommand): void;
     handleAggregate(structureAggregate: StructureAggregate, command: ChangePagesizeCommand): void;
+    publishDomainEvents(aggregate: StructureAggregate, command: ChangePagesizeCommand): void;
     private publishAggregateEvents;
     private publishAggregateEvent;
 }

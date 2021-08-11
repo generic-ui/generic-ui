@@ -15,7 +15,7 @@ var FabricRadioGroupComponent = /** @class */ (function () {
                     host: {
                         '[class.gui-radio-group]': 'true'
                     },
-                    styles: [".gui-radio-group .gui-radio-button{margin-bottom:10px;display:block}"]
+                    styles: [".gui-radio-group .gui-radio-button{display:block;margin-bottom:10px}"]
                 }] }
     ];
     return FabricRadioGroupComponent;

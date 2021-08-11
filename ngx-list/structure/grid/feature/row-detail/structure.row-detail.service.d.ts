@@ -2,7 +2,7 @@ import { ElementRef, Injector } from '@angular/core';
 import { FabricDrawerService } from '@generic-ui/fabric';
 import { FormationEventRepository } from '../../../source/core/api/formation/formation.event-repository';
 import { StructureId } from '../../../core/api/structure.id';
-import { Reactive } from '../../../../common/cdk/reactive';
+import { Reactive } from '../../../../common/cdk/reactive/reactive';
 import { StructureRowDetailConfigArchive } from './structure.row-detail.config-archive';
 import { RowDetailConfig } from './row-detail.config';
 export declare class StructureRowDetailService extends Reactive {

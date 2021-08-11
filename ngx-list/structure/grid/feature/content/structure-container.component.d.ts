@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { ResizeDetector } from '@generic-ui/fabric';
-import { SmartComponent } from '../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { SchemaRowColoring } from '../../../../schema/core/api/schema-row-coloring';
 import { StructureId } from '../../../core/api/structure.id';
@@ -13,17 +13,16 @@ import { FormationWarehouse } from '../../../source/core/api/formation/formation
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
 import { StructureVerticalFormationWarehouse } from '../../../vertical-formation/core/api/structure-vertical-formation.warehouse';
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
-    private readonly elementRef;
-    private readonly renderer;
+    private readonly elRef;
     private readonly ngZone;
     private readonly structureId;
     private readonly structureCommandService;
-    private readonly structureReadModelWarehouse;
+    private readonly structureWarehouse;
     private readonly structureVerticalFormationWarehouse;
-    private readonly structureSourceWarehouse;
-    private readonly compositionCommandService;
+    private readonly sourceWarehouse;
+    private readonly compositionCommandInvoker;
     private readonly compositionWarehouse;
-    private readonly structureFormationWarehouse;
+    private readonly formationWarehouse;
     private readonly resizeDetector;
     private readonly structureParent;
     sourceCollectionRef: ElementRef;
@@ -33,7 +32,8 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     rowColoring: SchemaRowColoring;
     private autoResizeWidthEnabled;
     private scrollObservation$;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, renderer: Renderer2, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandDispatcher, structureReadModelWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSourceWarehouse: SourceWarehouse, compositionCommandService: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, structureFormationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
+    private readonly styleModifier;
+    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandDispatcher, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, sourceWarehouse: SourceWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, formationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
@@ -42,4 +42,5 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     private recalculateContainer;
     private enableScrollObservation;
     private disableScrollObservation;
+    protected getSelectorName(): string;
 }

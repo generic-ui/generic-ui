@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { GuiGridGateway } from './gui.grid-gateway';
 import { GuiGridIdGenerator } from './register/gui.grid-id.generator';
 import { GuiGridRegister } from './register/gui.grid.register';
@@ -9,7 +9,7 @@ import { FormationWarehouse } from '../../../../structure/source/core/api/format
 import { SearchCommandInvoker } from '../../../../structure/search/core/api/search.command-invoker';
 import { SchemaCommandInvoker } from '../../../../schema/core/api/schema.command-invoker';
 import { StructureCommandDispatcher } from '../../../../structure/core/api/structure.command-dispatcher';
-export declare class GuiGridComponent extends GuiGridGateway implements OnInit {
+export declare class GuiGridComponent extends GuiGridGateway implements OnInit, OnDestroy {
     private readonly platformId;
     private readonly elementRef;
     private readonly changeDetectorRef;
@@ -25,7 +25,11 @@ export declare class GuiGridComponent extends GuiGridGateway implements OnInit {
     gridId: string;
     private localGridId;
     api: GuiGridApi;
+    private static readonly GUI_GRID_ID;
     private readonly gridThemeCommandInvoker;
+    private readonly classModifier;
+    private readonly styleModifier;
+    private readonly attributeModifier;
     constructor(platformId: any, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, gridRegister: GuiGridRegister, gridIdGenerator: GuiGridIdGenerator, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, sourceCommandDispatcher: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, schemaCommandInvoker: SchemaCommandInvoker, structureCommandDispatcher: StructureCommandDispatcher);
     ngOnInit(): void;
     ngOnDestroy(): void;

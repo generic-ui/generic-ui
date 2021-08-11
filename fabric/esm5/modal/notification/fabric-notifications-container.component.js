@@ -2,102 +2,65 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import * as tslib_1 from "tslib";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, forwardRef, Inject, Renderer2, ViewEncapsulation } from '@angular/core';
-import { FabricNotificationService } from './fabric-notification.service';
-import { Theme } from '../../themes/theme';
-import { themeToken } from '../../themes/theme.token';
-import { DialogComponent } from '../common/dialog.component';
-var FabricNotificationsContainerComponent = /** @class */ (function (_super) {
-    tslib_1.__extends(FabricNotificationsContainerComponent, _super);
-    function FabricNotificationsContainerComponent(changeDetectorRef, componentFactoryResolver, elRef, renderer, theme, notificationsService) {
-        var _this = _super.call(this, elRef, renderer, theme) || this;
-        _this.changeDetectorRef = changeDetectorRef;
-        _this.componentFactoryResolver = componentFactoryResolver;
-        _this.elRef = elRef;
-        _this.notificationsService = notificationsService;
-        _this.notifications = [];
-        return _this;
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { FabricNotificationPosition } from './fabric-notification-position';
+var FabricNotificationsContainerComponent = /** @class */ (function () {
+    function FabricNotificationsContainerComponent() {
+        this.onNotificationClose = new EventEmitter();
+        this.FabricNotificationPosition = FabricNotificationPosition;
     }
     /**
+     * @param {?} selectedNotification
      * @return {?}
      */
-    FabricNotificationsContainerComponent.prototype.ngAfterViewInit = /**
+    FabricNotificationsContainerComponent.prototype.emitClosedNotification = /**
+     * @param {?} selectedNotification
      * @return {?}
      */
-    function () {
-        this.addTheme();
+    function (selectedNotification) {
+        this.onNotificationClose.emit(selectedNotification);
     };
     /**
-     * @param {?} index
+     * @param {?} fabricNotificationPosition
      * @return {?}
      */
-    FabricNotificationsContainerComponent.prototype.removeNotification = /**
-     * @param {?} index
+    FabricNotificationsContainerComponent.prototype.isPosition = /**
+     * @param {?} fabricNotificationPosition
      * @return {?}
      */
-    function (index) {
-        this.notifications = this.notifications.filter((/**
-         * @param {?} notification
-         * @return {?}
-         */
-        function (notification) { return notification.index !== index; }));
-        this.changeDetectorRef.detectChanges();
-        this.checkNotificationsLength();
-    };
-    /**
-     * @return {?}
-     */
-    FabricNotificationsContainerComponent.prototype.checkNotificationsLength = /**
-     * @return {?}
-     */
-    function () {
-        if (this.notifications.length === 0) {
-            this.notificationsService.close();
-        }
+    function (fabricNotificationPosition) {
+        return this.position === fabricNotificationPosition;
     };
     FabricNotificationsContainerComponent.decorators = [
         { type: Component, args: [{
-                    template: "\n\t\t<div class=\"gui-notifications-container\">\n\t\t\t<div *ngFor=\"let notification of notifications; let index=index\">\n\t\t\t\t<gui-notification [notification]=\"notification\"\n\t\t\t\t\t\t\t\t  (onNotificationClose)=\"removeNotification($event)\">\n\t\t\t\t</gui-notification>\n\t\t\t</div>\n\t\t</div>\n\t",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    selector: 'gui-notifications-container',
+                    template: "\n\t\t<gui-notification *ngFor=\"let notification of notifications\"\n\t\t\t\t\t\t  [notification]=\"notification\"\n\t\t\t\t\t\t  (onNotificationClose)=\"emitClosedNotification($event)\">\n\t\t</gui-notification>\n\t",
+                    host: {
+                        '[class.gui-notifications-top-right]': 'isPosition(FabricNotificationPosition.TOP_RIGHT)',
+                        '[class.gui-notifications-top-left]': 'isPosition(FabricNotificationPosition.TOP_LEFT)',
+                        '[class.gui-notifications-bottom-right]': 'isPosition(FabricNotificationPosition.BOTTOM_RIGHT)',
+                        '[class.gui-notifications-bottom-left]': 'isPosition(FabricNotificationPosition.BOTTOM_LEFT)'
+                    },
                     encapsulation: ViewEncapsulation.None,
-                    styles: [".gui-notifications-container{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;font-family:Arial;position:fixed;max-width:400px;right:0;top:0;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;z-index:1000}.gui-notifications-container .gui-notification{background:#fff;display:block;position:relative;margin:16px;padding:32px;box-shadow:0 3px 6px -4px rgba(0,0,0,.12),0 6px 16px 0 rgba(0,0,0,.08),0 9px 28px 8px rgba(0,0,0,.05);-webkit-animation:.1s forwards load;animation:.1s forwards load}@-webkit-keyframes load{0%{transform:translateX(50%)}100%{transform:translateX(0)}}@keyframes load{0%{transform:translateX(50%)}100%{transform:translateX(0)}}.gui-notifications-container .gui-notification.gui-notification-active{-webkit-animation:.2s forwards close;animation:.2s forwards close}@-webkit-keyframes close{0%{transform:translateX(0)}100%{transform:translateX(100%)}}@keyframes close{0%{transform:translateX(0)}100%{transform:translateX(100%)}}"]
+                    changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
     ];
-    /** @nocollapse */
-    FabricNotificationsContainerComponent.ctorParameters = function () { return [
-        { type: ChangeDetectorRef },
-        { type: ComponentFactoryResolver },
-        { type: ElementRef },
-        { type: Renderer2 },
-        { type: Theme, decorators: [{ type: Inject, args: [themeToken,] }] },
-        { type: FabricNotificationService, decorators: [{ type: Inject, args: [forwardRef((/**
-                         * @return {?}
-                         */
-                        function () { return FabricNotificationService; })),] }] }
-    ]; };
+    FabricNotificationsContainerComponent.propDecorators = {
+        notifications: [{ type: Input }],
+        position: [{ type: Input }],
+        onNotificationClose: [{ type: Output }]
+    };
     return FabricNotificationsContainerComponent;
-}(DialogComponent));
+}());
 export { FabricNotificationsContainerComponent };
 if (false) {
     /** @type {?} */
     FabricNotificationsContainerComponent.prototype.notifications;
     /** @type {?} */
-    FabricNotificationsContainerComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricNotificationsContainerComponent.prototype.componentFactoryResolver;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricNotificationsContainerComponent.prototype.elRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricNotificationsContainerComponent.prototype.notificationsService;
+    FabricNotificationsContainerComponent.prototype.position;
+    /** @type {?} */
+    FabricNotificationsContainerComponent.prototype.onNotificationClose;
+    /** @type {?} */
+    FabricNotificationsContainerComponent.prototype.FabricNotificationPosition;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLW5vdGlmaWNhdGlvbnMtY29udGFpbmVyLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2ZhYnJpYy8iLCJzb3VyY2VzIjpbIm1vZGFsL25vdGlmaWNhdGlvbi9mYWJyaWMtbm90aWZpY2F0aW9ucy1jb250YWluZXIuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUVOLHVCQUF1QixFQUN2QixpQkFBaUIsRUFDakIsU0FBUyxFQUNULHdCQUF3QixFQUN4QixVQUFVLEVBQ1YsVUFBVSxFQUNWLE1BQU0sRUFDTixTQUFTLEVBQ1QsaUJBQWlCLEVBQ2pCLE1BQU0sZUFBZSxDQUFDO0FBRXZCLE9BQU8sRUFBRSx5QkFBeUIsRUFBRSxNQUFNLCtCQUErQixDQUFDO0FBQzFFLE9BQU8sRUFBRSxLQUFLLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUMzQyxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sMEJBQTBCLENBQUM7QUFDdEQsT0FBTyxFQUFFLGVBQWUsRUFBRSxNQUFNLDRCQUE0QixDQUFDO0FBSTdEO0lBaUIyRCxpRUFBZTtJQUd6RSwrQ0FBNEIsaUJBQW9DLEVBQzVDLHdCQUFrRCxFQUNsRCxLQUFpQixFQUNsQyxRQUFtQixFQUNDLEtBQVksRUFDc0Msb0JBQStDO1FBTHhILFlBTUMsa0JBQU0sS0FBSyxFQUFFLFFBQVEsRUFBRSxLQUFLLENBQUMsU0FDN0I7UUFQMkIsdUJBQWlCLEdBQWpCLGlCQUFpQixDQUFtQjtRQUM1Qyw4QkFBd0IsR0FBeEIsd0JBQXdCLENBQTBCO1FBQ2xELFdBQUssR0FBTCxLQUFLLENBQVk7UUFHb0MsMEJBQW9CLEdBQXBCLG9CQUFvQixDQUEyQjtRQVB4SCxtQkFBYSxHQUE4QixFQUFFLENBQUM7O0lBUzlDLENBQUM7Ozs7SUFFRCwrREFBZTs7O0lBQWY7UUFDQyxJQUFJLENBQUMsUUFBUSxFQUFFLENBQUM7SUFDakIsQ0FBQzs7Ozs7SUFFRCxrRUFBa0I7Ozs7SUFBbEIsVUFBbUIsS0FBYTtRQUMvQixJQUFJLENBQUMsYUFBYSxHQUFHLElBQUksQ0FBQyxhQUFhLENBQUMsTUFBTTs7OztRQUFDLFVBQUMsWUFBZ0MsSUFBSyxPQUFBLFlBQVksQ0FBQyxLQUFLLEtBQUssS0FBSyxFQUE1QixDQUE0QixFQUFDLENBQUM7UUFDbkgsSUFBSSxDQUFDLGlCQUFpQixDQUFDLGFBQWEsRUFBRSxDQUFDO1FBQ3ZDLElBQUksQ0FBQyx3QkFBd0IsRUFBRSxDQUFDO0lBQ2pDLENBQUM7Ozs7SUFFRCx3RUFBd0I7OztJQUF4QjtRQUNDLElBQUksSUFBSSxDQUFDLGFBQWEsQ0FBQyxNQUFNLEtBQUssQ0FBQyxFQUFFO1lBQ3BDLElBQUksQ0FBQyxvQkFBb0IsQ0FBQyxLQUFLLEVBQUUsQ0FBQztTQUNsQztJQUNGLENBQUM7O2dCQTNDRCxTQUFTLFNBQUM7b0JBQ1YsUUFBUSxFQUFFLDZUQVFUO29CQUtELGVBQWUsRUFBRSx1QkFBdUIsQ0FBQyxNQUFNO29CQUMvQyxhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTs7aUJBQ3JDOzs7O2dCQWpDQSxpQkFBaUI7Z0JBRWpCLHdCQUF3QjtnQkFDeEIsVUFBVTtnQkFHVixTQUFTO2dCQUtELEtBQUssdUJBOEJULE1BQU0sU0FBQyxVQUFVO2dCQS9CYix5QkFBeUIsdUJBZ0M3QixNQUFNLFNBQUMsVUFBVTs7O3dCQUFDLGNBQU0sT0FBQSx5QkFBeUIsRUFBekIsQ0FBeUIsRUFBQzs7SUFvQnZELDRDQUFDO0NBQUEsQUE3Q0QsQ0FpQjJELGVBQWUsR0E0QnpFO1NBNUJZLHFDQUFxQzs7O0lBQ2pELDhEQUE4Qzs7SUFFbEMsa0VBQW9EOzs7OztJQUM3RCx5RUFBbUU7Ozs7O0lBQ25FLHNEQUFrQzs7Ozs7SUFHbEMscUVBQXFIIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtcblx0QWZ0ZXJWaWV3SW5pdCxcblx0Q2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksXG5cdENoYW5nZURldGVjdG9yUmVmLFxuXHRDb21wb25lbnQsXG5cdENvbXBvbmVudEZhY3RvcnlSZXNvbHZlcixcblx0RWxlbWVudFJlZixcblx0Zm9yd2FyZFJlZixcblx0SW5qZWN0LFxuXHRSZW5kZXJlcjIsXG5cdFZpZXdFbmNhcHN1bGF0aW9uXG59IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBGYWJyaWNOb3RpZmljYXRpb25TZXJ2aWNlIH0gZnJvbSAnLi9mYWJyaWMtbm90aWZpY2F0aW9uLnNlcnZpY2UnO1xuaW1wb3J0IHsgVGhlbWUgfSBmcm9tICcuLi8uLi90aGVtZXMvdGhlbWUnO1xuaW1wb3J0IHsgdGhlbWVUb2tlbiB9IGZyb20gJy4uLy4uL3RoZW1lcy90aGVtZS50b2tlbic7XG5pbXBvcnQgeyBEaWFsb2dDb21wb25lbnQgfSBmcm9tICcuLi9jb21tb24vZGlhbG9nLmNvbXBvbmVudCc7XG5pbXBvcnQgeyBGYWJyaWNOb3RpZmljYXRpb24gfSBmcm9tICcuL2ZhYnJpYy1ub3RpZmljYXRpb24nO1xuXG5cbkBDb21wb25lbnQoe1xuXHR0ZW1wbGF0ZTogYFxuXHRcdDxkaXYgY2xhc3M9XCJndWktbm90aWZpY2F0aW9ucy1jb250YWluZXJcIj5cblx0XHRcdDxkaXYgKm5nRm9yPVwibGV0IG5vdGlmaWNhdGlvbiBvZiBub3RpZmljYXRpb25zOyBsZXQgaW5kZXg9aW5kZXhcIj5cblx0XHRcdFx0PGd1aS1ub3RpZmljYXRpb24gW25vdGlmaWNhdGlvbl09XCJub3RpZmljYXRpb25cIlxuXHRcdFx0XHRcdFx0XHRcdCAgKG9uTm90aWZpY2F0aW9uQ2xvc2UpPVwicmVtb3ZlTm90aWZpY2F0aW9uKCRldmVudClcIj5cblx0XHRcdFx0PC9ndWktbm90aWZpY2F0aW9uPlxuXHRcdFx0PC9kaXY+XG5cdFx0PC9kaXY+XG5cdGAsXG5cdHN0eWxlVXJsczogW1xuXHRcdCcuL2ZhYnJpYy1ub3RpZmljYXRpb24ubmd4LnNjc3MnXG5cdFx0Ly8gJy4vdGhlbWVzL2ZhYnJpYy1ub3RpZmljYXRpb25zLmRhcmsubmd4LnNjc3MnXG5cdF0sXG5cdGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxuXHRlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lXG59KVxuZXhwb3J0IGNsYXNzIEZhYnJpY05vdGlmaWNhdGlvbnNDb250YWluZXJDb21wb25lbnQgZXh0ZW5kcyBEaWFsb2dDb21wb25lbnQgaW1wbGVtZW50cyBBZnRlclZpZXdJbml0IHtcblx0bm90aWZpY2F0aW9uczogQXJyYXk8RmFicmljTm90aWZpY2F0aW9uPiA9IFtdO1xuXG5cdGNvbnN0cnVjdG9yKHB1YmxpYyByZWFkb25seSBjaGFuZ2VEZXRlY3RvclJlZjogQ2hhbmdlRGV0ZWN0b3JSZWYsXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgY29tcG9uZW50RmFjdG9yeVJlc29sdmVyOiBDb21wb25lbnRGYWN0b3J5UmVzb2x2ZXIsXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgZWxSZWY6IEVsZW1lbnRSZWYsXG5cdFx0XHRcdHJlbmRlcmVyOiBSZW5kZXJlcjIsXG5cdFx0XHRcdEBJbmplY3QodGhlbWVUb2tlbikgdGhlbWU6IFRoZW1lLFxuXHRcdFx0XHRASW5qZWN0KGZvcndhcmRSZWYoKCkgPT4gRmFicmljTm90aWZpY2F0aW9uU2VydmljZSkpIHByaXZhdGUgcmVhZG9ubHkgbm90aWZpY2F0aW9uc1NlcnZpY2U6IEZhYnJpY05vdGlmaWNhdGlvblNlcnZpY2UpIHtcblx0XHRzdXBlcihlbFJlZiwgcmVuZGVyZXIsIHRoZW1lKTtcblx0fVxuXG5cdG5nQWZ0ZXJWaWV3SW5pdCgpIHtcblx0XHR0aGlzLmFkZFRoZW1lKCk7XG5cdH1cblxuXHRyZW1vdmVOb3RpZmljYXRpb24oaW5kZXg6IG51bWJlcik6IHZvaWQge1xuXHRcdHRoaXMubm90aWZpY2F0aW9ucyA9IHRoaXMubm90aWZpY2F0aW9ucy5maWx0ZXIoKG5vdGlmaWNhdGlvbjogRmFicmljTm90aWZpY2F0aW9uKSA9PiBub3RpZmljYXRpb24uaW5kZXggIT09IGluZGV4KTtcblx0XHR0aGlzLmNoYW5nZURldGVjdG9yUmVmLmRldGVjdENoYW5nZXMoKTtcblx0XHR0aGlzLmNoZWNrTm90aWZpY2F0aW9uc0xlbmd0aCgpO1xuXHR9XG5cblx0Y2hlY2tOb3RpZmljYXRpb25zTGVuZ3RoKCk6IHZvaWQge1xuXHRcdGlmICh0aGlzLm5vdGlmaWNhdGlvbnMubGVuZ3RoID09PSAwKSB7XG5cdFx0XHR0aGlzLm5vdGlmaWNhdGlvbnNTZXJ2aWNlLmNsb3NlKCk7XG5cdFx0fVxuXHR9XG5cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLW5vdGlmaWNhdGlvbnMtY29udGFpbmVyLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2ZhYnJpYy8iLCJzb3VyY2VzIjpbIm1vZGFsL25vdGlmaWNhdGlvbi9mYWJyaWMtbm90aWZpY2F0aW9ucy1jb250YWluZXIuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsU0FBUyxFQUFFLFlBQVksRUFBRSxLQUFLLEVBQUUsTUFBTSxFQUFFLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRW5ILE9BQU8sRUFBRSwwQkFBMEIsRUFBRSxNQUFNLGdDQUFnQyxDQUFDO0FBRTVFO0lBQUE7UUEwQkMsd0JBQW1CLEdBQUcsSUFBSSxZQUFZLEVBQUUsQ0FBQztRQUV6QywrQkFBMEIsR0FBRywwQkFBMEIsQ0FBQztJQVN6RCxDQUFDOzs7OztJQVBBLHNFQUFzQjs7OztJQUF0QixVQUF1QixvQkFBd0M7UUFDOUQsSUFBSSxDQUFDLG1CQUFtQixDQUFDLElBQUksQ0FBQyxvQkFBb0IsQ0FBQyxDQUFDO0lBQ3JELENBQUM7Ozs7O0lBRUQsMERBQVU7Ozs7SUFBVixVQUFXLDBCQUFzRDtRQUNoRSxPQUFPLElBQUksQ0FBQyxRQUFRLEtBQUssMEJBQTBCLENBQUM7SUFDckQsQ0FBQzs7Z0JBcENELFNBQVMsU0FBQztvQkFDVixRQUFRLEVBQUUsNkJBQTZCO29CQUN2QyxRQUFRLEVBQUUsMk5BS1Q7b0JBQ0QsSUFBSSxFQUFFO3dCQUNMLHFDQUFxQyxFQUFFLGtEQUFrRDt3QkFDekYsb0NBQW9DLEVBQUUsaURBQWlEO3dCQUN2Rix3Q0FBd0MsRUFBRSxxREFBcUQ7d0JBQy9GLHVDQUF1QyxFQUFFLG9EQUFvRDtxQkFDN0Y7b0JBQ0QsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUk7b0JBQ3JDLGVBQWUsRUFBRSx1QkFBdUIsQ0FBQyxNQUFNO2lCQUMvQzs7O2dDQUdDLEtBQUs7MkJBR0wsS0FBSztzQ0FHTCxNQUFNOztJQVlSLDRDQUFDO0NBQUEsQUFyQ0QsSUFxQ0M7U0FwQlkscUNBQXFDOzs7SUFFakQsOERBQ3lDOztJQUV6Qyx5REFDcUM7O0lBRXJDLG9FQUN5Qzs7SUFFekMsMkVBQXdEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksIENvbXBvbmVudCwgRXZlbnRFbWl0dGVyLCBJbnB1dCwgT3V0cHV0LCBWaWV3RW5jYXBzdWxhdGlvbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRmFicmljTm90aWZpY2F0aW9uIH0gZnJvbSAnLi9mYWJyaWMtbm90aWZpY2F0aW9uJztcbmltcG9ydCB7IEZhYnJpY05vdGlmaWNhdGlvblBvc2l0aW9uIH0gZnJvbSAnLi9mYWJyaWMtbm90aWZpY2F0aW9uLXBvc2l0aW9uJztcblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZ3VpLW5vdGlmaWNhdGlvbnMtY29udGFpbmVyJyxcblx0dGVtcGxhdGU6IGBcblx0XHQ8Z3VpLW5vdGlmaWNhdGlvbiAqbmdGb3I9XCJsZXQgbm90aWZpY2F0aW9uIG9mIG5vdGlmaWNhdGlvbnNcIlxuXHRcdFx0XHRcdFx0ICBbbm90aWZpY2F0aW9uXT1cIm5vdGlmaWNhdGlvblwiXG5cdFx0XHRcdFx0XHQgIChvbk5vdGlmaWNhdGlvbkNsb3NlKT1cImVtaXRDbG9zZWROb3RpZmljYXRpb24oJGV2ZW50KVwiPlxuXHRcdDwvZ3VpLW5vdGlmaWNhdGlvbj5cblx0YCxcblx0aG9zdDoge1xuXHRcdCdbY2xhc3MuZ3VpLW5vdGlmaWNhdGlvbnMtdG9wLXJpZ2h0XSc6ICdpc1Bvc2l0aW9uKEZhYnJpY05vdGlmaWNhdGlvblBvc2l0aW9uLlRPUF9SSUdIVCknLFxuXHRcdCdbY2xhc3MuZ3VpLW5vdGlmaWNhdGlvbnMtdG9wLWxlZnRdJzogJ2lzUG9zaXRpb24oRmFicmljTm90aWZpY2F0aW9uUG9zaXRpb24uVE9QX0xFRlQpJyxcblx0XHQnW2NsYXNzLmd1aS1ub3RpZmljYXRpb25zLWJvdHRvbS1yaWdodF0nOiAnaXNQb3NpdGlvbihGYWJyaWNOb3RpZmljYXRpb25Qb3NpdGlvbi5CT1RUT01fUklHSFQpJyxcblx0XHQnW2NsYXNzLmd1aS1ub3RpZmljYXRpb25zLWJvdHRvbS1sZWZ0XSc6ICdpc1Bvc2l0aW9uKEZhYnJpY05vdGlmaWNhdGlvblBvc2l0aW9uLkJPVFRPTV9MRUZUKSdcblx0fSxcblx0ZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZSxcblx0Y2hhbmdlRGV0ZWN0aW9uOiBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneS5PblB1c2hcbn0pXG5leHBvcnQgY2xhc3MgRmFicmljTm90aWZpY2F0aW9uc0NvbnRhaW5lckNvbXBvbmVudCB7XG5cblx0QElucHV0KClcblx0bm90aWZpY2F0aW9uczogQXJyYXk8RmFicmljTm90aWZpY2F0aW9uPjtcblxuXHRASW5wdXQoKVxuXHRwb3NpdGlvbjogRmFicmljTm90aWZpY2F0aW9uUG9zaXRpb247XG5cblx0QE91dHB1dCgpXG5cdG9uTm90aWZpY2F0aW9uQ2xvc2UgPSBuZXcgRXZlbnRFbWl0dGVyKCk7XG5cblx0RmFicmljTm90aWZpY2F0aW9uUG9zaXRpb24gPSBGYWJyaWNOb3RpZmljYXRpb25Qb3NpdGlvbjtcblxuXHRlbWl0Q2xvc2VkTm90aWZpY2F0aW9uKHNlbGVjdGVkTm90aWZpY2F0aW9uOiBGYWJyaWNOb3RpZmljYXRpb24pOiB2b2lkIHtcblx0XHR0aGlzLm9uTm90aWZpY2F0aW9uQ2xvc2UuZW1pdChzZWxlY3RlZE5vdGlmaWNhdGlvbik7XG5cdH1cblxuXHRpc1Bvc2l0aW9uKGZhYnJpY05vdGlmaWNhdGlvblBvc2l0aW9uOiBGYWJyaWNOb3RpZmljYXRpb25Qb3NpdGlvbik6IGJvb2xlYW4ge1xuXHRcdHJldHVybiB0aGlzLnBvc2l0aW9uID09PSBmYWJyaWNOb3RpZmljYXRpb25Qb3NpdGlvbjtcblx0fVxufVxuIl19

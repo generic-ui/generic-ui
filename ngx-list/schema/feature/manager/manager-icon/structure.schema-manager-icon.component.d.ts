@@ -1,3 +1,6 @@
-export declare const selector = "gui-structure-schema-manager-icon";
-export declare class StructureSchemaManagerIconComponent {
+import { ChangeDetectorRef, ElementRef } from '@angular/core';
+import { IconComponent } from '../../../../common/cdk/component/icon-component';
+export declare class StructureSchemaManagerIconComponent extends IconComponent {
+    constructor(elRef: ElementRef, cdr: ChangeDetectorRef);
+    protected getSelectorName(): string;
 }

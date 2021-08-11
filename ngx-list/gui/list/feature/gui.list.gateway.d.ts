@@ -1,6 +1,6 @@
-import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { EventEmitter, OnChanges } from '@angular/core';
 import { GuiListItemComponent } from './item/gui.list-item.component';
-import { GuiListField, GuiListPaging, GuiListSearching, GuiListView } from '../core/api/gui.list.public-api';
+import { GuiListField, GuiListLocalization, GuiListPaging, GuiListSearching, GuiListView } from '../core/api/gui.list.public-api';
 import { GuiListPagingConverter } from './paging/gui-list.paging.converter';
 import { GuiListCardComponent } from './card/gui.list-card.component';
 import { GuiListModeConverter } from './mode/gui-list.mode.converter';
@@ -9,6 +9,7 @@ import { ListViewTemplate } from '../../../structure/list/feature/source/templat
 import { ListViewMode } from '../../../structure/list/core/domain/mode/list-view-mode';
 import { FieldConfig } from '../../../structure/field/core/api/field.config';
 import { SearchConfig } from '../../../structure/search/core/api/search-config';
+import { NgChanges } from '../../../common/cdk/component/ng-changes';
 export declare abstract class GuiListGateway implements OnChanges {
     listItem: GuiListItemComponent;
     listCard: GuiListCardComponent;
@@ -19,6 +20,7 @@ export declare abstract class GuiListGateway implements OnChanges {
     view: GuiListView;
     fields: Array<GuiListField>;
     searching: GuiListSearching;
+    localization: GuiListLocalization;
     pageChanged: EventEmitter<number>;
     pageSizeChanged: EventEmitter<number>;
     searchPhraseChanged: EventEmitter<string>;
@@ -30,5 +32,5 @@ export declare abstract class GuiListGateway implements OnChanges {
     guiListModeConverter: GuiListModeConverter;
     listFields: Array<FieldConfig>;
     searchConfig: SearchConfig;
-    ngOnChanges(changes: SimpleChanges): void;
+    ngOnChanges(changes: NgChanges<GuiListGateway>): void;
 }

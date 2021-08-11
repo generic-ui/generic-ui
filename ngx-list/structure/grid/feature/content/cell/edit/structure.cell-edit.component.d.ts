@@ -1,9 +1,10 @@
-import { ChangeDetectorRef, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnChanges } from '@angular/core';
 import { CellTemplateWithAccessor } from '../../../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { ChangedValueEmitter } from '../../../../../../composition/core/domain-read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../../../source/core/domain/core/item/item.entity';
-import { SmartComponent } from '../../../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
 import { SourceCommandInvoker } from '../../../../../source/core/api/source.command-invoker';
+import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
 export declare class StructureCellEditComponent extends SmartComponent implements OnChanges {
     private readonly changeDetectorRef;
     private readonly sourceCommandService;
@@ -14,8 +15,8 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, sourceCommandService: SourceCommandInvoker);
-    ngOnChanges(changes: SimpleChanges): void;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, sourceCommandService: SourceCommandInvoker);
+    ngOnChanges(changes: NgChanges<StructureCellEditComponent>): void;
     ngOnInit(): void;
     submitChangesAndExit(): void;
     private initEditContext;
@@ -24,4 +25,5 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     private publishEditEnter;
     private publishEditCancel;
     private publishEditSubmit;
+    protected getSelectorName(): string;
 }

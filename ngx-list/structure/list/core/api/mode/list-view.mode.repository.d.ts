@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Reactive } from '../../../../../common/cdk/reactive';
+import { Reactive } from '../../../../../common/cdk/reactive/reactive';
 import { ListViewMode } from '../../domain/mode/list-view-mode';
 import { ListViewId } from '../list-view.id';
 export declare class ListViewModeRepository extends Reactive {

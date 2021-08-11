@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { SmartComponent } from '../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { StructureWarehouse } from '../../grid/core/api/structure.warehouse';
 import { SearchPlaceholderArchive } from '../core/api/placeholder/search-placeholder.archive';
 import { StructureId } from '../../core/api/structure.id';
@@ -10,7 +10,6 @@ import { SearchCommandInvoker } from '../core/api/search.command-invoker';
 import { SearchWarehouse } from '../core/api/search.warehouse';
 export declare class SearchComponent extends SmartComponent implements OnInit {
     private readonly formBuilder;
-    private readonly renderer2;
     private readonly changeDetectorRef;
     private readonly structureId;
     private readonly searchCommandDispatcher;
@@ -24,9 +23,10 @@ export declare class SearchComponent extends SmartComponent implements OnInit {
     placeholder: string;
     searchingEnabled: boolean;
     searchInputSubscription: Subscription;
-    constructor(formBuilder: FormBuilder, renderer2: Renderer2, changeDetectorRef: ChangeDetectorRef, structureId: StructureId, searchCommandDispatcher: SearchCommandInvoker, structureWarehouse: StructureWarehouse, searchWarehouse: SearchWarehouse, verticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSearchPlaceholderArchive: SearchPlaceholderArchive);
+    constructor(formBuilder: FormBuilder, changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, searchCommandDispatcher: SearchCommandInvoker, structureWarehouse: StructureWarehouse, searchWarehouse: SearchWarehouse, verticalFormationWarehouse: StructureVerticalFormationWarehouse, structureSearchPlaceholderArchive: SearchPlaceholderArchive);
     ngOnInit(): void;
     clear(): void;
     private observeChanges;
     private stopObserveChanges;
+    protected getSelectorName(): string;
 }

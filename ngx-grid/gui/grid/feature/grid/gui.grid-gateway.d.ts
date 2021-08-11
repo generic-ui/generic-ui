@@ -1,4 +1,4 @@
-import { EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { EventEmitter, OnChanges } from '@angular/core';
 import { GuiColumn, GuiColumnMenu, GuiFiltering, GuiFooterPanel, GuiInfoPanel, GuiLocalization, GuiMultiColumn, GuiPaging, GuiQuickFilters, GuiRowClass, GuiRowColoring, GuiRowDetail, GuiRowSelection, GuiRowStyle, GuiSearching, GuiSelectedRow, GuiSorting, GuiSummaries, GuiTheme, GuiTitlePanel } from '../../core/api/gui.grid.public-api';
 import { ColumnConfig, MultiColumnConfig } from '../../../../composition/core/api/column/column.config';
 import { GuiGridColumnConverter } from './column/gui.grid.column.converter';
@@ -12,6 +12,7 @@ import { RowColoring } from '../../../../schema/core/api/row-coloring';
 import { GuiGridRowSelectionConverter } from './row-selection/gui.grid.row-selection.converter';
 import { RowSelection } from '../../../../structure/source/core/api/row-selection';
 import { SelectedRow } from '../../../../structure/source/core/api/formation/selected-row';
+import { NgChanges } from '../../../../common/cdk/component/ng-changes';
 export declare abstract class GuiGridGateway implements OnChanges {
     /**
      * INPUTS
@@ -96,7 +97,7 @@ export declare abstract class GuiGridGateway implements OnChanges {
     protected readonly gridPagingConverter: GuiGridPagingConverter;
     protected readonly gridRowSelectionConverter: GuiGridRowSelectionConverter;
     protected constructor();
-    ngOnChanges(changes: SimpleChanges): void;
+    ngOnChanges(changes: NgChanges<GuiGridGateway>): void;
     onPageChange(page: number): void;
     onPageSizeChange(pageSize: number): void;
     onItemSelect(item: any): void;

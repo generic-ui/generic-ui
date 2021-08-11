@@ -4,6 +4,7 @@ export declare class BooleanEditTemplateComponent extends EditCommunicationCompo
     private readonly changeDetectorRef;
     checkboxRef: ElementRef;
     readonly filterFieldName = "booleanEdit";
-    constructor(changeDetectorRef: ChangeDetectorRef);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef);
     toggle(changed: boolean): void;
+    protected getSelectorName(): string;
 }

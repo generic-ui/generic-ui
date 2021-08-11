@@ -1,7 +1,17 @@
-import { EventEmitter } from '@angular/core';
+import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { Paging } from '../../core/api/read/paging';
-export declare class PagingSelectComponent {
+import { GuiSelectOption } from '@generic-ui/fabric';
+import { PureComponent } from '../../../../common/cdk/component/pure-component';
+import { NgChanges } from '../../../../common/cdk/component/ng-changes';
+export declare class PagingSelectComponent extends PureComponent implements OnChanges {
     paging: Paging;
     pageSizeChanged: EventEmitter<any>;
-    changePageSize(pageSize: number): void;
+    selectPageSizes: Array<GuiSelectOption>;
+    selectPageSize: GuiSelectOption;
+    constructor(elementRef: ElementRef);
+    ngOnChanges(changes: NgChanges<PagingSelectComponent>): void;
+    changePageSize(pageSize: GuiSelectOption): void;
+    private getSelectPageSizes;
+    private getSelectPageSize;
+    protected getSelectorName(): string;
 }

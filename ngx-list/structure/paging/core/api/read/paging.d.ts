@@ -24,4 +24,5 @@ export declare class Paging {
     getSourceSize(): number;
     calculateVisiblePages(currentPage: number, numberOfVisiblePages: number, page: number): boolean;
     sample(source: Array<any>): Array<any>;
+    compare(target: Paging): boolean;
 }

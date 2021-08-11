@@ -1,3 +1,4 @@
+import { TranslationChange } from '../../../../l10n/core/api/translation-change';
 export interface GuiListPaging {
     enabled?: boolean;
     page?: number;
@@ -31,3 +32,9 @@ export interface GuiListSearching {
     placeholder?: string;
     phrase?: string;
 }
+export interface GuiListLocalization {
+    translation?: GuiListTranslation;
+    translationResolver?: (key: string, value: string) => string;
+}
+export declare type GuiListTranslation = TranslationChange;
+export declare const GuiListDefaultTranslation: import("../../../../l10n/core/api/translation").Translation;

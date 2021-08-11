@@ -308,6 +308,64 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var enTranslation = {
+        sourceEmpty: 'There are no items to show.',
+        pagingItemsPerPage: 'Items per page:',
+        pagingOf: 'of',
+        pagingNextPage: 'Next',
+        pagingPrevPage: 'Prev',
+        pagingNoItems: 'There is no items.',
+        infoPanelShowing: 'Showing',
+        infoPanelItems: 'items',
+        infoPanelOutOf: 'out of',
+        infoPanelThemeMangerTooltipText: 'Theme manager',
+        infoPanelColumnManagerTooltipText: 'Column manager',
+        infoPanelInfoTooltipText: 'info',
+        themeManagerModalTitle: 'Theme manager',
+        themeManagerModalTheme: 'Theme:',
+        themeManagerModalRowColoring: 'Row coloring:',
+        themeManagerModalVerticalGrid: 'Vertical grid',
+        themeManagerModalHorizontalGrid: 'HorizontalGrid',
+        columnManagerModalTitle: 'Manage columns',
+        headerMenuMainTab: 'Menu',
+        headerMenuMainTabColumnSort: 'Column sort',
+        headerMenuMainTabHideColumn: 'Hide column',
+        headerMenuMainTabMoveLeft: 'Move left',
+        headerMenuMainTabMoveRight: 'Move right',
+        headerMenuMainTabColumnSortAscending: 'Ascending',
+        headerMenuMainTabColumnSortDescending: 'Descending',
+        headerMenuMainTabColumnSortNone: 'None',
+        headerMenuFilterTab: 'Filter',
+        headerMenuColumnsTab: 'Columns',
+        summariesCount: 'Count',
+        summariesDist: 'Dist',
+        summariesSum: 'Sum',
+        summariesAvg: 'Avg',
+        summariesMin: 'Min',
+        summariesMax: 'Max',
+        summariesMed: 'Med',
+        summariesTruthy: 'Truthy',
+        summariesFalsy: 'Falsy',
+        summariesDistinctValuesTooltip: 'Distinct values',
+        summariesAverageTooltip: 'Average',
+        summariesMinTooltip: 'Min',
+        summariesMaxTooltip: 'Max',
+        summariesMedTooltip: 'Median',
+        summariesCountTooltip: 'Number of items in the grid'
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var defaultTranslation = enTranslation;
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @record
      */
@@ -380,6 +438,18 @@
         /** @type {?|undefined} */
         GuiListSearching.prototype.phrase;
     }
+    /**
+     * @record
+     */
+    function GuiListLocalization() { }
+    if (false) {
+        /** @type {?|undefined} */
+        GuiListLocalization.prototype.translation;
+        /** @type {?|undefined} */
+        GuiListLocalization.prototype.translationResolver;
+    }
+    /** @type {?} */
+    var GuiListDefaultTranslation = defaultTranslation;
 
     /**
      * @fileoverview added by tsickle
@@ -578,6 +648,7 @@
             view: [{ type: core.Input }],
             fields: [{ type: core.Input }],
             searching: [{ type: core.Input }],
+            localization: [{ type: core.Input }],
             pageChanged: [{ type: core.Output }],
             pageSizeChanged: [{ type: core.Output }],
             searchPhraseChanged: [{ type: core.Output }]
@@ -603,6 +674,8 @@
         GuiListGateway.prototype.fields;
         /** @type {?} */
         GuiListGateway.prototype.searching;
+        /** @type {?} */
+        GuiListGateway.prototype.localization;
         /** @type {?} */
         GuiListGateway.prototype.pageChanged;
         /** @type {?} */
@@ -681,7 +754,7 @@
         GuiListComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-list',
-                        template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
+                        template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[localization]=\"localization\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
                         providers: __spread(guiListProviders),
                         host: {
                             '[class.gui-list]': "\"true\""
@@ -702,51 +775,6 @@
          * @private
          */
         GuiListComponent.prototype.platformId;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var ListViewGateway = /** @class */ (function () {
-        function ListViewGateway(structureId, sourceCommandService) {
-            this.structureId = structureId;
-            this.sourceCommandService = sourceCommandService;
-        }
-        /**
-         * @param {?} simpleChanges
-         * @return {?}
-         */
-        ListViewGateway.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
-         * @return {?}
-         */
-        function (simpleChanges) {
-            /**
-             * Setting source should be last step
-             */
-            if (simpleChanges.items) {
-                this.sourceCommandService.setOrigin(this.items, this.structureId);
-            }
-        };
-        ListViewGateway.propDecorators = {
-            items: [{ type: core.Input }]
-        };
-        return ListViewGateway;
-    }());
-    if (false) {
-        /** @type {?} */
-        ListViewGateway.prototype.items;
-        /** @type {?} */
-        ListViewGateway.prototype.structureId;
-        /**
-         * @type {?}
-         * @protected
-         */
-        ListViewGateway.prototype.sourceCommandService;
     }
 
     /**
@@ -8050,9 +8078,10 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var SchemaCommandInvoker = /** @class */ (function () {
-        function SchemaCommandInvoker(schemaDispatcher, structureCommandService) {
+        function SchemaCommandInvoker(schemaDispatcher, structureCommandService, fabricModalThemeService) {
             this.schemaDispatcher = schemaDispatcher;
             this.structureCommandService = structureCommandService;
+            this.fabricModalThemeService = fabricModalThemeService;
         }
         /**
          * @param {?=} schemaId
@@ -8082,6 +8111,7 @@
             if (schemaId === void 0) { schemaId = schemaGlobalId; }
             if (structureId === void 0) { structureId = structureGlobalId; }
             this.schemaDispatcher.setTheme(theme, schemaId.toAggregateId());
+            this.fabricModalThemeService.changeTheme(this.toFabricTheme(theme)); // TODO github #2162
             this.structureCommandService.setRowHeightBasedOnTheme(theme, structureId);
         };
         /**
@@ -8148,13 +8178,43 @@
                     return SchemaRowColoring.EVEN;
             }
         };
+        /**
+         * @private
+         * @param {?} schemaTheme
+         * @return {?}
+         */
+        SchemaCommandInvoker.prototype.toFabricTheme = /**
+         * @private
+         * @param {?} schemaTheme
+         * @return {?}
+         */
+        function (schemaTheme) {
+            switch (schemaTheme) {
+                case SchemaTheme.DARK: {
+                    return fabric.Theme.DARK;
+                }
+                case SchemaTheme.FABRIC: {
+                    return fabric.Theme.FABRIC;
+                }
+                case SchemaTheme.GENERIC: {
+                    return fabric.Theme.GENERIC;
+                }
+                case SchemaTheme.LIGHT: {
+                    return fabric.Theme.LIGHT;
+                }
+                case SchemaTheme.MATERIAL: {
+                    return fabric.Theme.MATERIAL;
+                }
+            }
+        };
         SchemaCommandInvoker.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SchemaCommandInvoker.ctorParameters = function () { return [
             { type: SchemaDispatcher },
-            { type: StructureCommandDispatcher }
+            { type: StructureCommandDispatcher },
+            { type: fabric.FabricModalThemeService }
         ]; };
         return SchemaCommandInvoker;
     }());
@@ -8169,6 +8229,11 @@
          * @private
          */
         SchemaCommandInvoker.prototype.structureCommandService;
+        /**
+         * @type {?}
+         * @private
+         */
+        SchemaCommandInvoker.prototype.fabricModalThemeService;
     }
 
     /**
@@ -8177,8 +8242,8 @@
      */
     var LocalSchemaCommandDispatcher = /** @class */ (function (_super) {
         __extends(LocalSchemaCommandDispatcher, _super);
-        function LocalSchemaCommandDispatcher(schemaReadModelRootId, structureId, structureCommandService, schemaDispatcher) {
-            var _this = _super.call(this, schemaDispatcher, structureCommandService) || this;
+        function LocalSchemaCommandDispatcher(schemaReadModelRootId, structureId, structureCommandService, schemaDispatcher, fabricModalThemeService) {
+            var _this = _super.call(this, schemaDispatcher, structureCommandService, fabricModalThemeService) || this;
             _this.schemaReadModelRootId = schemaReadModelRootId;
             _this.structureId = structureId;
             return _this;
@@ -8244,7 +8309,8 @@
             { type: SchemaReadModelRootId },
             { type: StructureId },
             { type: StructureCommandDispatcher },
-            { type: SchemaDispatcher }
+            { type: SchemaDispatcher },
+            { type: fabric.FabricModalThemeService }
         ]; };
         __decorate([
             Override,
@@ -8477,6 +8543,21 @@
                 start -= 1;
             }
             return source.slice(start, this.getEnd());
+        };
+        // TODO
+        // TODO
+        /**
+         * @param {?} target
+         * @return {?}
+         */
+        Paging.prototype.compare = 
+        // TODO
+        /**
+         * @param {?} target
+         * @return {?}
+         */
+        function (target) {
+            return JSON.stringify(this) === JSON.stringify(target);
         };
         Paging.ctorParameters = function () { return [
             { type: Boolean },
@@ -9329,6 +9410,18 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var PagingSetEvent = /** @class */ (function (_super) {
+        __extends(PagingSetEvent, _super);
+        function PagingSetEvent(aggregateId) {
+            return _super.call(this, aggregateId, 'PagingSetEvent') || this;
+        }
+        return PagingSetEvent;
+    }(StructureDomainEvent));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var VerticalFormationRepository = /** @class */ (function (_super) {
         __extends(VerticalFormationRepository, _super);
         function VerticalFormationRepository(domainEventBus, inMemoryStructureReadStore) {
@@ -9338,7 +9431,7 @@
             _this.verticalFormation = new Map();
             _this.verticalFormation$ = new rxjs.ReplaySubject();
             _this.domainEventBus
-                .ofEvent((/** @type {?} */ (StructureCreatedEvent)), (/** @type {?} */ (VerticalScrollEnabledSetEvent)), (/** @type {?} */ (OriginSetEvent)), (/** @type {?} */ (StructureHeightSetEvent)), (/** @type {?} */ (RowHeightSetEvent)), (/** @type {?} */ (SchemaThemeSetEvent)), (/** @type {?} */ (RowHeightSetBasedOnThemeEvent)), (/** @type {?} */ (ScrollPositionSetEvent)), (/** @type {?} */ (SearchPhraseSetDomainEvent)))
+                .ofEvent((/** @type {?} */ (StructureCreatedEvent)), (/** @type {?} */ (VerticalScrollEnabledSetEvent)), (/** @type {?} */ (OriginSetEvent)), (/** @type {?} */ (StructureHeightSetEvent)), (/** @type {?} */ (RowHeightSetEvent)), (/** @type {?} */ (SchemaThemeSetEvent)), (/** @type {?} */ (RowHeightSetBasedOnThemeEvent)), (/** @type {?} */ (ScrollPositionSetEvent)), (/** @type {?} */ (SearchPhraseSetDomainEvent)), (/** @type {?} */ (PageChangedEvent)), (/** @type {?} */ (PagingSetEvent)))
                 .pipe(_this.takeUntil())
                 .subscribe((/**
              * @param {?} event
@@ -9393,7 +9486,7 @@
              * @param {?} v
              * @return {?}
              */
-            function (v) { return v.getRowHeight(); })));
+            function (v) { return v.getRowHeight(); })), operators.distinctUntilChanged());
         };
         /**
          * @param {?} structureId
@@ -9409,7 +9502,7 @@
              * @param {?} v
              * @return {?}
              */
-            function (v) { return v.getViewPortHeight(); })));
+            function (v) { return v.getViewPortHeight(); })), operators.distinctUntilChanged());
         };
         /**
          * @param {?} structureId
@@ -9425,7 +9518,7 @@
              * @param {?} v
              * @return {?}
              */
-            function (v) { return v.getTopMargin(); })));
+            function (v) { return v.getTopMargin(); })), operators.distinctUntilChanged());
         };
         /**
          * @private
@@ -9756,23 +9849,190 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /**
+     * @abstract
+     * @template T
+     */
+    var /**
+     * @abstract
+     * @template T
+     */
+    Modifier = /** @class */ (function () {
+        function Modifier(hostElement) {
+            this.hostElement = hostElement;
+        }
+        /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        Modifier.prototype.getElement = /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+            return this.createModifier(htmlElement);
+        };
+        /**
+         * @return {?}
+         */
+        Modifier.prototype.getHost = /**
+         * @return {?}
+         */
+        function () {
+            if (!this.hostElement) {
+                throw new Error('Missing host element in DomRenderer constructor.');
+            }
+            return this.createModifier(this.hostElement);
+        };
+        return Modifier;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        Modifier.prototype.hostElement;
+        /**
+         * @abstract
+         * @protected
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        Modifier.prototype.createModifier = function (htmlElement) { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ClassModifier = /** @class */ (function (_super) {
+        __extends(ClassModifier, _super);
+        function ClassModifier(htmlElement) {
+            var _this = _super.call(this, htmlElement) || this;
+            _this.htmlElement = htmlElement;
+            return _this;
+        }
+        /**
+         * @protected
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        ClassModifier.prototype.createModifier = /**
+         * @protected
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+            return new ClassModifier.ClassModifier(htmlElement);
+        };
+        var _a;
+        ClassModifier.ClassModifier = (_a = /** @class */ (function () {
+                function class_1(htmlElement) {
+                    this.htmlElement = htmlElement;
+                }
+                /**
+                 * @param {...?} classes
+                 * @return {?}
+                 */
+                class_1.prototype.add = /**
+                 * @param {...?} classes
+                 * @return {?}
+                 */
+                function () {
+                    var classes = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        classes[_i] = arguments[_i];
+                    }
+                    this.addClassToDomElement(this.htmlElement, classes);
+                };
+                /**
+                 * @param {...?} classes
+                 * @return {?}
+                 */
+                class_1.prototype.remove = /**
+                 * @param {...?} classes
+                 * @return {?}
+                 */
+                function () {
+                    var classes = [];
+                    for (var _i = 0; _i < arguments.length; _i++) {
+                        classes[_i] = arguments[_i];
+                    }
+                    this.removeClassFromDomElement(this.htmlElement, classes);
+                };
+                /**
+                 * @return {?}
+                 */
+                class_1.prototype.clear = /**
+                 * @return {?}
+                 */
+                function () {
+                    this.htmlElement.removeAttribute(ClassModifier.ClassModifier.CLASS);
+                };
+                /**
+                 * @private
+                 * @param {?} htmlElement
+                 * @param {?} classes
+                 * @return {?}
+                 */
+                class_1.prototype.addClassToDomElement = /**
+                 * @private
+                 * @param {?} htmlElement
+                 * @param {?} classes
+                 * @return {?}
+                 */
+                function (htmlElement, classes) {
+                    for (var i = 0; i < classes.length; i++) {
+                        htmlElement.classList.add(classes[i]);
+                    }
+                };
+                /**
+                 * @private
+                 * @param {?} htmlElement
+                 * @param {?} classes
+                 * @return {?}
+                 */
+                class_1.prototype.removeClassFromDomElement = /**
+                 * @private
+                 * @param {?} htmlElement
+                 * @param {?} classes
+                 * @return {?}
+                 */
+                function (htmlElement, classes) {
+                    for (var i = 0; i < classes.length; i++) {
+                        htmlElement.classList.remove(classes[i]);
+                    }
+                };
+                return class_1;
+            }()),
+            _a.CLASS = 'class',
+            _a);
+        return ClassModifier;
+    }(Modifier));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ClassModifier.ClassModifier;
+        /**
+         * @type {?}
+         * @private
+         */
+        ClassModifier.prototype.htmlElement;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var SchemaCssClassManager = /** @class */ (function (_super) {
         __extends(SchemaCssClassManager, _super);
-        function SchemaCssClassManager(rendererFactory2, schemaReadModelRepository) {
+        function SchemaCssClassManager(schemaReadModelRepository) {
             var _this = _super.call(this) || this;
-            _this.rendererFactory2 = rendererFactory2;
             _this.schemaReadModelRepository = schemaReadModelRepository;
-            _this.VERTICAL_GRID_CLASS_NAME = 'gui-vertical-grid';
-            _this.HORIZONTAL_GRID_CLASS_NAME = 'gui-horizontal-grid';
-            _this.THEME_FABRIC_CLASS_NAME = 'gui-fabric';
-            _this.THEME_MATERIAL_CLASS_NAME = 'gui-material';
-            _this.THEME_LIGHT_CLASS_NAME = 'gui-light';
-            _this.THEME_DARK_CLASS_NAME = 'gui-dark';
-            _this.THEME_GENERIC_CLASS_NAME = 'gui-generic';
-            _this.ROW_COLORING_ODD = 'gui-rows-odd';
-            _this.ROW_COLORING_EVEN = 'gui-rows-even';
             _this.cssClass = null;
-            _this.renderer = _this.rendererFactory2.createRenderer(null, null);
+            _this.classModifier = new ClassModifier();
             return _this;
         }
         /**
@@ -9846,10 +10106,10 @@
          */
         function (diff) {
             if (diff.hasOwnProperty('verticalGrid')) {
-                this.toggleCssClass(diff.verticalGrid, this.VERTICAL_GRID_CLASS_NAME);
+                this.toggleCssClass(diff.verticalGrid, SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME);
             }
             if (diff.hasOwnProperty('horizontalGrid')) {
-                this.toggleCssClass(diff.horizontalGrid, this.HORIZONTAL_GRID_CLASS_NAME);
+                this.toggleCssClass(diff.horizontalGrid, SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME);
             }
             if (diff.hasOwnProperty('theme')) {
                 this.removeThemeCssClasses();
@@ -9928,21 +10188,21 @@
             switch (theme) {
                 case SchemaTheme.FABRIC:
                 case SchemaTheme[SchemaTheme.FABRIC]:
-                    return this.THEME_FABRIC_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
                 case SchemaTheme.MATERIAL:
                 case SchemaTheme[SchemaTheme.MATERIAL]:
-                    return this.THEME_MATERIAL_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME;
                 case SchemaTheme.LIGHT:
                 case SchemaTheme[SchemaTheme.LIGHT]:
-                    return this.THEME_LIGHT_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_LIGHT_CLASS_NAME;
                 case SchemaTheme.DARK:
                 case SchemaTheme[SchemaTheme.DARK]:
-                    return this.THEME_DARK_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_DARK_CLASS_NAME;
                 case SchemaTheme.GENERIC:
                 case SchemaTheme[SchemaTheme.GENERIC]:
-                    return this.THEME_GENERIC_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_GENERIC_CLASS_NAME;
                 default:
-                    return this.THEME_FABRIC_CLASS_NAME;
+                    return SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
             }
         };
         /**
@@ -9959,10 +10219,10 @@
             switch (coloring) {
                 case SchemaRowColoring.ODD:
                 case SchemaRowColoring[SchemaRowColoring.ODD]:
-                    return this.ROW_COLORING_ODD;
+                    return SchemaCssClassManager.ROW_COLORING_ODD;
                 case SchemaRowColoring.EVEN:
                 case SchemaRowColoring[SchemaRowColoring.EVEN]:
-                    return this.ROW_COLORING_EVEN;
+                    return SchemaCssClassManager.ROW_COLORING_EVEN;
                 default:
                     return null;
             }
@@ -10013,7 +10273,7 @@
          */
         function (cssClassName) {
             if (cssClassName) {
-                this.renderer.addClass(this.cssHostRef.nativeElement, cssClassName);
+                this.classModifier.getElement(this.cssHostRef.nativeElement).add(cssClassName);
             }
         };
         /**
@@ -10028,15 +10288,23 @@
          */
         function (cssClassName) {
             if (cssClassName) {
-                this.renderer.removeClass(this.cssHostRef.nativeElement, cssClassName);
+                this.classModifier.getElement(this.cssHostRef.nativeElement).remove(cssClassName);
             }
         };
+        SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME = 'gui-vertical-grid';
+        SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME = 'gui-horizontal-grid';
+        SchemaCssClassManager.THEME_FABRIC_CLASS_NAME = 'gui-fabric';
+        SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME = 'gui-material';
+        SchemaCssClassManager.THEME_LIGHT_CLASS_NAME = 'gui-light';
+        SchemaCssClassManager.THEME_DARK_CLASS_NAME = 'gui-dark';
+        SchemaCssClassManager.THEME_GENERIC_CLASS_NAME = 'gui-generic';
+        SchemaCssClassManager.ROW_COLORING_ODD = 'gui-rows-odd';
+        SchemaCssClassManager.ROW_COLORING_EVEN = 'gui-rows-even';
         SchemaCssClassManager.decorators = [
             { type: core.Injectable }
         ];
         /** @nocollapse */
         SchemaCssClassManager.ctorParameters = function () { return [
-            { type: core.RendererFactory2 },
             { type: SchemaWarehouse }
         ]; };
         return SchemaCssClassManager;
@@ -10046,52 +10314,52 @@
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.VERTICAL_GRID_CLASS_NAME;
+        SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.HORIZONTAL_GRID_CLASS_NAME;
+        SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.THEME_FABRIC_CLASS_NAME;
+        SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.THEME_MATERIAL_CLASS_NAME;
+        SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.THEME_LIGHT_CLASS_NAME;
+        SchemaCssClassManager.THEME_LIGHT_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.THEME_DARK_CLASS_NAME;
+        SchemaCssClassManager.THEME_DARK_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.THEME_GENERIC_CLASS_NAME;
+        SchemaCssClassManager.THEME_GENERIC_CLASS_NAME;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.ROW_COLORING_ODD;
+        SchemaCssClassManager.ROW_COLORING_ODD;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.ROW_COLORING_EVEN;
+        SchemaCssClassManager.ROW_COLORING_EVEN;
         /**
          * @type {?}
          * @private
          */
-        SchemaCssClassManager.prototype.renderer;
+        SchemaCssClassManager.prototype.classModifier;
         /**
          * @type {?}
          * @private
@@ -10102,11 +10370,6 @@
          * @private
          */
         SchemaCssClassManager.prototype.cssHostRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        SchemaCssClassManager.prototype.rendererFactory2;
         /**
          * @type {?}
          * @private
@@ -10531,6 +10794,135 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * @template T
+     */
+    var /**
+     * @template T
+     */
+    StreamCloser = /** @class */ (function () {
+        function StreamCloser() {
+            this.unsubscribe$ = new rxjs.Subject();
+        }
+        /**
+         * @return {?}
+         */
+        StreamCloser.prototype.takeUntil = /**
+         * @return {?}
+         */
+        function () {
+            return operators.takeUntil(this.unsubscribe$);
+        };
+        /**
+         * @return {?}
+         */
+        StreamCloser.prototype.unsubscribe = /**
+         * @return {?}
+         */
+        function () {
+            if (this.unsubscribe$.isStopped) {
+                return;
+            }
+            this.unsubscribe$.next();
+            this.unsubscribe$.complete();
+        };
+        return StreamCloser;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StreamCloser.prototype.unsubscribe$;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    GuiComponent = /** @class */ (function () {
+        function GuiComponent(innerElementRef) {
+            this.innerElementRef = innerElementRef;
+            this.innerClassModifier = new ClassModifier(this.innerElementRef.nativeElement);
+            this.addHostClass();
+        }
+        /**
+         * @param {?} className
+         * @return {?}
+         */
+        GuiComponent.prototype.addClassToHost = /**
+         * @param {?} className
+         * @return {?}
+         */
+        function (className) {
+            this.innerClassModifier.getHost().add(className);
+        };
+        /**
+         * @param {?} className
+         * @return {?}
+         */
+        GuiComponent.prototype.removeClassFromHost = /**
+         * @param {?} className
+         * @return {?}
+         */
+        function (className) {
+            this.innerClassModifier.getHost().remove(className);
+        };
+        /**
+         * @template T
+         * @param {?} prop
+         * @return {?}
+         */
+        GuiComponent.prototype.hasChanged = /**
+         * @template T
+         * @param {?} prop
+         * @return {?}
+         */
+        function (prop) {
+            return prop !== undefined && prop.currentValue !== undefined;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        GuiComponent.prototype.addHostClass = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.innerClassModifier.getHost().add(this.getSelectorName());
+        };
+        return GuiComponent;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        GuiComponent.prototype.innerClassModifier;
+        /**
+         * @type {?}
+         * @private
+         */
+        GuiComponent.prototype.innerElementRef;
+        /**
+         * @abstract
+         * @protected
+         * @return {?}
+         */
+        GuiComponent.prototype.getSelectorName = function () { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
      * @abstract
      */
     var   /**
@@ -10538,10 +10930,11 @@
      */
     SmartComponent = /** @class */ (function (_super) {
         __extends(SmartComponent, _super);
-        function SmartComponent(detector) {
-            var _this = _super.call(this) || this;
+        function SmartComponent(detector, elementRef) {
+            var _this = _super.call(this, elementRef) || this;
             _this.detector = detector;
-            _this.viewRendered = false;
+            _this.viewInDom = false;
+            _this.streamCloser = new StreamCloser();
             return _this;
         }
         /**
@@ -10551,7 +10944,7 @@
          * @return {?}
          */
         function () {
-            this.viewRendered = true;
+            this.viewInDom = true;
         };
         /**
          * @return {?}
@@ -10560,7 +10953,7 @@
          * @return {?}
          */
         function () {
-            _super.prototype.ngOnDestroy.call(this);
+            this.streamCloser.unsubscribe();
         };
         /**
          * @return {?}
@@ -10569,27 +10962,98 @@
          * @return {?}
          */
         function () {
-            if (this.isViewRendered()) {
+            if (this.isViewInDom()) {
                 this.detector.detectChanges();
             }
         };
         /**
          * @return {?}
          */
-        SmartComponent.prototype.isViewRendered = /**
+        SmartComponent.prototype.isViewInDom = /**
          * @return {?}
          */
         function () {
-            return this.viewRendered;
+            return this.viewInDom;
+        };
+        /**
+         * @param {?} obs$
+         * @param {?} callback
+         * @return {?}
+         */
+        SmartComponent.prototype.subscribeAndRender = /**
+         * @param {?} obs$
+         * @param {?} callback
+         * @return {?}
+         */
+        function (obs$, callback) {
+            var _this = this;
+            return obs$
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} subscribeArguments
+             * @return {?}
+             */
+            function (subscribeArguments) {
+                callback(subscribeArguments);
+                _this.reRender();
+            }));
+        };
+        /**
+         * @param {?} obs$
+         * @param {?} callback
+         * @return {?}
+         */
+        SmartComponent.prototype.subscribeWithoutRender = /**
+         * @param {?} obs$
+         * @param {?} callback
+         * @return {?}
+         */
+        function (obs$, callback) {
+            return obs$
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} subscribeArguments
+             * @return {?}
+             */
+            function (subscribeArguments) {
+                callback(subscribeArguments);
+            }));
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        SmartComponent.prototype.unsubscribe = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            this.streamCloser.unsubscribe();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        SmartComponent.prototype.takeUntil = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return this.streamCloser.takeUntil();
         };
         return SmartComponent;
-    }(Reactive));
+    }(GuiComponent));
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        SmartComponent.prototype.viewRendered;
+        SmartComponent.prototype.viewInDom;
+        /**
+         * @type {?}
+         * @private
+         */
+        SmartComponent.prototype.streamCloser;
         /**
          * @type {?}
          * @protected
@@ -10610,26 +11074,6 @@
     StructureCellEditState[StructureCellEditState.ENTER] = 'ENTER';
     StructureCellEditState[StructureCellEditState.SUBMIT] = 'SUBMIT';
     StructureCellEditState[StructureCellEditState.CANCEL] = 'CANCEL';
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ColumnMenuConfig = /** @class */ (function () {
-        function ColumnMenuConfig() {
-        }
-        return ColumnMenuConfig;
-    }());
-    if (false) {
-        /** @type {?} */
-        ColumnMenuConfig.prototype.enabled;
-        /** @type {?} */
-        ColumnMenuConfig.prototype.sort;
-        /** @type {?} */
-        ColumnMenuConfig.prototype.filter;
-        /** @type {?} */
-        ColumnMenuConfig.prototype.columnsManager;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -10778,20 +11222,20 @@
             this.compositionCommandInvoker = compositionCommandInvoker;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         StructureColumnInputHandler.prototype.handle = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
+        function (changes) {
             var _this = this;
             /** @type {?} */
-            var config = simpleChanges.columns.currentValue;
+            var config = changes.columns.currentValue;
             this.compositionCommandInvoker.setGroups(config, this.compositionId);
             // prepare model
-            var _a = this.getConfigs(simpleChanges.columns.currentValue), columns = _a.columns, groups = _a.groups;
+            var _a = this.getConfigs(changes.columns.currentValue), columns = _a.columns, groups = _a.groups;
             /** @type {?} */
             var fieldConfigs = this.getFieldConfigs(columns);
             // const fieldConfigs = columns as Array<FieldConfig>;
@@ -10969,176 +11413,14 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @enum {number} */
-    var RowSelectionType = {
-        ROW: 0,
-        CHECKBOX: 1,
-    };
-    RowSelectionType[RowSelectionType.ROW] = 'ROW';
-    RowSelectionType[RowSelectionType.CHECKBOX] = 'CHECKBOX';
-    /** @enum {number} */
-    var RowSelectionMode = {
-        SINGLE: 0,
-        MULTIPLE: 1,
-    };
-    RowSelectionMode[RowSelectionMode.SINGLE] = 'SINGLE';
-    RowSelectionMode[RowSelectionMode.MULTIPLE] = 'MULTIPLE';
-    var RowSelection = /** @class */ (function () {
-        function RowSelection(config) {
-            if (config.enabled !== undefined) {
-                this.enabled = config.enabled;
-            }
-            if (config.mode !== undefined) {
-                this.mode = config.mode;
-            }
-            if (config.type !== undefined) {
-                this.type = config.type;
-            }
-        }
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.isModeDefined = /**
-         * @return {?}
-         */
-        function () {
-            return this.mode !== undefined;
-        };
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.isTypeDefined = /**
-         * @return {?}
-         */
-        function () {
-            return this.type !== undefined;
-        };
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.isEnabledDefined = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled !== undefined;
-        };
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.isEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.getMode = /**
-         * @return {?}
-         */
-        function () {
-            return this.mode;
-        };
-        /**
-         * @return {?}
-         */
-        RowSelection.prototype.getType = /**
-         * @return {?}
-         */
-        function () {
-            return this.type;
-        };
-        RowSelection.Builder = /** @class */ (function (_super) {
-            __extends(RowSelectionBuilder, _super);
-            function RowSelectionBuilder() {
-                return _super.call(this) || this;
-            }
-            /**
-             * @return {?}
-             */
-            RowSelectionBuilder.prototype.buildObject = /**
-             * @return {?}
-             */
-            function () {
-                return new RowSelection({
-                    enabled: this.enabled,
-                    type: this.type,
-                    mode: this.mode
-                });
-            };
-            /**
-             * @param {?} enabled
-             * @return {?}
-             */
-            RowSelectionBuilder.prototype.withEnabled = /**
-             * @param {?} enabled
-             * @return {?}
-             */
-            function (enabled) {
-                this.enabled = enabled;
-                return this;
-            };
-            /**
-             * @param {?} type
-             * @return {?}
-             */
-            RowSelectionBuilder.prototype.withType = /**
-             * @param {?} type
-             * @return {?}
-             */
-            function (type) {
-                this.type = type;
-                return this;
-            };
-            /**
-             * @param {?} mode
-             * @return {?}
-             */
-            RowSelectionBuilder.prototype.withMode = /**
-             * @param {?} mode
-             * @return {?}
-             */
-            function (mode) {
-                this.mode = mode;
-                return this;
-            };
-            return RowSelectionBuilder;
-        }(GenericBuilder));
-        return RowSelection;
-    }());
-    if (false) {
-        /** @type {?} */
-        RowSelection.Builder;
-        /**
-         * @type {?}
-         * @private
-         */
-        RowSelection.prototype.enabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        RowSelection.prototype.type;
-        /**
-         * @type {?}
-         * @private
-         */
-        RowSelection.prototype.mode;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * \@internal
      * @abstract
      */
     var StructureGateway = /** @class */ (function (_super) {
         __extends(StructureGateway, _super);
-        function StructureGateway(changeDetectorRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureGateway(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.domainEventBus = domainEventBus;
             _this.commandDispatcher = commandDispatcher;
@@ -11181,139 +11463,120 @@
             _this.translationService = translationService;
             _this.source = [];
             _this.columns = [];
+            // @Input()
+            // infoPanel: boolean | InfoPanelConfig;
+            // @Input()
+            // summaries: SummariesConfig;
+            // @Input()
+            // columnMenu: ColumnMenuConfig;
+            //
+            // @Input()
+            // rowDetail: RowDetailConfig;
+            // @Input()
+            // titlePanel: TitlePanelConfig;
+            //
+            // @Input()
+            // footerPanel: FooterPanelConfig;
+            //
+            // @Input()
+            // localization: GuiLocalization;
             /**
              * ********************
              * OUTPUTS
              * *********************
              */
-            _this.pageChanged = new core.EventEmitter();
-            _this.pageSizeChanged = new core.EventEmitter();
-            _this.itemsSelected = new core.EventEmitter();
-            _this.selectedRows = new core.EventEmitter();
             _this.columnsChanged = new core.EventEmitter();
             _this.containerWidthChanged = new core.EventEmitter();
             _this.sourceEdited = new core.EventEmitter();
             _this.cellEditEntered = new core.EventEmitter();
             _this.cellEditCanceled = new core.EventEmitter();
             _this.cellEditSubmitted = new core.EventEmitter();
-            _this.searchPhraseChanged = new core.EventEmitter();
             _this.themeChanged = new core.EventEmitter();
             _this.horizontalGridChanged = new core.EventEmitter();
             _this.verticalGridChanged = new core.EventEmitter();
-            _this.rowColoringChanged = new core.EventEmitter();
             _this.changeAfterInit = false;
             _this.structureColumnInputHandler = new StructureColumnInputHandler(structureId, compositionId, commandDispatcher, domainEventBus, columnFieldFactory, compositionCommandDispatcher);
             _this.translationService.setDefaultTranslation();
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         StructureGateway.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (simpleChanges.theme !== undefined && simpleChanges.theme.currentValue !== undefined) {
+        function (changes) {
+            if (changes.theme !== undefined && changes.theme.currentValue !== undefined) {
                 this.schemaCommandDispatcher.setTheme(this.theme);
             }
-            if (simpleChanges.rowDetail !== undefined && simpleChanges.rowDetail.currentValue !== undefined) {
-                this.structureDetailViewConfigArchive.next(this.rowDetail);
-            }
-            if (simpleChanges.titlePanel !== undefined && simpleChanges.titlePanel.currentValue !== undefined) {
-                this.structureTitlePanelConfigArchive.next(this.titlePanel);
-            }
-            if (simpleChanges.footerPanel !== undefined && simpleChanges.footerPanel.currentValue !== undefined) {
-                this.structureFooterPanelConfigArchive.next(this.footerPanel);
-            }
-            if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
-                this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
-            }
-            if (simpleChanges.rowSelection !== undefined && simpleChanges.rowSelection.currentValue !== undefined) {
-                if (this.rowSelection.isEnabledDefined()) {
-                    this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
-                }
-                if (this.rowSelection.isTypeDefined()) {
-                    this.rowSelectionTypeArchive.next(this.rowSelection.getType());
-                }
-                if (this.rowSelection.isModeDefined()) {
-                    this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
-                }
-            }
-            if (simpleChanges.infoPanel !== undefined && simpleChanges.infoPanel.currentValue !== undefined) {
-                if (typeof this.infoPanel === 'boolean') {
-                    this.infoPanel = {
-                        enabled: this.infoPanel
-                    };
-                }
-                this.structureInfoPanelConfigService.set(this.infoPanel);
-            }
-            if (simpleChanges.summaries !== undefined && simpleChanges.summaries.currentValue !== undefined) {
-                this.structureSummariesConfigService.set(this.summaries);
-            }
-            if (simpleChanges.editMode !== undefined && simpleChanges.editMode.currentValue !== undefined) {
+            // if (simpleChanges.rowDetail !== undefined && simpleChanges.rowDetail.currentValue !== undefined) {
+            // 	this.structureDetailViewConfigArchive.next(this.rowDetail);
+            // }
+            // if (simpleChanges.titlePanel !== undefined && simpleChanges.titlePanel.currentValue !== undefined) {
+            // 	this.structureTitlePanelConfigArchive.next(this.titlePanel);
+            // }
+            //
+            // if (simpleChanges.footerPanel !== undefined && simpleChanges.footerPanel.currentValue !== undefined) {
+            // 	this.structureFooterPanelConfigArchive.next(this.footerPanel);
+            // }
+            // if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
+            // 	this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
+            // }
+            // if (simpleChanges.infoPanel !== undefined && simpleChanges.infoPanel.currentValue !== undefined) {
+            //
+            // 	if (typeof this.infoPanel === 'boolean') {
+            // 		this.infoPanel = {
+            // 			enabled: this.infoPanel
+            // 		};
+            // 	}
+            //
+            // 	this.structureInfoPanelConfigService.set(this.infoPanel);
+            // }
+            // if (simpleChanges.summaries !== undefined && simpleChanges.summaries.currentValue !== undefined) {
+            // 	this.structureSummariesConfigService.set(this.summaries);
+            // }
+            if (changes.editMode !== undefined && changes.editMode.currentValue !== undefined) {
                 this.structureEditModeArchive.next(this.editMode);
             }
-            if (simpleChanges.cellEditing !== undefined && simpleChanges.cellEditing.currentValue !== undefined) {
+            if (changes.cellEditing !== undefined && changes.cellEditing.currentValue !== undefined) {
                 this.structureCellEditArchive.next(this.cellEditing);
             }
-            if (simpleChanges.width !== undefined && simpleChanges.width.currentValue !== undefined) {
+            if (changes.width !== undefined && changes.width.currentValue !== undefined) {
                 this.compositionCommandDispatcher.setWidth(this.width);
             }
-            if (simpleChanges.rowHeight !== undefined && simpleChanges.rowHeight.currentValue !== undefined) {
+            if (changes.rowHeight !== undefined && changes.rowHeight.currentValue !== undefined) {
                 this.structureCommandService.setRowHeight(this.rowHeight);
             }
-            if (simpleChanges.autoResizeWidth !== undefined && simpleChanges.autoResizeWidth.currentValue !== undefined) {
+            if (changes.autoResizeWidth !== undefined && changes.autoResizeWidth.currentValue !== undefined) {
                 this.compositionCommandDispatcher.setResizeWidth(this.autoResizeWidth);
             }
-            if (simpleChanges.columnHeaderTop !== undefined && simpleChanges.columnHeaderTop.currentValue !== undefined) {
-                this.structureHeaderTopEnabledArchive.next(this.columnHeaderTop);
-            }
-            if (simpleChanges.columnHeaderBottom !== undefined && simpleChanges.columnHeaderBottom.currentValue !== undefined) {
-                this.structureHeaderBottomEnabledArchive.next(this.columnHeaderBottom);
-            }
-            if (simpleChanges.loading !== undefined && simpleChanges.loading.currentValue !== undefined) {
+            if (changes.loading !== undefined && changes.loading.currentValue !== undefined) {
                 this.sourceCommandService.setLoading(this.loading);
             }
-            if (simpleChanges.paging !== undefined && simpleChanges.paging.currentValue !== undefined) {
-                /** @type {?} */
-                var pagingConfig = void 0;
-                if (typeof this.paging === 'boolean') {
-                    pagingConfig = {
-                        enabled: this.paging
-                    };
-                }
-                else {
-                    pagingConfig = this.paging;
-                    if (this.paging.displayMode !== undefined) {
-                        this.structurePagingDisplayModeArchive.next(this.paging.displayMode);
-                    }
-                }
-                this.structurePagingCommandDispatcher.setPaging(pagingConfig);
+            if (changes.columns !== undefined && changes.columns.currentValue !== undefined) {
+                this.structureColumnInputHandler.handle(changes);
             }
-            if (simpleChanges.columns !== undefined && simpleChanges.columns.currentValue !== undefined) {
-                this.structureColumnInputHandler.handle(simpleChanges);
-            }
-            if (simpleChanges.verticalGrid !== undefined && simpleChanges.verticalGrid.currentValue !== undefined) {
+            if (changes.verticalGrid !== undefined && changes.verticalGrid.currentValue !== undefined) {
                 this.schemaCommandDispatcher.setVerticalGrid(this.verticalGrid);
             }
-            if (simpleChanges.horizontalGrid !== undefined && simpleChanges.horizontalGrid.currentValue !== undefined) {
+            if (changes.horizontalGrid !== undefined && changes.horizontalGrid.currentValue !== undefined) {
                 this.schemaCommandDispatcher.setHorizontalGrid(this.horizontalGrid);
             }
-            if (simpleChanges.rowColoring !== undefined && simpleChanges.rowColoring.currentValue !== undefined) {
-                this.schemaCommandDispatcher.setRowColoring(this.rowColoring);
-            }
-            if (simpleChanges.rowClass !== undefined && simpleChanges.rowClass.currentValue !== undefined) {
-                this.schemaRowClassArchive.next((/** @type {?} */ (this.rowClass)));
-            }
-            if (simpleChanges.rowStyle !== undefined && simpleChanges.rowStyle.currentValue !== undefined) {
-                this.schemaRowStyleArchive.next((/** @type {?} */ (this.rowStyle)));
-            }
-            if (simpleChanges.maxHeight && this.maxHeight) {
+            // if (simpleChanges.rowColoring !== undefined && simpleChanges.rowColoring.currentValue !== undefined) {
+            // 	this.schemaCommandDispatcher.setRowColoring(this.rowColoring);
+            // }
+            // if (simpleChanges.rowClass !== undefined && simpleChanges.rowClass.currentValue !== undefined) {
+            // 	this.schemaRowClassArchive.next(this.rowClass as SchemaRowClass);
+            // }
+            // if (simpleChanges.rowStyle !== undefined && simpleChanges.rowStyle.currentValue !== undefined) {
+            // 	this.schemaRowStyleArchive.next(this.rowStyle as SchemaRowStyle);
+            // }
+            if (changes.maxHeight && this.maxHeight) {
                 this.structureCommandService.setContainerHeight(this.maxHeight);
             }
-            if (simpleChanges.virtualScroll !== undefined && simpleChanges.virtualScroll.currentValue !== undefined) {
+            if (changes.virtualScroll !== undefined && changes.virtualScroll.currentValue !== undefined) {
                 if (this.virtualScroll) {
                     this.structureCommandService.enableVerticalScroll();
                 }
@@ -11321,7 +11584,7 @@
                     this.structureCommandService.disableVerticalScroll();
                 }
             }
-            if (simpleChanges.sorting !== undefined && simpleChanges.sorting.currentValue !== undefined) {
+            if (changes.sorting !== undefined && changes.sorting.currentValue !== undefined) {
                 /** @type {?} */
                 var sorting = void 0;
                 if (typeof this.sorting === 'boolean') {
@@ -11334,7 +11597,7 @@
                 }
                 this.sortingCommandDispatcher.setSortingConfig(sorting, this.structureId);
             }
-            if (simpleChanges.filtering !== undefined && simpleChanges.filtering.currentValue !== undefined) {
+            if (changes.filtering !== undefined && changes.filtering.currentValue !== undefined) {
                 /** @type {?} */
                 var filtering = void 0;
                 if (typeof this.filtering === 'boolean') {
@@ -11347,7 +11610,7 @@
                 }
                 this.structureCommandService.setFilterConfig(filtering);
             }
-            if (simpleChanges.quickFilters !== undefined && simpleChanges.quickFilters.currentValue !== undefined) {
+            if (changes.quickFilters !== undefined && changes.quickFilters.currentValue !== undefined) {
                 /** @type {?} */
                 var quickFilters = void 0;
                 if (typeof this.quickFilters === 'boolean') {
@@ -11360,31 +11623,20 @@
                 }
                 this.structureCommandService.setQuickFiltersConfig(quickFilters);
             }
-            if (simpleChanges.searching !== undefined && simpleChanges.searching.currentValue !== undefined) {
-                /** @type {?} */
-                var searching = void 0;
-                if (typeof this.searching === 'boolean') {
-                    searching = {
-                        enabled: this.searching
-                    };
-                }
-                else {
-                    searching = this.searching;
-                }
-                this.searchCommandDispatcher.setSearchingConfig(searching, this.structureId);
-            }
-            if (simpleChanges.localization !== undefined && simpleChanges.localization.currentValue !== undefined) {
-                if (this.localization.translationResolver) {
-                    this.translationService.setResolver(this.localization.translationResolver);
-                }
-                if (this.localization.translation) {
-                    this.translationService.changeTranslation(this.localization.translation);
-                }
-            }
+            // if (simpleChanges.localization !== undefined && simpleChanges.localization.currentValue !== undefined) {
+            //
+            // 	if (this.localization.translationResolver) {
+            // 		this.translationService.setResolver(this.localization.translationResolver);
+            // 	}
+            //
+            // 	if (this.localization.translation) {
+            // 		this.translationService.changeTranslation(this.localization.translation);
+            // 	}
+            // }
             /**
              * Setting source should be last step
              */
-            if (simpleChanges.source) {
+            if (changes.source) {
                 this.sourceCommandService.setOrigin(this.source);
             }
         };
@@ -11396,41 +11648,6 @@
          */
         function () {
             var _this = this;
-            this.pagingEventRepository
-                .onPageChange(this.structureId.toReadModelRootId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} pageNumber
-             * @return {?}
-             */
-            function (pageNumber) {
-                _this.pageChanged.emit(pageNumber);
-            }));
-            this.pagingEventRepository
-                .onPageSizeChange(this.structureId.toReadModelRootId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} pageSize
-             * @return {?}
-             */
-            function (pageSize) {
-                _this.pageSizeChanged.emit(pageSize);
-            }));
-            this.formationEventService
-                .onItemSelected(this.structureId)
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} items
-             * @return {?}
-             */
-            function (items) {
-                _this.itemsSelected.emit(items.map((/**
-                 * @param {?} i
-                 * @return {?}
-                 */
-                function (i) { return i.getData(); })));
-                _this.selectedRows.emit(items);
-            }));
             this.compositionEventService
                 .onColumnsChanged(this.compositionId.toReadModelRootId())
                 .pipe(this.takeUntil())
@@ -11480,29 +11697,8 @@
                         break;
                 }
             }));
-            this.searchEventRepository
-                .onSearchPhrase(this.structureId.toReadModelRootId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} phrase
-             * @return {?}
-             */
-            function (phrase) {
-                _this.searchPhraseChanged.emit(phrase);
-            }));
             this.connectSchemaEvents();
             this.componentInitialized();
-        };
-        /**
-         * @param {?} page
-         * @return {?}
-         */
-        StructureGateway.prototype.onPageChange = /**
-         * @param {?} page
-         * @return {?}
-         */
-        function (page) {
-            this.pageChanged.emit(page);
         };
         /**
          * @private
@@ -11544,16 +11740,12 @@
             function (enabled) {
                 _this.verticalGridChanged.emit(enabled);
             }));
-            this.schemaEventRepository
-                .onRowColoring(this.schemaId)
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} coloring
-             * @return {?}
-             */
-            function (coloring) {
-                _this.rowColoringChanged.emit(coloring);
-            }));
+            // this.schemaEventRepository
+            // 	.onRowColoring(this.schemaId)
+            // 	.pipe(this.takeUntil())
+            // 	.subscribe((coloring: SchemaRowColoring) => {
+            // 		this.rowColoringChanged.emit(coloring);
+            // 	});
         };
         /**
          * @private
@@ -11589,52 +11781,31 @@
             this.changeAfterInit = true;
         };
         StructureGateway.propDecorators = {
-            columnHeaderTop: [{ type: core.Input }],
-            columnHeaderBottom: [{ type: core.Input }],
             maxHeight: [{ type: core.Input }],
             width: [{ type: core.Input }],
             rowHeight: [{ type: core.Input }],
             autoResizeWidth: [{ type: core.Input }],
             source: [{ type: core.Input }],
             columns: [{ type: core.Input }],
-            paging: [{ type: core.Input }],
             verticalGrid: [{ type: core.Input }],
             horizontalGrid: [{ type: core.Input }],
             theme: [{ type: core.Input }],
-            rowColoring: [{ type: core.Input }],
-            rowSelection: [{ type: core.Input }],
-            rowStyle: [{ type: core.Input }],
-            rowClass: [{ type: core.Input }],
             loading: [{ type: core.Input }],
             virtualScroll: [{ type: core.Input }],
             sorting: [{ type: core.Input }],
             filtering: [{ type: core.Input }],
             quickFilters: [{ type: core.Input }],
-            searching: [{ type: core.Input }],
             editMode: [{ type: core.Input }],
             cellEditing: [{ type: core.Input }],
-            infoPanel: [{ type: core.Input }],
-            summaries: [{ type: core.Input }],
-            columnMenu: [{ type: core.Input }],
-            rowDetail: [{ type: core.Input }],
-            titlePanel: [{ type: core.Input }],
-            footerPanel: [{ type: core.Input }],
-            localization: [{ type: core.Input }],
-            pageChanged: [{ type: core.Output }],
-            pageSizeChanged: [{ type: core.Output }],
-            itemsSelected: [{ type: core.Output }],
-            selectedRows: [{ type: core.Output }],
             columnsChanged: [{ type: core.Output }],
             containerWidthChanged: [{ type: core.Output }],
             sourceEdited: [{ type: core.Output }],
             cellEditEntered: [{ type: core.Output }],
             cellEditCanceled: [{ type: core.Output }],
             cellEditSubmitted: [{ type: core.Output }],
-            searchPhraseChanged: [{ type: core.Output }],
             themeChanged: [{ type: core.Output }],
             horizontalGridChanged: [{ type: core.Output }],
-            verticalGridChanged: [{ type: core.Output }],
-            rowColoringChanged: [{ type: core.Output }]
+            verticalGridChanged: [{ type: core.Output }]
         };
         return StructureGateway;
     }(SmartComponent));
@@ -11645,10 +11816,6 @@
          * *********************
          * @type {?}
          */
-        StructureGateway.prototype.columnHeaderTop;
-        /** @type {?} */
-        StructureGateway.prototype.columnHeaderBottom;
-        /** @type {?} */
         StructureGateway.prototype.maxHeight;
         /** @type {?} */
         StructureGateway.prototype.width;
@@ -11661,21 +11828,11 @@
         /** @type {?} */
         StructureGateway.prototype.columns;
         /** @type {?} */
-        StructureGateway.prototype.paging;
-        /** @type {?} */
         StructureGateway.prototype.verticalGrid;
         /** @type {?} */
         StructureGateway.prototype.horizontalGrid;
         /** @type {?} */
         StructureGateway.prototype.theme;
-        /** @type {?} */
-        StructureGateway.prototype.rowColoring;
-        /** @type {?} */
-        StructureGateway.prototype.rowSelection;
-        /** @type {?} */
-        StructureGateway.prototype.rowStyle;
-        /** @type {?} */
-        StructureGateway.prototype.rowClass;
         /** @type {?} */
         StructureGateway.prototype.loading;
         /** @type {?} */
@@ -11687,39 +11844,15 @@
         /** @type {?} */
         StructureGateway.prototype.quickFilters;
         /** @type {?} */
-        StructureGateway.prototype.searching;
-        /** @type {?} */
         StructureGateway.prototype.editMode;
         /** @type {?} */
         StructureGateway.prototype.cellEditing;
-        /** @type {?} */
-        StructureGateway.prototype.infoPanel;
-        /** @type {?} */
-        StructureGateway.prototype.summaries;
-        /** @type {?} */
-        StructureGateway.prototype.columnMenu;
-        /** @type {?} */
-        StructureGateway.prototype.rowDetail;
-        /** @type {?} */
-        StructureGateway.prototype.titlePanel;
-        /** @type {?} */
-        StructureGateway.prototype.footerPanel;
-        /** @type {?} */
-        StructureGateway.prototype.localization;
         /**
          * ********************
          * OUTPUTS
          * *********************
          * @type {?}
          */
-        StructureGateway.prototype.pageChanged;
-        /** @type {?} */
-        StructureGateway.prototype.pageSizeChanged;
-        /** @type {?} */
-        StructureGateway.prototype.itemsSelected;
-        /** @type {?} */
-        StructureGateway.prototype.selectedRows;
-        /** @type {?} */
         StructureGateway.prototype.columnsChanged;
         /** @type {?} */
         StructureGateway.prototype.containerWidthChanged;
@@ -11732,15 +11865,11 @@
         /** @type {?} */
         StructureGateway.prototype.cellEditSubmitted;
         /** @type {?} */
-        StructureGateway.prototype.searchPhraseChanged;
-        /** @type {?} */
         StructureGateway.prototype.themeChanged;
         /** @type {?} */
         StructureGateway.prototype.horizontalGridChanged;
         /** @type {?} */
         StructureGateway.prototype.verticalGridChanged;
-        /** @type {?} */
-        StructureGateway.prototype.rowColoringChanged;
         /** @type {?} */
         StructureGateway.prototype.structureColumnInputHandler;
         /**
@@ -13272,18 +13401,114 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @enum {string} */
+    var CssClass = {
+        SELECTED: 'selected',
+        PAGING_TOP_CLASS_NAME: 'gui-paging-top',
+        PAGING_BOTTOM_CLASS_NAME: 'gui-paging-bottom',
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CssClassModifier = /** @class */ (function () {
+        function CssClassModifier() {
+            this.classModifier = new ClassModifier();
+        }
+        /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        CssClassModifier.prototype.select = /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+            this.classModifier.getElement(htmlElement).add(CssClass.SELECTED);
+        };
+        /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        CssClassModifier.prototype.unselect = /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+            this.classModifier.getElement(htmlElement).remove(CssClass.SELECTED);
+        };
+        /**
+         * @param {?} htmlElement
+         * @param {?} clazzName
+         * @return {?}
+         */
+        CssClassModifier.prototype.add = /**
+         * @param {?} htmlElement
+         * @param {?} clazzName
+         * @return {?}
+         */
+        function (htmlElement, clazzName) {
+            this.classModifier.getElement(htmlElement).add(clazzName);
+        };
+        /**
+         * @param {?} htmlElement
+         * @param {?} clazzName
+         * @return {?}
+         */
+        CssClassModifier.prototype.remove = /**
+         * @param {?} htmlElement
+         * @param {?} clazzName
+         * @return {?}
+         */
+        function (htmlElement, clazzName) {
+            this.classModifier.getElement(htmlElement).remove(clazzName);
+        };
+        /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        CssClassModifier.prototype.toggle = /**
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+        };
+        CssClassModifier.decorators = [
+            { type: core.Injectable }
+        ];
+        return CssClassModifier;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CssClassModifier.prototype.classModifier;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var PagingComponent = /** @class */ (function (_super) {
         __extends(PagingComponent, _super);
-        function PagingComponent(renderer2, elementRef, changeDetectorRef, structurePagingWarehouse, pagingCommandService, structureSourceWarehouse, structurePagingDisplayModeArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.renderer2 = renderer2;
-            _this.elementRef = elementRef;
+        function PagingComponent(elRef, changeDetectorRef, cssClassModifier, structurePagingWarehouse, pagingCommandService, structureSourceWarehouse, structurePagingDisplayModeArchive) {
+            var _this = _super.call(this, changeDetectorRef, elRef) || this;
+            _this.elRef = elRef;
             _this.changeDetectorRef = changeDetectorRef;
+            _this.cssClassModifier = cssClassModifier;
             _this.structurePagingWarehouse = structurePagingWarehouse;
             _this.pagingCommandService = pagingCommandService;
             _this.structureSourceWarehouse = structureSourceWarehouse;
             _this.structurePagingDisplayModeArchive = structurePagingDisplayModeArchive;
             _this.alternativeDisplay = false;
+            _this.isPagingVisible = false;
+            _this.localStreamCloser = new StreamCloser();
+            _this.addClassToHost('gui-flex');
+            _this.addClassToHost('gui-justify-end');
+            _this.addClassToHost('gui-items-center');
+            _this.addClassToHost('gui-p-4');
             return _this;
         }
         /**
@@ -13297,12 +13522,12 @@
         function (changes) {
             if (changes.position) {
                 if (this.position === PagingPosition.BOTTOM) {
-                    this.renderer2.removeClass(this.elementRef.nativeElement, 'gui-paging-top');
-                    this.renderer2.addClass(this.elementRef.nativeElement, 'gui-paging-bottom');
+                    this.cssClassModifier.remove(this.elRef.nativeElement, CssClass.PAGING_TOP_CLASS_NAME);
+                    this.cssClassModifier.add(this.elRef.nativeElement, CssClass.PAGING_BOTTOM_CLASS_NAME);
                 }
                 else {
-                    this.renderer2.removeClass(this.elementRef.nativeElement, 'gui-paging-bottom');
-                    this.renderer2.addClass(this.elementRef.nativeElement, 'gui-paging-top');
+                    this.cssClassModifier.remove(this.elRef.nativeElement, CssClass.PAGING_BOTTOM_CLASS_NAME);
+                    this.cssClassModifier.add(this.elRef.nativeElement, CssClass.PAGING_TOP_CLASS_NAME);
                 }
             }
         };
@@ -13316,7 +13541,7 @@
             var _this = this;
             this.structurePagingDisplayModeArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(operators.distinctUntilChanged(), this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} mode
              * @return {?}
@@ -13327,18 +13552,26 @@
             }));
             this.structurePagingWarehouse
                 .onPaging()
-                .pipe(this.takeUntil())
+                .pipe(operators.distinctUntilChanged((/**
+             * @param {?} a
+             * @param {?} b
+             * @return {?}
+             */
+            function (a, b) {
+                return a.compare(b);
+            })), this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} paging
              * @return {?}
              */
             function (paging) {
                 _this.paging = paging;
+                _this.calculatePagingVisibility();
                 _this.changeDetectorRef.detectChanges();
             }));
             this.structureSourceWarehouse
                 .onOriginSize()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} size
              * @return {?}
@@ -13351,13 +13584,11 @@
         /**
          * @return {?}
          */
-        PagingComponent.prototype.isPagingVisible = /**
+        PagingComponent.prototype.ngOnDestroy = /**
          * @return {?}
          */
         function () {
-            return this.paging && this.paging.isEnabled() &&
-                (((this.position === PagingPosition.TOP) && this.paging.isPagerTop()) ||
-                    ((this.position === PagingPosition.BOTTOM) && this.paging.isPagerBottom()));
+            this.localStreamCloser.unsubscribe();
         };
         /**
          * @param {?} pageSize
@@ -13391,23 +13622,44 @@
         function () {
             this.pagingCommandService.prevPage();
         };
+        /**
+         * @private
+         * @return {?}
+         */
+        PagingComponent.prototype.calculatePagingVisibility = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.isPagingVisible = this.paging && this.paging.isEnabled() &&
+                (((this.position === PagingPosition.TOP) && this.paging.isPagerTop()) ||
+                    ((this.position === PagingPosition.BOTTOM) && this.paging.isPagerBottom()));
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        PagingComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging';
+        };
         PagingComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-paging[position]',
-                        template: "<ng-container *ngIf=\"isPagingVisible() && !alternativeDisplay\">\n\n\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t<gui-paging-select\n\t\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-select>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-container>\n\n\t<ng-template #minimalTemplate>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-template>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible() && alternativeDisplay\">\n\n\t<gui-paging-select\n\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-select>\n\n\t<gui-alternative-paging-navigator\n\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t[paging]=\"paging\"\n\t\t\t[sourceSize]=\"sourceSize\">\n\n\t\t<gui-alternative-paging-pages\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-alternative-paging-pages>\n\n\t</gui-alternative-paging-navigator>\n\n</ng-container>\n",
-                        host: {
-                            '[class.gui-paging]': "\"true\""
-                        },
+                        selector: 'div[gui-paging][position]',
+                        template: "<ng-container *ngIf=\"isPagingVisible && !alternativeDisplay\">\n\n\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t [paging]=\"paging\"\n\t\t\t gui-paging-select>\n\t\t</div>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t gui-paging-stats>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage()\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t gui-paging-navigator>\n\t\t</div>\n\n\t</ng-container>\n\n\t<ng-template #minimalTemplate>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t gui-paging-stats>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage()\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t gui-paging-navigator>\n\t\t</div>\n\n\t</ng-template>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible && alternativeDisplay\">\n\n\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t [paging]=\"paging\"\n\t\t gui-paging-select>\n\t</div>\n\n\t<div (nextPageChanged)=\"nextPage()\"\n\t\t (prevPageChanged)=\"prevPage()\"\n\t\t [paging]=\"paging\"\n\t\t [sourceSize]=\"sourceSize\"\n\t\t class=\"gui-flex gui-p-0\"\n\t\t gui-paging-alternative-navigator>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t class=\"gui-flex gui-justify-center\"\n\t\t\t gui-paging-alternative-pages>\n\t\t</div>\n\n\t</div>\n\n</ng-container>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
-                        styles: [".gui-paging{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-align:center;align-items:center;padding:4px}.gui-paging>*{padding-left:16px}.gui-paging .gui-paging-select span{display:inline-block;margin:0 6px 0 0}.gui-paging .gui-paging-navigator button{margin-right:6px}.gui-paging .gui-paging-navigator button:last-of-type{margin-right:0}.gui-paging .gui-paging-stats span{display:inline-block;margin:0 2px 0 0}.gui-paging .gui-alternative-paging-navigator{display:-ms-flexbox;display:flex;padding:0}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page{position:relative}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}.gui-paging .gui-alternative-paging-navigator .gui-button{display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-button svg{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;height:12px;width:auto;margin:-1px 2px 0}.gui-paging .gui-alternative-paging-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-paging .gui-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}.gui-paging .gui-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}.gui-paging .gui-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging.gui-paging-bottom{border-top:1px solid;border-color:inherit}.gui-paging.gui-paging-top{border-bottom:1px solid;border-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
+                        styles: [".gui-paging-alternative-navigator .gui-button{-ms-flex-line-pack:center;align-content:center;background:0 0;display:-ms-flexbox;display:flex;font-size:14px;line-height:21px;margin:0 2px;padding:0}.gui-paging-alternative-navigator .gui-button svg{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;height:12px;margin:-1px 2px 0;width:auto}.gui-paging-alternative-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-paging-alternative-navigator .gui-button:hover svg path{stroke:#333}.gui-paging-alternative-navigator .gui-button:disabled svg{opacity:.4}.gui-paging-alternative-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging-alternative-pages{line-height:21px}.gui-paging-alternative-pages .gui-paging-page{display:none}.gui-paging-alternative-pages .gui-paging-visible-page .gui-paging-page{display:block;font-family:Arial,serif}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging-bottom{border-top:1px solid}.gui-paging-top{border-bottom:1px solid;border-bottom-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
                     }] }
         ];
         /** @nocollapse */
         PagingComponent.ctorParameters = function () { return [
-            { type: core.Renderer2 },
             { type: core.ElementRef },
             { type: core.ChangeDetectorRef },
+            { type: CssClassModifier },
             { type: PagingWarehouse },
             { type: PagingCommandInvoker },
             { type: SourceWarehouse },
@@ -13430,21 +13682,28 @@
         PagingComponent.prototype.paging;
         /** @type {?} */
         PagingComponent.prototype.alternativeDisplay;
+        /** @type {?} */
+        PagingComponent.prototype.isPagingVisible;
         /**
          * @type {?}
          * @private
          */
-        PagingComponent.prototype.renderer2;
+        PagingComponent.prototype.localStreamCloser;
         /**
          * @type {?}
          * @private
          */
-        PagingComponent.prototype.elementRef;
+        PagingComponent.prototype.elRef;
         /**
          * @type {?}
          * @private
          */
         PagingComponent.prototype.changeDetectorRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        PagingComponent.prototype.cssClassModifier;
         /**
          * @type {?}
          * @private
@@ -13471,10 +13730,113 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var PagingSelectComponent = /** @class */ (function () {
-        function PagingSelectComponent() {
-            this.pageSizeChanged = new core.EventEmitter();
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    PureComponent = /** @class */ (function (_super) {
+        __extends(PureComponent, _super);
+        function PureComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.subClassConstructor = _this.constructor;
+            _this.subClassNgOnInit = ((/** @type {?} */ (_this))).ngOnInit;
+            if (!_this.hasConstructorOnlyElementRefInjected(arguments)) {
+                _this.throwError('it should not inject services');
+            }
+            if (_this.subClassNgOnInit) {
+                _this.throwError('it should not use ngOnInit');
+            }
+            return _this;
         }
+        /**
+         * @private
+         * @param {?} args
+         * @return {?}
+         */
+        PureComponent.prototype.hasConstructorOnlyElementRefInjected = /**
+         * @private
+         * @param {?} args
+         * @return {?}
+         */
+        function (args) {
+            if (arguments.length > 1) {
+                return false;
+            }
+            if (arguments.length === 1) {
+                return this.isElementRef(arguments[0]);
+            }
+            return false;
+        };
+        /**
+         * @private
+         * @param {?} elRef
+         * @return {?}
+         */
+        PureComponent.prototype.isElementRef = /**
+         * @private
+         * @param {?} elRef
+         * @return {?}
+         */
+        function (elRef) {
+            return elRef.nativeElement !== null;
+        };
+        /**
+         * @private
+         * @param {?} reason
+         * @return {?}
+         */
+        PureComponent.prototype.throwError = /**
+         * @private
+         * @param {?} reason
+         * @return {?}
+         */
+        function (reason) {
+            throw new Error("Component \"" + this.subClassConstructor.name + "\" is a PureComponent, " + reason + ".");
+        };
+        return PureComponent;
+    }(GuiComponent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        PureComponent.prototype.subClassConstructor;
+        /**
+         * @type {?}
+         * @private
+         */
+        PureComponent.prototype.subClassNgOnInit;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var PagingSelectComponent = /** @class */ (function (_super) {
+        __extends(PagingSelectComponent, _super);
+        function PagingSelectComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.pageSizeChanged = new core.EventEmitter();
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        PagingSelectComponent.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (changes.paging) {
+                if (this.paging) {
+                    this.selectPageSizes = this.getSelectPageSizes();
+                    this.selectPageSize = this.getSelectPageSize(this.paging.getPageSize());
+                }
+            }
+        };
         /**
          * @param {?} pageSize
          * @return {?}
@@ -13484,43 +13846,100 @@
          * @return {?}
          */
         function (pageSize) {
-            this.pageSizeChanged.emit(pageSize);
+            this.pageSizeChanged.emit(+pageSize.value);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        PagingSelectComponent.prototype.getSelectPageSizes = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            /** @type {?} */
+            var selectPageSizes = [];
+            /** @type {?} */
+            var pageSizes = this.paging.getPageSizes();
+            pageSizes.forEach((/**
+             * @param {?} pageSize
+             * @return {?}
+             */
+            function (pageSize) {
+                /** @type {?} */
+                var selectOption = _this.getSelectPageSize(pageSize);
+                selectPageSizes.push(selectOption);
+            }));
+            return selectPageSizes;
+        };
+        /**
+         * @private
+         * @param {?} pageSize
+         * @return {?}
+         */
+        PagingSelectComponent.prototype.getSelectPageSize = /**
+         * @private
+         * @param {?} pageSize
+         * @return {?}
+         */
+        function (pageSize) {
+            return { name: pageSize.toString(), value: pageSize.toString() };
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        PagingSelectComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging-select';
         };
         PagingSelectComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-paging-select',
-                        template: "<span>{{ 'pagingItemsPerPage' | translate }}</span>\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"paging.getPageSizes()\"\n\t\t\t[selected]=\"paging.getPageSize()\"\n\t\t\t[width]=\"25\">\n</gui-select>\n",
+                        selector: 'div[gui-paging-select][paging]',
+                        template: "<span class=\"gui-inline-block gui-mr-5\">\n\t{{ 'pagingItemsPerPage' | guiTranslate }}\n</span>\n\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"selectPageSizes\"\n\t\t\t[selected]=\"selectPageSize\"\n\t\t\t[width]=\"25\">\n</gui-select>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-paging-select]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        PagingSelectComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         PagingSelectComponent.propDecorators = {
             paging: [{ type: core.Input }],
             pageSizeChanged: [{ type: core.Output }]
         };
         return PagingSelectComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         PagingSelectComponent.prototype.paging;
         /** @type {?} */
         PagingSelectComponent.prototype.pageSizeChanged;
+        /** @type {?} */
+        PagingSelectComponent.prototype.selectPageSizes;
+        /** @type {?} */
+        PagingSelectComponent.prototype.selectPageSize;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var AlternativePagingNavigatorComponent = /** @class */ (function () {
-        function AlternativePagingNavigatorComponent(pagingCommandService) {
-            this.pagingCommandService = pagingCommandService;
-            this.nextPageChanged = new core.EventEmitter();
-            this.prevPageChanged = new core.EventEmitter();
-            this.prevDisabled = false;
-            this.nextDisabled = false;
+    var AlternativePagingNavigatorComponent = /** @class */ (function (_super) {
+        __extends(AlternativePagingNavigatorComponent, _super);
+        function AlternativePagingNavigatorComponent(elRef, pagingCommandService) {
+            var _this = _super.call(this, elRef) || this;
+            _this.pagingCommandService = pagingCommandService;
+            _this.nextPageChanged = new core.EventEmitter();
+            _this.prevPageChanged = new core.EventEmitter();
+            _this.prevDisabled = false;
+            _this.nextDisabled = false;
+            return _this;
         }
         /**
          * @return {?}
@@ -13598,19 +14017,28 @@
             }
             this.nextDisabled = this.paging.isNextPageDisabled();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        AlternativePagingNavigatorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging-alternative-navigator';
+        };
         AlternativePagingNavigatorComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-alternative-paging-navigator',
+                        selector: 'div[gui-paging-alternative-navigator][paging][sourceSize]',
                         template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(-522.98 669.601) rotate(180)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(5.77 10.351) rotate(180)\"/>\n\t</svg>\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-paging-navigator-next\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(0.311 0.311)\"/>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(534.061 -658.939)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-alternative-paging-navigator]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         AlternativePagingNavigatorComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
             { type: PagingCommandInvoker }
         ]; };
         AlternativePagingNavigatorComponent.propDecorators = {
@@ -13620,7 +14048,7 @@
             prevPageChanged: [{ type: core.Output }]
         };
         return AlternativePagingNavigatorComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         AlternativePagingNavigatorComponent.prototype.paging;
@@ -13645,11 +14073,15 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var AlternativePagingPagesComponent = /** @class */ (function () {
-        function AlternativePagingPagesComponent(pagingCommandService) {
-            this.pagingCommandService = pagingCommandService;
-            this.sourceSize = 0;
-            this.numberOfVisiblePages = 3;
+    var AlternativePagingPagesComponent = /** @class */ (function (_super) {
+        __extends(AlternativePagingPagesComponent, _super);
+        function AlternativePagingPagesComponent(changeDetectorRef, elRef, pagingCommandService) {
+            var _this = _super.call(this, changeDetectorRef, elRef) || this;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.pagingCommandService = pagingCommandService;
+            _this.sourceSize = 0;
+            _this.numberOfVisiblePages = 3;
+            return _this;
         }
         /**
          * @param {?} changes
@@ -13725,19 +14157,29 @@
         function (page) {
             return this.currentPage === page;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        AlternativePagingPagesComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging-alternative-pages';
+        };
         AlternativePagingPagesComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-alternative-paging-pages',
-                        template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\">\n\t\t\t<div\n\t\t\t\t\t(click)=\"goToPage(page)\"\n\t\t\t\t\tclass=\"gui-paging-page\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | translate}}\n\t</span>\n</ng-template>\n",
+                        selector: 'div[gui-paging-alternative-pages][paging]',
+                        template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\"\n\t\t\t class=\"relative\">\n\t\t\t<div (click)=\"goToPage(page)\"\n\t\t\t\t class=\"gui-paging-page gui-select-none gui-cursor-pointer gui-py-0 gui-px-6 gui-font-base\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-alternative-paging-pages]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         AlternativePagingPagesComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: PagingCommandInvoker }
         ]; };
         AlternativePagingPagesComponent.propDecorators = {
@@ -13745,7 +14187,7 @@
             sourceSize: [{ type: core.Input }]
         };
         return AlternativePagingPagesComponent;
-    }());
+    }(SmartComponent));
     if (false) {
         /** @type {?} */
         AlternativePagingPagesComponent.prototype.paging;
@@ -13757,6 +14199,11 @@
         AlternativePagingPagesComponent.prototype.pages;
         /** @type {?} */
         AlternativePagingPagesComponent.prototype.numberOfVisiblePages;
+        /**
+         * @type {?}
+         * @private
+         */
+        AlternativePagingPagesComponent.prototype.changeDetectorRef;
         /**
          * @type {?}
          * @private
@@ -13795,18 +14242,6 @@
          */
         StructureAggregateRepository.prototype.save = function (aggregate) { };
     }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var PagingSetEvent = /** @class */ (function (_super) {
-        __extends(PagingSetEvent, _super);
-        function PagingSetEvent(aggregateId) {
-            return _super.call(this, aggregateId, 'PagingSetEvent') || this;
-        }
-        return PagingSetEvent;
-    }(StructureDomainEvent));
 
     /**
      * @fileoverview added by tsickle
@@ -14016,6 +14451,21 @@
             return ChangePagesizeCommand;
         };
         /**
+         * @param {?} structureAggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ChangePagesizeCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structureAggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (structureAggregate, command) {
+            /** @type {?} */
+            var pageSize = command.getPageSize();
+            structureAggregate.changePageSize(pageSize);
+        };
+        /**
          * @param {?} aggregate
          * @param {?} command
          * @return {?}
@@ -14037,21 +14487,6 @@
             }));
             this.publishAggregateEvents(aggregateEvents, command);
             aggregate.clearEvents();
-        };
-        /**
-         * @param {?} structureAggregate
-         * @param {?} command
-         * @return {?}
-         */
-        ChangePagesizeCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structureAggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (structureAggregate, command) {
-            /** @type {?} */
-            var pageSize = command.getPageSize();
-            structureAggregate.changePageSize(pageSize);
         };
         /**
          * @private
@@ -14104,6 +14539,9 @@
                     /** @type {?} */
                     var pagesizeChangedEvent = new PagesizeChangedEvent(command.getAggregateId());
                     this.domainEventPublisher.publish(pagesizeChangedEvent);
+                    break;
+                case 'StructurePreparedEntitiesSetAggregateEvent':
+                    this.domainEventPublisher.publish(event.toDomainEvent());
                     break;
                 default:
                     break;
@@ -14202,12 +14640,15 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var PagingNavigatorComponent = /** @class */ (function () {
-        function PagingNavigatorComponent() {
-            this.nextPageChanged = new core.EventEmitter();
-            this.prevPageChanged = new core.EventEmitter();
-            this.prevDisabled = false;
-            this.nextDisabled = false;
+    var PagingNavigatorComponent = /** @class */ (function (_super) {
+        __extends(PagingNavigatorComponent, _super);
+        function PagingNavigatorComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.nextPageChanged = new core.EventEmitter();
+            _this.prevPageChanged = new core.EventEmitter();
+            _this.prevDisabled = false;
+            _this.nextDisabled = false;
+            return _this;
         }
         /**
          * @return {?}
@@ -14265,17 +14706,29 @@
             }
             this.nextDisabled = this.paging.isNextPageDisabled();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        PagingNavigatorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging-navigator';
+        };
         PagingNavigatorComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-paging-navigator',
-                        template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | translate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | translate }}\n\t</button>\n</gui-button-group>\n",
+                        selector: 'div[gui-paging-navigator][paging]',
+                        template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev gui-mr-5\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | guiTranslate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next gui-mr-0\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | guiTranslate }}\n\t</button>\n</gui-button-group>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-paging-navigator]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        PagingNavigatorComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         PagingNavigatorComponent.propDecorators = {
             paging: [{ type: core.Input }],
             sourceSize: [{ type: core.Input }],
@@ -14283,7 +14736,7 @@
             prevPageChanged: [{ type: core.Output }]
         };
         return PagingNavigatorComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         PagingNavigatorComponent.prototype.paging;
@@ -14303,80 +14756,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    PureComponent = /** @class */ (function () {
-        function PureComponent() {
-            this.subClassConstructor = this.constructor;
-            this.subClassNgOnInit = ((/** @type {?} */ (this))).ngOnInit;
-            if (this.isEmptyConstructor() || arguments.length !== 0) {
-                this.throwError('it should not inject services');
-            }
-            if (this.subClassNgOnInit) {
-                this.throwError('it should not use ngOnInit');
-            }
-        }
-        /**
-         * @private
-         * @return {?}
-         */
-        PureComponent.prototype.isEmptyConstructor = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            return this.subClassConstructor.toString().split('(')[1][0] !== ')';
-        };
-        /**
-         * @private
-         * @param {?} reason
-         * @return {?}
-         */
-        PureComponent.prototype.throwError = /**
-         * @private
-         * @param {?} reason
-         * @return {?}
-         */
-        function (reason) {
-            throw new Error("Component \"" + this.subClassConstructor.name + "\" is a PureComponent, " + reason + ".");
-        };
-        return PureComponent;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        PureComponent.prototype.subClassConstructor;
-        /**
-         * @type {?}
-         * @private
-         */
-        PureComponent.prototype.subClassNgOnInit;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var PagingStatsComponent = /** @class */ (function (_super) {
         __extends(PagingStatsComponent, _super);
-        function PagingStatsComponent() {
-            return _super.call(this) || this;
+        function PagingStatsComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.addClassToHost('gui-mx-6');
+            return _this;
         }
         /**
-         * @param {?} changes
          * @return {?}
          */
         PagingStatsComponent.prototype.ngOnChanges = /**
-         * @param {?} changes
          * @return {?}
          */
-        function (changes) {
+        function () {
             this.calculate();
         };
         /**
@@ -14401,19 +14794,29 @@
         function () {
             return this.sourceSize > 0;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        PagingStatsComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-paging-stats';
+        };
         PagingStatsComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-paging-stats',
-                        template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | translate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | translate}}\n\t</span>\n</ng-template>\n",
+                        selector: 'div[gui-paging-stats][paging]',
+                        template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | guiTranslate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-paging-stats]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
-        PagingStatsComponent.ctorParameters = function () { return []; };
+        PagingStatsComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         PagingStatsComponent.propDecorators = {
             paging: [{ type: core.Input }]
         };
@@ -14551,7 +14954,7 @@
         };
         TranslationPipe.decorators = [
             { type: core.Pipe, args: [{
-                        name: 'translate',
+                        name: 'guiTranslate',
                         pure: false
                     },] }
         ];
@@ -14584,57 +14987,6 @@
          */
         TranslationPipe.prototype.translationService;
     }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var enTranslation = {
-        sourceEmpty: 'There are no items to show.',
-        pagingItemsPerPage: 'Items per page:',
-        pagingOf: 'of',
-        pagingNextPage: 'Next',
-        pagingPrevPage: 'Prev',
-        pagingNoItems: 'There is no items.',
-        infoPanelShowing: 'Showing',
-        infoPanelItems: 'items',
-        infoPanelOutOf: 'out of',
-        infoPanelThemeMangerTooltipText: 'Theme manager',
-        infoPanelColumnManagerTooltipText: 'Column manager',
-        infoPanelInfoTooltipText: 'info',
-        themeManagerModalTitle: 'Theme manager',
-        themeManagerModalTheme: 'Theme:',
-        themeManagerModalRowColoring: 'Row coloring:',
-        themeManagerModalVerticalGrid: 'Vertical grid',
-        themeManagerModalHorizontalGrid: 'HorizontalGrid',
-        columnManagerModalTitle: 'Manage columns',
-        headerMenuMainTab: 'Menu',
-        headerMenuMainTabColumnSort: 'Column sort',
-        headerMenuMainTabHideColumn: 'Hide column',
-        headerMenuMainTabMoveLeft: 'Move left',
-        headerMenuMainTabMoveRight: 'Move right',
-        headerMenuMainTabColumnSortAscending: 'Ascending',
-        headerMenuMainTabColumnSortDescending: 'Descending',
-        headerMenuMainTabColumnSortNone: 'None',
-        headerMenuFilterTab: 'Filter',
-        headerMenuColumnsTab: 'Columns',
-        summariesCount: 'Count',
-        summariesDist: 'Dist',
-        summariesSum: 'Sum',
-        summariesAvg: 'Avg',
-        summariesMin: 'Min',
-        summariesMax: 'Max',
-        summariesMed: 'Med',
-        summariesTruthy: 'Truthy',
-        summariesFalsy: 'Falsy',
-        summariesDistinctValuesTooltip: 'Distinct values',
-        summariesAverageTooltip: 'Average',
-        summariesMinTooltip: 'Min',
-        summariesMaxTooltip: 'Max',
-        summariesMedTooltip: 'Median',
-        summariesCountTooltip: 'Number of items in the grid'
-    };
 
     /**
      * @fileoverview added by tsickle
@@ -14884,8 +15236,12 @@
      */
     var PagingFeatureModule = /** @class */ (function (_super) {
         __extends(PagingFeatureModule, _super);
-        function PagingFeatureModule() {
-            return _super.call(this) || this;
+        function PagingFeatureModule(pagingApiModule) {
+            var _this = _super.call(this) || this;
+            if (pagingApiModule === null) {
+                throw new Error('PagingApiModule is required.');
+            }
+            return _this;
         }
         /**
          * @return {?}
@@ -14925,7 +15281,9 @@
                     },] }
         ];
         /** @nocollapse */
-        PagingFeatureModule.ctorParameters = function () { return []; };
+        PagingFeatureModule.ctorParameters = function () { return [
+            { type: PagingApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
         return PagingFeatureModule;
     }(hermes.FeatureModule));
 
@@ -14936,17 +15294,21 @@
     var StructureTitlePanelConfigArchive = /** @class */ (function (_super) {
         __extends(StructureTitlePanelConfigArchive, _super);
         function StructureTitlePanelConfigArchive() {
-            return _super.call(this, {
-                enabled: false,
-                template: ((/**
-                 * @param {?} title
-                 * @return {?}
-                 */
-                function (title) { return 'Title Panel'; }))
-            }) || this;
+            return _super.call(this, StructureTitlePanelConfigArchive.titlePanelConfig) || this;
         }
+        StructureTitlePanelConfigArchive.titlePanelConfig = {
+            enabled: false,
+            template: 'Title Panel'
+        };
         return StructureTitlePanelConfigArchive;
     }(hermes.Archive));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureTitlePanelConfigArchive.titlePanelConfig;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -14955,17 +15317,21 @@
     var StructureFooterPanelConfigArchive = /** @class */ (function (_super) {
         __extends(StructureFooterPanelConfigArchive, _super);
         function StructureFooterPanelConfigArchive() {
-            return _super.call(this, {
-                enabled: false,
-                template: ((/**
-                 * @param {?} title
-                 * @return {?}
-                 */
-                function (title) { return 'Footer Panel'; }))
-            }) || this;
+            return _super.call(this, StructureFooterPanelConfigArchive.footerPanelConfig) || this;
         }
+        StructureFooterPanelConfigArchive.footerPanelConfig = {
+            enabled: false,
+            template: 'Footer Panel'
+        };
         return StructureFooterPanelConfigArchive;
     }(hermes.Archive));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureFooterPanelConfigArchive.footerPanelConfig;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -15760,8 +16126,12 @@
      */
     var SortingFeatureModule = /** @class */ (function (_super) {
         __extends(SortingFeatureModule, _super);
-        function SortingFeatureModule() {
-            return _super !== null && _super.apply(this, arguments) || this;
+        function SortingFeatureModule(sortingApiModule) {
+            var _this = _super.call(this) || this;
+            if (sortingApiModule === null) {
+                throw new Error('SortingApiModule is required.');
+            }
+            return _this;
         }
         /**
          * @return {?}
@@ -15782,6 +16152,10 @@
                         exports: []
                     },] }
         ];
+        /** @nocollapse */
+        SortingFeatureModule.ctorParameters = function () { return [
+            { type: SortingApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
         return SortingFeatureModule;
     }(hermes.FeatureModule));
 
@@ -16722,22 +17096,93 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SearchIconComponent = /** @class */ (function () {
-        function SearchIconComponent() {
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    StaticComponent = /** @class */ (function (_super) {
+        __extends(StaticComponent, _super);
+        function StaticComponent(elementRef, changeDetectorRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.changeDetectorRef = changeDetectorRef;
+            return _this;
         }
+        /**
+         * @return {?}
+         */
+        StaticComponent.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            this.changeDetectorRef.detach();
+        };
+        return StaticComponent;
+    }(GuiComponent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StaticComponent.prototype.changeDetectorRef;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    IconComponent = /** @class */ (function (_super) {
+        __extends(IconComponent, _super);
+        function IconComponent(elementRef, changeDetectorRef) {
+            var _this = _super.call(this, elementRef, changeDetectorRef) || this;
+            _this.addClassToHost('gui-icon');
+            return _this;
+        }
+        return IconComponent;
+    }(StaticComponent));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SearchIconComponent = /** @class */ (function (_super) {
+        __extends(SearchIconComponent, _super);
+        function SearchIconComponent(elementRef, changeDetectorRef) {
+            return _super.call(this, elementRef, changeDetectorRef) || this;
+        }
+        /**
+         * @protected
+         * @return {?}
+         */
+        SearchIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-search-icon';
+        };
         SearchIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-search-icon',
-                        template: "\n\t\t<svg class=\"gui-search-icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\"\n\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t</svg>\n\t",
+                        selector: 'div[gui-search-icon]',
+                        template: "\n\t\t<svg class=\"gui-search-icon-svg\" xmlns=\"http://www.w3.org/2000/svg\" width=\"10.231\" height=\"10.601\" viewBox=\"0 0 10.231 10.601\">\n\t\t\t<line x2=\"1.77\" y2=\"1.77\" transform=\"translate(7.4 7.77)\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\"/>\n\t\t\t<circle cx=\"4.02\" cy=\"4.02\" r=\"4.02\" transform=\"translate(0.5 0.5)\" stroke-width=\"1\"\n\t\t\t\t\tstroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"/>\n\t\t</svg>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-icon]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        SearchIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return SearchIconComponent;
-    }());
+    }(IconComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -16745,10 +17190,9 @@
      */
     var SearchComponent = /** @class */ (function (_super) {
         __extends(SearchComponent, _super);
-        function SearchComponent(formBuilder, renderer2, changeDetectorRef, structureId, searchCommandDispatcher, structureWarehouse, searchWarehouse, verticalFormationWarehouse, structureSearchPlaceholderArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function SearchComponent(formBuilder, changeDetectorRef, elementRef, structureId, searchCommandDispatcher, structureWarehouse, searchWarehouse, verticalFormationWarehouse, structureSearchPlaceholderArchive) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.formBuilder = formBuilder;
-            _this.renderer2 = renderer2;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.searchCommandDispatcher = searchCommandDispatcher;
@@ -16859,24 +17303,32 @@
         function () {
             this.searchInputSubscription.unsubscribe();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        SearchComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-search-bar';
+        };
         SearchComponent.FORM_SEARCH_NAME = 'searchPhrase';
         SearchComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-search-bar',
-                        template: "\n\t\t<ng-container *ngIf=\"searchingEnabled\">\n\t\t\t<form #formRef\n\t\t\t\t  [formGroup]=\"searchForm\">\n\t\t\t\t<gui-search-icon></gui-search-icon>\n\t\t\t\t<input formControlName=\"searchPhrase\" [placeholder]=\"placeholder\">\n\t\t\t\t<span *ngIf=\"searchForm.controls['searchPhrase'].value\" class=\"gui-clear-search-icon\" (click)=\"clear()\"></span>\n\t\t\t</form>\n\t\t</ng-container>\n\t",
+                        selector: 'div[gui-search-bar]',
+                        template: "\n\t\t<ng-container *ngIf=\"searchingEnabled\">\n\t\t\t<form #formRef\n\t\t\t\t  [formGroup]=\"searchForm\"\n\t\t\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t\t\t<div gui-search-icon></div>\n\n\t\t\t\t<input formControlName=\"searchPhrase\"\n\t\t\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t\t\t   [placeholder]=\"placeholder\">\n\n\n\t\t\t\t<span *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t\t\t  class=\"gui-clear-search-icon\"\n\t\t\t\t\t  (click)=\"clear()\">\n\t\t\t\t</span>\n\t\t\t</form>\n\t\t</ng-container>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-search-bar]': "\"true\""
-                        },
-                        styles: [".gui-search-bar{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}.gui-search-bar form{display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}.gui-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}.gui-search-bar form .gui-search-icon circle,.gui-search-bar form .gui-search-icon line{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}.gui-search-bar form:hover .gui-search-icon circle,.gui-search-bar form:hover .gui-search-icon line{stroke:#333}"]
+                        styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg circle,.gui-search-bar form:hover .gui-search-icon-svg line{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg circle,.gui-search-bar .gui-search-icon-svg line{stroke:#ccc;transition:stroke .3s ease-in-out}"]
                     }] }
         ];
         /** @nocollapse */
         SearchComponent.ctorParameters = function () { return [
             { type: forms.FormBuilder },
-            { type: core.Renderer2 },
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: SearchCommandInvoker },
             { type: StructureWarehouse },
@@ -16910,11 +17362,6 @@
          * @private
          */
         SearchComponent.prototype.formBuilder;
-        /**
-         * @type {?}
-         * @private
-         */
-        SearchComponent.prototype.renderer2;
         /**
          * @type {?}
          * @private
@@ -16979,7 +17426,7 @@
                         imports: [
                             common.CommonModule,
                             fabric.FabricModule,
-                            // SearchApiModule,
+                            SearchApiModule,
                             forms.ReactiveFormsModule
                         ],
                         declarations: [
@@ -18918,8 +19365,12 @@
      */
     var FieldFeatureModule = /** @class */ (function (_super) {
         __extends(FieldFeatureModule, _super);
-        function FieldFeatureModule() {
-            return _super !== null && _super.apply(this, arguments) || this;
+        function FieldFeatureModule(fieldApiModule) {
+            var _this = _super.call(this) || this;
+            if (fieldApiModule === null) {
+                throw new Error('FieldApiModule is required.');
+            }
+            return _this;
         }
         /**
          * @return {?}
@@ -18940,6 +19391,10 @@
                         exports: []
                     },] }
         ];
+        /** @nocollapse */
+        FieldFeatureModule.ctorParameters = function () { return [
+            { type: FieldApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
         return FieldFeatureModule;
     }(hermes.FeatureModule));
 
@@ -19062,6 +19517,168 @@
      */
     /** @type {?} */
     var filterContainerToken = new core.InjectionToken('Filter container token');
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @enum {number} */
+    var RowSelectionType = {
+        ROW: 0,
+        CHECKBOX: 1,
+    };
+    RowSelectionType[RowSelectionType.ROW] = 'ROW';
+    RowSelectionType[RowSelectionType.CHECKBOX] = 'CHECKBOX';
+    /** @enum {number} */
+    var RowSelectionMode = {
+        SINGLE: 0,
+        MULTIPLE: 1,
+    };
+    RowSelectionMode[RowSelectionMode.SINGLE] = 'SINGLE';
+    RowSelectionMode[RowSelectionMode.MULTIPLE] = 'MULTIPLE';
+    var RowSelection = /** @class */ (function () {
+        function RowSelection(config) {
+            if (config.enabled !== undefined) {
+                this.enabled = config.enabled;
+            }
+            if (config.mode !== undefined) {
+                this.mode = config.mode;
+            }
+            if (config.type !== undefined) {
+                this.type = config.type;
+            }
+        }
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.isModeDefined = /**
+         * @return {?}
+         */
+        function () {
+            return this.mode !== undefined;
+        };
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.isTypeDefined = /**
+         * @return {?}
+         */
+        function () {
+            return this.type !== undefined;
+        };
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.isEnabledDefined = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled !== undefined;
+        };
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.getMode = /**
+         * @return {?}
+         */
+        function () {
+            return this.mode;
+        };
+        /**
+         * @return {?}
+         */
+        RowSelection.prototype.getType = /**
+         * @return {?}
+         */
+        function () {
+            return this.type;
+        };
+        RowSelection.Builder = /** @class */ (function (_super) {
+            __extends(RowSelectionBuilder, _super);
+            function RowSelectionBuilder() {
+                return _super.call(this) || this;
+            }
+            /**
+             * @return {?}
+             */
+            RowSelectionBuilder.prototype.buildObject = /**
+             * @return {?}
+             */
+            function () {
+                return new RowSelection({
+                    enabled: this.enabled,
+                    type: this.type,
+                    mode: this.mode
+                });
+            };
+            /**
+             * @param {?} enabled
+             * @return {?}
+             */
+            RowSelectionBuilder.prototype.withEnabled = /**
+             * @param {?} enabled
+             * @return {?}
+             */
+            function (enabled) {
+                this.enabled = enabled;
+                return this;
+            };
+            /**
+             * @param {?} type
+             * @return {?}
+             */
+            RowSelectionBuilder.prototype.withType = /**
+             * @param {?} type
+             * @return {?}
+             */
+            function (type) {
+                this.type = type;
+                return this;
+            };
+            /**
+             * @param {?} mode
+             * @return {?}
+             */
+            RowSelectionBuilder.prototype.withMode = /**
+             * @param {?} mode
+             * @return {?}
+             */
+            function (mode) {
+                this.mode = mode;
+                return this;
+            };
+            return RowSelectionBuilder;
+        }(GenericBuilder));
+        return RowSelection;
+    }());
+    if (false) {
+        /** @type {?} */
+        RowSelection.Builder;
+        /**
+         * @type {?}
+         * @private
+         */
+        RowSelection.prototype.enabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        RowSelection.prototype.type;
+        /**
+         * @type {?}
+         * @private
+         */
+        RowSelection.prototype.mode;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -22342,6 +22959,170 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @enum {string} */
+    var StyleName = {
+        WIDTH: 'width',
+        HEIGHT: 'height',
+        PADDING_TOP: 'padding-top',
+    };
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StyleModifier = /** @class */ (function (_super) {
+        __extends(StyleModifier, _super);
+        function StyleModifier(htmlElement) {
+            var _this = _super.call(this, htmlElement) || this;
+            _this.htmlElement = htmlElement;
+            return _this;
+        }
+        /**
+         * @protected
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        StyleModifier.prototype.createModifier = /**
+         * @protected
+         * @param {?} htmlElement
+         * @return {?}
+         */
+        function (htmlElement) {
+            return new StyleModifier.StyleModifier(htmlElement);
+        };
+        var _a;
+        StyleModifier.StyleModifier = (_a = /** @class */ (function () {
+                function class_1(htmlElement) {
+                    this.htmlElement = htmlElement;
+                }
+                /**
+                 * @param {?} name
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.setStyleByName = /**
+                 * @param {?} name
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (name, value) {
+                    this.set(name, value);
+                };
+                /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.setWidth = /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) {
+                    this.set(StyleName.WIDTH, this.toPx(value));
+                };
+                /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.setHeight = /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) {
+                    this.set(StyleName.HEIGHT, this.toPx(value));
+                };
+                /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.setPaddingTop = /**
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) {
+                    this.set(StyleName.PADDING_TOP, this.toPx(value));
+                };
+                /**
+                 * @param {?} styleName
+                 * @return {?}
+                 */
+                class_1.prototype.remove = /**
+                 * @param {?} styleName
+                 * @return {?}
+                 */
+                function (styleName) {
+                    this.htmlElement[StyleModifier.StyleModifier.STYLE][styleName] = '';
+                };
+                /**
+                 * @param {?} name
+                 * @return {?}
+                 */
+                class_1.prototype.removeStyleByName = /**
+                 * @param {?} name
+                 * @return {?}
+                 */
+                function (name) {
+                    this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = '';
+                };
+                /**
+                 * @return {?}
+                 */
+                class_1.prototype.clear = /**
+                 * @return {?}
+                 */
+                function () {
+                    this.htmlElement.removeAttribute(StyleModifier.StyleModifier.STYLE);
+                };
+                /**
+                 * @private
+                 * @param {?} name
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.set = /**
+                 * @private
+                 * @param {?} name
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (name, value) {
+                    this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = value;
+                };
+                /**
+                 * @private
+                 * @param {?} value
+                 * @return {?}
+                 */
+                class_1.prototype.toPx = /**
+                 * @private
+                 * @param {?} value
+                 * @return {?}
+                 */
+                function (value) {
+                    return value > 0 ? value + "px" : "" + value;
+                };
+                return class_1;
+            }()),
+            _a.STYLE = 'style',
+            _a);
+        return StyleModifier;
+    }(Modifier));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StyleModifier.StyleModifier;
+        /**
+         * @type {?}
+         * @private
+         */
+        StyleModifier.prototype.htmlElement;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * \@internal
      * @param {?} generator
@@ -22423,11 +23204,11 @@
      */
     var StructureComponent = /** @class */ (function (_super) {
         __extends(StructureComponent, _super);
-        function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, elementRef, cd, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
-            var _this = _super.call(this, cd, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) || this;
+        function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, elementRef, detectorRef, injector, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
+            var _this = _super.call(this, detectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) || this;
             _this.elementRef = elementRef;
-            _this.cd = cd;
-            _this.renderer = renderer;
+            _this.detectorRef = detectorRef;
+            _this.injector = injector;
             _this.structureDefinition = structureDefinition;
             _this.structureReadModelService = structureReadModelService;
             _this.compositionReadModelService = compositionReadModelService;
@@ -22437,6 +23218,8 @@
             _this.loaderEnabled = false;
             _this.circleLoaderEnabled = true;
             _this.initialLoaderAnimation = false;
+            _this.localStreamCloser = new StreamCloser();
+            _this.styleModifier = new StyleModifier(_this.elementRef.nativeElement);
             structureCommandService.createStructure();
             compositionCommandDispatcher.createComposition();
             schemaCommandDispatcher.create();
@@ -22464,7 +23247,7 @@
             _super.prototype.ngOnInit.call(this);
             this.structureReadModelService
                 .onStructure()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} structureReadModelRoot
              * @return {?}
@@ -22476,7 +23259,7 @@
                 if (_this.loaderEnabled && !_this.initialLoaderAnimation) {
                     _this.initialLoaderAnimation = true;
                 }
-                _this.cd.detectChanges();
+                _this.detectorRef.detectChanges();
             }));
             this.structureDetailViewService.init(this.elementRef);
         };
@@ -22498,7 +23281,7 @@
                  * When gui-grid is in dynamic container which is created later then grid.
                  */
                 rxjs.timer(0)
-                    .pipe(this.takeUntil())
+                    .pipe(this.localStreamCloser.takeUntil())
                     .subscribe((/**
                  * @return {?}
                  */
@@ -22513,14 +23296,23 @@
                 .init(this.elementRef, this.schemaReadModelRootId);
             this.compositionReadModelService
                 .onWidth()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} width
              * @return {?}
              */
             function (width) {
-                _this.renderer.setStyle(_this.elementRef.nativeElement, 'width', width + 'px');
+                _this.styleModifier.getHost().setWidth(width);
             }));
+        };
+        /**
+         * @return {?}
+         */
+        StructureComponent.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
         };
         /**
          * @return {?}
@@ -22549,14 +23341,24 @@
         function () {
             return this.elementRef;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure';
+        };
         StructureComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure',
-                        template: "<gui-structure-blueprint></gui-structure-blueprint>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n",
+                        template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         host: {
-                            '[class.gui-structure]': "\"true\"",
                             '[class.gui-structure-border]': 'isBorderEnabled()',
                             '[id]': 'structureId.toString()'
                         },
@@ -22570,7 +23372,7 @@
                                 useExisting: StructureComponent
                             }
                         ]),
-                        styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{position:absolute;cursor:pointer;right:8px;top:50%;width:16px;height:16px;-ms-transform:translateY(-50%);transform:translateY(-50%)}.gui-clear-search-icon::after,.gui-clear-search-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa;border-radius:8px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAB2CAYAAAAz4kaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABNRSURBVHhe7V1pU1vHmkYSixEIBAIhME6cXNshjjMkNuBNeMM2U6lUJeOKwfg6W5UrqeRLPuQHJPk2n6Y8+ZaUZ7I5cYwXbEySe+/Unbmp3MQbiM3YGBtvxAVml1iEEJLmeVqniSyD8ILhKDmP3Zw+3X16eZ9+3377nCMpRoMGDSHQKceoQiAQ0H366aexra2tsXogOTk5gGT/M8884y0rK/MFS0UXDMoxKkACcIh1OBxmg8FQ0tzSsmfM43llYHDwhe6engJLZuaC7Vu3dq9Zs2b8xx9/JDlRg6jRCEULUsbHx9ecra3dqDfoV46NjT3r9Y4nMT8uNs6dEJ9wXqfXnytcverv1nTrGWjHsLg4ChAVRJCEzz//PNXj86w/c+pcxcjo8GZdjC4FWUYEPcvodDoUC7gRXEZj0v+tt9sPZKan//Tyyy8PMV/tUL1pIgn79u1L9UxM2FtaLpSPDA9tHRvzZMXGxibAPOl8Ph/LxOCcTMR5vd4kvU5n6+3rNRoTE4d27NjRVV1dPa5Up1qonojc5bnp/nH/+ubmpor+vr5tMPxWLtBAjN/vF2WgDYIMHhGo5caR4eGcgYGB5GxbtrO8vPx2VVWVRxRWKYRaqxVff/112lDX6PrGhuayIdfQFsg4EwLXQxOE4EmEIvwYqRnMQ7oOGmJxulxbz9Wdq3C5XMXHjx83KdWqEqrViC+++MLS09Oz/uKFC7uGXK5tAX/AajBADaASYs4LnwhaoCxz/DsZRBmBRI/Hk9Pf1w8PN9n5xhtvdB8+fFiVmqFKjaAmDA4Ormtvb38Fs3kTkjKFLYKAYf8FCRS4XqefFH4wruRNltHpkG4ZGRkpaWpq2tXf329Xq2aoTiOOHTtm6ejoWHf58uUKCK4EZsYmSHhw6FCHEYt4Tm9vrykpKclZUVGhujVDVUSQhJs3b66FJuyE0Eows20IUALO+QcHrqdHZYSZskHDEq1Wqwt7DFWRoRoiSMKlS5fW3bhx45W+vr4tSMpBoAxF/sNA8ahYkdHtdlvhTRnNZvOQmjRDFUSQBGjBuuvXr5dDE+gd5XKPQK9IEaJS8sHAOhi418BpMsjIdjqdprS0NNWYqXlfrLkwkwSYpB1YoLkwL2S6JODhlocgWAfrIrEAojoriNiCBbx8eHjYXllZmSwKziPmVSOoCbdu3Vrf1tbGhVmYI0qJJFBoFB7DbIH1Ekq9SdAMG8xgCjXj9ddfn1fXdt6IoCaQhCtwUWGzS5CUjQD5/Cb8UDKkECVkmiwr46FHQsZZl9QMQimXPD4+boMmJprMJteOl+fvdsi8mKZDhw6l3+7ttV9sa63AmrANAqF3RCglggKUZkkKNRShZQmey7TQ8jLOHXcoZHmEjEHnYKnDUb/HG/AWw0ylKkXmFHOuEdSEXzs77dfgokITtkB0NopDyb4DUrDhs5lHCphpUtCMh2qQDDJfnk8FFEmamJjIcg66EhOTkly752EBn1MiqAmd3Z321gsXdg04B7YE/AEbRBRxn0ABM/BeEmc1A+NSyJIgkkAwDd6RiLNcXFzctARIkCp/wG8cc49m9w/0J1vS0uf8dsicEfHZZ5+Z4anYWy5c2Ol0urZCcFkQKsWolJgaoTMau+NJLQgVbnic+ZjhghASFF4+HMzjdEA5o2fMk+0aciZa0i3OV199tRNkzMmaMSdEkITR0dFiR0NDhWtwcItOrxckyFkcSUgS8fHxQrgsSwFTuCSFaayHmsI0HqXwExISJu/KRmrDj3zlWnRNbxwZdWf39vWaMi0ZzpdeemlOFvBHSgQGp1u8eLF52D1sb25uLseiuBVpVpLAgROUD+ajiE8FRYA+j8fjg5mhGRPurQTzZZAgQQgBXONlecSnb4AIdkKQwWsDfn8Sb4fATBmt2Tmuf5sDMh4ZESRBecZcXFvrKB8aGirBIMVDnTs1IRINYqH2QgP6oBE9mP18Pm1AGuUr8qkBFJ6sUzmi+cCY0WjsYARYQD5EgWkg6+P1rA/niWPYZ3R3305alLvIVQoz9f0jNFOPhAgMXDxjJgmOekfFqHu0BLPMCpGjPZgJzjqaAz9NBi8IXieFwTwFXgjlitlsrsnLy7vY1dVFN5dvcEySyaOME8pC7cd1159//vkTME03R0ZG0pGWgnqFY8D65VEAzdI8ESQBGUxEasA4MeHL7u7pTl6ckeksfbUUZHz/SMiYdSIwOKEJmL322traiuHhkW26QEwGxiXakvOfw5RxKUhJBI9I80LgHbDzB5KSkv7d5XL1YZ3hxi8LQcxulgsPCihJXruvsLDQgV17LMhYiL6loIwoxAOJkKSE/pvsGQ74bxz3jOfcvn3buDhzsetRLeCzuqELIWFDfX39brfbXYIBWZBlCA4vCDlUIQAEmhceQ2a2F+vB9bS0tJObNm36n3379jlBghv5kwXkteFBAn0J9PT0jGHXXLt69eqD6enpx6klSKZdE23xKNsOvf63fooY/6RjLNvq6ur2wPPb8CjuTc0aEZIEDKb43Llz5ejwVhDCZ8wRtQ75k/sCCgVxLrA3MzMza9asWVMJTajH+aStul+8/fbb3uHh4Xq73X4wKyvrBOsGCT6aMLZJQtiHGcC3RTJAaumpU6f2oL4NX375pXifarYwK0SQhI8//tiEgRWfPXu2AmaA3pEFgjVwsJFAISiLI+NcmK9lZGTU5OfnH4FpqX/vvfceelNFMqAdDUVFRd+CYJJxg2TIvs1EBMuhj/TW0jAxtpEMeFUbZ1MzHpoIdE534MABPoIsPn36dAW8o20QZgY6b5A+fCRIEqA9Ezi9illbg0W2EmmO8vJyd7DUw4OEwtw1rF279mB2dvZxJF1Hk1zUgwt0BHAMiinToQ4LyNguNWO2yHgoIkgCzRGEvwEk7EbHSpCWThKkDZ4JimmYiI2Lu2q1WqtBwhGQWv/mm2+OKUVmDWVlZePUDJi8b0F4FQi4jvYJpcT04FhYTmoGJxzJmK0144GJIAl0UTHruSbQHG1DJ4UmcHJzlrHzM5GBfG7UrmTbbCdXrlx5BIOtn01NCAc1A8ITmpGbm3scbbcjOSITchwMvM2CI4anTwcZpT///POskPFAREhNgCdhh3e0i24lCKGvHnRR0WFplmQIRcj5BMpeweysXr58+VGkNz0KTQgH1wwI8vxzzz1HzaA3dRVt30WG7DsDtUHRCJFHMjBG89jY2NYzZ878GS7yxv379z/wqzr3TQQ69ZsmOGrFmoBOCU1QiggiZIcJDkAOSAJxH8pcXrhw4clly5YdMZlMDXNBggTNFJyBxhUrVnyLPhxHn0kGIfLlkX0nwsdE4Jy3aizUjLPnzv4Z2lL8oGTcFxFoVJCABu3NLc1l7lE3H28G9wnoKBF6lIFuqRyYAvry7Tk5OTVLly49hvOWR2mOpgPJQD8uoA9HuICjj9dwHmCfCfZ5yn1GyBFBj5GljYyObq1vatwd0Osf6PXOeyZCksAbeGdra8sGB50lEz7fPe8T5IAww3yIt8M+f/f4449XYaPVDFMxqhSfc1ALsXFsgrt8GBOjGknX0V9BBjVAakQkgBaaKYtzcHDb6VM/777V1bXhfsm4ZyKwGKVxTWhqPF8xMNC/HQuyzaDXU7pKibtBEhg4IAwsgEFxVFdhCk4sWbLkcHx8fKMaPkxCbcSC21hYWMgF/Bj6yh14gJOHYLc5julA0lCWZioTE7TU4ajd09Xbu+Grr77iZzjuCfdEBB9vdnV1rW9obChzuZxb0GgmGhe3sqenIdhBxa4GFJ+9/bHHHqt54oknjs63JoSD3tT4+HgT9zCcKEi6BhMMSxPcZ3As0wHTTRCFMuItdJfTtfXc2TMVrpF7fwt9RiL4VnZvb6/9QuuFXf0DA9vRoBWNTT5PkMepwDzMJhZANEASjj/55JOVILJJDZoQDpopjLVx1apVB0FGFZKuseMzmyeQhFGyHMZG35ZmSryQcKvrFl3bGV9IiEgENaG7r3vdxUsXXxl0ujaB8Ewk0x6KGSLDdEAeba0fnbuC9eC7RYsWVWVkZJxXkyaEQ2oGyKBmnOQtF3KBoJS4G5SATh+URfAGAe/06y3DQ8Ml9XUNu7p6emZ8C31aIvjyFz+fcOXylV39ff3b/D7f5FvZ7JToWITOKeBUugxNOEFNSE1NVaUmhIOawdshBQUF39hstmMYdsRNn6LyQZkocZDCHXiGa8hV2thIzeiKuGZMSURNTU3a1atX17a1te0cHHBuRp185UV8PkGwr6gi2+UDFR9VVyTxXzANR6rNFWjBSd5OwMLc8tprr42IBqIAdG2pGc8+++xhW7atWm/QX/PTSAXHNjlWn195Jh5MFLKR8sFf2ouMEWhGQ13drkivd05JxC+//PKn9vb2sr6+vu2oSLx3pKcZQp7STIx4/0KYJpEoyGBfqKI4n0A3Ly/MzT2BhfmwxWJp2rt3b1R8ujMU1Ax6U0WFRQezbFnHMNh2jM/HMXKsIEY8bRQCgSDkOym/BfGPhTNQz7/W1tbuvnz58pPIugt3EXH06FGrx+PJHxgYKICg+TSMdU4JkSHI+G3XiTkzEWswXM222b7709InxJoQTZoQDuWubXPhqsIjVmvWSZAgbqEzj2NWzND0QgpCh3WSn1wqwC58TVVVlVlJn8RdRDgcjryxsTF+Uke8ixpMnRrsBD0FHtEQj150qR2qfCL/X/IPWVItjfOxY55t0Ezx4dIGu/0bTDDeCYCZCnBjKvKlDCKB+XBysvkpqJaWljwleRJ3EFFdXZ2BBXo5XLh8nKbOVDlpCpon4S14Yw2x17Js1u+WP5tfhbTm3wMJErxRiENzwcqCwzZbVjW0gTtw3i8T459JJSBLelImEJEPk78yfOG+g4jz588vTUhIKEbFNvrDMxKB1tkJlPNiTbiJteCHgtUFR529vXN6A2+uQM2gN7WmaE1lljWzxu/z/4qxK0/6IjNBWZI0uMNZsDjFmPDLlCyBO4i4ePGiFdrwDC5Ko7oFG4iAoLp54RFdz7BkVhcVFlb6xnyO999//3ejCeEgGbDzDpDxTabVWoUJexOOCl0npcTUoCwhK05uM7RieV1dHT+aNok7iLBarU4wNoDCvCs5ea9lOqBpb2xcbEd6uuV7+7p1h9GQ4/eoCeGgmaJmYMzfWq2Z1XBOOiDpiF9PRFkyQEZuo9HYk52dfcem9g4iNm/e3Ird5D8Q7eQ5LhIqRfAYFrxwaW+YzeYTBUUrD0GT/hAkSEjNKCoo+ibNbD4O23ETyT7KhpByknFFlpzcnfAk/1FUVNQmMhXcQcSLL77YNTo6+k+w3QrT5JamKaxSLlrUnBtpaWk1xRvshwd7Bx1080SBPxCoGfSmijcXf5uenl4Ned1A8hBkJLQjVG6UJeLDCxYsuAQZn9m5c2eHyFBwBxHE9u3bW7CbrISgT+HCfiR5uF5goeGbd06QdD0xMfFvUK//3rhx46Hert4/JAkSJGOof8hht9sPpKSkfELZkBAEF+SF5UPc9OTLcb1YS0/l5eUdQdlW5AcZUnAXEdSKFStW/IDwXxD2MQi+BST0wZu6CXL+npqa+vkLL7zwcU5Ozn8i/dwfmQQJklFRUVFns9k+Li0t/Q9Yiv0Q+v9CXjdBRj/izZDf0aeffvrAsmXL/tba2npLuXQS07pFn3zySRwqyenq6tqIDcgzcE0HwORPHR0dDWB+XPGr5wx79+5dBZv8CWbScziN7EUEbXWDyWR6e//+/XVK2pzggw8+0EM+Cbm5uc/99NNPdnhImZjUF7Oysn5saGi4BRPm/eijj+66gTiDfxokhF9iiMqpShOoRNznnWtECxESJAQkxEEr9HwoNh0BEjMSoRZEGxH3i7vWCA3zA40IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJoo6IQMi3gk2FSHlqxu9SI6KRDM00qQQaESqBRoRKoBGhEmhEqATRRwS/hRCBfhF/SEN+K6GIRzGihgifwTAR0Os8IIC/vAQiAjF6/mYF8gIgg3H+pgvjMXodf12DX48d8fu61YSoIcJiMg2nmlLa9Ho9f51F/CRZbGys2DOExcnNkNmc2paSkqLaX/cKR9QQkZeX15331FN/hbDbDQaDPy4uLsbtdovfZMC5iJMMBGrBlaVP5f11yZIlPcGr1Y+oIYI/FuVyuX5JTk6qx6zvxvQfhdD5i4/it99IDkgahjp0m1JMjZ2//nr2nXfeGVQuVz1m+iJbVeHdd98dTzGlODu7bg/FGsTMT4Lw+Ysmnvi4+IG4hPhav8//l8KVq35YvHhxW35+ftR8b7nic0QP+FXPZrM5Bdpg/+X06XVer4e/DBYTHx/fvXad/dS42/1PaI7rww8/JEFcL6ICUUeERGVlpaGlpSWus7NTbzKZdDBXfqwjE2+99RZ/NT5qCNCgQcPdiIn5f8mUtwsfGiECAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAB2CAYAAAAz4kaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABPcSURBVHhe7V1pU1TXuqa7aQSaHpjBaxRkEKMCMikeoyeVm9ycqAhGcIia5GYwX/IhvyDmD+RDqu6HpJJKVeJ1wFQqZSVVVxETacQBxOiJlibxRBOFpqFpukGGHu/zrN6b0yg0RgF3m/2QlbV7DXuv9T7rHdbe2+4YFSpUhEEj5VGFYDCo+eSTT2KvXbsWq9PptG63O5idnR1YtmyZt6GhwS81iyropDwqQAKQxV68eNESo9M9d/3na7sc/Y6tI6MjLw243BWpKSnxzz//vH316tWeU6dOBUO9ogNRpRH79+83OZ3O6razZ9fPmxdX5vN4V3h8XgPrdLHaEb0u7ieQ1bGqqupERkZGG7RjRHSMAkSNRlAbvvzyy/m37tzaOzbmqff7fAU+vz85EAgkoC5eE6MxBHz+bJ/fWwSy4kdHRzugFS6pu+IRNURkZmYmxxsM63779V91Go0mHyne5/Np9Hp9jFarjeFxrD5Wj/LEMa9Hk7c47w9oxK2jR496pFMoGlFDxJIlSxbaurpeG/WMrfH7/YnUkPj4+Biv1yvqeezxeITmgBiDe3DIOzQ4eKGtrc0pGigcWilXPAYHBxMHXK5CHBohaCx8DbVAaEP4MaCBuTIMuF2FDrc7iQXRgKghAitdh//FxwSCGg3iIYg/JuD3x/CYEYc4xh8o4meNNhCcp/X7Y0O9lY+oIWIyaDXS8EkMjkUIyKA1qgLXEKKaiCcJKhEKgUqEQqASoRCoRCgEUUcE9wxPIqJSIyKRwbpoJEs1TQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQRvz3k/fff1/b39+tjY2O1Pp8vkJKS4v3ggw8CUvWc4s033ywfHBz8WKPRlOLjdF+T6g8Ggz8ajca9n3766QWpbE4B2fGLHWPdbremqKjIt3fv3tD3ok6BSSdEAoqLi+P4XauY+KabN2/Wz5s3b0VlZWWgurrasXr16sBcf/d2WVnZfI/HswnjycLH6TSZY7NhzN92dnZ2h4rmBh9//LF+/fr1Cfn5+RXXrl3b1tvb+4+kpKTMnTt3DmzYsGH422+/nXQh36cREgnzr1+//uzVq1f/homvHBsby8Ok3Ki+hJOeX7du3SlcpHPfvn1jqJ8TQpSuEY2NjborV67MW7ZsWRkW6TqMtRxjLRkZGbHExcXd0uv1nYWFhSch2+9BiE3qNo77JvTOO+8suHHjxgsgYSdW4HOBQGABJmVElcnv9y8YHR0tunXrVi7IWTA0NDT2wgsv9E7F8kxCyRrx0UcfzUtMTCy/fPnydizg2uHh4RchtxUw52nIkyC/FK/Xm2+327O1Wu3Ie++9Zztw4MCQ1F1gwoTQQdPa2lqE1b4VHavRKQ3FCfzmYZCgQ70JaRFYfsHlcu21Wq27TKmmMqpj6Ax/PZCE1KxUasE2EPDflA1klwN5mUGCXvp25nlYQCkoqwZZDceOHVsmOodhAhFHjhx5Csyuwqpfgo5kUpTjePxbwZBTi4wkBI68pqW5ZTvM1cq/IhkkwZxqLrO2WOudTudGaMAiFJshIyGLcLlRliAlASQVQcZrv/vuO2r2OCYQcf78+UI4l7+DuWycQKPT6cIJmHAM6EDTQqdroLa9o32nyWQqg52MEw3+Avj888/jU1NTyy60X9w24HRtDmBhQi78tv5xWUlyEjllKSH7zp07fz958mSR9FlgAhE2my0RqpWOTgkgI4YpIoJBnc/vf8pmt9e0tLVtB9ulfwXNIAkI6cusZ87UO/r7XvJ5fU9B5BHnTVlCK8CJJg6ak4wFb5aqBCYQAYfYhb3CVXQYABnIpgmIyLRWqwv4/Qv7enrqzrWfe+I148MPP0yIjY8tO9fe3uDos9d4xjw5kJWesogEyTRRO5zQpCvYW9ilKoEJRGRkZPwcHx9vhZPpQRpXrakRFBdAO51Wp11g67FvPHPuTAM140kkg5pgTk0tbT/X/rKjr+8fMD7cZ+lDCzbyoqUsoRVc3DbIx7p8+fJfpCqBCUTs2rXLDbY6kS6BiEF0jnx21HIQJA2rQoc8x2brqblw8UI9alc8SWYKCysB2Yqr/7xc19PTu8Hn9+XCPAkSBBGRJSUvald6evqltLS0qzU1NX2iQsIEIghsSK4lJyc34yLdUucpwXopPBM2UBuKqHK7uru3tLS27mQ09SRoBknoc/WV/Pjjj9u6u7o3B4OBPMxdzznLMphOVkAQ7bphcZrLy8uvSWXjuI+Iurq6AexIzyLE6sCFHCiakmtWcDVwENQKAhfTBQPBRT32nk0dnR3cj6xgmCcqoxBffPGFAY51+Y2ff6vr6rFt8AX8izFH8QMhnHNIG6AVovWUQLNgDxZ4BzaZl7Zs2TLBPxD3EUEUFBT8q7Ky8oDFYvm/GE1MX0j5QheTk5+Cl1QyiGP5hzRAApNOEwzm2bptWxAS74ADL6F9RXVU4bPPPjM6HI7i3377rb7r9u3NmGEB5hvLOXKuCFRC8xcpKGRC2ciyQkjLoyAkZYO5P56fn99YXV19g+e+F5MS0dDQMASz0lpaXn7IYDQ046QgA+fE1UMXwSceI1Eb4KnFwOC8RM6flwEx2oA/kIuQuOann36qj4uLK44mM0VNGBsbW9aDaPCPP/7YBEHnY2466adzQjOFGEiGKAsVytKRjwP4s6UkW74vLCw8kpube2bjxo2T/vjUpEQQdNzzMzNbSkrL95tM5mMQeB/1S7aFzEUSn6aEFuqb1w2f0dHRsZPRVDRoBhZMktvtpiY0/P7775tRVIA0pawEZHlI8sG8A1qdzpaaltqUV5B3CE76NEwSTf2kiHjy2traway0tNay8tJDSdAMnFv4DDjykLGiGQo1nRTSwPgsI7erq2tTZ2dnAzVDyT4DkV5iX1/fchBQd/PmzQ3wk/mYq5ZrUGpyH4QspITgkUUBBKq9yWbzD0uLln6VkZrR9sorr0T8GbbILAMwU675mfNb4On3m5Mtx0gG42ERLYmhRaICFwhFFHAZwdzbt2/XXbhwYQfspSJ9BjUBc5M1oRbDzkMxf9eOUwg1mgRyHXMsugBye5ol+fjTS58+hLm2vvrqq1NqgoxpiSCoGSaDyVpVueqgyWw84fX5HBCsMFORjBNXCIgTSa/Xs2HunTt3NiMMVJxmUBP6+/tXgISXoQkbMeY8PplEFX/XTsxlKrCGskCbgM/v7TWaLSdXrlzZmJWVdXo6TZDxQEQQ9BmZaWnQjKr9yRbzMVy5F6sHgcHUA+TghOYAaMvP1IwcOL8t7e3tIppijC4aPEZQE+C/Sm7cuFHPhYJhMkQV5ogkcB5MUwIyQMTkB3G21OS046Ulyw9iv9BaX1//wL8K+cBEENQMOvDVa9YeSDZbmmAPHaBh2odCJENeVejDGeXAgddcvnyZt4+LH6eZkjUBWsDoiD4hD+PljTaxeGjzI5IAoN4fq9X1Wizm5sqKikZDvKH1tddec6E8st0Ow58igiAZCIWsK0tLDxgSEk9Auk4MelwzwnM5SdoQXi7MFBx47S+//LIVn59+HKEttRHjWvbrr79uwcLYiHHQJ4zLhGPm2KUxi0Tck/MWtSPBEH+yeHlxI0zwnyaB+NNEEG+88cYgLmhdtWrV/8K8MLR1YMVP0IxwuyqbJ5kM5kg0U4vhwGuvXLmy3ePx0EzNGRnUwsHBwdLr169vhTnaBIEXYEjjDw2kMY6PnQifE4Fj3sXrMxqNTVXlVQfR1vowJBAPRQRBMrBlP0UysG0/ARUewKAEGRwwJ8AkT4jpXqCM+4zF2PTVwoFvx/HyubhRSBJw7eKrV6++jA1bDa6bj2Jx2+LeccpjZ6KZCiPCj8/9iYmJzWVlZYfoE95++2032v1pEoiHJoLgDtxsNresXbt2P1YFQ9t+ksHfmOaA5TQNtHCUebDPtW1tbTtwvtLZjKZojrBAVl68eHFrV3f3Jlyb+4RxTZgM8jy4wKQ9FHxzoM9gMDRVVT2aJsh4JCIImYw1a9aQjCYUOTFIsc94ABJkzaFm5Njt9rqzZ89uxy50Vp5nUBOGhoYECbhWjc/rXQzhxXIM04FzkebkR59+kNC8evXqA5hzy6NogoxHJoIgGRhYS3V19X6QchyrTOwzOHAMUGo1ObjKpJXGsTCaqj1z5swO3g6ZSc2gJmBIZdzDwBzRMS/GNWORi+tHAucgmSU/NmzCJ2CuB4eHh63YJ0z/3OYBMCNEECQDvuIUNQMOvAmDE5rBiUaCTBTbgTiGjYuwWjefP39eaMZM+AwSOjY2tvLSpUtbe3t7+bZFLq4rHuqQBHkMU4Ht4MypCQ4suBM0RyizvvvuuzNCAjFjRBB79uy5K2uGxWI5hlXEp1ARB0ohSCov/0o7yViIVbvZarXueNRXdXAuDVbwSmhZA0nguTEu8VCH1+RKn44I1NMxY59gOVFZWXkY/awzYY7CEdFJPQyOHDni2b17d3dKSooLZsaAsPQ/MOAEuDtMVxO6HYBEIciQTYNMCNpzR2seHR2d73K5YgsLC51ut1s/MDDwEpqJN/3C+4cDXZnRLNopuOPHj7sRou6Ab9gGohehXJDKdjzHBI0QGUf579WDYz9G50iCJlRUVAjHPNMkEDNOBEEyXtz9YndORo7b7rAbPF5vFiadGJoxxo8s9NAkJJDwREg5Mo3x7t272dj5JmdlZS0CscUoT0E5nTvb3AeSCfDUw0uWLNE5HI7/xH6hBtcX5oiV0vkFxDH+Gx+PlnXiCEQF/BqttteYlNQMEg7B9J5G2D7jJBD/HtEs4H8aG5PiXK51p8+e3jk8OPy8RqdNR/HE+zeYUqRBQIB+CLcfIfEANGQB+sSjP++IinqaFoKmhuC5UYduQU9cXNxtfE6CJqSgbErzJqTKoZAMJOnc4CbQk2AwNq+uqDiMslnRBBmzSgTBx43eQOCZixc6dvY7nf+FojTG4rLgaAimGwSEGUB7H8jgm3TckQuBkUgKnjmTXCYhiMjLx2gMZZH3CeIPY5HOA+J4K7s3xZLctKJ0xeGHuXf0ZzGjznoyiNshWE0V5RUHeAsdM+mVV50s0EiQBK3FDpZvyAltklasEBo/k1QeE/J52RZ9qAXiBl4ksJpteA7kAQTdPUaTma/Qixt4r7/++sBskkDMio+4F0ePHhUOPD013TXgdCbC7s/HhMVb5pi01CoyKHAmmiLmMvhZFj4ht5GjIpkgOZ8MrKNvQB/xUMeSYjmxsrj0MIi0kgSp2axi1jVChrQDP11SXMKHS01YX70QGm/bSi0mB4UsC5a3TngsC13O7xUy+8A/CFJYx8+RwDGgbUCr09pMScaTRUuLjvAZ81yRQMyJRshANDW2Y8eOHnNKqmtwaCjB4xmjZhgirVYKk4kEEOGrnAJmHctkrZDL5HoSSES6BpSSHXvS0zKa8wsLG7PTM1sxzgd+qDMTmFMiiK+//nrs9VdftVuSTa7evl6j1+PJhGEwSNXjCBf4ZEKUBc86pnAywhHed7LzAPAKQZs52fRDYdHSwwvnzz891yQQc04EQc2oq62zZWRluFxOVwI3bihOZF24sLiyZUHLCD8OJ2sqyPX3nksiDFnQlpaR0bQkv7AxMz19zjVBRuRZzDIaGxvN2Kz9rb29fTc2Xc9iRWeynEKShTydoB8Uk5wTH4NdJpOpZenSpQdzcnLaIr13NNt4LBohg5qxZ88ecTvE6XQmjIyMZKNY+AyZgJkigpD9DLUDpHfBITctXrz4SHZ2duu2bdv6ReVjwpxFTVOB0ZR4vbO09LDFYjmJVcoXdMefZ8iO91HAc8jaIOEOIrgfFi5c+HVeXt60L3/NBR6rRsigA2c0lZyc7BoYGIiHZmRAcEkgQ0juUbVC7o9z8l2s29CEZpBwpKCg4LGao3AogghCJiMjI8MNM2UAGcKBQ3CPbJskbSAPNpKQn5//FUzSGaWQQCiGCIJkwFZTMwYdDofR5/Nlwaw8Mhk4RwDa1QNf9D1M0WE4ZkWRQDzyapsNfPPNN8aenp51nZ2d210ul7hRiPRQY4UW0MlQE04UFhZ+xXdRleAT7sVjd9aTgS+xQStaS0pKDvEhfSAYcDD4JBU0MyLHH8rFXVMm+Zh14rYJc3rpmJheo9H4A0zRV3DQinDMk0FRpikcDG3feustG4TocjgdCSPY9Gm02gQIefxZBOUsjiWCeOOOVkyQwruoOq3dZDI3Pb1ihdis7d69+7GGqJGgSI2QId5CN5msVRVVB81Gk3gLHYIPyre95RuATCSEZVKd+PcJRnPSyZKVxY2mrMQHfiv7cUHRRBB8Cz02Nlb8+4z01LRjOo22D04csg89+JeJkI+9Xm8AbeyZmRnHly8vPegd9ba+Uf+GokkgoNTRATrwXqfzmVarddfI8N1nYYRMMEV8V0meA/3BMGhxJyYmfV9dXXUwThd3erafrM0UooYIorGxMcneb1/Vfu7Cc8FAoHLMM7bc6/OKf1+h18fdTYiP/6ffH+isqqg4FRcXd3Y2nzHPNKKKCILfsGaxWEz6+Pi1rS0ta/R6vbhR6PF67eufeebM6OhoK0Je9759+/hCWFSQQEQdETKgHfzqNj6T1t69e5df7BXglxhCC3zRRIAKFSruR0zM/wMYBpbiISU/xQAAAABJRU5ErkJggg==) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container .gui-cell{display:inline-block}gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container .gui-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{padding:8px;border-top:1px solid #d6d6d6}.gui-schema-manager-dialog{padding-right:16px}.gui-schema-manager-dialog .gui-schema-manager{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333;margin-bottom:16px}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select span{margin-bottom:4px}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;width:18px;margin-bottom:-1px}.gui-row-checkbox{cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;width:24px;padding:0;margin:0}.gui-select-all .gui-checkbox .gui-checkmark{top:0}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;box-shadow:0 3px 7px #ccc}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-search-bar form input,.gui-material gui-structure-top-panel gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-search-bar form{background:#444}.gui-dark gui-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-search-bar:hover .gui-search-icon circle,.gui-dark gui-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
+                        styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pt-10{padding-top:16px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure ::after,.gui-structure ::before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{background-color:#aaa;border-radius:8px;content:' ';height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAB2CAYAAAAz4kaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABNRSURBVHhe7V1pU1vHmkYSixEIBAIhME6cXNshjjMkNuBNeMM2U6lUJeOKwfg6W5UrqeRLPuQHJPk2n6Y8+ZaUZ7I5cYwXbEySe+/Unbmp3MQbiM3YGBtvxAVml1iEEJLmeVqniSyD8ILhKDmP3Zw+3X16eZ9+3377nCMpRoMGDSHQKceoQiAQ0H366aexra2tsXogOTk5gGT/M8884y0rK/MFS0UXDMoxKkACcIh1OBxmg8FQ0tzSsmfM43llYHDwhe6engJLZuaC7Vu3dq9Zs2b8xx9/JDlRg6jRCEULUsbHx9ecra3dqDfoV46NjT3r9Y4nMT8uNs6dEJ9wXqfXnytcverv1nTrGWjHsLg4ChAVRJCEzz//PNXj86w/c+pcxcjo8GZdjC4FWUYEPcvodDoUC7gRXEZj0v+tt9sPZKan//Tyyy8PMV/tUL1pIgn79u1L9UxM2FtaLpSPDA9tHRvzZMXGxibAPOl8Ph/LxOCcTMR5vd4kvU5n6+3rNRoTE4d27NjRVV1dPa5Up1qonojc5bnp/nH/+ubmpor+vr5tMPxWLtBAjN/vF2WgDYIMHhGo5caR4eGcgYGB5GxbtrO8vPx2VVWVRxRWKYRaqxVff/112lDX6PrGhuayIdfQFsg4EwLXQxOE4EmEIvwYqRnMQ7oOGmJxulxbz9Wdq3C5XMXHjx83KdWqEqrViC+++MLS09Oz/uKFC7uGXK5tAX/AajBADaASYs4LnwhaoCxz/DsZRBmBRI/Hk9Pf1w8PN9n5xhtvdB8+fFiVmqFKjaAmDA4Ormtvb38Fs3kTkjKFLYKAYf8FCRS4XqefFH4wruRNltHpkG4ZGRkpaWpq2tXf329Xq2aoTiOOHTtm6ejoWHf58uUKCK4EZsYmSHhw6FCHEYt4Tm9vrykpKclZUVGhujVDVUSQhJs3b66FJuyE0Eows20IUALO+QcHrqdHZYSZskHDEq1Wqwt7DFWRoRoiSMKlS5fW3bhx45W+vr4tSMpBoAxF/sNA8ahYkdHtdlvhTRnNZvOQmjRDFUSQBGjBuuvXr5dDE+gd5XKPQK9IEaJS8sHAOhi418BpMsjIdjqdprS0NNWYqXlfrLkwkwSYpB1YoLkwL2S6JODhlocgWAfrIrEAojoriNiCBbx8eHjYXllZmSwKziPmVSOoCbdu3Vrf1tbGhVmYI0qJJFBoFB7DbIH1Ekq9SdAMG8xgCjXj9ddfn1fXdt6IoCaQhCtwUWGzS5CUjQD5/Cb8UDKkECVkmiwr46FHQsZZl9QMQimXPD4+boMmJprMJteOl+fvdsi8mKZDhw6l3+7ttV9sa63AmrANAqF3RCglggKUZkkKNRShZQmey7TQ8jLOHXcoZHmEjEHnYKnDUb/HG/AWw0ylKkXmFHOuEdSEXzs77dfgokITtkB0NopDyb4DUrDhs5lHCphpUtCMh2qQDDJfnk8FFEmamJjIcg66EhOTkly752EBn1MiqAmd3Z321gsXdg04B7YE/AEbRBRxn0ABM/BeEmc1A+NSyJIgkkAwDd6RiLNcXFzctARIkCp/wG8cc49m9w/0J1vS0uf8dsicEfHZZ5+Z4anYWy5c2Ol0urZCcFkQKsWolJgaoTMau+NJLQgVbnic+ZjhghASFF4+HMzjdEA5o2fMk+0aciZa0i3OV199tRNkzMmaMSdEkITR0dFiR0NDhWtwcItOrxckyFkcSUgS8fHxQrgsSwFTuCSFaayHmsI0HqXwExISJu/KRmrDj3zlWnRNbxwZdWf39vWaMi0ZzpdeemlOFvBHSgQGp1u8eLF52D1sb25uLseiuBVpVpLAgROUD+ajiE8FRYA+j8fjg5mhGRPurQTzZZAgQQgBXONlecSnb4AIdkKQwWsDfn8Sb4fATBmt2Tmuf5sDMh4ZESRBecZcXFvrKB8aGirBIMVDnTs1IRINYqH2QgP6oBE9mP18Pm1AGuUr8qkBFJ6sUzmi+cCY0WjsYARYQD5EgWkg6+P1rA/niWPYZ3R3305alLvIVQoz9f0jNFOPhAgMXDxjJgmOekfFqHu0BLPMCpGjPZgJzjqaAz9NBi8IXieFwTwFXgjlitlsrsnLy7vY1dVFN5dvcEySyaOME8pC7cd1159//vkTME03R0ZG0pGWgnqFY8D65VEAzdI8ESQBGUxEasA4MeHL7u7pTl6ckeksfbUUZHz/SMiYdSIwOKEJmL322traiuHhkW26QEwGxiXakvOfw5RxKUhJBI9I80LgHbDzB5KSkv7d5XL1YZ3hxi8LQcxulgsPCihJXruvsLDQgV17LMhYiL6loIwoxAOJkKSE/pvsGQ74bxz3jOfcvn3buDhzsetRLeCzuqELIWFDfX39brfbXYIBWZBlCA4vCDlUIQAEmhceQ2a2F+vB9bS0tJObNm36n3379jlBghv5kwXkteFBAn0J9PT0jGHXXLt69eqD6enpx6klSKZdE23xKNsOvf63fooY/6RjLNvq6ur2wPPb8CjuTc0aEZIEDKb43Llz5ejwVhDCZ8wRtQ75k/sCCgVxLrA3MzMza9asWVMJTajH+aStul+8/fbb3uHh4Xq73X4wKyvrBOsGCT6aMLZJQtiHGcC3RTJAaumpU6f2oL4NX375pXifarYwK0SQhI8//tiEgRWfPXu2AmaA3pEFgjVwsJFAISiLI+NcmK9lZGTU5OfnH4FpqX/vvfceelNFMqAdDUVFRd+CYJJxg2TIvs1EBMuhj/TW0jAxtpEMeFUbZ1MzHpoIdE534MABPoIsPn36dAW8o20QZgY6b5A+fCRIEqA9Ezi9illbg0W2EmmO8vJyd7DUw4OEwtw1rF279mB2dvZxJF1Hk1zUgwt0BHAMiinToQ4LyNguNWO2yHgoIkgCzRGEvwEk7EbHSpCWThKkDZ4JimmYiI2Lu2q1WqtBwhGQWv/mm2+OKUVmDWVlZePUDJi8b0F4FQi4jvYJpcT04FhYTmoGJxzJmK0144GJIAl0UTHruSbQHG1DJ4UmcHJzlrHzM5GBfG7UrmTbbCdXrlx5BIOtn01NCAc1A8ITmpGbm3scbbcjOSITchwMvM2CI4anTwcZpT///POskPFAREhNgCdhh3e0i24lCKGvHnRR0WFplmQIRcj5BMpeweysXr58+VGkNz0KTQgH1wwI8vxzzz1HzaA3dRVt30WG7DsDtUHRCJFHMjBG89jY2NYzZ878GS7yxv379z/wqzr3TQQ69ZsmOGrFmoBOCU1QiggiZIcJDkAOSAJxH8pcXrhw4clly5YdMZlMDXNBggTNFJyBxhUrVnyLPhxHn0kGIfLlkX0nwsdE4Jy3aizUjLPnzv4Z2lL8oGTcFxFoVJCABu3NLc1l7lE3H28G9wnoKBF6lIFuqRyYAvry7Tk5OTVLly49hvOWR2mOpgPJQD8uoA9HuICjj9dwHmCfCfZ5yn1GyBFBj5GljYyObq1vatwd0Osf6PXOeyZCksAbeGdra8sGB50lEz7fPe8T5IAww3yIt8M+f/f4449XYaPVDFMxqhSfc1ALsXFsgrt8GBOjGknX0V9BBjVAakQkgBaaKYtzcHDb6VM/777V1bXhfsm4ZyKwGKVxTWhqPF8xMNC/HQuyzaDXU7pKibtBEhg4IAwsgEFxVFdhCk4sWbLkcHx8fKMaPkxCbcSC21hYWMgF/Bj6yh14gJOHYLc5julA0lCWZioTE7TU4ajd09Xbu+Grr77iZzjuCfdEBB9vdnV1rW9obChzuZxb0GgmGhe3sqenIdhBxa4GFJ+9/bHHHqt54oknjs63JoSD3tT4+HgT9zCcKEi6BhMMSxPcZ3As0wHTTRCFMuItdJfTtfXc2TMVrpF7fwt9RiL4VnZvb6/9QuuFXf0DA9vRoBWNTT5PkMepwDzMJhZANEASjj/55JOVILJJDZoQDpopjLVx1apVB0FGFZKuseMzmyeQhFGyHMZG35ZmSryQcKvrFl3bGV9IiEgENaG7r3vdxUsXXxl0ujaB8Ewk0x6KGSLDdEAeba0fnbuC9eC7RYsWVWVkZJxXkyaEQ2oGyKBmnOQtF3KBoJS4G5SATh+URfAGAe/06y3DQ8Ml9XUNu7p6emZ8C31aIvjyFz+fcOXylV39ff3b/D7f5FvZ7JToWITOKeBUugxNOEFNSE1NVaUmhIOawdshBQUF39hstmMYdsRNn6LyQZkocZDCHXiGa8hV2thIzeiKuGZMSURNTU3a1atX17a1te0cHHBuRp185UV8PkGwr6gi2+UDFR9VVyTxXzANR6rNFWjBSd5OwMLc8tprr42IBqIAdG2pGc8+++xhW7atWm/QX/PTSAXHNjlWn195Jh5MFLKR8sFf2ouMEWhGQ13drkivd05JxC+//PKn9vb2sr6+vu2oSLx3pKcZQp7STIx4/0KYJpEoyGBfqKI4n0A3Ly/MzT2BhfmwxWJp2rt3b1R8ujMU1Ax6U0WFRQezbFnHMNh2jM/HMXKsIEY8bRQCgSDkOym/BfGPhTNQz7/W1tbuvnz58pPIugt3EXH06FGrx+PJHxgYKICg+TSMdU4JkSHI+G3XiTkzEWswXM222b7709InxJoQTZoQDuWubXPhqsIjVmvWSZAgbqEzj2NWzND0QgpCh3WSn1wqwC58TVVVlVlJn8RdRDgcjryxsTF+Uke8ixpMnRrsBD0FHtEQj150qR2qfCL/X/IPWVItjfOxY55t0Ezx4dIGu/0bTDDeCYCZCnBjKvKlDCKB+XBysvkpqJaWljwleRJ3EFFdXZ2BBXo5XLh8nKbOVDlpCpon4S14Yw2x17Js1u+WP5tfhbTm3wMJErxRiENzwcqCwzZbVjW0gTtw3i8T459JJSBLelImEJEPk78yfOG+g4jz588vTUhIKEbFNvrDMxKB1tkJlPNiTbiJteCHgtUFR529vXN6A2+uQM2gN7WmaE1lljWzxu/z/4qxK0/6IjNBWZI0uMNZsDjFmPDLlCyBO4i4ePGiFdrwDC5Ko7oFG4iAoLp54RFdz7BkVhcVFlb6xnyO999//3ejCeEgGbDzDpDxTabVWoUJexOOCl0npcTUoCwhK05uM7RieV1dHT+aNok7iLBarU4wNoDCvCs5ea9lOqBpb2xcbEd6uuV7+7p1h9GQ4/eoCeGgmaJmYMzfWq2Z1XBOOiDpiF9PRFkyQEZuo9HYk52dfcem9g4iNm/e3Ird5D8Q7eQ5LhIqRfAYFrxwaW+YzeYTBUUrD0GT/hAkSEjNKCoo+ibNbD4O23ETyT7KhpByknFFlpzcnfAk/1FUVNQmMhXcQcSLL77YNTo6+k+w3QrT5JamKaxSLlrUnBtpaWk1xRvshwd7Bx1080SBPxCoGfSmijcXf5uenl4Ned1A8hBkJLQjVG6UJeLDCxYsuAQZn9m5c2eHyFBwBxHE9u3bW7CbrISgT+HCfiR5uF5goeGbd06QdD0xMfFvUK//3rhx46Hert4/JAkSJGOof8hht9sPpKSkfELZkBAEF+SF5UPc9OTLcb1YS0/l5eUdQdlW5AcZUnAXEdSKFStW/IDwXxD2MQi+BST0wZu6CXL+npqa+vkLL7zwcU5Ozn8i/dwfmQQJklFRUVFns9k+Li0t/Q9Yiv0Q+v9CXjdBRj/izZDf0aeffvrAsmXL/tba2npLuXQS07pFn3zySRwqyenq6tqIDcgzcE0HwORPHR0dDWB+XPGr5wx79+5dBZv8CWbScziN7EUEbXWDyWR6e//+/XVK2pzggw8+0EM+Cbm5uc/99NNPdnhImZjUF7Oysn5saGi4BRPm/eijj+66gTiDfxokhF9iiMqpShOoRNznnWtECxESJAQkxEEr9HwoNh0BEjMSoRZEGxH3i7vWCA3zA40IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJoo6IQMi3gk2FSHlqxu9SI6KRDM00qQQaESqBRoRKoBGhEmhEqATRRwS/hRCBfhF/SEN+K6GIRzGihgifwTAR0Os8IIC/vAQiAjF6/mYF8gIgg3H+pgvjMXodf12DX48d8fu61YSoIcJiMg2nmlLa9Ho9f51F/CRZbGys2DOExcnNkNmc2paSkqLaX/cKR9QQkZeX15331FN/hbDbDQaDPy4uLsbtdovfZMC5iJMMBGrBlaVP5f11yZIlPcGr1Y+oIYI/FuVyuX5JTk6qx6zvxvQfhdD5i4/it99IDkgahjp0m1JMjZ2//nr2nXfeGVQuVz1m+iJbVeHdd98dTzGlODu7bg/FGsTMT4Lw+Ysmnvi4+IG4hPhav8//l8KVq35YvHhxW35+ftR8b7nic0QP+FXPZrM5Bdpg/+X06XVer4e/DBYTHx/fvXad/dS42/1PaI7rww8/JEFcL6ICUUeERGVlpaGlpSWus7NTbzKZdDBXfqwjE2+99RZ/NT5qCNCgQcPdiIn5f8mUtwsfGiECAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAB2CAYAAAAz4kaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABPcSURBVHhe7V1pU1TXuqa7aQSaHpjBaxRkEKMCMikeoyeVm9ycqAhGcIia5GYwX/IhvyDmD+RDqu6HpJJKVeJ1wFQqZSVVVxETacQBxOiJlibxRBOFpqFpukGGHu/zrN6b0yg0RgF3m/2QlbV7DXuv9T7rHdbe2+4YFSpUhEEj5VGFYDCo+eSTT2KvXbsWq9PptG63O5idnR1YtmyZt6GhwS81iyropDwqQAKQxV68eNESo9M9d/3na7sc/Y6tI6MjLw243BWpKSnxzz//vH316tWeU6dOBUO9ogNRpRH79+83OZ3O6razZ9fPmxdX5vN4V3h8XgPrdLHaEb0u7ieQ1bGqqupERkZGG7RjRHSMAkSNRlAbvvzyy/m37tzaOzbmqff7fAU+vz85EAgkoC5eE6MxBHz+bJ/fWwSy4kdHRzugFS6pu+IRNURkZmYmxxsM63779V91Go0mHyne5/Np9Hp9jFarjeFxrD5Wj/LEMa9Hk7c47w9oxK2jR496pFMoGlFDxJIlSxbaurpeG/WMrfH7/YnUkPj4+Biv1yvqeezxeITmgBiDe3DIOzQ4eKGtrc0pGigcWilXPAYHBxMHXK5CHBohaCx8DbVAaEP4MaCBuTIMuF2FDrc7iQXRgKghAitdh//FxwSCGg3iIYg/JuD3x/CYEYc4xh8o4meNNhCcp/X7Y0O9lY+oIWIyaDXS8EkMjkUIyKA1qgLXEKKaiCcJKhEKgUqEQqASoRCoRCgEUUcE9wxPIqJSIyKRwbpoJEs1TQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQqEQqBSoRCoBKhEKhEKAQRvz3k/fff1/b39+tjY2O1Pp8vkJKS4v3ggw8CUvWc4s033ywfHBz8WKPRlOLjdF+T6g8Ggz8ajca9n3766QWpbE4B2fGLHWPdbremqKjIt3fv3tD3ok6BSSdEAoqLi+P4XauY+KabN2/Wz5s3b0VlZWWgurrasXr16sBcf/d2WVnZfI/HswnjycLH6TSZY7NhzN92dnZ2h4rmBh9//LF+/fr1Cfn5+RXXrl3b1tvb+4+kpKTMnTt3DmzYsGH422+/nXQh36cREgnzr1+//uzVq1f/homvHBsby8Ok3Ki+hJOeX7du3SlcpHPfvn1jqJ8TQpSuEY2NjborV67MW7ZsWRkW6TqMtRxjLRkZGbHExcXd0uv1nYWFhSch2+9BiE3qNo77JvTOO+8suHHjxgsgYSdW4HOBQGABJmVElcnv9y8YHR0tunXrVi7IWTA0NDT2wgsv9E7F8kxCyRrx0UcfzUtMTCy/fPnydizg2uHh4RchtxUw52nIkyC/FK/Xm2+327O1Wu3Ie++9Zztw4MCQ1F1gwoTQQdPa2lqE1b4VHavRKQ3FCfzmYZCgQ70JaRFYfsHlcu21Wq27TKmmMqpj6Ax/PZCE1KxUasE2EPDflA1klwN5mUGCXvp25nlYQCkoqwZZDceOHVsmOodhAhFHjhx5Csyuwqpfgo5kUpTjePxbwZBTi4wkBI68pqW5ZTvM1cq/IhkkwZxqLrO2WOudTudGaMAiFJshIyGLcLlRliAlASQVQcZrv/vuO2r2OCYQcf78+UI4l7+DuWycQKPT6cIJmHAM6EDTQqdroLa9o32nyWQqg52MEw3+Avj888/jU1NTyy60X9w24HRtDmBhQi78tv5xWUlyEjllKSH7zp07fz958mSR9FlgAhE2my0RqpWOTgkgI4YpIoJBnc/vf8pmt9e0tLVtB9ulfwXNIAkI6cusZ87UO/r7XvJ5fU9B5BHnTVlCK8CJJg6ak4wFb5aqBCYQAYfYhb3CVXQYABnIpgmIyLRWqwv4/Qv7enrqzrWfe+I148MPP0yIjY8tO9fe3uDos9d4xjw5kJWesogEyTRRO5zQpCvYW9ilKoEJRGRkZPwcHx9vhZPpQRpXrakRFBdAO51Wp11g67FvPHPuTAM140kkg5pgTk0tbT/X/rKjr+8fMD7cZ+lDCzbyoqUsoRVc3DbIx7p8+fJfpCqBCUTs2rXLDbY6kS6BiEF0jnx21HIQJA2rQoc8x2brqblw8UI9alc8SWYKCysB2Yqr/7xc19PTu8Hn9+XCPAkSBBGRJSUvald6evqltLS0qzU1NX2iQsIEIghsSK4lJyc34yLdUucpwXopPBM2UBuKqHK7uru3tLS27mQ09SRoBknoc/WV/Pjjj9u6u7o3B4OBPMxdzznLMphOVkAQ7bphcZrLy8uvSWXjuI+Iurq6AexIzyLE6sCFHCiakmtWcDVwENQKAhfTBQPBRT32nk0dnR3cj6xgmCcqoxBffPGFAY51+Y2ff6vr6rFt8AX8izFH8QMhnHNIG6AVovWUQLNgDxZ4BzaZl7Zs2TLBPxD3EUEUFBT8q7Ky8oDFYvm/GE1MX0j5QheTk5+Cl1QyiGP5hzRAApNOEwzm2bptWxAS74ADL6F9RXVU4bPPPjM6HI7i3377rb7r9u3NmGEB5hvLOXKuCFRC8xcpKGRC2ciyQkjLoyAkZYO5P56fn99YXV19g+e+F5MS0dDQMASz0lpaXn7IYDQ046QgA+fE1UMXwSceI1Eb4KnFwOC8RM6flwEx2oA/kIuQuOann36qj4uLK44mM0VNGBsbW9aDaPCPP/7YBEHnY2466adzQjOFGEiGKAsVytKRjwP4s6UkW74vLCw8kpube2bjxo2T/vjUpEQQdNzzMzNbSkrL95tM5mMQeB/1S7aFzEUSn6aEFuqb1w2f0dHRsZPRVDRoBhZMktvtpiY0/P7775tRVIA0pawEZHlI8sG8A1qdzpaaltqUV5B3CE76NEwSTf2kiHjy2traway0tNay8tJDSdAMnFv4DDjykLGiGQo1nRTSwPgsI7erq2tTZ2dnAzVDyT4DkV5iX1/fchBQd/PmzQ3wk/mYq5ZrUGpyH4QspITgkUUBBKq9yWbzD0uLln6VkZrR9sorr0T8GbbILAMwU675mfNb4On3m5Mtx0gG42ERLYmhRaICFwhFFHAZwdzbt2/XXbhwYQfspSJ9BjUBc5M1oRbDzkMxf9eOUwg1mgRyHXMsugBye5ol+fjTS58+hLm2vvrqq1NqgoxpiSCoGSaDyVpVueqgyWw84fX5HBCsMFORjBNXCIgTSa/Xs2HunTt3NiMMVJxmUBP6+/tXgISXoQkbMeY8PplEFX/XTsxlKrCGskCbgM/v7TWaLSdXrlzZmJWVdXo6TZDxQEQQ9BmZaWnQjKr9yRbzMVy5F6sHgcHUA+TghOYAaMvP1IwcOL8t7e3tIppijC4aPEZQE+C/Sm7cuFHPhYJhMkQV5ogkcB5MUwIyQMTkB3G21OS046Ulyw9iv9BaX1//wL8K+cBEENQMOvDVa9YeSDZbmmAPHaBh2odCJENeVejDGeXAgddcvnyZt4+LH6eZkjUBWsDoiD4hD+PljTaxeGjzI5IAoN4fq9X1Wizm5sqKikZDvKH1tddec6E8st0Ow58igiAZCIWsK0tLDxgSEk9Auk4MelwzwnM5SdoQXi7MFBx47S+//LIVn59+HKEttRHjWvbrr79uwcLYiHHQJ4zLhGPm2KUxi0Tck/MWtSPBEH+yeHlxI0zwnyaB+NNEEG+88cYgLmhdtWrV/8K8MLR1YMVP0IxwuyqbJ5kM5kg0U4vhwGuvXLmy3ePx0EzNGRnUwsHBwdLr169vhTnaBIEXYEjjDw2kMY6PnQifE4Fj3sXrMxqNTVXlVQfR1vowJBAPRQRBMrBlP0UysG0/ARUewKAEGRwwJ8AkT4jpXqCM+4zF2PTVwoFvx/HyubhRSBJw7eKrV6++jA1bDa6bj2Jx2+LeccpjZ6KZCiPCj8/9iYmJzWVlZYfoE95++2032v1pEoiHJoLgDtxsNresXbt2P1YFQ9t+ksHfmOaA5TQNtHCUebDPtW1tbTtwvtLZjKZojrBAVl68eHFrV3f3Jlyb+4RxTZgM8jy4wKQ9FHxzoM9gMDRVVT2aJsh4JCIImYw1a9aQjCYUOTFIsc94ABJkzaFm5Njt9rqzZ89uxy50Vp5nUBOGhoYECbhWjc/rXQzhxXIM04FzkebkR59+kNC8evXqA5hzy6NogoxHJoIgGRhYS3V19X6QchyrTOwzOHAMUGo1ObjKpJXGsTCaqj1z5swO3g6ZSc2gJmBIZdzDwBzRMS/GNWORi+tHAucgmSU/NmzCJ2CuB4eHh63YJ0z/3OYBMCNEECQDvuIUNQMOvAmDE5rBiUaCTBTbgTiGjYuwWjefP39eaMZM+AwSOjY2tvLSpUtbe3t7+bZFLq4rHuqQBHkMU4Ht4MypCQ4suBM0RyizvvvuuzNCAjFjRBB79uy5K2uGxWI5hlXEp1ARB0ohSCov/0o7yViIVbvZarXueNRXdXAuDVbwSmhZA0nguTEu8VCH1+RKn44I1NMxY59gOVFZWXkY/awzYY7CEdFJPQyOHDni2b17d3dKSooLZsaAsPQ/MOAEuDtMVxO6HYBEIciQTYNMCNpzR2seHR2d73K5YgsLC51ut1s/MDDwEpqJN/3C+4cDXZnRLNopuOPHj7sRou6Ab9gGohehXJDKdjzHBI0QGUf579WDYz9G50iCJlRUVAjHPNMkEDNOBEEyXtz9YndORo7b7rAbPF5vFiadGJoxxo8s9NAkJJDwREg5Mo3x7t272dj5JmdlZS0CscUoT0E5nTvb3AeSCfDUw0uWLNE5HI7/xH6hBtcX5oiV0vkFxDH+Gx+PlnXiCEQF/BqttteYlNQMEg7B9J5G2D7jJBD/HtEs4H8aG5PiXK51p8+e3jk8OPy8RqdNR/HE+zeYUqRBQIB+CLcfIfEANGQB+sSjP++IinqaFoKmhuC5UYduQU9cXNxtfE6CJqSgbErzJqTKoZAMJOnc4CbQk2AwNq+uqDiMslnRBBmzSgTBx43eQOCZixc6dvY7nf+FojTG4rLgaAimGwSEGUB7H8jgm3TckQuBkUgKnjmTXCYhiMjLx2gMZZH3CeIPY5HOA+J4K7s3xZLctKJ0xeGHuXf0ZzGjznoyiNshWE0V5RUHeAsdM+mVV50s0EiQBK3FDpZvyAltklasEBo/k1QeE/J52RZ9qAXiBl4ksJpteA7kAQTdPUaTma/Qixt4r7/++sBskkDMio+4F0ePHhUOPD013TXgdCbC7s/HhMVb5pi01CoyKHAmmiLmMvhZFj4ht5GjIpkgOZ8MrKNvQB/xUMeSYjmxsrj0MIi0kgSp2axi1jVChrQDP11SXMKHS01YX70QGm/bSi0mB4UsC5a3TngsC13O7xUy+8A/CFJYx8+RwDGgbUCr09pMScaTRUuLjvAZ81yRQMyJRshANDW2Y8eOHnNKqmtwaCjB4xmjZhgirVYKk4kEEOGrnAJmHctkrZDL5HoSSES6BpSSHXvS0zKa8wsLG7PTM1sxzgd+qDMTmFMiiK+//nrs9VdftVuSTa7evl6j1+PJhGEwSNXjCBf4ZEKUBc86pnAywhHed7LzAPAKQZs52fRDYdHSwwvnzz891yQQc04EQc2oq62zZWRluFxOVwI3bihOZF24sLiyZUHLCD8OJ2sqyPX3nksiDFnQlpaR0bQkv7AxMz19zjVBRuRZzDIaGxvN2Kz9rb29fTc2Xc9iRWeynEKShTydoB8Uk5wTH4NdJpOpZenSpQdzcnLaIr13NNt4LBohg5qxZ88ecTvE6XQmjIyMZKNY+AyZgJkigpD9DLUDpHfBITctXrz4SHZ2duu2bdv6ReVjwpxFTVOB0ZR4vbO09LDFYjmJVcoXdMefZ8iO91HAc8jaIOEOIrgfFi5c+HVeXt60L3/NBR6rRsigA2c0lZyc7BoYGIiHZmRAcEkgQ0juUbVC7o9z8l2s29CEZpBwpKCg4LGao3AogghCJiMjI8MNM2UAGcKBQ3CPbJskbSAPNpKQn5//FUzSGaWQQCiGCIJkwFZTMwYdDofR5/Nlwaw8Mhk4RwDa1QNf9D1M0WE4ZkWRQDzyapsNfPPNN8aenp51nZ2d210ul7hRiPRQY4UW0MlQE04UFhZ+xXdRleAT7sVjd9aTgS+xQStaS0pKDvEhfSAYcDD4JBU0MyLHH8rFXVMm+Zh14rYJc3rpmJheo9H4A0zRV3DQinDMk0FRpikcDG3feustG4TocjgdCSPY9Gm02gQIefxZBOUsjiWCeOOOVkyQwruoOq3dZDI3Pb1ihdis7d69+7GGqJGgSI2QId5CN5msVRVVB81Gk3gLHYIPyre95RuATCSEZVKd+PcJRnPSyZKVxY2mrMQHfiv7cUHRRBB8Cz02Nlb8+4z01LRjOo22D04csg89+JeJkI+9Xm8AbeyZmRnHly8vPegd9ba+Uf+GokkgoNTRATrwXqfzmVarddfI8N1nYYRMMEV8V0meA/3BMGhxJyYmfV9dXXUwThd3erafrM0UooYIorGxMcneb1/Vfu7Cc8FAoHLMM7bc6/OKf1+h18fdTYiP/6ffH+isqqg4FRcXd3Y2nzHPNKKKCILfsGaxWEz6+Pi1rS0ta/R6vbhR6PF67eufeebM6OhoK0Je9759+/hCWFSQQEQdETKgHfzqNj6T1t69e5df7BXglxhCC3zRRIAKFSruR0zM/wMYBpbiISU/xQAAAABJRU5ErkJggg==) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;font-size:13px;height:100%;padding:2px;position:relative;width:100%;border:1px solid #d6d6d6}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:0 0;border-radius:0;border-style:none;font-size:14px;padding:0}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:0}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell,.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border:1px solid transparent}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:0}.gui-structure-border{border:1px solid #d6d6d6}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;top:0;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-paging,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-structure-top-panel{height:42px}", ".gui-material{border-color:rgba(0,0,0,.12);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2)}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material .gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material .gui-search-bar form input,.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover,.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container-element,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:0 0;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px 0 0 #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle,.gui-dark .gui-search-bar:hover .gui-search-icon-svg line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-footer-panel,.gui-dark .gui-title-panel{background:#383838}", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-top-panel{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-summaries-panel,.gui-light .gui-structure-top-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.1);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-structure-top-panel{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
                     }] }
         ];
         /** @nocollapse */
@@ -22613,7 +23415,7 @@
             { type: TranslationService },
             { type: core.ElementRef },
             { type: core.ChangeDetectorRef },
-            { type: core.Renderer2 },
+            { type: core.Injector },
             { type: StructureDefinition },
             { type: StructureWarehouse },
             { type: CompositionWarehouse },
@@ -22641,17 +23443,24 @@
          * @type {?}
          * @private
          */
+        StructureComponent.prototype.localStreamCloser;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureComponent.prototype.styleModifier;
+        /**
+         * @type {?}
+         * @private
+         */
         StructureComponent.prototype.elementRef;
         /**
          * @type {?}
          * @private
          */
-        StructureComponent.prototype.cd;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureComponent.prototype.renderer;
+        StructureComponent.prototype.detectorRef;
+        /** @type {?} */
+        StructureComponent.prototype.injector;
         /**
          * @type {?}
          * @private
@@ -23020,17 +23829,17 @@
             deps: [
                 StructureIdGenerator
             ]
-        }], listViewProviders, provideComponentServices(), [PagingFeatureModule.forComponent()]);
-    var ListViewComponent = /** @class */ (function (_super) {
-        __extends(ListViewComponent, _super);
-        function ListViewComponent(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher) {
-            var _this = _super.call(this, structureId, sourceCommandService) || this;
-            _this.structureId = structureId;
-            _this.listViewReadModelRootId = listViewReadModelRootId;
-            _this.elementRef = elementRef;
-            structureCommandService.createStructure(_this.structureId);
-            listViewCommandDispatcher.create(_this.listViewReadModelRootId);
-            return _this;
+        }], listViewProviders, provideComponentServices(), [PagingFeatureModule.forComponent(),
+        TranslationFeatureModule.forComponent()]);
+    var ListViewComponent = /** @class */ (function () {
+        function ListViewComponent(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher, translationService) {
+            this.structureId = structureId;
+            this.listViewReadModelRootId = listViewReadModelRootId;
+            this.elementRef = elementRef;
+            this.translationService = translationService;
+            this.translationService.setDefaultTranslation();
+            structureCommandService.createStructure(this.structureId);
+            listViewCommandDispatcher.create(this.listViewReadModelRootId);
         }
         /**
          * @return {?}
@@ -23044,7 +23853,7 @@
         ListViewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-list-view',
-                        template: "\n\n\t\t<gui-list-view-layout></gui-list-view-layout>\n\t",
+                        template: "\n\n\t\t<div gui-list-view-layout></div>\n\t",
                         encapsulation: core.ViewEncapsulation.None,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         providers: __spread(componentProviders, [
@@ -23058,7 +23867,7 @@
                             '[class.gui-generic]': "\"true\"",
                             '[id]': 'structureId.toString()'
                         },
-                        styles: [".gui-list-view,.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-panel-search{display:-ms-flexbox;display:flex;padding-left:8px;padding-right:8px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;height:100%;margin:0;padding:0 12px;position:relative;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-panel-top{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding-left:8px;padding-right:8px}.gui-list-panel-top .gui-paging{margin-left:auto}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-view-source{display:block}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding-top:12px;padding-bottom:12px}.gui-list-container-card{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0;padding:0}.gui-list-card{cursor:pointer;display:block;padding:0;position:relative;margin:0}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
+                        styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pt-10{padding-top:16px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-list-view{border-color:#d6d6d6}.gui-list-view *,.gui-list-view ::after,.gui-list-view ::before{box-sizing:border-box}.gui-list-view input{font-size:13px;outline:0}.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon-svg{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-item{border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15)}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
                     }] }
         ];
         /** @nocollapse */
@@ -23071,10 +23880,11 @@
             { type: ListViewCardTemplateArchive },
             { type: StructureCommandDispatcher },
             { type: PagingCommandInvoker },
-            { type: ListViewCommandInvoker }
+            { type: ListViewCommandInvoker },
+            { type: TranslationService }
         ]; };
         return ListViewComponent;
-    }(ListViewGateway));
+    }());
     if (false) {
         /** @type {?} */
         ListViewComponent.prototype.structureId;
@@ -23085,6 +23895,11 @@
          * @private
          */
         ListViewComponent.prototype.elementRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        ListViewComponent.prototype.translationService;
     }
 
     /**
@@ -23093,13 +23908,14 @@
      */
     var ListViewSourceComponent = /** @class */ (function (_super) {
         __extends(ListViewSourceComponent, _super);
-        function ListViewSourceComponent(changeDetectorRef, structureId, structureSourceWarehouse, containerTemplateArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ListViewSourceComponent(changeDetectorRef, elementRef, structureId, structureSourceWarehouse, containerTemplateArchive) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.structureSourceWarehouse = structureSourceWarehouse;
             _this.containerTemplateArchive = containerTemplateArchive;
             _this.source = [];
+            _this.addClassToHost('gui-block');
             return _this;
         }
         /**
@@ -23110,10 +23926,7 @@
          */
         function () {
             var _this = this;
-            this.structureSourceWarehouse
-                .onEntities(this.structureId)
-                .pipe(this.takeUntil())
-                .subscribe((/**
+            this.subscribeAndRender(this.structureSourceWarehouse.onEntities(this.structureId), (/**
              * @param {?} items
              * @return {?}
              */
@@ -23123,34 +23936,38 @@
                  * @return {?}
                  */
                 function (i) { return i.getData(); }));
-                _this.changeDetectorRef.detectChanges();
             }));
-            this.containerTemplateArchive
-                .onValue()
-                .pipe(this.takeUntil())
-                .subscribe((/**
+            this.subscribeAndRender(this.containerTemplateArchive.onValue(), (/**
              * @param {?} template
              * @return {?}
              */
             function (template) {
                 _this.template = template;
-                _this.changeDetectorRef.detectChanges();
             }));
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewSourceComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-view-source';
         };
         ListViewSourceComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-view-source',
-                        template: "\n\n\t\t<gui-list-view-item *ngFor=\"let element of source\"\n\t\t\t\t\t\t\t[item]=\"element\"\n\t\t\t\t\t\t\t[template]=\"template\">\n\t\t</gui-list-view-item>\n\n\t\t<gui-empty-source [items]=\"source\">\n\t\t</gui-empty-source>\n\n\t",
+                        selector: 'div[gui-list-view-source]',
+                        template: "<div *ngFor=\"let element of source\"\n\t [item]=\"element\"\n\t [template]=\"template\"\n\t gui-list-view-item>\n</div>\n\n<div [items]=\"source\" gui-empty-source>\n</div>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-view-source]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         ListViewSourceComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: SourceWarehouse },
             { type: ListViewTemplateArchive }
@@ -23350,8 +24167,8 @@
      */
     var ListViewLayoutComponent = /** @class */ (function (_super) {
         __extends(ListViewLayoutComponent, _super);
-        function ListViewLayoutComponent(changeDetectorRef, listViewReadModelRootId, listViewModeRepository, listViewSelectorRepository) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ListViewLayoutComponent(changeDetectorRef, elementRef, listViewReadModelRootId, listViewModeRepository, listViewSelectorRepository) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.listViewReadModelRootId = listViewReadModelRootId;
             _this.listViewModeRepository = listViewModeRepository;
@@ -23367,44 +24184,45 @@
          */
         function () {
             var _this = this;
-            this.listViewModeRepository
-                .on(this.listViewReadModelRootId.toAggregateId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
+            this.subscribeAndRender(this.listViewModeRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
              * @param {?} mode
              * @return {?}
              */
             function (mode) {
                 _this.listModeEnabled = mode === ListViewMode.LIST;
                 _this.cardModeEnabled = mode === ListViewMode.CARD;
-                _this.changeDetectorRef.detectChanges();
             }));
-            this.listViewSelectorRepository
-                .on(this.listViewReadModelRootId.toAggregateId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
+            this.subscribeAndRender(this.listViewSelectorRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
              * @param {?} enabled
              * @return {?}
              */
             function (enabled) {
                 _this.selectorEnabled = enabled;
-                _this.changeDetectorRef.detectChanges();
             }));
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewLayoutComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-view-layout';
         };
         ListViewLayoutComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-view-layout',
-                        template: "\n\n\t\t<div class=\"gui-list-panel-search\">\n\n\t\t\t<gui-search-bar *ngIf=\"searchBarEnabled\"></gui-search-bar>\n\n\t\t\t<!--\t\t\t<gui-sorting-selector></gui-sorting-selector>-->\n\t\t\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t\t\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t\t</div>\n\t\t<div class=\"gui-list-panel-top\">\n\t\t\t<gui-list-mode-select *ngIf=\"selectorEnabled\"></gui-list-mode-select>\n\n\t\t\t<gui-paging [minimal]=\"true\" [position]=\"0\"></gui-paging>\n\t\t</div>\n\n\t\t<gui-list-view-source *ngIf=\"listModeEnabled\"></gui-list-view-source>\n\n\t\t<gui-list-container-card *ngIf=\"cardModeEnabled\"></gui-list-container-card>\n\n\t\t<gui-paging [position]=\"1\"></gui-paging>\n\n\t",
+                        selector: 'div[gui-list-view-layout]',
+                        template: "<div class=\"gui-flex gui-px-6\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-view-layout]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         ListViewLayoutComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: ListViewReadModelRootId },
             { type: ListViewModeRepository },
             { type: ListViewSelectorRepository }
@@ -23448,9 +24266,13 @@
      */
     var ListViewItemComponent = /** @class */ (function (_super) {
         __extends(ListViewItemComponent, _super);
-        function ListViewItemComponent() {
-            var _this = _super.call(this) || this;
+        function ListViewItemComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
             _this.context = 'Template not provided';
+            _this.addClassToHost('gui-w-full');
+            _this.addClassToHost('gui-my-6');
+            _this.addClassToHost('gui-mx-0');
+            _this.addClassToHost('gui-block');
             return _this;
         }
         /**
@@ -23467,19 +24289,29 @@
                 }
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewItemComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-item';
+        };
         ListViewItemComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-view-item[item][template]',
-                        template: "\n\n\t\t<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t\t\t<div class=\"gui-list-item-container\">\n\t\t\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t\t\t</div>\n\t\t</ng-container>\n\n\t\t<ng-template #templateMethod>\n\t\t\t<div class=\"gui-list-item-container\"\n\t\t\t\t [innerHTML]=\"context\"></div>\n\t\t</ng-template>\n\n\t",
+                        selector: 'div[gui-list-view-item][item][template]',
+                        template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-item-container gui-py-8\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-item-container gui-py-8\"></div>\n</ng-template>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-item]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
-        ListViewItemComponent.ctorParameters = function () { return []; };
+        ListViewItemComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         ListViewItemComponent.propDecorators = {
             item: [{ type: core.Input }],
             template: [{ type: core.Input }]
@@ -23501,26 +24333,62 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var EmptySourceComponent = /** @class */ (function () {
-        function EmptySourceComponent() {
+    var EmptySourceComponent = /** @class */ (function (_super) {
+        __extends(EmptySourceComponent, _super);
+        function EmptySourceComponent(elRef) {
+            var _this = _super.call(this, elRef) || this;
+            _this.addClassToHost('gui-py-23');
+            _this.addClassToHost('gui-px-6');
+            return _this;
         }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        EmptySourceComponent.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.hasChanged(changes.items)) {
+                if (this.items.length === 0) {
+                    this.removeClassFromHost('gui-hidden');
+                    this.addClassToHost('gui-block');
+                }
+                else {
+                    this.removeClassFromHost('gui-block');
+                    this.addClassToHost('gui-hidden');
+                }
+            }
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        EmptySourceComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-empty-source';
+        };
         EmptySourceComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-empty-source[items]',
-                        template: "<div *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | translate}}\n</div>\n",
+                        selector: 'div[gui-empty-source][items]',
+                        template: "<ng-container *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | guiTranslate}}\n</ng-container>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-empty-source]': 'true'
-                        },
-                        styles: ["\n\t\t.gui-empty-source div {\n\t\t\tdisplay: block;\n\t\t\tpadding: 42px 8px;\n\t\t}\n\t"]
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        EmptySourceComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         EmptySourceComponent.propDecorators = {
             items: [{ type: core.Input }]
         };
         return EmptySourceComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         EmptySourceComponent.prototype.items;
@@ -23530,9 +24398,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var EmptySourceFeatureModule = /** @class */ (function () {
+    var EmptySourceFeatureModule = /** @class */ (function (_super) {
+        __extends(EmptySourceFeatureModule, _super);
         function EmptySourceFeatureModule() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
+        EmptySourceFeatureModule.forComponent = /**
+         * @return {?}
+         */
+        function () {
+            return [];
+        };
         EmptySourceFeatureModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
@@ -23548,7 +24427,7 @@
                     },] }
         ];
         return EmptySourceFeatureModule;
-    }());
+    }(hermes.FeatureModule));
 
     /**
      * @fileoverview added by tsickle
@@ -23556,13 +24435,19 @@
      */
     var ListViewContainerCardComponent = /** @class */ (function (_super) {
         __extends(ListViewContainerCardComponent, _super);
-        function ListViewContainerCardComponent(changeDetectorRef, structureId, structureSourceWarehouse, listCardTemplateArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ListViewContainerCardComponent(changeDetectorRef, elementRef, structureId, structureSourceWarehouse, listCardTemplateArchive) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.structureSourceWarehouse = structureSourceWarehouse;
             _this.listCardTemplateArchive = listCardTemplateArchive;
             _this.items = [];
+            _this.localStreamCloser = new StreamCloser();
+            _this.addClassToHost('gui-flex');
+            _this.addClassToHost('gui-flex-wrap');
+            _this.addClassToHost('gui-m-0');
+            _this.addClassToHost('gui-p-0');
+            _this.addClassToHost('gui-rounded');
             return _this;
         }
         /**
@@ -23575,7 +24460,7 @@
             var _this = this;
             this.structureSourceWarehouse
                 .onEntities(this.structureId)
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} items
              * @return {?}
@@ -23590,7 +24475,7 @@
             }));
             this.listCardTemplateArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} template
              * @return {?}
@@ -23600,20 +24485,38 @@
                 _this.changeDetectorRef.detectChanges();
             }));
         };
+        /**
+         * @return {?}
+         */
+        ListViewContainerCardComponent.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewContainerCardComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-container-card';
+        };
         ListViewContainerCardComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-container-card',
-                        template: "\n\n\t\t<gui-list-card-item *ngFor=\"let element of items\"\n\t\t\t\t\t\t\t[item]=\"element\"\n\t\t\t\t\t\t\t[template]=\"cardTemplate\">\n\t\t</gui-list-card-item>\n\n\t\t<gui-empty-source [items]=\"items\">\n\t\t</gui-empty-source>\n\n\t",
+                        selector: 'div[gui-list-container-card]',
+                        template: "<div *ngFor=\"let element of items\" [item]=\"element\"\n\t [template]=\"cardTemplate\"\n\t gui-list-card-item>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-container-card]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         ListViewContainerCardComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: SourceWarehouse },
             { type: ListViewCardTemplateArchive }
@@ -23625,6 +24528,11 @@
         ListViewContainerCardComponent.prototype.items;
         /** @type {?} */
         ListViewContainerCardComponent.prototype.cardTemplate;
+        /**
+         * @type {?}
+         * @private
+         */
+        ListViewContainerCardComponent.prototype.localStreamCloser;
         /**
          * @type {?}
          * @private
@@ -23653,9 +24561,14 @@
      */
     var ListViewCardItemComponent = /** @class */ (function (_super) {
         __extends(ListViewCardItemComponent, _super);
-        function ListViewCardItemComponent() {
-            var _this = _super.call(this) || this;
+        function ListViewCardItemComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
             _this.context = 'Template not provided';
+            _this.addClassToHost('gui-cursor-pointer');
+            _this.addClassToHost('gui-block');
+            _this.addClassToHost('gui-m-0');
+            _this.addClassToHost('gui-p-0');
+            _this.addClassToHost('gui-relative');
             return _this;
         }
         /**
@@ -23672,19 +24585,29 @@
                 }
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewCardItemComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-card';
+        };
         ListViewCardItemComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-card-item[item][template]',
-                        template: "\n\n\t\t<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t\t\t<div class=\"gui-list-card-wrapper\">\n\t\t\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t\t\t</div>\n\t\t</ng-container>\n\n\t\t<ng-template #templateMethod>\n\t\t\t<div class=\"gui-list-card-wrapper\"\n\t\t\t\t [innerHTML]=\"context\"></div>\n\t\t</ng-template>\n\n\t",
+                        selector: 'div[gui-list-card-item][item][template]',
+                        template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\"></div>\n</ng-template>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-card]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
-        ListViewCardItemComponent.ctorParameters = function () { return []; };
+        ListViewCardItemComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         ListViewCardItemComponent.propDecorators = {
             item: [{ type: core.Input }],
             template: [{ type: core.Input }]
@@ -23708,8 +24631,8 @@
      */
     var ListViewContainerModeSelectComponent = /** @class */ (function (_super) {
         __extends(ListViewContainerModeSelectComponent, _super);
-        function ListViewContainerModeSelectComponent(changeDetectorRef, listViewReadModelRootId, listViewModeRepository) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ListViewContainerModeSelectComponent(changeDetectorRef, elementRef, listViewReadModelRootId, listViewModeRepository) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.listViewReadModelRootId = listViewReadModelRootId;
             _this.listViewModeRepository = listViewModeRepository;
@@ -23723,7 +24646,14 @@
              * @param {?} val
              * @return {?}
              */
-            function (val) { return !Number.isInteger(val); }));
+            function (val) { return !Number.isInteger(val); }))
+                .map((/**
+             * @param {?} val
+             * @return {?}
+             */
+            function (val) {
+                return _this.toGuiSelectOption(val);
+            }));
             return _this;
         }
         /**
@@ -23734,16 +24664,12 @@
          */
         function () {
             var _this = this;
-            this.listViewModeRepository
-                .on(this.listViewReadModelRootId.toAggregateId())
-                .pipe(this.takeUntil())
-                .subscribe((/**
+            this.subscribeAndRender(this.listViewModeRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
              * @param {?} mode
              * @return {?}
              */
             function (mode) {
-                _this.listContainerMode = mode;
-                _this.changeDetectorRef.detectChanges();
+                _this.listContainerMode = _this.toGuiSelectOption(mode);
             }));
         };
         /**
@@ -23755,22 +24681,64 @@
          * @return {?}
          */
         function (mode) {
-            this.listViewModeRepository.setMode(mode, this.listViewReadModelRootId.toAggregateId());
+            /** @type {?} */
+            var selectedMode = this.toListViewMode(mode.value);
+            this.listViewModeRepository.setMode(selectedMode, this.listViewReadModelRootId.toAggregateId());
+        };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        ListViewContainerModeSelectComponent.prototype.toGuiSelectOption = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            return { value: value, name: value };
+        };
+        /**
+         * @private
+         * @param {?} mode
+         * @return {?}
+         */
+        ListViewContainerModeSelectComponent.prototype.toListViewMode = /**
+         * @private
+         * @param {?} mode
+         * @return {?}
+         */
+        function (mode) {
+            switch (mode) {
+                case 'List':
+                    return ListViewMode.LIST;
+                case 'Card':
+                    return ListViewMode.CARD;
+            }
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ListViewContainerModeSelectComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-list-mode-select';
         };
         ListViewContainerModeSelectComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-list-mode-select',
-                        template: "\n\n\t\t<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t\t\t[options]=\"options\"\n\t\t\t\t\t[selected]=\"listContainerMode\">\n\t\t</gui-select>\n\n\t",
+                        selector: 'div[gui-list-mode-select]',
+                        template: "<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t[options]=\"options\"\n\t\t\t[selected]=\"listContainerMode\">\n</gui-select>\n",
                         encapsulation: core.ViewEncapsulation.None,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-list-mode-select]': "\"true\""
-                        }
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
         /** @nocollapse */
         ListViewContainerModeSelectComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: ListViewReadModelRootId },
             { type: ListViewModeRepository }
         ]; };
@@ -24619,40 +25587,81 @@
      */
     /**
      * @abstract
+     * @template T
      */
     var   /**
      * @abstract
+     * @template T
      */
-    Gate = /** @class */ (function (_super) {
-        __extends(Gate, _super);
-        function Gate(cDetector) {
-            return _super.call(this, cDetector) || this;
+    Gate = /** @class */ (function () {
+        function Gate() {
+            this.streamCloser = new StreamCloser();
         }
         /**
+         * @return {?}
+         */
+        Gate.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.streamCloser.unsubscribe();
+        };
+        /**
          * @param {?} propertyName
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         Gate.prototype.isDefined = /**
          * @param {?} propertyName
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (propertyName, simpleChanges) {
-            return simpleChanges[propertyName] !== undefined && simpleChanges[propertyName].currentValue !== undefined;
+        function (propertyName, changes) {
+            return changes[propertyName] !== undefined && changes[propertyName].currentValue !== undefined;
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        Gate.prototype.unsubscribe = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            this.streamCloser.unsubscribe();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        Gate.prototype.takeUntil = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return this.streamCloser.takeUntil();
         };
         return Gate;
-    }(SmartComponent));
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        Gate.prototype.streamCloser;
+    }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ListViewPagingGate = /** @class */ (function (_super) {
-        __extends(ListViewPagingGate, _super);
-        function ListViewPagingGate(changeDetectorRef, structureId, structurePagingCommandDispatcher, pagingEventRepository) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.changeDetectorRef = changeDetectorRef;
+    /**
+     * @abstract
+     */
+    var PagingGate = /** @class */ (function (_super) {
+        __extends(PagingGate, _super);
+        function PagingGate(structureId, structurePagingCommandDispatcher, pagingEventRepository) {
+            var _this = _super.call(this) || this;
             _this.structureId = structureId;
             _this.structurePagingCommandDispatcher = structurePagingCommandDispatcher;
             _this.pagingEventRepository = pagingEventRepository;
@@ -24661,15 +25670,15 @@
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        ListViewPagingGate.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+        PagingGate.prototype.ngOnChanges = /**
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (this.isDefined('paging', simpleChanges)) {
+        function (changes) {
+            if (this.isDefined('paging', changes)) {
                 /** @type {?} */
                 var pagingConfig = void 0;
                 if (typeof this.paging === 'boolean') {
@@ -24679,9 +25688,6 @@
                 }
                 else {
                     pagingConfig = this.paging;
-                    // if (this.paging.displayMode !== undefined) {
-                    // 	this.structurePagingDisplayModeArchive.next(this.paging.displayMode);
-                    // }
                 }
                 this.structurePagingCommandDispatcher.setPaging(pagingConfig);
             }
@@ -24689,7 +25695,7 @@
         /**
          * @return {?}
          */
-        ListViewPagingGate.prototype.ngOnInit = /**
+        PagingGate.prototype.ngOnInit = /**
          * @return {?}
          */
         function () {
@@ -24719,13 +25725,53 @@
          * @param {?} page
          * @return {?}
          */
-        ListViewPagingGate.prototype.onPageChange = /**
+        PagingGate.prototype.onPageChange = /**
          * @param {?} page
          * @return {?}
          */
         function (page) {
             this.pageChanged.emit(page);
         };
+        PagingGate.propDecorators = {
+            paging: [{ type: core.Input }],
+            pageChanged: [{ type: core.Output }],
+            pageSizeChanged: [{ type: core.Output }]
+        };
+        return PagingGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        PagingGate.prototype.paging;
+        /** @type {?} */
+        PagingGate.prototype.pageChanged;
+        /** @type {?} */
+        PagingGate.prototype.pageSizeChanged;
+        /**
+         * @type {?}
+         * @protected
+         */
+        PagingGate.prototype.structureId;
+        /**
+         * @type {?}
+         * @protected
+         */
+        PagingGate.prototype.structurePagingCommandDispatcher;
+        /**
+         * @type {?}
+         * @protected
+         */
+        PagingGate.prototype.pagingEventRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ListViewPagingGate = /** @class */ (function (_super) {
+        __extends(ListViewPagingGate, _super);
+        function ListViewPagingGate(structureId, structurePagingCommandDispatcher, pagingEventRepository) {
+            return _super.call(this, structureId, structurePagingCommandDispatcher, pagingEventRepository) || this;
+        }
         ListViewPagingGate.decorators = [
             { type: core.Directive, args: [{
                         selector: 'gui-list-view[paging]'
@@ -24733,46 +25779,12 @@
         ];
         /** @nocollapse */
         ListViewPagingGate.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
             { type: StructureId },
             { type: PagingCommandInvoker },
             { type: PagingEventRepository }
         ]; };
-        ListViewPagingGate.propDecorators = {
-            paging: [{ type: core.Input }],
-            pageChanged: [{ type: core.Output }],
-            pageSizeChanged: [{ type: core.Output }]
-        };
         return ListViewPagingGate;
-    }(Gate));
-    if (false) {
-        /** @type {?} */
-        ListViewPagingGate.prototype.paging;
-        /** @type {?} */
-        ListViewPagingGate.prototype.pageChanged;
-        /** @type {?} */
-        ListViewPagingGate.prototype.pageSizeChanged;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewPagingGate.prototype.changeDetectorRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewPagingGate.prototype.structureId;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewPagingGate.prototype.structurePagingCommandDispatcher;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewPagingGate.prototype.pagingEventRepository;
-    }
+    }(PagingGate));
 
     /**
      * @fileoverview added by tsickle
@@ -24780,26 +25792,25 @@
      */
     var ListViewModeGate = /** @class */ (function (_super) {
         __extends(ListViewModeGate, _super);
-        function ListViewModeGate(changeDetectorRef, listViewReadModelRootId, listViewCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.changeDetectorRef = changeDetectorRef;
+        function ListViewModeGate(listViewReadModelRootId, listViewCommandDispatcher) {
+            var _this = _super.call(this) || this;
             _this.listViewReadModelRootId = listViewReadModelRootId;
             _this.listViewCommandDispatcher = listViewCommandDispatcher;
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         ListViewModeGate.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (this.isDefined('mode', simpleChanges)) {
+        function (changes) {
+            if (this.isDefined('mode', changes)) {
                 this.listViewCommandDispatcher.setMode(this.mode, this.listViewReadModelRootId);
             }
-            if (this.isDefined('modeSelector', simpleChanges)) {
+            if (this.isDefined('modeSelector', changes)) {
                 this.listViewCommandDispatcher.toggleSelector(this.modeSelector, this.listViewReadModelRootId);
             }
         };
@@ -24810,7 +25821,6 @@
         ];
         /** @nocollapse */
         ListViewModeGate.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
             { type: ListViewReadModelRootId },
             { type: ListViewCommandInvoker }
         ]; };
@@ -24825,11 +25835,6 @@
         ListViewModeGate.prototype.mode;
         /** @type {?} */
         ListViewModeGate.prototype.modeSelector;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewModeGate.prototype.changeDetectorRef;
         /** @type {?} */
         ListViewModeGate.prototype.listViewReadModelRootId;
         /**
@@ -24845,26 +25850,25 @@
      */
     var ListViewTemplateGate = /** @class */ (function (_super) {
         __extends(ListViewTemplateGate, _super);
-        function ListViewTemplateGate(changeDetectorRef, containerTemplateArchive, listCardTemplateArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.changeDetectorRef = changeDetectorRef;
+        function ListViewTemplateGate(containerTemplateArchive, listCardTemplateArchive) {
+            var _this = _super.call(this) || this;
             _this.containerTemplateArchive = containerTemplateArchive;
             _this.listCardTemplateArchive = listCardTemplateArchive;
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         ListViewTemplateGate.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (this.isDefined('template', simpleChanges)) {
+        function (changes) {
+            if (this.isDefined('template', changes)) {
                 this.containerTemplateArchive.next(this.template);
             }
-            if (this.isDefined('cardTemplate', simpleChanges)) {
+            if (this.isDefined('cardTemplate', changes)) {
                 this.listCardTemplateArchive.next(this.cardTemplate);
             }
         };
@@ -24875,7 +25879,6 @@
         ];
         /** @nocollapse */
         ListViewTemplateGate.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
             { type: ListViewTemplateArchive },
             { type: ListViewCardTemplateArchive }
         ]; };
@@ -24894,11 +25897,6 @@
          * @type {?}
          * @private
          */
-        ListViewTemplateGate.prototype.changeDetectorRef;
-        /**
-         * @type {?}
-         * @private
-         */
         ListViewTemplateGate.prototype.containerTemplateArchive;
         /**
          * @type {?}
@@ -24913,23 +25911,22 @@
      */
     var ListViewFieldGate = /** @class */ (function (_super) {
         __extends(ListViewFieldGate, _super);
-        function ListViewFieldGate(changeDetectorRef, structureId, fieldCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.changeDetectorRef = changeDetectorRef;
+        function ListViewFieldGate(structureId, fieldCommandDispatcher) {
+            var _this = _super.call(this) || this;
             _this.structureId = structureId;
             _this.fieldCommandDispatcher = fieldCommandDispatcher;
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         ListViewFieldGate.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (this.isDefined('fields', simpleChanges)) {
+        function (changes) {
+            if (this.isDefined('fields', changes)) {
                 this.fieldCommandDispatcher.initFields(this.fields, this.structureId);
             }
         };
@@ -24940,7 +25937,6 @@
         ];
         /** @nocollapse */
         ListViewFieldGate.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
             { type: StructureId },
             { type: FieldCommandInvoker }
         ]; };
@@ -24952,11 +25948,6 @@
     if (false) {
         /** @type {?} */
         ListViewFieldGate.prototype.fields;
-        /**
-         * @type {?}
-         * @private
-         */
-        ListViewFieldGate.prototype.changeDetectorRef;
         /**
          * @type {?}
          * @private
@@ -24973,34 +25964,46 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ListViewSearchingGate = /** @class */ (function (_super) {
-        __extends(ListViewSearchingGate, _super);
-        function ListViewSearchingGate(changeDetectorRef, structureId, searchCommandDispatcher, searchEventRepository) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.changeDetectorRef = changeDetectorRef;
+    /**
+     * @abstract
+     */
+    var SearchingGate = /** @class */ (function (_super) {
+        __extends(SearchingGate, _super);
+        function SearchingGate(structureId, searchEventRepository, searchCommandInvoker) {
+            var _this = _super.call(this) || this;
             _this.structureId = structureId;
-            _this.searchCommandDispatcher = searchCommandDispatcher;
             _this.searchEventRepository = searchEventRepository;
+            _this.searchCommandInvoker = searchCommandInvoker;
             _this.searchPhraseChanged = new core.EventEmitter();
             return _this;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        ListViewSearchingGate.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+        SearchingGate.prototype.ngOnChanges = /**
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (this.isDefined('searching', simpleChanges)) {
-                this.searchCommandDispatcher.setSearchingConfig(this.searching, this.structureId);
+        function (changes) {
+            if (this.isDefined('searching', changes)) {
+                /** @type {?} */
+                var searching = void 0;
+                if (typeof this.searching === 'boolean') {
+                    searching = {
+                        enabled: this.searching
+                    };
+                }
+                else {
+                    searching = this.searching;
+                }
+                this.searchCommandInvoker.setSearchingConfig(searching, this.structureId);
             }
         };
         /**
          * @return {?}
          */
-        ListViewSearchingGate.prototype.ngOnInit = /**
+        SearchingGate.prototype.ngOnInit = /**
          * @return {?}
          */
         function () {
@@ -25016,6 +26019,43 @@
                 _this.searchPhraseChanged.emit(phrase);
             }));
         };
+        SearchingGate.propDecorators = {
+            searching: [{ type: core.Input }],
+            searchPhraseChanged: [{ type: core.Output }]
+        };
+        return SearchingGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        SearchingGate.prototype.searching;
+        /** @type {?} */
+        SearchingGate.prototype.searchPhraseChanged;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SearchingGate.prototype.structureId;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SearchingGate.prototype.searchEventRepository;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SearchingGate.prototype.searchCommandInvoker;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ListViewSearchingGate = /** @class */ (function (_super) {
+        __extends(ListViewSearchingGate, _super);
+        function ListViewSearchingGate(structureId, searchEventRepository, searchCommandInvoker) {
+            return _super.call(this, structureId, searchEventRepository, searchCommandInvoker) || this;
+        }
         ListViewSearchingGate.decorators = [
             { type: core.Directive, args: [{
                         selector: 'gui-list-view[searching]'
@@ -25023,42 +26063,205 @@
         ];
         /** @nocollapse */
         ListViewSearchingGate.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef },
             { type: StructureId },
-            { type: SearchCommandInvoker },
-            { type: SearchEventRepository }
+            { type: SearchEventRepository },
+            { type: SearchCommandInvoker }
         ]; };
-        ListViewSearchingGate.propDecorators = {
-            searching: [{ type: core.Input }],
-            searchPhraseChanged: [{ type: core.Output }]
-        };
         return ListViewSearchingGate;
+    }(SearchingGate));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ListViewL10nGate = /** @class */ (function (_super) {
+        __extends(ListViewL10nGate, _super);
+        function ListViewL10nGate(translationService) {
+            var _this = _super.call(this) || this;
+            _this.translationService = translationService;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        ListViewL10nGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('localization', changes)) {
+                if (this.localization.translationResolver) {
+                    this.translationService.setResolver(this.localization.translationResolver);
+                }
+                if (this.localization.translation) {
+                    this.translationService.changeTranslation(this.localization.translation);
+                }
+            }
+        };
+        ListViewL10nGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-list-view[localization]'
+                    },] }
+        ];
+        /** @nocollapse */
+        ListViewL10nGate.ctorParameters = function () { return [
+            { type: TranslationService }
+        ]; };
+        ListViewL10nGate.propDecorators = {
+            localization: [{ type: core.Input }]
+        };
+        return ListViewL10nGate;
     }(Gate));
     if (false) {
         /** @type {?} */
-        ListViewSearchingGate.prototype.searching;
+        ListViewL10nGate.prototype.localization;
+        /**
+         * @type {?}
+         * @private
+         */
+        ListViewL10nGate.prototype.translationService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var SourceGate = /** @class */ (function (_super) {
+        __extends(SourceGate, _super);
+        function SourceGate(structureId, sourceCommandInvoker, sourceEventService) {
+            var _this = _super.call(this) || this;
+            _this.structureId = structureId;
+            _this.sourceCommandInvoker = sourceCommandInvoker;
+            _this.sourceEventService = sourceEventService;
+            _this.source = [];
+            _this.items = [];
+            _this.sourceEdited = new core.EventEmitter();
+            _this.localStreamCloser = new StreamCloser();
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        SourceGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            /**
+             * Setting source should be last step
+             */
+            if (this.isDefined('source', changes)) {
+                this.sourceCommandInvoker.setOrigin(this.source);
+            }
+            if (this.isDefined('items', changes)) {
+                this.sourceCommandInvoker.setOrigin(this.items);
+            }
+        };
+        /**
+         * @return {?}
+         */
+        SourceGate.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.sourceEventService
+                .onSourceEdited(this.structureId)
+                .pipe(this.localStreamCloser.takeUntil())
+                .subscribe((/**
+             * @param {?} values
+             * @return {?}
+             */
+            function (values) {
+                _this.sourceEdited.emit(values);
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        SourceGate.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
+        };
+        SourceGate.propDecorators = {
+            source: [{ type: core.Input }],
+            items: [{ type: core.Input }],
+            sourceEdited: [{ type: core.Output }]
+        };
+        return SourceGate;
+    }(Gate));
+    if (false) {
         /** @type {?} */
-        ListViewSearchingGate.prototype.searchPhraseChanged;
+        SourceGate.prototype.source;
+        /** @type {?} */
+        SourceGate.prototype.items;
+        /** @type {?} */
+        SourceGate.prototype.sourceEdited;
         /**
          * @type {?}
          * @private
          */
-        ListViewSearchingGate.prototype.changeDetectorRef;
+        SourceGate.prototype.localStreamCloser;
         /**
          * @type {?}
-         * @private
+         * @protected
          */
-        ListViewSearchingGate.prototype.structureId;
+        SourceGate.prototype.structureId;
         /**
          * @type {?}
-         * @private
+         * @protected
          */
-        ListViewSearchingGate.prototype.searchCommandDispatcher;
+        SourceGate.prototype.sourceCommandInvoker;
         /**
          * @type {?}
-         * @private
+         * @protected
          */
-        ListViewSearchingGate.prototype.searchEventRepository;
+        SourceGate.prototype.sourceEventService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ListViewSourceGate = /** @class */ (function (_super) {
+        __extends(ListViewSourceGate, _super);
+        function ListViewSourceGate(structureId, sourceCommandService, sourceEventService) {
+            var _this = _super.call(this, structureId, sourceCommandService, sourceEventService) || this;
+            _this.sourceCommandService = sourceCommandService;
+            _this.sourceEventService = sourceEventService;
+            return _this;
+        }
+        ListViewSourceGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-list-view[items]'
+                    },] }
+        ];
+        /** @nocollapse */
+        ListViewSourceGate.ctorParameters = function () { return [
+            { type: StructureId },
+            { type: SourceCommandInvoker },
+            { type: SourceEventService }
+        ]; };
+        return ListViewSourceGate;
+    }(SourceGate));
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        ListViewSourceGate.prototype.sourceCommandService;
+        /**
+         * @type {?}
+         * @protected
+         */
+        ListViewSourceGate.prototype.sourceEventService;
     }
 
     /**
@@ -25071,23 +26274,28 @@
         ListViewModeGate,
         ListViewTemplateGate,
         ListViewFieldGate,
-        ListViewSearchingGate
+        ListViewSearchingGate,
+        ListViewL10nGate,
+        ListViewSourceGate
     ];
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var SortingSelectorComponent = /** @class */ (function () {
-        function SortingSelectorComponent() {
-            this.sortingOptions = [
+    var SortingSelectorComponent = /** @class */ (function (_super) {
+        __extends(SortingSelectorComponent, _super);
+        function SortingSelectorComponent(detector, elementRef) {
+            var _this = _super.call(this, detector, elementRef) || this;
+            _this.sortingOptions = [
                 'Name: A-Z',
                 'Name: Z-A',
                 'Price: Low to High',
                 'Price: High to Low',
                 'None'
             ];
-            this.selectedSorting = this.sortingOptions[0];
+            _this.selectedSorting = _this.sortingOptions[0];
+            return _this;
         }
         /**
          * @param {?} sorting
@@ -25100,14 +26308,31 @@
         function (sorting) {
             console.log(sorting);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        SortingSelectorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-sorting-selector';
+        };
         SortingSelectorComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-sorting-selector',
-                        template: "\n\n\t\t<gui-select (optionChanged)=\"changeSorting($event)\"\n\t\t\t\t\t[options]=\"sortingOptions\"\n\t\t\t\t\t[selected]=\"selectedSorting\"\n\t\t\t\t\t[width]=\"200\">\n\t\t</gui-select>\n\n\t"
+                        selector: 'div[gui-sorting-selector]',
+                        template: "\n\n\t\t<gui-select (optionChanged)=\"changeSorting($event)\"\n\t\t\t\t\t[options]=\"sortingOptions\"\n\t\t\t\t\t[selected]=\"selectedSorting\"\n\t\t\t\t\t[width]=\"200\">\n\t\t</gui-select>\n\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
         ];
+        /** @nocollapse */
+        SortingSelectorComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
+        ]; };
         return SortingSelectorComponent;
-    }());
+    }(SmartComponent));
     if (false) {
         /** @type {?} */
         SortingSelectorComponent.prototype.sortingOptions;
@@ -25143,22 +26368,37 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FilterIconComponent = /** @class */ (function () {
-        function FilterIconComponent() {
+    var FilterIconComponent = /** @class */ (function (_super) {
+        __extends(FilterIconComponent, _super);
+        function FilterIconComponent(elementRef, changeDetectorRef) {
+            return _super.call(this, elementRef, changeDetectorRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        FilterIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-filter-icon';
+        };
         FilterIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-filter-icon',
+                        selector: 'div[gui-filter-icon]',
                         template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.32 7.23\">\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"0.75\" x2=\"0.75\" y2=\"0.75\"/>\n\t\t\t<line class=\"cls-1\" x1=\"8.14\" y1=\"3.62\" x2=\"2.18\" y2=\"3.62\"/>\n\t\t\t<line class=\"cls-1\" x1=\"6.71\" y1=\"6.48\" x2=\"3.62\" y2=\"6.48\"/>\n\t\t</svg>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-filter-icon]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        FilterIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return FilterIconComponent;
-    }());
+    }(IconComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -25449,8 +26689,8 @@
      */
     var FilterMenuComponent = /** @class */ (function (_super) {
         __extends(FilterMenuComponent, _super);
-        function FilterMenuComponent(changeDetectorRef, structureId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function FilterMenuComponent(changeDetectorRef, elementRef, structureId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.fieldWarehouse = fieldWarehouse;
@@ -25460,6 +26700,7 @@
             _this.columns = [];
             _this.fields = [];
             _this.activeFilters = [];
+            _this.addClassToHost('gui-block');
             return _this;
         }
         /**
@@ -25602,20 +26843,29 @@
             this.selectedValue = null;
             this.changeDetectorRef.detectChanges();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FilterMenuComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-filter-menu';
+        };
         FilterMenuComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-filter-menu',
-                        template: "\n\n\t\t<div>\n\t\t\t<gui-active-filter-list></gui-active-filter-list>\n\t\t</div>\n\n\t\t<!--\t\t<div>-->\n\t\t<!--\t\t\t<gui-column-selector-->\n\t\t<!--\t\t\t\t\t[columns]=\"columns\"-->\n\t\t<!--\t\t\t\t\t(columnSelected)=\"onColumnSelect($event)\">-->\n\t\t<!--\t\t\t</gui-column-selector>-->\n\n\t\t<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">-->\n\t\t<!--\t\t\t\t{{selectedColumn.getFieldId()}}-->\n\t\t<!--\t\t\t</ng-container>-->\n\t\t<!--\t\t</div>-->\n\n\t\t<div>\n\t\t\t<gui-field-selector\n\t\t\t\t\t[fields]=\"fields\"\n\t\t\t\t\t(fieldSelected)=\"onFieldSelect($event)\">\n\t\t\t</gui-field-selector>\n\n\t\t\t<ng-container *ngIf=\"selectedColumn\">\n\t\t\t\t{{selectedColumn.getFieldId()}}\n\t\t\t</ng-container>\n\t\t</div>\n\n\t\t<div>\n\t\t\t<gui-filter-type-selector\n\t\t\t\t\t[filterTypes]=\"filterTypes\"\n\t\t\t\t\t(filterTypeSelected)=\"onFilterTypeSelect($event)\">\n\t\t\t</gui-filter-type-selector>\n\n\t\t\t<ng-container *ngIf=\"selectedFilterTypeId\">\n\t\t\t\t{{selectedFilterTypeId.toString()}}\n\t\t\t</ng-container>\n\t\t</div>\n\n\t\t<div>\n\n\t\t\t<gui-filter-value *ngIf=\"selectedFilterTypeId\"\n\t\t\t\t\t\t\t  (valueChanged)=\"onValueChanged($event)\">\n\t\t\t</gui-filter-value>\n\n\t\t</div>\n\n\t\t<div>\n\t\t\t<button gui-button\n\t\t\t\t\t[primary]=\"true\"\n\t\t\t\t\t[disabled]=\"!selectedFilterTypeId\"\n\t\t\t\t\t(click)=\"addFilter()\">\n\t\t\t\tFilter\n\t\t\t</button>\n\t\t</div>\n\n\t\t<div>\n\t\t\t<button gui-button\n\t\t\t\t\t[secondary]=\"true\"\n\t\t\t\t\t(click)=\"removeAllFilters()\">\n\t\t\t\tClear filters\n\t\t\t</button>\n\t\t</div>\n\n\t",
+                        selector: 'div[gui-filter-menu]',
+                        template: "<div>\n\t<div gui-active-filter-list></div>\n</div>\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<div>\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\" gui-field-selector></div>\n\n\t<ng-container *ngIf=\"selectedColumn\">\n\t\t{{selectedColumn.getFieldId()}}\n\t</ng-container>\n</div>\n\n<div>\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>\n\n\t<ng-container *ngIf=\"selectedFilterTypeId\">\n\t\t{{selectedFilterTypeId.toString()}}\n\t</ng-container>\n</div>\n\n<div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>\n\n</div>\n\n<div>\n\t<button (click)=\"addFilter()\"\n\t\t\t[disabled]=\"!selectedFilterTypeId\"\n\t\t\t[primary]=\"true\" gui-button>\n\t\tFilter\n\t</button>\n</div>\n\n<div>\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[secondary]=\"true\" gui-button>\n\t\tClear filters\n\t</button>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-filter-menu]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         FilterMenuComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: FieldWarehouse },
             { type: FilterWarehouse },
@@ -25679,11 +26929,14 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FilterMenuTriggerComponent = /** @class */ (function () {
-        function FilterMenuTriggerComponent(injector, drawerService, filterContainerRef) {
-            this.injector = injector;
-            this.drawerService = drawerService;
-            this.filterContainerRef = filterContainerRef;
+    var FilterMenuTriggerComponent = /** @class */ (function (_super) {
+        __extends(FilterMenuTriggerComponent, _super);
+        function FilterMenuTriggerComponent(detector, elementRef, injector, drawerService, filterContainerRef) {
+            var _this = _super.call(this, detector, elementRef) || this;
+            _this.injector = injector;
+            _this.drawerService = drawerService;
+            _this.filterContainerRef = filterContainerRef;
+            return _this;
         }
         /**
          * @return {?}
@@ -25696,26 +26949,36 @@
             var elementRef = this.filterContainerRef.getElementRef();
             this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FilterMenuTriggerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-filter-menu-trigger';
+        };
         FilterMenuTriggerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-filter-menu-trigger',
-                        template: "\n\t\t<div [gui-tooltip]=\"'Filters'\"\n\t\t\t (click)=\"openDrawer()\"\n\t\t\t class=\"gui-filter-icon-wrapper\">\n\t\t\t<gui-filter-icon></gui-filter-icon>\n\t\t</div>\n\t",
+                        selector: 'div[gui-filter-menu-trigger]',
+                        template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\" class=\"gui-filter-icon-wrapper\">\n\t<div gui-filter-icon></div>\n</div>\n",
                         encapsulation: core.ViewEncapsulation.None,
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        host: {
-                            '[class.gui-filter-menu-trigger]': 'true'
-                        },
-                        styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-icon-wrapper .gui-filter-icon{cursor:pointer}.gui-filter-icon-wrapper .gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon-wrapper .gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon-wrapper .gui-filter-icon:hover .cls-1{stroke:#464646}.gui-filter-menu{display:block;width:400px}"]
+                        styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-icon-wrapper .gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon-wrapper .gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon-wrapper .gui-filter-icon:hover .cls-1{stroke:#464646}.gui-filter-menu{width:400px}"]
                     }] }
         ];
         /** @nocollapse */
         FilterMenuTriggerComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: core.Injector },
             { type: fabric.FabricDrawerService },
             { type: undefined, decorators: [{ type: core.Inject, args: [filterContainerToken,] }] }
         ]; };
         return FilterMenuTriggerComponent;
-    }());
+    }(SmartComponent));
     if (false) {
         /**
          * @type {?}
@@ -25738,9 +27001,12 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ColumnSelectorComponent = /** @class */ (function () {
-        function ColumnSelectorComponent() {
-            this.columnSelected = new core.EventEmitter();
+    var ColumnSelectorComponent = /** @class */ (function (_super) {
+        __extends(ColumnSelectorComponent, _super);
+        function ColumnSelectorComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.columnSelected = new core.EventEmitter();
+            return _this;
         }
         /**
          * @param {?} column
@@ -25753,20 +27019,35 @@
         function (column) {
             this.columnSelected.emit(column);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ColumnSelectorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-column-selector';
+        };
         ColumnSelectorComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-column-selector[columns]',
+                        selector: 'div[gui-column-selector][columns]',
                         template: "\n\n\t\tColumn:\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let column of columns\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(column)\">\n\t\t\t\t<ng-container\n\t\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t   context: column.context\">\n\t\t\t\t</ng-container>\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        ColumnSelectorComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         ColumnSelectorComponent.propDecorators = {
             columns: [{ type: core.Input }],
             columnSelected: [{ type: core.Output }]
         };
         return ColumnSelectorComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         ColumnSelectorComponent.prototype.columns;
@@ -25780,8 +27061,8 @@
      */
     var FilterTypeSelectorComponent = /** @class */ (function (_super) {
         __extends(FilterTypeSelectorComponent, _super);
-        function FilterTypeSelectorComponent() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
+        function FilterTypeSelectorComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
             _this.filterTypeSelected = new core.EventEmitter();
             return _this;
         }
@@ -25796,14 +27077,29 @@
         function (filterType) {
             this.filterTypeSelected.emit(filterType.getId());
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FilterTypeSelectorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-filter-type-selector';
+        };
         FilterTypeSelectorComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-filter-type-selector[filterTypes]',
-                        template: "\n\n\t\t<ng-container>\n\t\t\tFilter Type:\n\t\t</ng-container>\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let filterType of filterTypes\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(filterType)\">\n\t\t\t\t{{filterType.getName()}}\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
+                        selector: 'div[gui-filter-type-selector][filterTypes]',
+                        template: "<ng-container>\n\tFilter Type:\n</ng-container>\n\n<gui-dropdown>\n\t<gui-dropdown-item (click)=\"onSelectChange(filterType)\"\n\t\t\t\t\t   *ngFor=\"let filterType of filterTypes\">\n\t\t{{filterType.getName()}}\n\t</gui-dropdown-item>\n</gui-dropdown>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        FilterTypeSelectorComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         FilterTypeSelectorComponent.propDecorators = {
             filterTypes: [{ type: core.Input }],
             filterTypeSelected: [{ type: core.Output }]
@@ -25821,14 +27117,17 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FilterValueComponent = /** @class */ (function () {
-        function FilterValueComponent(formBuilder) {
-            this.formBuilder = formBuilder;
-            this.valueChanged = new core.EventEmitter();
+    var FilterValueComponent = /** @class */ (function (_super) {
+        __extends(FilterValueComponent, _super);
+        function FilterValueComponent(detector, elementRef, formBuilder) {
+            var _this = _super.call(this, detector, elementRef) || this;
+            _this.formBuilder = formBuilder;
+            _this.valueChanged = new core.EventEmitter();
             /** @type {?} */
             var controlsConfig = {};
             controlsConfig[FilterValueComponent.FORM_FILTER_VALUE] = '';
-            this.filterForm = this.formBuilder.group(controlsConfig);
+            _this.filterForm = _this.formBuilder.group(controlsConfig);
+            return _this;
         }
         /**
          * @return {?}
@@ -25852,20 +27151,30 @@
                 _this.valueChanged.emit(value);
             }));
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FilterValueComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-filter-value';
+        };
         FilterValueComponent.FORM_FILTER_VALUE = 'filterValue';
         FilterValueComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-filter-value',
-                        template: "\n\n\t\t<form #formRef\n\t\t\t  [formGroup]=\"filterForm\">\n\n\t\t\t<input formControlName=\"filterValue\"/>\n\t\t</form>\n\t",
+                        selector: 'div[gui-filter-value]',
+                        template: "<form #formRef\n\t  [formGroup]=\"filterForm\">\n\n\t<input formControlName=\"filterValue\"/>\n</form>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-filter-value]': "\"true\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         FilterValueComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: forms.FormBuilder }
         ]; };
         FilterValueComponent.propDecorators = {
@@ -25873,7 +27182,7 @@
             valueChanged: [{ type: core.Output }]
         };
         return FilterValueComponent;
-    }());
+    }(SmartComponent));
     if (false) {
         /**
          * @type {?}
@@ -25897,10 +27206,2555 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var FieldSelectorComponent = /** @class */ (function (_super) {
+        __extends(FieldSelectorComponent, _super);
+        function FieldSelectorComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.fieldSelected = new core.EventEmitter();
+            return _this;
+        }
+        /**
+         * @param {?} field
+         * @return {?}
+         */
+        FieldSelectorComponent.prototype.onSelectChange = /**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            this.fieldSelected.emit(field);
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FieldSelectorComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-field-selector';
+        };
+        FieldSelectorComponent.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'div[gui-field-selector][fields]',
+                        template: "\n\n\t\tField:\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let field of fields\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(field)\">\n\t\t\t\t{{field.getName()}}\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
+                    }] }
+        ];
+        /** @nocollapse */
+        FieldSelectorComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
+        FieldSelectorComponent.propDecorators = {
+            fields: [{ type: core.Input }],
+            fieldSelected: [{ type: core.Output }]
+        };
+        return FieldSelectorComponent;
+    }(PureComponent));
+    if (false) {
+        /** @type {?} */
+        FieldSelectorComponent.prototype.fields;
+        /** @type {?} */
+        FieldSelectorComponent.prototype.fieldSelected;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ToggleFilterCommand = /** @class */ (function (_super) {
+        __extends(ToggleFilterCommand, _super);
+        function ToggleFilterCommand(structureId, fieldId, externalFilterId, filterValue) {
+            var _this = _super.call(this, structureId, 'ToggleFilterCommand') || this;
+            _this.fieldId = fieldId;
+            _this.externalFilterId = externalFilterId;
+            _this.filterValue = filterValue;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        ToggleFilterCommand.prototype.getFieldId = /**
+         * @return {?}
+         */
+        function () {
+            return this.fieldId;
+        };
+        /**
+         * @return {?}
+         */
+        ToggleFilterCommand.prototype.getExternalFilterId = /**
+         * @return {?}
+         */
+        function () {
+            return this.externalFilterId;
+        };
+        /**
+         * @return {?}
+         */
+        ToggleFilterCommand.prototype.getFilterValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterValue;
+        };
+        return ToggleFilterCommand;
+    }(StructureCommand));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleFilterCommand.prototype.fieldId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleFilterCommand.prototype.externalFilterId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleFilterCommand.prototype.filterValue;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterToggledEvent = /** @class */ (function (_super) {
+        __extends(FilterToggledEvent, _super);
+        function FilterToggledEvent(aggregateId) {
+            return _super.call(this, aggregateId, 'FilterToggledEvent') || this;
+        }
+        return FilterToggledEvent;
+    }(StructureDomainEvent));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ToggleFilterCommandHandler = /** @class */ (function () {
+        function ToggleFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        ToggleFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return ToggleFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ToggleFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        ToggleFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var externalFieldId = command.getExternalFilterId();
+            /** @type {?} */
+            var filterValue = command.getFilterValue();
+            aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
+        };
+        ToggleFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        ToggleFilterCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return ToggleFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleFilterCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        ToggleFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var AddFilterCommandHandler = /** @class */ (function () {
+        function AddFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        AddFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return AddFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        AddFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        AddFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var filterTypeId = command.getFilterTypeId();
+            /** @type {?} */
+            var value = command.getValue();
+            structure.addFilter(fieldId, filterTypeId, value);
+        };
+        AddFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        AddFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return AddFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AddFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var RemoveAllFiltersCommandHandler = /** @class */ (function () {
+        function RemoveAllFiltersCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        RemoveAllFiltersCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return RemoveAllFiltersCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        RemoveAllFiltersCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        RemoveAllFiltersCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            structure.removeAllFilters();
+        };
+        RemoveAllFiltersCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        RemoveAllFiltersCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return RemoveAllFiltersCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        RemoveAllFiltersCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var RemoveFilterCommandHandler = /** @class */ (function () {
+        function RemoveFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        RemoveFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return RemoveFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        RemoveFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        RemoveFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var filterId = command.getFilterId();
+            structure.removeFilter(filterId);
+        };
+        RemoveFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        RemoveFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return RemoveFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        RemoveFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ConfigFilterSetEvent = /** @class */ (function (_super) {
+        __extends(ConfigFilterSetEvent, _super);
+        function ConfigFilterSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'ConfigFilterSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        ConfigFilterSetEvent.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return ConfigFilterSetEvent;
+    }(StructureDomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ConfigFilterSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetConfigFilterCommandHandler = /** @class */ (function () {
+        function SetConfigFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetConfigFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetConfigFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetConfigFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var filterConfig = command.getConfig();
+            this.domainEventPublisher.publish(new ConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetConfigFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var filterConfig = command.getConfig();
+            aggregate.setFilterConfig(filterConfig);
+        };
+        SetConfigFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetConfigFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetConfigFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetConfigFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ConfigQuickFilterSetEvent = /** @class */ (function (_super) {
+        __extends(ConfigQuickFilterSetEvent, _super);
+        function ConfigQuickFilterSetEvent(aggregateId, enabled) {
+            var _this = _super.call(this, aggregateId, 'ConfigQuickFilterSetEvent') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        ConfigQuickFilterSetEvent.prototype.getEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return ConfigQuickFilterSetEvent;
+    }(StructureDomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ConfigQuickFilterSetEvent.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SetConfigQuickFilterCommandHandler = /** @class */ (function () {
+        function SetConfigQuickFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SetConfigQuickFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SetConfigQuickFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetConfigQuickFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var structureId = command.getAggregateId();
+            /** @type {?} */
+            var quickFiltersConfig = command.getConfig();
+            this.domainEventPublisher.publish(new ConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetConfigQuickFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            /** @type {?} */
+            var quickFiltersConfig = command.getConfig();
+            aggregate.setQuickFiltersConfig(quickFiltersConfig);
+        };
+        SetConfigQuickFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SetConfigQuickFilterCommandHandler.ctorParameters = function () { return [
+            { type: StructureAggregateRepository },
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SetConfigQuickFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
+        /**
+         * @type {?}
+         * @private
+         */
+        SetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var Filter = /** @class */ (function () {
+        function Filter(filterId, fieldId, filterTypeId, filterValue) {
+            this.filterId = filterId;
+            this.fieldId = fieldId;
+            this.filterTypeId = filterTypeId;
+            this.filterValue = filterValue;
+        }
+        /**
+         * @return {?}
+         */
+        Filter.prototype.getFilterId = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterId;
+        };
+        /**
+         * @return {?}
+         */
+        Filter.prototype.getFilterTypeId = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterTypeId;
+        };
+        /**
+         * @return {?}
+         */
+        Filter.prototype.getFieldId = /**
+         * @return {?}
+         */
+        function () {
+            return this.fieldId;
+        };
+        /**
+         * @return {?}
+         */
+        Filter.prototype.getFilterValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterValue;
+        };
+        return Filter;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        Filter.prototype.filterId;
+        /**
+         * @type {?}
+         * @private
+         */
+        Filter.prototype.fieldId;
+        /**
+         * @type {?}
+         * @private
+         */
+        Filter.prototype.filterTypeId;
+        /**
+         * @type {?}
+         * @private
+         */
+        Filter.prototype.filterValue;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterSettings = /** @class */ (function () {
+        function FilterSettings(filteringEnabled, searchEnabled, quickFiltersEnabled) {
+            if (filteringEnabled === void 0) { filteringEnabled = false; }
+            if (searchEnabled === void 0) { searchEnabled = false; }
+            if (quickFiltersEnabled === void 0) { quickFiltersEnabled = false; }
+            this.filteringEnabled = false;
+            this.searchEnabled = false;
+            this.quickFiltersEnabled = false;
+            this.filteringEnabled = filteringEnabled;
+            this.searchEnabled = searchEnabled;
+            this.quickFiltersEnabled = quickFiltersEnabled;
+        }
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isFilteringEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.filteringEnabled;
+        };
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isQuickFilteringEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.quickFiltersEnabled;
+        };
+        /**
+         * @return {?}
+         */
+        FilterSettings.prototype.isSearchingEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.searchEnabled;
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setFilterConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.filteringEnabled = config.enabled;
+            }
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setSearchingConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.searchEnabled = config.enabled;
+            }
+        };
+        /**
+         * @param {?} config
+         * @return {?}
+         */
+        FilterSettings.prototype.setQuickFiltersConfig = /**
+         * @param {?} config
+         * @return {?}
+         */
+        function (config) {
+            if (config && config.enabled !== undefined && config.enabled !== null) {
+                this.quickFiltersEnabled = config.enabled;
+            }
+        };
+        return FilterSettings;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.filteringEnabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.searchEnabled;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterSettings.prototype.quickFiltersEnabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     * @template T
+     */
+    var /**
+     * @abstract
+     * @template T
+     */
+    BaseFilterType = /** @class */ (function () {
+        function BaseFilterType(filterTypeId) {
+            this.filterTypeId = filterTypeId;
+        }
+        /**
+         * @return {?}
+         */
+        BaseFilterType.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterTypeId;
+        };
+        /**
+         * @param {?} entities
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        BaseFilterType.prototype.filterMany = /**
+         * @param {?} entities
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (entities, field, value) {
+            var _this = this;
+            if (entities.length === 0) {
+                return entities;
+            }
+            return entities.filter((/**
+             * @param {?} item
+             * @return {?}
+             */
+            function (item) {
+                return _this.filterEntity(item, field, value);
+            }));
+        };
+        /**
+         * @param {?} entity
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        BaseFilterType.prototype.filterOne = /**
+         * @param {?} entity
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (entity, field, value) {
+            return this.filterEntity(entity, field, value);
+        };
+        return BaseFilterType;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        BaseFilterType.prototype.filterTypeId;
+        /**
+         * @abstract
+         * @return {?}
+         */
+        BaseFilterType.prototype.getName = function () { };
+        /**
+         * @abstract
+         * @protected
+         * @param {?} entity
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        BaseFilterType.prototype.filterEntity = function (entity, field, value) { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ContainsFilterType = /** @class */ (function (_super) {
+        __extends(ContainsFilterType, _super);
+        function ContainsFilterType(filterTypeId) {
+            return _super.call(this, filterTypeId) || this;
+        }
+        /**
+         * @return {?}
+         */
+        ContainsFilterType.prototype.getName = /**
+         * @return {?}
+         */
+        function () {
+            return 'Contains';
+        };
+        /**
+         * @protected
+         * @param {?} entity
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        ContainsFilterType.prototype.filterEntity = /**
+         * @protected
+         * @param {?} entity
+         * @param {?} field
+         * @param {?} value
+         * @return {?}
+         */
+        function (entity, field, value) {
+            /** @type {?} */
+            var fieldValue = field.getValue(entity);
+            return !!fieldValue.includes(value);
+        };
+        return ContainsFilterType;
+    }(BaseFilterType));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeId = /** @class */ (function () {
+        function FilterTypeId(id) {
+            this.id = id;
+        }
+        /**
+         * @return {?}
+         */
+        FilterTypeId.prototype.toString = /**
+         * @return {?}
+         */
+        function () {
+            return this.id;
+        };
+        return FilterTypeId;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeId.prototype.id;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeIdGenerator = /** @class */ (function () {
+        function FilterTypeIdGenerator() {
+        }
+        /**
+         * @return {?}
+         */
+        FilterTypeIdGenerator.prototype.generate = /**
+         * @return {?}
+         */
+        function () {
+            FilterTypeIdGenerator.index += 1;
+            return new FilterTypeId("" + FilterTypeIdGenerator.index);
+        };
+        FilterTypeIdGenerator.index = 0;
+        return FilterTypeIdGenerator;
+    }());
+    if (false) {
+        /** @type {?} */
+        FilterTypeIdGenerator.index;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeReadModel = /** @class */ (function () {
+        function FilterTypeReadModel(id, name) {
+            this.filterTypeId = id;
+            this.name = name;
+        }
+        /**
+         * @return {?}
+         */
+        FilterTypeReadModel.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterTypeId;
+        };
+        /**
+         * @return {?}
+         */
+        FilterTypeReadModel.prototype.getName = /**
+         * @return {?}
+         */
+        function () {
+            return this.name;
+        };
+        return FilterTypeReadModel;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeReadModel.prototype.filterTypeId;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeReadModel.prototype.name;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeManager = /** @class */ (function () {
+        function FilterTypeManager(fields) {
+            this.fieldIds = [];
+            this.map = new WeakMap();
+            this.filterTypeMap = new WeakMap();
+            this.dataTypeToFilterType = new Map();
+            this.filterTypeIdGenerator = new FilterTypeIdGenerator();
+            this.assignFilterTypes();
+            this.addFields(fields);
+        }
+        /**
+         * @param {?} filterTypeId
+         * @return {?}
+         */
+        FilterTypeManager.prototype.getFilterType = /**
+         * @param {?} filterTypeId
+         * @return {?}
+         */
+        function (filterTypeId) {
+            return this.filterTypeMap.get(filterTypeId);
+        };
+        /**
+         * @return {?}
+         */
+        FilterTypeManager.prototype.getFieldIdsToFilterTypes = /**
+         * @return {?}
+         */
+        function () {
+            var e_1, _a;
+            /** @type {?} */
+            var map = new Map();
+            try {
+                for (var _b = __values(this.fieldIds), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var fieldId = _c.value;
+                    /** @type {?} */
+                    var filterTypes = this.map.get(fieldId);
+                    /** @type {?} */
+                    var readModels = filterTypes.map((/**
+                     * @param {?} f
+                     * @return {?}
+                     */
+                    function (f) {
+                        return new FilterTypeReadModel(f.getId(), f.getName());
+                    }));
+                    map.set(fieldId.toString(), readModels);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return map;
+        };
+        /**
+         * @private
+         * @param {?} fields
+         * @return {?}
+         */
+        FilterTypeManager.prototype.addFields = /**
+         * @private
+         * @param {?} fields
+         * @return {?}
+         */
+        function (fields) {
+            var e_2, _a;
+            try {
+                for (var fields_1 = __values(fields), fields_1_1 = fields_1.next(); !fields_1_1.done; fields_1_1 = fields_1.next()) {
+                    var field = fields_1_1.value;
+                    this.addField(field);
+                }
+            }
+            catch (e_2_1) { e_2 = { error: e_2_1 }; }
+            finally {
+                try {
+                    if (fields_1_1 && !fields_1_1.done && (_a = fields_1.return)) _a.call(fields_1);
+                }
+                finally { if (e_2) throw e_2.error; }
+            }
+        };
+        /**
+         * @private
+         * @param {?} field
+         * @return {?}
+         */
+        FilterTypeManager.prototype.addField = /**
+         * @private
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var fieldId = field.getId();
+            /** @type {?} */
+            var dataType = field.getDataType();
+            /** @type {?} */
+            var filterTypesFromDataType = this.dataTypeToFilterType.get(dataType);
+            this.fieldIds.push(fieldId);
+            this.map.set(fieldId, __spread(filterTypesFromDataType));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypes = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.assignFilterTypesForDataTypeUnknown();
+            this.assignFilterTypesForDataTypeNumber();
+            this.assignFilterTypesForDataTypeString();
+            this.assignFilterTypesForDataTypeBoolean();
+            this.assignFilterTypesForDataTypeDate();
+            this.assignFilterTypesForDataTypeCustom();
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeUnknown = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.dataTypeToFilterType.set(DataType.UNKNOWN, []);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeNumber = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.dataTypeToFilterType.set(DataType.NUMBER, []);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeString = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            /** @type {?} */
+            var filterTypes = [
+                new ContainsFilterType(this.generateId())
+            ];
+            this.dataTypeToFilterType.set(DataType.STRING, filterTypes);
+            this.addFilterTypes(filterTypes);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeBoolean = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.dataTypeToFilterType.set(DataType.BOOLEAN, []);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeDate = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.dataTypeToFilterType.set(DataType.DATE, []);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.assignFilterTypesForDataTypeCustom = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            this.dataTypeToFilterType.set(DataType.CUSTOM, []);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        FilterTypeManager.prototype.generateId = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            return this.filterTypeIdGenerator.generate();
+        };
+        /**
+         * @private
+         * @param {?} filterTypes
+         * @return {?}
+         */
+        FilterTypeManager.prototype.addFilterTypes = /**
+         * @private
+         * @param {?} filterTypes
+         * @return {?}
+         */
+        function (filterTypes) {
+            var e_3, _a;
+            try {
+                for (var filterTypes_1 = __values(filterTypes), filterTypes_1_1 = filterTypes_1.next(); !filterTypes_1_1.done; filterTypes_1_1 = filterTypes_1.next()) {
+                    var filterType = filterTypes_1_1.value;
+                    this.filterTypeMap.set(filterType.getId(), filterType);
+                }
+            }
+            catch (e_3_1) { e_3 = { error: e_3_1 }; }
+            finally {
+                try {
+                    if (filterTypes_1_1 && !filterTypes_1_1.done && (_a = filterTypes_1.return)) _a.call(filterTypes_1);
+                }
+                finally { if (e_3) throw e_3.error; }
+            }
+        };
+        return FilterTypeManager;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeManager.prototype.fieldIds;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeManager.prototype.map;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeManager.prototype.filterTypeMap;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeManager.prototype.dataTypeToFilterType;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeManager.prototype.filterTypeIdGenerator;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterId = /** @class */ (function () {
+        function FilterId(filterId) {
+            this.id = filterId;
+        }
+        /**
+         * @return {?}
+         */
+        FilterId.prototype.toString = /**
+         * @return {?}
+         */
+        function () {
+            return this.id;
+        };
+        return FilterId;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterId.prototype.id;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterIdGenerator = /** @class */ (function () {
+        function FilterIdGenerator() {
+        }
+        /**
+         * @return {?}
+         */
+        FilterIdGenerator.generateId = /**
+         * @return {?}
+         */
+        function () {
+            return new FilterId("" + FilterIdGenerator.index);
+        };
+        FilterIdGenerator.index = 0;
+        return FilterIdGenerator;
+    }());
+    if (false) {
+        /** @type {?} */
+        FilterIdGenerator.index;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ActiveFilterReadModel = /** @class */ (function () {
+        function ActiveFilterReadModel(filterId, fieldName, filterTypeName, value) {
+            this.filterId = filterId;
+            this.fieldName = fieldName;
+            this.filterTypeName = filterTypeName;
+            this.value = value;
+        }
+        /**
+         * @return {?}
+         */
+        ActiveFilterReadModel.prototype.getText = /**
+         * @return {?}
+         */
+        function () {
+            return this.fieldName + ": " + this.filterTypeName + ": " + this.value;
+        };
+        /**
+         * @return {?}
+         */
+        ActiveFilterReadModel.prototype.getFilterId = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterId;
+        };
+        return ActiveFilterReadModel;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFilterReadModel.prototype.filterId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFilterReadModel.prototype.fieldName;
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFilterReadModel.prototype.filterTypeName;
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFilterReadModel.prototype.value;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterManager = /** @class */ (function () {
+        function FilterManager() {
+            this.filterSettings = new FilterSettings();
+            // string -> FilterId
+            this.filters = new Map();
+            this.activeFilters = [];
+        }
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.getSettings = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterSettings;
+        };
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.getAll = /**
+         * @return {?}
+         */
+        function () {
+            return Array.from(this.filters)
+                .map((/**
+             * @param {?} arr
+             * @return {?}
+             */
+            function (arr) { return arr[1]; }));
+        };
+        /**
+         * @param {?} fields
+         * @return {?}
+         */
+        FilterManager.prototype.getAllActiveFilters = /**
+         * @param {?} fields
+         * @return {?}
+         */
+        function (fields) {
+            var _this = this;
+            return this.activeFilters
+                .map((/**
+             * @param {?} af
+             * @return {?}
+             */
+            function (af) {
+                return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), _this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.getFilterTypes = /**
+         * @return {?}
+         */
+        function () {
+            return this.filterTypeManager.getFieldIdsToFilterTypes();
+        };
+        /**
+         * @param {?} fields
+         * @return {?}
+         */
+        FilterManager.prototype.assignFilterTypes = /**
+         * @param {?} fields
+         * @return {?}
+         */
+        function (fields) {
+            this.filterTypeManager = new FilterTypeManager(fields);
+        };
+        /**
+         * @param {?} fieldId
+         * @param {?} filterTypeId
+         * @param {?} value
+         * @return {?}
+         */
+        FilterManager.prototype.add = /**
+         * @param {?} fieldId
+         * @param {?} filterTypeId
+         * @param {?} value
+         * @return {?}
+         */
+        function (fieldId, filterTypeId, value) {
+            /** @type {?} */
+            var filter = new Filter(FilterIdGenerator.generateId(), fieldId, filterTypeId, value);
+            this.activeFilters.push(filter);
+        };
+        /**
+         * @param {?} entities
+         * @param {?} fields
+         * @return {?}
+         */
+        FilterManager.prototype.filter = /**
+         * @param {?} entities
+         * @param {?} fields
+         * @return {?}
+         */
+        function (entities, fields) {
+            var e_1, _a;
+            /** @type {?} */
+            var filteredEntities = __spread(entities);
+            try {
+                for (var _b = __values(this.activeFilters), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var filter = _c.value;
+                    /** @type {?} */
+                    var filterTypeId = filter.getFilterTypeId();
+                    /** @type {?} */
+                    var filterType = this.getFilterType(filterTypeId);
+                    /** @type {?} */
+                    var value = filter.getFilterValue();
+                    filteredEntities = filterType.filterMany(filteredEntities, fields.get(filter.getFieldId().toString()), value);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return filteredEntities;
+        };
+        /**
+         * @return {?}
+         */
+        FilterManager.prototype.removeAll = /**
+         * @return {?}
+         */
+        function () {
+            this.activeFilters.length = 0;
+        };
+        /**
+         * @param {?} filterId
+         * @return {?}
+         */
+        FilterManager.prototype.remove = /**
+         * @param {?} filterId
+         * @return {?}
+         */
+        function (filterId) {
+            this.activeFilters =
+                this.activeFilters.filter((/**
+                 * @param {?} filter
+                 * @return {?}
+                 */
+                function (filter) {
+                    return filter.getFilterId() !== filterId;
+                }));
+        };
+        /**
+         * @private
+         * @param {?} filterTypeId
+         * @return {?}
+         */
+        FilterManager.prototype.getFilterType = /**
+         * @private
+         * @param {?} filterTypeId
+         * @return {?}
+         */
+        function (filterTypeId) {
+            return this.filterTypeManager.getFilterType(filterTypeId);
+        };
+        return FilterManager;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.filterSettings;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.filters;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.activeFilters;
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterManager.prototype.filterTypeManager;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterManagerFactory = /** @class */ (function () {
+        function FilterManagerFactory() {
+        }
+        /**
+         * @param {?=} enabled
+         * @return {?}
+         */
+        FilterManagerFactory.prototype.create = /**
+         * @param {?=} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            if (enabled === void 0) { enabled = false; }
+            return new FilterManager();
+        };
+        FilterManagerFactory.decorators = [
+            { type: core.Injectable }
+        ];
+        return FilterManagerFactory;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ConfigQuickFilterSetEventHandler = /** @class */ (function () {
+        function ConfigQuickFilterSetEventHandler(structureQuickFilterRepository) {
+            this.structureQuickFilterRepository = structureQuickFilterRepository;
+        }
+        /**
+         * @return {?}
+         */
+        ConfigQuickFilterSetEventHandler.prototype.forEvent = /**
+         * @return {?}
+         */
+        function () {
+            return ConfigQuickFilterSetEvent;
+        };
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        ConfigQuickFilterSetEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event.ofMessageType('ConfigQuickFilterSetEvent')) {
+                this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+            }
+        };
+        ConfigQuickFilterSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        ConfigQuickFilterSetEventHandler.ctorParameters = function () { return [
+            { type: QuickFilterEnabledRepository }
+        ]; };
+        return ConfigQuickFilterSetEventHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ConfigFilterSetEventHandler = /** @class */ (function () {
+        function ConfigFilterSetEventHandler(structureFilterRepository) {
+            this.structureFilterRepository = structureFilterRepository;
+        }
+        /**
+         * @return {?}
+         */
+        ConfigFilterSetEventHandler.prototype.forEvent = /**
+         * @return {?}
+         */
+        function () {
+            return ConfigFilterSetEvent;
+        };
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        ConfigFilterSetEventHandler.prototype.handle = /**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            if (event.ofMessageType('ConfigFilterSetEvent')) {
+                this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+            }
+        };
+        ConfigFilterSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        ConfigFilterSetEventHandler.ctorParameters = function () { return [
+            { type: FilterEnabledRepository }
+        ]; };
+        return ConfigFilterSetEventHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ConfigFilterSetEventHandler.prototype.structureFilterRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeMap = /** @class */ (function () {
+        function FilterTypeMap(map) {
+            this.map = map;
+        }
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        FilterTypeMap.prototype.getFilterTypes = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return this.map.get(fieldId.toString());
+        };
+        return FilterTypeMap;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeMap.prototype.map;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypesInitedEvent = /** @class */ (function (_super) {
+        __extends(FilterTypesInitedEvent, _super);
+        function FilterTypesInitedEvent(aggregateId, map) {
+            var _this = _super.call(this, aggregateId, 'FilterTypesInitedEvent') || this;
+            _this.map = map;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        FilterTypesInitedEvent.prototype.getMap = /**
+         * @return {?}
+         */
+        function () {
+            return this.map;
+        };
+        return FilterTypesInitedEvent;
+    }(StructureDomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypesInitedEvent.prototype.map;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterTypeConfigFilterSetEventHandler = /** @class */ (function () {
+        function FilterTypeConfigFilterSetEventHandler(filterTypeRepository) {
+            this.filterTypeRepository = filterTypeRepository;
+        }
+        /**
+         * @return {?}
+         */
+        FilterTypeConfigFilterSetEventHandler.prototype.forEvent = /**
+         * @return {?}
+         */
+        function () {
+            return FilterTypesInitedEvent;
+        };
+        /**
+         * @param {?} filterTypesInitedEvent
+         * @return {?}
+         */
+        FilterTypeConfigFilterSetEventHandler.prototype.handle = /**
+         * @param {?} filterTypesInitedEvent
+         * @return {?}
+         */
+        function (filterTypesInitedEvent) {
+            if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
+                /** @type {?} */
+                var map = filterTypesInitedEvent.getMap();
+                this.filterTypeRepository.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
+            }
+        };
+        FilterTypeConfigFilterSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        FilterTypeConfigFilterSetEventHandler.ctorParameters = function () { return [
+            { type: FilterTypeRepository }
+        ]; };
+        return FilterTypeConfigFilterSetEventHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FilterTypeConfigFilterSetEventHandler.prototype.filterTypeRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ActiveFiltersSetEvent = /** @class */ (function (_super) {
+        __extends(ActiveFiltersSetEvent, _super);
+        function ActiveFiltersSetEvent(structureId, filters) {
+            var _this = _super.call(this, structureId, 'ActiveFiltersSetEvent') || this;
+            _this.filters = filters;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        ActiveFiltersSetEvent.prototype.getFilters = /**
+         * @return {?}
+         */
+        function () {
+            return this.filters;
+        };
+        return ActiveFiltersSetEvent;
+    }(StructureDomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFiltersSetEvent.prototype.filters;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ActiveFiltersSetEventHandler = /** @class */ (function () {
+        function ActiveFiltersSetEventHandler(activeFilterRepository) {
+            this.activeFilterRepository = activeFilterRepository;
+        }
+        /**
+         * @return {?}
+         */
+        ActiveFiltersSetEventHandler.prototype.forEvent = /**
+         * @return {?}
+         */
+        function () {
+            return ActiveFiltersSetEvent;
+        };
+        /**
+         * @param {?} activeFiltersSetEvent
+         * @return {?}
+         */
+        ActiveFiltersSetEventHandler.prototype.handle = /**
+         * @param {?} activeFiltersSetEvent
+         * @return {?}
+         */
+        function (activeFiltersSetEvent) {
+            if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
+                /** @type {?} */
+                var activeFilters = activeFiltersSetEvent.getFilters();
+                this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
+            }
+        };
+        ActiveFiltersSetEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        ActiveFiltersSetEventHandler.ctorParameters = function () { return [
+            { type: ActiveFilterRepository }
+        ]; };
+        return ActiveFiltersSetEventHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UniqueFilterCalculatedEvent = /** @class */ (function (_super) {
+        __extends(UniqueFilterCalculatedEvent, _super);
+        function UniqueFilterCalculatedEvent(aggregateId, map) {
+            var _this = _super.call(this, aggregateId, 'UniqueFilterCalculatedEvent') || this;
+            _this.map = map;
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        UniqueFilterCalculatedEvent.prototype.getUniqueValues = /**
+         * @return {?}
+         */
+        function () {
+            return this.map;
+        };
+        return UniqueFilterCalculatedEvent;
+    }(StructureDomainEvent));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueFilterCalculatedEvent.prototype.map;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UniqueValuesReadModel = /** @class */ (function () {
+        function UniqueValuesReadModel(map) {
+            this.map = new Map();
+            this.allSelected = new Map();
+            this.allDisabled = new Map();
+            this.map = map;
+            this.calculateSelection();
+        }
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.getValues = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return this.map.get(fieldId.toString());
+        };
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.areAllSelected = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return this.allSelected.get(fieldId.toString());
+        };
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.areAllDisabled = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return this.allDisabled.get(fieldId.toString());
+        };
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.isSelectAllChecked = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return this.areAllSelected(fieldId);
+        };
+        /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.isIndeterminate = /**
+         * @param {?} fieldId
+         * @return {?}
+         */
+        function (fieldId) {
+            return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        UniqueValuesReadModel.prototype.calculateSelection = /**
+         * @private
+         * @return {?}
+         */
+        function () {
+            var e_1, _a;
+            try {
+                for (var _b = __values(Array.from(this.map.keys())), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var key = _c.value;
+                    /** @type {?} */
+                    var values = this.map.get(key);
+                    this.allSelected.set(key, !values.some((/**
+                     * @param {?} r
+                     * @return {?}
+                     */
+                    function (r) { return !r.isEnabled(); })));
+                    this.allDisabled.set(key, !values.some((/**
+                     * @param {?} r
+                     * @return {?}
+                     */
+                    function (r) { return r.isEnabled(); })));
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        };
+        return UniqueValuesReadModel;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValuesReadModel.prototype.map;
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValuesReadModel.prototype.allSelected;
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValuesReadModel.prototype.allDisabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UniqueValueReadModel = /** @class */ (function () {
+        function UniqueValueReadModel(id, value, enabled) {
+            this.id = id;
+            this.value = value;
+            this.enabled = enabled;
+        }
+        /**
+         * @return {?}
+         */
+        UniqueValueReadModel.prototype.getId = /**
+         * @return {?}
+         */
+        function () {
+            return this.id;
+        };
+        /**
+         * @return {?}
+         */
+        UniqueValueReadModel.prototype.getValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.value;
+        };
+        /**
+         * @return {?}
+         */
+        UniqueValueReadModel.prototype.geDisplayValue = /**
+         * @return {?}
+         */
+        function () {
+            return this.displayValue;
+        };
+        /**
+         * @return {?}
+         */
+        UniqueValueReadModel.prototype.isEnabled = /**
+         * @return {?}
+         */
+        function () {
+            return this.enabled;
+        };
+        return UniqueValueReadModel;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValueReadModel.prototype.id;
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValueReadModel.prototype.value;
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValueReadModel.prototype.displayValue;
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueValueReadModel.prototype.enabled;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UniqueFilterCalculatedEventHandler = /** @class */ (function () {
+        function UniqueFilterCalculatedEventHandler(uniqueValuesRepository) {
+            this.uniqueValuesRepository = uniqueValuesRepository;
+        }
+        /**
+         * @return {?}
+         */
+        UniqueFilterCalculatedEventHandler.prototype.forEvent = /**
+         * @return {?}
+         */
+        function () {
+            return UniqueFilterCalculatedEvent;
+        };
+        /**
+         * @param {?} calculatedEvent
+         * @return {?}
+         */
+        UniqueFilterCalculatedEventHandler.prototype.handle = /**
+         * @param {?} calculatedEvent
+         * @return {?}
+         */
+        function (calculatedEvent) {
+            if (calculatedEvent.ofMessageType('UniqueFilterCalculatedEvent')) {
+                /** @type {?} */
+                var uvRM_1 = new Map();
+                calculatedEvent.getUniqueValues()
+                    .forEach((/**
+                 * @param {?} values
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (values, key) {
+                    /** @type {?} */
+                    var valuesRM = values.map((/**
+                     * @param {?} uv
+                     * @return {?}
+                     */
+                    function (uv) {
+                        return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
+                    }));
+                    uvRM_1.set(key, valuesRM);
+                }));
+                /** @type {?} */
+                var uniqueValues = new UniqueValuesReadModel(uvRM_1);
+                this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
+            }
+        };
+        UniqueFilterCalculatedEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        UniqueFilterCalculatedEventHandler.ctorParameters = function () { return [
+            { type: UniqueValuesRepository }
+        ]; };
+        return UniqueFilterCalculatedEventHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UniqueFilterCalculatedEventHandler.prototype.uniqueValuesRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    // TODO Remove
+    var FilterTypeFieldsInitedEventHandler = /** @class */ (function () {
+        function FilterTypeFieldsInitedEventHandler() {
+        }
+        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
+        // 			private readonly domainEventPublisher: DomainEventPublisher) {
+        // }
+        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
+        // 			private readonly domainEventPublisher: DomainEventPublisher) {
+        // }
+        /**
+         * @return {?}
+         */
+        FilterTypeFieldsInitedEventHandler.prototype.forEvent = 
+        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
+        // 			private readonly domainEventPublisher: DomainEventPublisher) {
+        // }
+        /**
+         * @return {?}
+         */
+        function () {
+            return FieldsInitedEvent;
+        };
+        /**
+         * @param {?} fieldsInitedEvent
+         * @return {?}
+         */
+        FilterTypeFieldsInitedEventHandler.prototype.handle = /**
+         * @param {?} fieldsInitedEvent
+         * @return {?}
+         */
+        function (fieldsInitedEvent) {
+            // if (fieldsInitedEvent.ofMessageType('FieldsInitedEvent')) {
+            //
+            // 	const fields = fieldsInitedEvent.getFields();
+            //
+            // 	const manager = new FilterTypeManager(fields);
+            //
+            // 	this.filterTypeManagerRepository.next(fieldsInitedEvent.getAggregateId(), manager);
+            //
+            // 	this.domainEventPublisher.publish(new FilterTypesInitedEvent(fieldsInitedEvent.getAggregateId(), manager.getFieldIdsToFieldTypes()));
+            // }
+        };
+        FilterTypeFieldsInitedEventHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        return FilterTypeFieldsInitedEventHandler;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UnselectAllUniqueFilterCommandHandler = /** @class */ (function () {
+        function UnselectAllUniqueFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        UnselectAllUniqueFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return UnselectAllUniqueFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        UnselectAllUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        UnselectAllUniqueFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            structure.unselectAllUniqueFilter(fieldId);
+        };
+        UnselectAllUniqueFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        UnselectAllUniqueFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return UnselectAllUniqueFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UnselectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var UnselectUniqueFilterCommandHandler = /** @class */ (function () {
+        function UnselectUniqueFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        UnselectUniqueFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return UnselectUniqueFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        UnselectUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        UnselectUniqueFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var uniqueValueId = command.getUniqueValueId();
+            structure.unselectUniqueFilter(fieldId, uniqueValueId);
+        };
+        UnselectUniqueFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        UnselectUniqueFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return UnselectUniqueFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        UnselectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SelectAllUniqueFilterCommandHandler = /** @class */ (function () {
+        function SelectAllUniqueFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SelectAllUniqueFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SelectAllUniqueFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SelectAllUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        SelectAllUniqueFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            structure.selectAllUniqueFilter(fieldId);
+        };
+        SelectAllUniqueFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SelectAllUniqueFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SelectAllUniqueFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SelectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SelectUniqueFilterCommandHandler = /** @class */ (function () {
+        function SelectUniqueFilterCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        /**
+         * @return {?}
+         */
+        SelectUniqueFilterCommandHandler.prototype.forCommand = /**
+         * @return {?}
+         */
+        function () {
+            return SelectUniqueFilterCommand;
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SelectUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        SelectUniqueFilterCommandHandler.prototype.handleAggregate = /**
+         * @param {?} structure
+         * @param {?} command
+         * @return {?}
+         */
+        function (structure, command) {
+            /** @type {?} */
+            var fieldId = command.getFieldId();
+            /** @type {?} */
+            var uniqueValueId = command.getUniqueValueId();
+            structure.selectUniqueFilter(fieldId, uniqueValueId);
+        };
+        SelectUniqueFilterCommandHandler.decorators = [
+            { type: core.Injectable }
+        ];
+        /** @nocollapse */
+        SelectUniqueFilterCommandHandler.ctorParameters = function () { return [
+            { type: hermes.DomainEventPublisher }
+        ]; };
+        return SelectUniqueFilterCommandHandler;
+    }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SelectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterDomainModule = /** @class */ (function (_super) {
+        __extends(FilterDomainModule, _super);
+        function FilterDomainModule() {
+            return _super.call(this) || this;
+        }
+        /**
+         * @return {?}
+         */
+        FilterDomainModule.commandHandlers = /**
+         * @return {?}
+         */
+        function () {
+            return __spread(hermes.HermesModule.registerCommandHandler(SetConfigFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SetConfigQuickFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(ToggleFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(AddFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(RemoveAllFiltersCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(RemoveFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SelectUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SelectAllUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(UnselectUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(UnselectAllUniqueFilterCommandHandler, structureKey));
+        };
+        /**
+         * @return {?}
+         */
+        FilterDomainModule.domainEventHandlers = /**
+         * @return {?}
+         */
+        function () {
+            return __spread(hermes.HermesModule.registerDomainEventHandler(ConfigQuickFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(ConfigFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(FilterTypeConfigFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(ActiveFiltersSetEventHandler), hermes.HermesModule.registerDomainEventHandler(UniqueFilterCalculatedEventHandler), hermes.HermesModule.registerDomainEventHandler(FilterTypeFieldsInitedEventHandler));
+        };
+        FilterDomainModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule
+                        ],
+                        providers: [
+                            FilterManagerFactory
+                        ],
+                        declarations: [],
+                        exports: []
+                    },] }
+        ];
+        /** @nocollapse */
+        FilterDomainModule.ctorParameters = function () { return []; };
+        return FilterDomainModule;
+    }(hermes.DomainModule));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterApiModule = /** @class */ (function (_super) {
+        __extends(FilterApiModule, _super);
+        function FilterApiModule() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        FilterApiModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule,
+                            FilterDomainModule
+                        ],
+                        providers: [
+                            FilterCommandInvoker,
+                            FilterWarehouse,
+                            FilterTypeRepository,
+                            ActiveFilterRepository,
+                            UniqueValuesRepository,
+                            FilterEnabledRepository,
+                            QuickFilterEnabledRepository
+                        ],
+                        declarations: [],
+                        exports: []
+                    },] }
+        ];
+        return FilterApiModule;
+    }(hermes.ApiModule));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var fabricImports = [
+        fabric.FabricBadgeModule,
+        fabric.FabricButtonModule,
+        fabric.FabricButtonGroupModule,
+        fabric.FabricCheckboxModule,
+        fabric.FabricChipModule,
+        fabric.FabricDrawerModule,
+        fabric.FabricDropdownModule,
+        fabric.FabricRadioButtonModule,
+        fabric.FabricRadioGroupModule,
+        fabric.FabricProgressBarModule,
+        fabric.FabricProgressSpinnerModule,
+        fabric.FabricSelectModule,
+        fabric.FabricSpinnerModule,
+        fabric.FabricTabModule,
+        fabric.FabricTooltipModule,
+        fabric.FabricToggleButtonModule,
+        fabric.FabricInputModule,
+        fabric.FabricDialogModule,
+        fabric.FabricInlineDialogModule,
+        fabric.FabricTabModule
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ActiveFilterListComponent = /** @class */ (function (_super) {
         __extends(ActiveFilterListComponent, _super);
-        function ActiveFilterListComponent(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ActiveFilterListComponent(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.filterWarehouse = filterWarehouse;
@@ -25939,15 +29793,29 @@
         function (filter) {
             this.filterCommandDispatcher.removeFilter(filter.getFilterId(), this.structureId);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ActiveFilterListComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-active-filter-list';
+        };
         ActiveFilterListComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-active-filter-list',
-                        template: "\n\n\t\t<div *ngFor=\"let filter of activeFilters\">\n\t\t\t{{filter.getText()}}\n\t\t\t<span (click)=\"removeFilter(filter)\">X</span>\n\t\t</div>\n\n\t\t<gui-active-search></gui-active-search>\n\n\n\t"
+                        selector: 'div[gui-active-filter-list]',
+                        template: "<div *ngFor=\"let filter of activeFilters\">\n\t{{filter.getText()}}\n\t<span (click)=\"removeFilter(filter)\">X</span>\n</div>\n\n<div gui-active-search></div>\n",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         ActiveFilterListComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: FilterWarehouse },
             { type: FilterCommandInvoker }
@@ -25983,50 +29851,10 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FieldSelectorComponent = /** @class */ (function () {
-        function FieldSelectorComponent() {
-            this.fieldSelected = new core.EventEmitter();
-        }
-        /**
-         * @param {?} field
-         * @return {?}
-         */
-        FieldSelectorComponent.prototype.onSelectChange = /**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            this.fieldSelected.emit(field);
-        };
-        FieldSelectorComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'gui-field-selector[fields]',
-                        template: "\n\n\t\tField:\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let field of fields\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(field)\">\n\t\t\t\t{{field.getName()}}\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None
-                    }] }
-        ];
-        FieldSelectorComponent.propDecorators = {
-            fields: [{ type: core.Input }],
-            fieldSelected: [{ type: core.Output }]
-        };
-        return FieldSelectorComponent;
-    }());
-    if (false) {
-        /** @type {?} */
-        FieldSelectorComponent.prototype.fields;
-        /** @type {?} */
-        FieldSelectorComponent.prototype.fieldSelected;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ActiveSearchComponent = /** @class */ (function (_super) {
         __extends(ActiveSearchComponent, _super);
-        function ActiveSearchComponent(changeDetectorRef, structureId, searchCommandDispatcher, searchWarehouse) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function ActiveSearchComponent(changeDetectorRef, elementRef, structureId, searchCommandDispatcher, searchWarehouse) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.searchCommandDispatcher = searchCommandDispatcher;
@@ -26063,10 +29891,21 @@
             event.stopPropagation();
             this.searchCommandDispatcher.search('', this.structureId);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        ActiveSearchComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-active-search';
+        };
         ActiveSearchComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-active-search',
-                        template: "\n\n\t\t<ng-container *ngIf=\"phrase\">\n\t\t\t<div>\n\t\t\t\tActive search by:\n\t\t\t</div>\n\n\t\t\t<div>\n\t\t\t\t<gui-chip>{{phrase}}</gui-chip>\n\t\t\t</div>\n\n\t\t\t<div>\n\t\t\t\t<button gui-button\n\t\t\t\t\t\t[outline]=\"true\"\n\t\t\t\t\t\t[primary]=\"true\"\n\t\t\t\t\t\t(click)=\"clearSearch()\">\n\t\t\t\t\tClear search\n\t\t\t\t</button>\n\t\t\t</div>\n\t\t</ng-container>\n\n\t",
+                        selector: 'div[gui-active-search]',
+                        template: "<ng-container *ngIf=\"phrase\">\n\t<div>\n\t\tActive search by:\n\t</div>\n\n\t<div>\n\t\t<gui-chip>{{phrase}}</gui-chip>\n\t</div>\n\n\t<div>\n\t\t<button (click)=\"clearSearch()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tgui-button>\n\t\t\tClear search\n\t\t</button>\n\t</div>\n</ng-container>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -26074,6 +29913,7 @@
         /** @nocollapse */
         ActiveSearchComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: SearchCommandInvoker },
             { type: SearchWarehouse }
@@ -26109,15 +29949,77 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FilterMenuFeatureModule = /** @class */ (function () {
-        function FilterMenuFeatureModule() {
+    var ActiveFilterListModule = /** @class */ (function (_super) {
+        __extends(ActiveFilterListModule, _super);
+        function ActiveFilterListModule(filterApiModule) {
+            var _this = _super.call(this) || this;
+            if (filterApiModule === null) {
+                throw new Error('FilterApiModule is required.');
+            }
+            return _this;
         }
+        /**
+         * @return {?}
+         */
+        ActiveFilterListModule.forComponent = /**
+         * @return {?}
+         */
+        function () {
+            return [];
+        };
+        ActiveFilterListModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            common.CommonModule,
+                            fabricImports,
+                            FilterApiModule
+                        ],
+                        declarations: [
+                            ActiveFilterListComponent,
+                            ActiveSearchComponent
+                        ],
+                        exports: [
+                            ActiveFilterListComponent
+                        ]
+                    },] }
+        ];
+        /** @nocollapse */
+        ActiveFilterListModule.ctorParameters = function () { return [
+            { type: FilterApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
+        return ActiveFilterListModule;
+    }(hermes.FeatureModule));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var FilterMenuFeatureModule = /** @class */ (function (_super) {
+        __extends(FilterMenuFeatureModule, _super);
+        function FilterMenuFeatureModule(filterApiModule) {
+            var _this = _super.call(this) || this;
+            if (filterApiModule === null) {
+                throw new Error('FilterApiModule is required.');
+            }
+            return _this;
+        }
+        /**
+         * @return {?}
+         */
+        FilterMenuFeatureModule.forComponent = /**
+         * @return {?}
+         */
+        function () {
+            return [];
+        };
         FilterMenuFeatureModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
                             common.CommonModule,
                             fabric.FabricModule,
-                            forms.ReactiveFormsModule
+                            forms.ReactiveFormsModule,
+                            FilterApiModule,
+                            ActiveFilterListModule
                         ],
                         declarations: [
                             FilterIconComponent,
@@ -26126,30 +30028,37 @@
                             ColumnSelectorComponent,
                             FilterTypeSelectorComponent,
                             FilterValueComponent,
-                            ActiveFilterListComponent,
-                            FieldSelectorComponent,
-                            ActiveSearchComponent
+                            FieldSelectorComponent
                         ],
                         exports: [
-                            FilterMenuTriggerComponent,
-                            ActiveFilterListComponent
+                            FilterMenuTriggerComponent
                         ],
                         entryComponents: [
                             FilterMenuComponent
                         ]
                     },] }
         ];
+        /** @nocollapse */
+        FilterMenuFeatureModule.ctorParameters = function () { return [
+            { type: FilterApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
         return FilterMenuFeatureModule;
-    }());
+    }(hermes.FeatureModule));
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var exportDeclarations = __spread([
+        ListViewComponent,
+        listViewGatewayDeclarations
+    ], listViewGatewayDeclarations);
     var ListViewFeatureModule = /** @class */ (function () {
         function ListViewFeatureModule(paging) {
             this.paging = paging;
         }
+        ListViewFeatureModule.exportDeclarations = __spread(exportDeclarations);
         ListViewFeatureModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
@@ -26171,10 +30080,7 @@
                             ListViewCardItemComponent,
                             ListViewContainerModeSelectComponent
                         ], listViewGatewayDeclarations),
-                        exports: [
-                            ListViewComponent,
-                            listViewGatewayDeclarations
-                        ],
+                        exports: exportDeclarations,
                         providers: []
                     },] }
         ];
@@ -26185,40 +30091,14 @@
         return ListViewFeatureModule;
     }());
     if (false) {
+        /** @type {?} */
+        ListViewFeatureModule.exportDeclarations;
         /**
          * @type {?}
          * @private
          */
         ListViewFeatureModule.prototype.paging;
     }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var fabricImports = [
-        fabric.FabricBadgeModule,
-        fabric.FabricButtonModule,
-        fabric.FabricButtonGroupModule,
-        fabric.FabricCheckboxModule,
-        fabric.FabricChipModule,
-        fabric.FabricDrawerModule,
-        fabric.FabricDropdownModule,
-        fabric.FabricRadioButtonModule,
-        fabric.FabricRadioGroupModule,
-        fabric.FabricProgressBarModule,
-        fabric.FabricProgressSpinnerModule,
-        fabric.FabricSelectModule,
-        fabric.FabricSpinnerModule,
-        fabric.FabricTabModule,
-        fabric.FabricTooltipModule,
-        fabric.FabricToggleButtonModule,
-        fabric.FabricInputModule,
-        fabric.FabricDialogModule,
-        fabric.FabricInlineDialogModule,
-        fabric.FabricTabModule
-    ];
 
     /**
      * @fileoverview added by tsickle
@@ -26268,39 +30148,73 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureInfoModalComponent = /** @class */ (function () {
-        function StructureInfoModalComponent() {
+    var StructureInfoModalComponent = /** @class */ (function (_super) {
+        __extends(StructureInfoModalComponent, _super);
+        function StructureInfoModalComponent(elementRef, changeDetectorRef) {
+            return _super.call(this, elementRef, changeDetectorRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureInfoModalComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-info-dialog';
+        };
         StructureInfoModalComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-info-dialog',
-                        template: "\n\t\t<div class=\"gui-structure-info-modal\">\n\n\t\t\t<p class=\"gui-dialog-title gui-info-title\">Generic UI Grid</p>\n\n\n\t\t\t<p class=\"gui-info-version\">\n\t\t\t\tver. 0.13.0\n\t\t\t</p>\n\n\t\t\t<p class=\"gui-quote\">\n\t\t\t\t\"The best way to success is to help others succeed.\"\n\t\t\t</p>\n\n\t\t\t<br/>\n\n\t\t\t<section>\n\t\t\t\t<p>Links:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/\">Website</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t\t\t</li>\n\t\t\t\t</ul>\n\n\t\t\t\t<br/>\n\n\t\t\t\t<p>Feedback:</p>\n\t\t\t\t<ul>\n\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t\t\t</li>\n\t\t\t\t\t<li>\n\t\t\t\t\t\t<a href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t\t\t</li>\n\n\t\t\t\t</ul>\n\t\t\t</section>\n\t\t</div>\n\t",
-                        changeDetection: core.ChangeDetectionStrategy.OnPush
+                        selector: 'div[gui-info-dialog]',
+                        template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.14.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureInfoModalComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return StructureInfoModalComponent;
-    }());
+    }(StaticComponent));
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureDialogColumnManagerComponent = /** @class */ (function () {
-        function StructureDialogColumnManagerComponent() {
+    var StructureDialogColumnManagerComponent = /** @class */ (function (_super) {
+        __extends(StructureDialogColumnManagerComponent, _super);
+        function StructureDialogColumnManagerComponent(detector, elementRef) {
+            return _super.call(this, detector, elementRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureDialogColumnManagerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-dialog-column-manager';
+        };
         StructureDialogColumnManagerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-dialog-column-manager',
-                        template: "<div class=\"gui-dialog-title\">{{'themeManagerModalTitle' | translate}}</div>\n\n<gui-structure-column-manager>\n\n</gui-structure-column-manager>\n",
+                        selector: 'div[gui-structure-dialog-column-manager]',
+                        template: "<div class=\"gui-dialog-title\">{{'columnManagerModalTitle' | guiTranslate}}</div>\n\n<div gui-structure-column-manager>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-structure-dialog-column-manager]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureDialogColumnManagerComponent.ctorParameters = function () { return [
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
+        ]; };
         return StructureDialogColumnManagerComponent;
-    }());
+    }(SmartComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -26345,10 +30259,10 @@
      */
     var StructureDialogColumnManagerService = /** @class */ (function (_super) {
         __extends(StructureDialogColumnManagerService, _super);
-        function StructureDialogColumnManagerService(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+        function StructureDialogColumnManagerService(injector, schemaWarehouse, structureThemeConverter, fabricDialogService) {
             var _this = _super.call(this) || this;
             _this.injector = injector;
-            _this.schemaReadModelRepository = schemaReadModelRepository;
+            _this.schemaWarehouse = schemaWarehouse;
             _this.structureThemeConverter = structureThemeConverter;
             _this.fabricDialogService = fabricDialogService;
             return _this;
@@ -26372,7 +30286,7 @@
             }
             /** @type {?} */
             var injector = core.Injector.create({ parent: parentInjector, providers: [{ provide: CompositionId, useValue: compositionId }] });
-            this.schemaReadModelRepository
+            this.schemaWarehouse
                 .onSingleTheme(readModelId)
                 .pipe(this.takeUntil())
                 .subscribe((/**
@@ -26408,7 +30322,7 @@
          * @type {?}
          * @private
          */
-        StructureDialogColumnManagerService.prototype.schemaReadModelRepository;
+        StructureDialogColumnManagerService.prototype.schemaWarehouse;
         /**
          * @type {?}
          * @private
@@ -26425,16 +30339,38 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureDialogSchemaManagerComponent = /** @class */ (function () {
-        function StructureDialogSchemaManagerComponent() {
+    var StructureDialogSchemaManagerComponent = /** @class */ (function (_super) {
+        __extends(StructureDialogSchemaManagerComponent, _super);
+        function StructureDialogSchemaManagerComponent(elRef) {
+            var _this = _super.call(this, elRef) || this;
+            _this.addClassToHost('gui-pr-10');
+            return _this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureDialogSchemaManagerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-schema-manager-dialog';
+        };
         StructureDialogSchemaManagerComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "\n\t\t<div class=\"gui-schema-manager-dialog\">\n\t\t\t<gui-structure-schema-manager></gui-structure-schema-manager>\n\t\t</div>\n\t"
+                        selector: 'div[gui-schema-manager-dialog]',
+                        template: "\n\t\t<div gui-structure-schema-manager></div>\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureDialogSchemaManagerComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         return StructureDialogSchemaManagerComponent;
-    }());
+    }(PureComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -26442,11 +30378,9 @@
      */
     var StructureDialogSchemaManagerService = /** @class */ (function (_super) {
         __extends(StructureDialogSchemaManagerService, _super);
-        function StructureDialogSchemaManagerService(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+        function StructureDialogSchemaManagerService(injector, fabricDialogService) {
             var _this = _super.call(this) || this;
             _this.injector = injector;
-            _this.schemaReadModelRepository = schemaReadModelRepository;
-            _this.structureThemeConverter = structureThemeConverter;
             _this.fabricDialogService = fabricDialogService;
             return _this;
         }
@@ -26461,7 +30395,6 @@
          * @return {?}
          */
         function (readModelId, parentInjector) {
-            var _this = this;
             if (!parentInjector) {
                 parentInjector = this.injector;
             }
@@ -26470,19 +30403,9 @@
                 providers: [{ provide: SchemaReadModelRootId, useValue: readModelId }],
                 parent: parentInjector
             });
-            this.schemaReadModelRepository
-                .onSingleTheme(readModelId)
-                .pipe(this.takeUntil())
-                .subscribe((/**
-             * @param {?} theme
-             * @return {?}
-             */
-            function (theme) {
-                _this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
-                    injector: injector,
-                    theme: _this.structureThemeConverter.convertTheme(theme)
-                });
-            }));
+            this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
+                injector: injector
+            });
         };
         StructureDialogSchemaManagerService.decorators = [
             { type: core.Injectable }
@@ -26490,8 +30413,6 @@
         /** @nocollapse */
         StructureDialogSchemaManagerService.ctorParameters = function () { return [
             { type: core.Injector },
-            { type: SchemaWarehouse },
-            { type: StructureThemeConverter },
             { type: fabric.FabricDialogService }
         ]; };
         return StructureDialogSchemaManagerService;
@@ -26506,16 +30427,6 @@
          * @type {?}
          * @private
          */
-        StructureDialogSchemaManagerService.prototype.schemaReadModelRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureDialogSchemaManagerService.prototype.structureThemeConverter;
-        /**
-         * @type {?}
-         * @private
-         */
         StructureDialogSchemaManagerService.prototype.fabricDialogService;
     }
 
@@ -26525,11 +30436,9 @@
      */
     var StructureInfoPanelComponent = /** @class */ (function (_super) {
         __extends(StructureInfoPanelComponent, _super);
-        function StructureInfoPanelComponent(changeDetectorRef, renderer, elementRef, injector, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelEnabledArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureInfoPanelComponent(changeDetectorRef, elementRef, injector, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelEnabledArchive) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
-            _this.renderer = renderer;
-            _this.elementRef = elementRef;
             _this.injector = injector;
             _this.sourceReadModelService = sourceReadModelService;
             _this.dialog = dialog;
@@ -26625,10 +30534,21 @@
         function () {
             this.schemaManagerService.open(this.schemaReadModelRootId, this.injector);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureInfoPanelComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-info-panel';
+        };
         StructureInfoPanelComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-info-panel',
-                        template: "\n\n\t\t<div>\n\t\t\t<div *ngIf=\"infoPanelConfig.isSourceSizeEnabled()\">\n\n\t\t\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t\t\t<ng-container *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\t\t\t{{'infoPanelShowing' | translate}} <b>{{totalItemsSize | numberFormatter}}</b> {{'infoPanelItems' | translate}}\n\t\t\t\t\t</ng-container>\n\n\t\t\t\t\t<span *ngIf=\"preparedItemsSize !== totalItemsSize\"\n\t\t\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | translate}}\n\t\t\t\t\t\t<b>{{preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t\t\t{{'infoPanelOutOf' | translate}}\n\t\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t\t{{'infoPanelItems' | translate}}\n\t\t\t\t\t</span>\n\n\t\t\t\t</ng-container>\n\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div>\n\t\t\t<div class=\"gui-right-section\">\n\n\t\t\t\t<div *ngIf=\"infoPanelConfig.isSchemaManagerEnabled()\"\n\t\t\t\t\t (click)=\"openSchemaManager()\">\n\t\t\t\t\t<gui-structure-schema-manager-icon [gui-tooltip]=\"themeManagerTooltipText\"></gui-structure-schema-manager-icon>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"infoPanelConfig.isColumnsManagerEnabled()\"\n\t\t\t\t\t (click)=\"openColumnManager()\">\n\t\t\t\t\t<gui-structure-column-manager-icon [gui-tooltip]=\"columnManagerTooltipText\"></gui-structure-column-manager-icon>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"infoPanelConfig.isInfoDialogEnabled()\"\n\t\t\t\t\t (click)=\"openInfo()\">\n\t\t\t\t\t<gui-structure-info-icon [gui-tooltip]=\"infoTooltipText\"></gui-structure-info-icon>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t",
+                        selector: 'div[gui-structure-info-panel]',
+                        template: "<div>\n\t<div *ngIf=\"infoPanelConfig.isSourceSizeEnabled()\">\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t<ng-container *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</ng-container>\n\n\t\t\t<span *ngIf=\"preparedItemsSize !== totalItemsSize\"\n\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t</ng-container>\n\n\t</div>\n</div>\n\n<div>\n\t<div class=\"gui-right-section\">\n\n\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"themeManagerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openColumnManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"columnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openInfo()\"\n\t\t\t *ngIf=\"infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t<div [gui-tooltip]=\"infoTooltipText\" gui-structure-info-icon></div>\n\t\t</div>\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -26636,7 +30556,6 @@
         /** @nocollapse */
         StructureInfoPanelComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
-            { type: core.Renderer2 },
             { type: core.ElementRef },
             { type: core.Injector },
             { type: SourceWarehouse },
@@ -26673,16 +30592,6 @@
          * @private
          */
         StructureInfoPanelComponent.prototype.changeDetectorRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureInfoPanelComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureInfoPanelComponent.prototype.elementRef;
         /**
          * @type {?}
          * @private
@@ -26741,12 +30650,13 @@
      */
     var StructureColumnManagerComponent = /** @class */ (function (_super) {
         __extends(StructureColumnManagerComponent, _super);
-        function StructureColumnManagerComponent(changeDetectorRef, compositionId, compositionCommandService, compositionReadModelService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureColumnManagerComponent(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionWarehouse) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.compositionId = compositionId;
-            _this.compositionCommandService = compositionCommandService;
-            _this.compositionReadModelService = compositionReadModelService;
+            _this.compositionCommandInvoker = compositionCommandInvoker;
+            _this.compositionWarehouse = compositionWarehouse;
+            _this.addClassToHost('gui-block');
             return _this;
         }
         /**
@@ -26757,7 +30667,7 @@
          */
         function () {
             var _this = this;
-            this.compositionReadModelService
+            this.compositionWarehouse
                 .onAllColumns(this.compositionId)
                 .pipe(this.takeUntil())
                 .subscribe((/**
@@ -26792,26 +30702,35 @@
         function (column) {
             event.stopPropagation();
             if (column.isEnabled()) {
-                this.compositionCommandService.disableColumn(column.getColumnDefinitionId(), this.compositionId);
+                this.compositionCommandInvoker.disableColumn(column.getColumnDefinitionId(), this.compositionId);
             }
             else {
-                this.compositionCommandService.enableColumn(column.getColumnDefinitionId(), this.compositionId);
+                this.compositionCommandInvoker.enableColumn(column.getColumnDefinitionId(), this.compositionId);
             }
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnManagerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-column-manager';
         };
         StructureColumnManagerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-column-manager',
-                        template: "\n\n\t\t<ol>\n\t\t\t<li *ngFor=\"let column of columns\"\n\t\t\t\t(click)=\"toggleColumn(column)\">\n\n\t\t\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t\t\t  [disabled]=\"enabledColumnsCount === 1 && column.isEnabled()\">\n\n\t\t\t\t\t<ng-container\n\t\t\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t\t\t</ng-container>\n\t\t\t\t</gui-checkbox>\n\n\t\t\t</li>\n\t\t</ol>\n\n\t",
+                        selector: 'div[gui-structure-column-manager]',
+                        template: "\n\n\t\t<ol class=\"gui-p-0 gui-my-4 gui-mx-0 gui-list-none gui-overflow-auto\">\n\t\t\t<li *ngFor=\"let column of columns\"\n\t\t\t\t(click)=\"toggleColumn(column)\"\n\t\t\t\tclass=\"gui-p-6 gui-cursor-pointer\">\n\n\t\t\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t\t\t  [disabled]=\"enabledColumnsCount === 1 && column.isEnabled()\">\n\n\t\t\t\t\t<ng-container\n\t\t\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t\t\t</ng-container>\n\t\t\t\t</gui-checkbox>\n\n\t\t\t</li>\n\t\t</ol>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-structure-column-manager]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureColumnManagerComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: CompositionId },
             { type: CompositionCommandInvoker },
             { type: CompositionWarehouse }
@@ -26837,58 +30756,84 @@
          * @type {?}
          * @private
          */
-        StructureColumnManagerComponent.prototype.compositionCommandService;
+        StructureColumnManagerComponent.prototype.compositionCommandInvoker;
         /**
          * @type {?}
          * @private
          */
-        StructureColumnManagerComponent.prototype.compositionReadModelService;
+        StructureColumnManagerComponent.prototype.compositionWarehouse;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureMenuColumnManagerComponent = /** @class */ (function () {
-        function StructureMenuColumnManagerComponent() {
+    var StructureMenuColumnManagerComponent = /** @class */ (function (_super) {
+        __extends(StructureMenuColumnManagerComponent, _super);
+        function StructureMenuColumnManagerComponent(elementRef) {
+            return _super.call(this, elementRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureMenuColumnManagerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-menu-column-manager';
+        };
         StructureMenuColumnManagerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-menu-column-manager',
-                        template: "<gui-structure-column-manager>\n\n</gui-structure-column-manager>\n",
+                        selector: 'div[gui-structure-menu-column-manager]',
+                        template: "<div gui-structure-column-manager></div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-structure-menu-column-manager]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureMenuColumnManagerComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         return StructureMenuColumnManagerComponent;
-    }());
+    }(PureComponent));
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var selector = 'gui-structure-column-manager-icon';
-    var StructureColumnManagerIconComponent = /** @class */ (function () {
-        function StructureColumnManagerIconComponent() {
+    var StructureColumnManagerIconComponent = /** @class */ (function (_super) {
+        __extends(StructureColumnManagerIconComponent, _super);
+        function StructureColumnManagerIconComponent(elementRef, changeDetectorRef) {
+            return _super.call(this, elementRef, changeDetectorRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnManagerIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-column-manager-icon';
+        };
         StructureColumnManagerIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: selector,
+                        selector: 'div[gui-structure-column-manager-icon]',
                         template: "\n\t\t<svg data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.32 10.31\">\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"3.65\" x2=\"0.75\" y2=\"3.65\"/>\n\t\t\t<line class=\"cls-2\" x1=\"9.57\" y1=\"0.75\" x2=\"0.75\" y2=\"0.75\"/>\n\t\t\t<line class=\"cls-2\" x1=\"0.75\" y1=\"9.56\" x2=\"0.75\" y2=\"0.88\"/>\n\t\t\t<line class=\"cls-1\" x1=\"3.69\" y1=\"9.65\" x2=\"3.69\" y2=\"3.89\"/>\n\t\t\t<line class=\"cls-1\" x1=\"6.63\" y1=\"9.56\" x2=\"6.63\" y2=\"3.89\"/>\n\t\t\t<line class=\"cls-2\" x1=\"9.57\" y1=\"9.56\" x2=\"9.57\" y2=\"0.88\"/>\n\t\t</svg>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class]': "\"" + selector + "\"",
-                            '[class.gui-icon]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureColumnManagerIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return StructureColumnManagerIconComponent;
-    }());
+    }(IconComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -26930,25 +30875,37 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var selector$1 = 'gui-structure-info-icon';
-    var StructureInfoIconComponent = /** @class */ (function () {
-        function StructureInfoIconComponent() {
+    var StructureInfoIconComponent = /** @class */ (function (_super) {
+        __extends(StructureInfoIconComponent, _super);
+        function StructureInfoIconComponent(elRef, cdr) {
+            return _super.call(this, elRef, cdr) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureInfoIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-info-icon';
+        };
         StructureInfoIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: selector$1,
+                        selector: 'div[gui-structure-info-icon]',
                         template: "\n\t\t<svg data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.08 10.08\">\n\t\t\t<path class=\"cls-1\"\n\t\t\t\t  d=\"M401.64,307.76c0-.28.23-.45.54-.45s.55.17.55.45v0a.49.49,0,0,1-.55.46.48.48,0,0,1-.54-.46Zm.05,1.27a.49.49,0,0,1,1,0v2.54a.49.49,0,0,1-1,0Z\"\n\t\t\t\t  transform=\"translate(-397.14 -304.64)\"/>\n\t\t\t<circle class=\"cls-2\" cx=\"5.04\" cy=\"5.04\" r=\"4.54\"/>\n\t\t</svg>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class]': "\"" + selector$1 + "\"",
-                            '[class.gui-icon]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureInfoIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return StructureInfoIconComponent;
-    }());
+    }(IconComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -26956,13 +30913,12 @@
      */
     var StructureSchemaMangerComponent = /** @class */ (function (_super) {
         __extends(StructureSchemaMangerComponent, _super);
-        function StructureSchemaMangerComponent(changeDetectorRef, schemaReadModelRootId, schemaCommandService, schemaReadModelService, dialogThemeService) {
-            var _this = _super.call(this) || this;
+        function StructureSchemaMangerComponent(changeDetectorRef, elRef, schemaReadModelRootId, schemaCommandService, schemaReadModelService) {
+            var _this = _super.call(this, changeDetectorRef, elRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.schemaReadModelRootId = schemaReadModelRootId;
             _this.schemaCommandService = schemaCommandService;
             _this.schemaReadModelService = schemaReadModelService;
-            _this.dialogThemeService = dialogThemeService;
             _this.coloring = Object.keys(SchemaRowColoring)
                 .map((/**
              * @param {?} key
@@ -26973,7 +30929,17 @@
              * @param {?} val
              * @return {?}
              */
-            function (val) { return !Number.isInteger(val); }));
+            function (val) { return !Number.isInteger(val); }))
+                .map((/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                return {
+                    value: value,
+                    name: value
+                };
+            }));
             _this.themes = Object.keys(SchemaTheme)
                 .map((/**
              * @param {?} key
@@ -26984,7 +30950,17 @@
              * @param {?} val
              * @return {?}
              */
-            function (val) { return !Number.isInteger(val); }));
+            function (val) { return !Number.isInteger(val); }))
+                .map((/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                return {
+                    value: value,
+                    name: value
+                };
+            }));
             return _this;
         }
         /**
@@ -27003,7 +30979,10 @@
              * @return {?}
              */
             function (rowColoring) {
-                _this.selectedRowColoring = SchemaRowColoring[rowColoring];
+                _this.selectedRowColoring = {
+                    value: SchemaRowColoring[rowColoring],
+                    name: SchemaRowColoring[rowColoring]
+                };
                 _this.changeDetectorRef.detectChanges();
             }));
             this.schemaReadModelService
@@ -27014,7 +30993,10 @@
              * @return {?}
              */
             function (schemaTheme) {
-                _this.selectedTheme = SchemaTheme[schemaTheme];
+                _this.selectedTheme = {
+                    value: SchemaTheme[schemaTheme],
+                    name: SchemaTheme[schemaTheme]
+                };
                 _this.changeDetectorRef.detectChanges();
             }));
             this.schemaReadModelService
@@ -27049,8 +31031,7 @@
          * @return {?}
          */
         function (theme) {
-            this.schemaCommandService.setTheme(this.toTheme(theme), this.schemaReadModelRootId);
-            this.dialogThemeService.nextTheme(theme);
+            this.schemaCommandService.setTheme(this.toTheme(theme.value), this.schemaReadModelRootId);
         };
         /**
          * @param {?} schemaRowColoring
@@ -27061,7 +31042,7 @@
          * @return {?}
          */
         function (schemaRowColoring) {
-            this.schemaCommandService.setRowColoring(this.toRowColoring(schemaRowColoring), this.schemaReadModelRootId);
+            this.schemaCommandService.setRowColoring(this.toRowColoring(schemaRowColoring.value), this.schemaReadModelRootId);
         };
         /**
          * @param {?} verticalGrid
@@ -27129,10 +31110,21 @@
                     return RowColoring.EVEN;
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureSchemaMangerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-schema-manager';
+        };
         StructureSchemaMangerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-schema-manager',
-                        template: "\n\t\t<div class=\"gui-schema-manager\">\n\t\t\t<div class=\"gui-dialog-title\">{{'themeManagerModalTitle' | translate}}</div>\n\t\t\t<div class=\"gui-structure-schema-manager-select\">\n\t\t\t\t<span>{{'themeManagerModalTheme' | translate}}</span>\n\t\t\t\t<gui-select [options]=\"themes\"\n\t\t\t\t\t\t\t[selected]=\"selectedTheme\"\n\t\t\t\t\t\t\t[placeholder]=\"'Select theme'\"\n\t\t\t\t\t\t\t(optionChanged)=\"toggleTheme($event)\">\n\t\t\t\t</gui-select>\n\t\t\t</div>\n\t\t\t<div class=\"gui-structure-schema-manager-select\">\n\t\t\t\t<span>{{'themeManagerModalRowColoring' | translate}}</span>\n\t\t\t\t<gui-select [options]=\"coloring\"\n\t\t\t\t\t\t\t[selected]=\"selectedRowColoring\"\n\t\t\t\t\t\t\t(optionChanged)=\"toggleRowColoring($event)\">\n\t\t\t\t</gui-select>\n\t\t\t</div>\n\t\t\t<gui-checkbox [checked]=\"verticalGrid\"\n\t\t\t\t\t\t  (changed)=\"toggleVerticalGrid($event)\">{{'themeManagerModalVerticalGrid' | translate}}\n\t\t\t</gui-checkbox>\n\t\t\t<gui-checkbox [checked]=\"horizontalGrid\"\n\t\t\t\t\t\t  (changed)=\"toggleHorizontalGrid($event)\">{{'themeManagerModalHorizontalGrid' | translate}}\n\t\t\t</gui-checkbox>\n\t\t</div>\n\t",
+                        selector: 'div[gui-structure-schema-manager]',
+                        template: "<div class=\"gui-schema-manager gui-flex gui-flex-col\">\n\n\t<div class=\"gui-dialog-title\">{{'themeManagerModalTitle' | guiTranslate}}</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col gui-mb-10\">\n\t\t<span class=\"gui-mb-4\">{{'themeManagerModalTheme' | guiTranslate}}</span>\n\t\t<gui-select (optionChanged)=\"toggleTheme($event)\"\n\t\t\t\t\t[options]=\"themes\"\n\t\t\t\t\t[placeholder]=\"'Select theme'\"\n\t\t\t\t\t[selected]=\"selectedTheme\">\n\t\t</gui-select>\n\t</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col\">\n\n\t\t<span class=\"gui-mb-4\">\n\t\t\t{{'themeManagerModalRowColoring' | guiTranslate}}\n\t\t</span>\n\n\t\t<gui-select (optionChanged)=\"toggleRowColoring($event)\"\n\t\t\t\t\t[options]=\"coloring\"\n\t\t\t\t\t[selected]=\"selectedRowColoring\">\n\t\t</gui-select>\n\t</div>\n\n\t<gui-checkbox (changed)=\"toggleVerticalGrid($event)\"\n\t\t\t\t  [checked]=\"verticalGrid\"\n\t\t\t\t  class=\"gui-mt-14\">\n\t\t{{'themeManagerModalVerticalGrid' | guiTranslate}}\n\t</gui-checkbox>\n\n\t<gui-checkbox (changed)=\"toggleHorizontalGrid($event)\"\n\t\t\t\t  [checked]=\"horizontalGrid\"\n\t\t\t\t  class=\"gui-mt-10\">\n\t\t{{'themeManagerModalHorizontalGrid' | guiTranslate}}\n\t</gui-checkbox>\n\n</div>\n",
                         encapsulation: core.ViewEncapsulation.None,
                         changeDetection: core.ChangeDetectionStrategy.OnPush
                     }] }
@@ -27140,13 +31132,13 @@
         /** @nocollapse */
         StructureSchemaMangerComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: SchemaReadModelRootId },
             { type: SchemaCommandInvoker },
-            { type: SchemaWarehouse },
-            { type: fabric.FabricDialogThemeService }
+            { type: SchemaWarehouse }
         ]; };
         return StructureSchemaMangerComponent;
-    }(Reactive));
+    }(SmartComponent));
     if (false) {
         /** @type {?} */
         StructureSchemaMangerComponent.prototype.coloring;
@@ -27180,36 +31172,43 @@
          * @private
          */
         StructureSchemaMangerComponent.prototype.schemaReadModelService;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureSchemaMangerComponent.prototype.dialogThemeService;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var selector$2 = 'gui-structure-schema-manager-icon';
-    var StructureSchemaManagerIconComponent = /** @class */ (function () {
-        function StructureSchemaManagerIconComponent() {
+    var StructureSchemaManagerIconComponent = /** @class */ (function (_super) {
+        __extends(StructureSchemaManagerIconComponent, _super);
+        function StructureSchemaManagerIconComponent(elRef, cdr) {
+            return _super.call(this, elRef, cdr) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureSchemaManagerIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-schema-manager-icon';
+        };
         StructureSchemaManagerIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-schema-manager-icon',
-                        template: "\n\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"24\" viewBox=\"0 0 32 24\">\n\t\t\t<g transform=\"translate(0 -4)\">\n\t\t\t\t<path id=\"Path_303\" data-name=\"Path 303\" d=\"M23.337,4H32v6H23.337Z\"/>\n\t\t\t\t<path id=\"Path_304\" data-name=\"Path 304\" d=\"M11.662,4h8.662v6H11.662Z\"/>\n\t\t\t\t<path id=\"Path_305\" data-name=\"Path 305\" d=\"M0,4H8.662v6H0Z\"/>\n\t\t\t\t<path id=\"Path_306\" data-name=\"Path 306\" d=\"M23.337,22H32v6H23.337Z\"/>\n\t\t\t\t<path id=\"Path_307\" data-name=\"Path 307\" d=\"M0,22H8.662v6H0Z\"/>\n\t\t\t\t<path id=\"Path_308\" data-name=\"Path 308\" d=\"M11.662,22h8.662v6H11.662Z\"/>\n\t\t\t\t<path id=\"Path_309\" data-name=\"Path 309\" d=\"M23.337,13H32v6H23.337Z\"/>\n\t\t\t\t<path id=\"Path_310\" data-name=\"Path 310\" d=\"M11.662,13h8.662v6H11.662Z\"/>\n\t\t\t\t<path id=\"Path_311\" data-name=\"Path 311\" d=\"M0,13H8.662v6H0Z\"/>\n\t\t\t</g>\n\t\t</svg>\n\t",
+                        selector: 'div[gui-structure-schema-manager-icon]',
+                        template: "<svg height=\"24\" viewBox=\"0 0 32 24\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<g transform=\"translate(0 -4)\">\n\t\t<path d=\"M23.337,4H32v6H23.337Z\" data-name=\"Path 303\" id=\"Path_303\"/>\n\t\t<path d=\"M11.662,4h8.662v6H11.662Z\" data-name=\"Path 304\" id=\"Path_304\"/>\n\t\t<path d=\"M0,4H8.662v6H0Z\" data-name=\"Path 305\" id=\"Path_305\"/>\n\t\t<path d=\"M23.337,22H32v6H23.337Z\" data-name=\"Path 306\" id=\"Path_306\"/>\n\t\t<path d=\"M0,22H8.662v6H0Z\" data-name=\"Path 307\" id=\"Path_307\"/>\n\t\t<path d=\"M11.662,22h8.662v6H11.662Z\" data-name=\"Path 308\" id=\"Path_308\"/>\n\t\t<path d=\"M23.337,13H32v6H23.337Z\" data-name=\"Path 309\" id=\"Path_309\"/>\n\t\t<path d=\"M11.662,13h8.662v6H11.662Z\" data-name=\"Path 310\" id=\"Path_310\"/>\n\t\t<path d=\"M0,13H8.662v6H0Z\" data-name=\"Path 311\" id=\"Path_311\"/>\n\t</g>\n</svg>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-structure-schema-manager-icon]': 'true',
-                            '[class.gui-icon]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureSchemaManagerIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef },
+            { type: core.ChangeDetectorRef }
+        ]; };
         return StructureSchemaManagerIconComponent;
-    }());
+    }(IconComponent));
 
     /**
      * @fileoverview added by tsickle
@@ -27254,7 +31253,7 @@
         }
         ActiveFilterMenuComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "\n\t\t\n\t\t<h3>Active filters</h3>\n\n\t\t<gui-active-filter-list></gui-active-filter-list>\n\n\t\t<div>\n\t\t\t\n\t\t\t<button gui-button\n\t\t\t\t\t[text]=\"true\">\n\t\t\t\tCancel\n\t\t\t</button>\n\t\t\t\n\t\t\t<button gui-button\n\t\t\t\t\t[outline]=\"true\"\n\t\t\t\t\t[primary]=\"true\">\n\t\t\t\tClear All\n\t\t\t</button>\n\t\t</div>\n\t"
+                        template: "\n\n\t\t<h3>Active filters</h3>\n\n\t\t<div gui-active-filter-list></div>\n\n\t\t<div>\n\n\t\t\t<button gui-button\n\t\t\t\t\t[text]=\"true\">\n\t\t\t\tCancel\n\t\t\t</button>\n\n\t\t\t<button gui-button\n\t\t\t\t\t[outline]=\"true\"\n\t\t\t\t\t[primary]=\"true\">\n\t\t\t\tClear All\n\t\t\t</button>\n\t\t</div>\n\t"
                     }] }
         ];
         return ActiveFilterMenuComponent;
@@ -27348,8 +31347,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ActiveFilterMenuTriggerDirective = /** @class */ (function () {
-        function ActiveFilterMenuTriggerDirective(renderer, el, structureId, activeFilterService, schemaReadModelRootId) {
-            this.renderer = renderer;
+        function ActiveFilterMenuTriggerDirective(el, structureId, activeFilterService, schemaReadModelRootId) {
             this.el = el;
             this.structureId = structureId;
             this.activeFilterService = activeFilterService;
@@ -27373,7 +31371,6 @@
         ];
         /** @nocollapse */
         ActiveFilterMenuTriggerDirective.ctorParameters = function () { return [
-            { type: core.Renderer2 },
             { type: core.ElementRef },
             { type: StructureId },
             { type: ActiveFilterService },
@@ -27382,11 +31379,6 @@
         return ActiveFilterMenuTriggerDirective;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFilterMenuTriggerDirective.prototype.renderer;
         /**
          * @type {?}
          * @private
@@ -27432,6 +31424,7 @@
                         imports: [
                             common.CommonModule,
                             FilterMenuFeatureModule,
+                            ActiveFilterListModule,
                             fabric.FabricButtonModule
                         ],
                         declarations: [
@@ -27686,8 +31679,8 @@
      */
     var StructureColumnConfigComponent = /** @class */ (function (_super) {
         __extends(StructureColumnConfigComponent, _super);
-        function StructureColumnConfigComponent(changeDetectorRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationService, structureColumnMenuConfigArchive, column) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureColumnConfigComponent(changeDetectorRef, elementRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationService, structureColumnMenuConfigArchive, column) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.structureCommandService = structureCommandService;
@@ -27762,14 +31755,29 @@
             this.config.setFilterMenu(translation.headerMenuFilterTab);
             this.config.setColumnsMenu(translation.headerMenuColumnsTab);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnConfigComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-column-config';
+        };
         StructureColumnConfigComponent.decorators = [
             { type: core.Component, args: [{
-                        template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\n\t\t\t\t\t\t<gui-structure-column-config-sort *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t  [dropdownTextTranslation]=\"dropdownTextTranslation\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t  [column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-sort>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-hide\n\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-hide>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-move\n\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-move>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t\t\t<gui-unique-value-list\n\t\t\t\t\t\t\t[fieldId]=\"column.getFieldId()\">\n\t\t\t\t\t\t</gui-unique-value-list>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t\t\t<gui-structure-menu-column-manager>\n\t\t\t\t\t\t</gui-structure-menu-column-manager>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t"
+                        selector: 'gui-column-config',
+                        template: "\n\t\t<div *ngIf=\"isEnabled()\"\n\t\t\t class=\"gui-header-menu-tab\">\n\n\t\t\t<gui-tab [menu]=\"config.getMenus()\" [active]=\"config.getActiveMenu()\">\n\n\t\t\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t\t\t<gui-tab-item class=\"gui-tab-item-dropdown\" [tab]=\"config.getMainMenu()\">\n\n\t\t\t\t\t\t<gui-structure-column-config-sort *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t  [dropdownTextTranslation]=\"dropdownTextTranslation\"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t  [column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-sort>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-hide\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-hide>\n\n\t\t\t\t\t\t<gui-structure-column-config-column-move\n\t\t\t\t\t\t\t\t[column]=\"column\">\n\t\t\t\t\t\t</gui-structure-column-config-column-move>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t\t\t<div gui-unique-value-list\n\t\t\t\t\t\t\t [fieldId]=\"column.getFieldId()\">\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t\t\t</div>\n\n\t\t\t\t\t</gui-tab-item>\n\n\t\t\t\t</ng-container>\n\n\t\t\t</gui-tab>\n\t\t</div>\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureColumnConfigComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: StructureCommandDispatcher },
             { type: CompositionWarehouse },
@@ -27859,6 +31867,7 @@
          */
         function (elementRef, column) {
             var _this = this;
+            this.close();
             /** @type {?} */
             var injector = core.Injector.create({
                 providers: [{
@@ -27878,8 +31887,8 @@
             function (theme) {
                 _this.inlineDialogService.open(elementRef, StructureColumnConfigComponent, {
                     injector: injector,
-                    placement: fabric.InlineDialogPlacement.Top,
-                    offset: -2,
+                    placement: fabric.FabricPlacement.BOTTOM,
+                    offset: -34,
                     theme: _this.structureThemeConverter.convertTheme(theme),
                     customClass: 'gui-inline-dialog-header-menu'
                 });
@@ -27936,7 +31945,7 @@
     var StructureHeaderColumnsComponent = /** @class */ (function (_super) {
         __extends(StructureHeaderColumnsComponent, _super);
         function StructureHeaderColumnsComponent(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.elementRef = elementRef;
             _this.injector = injector;
             _this.changeDetectorRef = changeDetectorRef;
@@ -27992,10 +32001,21 @@
         function () {
             return this.globalSearching;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureHeaderColumnsComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-header-columns';
+        };
         StructureHeaderColumnsComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-header-columns',
-                        template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
+                        selector: 'div[gui-structure-header-columns][columns]',
+                        template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         providers: [
@@ -28067,19 +32087,22 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureHeaderFiltersComponent = /** @class */ (function () {
-        function StructureHeaderFiltersComponent(structureFilterCommandService, formBuilder, cd, structureId) {
+    var StructureHeaderFiltersComponent = /** @class */ (function (_super) {
+        __extends(StructureHeaderFiltersComponent, _super);
+        function StructureHeaderFiltersComponent(structureFilterCommandService, formBuilder, cd, elementRef, structureId) {
             var _a;
-            this.structureFilterCommandService = structureFilterCommandService;
-            this.formBuilder = formBuilder;
-            this.cd = cd;
-            this.structureId = structureId;
-            this.closed = new core.EventEmitter();
-            this.filterFieldName = 'phrase';
-            this.filterMode = false;
-            this.filterForm = this.formBuilder.group((_a = {},
-                _a[this.filterFieldName] = [''],
+            var _this = _super.call(this, elementRef) || this;
+            _this.structureFilterCommandService = structureFilterCommandService;
+            _this.formBuilder = formBuilder;
+            _this.cd = cd;
+            _this.structureId = structureId;
+            _this.closed = new core.EventEmitter();
+            _this.filterFieldName = 'phrase';
+            _this.filterMode = false;
+            _this.filterForm = _this.formBuilder.group((_a = {},
+                _a[_this.filterFieldName] = [''],
                 _a));
+            return _this;
         }
         /**
          * @return {?}
@@ -28145,10 +32168,21 @@
             this.filterMode = false;
             this.cd.detectChanges();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureHeaderFiltersComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return '';
+        };
         StructureHeaderFiltersComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-header-filters',
-                        template: "\n\n\t\t<ng-container *ngIf=\"!filterMode\">\n\n\t\t\t<div *ngFor=\"let cell of columns\"\n\t\t\t\t [style.width.px]=\"cell.width\"\n\t\t\t\t class=\"gui-header-cell\">\n\n\t\t\t\t<!--\t\t\t\t<gui-structure-header-filter [column]=\"cell\">-->\n\t\t\t\t<!--\t\t\t\t</gui-structure-header-filter>-->\n\n\t\t\t\t<button (click)=\"turnOnFilterMode()\">Add Filter</button>\n\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"filterMode\">\n\n\t\t\t<gui-select [options]=\"['has value', 'is the same as', 'starts with', 'ends with']\" [selected]=\"'has value'\">\n\n\t\t\t</gui-select>\n\n\t\t\t<form [formGroup]=\"filterForm\">\n\t\t\t\t<input type=\"text\" [formControlName]=\"filterFieldName\" gui-input/>\n\t\t\t</form>\n\n\t\t\t<button gui-button (click)=\"clearFilters()\">Clear All</button>\n\t\t\t<button gui-button (click)=\"turnOffFilterMode()\">Close</button>\n\n\t\t</ng-container>\n\n\t",
+                        selector: 'div[gui-structure-header-filters][columns]',
+                        template: "\n\n\t\t<ng-container *ngIf=\"!filterMode\">\n\n\t\t\t<div *ngFor=\"let cell of columns\"\n\t\t\t\t [style.width.px]=\"cell.width\"\n\t\t\t\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t\t\t\t<!--\t\t\t\t<gui-structure-header-filter [column]=\"cell\">-->\n\t\t\t\t<!--\t\t\t\t</gui-structure-header-filter>-->\n\n\t\t\t\t<button (click)=\"turnOnFilterMode()\">Add Filter</button>\n\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"filterMode\">\n\n\t\t\t<gui-select [options]=\"['has value', 'is the same as', 'starts with', 'ends with']\" [selected]=\"'has value'\">\n\n\t\t\t</gui-select>\n\n\t\t\t<form [formGroup]=\"filterForm\">\n\t\t\t\t<input type=\"text\" [formControlName]=\"filterFieldName\" gui-input/>\n\t\t\t</form>\n\n\t\t\t<button gui-button (click)=\"clearFilters()\">Clear All</button>\n\t\t\t<button gui-button (click)=\"turnOffFilterMode()\">Close</button>\n\n\t\t</ng-container>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -28158,6 +32192,7 @@
             { type: FilterCommandInvoker },
             { type: forms.FormBuilder },
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId }
         ]; };
         StructureHeaderFiltersComponent.propDecorators = {
@@ -28165,7 +32200,7 @@
             closed: [{ type: core.Output }]
         };
         return StructureHeaderFiltersComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         StructureHeaderFiltersComponent.prototype.columns;
@@ -28205,10 +32240,9 @@
      */
     var StructureHeaderComponent = /** @class */ (function (_super) {
         __extends(StructureHeaderComponent, _super);
-        function StructureHeaderComponent(changeDetectorRef, renderer, eventBus, structureId, compositionId, filterWarehouse, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionWarehouse) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureHeaderComponent(changeDetectorRef, elementRef, eventBus, structureId, compositionId, filterWarehouse, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionWarehouse) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
-            _this.renderer = renderer;
             _this.eventBus = eventBus;
             _this.structureId = structureId;
             _this.compositionId = compositionId;
@@ -28221,6 +32255,7 @@
             _this.filterRowEnabled = false;
             _this.checkboxSelection = false;
             _this.showGroups = false;
+            _this.styleModifier = new StyleModifier(elementRef.nativeElement);
             return _this;
         }
         /**
@@ -28261,7 +32296,7 @@
              * @return {?}
              */
             function (width) {
-                _this.renderer.setStyle(_this.containerRef.nativeElement, 'width', width + 'px');
+                _this.styleModifier.getElement(_this.containerRef.nativeElement).setWidth(width);
             }));
             this.filterWarehouse
                 .onFilteringEnabled(this.structureId)
@@ -28306,18 +32341,26 @@
             function (rowHeight) {
                 /** @type {?} */
                 var headerHeight = +(rowHeight) + 2;
-                // if (this.containerRef) {
-                // 	this.renderer.setStyle(this.containerRef.nativeElement, 'height', headerHeight + 'px');
-                // }
                 if (_this.filtersRef) {
-                    _this.renderer.setStyle(_this.filtersRef.nativeElement, 'height', headerHeight + 'px');
+                    _this.styleModifier.getElement(_this.filtersRef.nativeElement).setHeight(headerHeight);
                 }
             }));
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureHeaderComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-header';
+        };
         StructureHeaderComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-header',
-                        template: "<gui-structure-header-groups\n\t\t*ngIf=\"showGroups\"\n\t\t[checkboxSelection]=\"checkboxSelection\"\n\t\t[groups]=\"groups\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-groups>\n\n<gui-structure-header-columns\n\t\t[checkboxSelection]=\"checkboxSelection\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-columns>\n\n<gui-structure-header-filters\n\t\t*ngIf=\"filterRowEnabled\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-filters>\n",
+                        selector: 'div[gui-structure-header]',
+                        template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"checkboxSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [checkboxSelection]=\"checkboxSelection\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -28325,7 +32368,7 @@
         /** @nocollapse */
         StructureHeaderComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
-            { type: core.Renderer2 },
+            { type: core.ElementRef },
             { type: hermes.DomainEventBus },
             { type: StructureId },
             { type: CompositionId },
@@ -28360,12 +32403,12 @@
          * @type {?}
          * @private
          */
-        StructureHeaderComponent.prototype.changeDetectorRef;
+        StructureHeaderComponent.prototype.styleModifier;
         /**
          * @type {?}
          * @private
          */
-        StructureHeaderComponent.prototype.renderer;
+        StructureHeaderComponent.prototype.changeDetectorRef;
         /**
          * @type {?}
          * @private
@@ -28458,8 +32501,8 @@
      */
     var StructureHeaderFilterComponent = /** @class */ (function (_super) {
         __extends(StructureHeaderFilterComponent, _super);
-        function StructureHeaderFilterComponent(changeDetectorRef, structureFilterCommandService, structureId) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureHeaderFilterComponent(changeDetectorRef, elementRef, structureFilterCommandService, structureId) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureFilterCommandService = structureFilterCommandService;
             _this.structureId = structureId;
@@ -28496,6 +32539,17 @@
         function (phrase) {
             // this.structureFilterCommandService.addFilter(this.column.getFieldId(), '1', phrase, this.structureId);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureHeaderFilterComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-header-filter';
+        };
         StructureHeaderFilterComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-header-filter',
@@ -28507,6 +32561,7 @@
         /** @nocollapse */
         StructureHeaderFilterComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: FilterCommandInvoker },
             { type: StructureId }
         ]; };
@@ -28545,11 +32600,9 @@
      */
     var StructureContentComponent = /** @class */ (function (_super) {
         __extends(StructureContentComponent, _super);
-        function StructureContentComponent(platformId, renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
+        function StructureContentComponent(elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
         rowSelectionTypeArchive, structureSearchPhraseRepository, structureSearchHighlightArchive, schemaRowClassArchive, schemaRowStyleArchive) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.platformId = platformId;
-            _this.renderer = renderer;
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.elementRef = elementRef;
             _this.changeDetectorRef = changeDetectorRef;
             _this.formationCommandService = formationCommandService;
@@ -28593,27 +32646,6 @@
                 _this.checkboxSelection = type === RowSelectionType.CHECKBOX;
                 _this.reRender();
             }));
-            // this.formationWarehouse
-            // 	.onRowSelectedReadModel()
-            // 	.pipe(
-            // 		filter(() => !this.checkboxSelection),
-            // 		this.takeUntil()
-            // 	)
-            // 	.subscribe((rowSelected: RowSelectedReadModel) => {
-            //
-            // 		this.clearSelectedRows();
-            //
-            // 		rowSelected.getAll()
-            // 				   .forEach((id: string) => {
-            //
-            // 					   const strippedId = 'gui' + id.replace(/-/g, ''),
-            // 						   selectedRowEl = this.elementRef.nativeElement.querySelector(`#${strippedId}`);
-            //
-            // 					   if (selectedRowEl) {
-            // 						   this.renderer.addClass(selectedRowEl, 'selected');
-            // 					   }
-            // 				   });
-            // 	});
             this.structureEditModeArchive
                 .onValue()
                 .pipe(this.takeUntil())
@@ -28675,7 +32707,6 @@
              */
             function (schemaRowClass) {
                 _this.schemaRowClass = schemaRowClass;
-                console.log(_this.schemaRowClass);
                 _this.reRender();
             }));
             this.schemaRowStyleArchive
@@ -28710,9 +32741,6 @@
         function (index) {
             /** @type {?} */
             var height = index * this.rowHeight;
-            // if (index > this.rowDetailOpened) {
-            // 	height += 200;
-            // }
             return "translateY(" + height + "px)";
         };
         /**
@@ -28729,39 +32757,26 @@
             }
         };
         /**
-         * @private
+         * @protected
          * @return {?}
          */
-        StructureContentComponent.prototype.clearSelectedRows = /**
-         * @private
+        StructureContentComponent.prototype.getSelectorName = /**
+         * @protected
          * @return {?}
          */
         function () {
-            var _this = this;
-            /** @type {?} */
-            var selectedElements = this.elementRef.nativeElement.querySelectorAll('.selected');
-            if (common.isPlatformBrowser(this.platformId)) {
-                selectedElements.forEach((/**
-                 * @param {?} el
-                 * @return {?}
-                 */
-                function (el) {
-                    _this.renderer.removeClass(el, 'selected');
-                }));
-            }
+            return 'gui-structure-content';
         };
         StructureContentComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-content',
-                        template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [checkboxSelection]=\"checkboxSelection\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [index]=\"index\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [rowClass]=\"schemaRowClass\"\n\t\t\t\t\t   [rowStyle]=\"schemaRowStyle\"\n\t\t\t\t\t   [searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
+                        selector: 'div[gui-structure-content]',
+                        template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureContentComponent.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
-            { type: core.Renderer2 },
             { type: core.ElementRef },
             { type: core.ChangeDetectorRef },
             { type: FormationCommandInvoker },
@@ -28809,16 +32824,6 @@
         StructureContentComponent.prototype.schemaRowClass;
         /** @type {?} */
         StructureContentComponent.prototype.schemaRowStyle;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureContentComponent.prototype.platformId;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureContentComponent.prototype.renderer;
         /**
          * @type {?}
          * @private
@@ -28902,17 +32907,19 @@
      */
     var StructureRowComponent = /** @class */ (function (_super) {
         __extends(StructureRowComponent, _super);
-        function StructureRowComponent(changeDetectorRef, elRef, renderer2, structureId, formationWarehouse, formationCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureRowComponent(changeDetectorRef, elRef, structureId, formationWarehouse, formationCommandDispatcher, cssClassModifier) {
+            var _this = _super.call(this, changeDetectorRef, elRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.elRef = elRef;
-            _this.renderer2 = renderer2;
             _this.structureId = structureId;
             _this.formationWarehouse = formationWarehouse;
             _this.formationCommandDispatcher = formationCommandDispatcher;
+            _this.cssClassModifier = cssClassModifier;
             _this.detailsEnabled = false;
             _this.checkboxSelection = false;
             _this.selectedItem = false;
+            _this.styleModifier = new StyleModifier(_this.elRef.nativeElement);
+            _this.classModifier = new ClassModifier(_this.elRef.nativeElement);
             return _this;
         }
         /**
@@ -28926,6 +32933,8 @@
         function (changes) {
             if (changes.entity !== undefined && changes.entity.currentValue !== undefined) {
                 this.checkSelectedItem();
+                this.updateRowClass(changes.entity.previousValue);
+                this.updateRowStyle(changes.entity.previousValue);
             }
             if (changes.rowClass !== undefined && changes.rowClass.currentValue !== undefined) {
                 this.updateRowClass();
@@ -28956,10 +32965,10 @@
                 _this.checkSelectedItem();
                 if (prevValue !== _this.selectedItem) {
                     if (prevValue) {
-                        _this.renderer2.removeClass(_this.elRef.nativeElement, 'selected');
+                        _this.cssClassModifier.unselect(_this.elRef.nativeElement);
                     }
                     else {
-                        _this.renderer2.addClass(_this.elRef.nativeElement, 'selected');
+                        _this.cssClassModifier.select(_this.elRef.nativeElement);
                     }
                     _this.changeDetectorRef.detectChanges();
                 }
@@ -29008,71 +33017,140 @@
                 this.selectedItem = this.row.isSelected(this.entity.getId());
                 if (prevValue !== this.selectedItem) {
                     if (prevValue) {
-                        this.renderer2.removeClass(this.elRef.nativeElement, 'selected');
+                        this.cssClassModifier.unselect(this.elRef.nativeElement);
                     }
                     else {
-                        this.renderer2.addClass(this.elRef.nativeElement, 'selected');
+                        this.cssClassModifier.select(this.elRef.nativeElement);
                     }
                 }
             }
         };
         /**
          * @private
+         * @param {?} entity
          * @return {?}
          */
-        StructureRowComponent.prototype.updateRowStyle = /**
+        StructureRowComponent.prototype.calculateRowStyle = /**
          * @private
+         * @param {?} entity
          * @return {?}
          */
-        function () {
+        function (entity) {
             if (!this.rowStyle) {
-                return;
+                return '';
             }
             if (typeof this.rowStyle.style === 'string') {
-                /** @type {?} */
-                var rowStyle = this.rowStyle.style || '';
-                this.renderRowStyles(rowStyle);
+                return this.rowStyle.style || '';
             }
             if (typeof this.rowStyle.styleFunction === 'function') {
-                /** @type {?} */
-                var rowStyle = this.rowStyle.styleFunction(this.entity.getData(), this.index);
-                this.renderRowStyles(rowStyle);
+                return this.rowStyle.styleFunction(entity.getData(), entity.getPosition());
             }
         };
         /**
          * @private
-         * @param {?=} rowStyle
+         * @param {?=} prevEntity
          * @return {?}
          */
-        StructureRowComponent.prototype.renderRowStyles = /**
+        StructureRowComponent.prototype.updateRowStyle = /**
          * @private
-         * @param {?=} rowStyle
+         * @param {?=} prevEntity
+         * @return {?}
+         */
+        function (prevEntity) {
+            if (prevEntity) {
+                /** @type {?} */
+                var rowStylesToRemove = this.calculateRowStyle(prevEntity);
+                this.removeRowStyles(rowStylesToRemove);
+            }
+            /** @type {?} */
+            var rowStylesToAdd = this.calculateRowStyle(this.entity);
+            this.renderRowStyles(rowStylesToAdd);
+        };
+        /**
+         * @private
+         * @param {?} rowStyle
+         * @return {?}
+         */
+        StructureRowComponent.prototype.removeRowStyles = /**
+         * @private
+         * @param {?} rowStyle
          * @return {?}
          */
         function (rowStyle) {
-            if (rowStyle === void 0) { rowStyle = ''; }
+            if (!rowStyle) {
+                return;
+            }
             /** @type {?} */
             var styles = rowStyle.split(';');
             for (var i = 0; i < styles.length; i += 1) {
                 /** @type {?} */
                 var separatedStyles = styles[i].split(':');
                 if (separatedStyles[0] && separatedStyles[1]) {
-                    this.renderer2.setStyle(this.elRef.nativeElement, separatedStyles[0].trim(), separatedStyles[1].trim());
+                    this.styleModifier.getHost().removeStyleByName(separatedStyles[0].trim());
                 }
             }
-            return rowStyle;
         };
         /**
          * @private
+         * @param {?} rowStyle
+         * @return {?}
+         */
+        StructureRowComponent.prototype.renderRowStyles = /**
+         * @private
+         * @param {?} rowStyle
+         * @return {?}
+         */
+        function (rowStyle) {
+            if (!rowStyle) {
+                return;
+            }
+            /** @type {?} */
+            var styles = rowStyle.split(';');
+            for (var i = 0; i < styles.length; i += 1) {
+                /** @type {?} */
+                var separatedStyles = styles[i].split(':');
+                if (separatedStyles[0] && separatedStyles[1]) {
+                    this.styleModifier.getHost().setStyleByName(separatedStyles[0].trim(), separatedStyles[1].trim());
+                }
+            }
+        };
+        /**
+         * @private
+         * @param {?=} prevEntity
          * @return {?}
          */
         StructureRowComponent.prototype.updateRowClass = /**
          * @private
+         * @param {?=} prevEntity
          * @return {?}
          */
-        function () {
+        function (prevEntity) {
+            if (prevEntity) {
+                /** @type {?} */
+                var toRemoveClass = this.calculateRowClass(prevEntity);
+                if (toRemoveClass) {
+                    this.classModifier.getHost().remove(toRemoveClass);
+                }
+            }
+            /** @type {?} */
+            var toAddClass = this.calculateRowClass(this.entity);
+            if (toAddClass) {
+                this.classModifier.getHost().add(toAddClass);
+            }
+        };
+        /**
+         * @private
+         * @param {?} entity
+         * @return {?}
+         */
+        StructureRowComponent.prototype.calculateRowClass = /**
+         * @private
+         * @param {?} entity
+         * @return {?}
+         */
+        function (entity) {
             if (!this.rowClass) {
-                return;
+                return '';
             }
             /** @type {?} */
             var clazz;
@@ -29080,18 +33158,27 @@
                 clazz = this.rowClass.class || '';
             }
             if (typeof this.rowClass.classFunction === 'function') {
-                if (this.entity) {
-                    clazz = this.rowClass.classFunction(this.entity.getData(), this.index) || '';
+                if (entity) {
+                    clazz = this.rowClass.classFunction(entity.getData(), entity.getPosition()) || '';
                 }
             }
-            if (clazz) {
-                this.renderer2.addClass(this.elRef.nativeElement, clazz);
-            }
+            return clazz;
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureRowComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-row';
         };
         StructureRowComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-row',
-                        template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<gui-structure-cell *ngFor=\"let column of columns; trackBy: trackByFn\"\n\t\t\t\t\t[cellEditingEnabled]=\"cellEditing\"\n\t\t\t\t\t[cell]=\"column\"\n\t\t\t\t\t[editMode]=\"editMode\"\n\t\t\t\t\t[entity]=\"entity\"\n\t\t\t\t\t[searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t[style.width.px]=\"column.width\"\n\t\t\t\t\tclass=\"gui-cell\">\n</gui-structure-cell>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
+                        selector: 'div[gui-structure-row]',
+                        template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn\" [cellEditingEnabled]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -29100,10 +33187,10 @@
         StructureRowComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
             { type: core.ElementRef },
-            { type: core.Renderer2 },
             { type: StructureId },
             { type: FormationWarehouse },
-            { type: FormationCommandInvoker }
+            { type: FormationCommandInvoker },
+            { type: CssClassModifier }
         ]; };
         StructureRowComponent.propDecorators = {
             entity: [{ type: core.Input }],
@@ -29151,17 +33238,22 @@
          * @type {?}
          * @private
          */
+        StructureRowComponent.prototype.styleModifier;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowComponent.prototype.classModifier;
+        /**
+         * @type {?}
+         * @private
+         */
         StructureRowComponent.prototype.changeDetectorRef;
         /**
          * @type {?}
          * @private
          */
         StructureRowComponent.prototype.elRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureRowComponent.prototype.renderer2;
         /**
          * @type {?}
          * @private
@@ -29177,6 +33269,11 @@
          * @private
          */
         StructureRowComponent.prototype.formationCommandDispatcher;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowComponent.prototype.cssClassModifier;
     }
 
     /**
@@ -29488,7 +33585,7 @@
     var StructureCellComponent = /** @class */ (function (_super) {
         __extends(StructureCellComponent, _super);
         function StructureCellComponent(changeDetectorRef, elementRef, structureCellEditArchive, structureCellEditStore, cellEditCloseAllService, sourceCommandService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.elementRef = elementRef;
             _this.structureCellEditArchive = structureCellEditArchive;
@@ -29693,10 +33790,21 @@
         function () {
             this.publishEditState(StructureCellEditState.SUBMIT);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureCellComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-cell';
+        };
         StructureCellComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-cell[entity][cell]',
-                        template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight()}\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: { element: cell.getValue(entity, searchPhrase) }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<gui-structure-cell-edit-boolean [cell]=\"cell\"\n\t\t\t\t\t\t\t\t\t [entity]=\"entity\">\n\t</gui-structure-cell-edit-boolean>\n</ng-container>\n",
+                        selector: 'div[gui-structure-cell][entity][cell]',
+                        template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight()}\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: { element: cell.getValue(entity, searchPhrase) }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -29785,25 +33893,25 @@
      */
     var StructureContainerComponent = /** @class */ (function (_super) {
         __extends(StructureContainerComponent, _super);
-        function StructureContainerComponent(changeDetectorRef, elementRef, renderer, ngZone, structureId, structureCommandService, structureReadModelWarehouse, structureVerticalFormationWarehouse, structureSourceWarehouse, compositionCommandService, compositionWarehouse, structureFormationWarehouse, resizeDetector, structureParent) {
-            var _this = _super.call(this, changeDetectorRef) || this;
-            _this.elementRef = elementRef;
-            _this.renderer = renderer;
+        function StructureContainerComponent(changeDetectorRef, elRef, ngZone, structureId, structureCommandService, structureWarehouse, structureVerticalFormationWarehouse, sourceWarehouse, compositionCommandInvoker, compositionWarehouse, formationWarehouse, resizeDetector, structureParent) {
+            var _this = _super.call(this, changeDetectorRef, elRef) || this;
+            _this.elRef = elRef;
             _this.ngZone = ngZone;
             _this.structureId = structureId;
             _this.structureCommandService = structureCommandService;
-            _this.structureReadModelWarehouse = structureReadModelWarehouse;
+            _this.structureWarehouse = structureWarehouse;
             _this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
-            _this.structureSourceWarehouse = structureSourceWarehouse;
-            _this.compositionCommandService = compositionCommandService;
+            _this.sourceWarehouse = sourceWarehouse;
+            _this.compositionCommandInvoker = compositionCommandInvoker;
             _this.compositionWarehouse = compositionWarehouse;
-            _this.structureFormationWarehouse = structureFormationWarehouse;
+            _this.formationWarehouse = formationWarehouse;
             _this.resizeDetector = resizeDetector;
             _this.structureParent = structureParent;
             _this.columns = [];
             _this.source = [];
             _this.autoResizeWidthEnabled = false;
             _this.scrollObservation$ = new rxjs.Subject();
+            _this.styleModifier = new StyleModifier(_this.elRef.nativeElement);
             return _this;
         }
         /**
@@ -29822,9 +33930,10 @@
              * @return {?}
              */
             function (containerHeight) {
+                console.log(containerHeight);
                 _this.setContainerHeight(containerHeight);
             }));
-            rxjs.combineLatest(this.structureSourceWarehouse.onEntities(), this.compositionWarehouse.onTemplateColumns())
+            rxjs.combineLatest(this.sourceWarehouse.onEntities(), this.compositionWarehouse.onTemplateColumns())
                 .pipe(this.takeUntil())
                 .subscribe((/**
              * @param {?} arr
@@ -29883,7 +33992,7 @@
              * @return {?}
              */
             function (width) {
-                _this.renderer.setStyle(_this.sourceCollectionRef.nativeElement, 'width', width + 'px');
+                _this.styleModifier.getElement(_this.sourceCollectionRef.nativeElement).setWidth(width);
             }));
             this.structureVerticalFormationWarehouse
                 .onVerticalScrollEnabled(this.structureId)
@@ -29900,7 +34009,7 @@
                     _this.disableScrollObservation();
                 }
             }));
-            this.structureReadModelWarehouse
+            this.structureWarehouse
                 .onStructure()
                 .pipe(operators.filter((/**
              * @param {?} str
@@ -29928,7 +34037,7 @@
              * @return {?}
              */
             function (scrollPosition) {
-                _this.elementRef.nativeElement.scrollTop = scrollPosition;
+                _this.elRef.nativeElement.scrollTop = scrollPosition;
             }));
         };
         /**
@@ -29939,7 +34048,7 @@
          */
         function () {
             _super.prototype.ngOnDestroy.call(this);
-            this.resizeDetector.destroy(this.elementRef.nativeElement);
+            this.resizeDetector.destroy(this.elRef.nativeElement);
         };
         /**
          * @private
@@ -29953,7 +34062,7 @@
          */
         function (height) {
             this.height = height;
-            this.renderer.setStyle(this.elementRef.nativeElement, 'height', this.height + 'px');
+            this.styleModifier.getHost().setHeight(height);
         };
         /**
          * @private
@@ -29968,8 +34077,8 @@
          * @return {?}
          */
         function (topMargin, sourceHeight) {
-            this.renderer.setStyle(this.sourceCollectionRef.nativeElement, 'padding-top', topMargin + 'px');
-            this.renderer.setStyle(this.sourceCollectionRef.nativeElement, 'height', sourceHeight + 'px');
+            this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setPaddingTop(topMargin);
+            this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setHeight(sourceHeight);
         };
         /**
          * @private
@@ -29983,7 +34092,7 @@
          */
         function (width) {
             if (this.autoResizeWidthEnabled) {
-                this.compositionCommandService.setContainerWidth(width);
+                this.compositionCommandInvoker.setContainerWidth(width);
             }
         };
         /**
@@ -30001,7 +34110,7 @@
              * @return {?}
              */
             function () {
-                rxjs.fromEvent(_this.elementRef.nativeElement, 'scroll')
+                rxjs.fromEvent(_this.elRef.nativeElement, 'scroll')
                     .pipe(
                 // auditTime(10),
                 operators.takeUntil(_this.scrollObservation$), _this.takeUntil())
@@ -30028,10 +34137,21 @@
             this.scrollObservation$.next();
             this.scrollObservation$.complete();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureContainerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-container';
+        };
         StructureContainerComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-container',
-                        template: "<div #sourceCollection\n\t class=\"gui-structure-container\">\n\n\t<gui-structure-content [columns]=\"columns\"\n\t\t\t\t\t\t   [source]=\"source\">\n\t</gui-structure-content>\n\n</div>\n",
+                        selector: 'div[gui-structure-container]',
+                        template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -30040,7 +34160,6 @@
         StructureContainerComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
             { type: core.ElementRef },
-            { type: core.Renderer2 },
             { type: core.NgZone },
             { type: StructureId },
             { type: StructureCommandDispatcher },
@@ -30083,12 +34202,12 @@
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.elementRef;
+        StructureContainerComponent.prototype.styleModifier;
         /**
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.renderer;
+        StructureContainerComponent.prototype.elRef;
         /**
          * @type {?}
          * @private
@@ -30108,7 +34227,7 @@
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.structureReadModelWarehouse;
+        StructureContainerComponent.prototype.structureWarehouse;
         /**
          * @type {?}
          * @private
@@ -30118,12 +34237,12 @@
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.structureSourceWarehouse;
+        StructureContainerComponent.prototype.sourceWarehouse;
         /**
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.compositionCommandService;
+        StructureContainerComponent.prototype.compositionCommandInvoker;
         /**
          * @type {?}
          * @private
@@ -30133,7 +34252,7 @@
          * @type {?}
          * @private
          */
-        StructureContainerComponent.prototype.structureFormationWarehouse;
+        StructureContainerComponent.prototype.formationWarehouse;
         /**
          * @type {?}
          * @private
@@ -30155,7 +34274,7 @@
         }
         StructureQuickFiltersComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-quick-fitlers',
+                        selector: 'div[gui-structure-quick-filters]',
                         template: "\n\n\t\tQuickFilters\n\n\t"
                     }] }
         ];
@@ -30177,17 +34296,17 @@
      */
     var StructureBlueprintComponent = /** @class */ (function (_super) {
         __extends(StructureBlueprintComponent, _super);
-        function StructureBlueprintComponent(changeDetectorRef, structureDefinition, structureId, structureReadModelService, structureInfoPanelEnabledArchive, pagingReadModelService, structureSummariesArchive, structureFilterReadModelRepository, structureSearchReadModelRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureBlueprintComponent(changeDetectorRef, elementRef, structureDefinition, structureId, structureWarehouse, structureInfoPanelArchive, pagingWarehouse, structureSummariesArchive, filterWarehouse, searchWarehouse, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureDefinition = structureDefinition;
             _this.structureId = structureId;
-            _this.structureReadModelService = structureReadModelService;
-            _this.structureInfoPanelEnabledArchive = structureInfoPanelEnabledArchive;
-            _this.pagingReadModelService = pagingReadModelService;
+            _this.structureWarehouse = structureWarehouse;
+            _this.structureInfoPanelArchive = structureInfoPanelArchive;
+            _this.pagingWarehouse = pagingWarehouse;
             _this.structureSummariesArchive = structureSummariesArchive;
-            _this.structureFilterReadModelRepository = structureFilterReadModelRepository;
-            _this.structureSearchReadModelRepository = structureSearchReadModelRepository;
+            _this.filterWarehouse = filterWarehouse;
+            _this.searchWarehouse = searchWarehouse;
             _this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
             _this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
             _this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
@@ -30199,6 +34318,7 @@
             _this.quickFiltersEnabled = false;
             _this.infoPanelEnabled = false;
             _this.items = [];
+            _this.localStreamCloser = new StreamCloser();
             _this.headerCssClass = "gui-" + _this.className + "-header";
             _this.contentCssClass = "gui-" + _this.className + "-content";
             return _this;
@@ -30213,7 +34333,7 @@
             var _this = this;
             this.structureHeaderTopEnabledArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} topHeaderEnabled
              * @return {?}
@@ -30224,7 +34344,7 @@
             }));
             this.structureHeaderBottomEnabledArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} bottomHeaderEnabled
              * @return {?}
@@ -30233,9 +34353,9 @@
                 _this.bottomHeaderEnabled = bottomHeaderEnabled;
                 _this.changeDetectorRef.detectChanges();
             }));
-            this.structureReadModelService
+            this.structureWarehouse
                 .onStructure()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} structure
              * @return {?}
@@ -30245,9 +34365,9 @@
                 _this.items = structure.getEntities();
                 _this.changeDetectorRef.detectChanges();
             }));
-            this.pagingReadModelService
+            this.pagingWarehouse
                 .onPaging()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} paging
              * @return {?}
@@ -30256,9 +34376,9 @@
                 _this.pagingReadModel = paging;
                 _this.changeDetectorRef.detectChanges();
             }));
-            this.structureSearchReadModelRepository
+            this.searchWarehouse
                 .onSearchEnabled(this.structureId)
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} enabled
              * @return {?}
@@ -30267,9 +34387,9 @@
                 _this.searchEnabled = enabled;
                 _this.changeDetectorRef.detectChanges();
             }));
-            this.structureFilterReadModelRepository
+            this.filterWarehouse
                 .onQuickFiltersEnabled(this.structureId)
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} enabled
              * @return {?}
@@ -30280,7 +34400,7 @@
             }));
             this.structureSummariesArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} config
              * @return {?}
@@ -30290,9 +34410,9 @@
                 _this.bottomSummariesPanelEnabled = config.itBottomEnabled();
                 _this.changeDetectorRef.detectChanges();
             }));
-            this.structureInfoPanelEnabledArchive
+            this.structureInfoPanelArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} infoPanel
              * @return {?}
@@ -30303,7 +34423,7 @@
             }));
             this.structureTitlePanelConfigArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} titlePanel
              * @return {?}
@@ -30314,7 +34434,7 @@
             }));
             this.structureFooterPanelConfigArchive
                 .onValue()
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @param {?} footerPanel
              * @return {?}
@@ -30323,6 +34443,15 @@
                 _this.footerPanelEnabled = footerPanel.enabled;
                 _this.changeDetectorRef.detectChanges();
             }));
+        };
+        /**
+         * @return {?}
+         */
+        StructureBlueprintComponent.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
         };
         /**
          * @return {?}
@@ -30387,10 +34516,21 @@
         function () {
             return this.structure && this.structure.getEntities().length === 0;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureBlueprintComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-blueprint';
+        };
         StructureBlueprintComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-blueprint',
-                        template: "<!---------- TOP ---------->\n<gui-structure-title-panel *ngIf=\"titlePanelEnabled\"></gui-structure-title-panel>\n\n<gui-structure-top-panel *ngIf=\"searchEnabled\"></gui-structure-top-panel>\n\n<gui-structure-quick-fitlers *ngIf=\"quickFiltersEnabled\">\n</gui-structure-quick-fitlers>\n\n<gui-paging *ngIf=\"isPagingTopEnabled()\"\n\t\t\t[position]=\"0\">\n</gui-paging>\n\n<gui-structure-summaries-panel [enabled]=\"topSummariesPanelEnabled\"\n\t\t\t\t\t\t\t   class=\"gui-structure-summaries-panel-top\">\n</gui-structure-summaries-panel>\n\n<gui-structure-header *ngIf=\"isColumnHeaderTopEnabled()\"\n\t\t\t\t\t  [ngClass]=\"getHeaderTopClasses()\">\n</gui-structure-header>\n\n\n<!---------- MAIN ---------->\n<gui-structure-container [ngClass]=\"contentCssClass\">\n</gui-structure-container>\n\n<gui-empty-source [items]=\"items\">\n</gui-empty-source>\n\n\n<!---------- BOTTOM ---------->\n<gui-structure-header *ngIf=\"isColumnHeaderBottomEnabled()\"\n\t\t\t\t\t  [ngClass]=\"getHeaderBottomClasses()\">\n</gui-structure-header>\n\n<gui-structure-summaries-panel [enabled]=\"bottomSummariesPanelEnabled\"\n\t\t\t\t\t\t\t   class=\"gui-structure-summaries-panel-bottom\">\n</gui-structure-summaries-panel>\n\n<gui-structure-footer-panel *ngIf=\"footerPanelEnabled\"></gui-structure-footer-panel>\n\n<gui-paging *ngIf=\"isPagingBottomEnabled()\"\n\t\t\t[position]=\"1\">\n</gui-paging>\n\n<gui-structure-info-panel *ngIf=\"infoPanelEnabled\"></gui-structure-info-panel>\n",
+                        selector: 'div[gui-structure-blueprint]',
+                        template: "<!---------- TOP ---------->\n<div *ngIf=\"titlePanelEnabled\" gui-structure-title-panel></div>\n\n<div *ngIf=\"searchEnabled\" gui-structure-top-panel></div>\n\n<!--<div gui-structure-quick-filters *ngIf=\"quickFiltersEnabled\">-->\n<!--</div>-->\n\n<div *ngIf=\"isPagingTopEnabled()\" [position]=\"0\"\n\t gui-paging>\n</div>\n\n<div [enabled]=\"topSummariesPanelEnabled\" class=\"gui-structure-summaries-panel-top\"\n\t gui-structure-summaries-panel>\n</div>\n\n<div *ngIf=\"isColumnHeaderTopEnabled()\" [ngClass]=\"getHeaderTopClasses()\"\n\t gui-structure-header>\n</div>\n\n\n<!---------- MAIN ---------->\n<div [ngClass]=\"contentCssClass\" gui-structure-container>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n\n\n<!---------- BOTTOM ---------->\n<div *ngIf=\"isColumnHeaderBottomEnabled()\" [ngClass]=\"getHeaderBottomClasses()\"\n\t gui-structure-header>\n</div>\n\n<div [enabled]=\"bottomSummariesPanelEnabled\" class=\"gui-structure-summaries-panel-bottom\"\n\t gui-structure-summaries-panel>\n</div>\n\n<div *ngIf=\"footerPanelEnabled\" gui-structure-footer-panel></div>\n\n<div *ngIf=\"isPagingBottomEnabled()\" [position]=\"1\"\n\t gui-paging>\n</div>\n\n<div *ngIf=\"infoPanelEnabled\" gui-structure-info-panel></div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -30398,6 +34538,7 @@
         /** @nocollapse */
         StructureBlueprintComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureDefinition },
             { type: StructureId },
             { type: StructureWarehouse },
@@ -30435,17 +34576,22 @@
         StructureBlueprintComponent.prototype.topHeaderEnabled;
         /** @type {?} */
         StructureBlueprintComponent.prototype.bottomHeaderEnabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureBlueprintComponent.prototype.pagingReadModel;
         /** @type {?} */
         StructureBlueprintComponent.prototype.titlePanelEnabled;
         /** @type {?} */
         StructureBlueprintComponent.prototype.footerPanelEnabled;
         /** @type {?} */
         StructureBlueprintComponent.prototype.items;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureBlueprintComponent.prototype.pagingReadModel;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureBlueprintComponent.prototype.localStreamCloser;
         /**
          * @type {?}
          * @private
@@ -30465,17 +34611,17 @@
          * @type {?}
          * @private
          */
-        StructureBlueprintComponent.prototype.structureReadModelService;
+        StructureBlueprintComponent.prototype.structureWarehouse;
         /**
          * @type {?}
          * @private
          */
-        StructureBlueprintComponent.prototype.structureInfoPanelEnabledArchive;
+        StructureBlueprintComponent.prototype.structureInfoPanelArchive;
         /**
          * @type {?}
          * @private
          */
-        StructureBlueprintComponent.prototype.pagingReadModelService;
+        StructureBlueprintComponent.prototype.pagingWarehouse;
         /**
          * @type {?}
          * @private
@@ -30485,12 +34631,12 @@
          * @type {?}
          * @private
          */
-        StructureBlueprintComponent.prototype.structureFilterReadModelRepository;
+        StructureBlueprintComponent.prototype.filterWarehouse;
         /**
          * @type {?}
          * @private
          */
-        StructureBlueprintComponent.prototype.structureSearchReadModelRepository;
+        StructureBlueprintComponent.prototype.searchWarehouse;
         /**
          * @type {?}
          * @private
@@ -30622,18 +34768,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FilterToggledEvent = /** @class */ (function (_super) {
-        __extends(FilterToggledEvent, _super);
-        function FilterToggledEvent(aggregateId) {
-            return _super.call(this, aggregateId, 'FilterToggledEvent') || this;
-        }
-        return FilterToggledEvent;
-    }(StructureDomainEvent));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var FilterAddedEvent = /** @class */ (function (_super) {
         __extends(FilterAddedEvent, _super);
         function FilterAddedEvent(aggregateId, fieldId, filterTypeId, value) {
@@ -30661,36 +34795,6 @@
          * @private
          */
         FilterAddedEvent.prototype.value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ActiveFiltersSetEvent = /** @class */ (function (_super) {
-        __extends(ActiveFiltersSetEvent, _super);
-        function ActiveFiltersSetEvent(structureId, filters) {
-            var _this = _super.call(this, structureId, 'ActiveFiltersSetEvent') || this;
-            _this.filters = filters;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        ActiveFiltersSetEvent.prototype.getFilters = /**
-         * @return {?}
-         */
-        function () {
-            return this.filters;
-        };
-        return ActiveFiltersSetEvent;
-    }(StructureDomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFiltersSetEvent.prototype.filters;
     }
 
     /**
@@ -31679,983 +35783,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var Filter = /** @class */ (function () {
-        function Filter(filterId, fieldId, filterTypeId, filterValue) {
-            this.filterId = filterId;
-            this.fieldId = fieldId;
-            this.filterTypeId = filterTypeId;
-            this.filterValue = filterValue;
-        }
-        /**
-         * @return {?}
-         */
-        Filter.prototype.getFilterId = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterId;
-        };
-        /**
-         * @return {?}
-         */
-        Filter.prototype.getFilterTypeId = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterTypeId;
-        };
-        /**
-         * @return {?}
-         */
-        Filter.prototype.getFieldId = /**
-         * @return {?}
-         */
-        function () {
-            return this.fieldId;
-        };
-        /**
-         * @return {?}
-         */
-        Filter.prototype.getFilterValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterValue;
-        };
-        return Filter;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Filter.prototype.filterId;
-        /**
-         * @type {?}
-         * @private
-         */
-        Filter.prototype.fieldId;
-        /**
-         * @type {?}
-         * @private
-         */
-        Filter.prototype.filterTypeId;
-        /**
-         * @type {?}
-         * @private
-         */
-        Filter.prototype.filterValue;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterSettings = /** @class */ (function () {
-        function FilterSettings(filteringEnabled, searchEnabled, quickFiltersEnabled) {
-            if (filteringEnabled === void 0) { filteringEnabled = false; }
-            if (searchEnabled === void 0) { searchEnabled = false; }
-            if (quickFiltersEnabled === void 0) { quickFiltersEnabled = false; }
-            this.filteringEnabled = false;
-            this.searchEnabled = false;
-            this.quickFiltersEnabled = false;
-            this.filteringEnabled = filteringEnabled;
-            this.searchEnabled = searchEnabled;
-            this.quickFiltersEnabled = quickFiltersEnabled;
-        }
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isFilteringEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.filteringEnabled;
-        };
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isQuickFilteringEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.quickFiltersEnabled;
-        };
-        /**
-         * @return {?}
-         */
-        FilterSettings.prototype.isSearchingEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.searchEnabled;
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setFilterConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.filteringEnabled = config.enabled;
-            }
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setSearchingConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.searchEnabled = config.enabled;
-            }
-        };
-        /**
-         * @param {?} config
-         * @return {?}
-         */
-        FilterSettings.prototype.setQuickFiltersConfig = /**
-         * @param {?} config
-         * @return {?}
-         */
-        function (config) {
-            if (config && config.enabled !== undefined && config.enabled !== null) {
-                this.quickFiltersEnabled = config.enabled;
-            }
-        };
-        return FilterSettings;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.filteringEnabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.searchEnabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterSettings.prototype.quickFiltersEnabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var /**
-     * @abstract
-     * @template T
-     */
-    BaseFilterType = /** @class */ (function () {
-        function BaseFilterType(filterTypeId) {
-            this.filterTypeId = filterTypeId;
-        }
-        /**
-         * @return {?}
-         */
-        BaseFilterType.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterTypeId;
-        };
-        /**
-         * @param {?} entities
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        BaseFilterType.prototype.filterMany = /**
-         * @param {?} entities
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (entities, field, value) {
-            var _this = this;
-            if (entities.length === 0) {
-                return entities;
-            }
-            return entities.filter((/**
-             * @param {?} item
-             * @return {?}
-             */
-            function (item) {
-                return _this.filterEntity(item, field, value);
-            }));
-        };
-        /**
-         * @param {?} entity
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        BaseFilterType.prototype.filterOne = /**
-         * @param {?} entity
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (entity, field, value) {
-            return this.filterEntity(entity, field, value);
-        };
-        return BaseFilterType;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        BaseFilterType.prototype.filterTypeId;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        BaseFilterType.prototype.getName = function () { };
-        /**
-         * @abstract
-         * @protected
-         * @param {?} entity
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        BaseFilterType.prototype.filterEntity = function (entity, field, value) { };
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ContainsFilterType = /** @class */ (function (_super) {
-        __extends(ContainsFilterType, _super);
-        function ContainsFilterType(filterTypeId) {
-            return _super.call(this, filterTypeId) || this;
-        }
-        /**
-         * @return {?}
-         */
-        ContainsFilterType.prototype.getName = /**
-         * @return {?}
-         */
-        function () {
-            return 'Contains';
-        };
-        /**
-         * @protected
-         * @param {?} entity
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        ContainsFilterType.prototype.filterEntity = /**
-         * @protected
-         * @param {?} entity
-         * @param {?} field
-         * @param {?} value
-         * @return {?}
-         */
-        function (entity, field, value) {
-            /** @type {?} */
-            var fieldValue = field.getValue(entity);
-            return !!fieldValue.includes(value);
-        };
-        return ContainsFilterType;
-    }(BaseFilterType));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeId = /** @class */ (function () {
-        function FilterTypeId(id) {
-            this.id = id;
-        }
-        /**
-         * @return {?}
-         */
-        FilterTypeId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
-            return this.id;
-        };
-        return FilterTypeId;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeId.prototype.id;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeIdGenerator = /** @class */ (function () {
-        function FilterTypeIdGenerator() {
-        }
-        /**
-         * @return {?}
-         */
-        FilterTypeIdGenerator.prototype.generate = /**
-         * @return {?}
-         */
-        function () {
-            FilterTypeIdGenerator.index += 1;
-            return new FilterTypeId("" + FilterTypeIdGenerator.index);
-        };
-        FilterTypeIdGenerator.index = 0;
-        return FilterTypeIdGenerator;
-    }());
-    if (false) {
-        /** @type {?} */
-        FilterTypeIdGenerator.index;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeReadModel = /** @class */ (function () {
-        function FilterTypeReadModel(id, name) {
-            this.filterTypeId = id;
-            this.name = name;
-        }
-        /**
-         * @return {?}
-         */
-        FilterTypeReadModel.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterTypeId;
-        };
-        /**
-         * @return {?}
-         */
-        FilterTypeReadModel.prototype.getName = /**
-         * @return {?}
-         */
-        function () {
-            return this.name;
-        };
-        return FilterTypeReadModel;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeReadModel.prototype.filterTypeId;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeReadModel.prototype.name;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeManager = /** @class */ (function () {
-        function FilterTypeManager(fields) {
-            this.fieldIds = [];
-            this.map = new WeakMap();
-            this.filterTypeMap = new WeakMap();
-            this.dataTypeToFilterType = new Map();
-            this.filterTypeIdGenerator = new FilterTypeIdGenerator();
-            this.assignFilterTypes();
-            this.addFields(fields);
-        }
-        /**
-         * @param {?} filterTypeId
-         * @return {?}
-         */
-        FilterTypeManager.prototype.getFilterType = /**
-         * @param {?} filterTypeId
-         * @return {?}
-         */
-        function (filterTypeId) {
-            return this.filterTypeMap.get(filterTypeId);
-        };
-        /**
-         * @return {?}
-         */
-        FilterTypeManager.prototype.getFieldIdsToFilterTypes = /**
-         * @return {?}
-         */
-        function () {
-            var e_1, _a;
-            /** @type {?} */
-            var map = new Map();
-            try {
-                for (var _b = __values(this.fieldIds), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var fieldId = _c.value;
-                    /** @type {?} */
-                    var filterTypes = this.map.get(fieldId);
-                    /** @type {?} */
-                    var readModels = filterTypes.map((/**
-                     * @param {?} f
-                     * @return {?}
-                     */
-                    function (f) {
-                        return new FilterTypeReadModel(f.getId(), f.getName());
-                    }));
-                    map.set(fieldId.toString(), readModels);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-            return map;
-        };
-        /**
-         * @private
-         * @param {?} fields
-         * @return {?}
-         */
-        FilterTypeManager.prototype.addFields = /**
-         * @private
-         * @param {?} fields
-         * @return {?}
-         */
-        function (fields) {
-            var e_2, _a;
-            try {
-                for (var fields_1 = __values(fields), fields_1_1 = fields_1.next(); !fields_1_1.done; fields_1_1 = fields_1.next()) {
-                    var field = fields_1_1.value;
-                    this.addField(field);
-                }
-            }
-            catch (e_2_1) { e_2 = { error: e_2_1 }; }
-            finally {
-                try {
-                    if (fields_1_1 && !fields_1_1.done && (_a = fields_1.return)) _a.call(fields_1);
-                }
-                finally { if (e_2) throw e_2.error; }
-            }
-        };
-        /**
-         * @private
-         * @param {?} field
-         * @return {?}
-         */
-        FilterTypeManager.prototype.addField = /**
-         * @private
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var fieldId = field.getId();
-            /** @type {?} */
-            var dataType = field.getDataType();
-            /** @type {?} */
-            var filterTypesFromDataType = this.dataTypeToFilterType.get(dataType);
-            this.fieldIds.push(fieldId);
-            this.map.set(fieldId, __spread(filterTypesFromDataType));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypes = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.assignFilterTypesForDataTypeUnknown();
-            this.assignFilterTypesForDataTypeNumber();
-            this.assignFilterTypesForDataTypeString();
-            this.assignFilterTypesForDataTypeBoolean();
-            this.assignFilterTypesForDataTypeDate();
-            this.assignFilterTypesForDataTypeCustom();
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeUnknown = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.dataTypeToFilterType.set(DataType.UNKNOWN, []);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeNumber = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.dataTypeToFilterType.set(DataType.NUMBER, []);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeString = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            /** @type {?} */
-            var filterTypes = [
-                new ContainsFilterType(this.generateId())
-            ];
-            this.dataTypeToFilterType.set(DataType.STRING, filterTypes);
-            this.addFilterTypes(filterTypes);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeBoolean = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.dataTypeToFilterType.set(DataType.BOOLEAN, []);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeDate = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.dataTypeToFilterType.set(DataType.DATE, []);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.assignFilterTypesForDataTypeCustom = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            this.dataTypeToFilterType.set(DataType.CUSTOM, []);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        FilterTypeManager.prototype.generateId = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            return this.filterTypeIdGenerator.generate();
-        };
-        /**
-         * @private
-         * @param {?} filterTypes
-         * @return {?}
-         */
-        FilterTypeManager.prototype.addFilterTypes = /**
-         * @private
-         * @param {?} filterTypes
-         * @return {?}
-         */
-        function (filterTypes) {
-            var e_3, _a;
-            try {
-                for (var filterTypes_1 = __values(filterTypes), filterTypes_1_1 = filterTypes_1.next(); !filterTypes_1_1.done; filterTypes_1_1 = filterTypes_1.next()) {
-                    var filterType = filterTypes_1_1.value;
-                    this.filterTypeMap.set(filterType.getId(), filterType);
-                }
-            }
-            catch (e_3_1) { e_3 = { error: e_3_1 }; }
-            finally {
-                try {
-                    if (filterTypes_1_1 && !filterTypes_1_1.done && (_a = filterTypes_1.return)) _a.call(filterTypes_1);
-                }
-                finally { if (e_3) throw e_3.error; }
-            }
-        };
-        return FilterTypeManager;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeManager.prototype.fieldIds;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeManager.prototype.map;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeManager.prototype.filterTypeMap;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeManager.prototype.dataTypeToFilterType;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeManager.prototype.filterTypeIdGenerator;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterId = /** @class */ (function () {
-        function FilterId(filterId) {
-            this.id = filterId;
-        }
-        /**
-         * @return {?}
-         */
-        FilterId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
-            return this.id;
-        };
-        return FilterId;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterId.prototype.id;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterIdGenerator = /** @class */ (function () {
-        function FilterIdGenerator() {
-        }
-        /**
-         * @return {?}
-         */
-        FilterIdGenerator.generateId = /**
-         * @return {?}
-         */
-        function () {
-            return new FilterId("" + FilterIdGenerator.index);
-        };
-        FilterIdGenerator.index = 0;
-        return FilterIdGenerator;
-    }());
-    if (false) {
-        /** @type {?} */
-        FilterIdGenerator.index;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ActiveFilterReadModel = /** @class */ (function () {
-        function ActiveFilterReadModel(filterId, fieldName, filterTypeName, value) {
-            this.filterId = filterId;
-            this.fieldName = fieldName;
-            this.filterTypeName = filterTypeName;
-            this.value = value;
-        }
-        /**
-         * @return {?}
-         */
-        ActiveFilterReadModel.prototype.getText = /**
-         * @return {?}
-         */
-        function () {
-            return this.fieldName + ": " + this.filterTypeName + ": " + this.value;
-        };
-        /**
-         * @return {?}
-         */
-        ActiveFilterReadModel.prototype.getFilterId = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterId;
-        };
-        return ActiveFilterReadModel;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFilterReadModel.prototype.filterId;
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFilterReadModel.prototype.fieldName;
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFilterReadModel.prototype.filterTypeName;
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFilterReadModel.prototype.value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterManager = /** @class */ (function () {
-        function FilterManager() {
-            this.filterSettings = new FilterSettings();
-            // string -> FilterId
-            this.filters = new Map();
-            this.activeFilters = [];
-        }
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.getSettings = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterSettings;
-        };
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
-            return Array.from(this.filters)
-                .map((/**
-             * @param {?} arr
-             * @return {?}
-             */
-            function (arr) { return arr[1]; }));
-        };
-        /**
-         * @param {?} fields
-         * @return {?}
-         */
-        FilterManager.prototype.getAllActiveFilters = /**
-         * @param {?} fields
-         * @return {?}
-         */
-        function (fields) {
-            var _this = this;
-            return this.activeFilters
-                .map((/**
-             * @param {?} af
-             * @return {?}
-             */
-            function (af) {
-                return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), _this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
-            }));
-        };
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.getFilterTypes = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterTypeManager.getFieldIdsToFilterTypes();
-        };
-        /**
-         * @param {?} fields
-         * @return {?}
-         */
-        FilterManager.prototype.assignFilterTypes = /**
-         * @param {?} fields
-         * @return {?}
-         */
-        function (fields) {
-            this.filterTypeManager = new FilterTypeManager(fields);
-        };
-        /**
-         * @param {?} fieldId
-         * @param {?} filterTypeId
-         * @param {?} value
-         * @return {?}
-         */
-        FilterManager.prototype.add = /**
-         * @param {?} fieldId
-         * @param {?} filterTypeId
-         * @param {?} value
-         * @return {?}
-         */
-        function (fieldId, filterTypeId, value) {
-            /** @type {?} */
-            var filter = new Filter(FilterIdGenerator.generateId(), fieldId, filterTypeId, value);
-            this.activeFilters.push(filter);
-        };
-        /**
-         * @param {?} entities
-         * @param {?} fields
-         * @return {?}
-         */
-        FilterManager.prototype.filter = /**
-         * @param {?} entities
-         * @param {?} fields
-         * @return {?}
-         */
-        function (entities, fields) {
-            var e_1, _a;
-            /** @type {?} */
-            var filteredEntities = __spread(entities);
-            try {
-                for (var _b = __values(this.activeFilters), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var filter = _c.value;
-                    /** @type {?} */
-                    var filterTypeId = filter.getFilterTypeId();
-                    /** @type {?} */
-                    var filterType = this.getFilterType(filterTypeId);
-                    /** @type {?} */
-                    var value = filter.getFilterValue();
-                    filteredEntities = filterType.filterMany(filteredEntities, fields.get(filter.getFieldId().toString()), value);
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-            return filteredEntities;
-        };
-        /**
-         * @return {?}
-         */
-        FilterManager.prototype.removeAll = /**
-         * @return {?}
-         */
-        function () {
-            this.activeFilters.length = 0;
-        };
-        /**
-         * @param {?} filterId
-         * @return {?}
-         */
-        FilterManager.prototype.remove = /**
-         * @param {?} filterId
-         * @return {?}
-         */
-        function (filterId) {
-            this.activeFilters =
-                this.activeFilters.filter((/**
-                 * @param {?} filter
-                 * @return {?}
-                 */
-                function (filter) {
-                    return filter.getFilterId() !== filterId;
-                }));
-        };
-        /**
-         * @private
-         * @param {?} filterTypeId
-         * @return {?}
-         */
-        FilterManager.prototype.getFilterType = /**
-         * @private
-         * @param {?} filterTypeId
-         * @return {?}
-         */
-        function (filterTypeId) {
-            return this.filterTypeManager.getFilterType(filterTypeId);
-        };
-        return FilterManager;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.filterSettings;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.filters;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.activeFilters;
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterManager.prototype.filterTypeManager;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterManagerFactory = /** @class */ (function () {
-        function FilterManagerFactory() {
-        }
-        /**
-         * @param {?=} enabled
-         * @return {?}
-         */
-        FilterManagerFactory.prototype.create = /**
-         * @param {?=} enabled
-         * @return {?}
-         */
-        function (enabled) {
-            if (enabled === void 0) { enabled = false; }
-            return new FilterManager();
-        };
-        FilterManagerFactory.decorators = [
-            { type: core.Injectable }
-        ];
-        return FilterManagerFactory;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var StructurePreparedEntitiesSetAggregateEvent = /** @class */ (function (_super) {
         __extends(StructurePreparedEntitiesSetAggregateEvent, _super);
         function StructurePreparedEntitiesSetAggregateEvent(aggregateId, preparedItems) {
@@ -32766,36 +35893,6 @@
         };
         return StructureCreatedAggregateEvent;
     }(StructureAggregateEvent));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypesInitedEvent = /** @class */ (function (_super) {
-        __extends(FilterTypesInitedEvent, _super);
-        function FilterTypesInitedEvent(aggregateId, map) {
-            var _this = _super.call(this, aggregateId, 'FilterTypesInitedEvent') || this;
-            _this.map = map;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        FilterTypesInitedEvent.prototype.getMap = /**
-         * @return {?}
-         */
-        function () {
-            return this.map;
-        };
-        return FilterTypesInitedEvent;
-    }(StructureDomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypesInitedEvent.prototype.map;
-    }
 
     /**
      * @fileoverview added by tsickle
@@ -32915,36 +36012,6 @@
          * @private
          */
         FilterRemovedAggregateEvent.prototype.activeFilters;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UniqueFilterCalculatedEvent = /** @class */ (function (_super) {
-        __extends(UniqueFilterCalculatedEvent, _super);
-        function UniqueFilterCalculatedEvent(aggregateId, map) {
-            var _this = _super.call(this, aggregateId, 'UniqueFilterCalculatedEvent') || this;
-            _this.map = map;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        UniqueFilterCalculatedEvent.prototype.getUniqueValues = /**
-         * @return {?}
-         */
-        function () {
-            return this.map;
-        };
-        return UniqueFilterCalculatedEvent;
-    }(StructureDomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueFilterCalculatedEvent.prototype.map;
     }
 
     /**
@@ -35378,22 +38445,37 @@
      */
     var StructureTopPanelComponent = /** @class */ (function (_super) {
         __extends(StructureTopPanelComponent, _super);
-        function StructureTopPanelComponent(changeDetectorRef) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureTopPanelComponent(changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
+            _this.addClassToHost('gui-p-6');
+            _this.addClassToHost('gui-border-b');
+            _this.addClassToHost('gui-border-b-solid');
             return _this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureTopPanelComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-top-panel';
+        };
         StructureTopPanelComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-top-panel',
-                        template: "\n\n\t\t<gui-search-bar></gui-search-bar>\n<!--\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n\t",
+                        selector: 'div[gui-structure-top-panel]',
+                        template: "\n\n\t\t<div gui-search-bar\n\t\t\t class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"></div>\n\t\t<!--\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureTopPanelComponent.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
         ]; };
         return StructureTopPanelComponent;
     }(SmartComponent));
@@ -35438,7 +38520,7 @@
     var StructureColumnConfigTriggerComponent = /** @class */ (function (_super) {
         __extends(StructureColumnConfigTriggerComponent, _super);
         function StructureColumnConfigTriggerComponent(elementRef, changeDetectorRef, structureCommandService, structureColumnMenuConfigArchive, structureColumnConfigService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.elementRef = elementRef;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureCommandService = structureCommandService;
@@ -35492,6 +38574,17 @@
          */
         function () {
             return this.config && this.config.isEnabled();
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnConfigTriggerComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-column-config-trigger';
         };
         StructureColumnConfigTriggerComponent.decorators = [
             { type: core.Component, args: [{
@@ -35555,8 +38648,8 @@
      */
     var StructureColumnConfigSortComponent = /** @class */ (function (_super) {
         __extends(StructureColumnConfigSortComponent, _super);
-        function StructureColumnConfigSortComponent(changeDetectorRef, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureColumnConfigSortComponent(changeDetectorRef, elementRef, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.compositionId = compositionId;
             _this.structureId = structureId;
@@ -35626,15 +38719,29 @@
             event.stopPropagation();
             this.sortingCommandDispatcher.setSortOrder(this.column.getFieldId(), sort, this.compositionId, this.structureId);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnConfigSortComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-column-config-sort';
+        };
         StructureColumnConfigSortComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-column-config-sort',
-                        template: "\n\n\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t  [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">\n\t\t\t\t\t{{'headerMenuMainTabColumnSortAscending' | translate}}\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"0\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">\n\t\t\t\t\t{{'headerMenuMainTabColumnSortDescending' | translate}}\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"180\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t\t\t{{'headerMenuMainTabColumnSortNone' | translate}}\n\t\t\t</gui-dropdown-item>\n\n\t\t</gui-dropdown>\n\t"
+                        template: "\n\n\t\t<gui-dropdown [placement]=\"placement\"\n\t\t\t\t\t  [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t\t\t  [width]=\"225\"\n\t\t\t\t\t  [showOnHover]=\"true\"\n\t\t\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">\n\t\t\t\t\t{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"0\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t\t\t<div class=\"gui-sort-title\">\n\t\t\t\t\t{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}\n\t\t\t\t\t<gui-structure-column-menu-arrow-icon [sort]=\"true\" [rotateDeg]=\"180\">\n\t\t\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t\t\t</div>\n\t\t\t</gui-dropdown-item>\n\n\t\t\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t\t\t{{'headerMenuMainTabColumnSortNone' | guiTranslate}}\n\t\t\t</gui-dropdown-item>\n\n\t\t</gui-dropdown>\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureColumnConfigSortComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: CompositionId },
             { type: StructureId },
             { type: SortingCommandInvoker },
@@ -35708,7 +38815,7 @@
         StructureColumnConfigColumnHideComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-column-config-column-hide',
-                        template: "\n\t\t<div class=\"gui-header-menu-item\"\n\t\t\t (click)=\"hideColumn(column)\">\n\t\t\t{{'headerMenuMainTabHideColumn' | translate}}\n\t\t</div>\n\t"
+                        template: "\n\t\t<div class=\"gui-header-menu-item\"\n\t\t\t (click)=\"hideColumn(column)\">\n\t\t\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n\t\t</div>\n\t"
                     }] }
         ];
         /** @nocollapse */
@@ -35772,7 +38879,7 @@
         StructureColumnConfigColumnMoveComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-structure-column-config-column-move',
-                        template: "\n\t\t<div class=\"gui-header-menu-column-move\">\n\t\t\t<div class=\"gui-header-menu-column-move-item left\"\n\t\t\t\t (click)=\"moveLeft(column)\">\n\t\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"-90\"></gui-structure-column-menu-arrow-icon>\n\t\t\t\t{{'headerMenuMainTabMoveLeft' | translate}}\n\t\t\t</div>\n\n\t\t\t<div class=\"gui-header-menu-column-move-item right\"\n\t\t\t\t (click)=\"moveRight(column)\">\n\t\t\t\t{{'headerMenuMainTabMoveRight' | translate}}\n\t\t\t\t<gui-structure-column-menu-arrow-icon></gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t"
+                        template: "\n\t\t<div class=\"gui-header-menu-column-move\">\n\t\t\t<div class=\"gui-header-menu-column-move-item left\"\n\t\t\t\t (click)=\"moveLeft(column)\">\n\t\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"-90\"></gui-structure-column-menu-arrow-icon>\n\t\t\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t\t\t</div>\n\n\t\t\t<div class=\"gui-header-menu-column-move-item right\"\n\t\t\t\t (click)=\"moveRight(column)\">\n\t\t\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t\t\t<gui-structure-column-menu-arrow-icon></gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t"
                     }] }
         ];
         /** @nocollapse */
@@ -35826,29 +38933,42 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** @type {?} */
-    var selector$3 = 'gui-structure-column-menu-arrow-icon';
-    var StructureColumnMenuArrowIconComponent = /** @class */ (function () {
-        function StructureColumnMenuArrowIconComponent() {
-            this.rotateDeg = 90;
+    var StructureColumnMenuArrowIconComponent = /** @class */ (function (_super) {
+        __extends(StructureColumnMenuArrowIconComponent, _super);
+        function StructureColumnMenuArrowIconComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.rotateDeg = 90;
+            return _this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureColumnMenuArrowIconComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-column-menu-arrow-icon';
+        };
         StructureColumnMenuArrowIconComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: selector$3,
+                        selector: 'gui-structure-column-menu-arrow-icon',
                         template: "\n\t\t<div [style.transform]=\"'rotate(' + rotateDeg + 'deg)'\"\n\t\t\t [class.gui-structure-column-menu-sort-icon]=\"sort\">\n\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.04 11.72\">\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"2.15\" x2=\"5.02\" y2=\"10.97\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"9.29\" y2=\"5.02\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"0.75\" y2=\"5.02\"/>\n\t\t\t</svg>\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class]': "\"" + selector$3 + "\""
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        StructureColumnMenuArrowIconComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         StructureColumnMenuArrowIconComponent.propDecorators = {
             rotateDeg: [{ type: core.Input }],
             sort: [{ type: core.Input }]
         };
         return StructureColumnMenuArrowIconComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         StructureColumnMenuArrowIconComponent.prototype.rotateDeg;
@@ -35862,8 +38982,8 @@
      */
     var UniqueValueListComponent = /** @class */ (function (_super) {
         __extends(UniqueValueListComponent, _super);
-        function UniqueValueListComponent(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function UniqueValueListComponent(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.filterWarehouse = filterWarehouse;
@@ -35934,18 +39054,30 @@
         function () {
             this.filterCommandDispatcher.selectAllUniqueFilter(this.fieldId, this.structureId);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        UniqueValueListComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-unique-value-list';
+        };
         UniqueValueListComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-unique-value-list',
-                        template: "\n\n\t\t<gui-checkbox [checked]=\"selectAllChecked\"\n\t\t\t\t\t  [indeterminate]=\"selectAllIndeterminate\"\n\t\t\t\t\t  (changed)=\"toggleAllSelect()\">\n\t\t\tSelect all\n\t\t</gui-checkbox>\n\t\t<div class=\"gui-unique-value-list\">\n\t\t\t<div *ngFor=\"let value of uniqueValues\">\n\t\t\t\t<gui-checkbox [checked]=\"value.isEnabled()\"\n\t\t\t\t\t\t\t  (changed)=\"toggleSelect(value)\">\n\t\t\t\t\t{{value.getValue()}}\n\t\t\t\t</gui-checkbox>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"gui-unique-value-list-actions\">\n\t\t\t<!--\t\t\t<button gui-button-->\n\t\t\t<!--\t\t\t\t\t[outline]=\"true\"-->\n\t\t\t<!--\t\t\t\t\t(click)=\"clearFilters()\">-->\n\t\t\t<!--\t\t\t\tCancel-->\n\t\t\t<!--\t\t\t</button>-->\n\n\t\t\t<button gui-button\n\t\t\t\t\t[outline]=\"true\"\n\t\t\t\t\t[primary]=\"true\"\n\t\t\t\t\t(click)=\"clearFilters()\">\n\t\t\t\tClear\n\t\t\t</button>\n\t\t</div>\n\n\t",
+                        selector: 'div[gui-unique-value-list][fieldId]',
+                        template: "<gui-checkbox (changed)=\"toggleAllSelect()\"\n\t\t\t  [checked]=\"selectAllChecked\"\n\t\t\t  [indeterminate]=\"selectAllIndeterminate\">\n\tSelect all\n</gui-checkbox>\n\n<div class=\"gui-unique-value-list-container gui-overflow-y-scroll gui-overflow-x-hidden\">\n\t<div *ngFor=\"let value of uniqueValues\">\n\t\t<gui-checkbox (changed)=\"toggleSelect(value)\"\n\t\t\t\t\t  [checked]=\"value.isEnabled()\">\n\t\t\t{{value.getValue()}}\n\t\t</gui-checkbox>\n\t</div>\n</div>\n\n<div class=\"gui-unique-value-list-actions gui-p-6 gui-flex gui-justify-end\">\n\t<button (click)=\"clearFilters()\"\n\t\t\t[outline]=\"true\"\n\t\t\t[primary]=\"true\"\n\t\t\tgui-button>\n\t\tClear\n\t</button>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
-                        styles: [".gui-unique-value-list{max-height:300px;overflow-y:scroll;overflow-x:hidden}.gui-unique-value-list-actions{padding:8px;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}"]
+                        styles: [".gui-unique-value-list-container{max-height:300px}"]
                     }] }
         ];
         /** @nocollapse */
         UniqueValueListComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: FilterWarehouse },
             { type: FilterCommandInvoker }
@@ -35990,14 +39122,30 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var UniqueValueListModule = /** @class */ (function () {
-        function UniqueValueListModule() {
+    var UniqueValueListModule = /** @class */ (function (_super) {
+        __extends(UniqueValueListModule, _super);
+        function UniqueValueListModule(filterApiModule) {
+            var _this = _super.call(this) || this;
+            if (filterApiModule === null) {
+                throw new Error('FilterApiModule is required.');
+            }
+            return _this;
         }
+        /**
+         * @return {?}
+         */
+        UniqueValueListModule.forComponent = /**
+         * @return {?}
+         */
+        function () {
+            return [];
+        };
         UniqueValueListModule.decorators = [
             { type: core.NgModule, args: [{
                         imports: [
                             common.CommonModule,
-                            fabricImports
+                            fabricImports,
+                            FilterApiModule
                         ],
                         declarations: [
                             UniqueValueListComponent
@@ -36007,8 +39155,12 @@
                         ]
                     },] }
         ];
+        /** @nocollapse */
+        UniqueValueListModule.ctorParameters = function () { return [
+            { type: FilterApiModule, decorators: [{ type: core.Optional }] }
+        ]; };
         return UniqueValueListModule;
-    }());
+    }(hermes.FeatureModule));
 
     /**
      * @fileoverview added by tsickle
@@ -36109,8 +39261,8 @@
      */
     var StructureSummariesPanelComponent = /** @class */ (function (_super) {
         __extends(StructureSummariesPanelComponent, _super);
-        function StructureSummariesPanelComponent(changeDetectorRef, structureId, structureSummariesUiEventsRepository, translationService, sourceReadModelService, compositionReadModelService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureSummariesPanelComponent(changeDetectorRef, elementRef, structureId, structureSummariesUiEventsRepository, translationService, sourceReadModelService, compositionReadModelService) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.structureSummariesUiEventsRepository = structureSummariesUiEventsRepository;
@@ -36118,6 +39270,7 @@
             _this.sourceReadModelService = sourceReadModelService;
             _this.compositionReadModelService = compositionReadModelService;
             _this.sourceEmpty = false;
+            _this.addClassToHost('gui-flex');
             _this.structureSummariesUiEventsRepository
                 .onSummariesChanged(_this.structureId.toReadModelRootId())
                 .pipe(_this.takeUntil())
@@ -36184,20 +39337,29 @@
         function (summaries) {
             return summaries !== undefined && summaries !== null;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureSummariesPanelComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-summaries-panel';
+        };
         StructureSummariesPanelComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-summaries-panel',
-                        template: "\n\n\t\t<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t\t\t<div *ngFor=\"let column of headerColumns\"\n\t\t\t\t [style.width.px]=\"column.width\"\n\t\t\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | translate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | translate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | translate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span>{{'summariesTruthy' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span>{{'summariesFalsy' | translate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t</ng-container>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t",
+                        selector: 'div[gui-structure-summaries-panel][enabled]',
+                        template: "\n\n\t\t<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t\t\t<div *ngFor=\"let column of headerColumns\"\n\t\t\t\t [style.width.px]=\"column.width\"\n\t\t\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t\t</div>\n\n\t\t\t\t</ng-container>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-structure-summaries-panel]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureSummariesPanelComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: StructureSummariesUiEventsRepository },
             { type: TranslationService },
@@ -36351,8 +39513,8 @@
      */
     var StructureCellEditComponent = /** @class */ (function (_super) {
         __extends(StructureCellEditComponent, _super);
-        function StructureCellEditComponent(changeDetectorRef, sourceCommandService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureCellEditComponent(changeDetectorRef, elementRef, sourceCommandService) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.sourceCommandService = sourceCommandService;
             return _this;
@@ -36505,15 +39667,29 @@
         function () {
             this.publishEditState(StructureCellEditState.SUBMIT);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureCellEditComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-cell-edit';
+        };
         StructureCellEditComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-cell-edit[entity][cell]',
-                        template: "\n\n\t\t<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t"
+                        selector: 'div[gui-structure-cell-edit][entity][cell]',
+                        template: "\n\n\t\t<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureCellEditComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: SourceCommandInvoker }
         ]; };
         StructureCellEditComponent.propDecorators = {
@@ -36556,8 +39732,8 @@
      */
     var StructureCellEditBooleanComponent = /** @class */ (function (_super) {
         __extends(StructureCellEditBooleanComponent, _super);
-        function StructureCellEditBooleanComponent(changeDetectorRef, sourceCommandService) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function StructureCellEditBooleanComponent(changeDetectorRef, elementRef, sourceCommandService) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.sourceCommandService = sourceCommandService;
             return _this;
@@ -36662,15 +39838,29 @@
                 _this.actualValue = value;
             }));
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureCellEditBooleanComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-cell-edit-boolean';
+        };
         StructureCellEditBooleanComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-cell-edit-boolean[entity][cell]',
-                        template: "\n\n\t\t<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t"
+                        selector: 'div[gui-structure-cell-edit-boolean][entity][cell]',
+                        template: "\n\n\t\t<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n\n\t",
+                        changeDetection: core.ChangeDetectionStrategy.OnPush,
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StructureCellEditBooleanComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: SourceCommandInvoker }
         ]; };
         StructureCellEditBooleanComponent.propDecorators = {
@@ -36711,32 +39901,102 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureTitlePanelComponent = /** @class */ (function (_super) {
-        __extends(StructureTitlePanelComponent, _super);
-        function StructureTitlePanelComponent(structureTitlePanelConfigArchive, sanitizer) {
-            var _this = _super.call(this) || this;
-            _this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
-            _this.sanitizer = sanitizer;
-            _this.structureTitlePanelConfigArchive
-                .onValue()
-                .pipe(_this.takeUntil())
+    /**
+     * @abstract
+     */
+    var   /**
+     * @abstract
+     */
+    StructureBannerPanel = /** @class */ (function (_super) {
+        __extends(StructureBannerPanel, _super);
+        function StructureBannerPanel(changeDetectorRef, elementRef) {
+            return _super.call(this, changeDetectorRef, elementRef) || this;
+        }
+        /**
+         * @return {?}
+         */
+        StructureBannerPanel.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.getBannerPanelConfig()
+                .pipe(this.takeUntil())
                 .subscribe((/**
              * @param {?} title
              * @return {?}
              */
             function (title) {
-                _this.title = title.template;
-                if (typeof _this.title === 'function') {
-                    _this.title = _this.title('Title panel');
+                _this.bannerPanel = title.template;
+                if (typeof _this.bannerPanel === 'function') {
+                    _this.bannerPanel = _this.bannerPanel();
                 }
-                _this.safeHTML = _this.sanitizer.bypassSecurityTrustHtml(_this.title);
             }));
+        };
+        return StructureBannerPanel;
+    }(SmartComponent));
+    if (false) {
+        /** @type {?} */
+        StructureBannerPanel.prototype.bannerPanel;
+        /**
+         * @abstract
+         * @return {?}
+         */
+        StructureBannerPanel.prototype.getBannerPanelConfig = function () { };
+        /**
+         * @abstract
+         * @return {?}
+         */
+        StructureBannerPanel.prototype.getSelectorName = function () { };
+        /**
+         * @abstract
+         * @return {?}
+         */
+        StructureBannerPanel.prototype.getPanelTitle = function () { };
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureTitlePanelComponent = /** @class */ (function (_super) {
+        __extends(StructureTitlePanelComponent, _super);
+        function StructureTitlePanelComponent(structureTitlePanelConfigArchive, changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
+            _this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        StructureTitlePanelComponent.prototype.getBannerPanelConfig = /**
+         * @return {?}
+         */
+        function () {
+            return this.structureTitlePanelConfigArchive.onValue();
+        };
+        /**
+         * @return {?}
+         */
+        StructureTitlePanelComponent.prototype.getSelectorName = /**
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-title-panel';
+        };
+        /**
+         * @return {?}
+         */
+        StructureTitlePanelComponent.prototype.getPanelTitle = /**
+         * @return {?}
+         */
+        function () {
+            return 'Title panel';
+        };
         StructureTitlePanelComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-title-panel',
-                        template: "\n\t\t<div [innerHTML]=\"safeHTML\" class=\"gui-title-panel\"></div>\n\t",
+                        selector: 'div[gui-structure-title-panel]',
+                        template: "\n\t\t<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t\t\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -36744,25 +40004,17 @@
         /** @nocollapse */
         StructureTitlePanelComponent.ctorParameters = function () { return [
             { type: StructureTitlePanelConfigArchive },
-            { type: platformBrowser.DomSanitizer }
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
         ]; };
         return StructureTitlePanelComponent;
-    }(Reactive));
+    }(StructureBannerPanel));
     if (false) {
-        /** @type {?} */
-        StructureTitlePanelComponent.prototype.title;
-        /** @type {?} */
-        StructureTitlePanelComponent.prototype.safeHTML;
         /**
          * @type {?}
          * @private
          */
         StructureTitlePanelComponent.prototype.structureTitlePanelConfigArchive;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureTitlePanelComponent.prototype.sanitizer;
     }
 
     /**
@@ -36771,30 +40023,42 @@
      */
     var StructureFooterPanelComponent = /** @class */ (function (_super) {
         __extends(StructureFooterPanelComponent, _super);
-        function StructureFooterPanelComponent(structureFooterPanelConfigArchive, sanitizer) {
-            var _this = _super.call(this) || this;
+        function StructureFooterPanelComponent(structureFooterPanelConfigArchive, changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.structureFooterPanelConfigArchive = structureFooterPanelConfigArchive;
-            _this.sanitizer = sanitizer;
-            _this.structureFooterPanelConfigArchive
-                .onValue()
-                .pipe(_this.takeUntil())
-                .subscribe((/**
-             * @param {?} title
-             * @return {?}
-             */
-            function (title) {
-                _this.footerTitle = title.template;
-                if (typeof _this.footerTitle === 'function') {
-                    _this.footerTitle = _this.footerTitle('Title panel');
-                }
-                _this.safeHTML = _this.sanitizer.bypassSecurityTrustHtml(_this.footerTitle);
-            }));
             return _this;
         }
+        /**
+         * @return {?}
+         */
+        StructureFooterPanelComponent.prototype.getBannerPanelConfig = /**
+         * @return {?}
+         */
+        function () {
+            return this.structureFooterPanelConfigArchive.onValue();
+        };
+        /**
+         * @return {?}
+         */
+        StructureFooterPanelComponent.prototype.getSelectorName = /**
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-footer-panel';
+        };
+        /**
+         * @return {?}
+         */
+        StructureFooterPanelComponent.prototype.getPanelTitle = /**
+         * @return {?}
+         */
+        function () {
+            return 'Footer panel';
+        };
         StructureFooterPanelComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-footer-panel',
-                        template: "\n\t\t<div [innerHTML]=\"safeHTML\" class=\"gui-footer-panel\"></div>\n\t",
+                        selector: 'div[gui-structure-footer-panel]',
+                        template: "\n\t\t<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t\t\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n\t\t</div>\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -36802,25 +40066,17 @@
         /** @nocollapse */
         StructureFooterPanelComponent.ctorParameters = function () { return [
             { type: StructureFooterPanelConfigArchive },
-            { type: platformBrowser.DomSanitizer }
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
         ]; };
         return StructureFooterPanelComponent;
-    }(Reactive));
+    }(StructureBannerPanel));
     if (false) {
-        /** @type {?} */
-        StructureFooterPanelComponent.prototype.footerTitle;
-        /** @type {?} */
-        StructureFooterPanelComponent.prototype.safeHTML;
         /**
          * @type {?}
          * @private
          */
         StructureFooterPanelComponent.prototype.structureFooterPanelConfigArchive;
-        /**
-         * @type {?}
-         * @private
-         */
-        StructureFooterPanelComponent.prototype.sanitizer;
     }
 
     /**
@@ -36832,15 +40088,15 @@
             this.schemaCommandDispatcher = schemaCommandDispatcher;
         }
         /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
         StructureThemeGateway.prototype.ngOnChanges = /**
-         * @param {?} simpleChanges
+         * @param {?} changes
          * @return {?}
          */
-        function (simpleChanges) {
-            if (simpleChanges.theme2 !== undefined && simpleChanges.theme2.currentValue !== undefined) {
+        function (changes) {
+            if (changes.theme2 !== undefined && changes.theme2.currentValue !== undefined) {
                 this.schemaCommandDispatcher.setTheme(this.theme2);
             }
         };
@@ -36872,1390 +40128,10 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var ToggleFilterCommand = /** @class */ (function (_super) {
-        __extends(ToggleFilterCommand, _super);
-        function ToggleFilterCommand(structureId, fieldId, externalFilterId, filterValue) {
-            var _this = _super.call(this, structureId, 'ToggleFilterCommand') || this;
-            _this.fieldId = fieldId;
-            _this.externalFilterId = externalFilterId;
-            _this.filterValue = filterValue;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        ToggleFilterCommand.prototype.getFieldId = /**
-         * @return {?}
-         */
-        function () {
-            return this.fieldId;
-        };
-        /**
-         * @return {?}
-         */
-        ToggleFilterCommand.prototype.getExternalFilterId = /**
-         * @return {?}
-         */
-        function () {
-            return this.externalFilterId;
-        };
-        /**
-         * @return {?}
-         */
-        ToggleFilterCommand.prototype.getFilterValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.filterValue;
-        };
-        return ToggleFilterCommand;
-    }(StructureCommand));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleFilterCommand.prototype.fieldId;
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleFilterCommand.prototype.externalFilterId;
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleFilterCommand.prototype.filterValue;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ToggleFilterCommandHandler = /** @class */ (function () {
-        function ToggleFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            this.structureAggregateRepository = structureAggregateRepository;
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        ToggleFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return ToggleFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        ToggleFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        ToggleFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            /** @type {?} */
-            var externalFieldId = command.getExternalFilterId();
-            /** @type {?} */
-            var filterValue = command.getFilterValue();
-            aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
-        };
-        ToggleFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ToggleFilterCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return ToggleFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleFilterCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        ToggleFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var AddFilterCommandHandler = /** @class */ (function () {
-        function AddFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        AddFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return AddFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        AddFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        AddFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            /** @type {?} */
-            var filterTypeId = command.getFilterTypeId();
-            /** @type {?} */
-            var value = command.getValue();
-            structure.addFilter(fieldId, filterTypeId, value);
-        };
-        AddFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        AddFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return AddFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AddFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var RemoveAllFiltersCommandHandler = /** @class */ (function () {
-        function RemoveAllFiltersCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        RemoveAllFiltersCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return RemoveAllFiltersCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        RemoveAllFiltersCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        RemoveAllFiltersCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            structure.removeAllFilters();
-        };
-        RemoveAllFiltersCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        RemoveAllFiltersCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return RemoveAllFiltersCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        RemoveAllFiltersCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var RemoveFilterCommandHandler = /** @class */ (function () {
-        function RemoveFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        RemoveFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return RemoveFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        RemoveFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        RemoveFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var filterId = command.getFilterId();
-            structure.removeFilter(filterId);
-        };
-        RemoveFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        RemoveFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return RemoveFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        RemoveFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ConfigFilterSetEvent = /** @class */ (function (_super) {
-        __extends(ConfigFilterSetEvent, _super);
-        function ConfigFilterSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'ConfigFilterSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        ConfigFilterSetEvent.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return ConfigFilterSetEvent;
-    }(StructureDomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConfigFilterSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetConfigFilterCommandHandler = /** @class */ (function () {
-        function SetConfigFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        SetConfigFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return SetConfigFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetConfigFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var filterConfig = command.getConfig();
-            this.domainEventPublisher.publish(new ConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetConfigFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var filterConfig = command.getConfig();
-            aggregate.setFilterConfig(filterConfig);
-        };
-        SetConfigFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetConfigFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetConfigFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetConfigFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ConfigQuickFilterSetEvent = /** @class */ (function (_super) {
-        __extends(ConfigQuickFilterSetEvent, _super);
-        function ConfigQuickFilterSetEvent(aggregateId, enabled) {
-            var _this = _super.call(this, aggregateId, 'ConfigQuickFilterSetEvent') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        /**
-         * @return {?}
-         */
-        ConfigQuickFilterSetEvent.prototype.getEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return ConfigQuickFilterSetEvent;
-    }(StructureDomainEvent));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConfigQuickFilterSetEvent.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SetConfigQuickFilterCommandHandler = /** @class */ (function () {
-        function SetConfigQuickFilterCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            this.structureAggregateRepository = structureAggregateRepository;
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        SetConfigQuickFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return SetConfigQuickFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetConfigQuickFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var structureId = command.getAggregateId();
-            /** @type {?} */
-            var quickFiltersConfig = command.getConfig();
-            this.domainEventPublisher.publish(new ConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetConfigQuickFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            /** @type {?} */
-            var quickFiltersConfig = command.getConfig();
-            aggregate.setQuickFiltersConfig(quickFiltersConfig);
-        };
-        SetConfigQuickFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SetConfigQuickFilterCommandHandler.ctorParameters = function () { return [
-            { type: StructureAggregateRepository },
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SetConfigQuickFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
-        /**
-         * @type {?}
-         * @private
-         */
-        SetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ConfigQuickFilterSetEventHandler = /** @class */ (function () {
-        function ConfigQuickFilterSetEventHandler(structureQuickFilterRepository) {
-            this.structureQuickFilterRepository = structureQuickFilterRepository;
-        }
-        /**
-         * @return {?}
-         */
-        ConfigQuickFilterSetEventHandler.prototype.forEvent = /**
-         * @return {?}
-         */
-        function () {
-            return ConfigQuickFilterSetEvent;
-        };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        ConfigQuickFilterSetEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event.ofMessageType('ConfigQuickFilterSetEvent')) {
-                this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-            }
-        };
-        ConfigQuickFilterSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ConfigQuickFilterSetEventHandler.ctorParameters = function () { return [
-            { type: QuickFilterEnabledRepository }
-        ]; };
-        return ConfigQuickFilterSetEventHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ConfigFilterSetEventHandler = /** @class */ (function () {
-        function ConfigFilterSetEventHandler(structureFilterRepository) {
-            this.structureFilterRepository = structureFilterRepository;
-        }
-        /**
-         * @return {?}
-         */
-        ConfigFilterSetEventHandler.prototype.forEvent = /**
-         * @return {?}
-         */
-        function () {
-            return ConfigFilterSetEvent;
-        };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        ConfigFilterSetEventHandler.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            if (event.ofMessageType('ConfigFilterSetEvent')) {
-                this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-            }
-        };
-        ConfigFilterSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ConfigFilterSetEventHandler.ctorParameters = function () { return [
-            { type: FilterEnabledRepository }
-        ]; };
-        return ConfigFilterSetEventHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConfigFilterSetEventHandler.prototype.structureFilterRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeMap = /** @class */ (function () {
-        function FilterTypeMap(map) {
-            this.map = map;
-        }
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        FilterTypeMap.prototype.getFilterTypes = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return this.map.get(fieldId.toString());
-        };
-        return FilterTypeMap;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeMap.prototype.map;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterTypeConfigFilterSetEventHandler = /** @class */ (function () {
-        function FilterTypeConfigFilterSetEventHandler(filterTypeRepository) {
-            this.filterTypeRepository = filterTypeRepository;
-        }
-        /**
-         * @return {?}
-         */
-        FilterTypeConfigFilterSetEventHandler.prototype.forEvent = /**
-         * @return {?}
-         */
-        function () {
-            return FilterTypesInitedEvent;
-        };
-        /**
-         * @param {?} filterTypesInitedEvent
-         * @return {?}
-         */
-        FilterTypeConfigFilterSetEventHandler.prototype.handle = /**
-         * @param {?} filterTypesInitedEvent
-         * @return {?}
-         */
-        function (filterTypesInitedEvent) {
-            if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
-                /** @type {?} */
-                var map = filterTypesInitedEvent.getMap();
-                this.filterTypeRepository.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
-            }
-        };
-        FilterTypeConfigFilterSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        FilterTypeConfigFilterSetEventHandler.ctorParameters = function () { return [
-            { type: FilterTypeRepository }
-        ]; };
-        return FilterTypeConfigFilterSetEventHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FilterTypeConfigFilterSetEventHandler.prototype.filterTypeRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ActiveFiltersSetEventHandler = /** @class */ (function () {
-        function ActiveFiltersSetEventHandler(activeFilterRepository) {
-            this.activeFilterRepository = activeFilterRepository;
-        }
-        /**
-         * @return {?}
-         */
-        ActiveFiltersSetEventHandler.prototype.forEvent = /**
-         * @return {?}
-         */
-        function () {
-            return ActiveFiltersSetEvent;
-        };
-        /**
-         * @param {?} activeFiltersSetEvent
-         * @return {?}
-         */
-        ActiveFiltersSetEventHandler.prototype.handle = /**
-         * @param {?} activeFiltersSetEvent
-         * @return {?}
-         */
-        function (activeFiltersSetEvent) {
-            if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
-                /** @type {?} */
-                var activeFilters = activeFiltersSetEvent.getFilters();
-                this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
-            }
-        };
-        ActiveFiltersSetEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ActiveFiltersSetEventHandler.ctorParameters = function () { return [
-            { type: ActiveFilterRepository }
-        ]; };
-        return ActiveFiltersSetEventHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UniqueValuesReadModel = /** @class */ (function () {
-        function UniqueValuesReadModel(map) {
-            this.map = new Map();
-            this.allSelected = new Map();
-            this.allDisabled = new Map();
-            this.map = map;
-            this.calculateSelection();
-        }
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.getValues = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return this.map.get(fieldId.toString());
-        };
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.areAllSelected = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return this.allSelected.get(fieldId.toString());
-        };
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.areAllDisabled = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return this.allDisabled.get(fieldId.toString());
-        };
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.isSelectAllChecked = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return this.areAllSelected(fieldId);
-        };
-        /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.isIndeterminate = /**
-         * @param {?} fieldId
-         * @return {?}
-         */
-        function (fieldId) {
-            return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        UniqueValuesReadModel.prototype.calculateSelection = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var e_1, _a;
-            try {
-                for (var _b = __values(Array.from(this.map.keys())), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var key = _c.value;
-                    /** @type {?} */
-                    var values = this.map.get(key);
-                    this.allSelected.set(key, !values.some((/**
-                     * @param {?} r
-                     * @return {?}
-                     */
-                    function (r) { return !r.isEnabled(); })));
-                    this.allDisabled.set(key, !values.some((/**
-                     * @param {?} r
-                     * @return {?}
-                     */
-                    function (r) { return r.isEnabled(); })));
-                }
-            }
-            catch (e_1_1) { e_1 = { error: e_1_1 }; }
-            finally {
-                try {
-                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-                }
-                finally { if (e_1) throw e_1.error; }
-            }
-        };
-        return UniqueValuesReadModel;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValuesReadModel.prototype.map;
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValuesReadModel.prototype.allSelected;
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValuesReadModel.prototype.allDisabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UniqueValueReadModel = /** @class */ (function () {
-        function UniqueValueReadModel(id, value, enabled) {
-            this.id = id;
-            this.value = value;
-            this.enabled = enabled;
-        }
-        /**
-         * @return {?}
-         */
-        UniqueValueReadModel.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
-            return this.id;
-        };
-        /**
-         * @return {?}
-         */
-        UniqueValueReadModel.prototype.getValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.value;
-        };
-        /**
-         * @return {?}
-         */
-        UniqueValueReadModel.prototype.geDisplayValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.displayValue;
-        };
-        /**
-         * @return {?}
-         */
-        UniqueValueReadModel.prototype.isEnabled = /**
-         * @return {?}
-         */
-        function () {
-            return this.enabled;
-        };
-        return UniqueValueReadModel;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValueReadModel.prototype.id;
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValueReadModel.prototype.value;
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValueReadModel.prototype.displayValue;
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueValueReadModel.prototype.enabled;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UniqueFilterCalculatedEventHandler = /** @class */ (function () {
-        function UniqueFilterCalculatedEventHandler(uniqueValuesRepository) {
-            this.uniqueValuesRepository = uniqueValuesRepository;
-        }
-        /**
-         * @return {?}
-         */
-        UniqueFilterCalculatedEventHandler.prototype.forEvent = /**
-         * @return {?}
-         */
-        function () {
-            return UniqueFilterCalculatedEvent;
-        };
-        /**
-         * @param {?} calculatedEvent
-         * @return {?}
-         */
-        UniqueFilterCalculatedEventHandler.prototype.handle = /**
-         * @param {?} calculatedEvent
-         * @return {?}
-         */
-        function (calculatedEvent) {
-            if (calculatedEvent.ofMessageType('UniqueFilterCalculatedEvent')) {
-                /** @type {?} */
-                var uvRM_1 = new Map();
-                calculatedEvent.getUniqueValues()
-                    .forEach((/**
-                 * @param {?} values
-                 * @param {?} key
-                 * @return {?}
-                 */
-                function (values, key) {
-                    /** @type {?} */
-                    var valuesRM = values.map((/**
-                     * @param {?} uv
-                     * @return {?}
-                     */
-                    function (uv) {
-                        return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
-                    }));
-                    uvRM_1.set(key, valuesRM);
-                }));
-                /** @type {?} */
-                var uniqueValues = new UniqueValuesReadModel(uvRM_1);
-                this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
-            }
-        };
-        UniqueFilterCalculatedEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        UniqueFilterCalculatedEventHandler.ctorParameters = function () { return [
-            { type: UniqueValuesRepository }
-        ]; };
-        return UniqueFilterCalculatedEventHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UniqueFilterCalculatedEventHandler.prototype.uniqueValuesRepository;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    // TODO Remove
-    var FilterTypeFieldsInitedEventHandler = /** @class */ (function () {
-        function FilterTypeFieldsInitedEventHandler() {
-        }
-        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
-        // 			private readonly domainEventPublisher: DomainEventPublisher) {
-        // }
-        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
-        // 			private readonly domainEventPublisher: DomainEventPublisher) {
-        // }
-        /**
-         * @return {?}
-         */
-        FilterTypeFieldsInitedEventHandler.prototype.forEvent = 
-        // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
-        // 			private readonly domainEventPublisher: DomainEventPublisher) {
-        // }
-        /**
-         * @return {?}
-         */
-        function () {
-            return FieldsInitedEvent;
-        };
-        /**
-         * @param {?} fieldsInitedEvent
-         * @return {?}
-         */
-        FilterTypeFieldsInitedEventHandler.prototype.handle = /**
-         * @param {?} fieldsInitedEvent
-         * @return {?}
-         */
-        function (fieldsInitedEvent) {
-            // if (fieldsInitedEvent.ofMessageType('FieldsInitedEvent')) {
-            //
-            // 	const fields = fieldsInitedEvent.getFields();
-            //
-            // 	const manager = new FilterTypeManager(fields);
-            //
-            // 	this.filterTypeManagerRepository.next(fieldsInitedEvent.getAggregateId(), manager);
-            //
-            // 	this.domainEventPublisher.publish(new FilterTypesInitedEvent(fieldsInitedEvent.getAggregateId(), manager.getFieldIdsToFieldTypes()));
-            // }
-        };
-        FilterTypeFieldsInitedEventHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        return FilterTypeFieldsInitedEventHandler;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UnselectAllUniqueFilterCommandHandler = /** @class */ (function () {
-        function UnselectAllUniqueFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        UnselectAllUniqueFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return UnselectAllUniqueFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        UnselectAllUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        UnselectAllUniqueFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            structure.unselectAllUniqueFilter(fieldId);
-        };
-        UnselectAllUniqueFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        UnselectAllUniqueFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return UnselectAllUniqueFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UnselectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var UnselectUniqueFilterCommandHandler = /** @class */ (function () {
-        function UnselectUniqueFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        UnselectUniqueFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return UnselectUniqueFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        UnselectUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        UnselectUniqueFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            /** @type {?} */
-            var uniqueValueId = command.getUniqueValueId();
-            structure.unselectUniqueFilter(fieldId, uniqueValueId);
-        };
-        UnselectUniqueFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        UnselectUniqueFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return UnselectUniqueFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        UnselectUniqueFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SelectAllUniqueFilterCommandHandler = /** @class */ (function () {
-        function SelectAllUniqueFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        SelectAllUniqueFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return SelectAllUniqueFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SelectAllUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        SelectAllUniqueFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            structure.selectAllUniqueFilter(fieldId);
-        };
-        SelectAllUniqueFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SelectAllUniqueFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SelectAllUniqueFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SelectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SelectUniqueFilterCommandHandler = /** @class */ (function () {
-        function SelectUniqueFilterCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        /**
-         * @return {?}
-         */
-        SelectUniqueFilterCommandHandler.prototype.forCommand = /**
-         * @return {?}
-         */
-        function () {
-            return SelectUniqueFilterCommand;
-        };
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SelectUniqueFilterCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        SelectUniqueFilterCommandHandler.prototype.handleAggregate = /**
-         * @param {?} structure
-         * @param {?} command
-         * @return {?}
-         */
-        function (structure, command) {
-            /** @type {?} */
-            var fieldId = command.getFieldId();
-            /** @type {?} */
-            var uniqueValueId = command.getUniqueValueId();
-            structure.selectUniqueFilter(fieldId, uniqueValueId);
-        };
-        SelectUniqueFilterCommandHandler.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        SelectUniqueFilterCommandHandler.ctorParameters = function () { return [
-            { type: hermes.DomainEventPublisher }
-        ]; };
-        return SelectUniqueFilterCommandHandler;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SelectUniqueFilterCommandHandler.prototype.domainEventPublisher;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterDomainModule = /** @class */ (function (_super) {
-        __extends(FilterDomainModule, _super);
-        function FilterDomainModule() {
-            return _super.call(this) || this;
-        }
-        /**
-         * @return {?}
-         */
-        FilterDomainModule.commandHandlers = /**
-         * @return {?}
-         */
-        function () {
-            return __spread(hermes.HermesModule.registerCommandHandler(SetConfigFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SetConfigQuickFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(ToggleFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(AddFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(RemoveAllFiltersCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(RemoveFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SelectUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(SelectAllUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(UnselectUniqueFilterCommandHandler, structureKey), hermes.HermesModule.registerCommandHandler(UnselectAllUniqueFilterCommandHandler, structureKey));
-        };
-        /**
-         * @return {?}
-         */
-        FilterDomainModule.domainEventHandlers = /**
-         * @return {?}
-         */
-        function () {
-            return __spread(hermes.HermesModule.registerDomainEventHandler(ConfigQuickFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(ConfigFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(FilterTypeConfigFilterSetEventHandler), hermes.HermesModule.registerDomainEventHandler(ActiveFiltersSetEventHandler), hermes.HermesModule.registerDomainEventHandler(UniqueFilterCalculatedEventHandler), hermes.HermesModule.registerDomainEventHandler(FilterTypeFieldsInitedEventHandler));
-        };
-        FilterDomainModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule
-                        ],
-                        providers: [
-                            FilterManagerFactory
-                        ],
-                        declarations: [],
-                        exports: []
-                    },] }
-        ];
-        /** @nocollapse */
-        FilterDomainModule.ctorParameters = function () { return []; };
-        return FilterDomainModule;
-    }(hermes.DomainModule));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var FilterApiModule = /** @class */ (function (_super) {
-        __extends(FilterApiModule, _super);
-        function FilterApiModule() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        FilterApiModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule,
-                            FilterDomainModule
-                        ],
-                        providers: [
-                            FilterCommandInvoker,
-                            FilterWarehouse,
-                            FilterTypeRepository,
-                            ActiveFilterRepository,
-                            UniqueValuesRepository,
-                            FilterEnabledRepository,
-                            QuickFilterEnabledRepository
-                        ],
-                        declarations: [],
-                        exports: []
-                    },] }
-        ];
-        return FilterApiModule;
-    }(hermes.ApiModule));
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SelectAllComponent = /** @class */ (function (_super) {
         __extends(SelectAllComponent, _super);
-        function SelectAllComponent(changeDetectorRef, structureId, rowSelectionModeRepository, formationCommandDispatcher, formationWarehouse) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function SelectAllComponent(changeDetectorRef, elementRef, structureId, rowSelectionModeRepository, formationCommandDispatcher, formationWarehouse) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.structureId = structureId;
             _this.rowSelectionModeRepository = rowSelectionModeRepository;
@@ -38315,20 +40191,29 @@
                 }
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        SelectAllComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-select-all';
+        };
         SelectAllComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-select-all',
                         template: "\n\n\t\t<gui-checkbox *ngIf=\"modeMulti\"\n\t\t\t\t\t  [checked]=\"selectAllChecked\"\n\t\t\t\t\t  [indeterminate]=\"selectAllIndeterminate\"\n\t\t\t\t\t  [gui-tooltip]=\"'Select'\"\n\t\t\t\t\t  (changed)=\"toggleSelectAll()\">\n\t\t</gui-checkbox>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-select-all]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         SelectAllComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: StructureId },
             { type: RowSelectionModeRepository },
             { type: FormationCommandInvoker },
@@ -39499,19 +41384,6 @@
             return SetScrollPositionCommand;
         };
         /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        SetScrollPositionCommandHandler.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
-            this.domainEventPublisher.publish(new ScrollPositionSetEvent(command.getAggregateId()));
-        };
-        /**
          * @param {?} structure
          * @param {?} command
          * @return {?}
@@ -39525,6 +41397,19 @@
             /** @type {?} */
             var position = command.getPosition();
             structure.setScrollPosition(position);
+        };
+        /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        SetScrollPositionCommandHandler.prototype.publishDomainEvents = /**
+         * @param {?} aggregate
+         * @param {?} command
+         * @return {?}
+         */
+        function (aggregate, command) {
+            this.domainEventPublisher.publish(new ScrollPositionSetEvent(command.getAggregateId()));
         };
         SetScrollPositionCommandHandler.decorators = [
             { type: core.Injectable }
@@ -45511,8 +47396,8 @@
      */
     var EditCommunicationComponent = /** @class */ (function (_super) {
         __extends(EditCommunicationComponent, _super);
-        function EditCommunicationComponent() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
+        function EditCommunicationComponent(changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.ENTER_KEY_CODE = 13;
             _this.ESC_KEY_CODE = 27;
             return _this;
@@ -45592,9 +47477,9 @@
      */
     var InputEditTemplateComponent = /** @class */ (function (_super) {
         __extends(InputEditTemplateComponent, _super);
-        function InputEditTemplateComponent(changeDetectorRef, formBuilder) {
+        function InputEditTemplateComponent(changeDetectorRef, elementRef, formBuilder) {
             var _a;
-            var _this = _super.call(this, changeDetectorRef) || this;
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.formBuilder = formBuilder;
             _this.filterFieldName = 'phrase';
@@ -45755,8 +47640,8 @@
      */
     var StringEditTemplateComponent = /** @class */ (function (_super) {
         __extends(StringEditTemplateComponent, _super);
-        function StringEditTemplateComponent(changeDetectorRef, fb) {
-            return _super.call(this, changeDetectorRef, fb) || this;
+        function StringEditTemplateComponent(changeDetectorRef, elementRef, fb) {
+            return _super.call(this, changeDetectorRef, elementRef, fb) || this;
         }
         /**
          * @param {?} inputElement
@@ -45772,20 +47657,29 @@
                 inputElement.setSelectionRange(0, inputElement.value.length);
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StringEditTemplateComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-string-edit';
+        };
         StringEditTemplateComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-string-edit',
                         template: "\n\n\t\t<form [formGroup]=\"filterForm\">\n\t\t\t<input #input [formControlName]=\"filterFieldName\" type=\"type\" class=\"gui-input\"/>\n\t\t</form>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None,
-                        host: {
-                            '[class.gui-string-edit]': 'true'
-                        }
+                        encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         StringEditTemplateComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: forms.FormBuilder }
         ]; };
         __decorate([
@@ -45803,9 +47697,20 @@
      */
     var NumberEditTemplateComponent = /** @class */ (function (_super) {
         __extends(NumberEditTemplateComponent, _super);
-        function NumberEditTemplateComponent(changeDetectorRef, fb) {
-            return _super.call(this, changeDetectorRef, fb) || this;
+        function NumberEditTemplateComponent(changeDetectorRef, elementRef, fb) {
+            return _super.call(this, changeDetectorRef, elementRef, fb) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        NumberEditTemplateComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-number-edit';
+        };
         NumberEditTemplateComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-number-edit',
@@ -45817,6 +47722,7 @@
         /** @nocollapse */
         NumberEditTemplateComponent.ctorParameters = function () { return [
             { type: core.ChangeDetectorRef },
+            { type: core.ElementRef },
             { type: forms.FormBuilder }
         ]; };
         return NumberEditTemplateComponent;
@@ -45828,8 +47734,8 @@
      */
     var BooleanEditTemplateComponent = /** @class */ (function (_super) {
         __extends(BooleanEditTemplateComponent, _super);
-        function BooleanEditTemplateComponent(changeDetectorRef) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function BooleanEditTemplateComponent(changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.filterFieldName = 'booleanEdit';
             return _this;
@@ -45846,6 +47752,17 @@
             this.valueChanges.emit(changed);
             this.submit();
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        BooleanEditTemplateComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-boolean-edit';
+        };
         BooleanEditTemplateComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-boolean-edit',
@@ -45856,7 +47773,8 @@
         ];
         /** @nocollapse */
         BooleanEditTemplateComponent.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
         ]; };
         BooleanEditTemplateComponent.propDecorators = {
             checkboxRef: [{ type: core.ViewChild, args: ['checkbox', { read: core.ElementRef, static: true },] }]
@@ -45881,11 +47799,12 @@
      */
     var DateEditTemplateComponent = /** @class */ (function (_super) {
         __extends(DateEditTemplateComponent, _super);
-        function DateEditTemplateComponent(changeDetectorRef) {
-            var _this = _super.call(this, changeDetectorRef) || this;
+        function DateEditTemplateComponent(changeDetectorRef, elementRef) {
+            var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.filterFieldName = 'dateEdit';
             _this.opened = false;
+            _this.localStreamCloser = new StreamCloser();
             return _this;
         }
         /**
@@ -45905,12 +47824,12 @@
              * @param {?} e
              * @return {?}
              */
-            function (e) { return e.keyCode === _this.ENTER_KEY_CODE; })), this.takeUntil())
+            function (e) { return e.keyCode === _this.ENTER_KEY_CODE; })), this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @return {?}
              */
             function () {
-                _this.unsubscribe();
+                _this.localStreamCloser.unsubscribe();
                 _this.submit();
             }));
             keyup$
@@ -45918,14 +47837,23 @@
              * @param {?} e
              * @return {?}
              */
-            function (e) { return e.keyCode === _this.ESC_KEY_CODE; })), this.takeUntil())
+            function (e) { return e.keyCode === _this.ESC_KEY_CODE; })), this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @return {?}
              */
             function () {
-                _this.unsubscribe();
+                _this.localStreamCloser.unsubscribe();
                 _this.cancel();
             }));
+        };
+        /**
+         * @return {?}
+         */
+        DateEditTemplateComponent.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
         };
         /**
          * @param {?} changed
@@ -45949,9 +47877,20 @@
         function (opened) {
             this.opened = opened;
             if (!opened) {
-                this.unsubscribe();
+                this.localStreamCloser.unsubscribe();
                 this.submit();
             }
+        };
+        /**
+         * @protected
+         * @return {?}
+         */
+        DateEditTemplateComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-date-edit';
         };
         DateEditTemplateComponent.decorators = [
             { type: core.Component, args: [{
@@ -45963,7 +47902,8 @@
         ];
         /** @nocollapse */
         DateEditTemplateComponent.ctorParameters = function () { return [
-            { type: core.ChangeDetectorRef }
+            { type: core.ChangeDetectorRef },
+            { type: core.ElementRef }
         ]; };
         DateEditTemplateComponent.propDecorators = {
             datePickerRef: [{ type: core.ViewChild, args: ['datepicker', { read: core.ElementRef, static: true },] }]
@@ -45984,6 +47924,11 @@
          * @type {?}
          * @private
          */
+        DateEditTemplateComponent.prototype.localStreamCloser;
+        /**
+         * @type {?}
+         * @private
+         */
         DateEditTemplateComponent.prototype.changeDetectorRef;
     }
 
@@ -45996,7 +47941,7 @@
         }
         ColumnQueryComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-column',
+                        selector: 'gui-column[header]',
                         template: ''
                     }] }
         ];
@@ -46019,9 +47964,15 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var FunctionViewComponent = /** @class */ (function () {
-        function FunctionViewComponent(sanitizer) {
-            this.sanitizer = sanitizer;
+    var FunctionViewComponent = /** @class */ (function (_super) {
+        __extends(FunctionViewComponent, _super);
+        function FunctionViewComponent(sanitizer, elRef) {
+            var _this = _super.call(this, elRef) || this;
+            _this.sanitizer = sanitizer;
+            _this.elRef = elRef;
+            _this.addClassToHost('gui-h-full');
+            _this.addClassToHost('gui-w-full');
+            return _this;
         }
         /**
          * @return {?}
@@ -46032,23 +47983,35 @@
         function () {
             this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        FunctionViewComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-function-view';
+        };
         FunctionViewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-function-view',
-                        template: "\n\n\t\t<div [innerHTML]=\"safeHTML\"></div>\n\n\t",
+                        template: "\n\n\t\t<div class=\"gui-h-full gui-flex gui-items-center\"\n\t\t\t [innerHTML]=\"safeHTML\">\n\t\t</div>\n\n\t",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
         /** @nocollapse */
         FunctionViewComponent.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer }
+            { type: platformBrowser.DomSanitizer },
+            { type: core.ElementRef }
         ]; };
         FunctionViewComponent.propDecorators = {
             element: [{ type: core.Input }]
         };
         return FunctionViewComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         FunctionViewComponent.prototype.element;
@@ -46059,15 +48022,23 @@
          * @private
          */
         FunctionViewComponent.prototype.sanitizer;
+        /**
+         * @type {?}
+         * @private
+         */
+        FunctionViewComponent.prototype.elRef;
     }
 
     /**
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var BarViewComponent = /** @class */ (function () {
-        function BarViewComponent() {
-            this.showPercentage = false;
+    var BarViewComponent = /** @class */ (function (_super) {
+        __extends(BarViewComponent, _super);
+        function BarViewComponent(elementRef) {
+            var _this = _super.call(this, elementRef) || this;
+            _this.showPercentage = false;
+            return _this;
         }
         /**
          * @param {?} changes
@@ -46082,23 +48053,35 @@
                 this.width = this.value > 100 ? 100 : this.value;
             }
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        BarViewComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-bar-view';
+        };
         BarViewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-bar-view[value]',
                         template: "\n\t\t<div class=\"gui-percentage-bar\">\n\t\t\t<div class=\"gui-percentage\" [style.width.%]=\"width\">\n\t\t\t</div>\n\t\t\t<gui-percentage-view *ngIf=\"showPercentage\"\n\t\t\t\t\t\t\t\t [value]=\"value\">\n\t\t\t</gui-percentage-view>\n\t\t</div>\n\t",
-                        host: {
-                            '[class.gui-bar-view]': 'true'
-                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        BarViewComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         BarViewComponent.propDecorators = {
             value: [{ type: core.Input }],
             showPercentage: [{ type: core.Input }]
         };
         return BarViewComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         BarViewComponent.prototype.value;
@@ -46112,25 +48095,39 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var PercentageViewComponent = /** @class */ (function () {
-        function PercentageViewComponent() {
+    var PercentageViewComponent = /** @class */ (function (_super) {
+        __extends(PercentageViewComponent, _super);
+        function PercentageViewComponent(elementRef) {
+            return _super.call(this, elementRef) || this;
         }
+        /**
+         * @protected
+         * @return {?}
+         */
+        PercentageViewComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-percentage-view';
+        };
         PercentageViewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-percentage-view[value]',
                         template: "\n\t\t{{ value }} %\n\t",
-                        host: {
-                            '[class.gui-percentage-view]': 'true'
-                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
         ];
+        /** @nocollapse */
+        PercentageViewComponent.ctorParameters = function () { return [
+            { type: core.ElementRef }
+        ]; };
         PercentageViewComponent.propDecorators = {
             value: [{ type: core.Input }]
         };
         return PercentageViewComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         PercentageViewComponent.prototype.value;
@@ -46140,18 +48137,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var TextViewComponent = /** @class */ (function () {
+    var TextViewComponent = /** @class */ (function (_super) {
+        __extends(TextViewComponent, _super);
         function TextViewComponent(isBold, isItalic, elementRef, renderer) {
-            this.elementRef = elementRef;
-            this.renderer = renderer;
-            this.isHtml = false;
+            var _this = _super.call(this, elementRef) || this;
+            _this.elementRef = elementRef;
+            _this.renderer = renderer;
+            _this.isHtml = false;
             if (isBold !== null) {
-                this.renderer.addClass(this.elementRef.nativeElement, 'gui-bold');
+                _this.addClassToHost('gui-bold');
             }
             if (isItalic !== null) {
-                this.renderer.addClass(this.elementRef.nativeElement, 'gui-italic');
+                _this.addClassToHost('gui-italic');
             }
-            this.elementRef.nativeElement.className;
+            return _this;
         }
         /**
          * @return {?}
@@ -46162,13 +48161,21 @@
         function () {
             this.isHtml = this.value.type === CellValueType.HTML;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        TextViewComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-text-view';
+        };
         TextViewComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-view-text[value]',
                         template: "\n\n\t\t<ng-container *ngIf=\"isHtml; else text\">\n\t\t\t<span [innerHTML]=\"value.value | guiSafe: 'html'\"></span>\n\t\t</ng-container>\n\n\t\t<ng-template #text>\n\t\t\t<span>\n\t\t\t\t{{value.value}}\n\t\t\t</span>\n\t\t</ng-template>\n\t",
-                        host: {
-                            '[class.gui-text-view]': 'true'
-                        },
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None
                     }] }
@@ -46184,7 +48191,7 @@
             value: [{ type: core.Input }]
         };
         return TextViewComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         TextViewComponent.prototype.value;
@@ -46221,7 +48228,7 @@
         TextViewComponent
     ];
     /** @type {?} */
-    var exportDeclarations = [
+    var exportDeclarations$1 = [
         ViewTemplatesComponent,
         EditTemplatesComponent,
         ColumnQueryComponent,
@@ -46265,7 +48272,7 @@
                             fabric.FabricDatePickerModule
                         ],
                         declarations: __spread(components),
-                        exports: __spread(exportDeclarations),
+                        exports: __spread(exportDeclarations$1),
                         entryComponents: [
                             ViewTemplatesComponent,
                             EditTemplatesComponent,
@@ -46287,17 +48294,20 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var StructureHeaderGroupsComponent = /** @class */ (function () {
+    var StructureHeaderGroupsComponent = /** @class */ (function (_super) {
+        __extends(StructureHeaderGroupsComponent, _super);
         function StructureHeaderGroupsComponent(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
-            this.elementRef = elementRef;
-            this.injector = injector;
-            this.changeDetectorRef = changeDetectorRef;
-            this.compositionId = compositionId;
-            this.structureId = structureId;
-            this.formationCommandDispatcher = formationCommandDispatcher;
-            this.sortingCommandDispatcher = sortingCommandDispatcher;
-            this.checkboxSelection = false;
-            this.globalSearching = false;
+            var _this = _super.call(this, elementRef) || this;
+            _this.elementRef = elementRef;
+            _this.injector = injector;
+            _this.changeDetectorRef = changeDetectorRef;
+            _this.compositionId = compositionId;
+            _this.structureId = structureId;
+            _this.formationCommandDispatcher = formationCommandDispatcher;
+            _this.sortingCommandDispatcher = sortingCommandDispatcher;
+            _this.checkboxSelection = false;
+            _this.globalSearching = false;
+            return _this;
         }
         /**
          * @param {?} column
@@ -46343,10 +48353,21 @@
         function () {
             return this.globalSearching;
         };
+        /**
+         * @protected
+         * @return {?}
+         */
+        StructureHeaderGroupsComponent.prototype.getSelectorName = /**
+         * @protected
+         * @return {?}
+         */
+        function () {
+            return 'gui-structure-header-groups';
+        };
         StructureHeaderGroupsComponent.decorators = [
             { type: core.Component, args: [{
-                        selector: 'gui-structure-header-groups[groups][checkboxSelection]',
-                        template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n",
+                        selector: 'div[gui-structure-header-groups][groups][checkboxSelection]',
+                        template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         providers: [
@@ -46370,7 +48391,7 @@
             checkboxSelection: [{ type: core.Input }]
         };
         return StructureHeaderGroupsComponent;
-    }());
+    }(PureComponent));
     if (false) {
         /** @type {?} */
         StructureHeaderGroupsComponent.prototype.groups;
@@ -46421,6 +48442,884 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var StructureSearchingGate = /** @class */ (function (_super) {
+        __extends(StructureSearchingGate, _super);
+        function StructureSearchingGate(structureId, searchEventRepository, searchCommandInvoker) {
+            return _super.call(this, structureId, searchEventRepository, searchCommandInvoker) || this;
+        }
+        StructureSearchingGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[searching]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureSearchingGate.ctorParameters = function () { return [
+            { type: StructureId },
+            { type: SearchEventRepository },
+            { type: SearchCommandInvoker }
+        ]; };
+        return StructureSearchingGate;
+    }(SearchingGate));
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureColumnHeaderGate = /** @class */ (function (_super) {
+        __extends(StructureColumnHeaderGate, _super);
+        function StructureColumnHeaderGate(structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive) {
+            var _this = _super.call(this) || this;
+            _this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
+            _this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureColumnHeaderGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('columnHeaderTop', changes)) {
+                this.structureHeaderTopEnabledArchive.next(this.columnHeaderTop);
+            }
+            if (this.isDefined('columnHeaderBottom', changes)) {
+                this.structureHeaderBottomEnabledArchive.next(this.columnHeaderBottom);
+            }
+        };
+        StructureColumnHeaderGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureColumnHeaderGate.ctorParameters = function () { return [
+            { type: StructureHeaderTopEnabledArchive },
+            { type: StructureHeaderBottomEnabledArchive }
+        ]; };
+        StructureColumnHeaderGate.propDecorators = {
+            columnHeaderTop: [{ type: core.Input }],
+            columnHeaderBottom: [{ type: core.Input }]
+        };
+        return StructureColumnHeaderGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureColumnHeaderGate.prototype.columnHeaderTop;
+        /** @type {?} */
+        StructureColumnHeaderGate.prototype.columnHeaderBottom;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureColumnHeaderGate.prototype.structureHeaderTopEnabledArchive;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureColumnHeaderGate.prototype.structureHeaderBottomEnabledArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructurePagingGate = /** @class */ (function (_super) {
+        __extends(StructurePagingGate, _super);
+        function StructurePagingGate(structureId, structurePagingCommandDispatcher, pagingEventRepository, pagingDisplayModeArchive) {
+            var _this = _super.call(this, structureId, structurePagingCommandDispatcher, pagingEventRepository) || this;
+            _this.pagingDisplayModeArchive = pagingDisplayModeArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructurePagingGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('paging', changes)) {
+                /** @type {?} */
+                var pagingConfig = void 0;
+                if (typeof this.paging === 'boolean') {
+                    pagingConfig = {
+                        enabled: this.paging
+                    };
+                }
+                else {
+                    pagingConfig = this.paging;
+                    if (this.paging.displayMode !== undefined) {
+                        this.pagingDisplayModeArchive.next(this.paging.displayMode);
+                    }
+                }
+                this.structurePagingCommandDispatcher.setPaging(pagingConfig);
+            }
+        };
+        StructurePagingGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[paging]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructurePagingGate.ctorParameters = function () { return [
+            { type: StructureId },
+            { type: PagingCommandInvoker },
+            { type: PagingEventRepository },
+            { type: PagingDisplayModeArchive }
+        ]; };
+        __decorate([
+            Override,
+            __metadata("design:type", Function),
+            __metadata("design:paramtypes", [Object]),
+            __metadata("design:returntype", void 0)
+        ], StructurePagingGate.prototype, "ngOnChanges", null);
+        return StructurePagingGate;
+    }(PagingGate));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructurePagingGate.prototype.pagingDisplayModeArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
+    var SelectionGate = /** @class */ (function (_super) {
+        __extends(SelectionGate, _super);
+        function SelectionGate(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
+            var _this = _super.call(this) || this;
+            _this.structureId = structureId;
+            _this.formationEventService = formationEventService;
+            _this.formationCommandDispatcher = formationCommandDispatcher;
+            _this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+            _this.itemsSelected = new core.EventEmitter();
+            _this.selectedRows = new core.EventEmitter();
+            _this.localStreamCloser = new StreamCloser();
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        SelectionGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('rowSelection', changes)) {
+                if (this.rowSelection.isEnabledDefined()) {
+                    this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
+                }
+                if (this.rowSelection.isTypeDefined()) {
+                    this.rowSelectionTypeArchive.next(this.rowSelection.getType());
+                }
+                if (this.rowSelection.isModeDefined()) {
+                    this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
+                }
+            }
+        };
+        /**
+         * @return {?}
+         */
+        SelectionGate.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.formationEventService
+                .onItemSelected(this.structureId)
+                .pipe(this.takeUntil())
+                .subscribe((/**
+             * @param {?} items
+             * @return {?}
+             */
+            function (items) {
+                _this.itemsSelected.emit(items.map((/**
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (i) { return i.getData(); })));
+                _this.selectedRows.emit(items);
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        SelectionGate.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
+        };
+        SelectionGate.propDecorators = {
+            rowSelection: [{ type: core.Input }],
+            itemsSelected: [{ type: core.Output }],
+            selectedRows: [{ type: core.Output }]
+        };
+        return SelectionGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        SelectionGate.prototype.rowSelection;
+        /** @type {?} */
+        SelectionGate.prototype.itemsSelected;
+        /** @type {?} */
+        SelectionGate.prototype.selectedRows;
+        /**
+         * @type {?}
+         * @private
+         */
+        SelectionGate.prototype.localStreamCloser;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SelectionGate.prototype.structureId;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SelectionGate.prototype.formationEventService;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SelectionGate.prototype.formationCommandDispatcher;
+        /**
+         * @type {?}
+         * @protected
+         */
+        SelectionGate.prototype.rowSelectionTypeArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSelectionGate = /** @class */ (function (_super) {
+        __extends(StructureSelectionGate, _super);
+        function StructureSelectionGate(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
+            return _super.call(this, structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) || this;
+        }
+        StructureSelectionGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[rowSelection], gui-structure[selectionGate]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureSelectionGate.ctorParameters = function () { return [
+            { type: StructureId },
+            { type: FormationEventRepository },
+            { type: FormationCommandInvoker },
+            { type: RowSelectionTypeArchive }
+        ]; };
+        StructureSelectionGate.propDecorators = {
+            selectionGate: [{ type: core.Input }]
+        };
+        return StructureSelectionGate;
+    }(SelectionGate));
+    if (false) {
+        /** @type {?} */
+        StructureSelectionGate.prototype.selectionGate;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureL10nGate = /** @class */ (function (_super) {
+        __extends(StructureL10nGate, _super);
+        function StructureL10nGate(translationService) {
+            var _this = _super.call(this) || this;
+            _this.translationService = translationService;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureL10nGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('localization', changes)) {
+                if (this.localization.translationResolver) {
+                    this.translationService.setResolver(this.localization.translationResolver);
+                }
+                if (this.localization.translation) {
+                    this.translationService.changeTranslation(this.localization.translation);
+                }
+            }
+        };
+        StructureL10nGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[localization]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureL10nGate.ctorParameters = function () { return [
+            { type: TranslationService }
+        ]; };
+        StructureL10nGate.propDecorators = {
+            localization: [{ type: core.Input }]
+        };
+        return StructureL10nGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureL10nGate.prototype.localization;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureL10nGate.prototype.translationService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructurePanelGate = /** @class */ (function (_super) {
+        __extends(StructurePanelGate, _super);
+        function StructurePanelGate(structureTitlePanelConfigArchive, structureFooterPanelConfigArchive) {
+            var _this = _super.call(this) || this;
+            _this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
+            _this.structureFooterPanelConfigArchive = structureFooterPanelConfigArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructurePanelGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('titlePanel', changes)) {
+                this.structureTitlePanelConfigArchive.next(this.titlePanel);
+            }
+            if (this.isDefined('footerPanel', changes)) {
+                this.structureFooterPanelConfigArchive.next(this.footerPanel);
+            }
+        };
+        StructurePanelGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[titlePanel][footerPanel]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructurePanelGate.ctorParameters = function () { return [
+            { type: StructureTitlePanelConfigArchive },
+            { type: StructureFooterPanelConfigArchive }
+        ]; };
+        StructurePanelGate.propDecorators = {
+            titlePanel: [{ type: core.Input }],
+            footerPanel: [{ type: core.Input }]
+        };
+        return StructurePanelGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructurePanelGate.prototype.titlePanel;
+        /** @type {?} */
+        StructurePanelGate.prototype.footerPanel;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructurePanelGate.prototype.structureTitlePanelConfigArchive;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructurePanelGate.prototype.structureFooterPanelConfigArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureRowDetailGate = /** @class */ (function (_super) {
+        __extends(StructureRowDetailGate, _super);
+        function StructureRowDetailGate(structureDetailViewConfigArchive) {
+            var _this = _super.call(this) || this;
+            _this.structureDetailViewConfigArchive = structureDetailViewConfigArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureRowDetailGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('rowDetail', changes)) {
+                this.structureDetailViewConfigArchive.next(this.rowDetail);
+            }
+        };
+        StructureRowDetailGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[rowDetail]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureRowDetailGate.ctorParameters = function () { return [
+            { type: StructureRowDetailConfigArchive }
+        ]; };
+        StructureRowDetailGate.propDecorators = {
+            rowDetail: [{ type: core.Input }]
+        };
+        return StructureRowDetailGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureRowDetailGate.prototype.rowDetail;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowDetailGate.prototype.structureDetailViewConfigArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ColumnMenuConfig = /** @class */ (function () {
+        function ColumnMenuConfig() {
+        }
+        return ColumnMenuConfig;
+    }());
+    if (false) {
+        /** @type {?} */
+        ColumnMenuConfig.prototype.enabled;
+        /** @type {?} */
+        ColumnMenuConfig.prototype.sort;
+        /** @type {?} */
+        ColumnMenuConfig.prototype.filter;
+        /** @type {?} */
+        ColumnMenuConfig.prototype.columnsManager;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureColumnMenuGate = /** @class */ (function (_super) {
+        __extends(StructureColumnMenuGate, _super);
+        function StructureColumnMenuGate(structureColumnMenuConfigArchive) {
+            var _this = _super.call(this) || this;
+            _this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureColumnMenuGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('columnMenu', changes)) {
+                this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
+            }
+        };
+        StructureColumnMenuGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[columnMenu]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureColumnMenuGate.ctorParameters = function () { return [
+            { type: StructureColumnMenuConfigArchive }
+        ]; };
+        StructureColumnMenuGate.propDecorators = {
+            columnMenu: [{ type: core.Input }]
+        };
+        return StructureColumnMenuGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureColumnMenuGate.prototype.columnMenu;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureColumnMenuGate.prototype.structureColumnMenuConfigArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSummariesGate = /** @class */ (function (_super) {
+        __extends(StructureSummariesGate, _super);
+        function StructureSummariesGate(structureSummariesConfigService) {
+            var _this = _super.call(this) || this;
+            _this.structureSummariesConfigService = structureSummariesConfigService;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureSummariesGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('summaries', changes)) {
+                this.structureSummariesConfigService.set(this.summaries);
+            }
+        };
+        StructureSummariesGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[summaries]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureSummariesGate.ctorParameters = function () { return [
+            { type: StructureSummariesConfigService }
+        ]; };
+        StructureSummariesGate.propDecorators = {
+            summaries: [{ type: core.Input }]
+        };
+        return StructureSummariesGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureSummariesGate.prototype.summaries;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureSummariesGate.prototype.structureSummariesConfigService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureInfoPanelGate = /** @class */ (function (_super) {
+        __extends(StructureInfoPanelGate, _super);
+        function StructureInfoPanelGate(structureInfoPanelConfigService) {
+            var _this = _super.call(this) || this;
+            _this.structureInfoPanelConfigService = structureInfoPanelConfigService;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureInfoPanelGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('infoPanel', changes)) {
+                if (typeof this.infoPanel === 'boolean') {
+                    this.infoPanel = {
+                        enabled: this.infoPanel
+                    };
+                }
+                this.structureInfoPanelConfigService.set(this.infoPanel);
+            }
+        };
+        StructureInfoPanelGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[infoPanel]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureInfoPanelGate.ctorParameters = function () { return [
+            { type: StructureInfoPanelConfigService }
+        ]; };
+        StructureInfoPanelGate.propDecorators = {
+            infoPanel: [{ type: core.Input }]
+        };
+        return StructureInfoPanelGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureInfoPanelGate.prototype.infoPanel;
+        /**
+         * @type {?}
+         * @protected
+         */
+        StructureInfoPanelGate.prototype.structureInfoPanelConfigService;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureRowClassGate = /** @class */ (function (_super) {
+        __extends(StructureRowClassGate, _super);
+        function StructureRowClassGate(schemaRowClassArchive) {
+            var _this = _super.call(this) || this;
+            _this.schemaRowClassArchive = schemaRowClassArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureRowClassGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('rowClass', changes)) {
+                this.schemaRowClassArchive.next((/** @type {?} */ (this.rowClass)));
+            }
+        };
+        StructureRowClassGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[rowClass]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureRowClassGate.ctorParameters = function () { return [
+            { type: SchemaRowClassArchive }
+        ]; };
+        StructureRowClassGate.propDecorators = {
+            rowClass: [{ type: core.Input }]
+        };
+        return StructureRowClassGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureRowClassGate.prototype.rowClass;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowClassGate.prototype.schemaRowClassArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureRowColoringGate = /** @class */ (function (_super) {
+        __extends(StructureRowColoringGate, _super);
+        function StructureRowColoringGate(schemaId, schemaCommandInvoker, schemaEventRepository) {
+            var _this = _super.call(this) || this;
+            _this.schemaId = schemaId;
+            _this.schemaCommandInvoker = schemaCommandInvoker;
+            _this.schemaEventRepository = schemaEventRepository;
+            _this.rowColoringChanged = new core.EventEmitter();
+            _this.localStreamCloser = new StreamCloser();
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureRowColoringGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('rowColoring', changes)) {
+                this.schemaCommandInvoker.setRowColoring(this.rowColoring);
+            }
+        };
+        /**
+         * @return {?}
+         */
+        StructureRowColoringGate.prototype.ngOnInit = /**
+         * @return {?}
+         */
+        function () {
+            var _this = this;
+            this.schemaEventRepository
+                .onRowColoring(this.schemaId)
+                .pipe(this.localStreamCloser.takeUntil())
+                .subscribe((/**
+             * @param {?} coloring
+             * @return {?}
+             */
+            function (coloring) {
+                _this.rowColoringChanged.emit(coloring);
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        StructureRowColoringGate.prototype.ngOnDestroy = /**
+         * @return {?}
+         */
+        function () {
+            this.localStreamCloser.unsubscribe();
+        };
+        StructureRowColoringGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[rowColoring]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureRowColoringGate.ctorParameters = function () { return [
+            { type: SchemaReadModelRootId },
+            { type: SchemaCommandInvoker },
+            { type: SchemaEventRepository }
+        ]; };
+        StructureRowColoringGate.propDecorators = {
+            rowColoring: [{ type: core.Input }],
+            rowColoringChanged: [{ type: core.Output }]
+        };
+        return StructureRowColoringGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureRowColoringGate.prototype.rowColoring;
+        /** @type {?} */
+        StructureRowColoringGate.prototype.rowColoringChanged;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowColoringGate.prototype.localStreamCloser;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowColoringGate.prototype.schemaId;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowColoringGate.prototype.schemaCommandInvoker;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowColoringGate.prototype.schemaEventRepository;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureRowStyleGate = /** @class */ (function (_super) {
+        __extends(StructureRowStyleGate, _super);
+        function StructureRowStyleGate(schemaRowStyleArchive) {
+            var _this = _super.call(this) || this;
+            _this.schemaRowStyleArchive = schemaRowStyleArchive;
+            return _this;
+        }
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
+        StructureRowStyleGate.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (this.isDefined('rowStyle', changes)) {
+                this.schemaRowStyleArchive.next((/** @type {?} */ (this.rowStyle)));
+            }
+        };
+        StructureRowStyleGate.decorators = [
+            { type: core.Directive, args: [{
+                        selector: 'gui-structure[rowStyle]'
+                    },] }
+        ];
+        /** @nocollapse */
+        StructureRowStyleGate.ctorParameters = function () { return [
+            { type: SchemaRowStyleArchive }
+        ]; };
+        StructureRowStyleGate.propDecorators = {
+            rowStyle: [{ type: core.Input }]
+        };
+        return StructureRowStyleGate;
+    }(Gate));
+    if (false) {
+        /** @type {?} */
+        StructureRowStyleGate.prototype.rowStyle;
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureRowStyleGate.prototype.schemaRowStyleArchive;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var structureGates = [
+        StructureColumnHeaderGate,
+        StructurePagingGate,
+        StructureSearchingGate,
+        // StructureSourceGate,
+        StructureSelectionGate,
+        StructureL10nGate,
+        StructurePanelGate,
+        StructureRowDetailGate,
+        StructureColumnMenuGate,
+        StructureSummariesGate,
+        StructureInfoPanelGate,
+        StructureRowClassGate,
+        StructureRowStyleGate,
+        StructureRowColoringGate
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CssClassModule = /** @class */ (function () {
+        function CssClassModule() {
+        }
+        CssClassModule.decorators = [
+            { type: core.NgModule, args: [{
+                        providers: [
+                            CssClassModifier
+                        ]
+                    },] }
+        ];
+        return CssClassModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var StructureSharedModule = /** @class */ (function () {
+        function StructureSharedModule() {
+        }
+        StructureSharedModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [
+                            CssClassModule
+                        ]
+                    },] }
+        ];
+        return StructureSharedModule;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * @return {?}
      */
@@ -46439,12 +49338,12 @@
         SortingFeatureModule,
         FieldFeatureModule,
         SearchFeatureModule,
-        SearchApiModule,
-        FilterApiModule,
-        SourceApiModule,
+        FilterMenuFeatureModule,
+        SourceFeatureModule,
         SummariesFeatureModule,
         VerticalFormationFeatureModule,
         SchemaFeatureModule,
+        StructureSharedModule,
         StructureInfoPanelModule,
         StructureSummariesPanelModule,
         StructureTopPanelModule,
@@ -46453,10 +49352,11 @@
         SchemaManagerModule,
         EmptySourceFeatureModule,
         CompositionFeatureModule,
-        LoggerModule
+        LoggerModule,
+        SanitizeModule
     ]);
     /** @type {?} */
-    var declarations$2 = [
+    var declarations$2 = __spread([
         StructureComponent,
         StructureHeaderComponent,
         StructureHeaderColumnsComponent,
@@ -46476,7 +49376,7 @@
         StructureTitlePanelComponent,
         StructureFooterPanelComponent,
         StructureThemeGateway
-    ];
+    ], structureGates);
     /** @type {?} */
     var entryComponents = [
         StructureColumnConfigComponent,
@@ -46498,7 +49398,7 @@
         StructureIdGenerator
     ], structureProviders);
     /** @type {?} */
-    var exportDeclarations$1 = __spread([
+    var exportDeclarations$2 = __spread([
         fabric.FabricModule,
         StructureComponent,
         StructureThemeGateway,
@@ -46508,12 +49408,12 @@
         StructureContainerComponent
     ], fabricImports, [
         PagingFeatureModule
-    ]);
+    ], structureGates);
     var StructureModule = /** @class */ (function () {
         function StructureModule(platformId) {
             this.platformId = platformId;
             if (common.isPlatformBrowser(this.platformId)) {
-                window['hermesApi'].loggers = false;
+                window[StructureModule.HERMES_API].loggers = false;
             }
         }
         /**
@@ -46541,12 +49441,15 @@
                 ], providers)
             };
         };
-        StructureModule.exportDeclarations = __spread(exportDeclarations$1);
+        StructureModule.HERMES_API = 'hermesApi';
+        StructureModule.exportDeclarations = __spread(exportDeclarations$2);
         StructureModule.decorators = [
             { type: core.NgModule, args: [{
-                        imports: imports,
+                        imports: [
+                            imports
+                        ],
                         declarations: declarations$2,
-                        exports: exportDeclarations$1,
+                        exports: exportDeclarations$2,
                         entryComponents: entryComponents
                     },] }
         ];
@@ -46557,6 +49460,11 @@
         return StructureModule;
     }());
     if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        StructureModule.HERMES_API;
         /** @type {?} */
         StructureModule.exportDeclarations;
         /**
@@ -46590,7 +49498,7 @@
     /** @type {?} */
     var providers$1 = (/** @type {?} */ ([]));
     /** @type {?} */
-    var exportDeclarations$2 = [
+    var exportDeclarations$3 = [
         GuiListComponent,
         GuiListItemComponent,
         GuiListCardComponent
@@ -46654,7 +49562,7 @@
             { type: core.NgModule, args: [{
                         imports: imports$1,
                         declarations: declarations$3,
-                        exports: exportDeclarations$2,
+                        exports: exportDeclarations$3,
                         entryComponents: entryComponents$1
                     },] }
         ];
@@ -46662,6 +49570,7 @@
     }());
 
     exports.GuiListComponent = GuiListComponent;
+    exports.GuiListDefaultTranslation = GuiListDefaultTranslation;
     exports.GuiListFieldType = GuiListFieldType;
     exports.GuiListMode = GuiListMode;
     exports.GuiListModule = GuiListModule;
@@ -46687,437 +49596,461 @@
     exports.ɵbr = TranslationServiceImpl;
     exports.ɵbs = PagingComponent;
     exports.ɵbt = SmartComponent;
-    exports.ɵbu = SourceWarehouse;
-    exports.ɵbv = StructurePreparedItemsRepository;
-    exports.ɵbw = StructureSourceOriginRepository;
-    exports.ɵbx = PagingDisplayModeArchive;
-    exports.ɵby = PagingNavigatorComponent;
-    exports.ɵbz = PagingSelectComponent;
+    exports.ɵbu = GuiComponent;
+    exports.ɵbv = CssClassModifier;
+    exports.ɵbw = SourceWarehouse;
+    exports.ɵbx = StructurePreparedItemsRepository;
+    exports.ɵby = StructureSourceOriginRepository;
+    exports.ɵbz = PagingDisplayModeArchive;
     exports.ɵc = ListViewApiModule;
-    exports.ɵca = PagingStatsComponent;
+    exports.ɵca = PagingNavigatorComponent;
     exports.ɵcb = PureComponent;
-    exports.ɵcc = AlternativePagingNavigatorComponent;
-    exports.ɵcd = AlternativePagingPagesComponent;
-    exports.ɵce = SearchFeatureModule;
-    exports.ɵcf = SearchIconComponent;
-    exports.ɵcg = SearchComponent;
-    exports.ɵch = StructureId;
-    exports.ɵci = SearchCommandInvoker;
-    exports.ɵcj = SearchDispatcher;
-    exports.ɵck = SearchHighlightArchive;
-    exports.ɵcl = SearchPlaceholderArchive;
-    exports.ɵcm = StructureWarehouse;
-    exports.ɵcn = SearchWarehouse;
-    exports.ɵco = SearchingRepository;
-    exports.ɵcp = SearchPhraseRepository;
-    exports.ɵcq = StructureVerticalFormationWarehouse;
-    exports.ɵcr = VerticalFormationRepository;
-    exports.ɵcs = InMemoryStructureReadStore;
-    exports.ɵct = InMemoryStructureStore;
-    exports.ɵcu = StructureReadModelRootConverter;
-    exports.ɵcv = SourceConverter;
-    exports.ɵcw = VerticalFormationConverter;
-    exports.ɵcx = VerticalFormationScrollBarPositionRepository;
-    exports.ɵcy = SearchApiModule;
-    exports.ɵcz = SearchDomainModule;
+    exports.ɵcc = PagingSelectComponent;
+    exports.ɵcd = PagingStatsComponent;
+    exports.ɵce = AlternativePagingNavigatorComponent;
+    exports.ɵcf = AlternativePagingPagesComponent;
+    exports.ɵcg = SearchFeatureModule;
+    exports.ɵch = SearchApiModule;
+    exports.ɵci = SearchDomainModule;
+    exports.ɵcj = SearchManagerFactory;
+    exports.ɵck = SearchDispatcher;
+    exports.ɵcl = SearchHighlightArchive;
+    exports.ɵcm = SearchPlaceholderArchive;
+    exports.ɵcn = SetConfigSearchingCommandHandler;
+    exports.ɵco = StructureSetSearchPhraseCommandHandler;
+    exports.ɵcp = SourceDomainEventPublisher;
+    exports.ɵcq = SearchPhraseSetEventHandler;
+    exports.ɵcr = SearchPhraseRepository;
+    exports.ɵcs = ConfigSearchingSetEventHandler;
+    exports.ɵct = SearchingRepository;
+    exports.ɵcu = SearchCommandInvoker;
+    exports.ɵcv = SearchWarehouse;
+    exports.ɵcw = SearchEventRepository;
+    exports.ɵcx = SearchIconComponent;
+    exports.ɵcy = IconComponent;
+    exports.ɵcz = StaticComponent;
     exports.ɵd = ListViewAggregateFactory;
-    exports.ɵda = SearchManagerFactory;
-    exports.ɵdb = SetConfigSearchingCommandHandler;
-    exports.ɵdc = StructureSetSearchPhraseCommandHandler;
-    exports.ɵdd = SourceDomainEventPublisher;
-    exports.ɵde = SearchPhraseSetEventHandler;
-    exports.ɵdf = ConfigSearchingSetEventHandler;
-    exports.ɵdg = SearchEventRepository;
-    exports.ɵdh = EmptySourceFeatureModule;
-    exports.ɵdi = EmptySourceComponent;
-    exports.ɵdj = SortingSelectorFeatureModule;
-    exports.ɵdk = SortingSelectorComponent;
-    exports.ɵdl = FilterMenuFeatureModule;
-    exports.ɵdm = FilterIconComponent;
-    exports.ɵdn = FilterMenuComponent;
-    exports.ɵdo = FieldWarehouse;
-    exports.ɵdp = FieldReadModelRepository;
-    exports.ɵdq = FilterWarehouse;
-    exports.ɵdr = FilterEnabledRepository;
-    exports.ɵds = QuickFilterEnabledRepository;
-    exports.ɵdt = FilterTypeRepository;
-    exports.ɵdu = UniqueValuesRepository;
-    exports.ɵdv = ActiveFilterRepository;
-    exports.ɵdw = FilterCommandInvoker;
-    exports.ɵdx = CompositionWarehouse;
-    exports.ɵdy = CompositionReadModelRootRepository;
-    exports.ɵdz = CompositionGroupRepository;
+    exports.ɵda = SearchComponent;
+    exports.ɵdb = StructureId;
+    exports.ɵdc = StructureWarehouse;
+    exports.ɵdd = StructureVerticalFormationWarehouse;
+    exports.ɵde = VerticalFormationRepository;
+    exports.ɵdf = InMemoryStructureReadStore;
+    exports.ɵdg = InMemoryStructureStore;
+    exports.ɵdh = StructureReadModelRootConverter;
+    exports.ɵdi = SourceConverter;
+    exports.ɵdj = VerticalFormationConverter;
+    exports.ɵdk = VerticalFormationScrollBarPositionRepository;
+    exports.ɵdl = EmptySourceFeatureModule;
+    exports.ɵdm = EmptySourceComponent;
+    exports.ɵdn = SortingSelectorFeatureModule;
+    exports.ɵdo = SortingSelectorComponent;
+    exports.ɵdp = FilterMenuFeatureModule;
+    exports.ɵdq = FilterApiModule;
+    exports.ɵdr = FilterDomainModule;
+    exports.ɵds = FilterManagerFactory;
+    exports.ɵdt = SetConfigFilterCommandHandler;
+    exports.ɵdu = SetConfigQuickFilterCommandHandler;
+    exports.ɵdv = ToggleFilterCommandHandler;
+    exports.ɵdw = AddFilterCommandHandler;
+    exports.ɵdx = RemoveAllFiltersCommandHandler;
+    exports.ɵdy = RemoveFilterCommandHandler;
+    exports.ɵdz = SelectUniqueFilterCommandHandler;
     exports.ɵe = InMemoryListViewAggregateRepository;
-    exports.ɵea = GroupCollection;
-    exports.ɵeb = Group;
-    exports.ɵec = GroupId;
-    exports.ɵed = FilterMenuTriggerComponent;
-    exports.ɵee = filterContainerToken;
-    exports.ɵeg = ColumnSelectorComponent;
-    exports.ɵeh = FilterTypeSelectorComponent;
-    exports.ɵei = FilterValueComponent;
-    exports.ɵej = ActiveFilterListComponent;
-    exports.ɵek = FieldSelectorComponent;
-    exports.ɵel = ActiveSearchComponent;
-    exports.ɵem = listViewIdFactory;
-    exports.ɵen = ListViewComponent;
-    exports.ɵeo = ListViewGateway;
-    exports.ɵep = SourceCommandInvoker;
-    exports.ɵeq = SourceDispatcher;
-    exports.ɵer = structureIdFactory;
-    exports.ɵes = compositionIdFactory;
-    exports.ɵet = schemaIdFactory;
-    exports.ɵeu = structureComponentSelfProviders;
-    exports.ɵev = StructureComponent;
-    exports.ɵew = StructureIdGenerator;
-    exports.ɵex = ListViewReadModelRootId;
-    exports.ɵey = listViewProviders;
-    exports.ɵez = ListViewTemplateArchive;
+    exports.ɵea = SelectAllUniqueFilterCommandHandler;
+    exports.ɵeb = UnselectUniqueFilterCommandHandler;
+    exports.ɵec = UnselectAllUniqueFilterCommandHandler;
+    exports.ɵed = ConfigQuickFilterSetEventHandler;
+    exports.ɵee = QuickFilterEnabledRepository;
+    exports.ɵef = ConfigFilterSetEventHandler;
+    exports.ɵeg = FilterEnabledRepository;
+    exports.ɵeh = FilterTypeConfigFilterSetEventHandler;
+    exports.ɵei = FilterTypeRepository;
+    exports.ɵej = ActiveFiltersSetEventHandler;
+    exports.ɵek = ActiveFilterRepository;
+    exports.ɵel = UniqueFilterCalculatedEventHandler;
+    exports.ɵem = UniqueValuesRepository;
+    exports.ɵen = FilterTypeFieldsInitedEventHandler;
+    exports.ɵeo = FilterCommandInvoker;
+    exports.ɵep = FilterWarehouse;
+    exports.ɵeq = ActiveFilterListModule;
+    exports.ɵer = fabricImports;
+    exports.ɵes = ActiveFilterListComponent;
+    exports.ɵet = ActiveSearchComponent;
+    exports.ɵeu = FilterIconComponent;
+    exports.ɵev = FilterMenuComponent;
+    exports.ɵew = FieldWarehouse;
+    exports.ɵex = FieldReadModelRepository;
+    exports.ɵey = CompositionWarehouse;
+    exports.ɵez = CompositionReadModelRootRepository;
     exports.ɵf = ListViewAggregateRepository;
-    exports.ɵfa = ListViewCardTemplateArchive;
-    exports.ɵfb = localProviders;
-    exports.ɵfc = provideComponentServices;
-    exports.ɵfd = LocalPagingCommandDispatcher;
-    exports.ɵfe = Override;
-    exports.ɵff = LocalPagingWarehouse;
-    exports.ɵfg = FormationCommandInvoker;
-    exports.ɵfh = FormationDispatcher;
-    exports.ɵfi = LocalFormationCommandDispatcher;
-    exports.ɵfj = FormationWarehouse;
-    exports.ɵfk = RowSelectedRepository;
-    exports.ɵfl = RowSelectionModeRepository;
-    exports.ɵfm = LocalFormationWarehouse;
-    exports.ɵfn = LocalStructureWarehouse;
-    exports.ɵfo = LocalSourceCommandDispatcher;
-    exports.ɵfp = LocalSourceWarehouse;
-    exports.ɵfq = LocalStructureSearchCommandDispatcher;
-    exports.ɵfr = LocalStructureVerticalFormationWarehouse;
-    exports.ɵfs = StructureCommandDispatcher;
-    exports.ɵft = ListViewItemComponent;
-    exports.ɵfu = ListViewLayoutComponent;
-    exports.ɵfv = ListViewSourceComponent;
-    exports.ɵfw = ListViewContainerCardComponent;
-    exports.ɵfx = ListViewCardItemComponent;
-    exports.ɵfy = ListViewContainerModeSelectComponent;
-    exports.ɵfz = listViewGatewayDeclarations;
+    exports.ɵfa = CompositionGroupRepository;
+    exports.ɵfb = GroupCollection;
+    exports.ɵfc = Group;
+    exports.ɵfd = GroupId;
+    exports.ɵfe = FilterMenuTriggerComponent;
+    exports.ɵff = filterContainerToken;
+    exports.ɵfh = ColumnSelectorComponent;
+    exports.ɵfi = FilterTypeSelectorComponent;
+    exports.ɵfj = FilterValueComponent;
+    exports.ɵfk = FieldSelectorComponent;
+    exports.ɵfl = listViewIdFactory;
+    exports.ɵfm = ListViewComponent;
+    exports.ɵfn = structureIdFactory;
+    exports.ɵfo = compositionIdFactory;
+    exports.ɵfp = schemaIdFactory;
+    exports.ɵfq = structureComponentSelfProviders;
+    exports.ɵfr = StructureComponent;
+    exports.ɵfs = StructureIdGenerator;
+    exports.ɵft = ListViewReadModelRootId;
+    exports.ɵfu = listViewProviders;
+    exports.ɵfv = ListViewTemplateArchive;
+    exports.ɵfw = ListViewCardTemplateArchive;
+    exports.ɵfx = localProviders;
+    exports.ɵfy = provideComponentServices;
+    exports.ɵfz = LocalPagingCommandDispatcher;
     exports.ɵg = InMemoryListViewAggregateStore;
-    exports.ɵga = ListViewPagingGate;
-    exports.ɵgb = Gate;
-    exports.ɵgc = ListViewModeGate;
-    exports.ɵgd = ListViewTemplateGate;
-    exports.ɵge = ListViewFieldGate;
-    exports.ɵgf = FieldCommandInvoker;
-    exports.ɵgg = ListViewSearchingGate;
-    exports.ɵgh = createStructureDefinition;
-    exports.ɵgi = StructureModule;
-    exports.ɵgj = StructureAggregateFactory;
-    exports.ɵgk = SourceManagerFactory;
-    exports.ɵgl = FormationManagerFactory;
-    exports.ɵgm = VerticalFormationFactory;
-    exports.ɵgn = SummariesManagerFactory;
-    exports.ɵgo = SUMMARIES_CALCULATORS;
-    exports.ɵgp = SummariesCalculator;
-    exports.ɵgq = FilterManagerFactory;
-    exports.ɵgr = FieldCollectionFactory;
-    exports.ɵgs = FieldFactory;
-    exports.ɵgt = FieldIdGenerator;
-    exports.ɵgu = DataFieldFactory;
-    exports.ɵgv = InMemoryStructureAggregateRepository;
-    exports.ɵgw = InMemoryStructureAggregateStore;
-    exports.ɵgx = CreateStructureCommandHandler;
-    exports.ɵgy = SortingDomainModule;
-    exports.ɵgz = ToggleSortCommandHandler;
+    exports.ɵga = Override;
+    exports.ɵgb = LocalPagingWarehouse;
+    exports.ɵgc = FormationCommandInvoker;
+    exports.ɵgd = FormationDispatcher;
+    exports.ɵge = LocalFormationCommandDispatcher;
+    exports.ɵgf = FormationWarehouse;
+    exports.ɵgg = RowSelectedRepository;
+    exports.ɵgh = RowSelectionModeRepository;
+    exports.ɵgi = LocalFormationWarehouse;
+    exports.ɵgj = LocalStructureWarehouse;
+    exports.ɵgk = SourceCommandInvoker;
+    exports.ɵgl = SourceDispatcher;
+    exports.ɵgm = LocalSourceCommandDispatcher;
+    exports.ɵgn = LocalSourceWarehouse;
+    exports.ɵgo = LocalStructureSearchCommandDispatcher;
+    exports.ɵgp = LocalStructureVerticalFormationWarehouse;
+    exports.ɵgq = StructureCommandDispatcher;
+    exports.ɵgr = ListViewItemComponent;
+    exports.ɵgs = ListViewLayoutComponent;
+    exports.ɵgt = ListViewSourceComponent;
+    exports.ɵgu = ListViewContainerCardComponent;
+    exports.ɵgv = ListViewCardItemComponent;
+    exports.ɵgw = ListViewContainerModeSelectComponent;
+    exports.ɵgx = listViewGatewayDeclarations;
+    exports.ɵgy = ListViewPagingGate;
+    exports.ɵgz = PagingGate;
     exports.ɵh = InMemoryListViewStore;
-    exports.ɵha = SetSortingCommandHandler;
-    exports.ɵhb = SetSortOrderCommandHandler;
-    exports.ɵhc = FieldDomainModule;
-    exports.ɵhd = InitFieldsCommandHandler;
-    exports.ɵhe = FieldsInitedEventHandler;
-    exports.ɵhf = FieldUiConverter;
-    exports.ɵhg = FilterDomainModule;
-    exports.ɵhh = SetConfigFilterCommandHandler;
-    exports.ɵhi = SetConfigQuickFilterCommandHandler;
-    exports.ɵhj = ToggleFilterCommandHandler;
-    exports.ɵhk = AddFilterCommandHandler;
-    exports.ɵhl = RemoveAllFiltersCommandHandler;
-    exports.ɵhm = RemoveFilterCommandHandler;
-    exports.ɵhn = SelectUniqueFilterCommandHandler;
-    exports.ɵho = SelectAllUniqueFilterCommandHandler;
-    exports.ɵhp = UnselectUniqueFilterCommandHandler;
-    exports.ɵhq = UnselectAllUniqueFilterCommandHandler;
-    exports.ɵhr = ConfigQuickFilterSetEventHandler;
-    exports.ɵhs = ConfigFilterSetEventHandler;
-    exports.ɵht = FilterTypeConfigFilterSetEventHandler;
-    exports.ɵhu = ActiveFiltersSetEventHandler;
-    exports.ɵhv = UniqueFilterCalculatedEventHandler;
-    exports.ɵhw = FilterTypeFieldsInitedEventHandler;
-    exports.ɵhx = SourceDomainModule;
-    exports.ɵhy = SourceSetLoadingCommandHandler;
-    exports.ɵhz = SetOriginCommandHandler;
+    exports.ɵha = Gate;
+    exports.ɵhb = ListViewModeGate;
+    exports.ɵhc = ListViewTemplateGate;
+    exports.ɵhd = ListViewFieldGate;
+    exports.ɵhe = FieldCommandInvoker;
+    exports.ɵhf = ListViewSearchingGate;
+    exports.ɵhg = SearchingGate;
+    exports.ɵhh = ListViewL10nGate;
+    exports.ɵhi = ListViewSourceGate;
+    exports.ɵhj = SourceGate;
+    exports.ɵhk = SourceEventService;
+    exports.ɵhl = createStructureDefinition;
+    exports.ɵhm = StructureModule;
+    exports.ɵhn = StructureAggregateFactory;
+    exports.ɵho = SourceManagerFactory;
+    exports.ɵhp = FormationManagerFactory;
+    exports.ɵhq = VerticalFormationFactory;
+    exports.ɵhr = SummariesManagerFactory;
+    exports.ɵhs = SUMMARIES_CALCULATORS;
+    exports.ɵht = SummariesCalculator;
+    exports.ɵhu = FieldCollectionFactory;
+    exports.ɵhv = FieldFactory;
+    exports.ɵhw = FieldIdGenerator;
+    exports.ɵhx = DataFieldFactory;
+    exports.ɵhy = InMemoryStructureAggregateRepository;
+    exports.ɵhz = InMemoryStructureAggregateStore;
     exports.ɵi = CreateListViewCommandHandler;
-    exports.ɵia = StructureEditSourceItemCommandHandler;
-    exports.ɵib = SetEnabledSelectionCommandHandler;
-    exports.ɵic = SetSelectionModeCommandHandler;
-    exports.ɵid = SelectAllRowsCommandHandler;
-    exports.ɵie = UnselectAllRowsCommandHandler;
-    exports.ɵif = DeleteOriginItemCommandHandler;
-    exports.ɵig = ToggleSelectedRowCommandHandler;
-    exports.ɵih = StructureOriginChangedEventHandler;
-    exports.ɵii = SelectedRowChangedEventHandler;
-    exports.ɵij = SelectionModeSetEventHandler;
-    exports.ɵik = StructurePreparedItemsEventHandler;
-    exports.ɵil = SummariesDomainModule;
-    exports.ɵim = provideSummariesCalculator;
-    exports.ɵin = summariesProviders;
-    exports.ɵio = BooleanSummariesCalculator;
-    exports.ɵip = DateSummariesCalculator;
-    exports.ɵiq = NumberSummariesCalculator;
-    exports.ɵir = StringSummariesCalculator;
-    exports.ɵis = UnknownSummariesCalculator;
-    exports.ɵit = StructureSetSummariesEnabledCommandHandler;
-    exports.ɵiu = StructureSummariesEnabledSetEventHandler;
-    exports.ɵiv = StructureSummariesRepository;
-    exports.ɵiw = VerticalFormationDomainModule;
-    exports.ɵix = SetScrollPositionCommandHandler;
-    exports.ɵiy = SetVerticalScrollEnabledCommandHandler;
-    exports.ɵiz = SetRowHeightBasedOnThemeCommandHandler;
+    exports.ɵia = CreateStructureCommandHandler;
+    exports.ɵib = SortingDomainModule;
+    exports.ɵic = ToggleSortCommandHandler;
+    exports.ɵid = SetSortingCommandHandler;
+    exports.ɵie = SetSortOrderCommandHandler;
+    exports.ɵif = FieldDomainModule;
+    exports.ɵig = InitFieldsCommandHandler;
+    exports.ɵih = FieldsInitedEventHandler;
+    exports.ɵii = FieldUiConverter;
+    exports.ɵij = SourceDomainModule;
+    exports.ɵik = SourceSetLoadingCommandHandler;
+    exports.ɵil = SetOriginCommandHandler;
+    exports.ɵim = StructureEditSourceItemCommandHandler;
+    exports.ɵin = SetEnabledSelectionCommandHandler;
+    exports.ɵio = SetSelectionModeCommandHandler;
+    exports.ɵip = SelectAllRowsCommandHandler;
+    exports.ɵiq = UnselectAllRowsCommandHandler;
+    exports.ɵir = DeleteOriginItemCommandHandler;
+    exports.ɵis = ToggleSelectedRowCommandHandler;
+    exports.ɵit = StructureOriginChangedEventHandler;
+    exports.ɵiu = SelectedRowChangedEventHandler;
+    exports.ɵiv = SelectionModeSetEventHandler;
+    exports.ɵiw = StructurePreparedItemsEventHandler;
+    exports.ɵix = SummariesDomainModule;
+    exports.ɵiy = provideSummariesCalculator;
+    exports.ɵiz = summariesProviders;
     exports.ɵj = ListViewDomainModule;
-    exports.ɵja = SetRowHeightCommandHandler;
-    exports.ɵjb = StructureSetHeightCommandHandler;
-    exports.ɵjc = SetScrollBarPositionCommandHandler;
-    exports.ɵjd = ScrollBarPositionSetEventHandler;
-    exports.ɵje = structureCommandHandlers;
-    exports.ɵjf = structureDomainEventHandlers;
-    exports.ɵjg = structureProviders;
-    exports.ɵjh = StructureCreatedEventHandler;
-    exports.ɵji = fabricImports;
-    exports.ɵjj = SortingFeatureModule;
-    exports.ɵjk = SortingApiModule;
-    exports.ɵjl = SortingCommandInvoker;
-    exports.ɵjm = SortingWarehouse;
-    exports.ɵjn = SortingEventRepository;
-    exports.ɵjo = FieldFeatureModule;
-    exports.ɵjp = FieldApiModule;
-    exports.ɵjq = FilterApiModule;
-    exports.ɵjr = SourceApiModule;
-    exports.ɵjs = SourceEventService;
-    exports.ɵjt = FormationEventRepository;
-    exports.ɵju = SummariesFeatureModule;
-    exports.ɵjv = SummariesApiModule;
-    exports.ɵjw = StructureSummariesCommandDispatcher;
-    exports.ɵjx = StructureSummariesUiEventsRepository;
-    exports.ɵjy = StructureSummariesWarehouse;
-    exports.ɵjz = VerticalFormationFeatureModule;
+    exports.ɵja = BooleanSummariesCalculator;
+    exports.ɵjb = DateSummariesCalculator;
+    exports.ɵjc = NumberSummariesCalculator;
+    exports.ɵjd = StringSummariesCalculator;
+    exports.ɵje = UnknownSummariesCalculator;
+    exports.ɵjf = StructureSetSummariesEnabledCommandHandler;
+    exports.ɵjg = StructureSummariesEnabledSetEventHandler;
+    exports.ɵjh = StructureSummariesRepository;
+    exports.ɵji = VerticalFormationDomainModule;
+    exports.ɵjj = SetScrollPositionCommandHandler;
+    exports.ɵjk = SetVerticalScrollEnabledCommandHandler;
+    exports.ɵjl = SetRowHeightBasedOnThemeCommandHandler;
+    exports.ɵjm = SetRowHeightCommandHandler;
+    exports.ɵjn = StructureSetHeightCommandHandler;
+    exports.ɵjo = SetScrollBarPositionCommandHandler;
+    exports.ɵjp = ScrollBarPositionSetEventHandler;
+    exports.ɵjq = structureCommandHandlers;
+    exports.ɵjr = structureDomainEventHandlers;
+    exports.ɵjs = structureProviders;
+    exports.ɵjt = StructureCreatedEventHandler;
+    exports.ɵju = SortingFeatureModule;
+    exports.ɵjv = SortingApiModule;
+    exports.ɵjw = SortingCommandInvoker;
+    exports.ɵjx = SortingWarehouse;
+    exports.ɵjy = SortingEventRepository;
+    exports.ɵjz = FieldFeatureModule;
     exports.ɵk = ListViewDispatcher;
-    exports.ɵka = VerticalFormationApiModule;
-    exports.ɵkb = SchemaFeatureModule;
-    exports.ɵkc = SchemaApiModule;
-    exports.ɵkd = schemaKey;
-    exports.ɵke = SchemaAggregateFactory;
-    exports.ɵkf = InMemorySchemaAggregateRepository;
-    exports.ɵkg = SchemaAggregateRepository;
-    exports.ɵkh = InMemorySchemaAggregateStore;
-    exports.ɵki = InMemorySchemaStore;
-    exports.ɵkj = CreateSchemaCommandHandler;
-    exports.ɵkk = SchemaDomainModule;
-    exports.ɵkl = SetSchemaThemeCommandHandler;
-    exports.ɵkm = SetRowColoringCommandHandler;
-    exports.ɵkn = SetSchemaHorizontalGridCommandHandler;
-    exports.ɵko = SetSchemaVerticalGridCommandHandler;
-    exports.ɵkp = SchemaThemeSetEventHandler;
-    exports.ɵkq = SchemaThemeRepository;
-    exports.ɵkr = SchemaHorizontalGridSetEventHandler;
-    exports.ɵks = SchemaHorizontalGridRepository;
-    exports.ɵkt = SchemaRowColoringSetEventHandler;
-    exports.ɵku = SchemaRowColoringRepository;
-    exports.ɵkv = SchemaVerticalGridSetEventHandler;
-    exports.ɵkw = SchemaVerticalGridRepository;
-    exports.ɵkx = SchemaCssClassesEventHandler;
-    exports.ɵky = SchemaCssClassesRepository;
-    exports.ɵkz = SchemaDispatcher;
+    exports.ɵka = FieldApiModule;
+    exports.ɵkb = SourceFeatureModule;
+    exports.ɵkc = SourceApiModule;
+    exports.ɵkd = FormationEventRepository;
+    exports.ɵke = RowSelectionTypeArchive;
+    exports.ɵkf = SummariesFeatureModule;
+    exports.ɵkg = SummariesApiModule;
+    exports.ɵkh = StructureSummariesCommandDispatcher;
+    exports.ɵki = StructureSummariesUiEventsRepository;
+    exports.ɵkj = StructureSummariesWarehouse;
+    exports.ɵkk = VerticalFormationFeatureModule;
+    exports.ɵkl = VerticalFormationApiModule;
+    exports.ɵkm = SchemaFeatureModule;
+    exports.ɵkn = SchemaApiModule;
+    exports.ɵko = schemaKey;
+    exports.ɵkp = SchemaAggregateFactory;
+    exports.ɵkq = InMemorySchemaAggregateRepository;
+    exports.ɵkr = SchemaAggregateRepository;
+    exports.ɵks = InMemorySchemaAggregateStore;
+    exports.ɵkt = InMemorySchemaStore;
+    exports.ɵku = CreateSchemaCommandHandler;
+    exports.ɵkv = SchemaDomainModule;
+    exports.ɵkw = SetSchemaThemeCommandHandler;
+    exports.ɵkx = SetRowColoringCommandHandler;
+    exports.ɵky = SetSchemaHorizontalGridCommandHandler;
+    exports.ɵkz = SetSchemaVerticalGridCommandHandler;
     exports.ɵl = SetListViewModeCommandHandler;
-    exports.ɵla = SchemaCommandInvoker;
-    exports.ɵlb = SchemaWarehouse;
-    exports.ɵlc = SchemaEventRepository;
-    exports.ɵld = SchemaRowClassArchive;
-    exports.ɵle = SchemaRowStyleArchive;
-    exports.ɵlf = StructureInfoPanelModule;
-    exports.ɵlg = NumberFormatterModule;
-    exports.ɵlh = NumberFormatterPipe;
-    exports.ɵli = StructureColumnManagerModule;
-    exports.ɵlj = StructureColumnManagerComponent;
-    exports.ɵlk = CompositionId;
-    exports.ɵll = CompositionCommandInvoker;
-    exports.ɵlm = CompositionDispatcher;
-    exports.ɵln = StructureDialogColumnManagerComponent;
-    exports.ɵlo = StructureMenuColumnManagerComponent;
-    exports.ɵlp = selector;
-    exports.ɵlq = StructureColumnManagerIconComponent;
-    exports.ɵlr = StructureDialogColumnManagerService;
-    exports.ɵls = StructureThemeConverter;
-    exports.ɵlt = SchemaManagerModule;
-    exports.ɵlu = StructureSchemaMangerComponent;
-    exports.ɵlv = SchemaReadModelRootId;
-    exports.ɵlw = StructureDialogSchemaManagerComponent;
-    exports.ɵlx = StructureSchemaManagerIconComponent;
-    exports.ɵly = StructureDialogSchemaManagerService;
-    exports.ɵlz = SourceCounterFeatureModule;
+    exports.ɵla = SchemaThemeSetEventHandler;
+    exports.ɵlb = SchemaThemeRepository;
+    exports.ɵlc = SchemaHorizontalGridSetEventHandler;
+    exports.ɵld = SchemaHorizontalGridRepository;
+    exports.ɵle = SchemaRowColoringSetEventHandler;
+    exports.ɵlf = SchemaRowColoringRepository;
+    exports.ɵlg = SchemaVerticalGridSetEventHandler;
+    exports.ɵlh = SchemaVerticalGridRepository;
+    exports.ɵli = SchemaCssClassesEventHandler;
+    exports.ɵlj = SchemaCssClassesRepository;
+    exports.ɵlk = SchemaDispatcher;
+    exports.ɵll = SchemaCommandInvoker;
+    exports.ɵlm = SchemaWarehouse;
+    exports.ɵln = SchemaEventRepository;
+    exports.ɵlo = SchemaRowClassArchive;
+    exports.ɵlp = SchemaRowStyleArchive;
+    exports.ɵlq = StructureSharedModule;
+    exports.ɵlr = CssClassModule;
+    exports.ɵls = StructureInfoPanelModule;
+    exports.ɵlt = NumberFormatterModule;
+    exports.ɵlu = NumberFormatterPipe;
+    exports.ɵlv = StructureColumnManagerModule;
+    exports.ɵlw = StructureColumnManagerComponent;
+    exports.ɵlx = CompositionId;
+    exports.ɵly = CompositionCommandInvoker;
+    exports.ɵlz = CompositionDispatcher;
     exports.ɵm = ToggleListViewSelectorCommandHandler;
-    exports.ɵma = ActiveFilterMenuTriggerDirective;
-    exports.ɵmb = ActiveFilterService;
-    exports.ɵmc = ActiveFilterMenuComponent;
-    exports.ɵmd = StructureInfoPanelComponent;
-    exports.ɵme = StructureInfoPanelArchive;
-    exports.ɵmf = StructureInfoModalComponent;
-    exports.ɵmg = selector$1;
-    exports.ɵmh = StructureInfoIconComponent;
-    exports.ɵmi = StructureInfoPanelConfigConverter;
-    exports.ɵmj = StructureSummariesPanelModule;
-    exports.ɵmk = StructureSummariesPanelComponent;
-    exports.ɵml = StructureSummariesArchive;
-    exports.ɵmm = StructureSummariesConfigService;
-    exports.ɵmn = StructureSummariesPanelConfigConverter;
-    exports.ɵmo = StructureTopPanelModule;
-    exports.ɵmp = StructureTopPanelComponent;
-    exports.ɵmq = StructureColumnMenuModule;
-    exports.ɵmr = UniqueValueListModule;
-    exports.ɵms = UniqueValueListComponent;
-    exports.ɵmt = StructureColumnConfigComponent;
-    exports.ɵmu = StructureColumnMenuConfigArchive;
-    exports.ɵmv = CellTemplateWithContext;
-    exports.ɵmw = CellContext;
-    exports.ɵmx = CellValueType;
-    exports.ɵmy = CellValue;
-    exports.ɵmz = FieldId;
+    exports.ɵma = StructureDialogColumnManagerComponent;
+    exports.ɵmb = StructureMenuColumnManagerComponent;
+    exports.ɵmc = StructureColumnManagerIconComponent;
+    exports.ɵmd = StructureDialogColumnManagerService;
+    exports.ɵme = StructureThemeConverter;
+    exports.ɵmf = SchemaManagerModule;
+    exports.ɵmg = StructureSchemaMangerComponent;
+    exports.ɵmh = SchemaReadModelRootId;
+    exports.ɵmi = StructureDialogSchemaManagerComponent;
+    exports.ɵmj = StructureSchemaManagerIconComponent;
+    exports.ɵmk = StructureDialogSchemaManagerService;
+    exports.ɵml = SourceCounterFeatureModule;
+    exports.ɵmm = ActiveFilterMenuTriggerDirective;
+    exports.ɵmn = ActiveFilterService;
+    exports.ɵmo = ActiveFilterMenuComponent;
+    exports.ɵmp = StructureInfoPanelComponent;
+    exports.ɵmq = StructureInfoPanelArchive;
+    exports.ɵmr = StructureInfoModalComponent;
+    exports.ɵms = StructureInfoIconComponent;
+    exports.ɵmt = StructureInfoPanelConfigConverter;
+    exports.ɵmu = StructureSummariesPanelModule;
+    exports.ɵmv = StructureSummariesPanelComponent;
+    exports.ɵmw = StructureSummariesArchive;
+    exports.ɵmx = StructureSummariesConfigService;
+    exports.ɵmy = StructureSummariesPanelConfigConverter;
+    exports.ɵmz = StructureTopPanelModule;
     exports.ɵn = ListViewModeSetEventHandler;
-    exports.ɵna = ColumnDefinitionId;
-    exports.ɵnb = SortOrder;
-    exports.ɵnc = ColumnAlign;
-    exports.ɵnd = StructureColumnConfigTriggerComponent;
-    exports.ɵne = StructureColumnConfigService;
-    exports.ɵnf = StructureColumnConfigSortComponent;
-    exports.ɵng = StructureColumnConfigColumnHideComponent;
-    exports.ɵnh = StructureColumnConfigColumnMoveComponent;
-    exports.ɵni = StructureColumnMenuIconComponent;
-    exports.ɵnj = selector$3;
-    exports.ɵnk = StructureColumnMenuArrowIconComponent;
-    exports.ɵnl = CompositionFeatureModule;
-    exports.ɵnm = CompositionApiModule;
-    exports.ɵnn = compositionKey;
-    exports.ɵno = CompositionAggregateFactory;
-    exports.ɵnp = ColumnEntityFactory;
-    exports.ɵnq = ColumnPresentationConverter;
-    exports.ɵnr = CompositionGroupFactory;
-    exports.ɵns = InMemoryCompositionAggregateRepository;
-    exports.ɵnt = CompositionAggregateRepository;
-    exports.ɵnu = InMemoryCompositionAggregateStore;
-    exports.ɵnv = InMemoryCompositionStore;
-    exports.ɵnw = CreateCompositionCommandHandler;
-    exports.ɵnx = CompositionDomainModule;
-    exports.ɵny = inMemoryCompositionCommandProviders;
-    exports.ɵnz = inMemoryCompositionReadModelProviders;
+    exports.ɵna = StructureTopPanelComponent;
+    exports.ɵnb = StructureColumnMenuModule;
+    exports.ɵnc = UniqueValueListModule;
+    exports.ɵnd = UniqueValueListComponent;
+    exports.ɵne = StructureColumnConfigComponent;
+    exports.ɵnf = StructureColumnMenuConfigArchive;
+    exports.ɵng = CellTemplateWithContext;
+    exports.ɵnh = CellContext;
+    exports.ɵni = CellValueType;
+    exports.ɵnj = CellValue;
+    exports.ɵnk = FieldId;
+    exports.ɵnl = ColumnDefinitionId;
+    exports.ɵnm = SortOrder;
+    exports.ɵnn = ColumnAlign;
+    exports.ɵno = StructureColumnConfigTriggerComponent;
+    exports.ɵnp = StructureColumnConfigService;
+    exports.ɵnq = StructureColumnConfigSortComponent;
+    exports.ɵnr = StructureColumnConfigColumnHideComponent;
+    exports.ɵns = StructureColumnConfigColumnMoveComponent;
+    exports.ɵnt = StructureColumnMenuIconComponent;
+    exports.ɵnu = StructureColumnMenuArrowIconComponent;
+    exports.ɵnv = CompositionFeatureModule;
+    exports.ɵnw = CompositionApiModule;
+    exports.ɵnx = compositionKey;
+    exports.ɵny = CompositionAggregateFactory;
+    exports.ɵnz = ColumnEntityFactory;
     exports.ɵo = ListViewModeRepository;
-    exports.ɵoa = inMemoryCompositionProviders;
-    exports.ɵob = CompositionEventConverter;
-    exports.ɵoc = ColumnFieldFactory;
-    exports.ɵod = SetColumnsCommandHandler;
-    exports.ɵoe = SetCompositionWidthCommandHandler;
-    exports.ɵof = SetCompositionResizeWidthCommandHandler;
-    exports.ɵog = SetCompositionContainerWidthCommandHandler;
-    exports.ɵoh = CompositionSetColumnEnabledCommandHandler;
-    exports.ɵoi = CompositionChangeSortStatusCommandHandler;
-    exports.ɵoj = CompositionMoveLeftColumnCommandHandler;
-    exports.ɵok = CompositionMoveRightColumnCommandHandler;
-    exports.ɵol = SetGroupsCommandHandler;
-    exports.ɵom = CompositionChangeSortStatusEventHandler;
-    exports.ɵon = InMemoryCompositionReadStore;
-    exports.ɵoo = CompositionReadModelRootConverter;
-    exports.ɵop = ColumnDefinitionFactory;
-    exports.ɵoq = ViewTemplateRepository;
-    exports.ɵor = ViewTemplateFactory;
-    exports.ɵos = TemplateFactory;
-    exports.ɵot = EditTemplateRepository;
-    exports.ɵou = EditTemplateFactory;
-    exports.ɵov = InMemoryCompositionRepository;
-    exports.ɵow = CompositionEventRepository;
-    exports.ɵox = SanitizeModule;
-    exports.ɵoy = SafePipe;
-    exports.ɵoz = ViewTemplatesComponent;
+    exports.ɵoa = ColumnPresentationConverter;
+    exports.ɵob = CompositionGroupFactory;
+    exports.ɵoc = InMemoryCompositionAggregateRepository;
+    exports.ɵod = CompositionAggregateRepository;
+    exports.ɵoe = InMemoryCompositionAggregateStore;
+    exports.ɵof = InMemoryCompositionStore;
+    exports.ɵog = CreateCompositionCommandHandler;
+    exports.ɵoh = CompositionDomainModule;
+    exports.ɵoi = inMemoryCompositionCommandProviders;
+    exports.ɵoj = inMemoryCompositionReadModelProviders;
+    exports.ɵok = inMemoryCompositionProviders;
+    exports.ɵol = CompositionEventConverter;
+    exports.ɵom = ColumnFieldFactory;
+    exports.ɵon = SetColumnsCommandHandler;
+    exports.ɵoo = SetCompositionWidthCommandHandler;
+    exports.ɵop = SetCompositionResizeWidthCommandHandler;
+    exports.ɵoq = SetCompositionContainerWidthCommandHandler;
+    exports.ɵor = CompositionSetColumnEnabledCommandHandler;
+    exports.ɵos = CompositionChangeSortStatusCommandHandler;
+    exports.ɵot = CompositionMoveLeftColumnCommandHandler;
+    exports.ɵou = CompositionMoveRightColumnCommandHandler;
+    exports.ɵov = SetGroupsCommandHandler;
+    exports.ɵow = CompositionChangeSortStatusEventHandler;
+    exports.ɵox = InMemoryCompositionReadStore;
+    exports.ɵoy = CompositionReadModelRootConverter;
+    exports.ɵoz = ColumnDefinitionFactory;
     exports.ɵp = Reactive;
-    exports.ɵpa = EditTemplatesComponent;
-    exports.ɵpb = StringEditTemplateComponent;
-    exports.ɵpc = InputEditTemplateComponent;
-    exports.ɵpd = EditCommunicationComponent;
-    exports.ɵpe = NumberEditTemplateComponent;
-    exports.ɵpf = BooleanEditTemplateComponent;
-    exports.ɵpg = DateEditTemplateComponent;
-    exports.ɵph = ColumnQueryComponent;
-    exports.ɵpi = FunctionViewComponent;
-    exports.ɵpj = BarViewComponent;
-    exports.ɵpk = PercentageViewComponent;
-    exports.ɵpl = TextViewComponent;
-    exports.ɵpm = LoggerModule;
-    exports.ɵpn = ConsoleLogger;
-    exports.ɵpo = StructureGateway;
-    exports.ɵpp = StructureEditModeArchive;
-    exports.ɵpq = StructureCellEditArchive;
-    exports.ɵpr = StructureInfoPanelConfigService;
-    exports.ɵps = StructureCellEditStore;
-    exports.ɵpt = RowSelectEnabledRepository;
-    exports.ɵpu = RowSelectionTypeArchive;
-    exports.ɵpv = StructureHeaderTopEnabledArchive;
-    exports.ɵpw = StructureHeaderBottomEnabledArchive;
-    exports.ɵpx = StructureRowDetailConfigArchive;
-    exports.ɵpy = StructureTitlePanelConfigArchive;
-    exports.ɵpz = StructureFooterPanelConfigArchive;
+    exports.ɵpa = ViewTemplateRepository;
+    exports.ɵpb = ViewTemplateFactory;
+    exports.ɵpc = TemplateFactory;
+    exports.ɵpd = EditTemplateRepository;
+    exports.ɵpe = EditTemplateFactory;
+    exports.ɵpf = InMemoryCompositionRepository;
+    exports.ɵpg = CompositionEventRepository;
+    exports.ɵph = SanitizeModule;
+    exports.ɵpi = SafePipe;
+    exports.ɵpj = ViewTemplatesComponent;
+    exports.ɵpk = EditTemplatesComponent;
+    exports.ɵpl = StringEditTemplateComponent;
+    exports.ɵpm = InputEditTemplateComponent;
+    exports.ɵpn = EditCommunicationComponent;
+    exports.ɵpo = NumberEditTemplateComponent;
+    exports.ɵpp = BooleanEditTemplateComponent;
+    exports.ɵpq = DateEditTemplateComponent;
+    exports.ɵpr = ColumnQueryComponent;
+    exports.ɵps = FunctionViewComponent;
+    exports.ɵpt = BarViewComponent;
+    exports.ɵpu = PercentageViewComponent;
+    exports.ɵpv = TextViewComponent;
+    exports.ɵpw = LoggerModule;
+    exports.ɵpx = ConsoleLogger;
+    exports.ɵpy = StructureGateway;
+    exports.ɵpz = StructureEditModeArchive;
     exports.ɵq = ListViewSelectorToggledEventHandler;
-    exports.ɵqa = LocalStructureCommandDispatcher;
-    exports.ɵqb = LocalCompositionCommandDispatcher;
-    exports.ɵqc = LocalCompositionWarehouse;
-    exports.ɵqd = LocalSchemaWarehouse;
-    exports.ɵqe = LocalSchemaCommandDispatcher;
-    exports.ɵqf = SchemaCssClassManager;
-    exports.ɵqg = StructureCellEditCloseAllService;
-    exports.ɵqh = SourceFeatureModule;
-    exports.ɵqi = StructureRowDetailService;
-    exports.ɵqj = structureComponentToken;
-    exports.ɵqk = StructureDefinition;
-    exports.ɵql = PagingDefinition;
-    exports.ɵqm = StructureHeaderComponent;
-    exports.ɵqn = StructureHeaderColumnsComponent;
-    exports.ɵqo = StructureHeaderFiltersComponent;
-    exports.ɵqp = StructureHeaderGroupsComponent;
-    exports.ɵqq = StructureHeaderFilterComponent;
-    exports.ɵqr = SelectAllComponent;
-    exports.ɵqs = StructureContentComponent;
-    exports.ɵqt = StructureRowComponent;
-    exports.ɵqu = StructureCellComponent;
-    exports.ɵqv = StructureCellEditComponent;
-    exports.ɵqw = StructureCellEditBooleanComponent;
-    exports.ɵqx = StructureContainerComponent;
-    exports.ɵqy = structureParentComponent;
-    exports.ɵqz = StructureQuickFiltersComponent;
+    exports.ɵqa = StructureCellEditArchive;
+    exports.ɵqb = StructureInfoPanelConfigService;
+    exports.ɵqc = StructureCellEditStore;
+    exports.ɵqd = RowSelectEnabledRepository;
+    exports.ɵqe = StructureHeaderTopEnabledArchive;
+    exports.ɵqf = StructureHeaderBottomEnabledArchive;
+    exports.ɵqg = StructureRowDetailConfigArchive;
+    exports.ɵqh = StructureTitlePanelConfigArchive;
+    exports.ɵqi = StructureFooterPanelConfigArchive;
+    exports.ɵqj = LocalStructureCommandDispatcher;
+    exports.ɵqk = LocalCompositionCommandDispatcher;
+    exports.ɵql = LocalCompositionWarehouse;
+    exports.ɵqm = LocalSchemaWarehouse;
+    exports.ɵqn = LocalSchemaCommandDispatcher;
+    exports.ɵqo = SchemaCssClassManager;
+    exports.ɵqp = StructureCellEditCloseAllService;
+    exports.ɵqq = StructureRowDetailService;
+    exports.ɵqr = structureComponentToken;
+    exports.ɵqs = StructureDefinition;
+    exports.ɵqt = PagingDefinition;
+    exports.ɵqu = StructureHeaderComponent;
+    exports.ɵqv = StructureHeaderColumnsComponent;
+    exports.ɵqw = StructureHeaderFiltersComponent;
+    exports.ɵqx = StructureHeaderGroupsComponent;
+    exports.ɵqy = StructureHeaderFilterComponent;
+    exports.ɵqz = SelectAllComponent;
     exports.ɵr = ListViewSelectorRepository;
-    exports.ɵra = StructureBlueprintComponent;
-    exports.ɵrb = STRUCTURE_CSS_CLASS_NAME;
-    exports.ɵrc = StructureRowDetailViewComponent;
-    exports.ɵrd = structureRowDetailViewItem;
-    exports.ɵre = structureRowDetailViewTemplate;
-    exports.ɵrf = SelectedRow;
-    exports.ɵrg = OriginId;
-    exports.ɵrh = StructureTitlePanelComponent;
-    exports.ɵri = StructureFooterPanelComponent;
-    exports.ɵrj = StructureThemeGateway;
-    exports.ɵrk = ItemEntityFactory;
-    exports.ɵrl = inMemoryStructureCommandProviders;
-    exports.ɵrm = inMemoryStructureReadProviders;
-    exports.ɵrn = inMemoryStructureProviders;
-    exports.ɵro = InMemoryStructureRepository;
-    exports.ɵrp = GuiListGateway;
-    exports.ɵrq = GuiListItemComponent;
-    exports.ɵrr = GuiListCardComponent;
-    exports.ɵrs = guiListProviders;
+    exports.ɵra = StructureContentComponent;
+    exports.ɵrb = StructureRowComponent;
+    exports.ɵrc = StructureCellComponent;
+    exports.ɵrd = StructureCellEditComponent;
+    exports.ɵre = StructureCellEditBooleanComponent;
+    exports.ɵrf = StructureContainerComponent;
+    exports.ɵrg = structureParentComponent;
+    exports.ɵrh = StructureQuickFiltersComponent;
+    exports.ɵri = StructureBlueprintComponent;
+    exports.ɵrj = STRUCTURE_CSS_CLASS_NAME;
+    exports.ɵrk = StructureRowDetailViewComponent;
+    exports.ɵrl = structureRowDetailViewItem;
+    exports.ɵrm = structureRowDetailViewTemplate;
+    exports.ɵrn = SelectedRow;
+    exports.ɵro = OriginId;
+    exports.ɵrp = StructureTitlePanelComponent;
+    exports.ɵrq = StructureBannerPanel;
+    exports.ɵrr = StructureFooterPanelComponent;
+    exports.ɵrs = StructureThemeGateway;
+    exports.ɵrt = structureGates;
+    exports.ɵru = StructureColumnHeaderGate;
+    exports.ɵrv = StructurePagingGate;
+    exports.ɵrw = StructureSearchingGate;
+    exports.ɵrx = StructureSelectionGate;
+    exports.ɵry = SelectionGate;
+    exports.ɵrz = StructureL10nGate;
     exports.ɵs = ListViewCommandInvoker;
+    exports.ɵsa = StructurePanelGate;
+    exports.ɵsb = StructureRowDetailGate;
+    exports.ɵsc = StructureColumnMenuGate;
+    exports.ɵsd = StructureSummariesGate;
+    exports.ɵse = StructureInfoPanelGate;
+    exports.ɵsf = StructureRowClassGate;
+    exports.ɵsg = StructureRowStyleGate;
+    exports.ɵsh = StructureRowColoringGate;
+    exports.ɵsi = ItemEntityFactory;
+    exports.ɵsj = inMemoryStructureCommandProviders;
+    exports.ɵsk = inMemoryStructureReadProviders;
+    exports.ɵsl = inMemoryStructureProviders;
+    exports.ɵsm = InMemoryStructureRepository;
+    exports.ɵsn = GuiListGateway;
+    exports.ɵso = GuiListItemComponent;
+    exports.ɵsp = GuiListCardComponent;
+    exports.ɵsq = guiListProviders;
     exports.ɵt = ListViewEventRepository;
     exports.ɵu = ListViewWarehouse;
     exports.ɵv = PagingFeatureModule;

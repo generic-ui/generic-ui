@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, OnInit } from '@angular/core';
-import { SmartComponent } from '../../../../../common/cdk/smart-component';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { CellTemplateWithContext } from '../../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { ChangedValueEmitter } from '../../../../../composition/core/domain-read/edit/changed-value.emitter';
 import { FilterCommandInvoker } from '../../../../filter/core/api/filter.command-invoker';
@@ -11,7 +11,8 @@ export declare class StructureHeaderFilterComponent extends SmartComponent imple
     column: CellTemplateWithContext;
     sub: ChangedValueEmitter<unknown>;
     editContext: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureFilterCommandService: FilterCommandInvoker, structureId: StructureId);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureFilterCommandService: FilterCommandInvoker, structureId: StructureId);
     ngOnInit(): void;
     filter(phrase: string): void;
+    protected getSelectorName(): string;
 }

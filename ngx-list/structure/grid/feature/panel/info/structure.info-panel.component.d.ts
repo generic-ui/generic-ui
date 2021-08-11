@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2, Injector } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
-import { SmartComponent } from '../../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { StructureInfoModalComponent } from './info-modal/structure-info-modal.component';
 import { SourceWarehouse } from '../../../../source/core/api/source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
@@ -13,8 +13,6 @@ import { StructureDialogSchemaManagerService } from '../../../../../schema/featu
 import { TranslationService } from '../../../../../l10n/core/api/translation.service';
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
-    private readonly renderer;
-    private readonly elementRef;
     private readonly injector;
     private readonly sourceReadModelService;
     private readonly dialog;
@@ -33,9 +31,10 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     themeManagerTooltipText: string;
     columnManagerTooltipText: string;
     infoTooltipText: string;
-    constructor(changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, elementRef: ElementRef, injector: Injector, sourceReadModelService: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationService, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelEnabledArchive: StructureInfoPanelArchive);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, sourceReadModelService: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationService, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelEnabledArchive: StructureInfoPanelArchive);
     ngOnInit(): void;
     openInfo(): void;
     openColumnManager(): void;
     openSchemaManager(): void;
+    protected getSelectorName(): string;
 }

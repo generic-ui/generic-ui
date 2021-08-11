@@ -1,5 +1,7 @@
+import { ListViewComponent } from './list-view.component';
 import { PagingFeatureModule } from '../../paging/feature/paging.feature-module';
 export declare class ListViewFeatureModule {
     private readonly paging;
+    static exportDeclarations: (typeof ListViewComponent | typeof import("./gateway/paging/list-view-paging.gate").ListViewPagingGate | typeof import("./gateway/mode/list-view-mode.gate").ListViewModeGate | typeof import("./gateway/template/list-view-template.gate").ListViewTemplateGate | typeof import("./gateway/field/list-view-field.gate").ListViewFieldGate | typeof import("./gateway/searching/list-view-searching.gate").ListViewSearchingGate | typeof import("./gateway/l10n/list-view-l10n.gate").ListViewL10nGate | typeof import("./gateway/source/list-view-source.gate").ListViewSourceGate | (typeof import("./gateway/paging/list-view-paging.gate").ListViewPagingGate | typeof import("./gateway/mode/list-view-mode.gate").ListViewModeGate | typeof import("./gateway/template/list-view-template.gate").ListViewTemplateGate | typeof import("./gateway/field/list-view-field.gate").ListViewFieldGate | typeof import("./gateway/searching/list-view-searching.gate").ListViewSearchingGate | typeof import("./gateway/l10n/list-view-l10n.gate").ListViewL10nGate | typeof import("./gateway/source/list-view-source.gate").ListViewSourceGate)[])[];
     constructor(paging: PagingFeatureModule);
 }

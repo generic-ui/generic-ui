@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { SmartComponent } from '../../../../common/cdk/smart-component';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { FormationCommandInvoker } from '../../../source/core/api/formation/formation.command-invoker';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
@@ -18,8 +18,6 @@ import { SchemaRowStyleArchive } from '../../../../schema/core/api/styling/schem
 import { SchemaRowClass } from '../../../../schema/core/api/styling/schema.row-class';
 import { SchemaRowStyle } from '../../../../schema/core/api/styling/schema.row-style';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
-    private readonly platformId;
-    private readonly renderer;
     private readonly elementRef;
     private readonly changeDetectorRef;
     private readonly formationCommandService;
@@ -47,11 +45,11 @@ export declare class StructureContentComponent extends SmartComponent implements
     checkboxSelection: boolean;
     schemaRowClass: SchemaRowClass;
     schemaRowStyle: SchemaRowStyle;
-    constructor(platformId: any, renderer: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
     rowSelectionTypeArchive: RowSelectionTypeArchive, structureSearchPhraseRepository: SearchPhraseRepository, structureSearchHighlightArchive: SearchHighlightArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;
     toggleSelectedRow(entity: ItemEntity): void;
-    private clearSelectedRows;
+    protected getSelectorName(): string;
 }

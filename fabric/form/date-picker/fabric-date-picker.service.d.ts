@@ -1,14 +1,12 @@
 import { Observable } from 'rxjs';
+import { FabricTimeValues } from './models/fabric-time-values';
 export declare class FabricDatePickerService {
-    private dateMonth$;
-    private dateYear$;
-    private initialDate;
     private selectedDate;
+    private selectedTime;
     private readonly selectedDate$;
-    observeDateMonth(): Observable<number>;
-    observeDateYear(): Observable<number>;
     observeSelectedDate(): Observable<Date>;
     dateSelected(date: Date): void;
-    nextMonth(year: number, month: number): void;
-    prevMonth(year: number, month: number): void;
+    changeTime(timeValues: FabricTimeValues, date: Date): void;
+    next(): void;
+    private setSelectedDateTime;
 }

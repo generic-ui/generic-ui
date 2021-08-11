@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureReadModelRepository } from '../../../../grid/core/domain-read/structure.read-model-repository';
+import { StructureReadModelRepository } from '../../../../grid/core/api/read/structure.read-model-repository';
 import { StructureId } from '../../../../core/api/structure.id';
 import { Paging } from './paging';
 export declare class PagingRepository {

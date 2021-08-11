@@ -1028,7 +1028,8 @@ var AggregateStoreRegister = /** @class */ (function () {
      * @return {?}
      */
     function (aggregates) {
-        return JSON.parse(JSON.stringify(aggregates));
+        // return JSON.parse(JSON.stringify(aggregates));
+        return aggregates;
     };
     return AggregateStoreRegister;
 }());
@@ -1611,10 +1612,12 @@ var DomainEventPublisher = /** @class */ (function () {
      */
     function (event) {
         if (!event) {
+            // eslint-disable-next-line no-console
             console.error(event + " is not defined");
         }
         if (!(event instanceof DomainEvent)) {
             // throw new Error(`${event} is not a DomainEvent`);
+            // eslint-disable-next-line no-console
             console.error(event + " is not a DomainEvent");
         }
         this.eventStream.next(event);
@@ -2053,6 +2056,7 @@ ReadModelRootRepository = /** @class */ (function (_super) {
                 _this.subscribe(event);
             }
             catch (e) {
+                // eslint-disable-next-line no-console
                 console.error(e);
             }
         }));
@@ -3456,6 +3460,7 @@ var ConsoleCommandLogger = /** @class */ (function (_super) {
      * @return {?}
      */
     function (command) {
+        // eslint-disable-next-line no-console
         console.log(command.toString(), command);
     };
     ConsoleCommandLogger.decorators = [
@@ -3588,6 +3593,7 @@ var ConsoleEventLogger = /** @class */ (function (_super) {
         var aggregateId = domainEvent.getAggregateId();
         /** @type {?} */
         var aggregates = this.aggregateStoreRegister.captureAggregatesSnapshot(aggregateId);
+        // eslint-disable-next-line no-console
         console.log(domainEvent.toString(), domainEvent, aggregates);
     };
     ConsoleEventLogger.decorators = [
@@ -4470,6 +4476,7 @@ var HermesBaseModule = /** @class */ (function (_super) {
          * @return {?}
          */
         function (command) {
+            // eslint-disable-next-line no-console
             console.error("Command " + command.toString() + " was not intercepted by any CommandHandler.");
         }));
     };
@@ -4485,6 +4492,7 @@ var HermesBaseModule = /** @class */ (function (_super) {
      */
     function (commandHandlers) {
         if (commandHandlers && !Array.isArray(commandHandlers)) {
+            // eslint-disable-next-line no-console
             console.warn("You might provided commandHandler without specifying \"multi: true\".");
         }
     };
@@ -4500,6 +4508,7 @@ var HermesBaseModule = /** @class */ (function (_super) {
      */
     function (eventHandlers) {
         if (eventHandlers && !Array.isArray(eventHandlers)) {
+            // eslint-disable-next-line no-console
             console.warn("You might provided eventHandler without specifying \"multi: true\".");
         }
     };
@@ -4752,7 +4761,7 @@ function assertDomainEvents(actualEvents, expectedEvents) {
             return event.equalsByType(actualEvent);
         }));
         expect(expectedEvent).toBeDefined();
-        expect(actualEvent.equalsByType(expectedEvent)).toBeTruthy('Event type should be equal');
+        expect(actualEvent.equalsByType(expectedEvent)).toBeTruthy();
         // expect(actualEvent.aggregateId).toEqual(expectedEvent.aggregateId, 'Events aggregateId should be the same');
         expect(actualEvent.getPayload()).toEqual(expectedEvent.getPayload(), 'Events payload should be the same');
     };

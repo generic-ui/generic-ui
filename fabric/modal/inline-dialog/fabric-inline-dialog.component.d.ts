@@ -1,10 +1,11 @@
 import { AfterViewInit, ChangeDetectorRef, ComponentFactoryResolver, ElementRef, Injector, OnDestroy, OnInit, Renderer2, Type, ViewContainerRef } from '@angular/core';
 import { FabricInlineDialogService } from './fabric-inline-dialog.service';
 import { InlineDialogGeometryService } from './fabric-inline-dialog-geometry.service';
-import { DialogComponent } from '../common/dialog.component';
 import { Theme } from '../../themes/theme';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
-export declare class FabricInlineDialogComponent extends DialogComponent implements OnInit, AfterViewInit, OnDestroy {
+import { FabricThemedComponent } from '../../common/modal/fabric-themed-component';
+import { FabricModalThemeService } from '../../themes/fabric-modal-theme.service';
+export declare class FabricInlineDialogComponent extends FabricThemedComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly componentFactoryResolver;
     private readonly changeDetectorRef;
     private readonly inlineDialogService;
@@ -16,7 +17,7 @@ export declare class FabricInlineDialogComponent extends DialogComponent impleme
     inlineDialogNestedInjector: Injector;
     dialogTopAttribute: number;
     dialogLeftAttribute: number;
-    constructor(componentFactoryResolver: ComponentFactoryResolver, changeDetectorRef: ChangeDetectorRef, inlineDialogService: FabricInlineDialogService, elRef: ElementRef, renderer: Renderer2, theme: Theme, inlineDialogGeometryService: InlineDialogGeometryService);
+    constructor(componentFactoryResolver: ComponentFactoryResolver, changeDetectorRef: ChangeDetectorRef, inlineDialogService: FabricInlineDialogService, elRef: ElementRef, inlineDialogGeometryService: InlineDialogGeometryService, renderer: Renderer2, themeService: FabricModalThemeService, theme: Theme);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

@@ -37,7 +37,7 @@ FabricMessageComponent.decorators = [
 	`,
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                styles: [".gui-message{position:fixed;top:50%;left:50%}"]
+                styles: [".gui-message{left:50%;position:fixed;top:50%}"]
             }] }
 ];
 /** @nocollapse */

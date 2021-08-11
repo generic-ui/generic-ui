@@ -5,8 +5,11 @@ export declare class DateEditTemplateComponent extends EditCommunicationComponen
     datePickerRef: ElementRef;
     readonly filterFieldName = "dateEdit";
     private opened;
-    constructor(changeDetectorRef: ChangeDetectorRef);
+    private readonly localStreamCloser;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef);
     ngAfterViewInit(): void;
+    ngOnDestroy(): void;
     toggle(changed: Date): void;
     dialogOpened(opened: boolean): void;
+    protected getSelectorName(): string;
 }

@@ -4,11 +4,12 @@ export declare class FabricNotificationComponent implements OnInit, OnDestroy {
     private renderer;
     notificationRef: ElementRef;
     notification: FabricNotification;
-    onNotificationClose: EventEmitter<number>;
+    onNotificationClose: EventEmitter<FabricNotification>;
     private readonly unsub$;
     constructor(renderer: Renderer2);
     ngOnInit(): void;
     ngOnDestroy(): void;
     closeNotification(): void;
     addCloseAnimation(): void;
+    isRightSide(): boolean;
 }

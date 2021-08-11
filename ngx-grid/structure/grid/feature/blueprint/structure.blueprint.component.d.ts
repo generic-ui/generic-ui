@@ -1,6 +1,6 @@
-import { ChangeDetectorRef } from '@angular/core';
-import { SmartComponent } from '../../../../common/cdk/smart-component';
-import { StructureReadModelRoot } from '../../core/domain-read/structure.read-model-root';
+import { ChangeDetectorRef, ElementRef } from '@angular/core';
+import { SmartComponent } from '../../../../common/cdk/component/smart-component';
+import { StructureReadModelRoot } from '../../core/api/read/structure.read-model-root';
 import { StructureDefinition } from '../structure-definition';
 import { StructureId } from '../../../core/api/structure.id';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
@@ -11,18 +11,18 @@ import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
 import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
-import { StructureTitlePanelConfigArchive } from '../panel/title-panel/structure.title-panel.config-archive';
-import { StructureFooterPanelConfigArchive } from '../panel/footer-panel/structure.footer-panel.config-archive';
+import { StructureTitlePanelConfigArchive } from '../panel/banner-panels/title-panel/structure.title-panel.config-archive';
+import { StructureFooterPanelConfigArchive } from '../panel/banner-panels/footer-panel/structure.footer-panel.config-archive';
 export declare class StructureBlueprintComponent extends SmartComponent {
     private readonly changeDetectorRef;
     private readonly structureDefinition;
     private readonly structureId;
-    private readonly structureReadModelService;
-    private readonly structureInfoPanelEnabledArchive;
-    private readonly pagingReadModelService;
+    private readonly structureWarehouse;
+    private readonly structureInfoPanelArchive;
+    private readonly pagingWarehouse;
     private readonly structureSummariesArchive;
-    private readonly structureFilterReadModelRepository;
-    private readonly structureSearchReadModelRepository;
+    private readonly filterWarehouse;
+    private readonly searchWarehouse;
     private readonly structureHeaderTopEnabledArchive;
     private readonly structureHeaderBottomEnabledArchive;
     private readonly structureTitlePanelConfigArchive;
@@ -38,12 +38,14 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     readonly headerCssClass: string;
     topHeaderEnabled: boolean;
     bottomHeaderEnabled: boolean;
-    private pagingReadModel;
     titlePanelEnabled: boolean;
     footerPanelEnabled: boolean;
     items: Array<any>;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureDefinition: StructureDefinition, structureId: StructureId, structureReadModelService: StructureWarehouse, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, pagingReadModelService: PagingWarehouse, structureSummariesArchive: StructureSummariesArchive, structureFilterReadModelRepository: FilterWarehouse, structureSearchReadModelRepository: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
+    private pagingReadModel;
+    private readonly localStreamCloser;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureDefinition: StructureDefinition, structureId: StructureId, structureWarehouse: StructureWarehouse, structureInfoPanelArchive: StructureInfoPanelArchive, pagingWarehouse: PagingWarehouse, structureSummariesArchive: StructureSummariesArchive, filterWarehouse: FilterWarehouse, searchWarehouse: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
     ngOnInit(): void;
+    ngOnDestroy(): void;
     getHeaderTopClasses(): string;
     getHeaderBottomClasses(): string;
     isColumnHeaderTopEnabled(): boolean;
@@ -51,4 +53,5 @@ export declare class StructureBlueprintComponent extends SmartComponent {
     isPagingTopEnabled(): boolean;
     isPagingBottomEnabled(): boolean;
     isSourceEmpty(): boolean;
+    protected getSelectorName(): string;
 }

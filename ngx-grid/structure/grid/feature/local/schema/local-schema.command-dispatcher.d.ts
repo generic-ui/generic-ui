@@ -5,10 +5,11 @@ import { SchemaCommandInvoker } from '../../../../../schema/core/api/schema.comm
 import { StructureCommandDispatcher } from '../../../../core/api/structure.command-dispatcher';
 import { StructureId } from '../../../../core/api/structure.id';
 import { RowColoring } from '../../../../../schema/core/api/row-coloring';
+import { FabricModalThemeService } from '@generic-ui/fabric';
 export declare class LocalSchemaCommandDispatcher extends SchemaCommandInvoker {
     private readonly schemaReadModelRootId;
     private readonly structureId;
-    constructor(schemaReadModelRootId: SchemaReadModelRootId, structureId: StructureId, structureCommandService: StructureCommandDispatcher, schemaDispatcher: SchemaDispatcher);
+    constructor(schemaReadModelRootId: SchemaReadModelRootId, structureId: StructureId, structureCommandService: StructureCommandDispatcher, schemaDispatcher: SchemaDispatcher, fabricModalThemeService: FabricModalThemeService);
     create(): void;
     setTheme(theme: SchemaTheme): void;
     setRowColoring(rowColoring: RowColoring): void;

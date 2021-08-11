@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, Injector } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { SmartComponent } from '../../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { SortingCommandInvoker } from '../../../../sorting/core/api/sorting.command-invoker';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { StructureId } from '../../../../core/api/structure.id';
@@ -21,4 +21,5 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent {
     isSortAsc(column: CellTemplateWithContext): boolean;
     isSortDesc(column: CellTemplateWithContext): boolean;
     isGlobalSortEnabled(): boolean;
+    protected getSelectorName(): string;
 }

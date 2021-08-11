@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
-import { SmartComponent } from '../../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
@@ -36,4 +36,5 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     private publishEditEnter;
     private publishEditCancel;
     private publishEditSubmit;
+    protected getSelectorName(): string;
 }

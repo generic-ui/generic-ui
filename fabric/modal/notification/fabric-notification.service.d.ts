@@ -1,22 +1,19 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, OnDestroy } from '@angular/core';
-import { FabricNotificationsContainerComponent } from './fabric-notifications-container.component';
+import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy, Type } from '@angular/core';
+import { FabricNotificationsOverlayComponent } from './fabric-notifications-overlay.component';
 import { FabricNotification } from './fabric-notification';
 import { FabricNotificationConfig } from './fabric-notification-config';
-export declare class FabricNotificationService implements OnDestroy {
-    private readonly componentFactoryResolver;
-    private readonly applicationRef;
-    private readonly injector;
-    private readonly document;
+import { FabricModal } from '../../common/modal/fabric-modal';
+export declare class FabricNotificationService extends FabricModal<FabricNotificationsOverlayComponent> implements OnDestroy {
     private static readonly DEFAULT_DURATION;
-    notificationContainer: ComponentRef<FabricNotificationsContainerComponent>;
     fabricNotification: FabricNotification;
     notificationIndex: number;
     private readonly unsub$;
     constructor(componentFactoryResolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector, document: any);
     ngOnDestroy(): void;
+    getComponent(): Type<FabricNotificationsOverlayComponent>;
     open(notification: string, config?: FabricNotificationConfig): void;
     close(): void;
-    private createAndAppend;
     private removeNotificationContainer;
     private createFabricNotification;
+    private pushNotification;
 }

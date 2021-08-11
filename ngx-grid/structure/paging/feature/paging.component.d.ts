@@ -1,15 +1,17 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Renderer2, SimpleChanges } from '@angular/core';
-import { SmartComponent } from '../../../common/cdk/smart-component';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { Paging } from '../core/api/read/paging';
 import { PagingWarehouse } from '../core/api/paging.warehouse';
 import { PagingCommandInvoker } from '../core/api/paging.command-invoker';
 import { SourceWarehouse } from '../../source/core/api/source.warehouse';
 import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
+import { CssClassModifier } from '../../shared/css-class/css-class.modifier';
+import { NgChanges } from '../../../common/cdk/component/ng-changes';
 export declare class PagingComponent extends SmartComponent implements OnInit {
-    private readonly renderer2;
-    private readonly elementRef;
+    private readonly elRef;
     private readonly changeDetectorRef;
+    private readonly cssClassModifier;
     private readonly structurePagingWarehouse;
     private readonly pagingCommandService;
     private readonly structureSourceWarehouse;
@@ -19,11 +21,15 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     sourceSize: number;
     paging: Paging;
     alternativeDisplay: boolean;
-    constructor(renderer2: Renderer2, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, structurePagingWarehouse: PagingWarehouse, pagingCommandService: PagingCommandInvoker, structureSourceWarehouse: SourceWarehouse, structurePagingDisplayModeArchive: PagingDisplayModeArchive);
-    ngOnChanges(changes: SimpleChanges): void;
+    isPagingVisible: boolean;
+    private readonly localStreamCloser;
+    constructor(elRef: ElementRef, changeDetectorRef: ChangeDetectorRef, cssClassModifier: CssClassModifier, structurePagingWarehouse: PagingWarehouse, pagingCommandService: PagingCommandInvoker, structureSourceWarehouse: SourceWarehouse, structurePagingDisplayModeArchive: PagingDisplayModeArchive);
+    ngOnChanges(changes: NgChanges<PagingComponent>): void;
     ngOnInit(): void;
-    isPagingVisible(): boolean;
+    ngOnDestroy(): void;
     changePageSize(pageSize: number): void;
     nextPage(): void;
     prevPage(): void;
+    private calculatePagingVisibility;
+    protected getSelectorName(): string;
 }

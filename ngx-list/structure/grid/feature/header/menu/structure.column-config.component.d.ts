@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { StructureCommandDispatcher } from '../../../../core/api/structure.command-dispatcher';
 import { CellTemplateWithContext } from '../../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { SmartComponent } from '../../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../../composition/core/api/composition.warehouse';
 import { StructureColumnMenuConfigArchive } from './config/structure.column-menu-config.archive';
 import { StructureColumnMenuConfig } from './config/structure.column-menu-config';
@@ -22,8 +22,9 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     uniqueValues: Array<any>;
     hideColumnTitle: string;
     dropdownTextTranslation: string;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, structureCommandService: StructureCommandDispatcher, compositionReadModelService: CompositionWarehouse, filterWarehouse: FilterWarehouse, translationService: TranslationService, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, column: CellTemplateWithContext);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, structureCommandService: StructureCommandDispatcher, compositionReadModelService: CompositionWarehouse, filterWarehouse: FilterWarehouse, translationService: TranslationService, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, column: CellTemplateWithContext);
     ngOnInit(): void;
     isEnabled(): boolean;
     private setTabTitles;
+    protected getSelectorName(): string;
 }

@@ -33,7 +33,7 @@ var FabricMessageComponent = /** @class */ (function () {
                     template: "\n\t\t<div class=\" gui-message\">\n\t\t\t{{text}}\n\t\t\t<button (click)=\"close()\">X</button>\n\t\t</div>\n\t",
                     encapsulation: ViewEncapsulation.None,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    styles: [".gui-message{position:fixed;top:50%;left:50%}"]
+                    styles: [".gui-message{left:50%;position:fixed;top:50%}"]
                 }] }
     ];
     /** @nocollapse */

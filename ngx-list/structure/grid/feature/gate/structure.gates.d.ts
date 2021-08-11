@@ -1,0 +1,14 @@
+import { StructureSearchingGate } from './searching/structure-searching.gate';
+import { StructureColumnHeaderGate } from './column/header/structure-column-header.gate';
+import { StructurePagingGate } from './paging/structure-paging.gate';
+import { StructureSelectionGate } from './source/structure-selection.gate';
+import { StructureL10nGate } from './l10n/structure-l10n.gate';
+import { StructurePanelGate } from './panel/structure-panel.gate';
+import { StructureRowDetailGate } from './row/detail/structure-row-detail.gate';
+import { StructureColumnMenuGate } from './column/menu/structure-column-menu.gate';
+import { StructureSummariesGate } from './summaries/structure-summaries.gate';
+import { StructureInfoPanelGate } from './panel/info/structure-info-panel.gate';
+import { StructureRowClassGate } from './row/class/structure-row-class.gate';
+import { StructureRowColoringGate } from './row/coloring/structure-row-coloring.gate';
+import { StructureRowStyleGate } from './row/style/structure-row-style.gate';
+export declare const structureGates: (typeof StructureColumnHeaderGate | typeof StructurePagingGate | typeof StructureSearchingGate | typeof StructureSelectionGate | typeof StructureL10nGate | typeof StructurePanelGate | typeof StructureRowDetailGate | typeof StructureColumnMenuGate | typeof StructureSummariesGate | typeof StructureInfoPanelGate | typeof StructureRowClassGate | typeof StructureRowStyleGate | typeof StructureRowColoringGate)[];

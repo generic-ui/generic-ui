@@ -2,9 +2,9 @@ import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, OnDes
 import { Theme } from '../../themes/theme';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
 export declare class FabricDialogService implements OnDestroy {
-    private componentFactoryResolver;
-    private applicationRef;
-    private injector;
+    private readonly componentFactoryResolver;
+    private readonly applicationRef;
+    private readonly injector;
     private document;
     dialogRef: ComponentRef<FabricNestedDialogComponent>;
     private readonly unsub$;

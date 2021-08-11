@@ -1,33 +1,38 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import { FabricDatePickerService } from './fabric-date-picker.service';
 import { FabricDatePickerInlineDialogService } from './fabric.date-picker-inline-dialog.service';
-export declare class FabricDatePickerComponent implements OnInit, OnDestroy {
+import { FabricReactive } from '../../common/fabric-reactive';
+import { Theme } from '../../themes/theme';
+import { FabricDatePickerCompositionService } from './fabric-date-picker-composition.service';
+export declare class FabricDatePickerComponent extends FabricReactive implements OnInit, OnDestroy {
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
+    private readonly datePickerCompositionService;
     private readonly formBuilder;
     private readonly changeDetectorRef;
     datePickerRef: ElementRef;
     parentElement: ElementRef;
+    theme: Theme;
     selectDate: Date;
     name: string;
     openDialog: boolean;
     onlyDialog: boolean;
+    datePipeOptions: string;
     dateSelected: EventEmitter<any>;
     dialogOpened: EventEmitter<any>;
     datePickerForm: FormGroup;
     pickedDate: Date;
     inputDisabled: 'disabled' | '';
-    datePickerSubscription: Subscription;
-    datePickerDaySubscription: Subscription;
-    private readonly unsub$;
-    constructor(fabricDatePickerInlineDialogService: FabricDatePickerInlineDialogService, datePickerService: FabricDatePickerService, formBuilder: FormBuilder, changeDetectorRef: ChangeDetectorRef);
+    constructor(fabricDatePickerInlineDialogService: FabricDatePickerInlineDialogService, datePickerService: FabricDatePickerService, datePickerCompositionService: FabricDatePickerCompositionService, formBuilder: FormBuilder, changeDetectorRef: ChangeDetectorRef);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     openDatePicker(): void;
+    closeDatePicker(): void;
+    private emitSelectedDate;
     private observeDayChanges;
     private parse;
+    private getDateValues;
 }

@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { SmartComponent } from '../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
 import { StructureId } from '../../../core/api/structure.id';
@@ -27,7 +27,7 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     selectedFilterTypeId: FilterTypeId;
     selectedValue: string;
     activeFilters: Array<ActiveFilterReadModel>;
-    constructor(changeDetectorRef: ChangeDetectorRef, structureId: StructureId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
     onColumnSelect(selectedColumn: CellTemplateWithContext): void;
     onFieldSelect(field: FieldReadModel): void;
@@ -36,4 +36,5 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     addFilter(): void;
     onValueChanged(value: string): void;
     clearAddFilterForm(): void;
+    protected getSelectorName(): string;
 }

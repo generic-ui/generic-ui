@@ -1,6 +1,6 @@
-import { Component, ContentChild, TemplateRef, EventEmitter, Input, Output, ViewEncapsulation, Inject, PLATFORM_ID, Injectable, RendererFactory2, InjectionToken, ChangeDetectionStrategy, Injector, Renderer2, ElementRef, ChangeDetectorRef, NgModule, Pipe, Optional, ViewChild, Directive, NgZone, ComponentFactoryResolver, Attribute } from '@angular/core';
+import { Component, ContentChild, TemplateRef, EventEmitter, Input, Output, ViewEncapsulation, Inject, PLATFORM_ID, Injectable, InjectionToken, ChangeDetectionStrategy, Injector, ElementRef, ChangeDetectorRef, NgModule, Pipe, Optional, ViewChild, Directive, NgZone, ComponentFactoryResolver, Attribute, Renderer2 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { FabricDrawerService, FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricDialogService, FabricDialogThemeService, InlineDialogPlacement, FabricInlineDialogService, ResizeDetector, Placement, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
+import { Theme, FabricModalThemeService, FabricDrawerService, FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricDialogService, FabricPlacement, FabricInlineDialogService, ResizeDetector, Placement, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
 import { ReadModelRootId, AggregateId, Command, CommandDispatcher, EntityId, AggregateArchive, DomainEvent, AggregateEvent, ReadModelEntityId, ReadModelRootRepository, CreateAggregateCommand, InMemoryStore, ReadModelObject, ReadModelRoot, RandomStringGenerator, InMemoryReadModelStore, DomainEventBus, Archive, EventRepository, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ApiModule, FeatureModule, Optional as Optional$1, Entity, AggregateRoot, AggregateFactory, InMemoryAggregateStore, AggregateStoreRegister, Reactive as Reactive$1, DomainObject, KeyMap, HermesId, ReadModelEntity, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { Subject, Observable, ReplaySubject, zip, timer, combineLatest, fromEvent } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
@@ -112,6 +112,64 @@ const ListViewMode = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const enTranslation = {
+    sourceEmpty: 'There are no items to show.',
+    pagingItemsPerPage: 'Items per page:',
+    pagingOf: 'of',
+    pagingNextPage: 'Next',
+    pagingPrevPage: 'Prev',
+    pagingNoItems: 'There is no items.',
+    infoPanelShowing: 'Showing',
+    infoPanelItems: 'items',
+    infoPanelOutOf: 'out of',
+    infoPanelThemeMangerTooltipText: 'Theme manager',
+    infoPanelColumnManagerTooltipText: 'Column manager',
+    infoPanelInfoTooltipText: 'info',
+    themeManagerModalTitle: 'Theme manager',
+    themeManagerModalTheme: 'Theme:',
+    themeManagerModalRowColoring: 'Row coloring:',
+    themeManagerModalVerticalGrid: 'Vertical grid',
+    themeManagerModalHorizontalGrid: 'HorizontalGrid',
+    columnManagerModalTitle: 'Manage columns',
+    headerMenuMainTab: 'Menu',
+    headerMenuMainTabColumnSort: 'Column sort',
+    headerMenuMainTabHideColumn: 'Hide column',
+    headerMenuMainTabMoveLeft: 'Move left',
+    headerMenuMainTabMoveRight: 'Move right',
+    headerMenuMainTabColumnSortAscending: 'Ascending',
+    headerMenuMainTabColumnSortDescending: 'Descending',
+    headerMenuMainTabColumnSortNone: 'None',
+    headerMenuFilterTab: 'Filter',
+    headerMenuColumnsTab: 'Columns',
+    summariesCount: 'Count',
+    summariesDist: 'Dist',
+    summariesSum: 'Sum',
+    summariesAvg: 'Avg',
+    summariesMin: 'Min',
+    summariesMax: 'Max',
+    summariesMed: 'Med',
+    summariesTruthy: 'Truthy',
+    summariesFalsy: 'Falsy',
+    summariesDistinctValuesTooltip: 'Distinct values',
+    summariesAverageTooltip: 'Average',
+    summariesMinTooltip: 'Min',
+    summariesMaxTooltip: 'Max',
+    summariesMedTooltip: 'Median',
+    summariesCountTooltip: 'Number of items in the grid'
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const defaultTranslation = enTranslation;
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @record
  */
@@ -184,6 +242,18 @@ if (false) {
     /** @type {?|undefined} */
     GuiListSearching.prototype.phrase;
 }
+/**
+ * @record
+ */
+function GuiListLocalization() { }
+if (false) {
+    /** @type {?|undefined} */
+    GuiListLocalization.prototype.translation;
+    /** @type {?|undefined} */
+    GuiListLocalization.prototype.translationResolver;
+}
+/** @type {?} */
+const GuiListDefaultTranslation = defaultTranslation;
 
 /**
  * @fileoverview added by tsickle
@@ -360,6 +430,7 @@ GuiListGateway.propDecorators = {
     view: [{ type: Input }],
     fields: [{ type: Input }],
     searching: [{ type: Input }],
+    localization: [{ type: Input }],
     pageChanged: [{ type: Output }],
     pageSizeChanged: [{ type: Output }],
     searchPhraseChanged: [{ type: Output }]
@@ -383,6 +454,8 @@ if (false) {
     GuiListGateway.prototype.fields;
     /** @type {?} */
     GuiListGateway.prototype.searching;
+    /** @type {?} */
+    GuiListGateway.prototype.localization;
     /** @type {?} */
     GuiListGateway.prototype.pageChanged;
     /** @type {?} */
@@ -451,7 +524,7 @@ class GuiListComponent extends GuiListGateway {
 GuiListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-list',
-                template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
+                template: "<gui-list-view\n\t\t(pageChanged)=\"onPageChange($event)\"\n\t\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t\t[cardTemplate]=\"listCardTemplate\"\n\t\t[fields]=\"listFields\"\n\t\t[items]=\"source\"\n\t\t[localization]=\"localization\"\n\t\t[modeSelector]=\"listViewModeSelector\"\n\t\t[mode]=\"listViewMode\"\n\t\t[paging]=\"paging\"\n\t\t[searching]=\"searchConfig\"\n\t\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n",
                 providers: [
                     ...guiListProviders
                 ],
@@ -472,51 +545,6 @@ if (false) {
      * @private
      */
     GuiListComponent.prototype.platformId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class ListViewGateway {
-    /**
-     * @protected
-     * @param {?} structureId
-     * @param {?} sourceCommandService
-     */
-    constructor(structureId, sourceCommandService) {
-        this.structureId = structureId;
-        this.sourceCommandService = sourceCommandService;
-    }
-    /**
-     * @param {?} simpleChanges
-     * @return {?}
-     */
-    ngOnChanges(simpleChanges) {
-        /**
-         * Setting source should be last step
-         */
-        if (simpleChanges.items) {
-            this.sourceCommandService.setOrigin(this.items, this.structureId);
-        }
-    }
-}
-ListViewGateway.propDecorators = {
-    items: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    ListViewGateway.prototype.items;
-    /** @type {?} */
-    ListViewGateway.prototype.structureId;
-    /**
-     * @type {?}
-     * @protected
-     */
-    ListViewGateway.prototype.sourceCommandService;
 }
 
 /**
@@ -6637,10 +6665,12 @@ class SchemaCommandInvoker {
     /**
      * @param {?} schemaDispatcher
      * @param {?} structureCommandService
+     * @param {?} fabricModalThemeService
      */
-    constructor(schemaDispatcher, structureCommandService) {
+    constructor(schemaDispatcher, structureCommandService, fabricModalThemeService) {
         this.schemaDispatcher = schemaDispatcher;
         this.structureCommandService = structureCommandService;
+        this.fabricModalThemeService = fabricModalThemeService;
     }
     /**
      * @param {?=} schemaId
@@ -6657,6 +6687,7 @@ class SchemaCommandInvoker {
      */
     setTheme(theme, schemaId = schemaGlobalId, structureId = structureGlobalId) {
         this.schemaDispatcher.setTheme(theme, schemaId.toAggregateId());
+        this.fabricModalThemeService.changeTheme(this.toFabricTheme(theme)); // TODO github #2162
         this.structureCommandService.setRowHeightBasedOnTheme(theme, structureId);
     }
     /**
@@ -6700,6 +6731,30 @@ class SchemaCommandInvoker {
                 return SchemaRowColoring.EVEN;
         }
     }
+    /**
+     * @private
+     * @param {?} schemaTheme
+     * @return {?}
+     */
+    toFabricTheme(schemaTheme) {
+        switch (schemaTheme) {
+            case SchemaTheme.DARK: {
+                return Theme.DARK;
+            }
+            case SchemaTheme.FABRIC: {
+                return Theme.FABRIC;
+            }
+            case SchemaTheme.GENERIC: {
+                return Theme.GENERIC;
+            }
+            case SchemaTheme.LIGHT: {
+                return Theme.LIGHT;
+            }
+            case SchemaTheme.MATERIAL: {
+                return Theme.MATERIAL;
+            }
+        }
+    }
 }
 SchemaCommandInvoker.decorators = [
     { type: Injectable }
@@ -6707,7 +6762,8 @@ SchemaCommandInvoker.decorators = [
 /** @nocollapse */
 SchemaCommandInvoker.ctorParameters = () => [
     { type: SchemaDispatcher },
-    { type: StructureCommandDispatcher }
+    { type: StructureCommandDispatcher },
+    { type: FabricModalThemeService }
 ];
 if (false) {
     /**
@@ -6720,6 +6776,11 @@ if (false) {
      * @private
      */
     SchemaCommandInvoker.prototype.structureCommandService;
+    /**
+     * @type {?}
+     * @private
+     */
+    SchemaCommandInvoker.prototype.fabricModalThemeService;
 }
 
 /**
@@ -6732,9 +6793,10 @@ class LocalSchemaCommandDispatcher extends SchemaCommandInvoker {
      * @param {?} structureId
      * @param {?} structureCommandService
      * @param {?} schemaDispatcher
+     * @param {?} fabricModalThemeService
      */
-    constructor(schemaReadModelRootId, structureId, structureCommandService, schemaDispatcher) {
-        super(schemaDispatcher, structureCommandService);
+    constructor(schemaReadModelRootId, structureId, structureCommandService, schemaDispatcher, fabricModalThemeService) {
+        super(schemaDispatcher, structureCommandService, fabricModalThemeService);
         this.schemaReadModelRootId = schemaReadModelRootId;
         this.structureId = structureId;
     }
@@ -6781,7 +6843,8 @@ LocalSchemaCommandDispatcher.ctorParameters = () => [
     { type: SchemaReadModelRootId },
     { type: StructureId },
     { type: StructureCommandDispatcher },
-    { type: SchemaDispatcher }
+    { type: SchemaDispatcher },
+    { type: FabricModalThemeService }
 ];
 __decorate([
     Override,
@@ -6979,6 +7042,14 @@ let Paging = class Paging {
             start -= 1;
         }
         return source.slice(start, this.getEnd());
+    }
+    // TODO
+    /**
+     * @param {?} target
+     * @return {?}
+     */
+    compare(target) {
+        return JSON.stringify(this) === JSON.stringify(target);
     }
 };
 Paging.ctorParameters = () => [
@@ -7725,6 +7796,19 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class PagingSetEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'PagingSetEvent');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class VerticalFormationRepository extends Reactive {
     /**
      * @param {?} domainEventBus
@@ -7737,7 +7821,7 @@ class VerticalFormationRepository extends Reactive {
         this.verticalFormation = new Map();
         this.verticalFormation$ = new ReplaySubject();
         this.domainEventBus
-            .ofEvent((/** @type {?} */ (StructureCreatedEvent)), (/** @type {?} */ (VerticalScrollEnabledSetEvent)), (/** @type {?} */ (OriginSetEvent)), (/** @type {?} */ (StructureHeightSetEvent)), (/** @type {?} */ (RowHeightSetEvent)), (/** @type {?} */ (SchemaThemeSetEvent)), (/** @type {?} */ (RowHeightSetBasedOnThemeEvent)), (/** @type {?} */ (ScrollPositionSetEvent)), (/** @type {?} */ (SearchPhraseSetDomainEvent)))
+            .ofEvent((/** @type {?} */ (StructureCreatedEvent)), (/** @type {?} */ (VerticalScrollEnabledSetEvent)), (/** @type {?} */ (OriginSetEvent)), (/** @type {?} */ (StructureHeightSetEvent)), (/** @type {?} */ (RowHeightSetEvent)), (/** @type {?} */ (SchemaThemeSetEvent)), (/** @type {?} */ (RowHeightSetBasedOnThemeEvent)), (/** @type {?} */ (ScrollPositionSetEvent)), (/** @type {?} */ (SearchPhraseSetDomainEvent)), (/** @type {?} */ (PageChangedEvent)), (/** @type {?} */ (PagingSetEvent)))
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} event
@@ -7783,7 +7867,7 @@ class VerticalFormationRepository extends Reactive {
          * @param {?} v
          * @return {?}
          */
-        (v) => v.getRowHeight())));
+        (v) => v.getRowHeight())), distinctUntilChanged());
     }
     /**
      * @param {?} structureId
@@ -7795,7 +7879,7 @@ class VerticalFormationRepository extends Reactive {
          * @param {?} v
          * @return {?}
          */
-        (v) => v.getViewPortHeight())));
+        (v) => v.getViewPortHeight())), distinctUntilChanged());
     }
     /**
      * @param {?} structureId
@@ -7807,7 +7891,7 @@ class VerticalFormationRepository extends Reactive {
          * @param {?} v
          * @return {?}
          */
-        (v) => v.getTopMargin())));
+        (v) => v.getTopMargin())), distinctUntilChanged());
     }
     /**
      * @private
@@ -8093,26 +8177,146 @@ function provideComponentServices() {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @abstract
+ * @template T
+ */
+class Modifier {
+    /**
+     * @protected
+     * @param {?=} hostElement
+     */
+    constructor(hostElement) {
+        this.hostElement = hostElement;
+    }
+    /**
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    getElement(htmlElement) {
+        return this.createModifier(htmlElement);
+    }
+    /**
+     * @return {?}
+     */
+    getHost() {
+        if (!this.hostElement) {
+            throw new Error('Missing host element in DomRenderer constructor.');
+        }
+        return this.createModifier(this.hostElement);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Modifier.prototype.hostElement;
+    /**
+     * @abstract
+     * @protected
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    Modifier.prototype.createModifier = function (htmlElement) { };
+}
+
+var _a;
+class ClassModifier extends Modifier {
+    /**
+     * @param {?=} htmlElement
+     */
+    constructor(htmlElement) {
+        super(htmlElement);
+        this.htmlElement = htmlElement;
+    }
+    /**
+     * @protected
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    createModifier(htmlElement) {
+        return new ClassModifier.ClassModifier(htmlElement);
+    }
+}
+ClassModifier.ClassModifier = (_a = class {
+        /**
+         * @param {?} htmlElement
+         */
+        constructor(htmlElement) {
+            this.htmlElement = htmlElement;
+        }
+        /**
+         * @param {...?} classes
+         * @return {?}
+         */
+        add(...classes) {
+            this.addClassToDomElement(this.htmlElement, classes);
+        }
+        /**
+         * @param {...?} classes
+         * @return {?}
+         */
+        remove(...classes) {
+            this.removeClassFromDomElement(this.htmlElement, classes);
+        }
+        /**
+         * @return {?}
+         */
+        clear() {
+            this.htmlElement.removeAttribute(ClassModifier.ClassModifier.CLASS);
+        }
+        /**
+         * @private
+         * @param {?} htmlElement
+         * @param {?} classes
+         * @return {?}
+         */
+        addClassToDomElement(htmlElement, classes) {
+            for (let i = 0; i < classes.length; i++) {
+                htmlElement.classList.add(classes[i]);
+            }
+        }
+        /**
+         * @private
+         * @param {?} htmlElement
+         * @param {?} classes
+         * @return {?}
+         */
+        removeClassFromDomElement(htmlElement, classes) {
+            for (let i = 0; i < classes.length; i++) {
+                htmlElement.classList.remove(classes[i]);
+            }
+        }
+    },
+    _a.CLASS = 'class',
+    _a);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ClassModifier.ClassModifier;
+    /**
+     * @type {?}
+     * @private
+     */
+    ClassModifier.prototype.htmlElement;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class SchemaCssClassManager extends Reactive {
     /**
-     * @param {?} rendererFactory2
      * @param {?} schemaReadModelRepository
      */
-    constructor(rendererFactory2, schemaReadModelRepository) {
+    constructor(schemaReadModelRepository) {
         super();
-        this.rendererFactory2 = rendererFactory2;
         this.schemaReadModelRepository = schemaReadModelRepository;
-        this.VERTICAL_GRID_CLASS_NAME = 'gui-vertical-grid';
-        this.HORIZONTAL_GRID_CLASS_NAME = 'gui-horizontal-grid';
-        this.THEME_FABRIC_CLASS_NAME = 'gui-fabric';
-        this.THEME_MATERIAL_CLASS_NAME = 'gui-material';
-        this.THEME_LIGHT_CLASS_NAME = 'gui-light';
-        this.THEME_DARK_CLASS_NAME = 'gui-dark';
-        this.THEME_GENERIC_CLASS_NAME = 'gui-generic';
-        this.ROW_COLORING_ODD = 'gui-rows-odd';
-        this.ROW_COLORING_EVEN = 'gui-rows-even';
         this.cssClass = null;
-        this.renderer = this.rendererFactory2.createRenderer(null, null);
+        this.classModifier = new ClassModifier();
     }
     /**
      * @param {?} elementRef
@@ -8168,10 +8372,10 @@ class SchemaCssClassManager extends Reactive {
      */
     renderCssClasses(diff) {
         if (diff.hasOwnProperty('verticalGrid')) {
-            this.toggleCssClass(diff.verticalGrid, this.VERTICAL_GRID_CLASS_NAME);
+            this.toggleCssClass(diff.verticalGrid, SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME);
         }
         if (diff.hasOwnProperty('horizontalGrid')) {
-            this.toggleCssClass(diff.horizontalGrid, this.HORIZONTAL_GRID_CLASS_NAME);
+            this.toggleCssClass(diff.horizontalGrid, SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME);
         }
         if (diff.hasOwnProperty('theme')) {
             this.removeThemeCssClasses();
@@ -8234,21 +8438,21 @@ class SchemaCssClassManager extends Reactive {
         switch (theme) {
             case SchemaTheme.FABRIC:
             case SchemaTheme[SchemaTheme.FABRIC]:
-                return this.THEME_FABRIC_CLASS_NAME;
+                return SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
             case SchemaTheme.MATERIAL:
             case SchemaTheme[SchemaTheme.MATERIAL]:
-                return this.THEME_MATERIAL_CLASS_NAME;
+                return SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME;
             case SchemaTheme.LIGHT:
             case SchemaTheme[SchemaTheme.LIGHT]:
-                return this.THEME_LIGHT_CLASS_NAME;
+                return SchemaCssClassManager.THEME_LIGHT_CLASS_NAME;
             case SchemaTheme.DARK:
             case SchemaTheme[SchemaTheme.DARK]:
-                return this.THEME_DARK_CLASS_NAME;
+                return SchemaCssClassManager.THEME_DARK_CLASS_NAME;
             case SchemaTheme.GENERIC:
             case SchemaTheme[SchemaTheme.GENERIC]:
-                return this.THEME_GENERIC_CLASS_NAME;
+                return SchemaCssClassManager.THEME_GENERIC_CLASS_NAME;
             default:
-                return this.THEME_FABRIC_CLASS_NAME;
+                return SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
         }
     }
     /**
@@ -8260,10 +8464,10 @@ class SchemaCssClassManager extends Reactive {
         switch (coloring) {
             case SchemaRowColoring.ODD:
             case SchemaRowColoring[SchemaRowColoring.ODD]:
-                return this.ROW_COLORING_ODD;
+                return SchemaCssClassManager.ROW_COLORING_ODD;
             case SchemaRowColoring.EVEN:
             case SchemaRowColoring[SchemaRowColoring.EVEN]:
-                return this.ROW_COLORING_EVEN;
+                return SchemaCssClassManager.ROW_COLORING_EVEN;
             default:
                 return null;
         }
@@ -8304,7 +8508,7 @@ class SchemaCssClassManager extends Reactive {
      */
     addClass(cssClassName) {
         if (cssClassName) {
-            this.renderer.addClass(this.cssHostRef.nativeElement, cssClassName);
+            this.classModifier.getElement(this.cssHostRef.nativeElement).add(cssClassName);
         }
     }
     /**
@@ -8314,16 +8518,24 @@ class SchemaCssClassManager extends Reactive {
      */
     removeClass(cssClassName) {
         if (cssClassName) {
-            this.renderer.removeClass(this.cssHostRef.nativeElement, cssClassName);
+            this.classModifier.getElement(this.cssHostRef.nativeElement).remove(cssClassName);
         }
     }
 }
+SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME = 'gui-vertical-grid';
+SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME = 'gui-horizontal-grid';
+SchemaCssClassManager.THEME_FABRIC_CLASS_NAME = 'gui-fabric';
+SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME = 'gui-material';
+SchemaCssClassManager.THEME_LIGHT_CLASS_NAME = 'gui-light';
+SchemaCssClassManager.THEME_DARK_CLASS_NAME = 'gui-dark';
+SchemaCssClassManager.THEME_GENERIC_CLASS_NAME = 'gui-generic';
+SchemaCssClassManager.ROW_COLORING_ODD = 'gui-rows-odd';
+SchemaCssClassManager.ROW_COLORING_EVEN = 'gui-rows-even';
 SchemaCssClassManager.decorators = [
     { type: Injectable }
 ];
 /** @nocollapse */
 SchemaCssClassManager.ctorParameters = () => [
-    { type: RendererFactory2 },
     { type: SchemaWarehouse }
 ];
 if (false) {
@@ -8331,52 +8543,52 @@ if (false) {
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.VERTICAL_GRID_CLASS_NAME;
+    SchemaCssClassManager.VERTICAL_GRID_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.HORIZONTAL_GRID_CLASS_NAME;
+    SchemaCssClassManager.HORIZONTAL_GRID_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.THEME_FABRIC_CLASS_NAME;
+    SchemaCssClassManager.THEME_FABRIC_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.THEME_MATERIAL_CLASS_NAME;
+    SchemaCssClassManager.THEME_MATERIAL_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.THEME_LIGHT_CLASS_NAME;
+    SchemaCssClassManager.THEME_LIGHT_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.THEME_DARK_CLASS_NAME;
+    SchemaCssClassManager.THEME_DARK_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.THEME_GENERIC_CLASS_NAME;
+    SchemaCssClassManager.THEME_GENERIC_CLASS_NAME;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.ROW_COLORING_ODD;
+    SchemaCssClassManager.ROW_COLORING_ODD;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.ROW_COLORING_EVEN;
+    SchemaCssClassManager.ROW_COLORING_EVEN;
     /**
      * @type {?}
      * @private
      */
-    SchemaCssClassManager.prototype.renderer;
+    SchemaCssClassManager.prototype.classModifier;
     /**
      * @type {?}
      * @private
@@ -8387,11 +8599,6 @@ if (false) {
      * @private
      */
     SchemaCssClassManager.prototype.cssHostRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    SchemaCssClassManager.prototype.rendererFactory2;
     /**
      * @type {?}
      * @private
@@ -8778,43 +8985,27 @@ const structureComponentToken = new InjectionToken('StructureComponentToken');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @abstract
+ * @template T
  */
-class SmartComponent extends Reactive {
-    /**
-     * @protected
-     * @param {?} detector
-     */
-    constructor(detector) {
-        super();
-        this.detector = detector;
-        this.viewRendered = false;
+class StreamCloser {
+    constructor() {
+        this.unsubscribe$ = new Subject();
     }
     /**
      * @return {?}
      */
-    ngAfterViewInit() {
-        this.viewRendered = true;
+    takeUntil() {
+        return takeUntil(this.unsubscribe$);
     }
     /**
      * @return {?}
      */
-    ngOnDestroy() {
-        super.ngOnDestroy();
-    }
-    /**
-     * @return {?}
-     */
-    reRender() {
-        if (this.isViewRendered()) {
-            this.detector.detectChanges();
+    unsubscribe() {
+        if (this.unsubscribe$.isStopped) {
+            return;
         }
-    }
-    /**
-     * @return {?}
-     */
-    isViewRendered() {
-        return this.viewRendered;
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 }
 if (false) {
@@ -8822,7 +9013,179 @@ if (false) {
      * @type {?}
      * @private
      */
-    SmartComponent.prototype.viewRendered;
+    StreamCloser.prototype.unsubscribe$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class GuiComponent {
+    /**
+     * @protected
+     * @param {?} innerElementRef
+     */
+    constructor(innerElementRef) {
+        this.innerElementRef = innerElementRef;
+        this.innerClassModifier = new ClassModifier(this.innerElementRef.nativeElement);
+        this.addHostClass();
+    }
+    /**
+     * @param {?} className
+     * @return {?}
+     */
+    addClassToHost(className) {
+        this.innerClassModifier.getHost().add(className);
+    }
+    /**
+     * @param {?} className
+     * @return {?}
+     */
+    removeClassFromHost(className) {
+        this.innerClassModifier.getHost().remove(className);
+    }
+    /**
+     * @template T
+     * @param {?} prop
+     * @return {?}
+     */
+    hasChanged(prop) {
+        return prop !== undefined && prop.currentValue !== undefined;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    addHostClass() {
+        this.innerClassModifier.getHost().add(this.getSelectorName());
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    GuiComponent.prototype.innerClassModifier;
+    /**
+     * @type {?}
+     * @private
+     */
+    GuiComponent.prototype.innerElementRef;
+    /**
+     * @abstract
+     * @protected
+     * @return {?}
+     */
+    GuiComponent.prototype.getSelectorName = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class SmartComponent extends GuiComponent {
+    /**
+     * @protected
+     * @param {?} detector
+     * @param {?} elementRef
+     */
+    constructor(detector, elementRef) {
+        super(elementRef);
+        this.detector = detector;
+        this.viewInDom = false;
+        this.streamCloser = new StreamCloser();
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        this.viewInDom = true;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.streamCloser.unsubscribe();
+    }
+    /**
+     * @return {?}
+     */
+    reRender() {
+        if (this.isViewInDom()) {
+            this.detector.detectChanges();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    isViewInDom() {
+        return this.viewInDom;
+    }
+    /**
+     * @param {?} obs$
+     * @param {?} callback
+     * @return {?}
+     */
+    subscribeAndRender(obs$, callback) {
+        return obs$
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} subscribeArguments
+         * @return {?}
+         */
+        (subscribeArguments) => {
+            callback(subscribeArguments);
+            this.reRender();
+        }));
+    }
+    /**
+     * @param {?} obs$
+     * @param {?} callback
+     * @return {?}
+     */
+    subscribeWithoutRender(obs$, callback) {
+        return obs$
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} subscribeArguments
+         * @return {?}
+         */
+        (subscribeArguments) => {
+            callback(subscribeArguments);
+        }));
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    unsubscribe() {
+        this.streamCloser.unsubscribe();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    takeUntil() {
+        return this.streamCloser.takeUntil();
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SmartComponent.prototype.viewInDom;
+    /**
+     * @type {?}
+     * @private
+     */
+    SmartComponent.prototype.streamCloser;
     /**
      * @type {?}
      * @protected
@@ -8843,23 +9206,6 @@ const StructureCellEditState = {
 StructureCellEditState[StructureCellEditState.ENTER] = 'ENTER';
 StructureCellEditState[StructureCellEditState.SUBMIT] = 'SUBMIT';
 StructureCellEditState[StructureCellEditState.CANCEL] = 'CANCEL';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ColumnMenuConfig {
-}
-if (false) {
-    /** @type {?} */
-    ColumnMenuConfig.prototype.enabled;
-    /** @type {?} */
-    ColumnMenuConfig.prototype.sort;
-    /** @type {?} */
-    ColumnMenuConfig.prototype.filter;
-    /** @type {?} */
-    ColumnMenuConfig.prototype.columnsManager;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -9009,15 +9355,15 @@ class StructureColumnInputHandler {
         this.compositionCommandInvoker = compositionCommandInvoker;
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    handle(simpleChanges) {
+    handle(changes) {
         /** @type {?} */
-        const config = simpleChanges.columns.currentValue;
+        const config = changes.columns.currentValue;
         this.compositionCommandInvoker.setGroups(config, this.compositionId);
         // prepare model
-        const { columns, groups } = this.getConfigs(simpleChanges.columns.currentValue);
+        const { columns, groups } = this.getConfigs(changes.columns.currentValue);
         /** @type {?} */
         const fieldConfigs = this.getFieldConfigs(columns);
         // const fieldConfigs = columns as Array<FieldConfig>;
@@ -9171,136 +9517,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @enum {number} */
-const RowSelectionType = {
-    ROW: 0,
-    CHECKBOX: 1,
-};
-RowSelectionType[RowSelectionType.ROW] = 'ROW';
-RowSelectionType[RowSelectionType.CHECKBOX] = 'CHECKBOX';
-/** @enum {number} */
-const RowSelectionMode = {
-    SINGLE: 0,
-    MULTIPLE: 1,
-};
-RowSelectionMode[RowSelectionMode.SINGLE] = 'SINGLE';
-RowSelectionMode[RowSelectionMode.MULTIPLE] = 'MULTIPLE';
-class RowSelection {
-    /**
-     * @private
-     * @param {?} config
-     */
-    constructor(config) {
-        if (config.enabled !== undefined) {
-            this.enabled = config.enabled;
-        }
-        if (config.mode !== undefined) {
-            this.mode = config.mode;
-        }
-        if (config.type !== undefined) {
-            this.type = config.type;
-        }
-    }
-    /**
-     * @return {?}
-     */
-    isModeDefined() {
-        return this.mode !== undefined;
-    }
-    /**
-     * @return {?}
-     */
-    isTypeDefined() {
-        return this.type !== undefined;
-    }
-    /**
-     * @return {?}
-     */
-    isEnabledDefined() {
-        return this.enabled !== undefined;
-    }
-    /**
-     * @return {?}
-     */
-    isEnabled() {
-        return this.enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getMode() {
-        return this.mode;
-    }
-    /**
-     * @return {?}
-     */
-    getType() {
-        return this.type;
-    }
-}
-RowSelection.Builder = class RowSelectionBuilder extends GenericBuilder {
-    constructor() {
-        super();
-    }
-    /**
-     * @return {?}
-     */
-    buildObject() {
-        return new RowSelection({
-            enabled: this.enabled,
-            type: this.type,
-            mode: this.mode
-        });
-    }
-    /**
-     * @param {?} enabled
-     * @return {?}
-     */
-    withEnabled(enabled) {
-        this.enabled = enabled;
-        return this;
-    }
-    /**
-     * @param {?} type
-     * @return {?}
-     */
-    withType(type) {
-        this.type = type;
-        return this;
-    }
-    /**
-     * @param {?} mode
-     * @return {?}
-     */
-    withMode(mode) {
-        this.mode = mode;
-        return this;
-    }
-};
-if (false) {
-    /** @type {?} */
-    RowSelection.Builder;
-    /**
-     * @type {?}
-     * @private
-     */
-    RowSelection.prototype.enabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    RowSelection.prototype.type;
-    /**
-     * @type {?}
-     * @private
-     */
-    RowSelection.prototype.mode;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /**
  * \@internal
  * @abstract
@@ -9309,6 +9525,7 @@ class StructureGateway extends SmartComponent {
     /**
      * @protected
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} domainEventBus
      * @param {?} commandDispatcher
      * @param {?} structureId
@@ -9349,8 +9566,8 @@ class StructureGateway extends SmartComponent {
      * @param {?} schemaEventRepository
      * @param {?} translationService
      */
-    constructor(changeDetectorRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandService, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventService, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.domainEventBus = domainEventBus;
         this.commandDispatcher = commandDispatcher;
@@ -9393,134 +9610,115 @@ class StructureGateway extends SmartComponent {
         this.translationService = translationService;
         this.source = [];
         this.columns = [];
+        // @Input()
+        // infoPanel: boolean | InfoPanelConfig;
+        // @Input()
+        // summaries: SummariesConfig;
+        // @Input()
+        // columnMenu: ColumnMenuConfig;
+        //
+        // @Input()
+        // rowDetail: RowDetailConfig;
+        // @Input()
+        // titlePanel: TitlePanelConfig;
+        //
+        // @Input()
+        // footerPanel: FooterPanelConfig;
+        //
+        // @Input()
+        // localization: GuiLocalization;
         /**
          * ********************
          * OUTPUTS
          * *********************
          */
-        this.pageChanged = new EventEmitter();
-        this.pageSizeChanged = new EventEmitter();
-        this.itemsSelected = new EventEmitter();
-        this.selectedRows = new EventEmitter();
         this.columnsChanged = new EventEmitter();
         this.containerWidthChanged = new EventEmitter();
         this.sourceEdited = new EventEmitter();
         this.cellEditEntered = new EventEmitter();
         this.cellEditCanceled = new EventEmitter();
         this.cellEditSubmitted = new EventEmitter();
-        this.searchPhraseChanged = new EventEmitter();
         this.themeChanged = new EventEmitter();
         this.horizontalGridChanged = new EventEmitter();
         this.verticalGridChanged = new EventEmitter();
-        this.rowColoringChanged = new EventEmitter();
         this.changeAfterInit = false;
         this.structureColumnInputHandler = new StructureColumnInputHandler(structureId, compositionId, commandDispatcher, domainEventBus, columnFieldFactory, compositionCommandDispatcher);
         this.translationService.setDefaultTranslation();
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (simpleChanges.theme !== undefined && simpleChanges.theme.currentValue !== undefined) {
+    ngOnChanges(changes) {
+        if (changes.theme !== undefined && changes.theme.currentValue !== undefined) {
             this.schemaCommandDispatcher.setTheme(this.theme);
         }
-        if (simpleChanges.rowDetail !== undefined && simpleChanges.rowDetail.currentValue !== undefined) {
-            this.structureDetailViewConfigArchive.next(this.rowDetail);
-        }
-        if (simpleChanges.titlePanel !== undefined && simpleChanges.titlePanel.currentValue !== undefined) {
-            this.structureTitlePanelConfigArchive.next(this.titlePanel);
-        }
-        if (simpleChanges.footerPanel !== undefined && simpleChanges.footerPanel.currentValue !== undefined) {
-            this.structureFooterPanelConfigArchive.next(this.footerPanel);
-        }
-        if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
-            this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
-        }
-        if (simpleChanges.rowSelection !== undefined && simpleChanges.rowSelection.currentValue !== undefined) {
-            if (this.rowSelection.isEnabledDefined()) {
-                this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
-            }
-            if (this.rowSelection.isTypeDefined()) {
-                this.rowSelectionTypeArchive.next(this.rowSelection.getType());
-            }
-            if (this.rowSelection.isModeDefined()) {
-                this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
-            }
-        }
-        if (simpleChanges.infoPanel !== undefined && simpleChanges.infoPanel.currentValue !== undefined) {
-            if (typeof this.infoPanel === 'boolean') {
-                this.infoPanel = {
-                    enabled: this.infoPanel
-                };
-            }
-            this.structureInfoPanelConfigService.set(this.infoPanel);
-        }
-        if (simpleChanges.summaries !== undefined && simpleChanges.summaries.currentValue !== undefined) {
-            this.structureSummariesConfigService.set(this.summaries);
-        }
-        if (simpleChanges.editMode !== undefined && simpleChanges.editMode.currentValue !== undefined) {
+        // if (simpleChanges.rowDetail !== undefined && simpleChanges.rowDetail.currentValue !== undefined) {
+        // 	this.structureDetailViewConfigArchive.next(this.rowDetail);
+        // }
+        // if (simpleChanges.titlePanel !== undefined && simpleChanges.titlePanel.currentValue !== undefined) {
+        // 	this.structureTitlePanelConfigArchive.next(this.titlePanel);
+        // }
+        //
+        // if (simpleChanges.footerPanel !== undefined && simpleChanges.footerPanel.currentValue !== undefined) {
+        // 	this.structureFooterPanelConfigArchive.next(this.footerPanel);
+        // }
+        // if (simpleChanges.columnMenu !== undefined && simpleChanges.columnMenu.currentValue !== undefined) {
+        // 	this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
+        // }
+        // if (simpleChanges.infoPanel !== undefined && simpleChanges.infoPanel.currentValue !== undefined) {
+        //
+        // 	if (typeof this.infoPanel === 'boolean') {
+        // 		this.infoPanel = {
+        // 			enabled: this.infoPanel
+        // 		};
+        // 	}
+        //
+        // 	this.structureInfoPanelConfigService.set(this.infoPanel);
+        // }
+        // if (simpleChanges.summaries !== undefined && simpleChanges.summaries.currentValue !== undefined) {
+        // 	this.structureSummariesConfigService.set(this.summaries);
+        // }
+        if (changes.editMode !== undefined && changes.editMode.currentValue !== undefined) {
             this.structureEditModeArchive.next(this.editMode);
         }
-        if (simpleChanges.cellEditing !== undefined && simpleChanges.cellEditing.currentValue !== undefined) {
+        if (changes.cellEditing !== undefined && changes.cellEditing.currentValue !== undefined) {
             this.structureCellEditArchive.next(this.cellEditing);
         }
-        if (simpleChanges.width !== undefined && simpleChanges.width.currentValue !== undefined) {
+        if (changes.width !== undefined && changes.width.currentValue !== undefined) {
             this.compositionCommandDispatcher.setWidth(this.width);
         }
-        if (simpleChanges.rowHeight !== undefined && simpleChanges.rowHeight.currentValue !== undefined) {
+        if (changes.rowHeight !== undefined && changes.rowHeight.currentValue !== undefined) {
             this.structureCommandService.setRowHeight(this.rowHeight);
         }
-        if (simpleChanges.autoResizeWidth !== undefined && simpleChanges.autoResizeWidth.currentValue !== undefined) {
+        if (changes.autoResizeWidth !== undefined && changes.autoResizeWidth.currentValue !== undefined) {
             this.compositionCommandDispatcher.setResizeWidth(this.autoResizeWidth);
         }
-        if (simpleChanges.columnHeaderTop !== undefined && simpleChanges.columnHeaderTop.currentValue !== undefined) {
-            this.structureHeaderTopEnabledArchive.next(this.columnHeaderTop);
-        }
-        if (simpleChanges.columnHeaderBottom !== undefined && simpleChanges.columnHeaderBottom.currentValue !== undefined) {
-            this.structureHeaderBottomEnabledArchive.next(this.columnHeaderBottom);
-        }
-        if (simpleChanges.loading !== undefined && simpleChanges.loading.currentValue !== undefined) {
+        if (changes.loading !== undefined && changes.loading.currentValue !== undefined) {
             this.sourceCommandService.setLoading(this.loading);
         }
-        if (simpleChanges.paging !== undefined && simpleChanges.paging.currentValue !== undefined) {
-            /** @type {?} */
-            let pagingConfig;
-            if (typeof this.paging === 'boolean') {
-                pagingConfig = {
-                    enabled: this.paging
-                };
-            }
-            else {
-                pagingConfig = this.paging;
-                if (this.paging.displayMode !== undefined) {
-                    this.structurePagingDisplayModeArchive.next(this.paging.displayMode);
-                }
-            }
-            this.structurePagingCommandDispatcher.setPaging(pagingConfig);
+        if (changes.columns !== undefined && changes.columns.currentValue !== undefined) {
+            this.structureColumnInputHandler.handle(changes);
         }
-        if (simpleChanges.columns !== undefined && simpleChanges.columns.currentValue !== undefined) {
-            this.structureColumnInputHandler.handle(simpleChanges);
-        }
-        if (simpleChanges.verticalGrid !== undefined && simpleChanges.verticalGrid.currentValue !== undefined) {
+        if (changes.verticalGrid !== undefined && changes.verticalGrid.currentValue !== undefined) {
             this.schemaCommandDispatcher.setVerticalGrid(this.verticalGrid);
         }
-        if (simpleChanges.horizontalGrid !== undefined && simpleChanges.horizontalGrid.currentValue !== undefined) {
+        if (changes.horizontalGrid !== undefined && changes.horizontalGrid.currentValue !== undefined) {
             this.schemaCommandDispatcher.setHorizontalGrid(this.horizontalGrid);
         }
-        if (simpleChanges.rowColoring !== undefined && simpleChanges.rowColoring.currentValue !== undefined) {
-            this.schemaCommandDispatcher.setRowColoring(this.rowColoring);
-        }
-        if (simpleChanges.rowClass !== undefined && simpleChanges.rowClass.currentValue !== undefined) {
-            this.schemaRowClassArchive.next((/** @type {?} */ (this.rowClass)));
-        }
-        if (simpleChanges.rowStyle !== undefined && simpleChanges.rowStyle.currentValue !== undefined) {
-            this.schemaRowStyleArchive.next((/** @type {?} */ (this.rowStyle)));
-        }
-        if (simpleChanges.maxHeight && this.maxHeight) {
+        // if (simpleChanges.rowColoring !== undefined && simpleChanges.rowColoring.currentValue !== undefined) {
+        // 	this.schemaCommandDispatcher.setRowColoring(this.rowColoring);
+        // }
+        // if (simpleChanges.rowClass !== undefined && simpleChanges.rowClass.currentValue !== undefined) {
+        // 	this.schemaRowClassArchive.next(this.rowClass as SchemaRowClass);
+        // }
+        // if (simpleChanges.rowStyle !== undefined && simpleChanges.rowStyle.currentValue !== undefined) {
+        // 	this.schemaRowStyleArchive.next(this.rowStyle as SchemaRowStyle);
+        // }
+        if (changes.maxHeight && this.maxHeight) {
             this.structureCommandService.setContainerHeight(this.maxHeight);
         }
-        if (simpleChanges.virtualScroll !== undefined && simpleChanges.virtualScroll.currentValue !== undefined) {
+        if (changes.virtualScroll !== undefined && changes.virtualScroll.currentValue !== undefined) {
             if (this.virtualScroll) {
                 this.structureCommandService.enableVerticalScroll();
             }
@@ -9528,7 +9726,7 @@ class StructureGateway extends SmartComponent {
                 this.structureCommandService.disableVerticalScroll();
             }
         }
-        if (simpleChanges.sorting !== undefined && simpleChanges.sorting.currentValue !== undefined) {
+        if (changes.sorting !== undefined && changes.sorting.currentValue !== undefined) {
             /** @type {?} */
             let sorting;
             if (typeof this.sorting === 'boolean') {
@@ -9541,7 +9739,7 @@ class StructureGateway extends SmartComponent {
             }
             this.sortingCommandDispatcher.setSortingConfig(sorting, this.structureId);
         }
-        if (simpleChanges.filtering !== undefined && simpleChanges.filtering.currentValue !== undefined) {
+        if (changes.filtering !== undefined && changes.filtering.currentValue !== undefined) {
             /** @type {?} */
             let filtering;
             if (typeof this.filtering === 'boolean') {
@@ -9554,7 +9752,7 @@ class StructureGateway extends SmartComponent {
             }
             this.structureCommandService.setFilterConfig(filtering);
         }
-        if (simpleChanges.quickFilters !== undefined && simpleChanges.quickFilters.currentValue !== undefined) {
+        if (changes.quickFilters !== undefined && changes.quickFilters.currentValue !== undefined) {
             /** @type {?} */
             let quickFilters;
             if (typeof this.quickFilters === 'boolean') {
@@ -9567,31 +9765,20 @@ class StructureGateway extends SmartComponent {
             }
             this.structureCommandService.setQuickFiltersConfig(quickFilters);
         }
-        if (simpleChanges.searching !== undefined && simpleChanges.searching.currentValue !== undefined) {
-            /** @type {?} */
-            let searching;
-            if (typeof this.searching === 'boolean') {
-                searching = {
-                    enabled: this.searching
-                };
-            }
-            else {
-                searching = this.searching;
-            }
-            this.searchCommandDispatcher.setSearchingConfig(searching, this.structureId);
-        }
-        if (simpleChanges.localization !== undefined && simpleChanges.localization.currentValue !== undefined) {
-            if (this.localization.translationResolver) {
-                this.translationService.setResolver(this.localization.translationResolver);
-            }
-            if (this.localization.translation) {
-                this.translationService.changeTranslation(this.localization.translation);
-            }
-        }
+        // if (simpleChanges.localization !== undefined && simpleChanges.localization.currentValue !== undefined) {
+        //
+        // 	if (this.localization.translationResolver) {
+        // 		this.translationService.setResolver(this.localization.translationResolver);
+        // 	}
+        //
+        // 	if (this.localization.translation) {
+        // 		this.translationService.changeTranslation(this.localization.translation);
+        // 	}
+        // }
         /**
          * Setting source should be last step
          */
-        if (simpleChanges.source) {
+        if (changes.source) {
             this.sourceCommandService.setOrigin(this.source);
         }
     }
@@ -9599,41 +9786,6 @@ class StructureGateway extends SmartComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.pagingEventRepository
-            .onPageChange(this.structureId.toReadModelRootId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} pageNumber
-         * @return {?}
-         */
-        (pageNumber) => {
-            this.pageChanged.emit(pageNumber);
-        }));
-        this.pagingEventRepository
-            .onPageSizeChange(this.structureId.toReadModelRootId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} pageSize
-         * @return {?}
-         */
-        (pageSize) => {
-            this.pageSizeChanged.emit(pageSize);
-        }));
-        this.formationEventService
-            .onItemSelected(this.structureId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} items
-         * @return {?}
-         */
-        (items) => {
-            this.itemsSelected.emit(items.map((/**
-             * @param {?} i
-             * @return {?}
-             */
-            i => i.getData())));
-            this.selectedRows.emit(items);
-        }));
         this.compositionEventService
             .onColumnsChanged(this.compositionId.toReadModelRootId())
             .pipe(this.takeUntil())
@@ -9683,25 +9835,8 @@ class StructureGateway extends SmartComponent {
                     break;
             }
         }));
-        this.searchEventRepository
-            .onSearchPhrase(this.structureId.toReadModelRootId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} phrase
-         * @return {?}
-         */
-        (phrase) => {
-            this.searchPhraseChanged.emit(phrase);
-        }));
         this.connectSchemaEvents();
         this.componentInitialized();
-    }
-    /**
-     * @param {?} page
-     * @return {?}
-     */
-    onPageChange(page) {
-        this.pageChanged.emit(page);
     }
     /**
      * @private
@@ -9738,16 +9873,12 @@ class StructureGateway extends SmartComponent {
         (enabled) => {
             this.verticalGridChanged.emit(enabled);
         }));
-        this.schemaEventRepository
-            .onRowColoring(this.schemaId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} coloring
-         * @return {?}
-         */
-        (coloring) => {
-            this.rowColoringChanged.emit(coloring);
-        }));
+        // this.schemaEventRepository
+        // 	.onRowColoring(this.schemaId)
+        // 	.pipe(this.takeUntil())
+        // 	.subscribe((coloring: SchemaRowColoring) => {
+        // 		this.rowColoringChanged.emit(coloring);
+        // 	});
     }
     /**
      * @private
@@ -9772,52 +9903,31 @@ class StructureGateway extends SmartComponent {
     }
 }
 StructureGateway.propDecorators = {
-    columnHeaderTop: [{ type: Input }],
-    columnHeaderBottom: [{ type: Input }],
     maxHeight: [{ type: Input }],
     width: [{ type: Input }],
     rowHeight: [{ type: Input }],
     autoResizeWidth: [{ type: Input }],
     source: [{ type: Input }],
     columns: [{ type: Input }],
-    paging: [{ type: Input }],
     verticalGrid: [{ type: Input }],
     horizontalGrid: [{ type: Input }],
     theme: [{ type: Input }],
-    rowColoring: [{ type: Input }],
-    rowSelection: [{ type: Input }],
-    rowStyle: [{ type: Input }],
-    rowClass: [{ type: Input }],
     loading: [{ type: Input }],
     virtualScroll: [{ type: Input }],
     sorting: [{ type: Input }],
     filtering: [{ type: Input }],
     quickFilters: [{ type: Input }],
-    searching: [{ type: Input }],
     editMode: [{ type: Input }],
     cellEditing: [{ type: Input }],
-    infoPanel: [{ type: Input }],
-    summaries: [{ type: Input }],
-    columnMenu: [{ type: Input }],
-    rowDetail: [{ type: Input }],
-    titlePanel: [{ type: Input }],
-    footerPanel: [{ type: Input }],
-    localization: [{ type: Input }],
-    pageChanged: [{ type: Output }],
-    pageSizeChanged: [{ type: Output }],
-    itemsSelected: [{ type: Output }],
-    selectedRows: [{ type: Output }],
     columnsChanged: [{ type: Output }],
     containerWidthChanged: [{ type: Output }],
     sourceEdited: [{ type: Output }],
     cellEditEntered: [{ type: Output }],
     cellEditCanceled: [{ type: Output }],
     cellEditSubmitted: [{ type: Output }],
-    searchPhraseChanged: [{ type: Output }],
     themeChanged: [{ type: Output }],
     horizontalGridChanged: [{ type: Output }],
-    verticalGridChanged: [{ type: Output }],
-    rowColoringChanged: [{ type: Output }]
+    verticalGridChanged: [{ type: Output }]
 };
 if (false) {
     /**
@@ -9826,10 +9936,6 @@ if (false) {
      * *********************
      * @type {?}
      */
-    StructureGateway.prototype.columnHeaderTop;
-    /** @type {?} */
-    StructureGateway.prototype.columnHeaderBottom;
-    /** @type {?} */
     StructureGateway.prototype.maxHeight;
     /** @type {?} */
     StructureGateway.prototype.width;
@@ -9842,21 +9948,11 @@ if (false) {
     /** @type {?} */
     StructureGateway.prototype.columns;
     /** @type {?} */
-    StructureGateway.prototype.paging;
-    /** @type {?} */
     StructureGateway.prototype.verticalGrid;
     /** @type {?} */
     StructureGateway.prototype.horizontalGrid;
     /** @type {?} */
     StructureGateway.prototype.theme;
-    /** @type {?} */
-    StructureGateway.prototype.rowColoring;
-    /** @type {?} */
-    StructureGateway.prototype.rowSelection;
-    /** @type {?} */
-    StructureGateway.prototype.rowStyle;
-    /** @type {?} */
-    StructureGateway.prototype.rowClass;
     /** @type {?} */
     StructureGateway.prototype.loading;
     /** @type {?} */
@@ -9868,39 +9964,15 @@ if (false) {
     /** @type {?} */
     StructureGateway.prototype.quickFilters;
     /** @type {?} */
-    StructureGateway.prototype.searching;
-    /** @type {?} */
     StructureGateway.prototype.editMode;
     /** @type {?} */
     StructureGateway.prototype.cellEditing;
-    /** @type {?} */
-    StructureGateway.prototype.infoPanel;
-    /** @type {?} */
-    StructureGateway.prototype.summaries;
-    /** @type {?} */
-    StructureGateway.prototype.columnMenu;
-    /** @type {?} */
-    StructureGateway.prototype.rowDetail;
-    /** @type {?} */
-    StructureGateway.prototype.titlePanel;
-    /** @type {?} */
-    StructureGateway.prototype.footerPanel;
-    /** @type {?} */
-    StructureGateway.prototype.localization;
     /**
      * ********************
      * OUTPUTS
      * *********************
      * @type {?}
      */
-    StructureGateway.prototype.pageChanged;
-    /** @type {?} */
-    StructureGateway.prototype.pageSizeChanged;
-    /** @type {?} */
-    StructureGateway.prototype.itemsSelected;
-    /** @type {?} */
-    StructureGateway.prototype.selectedRows;
-    /** @type {?} */
     StructureGateway.prototype.columnsChanged;
     /** @type {?} */
     StructureGateway.prototype.containerWidthChanged;
@@ -9913,15 +9985,11 @@ if (false) {
     /** @type {?} */
     StructureGateway.prototype.cellEditSubmitted;
     /** @type {?} */
-    StructureGateway.prototype.searchPhraseChanged;
-    /** @type {?} */
     StructureGateway.prototype.themeChanged;
     /** @type {?} */
     StructureGateway.prototype.horizontalGridChanged;
     /** @type {?} */
     StructureGateway.prototype.verticalGridChanged;
-    /** @type {?} */
-    StructureGateway.prototype.rowColoringChanged;
     /** @type {?} */
     StructureGateway.prototype.structureColumnInputHandler;
     /**
@@ -11316,26 +11384,99 @@ PagingPosition[PagingPosition.BOTTOM] = 'BOTTOM';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const CssClass = {
+    SELECTED: 'selected',
+    PAGING_TOP_CLASS_NAME: 'gui-paging-top',
+    PAGING_BOTTOM_CLASS_NAME: 'gui-paging-bottom',
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class CssClassModifier {
+    constructor() {
+        this.classModifier = new ClassModifier();
+    }
+    /**
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    select(htmlElement) {
+        this.classModifier.getElement(htmlElement).add(CssClass.SELECTED);
+    }
+    /**
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    unselect(htmlElement) {
+        this.classModifier.getElement(htmlElement).remove(CssClass.SELECTED);
+    }
+    /**
+     * @param {?} htmlElement
+     * @param {?} clazzName
+     * @return {?}
+     */
+    add(htmlElement, clazzName) {
+        this.classModifier.getElement(htmlElement).add(clazzName);
+    }
+    /**
+     * @param {?} htmlElement
+     * @param {?} clazzName
+     * @return {?}
+     */
+    remove(htmlElement, clazzName) {
+        this.classModifier.getElement(htmlElement).remove(clazzName);
+    }
+    /**
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    toggle(htmlElement) {
+    }
+}
+CssClassModifier.decorators = [
+    { type: Injectable }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CssClassModifier.prototype.classModifier;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class PagingComponent extends SmartComponent {
     /**
-     * @param {?} renderer2
-     * @param {?} elementRef
+     * @param {?} elRef
      * @param {?} changeDetectorRef
+     * @param {?} cssClassModifier
      * @param {?} structurePagingWarehouse
      * @param {?} pagingCommandService
      * @param {?} structureSourceWarehouse
      * @param {?} structurePagingDisplayModeArchive
      */
-    constructor(renderer2, elementRef, changeDetectorRef, structurePagingWarehouse, pagingCommandService, structureSourceWarehouse, structurePagingDisplayModeArchive) {
-        super(changeDetectorRef);
-        this.renderer2 = renderer2;
-        this.elementRef = elementRef;
+    constructor(elRef, changeDetectorRef, cssClassModifier, structurePagingWarehouse, pagingCommandService, structureSourceWarehouse, structurePagingDisplayModeArchive) {
+        super(changeDetectorRef, elRef);
+        this.elRef = elRef;
         this.changeDetectorRef = changeDetectorRef;
+        this.cssClassModifier = cssClassModifier;
         this.structurePagingWarehouse = structurePagingWarehouse;
         this.pagingCommandService = pagingCommandService;
         this.structureSourceWarehouse = structureSourceWarehouse;
         this.structurePagingDisplayModeArchive = structurePagingDisplayModeArchive;
         this.alternativeDisplay = false;
+        this.isPagingVisible = false;
+        this.localStreamCloser = new StreamCloser();
+        this.addClassToHost('gui-flex');
+        this.addClassToHost('gui-justify-end');
+        this.addClassToHost('gui-items-center');
+        this.addClassToHost('gui-p-4');
     }
     /**
      * @param {?} changes
@@ -11344,12 +11485,12 @@ class PagingComponent extends SmartComponent {
     ngOnChanges(changes) {
         if (changes.position) {
             if (this.position === PagingPosition.BOTTOM) {
-                this.renderer2.removeClass(this.elementRef.nativeElement, 'gui-paging-top');
-                this.renderer2.addClass(this.elementRef.nativeElement, 'gui-paging-bottom');
+                this.cssClassModifier.remove(this.elRef.nativeElement, CssClass.PAGING_TOP_CLASS_NAME);
+                this.cssClassModifier.add(this.elRef.nativeElement, CssClass.PAGING_BOTTOM_CLASS_NAME);
             }
             else {
-                this.renderer2.removeClass(this.elementRef.nativeElement, 'gui-paging-bottom');
-                this.renderer2.addClass(this.elementRef.nativeElement, 'gui-paging-top');
+                this.cssClassModifier.remove(this.elRef.nativeElement, CssClass.PAGING_BOTTOM_CLASS_NAME);
+                this.cssClassModifier.add(this.elRef.nativeElement, CssClass.PAGING_TOP_CLASS_NAME);
             }
         }
     }
@@ -11359,7 +11500,7 @@ class PagingComponent extends SmartComponent {
     ngOnInit() {
         this.structurePagingDisplayModeArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(distinctUntilChanged(), this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} mode
          * @return {?}
@@ -11370,18 +11511,26 @@ class PagingComponent extends SmartComponent {
         }));
         this.structurePagingWarehouse
             .onPaging()
-            .pipe(this.takeUntil())
+            .pipe(distinctUntilChanged((/**
+         * @param {?} a
+         * @param {?} b
+         * @return {?}
+         */
+        (a, b) => {
+            return a.compare(b);
+        })), this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} paging
          * @return {?}
          */
         (paging) => {
             this.paging = paging;
+            this.calculatePagingVisibility();
             this.changeDetectorRef.detectChanges();
         }));
         this.structureSourceWarehouse
             .onOriginSize()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} size
          * @return {?}
@@ -11394,10 +11543,8 @@ class PagingComponent extends SmartComponent {
     /**
      * @return {?}
      */
-    isPagingVisible() {
-        return this.paging && this.paging.isEnabled() &&
-            (((this.position === PagingPosition.TOP) && this.paging.isPagerTop()) ||
-                ((this.position === PagingPosition.BOTTOM) && this.paging.isPagerBottom()));
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
     }
     /**
      * @param {?} pageSize
@@ -11421,24 +11568,37 @@ class PagingComponent extends SmartComponent {
     prevPage() {
         this.pagingCommandService.prevPage();
     }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculatePagingVisibility() {
+        this.isPagingVisible = this.paging && this.paging.isEnabled() &&
+            (((this.position === PagingPosition.TOP) && this.paging.isPagerTop()) ||
+                ((this.position === PagingPosition.BOTTOM) && this.paging.isPagerBottom()));
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging';
+    }
 }
 PagingComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-paging[position]',
-                template: "<ng-container *ngIf=\"isPagingVisible() && !alternativeDisplay\">\n\n\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t<gui-paging-select\n\t\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-select>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-container>\n\n\t<ng-template #minimalTemplate>\n\n\t\t<gui-paging-stats\n\t\t\t\t[paging]=\"paging\">\n\t\t</gui-paging-stats>\n\n\t\t<gui-paging-navigator\n\t\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-paging-navigator>\n\n\t</ng-template>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible() && alternativeDisplay\">\n\n\t<gui-paging-select\n\t\t\t(pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t[paging]=\"paging\">\n\t</gui-paging-select>\n\n\t<gui-alternative-paging-navigator\n\t\t\t(nextPageChanged)=\"nextPage()\"\n\t\t\t(prevPageChanged)=\"prevPage()\"\n\t\t\t[paging]=\"paging\"\n\t\t\t[sourceSize]=\"sourceSize\">\n\n\t\t<gui-alternative-paging-pages\n\t\t\t\t[paging]=\"paging\"\n\t\t\t\t[sourceSize]=\"sourceSize\">\n\t\t</gui-alternative-paging-pages>\n\n\t</gui-alternative-paging-navigator>\n\n</ng-container>\n",
-                host: {
-                    '[class.gui-paging]': `"true"`
-                },
+                selector: 'div[gui-paging][position]',
+                template: "<ng-container *ngIf=\"isPagingVisible && !alternativeDisplay\">\n\n\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t [paging]=\"paging\"\n\t\t\t gui-paging-select>\n\t\t</div>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t gui-paging-stats>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage()\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t gui-paging-navigator>\n\t\t</div>\n\n\t</ng-container>\n\n\t<ng-template #minimalTemplate>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t gui-paging-stats>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage()\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t gui-paging-navigator>\n\t\t</div>\n\n\t</ng-template>\n\n</ng-container>\n\n<ng-container *ngIf=\"isPagingVisible && alternativeDisplay\">\n\n\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t [paging]=\"paging\"\n\t\t gui-paging-select>\n\t</div>\n\n\t<div (nextPageChanged)=\"nextPage()\"\n\t\t (prevPageChanged)=\"prevPage()\"\n\t\t [paging]=\"paging\"\n\t\t [sourceSize]=\"sourceSize\"\n\t\t class=\"gui-flex gui-p-0\"\n\t\t gui-paging-alternative-navigator>\n\n\t\t<div [paging]=\"paging\"\n\t\t\t [sourceSize]=\"sourceSize\"\n\t\t\t class=\"gui-flex gui-justify-center\"\n\t\t\t gui-paging-alternative-pages>\n\t\t</div>\n\n\t</div>\n\n</ng-container>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-paging{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;-ms-flex-align:center;align-items:center;padding:4px}.gui-paging>*{padding-left:16px}.gui-paging .gui-paging-select span{display:inline-block;margin:0 6px 0 0}.gui-paging .gui-paging-navigator button{margin-right:6px}.gui-paging .gui-paging-navigator button:last-of-type{margin-right:0}.gui-paging .gui-paging-stats span{display:inline-block;margin:0 2px 0 0}.gui-paging .gui-alternative-paging-navigator{display:-ms-flexbox;display:flex;padding:0}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-page{display:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page{position:relative}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page .gui-paging-page{display:block;cursor:pointer;padding:0 8px;font-weight:400;font-family:Arial,serif}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging .gui-alternative-paging-navigator .gui-alternative-paging-pages .gui-paging-visible-page.gui-paging-active-page::after{content:'';position:absolute;bottom:-8px;display:block;height:1px;width:100%;background:#333}.gui-paging .gui-alternative-paging-navigator .gui-button{display:-ms-flexbox;display:flex;-ms-flex-line-pack:center;align-content:center;margin:0 2px;background:0 0;padding:0;font-size:14px;line-height:21px}.gui-paging .gui-alternative-paging-navigator .gui-button svg{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;height:12px;width:auto;margin:-1px 2px 0}.gui-paging .gui-alternative-paging-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-paging .gui-alternative-paging-navigator .gui-button:hover svg path{stroke:#333}.gui-paging .gui-alternative-paging-navigator .gui-button:disabled svg{opacity:.4}.gui-paging .gui-alternative-paging-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging.gui-paging-bottom{border-top:1px solid;border-color:inherit}.gui-paging.gui-paging-top{border-bottom:1px solid;border-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
+                styles: [".gui-paging-alternative-navigator .gui-button{-ms-flex-line-pack:center;align-content:center;background:0 0;display:-ms-flexbox;display:flex;font-size:14px;line-height:21px;margin:0 2px;padding:0}.gui-paging-alternative-navigator .gui-button svg{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center;height:12px;margin:-1px 2px 0;width:auto}.gui-paging-alternative-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-paging-alternative-navigator .gui-button:hover svg path{stroke:#333}.gui-paging-alternative-navigator .gui-button:disabled svg{opacity:.4}.gui-paging-alternative-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging-alternative-pages{line-height:21px}.gui-paging-alternative-pages .gui-paging-page{display:none}.gui-paging-alternative-pages .gui-paging-visible-page .gui-paging-page{display:block;font-family:Arial,serif}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging-bottom{border-top:1px solid}.gui-paging-top{border-bottom:1px solid;border-bottom-color:inherit}", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:rgba(34,36,38,.1);font-size:14px}"]
             }] }
 ];
 /** @nocollapse */
 PagingComponent.ctorParameters = () => [
-    { type: Renderer2 },
     { type: ElementRef },
     { type: ChangeDetectorRef },
+    { type: CssClassModifier },
     { type: PagingWarehouse },
     { type: PagingCommandInvoker },
     { type: SourceWarehouse },
@@ -11459,21 +11619,28 @@ if (false) {
     PagingComponent.prototype.paging;
     /** @type {?} */
     PagingComponent.prototype.alternativeDisplay;
+    /** @type {?} */
+    PagingComponent.prototype.isPagingVisible;
     /**
      * @type {?}
      * @private
      */
-    PagingComponent.prototype.renderer2;
+    PagingComponent.prototype.localStreamCloser;
     /**
      * @type {?}
      * @private
      */
-    PagingComponent.prototype.elementRef;
+    PagingComponent.prototype.elRef;
     /**
      * @type {?}
      * @private
      */
     PagingComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    PagingComponent.prototype.cssClassModifier;
     /**
      * @type {?}
      * @private
@@ -11500,28 +11667,147 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PagingSelectComponent {
-    constructor() {
+/**
+ * @abstract
+ */
+class PureComponent extends GuiComponent {
+    /**
+     * @protected
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
+        this.subClassConstructor = this.constructor;
+        this.subClassNgOnInit = ((/** @type {?} */ (this))).ngOnInit;
+        if (!this.hasConstructorOnlyElementRefInjected(arguments)) {
+            this.throwError('it should not inject services');
+        }
+        if (this.subClassNgOnInit) {
+            this.throwError('it should not use ngOnInit');
+        }
+    }
+    /**
+     * @private
+     * @param {?} args
+     * @return {?}
+     */
+    hasConstructorOnlyElementRefInjected(args) {
+        if (arguments.length > 1) {
+            return false;
+        }
+        if (arguments.length === 1) {
+            return this.isElementRef(arguments[0]);
+        }
+        return false;
+    }
+    /**
+     * @private
+     * @param {?} elRef
+     * @return {?}
+     */
+    isElementRef(elRef) {
+        return elRef.nativeElement !== null;
+    }
+    /**
+     * @private
+     * @param {?} reason
+     * @return {?}
+     */
+    throwError(reason) {
+        throw new Error(`Component "${this.subClassConstructor.name}" is a PureComponent, ${reason}.`);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    PureComponent.prototype.subClassConstructor;
+    /**
+     * @type {?}
+     * @private
+     */
+    PureComponent.prototype.subClassNgOnInit;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class PagingSelectComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.pageSizeChanged = new EventEmitter();
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (changes.paging) {
+            if (this.paging) {
+                this.selectPageSizes = this.getSelectPageSizes();
+                this.selectPageSize = this.getSelectPageSize(this.paging.getPageSize());
+            }
+        }
     }
     /**
      * @param {?} pageSize
      * @return {?}
      */
     changePageSize(pageSize) {
-        this.pageSizeChanged.emit(pageSize);
+        this.pageSizeChanged.emit(+pageSize.value);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    getSelectPageSizes() {
+        /** @type {?} */
+        const selectPageSizes = [];
+        /** @type {?} */
+        const pageSizes = this.paging.getPageSizes();
+        pageSizes.forEach((/**
+         * @param {?} pageSize
+         * @return {?}
+         */
+        (pageSize) => {
+            /** @type {?} */
+            const selectOption = this.getSelectPageSize(pageSize);
+            selectPageSizes.push(selectOption);
+        }));
+        return selectPageSizes;
+    }
+    /**
+     * @private
+     * @param {?} pageSize
+     * @return {?}
+     */
+    getSelectPageSize(pageSize) {
+        return { name: pageSize.toString(), value: pageSize.toString() };
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging-select';
     }
 }
 PagingSelectComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-paging-select',
-                template: "<span>{{ 'pagingItemsPerPage' | translate }}</span>\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"paging.getPageSizes()\"\n\t\t\t[selected]=\"paging.getPageSize()\"\n\t\t\t[width]=\"25\">\n</gui-select>\n",
+                selector: 'div[gui-paging-select][paging]',
+                template: "<span class=\"gui-inline-block gui-mr-5\">\n\t{{ 'pagingItemsPerPage' | guiTranslate }}\n</span>\n\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"selectPageSizes\"\n\t\t\t[selected]=\"selectPageSize\"\n\t\t\t[width]=\"25\">\n</gui-select>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-paging-select]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+PagingSelectComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 PagingSelectComponent.propDecorators = {
     paging: [{ type: Input }],
@@ -11532,17 +11818,23 @@ if (false) {
     PagingSelectComponent.prototype.paging;
     /** @type {?} */
     PagingSelectComponent.prototype.pageSizeChanged;
+    /** @type {?} */
+    PagingSelectComponent.prototype.selectPageSizes;
+    /** @type {?} */
+    PagingSelectComponent.prototype.selectPageSize;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class AlternativePagingNavigatorComponent {
+class AlternativePagingNavigatorComponent extends PureComponent {
     /**
+     * @param {?} elRef
      * @param {?} pagingCommandService
      */
-    constructor(pagingCommandService) {
+    constructor(elRef, pagingCommandService) {
+        super(elRef);
         this.pagingCommandService = pagingCommandService;
         this.nextPageChanged = new EventEmitter();
         this.prevPageChanged = new EventEmitter();
@@ -11602,20 +11894,25 @@ class AlternativePagingNavigatorComponent {
         }
         this.nextDisabled = this.paging.isNextPageDisabled();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging-alternative-navigator';
+    }
 }
 AlternativePagingNavigatorComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-alternative-paging-navigator',
+                selector: 'div[gui-paging-alternative-navigator][paging][sourceSize]',
                 template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(-522.98 669.601) rotate(180)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(5.77 10.351) rotate(180)\"/>\n\t</svg>\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-paging-navigator-next\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(0.311 0.311)\"/>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(534.061 -658.939)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-alternative-paging-navigator]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 AlternativePagingNavigatorComponent.ctorParameters = () => [
+    { type: ElementRef },
     { type: PagingCommandInvoker }
 ];
 AlternativePagingNavigatorComponent.propDecorators = {
@@ -11648,11 +11945,15 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class AlternativePagingPagesComponent {
+class AlternativePagingPagesComponent extends SmartComponent {
     /**
+     * @param {?} changeDetectorRef
+     * @param {?} elRef
      * @param {?} pagingCommandService
      */
-    constructor(pagingCommandService) {
+    constructor(changeDetectorRef, elRef, pagingCommandService) {
+        super(changeDetectorRef, elRef);
+        this.changeDetectorRef = changeDetectorRef;
         this.pagingCommandService = pagingCommandService;
         this.sourceSize = 0;
         this.numberOfVisiblePages = 3;
@@ -11709,20 +12010,26 @@ class AlternativePagingPagesComponent {
     activePage(page) {
         return this.currentPage === page;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging-alternative-pages';
+    }
 }
 AlternativePagingPagesComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-alternative-paging-pages',
-                template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\">\n\t\t\t<div\n\t\t\t\t\t(click)=\"goToPage(page)\"\n\t\t\t\t\tclass=\"gui-paging-page\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | translate}}\n\t</span>\n</ng-template>\n",
+                selector: 'div[gui-paging-alternative-pages][paging]',
+                template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\"\n\t\t\t class=\"relative\">\n\t\t\t<div (click)=\"goToPage(page)\"\n\t\t\t\t class=\"gui-paging-page gui-select-none gui-cursor-pointer gui-py-0 gui-px-6 gui-font-base\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-alternative-paging-pages]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 AlternativePagingPagesComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: PagingCommandInvoker }
 ];
 AlternativePagingPagesComponent.propDecorators = {
@@ -11740,6 +12047,11 @@ if (false) {
     AlternativePagingPagesComponent.prototype.pages;
     /** @type {?} */
     AlternativePagingPagesComponent.prototype.numberOfVisiblePages;
+    /**
+     * @type {?}
+     * @private
+     */
+    AlternativePagingPagesComponent.prototype.changeDetectorRef;
     /**
      * @type {?}
      * @private
@@ -11769,19 +12081,6 @@ if (false) {
      * @return {?}
      */
     StructureAggregateRepository.prototype.save = function (aggregate) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class PagingSetEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     */
-    constructor(aggregateId) {
-        super(aggregateId, 'PagingSetEvent');
-    }
 }
 
 /**
@@ -11960,6 +12259,16 @@ class ChangePagesizeCommandHandler {
         return ChangePagesizeCommand;
     }
     /**
+     * @param {?} structureAggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structureAggregate, command) {
+        /** @type {?} */
+        const pageSize = command.getPageSize();
+        structureAggregate.changePageSize(pageSize);
+    }
+    /**
      * @param {?} aggregate
      * @param {?} command
      * @return {?}
@@ -11976,16 +12285,6 @@ class ChangePagesizeCommandHandler {
         }));
         this.publishAggregateEvents(aggregateEvents, command);
         aggregate.clearEvents();
-    }
-    /**
-     * @param {?} structureAggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structureAggregate, command) {
-        /** @type {?} */
-        const pageSize = command.getPageSize();
-        structureAggregate.changePageSize(pageSize);
     }
     /**
      * @private
@@ -12015,6 +12314,9 @@ class ChangePagesizeCommandHandler {
                 /** @type {?} */
                 const pagesizeChangedEvent = new PagesizeChangedEvent(command.getAggregateId());
                 this.domainEventPublisher.publish(pagesizeChangedEvent);
+                break;
+            case 'StructurePreparedEntitiesSetAggregateEvent':
+                this.domainEventPublisher.publish(event.toDomainEvent());
                 break;
             default:
                 break;
@@ -12107,8 +12409,12 @@ PagingApiModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PagingNavigatorComponent {
-    constructor() {
+class PagingNavigatorComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.nextPageChanged = new EventEmitter();
         this.prevPageChanged = new EventEmitter();
         this.prevDisabled = false;
@@ -12153,17 +12459,25 @@ class PagingNavigatorComponent {
         }
         this.nextDisabled = this.paging.isNextPageDisabled();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging-navigator';
+    }
 }
 PagingNavigatorComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-paging-navigator',
-                template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | translate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | translate }}\n\t</button>\n</gui-button-group>\n",
+                selector: 'div[gui-paging-navigator][paging]',
+                template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev gui-mr-5\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | guiTranslate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next gui-mr-0\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | guiTranslate }}\n\t</button>\n</gui-button-group>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-paging-navigator]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+PagingNavigatorComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 PagingNavigatorComponent.propDecorators = {
     paging: [{ type: Input }],
@@ -12190,65 +12504,18 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @abstract
- */
-class PureComponent {
-    /**
-     * @protected
-     */
-    constructor() {
-        this.subClassConstructor = this.constructor;
-        this.subClassNgOnInit = ((/** @type {?} */ (this))).ngOnInit;
-        if (this.isEmptyConstructor() || arguments.length !== 0) {
-            this.throwError('it should not inject services');
-        }
-        if (this.subClassNgOnInit) {
-            this.throwError('it should not use ngOnInit');
-        }
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    isEmptyConstructor() {
-        return this.subClassConstructor.toString().split('(')[1][0] !== ')';
-    }
-    /**
-     * @private
-     * @param {?} reason
-     * @return {?}
-     */
-    throwError(reason) {
-        throw new Error(`Component "${this.subClassConstructor.name}" is a PureComponent, ${reason}.`);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    PureComponent.prototype.subClassConstructor;
-    /**
-     * @type {?}
-     * @private
-     */
-    PureComponent.prototype.subClassNgOnInit;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class PagingStatsComponent extends PureComponent {
-    constructor() {
-        super();
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
+        this.addClassToHost('gui-mx-6');
     }
     /**
-     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(changes) {
+    ngOnChanges() {
         this.calculate();
     }
     /**
@@ -12267,20 +12534,26 @@ class PagingStatsComponent extends PureComponent {
     isSourceNotEmpty() {
         return this.sourceSize > 0;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-paging-stats';
+    }
 }
 PagingStatsComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-paging-stats',
-                template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | translate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | translate}}\n\t</span>\n</ng-template>\n",
+                selector: 'div[gui-paging-stats][paging]',
+                template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | guiTranslate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-paging-stats]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
-PagingStatsComponent.ctorParameters = () => [];
+PagingStatsComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
 PagingStatsComponent.propDecorators = {
     paging: [{ type: Input }]
 };
@@ -12402,7 +12675,7 @@ class TranslationPipe {
 }
 TranslationPipe.decorators = [
     { type: Pipe, args: [{
-                name: 'translate',
+                name: 'guiTranslate',
                 pure: false
             },] }
 ];
@@ -12433,57 +12706,6 @@ if (false) {
      */
     TranslationPipe.prototype.translationService;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const enTranslation = {
-    sourceEmpty: 'There are no items to show.',
-    pagingItemsPerPage: 'Items per page:',
-    pagingOf: 'of',
-    pagingNextPage: 'Next',
-    pagingPrevPage: 'Prev',
-    pagingNoItems: 'There is no items.',
-    infoPanelShowing: 'Showing',
-    infoPanelItems: 'items',
-    infoPanelOutOf: 'out of',
-    infoPanelThemeMangerTooltipText: 'Theme manager',
-    infoPanelColumnManagerTooltipText: 'Column manager',
-    infoPanelInfoTooltipText: 'info',
-    themeManagerModalTitle: 'Theme manager',
-    themeManagerModalTheme: 'Theme:',
-    themeManagerModalRowColoring: 'Row coloring:',
-    themeManagerModalVerticalGrid: 'Vertical grid',
-    themeManagerModalHorizontalGrid: 'HorizontalGrid',
-    columnManagerModalTitle: 'Manage columns',
-    headerMenuMainTab: 'Menu',
-    headerMenuMainTabColumnSort: 'Column sort',
-    headerMenuMainTabHideColumn: 'Hide column',
-    headerMenuMainTabMoveLeft: 'Move left',
-    headerMenuMainTabMoveRight: 'Move right',
-    headerMenuMainTabColumnSortAscending: 'Ascending',
-    headerMenuMainTabColumnSortDescending: 'Descending',
-    headerMenuMainTabColumnSortNone: 'None',
-    headerMenuFilterTab: 'Filter',
-    headerMenuColumnsTab: 'Columns',
-    summariesCount: 'Count',
-    summariesDist: 'Dist',
-    summariesSum: 'Sum',
-    summariesAvg: 'Avg',
-    summariesMin: 'Min',
-    summariesMax: 'Max',
-    summariesMed: 'Med',
-    summariesTruthy: 'Truthy',
-    summariesFalsy: 'Falsy',
-    summariesDistinctValuesTooltip: 'Distinct values',
-    summariesAverageTooltip: 'Average',
-    summariesMinTooltip: 'Min',
-    summariesMaxTooltip: 'Max',
-    summariesMedTooltip: 'Median',
-    summariesCountTooltip: 'Number of items in the grid'
-};
 
 /**
  * @fileoverview added by tsickle
@@ -12671,8 +12893,14 @@ TranslationFeatureModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class PagingFeatureModule extends FeatureModule {
-    constructor() {
+    /**
+     * @param {?} pagingApiModule
+     */
+    constructor(pagingApiModule) {
         super();
+        if (pagingApiModule === null) {
+            throw new Error('PagingApiModule is required.');
+        }
     }
     /**
      * @return {?}
@@ -12710,7 +12938,9 @@ PagingFeatureModule.decorators = [
             },] }
 ];
 /** @nocollapse */
-PagingFeatureModule.ctorParameters = () => [];
+PagingFeatureModule.ctorParameters = () => [
+    { type: PagingApiModule, decorators: [{ type: Optional }] }
+];
 
 /**
  * @fileoverview added by tsickle
@@ -12718,15 +12948,19 @@ PagingFeatureModule.ctorParameters = () => [];
  */
 class StructureTitlePanelConfigArchive extends Archive {
     constructor() {
-        super({
-            enabled: false,
-            template: ((/**
-             * @param {?} title
-             * @return {?}
-             */
-            title => 'Title Panel'))
-        });
+        super(StructureTitlePanelConfigArchive.titlePanelConfig);
     }
+}
+StructureTitlePanelConfigArchive.titlePanelConfig = {
+    enabled: false,
+    template: 'Title Panel'
+};
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureTitlePanelConfigArchive.titlePanelConfig;
 }
 
 /**
@@ -12735,15 +12969,19 @@ class StructureTitlePanelConfigArchive extends Archive {
  */
 class StructureFooterPanelConfigArchive extends Archive {
     constructor() {
-        super({
-            enabled: false,
-            template: ((/**
-             * @param {?} title
-             * @return {?}
-             */
-            title => 'Footer Panel'))
-        });
+        super(StructureFooterPanelConfigArchive.footerPanelConfig);
     }
+}
+StructureFooterPanelConfigArchive.footerPanelConfig = {
+    enabled: false,
+    template: 'Footer Panel'
+};
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureFooterPanelConfigArchive.footerPanelConfig;
 }
 
 /**
@@ -13438,6 +13676,15 @@ SortingApiModule.decorators = [
  */
 class SortingFeatureModule extends FeatureModule {
     /**
+     * @param {?} sortingApiModule
+     */
+    constructor(sortingApiModule) {
+        super();
+        if (sortingApiModule === null) {
+            throw new Error('SortingApiModule is required.');
+        }
+    }
+    /**
      * @return {?}
      */
     static forComponent() {
@@ -13453,6 +13700,10 @@ SortingFeatureModule.decorators = [
                 declarations: [],
                 exports: []
             },] }
+];
+/** @nocollapse */
+SortingFeatureModule.ctorParameters = () => [
+    { type: SortingApiModule, decorators: [{ type: Optional }] }
 ];
 
 /**
@@ -14264,13 +14515,78 @@ SearchApiModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SearchIconComponent {
+/**
+ * @abstract
+ */
+class StaticComponent extends GuiComponent {
+    /**
+     * @protected
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef);
+        this.changeDetectorRef = changeDetectorRef;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.changeDetectorRef.detach();
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StaticComponent.prototype.changeDetectorRef;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class IconComponent extends StaticComponent {
+    /**
+     * @protected
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+        this.addClassToHost('gui-icon');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SearchIconComponent extends IconComponent {
+    /**
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-search-icon';
+    }
 }
 SearchIconComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-search-icon',
+                selector: 'div[gui-search-icon]',
                 template: `
-		<svg class="gui-search-icon" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
+		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
 			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
 				  stroke-linejoin="round" stroke-width="1.5"/>
 			<circle cx="4.02" cy="4.02" r="4.02" transform="translate(0.5 0.5)" stroke-width="1"
@@ -14278,11 +14594,13 @@ SearchIconComponent.decorators = [
 		</svg>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-icon]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+SearchIconComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
@@ -14292,8 +14610,8 @@ SearchIconComponent.decorators = [
 class SearchComponent extends SmartComponent {
     /**
      * @param {?} formBuilder
-     * @param {?} renderer2
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} searchCommandDispatcher
      * @param {?} structureWarehouse
@@ -14301,10 +14619,9 @@ class SearchComponent extends SmartComponent {
      * @param {?} verticalFormationWarehouse
      * @param {?} structureSearchPlaceholderArchive
      */
-    constructor(formBuilder, renderer2, changeDetectorRef, structureId, searchCommandDispatcher, structureWarehouse, searchWarehouse, verticalFormationWarehouse, structureSearchPlaceholderArchive) {
-        super(changeDetectorRef);
+    constructor(formBuilder, changeDetectorRef, elementRef, structureId, searchCommandDispatcher, structureWarehouse, searchWarehouse, verticalFormationWarehouse, structureSearchPlaceholderArchive) {
+        super(changeDetectorRef, elementRef);
         this.formBuilder = formBuilder;
-        this.renderer2 = renderer2;
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.searchCommandDispatcher = searchCommandDispatcher;
@@ -14398,34 +14715,48 @@ class SearchComponent extends SmartComponent {
     stopObserveChanges() {
         this.searchInputSubscription.unsubscribe();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-search-bar';
+    }
 }
 SearchComponent.FORM_SEARCH_NAME = 'searchPhrase';
 SearchComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-search-bar',
+                selector: 'div[gui-search-bar]',
                 template: `
 		<ng-container *ngIf="searchingEnabled">
 			<form #formRef
-				  [formGroup]="searchForm">
-				<gui-search-icon></gui-search-icon>
-				<input formControlName="searchPhrase" [placeholder]="placeholder">
-				<span *ngIf="searchForm.controls['searchPhrase'].value" class="gui-clear-search-icon" (click)="clear()"></span>
+				  [formGroup]="searchForm"
+				  class="gui-flex gui-relative gui-w-full">
+
+				<div gui-search-icon></div>
+
+				<input formControlName="searchPhrase"
+					   class="gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21"
+					   [placeholder]="placeholder">
+
+
+				<span *ngIf="searchForm.controls['searchPhrase'].value"
+					  class="gui-clear-search-icon"
+					  (click)="clear()">
+				</span>
 			</form>
 		</ng-container>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-search-bar]': `"true"`
-                },
-                styles: [".gui-search-bar{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;width:60%;margin-right:auto}.gui-search-bar form{display:-ms-flexbox;display:flex;background:#fff;position:relative;width:100%}.gui-search-bar form .gui-search-icon{position:absolute;top:6px;left:10px;width:17px;height:17px}.gui-search-bar form .gui-search-icon circle,.gui-search-bar form .gui-search-icon line{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-search-bar form input{border:1px solid;border-color:inherit;border-radius:4px;padding:6px 6px 6px 38px;height:100%;width:100%}.gui-search-bar form:hover .gui-search-icon circle,.gui-search-bar form:hover .gui-search-icon line{stroke:#333}"]
+                styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg circle,.gui-search-bar form:hover .gui-search-icon-svg line{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg circle,.gui-search-bar .gui-search-icon-svg line{stroke:#ccc;transition:stroke .3s ease-in-out}"]
             }] }
 ];
 /** @nocollapse */
 SearchComponent.ctorParameters = () => [
     { type: FormBuilder },
-    { type: Renderer2 },
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: SearchCommandInvoker },
     { type: StructureWarehouse },
@@ -14457,11 +14788,6 @@ if (false) {
      * @private
      */
     SearchComponent.prototype.formBuilder;
-    /**
-     * @type {?}
-     * @private
-     */
-    SearchComponent.prototype.renderer2;
     /**
      * @type {?}
      * @private
@@ -14525,7 +14851,7 @@ SearchFeatureModule.decorators = [
                 imports: [
                     CommonModule,
                     FabricModule,
-                    // SearchApiModule,
+                    SearchApiModule,
                     ReactiveFormsModule
                 ],
                 declarations: [
@@ -16065,6 +16391,15 @@ FieldApiModule.decorators = [
  */
 class FieldFeatureModule extends FeatureModule {
     /**
+     * @param {?} fieldApiModule
+     */
+    constructor(fieldApiModule) {
+        super();
+        if (fieldApiModule === null) {
+            throw new Error('FieldApiModule is required.');
+        }
+    }
+    /**
      * @return {?}
      */
     static forComponent() {
@@ -16080,6 +16415,10 @@ FieldFeatureModule.decorators = [
                 declarations: [],
                 exports: []
             },] }
+];
+/** @nocollapse */
+FieldFeatureModule.ctorParameters = () => [
+    { type: FieldApiModule, decorators: [{ type: Optional }] }
 ];
 
 /**
@@ -16180,6 +16519,136 @@ ColumnFieldFactory.decorators = [
  */
 /** @type {?} */
 const filterContainerToken = new InjectionToken('Filter container token');
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @enum {number} */
+const RowSelectionType = {
+    ROW: 0,
+    CHECKBOX: 1,
+};
+RowSelectionType[RowSelectionType.ROW] = 'ROW';
+RowSelectionType[RowSelectionType.CHECKBOX] = 'CHECKBOX';
+/** @enum {number} */
+const RowSelectionMode = {
+    SINGLE: 0,
+    MULTIPLE: 1,
+};
+RowSelectionMode[RowSelectionMode.SINGLE] = 'SINGLE';
+RowSelectionMode[RowSelectionMode.MULTIPLE] = 'MULTIPLE';
+class RowSelection {
+    /**
+     * @private
+     * @param {?} config
+     */
+    constructor(config) {
+        if (config.enabled !== undefined) {
+            this.enabled = config.enabled;
+        }
+        if (config.mode !== undefined) {
+            this.mode = config.mode;
+        }
+        if (config.type !== undefined) {
+            this.type = config.type;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    isModeDefined() {
+        return this.mode !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isTypeDefined() {
+        return this.type !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabledDefined() {
+        return this.enabled !== undefined;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getMode() {
+        return this.mode;
+    }
+    /**
+     * @return {?}
+     */
+    getType() {
+        return this.type;
+    }
+}
+RowSelection.Builder = class RowSelectionBuilder extends GenericBuilder {
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    buildObject() {
+        return new RowSelection({
+            enabled: this.enabled,
+            type: this.type,
+            mode: this.mode
+        });
+    }
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    withEnabled(enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+    /**
+     * @param {?} type
+     * @return {?}
+     */
+    withType(type) {
+        this.type = type;
+        return this;
+    }
+    /**
+     * @param {?} mode
+     * @return {?}
+     */
+    withMode(mode) {
+        this.mode = mode;
+        return this;
+    }
+};
+if (false) {
+    /** @type {?} */
+    RowSelection.Builder;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.type;
+    /**
+     * @type {?}
+     * @private
+     */
+    RowSelection.prototype.mode;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -18942,6 +19411,124 @@ SchemaFeatureModule.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @enum {string} */
+const StyleName = {
+    WIDTH: 'width',
+    HEIGHT: 'height',
+    PADDING_TOP: 'padding-top',
+};
+
+var _a$1;
+class StyleModifier extends Modifier {
+    /**
+     * @param {?=} htmlElement
+     */
+    constructor(htmlElement) {
+        super(htmlElement);
+        this.htmlElement = htmlElement;
+    }
+    /**
+     * @protected
+     * @param {?} htmlElement
+     * @return {?}
+     */
+    createModifier(htmlElement) {
+        return new StyleModifier.StyleModifier(htmlElement);
+    }
+}
+StyleModifier.StyleModifier = (_a$1 = class {
+        /**
+         * @param {?} htmlElement
+         */
+        constructor(htmlElement) {
+            this.htmlElement = htmlElement;
+        }
+        /**
+         * @param {?} name
+         * @param {?} value
+         * @return {?}
+         */
+        setStyleByName(name, value) {
+            this.set(name, value);
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        setWidth(value) {
+            this.set(StyleName.WIDTH, this.toPx(value));
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        setHeight(value) {
+            this.set(StyleName.HEIGHT, this.toPx(value));
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        setPaddingTop(value) {
+            this.set(StyleName.PADDING_TOP, this.toPx(value));
+        }
+        /**
+         * @param {?} styleName
+         * @return {?}
+         */
+        remove(styleName) {
+            this.htmlElement[StyleModifier.StyleModifier.STYLE][styleName] = '';
+        }
+        /**
+         * @param {?} name
+         * @return {?}
+         */
+        removeStyleByName(name) {
+            this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = '';
+        }
+        /**
+         * @return {?}
+         */
+        clear() {
+            this.htmlElement.removeAttribute(StyleModifier.StyleModifier.STYLE);
+        }
+        /**
+         * @private
+         * @param {?} name
+         * @param {?} value
+         * @return {?}
+         */
+        set(name, value) {
+            this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = value;
+        }
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        toPx(value) {
+            return value > 0 ? `${value}px` : `${value}`;
+        }
+    },
+    _a$1.STYLE = 'style',
+    _a$1);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StyleModifier.StyleModifier;
+    /**
+     * @type {?}
+     * @private
+     */
+    StyleModifier.prototype.htmlElement;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * \@internal
  * @param {?} generator
@@ -19060,8 +19647,8 @@ class StructureComponent extends StructureGateway {
      * @param {?} schemaEventRepository
      * @param {?} translationService
      * @param {?} elementRef
-     * @param {?} cd
-     * @param {?} renderer
+     * @param {?} detectorRef
+     * @param {?} injector
      * @param {?} structureDefinition
      * @param {?} structureReadModelService
      * @param {?} compositionReadModelService
@@ -19071,11 +19658,11 @@ class StructureComponent extends StructureGateway {
      * @param {?} commandDispatcher
      * @param {?} structureDetailViewService
      */
-    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, elementRef, cd, renderer, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
-        super(cd, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService);
+    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, elementRef, detectorRef, injector, structureDefinition, structureReadModelService, compositionReadModelService, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
+        super(detectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService);
         this.elementRef = elementRef;
-        this.cd = cd;
-        this.renderer = renderer;
+        this.detectorRef = detectorRef;
+        this.injector = injector;
         this.structureDefinition = structureDefinition;
         this.structureReadModelService = structureReadModelService;
         this.compositionReadModelService = compositionReadModelService;
@@ -19085,6 +19672,8 @@ class StructureComponent extends StructureGateway {
         this.loaderEnabled = false;
         this.circleLoaderEnabled = true;
         this.initialLoaderAnimation = false;
+        this.localStreamCloser = new StreamCloser();
+        this.styleModifier = new StyleModifier(this.elementRef.nativeElement);
         structureCommandService.createStructure();
         compositionCommandDispatcher.createComposition();
         schemaCommandDispatcher.create();
@@ -19103,7 +19692,7 @@ class StructureComponent extends StructureGateway {
         super.ngOnInit();
         this.structureReadModelService
             .onStructure()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} structureReadModelRoot
          * @return {?}
@@ -19115,7 +19704,7 @@ class StructureComponent extends StructureGateway {
             if (this.loaderEnabled && !this.initialLoaderAnimation) {
                 this.initialLoaderAnimation = true;
             }
-            this.cd.detectChanges();
+            this.detectorRef.detectChanges();
         }));
         this.structureDetailViewService.init(this.elementRef);
     }
@@ -19133,7 +19722,7 @@ class StructureComponent extends StructureGateway {
              * When gui-grid is in dynamic container which is created later then grid.
              */
             timer(0)
-                .pipe(this.takeUntil())
+                .pipe(this.localStreamCloser.takeUntil())
                 .subscribe((/**
              * @return {?}
              */
@@ -19148,14 +19737,20 @@ class StructureComponent extends StructureGateway {
             .init(this.elementRef, this.schemaReadModelRootId);
         this.compositionReadModelService
             .onWidth()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} width
          * @return {?}
          */
         (width) => {
-            this.renderer.setStyle(this.elementRef.nativeElement, 'width', width + 'px');
+            this.styleModifier.getHost().setWidth(width);
         }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
     }
     /**
      * @return {?}
@@ -19175,15 +19770,21 @@ class StructureComponent extends StructureGateway {
     getElementRef() {
         return this.elementRef;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure';
+    }
 }
 StructureComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-structure',
-                template: "<gui-structure-blueprint></gui-structure-blueprint>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n",
+                template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
-                    '[class.gui-structure]': `"true"`,
                     '[class.gui-structure-border]': 'isBorderEnabled()',
                     '[id]': 'structureId.toString()'
                 },
@@ -19198,7 +19799,7 @@ StructureComponent.decorators = [
                         useExisting: StructureComponent
                     }
                 ],
-                styles: [".gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{position:relative;color:#0747a6;background:#deebff;padding:4px;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;text-align:center;height:22px;width:100%}.gui-percentage-bar .gui-percentage{position:absolute;border-radius:4px;height:22px;background:#8abcfc;left:0;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{position:absolute;cursor:pointer;right:8px;top:50%;width:16px;height:16px;-ms-transform:translateY(-50%);transform:translateY(-50%)}.gui-clear-search-icon::after,.gui-clear-search-icon::before{position:absolute;left:7px;content:' ';height:16px;width:2px;background-color:#aaa;border-radius:8px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial;font-size:13px}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell{box-sizing:border-box;line-height:1em;overflow:hidden;padding:0 8px;position:relative;white-space:nowrap;text-overflow:ellipsis;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;width:14px;margin-left:4px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative;right:0;padding:16px;height:16px;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-top:1px solid;border-color:inherit}gui-structure{background:#fff;box-sizing:border-box;border-color:#d6d6d6;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}gui-structure *{box-sizing:border-box}gui-structure gui-structure-header{display:block;height:100%;width:100%}gui-structure gui-structure-header gui-structure-header-filters.gui-header{height:32px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}gui-structure gui-structure-header gui-structure-header-filters.gui-header .gui-header-cell input{position:relative;box-sizing:border-box;font-size:13px;padding:2px;height:100%;width:100%;border:1px solid #d6d6d6}gui-structure-top-panel{display:block;padding:8px;border-bottom-width:1px;border-bottom-style:solid}gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}gui-structure-container .gui-structure-container{box-sizing:border-box;height:100%;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content{height:100%;position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}gui-structure-container .gui-structure-container .gui-content .gui-row:last-child{border-bottom:0}gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#ecedee}gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#d0e8fb}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-button{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox{position:relative;line-height:24px}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-chip{margin:0;padding:4px 8px;line-height:1em}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-badge{padding:0}gui-structure-container .gui-structure-container .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;border-style:none;border-radius:0;padding:0}gui-structure-container .gui-cell{display:inline-block}gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding:0 8px;height:100%;width:100%}gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}gui-structure-container .gui-cell .gui-cell-edit-mode gui-boolean-edit{margin-left:calc(50% - 11px)}gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{outline:0;box-shadow:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid gui-structure-container .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid gui-structure-container .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid gui-structure-container .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}gui-structure-info-panel{-ms-flex-align:center;align-items:center;box-sizing:border-box;background:#f2f3f4;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;height:36px;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}gui-structure-info-panel p{margin:0}gui-structure-info-panel p b{font-weight:700}gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-weight:700;font-family:Arial;width:16px;height:16px;line-height:14px;padding:0;border:1px solid transparent}gui-structure-info-panel div button:focus{outline:0;box-shadow:0 0 4px #ccc}.gui-structure-border{border:1px solid #d6d6d6}gui-structure-summaries-panel{background:#f2f3f4;display:-ms-flexbox;display:flex}gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid;border-color:inherit}gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid;border-color:inherit}gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-right:16px;padding-left:16px}gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;padding:8px 0;overflow:hidden}gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){position:absolute;top:-15px;left:1px}gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){position:absolute;top:-8px;left:1px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-webkit-animation-duration:.2s;animation-duration:.2s;-ms-flex-line-pack:center;align-content:center;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;height:100%;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;width:100%;visibility:hidden}.gui-loading gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}gui-structure-column-manager{color:#333;display:block}gui-structure-column-manager>div:hover{background:#ecedee}gui-structure-column-manager label{margin-bottom:0}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{text-align:center;-ms-flex-pack:center;justify-content:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-text-highlight{background:#fff799;padding:0!important}gui-function-view{height:100%;width:100%}gui-function-view div{height:100%;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center}.gui-title-panel{padding:8px;border-bottom:1px solid #d6d6d6}.gui-footer-panel{padding:8px;border-top:1px solid #d6d6d6}.gui-schema-manager-dialog{padding-right:16px}.gui-schema-manager-dialog .gui-schema-manager{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333;margin-bottom:16px}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select span{margin-bottom:4px}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;width:18px;margin-bottom:-1px}.gui-row-checkbox{cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;width:24px;padding:0;margin:0}.gui-select-all .gui-checkbox .gui-checkmark{top:0}", "gui-structure-column-manager ol{list-style:none;padding:0;margin:4px 0}gui-structure-column-manager ol li{cursor:pointer;padding:0}gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{min-width:250px;max-height:400px;overflow:auto}.gui-structure-dialog-column-manager ol li{padding:8px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}gui-structure-info-panel div,gui-structure-info-panel div button{display:inline-block}gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal{box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0;font-size:16px;font-family:Arial;width:360px}.gui-structure-info-modal .gui-dialog-title{margin:0 0 8px}.gui-structure-info-modal .gui-quote{color:#575757;font-size:20px;font-style:italic;font-weight:lighter}.gui-structure-info-modal .gui-info-title{font-size:22px;margin-bottom:12px}.gui-structure-info-modal .gui-info-version{font-size:18px;margin-bottom:32px}.gui-structure-info-modal ul{list-style:none;margin:0;padding-left:10px}.gui-structure-info-modal ul li{line-height:24px}.gui-structure-info-modal p{font-weight:700;margin:0 0 8px;color:#333}.gui-structure-info-modal section{border-top:1px solid;border-color:inherit;padding:16px 0 8px;margin:0}.gui-structure-info-modal a{text-decoration:none;color:#2185d0;margin:0 0 8px}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;position:absolute;top:0;height:200px;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{padding:0;width:225px;box-sizing:content-box;box-shadow:0 3px 7px #ccc}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;cursor:pointer}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{width:48%;padding:12px 16px 12px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{width:52%;padding:12px 10px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{display:-ms-flexbox;display:flex;color:#333;background:#fff;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:center;align-items:center;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{display:block;cursor:pointer;color:#333;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{width:169px;margin-left:12px;padding:8px 12px 8px 32px;color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{font-size:11px;display:block;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric,.gui-fabric *{border-color:#d6d6d6;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric gui-paging,.gui-fabric gui-structure-header-columns,.gui-fabric gui-structure-info-panel,.gui-fabric gui-structure-top-panel{height:42px}", ".gui-material,.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2);border:0}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-material gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-material gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-right:16px;padding-left:16px}.gui-material gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-search-bar form input,.gui-material gui-structure-top-panel gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;color:#f0f0f0;font-size:14px;border-radius:2px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-right:16px;padding-left:16px}.gui-dark gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-dark .gui-structure-header .gui-header{color:#bdbdbd;border-bottom-color:#666}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{display:-ms-flexbox;display:flex;color:#f0f0f0;background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark gui-structure-column-manager>div:hover,.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#525252}.gui-dark gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid gui-structure-container .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark gui-structure-info-panel,.gui-dark gui-structure-top-panel{height:42px;padding-right:16px;padding-left:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark gui-structure-info-panel div{color:#f0f0f0}.gui-dark gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#f0f0f0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-dark gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-structure-alternative-paging-navigator gui-structure-alternative-paging-pages .gui-paging-active-page{color:#f0f0f0;box-shadow:0 1px 0 0 #f0f0f0}.gui-dark gui-search-bar form{background:#444}.gui-dark gui-search-bar input{background:#444;color:#f0f0f0;border:0;cursor:pointer}.gui-dark gui-search-bar:hover .gui-search-icon circle,.gui-dark gui-search-bar:hover .gui-search-icon line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}", ".gui-light,.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light gui-structure-container gui-structure-cell>span{padding-right:16px;padding-left:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:#f3f9ff}.gui-light gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-structure-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-light gui-structure-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-light gui-structure-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-top-panel{height:56px;padding-right:16px;padding-left:16px}.gui-light .gui-paging,.gui-light gui-structure-info-panel,.gui-light gui-structure-summaries-panel,.gui-light gui-structure-top-panel{background:#fff}.gui-light gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic,.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic gui-structure-container gui-structure-cell>span{padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-container gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-width:2px 0 0;border-style:solid;border-color:inherit}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic gui-structure-container .gui-structure-container .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button{margin:0 4px;background:0 0;padding:0;color:#333}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-alternative-paging-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic gui-structure-info-panel,.gui-structure.gui-generic gui-structure-top-panel{height:46px;padding-right:12px;padding-left:12px}.gui-structure.gui-generic gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic gui-structure-top-panel gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
+                styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pt-10{padding-top:16px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure ::after,.gui-structure ::before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{background-color:#aaa;border-radius:8px;content:' ';height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;font-size:13px;height:100%;padding:2px;position:relative;width:100%;border:1px solid #d6d6d6}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:0 0;border-radius:0;border-style:none;font-size:14px;padding:0}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:0}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell,.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;border-radius:50%;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border:1px solid transparent}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:0}.gui-structure-border{border:1px solid #d6d6d6}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}", ".gui-summaries-value{font-weight:700}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;top:0;width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-paging,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-structure-top-panel{height:42px}", ".gui-material{border-color:rgba(0,0,0,.12);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2)}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material .gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material .gui-search-bar form input,.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover,.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container-element,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:0 0;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px 0 0 #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle,.gui-dark .gui-search-bar:hover .gui-search-icon-svg line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-footer-panel,.gui-dark .gui-title-panel{background:#383838}", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-top-panel{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-summaries-panel,.gui-light .gui-structure-top-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.1);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-structure-top-panel{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
             }] }
 ];
 /** @nocollapse */
@@ -19241,7 +19842,7 @@ StructureComponent.ctorParameters = () => [
     { type: TranslationService },
     { type: ElementRef },
     { type: ChangeDetectorRef },
-    { type: Renderer2 },
+    { type: Injector },
     { type: StructureDefinition },
     { type: StructureWarehouse },
     { type: CompositionWarehouse },
@@ -19267,17 +19868,24 @@ if (false) {
      * @type {?}
      * @private
      */
+    StructureComponent.prototype.localStreamCloser;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureComponent.prototype.styleModifier;
+    /**
+     * @type {?}
+     * @private
+     */
     StructureComponent.prototype.elementRef;
     /**
      * @type {?}
      * @private
      */
-    StructureComponent.prototype.cd;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureComponent.prototype.renderer;
+    StructureComponent.prototype.detectorRef;
+    /** @type {?} */
+    StructureComponent.prototype.injector;
     /**
      * @type {?}
      * @private
@@ -19603,9 +20211,10 @@ const componentProviders = [{
     },
     ...listViewProviders,
     ...provideComponentServices(),
-    PagingFeatureModule.forComponent()
+    PagingFeatureModule.forComponent(),
+    TranslationFeatureModule.forComponent()
 ];
-class ListViewComponent extends ListViewGateway {
+class ListViewComponent {
     /**
      * @param {?} structureId
      * @param {?} listViewReadModelRootId
@@ -19616,12 +20225,14 @@ class ListViewComponent extends ListViewGateway {
      * @param {?} structureCommandService
      * @param {?} structurePagingCommandDispatcher
      * @param {?} listViewCommandDispatcher
+     * @param {?} translationService
      */
-    constructor(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher) {
-        super(structureId, sourceCommandService);
+    constructor(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher, translationService) {
         this.structureId = structureId;
         this.listViewReadModelRootId = listViewReadModelRootId;
         this.elementRef = elementRef;
+        this.translationService = translationService;
+        this.translationService.setDefaultTranslation();
         structureCommandService.createStructure(this.structureId);
         listViewCommandDispatcher.create(this.listViewReadModelRootId);
     }
@@ -19637,7 +20248,7 @@ ListViewComponent.decorators = [
                 selector: 'gui-list-view',
                 template: `
 
-		<gui-list-view-layout></gui-list-view-layout>
+		<div gui-list-view-layout></div>
 	`,
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19653,7 +20264,7 @@ ListViewComponent.decorators = [
                     '[class.gui-generic]': `"true"`,
                     '[id]': 'structureId.toString()'
                 },
-                styles: [".gui-list-view,.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-panel-search{display:-ms-flexbox;display:flex;padding-left:8px;padding-right:8px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;height:100%;margin:0;padding:0 12px;position:relative;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-panel-top{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;padding-left:8px;padding-right:8px}.gui-list-panel-top .gui-paging{margin-left:auto}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-view-source{display:block}.gui-list-item{border-radius:4px;border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15);display:block;margin:8px 0;width:100%}.gui-list-item .gui-list-item-container{padding-top:12px;padding-bottom:12px}.gui-list-container-card{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:0;padding:0}.gui-list-card{cursor:pointer;display:block;padding:0;position:relative;margin:0}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
+                styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pt-10{padding-top:16px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-list-view{border-color:#d6d6d6}.gui-list-view *,.gui-list-view ::after,.gui-list-view ::before{box-sizing:border-box}.gui-list-view input{font-size:13px;outline:0}.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon-svg{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-item{border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15)}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
             }] }
 ];
 /** @nocollapse */
@@ -19666,7 +20277,8 @@ ListViewComponent.ctorParameters = () => [
     { type: ListViewCardTemplateArchive },
     { type: StructureCommandDispatcher },
     { type: PagingCommandInvoker },
-    { type: ListViewCommandInvoker }
+    { type: ListViewCommandInvoker },
+    { type: TranslationService }
 ];
 if (false) {
     /** @type {?} */
@@ -19678,6 +20290,11 @@ if (false) {
      * @private
      */
     ListViewComponent.prototype.elementRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewComponent.prototype.translationService;
 }
 
 /**
@@ -19687,26 +20304,25 @@ if (false) {
 class ListViewSourceComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} structureSourceWarehouse
      * @param {?} containerTemplateArchive
      */
-    constructor(changeDetectorRef, structureId, structureSourceWarehouse, containerTemplateArchive) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, structureSourceWarehouse, containerTemplateArchive) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.structureSourceWarehouse = structureSourceWarehouse;
         this.containerTemplateArchive = containerTemplateArchive;
         this.source = [];
+        this.addClassToHost('gui-block');
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.structureSourceWarehouse
-            .onEntities(this.structureId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
+        this.subscribeAndRender(this.structureSourceWarehouse.onEntities(this.structureId), (/**
          * @param {?} items
          * @return {?}
          */
@@ -19716,45 +20332,35 @@ class ListViewSourceComponent extends SmartComponent {
              * @return {?}
              */
             i => i.getData()));
-            this.changeDetectorRef.detectChanges();
         }));
-        this.containerTemplateArchive
-            .onValue()
-            .pipe(this.takeUntil())
-            .subscribe((/**
+        this.subscribeAndRender(this.containerTemplateArchive.onValue(), (/**
          * @param {?} template
          * @return {?}
          */
         (template) => {
             this.template = template;
-            this.changeDetectorRef.detectChanges();
         }));
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-view-source';
     }
 }
 ListViewSourceComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-view-source',
-                template: `
-
-		<gui-list-view-item *ngFor="let element of source"
-							[item]="element"
-							[template]="template">
-		</gui-list-view-item>
-
-		<gui-empty-source [items]="source">
-		</gui-empty-source>
-
-	`,
+                selector: 'div[gui-list-view-source]',
+                template: "<div *ngFor=\"let element of source\"\n\t [item]=\"element\"\n\t [template]=\"template\"\n\t gui-list-view-item>\n</div>\n\n<div [items]=\"source\" gui-empty-source>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-view-source]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 ListViewSourceComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: SourceWarehouse },
     { type: ListViewTemplateArchive }
@@ -19917,12 +20523,13 @@ if (false) {
 class ListViewLayoutComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} listViewReadModelRootId
      * @param {?} listViewModeRepository
      * @param {?} listViewSelectorRepository
      */
-    constructor(changeDetectorRef, listViewReadModelRootId, listViewModeRepository, listViewSelectorRepository) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, listViewReadModelRootId, listViewModeRepository, listViewSelectorRepository) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.listViewReadModelRootId = listViewReadModelRootId;
         this.listViewModeRepository = listViewModeRepository;
@@ -19933,67 +20540,42 @@ class ListViewLayoutComponent extends SmartComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.listViewModeRepository
-            .on(this.listViewReadModelRootId.toAggregateId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
+        this.subscribeAndRender(this.listViewModeRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
          * @param {?} mode
          * @return {?}
          */
         (mode) => {
             this.listModeEnabled = mode === ListViewMode.LIST;
             this.cardModeEnabled = mode === ListViewMode.CARD;
-            this.changeDetectorRef.detectChanges();
         }));
-        this.listViewSelectorRepository
-            .on(this.listViewReadModelRootId.toAggregateId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
+        this.subscribeAndRender(this.listViewSelectorRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
          * @param {?} enabled
          * @return {?}
          */
         (enabled) => {
             this.selectorEnabled = enabled;
-            this.changeDetectorRef.detectChanges();
         }));
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-view-layout';
     }
 }
 ListViewLayoutComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-view-layout',
-                template: `
-
-		<div class="gui-list-panel-search">
-
-			<gui-search-bar *ngIf="searchBarEnabled"></gui-search-bar>
-
-			<!--			<gui-sorting-selector></gui-sorting-selector>-->
-			<!--			<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
-			<!--			<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
-		</div>
-		<div class="gui-list-panel-top">
-			<gui-list-mode-select *ngIf="selectorEnabled"></gui-list-mode-select>
-
-			<gui-paging [minimal]="true" [position]="0"></gui-paging>
-		</div>
-
-		<gui-list-view-source *ngIf="listModeEnabled"></gui-list-view-source>
-
-		<gui-list-container-card *ngIf="cardModeEnabled"></gui-list-container-card>
-
-		<gui-paging [position]="1"></gui-paging>
-
-	`,
+                selector: 'div[gui-list-view-layout]',
+                template: "<div class=\"gui-flex gui-px-6\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-view-layout]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 ListViewLayoutComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: ListViewReadModelRootId },
     { type: ListViewModeRepository },
     { type: ListViewSelectorRepository }
@@ -20034,9 +20616,16 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ListViewItemComponent extends PureComponent {
-    constructor() {
-        super();
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.context = 'Template not provided';
+        this.addClassToHost('gui-w-full');
+        this.addClassToHost('gui-my-6');
+        this.addClassToHost('gui-mx-0');
+        this.addClassToHost('gui-block');
     }
     /**
      * @return {?}
@@ -20049,33 +20638,26 @@ class ListViewItemComponent extends PureComponent {
             }
         }
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-item';
+    }
 }
 ListViewItemComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-view-item[item][template]',
-                template: `
-
-		<ng-container *ngIf="hasTemplateRef; else templateMethod">
-			<div class="gui-list-item-container">
-				<ng-template *ngTemplateOutlet="template.getTemplateRef(); context: {item: item}"></ng-template>
-			</div>
-		</ng-container>
-
-		<ng-template #templateMethod>
-			<div class="gui-list-item-container"
-				 [innerHTML]="context"></div>
-		</ng-template>
-
-	`,
+                selector: 'div[gui-list-view-item][item][template]',
+                template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-item-container gui-py-8\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-item-container gui-py-8\"></div>\n</ng-template>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-item]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
-ListViewItemComponent.ctorParameters = () => [];
+ListViewItemComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
 ListViewItemComponent.propDecorators = {
     item: [{ type: Input }],
     template: [{ type: Input }]
@@ -20095,24 +20677,50 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class EmptySourceComponent {
+class EmptySourceComponent extends PureComponent {
+    /**
+     * @param {?} elRef
+     */
+    constructor(elRef) {
+        super(elRef);
+        this.addClassToHost('gui-py-23');
+        this.addClassToHost('gui-px-6');
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.hasChanged(changes.items)) {
+            if (this.items.length === 0) {
+                this.removeClassFromHost('gui-hidden');
+                this.addClassToHost('gui-block');
+            }
+            else {
+                this.removeClassFromHost('gui-block');
+                this.addClassToHost('gui-hidden');
+            }
+        }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-empty-source';
+    }
 }
 EmptySourceComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-empty-source[items]',
-                template: "<div *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | translate}}\n</div>\n",
+                selector: 'div[gui-empty-source][items]',
+                template: "<ng-container *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | guiTranslate}}\n</ng-container>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-empty-source]': 'true'
-                },
-                styles: [`
-		.gui-empty-source div {
-			display: block;
-			padding: 42px 8px;
-		}
-	`]
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+EmptySourceComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 EmptySourceComponent.propDecorators = {
     items: [{ type: Input }]
@@ -20126,7 +20734,13 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class EmptySourceFeatureModule {
+class EmptySourceFeatureModule extends FeatureModule {
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [];
+    }
 }
 EmptySourceFeatureModule.decorators = [
     { type: NgModule, args: [{
@@ -20150,17 +20764,24 @@ EmptySourceFeatureModule.decorators = [
 class ListViewContainerCardComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} structureSourceWarehouse
      * @param {?} listCardTemplateArchive
      */
-    constructor(changeDetectorRef, structureId, structureSourceWarehouse, listCardTemplateArchive) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, structureSourceWarehouse, listCardTemplateArchive) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.structureSourceWarehouse = structureSourceWarehouse;
         this.listCardTemplateArchive = listCardTemplateArchive;
         this.items = [];
+        this.localStreamCloser = new StreamCloser();
+        this.addClassToHost('gui-flex');
+        this.addClassToHost('gui-flex-wrap');
+        this.addClassToHost('gui-m-0');
+        this.addClassToHost('gui-p-0');
+        this.addClassToHost('gui-rounded');
     }
     /**
      * @return {?}
@@ -20168,7 +20789,7 @@ class ListViewContainerCardComponent extends SmartComponent {
     ngOnInit() {
         this.structureSourceWarehouse
             .onEntities(this.structureId)
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} items
          * @return {?}
@@ -20183,7 +20804,7 @@ class ListViewContainerCardComponent extends SmartComponent {
         }));
         this.listCardTemplateArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} template
          * @return {?}
@@ -20193,31 +20814,32 @@ class ListViewContainerCardComponent extends SmartComponent {
             this.changeDetectorRef.detectChanges();
         }));
     }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-container-card';
+    }
 }
 ListViewContainerCardComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-container-card',
-                template: `
-
-		<gui-list-card-item *ngFor="let element of items"
-							[item]="element"
-							[template]="cardTemplate">
-		</gui-list-card-item>
-
-		<gui-empty-source [items]="items">
-		</gui-empty-source>
-
-	`,
+                selector: 'div[gui-list-container-card]',
+                template: "<div *ngFor=\"let element of items\" [item]=\"element\"\n\t [template]=\"cardTemplate\"\n\t gui-list-card-item>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-container-card]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 ListViewContainerCardComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: SourceWarehouse },
     { type: ListViewCardTemplateArchive }
@@ -20227,6 +20849,11 @@ if (false) {
     ListViewContainerCardComponent.prototype.items;
     /** @type {?} */
     ListViewContainerCardComponent.prototype.cardTemplate;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewContainerCardComponent.prototype.localStreamCloser;
     /**
      * @type {?}
      * @private
@@ -20254,9 +20881,17 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ListViewCardItemComponent extends PureComponent {
-    constructor() {
-        super();
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.context = 'Template not provided';
+        this.addClassToHost('gui-cursor-pointer');
+        this.addClassToHost('gui-block');
+        this.addClassToHost('gui-m-0');
+        this.addClassToHost('gui-p-0');
+        this.addClassToHost('gui-relative');
     }
     /**
      * @return {?}
@@ -20269,33 +20904,26 @@ class ListViewCardItemComponent extends PureComponent {
             }
         }
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-card';
+    }
 }
 ListViewCardItemComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-card-item[item][template]',
-                template: `
-
-		<ng-container *ngIf="hasTemplateRef; else templateMethod">
-			<div class="gui-list-card-wrapper">
-				<ng-template *ngTemplateOutlet="template.getTemplateRef(); context: {item: item}"></ng-template>
-			</div>
-		</ng-container>
-
-		<ng-template #templateMethod>
-			<div class="gui-list-card-wrapper"
-				 [innerHTML]="context"></div>
-		</ng-template>
-
-	`,
+                selector: 'div[gui-list-card-item][item][template]',
+                template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\"></div>\n</ng-template>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-card]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
-ListViewCardItemComponent.ctorParameters = () => [];
+ListViewCardItemComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
 ListViewCardItemComponent.propDecorators = {
     item: [{ type: Input }],
     template: [{ type: Input }]
@@ -20318,11 +20946,12 @@ if (false) {
 class ListViewContainerModeSelectComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} listViewReadModelRootId
      * @param {?} listViewModeRepository
      */
-    constructor(changeDetectorRef, listViewReadModelRootId, listViewModeRepository) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, listViewReadModelRootId, listViewModeRepository) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.listViewReadModelRootId = listViewReadModelRootId;
         this.listViewModeRepository = listViewModeRepository;
@@ -20336,22 +20965,25 @@ class ListViewContainerModeSelectComponent extends SmartComponent {
          * @param {?} val
          * @return {?}
          */
-        (val) => !Number.isInteger(val)));
+        (val) => !Number.isInteger(val)))
+            .map((/**
+         * @param {?} val
+         * @return {?}
+         */
+        (val) => {
+            return this.toGuiSelectOption(val);
+        }));
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.listViewModeRepository
-            .on(this.listViewReadModelRootId.toAggregateId())
-            .pipe(this.takeUntil())
-            .subscribe((/**
+        this.subscribeAndRender(this.listViewModeRepository.on(this.listViewReadModelRootId.toAggregateId()), (/**
          * @param {?} mode
          * @return {?}
          */
         (mode) => {
-            this.listContainerMode = mode;
-            this.changeDetectorRef.detectChanges();
+            this.listContainerMode = this.toGuiSelectOption(mode);
         }));
     }
     /**
@@ -20359,30 +20991,51 @@ class ListViewContainerModeSelectComponent extends SmartComponent {
      * @return {?}
      */
     changeContainerMode(mode) {
-        this.listViewModeRepository.setMode(mode, this.listViewReadModelRootId.toAggregateId());
+        /** @type {?} */
+        const selectedMode = this.toListViewMode(mode.value);
+        this.listViewModeRepository.setMode(selectedMode, this.listViewReadModelRootId.toAggregateId());
+    }
+    /**
+     * @private
+     * @param {?} value
+     * @return {?}
+     */
+    toGuiSelectOption(value) {
+        return { value, name: value };
+    }
+    /**
+     * @private
+     * @param {?} mode
+     * @return {?}
+     */
+    toListViewMode(mode) {
+        switch (mode) {
+            case 'List':
+                return ListViewMode.LIST;
+            case 'Card':
+                return ListViewMode.CARD;
+        }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-list-mode-select';
     }
 }
 ListViewContainerModeSelectComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-list-mode-select',
-                template: `
-
-		<gui-select (optionChanged)="changeContainerMode($event)"
-					[options]="options"
-					[selected]="listContainerMode">
-		</gui-select>
-
-	`,
+                selector: 'div[gui-list-mode-select]',
+                template: "<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t[options]=\"options\"\n\t\t\t[selected]=\"listContainerMode\">\n</gui-select>\n",
                 encapsulation: ViewEncapsulation.None,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-list-mode-select]': `"true"`
-                }
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
 ];
 /** @nocollapse */
 ListViewContainerModeSelectComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: ListViewReadModelRootId },
     { type: ListViewModeRepository }
 ];
@@ -21105,39 +21758,68 @@ ListViewApiModule.decorators = [
  */
 /**
  * @abstract
+ * @template T
  */
-class Gate extends SmartComponent {
+class Gate {
     /**
      * @protected
-     * @param {?} cDetector
      */
-    constructor(cDetector) {
-        super(cDetector);
+    constructor() {
+        this.streamCloser = new StreamCloser();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.streamCloser.unsubscribe();
     }
     /**
      * @param {?} propertyName
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    isDefined(propertyName, simpleChanges) {
-        return simpleChanges[propertyName] !== undefined && simpleChanges[propertyName].currentValue !== undefined;
+    isDefined(propertyName, changes) {
+        return changes[propertyName] !== undefined && changes[propertyName].currentValue !== undefined;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    unsubscribe() {
+        this.streamCloser.unsubscribe();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    takeUntil() {
+        return this.streamCloser.takeUntil();
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Gate.prototype.streamCloser;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ListViewPagingGate extends Gate {
+/**
+ * @abstract
+ */
+class PagingGate extends Gate {
     /**
-     * @param {?} changeDetectorRef
+     * @protected
      * @param {?} structureId
      * @param {?} structurePagingCommandDispatcher
      * @param {?} pagingEventRepository
      */
-    constructor(changeDetectorRef, structureId, structurePagingCommandDispatcher, pagingEventRepository) {
-        super(changeDetectorRef);
-        this.changeDetectorRef = changeDetectorRef;
+    constructor(structureId, structurePagingCommandDispatcher, pagingEventRepository) {
+        super();
         this.structureId = structureId;
         this.structurePagingCommandDispatcher = structurePagingCommandDispatcher;
         this.pagingEventRepository = pagingEventRepository;
@@ -21145,11 +21827,11 @@ class ListViewPagingGate extends Gate {
         this.pageSizeChanged = new EventEmitter();
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (this.isDefined('paging', simpleChanges)) {
+    ngOnChanges(changes) {
+        if (this.isDefined('paging', changes)) {
             /** @type {?} */
             let pagingConfig;
             if (typeof this.paging === 'boolean') {
@@ -21159,9 +21841,6 @@ class ListViewPagingGate extends Gate {
             }
             else {
                 pagingConfig = this.paging;
-                // if (this.paging.displayMode !== undefined) {
-                // 	this.structurePagingDisplayModeArchive.next(this.paging.displayMode);
-                // }
             }
             this.structurePagingCommandDispatcher.setPaging(pagingConfig);
         }
@@ -21199,6 +21878,49 @@ class ListViewPagingGate extends Gate {
         this.pageChanged.emit(page);
     }
 }
+PagingGate.propDecorators = {
+    paging: [{ type: Input }],
+    pageChanged: [{ type: Output }],
+    pageSizeChanged: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    PagingGate.prototype.paging;
+    /** @type {?} */
+    PagingGate.prototype.pageChanged;
+    /** @type {?} */
+    PagingGate.prototype.pageSizeChanged;
+    /**
+     * @type {?}
+     * @protected
+     */
+    PagingGate.prototype.structureId;
+    /**
+     * @type {?}
+     * @protected
+     */
+    PagingGate.prototype.structurePagingCommandDispatcher;
+    /**
+     * @type {?}
+     * @protected
+     */
+    PagingGate.prototype.pagingEventRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ListViewPagingGate extends PagingGate {
+    /**
+     * @param {?} structureId
+     * @param {?} structurePagingCommandDispatcher
+     * @param {?} pagingEventRepository
+     */
+    constructor(structureId, structurePagingCommandDispatcher, pagingEventRepository) {
+        super(structureId, structurePagingCommandDispatcher, pagingEventRepository);
+    }
+}
 ListViewPagingGate.decorators = [
     { type: Directive, args: [{
                 selector: 'gui-list-view[paging]'
@@ -21206,44 +21928,10 @@ ListViewPagingGate.decorators = [
 ];
 /** @nocollapse */
 ListViewPagingGate.ctorParameters = () => [
-    { type: ChangeDetectorRef },
     { type: StructureId },
     { type: PagingCommandInvoker },
     { type: PagingEventRepository }
 ];
-ListViewPagingGate.propDecorators = {
-    paging: [{ type: Input }],
-    pageChanged: [{ type: Output }],
-    pageSizeChanged: [{ type: Output }]
-};
-if (false) {
-    /** @type {?} */
-    ListViewPagingGate.prototype.paging;
-    /** @type {?} */
-    ListViewPagingGate.prototype.pageChanged;
-    /** @type {?} */
-    ListViewPagingGate.prototype.pageSizeChanged;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewPagingGate.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewPagingGate.prototype.structureId;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewPagingGate.prototype.structurePagingCommandDispatcher;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewPagingGate.prototype.pagingEventRepository;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -21251,25 +21939,23 @@ if (false) {
  */
 class ListViewModeGate extends Gate {
     /**
-     * @param {?} changeDetectorRef
      * @param {?} listViewReadModelRootId
      * @param {?} listViewCommandDispatcher
      */
-    constructor(changeDetectorRef, listViewReadModelRootId, listViewCommandDispatcher) {
-        super(changeDetectorRef);
-        this.changeDetectorRef = changeDetectorRef;
+    constructor(listViewReadModelRootId, listViewCommandDispatcher) {
+        super();
         this.listViewReadModelRootId = listViewReadModelRootId;
         this.listViewCommandDispatcher = listViewCommandDispatcher;
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (this.isDefined('mode', simpleChanges)) {
+    ngOnChanges(changes) {
+        if (this.isDefined('mode', changes)) {
             this.listViewCommandDispatcher.setMode(this.mode, this.listViewReadModelRootId);
         }
-        if (this.isDefined('modeSelector', simpleChanges)) {
+        if (this.isDefined('modeSelector', changes)) {
             this.listViewCommandDispatcher.toggleSelector(this.modeSelector, this.listViewReadModelRootId);
         }
     }
@@ -21281,7 +21967,6 @@ ListViewModeGate.decorators = [
 ];
 /** @nocollapse */
 ListViewModeGate.ctorParameters = () => [
-    { type: ChangeDetectorRef },
     { type: ListViewReadModelRootId },
     { type: ListViewCommandInvoker }
 ];
@@ -21294,11 +21979,6 @@ if (false) {
     ListViewModeGate.prototype.mode;
     /** @type {?} */
     ListViewModeGate.prototype.modeSelector;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewModeGate.prototype.changeDetectorRef;
     /** @type {?} */
     ListViewModeGate.prototype.listViewReadModelRootId;
     /**
@@ -21314,25 +21994,23 @@ if (false) {
  */
 class ListViewTemplateGate extends Gate {
     /**
-     * @param {?} changeDetectorRef
      * @param {?} containerTemplateArchive
      * @param {?} listCardTemplateArchive
      */
-    constructor(changeDetectorRef, containerTemplateArchive, listCardTemplateArchive) {
-        super(changeDetectorRef);
-        this.changeDetectorRef = changeDetectorRef;
+    constructor(containerTemplateArchive, listCardTemplateArchive) {
+        super();
         this.containerTemplateArchive = containerTemplateArchive;
         this.listCardTemplateArchive = listCardTemplateArchive;
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (this.isDefined('template', simpleChanges)) {
+    ngOnChanges(changes) {
+        if (this.isDefined('template', changes)) {
             this.containerTemplateArchive.next(this.template);
         }
-        if (this.isDefined('cardTemplate', simpleChanges)) {
+        if (this.isDefined('cardTemplate', changes)) {
             this.listCardTemplateArchive.next(this.cardTemplate);
         }
     }
@@ -21344,7 +22022,6 @@ ListViewTemplateGate.decorators = [
 ];
 /** @nocollapse */
 ListViewTemplateGate.ctorParameters = () => [
-    { type: ChangeDetectorRef },
     { type: ListViewTemplateArchive },
     { type: ListViewCardTemplateArchive }
 ];
@@ -21357,11 +22034,6 @@ if (false) {
     ListViewTemplateGate.prototype.template;
     /** @type {?} */
     ListViewTemplateGate.prototype.cardTemplate;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewTemplateGate.prototype.changeDetectorRef;
     /**
      * @type {?}
      * @private
@@ -21380,22 +22052,20 @@ if (false) {
  */
 class ListViewFieldGate extends Gate {
     /**
-     * @param {?} changeDetectorRef
      * @param {?} structureId
      * @param {?} fieldCommandDispatcher
      */
-    constructor(changeDetectorRef, structureId, fieldCommandDispatcher) {
-        super(changeDetectorRef);
-        this.changeDetectorRef = changeDetectorRef;
+    constructor(structureId, fieldCommandDispatcher) {
+        super();
         this.structureId = structureId;
         this.fieldCommandDispatcher = fieldCommandDispatcher;
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (this.isDefined('fields', simpleChanges)) {
+    ngOnChanges(changes) {
+        if (this.isDefined('fields', changes)) {
             this.fieldCommandDispatcher.initFields(this.fields, this.structureId);
         }
     }
@@ -21407,7 +22077,6 @@ ListViewFieldGate.decorators = [
 ];
 /** @nocollapse */
 ListViewFieldGate.ctorParameters = () => [
-    { type: ChangeDetectorRef },
     { type: StructureId },
     { type: FieldCommandInvoker }
 ];
@@ -21417,11 +22086,6 @@ ListViewFieldGate.propDecorators = {
 if (false) {
     /** @type {?} */
     ListViewFieldGate.prototype.fields;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewFieldGate.prototype.changeDetectorRef;
     /**
      * @type {?}
      * @private
@@ -21438,28 +22102,40 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ListViewSearchingGate extends Gate {
+/**
+ * @abstract
+ */
+class SearchingGate extends Gate {
     /**
-     * @param {?} changeDetectorRef
+     * @protected
      * @param {?} structureId
-     * @param {?} searchCommandDispatcher
      * @param {?} searchEventRepository
+     * @param {?} searchCommandInvoker
      */
-    constructor(changeDetectorRef, structureId, searchCommandDispatcher, searchEventRepository) {
-        super(changeDetectorRef);
-        this.changeDetectorRef = changeDetectorRef;
+    constructor(structureId, searchEventRepository, searchCommandInvoker) {
+        super();
         this.structureId = structureId;
-        this.searchCommandDispatcher = searchCommandDispatcher;
         this.searchEventRepository = searchEventRepository;
+        this.searchCommandInvoker = searchCommandInvoker;
         this.searchPhraseChanged = new EventEmitter();
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (this.isDefined('searching', simpleChanges)) {
-            this.searchCommandDispatcher.setSearchingConfig(this.searching, this.structureId);
+    ngOnChanges(changes) {
+        if (this.isDefined('searching', changes)) {
+            /** @type {?} */
+            let searching;
+            if (typeof this.searching === 'boolean') {
+                searching = {
+                    enabled: this.searching
+                };
+            }
+            else {
+                searching = this.searching;
+            }
+            this.searchCommandInvoker.setSearchingConfig(searching, this.structureId);
         }
     }
     /**
@@ -21478,6 +22154,46 @@ class ListViewSearchingGate extends Gate {
         }));
     }
 }
+SearchingGate.propDecorators = {
+    searching: [{ type: Input }],
+    searchPhraseChanged: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    SearchingGate.prototype.searching;
+    /** @type {?} */
+    SearchingGate.prototype.searchPhraseChanged;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SearchingGate.prototype.structureId;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SearchingGate.prototype.searchEventRepository;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SearchingGate.prototype.searchCommandInvoker;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ListViewSearchingGate extends SearchingGate {
+    /**
+     * @param {?} structureId
+     * @param {?} searchEventRepository
+     * @param {?} searchCommandInvoker
+     */
+    constructor(structureId, searchEventRepository, searchCommandInvoker) {
+        super(structureId, searchEventRepository, searchCommandInvoker);
+    }
+}
 ListViewSearchingGate.decorators = [
     { type: Directive, args: [{
                 selector: 'gui-list-view[searching]'
@@ -21485,40 +22201,193 @@ ListViewSearchingGate.decorators = [
 ];
 /** @nocollapse */
 ListViewSearchingGate.ctorParameters = () => [
-    { type: ChangeDetectorRef },
     { type: StructureId },
-    { type: SearchCommandInvoker },
-    { type: SearchEventRepository }
+    { type: SearchEventRepository },
+    { type: SearchCommandInvoker }
 ];
-ListViewSearchingGate.propDecorators = {
-    searching: [{ type: Input }],
-    searchPhraseChanged: [{ type: Output }]
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ListViewL10nGate extends Gate {
+    /**
+     * @param {?} translationService
+     */
+    constructor(translationService) {
+        super();
+        this.translationService = translationService;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('localization', changes)) {
+            if (this.localization.translationResolver) {
+                this.translationService.setResolver(this.localization.translationResolver);
+            }
+            if (this.localization.translation) {
+                this.translationService.changeTranslation(this.localization.translation);
+            }
+        }
+    }
+}
+ListViewL10nGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-list-view[localization]'
+            },] }
+];
+/** @nocollapse */
+ListViewL10nGate.ctorParameters = () => [
+    { type: TranslationService }
+];
+ListViewL10nGate.propDecorators = {
+    localization: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
-    ListViewSearchingGate.prototype.searching;
+    ListViewL10nGate.prototype.localization;
+    /**
+     * @type {?}
+     * @private
+     */
+    ListViewL10nGate.prototype.translationService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class SourceGate extends Gate {
+    /**
+     * @protected
+     * @param {?} structureId
+     * @param {?} sourceCommandInvoker
+     * @param {?} sourceEventService
+     */
+    constructor(structureId, sourceCommandInvoker, sourceEventService) {
+        super();
+        this.structureId = structureId;
+        this.sourceCommandInvoker = sourceCommandInvoker;
+        this.sourceEventService = sourceEventService;
+        this.source = [];
+        this.items = [];
+        this.sourceEdited = new EventEmitter();
+        this.localStreamCloser = new StreamCloser();
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        /**
+         * Setting source should be last step
+         */
+        if (this.isDefined('source', changes)) {
+            this.sourceCommandInvoker.setOrigin(this.source);
+        }
+        if (this.isDefined('items', changes)) {
+            this.sourceCommandInvoker.setOrigin(this.items);
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.sourceEventService
+            .onSourceEdited(this.structureId)
+            .pipe(this.localStreamCloser.takeUntil())
+            .subscribe((/**
+         * @param {?} values
+         * @return {?}
+         */
+        (values) => {
+            this.sourceEdited.emit(values);
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
+    }
+}
+SourceGate.propDecorators = {
+    source: [{ type: Input }],
+    items: [{ type: Input }],
+    sourceEdited: [{ type: Output }]
+};
+if (false) {
     /** @type {?} */
-    ListViewSearchingGate.prototype.searchPhraseChanged;
+    SourceGate.prototype.source;
+    /** @type {?} */
+    SourceGate.prototype.items;
+    /** @type {?} */
+    SourceGate.prototype.sourceEdited;
     /**
      * @type {?}
      * @private
      */
-    ListViewSearchingGate.prototype.changeDetectorRef;
+    SourceGate.prototype.localStreamCloser;
     /**
      * @type {?}
-     * @private
+     * @protected
      */
-    ListViewSearchingGate.prototype.structureId;
+    SourceGate.prototype.structureId;
     /**
      * @type {?}
-     * @private
+     * @protected
      */
-    ListViewSearchingGate.prototype.searchCommandDispatcher;
+    SourceGate.prototype.sourceCommandInvoker;
     /**
      * @type {?}
-     * @private
+     * @protected
      */
-    ListViewSearchingGate.prototype.searchEventRepository;
+    SourceGate.prototype.sourceEventService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ListViewSourceGate extends SourceGate {
+    /**
+     * @param {?} structureId
+     * @param {?} sourceCommandService
+     * @param {?} sourceEventService
+     */
+    constructor(structureId, sourceCommandService, sourceEventService) {
+        super(structureId, sourceCommandService, sourceEventService);
+        this.sourceCommandService = sourceCommandService;
+        this.sourceEventService = sourceEventService;
+    }
+}
+ListViewSourceGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-list-view[items]'
+            },] }
+];
+/** @nocollapse */
+ListViewSourceGate.ctorParameters = () => [
+    { type: StructureId },
+    { type: SourceCommandInvoker },
+    { type: SourceEventService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @protected
+     */
+    ListViewSourceGate.prototype.sourceCommandService;
+    /**
+     * @type {?}
+     * @protected
+     */
+    ListViewSourceGate.prototype.sourceEventService;
 }
 
 /**
@@ -21531,15 +22400,22 @@ const listViewGatewayDeclarations = [
     ListViewModeGate,
     ListViewTemplateGate,
     ListViewFieldGate,
-    ListViewSearchingGate
+    ListViewSearchingGate,
+    ListViewL10nGate,
+    ListViewSourceGate
 ];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class SortingSelectorComponent {
-    constructor() {
+class SortingSelectorComponent extends SmartComponent {
+    /**
+     * @param {?} detector
+     * @param {?} elementRef
+     */
+    constructor(detector, elementRef) {
+        super(detector, elementRef);
         this.sortingOptions = [
             'Name: A-Z',
             'Name: Z-A',
@@ -21556,10 +22432,17 @@ class SortingSelectorComponent {
     changeSorting(sorting) {
         console.log(sorting);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-sorting-selector';
+    }
 }
 SortingSelectorComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-sorting-selector',
+                selector: 'div[gui-sorting-selector]',
                 template: `
 
 		<gui-select (optionChanged)="changeSorting($event)"
@@ -21568,8 +22451,14 @@ SortingSelectorComponent.decorators = [
 					[width]="200">
 		</gui-select>
 
-	`
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush
             }] }
+];
+/** @nocollapse */
+SortingSelectorComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 if (false) {
     /** @type {?} */
@@ -21603,11 +22492,25 @@ SortingSelectorFeatureModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterIconComponent {
+class FilterIconComponent extends IconComponent {
+    /**
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-filter-icon';
+    }
 }
 FilterIconComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-filter-icon',
+                selector: 'div[gui-filter-icon]',
                 template: `
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.23">
 			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
@@ -21616,11 +22519,13 @@ FilterIconComponent.decorators = [
 		</svg>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-filter-icon]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+FilterIconComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
@@ -21873,14 +22778,15 @@ if (false) {
 class FilterMenuComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} fieldWarehouse
      * @param {?} filterWarehouse
      * @param {?} filterCommandDispatcher
      * @param {?} compositionWarehouse
      */
-    constructor(changeDetectorRef, structureId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.fieldWarehouse = fieldWarehouse;
@@ -21890,6 +22796,7 @@ class FilterMenuComponent extends SmartComponent {
         this.columns = [];
         this.fields = [];
         this.activeFilters = [];
+        this.addClassToHost('gui-block');
     }
     /**
      * @return {?}
@@ -22002,85 +22909,26 @@ class FilterMenuComponent extends SmartComponent {
         this.selectedValue = null;
         this.changeDetectorRef.detectChanges();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-filter-menu';
+    }
 }
 FilterMenuComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-filter-menu',
-                template: `
-
-		<div>
-			<gui-active-filter-list></gui-active-filter-list>
-		</div>
-
-		<!--		<div>-->
-		<!--			<gui-column-selector-->
-		<!--					[columns]="columns"-->
-		<!--					(columnSelected)="onColumnSelect($event)">-->
-		<!--			</gui-column-selector>-->
-
-		<!--			<ng-container *ngIf="selectedColumn">-->
-		<!--				{{selectedColumn.getFieldId()}}-->
-		<!--			</ng-container>-->
-		<!--		</div>-->
-
-		<div>
-			<gui-field-selector
-					[fields]="fields"
-					(fieldSelected)="onFieldSelect($event)">
-			</gui-field-selector>
-
-			<ng-container *ngIf="selectedColumn">
-				{{selectedColumn.getFieldId()}}
-			</ng-container>
-		</div>
-
-		<div>
-			<gui-filter-type-selector
-					[filterTypes]="filterTypes"
-					(filterTypeSelected)="onFilterTypeSelect($event)">
-			</gui-filter-type-selector>
-
-			<ng-container *ngIf="selectedFilterTypeId">
-				{{selectedFilterTypeId.toString()}}
-			</ng-container>
-		</div>
-
-		<div>
-
-			<gui-filter-value *ngIf="selectedFilterTypeId"
-							  (valueChanged)="onValueChanged($event)">
-			</gui-filter-value>
-
-		</div>
-
-		<div>
-			<button gui-button
-					[primary]="true"
-					[disabled]="!selectedFilterTypeId"
-					(click)="addFilter()">
-				Filter
-			</button>
-		</div>
-
-		<div>
-			<button gui-button
-					[secondary]="true"
-					(click)="removeAllFilters()">
-				Clear filters
-			</button>
-		</div>
-
-	`,
+                selector: 'div[gui-filter-menu]',
+                template: "<div>\n\t<div gui-active-filter-list></div>\n</div>\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<div>\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\" gui-field-selector></div>\n\n\t<ng-container *ngIf=\"selectedColumn\">\n\t\t{{selectedColumn.getFieldId()}}\n\t</ng-container>\n</div>\n\n<div>\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>\n\n\t<ng-container *ngIf=\"selectedFilterTypeId\">\n\t\t{{selectedFilterTypeId.toString()}}\n\t</ng-container>\n</div>\n\n<div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>\n\n</div>\n\n<div>\n\t<button (click)=\"addFilter()\"\n\t\t\t[disabled]=\"!selectedFilterTypeId\"\n\t\t\t[primary]=\"true\" gui-button>\n\t\tFilter\n\t</button>\n</div>\n\n<div>\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[secondary]=\"true\" gui-button>\n\t\tClear filters\n\t</button>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-filter-menu]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 FilterMenuComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: FieldWarehouse },
     { type: FilterWarehouse },
@@ -22142,13 +22990,16 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterMenuTriggerComponent {
+class FilterMenuTriggerComponent extends SmartComponent {
     /**
+     * @param {?} detector
+     * @param {?} elementRef
      * @param {?} injector
      * @param {?} drawerService
      * @param {?} filterContainerRef
      */
-    constructor(injector, drawerService, filterContainerRef) {
+    constructor(detector, elementRef, injector, drawerService, filterContainerRef) {
+        super(detector, elementRef);
         this.injector = injector;
         this.drawerService = drawerService;
         this.filterContainerRef = filterContainerRef;
@@ -22161,27 +23012,27 @@ class FilterMenuTriggerComponent {
         const elementRef = this.filterContainerRef.getElementRef();
         this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-filter-menu-trigger';
+    }
 }
 FilterMenuTriggerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-filter-menu-trigger',
-                template: `
-		<div [gui-tooltip]="'Filters'"
-			 (click)="openDrawer()"
-			 class="gui-filter-icon-wrapper">
-			<gui-filter-icon></gui-filter-icon>
-		</div>
-	`,
+                selector: 'div[gui-filter-menu-trigger]',
+                template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\" class=\"gui-filter-icon-wrapper\">\n\t<div gui-filter-icon></div>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                host: {
-                    '[class.gui-filter-menu-trigger]': 'true'
-                },
-                styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-icon-wrapper .gui-filter-icon{cursor:pointer}.gui-filter-icon-wrapper .gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon-wrapper .gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon-wrapper .gui-filter-icon:hover .cls-1{stroke:#464646}.gui-filter-menu{display:block;width:400px}"]
+                styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-icon-wrapper .gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon-wrapper .gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon-wrapper .gui-filter-icon:hover .cls-1{stroke:#464646}.gui-filter-menu{width:400px}"]
             }] }
 ];
 /** @nocollapse */
 FilterMenuTriggerComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: Injector },
     { type: FabricDrawerService },
     { type: undefined, decorators: [{ type: Inject, args: [filterContainerToken,] }] }
@@ -22208,8 +23059,12 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ColumnSelectorComponent {
-    constructor() {
+class ColumnSelectorComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.columnSelected = new EventEmitter();
     }
     /**
@@ -22219,10 +23074,17 @@ class ColumnSelectorComponent {
     onSelectChange(column) {
         this.columnSelected.emit(column);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-column-selector';
+    }
 }
 ColumnSelectorComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-column-selector[columns]',
+                selector: 'div[gui-column-selector][columns]',
                 template: `
 
 		Column:
@@ -22242,6 +23104,10 @@ ColumnSelectorComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
+/** @nocollapse */
+ColumnSelectorComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
 ColumnSelectorComponent.propDecorators = {
     columns: [{ type: Input }],
     columnSelected: [{ type: Output }]
@@ -22258,8 +23124,11 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class FilterTypeSelectorComponent extends PureComponent {
-    constructor() {
-        super(...arguments);
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.filterTypeSelected = new EventEmitter();
     }
     /**
@@ -22269,27 +23138,25 @@ class FilterTypeSelectorComponent extends PureComponent {
     onSelectChange(filterType) {
         this.filterTypeSelected.emit(filterType.getId());
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-filter-type-selector';
+    }
 }
 FilterTypeSelectorComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-filter-type-selector[filterTypes]',
-                template: `
-
-		<ng-container>
-			Filter Type:
-		</ng-container>
-
-		<gui-dropdown>
-			<gui-dropdown-item *ngFor="let filterType of filterTypes"
-							   (click)="onSelectChange(filterType)">
-				{{filterType.getName()}}
-			</gui-dropdown-item>
-		</gui-dropdown>
-
-	`,
+                selector: 'div[gui-filter-type-selector][filterTypes]',
+                template: "<ng-container>\n\tFilter Type:\n</ng-container>\n\n<gui-dropdown>\n\t<gui-dropdown-item (click)=\"onSelectChange(filterType)\"\n\t\t\t\t\t   *ngFor=\"let filterType of filterTypes\">\n\t\t{{filterType.getName()}}\n\t</gui-dropdown-item>\n</gui-dropdown>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+FilterTypeSelectorComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 FilterTypeSelectorComponent.propDecorators = {
     filterTypes: [{ type: Input }],
@@ -22306,11 +23173,14 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterValueComponent {
+class FilterValueComponent extends SmartComponent {
     /**
+     * @param {?} detector
+     * @param {?} elementRef
      * @param {?} formBuilder
      */
-    constructor(formBuilder) {
+    constructor(detector, elementRef, formBuilder) {
+        super(detector, elementRef);
         this.formBuilder = formBuilder;
         this.valueChanged = new EventEmitter();
         /** @type {?} */
@@ -22336,28 +23206,27 @@ class FilterValueComponent {
             this.valueChanged.emit(value);
         }));
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-filter-value';
+    }
 }
 FilterValueComponent.FORM_FILTER_VALUE = 'filterValue';
 FilterValueComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-filter-value',
-                template: `
-
-		<form #formRef
-			  [formGroup]="filterForm">
-
-			<input formControlName="filterValue"/>
-		</form>
-	`,
+                selector: 'div[gui-filter-value]',
+                template: "<form #formRef\n\t  [formGroup]=\"filterForm\">\n\n\t<input formControlName=\"filterValue\"/>\n</form>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-filter-value]': `"true"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 FilterValueComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: FormBuilder }
 ];
 FilterValueComponent.propDecorators = {
@@ -22387,15 +23256,2145 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class FieldSelectorComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
+        this.fieldSelected = new EventEmitter();
+    }
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    onSelectChange(field) {
+        this.fieldSelected.emit(field);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-field-selector';
+    }
+}
+FieldSelectorComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'div[gui-field-selector][fields]',
+                template: `
+
+		Field:
+
+		<gui-dropdown>
+			<gui-dropdown-item *ngFor="let field of fields"
+							   (click)="onSelectChange(field)">
+				{{field.getName()}}
+			</gui-dropdown-item>
+		</gui-dropdown>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+/** @nocollapse */
+FieldSelectorComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
+FieldSelectorComponent.propDecorators = {
+    fields: [{ type: Input }],
+    fieldSelected: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    FieldSelectorComponent.prototype.fields;
+    /** @type {?} */
+    FieldSelectorComponent.prototype.fieldSelected;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ToggleFilterCommand extends StructureCommand {
+    /**
+     * @param {?} structureId
+     * @param {?} fieldId
+     * @param {?} externalFilterId
+     * @param {?} filterValue
+     */
+    constructor(structureId, fieldId, externalFilterId, filterValue) {
+        super(structureId, 'ToggleFilterCommand');
+        this.fieldId = fieldId;
+        this.externalFilterId = externalFilterId;
+        this.filterValue = filterValue;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getExternalFilterId() {
+        return this.externalFilterId;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterValue() {
+        return this.filterValue;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.externalFilterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommand.prototype.filterValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterToggledEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     */
+    constructor(aggregateId) {
+        super(aggregateId, 'FilterToggledEvent');
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ToggleFilterCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return ToggleFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const externalFieldId = command.getExternalFilterId();
+        /** @type {?} */
+        const filterValue = command.getFilterValue();
+        aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
+    }
+}
+ToggleFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ToggleFilterCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    ToggleFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class AddFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return AddFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const filterTypeId = command.getFilterTypeId();
+        /** @type {?} */
+        const value = command.getValue();
+        structure.addFilter(fieldId, filterTypeId, value);
+    }
+}
+AddFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+AddFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AddFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RemoveAllFiltersCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return RemoveAllFiltersCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        structure.removeAllFilters();
+    }
+}
+RemoveAllFiltersCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RemoveAllFiltersCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RemoveAllFiltersCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class RemoveFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return RemoveFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const filterId = command.getFilterId();
+        structure.removeFilter(filterId);
+    }
+}
+RemoveFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+RemoveFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RemoveFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigFilterSetEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} enabled
+     */
+    constructor(aggregateId, enabled) {
+        super(aggregateId, 'ConfigFilterSetEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigFilterSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetConfigFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetConfigFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const filterConfig = command.getConfig();
+        this.domainEventPublisher.publish(new ConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const filterConfig = command.getConfig();
+        aggregate.setFilterConfig(filterConfig);
+    }
+}
+SetConfigFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetConfigFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigQuickFilterSetEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} enabled
+     */
+    constructor(aggregateId, enabled) {
+        super(aggregateId, 'ConfigQuickFilterSetEvent');
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigQuickFilterSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SetConfigQuickFilterCommandHandler {
+    /**
+     * @param {?} structureAggregateRepository
+     * @param {?} domainEventPublisher
+     */
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SetConfigQuickFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        /** @type {?} */
+        const structureId = command.getAggregateId();
+        /** @type {?} */
+        const quickFiltersConfig = command.getConfig();
+        this.domainEventPublisher.publish(new ConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(aggregate, command) {
+        /** @type {?} */
+        const quickFiltersConfig = command.getConfig();
+        aggregate.setQuickFiltersConfig(quickFiltersConfig);
+    }
+}
+SetConfigQuickFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SetConfigQuickFilterCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    SetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class Filter {
+    /**
+     * @param {?} filterId
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} filterValue
+     */
+    constructor(filterId, fieldId, filterTypeId, filterValue) {
+        this.filterId = filterId;
+        this.fieldId = fieldId;
+        this.filterTypeId = filterTypeId;
+        this.filterValue = filterValue;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterId() {
+        return this.filterId;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterTypeId() {
+        return this.filterTypeId;
+    }
+    /**
+     * @return {?}
+     */
+    getFieldId() {
+        return this.fieldId;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterValue() {
+        return this.filterValue;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.fieldId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterTypeId;
+    /**
+     * @type {?}
+     * @private
+     */
+    Filter.prototype.filterValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterSettings {
+    /**
+     * @param {?=} filteringEnabled
+     * @param {?=} searchEnabled
+     * @param {?=} quickFiltersEnabled
+     */
+    constructor(filteringEnabled = false, searchEnabled = false, quickFiltersEnabled = false) {
+        this.filteringEnabled = false;
+        this.searchEnabled = false;
+        this.quickFiltersEnabled = false;
+        this.filteringEnabled = filteringEnabled;
+        this.searchEnabled = searchEnabled;
+        this.quickFiltersEnabled = quickFiltersEnabled;
+    }
+    /**
+     * @return {?}
+     */
+    isFilteringEnabled() {
+        return this.filteringEnabled;
+    }
+    /**
+     * @return {?}
+     */
+    isQuickFilteringEnabled() {
+        return this.quickFiltersEnabled;
+    }
+    /**
+     * @return {?}
+     */
+    isSearchingEnabled() {
+        return this.searchEnabled;
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setFilterConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.filteringEnabled = config.enabled;
+        }
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setSearchingConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.searchEnabled = config.enabled;
+        }
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    setQuickFiltersConfig(config) {
+        if (config && config.enabled !== undefined && config.enabled !== null) {
+            this.quickFiltersEnabled = config.enabled;
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.filteringEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.searchEnabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterSettings.prototype.quickFiltersEnabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T
+ */
+class BaseFilterType {
+    /**
+     * @protected
+     * @param {?} filterTypeId
+     */
+    constructor(filterTypeId) {
+        this.filterTypeId = filterTypeId;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.filterTypeId;
+    }
+    /**
+     * @param {?} entities
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterMany(entities, field, value) {
+        if (entities.length === 0) {
+            return entities;
+        }
+        return entities.filter((/**
+         * @param {?} item
+         * @return {?}
+         */
+        (item) => {
+            return this.filterEntity(item, field, value);
+        }));
+    }
+    /**
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterOne(entity, field, value) {
+        return this.filterEntity(entity, field, value);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    BaseFilterType.prototype.filterTypeId;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    BaseFilterType.prototype.getName = function () { };
+    /**
+     * @abstract
+     * @protected
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    BaseFilterType.prototype.filterEntity = function (entity, field, value) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ContainsFilterType extends BaseFilterType {
+    /**
+     * @param {?} filterTypeId
+     */
+    constructor(filterTypeId) {
+        super(filterTypeId);
+    }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return 'Contains';
+    }
+    /**
+     * @protected
+     * @param {?} entity
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    filterEntity(entity, field, value) {
+        /** @type {?} */
+        const fieldValue = field.getValue(entity);
+        return !!fieldValue.includes(value);
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeId {
+    /**
+     * @param {?} id
+     */
+    constructor(id) {
+        this.id = id;
+    }
+    /**
+     * @return {?}
+     */
+    toString() {
+        return this.id;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeId.prototype.id;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeIdGenerator {
+    /**
+     * @return {?}
+     */
+    generate() {
+        FilterTypeIdGenerator.index += 1;
+        return new FilterTypeId(`${FilterTypeIdGenerator.index}`);
+    }
+}
+FilterTypeIdGenerator.index = 0;
+if (false) {
+    /** @type {?} */
+    FilterTypeIdGenerator.index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeReadModel {
+    /**
+     * @param {?} id
+     * @param {?} name
+     */
+    constructor(id, name) {
+        this.filterTypeId = id;
+        this.name = name;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.filterTypeId;
+    }
+    /**
+     * @return {?}
+     */
+    getName() {
+        return this.name;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeReadModel.prototype.filterTypeId;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeReadModel.prototype.name;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeManager {
+    /**
+     * @param {?} fields
+     */
+    constructor(fields) {
+        this.fieldIds = [];
+        this.map = new WeakMap();
+        this.filterTypeMap = new WeakMap();
+        this.dataTypeToFilterType = new Map();
+        this.filterTypeIdGenerator = new FilterTypeIdGenerator();
+        this.assignFilterTypes();
+        this.addFields(fields);
+    }
+    /**
+     * @param {?} filterTypeId
+     * @return {?}
+     */
+    getFilterType(filterTypeId) {
+        return this.filterTypeMap.get(filterTypeId);
+    }
+    /**
+     * @return {?}
+     */
+    getFieldIdsToFilterTypes() {
+        /** @type {?} */
+        const map = new Map();
+        for (let fieldId of this.fieldIds) {
+            /** @type {?} */
+            const filterTypes = this.map.get(fieldId);
+            /** @type {?} */
+            const readModels = filterTypes.map((/**
+             * @param {?} f
+             * @return {?}
+             */
+            f => {
+                return new FilterTypeReadModel(f.getId(), f.getName());
+            }));
+            map.set(fieldId.toString(), readModels);
+        }
+        return map;
+    }
+    /**
+     * @private
+     * @param {?} fields
+     * @return {?}
+     */
+    addFields(fields) {
+        for (let field of fields) {
+            this.addField(field);
+        }
+    }
+    /**
+     * @private
+     * @param {?} field
+     * @return {?}
+     */
+    addField(field) {
+        /** @type {?} */
+        const fieldId = field.getId();
+        /** @type {?} */
+        const dataType = field.getDataType();
+        /** @type {?} */
+        const filterTypesFromDataType = this.dataTypeToFilterType.get(dataType);
+        this.fieldIds.push(fieldId);
+        this.map.set(fieldId, [...filterTypesFromDataType]);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypes() {
+        this.assignFilterTypesForDataTypeUnknown();
+        this.assignFilterTypesForDataTypeNumber();
+        this.assignFilterTypesForDataTypeString();
+        this.assignFilterTypesForDataTypeBoolean();
+        this.assignFilterTypesForDataTypeDate();
+        this.assignFilterTypesForDataTypeCustom();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeUnknown() {
+        this.dataTypeToFilterType.set(DataType.UNKNOWN, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeNumber() {
+        this.dataTypeToFilterType.set(DataType.NUMBER, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeString() {
+        /** @type {?} */
+        const filterTypes = [
+            new ContainsFilterType(this.generateId())
+        ];
+        this.dataTypeToFilterType.set(DataType.STRING, filterTypes);
+        this.addFilterTypes(filterTypes);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeBoolean() {
+        this.dataTypeToFilterType.set(DataType.BOOLEAN, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeDate() {
+        this.dataTypeToFilterType.set(DataType.DATE, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    assignFilterTypesForDataTypeCustom() {
+        this.dataTypeToFilterType.set(DataType.CUSTOM, []);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    generateId() {
+        return this.filterTypeIdGenerator.generate();
+    }
+    /**
+     * @private
+     * @param {?} filterTypes
+     * @return {?}
+     */
+    addFilterTypes(filterTypes) {
+        for (let filterType of filterTypes) {
+            this.filterTypeMap.set(filterType.getId(), filterType);
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.fieldIds;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.map;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.filterTypeMap;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.dataTypeToFilterType;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeManager.prototype.filterTypeIdGenerator;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterId {
+    /**
+     * @param {?} filterId
+     */
+    constructor(filterId) {
+        this.id = filterId;
+    }
+    /**
+     * @return {?}
+     */
+    toString() {
+        return this.id;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterId.prototype.id;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterIdGenerator {
+    /**
+     * @return {?}
+     */
+    static generateId() {
+        return new FilterId(`${FilterIdGenerator.index}`);
+    }
+}
+FilterIdGenerator.index = 0;
+if (false) {
+    /** @type {?} */
+    FilterIdGenerator.index;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFilterReadModel {
+    /**
+     * @param {?} filterId
+     * @param {?} fieldName
+     * @param {?} filterTypeName
+     * @param {?} value
+     */
+    constructor(filterId, fieldName, filterTypeName, value) {
+        this.filterId = filterId;
+        this.fieldName = fieldName;
+        this.filterTypeName = filterTypeName;
+        this.value = value;
+    }
+    /**
+     * @return {?}
+     */
+    getText() {
+        return `${this.fieldName}: ${this.filterTypeName}: ${this.value}`;
+    }
+    /**
+     * @return {?}
+     */
+    getFilterId() {
+        return this.filterId;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.filterId;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.fieldName;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.filterTypeName;
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFilterReadModel.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterManager {
+    constructor() {
+        this.filterSettings = new FilterSettings();
+        // string -> FilterId
+        this.filters = new Map();
+        this.activeFilters = [];
+    }
+    /**
+     * @return {?}
+     */
+    getSettings() {
+        return this.filterSettings;
+    }
+    /**
+     * @return {?}
+     */
+    getAll() {
+        return Array.from(this.filters)
+            .map((/**
+         * @param {?} arr
+         * @return {?}
+         */
+        (arr) => arr[1]));
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    getAllActiveFilters(fields) {
+        return this.activeFilters
+            .map((/**
+         * @param {?} af
+         * @return {?}
+         */
+        (af) => {
+            return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    getFilterTypes() {
+        return this.filterTypeManager.getFieldIdsToFilterTypes();
+    }
+    /**
+     * @param {?} fields
+     * @return {?}
+     */
+    assignFilterTypes(fields) {
+        this.filterTypeManager = new FilterTypeManager(fields);
+    }
+    /**
+     * @param {?} fieldId
+     * @param {?} filterTypeId
+     * @param {?} value
+     * @return {?}
+     */
+    add(fieldId, filterTypeId, value) {
+        /** @type {?} */
+        const filter = new Filter(FilterIdGenerator.generateId(), fieldId, filterTypeId, value);
+        this.activeFilters.push(filter);
+    }
+    /**
+     * @param {?} entities
+     * @param {?} fields
+     * @return {?}
+     */
+    filter(entities, fields) {
+        /** @type {?} */
+        let filteredEntities = [...entities];
+        for (let filter of this.activeFilters) {
+            /** @type {?} */
+            const filterTypeId = filter.getFilterTypeId();
+            /** @type {?} */
+            const filterType = this.getFilterType(filterTypeId);
+            /** @type {?} */
+            const value = filter.getFilterValue();
+            filteredEntities = filterType.filterMany(filteredEntities, fields.get(filter.getFieldId().toString()), value);
+        }
+        return filteredEntities;
+    }
+    /**
+     * @return {?}
+     */
+    removeAll() {
+        this.activeFilters.length = 0;
+    }
+    /**
+     * @param {?} filterId
+     * @return {?}
+     */
+    remove(filterId) {
+        this.activeFilters =
+            this.activeFilters.filter((/**
+             * @param {?} filter
+             * @return {?}
+             */
+            (filter) => {
+                return filter.getFilterId() !== filterId;
+            }));
+    }
+    /**
+     * @private
+     * @param {?} filterTypeId
+     * @return {?}
+     */
+    getFilterType(filterTypeId) {
+        return this.filterTypeManager.getFilterType(filterTypeId);
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filterSettings;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filters;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.activeFilters;
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterManager.prototype.filterTypeManager;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterManagerFactory {
+    /**
+     * @param {?=} enabled
+     * @return {?}
+     */
+    create(enabled = false) {
+        return new FilterManager();
+    }
+}
+FilterManagerFactory.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigQuickFilterSetEventHandler {
+    /**
+     * @param {?} structureQuickFilterRepository
+     */
+    constructor(structureQuickFilterRepository) {
+        this.structureQuickFilterRepository = structureQuickFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ConfigQuickFilterSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('ConfigQuickFilterSetEvent')) {
+            this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+        }
+    }
+}
+ConfigQuickFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ConfigQuickFilterSetEventHandler.ctorParameters = () => [
+    { type: QuickFilterEnabledRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ConfigFilterSetEventHandler {
+    /**
+     * @param {?} structureFilterRepository
+     */
+    constructor(structureFilterRepository) {
+        this.structureFilterRepository = structureFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ConfigFilterSetEvent;
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        if (event.ofMessageType('ConfigFilterSetEvent')) {
+            this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
+        }
+    }
+}
+ConfigFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ConfigFilterSetEventHandler.ctorParameters = () => [
+    { type: FilterEnabledRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ConfigFilterSetEventHandler.prototype.structureFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeMap {
+    // = new WeakMap<FieldId, Array<FilterTypeReadModel>>();
+    /**
+     * @param {?} map
+     */
+    constructor(map) {
+        this.map = map;
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    getFilterTypes(fieldId) {
+        return this.map.get(fieldId.toString());
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeMap.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypesInitedEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} map
+     */
+    constructor(aggregateId, map) {
+        super(aggregateId, 'FilterTypesInitedEvent');
+        this.map = map;
+    }
+    /**
+     * @return {?}
+     */
+    getMap() {
+        return this.map;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypesInitedEvent.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterTypeConfigFilterSetEventHandler {
+    /**
+     * @param {?} filterTypeRepository
+     */
+    constructor(filterTypeRepository) {
+        this.filterTypeRepository = filterTypeRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return FilterTypesInitedEvent;
+    }
+    /**
+     * @param {?} filterTypesInitedEvent
+     * @return {?}
+     */
+    handle(filterTypesInitedEvent) {
+        if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
+            /** @type {?} */
+            const map = filterTypesInitedEvent.getMap();
+            this.filterTypeRepository.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
+        }
+    }
+}
+FilterTypeConfigFilterSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+FilterTypeConfigFilterSetEventHandler.ctorParameters = () => [
+    { type: FilterTypeRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FilterTypeConfigFilterSetEventHandler.prototype.filterTypeRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFiltersSetEvent extends StructureDomainEvent {
+    /**
+     * @param {?} structureId
+     * @param {?} filters
+     */
+    constructor(structureId, filters) {
+        super(structureId, 'ActiveFiltersSetEvent');
+        this.filters = filters;
+    }
+    /**
+     * @return {?}
+     */
+    getFilters() {
+        return this.filters;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFiltersSetEvent.prototype.filters;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ActiveFiltersSetEventHandler {
+    /**
+     * @param {?} activeFilterRepository
+     */
+    constructor(activeFilterRepository) {
+        this.activeFilterRepository = activeFilterRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return ActiveFiltersSetEvent;
+    }
+    /**
+     * @param {?} activeFiltersSetEvent
+     * @return {?}
+     */
+    handle(activeFiltersSetEvent) {
+        if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
+            /** @type {?} */
+            let activeFilters = activeFiltersSetEvent.getFilters();
+            this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
+        }
+    }
+}
+ActiveFiltersSetEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+ActiveFiltersSetEventHandler.ctorParameters = () => [
+    { type: ActiveFilterRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterCalculatedEvent extends StructureDomainEvent {
+    /**
+     * @param {?} aggregateId
+     * @param {?} map
+     */
+    constructor(aggregateId, map) {
+        super(aggregateId, 'UniqueFilterCalculatedEvent');
+        this.map = map;
+    }
+    /**
+     * @return {?}
+     */
+    getUniqueValues() {
+        return this.map;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterCalculatedEvent.prototype.map;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValuesReadModel {
+    /**
+     * @param {?} map
+     */
+    constructor(map) {
+        this.map = new Map();
+        this.allSelected = new Map();
+        this.allDisabled = new Map();
+        this.map = map;
+        this.calculateSelection();
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    getValues(fieldId) {
+        return this.map.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    areAllSelected(fieldId) {
+        return this.allSelected.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    areAllDisabled(fieldId) {
+        return this.allDisabled.get(fieldId.toString());
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    isSelectAllChecked(fieldId) {
+        return this.areAllSelected(fieldId);
+    }
+    /**
+     * @param {?} fieldId
+     * @return {?}
+     */
+    isIndeterminate(fieldId) {
+        return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    calculateSelection() {
+        for (let key of Array.from(this.map.keys())) {
+            /** @type {?} */
+            const values = this.map.get(key);
+            this.allSelected.set(key, !values.some((/**
+             * @param {?} r
+             * @return {?}
+             */
+            (r) => !r.isEnabled())));
+            this.allDisabled.set(key, !values.some((/**
+             * @param {?} r
+             * @return {?}
+             */
+            (r) => r.isEnabled())));
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.map;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.allSelected;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValuesReadModel.prototype.allDisabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueValueReadModel {
+    /**
+     * @param {?} id
+     * @param {?} value
+     * @param {?} enabled
+     */
+    constructor(id, value, enabled) {
+        this.id = id;
+        this.value = value;
+        this.enabled = enabled;
+    }
+    /**
+     * @return {?}
+     */
+    getId() {
+        return this.id;
+    }
+    /**
+     * @return {?}
+     */
+    getValue() {
+        return this.value;
+    }
+    /**
+     * @return {?}
+     */
+    geDisplayValue() {
+        return this.displayValue;
+    }
+    /**
+     * @return {?}
+     */
+    isEnabled() {
+        return this.enabled;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.id;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.value;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.displayValue;
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueValueReadModel.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UniqueFilterCalculatedEventHandler {
+    /**
+     * @param {?} uniqueValuesRepository
+     */
+    constructor(uniqueValuesRepository) {
+        this.uniqueValuesRepository = uniqueValuesRepository;
+    }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return UniqueFilterCalculatedEvent;
+    }
+    /**
+     * @param {?} calculatedEvent
+     * @return {?}
+     */
+    handle(calculatedEvent) {
+        if (calculatedEvent.ofMessageType('UniqueFilterCalculatedEvent')) {
+            /** @type {?} */
+            let uvRM = new Map();
+            calculatedEvent.getUniqueValues()
+                .forEach((/**
+             * @param {?} values
+             * @param {?} key
+             * @return {?}
+             */
+            (values, key) => {
+                /** @type {?} */
+                const valuesRM = values.map((/**
+                 * @param {?} uv
+                 * @return {?}
+                 */
+                (uv) => {
+                    return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
+                }));
+                uvRM.set(key, valuesRM);
+            }));
+            /** @type {?} */
+            let uniqueValues = new UniqueValuesReadModel(uvRM);
+            this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
+        }
+    }
+}
+UniqueFilterCalculatedEventHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UniqueFilterCalculatedEventHandler.ctorParameters = () => [
+    { type: UniqueValuesRepository }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UniqueFilterCalculatedEventHandler.prototype.uniqueValuesRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+// TODO Remove
+class FilterTypeFieldsInitedEventHandler {
+    // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
+    // 			private readonly domainEventPublisher: DomainEventPublisher) {
+    // }
+    /**
+     * @return {?}
+     */
+    forEvent() {
+        return FieldsInitedEvent;
+    }
+    /**
+     * @param {?} fieldsInitedEvent
+     * @return {?}
+     */
+    handle(fieldsInitedEvent) {
+        // if (fieldsInitedEvent.ofMessageType('FieldsInitedEvent')) {
+        //
+        // 	const fields = fieldsInitedEvent.getFields();
+        //
+        // 	const manager = new FilterTypeManager(fields);
+        //
+        // 	this.filterTypeManagerRepository.next(fieldsInitedEvent.getAggregateId(), manager);
+        //
+        // 	this.domainEventPublisher.publish(new FilterTypesInitedEvent(fieldsInitedEvent.getAggregateId(), manager.getFieldIdsToFieldTypes()));
+        // }
+    }
+}
+FilterTypeFieldsInitedEventHandler.decorators = [
+    { type: Injectable }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectAllUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return UnselectAllUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        structure.unselectAllUniqueFilter(fieldId);
+    }
+}
+UnselectAllUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UnselectAllUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class UnselectUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return UnselectUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const uniqueValueId = command.getUniqueValueId();
+        structure.unselectUniqueFilter(fieldId, uniqueValueId);
+    }
+}
+UnselectUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+UnselectUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    UnselectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectAllUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SelectAllUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        structure.selectAllUniqueFilter(fieldId);
+    }
+}
+SelectAllUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectAllUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class SelectUniqueFilterCommandHandler {
+    /**
+     * @param {?} domainEventPublisher
+     */
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    forCommand() {
+        return SelectUniqueFilterCommand;
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    handleAggregate(structure, command) {
+        /** @type {?} */
+        const fieldId = command.getFieldId();
+        /** @type {?} */
+        const uniqueValueId = command.getUniqueValueId();
+        structure.selectUniqueFilter(fieldId, uniqueValueId);
+    }
+}
+SelectUniqueFilterCommandHandler.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+SelectUniqueFilterCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectUniqueFilterCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterDomainModule extends DomainModule {
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    static commandHandlers() {
+        return [
+            ...HermesModule.registerCommandHandler(SetConfigFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(SetConfigQuickFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(ToggleFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(AddFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(RemoveAllFiltersCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(RemoveFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(SelectUniqueFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(SelectAllUniqueFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(UnselectUniqueFilterCommandHandler, structureKey),
+            ...HermesModule.registerCommandHandler(UnselectAllUniqueFilterCommandHandler, structureKey)
+        ];
+    }
+    /**
+     * @return {?}
+     */
+    static domainEventHandlers() {
+        return [
+            ...HermesModule.registerDomainEventHandler(ConfigQuickFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(ConfigFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(FilterTypeConfigFilterSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(ActiveFiltersSetEventHandler),
+            ...HermesModule.registerDomainEventHandler(UniqueFilterCalculatedEventHandler),
+            ...HermesModule.registerDomainEventHandler(FilterTypeFieldsInitedEventHandler)
+        ];
+    }
+}
+FilterDomainModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                providers: [
+                    FilterManagerFactory
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+/** @nocollapse */
+FilterDomainModule.ctorParameters = () => [];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterApiModule extends ApiModule {
+}
+FilterApiModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FilterDomainModule
+                ],
+                providers: [
+                    FilterCommandInvoker,
+                    FilterWarehouse,
+                    FilterTypeRepository,
+                    ActiveFilterRepository,
+                    UniqueValuesRepository,
+                    FilterEnabledRepository,
+                    QuickFilterEnabledRepository
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const fabricImports = [
+    FabricBadgeModule,
+    FabricButtonModule,
+    FabricButtonGroupModule,
+    FabricCheckboxModule,
+    FabricChipModule,
+    FabricDrawerModule,
+    FabricDropdownModule,
+    FabricRadioButtonModule,
+    FabricRadioGroupModule,
+    FabricProgressBarModule,
+    FabricProgressSpinnerModule,
+    FabricSelectModule,
+    FabricSpinnerModule,
+    FabricTabModule,
+    FabricTooltipModule,
+    FabricToggleButtonModule,
+    FabricInputModule,
+    FabricDialogModule,
+    FabricInlineDialogModule,
+    FabricTabModule
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class ActiveFilterListComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} filterWarehouse
      * @param {?} filterCommandDispatcher
      */
-    constructor(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
@@ -22425,26 +25424,26 @@ class ActiveFilterListComponent extends SmartComponent {
     removeFilter(filter) {
         this.filterCommandDispatcher.removeFilter(filter.getFilterId(), this.structureId);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-active-filter-list';
+    }
 }
 ActiveFilterListComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-active-filter-list',
-                template: `
-
-		<div *ngFor="let filter of activeFilters">
-			{{filter.getText()}}
-			<span (click)="removeFilter(filter)">X</span>
-		</div>
-
-		<gui-active-search></gui-active-search>
-
-
-	`
+                selector: 'div[gui-active-filter-list]',
+                template: "<div *ngFor=\"let filter of activeFilters\">\n\t{{filter.getText()}}\n\t<span (click)=\"removeFilter(filter)\">X</span>\n</div>\n\n<div gui-active-search></div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 ActiveFilterListComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: FilterWarehouse },
     { type: FilterCommandInvoker }
@@ -22478,61 +25477,16 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FieldSelectorComponent {
-    constructor() {
-        this.fieldSelected = new EventEmitter();
-    }
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    onSelectChange(field) {
-        this.fieldSelected.emit(field);
-    }
-}
-FieldSelectorComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'gui-field-selector[fields]',
-                template: `
-
-		Field:
-
-		<gui-dropdown>
-			<gui-dropdown-item *ngFor="let field of fields"
-							   (click)="onSelectChange(field)">
-				{{field.getName()}}
-			</gui-dropdown-item>
-		</gui-dropdown>
-
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-FieldSelectorComponent.propDecorators = {
-    fields: [{ type: Input }],
-    fieldSelected: [{ type: Output }]
-};
-if (false) {
-    /** @type {?} */
-    FieldSelectorComponent.prototype.fields;
-    /** @type {?} */
-    FieldSelectorComponent.prototype.fieldSelected;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ActiveSearchComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} searchCommandDispatcher
      * @param {?} searchWarehouse
      */
-    constructor(changeDetectorRef, structureId, searchCommandDispatcher, searchWarehouse) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, searchCommandDispatcher, searchWarehouse) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.searchCommandDispatcher = searchCommandDispatcher;
@@ -22561,32 +25515,18 @@ class ActiveSearchComponent extends SmartComponent {
         event.stopPropagation();
         this.searchCommandDispatcher.search('', this.structureId);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-active-search';
+    }
 }
 ActiveSearchComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-active-search',
-                template: `
-
-		<ng-container *ngIf="phrase">
-			<div>
-				Active search by:
-			</div>
-
-			<div>
-				<gui-chip>{{phrase}}</gui-chip>
-			</div>
-
-			<div>
-				<button gui-button
-						[outline]="true"
-						[primary]="true"
-						(click)="clearSearch()">
-					Clear search
-				</button>
-			</div>
-		</ng-container>
-
-	`,
+                selector: 'div[gui-active-search]',
+                template: "<ng-container *ngIf=\"phrase\">\n\t<div>\n\t\tActive search by:\n\t</div>\n\n\t<div>\n\t\t<gui-chip>{{phrase}}</gui-chip>\n\t</div>\n\n\t<div>\n\t\t<button (click)=\"clearSearch()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tgui-button>\n\t\t\tClear search\n\t\t</button>\n\t</div>\n</ng-container>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -22594,6 +25534,7 @@ ActiveSearchComponent.decorators = [
 /** @nocollapse */
 ActiveSearchComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: SearchCommandInvoker },
     { type: SearchWarehouse }
@@ -22627,14 +25568,73 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterMenuFeatureModule {
+class ActiveFilterListModule extends FeatureModule {
+    /**
+     * @param {?} filterApiModule
+     */
+    constructor(filterApiModule) {
+        super();
+        if (filterApiModule === null) {
+            throw new Error('FilterApiModule is required.');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [];
+    }
+}
+ActiveFilterListModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    fabricImports,
+                    FilterApiModule
+                ],
+                declarations: [
+                    ActiveFilterListComponent,
+                    ActiveSearchComponent
+                ],
+                exports: [
+                    ActiveFilterListComponent
+                ]
+            },] }
+];
+/** @nocollapse */
+ActiveFilterListModule.ctorParameters = () => [
+    { type: FilterApiModule, decorators: [{ type: Optional }] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class FilterMenuFeatureModule extends FeatureModule {
+    /**
+     * @param {?} filterApiModule
+     */
+    constructor(filterApiModule) {
+        super();
+        if (filterApiModule === null) {
+            throw new Error('FilterApiModule is required.');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [];
+    }
 }
 FilterMenuFeatureModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
                     FabricModule,
-                    ReactiveFormsModule
+                    ReactiveFormsModule,
+                    FilterApiModule,
+                    ActiveFilterListModule
                 ],
                 declarations: [
                     FilterIconComponent,
@@ -22643,24 +25643,31 @@ FilterMenuFeatureModule.decorators = [
                     ColumnSelectorComponent,
                     FilterTypeSelectorComponent,
                     FilterValueComponent,
-                    ActiveFilterListComponent,
-                    FieldSelectorComponent,
-                    ActiveSearchComponent
+                    FieldSelectorComponent
                 ],
                 exports: [
-                    FilterMenuTriggerComponent,
-                    ActiveFilterListComponent
+                    FilterMenuTriggerComponent
                 ],
                 entryComponents: [
                     FilterMenuComponent
                 ]
             },] }
 ];
+/** @nocollapse */
+FilterMenuFeatureModule.ctorParameters = () => [
+    { type: FilterApiModule, decorators: [{ type: Optional }] }
+];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const exportDeclarations = [
+    ListViewComponent,
+    listViewGatewayDeclarations,
+    ...listViewGatewayDeclarations
+];
 class ListViewFeatureModule {
     /**
      * @param {?} paging
@@ -22669,6 +25676,7 @@ class ListViewFeatureModule {
         this.paging = paging;
     }
 }
+ListViewFeatureModule.exportDeclarations = [...exportDeclarations];
 ListViewFeatureModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
@@ -22691,10 +25699,7 @@ ListViewFeatureModule.decorators = [
                     ListViewContainerModeSelectComponent,
                     ...listViewGatewayDeclarations
                 ],
-                exports: [
-                    ListViewComponent,
-                    listViewGatewayDeclarations
-                ],
+                exports: exportDeclarations,
                 providers: []
             },] }
 ];
@@ -22703,40 +25708,14 @@ ListViewFeatureModule.ctorParameters = () => [
     { type: PagingFeatureModule }
 ];
 if (false) {
+    /** @type {?} */
+    ListViewFeatureModule.exportDeclarations;
     /**
      * @type {?}
      * @private
      */
     ListViewFeatureModule.prototype.paging;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const fabricImports = [
-    FabricBadgeModule,
-    FabricButtonModule,
-    FabricButtonGroupModule,
-    FabricCheckboxModule,
-    FabricChipModule,
-    FabricDrawerModule,
-    FabricDropdownModule,
-    FabricRadioButtonModule,
-    FabricRadioGroupModule,
-    FabricProgressBarModule,
-    FabricProgressSpinnerModule,
-    FabricSelectModule,
-    FabricSpinnerModule,
-    FabricTabModule,
-    FabricTooltipModule,
-    FabricToggleButtonModule,
-    FabricInputModule,
-    FabricDialogModule,
-    FabricInlineDialogModule,
-    FabricTabModule
-];
 
 /**
  * @fileoverview added by tsickle
@@ -22776,78 +25755,68 @@ NumberFormatterModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureInfoModalComponent {
+class StructureInfoModalComponent extends StaticComponent {
+    /**
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-info-dialog';
+    }
 }
 StructureInfoModalComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-info-dialog',
-                template: `
-		<div class="gui-structure-info-modal">
-
-			<p class="gui-dialog-title gui-info-title">Generic UI Grid</p>
-
-
-			<p class="gui-info-version">
-				ver. 0.13.0
-			</p>
-
-			<p class="gui-quote">
-				"The best way to success is to help others succeed."
-			</p>
-
-			<br/>
-
-			<section>
-				<p>Links:</p>
-				<ul>
-
-					<li>
-						<a href="https://generic-ui.com/">Website</a>
-					</li>
-					<li>
-						<a href="https://generic-ui.com/guide/">Documentation</a>
-					</li>
-					<li>
-						<a href="https://github.com/generic-ui/generic-ui/tree/master/ngx-grid">Github</a>
-					</li>
-				</ul>
-
-				<br/>
-
-				<p>Feedback:</p>
-				<ul>
-
-					<li>
-						<a href="https://github.com/generic-ui/generic-ui/issues">Report a bug</a>
-					</li>
-					<li>
-						<a href="https://github.com/generic-ui/generic-ui/issues">Suggest an idea</a>
-					</li>
-
-				</ul>
-			</section>
-		</div>
-	`,
-                changeDetection: ChangeDetectionStrategy.OnPush
+                selector: 'div[gui-info-dialog]',
+                template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.14.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureInfoModalComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureDialogColumnManagerComponent {
+class StructureDialogColumnManagerComponent extends SmartComponent {
+    /**
+     * @param {?} detector
+     * @param {?} elementRef
+     */
+    constructor(detector, elementRef) {
+        super(detector, elementRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-dialog-column-manager';
+    }
 }
 StructureDialogColumnManagerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-dialog-column-manager',
-                template: "<div class=\"gui-dialog-title\">{{'themeManagerModalTitle' | translate}}</div>\n\n<gui-structure-column-manager>\n\n</gui-structure-column-manager>\n",
+                selector: 'div[gui-structure-dialog-column-manager]',
+                template: "<div class=\"gui-dialog-title\">{{'columnManagerModalTitle' | guiTranslate}}</div>\n\n<div gui-structure-column-manager>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-dialog-column-manager]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureDialogColumnManagerComponent.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 
 /**
@@ -22887,14 +25856,14 @@ StructureThemeConverter.decorators = [
 class StructureDialogColumnManagerService extends Reactive {
     /**
      * @param {?} injector
-     * @param {?} schemaReadModelRepository
+     * @param {?} schemaWarehouse
      * @param {?} structureThemeConverter
      * @param {?} fabricDialogService
      */
-    constructor(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+    constructor(injector, schemaWarehouse, structureThemeConverter, fabricDialogService) {
         super();
         this.injector = injector;
-        this.schemaReadModelRepository = schemaReadModelRepository;
+        this.schemaWarehouse = schemaWarehouse;
         this.structureThemeConverter = structureThemeConverter;
         this.fabricDialogService = fabricDialogService;
     }
@@ -22910,7 +25879,7 @@ class StructureDialogColumnManagerService extends Reactive {
         }
         /** @type {?} */
         const injector = Injector.create({ parent: parentInjector, providers: [{ provide: CompositionId, useValue: compositionId }] });
-        this.schemaReadModelRepository
+        this.schemaWarehouse
             .onSingleTheme(readModelId)
             .pipe(this.takeUntil())
             .subscribe((/**
@@ -22945,7 +25914,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureDialogColumnManagerService.prototype.schemaReadModelRepository;
+    StructureDialogColumnManagerService.prototype.schemaWarehouse;
     /**
      * @type {?}
      * @private
@@ -22962,16 +25931,35 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureDialogSchemaManagerComponent {
+class StructureDialogSchemaManagerComponent extends PureComponent {
+    /**
+     * @param {?} elRef
+     */
+    constructor(elRef) {
+        super(elRef);
+        this.addClassToHost('gui-pr-10');
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-schema-manager-dialog';
+    }
 }
 StructureDialogSchemaManagerComponent.decorators = [
     { type: Component, args: [{
+                selector: 'div[gui-schema-manager-dialog]',
                 template: `
-		<div class="gui-schema-manager-dialog">
-			<gui-structure-schema-manager></gui-structure-schema-manager>
-		</div>
-	`
+		<div gui-structure-schema-manager></div>
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureDialogSchemaManagerComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 
 /**
@@ -22981,15 +25969,11 @@ StructureDialogSchemaManagerComponent.decorators = [
 class StructureDialogSchemaManagerService extends Reactive {
     /**
      * @param {?} injector
-     * @param {?} schemaReadModelRepository
-     * @param {?} structureThemeConverter
      * @param {?} fabricDialogService
      */
-    constructor(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+    constructor(injector, fabricDialogService) {
         super();
         this.injector = injector;
-        this.schemaReadModelRepository = schemaReadModelRepository;
-        this.structureThemeConverter = structureThemeConverter;
         this.fabricDialogService = fabricDialogService;
     }
     /**
@@ -23006,19 +25990,9 @@ class StructureDialogSchemaManagerService extends Reactive {
             providers: [{ provide: SchemaReadModelRootId, useValue: readModelId }],
             parent: parentInjector
         });
-        this.schemaReadModelRepository
-            .onSingleTheme(readModelId)
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} theme
-         * @return {?}
-         */
-        (theme) => {
-            this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
-                injector: injector,
-                theme: this.structureThemeConverter.convertTheme(theme)
-            });
-        }));
+        this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
+            injector: injector
+        });
     }
 }
 StructureDialogSchemaManagerService.decorators = [
@@ -23027,8 +26001,6 @@ StructureDialogSchemaManagerService.decorators = [
 /** @nocollapse */
 StructureDialogSchemaManagerService.ctorParameters = () => [
     { type: Injector },
-    { type: SchemaWarehouse },
-    { type: StructureThemeConverter },
     { type: FabricDialogService }
 ];
 if (false) {
@@ -23037,16 +26009,6 @@ if (false) {
      * @private
      */
     StructureDialogSchemaManagerService.prototype.injector;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureDialogSchemaManagerService.prototype.schemaReadModelRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureDialogSchemaManagerService.prototype.structureThemeConverter;
     /**
      * @type {?}
      * @private
@@ -23061,7 +26023,6 @@ if (false) {
 class StructureInfoPanelComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
-     * @param {?} renderer
      * @param {?} elementRef
      * @param {?} injector
      * @param {?} sourceReadModelService
@@ -23074,11 +26035,9 @@ class StructureInfoPanelComponent extends SmartComponent {
      * @param {?} schemaManagerService
      * @param {?} structureInfoPanelEnabledArchive
      */
-    constructor(changeDetectorRef, renderer, elementRef, injector, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelEnabledArchive) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, injector, sourceReadModelService, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelEnabledArchive) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
-        this.renderer = renderer;
-        this.elementRef = elementRef;
         this.injector = injector;
         this.sourceReadModelService = sourceReadModelService;
         this.dialog = dialog;
@@ -23160,55 +26119,18 @@ class StructureInfoPanelComponent extends SmartComponent {
     openSchemaManager() {
         this.schemaManagerService.open(this.schemaReadModelRootId, this.injector);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-info-panel';
+    }
 }
 StructureInfoPanelComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-info-panel',
-                template: `
-
-		<div>
-			<div *ngIf="infoPanelConfig.isSourceSizeEnabled()">
-
-				<ng-container *ngIf="preparedItemsSize !== undefined && totalItemsSize !== undefined">
-
-					<ng-container *ngIf="preparedItemsSize === totalItemsSize">
-						{{'infoPanelShowing' | translate}} <b>{{totalItemsSize | numberFormatter}}</b> {{'infoPanelItems' | translate}}
-					</ng-container>
-
-					<span *ngIf="preparedItemsSize !== totalItemsSize"
-						  gui-active-filter-menu-trigger>
-						{{'infoPanelShowing' | translate}}
-						<b>{{preparedItemsSize | numberFormatter}}</b>
-						{{'infoPanelOutOf' | translate}}
-						<b>{{totalItemsSize | numberFormatter}}</b>
-						{{'infoPanelItems' | translate}}
-					</span>
-
-				</ng-container>
-
-			</div>
-		</div>
-
-		<div>
-			<div class="gui-right-section">
-
-				<div *ngIf="infoPanelConfig.isSchemaManagerEnabled()"
-					 (click)="openSchemaManager()">
-					<gui-structure-schema-manager-icon [gui-tooltip]="themeManagerTooltipText"></gui-structure-schema-manager-icon>
-				</div>
-
-				<div *ngIf="infoPanelConfig.isColumnsManagerEnabled()"
-					 (click)="openColumnManager()">
-					<gui-structure-column-manager-icon [gui-tooltip]="columnManagerTooltipText"></gui-structure-column-manager-icon>
-				</div>
-
-				<div *ngIf="infoPanelConfig.isInfoDialogEnabled()"
-					 (click)="openInfo()">
-					<gui-structure-info-icon [gui-tooltip]="infoTooltipText"></gui-structure-info-icon>
-				</div>
-			</div>
-		</div>
-	`,
+                selector: 'div[gui-structure-info-panel]',
+                template: "<div>\n\t<div *ngIf=\"infoPanelConfig.isSourceSizeEnabled()\">\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t<ng-container *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</ng-container>\n\n\t\t\t<span *ngIf=\"preparedItemsSize !== totalItemsSize\"\n\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t</ng-container>\n\n\t</div>\n</div>\n\n<div>\n\t<div class=\"gui-right-section\">\n\n\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"themeManagerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openColumnManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"columnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openInfo()\"\n\t\t\t *ngIf=\"infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t<div [gui-tooltip]=\"infoTooltipText\" gui-structure-info-icon></div>\n\t\t</div>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -23216,7 +26138,6 @@ StructureInfoPanelComponent.decorators = [
 /** @nocollapse */
 StructureInfoPanelComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
-    { type: Renderer2 },
     { type: ElementRef },
     { type: Injector },
     { type: SourceWarehouse },
@@ -23251,16 +26172,6 @@ if (false) {
      * @private
      */
     StructureInfoPanelComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureInfoPanelComponent.prototype.renderer;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureInfoPanelComponent.prototype.elementRef;
     /**
      * @type {?}
      * @private
@@ -23320,22 +26231,24 @@ if (false) {
 class StructureColumnManagerComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} compositionId
-     * @param {?} compositionCommandService
-     * @param {?} compositionReadModelService
+     * @param {?} compositionCommandInvoker
+     * @param {?} compositionWarehouse
      */
-    constructor(changeDetectorRef, compositionId, compositionCommandService, compositionReadModelService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionWarehouse) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.compositionId = compositionId;
-        this.compositionCommandService = compositionCommandService;
-        this.compositionReadModelService = compositionReadModelService;
+        this.compositionCommandInvoker = compositionCommandInvoker;
+        this.compositionWarehouse = compositionWarehouse;
+        this.addClassToHost('gui-block');
     }
     /**
      * @return {?}
      */
     ngOnInit() {
-        this.compositionReadModelService
+        this.compositionWarehouse
             .onAllColumns(this.compositionId)
             .pipe(this.takeUntil())
             .subscribe((/**
@@ -23366,21 +26279,29 @@ class StructureColumnManagerComponent extends SmartComponent {
     toggleColumn(column) {
         event.stopPropagation();
         if (column.isEnabled()) {
-            this.compositionCommandService.disableColumn(column.getColumnDefinitionId(), this.compositionId);
+            this.compositionCommandInvoker.disableColumn(column.getColumnDefinitionId(), this.compositionId);
         }
         else {
-            this.compositionCommandService.enableColumn(column.getColumnDefinitionId(), this.compositionId);
+            this.compositionCommandInvoker.enableColumn(column.getColumnDefinitionId(), this.compositionId);
         }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-column-manager';
     }
 }
 StructureColumnManagerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-column-manager',
+                selector: 'div[gui-structure-column-manager]',
                 template: `
 
-		<ol>
+		<ol class="gui-p-0 gui-my-4 gui-mx-0 gui-list-none gui-overflow-auto">
 			<li *ngFor="let column of columns"
-				(click)="toggleColumn(column)">
+				(click)="toggleColumn(column)"
+				class="gui-p-6 gui-cursor-pointer">
 
 				<gui-checkbox [checked]="column.isEnabled()"
 							  [disabled]="enabledColumnsCount === 1 && column.isEnabled()">
@@ -23396,15 +26317,13 @@ StructureColumnManagerComponent.decorators = [
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-column-manager]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureColumnManagerComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: CompositionId },
     { type: CompositionCommandInvoker },
     { type: CompositionWarehouse }
@@ -23428,43 +26347,69 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureColumnManagerComponent.prototype.compositionCommandService;
+    StructureColumnManagerComponent.prototype.compositionCommandInvoker;
     /**
      * @type {?}
      * @private
      */
-    StructureColumnManagerComponent.prototype.compositionReadModelService;
+    StructureColumnManagerComponent.prototype.compositionWarehouse;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureMenuColumnManagerComponent {
+class StructureMenuColumnManagerComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-menu-column-manager';
+    }
 }
 StructureMenuColumnManagerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-menu-column-manager',
-                template: "<gui-structure-column-manager>\n\n</gui-structure-column-manager>\n",
+                selector: 'div[gui-structure-menu-column-manager]',
+                template: "<div gui-structure-column-manager></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-menu-column-manager]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureMenuColumnManagerComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const selector = 'gui-structure-column-manager-icon';
-class StructureColumnManagerIconComponent {
+class StructureColumnManagerIconComponent extends IconComponent {
+    /**
+     * @param {?} elementRef
+     * @param {?} changeDetectorRef
+     */
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-column-manager-icon';
+    }
 }
 StructureColumnManagerIconComponent.decorators = [
     { type: Component, args: [{
-                selector: selector,
+                selector: 'div[gui-structure-column-manager-icon]',
                 template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 10.31">
 			<line class="cls-1" x1="9.57" y1="3.65" x2="0.75" y2="3.65"/>
@@ -23476,12 +26421,13 @@ StructureColumnManagerIconComponent.decorators = [
 		</svg>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class]': `"${selector}"`,
-                    '[class.gui-icon]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureColumnManagerIconComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
@@ -23521,13 +26467,25 @@ StructureColumnManagerModule.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const selector$1 = 'gui-structure-info-icon';
-class StructureInfoIconComponent {
+class StructureInfoIconComponent extends IconComponent {
+    /**
+     * @param {?} elRef
+     * @param {?} cdr
+     */
+    constructor(elRef, cdr) {
+        super(elRef, cdr);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-info-icon';
+    }
 }
 StructureInfoIconComponent.decorators = [
     { type: Component, args: [{
-                selector: selector$1,
+                selector: 'div[gui-structure-info-icon]',
                 template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.08 10.08">
 			<path class="cls-1"
@@ -23537,33 +26495,33 @@ StructureInfoIconComponent.decorators = [
 		</svg>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class]': `"${selector$1}"`,
-                    '[class.gui-icon]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureInfoIconComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureSchemaMangerComponent extends Reactive {
+class StructureSchemaMangerComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elRef
      * @param {?} schemaReadModelRootId
      * @param {?} schemaCommandService
      * @param {?} schemaReadModelService
-     * @param {?} dialogThemeService
      */
-    constructor(changeDetectorRef, schemaReadModelRootId, schemaCommandService, schemaReadModelService, dialogThemeService) {
-        super();
+    constructor(changeDetectorRef, elRef, schemaReadModelRootId, schemaCommandService, schemaReadModelService) {
+        super(changeDetectorRef, elRef);
         this.changeDetectorRef = changeDetectorRef;
         this.schemaReadModelRootId = schemaReadModelRootId;
         this.schemaCommandService = schemaCommandService;
         this.schemaReadModelService = schemaReadModelService;
-        this.dialogThemeService = dialogThemeService;
         this.coloring = Object.keys(SchemaRowColoring)
             .map((/**
          * @param {?} key
@@ -23574,7 +26532,17 @@ class StructureSchemaMangerComponent extends Reactive {
          * @param {?} val
          * @return {?}
          */
-        (val) => !Number.isInteger(val)));
+        (val) => !Number.isInteger(val)))
+            .map((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
+            return {
+                value: value,
+                name: value
+            };
+        }));
         this.themes = Object.keys(SchemaTheme)
             .map((/**
          * @param {?} key
@@ -23585,7 +26553,17 @@ class StructureSchemaMangerComponent extends Reactive {
          * @param {?} val
          * @return {?}
          */
-        (val) => !Number.isInteger(val)));
+        (val) => !Number.isInteger(val)))
+            .map((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
+            return {
+                value: value,
+                name: value
+            };
+        }));
     }
     /**
      * @return {?}
@@ -23599,7 +26577,10 @@ class StructureSchemaMangerComponent extends Reactive {
          * @return {?}
          */
         (rowColoring) => {
-            this.selectedRowColoring = SchemaRowColoring[rowColoring];
+            this.selectedRowColoring = {
+                value: SchemaRowColoring[rowColoring],
+                name: SchemaRowColoring[rowColoring]
+            };
             this.changeDetectorRef.detectChanges();
         }));
         this.schemaReadModelService
@@ -23610,7 +26591,10 @@ class StructureSchemaMangerComponent extends Reactive {
          * @return {?}
          */
         (schemaTheme) => {
-            this.selectedTheme = SchemaTheme[schemaTheme];
+            this.selectedTheme = {
+                value: SchemaTheme[schemaTheme],
+                name: SchemaTheme[schemaTheme]
+            };
             this.changeDetectorRef.detectChanges();
         }));
         this.schemaReadModelService
@@ -23641,15 +26625,14 @@ class StructureSchemaMangerComponent extends Reactive {
      * @return {?}
      */
     toggleTheme(theme) {
-        this.schemaCommandService.setTheme(this.toTheme(theme), this.schemaReadModelRootId);
-        this.dialogThemeService.nextTheme(theme);
+        this.schemaCommandService.setTheme(this.toTheme(theme.value), this.schemaReadModelRootId);
     }
     /**
      * @param {?} schemaRowColoring
      * @return {?}
      */
     toggleRowColoring(schemaRowColoring) {
-        this.schemaCommandService.setRowColoring(this.toRowColoring(schemaRowColoring), this.schemaReadModelRootId);
+        this.schemaCommandService.setRowColoring(this.toRowColoring(schemaRowColoring.value), this.schemaReadModelRootId);
     }
     /**
      * @param {?} verticalGrid
@@ -23699,36 +26682,18 @@ class StructureSchemaMangerComponent extends Reactive {
                 return RowColoring.EVEN;
         }
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-schema-manager';
+    }
 }
 StructureSchemaMangerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-schema-manager',
-                template: `
-		<div class="gui-schema-manager">
-			<div class="gui-dialog-title">{{'themeManagerModalTitle' | translate}}</div>
-			<div class="gui-structure-schema-manager-select">
-				<span>{{'themeManagerModalTheme' | translate}}</span>
-				<gui-select [options]="themes"
-							[selected]="selectedTheme"
-							[placeholder]="'Select theme'"
-							(optionChanged)="toggleTheme($event)">
-				</gui-select>
-			</div>
-			<div class="gui-structure-schema-manager-select">
-				<span>{{'themeManagerModalRowColoring' | translate}}</span>
-				<gui-select [options]="coloring"
-							[selected]="selectedRowColoring"
-							(optionChanged)="toggleRowColoring($event)">
-				</gui-select>
-			</div>
-			<gui-checkbox [checked]="verticalGrid"
-						  (changed)="toggleVerticalGrid($event)">{{'themeManagerModalVerticalGrid' | translate}}
-			</gui-checkbox>
-			<gui-checkbox [checked]="horizontalGrid"
-						  (changed)="toggleHorizontalGrid($event)">{{'themeManagerModalHorizontalGrid' | translate}}
-			</gui-checkbox>
-		</div>
-	`,
+                selector: 'div[gui-structure-schema-manager]',
+                template: "<div class=\"gui-schema-manager gui-flex gui-flex-col\">\n\n\t<div class=\"gui-dialog-title\">{{'themeManagerModalTitle' | guiTranslate}}</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col gui-mb-10\">\n\t\t<span class=\"gui-mb-4\">{{'themeManagerModalTheme' | guiTranslate}}</span>\n\t\t<gui-select (optionChanged)=\"toggleTheme($event)\"\n\t\t\t\t\t[options]=\"themes\"\n\t\t\t\t\t[placeholder]=\"'Select theme'\"\n\t\t\t\t\t[selected]=\"selectedTheme\">\n\t\t</gui-select>\n\t</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col\">\n\n\t\t<span class=\"gui-mb-4\">\n\t\t\t{{'themeManagerModalRowColoring' | guiTranslate}}\n\t\t</span>\n\n\t\t<gui-select (optionChanged)=\"toggleRowColoring($event)\"\n\t\t\t\t\t[options]=\"coloring\"\n\t\t\t\t\t[selected]=\"selectedRowColoring\">\n\t\t</gui-select>\n\t</div>\n\n\t<gui-checkbox (changed)=\"toggleVerticalGrid($event)\"\n\t\t\t\t  [checked]=\"verticalGrid\"\n\t\t\t\t  class=\"gui-mt-14\">\n\t\t{{'themeManagerModalVerticalGrid' | guiTranslate}}\n\t</gui-checkbox>\n\n\t<gui-checkbox (changed)=\"toggleHorizontalGrid($event)\"\n\t\t\t\t  [checked]=\"horizontalGrid\"\n\t\t\t\t  class=\"gui-mt-10\">\n\t\t{{'themeManagerModalHorizontalGrid' | guiTranslate}}\n\t</gui-checkbox>\n\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -23736,10 +26701,10 @@ StructureSchemaMangerComponent.decorators = [
 /** @nocollapse */
 StructureSchemaMangerComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: SchemaReadModelRootId },
     { type: SchemaCommandInvoker },
-    { type: SchemaWarehouse },
-    { type: FabricDialogThemeService }
+    { type: SchemaWarehouse }
 ];
 if (false) {
     /** @type {?} */
@@ -23774,46 +26739,40 @@ if (false) {
      * @private
      */
     StructureSchemaMangerComponent.prototype.schemaReadModelService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSchemaMangerComponent.prototype.dialogThemeService;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const selector$2 = 'gui-structure-schema-manager-icon';
-class StructureSchemaManagerIconComponent {
+class StructureSchemaManagerIconComponent extends IconComponent {
+    /**
+     * @param {?} elRef
+     * @param {?} cdr
+     */
+    constructor(elRef, cdr) {
+        super(elRef, cdr);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-schema-manager-icon';
+    }
 }
 StructureSchemaManagerIconComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-schema-manager-icon',
-                template: `
-		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24" viewBox="0 0 32 24">
-			<g transform="translate(0 -4)">
-				<path id="Path_303" data-name="Path 303" d="M23.337,4H32v6H23.337Z"/>
-				<path id="Path_304" data-name="Path 304" d="M11.662,4h8.662v6H11.662Z"/>
-				<path id="Path_305" data-name="Path 305" d="M0,4H8.662v6H0Z"/>
-				<path id="Path_306" data-name="Path 306" d="M23.337,22H32v6H23.337Z"/>
-				<path id="Path_307" data-name="Path 307" d="M0,22H8.662v6H0Z"/>
-				<path id="Path_308" data-name="Path 308" d="M11.662,22h8.662v6H11.662Z"/>
-				<path id="Path_309" data-name="Path 309" d="M23.337,13H32v6H23.337Z"/>
-				<path id="Path_310" data-name="Path 310" d="M11.662,13h8.662v6H11.662Z"/>
-				<path id="Path_311" data-name="Path 311" d="M0,13H8.662v6H0Z"/>
-			</g>
-		</svg>
-	`,
+                selector: 'div[gui-structure-schema-manager-icon]',
+                template: "<svg height=\"24\" viewBox=\"0 0 32 24\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<g transform=\"translate(0 -4)\">\n\t\t<path d=\"M23.337,4H32v6H23.337Z\" data-name=\"Path 303\" id=\"Path_303\"/>\n\t\t<path d=\"M11.662,4h8.662v6H11.662Z\" data-name=\"Path 304\" id=\"Path_304\"/>\n\t\t<path d=\"M0,4H8.662v6H0Z\" data-name=\"Path 305\" id=\"Path_305\"/>\n\t\t<path d=\"M23.337,22H32v6H23.337Z\" data-name=\"Path 306\" id=\"Path_306\"/>\n\t\t<path d=\"M0,22H8.662v6H0Z\" data-name=\"Path 307\" id=\"Path_307\"/>\n\t\t<path d=\"M11.662,22h8.662v6H11.662Z\" data-name=\"Path 308\" id=\"Path_308\"/>\n\t\t<path d=\"M23.337,13H32v6H23.337Z\" data-name=\"Path 309\" id=\"Path_309\"/>\n\t\t<path d=\"M11.662,13h8.662v6H11.662Z\" data-name=\"Path 310\" id=\"Path_310\"/>\n\t\t<path d=\"M0,13H8.662v6H0Z\" data-name=\"Path 311\" id=\"Path_311\"/>\n\t</g>\n</svg>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-schema-manager-icon]': 'true',
-                    '[class.gui-icon]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureSchemaManagerIconComponent.ctorParameters = () => [
+    { type: ElementRef },
+    { type: ChangeDetectorRef }
 ];
 
 /**
@@ -23856,18 +26815,18 @@ class ActiveFilterMenuComponent {
 ActiveFilterMenuComponent.decorators = [
     { type: Component, args: [{
                 template: `
-		
+
 		<h3>Active filters</h3>
 
-		<gui-active-filter-list></gui-active-filter-list>
+		<div gui-active-filter-list></div>
 
 		<div>
-			
+
 			<button gui-button
 					[text]="true">
 				Cancel
 			</button>
-			
+
 			<button gui-button
 					[outline]="true"
 					[primary]="true">
@@ -23964,14 +26923,12 @@ if (false) {
  */
 class ActiveFilterMenuTriggerDirective {
     /**
-     * @param {?} renderer
      * @param {?} el
      * @param {?} structureId
      * @param {?} activeFilterService
      * @param {?} schemaReadModelRootId
      */
-    constructor(renderer, el, structureId, activeFilterService, schemaReadModelRootId) {
-        this.renderer = renderer;
+    constructor(el, structureId, activeFilterService, schemaReadModelRootId) {
         this.el = el;
         this.structureId = structureId;
         this.activeFilterService = activeFilterService;
@@ -23993,18 +26950,12 @@ ActiveFilterMenuTriggerDirective.decorators = [
 ];
 /** @nocollapse */
 ActiveFilterMenuTriggerDirective.ctorParameters = () => [
-    { type: Renderer2 },
     { type: ElementRef },
     { type: StructureId },
     { type: ActiveFilterService },
     { type: SchemaReadModelRootId }
 ];
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterMenuTriggerDirective.prototype.renderer;
     /**
      * @type {?}
      * @private
@@ -24044,6 +26995,7 @@ SourceCounterFeatureModule.decorators = [
                 imports: [
                     CommonModule,
                     FilterMenuFeatureModule,
+                    ActiveFilterListModule,
                     FabricButtonModule
                 ],
                 declarations: [
@@ -24270,6 +27222,7 @@ if (false) {
 class StructureColumnConfigComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} structureCommandService
      * @param {?} compositionReadModelService
@@ -24278,8 +27231,8 @@ class StructureColumnConfigComponent extends SmartComponent {
      * @param {?} structureColumnMenuConfigArchive
      * @param {?} column
      */
-    constructor(changeDetectorRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationService, structureColumnMenuConfigArchive, column) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationService, structureColumnMenuConfigArchive, column) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.structureCommandService = structureCommandService;
@@ -24341,9 +27294,17 @@ class StructureColumnConfigComponent extends SmartComponent {
         this.config.setFilterMenu(translation.headerMenuFilterTab);
         this.config.setColumnsMenu(translation.headerMenuColumnsTab);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-column-config';
+    }
 }
 StructureColumnConfigComponent.decorators = [
     { type: Component, args: [{
+                selector: 'gui-column-config',
                 template: `
 		<div *ngIf="isEnabled()"
 			 class="gui-header-menu-tab">
@@ -24360,11 +27321,11 @@ StructureColumnConfigComponent.decorators = [
 						</gui-structure-column-config-sort>
 
 						<gui-structure-column-config-column-hide
-							[column]="column">
+								[column]="column">
 						</gui-structure-column-config-column-hide>
 
 						<gui-structure-column-config-column-move
-							[column]="column">
+								[column]="column">
 						</gui-structure-column-config-column-move>
 
 					</gui-tab-item>
@@ -24377,9 +27338,9 @@ StructureColumnConfigComponent.decorators = [
 
 						<!--						<div class="gui-header-menu-item">{{config.getFilterMenu()}}</div>-->
 
-						<gui-unique-value-list
-							[fieldId]="column.getFieldId()">
-						</gui-unique-value-list>
+						<div gui-unique-value-list
+							 [fieldId]="column.getFieldId()">
+						</div>
 
 					</gui-tab-item>
 
@@ -24389,8 +27350,8 @@ StructureColumnConfigComponent.decorators = [
 
 					<gui-tab-item [tab]="config.getColumnMenu()">
 
-						<gui-structure-menu-column-manager>
-						</gui-structure-menu-column-manager>
+						<div gui-structure-menu-column-manager>
+						</div>
 
 					</gui-tab-item>
 
@@ -24398,12 +27359,15 @@ StructureColumnConfigComponent.decorators = [
 
 			</gui-tab>
 		</div>
-	`
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureColumnConfigComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: StructureCommandDispatcher },
     { type: CompositionWarehouse },
@@ -24489,6 +27453,7 @@ class StructureColumnConfigService extends Reactive {
      * @return {?}
      */
     open(elementRef, column) {
+        this.close();
         /** @type {?} */
         const injector = Injector.create({
             providers: [{
@@ -24508,8 +27473,8 @@ class StructureColumnConfigService extends Reactive {
         (theme) => {
             this.inlineDialogService.open(elementRef, StructureColumnConfigComponent, {
                 injector: injector,
-                placement: InlineDialogPlacement.Top,
-                offset: -2,
+                placement: FabricPlacement.BOTTOM,
+                offset: -34,
                 theme: this.structureThemeConverter.convertTheme(theme),
                 customClass: 'gui-inline-dialog-header-menu'
             });
@@ -24570,7 +27535,7 @@ class StructureHeaderColumnsComponent extends SmartComponent {
      * @param {?} sortingCommandDispatcher
      */
     constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
-        super(changeDetectorRef);
+        super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.injector = injector;
         this.changeDetectorRef = changeDetectorRef;
@@ -24610,11 +27575,18 @@ class StructureHeaderColumnsComponent extends SmartComponent {
     isGlobalSortEnabled() {
         return this.globalSearching;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-header-columns';
+    }
 }
 StructureHeaderColumnsComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-header-columns',
-                template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
+                selector: 'div[gui-structure-header-columns][columns]',
+                template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<gui-structure-column-config-trigger\n\t\t\t\t[column]=\"column\">\n\t\t</gui-structure-column-config-trigger>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 providers: [
@@ -24684,14 +27656,16 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureHeaderFiltersComponent {
+class StructureHeaderFiltersComponent extends PureComponent {
     /**
      * @param {?} structureFilterCommandService
      * @param {?} formBuilder
      * @param {?} cd
+     * @param {?} elementRef
      * @param {?} structureId
      */
-    constructor(structureFilterCommandService, formBuilder, cd, structureId) {
+    constructor(structureFilterCommandService, formBuilder, cd, elementRef, structureId) {
+        super(elementRef);
         this.structureFilterCommandService = structureFilterCommandService;
         this.formBuilder = formBuilder;
         this.cd = cd;
@@ -24750,17 +27724,26 @@ class StructureHeaderFiltersComponent {
         this.filterMode = false;
         this.cd.detectChanges();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return '';
+    }
 }
 StructureHeaderFiltersComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-header-filters',
+                selector: 'div[gui-structure-header-filters][columns]',
                 template: `
 
 		<ng-container *ngIf="!filterMode">
 
 			<div *ngFor="let cell of columns"
 				 [style.width.px]="cell.width"
-				 class="gui-header-cell">
+				 class="gui-header-cell gui-flex gui-justify-between
+\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border
+\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis">
 
 				<!--				<gui-structure-header-filter [column]="cell">-->
 				<!--				</gui-structure-header-filter>-->
@@ -24796,6 +27779,7 @@ StructureHeaderFiltersComponent.ctorParameters = () => [
     { type: FilterCommandInvoker },
     { type: FormBuilder },
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId }
 ];
 StructureHeaderFiltersComponent.propDecorators = {
@@ -24842,7 +27826,7 @@ if (false) {
 class StructureHeaderComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
-     * @param {?} renderer
+     * @param {?} elementRef
      * @param {?} eventBus
      * @param {?} structureId
      * @param {?} compositionId
@@ -24852,10 +27836,9 @@ class StructureHeaderComponent extends SmartComponent {
      * @param {?} structureVerticalFormationWarehouse
      * @param {?} compositionWarehouse
      */
-    constructor(changeDetectorRef, renderer, eventBus, structureId, compositionId, filterWarehouse, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionWarehouse) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, eventBus, structureId, compositionId, filterWarehouse, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionWarehouse) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
-        this.renderer = renderer;
         this.eventBus = eventBus;
         this.structureId = structureId;
         this.compositionId = compositionId;
@@ -24868,6 +27851,7 @@ class StructureHeaderComponent extends SmartComponent {
         this.filterRowEnabled = false;
         this.checkboxSelection = false;
         this.showGroups = false;
+        this.styleModifier = new StyleModifier(elementRef.nativeElement);
     }
     /**
      * @return {?}
@@ -24903,7 +27887,7 @@ class StructureHeaderComponent extends SmartComponent {
          * @return {?}
          */
         (width) => {
-            this.renderer.setStyle(this.containerRef.nativeElement, 'width', width + 'px');
+            this.styleModifier.getElement(this.containerRef.nativeElement).setWidth(width);
         }));
         this.filterWarehouse
             .onFilteringEnabled(this.structureId)
@@ -24944,19 +27928,23 @@ class StructureHeaderComponent extends SmartComponent {
         (rowHeight) => {
             /** @type {?} */
             const headerHeight = +(rowHeight) + 2;
-            // if (this.containerRef) {
-            // 	this.renderer.setStyle(this.containerRef.nativeElement, 'height', headerHeight + 'px');
-            // }
             if (this.filtersRef) {
-                this.renderer.setStyle(this.filtersRef.nativeElement, 'height', headerHeight + 'px');
+                this.styleModifier.getElement(this.filtersRef.nativeElement).setHeight(headerHeight);
             }
         }));
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-header';
     }
 }
 StructureHeaderComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-header',
-                template: "<gui-structure-header-groups\n\t\t*ngIf=\"showGroups\"\n\t\t[checkboxSelection]=\"checkboxSelection\"\n\t\t[groups]=\"groups\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-groups>\n\n<gui-structure-header-columns\n\t\t[checkboxSelection]=\"checkboxSelection\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-columns>\n\n<gui-structure-header-filters\n\t\t*ngIf=\"filterRowEnabled\"\n\t\t[columns]=\"headerColumns\"\n\t\tclass=\"gui-header\">\n</gui-structure-header-filters>\n",
+                selector: 'div[gui-structure-header]',
+                template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"checkboxSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [checkboxSelection]=\"checkboxSelection\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -24964,7 +27952,7 @@ StructureHeaderComponent.decorators = [
 /** @nocollapse */
 StructureHeaderComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
-    { type: Renderer2 },
+    { type: ElementRef },
     { type: DomainEventBus },
     { type: StructureId },
     { type: CompositionId },
@@ -24997,12 +27985,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureHeaderComponent.prototype.changeDetectorRef;
+    StructureHeaderComponent.prototype.styleModifier;
     /**
      * @type {?}
      * @private
      */
-    StructureHeaderComponent.prototype.renderer;
+    StructureHeaderComponent.prototype.changeDetectorRef;
     /**
      * @type {?}
      * @private
@@ -25085,11 +28073,12 @@ if (false) {
 class StructureHeaderFilterComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureFilterCommandService
      * @param {?} structureId
      */
-    constructor(changeDetectorRef, structureFilterCommandService, structureId) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureFilterCommandService, structureId) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureFilterCommandService = structureFilterCommandService;
         this.structureId = structureId;
@@ -25117,6 +28106,13 @@ class StructureHeaderFilterComponent extends SmartComponent {
     filter(phrase) {
         // this.structureFilterCommandService.addFilter(this.column.getFieldId(), '1', phrase, this.structureId);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-header-filter';
+    }
 }
 StructureHeaderFilterComponent.decorators = [
     { type: Component, args: [{
@@ -25137,6 +28133,7 @@ StructureHeaderFilterComponent.decorators = [
 /** @nocollapse */
 StructureHeaderFilterComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: FilterCommandInvoker },
     { type: StructureId }
 ];
@@ -25173,8 +28170,6 @@ if (false) {
  */
 class StructureContentComponent extends SmartComponent {
     /**
-     * @param {?} platformId
-     * @param {?} renderer
      * @param {?} elementRef
      * @param {?} changeDetectorRef
      * @param {?} formationCommandService
@@ -25191,11 +28186,9 @@ class StructureContentComponent extends SmartComponent {
      * @param {?} schemaRowClassArchive
      * @param {?} schemaRowStyleArchive
      */
-    constructor(platformId, renderer, elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
+    constructor(elementRef, changeDetectorRef, formationCommandService, structureCellEditArchive, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
     rowSelectionTypeArchive, structureSearchPhraseRepository, structureSearchHighlightArchive, schemaRowClassArchive, schemaRowStyleArchive) {
-        super(changeDetectorRef);
-        this.platformId = platformId;
-        this.renderer = renderer;
+        super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
         this.formationCommandService = formationCommandService;
@@ -25234,27 +28227,6 @@ class StructureContentComponent extends SmartComponent {
             this.checkboxSelection = type === RowSelectionType.CHECKBOX;
             this.reRender();
         }));
-        // this.formationWarehouse
-        // 	.onRowSelectedReadModel()
-        // 	.pipe(
-        // 		filter(() => !this.checkboxSelection),
-        // 		this.takeUntil()
-        // 	)
-        // 	.subscribe((rowSelected: RowSelectedReadModel) => {
-        //
-        // 		this.clearSelectedRows();
-        //
-        // 		rowSelected.getAll()
-        // 				   .forEach((id: string) => {
-        //
-        // 					   const strippedId = 'gui' + id.replace(/-/g, ''),
-        // 						   selectedRowEl = this.elementRef.nativeElement.querySelector(`#${strippedId}`);
-        //
-        // 					   if (selectedRowEl) {
-        // 						   this.renderer.addClass(selectedRowEl, 'selected');
-        // 					   }
-        // 				   });
-        // 	});
         this.structureEditModeArchive
             .onValue()
             .pipe(this.takeUntil())
@@ -25316,7 +28288,6 @@ class StructureContentComponent extends SmartComponent {
          */
         (schemaRowClass) => {
             this.schemaRowClass = schemaRowClass;
-            console.log(this.schemaRowClass);
             this.reRender();
         }));
         this.schemaRowStyleArchive
@@ -25344,9 +28315,6 @@ class StructureContentComponent extends SmartComponent {
     translateY(index) {
         /** @type {?} */
         let height = index * this.rowHeight;
-        // if (index > this.rowDetailOpened) {
-        // 	height += 200;
-        // }
         return `translateY(${height}px)`;
     }
     /**
@@ -25359,35 +28327,23 @@ class StructureContentComponent extends SmartComponent {
         }
     }
     /**
-     * @private
+     * @protected
      * @return {?}
      */
-    clearSelectedRows() {
-        /** @type {?} */
-        const selectedElements = this.elementRef.nativeElement.querySelectorAll('.selected');
-        if (isPlatformBrowser(this.platformId)) {
-            selectedElements.forEach((/**
-             * @param {?} el
-             * @return {?}
-             */
-            (el) => {
-                this.renderer.removeClass(el, 'selected');
-            }));
-        }
+    getSelectorName() {
+        return 'gui-structure-content';
     }
 }
 StructureContentComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-content',
-                template: "<div class=\"gui-content\">\n\n\t<gui-structure-row (click)=\"toggleSelectedRow(entity)\"\n\t\t\t\t\t   *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t\t\t\t   [cellEditing]=\"cellEditing\"\n\t\t\t\t\t   [checkboxSelection]=\"checkboxSelection\"\n\t\t\t\t\t   [columns]=\"columns\"\n\t\t\t\t\t   [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t\t\t\t   [editMode]=\"editMode\"\n\t\t\t\t\t   [entity]=\"entity\"\n\t\t\t\t\t   [id]=\"entity.getUiId()\"\n\t\t\t\t\t   [index]=\"index\"\n\t\t\t\t\t   [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t\t\t\t   [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t\t\t\t   [rowClass]=\"schemaRowClass\"\n\t\t\t\t\t   [rowStyle]=\"schemaRowStyle\"\n\t\t\t\t\t   [searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t   [style.height.px]=\"rowHeight\"\n\t\t\t\t\t   class=\"gui-row\">\n\t</gui-structure-row>\n\n</div>\n",
+                selector: 'div[gui-structure-content]',
+                template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureContentComponent.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
-    { type: Renderer2 },
     { type: ElementRef },
     { type: ChangeDetectorRef },
     { type: FormationCommandInvoker },
@@ -25433,16 +28389,6 @@ if (false) {
     StructureContentComponent.prototype.schemaRowClass;
     /** @type {?} */
     StructureContentComponent.prototype.schemaRowStyle;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureContentComponent.prototype.platformId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureContentComponent.prototype.renderer;
     /**
      * @type {?}
      * @private
@@ -25528,22 +28474,24 @@ class StructureRowComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
      * @param {?} elRef
-     * @param {?} renderer2
      * @param {?} structureId
      * @param {?} formationWarehouse
      * @param {?} formationCommandDispatcher
+     * @param {?} cssClassModifier
      */
-    constructor(changeDetectorRef, elRef, renderer2, structureId, formationWarehouse, formationCommandDispatcher) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elRef, structureId, formationWarehouse, formationCommandDispatcher, cssClassModifier) {
+        super(changeDetectorRef, elRef);
         this.changeDetectorRef = changeDetectorRef;
         this.elRef = elRef;
-        this.renderer2 = renderer2;
         this.structureId = structureId;
         this.formationWarehouse = formationWarehouse;
         this.formationCommandDispatcher = formationCommandDispatcher;
+        this.cssClassModifier = cssClassModifier;
         this.detailsEnabled = false;
         this.checkboxSelection = false;
         this.selectedItem = false;
+        this.styleModifier = new StyleModifier(this.elRef.nativeElement);
+        this.classModifier = new ClassModifier(this.elRef.nativeElement);
     }
     /**
      * @param {?} changes
@@ -25552,6 +28500,8 @@ class StructureRowComponent extends SmartComponent {
     ngOnChanges(changes) {
         if (changes.entity !== undefined && changes.entity.currentValue !== undefined) {
             this.checkSelectedItem();
+            this.updateRowClass(changes.entity.previousValue);
+            this.updateRowStyle(changes.entity.previousValue);
         }
         if (changes.rowClass !== undefined && changes.rowClass.currentValue !== undefined) {
             this.updateRowClass();
@@ -25578,10 +28528,10 @@ class StructureRowComponent extends SmartComponent {
             this.checkSelectedItem();
             if (prevValue !== this.selectedItem) {
                 if (prevValue) {
-                    this.renderer2.removeClass(this.elRef.nativeElement, 'selected');
+                    this.cssClassModifier.unselect(this.elRef.nativeElement);
                 }
                 else {
-                    this.renderer2.addClass(this.elRef.nativeElement, 'selected');
+                    this.cssClassModifier.select(this.elRef.nativeElement);
                 }
                 this.changeDetectorRef.detectChanges();
             }
@@ -25618,57 +28568,110 @@ class StructureRowComponent extends SmartComponent {
             this.selectedItem = this.row.isSelected(this.entity.getId());
             if (prevValue !== this.selectedItem) {
                 if (prevValue) {
-                    this.renderer2.removeClass(this.elRef.nativeElement, 'selected');
+                    this.cssClassModifier.unselect(this.elRef.nativeElement);
                 }
                 else {
-                    this.renderer2.addClass(this.elRef.nativeElement, 'selected');
+                    this.cssClassModifier.select(this.elRef.nativeElement);
                 }
             }
         }
     }
     /**
      * @private
+     * @param {?} entity
      * @return {?}
      */
-    updateRowStyle() {
+    calculateRowStyle(entity) {
         if (!this.rowStyle) {
-            return;
+            return '';
         }
         if (typeof this.rowStyle.style === 'string') {
-            /** @type {?} */
-            let rowStyle = this.rowStyle.style || '';
-            this.renderRowStyles(rowStyle);
+            return this.rowStyle.style || '';
         }
         if (typeof this.rowStyle.styleFunction === 'function') {
-            /** @type {?} */
-            let rowStyle = this.rowStyle.styleFunction(this.entity.getData(), this.index);
-            this.renderRowStyles(rowStyle);
+            return this.rowStyle.styleFunction(entity.getData(), entity.getPosition());
         }
     }
     /**
      * @private
-     * @param {?=} rowStyle
+     * @param {?=} prevEntity
      * @return {?}
      */
-    renderRowStyles(rowStyle = '') {
+    updateRowStyle(prevEntity) {
+        if (prevEntity) {
+            /** @type {?} */
+            const rowStylesToRemove = this.calculateRowStyle(prevEntity);
+            this.removeRowStyles(rowStylesToRemove);
+        }
+        /** @type {?} */
+        const rowStylesToAdd = this.calculateRowStyle(this.entity);
+        this.renderRowStyles(rowStylesToAdd);
+    }
+    /**
+     * @private
+     * @param {?} rowStyle
+     * @return {?}
+     */
+    removeRowStyles(rowStyle) {
+        if (!rowStyle) {
+            return;
+        }
         /** @type {?} */
         const styles = rowStyle.split(';');
         for (let i = 0; i < styles.length; i += 1) {
             /** @type {?} */
             const separatedStyles = styles[i].split(':');
             if (separatedStyles[0] && separatedStyles[1]) {
-                this.renderer2.setStyle(this.elRef.nativeElement, separatedStyles[0].trim(), separatedStyles[1].trim());
+                this.styleModifier.getHost().removeStyleByName(separatedStyles[0].trim());
             }
         }
-        return rowStyle;
     }
     /**
      * @private
+     * @param {?} rowStyle
      * @return {?}
      */
-    updateRowClass() {
-        if (!this.rowClass) {
+    renderRowStyles(rowStyle) {
+        if (!rowStyle) {
             return;
+        }
+        /** @type {?} */
+        const styles = rowStyle.split(';');
+        for (let i = 0; i < styles.length; i += 1) {
+            /** @type {?} */
+            const separatedStyles = styles[i].split(':');
+            if (separatedStyles[0] && separatedStyles[1]) {
+                this.styleModifier.getHost().setStyleByName(separatedStyles[0].trim(), separatedStyles[1].trim());
+            }
+        }
+    }
+    /**
+     * @private
+     * @param {?=} prevEntity
+     * @return {?}
+     */
+    updateRowClass(prevEntity) {
+        if (prevEntity) {
+            /** @type {?} */
+            const toRemoveClass = this.calculateRowClass(prevEntity);
+            if (toRemoveClass) {
+                this.classModifier.getHost().remove(toRemoveClass);
+            }
+        }
+        /** @type {?} */
+        const toAddClass = this.calculateRowClass(this.entity);
+        if (toAddClass) {
+            this.classModifier.getHost().add(toAddClass);
+        }
+    }
+    /**
+     * @private
+     * @param {?} entity
+     * @return {?}
+     */
+    calculateRowClass(entity) {
+        if (!this.rowClass) {
+            return '';
         }
         /** @type {?} */
         let clazz;
@@ -25676,19 +28679,24 @@ class StructureRowComponent extends SmartComponent {
             clazz = this.rowClass.class || '';
         }
         if (typeof this.rowClass.classFunction === 'function') {
-            if (this.entity) {
-                clazz = this.rowClass.classFunction(this.entity.getData(), this.index) || '';
+            if (entity) {
+                clazz = this.rowClass.classFunction(entity.getData(), entity.getPosition()) || '';
             }
         }
-        if (clazz) {
-            this.renderer2.addClass(this.elRef.nativeElement, clazz);
-        }
+        return clazz;
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-row';
     }
 }
 StructureRowComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-row',
-                template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<gui-structure-cell *ngFor=\"let column of columns; trackBy: trackByFn\"\n\t\t\t\t\t[cellEditingEnabled]=\"cellEditing\"\n\t\t\t\t\t[cell]=\"column\"\n\t\t\t\t\t[editMode]=\"editMode\"\n\t\t\t\t\t[entity]=\"entity\"\n\t\t\t\t\t[searchPhrase]=\"searchPhrase\"\n\t\t\t\t\t[style.width.px]=\"column.width\"\n\t\t\t\t\tclass=\"gui-cell\">\n</gui-structure-cell>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
+                selector: 'div[gui-structure-row]',
+                template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn\" [cellEditingEnabled]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -25697,10 +28705,10 @@ StructureRowComponent.decorators = [
 StructureRowComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: ElementRef },
-    { type: Renderer2 },
     { type: StructureId },
     { type: FormationWarehouse },
-    { type: FormationCommandInvoker }
+    { type: FormationCommandInvoker },
+    { type: CssClassModifier }
 ];
 StructureRowComponent.propDecorators = {
     entity: [{ type: Input }],
@@ -25746,17 +28754,22 @@ if (false) {
      * @type {?}
      * @private
      */
+    StructureRowComponent.prototype.styleModifier;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.classModifier;
+    /**
+     * @type {?}
+     * @private
+     */
     StructureRowComponent.prototype.changeDetectorRef;
     /**
      * @type {?}
      * @private
      */
     StructureRowComponent.prototype.elRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureRowComponent.prototype.renderer2;
     /**
      * @type {?}
      * @private
@@ -25772,6 +28785,11 @@ if (false) {
      * @private
      */
     StructureRowComponent.prototype.formationCommandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowComponent.prototype.cssClassModifier;
 }
 
 /**
@@ -26070,7 +29088,7 @@ class StructureCellComponent extends SmartComponent {
      * @param {?} sourceCommandService
      */
     constructor(changeDetectorRef, elementRef, structureCellEditArchive, structureCellEditStore, cellEditCloseAllService, sourceCommandService) {
-        super(changeDetectorRef);
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.elementRef = elementRef;
         this.structureCellEditArchive = structureCellEditArchive;
@@ -26228,11 +29246,18 @@ class StructureCellComponent extends SmartComponent {
     publishEditSubmit() {
         this.publishEditState(StructureCellEditState.SUBMIT);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-cell';
+    }
 }
 StructureCellComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-cell[entity][cell]',
-                template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight()}\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: { element: cell.getValue(entity, searchPhrase) }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<gui-structure-cell-edit-boolean [cell]=\"cell\"\n\t\t\t\t\t\t\t\t\t [entity]=\"entity\">\n\t</gui-structure-cell-edit-boolean>\n</ng-container>\n",
+                selector: 'div[gui-structure-cell][entity][cell]',
+                template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight()}\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: { element: cell.getValue(entity, searchPhrase) }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -26320,39 +29345,38 @@ const structureParentComponent = new InjectionToken('StructureParentComponent');
 class StructureContainerComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
-     * @param {?} elementRef
-     * @param {?} renderer
+     * @param {?} elRef
      * @param {?} ngZone
      * @param {?} structureId
      * @param {?} structureCommandService
-     * @param {?} structureReadModelWarehouse
+     * @param {?} structureWarehouse
      * @param {?} structureVerticalFormationWarehouse
-     * @param {?} structureSourceWarehouse
-     * @param {?} compositionCommandService
+     * @param {?} sourceWarehouse
+     * @param {?} compositionCommandInvoker
      * @param {?} compositionWarehouse
-     * @param {?} structureFormationWarehouse
+     * @param {?} formationWarehouse
      * @param {?} resizeDetector
      * @param {?} structureParent
      */
-    constructor(changeDetectorRef, elementRef, renderer, ngZone, structureId, structureCommandService, structureReadModelWarehouse, structureVerticalFormationWarehouse, structureSourceWarehouse, compositionCommandService, compositionWarehouse, structureFormationWarehouse, resizeDetector, structureParent) {
-        super(changeDetectorRef);
-        this.elementRef = elementRef;
-        this.renderer = renderer;
+    constructor(changeDetectorRef, elRef, ngZone, structureId, structureCommandService, structureWarehouse, structureVerticalFormationWarehouse, sourceWarehouse, compositionCommandInvoker, compositionWarehouse, formationWarehouse, resizeDetector, structureParent) {
+        super(changeDetectorRef, elRef);
+        this.elRef = elRef;
         this.ngZone = ngZone;
         this.structureId = structureId;
         this.structureCommandService = structureCommandService;
-        this.structureReadModelWarehouse = structureReadModelWarehouse;
+        this.structureWarehouse = structureWarehouse;
         this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
-        this.structureSourceWarehouse = structureSourceWarehouse;
-        this.compositionCommandService = compositionCommandService;
+        this.sourceWarehouse = sourceWarehouse;
+        this.compositionCommandInvoker = compositionCommandInvoker;
         this.compositionWarehouse = compositionWarehouse;
-        this.structureFormationWarehouse = structureFormationWarehouse;
+        this.formationWarehouse = formationWarehouse;
         this.resizeDetector = resizeDetector;
         this.structureParent = structureParent;
         this.columns = [];
         this.source = [];
         this.autoResizeWidthEnabled = false;
         this.scrollObservation$ = new Subject();
+        this.styleModifier = new StyleModifier(this.elRef.nativeElement);
     }
     /**
      * @return {?}
@@ -26366,9 +29390,10 @@ class StructureContainerComponent extends SmartComponent {
          * @return {?}
          */
         (containerHeight) => {
+            console.log(containerHeight);
             this.setContainerHeight(containerHeight);
         }));
-        combineLatest(this.structureSourceWarehouse.onEntities(), this.compositionWarehouse.onTemplateColumns())
+        combineLatest(this.sourceWarehouse.onEntities(), this.compositionWarehouse.onTemplateColumns())
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} arr
@@ -26423,7 +29448,7 @@ class StructureContainerComponent extends SmartComponent {
          * @return {?}
          */
         (width) => {
-            this.renderer.setStyle(this.sourceCollectionRef.nativeElement, 'width', width + 'px');
+            this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setWidth(width);
         }));
         this.structureVerticalFormationWarehouse
             .onVerticalScrollEnabled(this.structureId)
@@ -26440,7 +29465,7 @@ class StructureContainerComponent extends SmartComponent {
                 this.disableScrollObservation();
             }
         }));
-        this.structureReadModelWarehouse
+        this.structureWarehouse
             .onStructure()
             .pipe(filter((/**
          * @param {?} str
@@ -26468,7 +29493,7 @@ class StructureContainerComponent extends SmartComponent {
          * @return {?}
          */
         (scrollPosition) => {
-            this.elementRef.nativeElement.scrollTop = scrollPosition;
+            this.elRef.nativeElement.scrollTop = scrollPosition;
         }));
     }
     /**
@@ -26476,7 +29501,7 @@ class StructureContainerComponent extends SmartComponent {
      */
     ngOnDestroy() {
         super.ngOnDestroy();
-        this.resizeDetector.destroy(this.elementRef.nativeElement);
+        this.resizeDetector.destroy(this.elRef.nativeElement);
     }
     /**
      * @private
@@ -26485,7 +29510,7 @@ class StructureContainerComponent extends SmartComponent {
      */
     setContainerHeight(height) {
         this.height = height;
-        this.renderer.setStyle(this.elementRef.nativeElement, 'height', this.height + 'px');
+        this.styleModifier.getHost().setHeight(height);
     }
     /**
      * @private
@@ -26494,8 +29519,8 @@ class StructureContainerComponent extends SmartComponent {
      * @return {?}
      */
     setSourceHeight(topMargin, sourceHeight) {
-        this.renderer.setStyle(this.sourceCollectionRef.nativeElement, 'padding-top', topMargin + 'px');
-        this.renderer.setStyle(this.sourceCollectionRef.nativeElement, 'height', sourceHeight + 'px');
+        this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setPaddingTop(topMargin);
+        this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setHeight(sourceHeight);
     }
     /**
      * @private
@@ -26504,7 +29529,7 @@ class StructureContainerComponent extends SmartComponent {
      */
     recalculateContainer(width) {
         if (this.autoResizeWidthEnabled) {
-            this.compositionCommandService.setContainerWidth(width);
+            this.compositionCommandInvoker.setContainerWidth(width);
         }
     }
     /**
@@ -26517,7 +29542,7 @@ class StructureContainerComponent extends SmartComponent {
          * @return {?}
          */
         () => {
-            fromEvent(this.elementRef.nativeElement, 'scroll')
+            fromEvent(this.elRef.nativeElement, 'scroll')
                 .pipe(
             // auditTime(10),
             takeUntil(this.scrollObservation$), this.takeUntil())
@@ -26540,11 +29565,18 @@ class StructureContainerComponent extends SmartComponent {
         this.scrollObservation$.next();
         this.scrollObservation$.complete();
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-container';
+    }
 }
 StructureContainerComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-container',
-                template: "<div #sourceCollection\n\t class=\"gui-structure-container\">\n\n\t<gui-structure-content [columns]=\"columns\"\n\t\t\t\t\t\t   [source]=\"source\">\n\t</gui-structure-content>\n\n</div>\n",
+                selector: 'div[gui-structure-container]',
+                template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -26553,7 +29585,6 @@ StructureContainerComponent.decorators = [
 StructureContainerComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: ElementRef },
-    { type: Renderer2 },
     { type: NgZone },
     { type: StructureId },
     { type: StructureCommandDispatcher },
@@ -26594,12 +29625,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.elementRef;
+    StructureContainerComponent.prototype.styleModifier;
     /**
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.renderer;
+    StructureContainerComponent.prototype.elRef;
     /**
      * @type {?}
      * @private
@@ -26619,7 +29650,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.structureReadModelWarehouse;
+    StructureContainerComponent.prototype.structureWarehouse;
     /**
      * @type {?}
      * @private
@@ -26629,12 +29660,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.structureSourceWarehouse;
+    StructureContainerComponent.prototype.sourceWarehouse;
     /**
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.compositionCommandService;
+    StructureContainerComponent.prototype.compositionCommandInvoker;
     /**
      * @type {?}
      * @private
@@ -26644,7 +29675,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureContainerComponent.prototype.structureFormationWarehouse;
+    StructureContainerComponent.prototype.formationWarehouse;
     /**
      * @type {?}
      * @private
@@ -26665,7 +29696,7 @@ class StructureQuickFiltersComponent {
 }
 StructureQuickFiltersComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-quick-fitlers',
+                selector: 'div[gui-structure-quick-filters]',
                 template: `
 
 		QuickFilters
@@ -26690,31 +29721,32 @@ const STRUCTURE_CSS_CLASS_NAME = new InjectionToken(`${prefix} - css className`)
 class StructureBlueprintComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureDefinition
      * @param {?} structureId
-     * @param {?} structureReadModelService
-     * @param {?} structureInfoPanelEnabledArchive
-     * @param {?} pagingReadModelService
+     * @param {?} structureWarehouse
+     * @param {?} structureInfoPanelArchive
+     * @param {?} pagingWarehouse
      * @param {?} structureSummariesArchive
-     * @param {?} structureFilterReadModelRepository
-     * @param {?} structureSearchReadModelRepository
+     * @param {?} filterWarehouse
+     * @param {?} searchWarehouse
      * @param {?} structureHeaderTopEnabledArchive
      * @param {?} structureHeaderBottomEnabledArchive
      * @param {?} structureTitlePanelConfigArchive
      * @param {?} structureFooterPanelConfigArchive
      * @param {?} className
      */
-    constructor(changeDetectorRef, structureDefinition, structureId, structureReadModelService, structureInfoPanelEnabledArchive, pagingReadModelService, structureSummariesArchive, structureFilterReadModelRepository, structureSearchReadModelRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureDefinition, structureId, structureWarehouse, structureInfoPanelArchive, pagingWarehouse, structureSummariesArchive, filterWarehouse, searchWarehouse, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureDefinition = structureDefinition;
         this.structureId = structureId;
-        this.structureReadModelService = structureReadModelService;
-        this.structureInfoPanelEnabledArchive = structureInfoPanelEnabledArchive;
-        this.pagingReadModelService = pagingReadModelService;
+        this.structureWarehouse = structureWarehouse;
+        this.structureInfoPanelArchive = structureInfoPanelArchive;
+        this.pagingWarehouse = pagingWarehouse;
         this.structureSummariesArchive = structureSummariesArchive;
-        this.structureFilterReadModelRepository = structureFilterReadModelRepository;
-        this.structureSearchReadModelRepository = structureSearchReadModelRepository;
+        this.filterWarehouse = filterWarehouse;
+        this.searchWarehouse = searchWarehouse;
         this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
         this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
         this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
@@ -26726,6 +29758,7 @@ class StructureBlueprintComponent extends SmartComponent {
         this.quickFiltersEnabled = false;
         this.infoPanelEnabled = false;
         this.items = [];
+        this.localStreamCloser = new StreamCloser();
         this.headerCssClass = `gui-${this.className}-header`;
         this.contentCssClass = `gui-${this.className}-content`;
     }
@@ -26735,7 +29768,7 @@ class StructureBlueprintComponent extends SmartComponent {
     ngOnInit() {
         this.structureHeaderTopEnabledArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} topHeaderEnabled
          * @return {?}
@@ -26746,7 +29779,7 @@ class StructureBlueprintComponent extends SmartComponent {
         }));
         this.structureHeaderBottomEnabledArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} bottomHeaderEnabled
          * @return {?}
@@ -26755,9 +29788,9 @@ class StructureBlueprintComponent extends SmartComponent {
             this.bottomHeaderEnabled = bottomHeaderEnabled;
             this.changeDetectorRef.detectChanges();
         }));
-        this.structureReadModelService
+        this.structureWarehouse
             .onStructure()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} structure
          * @return {?}
@@ -26767,9 +29800,9 @@ class StructureBlueprintComponent extends SmartComponent {
             this.items = structure.getEntities();
             this.changeDetectorRef.detectChanges();
         }));
-        this.pagingReadModelService
+        this.pagingWarehouse
             .onPaging()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} paging
          * @return {?}
@@ -26778,9 +29811,9 @@ class StructureBlueprintComponent extends SmartComponent {
             this.pagingReadModel = paging;
             this.changeDetectorRef.detectChanges();
         }));
-        this.structureSearchReadModelRepository
+        this.searchWarehouse
             .onSearchEnabled(this.structureId)
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} enabled
          * @return {?}
@@ -26789,9 +29822,9 @@ class StructureBlueprintComponent extends SmartComponent {
             this.searchEnabled = enabled;
             this.changeDetectorRef.detectChanges();
         }));
-        this.structureFilterReadModelRepository
+        this.filterWarehouse
             .onQuickFiltersEnabled(this.structureId)
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} enabled
          * @return {?}
@@ -26802,7 +29835,7 @@ class StructureBlueprintComponent extends SmartComponent {
         }));
         this.structureSummariesArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} config
          * @return {?}
@@ -26812,9 +29845,9 @@ class StructureBlueprintComponent extends SmartComponent {
             this.bottomSummariesPanelEnabled = config.itBottomEnabled();
             this.changeDetectorRef.detectChanges();
         }));
-        this.structureInfoPanelEnabledArchive
+        this.structureInfoPanelArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} infoPanel
          * @return {?}
@@ -26825,7 +29858,7 @@ class StructureBlueprintComponent extends SmartComponent {
         }));
         this.structureTitlePanelConfigArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} titlePanel
          * @return {?}
@@ -26836,7 +29869,7 @@ class StructureBlueprintComponent extends SmartComponent {
         }));
         this.structureFooterPanelConfigArchive
             .onValue()
-            .pipe(this.takeUntil())
+            .pipe(this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @param {?} footerPanel
          * @return {?}
@@ -26845,6 +29878,12 @@ class StructureBlueprintComponent extends SmartComponent {
             this.footerPanelEnabled = footerPanel.enabled;
             this.changeDetectorRef.detectChanges();
         }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
     }
     /**
      * @return {?}
@@ -26888,11 +29927,18 @@ class StructureBlueprintComponent extends SmartComponent {
     isSourceEmpty() {
         return this.structure && this.structure.getEntities().length === 0;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-blueprint';
+    }
 }
 StructureBlueprintComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-blueprint',
-                template: "<!---------- TOP ---------->\n<gui-structure-title-panel *ngIf=\"titlePanelEnabled\"></gui-structure-title-panel>\n\n<gui-structure-top-panel *ngIf=\"searchEnabled\"></gui-structure-top-panel>\n\n<gui-structure-quick-fitlers *ngIf=\"quickFiltersEnabled\">\n</gui-structure-quick-fitlers>\n\n<gui-paging *ngIf=\"isPagingTopEnabled()\"\n\t\t\t[position]=\"0\">\n</gui-paging>\n\n<gui-structure-summaries-panel [enabled]=\"topSummariesPanelEnabled\"\n\t\t\t\t\t\t\t   class=\"gui-structure-summaries-panel-top\">\n</gui-structure-summaries-panel>\n\n<gui-structure-header *ngIf=\"isColumnHeaderTopEnabled()\"\n\t\t\t\t\t  [ngClass]=\"getHeaderTopClasses()\">\n</gui-structure-header>\n\n\n<!---------- MAIN ---------->\n<gui-structure-container [ngClass]=\"contentCssClass\">\n</gui-structure-container>\n\n<gui-empty-source [items]=\"items\">\n</gui-empty-source>\n\n\n<!---------- BOTTOM ---------->\n<gui-structure-header *ngIf=\"isColumnHeaderBottomEnabled()\"\n\t\t\t\t\t  [ngClass]=\"getHeaderBottomClasses()\">\n</gui-structure-header>\n\n<gui-structure-summaries-panel [enabled]=\"bottomSummariesPanelEnabled\"\n\t\t\t\t\t\t\t   class=\"gui-structure-summaries-panel-bottom\">\n</gui-structure-summaries-panel>\n\n<gui-structure-footer-panel *ngIf=\"footerPanelEnabled\"></gui-structure-footer-panel>\n\n<gui-paging *ngIf=\"isPagingBottomEnabled()\"\n\t\t\t[position]=\"1\">\n</gui-paging>\n\n<gui-structure-info-panel *ngIf=\"infoPanelEnabled\"></gui-structure-info-panel>\n",
+                selector: 'div[gui-structure-blueprint]',
+                template: "<!---------- TOP ---------->\n<div *ngIf=\"titlePanelEnabled\" gui-structure-title-panel></div>\n\n<div *ngIf=\"searchEnabled\" gui-structure-top-panel></div>\n\n<!--<div gui-structure-quick-filters *ngIf=\"quickFiltersEnabled\">-->\n<!--</div>-->\n\n<div *ngIf=\"isPagingTopEnabled()\" [position]=\"0\"\n\t gui-paging>\n</div>\n\n<div [enabled]=\"topSummariesPanelEnabled\" class=\"gui-structure-summaries-panel-top\"\n\t gui-structure-summaries-panel>\n</div>\n\n<div *ngIf=\"isColumnHeaderTopEnabled()\" [ngClass]=\"getHeaderTopClasses()\"\n\t gui-structure-header>\n</div>\n\n\n<!---------- MAIN ---------->\n<div [ngClass]=\"contentCssClass\" gui-structure-container>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n\n\n<!---------- BOTTOM ---------->\n<div *ngIf=\"isColumnHeaderBottomEnabled()\" [ngClass]=\"getHeaderBottomClasses()\"\n\t gui-structure-header>\n</div>\n\n<div [enabled]=\"bottomSummariesPanelEnabled\" class=\"gui-structure-summaries-panel-bottom\"\n\t gui-structure-summaries-panel>\n</div>\n\n<div *ngIf=\"footerPanelEnabled\" gui-structure-footer-panel></div>\n\n<div *ngIf=\"isPagingBottomEnabled()\" [position]=\"1\"\n\t gui-paging>\n</div>\n\n<div *ngIf=\"infoPanelEnabled\" gui-structure-info-panel></div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -26900,6 +29946,7 @@ StructureBlueprintComponent.decorators = [
 /** @nocollapse */
 StructureBlueprintComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureDefinition },
     { type: StructureId },
     { type: StructureWarehouse },
@@ -26935,17 +29982,22 @@ if (false) {
     StructureBlueprintComponent.prototype.topHeaderEnabled;
     /** @type {?} */
     StructureBlueprintComponent.prototype.bottomHeaderEnabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureBlueprintComponent.prototype.pagingReadModel;
     /** @type {?} */
     StructureBlueprintComponent.prototype.titlePanelEnabled;
     /** @type {?} */
     StructureBlueprintComponent.prototype.footerPanelEnabled;
     /** @type {?} */
     StructureBlueprintComponent.prototype.items;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureBlueprintComponent.prototype.pagingReadModel;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureBlueprintComponent.prototype.localStreamCloser;
     /**
      * @type {?}
      * @private
@@ -26965,17 +30017,17 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.structureReadModelService;
+    StructureBlueprintComponent.prototype.structureWarehouse;
     /**
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.structureInfoPanelEnabledArchive;
+    StructureBlueprintComponent.prototype.structureInfoPanelArchive;
     /**
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.pagingReadModelService;
+    StructureBlueprintComponent.prototype.pagingWarehouse;
     /**
      * @type {?}
      * @private
@@ -26985,12 +30037,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.structureFilterReadModelRepository;
+    StructureBlueprintComponent.prototype.filterWarehouse;
     /**
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.structureSearchReadModelRepository;
+    StructureBlueprintComponent.prototype.searchWarehouse;
     /**
      * @type {?}
      * @private
@@ -27114,19 +30166,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FilterToggledEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     */
-    constructor(aggregateId) {
-        super(aggregateId, 'FilterToggledEvent');
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FilterAddedEvent extends StructureDomainEvent {
     /**
      * @param {?} aggregateId
@@ -27157,34 +30196,6 @@ if (false) {
      * @private
      */
     FilterAddedEvent.prototype.value;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ActiveFiltersSetEvent extends StructureDomainEvent {
-    /**
-     * @param {?} structureId
-     * @param {?} filters
-     */
-    constructor(structureId, filters) {
-        super(structureId, 'ActiveFiltersSetEvent');
-        this.filters = filters;
-    }
-    /**
-     * @return {?}
-     */
-    getFilters() {
-        return this.filters;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFiltersSetEvent.prototype.filters;
 }
 
 /**
@@ -28037,766 +31048,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class Filter {
-    /**
-     * @param {?} filterId
-     * @param {?} fieldId
-     * @param {?} filterTypeId
-     * @param {?} filterValue
-     */
-    constructor(filterId, fieldId, filterTypeId, filterValue) {
-        this.filterId = filterId;
-        this.fieldId = fieldId;
-        this.filterTypeId = filterTypeId;
-        this.filterValue = filterValue;
-    }
-    /**
-     * @return {?}
-     */
-    getFilterId() {
-        return this.filterId;
-    }
-    /**
-     * @return {?}
-     */
-    getFilterTypeId() {
-        return this.filterTypeId;
-    }
-    /**
-     * @return {?}
-     */
-    getFieldId() {
-        return this.fieldId;
-    }
-    /**
-     * @return {?}
-     */
-    getFilterValue() {
-        return this.filterValue;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Filter.prototype.filterId;
-    /**
-     * @type {?}
-     * @private
-     */
-    Filter.prototype.fieldId;
-    /**
-     * @type {?}
-     * @private
-     */
-    Filter.prototype.filterTypeId;
-    /**
-     * @type {?}
-     * @private
-     */
-    Filter.prototype.filterValue;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterSettings {
-    /**
-     * @param {?=} filteringEnabled
-     * @param {?=} searchEnabled
-     * @param {?=} quickFiltersEnabled
-     */
-    constructor(filteringEnabled = false, searchEnabled = false, quickFiltersEnabled = false) {
-        this.filteringEnabled = false;
-        this.searchEnabled = false;
-        this.quickFiltersEnabled = false;
-        this.filteringEnabled = filteringEnabled;
-        this.searchEnabled = searchEnabled;
-        this.quickFiltersEnabled = quickFiltersEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isFilteringEnabled() {
-        return this.filteringEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isQuickFilteringEnabled() {
-        return this.quickFiltersEnabled;
-    }
-    /**
-     * @return {?}
-     */
-    isSearchingEnabled() {
-        return this.searchEnabled;
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setFilterConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.filteringEnabled = config.enabled;
-        }
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setSearchingConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.searchEnabled = config.enabled;
-        }
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    setQuickFiltersConfig(config) {
-        if (config && config.enabled !== undefined && config.enabled !== null) {
-            this.quickFiltersEnabled = config.enabled;
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.filteringEnabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.searchEnabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterSettings.prototype.quickFiltersEnabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- * @template T
- */
-class BaseFilterType {
-    /**
-     * @protected
-     * @param {?} filterTypeId
-     */
-    constructor(filterTypeId) {
-        this.filterTypeId = filterTypeId;
-    }
-    /**
-     * @return {?}
-     */
-    getId() {
-        return this.filterTypeId;
-    }
-    /**
-     * @param {?} entities
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    filterMany(entities, field, value) {
-        if (entities.length === 0) {
-            return entities;
-        }
-        return entities.filter((/**
-         * @param {?} item
-         * @return {?}
-         */
-        (item) => {
-            return this.filterEntity(item, field, value);
-        }));
-    }
-    /**
-     * @param {?} entity
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    filterOne(entity, field, value) {
-        return this.filterEntity(entity, field, value);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    BaseFilterType.prototype.filterTypeId;
-    /**
-     * @abstract
-     * @return {?}
-     */
-    BaseFilterType.prototype.getName = function () { };
-    /**
-     * @abstract
-     * @protected
-     * @param {?} entity
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    BaseFilterType.prototype.filterEntity = function (entity, field, value) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ContainsFilterType extends BaseFilterType {
-    /**
-     * @param {?} filterTypeId
-     */
-    constructor(filterTypeId) {
-        super(filterTypeId);
-    }
-    /**
-     * @return {?}
-     */
-    getName() {
-        return 'Contains';
-    }
-    /**
-     * @protected
-     * @param {?} entity
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    filterEntity(entity, field, value) {
-        /** @type {?} */
-        const fieldValue = field.getValue(entity);
-        return !!fieldValue.includes(value);
-    }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeId {
-    /**
-     * @param {?} id
-     */
-    constructor(id) {
-        this.id = id;
-    }
-    /**
-     * @return {?}
-     */
-    toString() {
-        return this.id;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeId.prototype.id;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeIdGenerator {
-    /**
-     * @return {?}
-     */
-    generate() {
-        FilterTypeIdGenerator.index += 1;
-        return new FilterTypeId(`${FilterTypeIdGenerator.index}`);
-    }
-}
-FilterTypeIdGenerator.index = 0;
-if (false) {
-    /** @type {?} */
-    FilterTypeIdGenerator.index;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeReadModel {
-    /**
-     * @param {?} id
-     * @param {?} name
-     */
-    constructor(id, name) {
-        this.filterTypeId = id;
-        this.name = name;
-    }
-    /**
-     * @return {?}
-     */
-    getId() {
-        return this.filterTypeId;
-    }
-    /**
-     * @return {?}
-     */
-    getName() {
-        return this.name;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeReadModel.prototype.filterTypeId;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeReadModel.prototype.name;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeManager {
-    /**
-     * @param {?} fields
-     */
-    constructor(fields) {
-        this.fieldIds = [];
-        this.map = new WeakMap();
-        this.filterTypeMap = new WeakMap();
-        this.dataTypeToFilterType = new Map();
-        this.filterTypeIdGenerator = new FilterTypeIdGenerator();
-        this.assignFilterTypes();
-        this.addFields(fields);
-    }
-    /**
-     * @param {?} filterTypeId
-     * @return {?}
-     */
-    getFilterType(filterTypeId) {
-        return this.filterTypeMap.get(filterTypeId);
-    }
-    /**
-     * @return {?}
-     */
-    getFieldIdsToFilterTypes() {
-        /** @type {?} */
-        const map = new Map();
-        for (let fieldId of this.fieldIds) {
-            /** @type {?} */
-            const filterTypes = this.map.get(fieldId);
-            /** @type {?} */
-            const readModels = filterTypes.map((/**
-             * @param {?} f
-             * @return {?}
-             */
-            f => {
-                return new FilterTypeReadModel(f.getId(), f.getName());
-            }));
-            map.set(fieldId.toString(), readModels);
-        }
-        return map;
-    }
-    /**
-     * @private
-     * @param {?} fields
-     * @return {?}
-     */
-    addFields(fields) {
-        for (let field of fields) {
-            this.addField(field);
-        }
-    }
-    /**
-     * @private
-     * @param {?} field
-     * @return {?}
-     */
-    addField(field) {
-        /** @type {?} */
-        const fieldId = field.getId();
-        /** @type {?} */
-        const dataType = field.getDataType();
-        /** @type {?} */
-        const filterTypesFromDataType = this.dataTypeToFilterType.get(dataType);
-        this.fieldIds.push(fieldId);
-        this.map.set(fieldId, [...filterTypesFromDataType]);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypes() {
-        this.assignFilterTypesForDataTypeUnknown();
-        this.assignFilterTypesForDataTypeNumber();
-        this.assignFilterTypesForDataTypeString();
-        this.assignFilterTypesForDataTypeBoolean();
-        this.assignFilterTypesForDataTypeDate();
-        this.assignFilterTypesForDataTypeCustom();
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeUnknown() {
-        this.dataTypeToFilterType.set(DataType.UNKNOWN, []);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeNumber() {
-        this.dataTypeToFilterType.set(DataType.NUMBER, []);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeString() {
-        /** @type {?} */
-        const filterTypes = [
-            new ContainsFilterType(this.generateId())
-        ];
-        this.dataTypeToFilterType.set(DataType.STRING, filterTypes);
-        this.addFilterTypes(filterTypes);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeBoolean() {
-        this.dataTypeToFilterType.set(DataType.BOOLEAN, []);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeDate() {
-        this.dataTypeToFilterType.set(DataType.DATE, []);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    assignFilterTypesForDataTypeCustom() {
-        this.dataTypeToFilterType.set(DataType.CUSTOM, []);
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    generateId() {
-        return this.filterTypeIdGenerator.generate();
-    }
-    /**
-     * @private
-     * @param {?} filterTypes
-     * @return {?}
-     */
-    addFilterTypes(filterTypes) {
-        for (let filterType of filterTypes) {
-            this.filterTypeMap.set(filterType.getId(), filterType);
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeManager.prototype.fieldIds;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeManager.prototype.map;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeManager.prototype.filterTypeMap;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeManager.prototype.dataTypeToFilterType;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeManager.prototype.filterTypeIdGenerator;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterId {
-    /**
-     * @param {?} filterId
-     */
-    constructor(filterId) {
-        this.id = filterId;
-    }
-    /**
-     * @return {?}
-     */
-    toString() {
-        return this.id;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterId.prototype.id;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterIdGenerator {
-    /**
-     * @return {?}
-     */
-    static generateId() {
-        return new FilterId(`${FilterIdGenerator.index}`);
-    }
-}
-FilterIdGenerator.index = 0;
-if (false) {
-    /** @type {?} */
-    FilterIdGenerator.index;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ActiveFilterReadModel {
-    /**
-     * @param {?} filterId
-     * @param {?} fieldName
-     * @param {?} filterTypeName
-     * @param {?} value
-     */
-    constructor(filterId, fieldName, filterTypeName, value) {
-        this.filterId = filterId;
-        this.fieldName = fieldName;
-        this.filterTypeName = filterTypeName;
-        this.value = value;
-    }
-    /**
-     * @return {?}
-     */
-    getText() {
-        return `${this.fieldName}: ${this.filterTypeName}: ${this.value}`;
-    }
-    /**
-     * @return {?}
-     */
-    getFilterId() {
-        return this.filterId;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterReadModel.prototype.filterId;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterReadModel.prototype.fieldName;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterReadModel.prototype.filterTypeName;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterReadModel.prototype.value;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterManager {
-    constructor() {
-        this.filterSettings = new FilterSettings();
-        // string -> FilterId
-        this.filters = new Map();
-        this.activeFilters = [];
-    }
-    /**
-     * @return {?}
-     */
-    getSettings() {
-        return this.filterSettings;
-    }
-    /**
-     * @return {?}
-     */
-    getAll() {
-        return Array.from(this.filters)
-            .map((/**
-         * @param {?} arr
-         * @return {?}
-         */
-        (arr) => arr[1]));
-    }
-    /**
-     * @param {?} fields
-     * @return {?}
-     */
-    getAllActiveFilters(fields) {
-        return this.activeFilters
-            .map((/**
-         * @param {?} af
-         * @return {?}
-         */
-        (af) => {
-            return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
-        }));
-    }
-    /**
-     * @return {?}
-     */
-    getFilterTypes() {
-        return this.filterTypeManager.getFieldIdsToFilterTypes();
-    }
-    /**
-     * @param {?} fields
-     * @return {?}
-     */
-    assignFilterTypes(fields) {
-        this.filterTypeManager = new FilterTypeManager(fields);
-    }
-    /**
-     * @param {?} fieldId
-     * @param {?} filterTypeId
-     * @param {?} value
-     * @return {?}
-     */
-    add(fieldId, filterTypeId, value) {
-        /** @type {?} */
-        const filter = new Filter(FilterIdGenerator.generateId(), fieldId, filterTypeId, value);
-        this.activeFilters.push(filter);
-    }
-    /**
-     * @param {?} entities
-     * @param {?} fields
-     * @return {?}
-     */
-    filter(entities, fields) {
-        /** @type {?} */
-        let filteredEntities = [...entities];
-        for (let filter of this.activeFilters) {
-            /** @type {?} */
-            const filterTypeId = filter.getFilterTypeId();
-            /** @type {?} */
-            const filterType = this.getFilterType(filterTypeId);
-            /** @type {?} */
-            const value = filter.getFilterValue();
-            filteredEntities = filterType.filterMany(filteredEntities, fields.get(filter.getFieldId().toString()), value);
-        }
-        return filteredEntities;
-    }
-    /**
-     * @return {?}
-     */
-    removeAll() {
-        this.activeFilters.length = 0;
-    }
-    /**
-     * @param {?} filterId
-     * @return {?}
-     */
-    remove(filterId) {
-        this.activeFilters =
-            this.activeFilters.filter((/**
-             * @param {?} filter
-             * @return {?}
-             */
-            (filter) => {
-                return filter.getFilterId() !== filterId;
-            }));
-    }
-    /**
-     * @private
-     * @param {?} filterTypeId
-     * @return {?}
-     */
-    getFilterType(filterTypeId) {
-        return this.filterTypeManager.getFilterType(filterTypeId);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.filterSettings;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.filters;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.activeFilters;
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterManager.prototype.filterTypeManager;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterManagerFactory {
-    /**
-     * @param {?=} enabled
-     * @return {?}
-     */
-    create(enabled = false) {
-        return new FilterManager();
-    }
-}
-FilterManagerFactory.decorators = [
-    { type: Injectable }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class StructurePreparedEntitiesSetAggregateEvent extends StructureAggregateEvent {
     /**
      * @param {?} aggregateId
@@ -28892,34 +31143,6 @@ class StructureCreatedAggregateEvent extends StructureAggregateEvent {
     toDomainEvent() {
         return new StructureCreatedEvent(this.getAggregateId());
     }
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypesInitedEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} map
-     */
-    constructor(aggregateId, map) {
-        super(aggregateId, 'FilterTypesInitedEvent');
-        this.map = map;
-    }
-    /**
-     * @return {?}
-     */
-    getMap() {
-        return this.map;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypesInitedEvent.prototype.map;
 }
 
 /**
@@ -29029,34 +31252,6 @@ if (false) {
      * @private
      */
     FilterRemovedAggregateEvent.prototype.activeFilters;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UniqueFilterCalculatedEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} map
-     */
-    constructor(aggregateId, map) {
-        super(aggregateId, 'UniqueFilterCalculatedEvent');
-        this.map = map;
-    }
-    /**
-     * @return {?}
-     */
-    getUniqueValues() {
-        return this.map;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueFilterCalculatedEvent.prototype.map;
 }
 
 /**
@@ -30984,19 +33179,31 @@ ItemEntityFactory.decorators = [
 class StructureTopPanelComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      */
-    constructor(changeDetectorRef) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
+        this.addClassToHost('gui-p-6');
+        this.addClassToHost('gui-border-b');
+        this.addClassToHost('gui-border-b-solid');
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-top-panel';
     }
 }
 StructureTopPanelComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-top-panel',
+                selector: 'div[gui-structure-top-panel]',
                 template: `
 
-		<gui-search-bar></gui-search-bar>
-<!--		<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
+		<div gui-search-bar
+			 class="gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto"></div>
+		<!--		<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31005,7 +33212,8 @@ StructureTopPanelComponent.decorators = [
 ];
 /** @nocollapse */
 StructureTopPanelComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 if (false) {
     /**
@@ -31051,7 +33259,7 @@ class StructureColumnConfigTriggerComponent extends SmartComponent {
      * @param {?} structureColumnConfigService
      */
     constructor(elementRef, changeDetectorRef, structureCommandService, structureColumnMenuConfigArchive, structureColumnConfigService) {
-        super(changeDetectorRef);
+        super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
         this.structureCommandService = structureCommandService;
@@ -31091,6 +33299,13 @@ class StructureColumnConfigTriggerComponent extends SmartComponent {
      */
     isEnabled() {
         return this.config && this.config.isEnabled();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-column-config-trigger';
     }
 }
 StructureColumnConfigTriggerComponent.decorators = [
@@ -31163,13 +33378,14 @@ if (false) {
 class StructureColumnConfigSortComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} compositionId
      * @param {?} structureId
      * @param {?} sortingCommandDispatcher
      * @param {?} compositionReadModelService
      */
-    constructor(changeDetectorRef, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.compositionId = compositionId;
         this.structureId = structureId;
@@ -31221,6 +33437,13 @@ class StructureColumnConfigSortComponent extends SmartComponent {
         event.stopPropagation();
         this.sortingCommandDispatcher.setSortOrder(this.column.getFieldId(), sort, this.compositionId, this.structureId);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-column-config-sort';
+    }
 }
 StructureColumnConfigSortComponent.decorators = [
     { type: Component, args: [{
@@ -31236,7 +33459,7 @@ StructureColumnConfigSortComponent.decorators = [
 			<gui-dropdown-item (click)="setSortOrder(status.ASC)"
 							   [class.gui-header-item-active]="isAscSort()">
 				<div class="gui-sort-title">
-					{{'headerMenuMainTabColumnSortAscending' | translate}}
+					{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}
 					<gui-structure-column-menu-arrow-icon [sort]="true" [rotateDeg]="0">
 					</gui-structure-column-menu-arrow-icon>
 				</div>
@@ -31245,7 +33468,7 @@ StructureColumnConfigSortComponent.decorators = [
 			<gui-dropdown-item (click)="setSortOrder(status.DESC)"
 							   [class.gui-header-item-active]="isDescSort()">
 				<div class="gui-sort-title">
-					{{'headerMenuMainTabColumnSortDescending' | translate}}
+					{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}
 					<gui-structure-column-menu-arrow-icon [sort]="true" [rotateDeg]="180">
 					</gui-structure-column-menu-arrow-icon>
 				</div>
@@ -31253,16 +33476,19 @@ StructureColumnConfigSortComponent.decorators = [
 
 			<gui-dropdown-item (click)="setSortOrder(status.NONE)"
 							   [class.gui-header-item-active]="isNoneSort()">
-				{{'headerMenuMainTabColumnSortNone' | translate}}
+				{{'headerMenuMainTabColumnSortNone' | guiTranslate}}
 			</gui-dropdown-item>
 
 		</gui-dropdown>
-	`
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureColumnConfigSortComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: CompositionId },
     { type: StructureId },
     { type: SortingCommandInvoker },
@@ -31338,7 +33564,7 @@ StructureColumnConfigColumnHideComponent.decorators = [
                 template: `
 		<div class="gui-header-menu-item"
 			 (click)="hideColumn(column)">
-			{{'headerMenuMainTabHideColumn' | translate}}
+			{{'headerMenuMainTabHideColumn' | guiTranslate}}
 		</div>
 	`
             }] }
@@ -31404,12 +33630,12 @@ StructureColumnConfigColumnMoveComponent.decorators = [
 			<div class="gui-header-menu-column-move-item left"
 				 (click)="moveLeft(column)">
 				<gui-structure-column-menu-arrow-icon [rotateDeg]="-90"></gui-structure-column-menu-arrow-icon>
-				{{'headerMenuMainTabMoveLeft' | translate}}
+				{{'headerMenuMainTabMoveLeft' | guiTranslate}}
 			</div>
 
 			<div class="gui-header-menu-column-move-item right"
 				 (click)="moveRight(column)">
-				{{'headerMenuMainTabMoveRight' | translate}}
+				{{'headerMenuMainTabMoveRight' | guiTranslate}}
 				<gui-structure-column-menu-arrow-icon></gui-structure-column-menu-arrow-icon>
 			</div>
 		</div>
@@ -31468,16 +33694,25 @@ StructureColumnMenuIconComponent.decorators = [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-const selector$3 = 'gui-structure-column-menu-arrow-icon';
-class StructureColumnMenuArrowIconComponent {
-    constructor() {
+class StructureColumnMenuArrowIconComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.rotateDeg = 90;
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-column-menu-arrow-icon';
     }
 }
 StructureColumnMenuArrowIconComponent.decorators = [
     { type: Component, args: [{
-                selector: selector$3,
+                selector: 'gui-structure-column-menu-arrow-icon',
                 template: `
 		<div [style.transform]="'rotate(' + rotateDeg + 'deg)'"
 			 [class.gui-structure-column-menu-sort-icon]="sort">
@@ -31489,11 +33724,12 @@ StructureColumnMenuArrowIconComponent.decorators = [
 		</div>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class]': `"${selector$3}"`
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+StructureColumnMenuArrowIconComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 StructureColumnMenuArrowIconComponent.propDecorators = {
     rotateDeg: [{ type: Input }],
@@ -31513,12 +33749,13 @@ if (false) {
 class UniqueValueListComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} filterWarehouse
      * @param {?} filterCommandDispatcher
      */
-    constructor(changeDetectorRef, structureId, filterWarehouse, filterCommandDispatcher) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
@@ -31574,50 +33811,27 @@ class UniqueValueListComponent extends SmartComponent {
     clearFilters() {
         this.filterCommandDispatcher.selectAllUniqueFilter(this.fieldId, this.structureId);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-unique-value-list';
+    }
 }
 UniqueValueListComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-unique-value-list',
-                template: `
-
-		<gui-checkbox [checked]="selectAllChecked"
-					  [indeterminate]="selectAllIndeterminate"
-					  (changed)="toggleAllSelect()">
-			Select all
-		</gui-checkbox>
-		<div class="gui-unique-value-list">
-			<div *ngFor="let value of uniqueValues">
-				<gui-checkbox [checked]="value.isEnabled()"
-							  (changed)="toggleSelect(value)">
-					{{value.getValue()}}
-				</gui-checkbox>
-			</div>
-		</div>
-
-		<div class="gui-unique-value-list-actions">
-			<!--			<button gui-button-->
-			<!--					[outline]="true"-->
-			<!--					(click)="clearFilters()">-->
-			<!--				Cancel-->
-			<!--			</button>-->
-
-			<button gui-button
-					[outline]="true"
-					[primary]="true"
-					(click)="clearFilters()">
-				Clear
-			</button>
-		</div>
-
-	`,
+                selector: 'div[gui-unique-value-list][fieldId]',
+                template: "<gui-checkbox (changed)=\"toggleAllSelect()\"\n\t\t\t  [checked]=\"selectAllChecked\"\n\t\t\t  [indeterminate]=\"selectAllIndeterminate\">\n\tSelect all\n</gui-checkbox>\n\n<div class=\"gui-unique-value-list-container gui-overflow-y-scroll gui-overflow-x-hidden\">\n\t<div *ngFor=\"let value of uniqueValues\">\n\t\t<gui-checkbox (changed)=\"toggleSelect(value)\"\n\t\t\t\t\t  [checked]=\"value.isEnabled()\">\n\t\t\t{{value.getValue()}}\n\t\t</gui-checkbox>\n\t</div>\n</div>\n\n<div class=\"gui-unique-value-list-actions gui-p-6 gui-flex gui-justify-end\">\n\t<button (click)=\"clearFilters()\"\n\t\t\t[outline]=\"true\"\n\t\t\t[primary]=\"true\"\n\t\t\tgui-button>\n\t\tClear\n\t</button>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
-                styles: [".gui-unique-value-list{max-height:300px;overflow-y:scroll;overflow-x:hidden}.gui-unique-value-list-actions{padding:8px;display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end}"]
+                styles: [".gui-unique-value-list-container{max-height:300px}"]
             }] }
 ];
 /** @nocollapse */
 UniqueValueListComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: FilterWarehouse },
     { type: FilterCommandInvoker }
@@ -31660,13 +33874,29 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class UniqueValueListModule {
+class UniqueValueListModule extends FeatureModule {
+    /**
+     * @param {?} filterApiModule
+     */
+    constructor(filterApiModule) {
+        super();
+        if (filterApiModule === null) {
+            throw new Error('FilterApiModule is required.');
+        }
+    }
+    /**
+     * @return {?}
+     */
+    static forComponent() {
+        return [];
+    }
 }
 UniqueValueListModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule,
-                    fabricImports
+                    fabricImports,
+                    FilterApiModule
                 ],
                 declarations: [
                     UniqueValueListComponent
@@ -31675,6 +33905,10 @@ UniqueValueListModule.decorators = [
                     UniqueValueListComponent
                 ]
             },] }
+];
+/** @nocollapse */
+UniqueValueListModule.ctorParameters = () => [
+    { type: FilterApiModule, decorators: [{ type: Optional }] }
 ];
 
 /**
@@ -31778,14 +34012,15 @@ if (false) {
 class StructureSummariesPanelComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} structureSummariesUiEventsRepository
      * @param {?} translationService
      * @param {?} sourceReadModelService
      * @param {?} compositionReadModelService
      */
-    constructor(changeDetectorRef, structureId, structureSummariesUiEventsRepository, translationService, sourceReadModelService, compositionReadModelService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, structureSummariesUiEventsRepository, translationService, sourceReadModelService, compositionReadModelService) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.structureSummariesUiEventsRepository = structureSummariesUiEventsRepository;
@@ -31793,6 +34028,7 @@ class StructureSummariesPanelComponent extends SmartComponent {
         this.sourceReadModelService = sourceReadModelService;
         this.compositionReadModelService = compositionReadModelService;
         this.sourceEmpty = false;
+        this.addClassToHost('gui-flex');
         this.structureSummariesUiEventsRepository
             .onSummariesChanged(this.structureId.toReadModelRootId())
             .pipe(this.takeUntil())
@@ -31850,10 +34086,17 @@ class StructureSummariesPanelComponent extends SmartComponent {
     isSummariesTypePresent(summaries) {
         return summaries !== undefined && summaries !== null;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-summaries-panel';
+    }
 }
 StructureSummariesPanelComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-summaries-panel',
+                selector: 'div[gui-structure-summaries-panel][enabled]',
                 template: `
 
 		<ng-container *ngIf="enabled && summaries && !sourceEmpty">
@@ -31866,13 +34109,13 @@ StructureSummariesPanelComponent.decorators = [
 
 					<div *ngIf="isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)"
 						 class="gui-structure-summaries-value">
-						<span [gui-tooltip]="summariesTranslations.countTooltip">{{'summariesCount' | translate}}</span>
+						<span [gui-tooltip]="summariesTranslations.countTooltip">{{'summariesCount' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).count }}</span>
 					</div>
 
 					<div *ngIf="isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)"
 						 class="gui-structure-summaries-value">
-						<span [gui-tooltip]="summariesTranslations.distinctTooltip">{{'summariesDist' | translate}}</span>
+						<span [gui-tooltip]="summariesTranslations.distinctTooltip">{{'summariesDist' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>
 					</div>
 
@@ -31882,7 +34125,7 @@ StructureSummariesPanelComponent.decorators = [
 						<span>
 							<!--							<span [gui-tooltip]="'Sum'" -->
 							<!--								  class="gui-math-symbol">&sum;</span>-->
-							{{'summariesSum' | translate}}
+							{{'summariesSum' | guiTranslate}}
 						</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).sum }}</span>
 					</div>
@@ -31894,7 +34137,7 @@ StructureSummariesPanelComponent.decorators = [
 						<!--							 class="gui-mean">-->
 						<!--							<span>_</span><span>X</span>-->
 						<!--						</div>-->
-						<span [gui-tooltip]="summariesTranslations.averageTooltip">{{'summariesAvg' | translate}}</span>
+						<span [gui-tooltip]="summariesTranslations.averageTooltip">{{'summariesAvg' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).average }}</span>
 					</div>
 
@@ -31905,7 +34148,7 @@ StructureSummariesPanelComponent.decorators = [
 						<!--							<span class="gui-math-symbol">&and;</span>-->
 						<!--						</div>-->
 						<span [gui-tooltip]="summariesTranslations.minTooltip">
-							{{'summariesMin' | translate}}
+							{{'summariesMin' | guiTranslate}}
 						</span>
 
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).min }}</span>
@@ -31919,7 +34162,7 @@ StructureSummariesPanelComponent.decorators = [
 						<!--						</div>-->
 
 						<span [gui-tooltip]="summariesTranslations.maxTooltip">
-							{{'summariesMax' | translate}}
+							{{'summariesMax' | guiTranslate}}
 						</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).max }}</span>
 					</div>
@@ -31933,19 +34176,19 @@ StructureSummariesPanelComponent.decorators = [
 						<!--							<span>X</span>-->
 						<!--						</div>-->
 
-						<span [gui-tooltip]="summariesTranslations.medTooltip">{{'summariesMed' | translate}}</span>
+						<span [gui-tooltip]="summariesTranslations.medTooltip">{{'summariesMed' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).median }}</span>
 					</div>
 
 					<div *ngIf="isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)"
 						 class="gui-structure-summaries-value">
-						<span>{{'summariesTruthy' | translate}}</span>
+						<span>{{'summariesTruthy' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>
 					</div>
 
 					<div *ngIf="isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)"
 						 class="gui-structure-summaries-value">
-						<span>{{'summariesFalsy' | translate}}</span>
+						<span>{{'summariesFalsy' | guiTranslate}}</span>
 						<span class="gui-summaries-value">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>
 					</div>
 
@@ -31956,15 +34199,13 @@ StructureSummariesPanelComponent.decorators = [
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-structure-summaries-panel]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureSummariesPanelComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: StructureSummariesUiEventsRepository },
     { type: TranslationService },
@@ -32106,10 +34347,11 @@ if (false) {
 class StructureCellEditComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} sourceCommandService
      */
-    constructor(changeDetectorRef, sourceCommandService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, sourceCommandService) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.sourceCommandService = sourceCommandService;
     }
@@ -32224,10 +34466,17 @@ class StructureCellEditComponent extends SmartComponent {
     publishEditSubmit() {
         this.publishEditState(StructureCellEditState.SUBMIT);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-cell-edit';
+    }
 }
 StructureCellEditComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-cell-edit[entity][cell]',
+                selector: 'div[gui-structure-cell-edit][entity][cell]',
                 template: `
 
 		<span #cellContainer>
@@ -32237,12 +34486,15 @@ StructureCellEditComponent.decorators = [
 			</ng-container>
 		</span>
 
-	`
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureCellEditComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: SourceCommandInvoker }
 ];
 StructureCellEditComponent.propDecorators = {
@@ -32284,10 +34536,11 @@ if (false) {
 class StructureCellEditBooleanComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} sourceCommandService
      */
-    constructor(changeDetectorRef, sourceCommandService) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, sourceCommandService) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.sourceCommandService = sourceCommandService;
     }
@@ -32370,10 +34623,17 @@ class StructureCellEditBooleanComponent extends SmartComponent {
             this.actualValue = value;
         }));
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-cell-edit-boolean';
+    }
 }
 StructureCellEditBooleanComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-cell-edit-boolean[entity][cell]',
+                selector: 'div[gui-structure-cell-edit-boolean][entity][cell]',
                 template: `
 
 		<span #cellContainer>
@@ -32383,12 +34643,15 @@ StructureCellEditBooleanComponent.decorators = [
 			</ng-container>
 		</span>
 
-	`
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StructureCellEditBooleanComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: SourceCommandInvoker }
 ];
 StructureCellEditBooleanComponent.propDecorators = {
@@ -32427,36 +34690,96 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureTitlePanelComponent extends Reactive {
+/**
+ * @abstract
+ */
+class StructureBannerPanel extends SmartComponent {
     /**
-     * @param {?} structureTitlePanelConfigArchive
-     * @param {?} sanitizer
+     * @protected
+     * @param {?} changeDetectorRef
+     * @param {?} elementRef
      */
-    constructor(structureTitlePanelConfigArchive, sanitizer) {
-        super();
-        this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
-        this.sanitizer = sanitizer;
-        this.structureTitlePanelConfigArchive
-            .onValue()
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.getBannerPanelConfig()
             .pipe(this.takeUntil())
             .subscribe((/**
          * @param {?} title
          * @return {?}
          */
         (title) => {
-            this.title = title.template;
-            if (typeof this.title === 'function') {
-                this.title = this.title('Title panel');
+            this.bannerPanel = title.template;
+            if (typeof this.bannerPanel === 'function') {
+                this.bannerPanel = this.bannerPanel();
             }
-            this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.title);
         }));
+    }
+}
+if (false) {
+    /** @type {?} */
+    StructureBannerPanel.prototype.bannerPanel;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    StructureBannerPanel.prototype.getBannerPanelConfig = function () { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    StructureBannerPanel.prototype.getSelectorName = function () { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    StructureBannerPanel.prototype.getPanelTitle = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureTitlePanelComponent extends StructureBannerPanel {
+    /**
+     * @param {?} structureTitlePanelConfigArchive
+     * @param {?} changeDetectorRef
+     * @param {?} elementRef
+     */
+    constructor(structureTitlePanelConfigArchive, changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+        this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
+    }
+    /**
+     * @return {?}
+     */
+    getBannerPanelConfig() {
+        return this.structureTitlePanelConfigArchive.onValue();
+    }
+    /**
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-title-panel';
+    }
+    /**
+     * @return {?}
+     */
+    getPanelTitle() {
+        return 'Title panel';
     }
 }
 StructureTitlePanelComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-title-panel',
+                selector: 'div[gui-structure-title-panel]',
                 template: `
-		<div [innerHTML]="safeHTML" class="gui-title-panel"></div>
+		<div [innerHTML]="bannerPanel | guiSafe: 'html'"
+			 class="gui-title-panel gui-p-6 gui-border-b gui-border-b-solid">
+		</div>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -32465,59 +34788,57 @@ StructureTitlePanelComponent.decorators = [
 /** @nocollapse */
 StructureTitlePanelComponent.ctorParameters = () => [
     { type: StructureTitlePanelConfigArchive },
-    { type: DomSanitizer }
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 if (false) {
-    /** @type {?} */
-    StructureTitlePanelComponent.prototype.title;
-    /** @type {?} */
-    StructureTitlePanelComponent.prototype.safeHTML;
     /**
      * @type {?}
      * @private
      */
     StructureTitlePanelComponent.prototype.structureTitlePanelConfigArchive;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureTitlePanelComponent.prototype.sanitizer;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureFooterPanelComponent extends Reactive {
+class StructureFooterPanelComponent extends StructureBannerPanel {
     /**
      * @param {?} structureFooterPanelConfigArchive
-     * @param {?} sanitizer
+     * @param {?} changeDetectorRef
+     * @param {?} elementRef
      */
-    constructor(structureFooterPanelConfigArchive, sanitizer) {
-        super();
+    constructor(structureFooterPanelConfigArchive, changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
         this.structureFooterPanelConfigArchive = structureFooterPanelConfigArchive;
-        this.sanitizer = sanitizer;
-        this.structureFooterPanelConfigArchive
-            .onValue()
-            .pipe(this.takeUntil())
-            .subscribe((/**
-         * @param {?} title
-         * @return {?}
-         */
-        (title) => {
-            this.footerTitle = title.template;
-            if (typeof this.footerTitle === 'function') {
-                this.footerTitle = this.footerTitle('Title panel');
-            }
-            this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.footerTitle);
-        }));
+    }
+    /**
+     * @return {?}
+     */
+    getBannerPanelConfig() {
+        return this.structureFooterPanelConfigArchive.onValue();
+    }
+    /**
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-footer-panel';
+    }
+    /**
+     * @return {?}
+     */
+    getPanelTitle() {
+        return 'Footer panel';
     }
 }
 StructureFooterPanelComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-footer-panel',
+                selector: 'div[gui-structure-footer-panel]',
                 template: `
-		<div [innerHTML]="safeHTML" class="gui-footer-panel"></div>
+		<div [innerHTML]="bannerPanel | guiSafe: 'html'"
+			 class="gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid">
+		</div>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -32526,23 +34847,15 @@ StructureFooterPanelComponent.decorators = [
 /** @nocollapse */
 StructureFooterPanelComponent.ctorParameters = () => [
     { type: StructureFooterPanelConfigArchive },
-    { type: DomSanitizer }
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 if (false) {
-    /** @type {?} */
-    StructureFooterPanelComponent.prototype.footerTitle;
-    /** @type {?} */
-    StructureFooterPanelComponent.prototype.safeHTML;
     /**
      * @type {?}
      * @private
      */
     StructureFooterPanelComponent.prototype.structureFooterPanelConfigArchive;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureFooterPanelComponent.prototype.sanitizer;
 }
 
 /**
@@ -32557,11 +34870,11 @@ class StructureThemeGateway {
         this.schemaCommandDispatcher = schemaCommandDispatcher;
     }
     /**
-     * @param {?} simpleChanges
+     * @param {?} changes
      * @return {?}
      */
-    ngOnChanges(simpleChanges) {
-        if (simpleChanges.theme2 !== undefined && simpleChanges.theme2.currentValue !== undefined) {
+    ngOnChanges(changes) {
+        if (changes.theme2 !== undefined && changes.theme2.currentValue !== undefined) {
             this.schemaCommandDispatcher.setTheme(this.theme2);
         }
     }
@@ -32592,1199 +34905,17 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class ToggleFilterCommand extends StructureCommand {
-    /**
-     * @param {?} structureId
-     * @param {?} fieldId
-     * @param {?} externalFilterId
-     * @param {?} filterValue
-     */
-    constructor(structureId, fieldId, externalFilterId, filterValue) {
-        super(structureId, 'ToggleFilterCommand');
-        this.fieldId = fieldId;
-        this.externalFilterId = externalFilterId;
-        this.filterValue = filterValue;
-    }
-    /**
-     * @return {?}
-     */
-    getFieldId() {
-        return this.fieldId;
-    }
-    /**
-     * @return {?}
-     */
-    getExternalFilterId() {
-        return this.externalFilterId;
-    }
-    /**
-     * @return {?}
-     */
-    getFilterValue() {
-        return this.filterValue;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleFilterCommand.prototype.fieldId;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleFilterCommand.prototype.externalFilterId;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleFilterCommand.prototype.filterValue;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ToggleFilterCommandHandler {
-    /**
-     * @param {?} structureAggregateRepository
-     * @param {?} domainEventPublisher
-     */
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return ToggleFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        /** @type {?} */
-        const externalFieldId = command.getExternalFilterId();
-        /** @type {?} */
-        const filterValue = command.getFilterValue();
-        aggregate.toggleFilter(fieldId, externalFieldId, filterValue);
-    }
-}
-ToggleFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ToggleFilterCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleFilterCommandHandler.prototype.structureAggregateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    ToggleFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class AddFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return AddFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        /** @type {?} */
-        const filterTypeId = command.getFilterTypeId();
-        /** @type {?} */
-        const value = command.getValue();
-        structure.addFilter(fieldId, filterTypeId, value);
-    }
-}
-AddFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-AddFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    AddFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class RemoveAllFiltersCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return RemoveAllFiltersCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        structure.removeAllFilters();
-    }
-}
-RemoveAllFiltersCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-RemoveAllFiltersCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    RemoveAllFiltersCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class RemoveFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return RemoveFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const filterId = command.getFilterId();
-        structure.removeFilter(filterId);
-    }
-}
-RemoveFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-RemoveFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    RemoveFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ConfigFilterSetEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} enabled
-     */
-    constructor(aggregateId, enabled) {
-        super(aggregateId, 'ConfigFilterSetEvent');
-        this.enabled = enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getEnabled() {
-        return this.enabled;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ConfigFilterSetEvent.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SetConfigFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SetConfigFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const filterConfig = command.getConfig();
-        this.domainEventPublisher.publish(new ConfigFilterSetEvent(command.getAggregateId(), filterConfig.enabled));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const filterConfig = command.getConfig();
-        aggregate.setFilterConfig(filterConfig);
-    }
-}
-SetConfigFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SetConfigFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SetConfigFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ConfigQuickFilterSetEvent extends StructureDomainEvent {
-    /**
-     * @param {?} aggregateId
-     * @param {?} enabled
-     */
-    constructor(aggregateId, enabled) {
-        super(aggregateId, 'ConfigQuickFilterSetEvent');
-        this.enabled = enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getEnabled() {
-        return this.enabled;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ConfigQuickFilterSetEvent.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SetConfigQuickFilterCommandHandler {
-    /**
-     * @param {?} structureAggregateRepository
-     * @param {?} domainEventPublisher
-     */
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SetConfigQuickFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        /** @type {?} */
-        const structureId = command.getAggregateId();
-        /** @type {?} */
-        const quickFiltersConfig = command.getConfig();
-        this.domainEventPublisher.publish(new ConfigQuickFilterSetEvent(structureId, quickFiltersConfig.enabled));
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(aggregate, command) {
-        /** @type {?} */
-        const quickFiltersConfig = command.getConfig();
-        aggregate.setQuickFiltersConfig(quickFiltersConfig);
-    }
-}
-SetConfigQuickFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SetConfigQuickFilterCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SetConfigQuickFilterCommandHandler.prototype.structureAggregateRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    SetConfigQuickFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ConfigQuickFilterSetEventHandler {
-    /**
-     * @param {?} structureQuickFilterRepository
-     */
-    constructor(structureQuickFilterRepository) {
-        this.structureQuickFilterRepository = structureQuickFilterRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return ConfigQuickFilterSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('ConfigQuickFilterSetEvent')) {
-            this.structureQuickFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-        }
-    }
-}
-ConfigQuickFilterSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ConfigQuickFilterSetEventHandler.ctorParameters = () => [
-    { type: QuickFilterEnabledRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ConfigQuickFilterSetEventHandler.prototype.structureQuickFilterRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ConfigFilterSetEventHandler {
-    /**
-     * @param {?} structureFilterRepository
-     */
-    constructor(structureFilterRepository) {
-        this.structureFilterRepository = structureFilterRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return ConfigFilterSetEvent;
-    }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    handle(event) {
-        if (event.ofMessageType('ConfigFilterSetEvent')) {
-            this.structureFilterRepository.setEnabled(event.getEnabled(), event.getAggregateId());
-        }
-    }
-}
-ConfigFilterSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ConfigFilterSetEventHandler.ctorParameters = () => [
-    { type: FilterEnabledRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ConfigFilterSetEventHandler.prototype.structureFilterRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeMap {
-    // = new WeakMap<FieldId, Array<FilterTypeReadModel>>();
-    /**
-     * @param {?} map
-     */
-    constructor(map) {
-        this.map = map;
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    getFilterTypes(fieldId) {
-        return this.map.get(fieldId.toString());
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeMap.prototype.map;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterTypeConfigFilterSetEventHandler {
-    /**
-     * @param {?} filterTypeRepository
-     */
-    constructor(filterTypeRepository) {
-        this.filterTypeRepository = filterTypeRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return FilterTypesInitedEvent;
-    }
-    /**
-     * @param {?} filterTypesInitedEvent
-     * @return {?}
-     */
-    handle(filterTypesInitedEvent) {
-        if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
-            /** @type {?} */
-            const map = filterTypesInitedEvent.getMap();
-            this.filterTypeRepository.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
-        }
-    }
-}
-FilterTypeConfigFilterSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-FilterTypeConfigFilterSetEventHandler.ctorParameters = () => [
-    { type: FilterTypeRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FilterTypeConfigFilterSetEventHandler.prototype.filterTypeRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ActiveFiltersSetEventHandler {
-    /**
-     * @param {?} activeFilterRepository
-     */
-    constructor(activeFilterRepository) {
-        this.activeFilterRepository = activeFilterRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return ActiveFiltersSetEvent;
-    }
-    /**
-     * @param {?} activeFiltersSetEvent
-     * @return {?}
-     */
-    handle(activeFiltersSetEvent) {
-        if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
-            /** @type {?} */
-            let activeFilters = activeFiltersSetEvent.getFilters();
-            this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
-        }
-    }
-}
-ActiveFiltersSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ActiveFiltersSetEventHandler.ctorParameters = () => [
-    { type: ActiveFilterRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UniqueValuesReadModel {
-    /**
-     * @param {?} map
-     */
-    constructor(map) {
-        this.map = new Map();
-        this.allSelected = new Map();
-        this.allDisabled = new Map();
-        this.map = map;
-        this.calculateSelection();
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    getValues(fieldId) {
-        return this.map.get(fieldId.toString());
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    areAllSelected(fieldId) {
-        return this.allSelected.get(fieldId.toString());
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    areAllDisabled(fieldId) {
-        return this.allDisabled.get(fieldId.toString());
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    isSelectAllChecked(fieldId) {
-        return this.areAllSelected(fieldId);
-    }
-    /**
-     * @param {?} fieldId
-     * @return {?}
-     */
-    isIndeterminate(fieldId) {
-        return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    calculateSelection() {
-        for (let key of Array.from(this.map.keys())) {
-            /** @type {?} */
-            const values = this.map.get(key);
-            this.allSelected.set(key, !values.some((/**
-             * @param {?} r
-             * @return {?}
-             */
-            (r) => !r.isEnabled())));
-            this.allDisabled.set(key, !values.some((/**
-             * @param {?} r
-             * @return {?}
-             */
-            (r) => r.isEnabled())));
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValuesReadModel.prototype.map;
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValuesReadModel.prototype.allSelected;
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValuesReadModel.prototype.allDisabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UniqueValueReadModel {
-    /**
-     * @param {?} id
-     * @param {?} value
-     * @param {?} enabled
-     */
-    constructor(id, value, enabled) {
-        this.id = id;
-        this.value = value;
-        this.enabled = enabled;
-    }
-    /**
-     * @return {?}
-     */
-    getId() {
-        return this.id;
-    }
-    /**
-     * @return {?}
-     */
-    getValue() {
-        return this.value;
-    }
-    /**
-     * @return {?}
-     */
-    geDisplayValue() {
-        return this.displayValue;
-    }
-    /**
-     * @return {?}
-     */
-    isEnabled() {
-        return this.enabled;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValueReadModel.prototype.id;
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValueReadModel.prototype.value;
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValueReadModel.prototype.displayValue;
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueValueReadModel.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UniqueFilterCalculatedEventHandler {
-    /**
-     * @param {?} uniqueValuesRepository
-     */
-    constructor(uniqueValuesRepository) {
-        this.uniqueValuesRepository = uniqueValuesRepository;
-    }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return UniqueFilterCalculatedEvent;
-    }
-    /**
-     * @param {?} calculatedEvent
-     * @return {?}
-     */
-    handle(calculatedEvent) {
-        if (calculatedEvent.ofMessageType('UniqueFilterCalculatedEvent')) {
-            /** @type {?} */
-            let uvRM = new Map();
-            calculatedEvent.getUniqueValues()
-                .forEach((/**
-             * @param {?} values
-             * @param {?} key
-             * @return {?}
-             */
-            (values, key) => {
-                /** @type {?} */
-                const valuesRM = values.map((/**
-                 * @param {?} uv
-                 * @return {?}
-                 */
-                (uv) => {
-                    return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
-                }));
-                uvRM.set(key, valuesRM);
-            }));
-            /** @type {?} */
-            let uniqueValues = new UniqueValuesReadModel(uvRM);
-            this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
-        }
-    }
-}
-UniqueFilterCalculatedEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-UniqueFilterCalculatedEventHandler.ctorParameters = () => [
-    { type: UniqueValuesRepository }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UniqueFilterCalculatedEventHandler.prototype.uniqueValuesRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-// TODO Remove
-class FilterTypeFieldsInitedEventHandler {
-    // constructor(private readonly filterTypeManagerRepository: FilterTypeManagerRepository,
-    // 			private readonly domainEventPublisher: DomainEventPublisher) {
-    // }
-    /**
-     * @return {?}
-     */
-    forEvent() {
-        return FieldsInitedEvent;
-    }
-    /**
-     * @param {?} fieldsInitedEvent
-     * @return {?}
-     */
-    handle(fieldsInitedEvent) {
-        // if (fieldsInitedEvent.ofMessageType('FieldsInitedEvent')) {
-        //
-        // 	const fields = fieldsInitedEvent.getFields();
-        //
-        // 	const manager = new FilterTypeManager(fields);
-        //
-        // 	this.filterTypeManagerRepository.next(fieldsInitedEvent.getAggregateId(), manager);
-        //
-        // 	this.domainEventPublisher.publish(new FilterTypesInitedEvent(fieldsInitedEvent.getAggregateId(), manager.getFieldIdsToFieldTypes()));
-        // }
-    }
-}
-FilterTypeFieldsInitedEventHandler.decorators = [
-    { type: Injectable }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UnselectAllUniqueFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return UnselectAllUniqueFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        structure.unselectAllUniqueFilter(fieldId);
-    }
-}
-UnselectAllUniqueFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-UnselectAllUniqueFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UnselectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class UnselectUniqueFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return UnselectUniqueFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        /** @type {?} */
-        const uniqueValueId = command.getUniqueValueId();
-        structure.unselectUniqueFilter(fieldId, uniqueValueId);
-    }
-}
-UnselectUniqueFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-UnselectUniqueFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    UnselectUniqueFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SelectAllUniqueFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SelectAllUniqueFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        structure.selectAllUniqueFilter(fieldId);
-    }
-}
-SelectAllUniqueFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SelectAllUniqueFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SelectAllUniqueFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SelectUniqueFilterCommandHandler {
-    /**
-     * @param {?} domainEventPublisher
-     */
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    forCommand() {
-        return SelectUniqueFilterCommand;
-    }
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    handleAggregate(structure, command) {
-        /** @type {?} */
-        const fieldId = command.getFieldId();
-        /** @type {?} */
-        const uniqueValueId = command.getUniqueValueId();
-        structure.selectUniqueFilter(fieldId, uniqueValueId);
-    }
-}
-SelectUniqueFilterCommandHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-SelectUniqueFilterCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SelectUniqueFilterCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterDomainModule extends DomainModule {
-    constructor() {
-        super();
-    }
-    /**
-     * @return {?}
-     */
-    static commandHandlers() {
-        return [
-            ...HermesModule.registerCommandHandler(SetConfigFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(SetConfigQuickFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(ToggleFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(AddFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(RemoveAllFiltersCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(RemoveFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(SelectUniqueFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(SelectAllUniqueFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(UnselectUniqueFilterCommandHandler, structureKey),
-            ...HermesModule.registerCommandHandler(UnselectAllUniqueFilterCommandHandler, structureKey)
-        ];
-    }
-    /**
-     * @return {?}
-     */
-    static domainEventHandlers() {
-        return [
-            ...HermesModule.registerDomainEventHandler(ConfigQuickFilterSetEventHandler),
-            ...HermesModule.registerDomainEventHandler(ConfigFilterSetEventHandler),
-            ...HermesModule.registerDomainEventHandler(FilterTypeConfigFilterSetEventHandler),
-            ...HermesModule.registerDomainEventHandler(ActiveFiltersSetEventHandler),
-            ...HermesModule.registerDomainEventHandler(UniqueFilterCalculatedEventHandler),
-            ...HermesModule.registerDomainEventHandler(FilterTypeFieldsInitedEventHandler)
-        ];
-    }
-}
-FilterDomainModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule
-                ],
-                providers: [
-                    FilterManagerFactory
-                ],
-                declarations: [],
-                exports: []
-            },] }
-];
-/** @nocollapse */
-FilterDomainModule.ctorParameters = () => [];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class FilterApiModule extends ApiModule {
-}
-FilterApiModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [
-                    CommonModule,
-                    FilterDomainModule
-                ],
-                providers: [
-                    FilterCommandInvoker,
-                    FilterWarehouse,
-                    FilterTypeRepository,
-                    ActiveFilterRepository,
-                    UniqueValuesRepository,
-                    FilterEnabledRepository,
-                    QuickFilterEnabledRepository
-                ],
-                declarations: [],
-                exports: []
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SelectAllComponent extends SmartComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} structureId
      * @param {?} rowSelectionModeRepository
      * @param {?} formationCommandDispatcher
      * @param {?} formationWarehouse
      */
-    constructor(changeDetectorRef, structureId, rowSelectionModeRepository, formationCommandDispatcher, formationWarehouse) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, structureId, rowSelectionModeRepository, formationCommandDispatcher, formationWarehouse) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.rowSelectionModeRepository = rowSelectionModeRepository;
@@ -33836,6 +34967,13 @@ class SelectAllComponent extends SmartComponent {
             }
         }
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-select-all';
+    }
 }
 SelectAllComponent.decorators = [
     { type: Component, args: [{
@@ -33851,15 +34989,13 @@ SelectAllComponent.decorators = [
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-select-all]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 SelectAllComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: StructureId },
     { type: RowSelectionModeRepository },
     { type: FormationCommandInvoker },
@@ -34843,14 +35979,6 @@ class SetScrollPositionCommandHandler {
         return SetScrollPositionCommand;
     }
     /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    publishDomainEvents(aggregate, command) {
-        this.domainEventPublisher.publish(new ScrollPositionSetEvent(command.getAggregateId()));
-    }
-    /**
      * @param {?} structure
      * @param {?} command
      * @return {?}
@@ -34859,6 +35987,14 @@ class SetScrollPositionCommandHandler {
         /** @type {?} */
         const position = command.getPosition();
         structure.setScrollPosition(position);
+    }
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    publishDomainEvents(aggregate, command) {
+        this.domainEventPublisher.publish(new ScrollPositionSetEvent(command.getAggregateId()));
     }
 }
 SetScrollPositionCommandHandler.decorators = [
@@ -40028,8 +41164,13 @@ SanitizeModule.decorators = [
  * @template T
  */
 class EditCommunicationComponent extends SmartComponent {
-    constructor() {
-        super(...arguments);
+    /**
+     * @protected
+     * @param {?} changeDetectorRef
+     * @param {?} elementRef
+     */
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
         this.ENTER_KEY_CODE = 13;
         this.ESC_KEY_CODE = 27;
     }
@@ -40098,10 +41239,11 @@ class InputEditTemplateComponent extends EditCommunicationComponent {
     /**
      * @protected
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} formBuilder
      */
-    constructor(changeDetectorRef, formBuilder) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef, formBuilder) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.formBuilder = formBuilder;
         this.filterFieldName = 'phrase';
@@ -40236,10 +41378,11 @@ if (false) {
 class StringEditTemplateComponent extends InputEditTemplateComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} fb
      */
-    constructor(changeDetectorRef, fb) {
-        super(changeDetectorRef, fb);
+    constructor(changeDetectorRef, elementRef, fb) {
+        super(changeDetectorRef, elementRef, fb);
     }
     /**
      * @param {?} inputElement
@@ -40250,6 +41393,13 @@ class StringEditTemplateComponent extends InputEditTemplateComponent {
             inputElement.focus();
             inputElement.setSelectionRange(0, inputElement.value.length);
         }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-string-edit';
     }
 }
 StringEditTemplateComponent.decorators = [
@@ -40263,15 +41413,13 @@ StringEditTemplateComponent.decorators = [
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                host: {
-                    '[class.gui-string-edit]': 'true'
-                }
+                encapsulation: ViewEncapsulation.None
             }] }
 ];
 /** @nocollapse */
 StringEditTemplateComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: FormBuilder }
 ];
 __decorate([
@@ -40288,10 +41436,18 @@ __decorate([
 class NumberEditTemplateComponent extends InputEditTemplateComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      * @param {?} fb
      */
-    constructor(changeDetectorRef, fb) {
-        super(changeDetectorRef, fb);
+    constructor(changeDetectorRef, elementRef, fb) {
+        super(changeDetectorRef, elementRef, fb);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-number-edit';
     }
 }
 NumberEditTemplateComponent.decorators = [
@@ -40311,6 +41467,7 @@ NumberEditTemplateComponent.decorators = [
 /** @nocollapse */
 NumberEditTemplateComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
+    { type: ElementRef },
     { type: FormBuilder }
 ];
 
@@ -40321,9 +41478,10 @@ NumberEditTemplateComponent.ctorParameters = () => [
 class BooleanEditTemplateComponent extends EditCommunicationComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      */
-    constructor(changeDetectorRef) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.filterFieldName = 'booleanEdit';
     }
@@ -40334,6 +41492,13 @@ class BooleanEditTemplateComponent extends EditCommunicationComponent {
     toggle(changed) {
         this.valueChanges.emit(changed);
         this.submit();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-boolean-edit';
     }
 }
 BooleanEditTemplateComponent.decorators = [
@@ -40356,7 +41521,8 @@ BooleanEditTemplateComponent.decorators = [
 ];
 /** @nocollapse */
 BooleanEditTemplateComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 BooleanEditTemplateComponent.propDecorators = {
     checkboxRef: [{ type: ViewChild, args: ['checkbox', { read: ElementRef, static: true },] }]
@@ -40380,12 +41546,14 @@ if (false) {
 class DateEditTemplateComponent extends EditCommunicationComponent {
     /**
      * @param {?} changeDetectorRef
+     * @param {?} elementRef
      */
-    constructor(changeDetectorRef) {
-        super(changeDetectorRef);
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.filterFieldName = 'dateEdit';
         this.opened = false;
+        this.localStreamCloser = new StreamCloser();
     }
     /**
      * @return {?}
@@ -40400,12 +41568,12 @@ class DateEditTemplateComponent extends EditCommunicationComponent {
          * @param {?} e
          * @return {?}
          */
-        (e) => e.keyCode === this.ENTER_KEY_CODE)), this.takeUntil())
+        (e) => e.keyCode === this.ENTER_KEY_CODE)), this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @return {?}
          */
         () => {
-            this.unsubscribe();
+            this.localStreamCloser.unsubscribe();
             this.submit();
         }));
         keyup$
@@ -40413,14 +41581,20 @@ class DateEditTemplateComponent extends EditCommunicationComponent {
          * @param {?} e
          * @return {?}
          */
-        (e) => e.keyCode === this.ESC_KEY_CODE)), this.takeUntil())
+        (e) => e.keyCode === this.ESC_KEY_CODE)), this.localStreamCloser.takeUntil())
             .subscribe((/**
          * @return {?}
          */
         () => {
-            this.unsubscribe();
+            this.localStreamCloser.unsubscribe();
             this.cancel();
         }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
     }
     /**
      * @param {?} changed
@@ -40436,9 +41610,16 @@ class DateEditTemplateComponent extends EditCommunicationComponent {
     dialogOpened(opened) {
         this.opened = opened;
         if (!opened) {
-            this.unsubscribe();
+            this.localStreamCloser.unsubscribe();
             this.submit();
         }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-date-edit';
     }
 }
 DateEditTemplateComponent.decorators = [
@@ -40463,7 +41644,8 @@ DateEditTemplateComponent.decorators = [
 ];
 /** @nocollapse */
 DateEditTemplateComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: ElementRef }
 ];
 DateEditTemplateComponent.propDecorators = {
     datePickerRef: [{ type: ViewChild, args: ['datepicker', { read: ElementRef, static: true },] }]
@@ -40482,6 +41664,11 @@ if (false) {
      * @type {?}
      * @private
      */
+    DateEditTemplateComponent.prototype.localStreamCloser;
+    /**
+     * @type {?}
+     * @private
+     */
     DateEditTemplateComponent.prototype.changeDetectorRef;
 }
 
@@ -40493,7 +41680,7 @@ class ColumnQueryComponent {
 }
 ColumnQueryComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-column',
+                selector: 'gui-column[header]',
                 template: ''
             }] }
 ];
@@ -40514,12 +41701,17 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FunctionViewComponent {
+class FunctionViewComponent extends PureComponent {
     /**
      * @param {?} sanitizer
+     * @param {?} elRef
      */
-    constructor(sanitizer) {
+    constructor(sanitizer, elRef) {
+        super(elRef);
         this.sanitizer = sanitizer;
+        this.elRef = elRef;
+        this.addClassToHost('gui-h-full');
+        this.addClassToHost('gui-w-full');
     }
     /**
      * @return {?}
@@ -40527,13 +41719,22 @@ class FunctionViewComponent {
     ngOnChanges() {
         this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-function-view';
+    }
 }
 FunctionViewComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-function-view',
                 template: `
 
-		<div [innerHTML]="safeHTML"></div>
+		<div class="gui-h-full gui-flex gui-items-center"
+			 [innerHTML]="safeHTML">
+		</div>
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40542,7 +41743,8 @@ FunctionViewComponent.decorators = [
 ];
 /** @nocollapse */
 FunctionViewComponent.ctorParameters = () => [
-    { type: DomSanitizer }
+    { type: DomSanitizer },
+    { type: ElementRef }
 ];
 FunctionViewComponent.propDecorators = {
     element: [{ type: Input }]
@@ -40557,14 +41759,23 @@ if (false) {
      * @private
      */
     FunctionViewComponent.prototype.sanitizer;
+    /**
+     * @type {?}
+     * @private
+     */
+    FunctionViewComponent.prototype.elRef;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class BarViewComponent {
-    constructor() {
+class BarViewComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
         this.showPercentage = false;
     }
     /**
@@ -40575,6 +41786,13 @@ class BarViewComponent {
         if (changes.value !== undefined && changes.value !== null) {
             this.width = this.value > 100 ? 100 : this.value;
         }
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-bar-view';
     }
 }
 BarViewComponent.decorators = [
@@ -40589,12 +41807,13 @@ BarViewComponent.decorators = [
 			</gui-percentage-view>
 		</div>
 	`,
-                host: {
-                    '[class.gui-bar-view]': 'true'
-                },
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+BarViewComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 BarViewComponent.propDecorators = {
     value: [{ type: Input }],
@@ -40613,7 +41832,20 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class PercentageViewComponent {
+class PercentageViewComponent extends PureComponent {
+    /**
+     * @param {?} elementRef
+     */
+    constructor(elementRef) {
+        super(elementRef);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-percentage-view';
+    }
 }
 PercentageViewComponent.decorators = [
     { type: Component, args: [{
@@ -40621,12 +41853,13 @@ PercentageViewComponent.decorators = [
                 template: `
 		{{ value }} %
 	`,
-                host: {
-                    '[class.gui-percentage-view]': 'true'
-                },
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
+];
+/** @nocollapse */
+PercentageViewComponent.ctorParameters = () => [
+    { type: ElementRef }
 ];
 PercentageViewComponent.propDecorators = {
     value: [{ type: Input }]
@@ -40640,7 +41873,7 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class TextViewComponent {
+class TextViewComponent extends PureComponent {
     /**
      * @param {?} isBold
      * @param {?} isItalic
@@ -40648,22 +41881,29 @@ class TextViewComponent {
      * @param {?} renderer
      */
     constructor(isBold, isItalic, elementRef, renderer) {
+        super(elementRef);
         this.elementRef = elementRef;
         this.renderer = renderer;
         this.isHtml = false;
         if (isBold !== null) {
-            this.renderer.addClass(this.elementRef.nativeElement, 'gui-bold');
+            this.addClassToHost('gui-bold');
         }
         if (isItalic !== null) {
-            this.renderer.addClass(this.elementRef.nativeElement, 'gui-italic');
+            this.addClassToHost('gui-italic');
         }
-        this.elementRef.nativeElement.className;
     }
     /**
      * @return {?}
      */
     ngOnChanges() {
         this.isHtml = this.value.type === CellValueType.HTML;
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-text-view';
     }
 }
 TextViewComponent.decorators = [
@@ -40681,9 +41921,6 @@ TextViewComponent.decorators = [
 			</span>
 		</ng-template>
 	`,
-                host: {
-                    '[class.gui-text-view]': 'true'
-                },
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -40734,7 +41971,7 @@ const components = [
     TextViewComponent
 ];
 /** @type {?} */
-const exportDeclarations = [
+const exportDeclarations$1 = [
     ViewTemplatesComponent,
     EditTemplatesComponent,
     ColumnQueryComponent,
@@ -40780,7 +42017,7 @@ CompositionFeatureModule.decorators = [
                     ...components
                 ],
                 exports: [
-                    ...exportDeclarations
+                    ...exportDeclarations$1
                 ],
                 entryComponents: [
                     ViewTemplatesComponent,
@@ -40801,7 +42038,7 @@ CompositionFeatureModule.ctorParameters = () => [
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class StructureHeaderGroupsComponent {
+class StructureHeaderGroupsComponent extends PureComponent {
     /**
      * @param {?} elementRef
      * @param {?} injector
@@ -40812,6 +42049,7 @@ class StructureHeaderGroupsComponent {
      * @param {?} sortingCommandDispatcher
      */
     constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
+        super(elementRef);
         this.elementRef = elementRef;
         this.injector = injector;
         this.changeDetectorRef = changeDetectorRef;
@@ -40851,11 +42089,18 @@ class StructureHeaderGroupsComponent {
     isGlobalSortEnabled() {
         return this.globalSearching;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    getSelectorName() {
+        return 'gui-structure-header-groups';
+    }
 }
 StructureHeaderGroupsComponent.decorators = [
     { type: Component, args: [{
-                selector: 'gui-structure-header-groups[groups][checkboxSelection]',
-                template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n",
+                selector: 'div[gui-structure-header-groups][groups][checkboxSelection]',
+                template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<gui-select-all></gui-select-all>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 providers: [
@@ -40928,6 +42173,831 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+class StructureSearchingGate extends SearchingGate {
+    /**
+     * @param {?} structureId
+     * @param {?} searchEventRepository
+     * @param {?} searchCommandInvoker
+     */
+    constructor(structureId, searchEventRepository, searchCommandInvoker) {
+        super(structureId, searchEventRepository, searchCommandInvoker);
+    }
+}
+StructureSearchingGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[searching]'
+            },] }
+];
+/** @nocollapse */
+StructureSearchingGate.ctorParameters = () => [
+    { type: StructureId },
+    { type: SearchEventRepository },
+    { type: SearchCommandInvoker }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureColumnHeaderGate extends Gate {
+    /**
+     * @param {?} structureHeaderTopEnabledArchive
+     * @param {?} structureHeaderBottomEnabledArchive
+     */
+    constructor(structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive) {
+        super();
+        this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
+        this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('columnHeaderTop', changes)) {
+            this.structureHeaderTopEnabledArchive.next(this.columnHeaderTop);
+        }
+        if (this.isDefined('columnHeaderBottom', changes)) {
+            this.structureHeaderBottomEnabledArchive.next(this.columnHeaderBottom);
+        }
+    }
+}
+StructureColumnHeaderGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]'
+            },] }
+];
+/** @nocollapse */
+StructureColumnHeaderGate.ctorParameters = () => [
+    { type: StructureHeaderTopEnabledArchive },
+    { type: StructureHeaderBottomEnabledArchive }
+];
+StructureColumnHeaderGate.propDecorators = {
+    columnHeaderTop: [{ type: Input }],
+    columnHeaderBottom: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureColumnHeaderGate.prototype.columnHeaderTop;
+    /** @type {?} */
+    StructureColumnHeaderGate.prototype.columnHeaderBottom;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnHeaderGate.prototype.structureHeaderTopEnabledArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnHeaderGate.prototype.structureHeaderBottomEnabledArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructurePagingGate extends PagingGate {
+    /**
+     * @param {?} structureId
+     * @param {?} structurePagingCommandDispatcher
+     * @param {?} pagingEventRepository
+     * @param {?} pagingDisplayModeArchive
+     */
+    constructor(structureId, structurePagingCommandDispatcher, pagingEventRepository, pagingDisplayModeArchive) {
+        super(structureId, structurePagingCommandDispatcher, pagingEventRepository);
+        this.pagingDisplayModeArchive = pagingDisplayModeArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('paging', changes)) {
+            /** @type {?} */
+            let pagingConfig;
+            if (typeof this.paging === 'boolean') {
+                pagingConfig = {
+                    enabled: this.paging
+                };
+            }
+            else {
+                pagingConfig = this.paging;
+                if (this.paging.displayMode !== undefined) {
+                    this.pagingDisplayModeArchive.next(this.paging.displayMode);
+                }
+            }
+            this.structurePagingCommandDispatcher.setPaging(pagingConfig);
+        }
+    }
+}
+StructurePagingGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[paging]'
+            },] }
+];
+/** @nocollapse */
+StructurePagingGate.ctorParameters = () => [
+    { type: StructureId },
+    { type: PagingCommandInvoker },
+    { type: PagingEventRepository },
+    { type: PagingDisplayModeArchive }
+];
+__decorate([
+    Override,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], StructurePagingGate.prototype, "ngOnChanges", null);
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePagingGate.prototype.pagingDisplayModeArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class SelectionGate extends Gate {
+    /**
+     * @protected
+     * @param {?} structureId
+     * @param {?} formationEventService
+     * @param {?} formationCommandDispatcher
+     * @param {?} rowSelectionTypeArchive
+     */
+    constructor(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
+        super();
+        this.structureId = structureId;
+        this.formationEventService = formationEventService;
+        this.formationCommandDispatcher = formationCommandDispatcher;
+        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+        this.itemsSelected = new EventEmitter();
+        this.selectedRows = new EventEmitter();
+        this.localStreamCloser = new StreamCloser();
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('rowSelection', changes)) {
+            if (this.rowSelection.isEnabledDefined()) {
+                this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
+            }
+            if (this.rowSelection.isTypeDefined()) {
+                this.rowSelectionTypeArchive.next(this.rowSelection.getType());
+            }
+            if (this.rowSelection.isModeDefined()) {
+                this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
+            }
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.formationEventService
+            .onItemSelected(this.structureId)
+            .pipe(this.takeUntil())
+            .subscribe((/**
+         * @param {?} items
+         * @return {?}
+         */
+        (items) => {
+            this.itemsSelected.emit(items.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i.getData())));
+            this.selectedRows.emit(items);
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
+    }
+}
+SelectionGate.propDecorators = {
+    rowSelection: [{ type: Input }],
+    itemsSelected: [{ type: Output }],
+    selectedRows: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    SelectionGate.prototype.rowSelection;
+    /** @type {?} */
+    SelectionGate.prototype.itemsSelected;
+    /** @type {?} */
+    SelectionGate.prototype.selectedRows;
+    /**
+     * @type {?}
+     * @private
+     */
+    SelectionGate.prototype.localStreamCloser;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SelectionGate.prototype.structureId;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SelectionGate.prototype.formationEventService;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SelectionGate.prototype.formationCommandDispatcher;
+    /**
+     * @type {?}
+     * @protected
+     */
+    SelectionGate.prototype.rowSelectionTypeArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSelectionGate extends SelectionGate {
+    /**
+     * @param {?} structureId
+     * @param {?} formationEventService
+     * @param {?} formationCommandDispatcher
+     * @param {?} rowSelectionTypeArchive
+     */
+    constructor(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
+        super(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive);
+    }
+}
+StructureSelectionGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[rowSelection], gui-structure[selectionGate]'
+            },] }
+];
+/** @nocollapse */
+StructureSelectionGate.ctorParameters = () => [
+    { type: StructureId },
+    { type: FormationEventRepository },
+    { type: FormationCommandInvoker },
+    { type: RowSelectionTypeArchive }
+];
+StructureSelectionGate.propDecorators = {
+    selectionGate: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureSelectionGate.prototype.selectionGate;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureL10nGate extends Gate {
+    /**
+     * @param {?} translationService
+     */
+    constructor(translationService) {
+        super();
+        this.translationService = translationService;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('localization', changes)) {
+            if (this.localization.translationResolver) {
+                this.translationService.setResolver(this.localization.translationResolver);
+            }
+            if (this.localization.translation) {
+                this.translationService.changeTranslation(this.localization.translation);
+            }
+        }
+    }
+}
+StructureL10nGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[localization]'
+            },] }
+];
+/** @nocollapse */
+StructureL10nGate.ctorParameters = () => [
+    { type: TranslationService }
+];
+StructureL10nGate.propDecorators = {
+    localization: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureL10nGate.prototype.localization;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureL10nGate.prototype.translationService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructurePanelGate extends Gate {
+    /**
+     * @param {?} structureTitlePanelConfigArchive
+     * @param {?} structureFooterPanelConfigArchive
+     */
+    constructor(structureTitlePanelConfigArchive, structureFooterPanelConfigArchive) {
+        super();
+        this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
+        this.structureFooterPanelConfigArchive = structureFooterPanelConfigArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('titlePanel', changes)) {
+            this.structureTitlePanelConfigArchive.next(this.titlePanel);
+        }
+        if (this.isDefined('footerPanel', changes)) {
+            this.structureFooterPanelConfigArchive.next(this.footerPanel);
+        }
+    }
+}
+StructurePanelGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[titlePanel][footerPanel]'
+            },] }
+];
+/** @nocollapse */
+StructurePanelGate.ctorParameters = () => [
+    { type: StructureTitlePanelConfigArchive },
+    { type: StructureFooterPanelConfigArchive }
+];
+StructurePanelGate.propDecorators = {
+    titlePanel: [{ type: Input }],
+    footerPanel: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructurePanelGate.prototype.titlePanel;
+    /** @type {?} */
+    StructurePanelGate.prototype.footerPanel;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePanelGate.prototype.structureTitlePanelConfigArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructurePanelGate.prototype.structureFooterPanelConfigArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureRowDetailGate extends Gate {
+    /**
+     * @param {?} structureDetailViewConfigArchive
+     */
+    constructor(structureDetailViewConfigArchive) {
+        super();
+        this.structureDetailViewConfigArchive = structureDetailViewConfigArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('rowDetail', changes)) {
+            this.structureDetailViewConfigArchive.next(this.rowDetail);
+        }
+    }
+}
+StructureRowDetailGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[rowDetail]'
+            },] }
+];
+/** @nocollapse */
+StructureRowDetailGate.ctorParameters = () => [
+    { type: StructureRowDetailConfigArchive }
+];
+StructureRowDetailGate.propDecorators = {
+    rowDetail: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureRowDetailGate.prototype.rowDetail;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowDetailGate.prototype.structureDetailViewConfigArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ColumnMenuConfig {
+}
+if (false) {
+    /** @type {?} */
+    ColumnMenuConfig.prototype.enabled;
+    /** @type {?} */
+    ColumnMenuConfig.prototype.sort;
+    /** @type {?} */
+    ColumnMenuConfig.prototype.filter;
+    /** @type {?} */
+    ColumnMenuConfig.prototype.columnsManager;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureColumnMenuGate extends Gate {
+    /**
+     * @param {?} structureColumnMenuConfigArchive
+     */
+    constructor(structureColumnMenuConfigArchive) {
+        super();
+        this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('columnMenu', changes)) {
+            this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
+        }
+    }
+}
+StructureColumnMenuGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[columnMenu]'
+            },] }
+];
+/** @nocollapse */
+StructureColumnMenuGate.ctorParameters = () => [
+    { type: StructureColumnMenuConfigArchive }
+];
+StructureColumnMenuGate.propDecorators = {
+    columnMenu: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureColumnMenuGate.prototype.columnMenu;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnMenuGate.prototype.structureColumnMenuConfigArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSummariesGate extends Gate {
+    /**
+     * @param {?} structureSummariesConfigService
+     */
+    constructor(structureSummariesConfigService) {
+        super();
+        this.structureSummariesConfigService = structureSummariesConfigService;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('summaries', changes)) {
+            this.structureSummariesConfigService.set(this.summaries);
+        }
+    }
+}
+StructureSummariesGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[summaries]'
+            },] }
+];
+/** @nocollapse */
+StructureSummariesGate.ctorParameters = () => [
+    { type: StructureSummariesConfigService }
+];
+StructureSummariesGate.propDecorators = {
+    summaries: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureSummariesGate.prototype.summaries;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesGate.prototype.structureSummariesConfigService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureInfoPanelGate extends Gate {
+    /**
+     * @param {?} structureInfoPanelConfigService
+     */
+    constructor(structureInfoPanelConfigService) {
+        super();
+        this.structureInfoPanelConfigService = structureInfoPanelConfigService;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('infoPanel', changes)) {
+            if (typeof this.infoPanel === 'boolean') {
+                this.infoPanel = {
+                    enabled: this.infoPanel
+                };
+            }
+            this.structureInfoPanelConfigService.set(this.infoPanel);
+        }
+    }
+}
+StructureInfoPanelGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[infoPanel]'
+            },] }
+];
+/** @nocollapse */
+StructureInfoPanelGate.ctorParameters = () => [
+    { type: StructureInfoPanelConfigService }
+];
+StructureInfoPanelGate.propDecorators = {
+    infoPanel: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureInfoPanelGate.prototype.infoPanel;
+    /**
+     * @type {?}
+     * @protected
+     */
+    StructureInfoPanelGate.prototype.structureInfoPanelConfigService;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureRowClassGate extends Gate {
+    /**
+     * @param {?} schemaRowClassArchive
+     */
+    constructor(schemaRowClassArchive) {
+        super();
+        this.schemaRowClassArchive = schemaRowClassArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('rowClass', changes)) {
+            this.schemaRowClassArchive.next((/** @type {?} */ (this.rowClass)));
+        }
+    }
+}
+StructureRowClassGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[rowClass]'
+            },] }
+];
+/** @nocollapse */
+StructureRowClassGate.ctorParameters = () => [
+    { type: SchemaRowClassArchive }
+];
+StructureRowClassGate.propDecorators = {
+    rowClass: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureRowClassGate.prototype.rowClass;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowClassGate.prototype.schemaRowClassArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureRowColoringGate extends Gate {
+    /**
+     * @param {?} schemaId
+     * @param {?} schemaCommandInvoker
+     * @param {?} schemaEventRepository
+     */
+    constructor(schemaId, schemaCommandInvoker, schemaEventRepository) {
+        super();
+        this.schemaId = schemaId;
+        this.schemaCommandInvoker = schemaCommandInvoker;
+        this.schemaEventRepository = schemaEventRepository;
+        this.rowColoringChanged = new EventEmitter();
+        this.localStreamCloser = new StreamCloser();
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('rowColoring', changes)) {
+            this.schemaCommandInvoker.setRowColoring(this.rowColoring);
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        this.schemaEventRepository
+            .onRowColoring(this.schemaId)
+            .pipe(this.localStreamCloser.takeUntil())
+            .subscribe((/**
+         * @param {?} coloring
+         * @return {?}
+         */
+        (coloring) => {
+            this.rowColoringChanged.emit(coloring);
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
+    }
+}
+StructureRowColoringGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[rowColoring]'
+            },] }
+];
+/** @nocollapse */
+StructureRowColoringGate.ctorParameters = () => [
+    { type: SchemaReadModelRootId },
+    { type: SchemaCommandInvoker },
+    { type: SchemaEventRepository }
+];
+StructureRowColoringGate.propDecorators = {
+    rowColoring: [{ type: Input }],
+    rowColoringChanged: [{ type: Output }]
+};
+if (false) {
+    /** @type {?} */
+    StructureRowColoringGate.prototype.rowColoring;
+    /** @type {?} */
+    StructureRowColoringGate.prototype.rowColoringChanged;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowColoringGate.prototype.localStreamCloser;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowColoringGate.prototype.schemaId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowColoringGate.prototype.schemaCommandInvoker;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowColoringGate.prototype.schemaEventRepository;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureRowStyleGate extends Gate {
+    /**
+     * @param {?} schemaRowStyleArchive
+     */
+    constructor(schemaRowStyleArchive) {
+        super();
+        this.schemaRowStyleArchive = schemaRowStyleArchive;
+    }
+    /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (this.isDefined('rowStyle', changes)) {
+            this.schemaRowStyleArchive.next((/** @type {?} */ (this.rowStyle)));
+        }
+    }
+}
+StructureRowStyleGate.decorators = [
+    { type: Directive, args: [{
+                selector: 'gui-structure[rowStyle]'
+            },] }
+];
+/** @nocollapse */
+StructureRowStyleGate.ctorParameters = () => [
+    { type: SchemaRowStyleArchive }
+];
+StructureRowStyleGate.propDecorators = {
+    rowStyle: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    StructureRowStyleGate.prototype.rowStyle;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureRowStyleGate.prototype.schemaRowStyleArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const structureGates = [
+    StructureColumnHeaderGate,
+    StructurePagingGate,
+    StructureSearchingGate,
+    // StructureSourceGate,
+    StructureSelectionGate,
+    StructureL10nGate,
+    StructurePanelGate,
+    StructureRowDetailGate,
+    StructureColumnMenuGate,
+    StructureSummariesGate,
+    StructureInfoPanelGate,
+    StructureRowClassGate,
+    StructureRowStyleGate,
+    StructureRowColoringGate
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class CssClassModule {
+}
+CssClassModule.decorators = [
+    { type: NgModule, args: [{
+                providers: [
+                    CssClassModifier
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class StructureSharedModule {
+}
+StructureSharedModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CssClassModule
+                ]
+            },] }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @return {?}
  */
@@ -40967,12 +43037,12 @@ const imports = [
     SortingFeatureModule,
     FieldFeatureModule,
     SearchFeatureModule,
-    SearchApiModule,
-    FilterApiModule,
-    SourceApiModule,
+    FilterMenuFeatureModule,
+    SourceFeatureModule,
     SummariesFeatureModule,
     VerticalFormationFeatureModule,
     SchemaFeatureModule,
+    StructureSharedModule,
     StructureInfoPanelModule,
     StructureSummariesPanelModule,
     StructureTopPanelModule,
@@ -40981,7 +43051,8 @@ const imports = [
     SchemaManagerModule,
     EmptySourceFeatureModule,
     CompositionFeatureModule,
-    LoggerModule
+    LoggerModule,
+    SanitizeModule
 ];
 /** @type {?} */
 const declarations$2 = [
@@ -41003,7 +43074,8 @@ const declarations$2 = [
     StructureRowDetailViewComponent,
     StructureTitlePanelComponent,
     StructureFooterPanelComponent,
-    StructureThemeGateway
+    StructureThemeGateway,
+    ...structureGates
 ];
 /** @type {?} */
 const entryComponents = [
@@ -41027,7 +43099,7 @@ const providers = [
     ...structureProviders
 ];
 /** @type {?} */
-const exportDeclarations$1 = [
+const exportDeclarations$2 = [
     FabricModule,
     StructureComponent,
     StructureThemeGateway,
@@ -41036,7 +43108,8 @@ const exportDeclarations$1 = [
     StructureRowComponent,
     StructureContainerComponent,
     ...fabricImports,
-    PagingFeatureModule
+    PagingFeatureModule,
+    ...structureGates
 ];
 class StructureModule {
     /**
@@ -41045,7 +43118,7 @@ class StructureModule {
     constructor(platformId) {
         this.platformId = platformId;
         if (isPlatformBrowser(this.platformId)) {
-            window['hermesApi'].loggers = false;
+            window[StructureModule.HERMES_API].loggers = false;
         }
     }
     /**
@@ -41070,12 +43143,15 @@ class StructureModule {
         };
     }
 }
-StructureModule.exportDeclarations = [...exportDeclarations$1];
+StructureModule.HERMES_API = 'hermesApi';
+StructureModule.exportDeclarations = [...exportDeclarations$2];
 StructureModule.decorators = [
     { type: NgModule, args: [{
-                imports,
+                imports: [
+                    imports
+                ],
                 declarations: declarations$2,
-                exports: exportDeclarations$1,
+                exports: exportDeclarations$2,
                 entryComponents
             },] }
 ];
@@ -41084,6 +43160,11 @@ StructureModule.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureModule.HERMES_API;
     /** @type {?} */
     StructureModule.exportDeclarations;
     /**
@@ -41117,7 +43198,7 @@ const declarations$3 = [
 /** @type {?} */
 const providers$1 = (/** @type {?} */ ([]));
 /** @type {?} */
-const exportDeclarations$2 = [
+const exportDeclarations$3 = [
     GuiListComponent,
     GuiListItemComponent,
     GuiListCardComponent
@@ -41171,7 +43252,7 @@ GuiListModule.decorators = [
     { type: NgModule, args: [{
                 imports: imports$1,
                 declarations: declarations$3,
-                exports: exportDeclarations$2,
+                exports: exportDeclarations$3,
                 entryComponents: entryComponents$1
             },] }
 ];
@@ -41186,5 +43267,5 @@ GuiListModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GuiListComponent, GuiListFieldType, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, Logger as ɵba, SetPagingCommandHandler as ɵbb, StructureAggregateRepository as ɵbc, structureKey as ɵbd, NextPageCommandHandler as ɵbe, PrevPageCommandHandler as ɵbf, ChangePagesizeCommandHandler as ɵbg, PagingCommandInvoker as ɵbh, PagingWarehouse as ɵbi, PagingRepository as ɵbj, StructureReadModelRepository as ɵbk, PagingEventRepository as ɵbl, PagingConverter as ɵbm, TranslationFeatureModule as ɵbn, TranslationApiModule as ɵbo, TranslationPipe as ɵbp, TranslationService as ɵbq, TranslationServiceImpl as ɵbr, PagingComponent as ɵbs, SmartComponent as ɵbt, SourceWarehouse as ɵbu, StructurePreparedItemsRepository as ɵbv, StructureSourceOriginRepository as ɵbw, PagingDisplayModeArchive as ɵbx, PagingNavigatorComponent as ɵby, PagingSelectComponent as ɵbz, ListViewApiModule as ɵc, PagingStatsComponent as ɵca, PureComponent as ɵcb, AlternativePagingNavigatorComponent as ɵcc, AlternativePagingPagesComponent as ɵcd, SearchFeatureModule as ɵce, SearchIconComponent as ɵcf, SearchComponent as ɵcg, StructureId as ɵch, SearchCommandInvoker as ɵci, SearchDispatcher as ɵcj, SearchHighlightArchive as ɵck, SearchPlaceholderArchive as ɵcl, StructureWarehouse as ɵcm, SearchWarehouse as ɵcn, SearchingRepository as ɵco, SearchPhraseRepository as ɵcp, StructureVerticalFormationWarehouse as ɵcq, VerticalFormationRepository as ɵcr, InMemoryStructureReadStore as ɵcs, InMemoryStructureStore as ɵct, StructureReadModelRootConverter as ɵcu, SourceConverter as ɵcv, VerticalFormationConverter as ɵcw, VerticalFormationScrollBarPositionRepository as ɵcx, SearchApiModule as ɵcy, SearchDomainModule as ɵcz, ListViewAggregateFactory as ɵd, SearchManagerFactory as ɵda, SetConfigSearchingCommandHandler as ɵdb, StructureSetSearchPhraseCommandHandler as ɵdc, SourceDomainEventPublisher as ɵdd, SearchPhraseSetEventHandler as ɵde, ConfigSearchingSetEventHandler as ɵdf, SearchEventRepository as ɵdg, EmptySourceFeatureModule as ɵdh, EmptySourceComponent as ɵdi, SortingSelectorFeatureModule as ɵdj, SortingSelectorComponent as ɵdk, FilterMenuFeatureModule as ɵdl, FilterIconComponent as ɵdm, FilterMenuComponent as ɵdn, FieldWarehouse as ɵdo, FieldReadModelRepository as ɵdp, FilterWarehouse as ɵdq, FilterEnabledRepository as ɵdr, QuickFilterEnabledRepository as ɵds, FilterTypeRepository as ɵdt, UniqueValuesRepository as ɵdu, ActiveFilterRepository as ɵdv, FilterCommandInvoker as ɵdw, CompositionWarehouse as ɵdx, CompositionReadModelRootRepository as ɵdy, CompositionGroupRepository as ɵdz, InMemoryListViewAggregateRepository as ɵe, GroupCollection as ɵea, Group as ɵeb, GroupId as ɵec, FilterMenuTriggerComponent as ɵed, filterContainerToken as ɵee, ColumnSelectorComponent as ɵeg, FilterTypeSelectorComponent as ɵeh, FilterValueComponent as ɵei, ActiveFilterListComponent as ɵej, FieldSelectorComponent as ɵek, ActiveSearchComponent as ɵel, listViewIdFactory as ɵem, ListViewComponent as ɵen, ListViewGateway as ɵeo, SourceCommandInvoker as ɵep, SourceDispatcher as ɵeq, structureIdFactory as ɵer, compositionIdFactory as ɵes, schemaIdFactory as ɵet, structureComponentSelfProviders as ɵeu, StructureComponent as ɵev, StructureIdGenerator as ɵew, ListViewReadModelRootId as ɵex, listViewProviders as ɵey, ListViewTemplateArchive as ɵez, ListViewAggregateRepository as ɵf, ListViewCardTemplateArchive as ɵfa, localProviders as ɵfb, provideComponentServices as ɵfc, LocalPagingCommandDispatcher as ɵfd, Override as ɵfe, LocalPagingWarehouse as ɵff, FormationCommandInvoker as ɵfg, FormationDispatcher as ɵfh, LocalFormationCommandDispatcher as ɵfi, FormationWarehouse as ɵfj, RowSelectedRepository as ɵfk, RowSelectionModeRepository as ɵfl, LocalFormationWarehouse as ɵfm, LocalStructureWarehouse as ɵfn, LocalSourceCommandDispatcher as ɵfo, LocalSourceWarehouse as ɵfp, LocalStructureSearchCommandDispatcher as ɵfq, LocalStructureVerticalFormationWarehouse as ɵfr, StructureCommandDispatcher as ɵfs, ListViewItemComponent as ɵft, ListViewLayoutComponent as ɵfu, ListViewSourceComponent as ɵfv, ListViewContainerCardComponent as ɵfw, ListViewCardItemComponent as ɵfx, ListViewContainerModeSelectComponent as ɵfy, listViewGatewayDeclarations as ɵfz, InMemoryListViewAggregateStore as ɵg, ListViewPagingGate as ɵga, Gate as ɵgb, ListViewModeGate as ɵgc, ListViewTemplateGate as ɵgd, ListViewFieldGate as ɵge, FieldCommandInvoker as ɵgf, ListViewSearchingGate as ɵgg, createStructureDefinition as ɵgh, StructureModule as ɵgi, StructureAggregateFactory as ɵgj, SourceManagerFactory as ɵgk, FormationManagerFactory as ɵgl, VerticalFormationFactory as ɵgm, SummariesManagerFactory as ɵgn, SUMMARIES_CALCULATORS as ɵgo, SummariesCalculator as ɵgp, FilterManagerFactory as ɵgq, FieldCollectionFactory as ɵgr, FieldFactory as ɵgs, FieldIdGenerator as ɵgt, DataFieldFactory as ɵgu, InMemoryStructureAggregateRepository as ɵgv, InMemoryStructureAggregateStore as ɵgw, CreateStructureCommandHandler as ɵgx, SortingDomainModule as ɵgy, ToggleSortCommandHandler as ɵgz, InMemoryListViewStore as ɵh, SetSortingCommandHandler as ɵha, SetSortOrderCommandHandler as ɵhb, FieldDomainModule as ɵhc, InitFieldsCommandHandler as ɵhd, FieldsInitedEventHandler as ɵhe, FieldUiConverter as ɵhf, FilterDomainModule as ɵhg, SetConfigFilterCommandHandler as ɵhh, SetConfigQuickFilterCommandHandler as ɵhi, ToggleFilterCommandHandler as ɵhj, AddFilterCommandHandler as ɵhk, RemoveAllFiltersCommandHandler as ɵhl, RemoveFilterCommandHandler as ɵhm, SelectUniqueFilterCommandHandler as ɵhn, SelectAllUniqueFilterCommandHandler as ɵho, UnselectUniqueFilterCommandHandler as ɵhp, UnselectAllUniqueFilterCommandHandler as ɵhq, ConfigQuickFilterSetEventHandler as ɵhr, ConfigFilterSetEventHandler as ɵhs, FilterTypeConfigFilterSetEventHandler as ɵht, ActiveFiltersSetEventHandler as ɵhu, UniqueFilterCalculatedEventHandler as ɵhv, FilterTypeFieldsInitedEventHandler as ɵhw, SourceDomainModule as ɵhx, SourceSetLoadingCommandHandler as ɵhy, SetOriginCommandHandler as ɵhz, CreateListViewCommandHandler as ɵi, StructureEditSourceItemCommandHandler as ɵia, SetEnabledSelectionCommandHandler as ɵib, SetSelectionModeCommandHandler as ɵic, SelectAllRowsCommandHandler as ɵid, UnselectAllRowsCommandHandler as ɵie, DeleteOriginItemCommandHandler as ɵif, ToggleSelectedRowCommandHandler as ɵig, StructureOriginChangedEventHandler as ɵih, SelectedRowChangedEventHandler as ɵii, SelectionModeSetEventHandler as ɵij, StructurePreparedItemsEventHandler as ɵik, SummariesDomainModule as ɵil, provideSummariesCalculator as ɵim, summariesProviders as ɵin, BooleanSummariesCalculator as ɵio, DateSummariesCalculator as ɵip, NumberSummariesCalculator as ɵiq, StringSummariesCalculator as ɵir, UnknownSummariesCalculator as ɵis, StructureSetSummariesEnabledCommandHandler as ɵit, StructureSummariesEnabledSetEventHandler as ɵiu, StructureSummariesRepository as ɵiv, VerticalFormationDomainModule as ɵiw, SetScrollPositionCommandHandler as ɵix, SetVerticalScrollEnabledCommandHandler as ɵiy, SetRowHeightBasedOnThemeCommandHandler as ɵiz, ListViewDomainModule as ɵj, SetRowHeightCommandHandler as ɵja, StructureSetHeightCommandHandler as ɵjb, SetScrollBarPositionCommandHandler as ɵjc, ScrollBarPositionSetEventHandler as ɵjd, structureCommandHandlers as ɵje, structureDomainEventHandlers as ɵjf, structureProviders as ɵjg, StructureCreatedEventHandler as ɵjh, fabricImports as ɵji, SortingFeatureModule as ɵjj, SortingApiModule as ɵjk, SortingCommandInvoker as ɵjl, SortingWarehouse as ɵjm, SortingEventRepository as ɵjn, FieldFeatureModule as ɵjo, FieldApiModule as ɵjp, FilterApiModule as ɵjq, SourceApiModule as ɵjr, SourceEventService as ɵjs, FormationEventRepository as ɵjt, SummariesFeatureModule as ɵju, SummariesApiModule as ɵjv, StructureSummariesCommandDispatcher as ɵjw, StructureSummariesUiEventsRepository as ɵjx, StructureSummariesWarehouse as ɵjy, VerticalFormationFeatureModule as ɵjz, ListViewDispatcher as ɵk, VerticalFormationApiModule as ɵka, SchemaFeatureModule as ɵkb, SchemaApiModule as ɵkc, schemaKey as ɵkd, SchemaAggregateFactory as ɵke, InMemorySchemaAggregateRepository as ɵkf, SchemaAggregateRepository as ɵkg, InMemorySchemaAggregateStore as ɵkh, InMemorySchemaStore as ɵki, CreateSchemaCommandHandler as ɵkj, SchemaDomainModule as ɵkk, SetSchemaThemeCommandHandler as ɵkl, SetRowColoringCommandHandler as ɵkm, SetSchemaHorizontalGridCommandHandler as ɵkn, SetSchemaVerticalGridCommandHandler as ɵko, SchemaThemeSetEventHandler as ɵkp, SchemaThemeRepository as ɵkq, SchemaHorizontalGridSetEventHandler as ɵkr, SchemaHorizontalGridRepository as ɵks, SchemaRowColoringSetEventHandler as ɵkt, SchemaRowColoringRepository as ɵku, SchemaVerticalGridSetEventHandler as ɵkv, SchemaVerticalGridRepository as ɵkw, SchemaCssClassesEventHandler as ɵkx, SchemaCssClassesRepository as ɵky, SchemaDispatcher as ɵkz, SetListViewModeCommandHandler as ɵl, SchemaCommandInvoker as ɵla, SchemaWarehouse as ɵlb, SchemaEventRepository as ɵlc, SchemaRowClassArchive as ɵld, SchemaRowStyleArchive as ɵle, StructureInfoPanelModule as ɵlf, NumberFormatterModule as ɵlg, NumberFormatterPipe as ɵlh, StructureColumnManagerModule as ɵli, StructureColumnManagerComponent as ɵlj, CompositionId as ɵlk, CompositionCommandInvoker as ɵll, CompositionDispatcher as ɵlm, StructureDialogColumnManagerComponent as ɵln, StructureMenuColumnManagerComponent as ɵlo, selector as ɵlp, StructureColumnManagerIconComponent as ɵlq, StructureDialogColumnManagerService as ɵlr, StructureThemeConverter as ɵls, SchemaManagerModule as ɵlt, StructureSchemaMangerComponent as ɵlu, SchemaReadModelRootId as ɵlv, StructureDialogSchemaManagerComponent as ɵlw, StructureSchemaManagerIconComponent as ɵlx, StructureDialogSchemaManagerService as ɵly, SourceCounterFeatureModule as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, ActiveFilterMenuTriggerDirective as ɵma, ActiveFilterService as ɵmb, ActiveFilterMenuComponent as ɵmc, StructureInfoPanelComponent as ɵmd, StructureInfoPanelArchive as ɵme, StructureInfoModalComponent as ɵmf, selector$1 as ɵmg, StructureInfoIconComponent as ɵmh, StructureInfoPanelConfigConverter as ɵmi, StructureSummariesPanelModule as ɵmj, StructureSummariesPanelComponent as ɵmk, StructureSummariesArchive as ɵml, StructureSummariesConfigService as ɵmm, StructureSummariesPanelConfigConverter as ɵmn, StructureTopPanelModule as ɵmo, StructureTopPanelComponent as ɵmp, StructureColumnMenuModule as ɵmq, UniqueValueListModule as ɵmr, UniqueValueListComponent as ɵms, StructureColumnConfigComponent as ɵmt, StructureColumnMenuConfigArchive as ɵmu, CellTemplateWithContext as ɵmv, CellContext as ɵmw, CellValueType as ɵmx, CellValue as ɵmy, FieldId as ɵmz, ListViewModeSetEventHandler as ɵn, ColumnDefinitionId as ɵna, SortOrder as ɵnb, ColumnAlign as ɵnc, StructureColumnConfigTriggerComponent as ɵnd, StructureColumnConfigService as ɵne, StructureColumnConfigSortComponent as ɵnf, StructureColumnConfigColumnHideComponent as ɵng, StructureColumnConfigColumnMoveComponent as ɵnh, StructureColumnMenuIconComponent as ɵni, selector$3 as ɵnj, StructureColumnMenuArrowIconComponent as ɵnk, CompositionFeatureModule as ɵnl, CompositionApiModule as ɵnm, compositionKey as ɵnn, CompositionAggregateFactory as ɵno, ColumnEntityFactory as ɵnp, ColumnPresentationConverter as ɵnq, CompositionGroupFactory as ɵnr, InMemoryCompositionAggregateRepository as ɵns, CompositionAggregateRepository as ɵnt, InMemoryCompositionAggregateStore as ɵnu, InMemoryCompositionStore as ɵnv, CreateCompositionCommandHandler as ɵnw, CompositionDomainModule as ɵnx, inMemoryCompositionCommandProviders as ɵny, inMemoryCompositionReadModelProviders as ɵnz, ListViewModeRepository as ɵo, inMemoryCompositionProviders as ɵoa, CompositionEventConverter as ɵob, ColumnFieldFactory as ɵoc, SetColumnsCommandHandler as ɵod, SetCompositionWidthCommandHandler as ɵoe, SetCompositionResizeWidthCommandHandler as ɵof, SetCompositionContainerWidthCommandHandler as ɵog, CompositionSetColumnEnabledCommandHandler as ɵoh, CompositionChangeSortStatusCommandHandler as ɵoi, CompositionMoveLeftColumnCommandHandler as ɵoj, CompositionMoveRightColumnCommandHandler as ɵok, SetGroupsCommandHandler as ɵol, CompositionChangeSortStatusEventHandler as ɵom, InMemoryCompositionReadStore as ɵon, CompositionReadModelRootConverter as ɵoo, ColumnDefinitionFactory as ɵop, ViewTemplateRepository as ɵoq, ViewTemplateFactory as ɵor, TemplateFactory as ɵos, EditTemplateRepository as ɵot, EditTemplateFactory as ɵou, InMemoryCompositionRepository as ɵov, CompositionEventRepository as ɵow, SanitizeModule as ɵox, SafePipe as ɵoy, ViewTemplatesComponent as ɵoz, Reactive as ɵp, EditTemplatesComponent as ɵpa, StringEditTemplateComponent as ɵpb, InputEditTemplateComponent as ɵpc, EditCommunicationComponent as ɵpd, NumberEditTemplateComponent as ɵpe, BooleanEditTemplateComponent as ɵpf, DateEditTemplateComponent as ɵpg, ColumnQueryComponent as ɵph, FunctionViewComponent as ɵpi, BarViewComponent as ɵpj, PercentageViewComponent as ɵpk, TextViewComponent as ɵpl, LoggerModule as ɵpm, ConsoleLogger as ɵpn, StructureGateway as ɵpo, StructureEditModeArchive as ɵpp, StructureCellEditArchive as ɵpq, StructureInfoPanelConfigService as ɵpr, StructureCellEditStore as ɵps, RowSelectEnabledRepository as ɵpt, RowSelectionTypeArchive as ɵpu, StructureHeaderTopEnabledArchive as ɵpv, StructureHeaderBottomEnabledArchive as ɵpw, StructureRowDetailConfigArchive as ɵpx, StructureTitlePanelConfigArchive as ɵpy, StructureFooterPanelConfigArchive as ɵpz, ListViewSelectorToggledEventHandler as ɵq, LocalStructureCommandDispatcher as ɵqa, LocalCompositionCommandDispatcher as ɵqb, LocalCompositionWarehouse as ɵqc, LocalSchemaWarehouse as ɵqd, LocalSchemaCommandDispatcher as ɵqe, SchemaCssClassManager as ɵqf, StructureCellEditCloseAllService as ɵqg, SourceFeatureModule as ɵqh, StructureRowDetailService as ɵqi, structureComponentToken as ɵqj, StructureDefinition as ɵqk, PagingDefinition as ɵql, StructureHeaderComponent as ɵqm, StructureHeaderColumnsComponent as ɵqn, StructureHeaderFiltersComponent as ɵqo, StructureHeaderGroupsComponent as ɵqp, StructureHeaderFilterComponent as ɵqq, SelectAllComponent as ɵqr, StructureContentComponent as ɵqs, StructureRowComponent as ɵqt, StructureCellComponent as ɵqu, StructureCellEditComponent as ɵqv, StructureCellEditBooleanComponent as ɵqw, StructureContainerComponent as ɵqx, structureParentComponent as ɵqy, StructureQuickFiltersComponent as ɵqz, ListViewSelectorRepository as ɵr, StructureBlueprintComponent as ɵra, STRUCTURE_CSS_CLASS_NAME as ɵrb, StructureRowDetailViewComponent as ɵrc, structureRowDetailViewItem as ɵrd, structureRowDetailViewTemplate as ɵre, SelectedRow as ɵrf, OriginId as ɵrg, StructureTitlePanelComponent as ɵrh, StructureFooterPanelComponent as ɵri, StructureThemeGateway as ɵrj, ItemEntityFactory as ɵrk, inMemoryStructureCommandProviders as ɵrl, inMemoryStructureReadProviders as ɵrm, inMemoryStructureProviders as ɵrn, InMemoryStructureRepository as ɵro, GuiListGateway as ɵrp, GuiListItemComponent as ɵrq, GuiListCardComponent as ɵrr, guiListProviders as ɵrs, ListViewCommandInvoker as ɵs, ListViewEventRepository as ɵt, ListViewWarehouse as ɵu, PagingFeatureModule as ɵv, PagingApiModule as ɵw, PagingDomainModule as ɵx, PagingDispatcher as ɵy, PagingManagerFactory as ɵz };
+export { GuiListComponent, GuiListDefaultTranslation, GuiListFieldType, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, Logger as ɵba, SetPagingCommandHandler as ɵbb, StructureAggregateRepository as ɵbc, structureKey as ɵbd, NextPageCommandHandler as ɵbe, PrevPageCommandHandler as ɵbf, ChangePagesizeCommandHandler as ɵbg, PagingCommandInvoker as ɵbh, PagingWarehouse as ɵbi, PagingRepository as ɵbj, StructureReadModelRepository as ɵbk, PagingEventRepository as ɵbl, PagingConverter as ɵbm, TranslationFeatureModule as ɵbn, TranslationApiModule as ɵbo, TranslationPipe as ɵbp, TranslationService as ɵbq, TranslationServiceImpl as ɵbr, PagingComponent as ɵbs, SmartComponent as ɵbt, GuiComponent as ɵbu, CssClassModifier as ɵbv, SourceWarehouse as ɵbw, StructurePreparedItemsRepository as ɵbx, StructureSourceOriginRepository as ɵby, PagingDisplayModeArchive as ɵbz, ListViewApiModule as ɵc, PagingNavigatorComponent as ɵca, PureComponent as ɵcb, PagingSelectComponent as ɵcc, PagingStatsComponent as ɵcd, AlternativePagingNavigatorComponent as ɵce, AlternativePagingPagesComponent as ɵcf, SearchFeatureModule as ɵcg, SearchApiModule as ɵch, SearchDomainModule as ɵci, SearchManagerFactory as ɵcj, SearchDispatcher as ɵck, SearchHighlightArchive as ɵcl, SearchPlaceholderArchive as ɵcm, SetConfigSearchingCommandHandler as ɵcn, StructureSetSearchPhraseCommandHandler as ɵco, SourceDomainEventPublisher as ɵcp, SearchPhraseSetEventHandler as ɵcq, SearchPhraseRepository as ɵcr, ConfigSearchingSetEventHandler as ɵcs, SearchingRepository as ɵct, SearchCommandInvoker as ɵcu, SearchWarehouse as ɵcv, SearchEventRepository as ɵcw, SearchIconComponent as ɵcx, IconComponent as ɵcy, StaticComponent as ɵcz, ListViewAggregateFactory as ɵd, SearchComponent as ɵda, StructureId as ɵdb, StructureWarehouse as ɵdc, StructureVerticalFormationWarehouse as ɵdd, VerticalFormationRepository as ɵde, InMemoryStructureReadStore as ɵdf, InMemoryStructureStore as ɵdg, StructureReadModelRootConverter as ɵdh, SourceConverter as ɵdi, VerticalFormationConverter as ɵdj, VerticalFormationScrollBarPositionRepository as ɵdk, EmptySourceFeatureModule as ɵdl, EmptySourceComponent as ɵdm, SortingSelectorFeatureModule as ɵdn, SortingSelectorComponent as ɵdo, FilterMenuFeatureModule as ɵdp, FilterApiModule as ɵdq, FilterDomainModule as ɵdr, FilterManagerFactory as ɵds, SetConfigFilterCommandHandler as ɵdt, SetConfigQuickFilterCommandHandler as ɵdu, ToggleFilterCommandHandler as ɵdv, AddFilterCommandHandler as ɵdw, RemoveAllFiltersCommandHandler as ɵdx, RemoveFilterCommandHandler as ɵdy, SelectUniqueFilterCommandHandler as ɵdz, InMemoryListViewAggregateRepository as ɵe, SelectAllUniqueFilterCommandHandler as ɵea, UnselectUniqueFilterCommandHandler as ɵeb, UnselectAllUniqueFilterCommandHandler as ɵec, ConfigQuickFilterSetEventHandler as ɵed, QuickFilterEnabledRepository as ɵee, ConfigFilterSetEventHandler as ɵef, FilterEnabledRepository as ɵeg, FilterTypeConfigFilterSetEventHandler as ɵeh, FilterTypeRepository as ɵei, ActiveFiltersSetEventHandler as ɵej, ActiveFilterRepository as ɵek, UniqueFilterCalculatedEventHandler as ɵel, UniqueValuesRepository as ɵem, FilterTypeFieldsInitedEventHandler as ɵen, FilterCommandInvoker as ɵeo, FilterWarehouse as ɵep, ActiveFilterListModule as ɵeq, fabricImports as ɵer, ActiveFilterListComponent as ɵes, ActiveSearchComponent as ɵet, FilterIconComponent as ɵeu, FilterMenuComponent as ɵev, FieldWarehouse as ɵew, FieldReadModelRepository as ɵex, CompositionWarehouse as ɵey, CompositionReadModelRootRepository as ɵez, ListViewAggregateRepository as ɵf, CompositionGroupRepository as ɵfa, GroupCollection as ɵfb, Group as ɵfc, GroupId as ɵfd, FilterMenuTriggerComponent as ɵfe, filterContainerToken as ɵff, ColumnSelectorComponent as ɵfh, FilterTypeSelectorComponent as ɵfi, FilterValueComponent as ɵfj, FieldSelectorComponent as ɵfk, listViewIdFactory as ɵfl, ListViewComponent as ɵfm, structureIdFactory as ɵfn, compositionIdFactory as ɵfo, schemaIdFactory as ɵfp, structureComponentSelfProviders as ɵfq, StructureComponent as ɵfr, StructureIdGenerator as ɵfs, ListViewReadModelRootId as ɵft, listViewProviders as ɵfu, ListViewTemplateArchive as ɵfv, ListViewCardTemplateArchive as ɵfw, localProviders as ɵfx, provideComponentServices as ɵfy, LocalPagingCommandDispatcher as ɵfz, InMemoryListViewAggregateStore as ɵg, Override as ɵga, LocalPagingWarehouse as ɵgb, FormationCommandInvoker as ɵgc, FormationDispatcher as ɵgd, LocalFormationCommandDispatcher as ɵge, FormationWarehouse as ɵgf, RowSelectedRepository as ɵgg, RowSelectionModeRepository as ɵgh, LocalFormationWarehouse as ɵgi, LocalStructureWarehouse as ɵgj, SourceCommandInvoker as ɵgk, SourceDispatcher as ɵgl, LocalSourceCommandDispatcher as ɵgm, LocalSourceWarehouse as ɵgn, LocalStructureSearchCommandDispatcher as ɵgo, LocalStructureVerticalFormationWarehouse as ɵgp, StructureCommandDispatcher as ɵgq, ListViewItemComponent as ɵgr, ListViewLayoutComponent as ɵgs, ListViewSourceComponent as ɵgt, ListViewContainerCardComponent as ɵgu, ListViewCardItemComponent as ɵgv, ListViewContainerModeSelectComponent as ɵgw, listViewGatewayDeclarations as ɵgx, ListViewPagingGate as ɵgy, PagingGate as ɵgz, InMemoryListViewStore as ɵh, Gate as ɵha, ListViewModeGate as ɵhb, ListViewTemplateGate as ɵhc, ListViewFieldGate as ɵhd, FieldCommandInvoker as ɵhe, ListViewSearchingGate as ɵhf, SearchingGate as ɵhg, ListViewL10nGate as ɵhh, ListViewSourceGate as ɵhi, SourceGate as ɵhj, SourceEventService as ɵhk, createStructureDefinition as ɵhl, StructureModule as ɵhm, StructureAggregateFactory as ɵhn, SourceManagerFactory as ɵho, FormationManagerFactory as ɵhp, VerticalFormationFactory as ɵhq, SummariesManagerFactory as ɵhr, SUMMARIES_CALCULATORS as ɵhs, SummariesCalculator as ɵht, FieldCollectionFactory as ɵhu, FieldFactory as ɵhv, FieldIdGenerator as ɵhw, DataFieldFactory as ɵhx, InMemoryStructureAggregateRepository as ɵhy, InMemoryStructureAggregateStore as ɵhz, CreateListViewCommandHandler as ɵi, CreateStructureCommandHandler as ɵia, SortingDomainModule as ɵib, ToggleSortCommandHandler as ɵic, SetSortingCommandHandler as ɵid, SetSortOrderCommandHandler as ɵie, FieldDomainModule as ɵif, InitFieldsCommandHandler as ɵig, FieldsInitedEventHandler as ɵih, FieldUiConverter as ɵii, SourceDomainModule as ɵij, SourceSetLoadingCommandHandler as ɵik, SetOriginCommandHandler as ɵil, StructureEditSourceItemCommandHandler as ɵim, SetEnabledSelectionCommandHandler as ɵin, SetSelectionModeCommandHandler as ɵio, SelectAllRowsCommandHandler as ɵip, UnselectAllRowsCommandHandler as ɵiq, DeleteOriginItemCommandHandler as ɵir, ToggleSelectedRowCommandHandler as ɵis, StructureOriginChangedEventHandler as ɵit, SelectedRowChangedEventHandler as ɵiu, SelectionModeSetEventHandler as ɵiv, StructurePreparedItemsEventHandler as ɵiw, SummariesDomainModule as ɵix, provideSummariesCalculator as ɵiy, summariesProviders as ɵiz, ListViewDomainModule as ɵj, BooleanSummariesCalculator as ɵja, DateSummariesCalculator as ɵjb, NumberSummariesCalculator as ɵjc, StringSummariesCalculator as ɵjd, UnknownSummariesCalculator as ɵje, StructureSetSummariesEnabledCommandHandler as ɵjf, StructureSummariesEnabledSetEventHandler as ɵjg, StructureSummariesRepository as ɵjh, VerticalFormationDomainModule as ɵji, SetScrollPositionCommandHandler as ɵjj, SetVerticalScrollEnabledCommandHandler as ɵjk, SetRowHeightBasedOnThemeCommandHandler as ɵjl, SetRowHeightCommandHandler as ɵjm, StructureSetHeightCommandHandler as ɵjn, SetScrollBarPositionCommandHandler as ɵjo, ScrollBarPositionSetEventHandler as ɵjp, structureCommandHandlers as ɵjq, structureDomainEventHandlers as ɵjr, structureProviders as ɵjs, StructureCreatedEventHandler as ɵjt, SortingFeatureModule as ɵju, SortingApiModule as ɵjv, SortingCommandInvoker as ɵjw, SortingWarehouse as ɵjx, SortingEventRepository as ɵjy, FieldFeatureModule as ɵjz, ListViewDispatcher as ɵk, FieldApiModule as ɵka, SourceFeatureModule as ɵkb, SourceApiModule as ɵkc, FormationEventRepository as ɵkd, RowSelectionTypeArchive as ɵke, SummariesFeatureModule as ɵkf, SummariesApiModule as ɵkg, StructureSummariesCommandDispatcher as ɵkh, StructureSummariesUiEventsRepository as ɵki, StructureSummariesWarehouse as ɵkj, VerticalFormationFeatureModule as ɵkk, VerticalFormationApiModule as ɵkl, SchemaFeatureModule as ɵkm, SchemaApiModule as ɵkn, schemaKey as ɵko, SchemaAggregateFactory as ɵkp, InMemorySchemaAggregateRepository as ɵkq, SchemaAggregateRepository as ɵkr, InMemorySchemaAggregateStore as ɵks, InMemorySchemaStore as ɵkt, CreateSchemaCommandHandler as ɵku, SchemaDomainModule as ɵkv, SetSchemaThemeCommandHandler as ɵkw, SetRowColoringCommandHandler as ɵkx, SetSchemaHorizontalGridCommandHandler as ɵky, SetSchemaVerticalGridCommandHandler as ɵkz, SetListViewModeCommandHandler as ɵl, SchemaThemeSetEventHandler as ɵla, SchemaThemeRepository as ɵlb, SchemaHorizontalGridSetEventHandler as ɵlc, SchemaHorizontalGridRepository as ɵld, SchemaRowColoringSetEventHandler as ɵle, SchemaRowColoringRepository as ɵlf, SchemaVerticalGridSetEventHandler as ɵlg, SchemaVerticalGridRepository as ɵlh, SchemaCssClassesEventHandler as ɵli, SchemaCssClassesRepository as ɵlj, SchemaDispatcher as ɵlk, SchemaCommandInvoker as ɵll, SchemaWarehouse as ɵlm, SchemaEventRepository as ɵln, SchemaRowClassArchive as ɵlo, SchemaRowStyleArchive as ɵlp, StructureSharedModule as ɵlq, CssClassModule as ɵlr, StructureInfoPanelModule as ɵls, NumberFormatterModule as ɵlt, NumberFormatterPipe as ɵlu, StructureColumnManagerModule as ɵlv, StructureColumnManagerComponent as ɵlw, CompositionId as ɵlx, CompositionCommandInvoker as ɵly, CompositionDispatcher as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, StructureDialogColumnManagerComponent as ɵma, StructureMenuColumnManagerComponent as ɵmb, StructureColumnManagerIconComponent as ɵmc, StructureDialogColumnManagerService as ɵmd, StructureThemeConverter as ɵme, SchemaManagerModule as ɵmf, StructureSchemaMangerComponent as ɵmg, SchemaReadModelRootId as ɵmh, StructureDialogSchemaManagerComponent as ɵmi, StructureSchemaManagerIconComponent as ɵmj, StructureDialogSchemaManagerService as ɵmk, SourceCounterFeatureModule as ɵml, ActiveFilterMenuTriggerDirective as ɵmm, ActiveFilterService as ɵmn, ActiveFilterMenuComponent as ɵmo, StructureInfoPanelComponent as ɵmp, StructureInfoPanelArchive as ɵmq, StructureInfoModalComponent as ɵmr, StructureInfoIconComponent as ɵms, StructureInfoPanelConfigConverter as ɵmt, StructureSummariesPanelModule as ɵmu, StructureSummariesPanelComponent as ɵmv, StructureSummariesArchive as ɵmw, StructureSummariesConfigService as ɵmx, StructureSummariesPanelConfigConverter as ɵmy, StructureTopPanelModule as ɵmz, ListViewModeSetEventHandler as ɵn, StructureTopPanelComponent as ɵna, StructureColumnMenuModule as ɵnb, UniqueValueListModule as ɵnc, UniqueValueListComponent as ɵnd, StructureColumnConfigComponent as ɵne, StructureColumnMenuConfigArchive as ɵnf, CellTemplateWithContext as ɵng, CellContext as ɵnh, CellValueType as ɵni, CellValue as ɵnj, FieldId as ɵnk, ColumnDefinitionId as ɵnl, SortOrder as ɵnm, ColumnAlign as ɵnn, StructureColumnConfigTriggerComponent as ɵno, StructureColumnConfigService as ɵnp, StructureColumnConfigSortComponent as ɵnq, StructureColumnConfigColumnHideComponent as ɵnr, StructureColumnConfigColumnMoveComponent as ɵns, StructureColumnMenuIconComponent as ɵnt, StructureColumnMenuArrowIconComponent as ɵnu, CompositionFeatureModule as ɵnv, CompositionApiModule as ɵnw, compositionKey as ɵnx, CompositionAggregateFactory as ɵny, ColumnEntityFactory as ɵnz, ListViewModeRepository as ɵo, ColumnPresentationConverter as ɵoa, CompositionGroupFactory as ɵob, InMemoryCompositionAggregateRepository as ɵoc, CompositionAggregateRepository as ɵod, InMemoryCompositionAggregateStore as ɵoe, InMemoryCompositionStore as ɵof, CreateCompositionCommandHandler as ɵog, CompositionDomainModule as ɵoh, inMemoryCompositionCommandProviders as ɵoi, inMemoryCompositionReadModelProviders as ɵoj, inMemoryCompositionProviders as ɵok, CompositionEventConverter as ɵol, ColumnFieldFactory as ɵom, SetColumnsCommandHandler as ɵon, SetCompositionWidthCommandHandler as ɵoo, SetCompositionResizeWidthCommandHandler as ɵop, SetCompositionContainerWidthCommandHandler as ɵoq, CompositionSetColumnEnabledCommandHandler as ɵor, CompositionChangeSortStatusCommandHandler as ɵos, CompositionMoveLeftColumnCommandHandler as ɵot, CompositionMoveRightColumnCommandHandler as ɵou, SetGroupsCommandHandler as ɵov, CompositionChangeSortStatusEventHandler as ɵow, InMemoryCompositionReadStore as ɵox, CompositionReadModelRootConverter as ɵoy, ColumnDefinitionFactory as ɵoz, Reactive as ɵp, ViewTemplateRepository as ɵpa, ViewTemplateFactory as ɵpb, TemplateFactory as ɵpc, EditTemplateRepository as ɵpd, EditTemplateFactory as ɵpe, InMemoryCompositionRepository as ɵpf, CompositionEventRepository as ɵpg, SanitizeModule as ɵph, SafePipe as ɵpi, ViewTemplatesComponent as ɵpj, EditTemplatesComponent as ɵpk, StringEditTemplateComponent as ɵpl, InputEditTemplateComponent as ɵpm, EditCommunicationComponent as ɵpn, NumberEditTemplateComponent as ɵpo, BooleanEditTemplateComponent as ɵpp, DateEditTemplateComponent as ɵpq, ColumnQueryComponent as ɵpr, FunctionViewComponent as ɵps, BarViewComponent as ɵpt, PercentageViewComponent as ɵpu, TextViewComponent as ɵpv, LoggerModule as ɵpw, ConsoleLogger as ɵpx, StructureGateway as ɵpy, StructureEditModeArchive as ɵpz, ListViewSelectorToggledEventHandler as ɵq, StructureCellEditArchive as ɵqa, StructureInfoPanelConfigService as ɵqb, StructureCellEditStore as ɵqc, RowSelectEnabledRepository as ɵqd, StructureHeaderTopEnabledArchive as ɵqe, StructureHeaderBottomEnabledArchive as ɵqf, StructureRowDetailConfigArchive as ɵqg, StructureTitlePanelConfigArchive as ɵqh, StructureFooterPanelConfigArchive as ɵqi, LocalStructureCommandDispatcher as ɵqj, LocalCompositionCommandDispatcher as ɵqk, LocalCompositionWarehouse as ɵql, LocalSchemaWarehouse as ɵqm, LocalSchemaCommandDispatcher as ɵqn, SchemaCssClassManager as ɵqo, StructureCellEditCloseAllService as ɵqp, StructureRowDetailService as ɵqq, structureComponentToken as ɵqr, StructureDefinition as ɵqs, PagingDefinition as ɵqt, StructureHeaderComponent as ɵqu, StructureHeaderColumnsComponent as ɵqv, StructureHeaderFiltersComponent as ɵqw, StructureHeaderGroupsComponent as ɵqx, StructureHeaderFilterComponent as ɵqy, SelectAllComponent as ɵqz, ListViewSelectorRepository as ɵr, StructureContentComponent as ɵra, StructureRowComponent as ɵrb, StructureCellComponent as ɵrc, StructureCellEditComponent as ɵrd, StructureCellEditBooleanComponent as ɵre, StructureContainerComponent as ɵrf, structureParentComponent as ɵrg, StructureQuickFiltersComponent as ɵrh, StructureBlueprintComponent as ɵri, STRUCTURE_CSS_CLASS_NAME as ɵrj, StructureRowDetailViewComponent as ɵrk, structureRowDetailViewItem as ɵrl, structureRowDetailViewTemplate as ɵrm, SelectedRow as ɵrn, OriginId as ɵro, StructureTitlePanelComponent as ɵrp, StructureBannerPanel as ɵrq, StructureFooterPanelComponent as ɵrr, StructureThemeGateway as ɵrs, structureGates as ɵrt, StructureColumnHeaderGate as ɵru, StructurePagingGate as ɵrv, StructureSearchingGate as ɵrw, StructureSelectionGate as ɵrx, SelectionGate as ɵry, StructureL10nGate as ɵrz, ListViewCommandInvoker as ɵs, StructurePanelGate as ɵsa, StructureRowDetailGate as ɵsb, StructureColumnMenuGate as ɵsc, StructureSummariesGate as ɵsd, StructureInfoPanelGate as ɵse, StructureRowClassGate as ɵsf, StructureRowStyleGate as ɵsg, StructureRowColoringGate as ɵsh, ItemEntityFactory as ɵsi, inMemoryStructureCommandProviders as ɵsj, inMemoryStructureReadProviders as ɵsk, inMemoryStructureProviders as ɵsl, InMemoryStructureRepository as ɵsm, GuiListGateway as ɵsn, GuiListItemComponent as ɵso, GuiListCardComponent as ɵsp, guiListProviders as ɵsq, ListViewEventRepository as ɵt, ListViewWarehouse as ɵu, PagingFeatureModule as ɵv, PagingApiModule as ɵw, PagingDomainModule as ɵx, PagingDispatcher as ɵy, PagingManagerFactory as ɵz };
 //# sourceMappingURL=generic-ui-ngx-list.js.map

@@ -1,12 +1,14 @@
 import { ChangeDetectorRef, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { GeometryService } from './geometry.service';
 import { Placement } from './placement';
-export declare class FabricDropdownComponent implements OnChanges, OnInit {
-    private platformId;
-    private elementRef;
-    private renderer;
-    private changeDetectorRef;
-    private geometryService;
+import { FabricReactive } from '../../common/fabric-reactive';
+import { Direction } from '../../common/icons/arrow-icon/direction';
+export declare class FabricDropdownComponent extends FabricReactive implements OnChanges, OnInit {
+    private readonly platformId;
+    private readonly elementRef;
+    private readonly renderer;
+    private readonly changeDetectorRef;
+    private readonly geometryService;
     dropdownMenuRef: ElementRef;
     containerRef: ElementRef;
     onResize(): void;
@@ -23,22 +25,21 @@ export declare class FabricDropdownComponent implements OnChanges, OnInit {
     horizontalPosition: number;
     bottomPosition: number;
     topPosition: number;
+    arrowDirection: Direction;
     private canOpenDownward;
     private canOpenUpward;
     private open;
-    private subscription;
     private readonly topBorderWidth;
     constructor(platformId: any, elementRef: ElementRef, renderer: Renderer2, changeDetectorRef: ChangeDetectorRef, geometryService: GeometryService);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
-    ngOnDestroy(): void;
     tryToOpen(event: any): void;
     tryToOpenOnHover(): void;
     hideOnHover(): void;
     clickOutside(event: any): void;
+    isDirectionLeft(): boolean;
     private openMenu;
     private showItems;
-    private observeGeometry;
     private openDownward;
     private openUpward;
     private openRight;

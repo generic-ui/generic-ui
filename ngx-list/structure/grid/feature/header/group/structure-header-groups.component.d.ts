@@ -5,7 +5,8 @@ import { CompositionId } from '../../../../../composition/core/api/composition.i
 import { StructureId } from '../../../../core/api/structure.id';
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
 import { Group } from '../../../../../composition/core/api/group/group';
-export declare class StructureHeaderGroupsComponent {
+import { PureComponent } from '../../../../../common/cdk/component/pure-component';
+export declare class StructureHeaderGroupsComponent extends PureComponent {
     private readonly elementRef;
     private readonly injector;
     private readonly changeDetectorRef;
@@ -22,4 +23,5 @@ export declare class StructureHeaderGroupsComponent {
     isSortAsc(column: CellTemplateWithContext): boolean;
     isSortDesc(column: CellTemplateWithContext): boolean;
     isGlobalSortEnabled(): boolean;
+    protected getSelectorName(): string;
 }

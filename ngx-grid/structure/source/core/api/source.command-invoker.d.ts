@@ -1,4 +1,4 @@
-import { Reactive } from '../../../../common/cdk/reactive';
+import { Reactive } from '../../../../common/cdk/reactive/reactive';
 import { SourceDispatcher } from '../domain/source.dispatcher';
 import { SourceWarehouse } from './source.warehouse';
 import { StructureId } from '../../../core/api/structure.id';

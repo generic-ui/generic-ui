@@ -1,6 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { DomainEventBus } from '@generic-ui/hermes';
-import { SmartComponent } from '../../../../common/cdk/smart-component';
+import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithContext } from '../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { StructureId } from '../../../core/api/structure.id';
 import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
@@ -12,7 +12,6 @@ import { Group } from '../../../../composition/core/api/group/group';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare class StructureHeaderComponent extends SmartComponent implements OnInit, AfterViewInit {
     private readonly changeDetectorRef;
-    private readonly renderer;
     private readonly eventBus;
     private readonly structureId;
     private readonly compositionId;
@@ -28,7 +27,9 @@ export declare class StructureHeaderComponent extends SmartComponent implements 
     checkboxSelection: boolean;
     groups: Array<Group>;
     showGroups: boolean;
-    constructor(changeDetectorRef: ChangeDetectorRef, renderer: Renderer2, eventBus: DomainEventBus, structureId: StructureId, compositionId: CompositionId, filterWarehouse: FilterWarehouse, structureWarehouse: StructureWarehouse, rowSelectionTypeArchive: RowSelectionTypeArchive, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, compositionWarehouse: CompositionWarehouse);
+    private readonly styleModifier;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, eventBus: DomainEventBus, structureId: StructureId, compositionId: CompositionId, filterWarehouse: FilterWarehouse, structureWarehouse: StructureWarehouse, rowSelectionTypeArchive: RowSelectionTypeArchive, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
     ngAfterViewInit(): void;
+    protected getSelectorName(): string;
 }

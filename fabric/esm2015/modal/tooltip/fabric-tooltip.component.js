@@ -29,7 +29,7 @@ FabricTooltipComponent.decorators = [
                 },
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                styles: [".gui-tooltip{position:absolute;display:block;background:rgba(0,0,0,.8);border-style:solid;border-width:0;border-radius:4px;box-sizing:border-box;color:#fff;font:400 14px Arial;vertical-align:middle;padding:8px 12px;-ms-transform:translateX(-50%);transform:translateX(-50%);z-index:10}.gui-tooltip:after{content:'';position:absolute;border-style:solid;border-width:5px;border-color:#333 transparent transparent;margin-left:-5px;top:100%;left:50%}"]
+                styles: [".gui-tooltip{background:rgba(0,0,0,.8);border-radius:4px;border-style:solid;border-width:0;box-sizing:border-box;color:#fff;display:block;font:400 14px Arial;padding:8px 12px;position:absolute;-ms-transform:translateX(-50%);transform:translateX(-50%);vertical-align:middle;z-index:10}.gui-tooltip::after{border-color:#333 transparent transparent;border-style:solid;border-width:5px;content:'';left:50%;margin-left:-5px;position:absolute;top:100%}"]
             }] }
 ];
 /** @nocollapse */

@@ -11,7 +11,7 @@ import { DomainEventBus } from '../domain/event/domain-event.bus';
  * APP
  */
 import { HermesModuleConfig } from './hermes-module-config';
-import { HermesApi } from './/hermes-api';
+import { HermesApi } from './hermes-api';
 /**
  * Infrastructure
  */

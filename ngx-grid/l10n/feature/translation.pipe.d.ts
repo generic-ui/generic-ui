@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, OnDestroy, PipeTransform } from '@angular/core';
 import { TranslationService } from '../core/api/translation.service';
-export declare class TranslationPipe implements PipeTransform {
+export declare class TranslationPipe implements PipeTransform, OnDestroy {
     private readonly changeDetectorRef;
     private readonly translationService;
     private actualTranslationValue;
