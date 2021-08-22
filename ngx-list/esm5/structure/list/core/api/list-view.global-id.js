@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { ListViewReadModelRootId } from './list-view.read-model-root-id';
+/** @type {?} */
+export var listViewGlobalId = new ListViewReadModelRootId('-1');
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3Lmdsb2JhbC1pZC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsic3RydWN0dXJlL2xpc3QvY29yZS9hcGkvbGlzdC12aWV3Lmdsb2JhbC1pZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFFLE1BQU0sZ0NBQWdDLENBQUM7O0FBRXpFLE1BQU0sS0FBTyxnQkFBZ0IsR0FBRyxJQUFJLHVCQUF1QixDQUFDLElBQUksQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IExpc3RWaWV3UmVhZE1vZGVsUm9vdElkIH0gZnJvbSAnLi9saXN0LXZpZXcucmVhZC1tb2RlbC1yb290LWlkJztcblxuZXhwb3J0IGNvbnN0IGxpc3RWaWV3R2xvYmFsSWQgPSBuZXcgTGlzdFZpZXdSZWFkTW9kZWxSb290SWQoJy0xJyk7XG4iXX0=

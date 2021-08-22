@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { SourceWarehouse } from '../../../../source/core/api/source.warehouse';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { StructureReadModelRepository } from '../../../core/api/read/structure.read-model-repository';
 import { StructureSourceOriginRepository } from '../../../../source/core/api/origin/structure.source-origin.repository';
 import { ItemEntity } from '../../../../source/core/domain/core/item/item.entity';

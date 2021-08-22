@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { SchemaId } from '../../api/schema.id';
+import { SchemaId } from '../../domain/schema.id';
 import { Reactive } from '../../../../common/cdk/reactive/reactive';
 import { SchemaCssClass } from '../../api/css-classes/schema-css-class';
 export declare class SchemaCssClassesRepository extends Reactive {

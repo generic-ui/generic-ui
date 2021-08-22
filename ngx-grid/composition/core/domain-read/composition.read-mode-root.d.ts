@@ -2,7 +2,7 @@ import { ReadModelRoot } from '@generic-ui/hermes';
 import { ColumnDefinition } from './definition/column-definition';
 import { CellTemplateWithContext } from './definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from './definition/cell-template-with-accessor';
-import { CompositionReadModelRootId } from './composition.read-model-root-id';
+import { CompositionReadModelRootId } from '../api/composition.read-model-root-id';
 export declare class CompositionReadModeRoot extends ReadModelRoot<CompositionReadModelRootId> {
     private readonly ready;
     private readonly allColumns;

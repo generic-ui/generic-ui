@@ -2,14 +2,14 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, OnInit } from '@angular/c
 import { DomainEventBus } from '@generic-ui/hermes';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithContext } from '../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { StructureVerticalFormationWarehouse } from '../../../vertical-formation/core/api/structure-vertical-formation.warehouse';
 import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
 import { Group } from '../../../../composition/core/api/group/group';
-import { CompositionId } from '../../../../composition/core/api/composition.id';
+import { CompositionId } from '../../../../composition/core/domain/composition.id';
 export declare class StructureHeaderComponent extends SmartComponent implements OnInit, AfterViewInit {
     private readonly changeDetectorRef;
     private readonly eventBus;

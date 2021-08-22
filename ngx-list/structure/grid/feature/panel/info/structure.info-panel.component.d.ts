@@ -4,9 +4,9 @@ import { SmartComponent } from '../../../../../common/cdk/component/smart-compon
 import { StructureInfoModalComponent } from './info-modal/structure-info-modal.component';
 import { SourceWarehouse } from '../../../../source/core/api/source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
-import { CompositionId } from '../../../../../composition/core/api/composition.id';
-import { StructureId } from '../../../../core/api/structure.id';
-import { SchemaReadModelRootId } from '../../../../../schema/core/domain-read/schema.read-model-root-id';
+import { CompositionId } from '../../../../../composition/core/domain/composition.id';
+import { StructureId } from '../../../../core/domain/structure.id';
+import { SchemaReadModelRootId } from '../../../../../schema/core/api/schema.read-model-root-id';
 import { StructureInfoPanelArchive } from './structure.info-panel.archive';
 import { StructureInfoPanelConfig } from './structure.info-panel.config';
 import { StructureDialogSchemaManagerService } from '../../../../../schema/feature/manager/dialog/structure.dialog-schema-manager.service';

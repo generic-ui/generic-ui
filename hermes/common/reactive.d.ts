@@ -5,4 +5,5 @@ export declare abstract class Reactive {
     ngOnDestroy(): void;
     protected unsubscribe(): void;
     protected takeUntil<T>(): MonoTypeOperatorFunction<T>;
+    protected isNotStopped(): boolean;
 }

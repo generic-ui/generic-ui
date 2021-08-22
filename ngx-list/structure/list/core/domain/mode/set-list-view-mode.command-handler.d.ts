@@ -6,6 +6,6 @@ export declare class SetListViewModeCommandHandler implements CommandHandler<Lis
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetListViewModeCommand>;
-    publishDomainEvents(aggregate: ListViewAggregate, command: ListViewCommand): void;
-    handleAggregate(listViewAggregate: ListViewAggregate, command: SetListViewModeCommand): void;
+    publish(aggregate: ListViewAggregate, command: ListViewCommand): void;
+    handle(listViewAggregate: ListViewAggregate, command: SetListViewModeCommand): void;
 }

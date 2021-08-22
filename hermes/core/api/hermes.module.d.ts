@@ -45,7 +45,7 @@ export declare class HermesBaseModule<I extends AggregateId, A extends Aggregate
     private checkDomainEventHandlerIsCollection;
 }
 export declare class HermesModule extends HermesBaseModule<any, any, any, any> {
-    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createHandler: Type<CreateAggregateCommandHandler<A, C>>, commandHandlers?: Array<Provider>, domainEventHandlers?: Array<Provider>): ModuleWithProviders<any>;
+    static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createCommandHandler: Type<CreateAggregateCommandHandler<A, C>>, commandHandlers?: ReadonlyArray<Provider>, domainEventHandlers?: ReadonlyArray<Provider>): ModuleWithProviders<any>;
     static withConfig(config?: HermesModuleConfig): ModuleWithProviders<HermesModule>;
     static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
     static registerDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<DomainEventHandler<I, E>>): Array<Provider>;

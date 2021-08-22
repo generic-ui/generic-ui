@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { Warehouse } from '@generic-ui/hermes';
 import { PagingRepository } from './read/paging.repository';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { Paging } from './read/paging';
 export declare class PagingWarehouse implements Warehouse {
     private pagingRepository;

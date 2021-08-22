@@ -1,5 +1,5 @@
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { FormationDispatcher } from '../../../../source/core/domain/formation/formation.dispatcher';
 import { RowSelectToggleType } from '../../../../source/core/domain/formation/core/row-select-toggle-type';
 import { CommandDispatcher } from '@generic-ui/hermes';

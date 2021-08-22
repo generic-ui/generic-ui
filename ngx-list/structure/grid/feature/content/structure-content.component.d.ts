@@ -8,7 +8,7 @@ import { FormationWarehouse } from '../../../source/core/api/formation/formation
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
 import { VerticalFormationRepository } from '../../../vertical-formation/core/api/vertical-formation.repository';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { SearchPhraseRepository } from '../../../search/core/api/phrase/search-phrase.repository';
 import { SearchHighlightArchive } from '../../../search/core/api/highlight/search-highlight.archive';
 import { StructureVerticalFormationWarehouse } from '../../../vertical-formation/core/api/structure-vertical-formation.warehouse';

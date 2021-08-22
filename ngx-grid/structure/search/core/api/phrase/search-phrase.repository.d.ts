@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Reactive } from '../../../../../common/cdk/reactive/reactive';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 export declare class SearchPhraseRepository extends Reactive {
     private phrase;
     private phrase$;

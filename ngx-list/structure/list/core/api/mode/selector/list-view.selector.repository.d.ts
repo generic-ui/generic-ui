@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Reactive } from '@generic-ui/hermes';
-import { ListViewId } from '../../list-view.id';
+import { ListViewId } from '../../../domain/list-view.id';
 export declare class ListViewSelectorRepository extends Reactive {
     private selectorEnabled;
     private selectorEnabled$;

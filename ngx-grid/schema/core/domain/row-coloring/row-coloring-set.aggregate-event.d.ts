@@ -1,6 +1,6 @@
 import { DomainEvent } from '@generic-ui/hermes';
-import { SchemaId } from '../../api/schema.id';
-import { SchemaRowColoring } from '../../api/schema-row-coloring';
+import { SchemaId } from '../schema.id';
+import { SchemaRowColoring } from '../../api/row-coloring/schema-row-coloring';
 import { SchemaAggregateEvent } from '../schema.aggregate-event';
 export declare class RowColoringSetAggregateEvent extends SchemaAggregateEvent {
     private readonly rowColoring;

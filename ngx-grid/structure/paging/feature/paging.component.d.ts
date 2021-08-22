@@ -6,7 +6,7 @@ import { PagingCommandInvoker } from '../core/api/paging.command-invoker';
 import { SourceWarehouse } from '../../source/core/api/source.warehouse';
 import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
-import { CssClassModifier } from '../../shared/css-class/css-class.modifier';
+import { CssClassModifier } from '../../common/css-class/css-class.modifier';
 import { NgChanges } from '../../../common/cdk/component/ng-changes';
 export declare class PagingComponent extends SmartComponent implements OnInit {
     private readonly elRef;

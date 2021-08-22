@@ -5,6 +5,6 @@ import { CompositionAggregate } from '../../../domain/composition.aggregate';
 export declare class InMemoryCompositionAggregateRepository extends CompositionAggregateRepository {
     private inMemoryCompositionAggregateStore;
     constructor(inMemoryCompositionAggregateStore: InMemoryCompositionAggregateStore);
-    getById(aggregateId: AggregateId): Optional<CompositionAggregate>;
+    findById(aggregateId: AggregateId): Optional<CompositionAggregate>;
     save(aggregate: CompositionAggregate): void;
 }

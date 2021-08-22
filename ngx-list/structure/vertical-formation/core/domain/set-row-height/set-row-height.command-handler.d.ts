@@ -5,6 +5,6 @@ export declare class SetRowHeightCommandHandler implements CommandHandler<Struct
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetRowHeightCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetRowHeightCommand): void;
-    handleAggregate(structure: StructureAggregate, command: SetRowHeightCommand): void;
+    publish(aggregate: StructureAggregate, command: SetRowHeightCommand): void;
+    handle(structure: StructureAggregate, command: SetRowHeightCommand): void;
 }

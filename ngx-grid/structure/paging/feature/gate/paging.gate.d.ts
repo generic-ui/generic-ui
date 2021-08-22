@@ -1,7 +1,7 @@
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
 import { PagingConfig } from '../../core/api/paging-config';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { PagingCommandInvoker } from '../../core/api/paging.command-invoker';
 import { PagingEventRepository } from '../../core/api/paging.event-repository';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';

@@ -2,7 +2,7 @@ import { AggregateRepository, CommandType, CreateAggregateCommandHandler, Domain
 import { CompositionAggregateRepository } from '../composition.aggregate-repository';
 import { CreateCompositionCommand } from './create-composition.command';
 import { CompositionAggregate } from '../composition.aggregate';
-import { CompositionId } from '../../api/composition.id';
+import { CompositionId } from '../composition.id';
 export declare class CreateCompositionCommandHandler implements CreateAggregateCommandHandler<CompositionAggregate, CreateCompositionCommand> {
     private readonly compositionAggregateRepository;
     private readonly domainEventPublisher;

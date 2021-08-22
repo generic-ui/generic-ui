@@ -7,6 +7,6 @@ export declare class StructureSetSearchPhraseCommandHandler implements CommandHa
     private readonly domainEventPublisher;
     constructor(structureSourceDomainEventPublisher: SourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSearchPhraseCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetSearchPhraseCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: SetSearchPhraseCommand): void;
+    publish(aggregate: StructureAggregate, command: SetSearchPhraseCommand): void;
+    handle(aggregate: StructureAggregate, command: SetSearchPhraseCommand): void;
 }

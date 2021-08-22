@@ -1,5 +1,5 @@
 import { AggregateFactory } from '@generic-ui/hermes';
-import { ListViewId } from '../api/list-view.id';
+import { ListViewId } from './list-view.id';
 import { ListViewAggregate } from './list-view.aggregate';
 export declare class ListViewAggregateFactory extends AggregateFactory<ListViewId, ListViewAggregate> {
     constructor();

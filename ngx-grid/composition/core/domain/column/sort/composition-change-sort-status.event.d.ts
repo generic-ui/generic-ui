@@ -1,4 +1,4 @@
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../composition.id';
 import { ActiveColumnEntity } from '../active/active-column.entity';
 import { CompositionDomainEvent } from '../../composition.domain-event';
 export declare class CompositionChangeSortStatusEvent extends CompositionDomainEvent {

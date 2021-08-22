@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { StructureWarehouse } from '../../grid/core/api/structure.warehouse';
 import { SearchPlaceholderArchive } from '../core/api/placeholder/search-placeholder.archive';
-import { StructureId } from '../../core/api/structure.id';
+import { StructureId } from '../../core/domain/structure.id';
 import { StructureVerticalFormationWarehouse } from '../../vertical-formation/core/api/structure-vertical-formation.warehouse';
 import { SearchCommandInvoker } from '../core/api/search.command-invoker';
 import { SearchWarehouse } from '../core/api/search.warehouse';

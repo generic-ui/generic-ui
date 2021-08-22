@@ -1,7 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID, InjectionToken, NgModule, Optional as Optional$1, Injector } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Subject, Observable, of, throwError, BehaviorSubject, ReplaySubject } from 'rxjs';
-import { filter, first, map, takeUntil, take, distinctUntilChanged } from 'rxjs/operators';
+import { filter, take, takeUntil, map, distinctUntilChanged } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -548,19 +548,26 @@ class CommandBus extends Observable {
          * @return {?}
          */
         (command) => {
-            if (!handlers) {
+            if (!handlers && !aggregateCommandHandlers) {
                 return true;
             }
-            return !handlers.some((/**
-             * @param {?} handler
-             * @return {?}
-             */
-            (handler) => handler.forCommand(command))) &&
-                !aggregateCommandHandlers.some((/**
+            /** @type {?} */
+            let foundHandlerForCommand = true;
+            if (handlers) {
+                foundHandlerForCommand = !handlers.some((/**
                  * @param {?} handler
                  * @return {?}
                  */
                 (handler) => handler.forCommand(command)));
+            }
+            if (aggregateCommandHandlers) {
+                foundHandlerForCommand = foundHandlerForCommand && !aggregateCommandHandlers.some((/**
+                 * @param {?} handler
+                 * @return {?}
+                 */
+                (handler) => handler.forCommand(command)));
+            }
+            return foundHandlerForCommand;
         })));
     }
 }
@@ -571,107 +578,6 @@ CommandBus.decorators = [
 CommandBus.ctorParameters = () => [
     { type: Subject, decorators: [{ type: Inject, args: [FILTERED_COMMAND_STREAM,] }] }
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- * @template I
- */
-class ReplayCommandDispatcher {
-    /**
-     * @protected
-     * @param {?} dispatcher
-     * @param {?} bus
-     */
-    constructor(dispatcher, bus) {
-        this.dispatcher = dispatcher;
-        this.bus = bus;
-        this.unsubscribe$ = new Subject();
-        this.subscriptions = [];
-    }
-    /**
-     * @param {?} command
-     * @return {?}
-     */
-    dispatch(command) {
-        this.dispatcher.dispatch(command);
-        return command.getMessageId();
-    }
-    /**
-     * @param {?} command
-     * @return {?}
-     */
-    dispatchAndWait(command) {
-        /** @type {?} */
-        const response$ = this.bus
-            .pipe(filter((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => event.fromCommand(command))), first(), map((/**
-         * @param {?} event
-         * @return {?}
-         */
-        (event) => {
-            return this.mapEventToResponse(event);
-        })), takeUntil(this.unsubscribe$));
-        /** @type {?} */
-        const subscription = setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            this.dispatcher.dispatch(command);
-        }));
-        this.subscriptions.push(subscription);
-        return response$;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-        this.subscriptions.forEach((/**
-         * @param {?} handle
-         * @return {?}
-         */
-        (handle) => {
-            clearTimeout(handle);
-        }));
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ReplayCommandDispatcher.prototype.unsubscribe$;
-    /**
-     * @type {?}
-     * @private
-     */
-    ReplayCommandDispatcher.prototype.subscriptions;
-    /**
-     * @type {?}
-     * @private
-     */
-    ReplayCommandDispatcher.prototype.dispatcher;
-    /**
-     * @type {?}
-     * @private
-     */
-    ReplayCommandDispatcher.prototype.bus;
-    /**
-     * @abstract
-     * @protected
-     * @param {?} event
-     * @return {?}
-     */
-    ReplayCommandDispatcher.prototype.mapEventToResponse = function (event) { };
-}
 
 /**
  * @fileoverview added by tsickle
@@ -761,7 +667,7 @@ if (false) {
      * @param {?} aggregateId
      * @return {?}
      */
-    AggregateRepository.prototype.getById = function (aggregateId) { };
+    AggregateRepository.prototype.findById = function (aggregateId) { };
     /**
      * @abstract
      * @param {?} aggregate
@@ -792,7 +698,7 @@ if (false) {
      * @param {?} aggregateId
      * @return {?}
      */
-    AggregateStore.prototype.getById = function (aggregateId) { };
+    AggregateStore.prototype.findById = function (aggregateId) { };
 }
 
 /**
@@ -826,7 +732,7 @@ class AggregateStoreRegister {
          */
         (store) => {
             /** @type {?} */
-            const aggregate = store.getById(aggregateId);
+            const aggregate = store.findById(aggregateId);
             if (aggregate) {
                 /** @type {?} */
                 let aggregateName = aggregate.constructor.name;
@@ -1011,61 +917,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @enum {number} */
-const DomainEventStatus = {
-    SUCCESS: 0,
-    FAILURE: 1,
-};
-DomainEventStatus[DomainEventStatus.SUCCESS] = 'SUCCESS';
-DomainEventStatus[DomainEventStatus.FAILURE] = 'FAILURE';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class StatusResponse {
-    /**
-     * @protected
-     * @param {?} status
-     * @param {?=} payload
-     */
-    constructor(status, payload) {
-        this.status = status;
-        this.payload = payload;
-    }
-    /**
-     * @return {?}
-     */
-    getStatus() {
-        return this.status;
-    }
-    /**
-     * @return {?}
-     */
-    getPayload() {
-        return this.payload;
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StatusResponse.prototype.status;
-    /**
-     * @type {?}
-     * @private
-     */
-    StatusResponse.prototype.payload;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /**
  * @abstract
  * @template I
@@ -1074,10 +925,10 @@ class DomainEvent extends Message {
     /**
      * @protected
      * @param {?} aggregateId
+     * @param {?} payload
      * @param {?} messageType
-     * @param {?=} payload
      */
-    constructor(aggregateId, messageType, payload) {
+    constructor(aggregateId, payload, messageType) {
         super(aggregateId, messageType);
         this.payload = payload;
     }
@@ -1291,6 +1142,7 @@ class DomainEventPublisher {
      * @return {?}
      */
     publishFromAggregate(aggregate) {
+        console.log('aggregagte events:', aggregate.getEvents());
         aggregate.getEvents()
             .forEach((/**
          * @param {?} aggregateEvent
@@ -1433,6 +1285,462 @@ DomainEventBus.ctorParameters = () => [
 /** @type {?} */
 const DomainEventType = MessageType;
 // WARNING: interface has both a type and a value, skipping emit
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class Reactive {
+    /**
+     * @protected
+     */
+    constructor() {
+        this.unsubscribe$ = new Subject();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.unsubscribe();
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    unsubscribe() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    }
+    /**
+     * @protected
+     * @template T
+     * @return {?}
+     */
+    takeUntil() {
+        return takeUntil(this.unsubscribe$);
+    }
+    /**
+     * @protected
+     * @return {?}
+     */
+    isNotStopped() {
+        return !this.unsubscribe$.isStopped;
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Reactive.prototype.unsubscribe$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class ReactiveService extends Reactive {
+    /**
+     * @protected
+     */
+    constructor() {
+        super();
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.unsubscribe();
+    }
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+class Optional {
+    /**
+     * @private
+     * @param {?} value
+     */
+    constructor(value) {
+        if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
+            return Optional.empty();
+        }
+        this.value = value;
+        return this;
+    }
+    /**
+     * @return {?}
+     */
+    static empty() {
+        return new Optional(null);
+    }
+    /**
+     * @template U
+     * @param {?} value
+     * @return {?}
+     */
+    static of(value) {
+        return new Optional(value);
+    }
+    /**
+     * @private
+     * @param {?} value
+     * @return {?}
+     */
+    static isEmpty(value) {
+        return typeof value === 'undefined' || value === null;
+    }
+    /**
+     * @return {?}
+     */
+    isEmpty() {
+        return Optional.isEmpty(this.value);
+    }
+    /**
+     * @return {?}
+     */
+    isPresent() {
+        return !this.isEmpty();
+    }
+    /**
+     * @param {?} filterer
+     * @return {?}
+     */
+    filter(filterer) {
+        if (this.isPresent() && filterer(this.value)) {
+            return this;
+        }
+        return Optional.empty();
+    }
+    /**
+     * @param {?} callback
+     * @return {?}
+     */
+    forEach(callback) {
+        if (this.isPresent()) {
+            callback(this.value);
+        }
+    }
+    /**
+     * @template U
+     * @param {?} mapper
+     * @return {?}
+     */
+    map(mapper) {
+        if (this.isPresent()) {
+            return new Optional(mapper(this.value));
+        }
+        return Optional.empty();
+    }
+    /**
+     * @deprecated
+     * @return {?}
+     */
+    getValueOrNullOrThrowError() {
+        return this.value;
+    }
+    /**
+     * @return {?}
+     */
+    getOrThrow() {
+        if (this.isEmpty()) {
+            throw new Error('Called getOrThrow on an empty Optional');
+        }
+        return this.value;
+    }
+    /**
+     * @template U
+     * @param {?} other
+     * @return {?}
+     */
+    getOrElse(other) {
+        if (this.isPresent()) {
+            return this.value;
+        }
+        return other();
+    }
+    /**
+     * @param {?} method
+     * @return {?}
+     */
+    ifPresent(method) {
+        if (this.isPresent()) {
+            method(this.value);
+        }
+    }
+    /**
+     * @param {?} method
+     * @return {?}
+     */
+    ifEmpty(method) {
+        if (this.isEmpty()) {
+            method();
+        }
+    }
+    /**
+     * @template U
+     * @param {?} other
+     * @return {?}
+     */
+    orElse(other) {
+        if (this.isPresent()) {
+            return this;
+        }
+        return other();
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    Optional.prototype.value;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template K, T
+ */
+class KeyMap {
+    constructor() {
+        this.keys = new Map();
+        this.values = new WeakMap();
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    get(key) {
+        /** @type {?} */
+        const internalKey = this.getInternalKey(key);
+        if (internalKey !== undefined) {
+            return Optional.of(this.values.get(internalKey));
+        }
+        else {
+            return Optional.empty();
+        }
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    has(key) {
+        /** @type {?} */
+        const internalKey = this.getInternalKey(key);
+        return this.values.has(internalKey);
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    set(key, value) {
+        this.keys.set(key.toString(), key);
+        this.values.set(key, value);
+    }
+    /**
+     * @return {?}
+     */
+    size() {
+        return this.keys.size;
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    remove(key) {
+        if (this.hasInternalKey(key)) {
+            this.keys.delete(key.toString());
+            this.values.delete(key);
+        }
+    }
+    /**
+     * @return {?}
+     */
+    removeAll() {
+        this.keys.forEach((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => {
+            this.values.delete(value);
+        }));
+        this.keys.clear();
+    }
+    /**
+     * @private
+     * @param {?} key
+     * @return {?}
+     */
+    getInternalKey(key) {
+        return this.keys.get(key.toString());
+    }
+    /**
+     * @private
+     * @param {?} key
+     * @return {?}
+     */
+    hasInternalKey(key) {
+        return this.keys.has(key.toString());
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyMap.prototype.keys;
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyMap.prototype.values;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function DefaultAggregateValues() { }
+if (false) {
+    /** @type {?} */
+    DefaultAggregateValues.prototype.aggregateId;
+    /** @type {?} */
+    DefaultAggregateValues.prototype.value;
+}
+/**
+ * @abstract
+ * @template T
+ */
+class AggregateArchive extends ReactiveService {
+    /**
+     * @protected
+     * @param {?=} defaultValue
+     */
+    constructor(defaultValue) {
+        super();
+        this.archive = new KeyMap();
+        this.initArchive(defaultValue);
+    }
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    on(aggregateId) {
+        return this.archive$
+            .asObservable()
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => this.isNotStopped())), map((/**
+         * @param {?} map
+         * @return {?}
+         */
+        (map) => {
+            return map.get(aggregateId);
+        })), filter((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => value.isPresent())), map((/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => value.getValueOrNullOrThrowError())), distinctUntilChanged(), this.takeUntil());
+    }
+    /**
+     * @param {?} aggregateId
+     * @return {?}
+     */
+    get(aggregateId) {
+        return this.archive.get(aggregateId);
+    }
+    /**
+     * @param {?} aggregateId
+     * @param {?} value
+     * @return {?}
+     */
+    next(aggregateId, value) {
+        this.archive.set(aggregateId, value);
+        this.archive$.next(this.archive);
+    }
+    /**
+     * @private
+     * @param {?=} defaultValue
+     * @return {?}
+     */
+    initArchive(defaultValue) {
+        if (defaultValue) {
+            this.archive.set(defaultValue.aggregateId, defaultValue.value);
+            this.archive$ = new BehaviorSubject(this.archive);
+        }
+        else {
+            this.archive$ = new ReplaySubject(1);
+        }
+    }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    AggregateArchive.prototype.archive;
+    /**
+     * @type {?}
+     * @private
+     */
+    AggregateArchive.prototype.archive$;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template I, E, V
+ */
+class EventDrivenRepository extends AggregateArchive {
+    /**
+     * @protected
+     * @param {?=} defaultValues
+     */
+    constructor(defaultValues) {
+        super(defaultValues);
+    }
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    handle(event) {
+        this.next(event.getAggregateId(), event.getPayload());
+    }
+}
+if (false) {
+    /**
+     * @abstract
+     * @return {?}
+     */
+    EventDrivenRepository.prototype.forEvent = function () { };
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1616,51 +1924,6 @@ if (false) {
  */
 /**
  * @abstract
- */
-class Reactive {
-    /**
-     * @protected
-     */
-    constructor() {
-        this.unsubscribe$ = new Subject();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.unsubscribe();
-    }
-    /**
-     * @protected
-     * @return {?}
-     */
-    unsubscribe() {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-    }
-    /**
-     * @protected
-     * @template T
-     * @return {?}
-     */
-    takeUntil() {
-        return takeUntil(this.unsubscribe$);
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Reactive.prototype.unsubscribe$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
  * @template I
  */
 class ReadModelRootRepository extends Reactive {
@@ -1721,28 +1984,6 @@ if (false) {
      * @return {?}
      */
     ReadModelStore.prototype.getById = function (readModelRootId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-class ReactiveService extends Reactive {
-    /**
-     * @protected
-     */
-    constructor() {
-        super();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        this.unsubscribe();
-    }
 }
 
 /**
@@ -1908,98 +2149,6 @@ class FeatureModule {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @record
- * @template T
- */
-function DefaultAggregateValues() { }
-if (false) {
-    /** @type {?} */
-    DefaultAggregateValues.prototype.aggregateId;
-    /** @type {?} */
-    DefaultAggregateValues.prototype.value;
-}
-/**
- * @abstract
- * @template T
- */
-class AggregateArchive extends ReactiveService {
-    /**
-     * @protected
-     * @param {?=} defaultValue
-     */
-    constructor(defaultValue) {
-        super();
-        this.archive = new Map();
-        this.initArchive(defaultValue);
-    }
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    on(aggregateId) {
-        return this.archive$
-            .asObservable()
-            .pipe(this.takeUntil(), map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        (map) => {
-            return map.get(aggregateId.toString());
-        })), filter((/**
-         * @param {?} value
-         * @return {?}
-         */
-        (value) => value !== undefined)), distinctUntilChanged());
-    }
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    get(aggregateId) {
-        return this.archive.get(aggregateId.toString());
-    }
-    /**
-     * @param {?} aggregateId
-     * @param {?} value
-     * @return {?}
-     */
-    next(aggregateId, value) {
-        this.archive.set(aggregateId.toString(), value);
-        this.archive$.next(this.archive);
-    }
-    /**
-     * @private
-     * @param {?=} defaultValue
-     * @return {?}
-     */
-    initArchive(defaultValue) {
-        if (defaultValue) {
-            this.archive.set(defaultValue.aggregateId.toString(), defaultValue.value);
-            this.archive$ = new BehaviorSubject(this.archive);
-        }
-        else {
-            this.archive$ = new ReplaySubject(1);
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    AggregateArchive.prototype.archive;
-    /**
-     * @type {?}
-     * @private
-     */
-    AggregateArchive.prototype.archive$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
  * @abstract
  * @template T
  */
@@ -2036,229 +2185,6 @@ if (false) {
      * @private
      */
     Archive.prototype.archive$;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @template T
- */
-class Optional {
-    /**
-     * @private
-     * @param {?} value
-     */
-    constructor(value) {
-        if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
-            return Optional.empty();
-        }
-        this.value = value;
-        return this;
-    }
-    /**
-     * @return {?}
-     */
-    static empty() {
-        return new Optional(null);
-    }
-    /**
-     * @template U
-     * @param {?} value
-     * @return {?}
-     */
-    static of(value) {
-        return new Optional(value);
-    }
-    /**
-     * @private
-     * @param {?} value
-     * @return {?}
-     */
-    static isEmpty(value) {
-        return typeof value === 'undefined' || value === null;
-    }
-    /**
-     * @return {?}
-     */
-    isEmpty() {
-        return Optional.isEmpty(this.value);
-    }
-    /**
-     * @return {?}
-     */
-    isPresent() {
-        return !this.isEmpty();
-    }
-    /**
-     * @param {?} filterer
-     * @return {?}
-     */
-    filter(filterer) {
-        if (this.isPresent() && filterer(this.value)) {
-            return this;
-        }
-        return Optional.empty();
-    }
-    /**
-     * @param {?} callback
-     * @return {?}
-     */
-    forEach(callback) {
-        if (this.isPresent()) {
-            callback(this.value);
-        }
-    }
-    /**
-     * @template U
-     * @param {?} mapper
-     * @return {?}
-     */
-    map(mapper) {
-        if (this.isPresent()) {
-            return new Optional(mapper(this.value));
-        }
-        return Optional.empty();
-    }
-    /**
-     * @deprecated
-     * @return {?}
-     */
-    getValueOrNullOrThrowError() {
-        return this.value;
-    }
-    /**
-     * @return {?}
-     */
-    getOrThrow() {
-        if (this.isEmpty()) {
-            throw new Error('Called getOrThrow on an empty Optional');
-        }
-        return this.value;
-    }
-    /**
-     * @template U
-     * @param {?} other
-     * @return {?}
-     */
-    getOrElse(other) {
-        if (this.isPresent()) {
-            return this.value;
-        }
-        return other();
-    }
-    /**
-     * @param {?} method
-     * @return {?}
-     */
-    ifPresent(method) {
-        if (this.isPresent()) {
-            method(this.value);
-        }
-    }
-    /**
-     * @param {?} method
-     * @return {?}
-     */
-    ifEmpty(method) {
-        if (this.isEmpty()) {
-            method();
-        }
-    }
-    /**
-     * @template U
-     * @param {?} other
-     * @return {?}
-     */
-    orElse(other) {
-        if (this.isPresent()) {
-            return this;
-        }
-        return other();
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    Optional.prototype.value;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @template K, T
- */
-class KeyMap {
-    constructor() {
-        this.keys = new Map();
-        this.values = new WeakMap();
-    }
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    get(key) {
-        /** @type {?} */
-        const internalKey = this.getInternalKey(key);
-        if (internalKey) {
-            return Optional.of(this.values.get(internalKey));
-        }
-        else {
-            return Optional.empty();
-        }
-    }
-    /**
-     * @param {?} key
-     * @return {?}
-     */
-    has(key) {
-        /** @type {?} */
-        const internalKey = this.getInternalKey(key);
-        return this.values.has(internalKey);
-    }
-    /**
-     * @param {?} key
-     * @param {?} value
-     * @return {?}
-     */
-    set(key, value) {
-        /** @type {?} */
-        const internalKey = this.getInternalKey(key);
-        this.values.set(internalKey, value);
-    }
-    /**
-     * @private
-     * @param {?} key
-     * @return {?}
-     */
-    getInternalKey(key) {
-        /** @type {?} */
-        const realKey = this.keys.get(key.toString());
-        if (!realKey) {
-            this.keys.set(key.toString(), key);
-            return key;
-        }
-        else {
-            return realKey;
-        }
-    }
-}
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    KeyMap.prototype.keys;
-    /**
-     * @type {?}
-     * @private
-     */
-    KeyMap.prototype.values;
 }
 
 /**
@@ -2457,7 +2383,7 @@ class PersistAggregateStore extends AggregateStore {
      * @param {?} aggregateId
      * @return {?}
      */
-    getById(aggregateId) {
+    findById(aggregateId) {
         return this.getValue(aggregateId);
     }
     /**
@@ -2550,7 +2476,7 @@ class InMemoryAggregateStore extends AggregateStore {
      * @param {?} aggregateId
      * @return {?}
      */
-    getById(aggregateId) {
+    findById(aggregateId) {
         /** @type {?} */
         const optAggregate = this.inMemoryStore.get(aggregateId);
         optAggregate.ifPresent((/**
@@ -3058,6 +2984,7 @@ class CreateAggregateCommandHandlerImpl {
         const aggregateId = (/** @type {?} */ (command.getAggregateId()));
         /** @type {?} */
         const optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
+        debugger;
         optFactory.ifPresent((/**
          * @param {?} factory
          * @return {?}
@@ -3293,7 +3220,7 @@ class CommandHandlerImpl {
      * @return {?}
      */
     publishDomainEvents(aggregate, command) {
-        this.commandHandler.publishDomainEvents(aggregate, command);
+        this.commandHandler.publish(aggregate, command);
     }
     /**
      * @param {?} command
@@ -3310,13 +3237,13 @@ class CommandHandlerImpl {
          */
         (repo) => {
             /** @type {?} */
-            const optAggregate = repo.getById(aggregateId);
+            const optAggregate = repo.findById(aggregateId);
             optAggregate.ifPresent((/**
              * @param {?} aggregate
              * @return {?}
              */
             (aggregate) => {
-                this.commandHandler.handleAggregate(aggregate, command);
+                this.commandHandler.handle(aggregate, command);
                 this.publishDomainEvents(aggregate, command);
             }));
         }));
@@ -3730,12 +3657,12 @@ class HermesModule extends HermesBaseModule {
      * @param {?} aggregateKey
      * @param {?} factory
      * @param {?} repository
-     * @param {?} createHandler
+     * @param {?} createCommandHandler
      * @param {?=} commandHandlers
      * @param {?=} domainEventHandlers
      * @return {?}
      */
-    static defineAggregate(aggregateKey, factory, repository, createHandler, commandHandlers = [], domainEventHandlers = []) {
+    static defineAggregate(aggregateKey, factory, repository, createCommandHandler, commandHandlers = [], domainEventHandlers = []) {
         return {
             ngModule: HermesDomainModule,
             providers: [{
@@ -3752,7 +3679,7 @@ class HermesModule extends HermesBaseModule {
                 },
                 factory,
                 repository,
-                ...HermesModule.registerCreateCommandHandler(createHandler, aggregateKey),
+                ...HermesModule.registerCreateCommandHandler(createCommandHandler, aggregateKey),
                 ...commandHandlers,
                 ...domainEventHandlers
             ]
@@ -3962,5 +3889,5 @@ class CreateAggregateCommand extends Command {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStatus, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventRepository, FeatureModule, HermesApi, HermesId, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ReplayCommandDispatcher, StatusResponse, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, createAggregateCommandHandlerFactory as ɵba, CreateAggregateCommandHandlerImpl as ɵbb, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, ReactiveService as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, HermesDomainModule as ɵu, commandHandlerFactory as ɵv, CommandHandlerImpl as ɵw, domainEventHandlerFactory as ɵx, multiDomainEventHandlerFactory as ɵy, DomainEventHandlerImpl as ɵz };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPayload, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesId, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, CreateAggregateCommandHandlerImpl as ɵba, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, DOMAIN_EVENT_HANDLERS as ɵh, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵi, COMMAND_HANDLERS as ɵj, aggregateDefinitionToken as ɵk, AggregateFactoryArchive as ɵm, AggregateRepositoryArchive as ɵn, HermesLoggersInitializer as ɵo, ConsoleCommandLogger as ɵp, NoopCommandLogger as ɵq, ConsoleEventLogger as ɵr, NoopEventLogger as ɵs, HermesDomainModule as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, domainEventHandlerFactory as ɵw, multiDomainEventHandlerFactory as ɵx, DomainEventHandlerImpl as ɵy, createAggregateCommandHandlerFactory as ɵz };
 //# sourceMappingURL=generic-ui-hermes.js.map

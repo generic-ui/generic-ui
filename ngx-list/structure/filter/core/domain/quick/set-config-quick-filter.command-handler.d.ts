@@ -7,6 +7,6 @@ export declare class SetConfigQuickFilterCommandHandler implements CommandHandle
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetConfigQuickFilterCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetConfigQuickFilterCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: SetConfigQuickFilterCommand): void;
+    publish(aggregate: StructureAggregate, command: SetConfigQuickFilterCommand): void;
+    handle(aggregate: StructureAggregate, command: SetConfigQuickFilterCommand): void;
 }

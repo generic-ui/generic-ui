@@ -6,7 +6,7 @@ import { ColumnEntityFactory } from './column/column-entity.factory';
 import { ChangeSortParams } from './column/sort/change-sort.params';
 import { ColumnId } from '../api/column/column.id';
 import { ActiveColumnEntity } from './column/active/active-column.entity';
-import { CompositionId } from '../api/composition.id';
+import { CompositionId } from './composition.id';
 import { CompositionGroupFactory } from './group/composition.group.factory';
 export declare class CompositionAggregate extends AggregateRoot<CompositionId> {
     private allColumns;

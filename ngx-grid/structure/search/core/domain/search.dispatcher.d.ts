@@ -1,6 +1,6 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
 import { SearchConfig } from '../api/search-config';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { SearchHighlightArchive } from '../api/highlight/search-highlight.archive';
 import { SearchPlaceholderArchive } from '../api/placeholder/search-placeholder.archive';
 export declare class SearchDispatcher {

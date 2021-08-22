@@ -1,4 +1,4 @@
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../composition.id';
 import { CompositionCommand } from '../../composition.command';
 import { ColumnConfig, MultiColumnConfig } from '../../../api/column/column.config';
 export declare class SetGroupsCommand extends CompositionCommand {

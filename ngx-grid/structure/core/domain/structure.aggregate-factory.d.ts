@@ -5,7 +5,7 @@ import { VerticalFormationFactory } from '../../vertical-formation/core/domain/v
 import { SummariesManagerFactory } from '../../summaries/core/domain/summaries.manager.factory';
 import { FilterManagerFactory } from '../../filter/core/domain/filter.manager-factory';
 import { FieldCollectionFactory } from '../../field/core/domain/field-collection.factory';
-import { StructureId } from '../api/structure.id';
+import { StructureId } from './structure.id';
 import { StructureAggregate } from './structure.aggregate';
 import { SearchManagerFactory } from '../../search/core/domain/search.manager-factory';
 export declare class StructureAggregateFactory extends AggregateFactory<StructureId, StructureAggregate> {

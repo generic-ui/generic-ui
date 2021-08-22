@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { StructureSummariesRepository } from './enabled/structure.summaries.repository';
 export declare class StructureSummariesWarehouse {
     private structureSummariesRepository;

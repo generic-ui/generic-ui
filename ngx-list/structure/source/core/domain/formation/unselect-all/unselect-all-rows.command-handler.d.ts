@@ -7,6 +7,6 @@ export declare class UnselectAllRowsCommandHandler implements CommandHandler<Str
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<UnselectAllRowsCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: UnselectAllRowsCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: UnselectAllRowsCommand): void;
+    publish(aggregate: StructureAggregate, command: UnselectAllRowsCommand): void;
+    handle(aggregate: StructureAggregate, command: UnselectAllRowsCommand): void;
 }

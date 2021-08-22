@@ -1,5 +1,5 @@
-import { SchemaId } from '../../api/schema.id';
-import { SchemaRowColoring } from '../../api/schema-row-coloring';
+import { SchemaId } from '../schema.id';
+import { SchemaRowColoring } from '../../api/row-coloring/schema-row-coloring';
 import { SchemaDomainEvent } from '../schema.domain-event';
 export declare class RowColoringSetEvent extends SchemaDomainEvent {
     private readonly rowColoring;

@@ -6,6 +6,6 @@ export declare class StructureEditSourceItemCommandHandler implements CommandHan
     private structureSourceDomainEventPublisher;
     constructor(structureSourceDomainEventPublisher: SourceDomainEventPublisher);
     forCommand(): CommandType<StructureEditSourceItemCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: StructureEditSourceItemCommand): void;
-    handleAggregate(structure: StructureAggregate, command: StructureEditSourceItemCommand): void;
+    publish(aggregate: StructureAggregate, command: StructureEditSourceItemCommand): void;
+    handle(structure: StructureAggregate, command: StructureEditSourceItemCommand): void;
 }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Warehouse } from '@generic-ui/hermes';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { RowSelectedRepository } from './row-selected/row-selected.repository';
 import { RowSelectedReadModel } from './row-selected.read-model';
 import { RowSelectionModeRepository } from './mode/row-selection-mode.repository';

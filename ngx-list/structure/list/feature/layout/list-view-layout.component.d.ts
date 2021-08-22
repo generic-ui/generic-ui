@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
-import { ListViewReadModelRootId } from '../../core/api/read/list-view.read-model-root-id';
+import { ListViewReadModelRootId } from '../../core/api/list-view.read-model-root-id';
 import { ListViewModeRepository } from '../../core/api/mode/list-view.mode.repository';
 import { ListViewSelectorRepository } from '../../core/api/mode/selector/list-view.selector.repository';
 export declare class ListViewLayoutComponent extends SmartComponent implements OnInit {

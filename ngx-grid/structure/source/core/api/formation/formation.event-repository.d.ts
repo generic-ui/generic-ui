@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { DomainEventBus, EventRepository } from '@generic-ui/hermes';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { SourceWarehouse } from '../source.warehouse';
 import { SelectedRow } from './selected-row';
 import { StructureReadModelRootId } from '../../../../grid/core/api/read/structure.read-model-root-id';

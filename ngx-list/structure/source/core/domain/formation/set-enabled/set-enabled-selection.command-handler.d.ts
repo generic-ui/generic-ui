@@ -5,6 +5,6 @@ export declare class SetEnabledSelectionCommandHandler implements CommandHandler
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetEnabledSelectionCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetEnabledSelectionCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: SetEnabledSelectionCommand): void;
+    publish(aggregate: StructureAggregate, command: SetEnabledSelectionCommand): void;
+    handle(aggregate: StructureAggregate, command: SetEnabledSelectionCommand): void;
 }

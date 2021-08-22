@@ -7,6 +7,6 @@ export declare class SelectAllRowsCommandHandler implements CommandHandler<Struc
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SelectAllRowsCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SelectAllRowsCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: SelectAllRowsCommand): void;
+    publish(aggregate: StructureAggregate, command: SelectAllRowsCommand): void;
+    handle(aggregate: StructureAggregate, command: SelectAllRowsCommand): void;
 }

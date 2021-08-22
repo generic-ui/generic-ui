@@ -1,4 +1,4 @@
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../composition.id';
 import { ColumnParams } from './column.params';
 import { CompositionCommand } from '../../composition.command';
 export declare class SetColumnsCommand extends CompositionCommand {

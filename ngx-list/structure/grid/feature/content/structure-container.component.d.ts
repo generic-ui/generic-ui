@@ -2,9 +2,9 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit
 import { ResizeDetector } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
-import { SchemaRowColoring } from '../../../../schema/core/api/schema-row-coloring';
-import { StructureId } from '../../../core/api/structure.id';
-import { StructureCommandDispatcher } from '../../../core/api/structure.command-dispatcher';
+import { SchemaRowColoring } from '../../../../schema/core/api/row-coloring/schema-row-coloring';
+import { StructureId } from '../../../core/domain/structure.id';
+import { StructureCommandInvoker } from '../../../core/api/structure.command-invoker';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { SourceWarehouse } from '../../../source/core/api/source.warehouse';
 import { CompositionCommandInvoker } from '../../../../composition/core/api/composition.command-invoker';
@@ -33,7 +33,7 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     private autoResizeWidthEnabled;
     private scrollObservation$;
     private readonly styleModifier;
-    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandDispatcher, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, sourceWarehouse: SourceWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, formationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
+    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandInvoker, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, sourceWarehouse: SourceWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, formationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

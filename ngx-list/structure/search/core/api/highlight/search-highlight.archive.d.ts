@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 export declare class SearchHighlightArchive {
     private static readonly HIGHLIGHTING;
     private readonly idToHighlight;

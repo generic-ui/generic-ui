@@ -1,6 +1,6 @@
 import { SchemaCommandInvoker } from '../../../../../schema/core/api/schema.command-invoker';
-import { SchemaReadModelRootId } from '../../../../../schema/core/domain-read/schema.read-model-root-id';
-import { StructureId } from '../../../../../structure/core/api/structure.id';
+import { SchemaReadModelRootId } from '../../../../../schema/core/api/schema.read-model-root-id';
+import { StructureId } from '../../../../../structure/core/domain/structure.id';
 import { GuiRowColoring, GuiTheme } from '../../../core/api/gui.grid.public-api';
 import { GuiGridThemeConverter } from './gui.grid.theme.converter';
 import { GuiGridRowColoringConverter } from './coloring/gui.grid.row-coloring.converter';

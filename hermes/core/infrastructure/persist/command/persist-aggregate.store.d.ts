@@ -13,7 +13,7 @@ export declare abstract class PersistAggregateStore<I extends AggregateId, D ext
     abstract toAnemia(aggregate: D): A;
     abstract fromAnemia(anemia: A): D;
     save(aggregate: D): void;
-    getById(aggregateId: I): Optional<D>;
+    findById(aggregateId: I): Optional<D>;
     private saveValue;
     private getValue;
 }

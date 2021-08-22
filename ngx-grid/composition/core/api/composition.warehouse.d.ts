@@ -1,24 +1,20 @@
 import { Observable } from 'rxjs';
 import { Warehouse } from '@generic-ui/hermes';
-import { CompositionReadModelRootRepository } from '../domain-read/composition.read-model-root-repository';
-import { CompositionId } from './composition.id';
+import { CompositionId } from '../domain/composition.id';
 import { CellTemplateWithContext } from '../domain-read/definition/cell-template-with-context';
 import { CellTemplateWithAccessor } from '../domain-read/definition/cell-template-with-accessor';
 import { SortOrder } from '../domain/column/sort/sort-order';
 import { FieldId } from '../../../structure/field/core/domain/field/field.id';
 import { GroupCollection } from './group/group.collection';
-import { CompositionGroupRepository } from '../domain-read/group/composition.group.repository';
-export declare class CompositionWarehouse implements Warehouse {
-    private readonly compositionRepository;
-    private readonly compositionGroupRepository;
-    constructor(compositionRepository: CompositionReadModelRootRepository, compositionGroupRepository: CompositionGroupRepository);
-    onWidth(compositionId?: CompositionId): Observable<number>;
-    onContainerWidth(compositionId?: CompositionId): Observable<number>;
-    onWidthForEachColumn(compositionId?: CompositionId): Observable<Array<number>>;
-    onHeaderColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
-    onAllColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithContext>>;
-    onSortOrder(fieldId: FieldId, compositionId?: CompositionId): Observable<SortOrder>;
-    onTemplateColumns(compositionId?: CompositionId): Observable<Array<CellTemplateWithAccessor>>;
-    onResizeWidth(compositionId?: CompositionId): Observable<boolean>;
-    onGroups(compositionId?: CompositionId): Observable<GroupCollection>;
+export declare abstract class CompositionWarehouse implements Warehouse {
+    protected constructor();
+    abstract onWidth(compositionId?: CompositionId): Observable<number>;
+    abstract onContainerWidth(compositionId?: CompositionId): Observable<number>;
+    abstract onWidthForEachColumn(compositionId?: CompositionId): Observable<ReadonlyArray<number>>;
+    abstract onHeaderColumns(compositionId?: CompositionId): Observable<ReadonlyArray<CellTemplateWithContext>>;
+    abstract onAllColumns(compositionId?: CompositionId): Observable<ReadonlyArray<CellTemplateWithContext>>;
+    abstract onSortOrder(fieldId: FieldId, compositionId?: CompositionId): Observable<SortOrder>;
+    abstract onTemplateColumns(compositionId?: CompositionId): Observable<ReadonlyArray<CellTemplateWithAccessor>>;
+    abstract onResizeWidth(compositionId?: CompositionId): Observable<boolean>;
+    abstract onGroups(compositionId?: CompositionId): Observable<GroupCollection>;
 }

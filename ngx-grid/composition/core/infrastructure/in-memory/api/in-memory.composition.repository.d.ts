@@ -3,7 +3,7 @@ import { DomainEvent, DomainEventBus } from '@generic-ui/hermes';
 import { CompositionReadModelRootRepository } from '../../../domain-read/composition.read-model-root-repository';
 import { CompositionReadModeRoot } from '../../../domain-read/composition.read-mode-root';
 import { InMemoryCompositionReadStore } from './in-memory.composition.read-store';
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../../domain/composition.id';
 export declare class InMemoryCompositionRepository extends CompositionReadModelRootRepository {
     private inMemoryCompositionReadStore;
     private readonly compositionIdToComposition;

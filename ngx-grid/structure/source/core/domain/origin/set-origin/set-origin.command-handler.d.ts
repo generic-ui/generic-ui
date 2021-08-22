@@ -6,6 +6,6 @@ export declare class SetOriginCommandHandler implements CommandHandler<Structure
     private structureSourceDomainEventPublisher;
     constructor(structureSourceDomainEventPublisher: SourceDomainEventPublisher);
     forCommand(): CommandType<SetOriginCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetOriginCommand): void;
-    handleAggregate(structure: StructureAggregate, command: SetOriginCommand): void;
+    publish(aggregate: StructureAggregate, command: SetOriginCommand): void;
+    handle(structure: StructureAggregate, command: SetOriginCommand): void;
 }

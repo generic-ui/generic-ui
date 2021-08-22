@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { SearchConfig } from '../../core/api/search-config';
 import { SearchEventRepository } from '../../core/api/search.event-repository';
 import { SearchCommandInvoker } from '../../core/api/search.command-invoker';

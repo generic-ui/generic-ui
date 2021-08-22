@@ -6,10 +6,10 @@ import { StructureThemeConverter } from '../../schema/structure.theme.converter'
 import { SchemaWarehouse } from '../../../../../schema/core/api/schema.warehouse';
 export declare class StructureColumnConfigService extends Reactive {
     private readonly injector;
-    private readonly schemaReadModelRepository;
+    private readonly schemaWarehouse;
     private readonly structureThemeConverter;
     private readonly inlineDialogService;
-    constructor(injector: Injector, schemaReadModelRepository: SchemaWarehouse, structureThemeConverter: StructureThemeConverter, inlineDialogService: FabricInlineDialogService);
+    constructor(injector: Injector, schemaWarehouse: SchemaWarehouse, structureThemeConverter: StructureThemeConverter, inlineDialogService: FabricInlineDialogService);
     open(elementRef: ElementRef, column: CellTemplateWithContext): void;
     close(): void;
 }

@@ -1,6 +1,6 @@
 import { Injector } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
-import { SchemaReadModelRootId } from '../../../core/domain-read/schema.read-model-root-id';
+import { SchemaReadModelRootId } from '../../../core/api/schema.read-model-root-id';
 import { Reactive } from '../../../../common/cdk/reactive/reactive';
 export declare class StructureDialogSchemaManagerService extends Reactive {
     private readonly injector;

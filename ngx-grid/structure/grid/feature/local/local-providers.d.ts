@@ -6,7 +6,7 @@ import { FormationCommandInvoker } from '../../../source/core/api/formation/form
 import { LocalFormationCommandDispatcher } from './formation/local-formation.command-dispatcher';
 import { FormationWarehouse } from '../../../source/core/api/formation/formation.warehouse';
 import { LocalFormationWarehouse } from './formation/local-formation.warehouse';
-import { StructureCommandDispatcher } from '../../../core/api/structure.command-dispatcher';
+import { StructureCommandInvoker } from '../../../core/api/structure.command-invoker';
 import { LocalStructureCommandDispatcher } from './structure/local-structure.command-dispatcher';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { LocalStructureWarehouse } from './structure/local-structure.warehouse';
@@ -40,7 +40,7 @@ export declare const localProviders: ({
     provide: typeof FormationWarehouse;
     useClass: typeof LocalFormationWarehouse;
 } | {
-    provide: typeof StructureCommandDispatcher;
+    provide: typeof StructureCommandInvoker;
     useClass: typeof LocalStructureCommandDispatcher;
 } | {
     provide: typeof StructureWarehouse;

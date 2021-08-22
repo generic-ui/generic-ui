@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { FieldId } from '../../../field/core/domain/field/field.id';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { FilterWarehouse } from '../../core/api/filter.warehouse';
 import { UniqueValueReadModel } from '../../core/api/unique/unique-value.read-model';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';

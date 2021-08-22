@@ -1,7 +1,7 @@
 import { VerticalRange } from './vertical-range';
 import { Logger } from '../../../../common/cdk/logger/logger';
 import { StructureAggregateEvent } from '../../../core/domain/structure.aggregate-event';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 export declare class VerticalFormation {
     private structureId;
     private enabled;

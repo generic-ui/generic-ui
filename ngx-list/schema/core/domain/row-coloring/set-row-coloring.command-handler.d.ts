@@ -5,6 +5,6 @@ export declare class SetRowColoringCommandHandler implements CommandHandler<Sche
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetRowColoringCommand>;
-    publishDomainEvents(aggregate: SchemaAggregate, command: SetRowColoringCommand): void;
-    handleAggregate(schemaAggregate: SchemaAggregate, command: SetRowColoringCommand): void;
+    handle(schemaAggregate: SchemaAggregate, command: SetRowColoringCommand): void;
+    publish(aggregate: SchemaAggregate, command: SetRowColoringCommand): void;
 }

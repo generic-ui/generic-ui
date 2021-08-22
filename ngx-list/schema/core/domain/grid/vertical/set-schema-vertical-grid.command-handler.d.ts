@@ -5,6 +5,6 @@ export declare class SetSchemaVerticalGridCommandHandler implements CommandHandl
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSchemaVerticalGridCommand>;
-    publishDomainEvents(schemaAggregate: SchemaAggregate, command: SetSchemaVerticalGridCommand): void;
-    handleAggregate(schemaAggregate: SchemaAggregate, command: SetSchemaVerticalGridCommand): void;
+    handle(schemaAggregate: SchemaAggregate, command: SetSchemaVerticalGridCommand): void;
+    publish(schemaAggregate: SchemaAggregate, command: SetSchemaVerticalGridCommand): void;
 }

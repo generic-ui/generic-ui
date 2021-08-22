@@ -6,5 +6,9 @@ export declare class KeyMap<K extends Key, T> {
     get(key: K): Optional<T>;
     has(key: K): boolean;
     set(key: K, value: T): void;
+    size(): number;
+    remove(key: K): void;
+    removeAll(): void;
     private getInternalKey;
+    private hasInternalKey;
 }

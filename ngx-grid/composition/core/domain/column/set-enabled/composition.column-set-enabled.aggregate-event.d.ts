@@ -1,6 +1,6 @@
 import { AggregateId, DomainEvent } from '@generic-ui/hermes';
 import { ActiveColumnEntity } from '../active/active-column.entity';
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../composition.id';
 import { CompositionAggregateEvent } from '../../composition.aggregate-event';
 export declare class CompositionColumnSetEnabledAggregateEvent extends CompositionAggregateEvent {
     private readonly activeColumns;

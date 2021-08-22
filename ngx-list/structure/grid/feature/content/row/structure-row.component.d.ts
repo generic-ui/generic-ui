@@ -2,11 +2,11 @@ import { ChangeDetectorRef, ElementRef, OnChanges, OnInit } from '@angular/core'
 import { CellTemplateWithAccessor } from '../../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { ItemEntity } from '../../../../source/core/domain/core/item/item.entity';
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { FormationWarehouse } from '../../../../source/core/api/formation/formation.warehouse';
 import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { GuiRowClass, GuiRowStyle } from '../../../../../gui/grid/core/api/gui.grid.public-api';
-import { CssClassModifier } from '../../../../shared/css-class/css-class.modifier';
+import { CssClassModifier } from '../../../../common/css-class/css-class.modifier';
 import { NgChanges } from '../../../../../common/cdk/component/ng-changes';
 export declare class StructureRowComponent extends SmartComponent implements OnChanges, OnInit {
     private readonly changeDetectorRef;

@@ -17,8 +17,6 @@ export { AggregateFactory } from './core/domain/tactical/aggregate/aggregate-fac
 export { CommandBus } from './core/domain/command/command.bus';
 export { CommandLogger } from './core/domain/command/command.logger';
 export { CommandStream } from './core/domain/command/command.stream';
-export { ExecuteResponse } from './core/domain/command/response/execute-response';
-export { ReplayCommandDispatcher } from './core/domain/command/replay-command.dispatcher';
 export { AggregateEvent } from './core/domain/tactical/aggregate/aggregate-event';
 export { AggregateEventType } from './core/domain/tactical/aggregate/aggregate-event-type';
 export { AggregateRepository } from './core/domain/tactical/aggregate/aggregate-repository';
@@ -26,13 +24,12 @@ export { AggregateStore } from './core/domain/command/store/aggregate.store';
 export { AggregateStoreRegister } from './core/domain/command/store/aggregate-store.register';
 export { AggregateRoot } from './core/domain/tactical/aggregate/aggregate-root';
 export { AggregateId } from './core/domain/tactical/aggregate/aggregate-id';
-export { DomainEventStatus } from './core/domain/event/status/domain-event-status';
-export { StatusResponse } from './core/domain/event/status/status.response';
 export { DomainEvent } from './core/domain/event/domain-event';
 export { DomainEventPublisher } from './core/domain/event/domain-event.publisher';
 export { DomainEventBus } from './core/domain/event/domain-event.bus';
 export { DomainEventType } from './core/domain/event/handler/domain-event-type';
 export { DomainEventHandler } from './core/domain/event/handler/domain-event.handler';
+export { EventDrivenRepository } from './core/domain/event/handler/event-driven.repository';
 export { MultiDomainEventHandler } from './core/domain/event/handler/multi-domain-event.handler';
 export { DomainEventLogger } from './core/domain/event/domain-event.logger';
 export { DomainEventPayload } from './core/domain/event/domain-event.payload';
@@ -57,9 +54,11 @@ export { FeatureModule } from './feature/feature-module';
  * COMMON
  */
 export { AggregateArchive } from './common/aggregate.archive';
+export { DefaultAggregateValues } from './common/aggregate.archive';
 export { Archive } from './common/archive';
 export { RandomStringGenerator } from './common/random-string.generator';
 export { Optional } from './common/optional';
+export { ReactiveService } from './common/reactive.service';
 export { Reactive } from './common/reactive';
 export { KeyMap } from './common/collections/key-map';
 export { Key } from './common/collections/key';

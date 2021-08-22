@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { AggregateId, DomainEvent, DomainEventBus } from '@generic-ui/hermes';
 import { Reactive } from '../../../../../common/cdk/reactive/reactive';
 import { StructureReadModelRoot } from './structure.read-model-root';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 export declare abstract class StructureReadModelRepository extends Reactive {
     protected constructor(domainEventBus: DomainEventBus);
     abstract getStructure(aggregateId: AggregateId): StructureReadModelRoot;

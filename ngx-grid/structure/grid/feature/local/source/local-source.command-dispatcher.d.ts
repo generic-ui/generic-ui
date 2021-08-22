@@ -1,5 +1,5 @@
 import { SourceCommandInvoker } from '../../../../source/core/api/source.command-invoker';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { SourceDispatcher } from '../../../../source/core/domain/source.dispatcher';
 import { SourceWarehouse } from '../../../../source/core/api/source.warehouse';
 import { StructureEditSourceItemParams } from '../../../../source/core/domain/origin/edit/structure.edit-source-item.params';

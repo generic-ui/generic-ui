@@ -1,5 +1,5 @@
 import { DomainEvent } from '@generic-ui/hermes';
-import { ListViewId } from '../../api/list-view.id';
+import { ListViewId } from '../list-view.id';
 import { ListViewMode } from './list-view-mode';
 import { ListViewAggregateEvent } from '../list-view.aggregate-event';
 export declare class ListViewModeSetAggregateEvent extends ListViewAggregateEvent {

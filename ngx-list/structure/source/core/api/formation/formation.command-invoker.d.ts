@@ -1,6 +1,6 @@
 import { CommandDispatcher, CommandInvoker } from '@generic-ui/hermes';
 import { FormationDispatcher } from '../../domain/formation/formation.dispatcher';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { RowSelectionMode } from '../row-selection';
 import { RowSelectToggleType } from '../../domain/formation/core/row-select-toggle-type';
 export declare class FormationCommandInvoker implements CommandInvoker {

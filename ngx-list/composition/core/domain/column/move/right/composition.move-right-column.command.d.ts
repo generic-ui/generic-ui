@@ -1,4 +1,4 @@
-import { CompositionId } from '../../../../api/composition.id';
+import { CompositionId } from '../../../composition.id';
 import { ColumnId } from '../../../../api/column/column.id';
 import { CompositionCommand } from '../../../composition.command';
 export declare class CompositionMoveRightColumnCommand extends CompositionCommand {

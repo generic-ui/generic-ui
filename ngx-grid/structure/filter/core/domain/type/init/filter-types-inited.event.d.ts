@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../../core/api/structure.id';
+import { StructureId } from '../../../../../core/domain/structure.id';
 import { FilterTypeReadModel } from '../../../api/type/filter-type.read-model';
 import { StructureDomainEvent } from '../../../../../core/domain/structure.domain-event';
 export declare class FilterTypesInitedEvent extends StructureDomainEvent {

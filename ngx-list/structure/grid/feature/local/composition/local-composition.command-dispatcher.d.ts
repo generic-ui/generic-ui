@@ -1,13 +1,13 @@
-import { CompositionCommandInvoker } from '../../../../../composition/core/api/composition.command-invoker';
-import { CompositionId } from '../../../../../composition/core/api/composition.id';
+import { CompositionId } from '../../../../../composition/core/domain/composition.id';
 import { CompositionDispatcher } from '../../../../../composition/core/domain/composition.dispatcher';
 import { ColumnParams } from '../../../../../composition/core/domain/column/set-columns/column.params';
 import { ColumnDefinitionId } from '../../../../../composition/core/domain-read/definition/column-definition-id';
 import { CompositionGroupRepository } from '../../../../../composition/core/domain-read/group/composition.group.repository';
-export declare class LocalCompositionCommandDispatcher extends CompositionCommandInvoker {
+import { CompositionDomainCommandInvoker } from '../../../../../composition/core/domain/compositon.domain-command-invoker';
+export declare class LocalCompositionCommandDispatcher extends CompositionDomainCommandInvoker {
     private readonly compositionId;
     constructor(compositionId: CompositionId, compositionDispatcher: CompositionDispatcher, compositionGroupRepository: CompositionGroupRepository);
-    createComposition(compositionId?: CompositionId): void;
+    create(compositionId?: CompositionId): void;
     setColumns(params: Array<ColumnParams>): void;
     setGroups(configs: any, compositionId?: CompositionId): void;
     setWidth(width: number, compositionId?: CompositionId): void;

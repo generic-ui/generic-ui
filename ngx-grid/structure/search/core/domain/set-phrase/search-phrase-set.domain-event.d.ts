@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { StructureDomainEvent } from '../../../../core/domain/structure.domain-event';
 export declare class SearchPhraseSetDomainEvent extends StructureDomainEvent {
     private readonly phrase;

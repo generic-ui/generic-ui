@@ -5,6 +5,6 @@ export declare class SetSchemaHorizontalGridCommandHandler implements CommandHan
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSchemaHorizontalGridCommand>;
-    publishDomainEvents(schemaAggregate: SchemaAggregate, command: SetSchemaHorizontalGridCommand): void;
-    handleAggregate(schemaAggregate: SchemaAggregate, command: SetSchemaHorizontalGridCommand): void;
+    handle(schemaAggregate: SchemaAggregate, command: SetSchemaHorizontalGridCommand): void;
+    publish(schemaAggregate: SchemaAggregate, command: SetSchemaHorizontalGridCommand): void;
 }

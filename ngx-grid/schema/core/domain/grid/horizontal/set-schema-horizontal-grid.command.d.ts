@@ -1,4 +1,4 @@
-import { SchemaId } from '../../../api/schema.id';
+import { SchemaId } from '../../schema.id';
 import { SchemaCommand } from '../../schema.command';
 export declare class SetSchemaHorizontalGridCommand extends SchemaCommand {
     private readonly enabled;

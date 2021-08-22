@@ -1,5 +1,5 @@
 import { DomainEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../../../../core/api/structure.id';
+import { StructureId } from '../../../../../core/domain/structure.id';
 import { UniqueValue } from '../unique-value';
 import { StructureAggregateEvent } from '../../../../../core/domain/structure.aggregate-event';
 export declare class UniqueFilterCalculatedAggregateEvent extends StructureAggregateEvent {

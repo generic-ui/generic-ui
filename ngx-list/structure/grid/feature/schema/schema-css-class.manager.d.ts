@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { SchemaWarehouse } from '../../../../schema/core/api/schema.warehouse';
-import { SchemaReadModelRootId } from '../../../../schema/core/domain-read/schema.read-model-root-id';
+import { SchemaReadModelRootId } from '../../../../schema/core/api/schema.read-model-root-id';
 import { Reactive } from '../../../../common/cdk/reactive/reactive';
 export declare class SchemaCssClassManager extends Reactive {
     private readonly schemaReadModelRepository;

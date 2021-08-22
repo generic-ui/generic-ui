@@ -5,6 +5,6 @@ export declare class RemoveAllFiltersCommandHandler implements CommandHandler<St
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<RemoveAllFiltersCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: RemoveAllFiltersCommand): void;
-    handleAggregate(structure: StructureAggregate, command: RemoveAllFiltersCommand): void;
+    publish(aggregate: StructureAggregate, command: RemoveAllFiltersCommand): void;
+    handle(structure: StructureAggregate, command: RemoveAllFiltersCommand): void;
 }

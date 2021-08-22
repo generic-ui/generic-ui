@@ -5,6 +5,6 @@ export declare class SetSchemaThemeCommandHandler implements CommandHandler<Sche
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSchemaThemeCommand>;
-    publishDomainEvents(aggregate: SchemaAggregate, command: SetSchemaThemeCommand): void;
-    handleAggregate(schemaAggregate: SchemaAggregate, command: SetSchemaThemeCommand): void;
+    handle(schemaAggregate: SchemaAggregate, command: SetSchemaThemeCommand): void;
+    publish(aggregate: SchemaAggregate, command: SetSchemaThemeCommand): void;
 }

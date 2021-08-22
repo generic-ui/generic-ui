@@ -5,6 +5,6 @@ export declare class SetConfigSearchingCommandHandler implements CommandHandler<
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetConfigSearchingCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetConfigSearchingCommand): void;
-    handleAggregate(aggregate: StructureAggregate, command: SetConfigSearchingCommand): void;
+    publish(aggregate: StructureAggregate, command: SetConfigSearchingCommand): void;
+    handle(aggregate: StructureAggregate, command: SetConfigSearchingCommand): void;
 }

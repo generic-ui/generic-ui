@@ -7,8 +7,8 @@ import { GuiGridRowColoringConverter } from './theme/coloring/gui.grid.row-color
 import { ColumnMenuConfig } from '../../../../structure/grid/core/api/column-menu-config';
 import { GuiGridColumnMenuConverter } from './column/menu/gui.grid.column-menu.converter';
 import { GuiGridPagingConverter } from './paging/gui.grid.paging.converter';
-import { SchemaTheme } from '../../../../schema/core/api/schema-theme';
-import { RowColoring } from '../../../../schema/core/api/row-coloring';
+import { SchemaTheme } from '../../../../schema/core/api/theme/schema-theme';
+import { RowColoring } from '../../../../schema/core/api/row-coloring/row-coloring';
 import { GuiGridRowSelectionConverter } from './row-selection/gui.grid.row-selection.converter';
 import { RowSelection } from '../../../../structure/source/core/api/row-selection';
 import { SelectedRow } from '../../../../structure/source/core/api/formation/selected-row';

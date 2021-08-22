@@ -1,4 +1,4 @@
-import { ListViewId } from '../../api/list-view.id';
+import { ListViewId } from '../list-view.id';
 import { ListViewMode } from './list-view-mode';
 import { ListViewDomainEvent } from '../list-view.domain-event';
 export declare class ListViewModeSetEvent extends ListViewDomainEvent {

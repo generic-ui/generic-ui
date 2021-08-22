@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { StructureReadModelRepository } from '../../../grid/core/api/read/structure.read-model-repository';
 import { StructureSourceOriginRepository } from './origin/structure.source-origin.repository';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { ItemEntity } from '../domain/core/item/item.entity';
 import { StructurePreparedItemsRepository } from './prepared/structure.prepared-items.repository';
 import { OriginItemEntity } from '../domain/origin/origin-item-entity';

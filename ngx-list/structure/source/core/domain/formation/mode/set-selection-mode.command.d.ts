@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../../core/api/structure.id';
+import { StructureId } from '../../../../../core/domain/structure.id';
 import { RowSelectionMode } from '../../../api/row-selection';
 import { StructureCommand } from '../../../../../core/domain/structure.command';
 export declare class SetSelectionModeCommand extends StructureCommand {

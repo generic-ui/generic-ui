@@ -1,7 +1,7 @@
 import { AggregateEvent, AggregateEventType, AggregateRoot } from '@generic-ui/hermes';
-import { SchemaId } from '../api/schema.id';
-import { SchemaTheme } from '../api/schema-theme';
-import { SchemaRowColoring } from '../api/schema-row-coloring';
+import { SchemaId } from './schema.id';
+import { SchemaTheme } from '../api/theme/schema-theme';
+import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 export declare class SchemaAggregate extends AggregateRoot<SchemaId> {
     static readonly DEFAULT_THEME = SchemaTheme.GENERIC;
     static readonly DEFAULT_ROW_COLORING = SchemaRowColoring.ODD;
@@ -14,8 +14,8 @@ export declare class SchemaAggregate extends AggregateRoot<SchemaId> {
     constructor(id: SchemaId);
     createEvent(): AggregateEventType<AggregateEvent<SchemaId>>;
     changeTheme(theme: SchemaTheme): void;
-    private setTheme;
     setRowColoring(coloring: SchemaRowColoring): void;
     setVerticalGrid(enabled: boolean): void;
     setHorizontalGrid(enabled: boolean): void;
+    private setTheme;
 }

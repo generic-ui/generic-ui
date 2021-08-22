@@ -1,7 +1,7 @@
 import { Reactive } from '../../../../common/cdk/reactive/reactive';
 import { SourceDispatcher } from '../domain/source.dispatcher';
 import { SourceWarehouse } from './source.warehouse';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { StructureEditSourceItemParams } from '../domain/origin/edit/structure.edit-source-item.params';
 import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
 import { SelectedRow } from './formation/selected-row';

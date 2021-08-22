@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { FormationWarehouse } from '../../../../source/core/api/formation/formation.warehouse';
 import { RowSelectedRepository } from '../../../../source/core/api/formation/row-selected/row-selected.repository';
 import { RowSelectedReadModel } from '../../../../source/core/api/formation/row-selected.read-model';

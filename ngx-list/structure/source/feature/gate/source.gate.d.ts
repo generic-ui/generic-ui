@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { EditemItemValues } from '../../core/api/event/editem-item.values';
 import { SourceCommandInvoker } from '../../core/api/source.command-invoker';
 import { SourceEventService } from '../../core/api/event/source-event.service';

@@ -1,5 +1,5 @@
 import { CommandInvoker } from '@generic-ui/hermes';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { SearchConfig } from './search-config';
 import { SearchDispatcher } from '../domain/search.dispatcher';
 export declare class SearchCommandInvoker implements CommandInvoker {

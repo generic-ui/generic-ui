@@ -1,4 +1,4 @@
-import { SchemaId } from '../../../api/schema.id';
+import { SchemaId } from '../../schema.id';
 import { SchemaDomainEvent } from '../../schema.domain-event';
 export declare class SchemaVerticalGridSetEvent extends SchemaDomainEvent {
     private readonly verticalGrid;

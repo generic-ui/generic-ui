@@ -5,6 +5,6 @@ export declare class SelectAllUniqueFilterCommandHandler implements CommandHandl
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SelectAllUniqueFilterCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SelectAllUniqueFilterCommand): void;
-    handleAggregate(structure: StructureAggregate, command: SelectAllUniqueFilterCommand): void;
+    publish(aggregate: StructureAggregate, command: SelectAllUniqueFilterCommand): void;
+    handle(structure: StructureAggregate, command: SelectAllUniqueFilterCommand): void;
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilterCommandInvoker } from '../../../../filter/core/api/filter.command-invoker';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { CellTemplateWithContext } from '../../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
 export declare class StructureHeaderFiltersComponent extends PureComponent implements OnInit {

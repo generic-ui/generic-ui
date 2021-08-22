@@ -1,6 +1,6 @@
 import { CommandInvoker } from '@generic-ui/hermes';
 import { PagingDispatcher } from '../domain/paging.dispatcher';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { PagingConfig } from './paging-config';
 export declare class PagingCommandInvoker implements CommandInvoker {
     private pagingDispatcher;

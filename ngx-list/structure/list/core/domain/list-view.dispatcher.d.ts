@@ -1,5 +1,5 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { ListViewId } from '../api/list-view.id';
+import { ListViewId } from './list-view.id';
 import { ListViewMode } from './mode/list-view-mode';
 export declare class ListViewDispatcher {
     private commandDispatcher;

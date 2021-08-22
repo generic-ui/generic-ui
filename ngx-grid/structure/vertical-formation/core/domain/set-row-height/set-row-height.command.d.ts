@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { StructureCommand } from '../../../../core/domain/structure.command';
 export declare class SetRowHeightCommand extends StructureCommand {
     private readonly rowHeight;

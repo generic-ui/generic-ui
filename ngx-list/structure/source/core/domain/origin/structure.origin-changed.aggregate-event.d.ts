@@ -1,6 +1,6 @@
 import { AggregateId, DomainEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from './origin-item-entity';
-import { StructureId } from '../../../../core/api/structure.id';
+import { StructureId } from '../../../../core/domain/structure.id';
 import { StructureAggregateEvent } from '../../../../core/domain/structure.aggregate-event';
 export declare class StructureOriginChangedAggregateEvent extends StructureAggregateEvent {
     private readonly origin;

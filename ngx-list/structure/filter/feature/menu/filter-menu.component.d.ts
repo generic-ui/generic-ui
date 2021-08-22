@@ -3,7 +3,7 @@ import { CellTemplateWithContext } from '../../../../composition/core/domain-rea
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { FieldReadModel } from '../../../field/core/api/read/field.read-model';
 import { FilterWarehouse } from '../../core/api/filter.warehouse';
 import { FilterTypeMap } from '../../core/api/type/filter-type-map';

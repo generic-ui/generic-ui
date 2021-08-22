@@ -10,7 +10,7 @@ export declare abstract class InMemoryAggregateStore<I extends AggregateId, T ex
     protected constructor(inMemoryStore: InMemoryStore<I, T>, aggregateStoreRegister: AggregateStoreRegister);
     save(aggregate: T): void;
     save(aggregates: Array<T>): void;
-    getById(aggregateId: I): Optional<T>;
+    findById(aggregateId: I): Optional<T>;
     getAll(): Array<T>;
     remove(aggregateId: I): void;
 }

@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Warehouse } from '@generic-ui/hermes';
 import { FilterEnabledRepository } from './read/filter-enabled.repository';
 import { QuickFilterEnabledRepository } from './read/quick-filter-enabled.repository';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { FilterTypeRepository } from './type/filter-type.repository';
 import { FilterTypeMap } from './type/filter-type-map';
 import { ActiveFilterReadModel } from './active/active-filter.read-model';

@@ -9,7 +9,7 @@ export declare class SetColumnsCommandHandler implements CommandHandler<Composit
     private readonly compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
     forCommand(): CommandType<SetColumnsCommand>;
-    publishDomainEvents(aggregate: CompositionAggregate, command: SetColumnsCommand): void;
-    handleAggregate(aggregate: CompositionAggregate, command: SetColumnsCommand): void;
+    publish(aggregate: CompositionAggregate, command: SetColumnsCommand): void;
+    handle(aggregate: CompositionAggregate, command: SetColumnsCommand): void;
     private publishEvents;
 }

@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { RowSelection } from '../../core/api/row-selection';
 import { SelectedRow } from '../../core/api/formation/selected-row';
 import { FormationEventRepository } from '../../core/api/formation/formation.event-repository';

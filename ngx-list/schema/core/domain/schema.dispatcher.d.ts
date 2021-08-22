@@ -1,7 +1,7 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { SchemaTheme } from '../api/schema-theme';
-import { SchemaId } from '../api/schema.id';
-import { SchemaRowColoring } from '../api/schema-row-coloring';
+import { SchemaTheme } from '../api/theme/schema-theme';
+import { SchemaId } from './schema.id';
+import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 export declare class SchemaDispatcher {
     private readonly commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);

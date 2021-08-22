@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { VerticalFormationRepository } from './vertical-formation.repository';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { VerticalFormationScrollBarPositionRepository } from '../domain-read/scroll-bar/vertical-formation.scroll-bar-position.repository';
 export declare class StructureVerticalFormationWarehouse {
     private readonly verticalFormationRepository;

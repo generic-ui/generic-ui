@@ -2,7 +2,7 @@ import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { StructureReadModelRoot } from '../../core/api/read/structure.read-model-root';
 import { StructureDefinition } from '../structure-definition';
-import { StructureId } from '../../../core/api/structure.id';
+import { StructureId } from '../../../core/domain/structure.id';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { PagingWarehouse } from '../../../paging/core/api/paging.warehouse';
 import { StructureInfoPanelArchive } from '../panel/info/structure.info-panel.archive';

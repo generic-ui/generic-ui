@@ -5,6 +5,6 @@ export declare class SetVerticalScrollEnabledCommandHandler implements CommandHa
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetVerticalScrollEnabledCommand>;
-    publishDomainEvents(aggregate: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
-    handleAggregate(structure: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
+    publish(aggregate: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
+    handle(structure: StructureAggregate, command: SetVerticalScrollEnabledCommand): void;
 }

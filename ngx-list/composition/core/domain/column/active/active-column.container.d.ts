@@ -2,7 +2,7 @@ import { AggregateEvent } from '@generic-ui/hermes';
 import { ActiveColumnEntity } from './active-column.entity';
 import { ColumnConfig } from '../../../api/column/column.config';
 import { ChangeSortParams } from '../sort/change-sort.params';
-import { CompositionId } from '../../../api/composition.id';
+import { CompositionId } from '../../composition.id';
 import { ColumnId } from '../../../api/column/column.id';
 import { ColumnWidth } from '../column-width/column-width';
 export declare class ActiveColumnContainer {
