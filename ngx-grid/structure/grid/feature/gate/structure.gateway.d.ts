@@ -88,7 +88,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive;
     protected schemaEventRepository: SchemaEventRepository;
     protected translationService: TranslationService;
-    /***********************
+    /** *********************
      * INPUTS
      ***********************/
     maxHeight: number;
@@ -107,7 +107,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     quickFilters: boolean | QuickFiltersConfig;
     editMode: boolean;
     cellEditing: boolean;
-    /***********************
+    /** *********************
      * OUTPUTS
      ***********************/
     columnsChanged: EventEmitter<void>;

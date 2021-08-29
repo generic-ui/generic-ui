@@ -5,6 +5,6 @@ export declare class SetConfigFilterCommandHandler implements CommandHandler<Str
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetConfigFilterCommand>;
-    publish(aggregate: StructureAggregate, command: SetConfigFilterCommand): void;
     handle(aggregate: StructureAggregate, command: SetConfigFilterCommand): void;
+    publish(aggregate: StructureAggregate, command: SetConfigFilterCommand): void;
 }

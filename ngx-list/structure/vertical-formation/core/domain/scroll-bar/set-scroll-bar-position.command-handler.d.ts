@@ -5,6 +5,6 @@ export declare class SetScrollBarPositionCommandHandler implements CommandHandle
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetScrollBarPositionCommand>;
-    publish(aggregate: StructureAggregate, command: SetScrollBarPositionCommand): void;
     handle(structure: StructureAggregate, command: SetScrollBarPositionCommand): void;
+    publish(aggregate: StructureAggregate, command: SetScrollBarPositionCommand): void;
 }

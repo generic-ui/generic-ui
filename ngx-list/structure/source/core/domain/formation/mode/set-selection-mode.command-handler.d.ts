@@ -5,6 +5,6 @@ export declare class SetSelectionModeCommandHandler implements CommandHandler<St
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSelectionModeCommand>;
-    publish(aggregate: StructureAggregate, command: SetSelectionModeCommand): void;
     handle(aggregate: StructureAggregate, command: SetSelectionModeCommand): void;
+    publish(aggregate: StructureAggregate, command: SetSelectionModeCommand): void;
 }

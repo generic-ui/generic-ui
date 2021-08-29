@@ -6,6 +6,6 @@ export declare class SetCompositionWidthCommandHandler implements CommandHandler
     private readonly domainEventPublisher;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetCompositionWidthCommand>;
-    publish(aggregate: CompositionAggregate, command: SetCompositionWidthCommand): void;
     handle(composition: CompositionAggregate, command: SetCompositionWidthCommand): void;
+    publish(aggregate: CompositionAggregate, command: SetCompositionWidthCommand): void;
 }

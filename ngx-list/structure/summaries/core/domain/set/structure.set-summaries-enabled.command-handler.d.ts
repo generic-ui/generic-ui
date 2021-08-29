@@ -7,6 +7,6 @@ export declare class StructureSetSummariesEnabledCommandHandler implements Comma
     private domainEventPublisher;
     constructor(structureSourceDomainEventPublisher: SourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<StructureSetSummariesEnabledCommand>;
-    publish(aggregate: StructureAggregate, command: StructureSetSummariesEnabledCommand): void;
     handle(structure: StructureAggregate, command: StructureSetSummariesEnabledCommand): void;
+    publish(aggregate: StructureAggregate, command: StructureSetSummariesEnabledCommand): void;
 }

@@ -13,4 +13,5 @@ export declare abstract class AggregateRoot<I extends AggregateId> {
     addEvent(event: AggregateEvent<I>): void;
     addEvent(events: Array<AggregateEvent<I>>): void;
     clearEvents(): void;
+    equals(aggregate: AggregateRoot<I>): boolean;
 }

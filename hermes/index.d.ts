@@ -32,7 +32,6 @@ export { DomainEventHandler } from './core/domain/event/handler/domain-event.han
 export { EventDrivenRepository } from './core/domain/event/handler/event-driven.repository';
 export { MultiDomainEventHandler } from './core/domain/event/handler/multi-domain-event.handler';
 export { DomainEventLogger } from './core/domain/event/domain-event.logger';
-export { DomainEventPayload } from './core/domain/event/domain-event.payload';
 export { DomainEventStream } from './core/domain/event/domain-event.stream';
 export { ReadModelEntity } from './core/api/read/read-model-entity';
 export { ReadModelEntityId } from './core/api/read/read-model-entity-id';

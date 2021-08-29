@@ -5,6 +5,6 @@ export declare class StructureSetHeightCommandHandler implements CommandHandler<
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<StructureSetHeightCommand>;
-    publish(aggregate: StructureAggregate, command: StructureSetHeightCommand): void;
     handle(aggregate: StructureAggregate, command: StructureSetHeightCommand): void;
+    publish(aggregate: StructureAggregate, command: StructureSetHeightCommand): void;
 }

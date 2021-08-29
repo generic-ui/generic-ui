@@ -1,2 +1,2 @@
-export declare function enableHermesLoggers(domainName?: string): void;
-export declare function disableHermesLoggers(): void;
+export declare function enableHermesLoggers(domainName?: string, windowObject?: Window): void;
+export declare function disableHermesLoggers(windowObject?: Window): void;

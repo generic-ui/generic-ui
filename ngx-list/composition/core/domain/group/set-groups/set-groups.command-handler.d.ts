@@ -9,7 +9,7 @@ export declare class SetGroupsCommandHandler implements CommandHandler<Compositi
     private readonly compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
     forCommand(): CommandType<SetGroupsCommand>;
-    publish(aggregate: CompositionAggregate, command: SetGroupsCommand): void;
     handle(aggregate: CompositionAggregate, command: SetGroupsCommand): void;
+    publish(aggregate: CompositionAggregate, command: SetGroupsCommand): void;
     private publishEvents;
 }

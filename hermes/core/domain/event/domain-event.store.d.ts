@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { DomainEvent } from './domain-event';
 import { AggregateId } from '../tactical/aggregate/aggregate-id';
 export declare class DomainEventStore {
-    private domainEvents;
-    private domainEvents$;
+    private readonly domainEvents;
+    private readonly domainEvents$;
     next(event: DomainEvent<AggregateId>): void;
     findEventByType(eventType: string): DomainEvent<AggregateId>;
     /**

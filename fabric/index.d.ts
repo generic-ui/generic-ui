@@ -48,3 +48,5 @@ export { SpinnerMode } from './general/spinners/progress-spinner/spinner-mode';
 export { FabricPlacement } from './common/modal/cords/fabric-placement';
 export { GuiTabItem } from './layout/tab/fabric-tab-item';
 export { GuiSelectOption } from './form/select/select-option';
+export { FabricDatePickerOptions } from './form/date-picker/models/fabric-date-picker-options';
+export { FabricTimePickerOptions } from './form/date-picker/models/fabric-time-picker-options';

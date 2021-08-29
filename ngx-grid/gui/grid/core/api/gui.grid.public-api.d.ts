@@ -88,11 +88,11 @@ export declare enum GuiRowColoring {
 }
 export interface GuiRowStyle {
     style?: string;
-    styleFunction?: (data: any, index: number) => string;
+    styleFunction?: (source: any, index: number) => string;
 }
 export interface GuiRowClass {
     class?: string;
-    classFunction?: (data: any, index: number) => string;
+    classFunction?: (source: any, index: number) => string;
 }
 export declare enum GuiSortingOrder {
     NONE = 0,

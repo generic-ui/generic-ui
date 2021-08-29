@@ -11,6 +11,5 @@ export declare abstract class InMemoryAggregateStore<I extends AggregateId, T ex
     save(aggregate: T): void;
     save(aggregates: Array<T>): void;
     findById(aggregateId: I): Optional<T>;
-    getAll(): Array<T>;
     remove(aggregateId: I): void;
 }

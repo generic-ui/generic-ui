@@ -17,9 +17,9 @@ export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaVerticalGridRepository;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository, schemaThemeRepository: SchemaThemeRepository, schemaHorizontalGridRepository: SchemaHorizontalGridRepository, schemaRowColoringRepository: SchemaRowColoringRepository, schemaVerticalGridRepository: SchemaVerticalGridRepository);
     onTheme(schemaId?: SchemaReadModelRootId): Observable<SchemaTheme>;
+    onSingleTheme(schemaId?: SchemaReadModelRootId): Observable<SchemaTheme>;
     onHorizontalGrid(schemaId?: SchemaReadModelRootId): Observable<boolean>;
     onVerticalGrid(schemaId?: SchemaReadModelRootId): Observable<boolean>;
     onRowColoring(schemaId?: SchemaReadModelRootId): Observable<SchemaRowColoring>;
-    onSingleTheme(schemaId?: SchemaReadModelRootId): Observable<SchemaTheme>;
     onCssClasses(schemaId?: SchemaReadModelRootId): Observable<SchemaCssClass>;
 }

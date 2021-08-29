@@ -7,6 +7,6 @@ export declare class ToggleFilterCommandHandler implements CommandHandler<Struct
     private readonly domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<ToggleFilterCommand>;
-    publish(aggregate: StructureAggregate, command: ToggleFilterCommand): void;
     handle(aggregate: StructureAggregate, command: ToggleFilterCommand): void;
+    publish(aggregate: StructureAggregate, command: ToggleFilterCommand): void;
 }

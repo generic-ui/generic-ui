@@ -7,11 +7,10 @@ export interface DefaultAggregateValues<T> {
     value: T;
 }
 export declare abstract class AggregateArchive<T> extends ReactiveService {
-    private archive;
-    private archive$;
+    private readonly archive;
+    private readonly archive$;
     protected constructor(defaultValue?: DefaultAggregateValues<T>);
     on(aggregateId: AggregateId): Observable<T>;
     get(aggregateId: AggregateId): Optional<T>;
     next(aggregateId: AggregateId, value: T): void;
-    private initArchive;
 }

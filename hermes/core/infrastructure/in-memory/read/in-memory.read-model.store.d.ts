@@ -10,6 +10,5 @@ export declare abstract class InMemoryReadModelStore<I extends ReadModelRootId, 
     protected constructor(inMemoryStore: InMemoryStore<B, A>);
     abstract toReadModel(aggregate: A): R;
     getById(aggregateId: B): Optional<R>;
-    getAll(): ReadonlyArray<R>;
     private getValue;
 }

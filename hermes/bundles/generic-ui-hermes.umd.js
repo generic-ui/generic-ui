@@ -395,20 +395,26 @@
      */
     /**
      * @param {?=} domainName
+     * @param {?=} windowObject
      * @return {?}
      */
-    function enableHermesLoggers(domainName) {
+    function enableHermesLoggers(domainName, windowObject) {
+        /** @type {?} */
+        var winRef = windowObject ? windowObject : window;
         if (domainName) {
-            window[hermesApi].domain = domainName;
+            winRef[hermesApi].domain = domainName;
         }
-        window[hermesApi].loggers = true;
+        winRef[hermesApi].loggers = true;
     }
     /**
+     * @param {?=} windowObject
      * @return {?}
      */
-    function disableHermesLoggers() {
-        delete window[hermesApi].domain;
-        window[hermesApi].loggers = false;
+    function disableHermesLoggers(windowObject) {
+        /** @type {?} */
+        var winRef = windowObject ? windowObject : window;
+        delete winRef[hermesApi].domain;
+        winRef[hermesApi].loggers = false;
     }
 
     /**
@@ -818,7 +824,9 @@
                  * @param {?} handler
                  * @return {?}
                  */
-                function (handler) { return handler.forCommand(command); }));
+                function (handler) {
+                    return handler.forCommand(command);
+                }));
             })));
         };
         /**
@@ -846,7 +854,9 @@
                  * @param {?} handler
                  * @return {?}
                  */
-                function (handler) { return handler.forCommand(command); }));
+                function (handler) {
+                    return handler.forCommand(command);
+                }));
             })));
         };
         /**
@@ -874,18 +884,24 @@
                 /** @type {?} */
                 var foundHandlerForCommand = true;
                 if (handlers) {
-                    foundHandlerForCommand = !handlers.some((/**
-                     * @param {?} handler
-                     * @return {?}
-                     */
-                    function (handler) { return handler.forCommand(command); }));
+                    foundHandlerForCommand =
+                        !handlers.some((/**
+                         * @param {?} handler
+                         * @return {?}
+                         */
+                        function (handler) {
+                            return handler.forCommand(command);
+                        }));
                 }
                 if (aggregateCommandHandlers) {
-                    foundHandlerForCommand = foundHandlerForCommand && !aggregateCommandHandlers.some((/**
-                     * @param {?} handler
-                     * @return {?}
-                     */
-                    function (handler) { return handler.forCommand(command); }));
+                    foundHandlerForCommand = foundHandlerForCommand &&
+                        !aggregateCommandHandlers.some((/**
+                         * @param {?} handler
+                         * @return {?}
+                         */
+                        function (handler) {
+                            return handler.forCommand(command);
+                        }));
                 }
                 return foundHandlerForCommand;
             })));
@@ -1205,6 +1221,17 @@
         function () {
             this.events.length = 0;
         };
+        /**
+         * @param {?} aggregate
+         * @return {?}
+         */
+        AggregateRoot.prototype.equals = /**
+         * @param {?} aggregate
+         * @return {?}
+         */
+        function (aggregate) {
+            return aggregate.getId().toString() === this.getId().toString();
+        };
         return AggregateRoot;
     }());
     if (false) {
@@ -1346,39 +1373,6 @@
             return this.constructor.name === event.constructor.name;
         };
         /**
-         * @param {?} command
-         * @return {?}
-         */
-        DomainEvent.prototype.setRequestCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            this.requestCommandId = command.getMessageId();
-        };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        DomainEvent.prototype.fromCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
-            return command.getMessageId() === this.requestCommandId;
-        };
-        /**
-         * @param {?} payload
-         * @return {?}
-         */
-        DomainEvent.prototype.setPayload = /**
-         * @param {?} payload
-         * @return {?}
-         */
-        function (payload) {
-            this.payload = payload;
-        };
-        /**
          * @return {?}
          */
         DomainEvent.prototype.getPayload = /**
@@ -1390,11 +1384,6 @@
         return DomainEvent;
     }(Message));
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEvent.prototype.requestCommandId;
         /**
          * @type {?}
          * @private
@@ -1612,7 +1601,6 @@
          */
         function (aggregate) {
             var _this = this;
-            console.log('aggregagte events:', aggregate.getEvents());
             aggregate.getEvents()
                 .forEach((/**
              * @param {?} aggregateEvent
@@ -1899,10 +1887,12 @@
      */
     Optional = /** @class */ (function () {
         function Optional(value) {
-            if (!Optional.isEmpty(value) && Optional.isEmpty(value)) {
-                return Optional.empty();
+            if (Optional.isValueEmpty(value)) {
+                this.value = null;
             }
-            this.value = value;
+            else {
+                this.value = value;
+            }
             return this;
         }
         /**
@@ -1932,7 +1922,7 @@
          * @param {?} value
          * @return {?}
          */
-        Optional.isEmpty = /**
+        Optional.isValueEmpty = /**
          * @private
          * @param {?} value
          * @return {?}
@@ -1947,7 +1937,7 @@
          * @return {?}
          */
         function () {
-            return Optional.isEmpty(this.value);
+            return Optional.isValueEmpty(this.value);
         };
         /**
          * @return {?}
@@ -2264,7 +2254,13 @@
         function AggregateArchive(defaultValue) {
             var _this = _super.call(this) || this;
             _this.archive = new KeyMap();
-            _this.initArchive(defaultValue);
+            if (defaultValue) {
+                _this.archive.set(defaultValue.aggregateId, defaultValue.value);
+                _this.archive$ = new rxjs.BehaviorSubject(_this.archive);
+            }
+            else {
+                _this.archive$ = new rxjs.ReplaySubject(1);
+            }
             return _this;
         }
         /**
@@ -2323,25 +2319,6 @@
             this.archive.set(aggregateId, value);
             this.archive$.next(this.archive);
         };
-        /**
-         * @private
-         * @param {?=} defaultValue
-         * @return {?}
-         */
-        AggregateArchive.prototype.initArchive = /**
-         * @private
-         * @param {?=} defaultValue
-         * @return {?}
-         */
-        function (defaultValue) {
-            if (defaultValue) {
-                this.archive.set(defaultValue.aggregateId, defaultValue.value);
-                this.archive$ = new rxjs.BehaviorSubject(this.archive);
-            }
-            else {
-                this.archive$ = new rxjs.ReplaySubject(1);
-            }
-        };
         return AggregateArchive;
     }(ReactiveService));
     if (false) {
@@ -2393,33 +2370,6 @@
          * @return {?}
          */
         EventDrivenRepository.prototype.forEvent = function () { };
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var DomainEventPayload = /** @class */ (function () {
-        function DomainEventPayload(value) {
-            this.value = value;
-        }
-        /**
-         * @return {?}
-         */
-        DomainEventPayload.prototype.getValue = /**
-         * @return {?}
-         */
-        function () {
-            return this.value;
-        };
-        return DomainEventPayload;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventPayload.prototype.value;
     }
 
     /**
@@ -2885,7 +2835,7 @@
         /**
          * @return {?}
          */
-        Archive.prototype.onValue = /**
+        Archive.prototype.on = /**
          * @return {?}
          */
         function () {
@@ -3292,20 +3242,21 @@
             function (a) { return a.clearEvents(); }));
             return optAggregate;
         };
-        /**
-         * @return {?}
-         */
-        InMemoryAggregateStore.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
-            return this.inMemoryStore.getAll();
-        };
+        // getAll(): Array<T> {
+        // 	return this.inMemoryStore.getAll();
+        // }
+        // getAll(): Array<T> {
+        // 	return this.inMemoryStore.getAll();
+        // }
         /**
          * @param {?} aggregateId
          * @return {?}
          */
-        InMemoryAggregateStore.prototype.remove = /**
+        InMemoryAggregateStore.prototype.remove = 
+        // getAll(): Array<T> {
+        // 	return this.inMemoryStore.getAll();
+        // }
+        /**
          * @param {?} aggregateId
          * @return {?}
          */
@@ -3355,31 +3306,30 @@
          * @return {?}
          */
         function (aggregateId) {
-            // const aggregateId = readModelRootId.toAggregateId() as B; // TODO remove as
             return this.getValue(aggregateId);
         };
-        /**
-         * @return {?}
-         */
-        InMemoryReadModelStore.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
-            var _this = this;
-            return this.inMemoryStore
-                .getAll()
-                .map((/**
-             * @param {?} aggregate
-             * @return {?}
-             */
-            function (aggregate) { return _this.toReadModel(aggregate); }));
-        };
+        // getAll(): ReadonlyArray<R> {
+        // 	return this.inMemoryStore
+        // 			   .getAll()
+        // 			   .map((aggregate: A) => this.toReadModel(aggregate));
+        // }
+        // getAll(): ReadonlyArray<R> {
+        // 	return this.inMemoryStore
+        // 			   .getAll()
+        // 			   .map((aggregate: A) => this.toReadModel(aggregate));
+        // }
         /**
          * @private
          * @param {?} aggregateId
          * @return {?}
          */
-        InMemoryReadModelStore.prototype.getValue = /**
+        InMemoryReadModelStore.prototype.getValue = 
+        // getAll(): ReadonlyArray<R> {
+        // 	return this.inMemoryStore
+        // 			   .getAll()
+        // 			   .map((aggregate: A) => this.toReadModel(aggregate));
+        // }
+        /**
          * @private
          * @param {?} aggregateId
          * @return {?}
@@ -3411,11 +3361,11 @@
      */
     /**
      * @abstract
-     * @template I, S
+     * @template I, A
      */
     var   /**
      * @abstract
-     * @template I, S
+     * @template I, A
      */
     InMemoryStore = /** @class */ (function () {
         function InMemoryStore() {
@@ -3468,7 +3418,11 @@
          * @return {?}
          */
         function () {
-            return Array.from(this.state.values());
+            return Array.from(this.state.values()).map((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) { return Optional.of(v); }));
         };
         /**
          * @param {?} aggregateId
@@ -3915,7 +3869,6 @@
             var aggregateId = (/** @type {?} */ (command.getAggregateId()));
             /** @type {?} */
             var optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
-            debugger;
             optFactory.ifPresent((/**
              * @param {?} factory
              * @return {?}
@@ -4617,7 +4570,7 @@
         function (commandHandlers) {
             if (commandHandlers && !Array.isArray(commandHandlers)) {
                 // eslint-disable-next-line no-console
-                console.warn("You might provided commandHandler without specifying \"multi: true\".");
+                console.warn('You might provided commandHandler without specifying "multi: true".');
             }
         };
         /**
@@ -4633,7 +4586,7 @@
         function (eventHandlers) {
             if (eventHandlers && !Array.isArray(eventHandlers)) {
                 // eslint-disable-next-line no-console
-                console.warn("You might provided eventHandler without specifying \"multi: true\".");
+                console.warn('You might provided eventHandler without specifying "multi: true".');
             }
         };
         /** @nocollapse */
@@ -4978,7 +4931,6 @@
     exports.DomainEvent = DomainEvent;
     exports.DomainEventBus = DomainEventBus;
     exports.DomainEventLogger = DomainEventLogger;
-    exports.DomainEventPayload = DomainEventPayload;
     exports.DomainEventPublisher = DomainEventPublisher;
     exports.DomainEventStream = DomainEventStream;
     exports.DomainEventType = DomainEventType;

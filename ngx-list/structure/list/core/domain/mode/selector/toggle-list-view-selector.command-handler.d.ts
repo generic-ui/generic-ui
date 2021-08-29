@@ -6,6 +6,6 @@ export declare class ToggleListViewSelectorCommandHandler implements CommandHand
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<ToggleListViewSelectorCommand>;
-    publish(aggregate: ListViewAggregate, command: ListViewCommand): void;
     handle(listViewAggregate: ListViewAggregate, command: ToggleListViewSelectorCommand): void;
+    publish(aggregate: ListViewAggregate, command: ListViewCommand): void;
 }

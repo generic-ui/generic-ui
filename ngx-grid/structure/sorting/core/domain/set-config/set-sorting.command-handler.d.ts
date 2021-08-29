@@ -5,6 +5,6 @@ export declare class SetSortingCommandHandler implements CommandHandler<Structur
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSortingCommand>;
-    publish(aggregate: StructureAggregate, command: SetSortingCommand): void;
     handle(aggregate: StructureAggregate, command: SetSortingCommand): void;
+    publish(aggregate: StructureAggregate, command: SetSortingCommand): void;
 }

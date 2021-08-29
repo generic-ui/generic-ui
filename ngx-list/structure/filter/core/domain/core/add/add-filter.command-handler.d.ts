@@ -5,6 +5,6 @@ export declare class AddFilterCommandHandler implements CommandHandler<Structure
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<AddFilterCommand>;
-    publish(aggregate: StructureAggregate, command: AddFilterCommand): void;
     handle(structure: StructureAggregate, command: AddFilterCommand): void;
+    publish(aggregate: StructureAggregate, command: AddFilterCommand): void;
 }

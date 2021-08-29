@@ -1,7 +1,7 @@
 export declare class Optional<T> {
     static empty(): Optional<any>;
     static of<U>(value: U): Optional<U>;
-    private static isEmpty;
+    private static isValueEmpty;
     private readonly value;
     private constructor();
     isEmpty(): boolean;

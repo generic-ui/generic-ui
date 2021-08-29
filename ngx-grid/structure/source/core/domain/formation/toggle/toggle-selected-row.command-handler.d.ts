@@ -7,6 +7,6 @@ export declare class ToggleSelectedRowCommandHandler implements CommandHandler<S
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<ToggleSelectedRowCommand>;
-    publish(aggregate: StructureAggregate, command: ToggleSelectedRowCommand): void;
     handle(aggregate: StructureAggregate, command: ToggleSelectedRowCommand): void;
+    publish(aggregate: StructureAggregate, command: ToggleSelectedRowCommand): void;
 }

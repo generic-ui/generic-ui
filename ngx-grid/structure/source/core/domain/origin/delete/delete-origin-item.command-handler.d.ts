@@ -5,6 +5,6 @@ export declare class DeleteOriginItemCommandHandler implements CommandHandler<St
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<DeleteOriginItemCommand>;
-    publish(aggregate: StructureAggregate, command: DeleteOriginItemCommand): void;
     handle(aggregate: StructureAggregate, command: DeleteOriginItemCommand): void;
+    publish(aggregate: StructureAggregate, command: DeleteOriginItemCommand): void;
 }

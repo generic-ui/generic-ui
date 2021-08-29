@@ -1,7 +1,7 @@
 import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, ViewChild, Output, Injectable, ChangeDetectorRef, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, forwardRef, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { takeUntil, distinctUntilChanged, filter, take, skip, debounceTime, map, throttleTime } from 'rxjs/operators';
+import { takeUntil, distinctUntilChanged, filter, take, skip, debounceTime, throttleTime } from 'rxjs/operators';
 import { BehaviorSubject, Subject, fromEvent, timer, ReplaySubject, Observable, of } from 'rxjs';
 
 /**
@@ -330,7 +330,7 @@ class FabricCardComponent {
 FabricCardComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-card',
-                template: "<div class=\"gui-card-body\">\n\n\t<div class=\"gui-card-image-wrapper\">\n\t\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
+                template: "<div class=\"gui-card-body\">\n\n\t<div class=\"gui-card-image-wrapper\">\n\t\t<img [ngClass]=\"{'gui-card-img': isImgEnabled()}\"\n\t\t\t alt=\"{{alt}}\" src=\"{{image}}\"/>\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-title': isTitleEnabled()}\">\n\t\t{{title}}\n\t</div>\n\n\t<div [ngClass]=\"{'gui-card-content-block': isContentBlockEnabled()}\">\n\t\t<div\n\t\t\t*ngFor=\"let block of contentBlock\"\n\t\t\t[ngClass]=\"{'gui-card-content-block-item': isContentBlockEnabled()}\">\n\t\t\t{{block}}\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-content\">\n\t\t<ng-content></ng-content>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -711,7 +711,7 @@ class FabricDatePickerWeeks {
                 day = date.getDate() - date.getDay() + i;
             }
             /** @type {?} */
-            let dayOfWeek = new Date(date.setDate(day));
+            const dayOfWeek = new Date(date.setDate(day));
             if (week.length < 7) {
                 week.push(dayOfWeek);
             }
@@ -734,7 +734,7 @@ class FabricDatePickerWeeks {
      */
     getLastDayDate(week) {
         /** @type {?} */
-        let lastDay = week[week.length - 1].getDate();
+        const lastDay = week[week.length - 1].getDate();
         return new Date(week[week.length - 1].setDate(lastDay));
     }
     /**
@@ -778,7 +778,7 @@ class FabricDatePickerYears {
         this.minYear = selectedYear - 50;
         this.maxYear = selectedYear + 50;
         /** @type {?} */
-        let yearsRange = this.maxYear - this.minYear;
+        const yearsRange = this.maxYear - this.minYear;
         /** @type {?} */
         let years = [];
         /** @type {?} */
@@ -1144,7 +1144,7 @@ FabricDatePickerComposition[FabricDatePickerComposition.ALL] = 'ALL';
  */
 class FabricDatePickerCompositionService {
     constructor() {
-        this.datePickerFormat$ = new BehaviorSubject(FabricDatePickerComposition.DATE_PICKER);
+        this.datePickerFormat$ = new BehaviorSubject(FabricDatePickerCompositionService.DEFAULT_COMPOSITION);
     }
     /**
      * @return {?}
@@ -1166,66 +1166,52 @@ class FabricDatePickerCompositionService {
      */
     getComposition(datePipeOptions) {
         /** @type {?} */
-        const removeDoubles = datePipeOptions.split(':').join(' ');
-        /** @type {?} */
-        const removeDash = removeDoubles.split('/').join(' ');
-        /** @type {?} */
-        const removeDot = removeDash.split('.').join(' ');
-        /** @type {?} */
-        const removeComa = removeDot.split(',').join(' ');
-        /** @type {?} */
-        const formatArray = removeComa.split(' ');
-        /** @type {?} */
         let composition;
-        formatArray.forEach((/**
-         * @param {?} formatItem
-         * @return {?}
-         */
-        (formatItem) => {
-            /** @type {?} */
-            const isDays = formatItem.toLowerCase().includes('d');
-            /** @type {?} */
-            const isMonths = formatItem.includes('M');
-            /** @type {?} */
-            const isYears = formatItem.toLowerCase().includes('y');
-            /** @type {?} */
-            const showHours = formatItem.toLowerCase().includes('h');
-            /** @type {?} */
-            const showMinutes = formatItem.includes('m');
-            /** @type {?} */
-            const showSeconds = formatItem.toLowerCase().includes('s');
-            /** @type {?} */
-            const isMeridian = formatItem.includes('h');
-            /** @type {?} */
-            const showDatePicker = isDays || isMonths || isYears;
-            /** @type {?} */
-            const showTimePicker = showHours || showMinutes || showSeconds;
-            if (showDatePicker) {
-                composition = composition | FabricDatePickerComposition.DATE_PICKER;
-            }
-            if (showTimePicker) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER;
-            }
-            if (isMeridian) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
-            }
-            if (showHours) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
-            }
-            if (showMinutes) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
-            }
-            if (showSeconds) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
-            }
-        }));
+        /** @type {?} */
+        let timerPicker = datePipeOptions.timePicker;
+        /** @type {?} */
+        const showHours = timerPicker.hours;
+        /** @type {?} */
+        const showMinutes = timerPicker.minutes;
+        /** @type {?} */
+        const showSeconds = timerPicker.seconds;
+        /** @type {?} */
+        const isMeridian = timerPicker.meridian;
+        /** @type {?} */
+        const showDatePicker = datePipeOptions.datePicker === undefined ? true : datePipeOptions.datePicker;
+        /** @type {?} */
+        const showTimePicker = showHours || showMinutes || showSeconds;
+        if (showDatePicker) {
+            composition = composition | FabricDatePickerComposition.DATE_PICKER;
+        }
+        if (showTimePicker) {
+            composition = composition | FabricDatePickerComposition.TIME_PICKER;
+        }
+        if (isMeridian) {
+            composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
+        }
+        if (showHours) {
+            composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
+        }
+        if (showMinutes) {
+            composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
+        }
+        if (showSeconds) {
+            composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
+        }
         return composition;
     }
 }
+FabricDatePickerCompositionService.DEFAULT_COMPOSITION = FabricDatePickerComposition.DATE_PICKER;
 FabricDatePickerCompositionService.decorators = [
     { type: Injectable }
 ];
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FabricDatePickerCompositionService.DEFAULT_COMPOSITION;
     /**
      * @type {?}
      * @private
@@ -2380,8 +2366,9 @@ class FabricDatePickerComponent extends FabricReactive {
         this.formBuilder = formBuilder;
         this.changeDetectorRef = changeDetectorRef;
         this.openDialog = false;
-        this.onlyDialog = false;
-        this.datePipeOptions = 'dd/MM/yyyy';
+        this.datePickerOptions = {
+            format: 'dd/MM/yyyy'
+        };
         this.dateSelected = new EventEmitter();
         this.dialogOpened = new EventEmitter();
         this.datePickerForm = formBuilder.group({
@@ -2393,14 +2380,11 @@ class FabricDatePickerComponent extends FabricReactive {
      * @return {?}
      */
     ngOnChanges(changes) {
-        if (changes.selectDate) {
-            this.datePickerService.dateSelected(this.selectDate);
+        if (changes.selectedDate) {
+            this.datePickerService.dateSelected(this.selectedDate);
         }
-        if (changes.onlyDialog) {
-            this.inputDisabled = this.onlyDialog ? 'disabled' : ''; //todo !== null ??
-        }
-        if (changes.datePipeOptions) {
-            this.datePickerCompositionService.next(this.datePipeOptions);
+        if (changes.datePickerOptions) {
+            this.datePickerCompositionService.next(this.datePickerOptions);
         }
     }
     /**
@@ -2416,7 +2400,6 @@ class FabricDatePickerComponent extends FabricReactive {
          */
         (date) => {
             this.pickedDate = date;
-            this.emitSelectedDate(date);
         }));
         this.datePickerService
             .observeSelectedDate()
@@ -2475,6 +2458,11 @@ class FabricDatePickerComponent extends FabricReactive {
         this.fabricDatePickerInlineDialogService.close();
     }
     /**
+     * @return {?}
+     */
+    selectDate() {
+    }
+    /**
      * @private
      * @param {?} date
      * @return {?}
@@ -2490,11 +2478,7 @@ class FabricDatePickerComponent extends FabricReactive {
         this.datePickerForm
             .controls['date']
             .valueChanges
-            .pipe(distinctUntilChanged(), debounceTime(1500), map((/**
-         * @param {?} day
-         * @return {?}
-         */
-        (day) => this.parse(day))), this.takeUntil())
+            .pipe(distinctUntilChanged(), debounceTime(1500), this.takeUntil())
             .subscribe((/**
          * @param {?} day
          * @return {?}
@@ -2503,69 +2487,11 @@ class FabricDatePickerComponent extends FabricReactive {
             this.datePickerService.dateSelected(day);
         }));
     }
-    /**
-     * @private
-     * @param {?} value
-     * @return {?}
-     */
-    parse(value) {
-        if ((typeof value === 'string') && (value.includes('/'))) {
-            /** @type {?} */
-            const str = value.split('/');
-            /** @type {?} */
-            const dateValues = this.getDateValues(str);
-            /** @type {?} */
-            const dateHasAllValues = dateValues && dateValues.length === 3;
-            if (dateHasAllValues) {
-                return new Date(dateValues[0], dateValues[1], dateValues[2]);
-            }
-            else {
-                return this.pickedDate;
-            }
-        }
-        else {
-            return this.pickedDate;
-        }
-    }
-    /**
-     * @private
-     * @param {?} dateValues
-     * @return {?}
-     */
-    getDateValues(dateValues) {
-        if (this.datePipeOptions.includes('/')) {
-            /** @type {?} */
-            const dateFormatParts = this.datePipeOptions.toLowerCase().split('/');
-            /** @type {?} */
-            let year;
-            /** @type {?} */
-            let month;
-            /** @type {?} */
-            let day;
-            dateFormatParts.forEach((/**
-             * @param {?} datePart
-             * @param {?} i
-             * @return {?}
-             */
-            (datePart, i) => {
-                if (datePart.includes('d')) {
-                    day = +dateValues[i];
-                }
-                if (datePart.includes('m')) {
-                    month = +dateValues[i] - 1;
-                }
-                if (datePart.includes('y')) {
-                    year = +dateValues[i];
-                }
-            }));
-            return [year, month, day];
-        }
-    }
 }
 FabricDatePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker',
-                template: "<div #datePicker\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePipeOptions\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input>\n\t</form>\n\n\t<gui-date-picker-icon (click)=\"openDatePicker()\"\n\t\t\t\t\t\t  class=\"gui-date-picker-icon\">\n\t</gui-date-picker-icon>\n\n</div>\n",
+                template: "<div #datePicker\n\t (click)=\"openDatePicker()\"\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePickerOptions.format\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input\n\t\t\t   readonly>\n\t</form>\n\n\t<gui-date-picker-icon class=\"gui-date-picker-icon\"></gui-date-picker-icon>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-date-picker{-ms-flex-align:center;align-items:center;display:-ms-inline-flexbox;display:inline-flex;position:relative}.gui-date-picker input,.gui-date-picker-calendar input{background:0 0;border-radius:0;border-width:0 0 1px;font-family:Arial;font-size:14px;padding:4px}.gui-date-picker input:disabled,.gui-date-picker-calendar input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon,.gui-date-picker-calendar .gui-date-picker-icon{cursor:pointer;position:absolute;right:0}", ".gui-dark .gui-input{background:0 0;color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-arrow-icon:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year{color:#333}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#dfb8e6}", ".gui-material .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-material .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-material .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#6200ee}"]
@@ -2583,11 +2509,10 @@ FabricDatePickerComponent.propDecorators = {
     datePickerRef: [{ type: ViewChild, args: ['datePicker', { static: false },] }],
     parentElement: [{ type: Input }],
     theme: [{ type: Input }],
-    selectDate: [{ type: Input }],
+    selectedDate: [{ type: Input }],
     name: [{ type: Input }],
     openDialog: [{ type: Input }],
-    onlyDialog: [{ type: Input }],
-    datePipeOptions: [{ type: Input }],
+    datePickerOptions: [{ type: Input }],
     dateSelected: [{ type: Output }],
     dialogOpened: [{ type: Output }]
 };
@@ -2599,15 +2524,13 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.theme;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.selectDate;
+    FabricDatePickerComponent.prototype.selectedDate;
     /** @type {?} */
     FabricDatePickerComponent.prototype.name;
     /** @type {?} */
     FabricDatePickerComponent.prototype.openDialog;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.onlyDialog;
-    /** @type {?} */
-    FabricDatePickerComponent.prototype.datePipeOptions;
+    FabricDatePickerComponent.prototype.datePickerOptions;
     /** @type {?} */
     FabricDatePickerComponent.prototype.dateSelected;
     /** @type {?} */
@@ -2617,7 +2540,7 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.pickedDate;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.inputDisabled;
+    FabricDatePickerComponent.prototype.pickedDateString;
     /**
      * @type {?}
      * @private
@@ -2979,19 +2902,10 @@ class FabricTimePickerComponent extends FabricReactive {
         });
     }
     /**
-     * @param {?} changes
-     * @return {?}
-     */
-    ngOnChanges(changes) {
-        if (changes.selectedDate) {
-            if (this.selectedDate) {
-            }
-        }
-    }
-    /**
      * @return {?}
      */
     ngOnInit() {
+        this.setTimeFromSelectedDate();
         if (this.isActive(this.datePickerComposition, FabricDatePickerComposition.TIME_PICKER_HOURS)) {
             this.form
                 .controls['hours']
@@ -3040,7 +2954,6 @@ class FabricTimePickerComponent extends FabricReactive {
                 this.changeSelectedDate();
             }));
         }
-        this.setTimeFromSelectedDate();
     }
     /**
      * @param {?} formControlName
@@ -3233,25 +3146,7 @@ class DatePickerIconComponent {
 DatePickerIconComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker-icon',
-                template: `
-		<svg xmlns="http://www.w3.org/2000/svg" width="8.76" height="9.82" viewBox="0 0 8.76 9.82">
-			<path
-				d="M401.41,308.63l-.46.15h-.15a.34.34,0,0,1-.08-.67l.68-.22a1.539,1.539,0,0,1,.38-.07h0a.39.39,0,0,1,.39.39V312a.38.38,0,0,1-.39.39.39.39,0,0,1-.39-.39Z"
-				transform="translate(-397.19 -304.36)" fill="#8c8b8b"/>
-			<line x1="7.39" transform="translate(0.64 9.32)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-			<line x1="7.39" transform="translate(0.64 2.16)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-			<line y2="8.82" transform="translate(0.5 0.5)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-			<line y2="1.66" transform="translate(3.09 0.5)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-			<line y2="1.66" transform="translate(5.68 0.5)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-			<line y2="8.82" transform="translate(8.26 0.5)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1"/>
-		</svg>
-	`,
+                template: "<svg height=\"9.82\" viewBox=\"0 0 8.76 9.82\" width=\"8.76\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<path\n\t\td=\"M401.41,308.63l-.46.15h-.15a.34.34,0,0,1-.08-.67l.68-.22a1.539,1.539,0,0,1,.38-.07h0a.39.39,0,0,1,.39.39V312a.38.38,0,0,1-.39.39.39.39,0,0,1-.39-.39Z\"\n\t\tfill=\"#8c8b8b\" transform=\"translate(-397.19 -304.36)\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(0.64 9.32)\" x1=\"7.39\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(0.64 2.16)\" x1=\"7.39\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(0.5 0.5)\" y2=\"8.82\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(3.09 0.5)\" y2=\"1.66\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(5.68 0.5)\" y2=\"1.66\"/>\n\t<line fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1\"\n\t\t  transform=\"translate(8.26 0.5)\" y2=\"8.82\"/>\n</svg>\n",
                 encapsulation: ViewEncapsulation.None,
                 host: {
                     '[class.gui-date-picker-icon]': 'true'
@@ -3512,7 +3407,7 @@ class FabricDatePickerDaysViewComponent {
 FabricDatePickerDaysViewComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker-days-view',
-                template: "<div class=\"gui-display-grid gui-grid-rows-gap-8 gui-py-6\">\n\n\t<div class=\"gui-display-grid gui-grid-cols-7 gui-py-4 gui-date-picker-header\">\n\t\t<div *ngFor=\"let dayOfTheWeek of daysOfTheWeek\">{{dayOfTheWeek}}</div>\n\t</div>\n\n\t<div *ngFor=\"let week of weeks\"\n\t\t class=\"gui-display-grid gui-grid-cols-7\">\n\n\t\t<div *ngFor=\"let day of week\"\n\t\t\t [class.gui-date-picker-current-day]=\"isDate(currentDay, day)\"\n\t\t\t [class.gui-date-picker-selected-day]=\"isDate(selectedDate, day)\"\n\t\t\t [class.gui-date-picker-selected-month]=\"displayMonthDays(day.getMonth())\"\n\t\t\t (click)=\"selectDate(day)\"\n\t\t\t class=\"gui-date-picker-cell gui-date-picker-day\">\n\t\t\t{{day.getDate()}}\n\t\t</div>\n\n\t</div>\n</div>\n",
+                template: "<div class=\"gui-display-grid gui-grid-rows-gap-8 gui-py-6\">\n\n\t<div class=\"gui-display-grid gui-grid-cols-7 gui-py-4 gui-date-picker-header\">\n\t\t<div *ngFor=\"let dayOfTheWeek of daysOfTheWeek\">{{dayOfTheWeek}}</div>\n\t</div>\n\n\t<div *ngFor=\"let week of weeks\"\n\t\t class=\"gui-display-grid gui-grid-cols-7\">\n\n\t\t<div (click)=\"selectDate(day)\"\n\t\t\t *ngFor=\"let day of week\"\n\t\t\t [class.gui-date-picker-current-day]=\"isDate(currentDay, day)\"\n\t\t\t [class.gui-date-picker-selected-day]=\"isDate(selectedDate, day)\"\n\t\t\t [class.gui-date-picker-selected-month]=\"displayMonthDays(day.getMonth())\"\n\t\t\t class=\"gui-date-picker-cell gui-date-picker-day\">\n\t\t\t{{day.getDate()}}\n\t\t</div>\n\n\t</div>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush
             }] }
@@ -4073,7 +3968,7 @@ class GeometryService {
      */
     changeGeometry(container, menu, windowSize) {
         /** @type {?} */
-        let geometry = new Geometry(container, menu, windowSize);
+        const geometry = new Geometry(container, menu, windowSize);
         this.geometryResults$.next(geometry);
     }
 }
@@ -4904,7 +4799,7 @@ class FabricProgressBarComponent {
 FabricProgressBarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-progress-bar',
-                template: "<div\n\t\t[style.height.px]=\"height\"\n\t\t[style.text-align]=\"textAlign\"\n\t\t[style.width.px]=\"width\"\n\t\tclass=\"gui-progress-bar\">\n\t<div\n\t\t\t[style.background]=\"color\"\n\t\t\t[style.width.%]=\"progress\"\n\t\t\tclass=\"gui-progress\">\n\t\t<span\n\t\t\t\t[style.top]=\"textTop\"\n\t\t\t\tclass=\"gui-progress-text\">\n\t\t\t<ng-content></ng-content>\n\t\t</span>\n\t</div>\n</div>\n",
+                template: "<div\n\t[style.height.px]=\"height\"\n\t[style.text-align]=\"textAlign\"\n\t[style.width.px]=\"width\"\n\tclass=\"gui-progress-bar\">\n\t<div\n\t\t[style.background]=\"color\"\n\t\t[style.width.%]=\"progress\"\n\t\tclass=\"gui-progress\">\n\t\t<span\n\t\t\t[style.top]=\"textTop\"\n\t\t\tclass=\"gui-progress-text\">\n\t\t\t<ng-content></ng-content>\n\t\t</span>\n\t</div>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -5190,7 +5085,7 @@ class FabricProgressSpinnerComponent extends AbstractSpinner {
 FabricProgressSpinnerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-progress-spinner',
-                template: "<div\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"gui-progress-spinner\">\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"circumference\"\n\t\t\t\t[style.stroke-dashoffset]=\"valuePercentage\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
+                template: "<div\n\t[style.height.px]=\"circleSize\"\n\t[style.width.px]=\"circleSize\"\n\tclass=\"gui-progress-spinner\">\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"circumference\"\n\t\t\t[style.stroke-dashoffset]=\"valuePercentage\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-progress-spinner{display:inline-block;margin:4px;position:relative;-ms-transform:rotate(-90deg);transform:rotate(-90deg)}.gui-progress-spinner circle{fill:transparent;stroke:#999}.gui-progress-spinner svg{position:absolute}.gui-progress-spinner .circle-inner{animation:2s linear infinite reverse forwards gui-spin-reverse}.gui-progress-spinner .circle-outer{-webkit-animation:2s linear infinite forwards gui-spin;animation:2s linear infinite forwards gui-spin}.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner .circle-outer,.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner.gui-progress-spinner{-webkit-animation:none;animation:none}.gui-second-circle-disabled .gui-progress-spinner.gui-progress-spinner .circle-inner{opacity:0}.gui-primary .gui-progress-spinner.gui-progress-spinner circle{stroke:#2185d0}.gui-secondary .gui-progress-spinner.gui-progress-spinner circle{stroke:#3cb371}", ".gui-material .gui-progress-spinner circle{stroke:#3949ab}.gui-material .gui-primary .gui-progress-spinner circle{stroke:#6200ee}.gui-material .gui-secondary .gui-progress-spinner circle{stroke:#0097a7}", ".gui-dark .gui-progress-spinner circle{stroke:#424242}.gui-dark .gui-primary .gui-progress-spinner circle{stroke:#ce93d8}.gui-dark .gui-secondary .gui-progress-spinner circle{stroke:#80cbc4}"]
@@ -5278,7 +5173,7 @@ class FabricRadioButtonComponent {
 FabricRadioButtonComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-radio-button',
-                template: "<label>\n\t<input\n\t\t\t(click)=\"check()\"\n\t\t\t[checked]=checked\n\t\t\t[disabled]=disabled\n\t\t\t[name]=name\n\t\t\ttype=\"radio\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
+                template: "<label>\n\t<input\n\t\t(click)=\"check()\"\n\t\t[checked]=checked\n\t\t[disabled]=disabled\n\t\t[name]=name\n\t\ttype=\"radio\">\n\t<span class=\"gui-radio-checkmark\"></span>\n\t<ng-content></ng-content>\n</label>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 host: {
@@ -5564,7 +5459,7 @@ class FabricModal extends FabricReactive {
      */
     createAndAppend(injector) {
         /** @type {?} */
-        let componentInjector = injector ? injector : this.injector;
+        const componentInjector = injector ? injector : this.injector;
         /** @type {?} */
         const componentRef = this.componentFactoryResolver
             .resolveComponentFactory(this.getComponent())
@@ -6231,9 +6126,9 @@ class FabricTabComponent extends FabricReactive {
      */
     scrollTabList(scrollRightClicked) {
         /** @type {?} */
-        let listWidth = this.tabRef.nativeElement.querySelector('.gui-tab-menu-list').offsetWidth;
+        const listWidth = this.tabRef.nativeElement.querySelector('.gui-tab-menu-list').offsetWidth;
         /** @type {?} */
-        let menuOverflow = this.menuListWidth - listWidth;
+        const menuOverflow = this.menuListWidth - listWidth;
         if (scrollRightClicked && menuOverflow > this.listPosition) {
             this.listPosition += this.scrollAmount;
         }
@@ -7686,7 +7581,7 @@ class FabricSpinnerComponent extends AbstractSpinner {
 FabricSpinnerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-spinner',
-                template: "<div\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"gui-spinner\">\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t\t[style.height.px]=\"circleSize\"\n\t\t\t[style.width.px]=\"circleSize\"\n\t\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t\t[attr.r]=\"r\"\n\t\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t\t[style.stroke-width]=\"width\"\n\t\t\t\t[style.stroke]=\"color\"\n\t\t\t\tcx=\"50%\"\n\t\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
+                template: "<div\n\t[style.height.px]=\"circleSize\"\n\t[style.width.px]=\"circleSize\"\n\tclass=\"gui-spinner\">\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
                 host: {
                     '[class.gui-spinner]': 'true'
                 },

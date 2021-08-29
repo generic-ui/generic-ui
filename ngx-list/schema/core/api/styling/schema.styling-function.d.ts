@@ -1,1 +1,1 @@
-export declare type SchemaStylingFunction = (data: any, index: number) => string;
+export declare type SchemaStylingFunction = (source: any, index: number) => string;

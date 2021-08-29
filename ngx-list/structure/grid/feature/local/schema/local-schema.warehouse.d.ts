@@ -13,9 +13,9 @@ export declare class LocalSchemaWarehouse extends SchemaDomainWarehouse {
     private readonly schemaReadModelRootId;
     constructor(schemaReadModelRootId: SchemaReadModelRootId, schemaCssClassesRepository: SchemaCssClassesRepository, schemaThemeRepository: SchemaThemeRepository, schemaHorizontalGridRepository: SchemaHorizontalGridRepository, schemaRowColoringRepository: SchemaRowColoringRepository, schemaVerticalGridRepository: SchemaVerticalGridRepository);
     onTheme(): Observable<SchemaTheme>;
+    onSingleTheme(): Observable<SchemaTheme>;
     onHorizontalGrid(): Observable<boolean>;
     onVerticalGrid(): Observable<boolean>;
     onRowColoring(): Observable<SchemaRowColoring>;
-    onSingleTheme(): Observable<SchemaTheme>;
     onCssClasses(): Observable<SchemaCssClass>;
 }

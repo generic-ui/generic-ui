@@ -5,6 +5,6 @@ export declare class SetRowHeightBasedOnThemeCommandHandler implements CommandHa
     private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetRowHeightBasedOnThemeCommand>;
-    publish(aggregate: StructureAggregate, command: SetRowHeightBasedOnThemeCommand): void;
     handle(structure: StructureAggregate, command: SetRowHeightBasedOnThemeCommand): void;
+    publish(aggregate: StructureAggregate, command: SetRowHeightBasedOnThemeCommand): void;
 }

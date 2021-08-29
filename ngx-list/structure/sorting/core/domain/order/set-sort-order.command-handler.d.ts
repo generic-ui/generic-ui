@@ -7,7 +7,7 @@ export declare class SetSortOrderCommandHandler implements CommandHandler<Struct
     private domainEventPublisher;
     constructor(structureAggregateRepository: StructureAggregateRepository, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<SetSortOrderCommand>;
-    publish(aggregate: StructureAggregate, command: SetSortOrderCommand): void;
     handle(structure: StructureAggregate, command: SetSortOrderCommand): void;
+    publish(aggregate: StructureAggregate, command: SetSortOrderCommand): void;
     private publishSortEvent;
 }

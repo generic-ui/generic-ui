@@ -9,7 +9,7 @@ export declare class SetCompositionContainerWidthCommandHandler implements Comma
     private compositionEventConverter;
     constructor(compositionAggregateRepository: CompositionAggregateRepository, domainEventPublisher: DomainEventPublisher, compositionEventConverter: CompositionEventConverter);
     forCommand(): CommandType<SetCompositionContainerWidthCommand>;
-    publish(aggregate: CompositionAggregate, command: SetCompositionContainerWidthCommand): void;
     handle(composition: CompositionAggregate, command: SetCompositionContainerWidthCommand): void;
+    publish(aggregate: CompositionAggregate, command: SetCompositionContainerWidthCommand): void;
     private publishAggregateEvents;
 }
