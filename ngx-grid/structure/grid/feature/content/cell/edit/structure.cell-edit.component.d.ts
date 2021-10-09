@@ -5,8 +5,10 @@ import { ItemEntity } from '../../../../../source/core/domain/core/item/item.ent
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
 import { SourceCommandInvoker } from '../../../../../source/core/api/source.command-invoker';
 import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
+import { StructureId } from '../../../../../core/api/structure.id';
 export declare class StructureCellEditComponent extends SmartComponent implements OnChanges {
     private readonly changeDetectorRef;
+    private readonly structureId;
     private readonly sourceCommandService;
     cellContainerRef: ElementRef;
     entity: ItemEntity;
@@ -15,7 +17,7 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, sourceCommandService: SourceCommandInvoker);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, sourceCommandService: SourceCommandInvoker);
     ngOnChanges(changes: NgChanges<StructureCellEditComponent>): void;
     ngOnInit(): void;
     submitChangesAndExit(): void;

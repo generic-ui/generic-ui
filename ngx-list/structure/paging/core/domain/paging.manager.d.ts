@@ -2,7 +2,7 @@ import { AggregateEvent } from '@generic-ui/hermes';
 import { Logger } from '../../../../common/cdk/logger/logger';
 import { PagingConfigWithId } from './paging-config-with-id';
 import { PagingConfig } from '../api/paging-config';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 export declare class PagingManager {
     private enabled;
     private page;
@@ -11,8 +11,8 @@ export declare class PagingManager {
     private pagerTop;
     private pagerBottom;
     private sourceSize;
-    private readonly events;
     static default(logger: Logger): PagingManager;
+    private readonly events;
     private readonly logger;
     private constructor();
     static fromConfig(paging: PagingConfigWithId, logger: Logger): PagingManager;

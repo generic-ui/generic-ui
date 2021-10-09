@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs';
-import { Warehouse } from '@generic-ui/hermes';
-import { FieldReadModelRepository } from './read/field.read-model-repository';
-import { StructureId } from '../../../core/domain/structure.id';
+import { HermesObservable, Warehouse } from '@generic-ui/hermes';
+import { FieldReadModelArchive } from './read/field-read-model.archive';
+import { StructureId } from '../../../core/api/structure.id';
 import { FieldReadModel } from './read/field.read-model';
 export declare class FieldWarehouse implements Warehouse {
-    private fieldReadModelRepository;
-    constructor(fieldReadModelRepository: FieldReadModelRepository);
-    onFields(structureId: StructureId): Observable<Array<FieldReadModel>>;
+    private readonly fieldReadModelArchive;
+    constructor(fieldReadModelArchive: FieldReadModelArchive);
+    onFields(structureId: StructureId): HermesObservable<ReadonlyArray<FieldReadModel>>;
 }

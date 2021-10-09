@@ -1,7 +1,5 @@
 export { Theme } from './themes/theme';
 export { FabricModule } from './fabric.module';
-export { ResizeDetector } from './behaviour/resize-detector/resize.detector';
-export { ResizeDetectorModule } from './behaviour/resize-detector/resize-detector.module';
 export { FabricBadgeModule } from './general/badge/fabric-badge.module';
 export { FabricButtonModule } from './general/button/button/fabric-button.module';
 export { FabricButtonGroupModule } from './general/button/button-group/fabric-button-group.module';
@@ -48,5 +46,3 @@ export { SpinnerMode } from './general/spinners/progress-spinner/spinner-mode';
 export { FabricPlacement } from './common/modal/cords/fabric-placement';
 export { GuiTabItem } from './layout/tab/fabric-tab-item';
 export { GuiSelectOption } from './form/select/select-option';
-export { FabricDatePickerOptions } from './form/date-picker/models/fabric-date-picker-options';
-export { FabricTimePickerOptions } from './form/date-picker/models/fabric-time-picker-options';

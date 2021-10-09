@@ -1,5 +1,5 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { PagingConfig } from '../api/paging-config';
 export declare class PagingDispatcher {
     private commandDispatcher;

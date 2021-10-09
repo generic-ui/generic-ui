@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../../core/domain/structure.id';
+import { StructureId } from '../../../../../core/api/structure.id';
 import { FieldId } from '../../../../../field/core/domain/field/field.id';
 import { UniqueValueId } from '../unique-value-id';
 import { StructureCommand } from '../../../../../core/domain/structure.command';

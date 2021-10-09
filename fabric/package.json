@@ -1,10 +1,9 @@
 {
   "name": "@generic-ui/fabric",
-  "version": "0.14.2",
+  "version": "0.15.0",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",
-    "element-resize-detector": "1.1.14",
     "rxjs": "^6.0.0"
   },
   "main": "bundles/generic-ui-fabric.umd.js",

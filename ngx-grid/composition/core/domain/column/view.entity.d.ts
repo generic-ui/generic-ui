@@ -1,10 +1,10 @@
 import { CellView } from './cell-view';
 import { DataType } from '../../../../structure/field/core/domain/field/data/data-type';
 export declare class ViewEntity {
-    static fromDataType(dataType: DataType): ViewEntity;
     private readonly view;
     private readonly templateFunction?;
     constructor(cellView: CellView | any);
+    static fromDataType(dataType: DataType): ViewEntity;
     getCellView(): CellView;
     getTemplateFunction(): any;
 }

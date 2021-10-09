@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SelectionGate } from '../../../../source/feature/gate/selection.gate';
 import { FormationEventRepository } from '../../../../source/core/api/formation/formation.event-repository';
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';

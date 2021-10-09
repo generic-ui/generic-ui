@@ -1,10 +1,10 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { ActiveFiltersSetEvent } from '../../domain/core/active-filters-set.event';
-import { ActiveFilterRepository } from './active-filter.repository';
+import { ActiveFilterArchive } from './active-filter.archive';
 export declare class ActiveFiltersSetEventHandler implements DomainEventHandler<StructureId, ActiveFiltersSetEvent> {
     private readonly activeFilterRepository;
-    constructor(activeFilterRepository: ActiveFilterRepository);
+    constructor(activeFilterRepository: ActiveFilterArchive);
     forEvent(): DomainEventType<ActiveFiltersSetEvent>;
     handle(activeFiltersSetEvent: ActiveFiltersSetEvent): void;
 }

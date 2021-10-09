@@ -1,7 +1,8 @@
 import { PagingCommandInvoker } from '../../../../paging/core/api/paging.command-invoker';
 import { PagingEventRepository } from '../../../../paging/core/api/paging.event-repository';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { PagingGate } from '../../../../paging/feature/gate/paging.gate';
+import { CompositionId } from '../../../../../composition/core/domain/composition.id';
 export declare class ListViewPagingGate extends PagingGate {
-    constructor(structureId: StructureId, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository);
+    constructor(structureId: StructureId, compositionId: CompositionId, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository);
 }

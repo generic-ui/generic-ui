@@ -9,6 +9,9 @@ import { FormationWarehouse } from '../../../../structure/source/core/api/format
 import { SearchCommandInvoker } from '../../../../structure/search/core/api/search.command-invoker';
 import { SchemaCommandInvoker } from '../../../../schema/core/api/schema.command-invoker';
 import { StructureCommandInvoker } from '../../../../structure/core/api/structure.command-invoker';
+import { PagingCommandInvoker } from '../../../../structure/paging/core/api/paging.command-invoker';
+import { SummariesCommandInvoker } from '../../../../structure/summaries/core/api/summaries.command-invoker';
+import { SortingCommandInvoker } from '../../../../structure/sorting/core/api/sorting.command-invoker';
 export declare class GuiGridComponent extends GuiGridGateway implements OnInit, OnDestroy {
     private readonly platformId;
     private readonly elementRef;
@@ -21,16 +24,19 @@ export declare class GuiGridComponent extends GuiGridGateway implements OnInit, 
     private readonly searchCommandInvoker;
     private readonly schemaCommandInvoker;
     private readonly structureCommandDispatcher;
+    private readonly summariesCommandInvoker;
+    private readonly sortingCommandInvoker;
+    private readonly pagingCommandInvoker;
+    private static readonly GUI_GRID_ID;
     structureRef: any;
     gridId: string;
-    private localGridId;
     api: GuiGridApi;
-    private static readonly GUI_GRID_ID;
+    private localGridId;
     private readonly gridThemeCommandInvoker;
     private readonly classModifier;
     private readonly styleModifier;
     private readonly attributeModifier;
-    constructor(platformId: any, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, gridRegister: GuiGridRegister, gridIdGenerator: GuiGridIdGenerator, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, sourceCommandDispatcher: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, schemaCommandInvoker: SchemaCommandInvoker, structureCommandDispatcher: StructureCommandInvoker);
+    constructor(platformId: any, elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, gridRegister: GuiGridRegister, gridIdGenerator: GuiGridIdGenerator, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, sourceCommandDispatcher: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, schemaCommandInvoker: SchemaCommandInvoker, structureCommandDispatcher: StructureCommandInvoker, summariesCommandInvoker: SummariesCommandInvoker, sortingCommandInvoker: SortingCommandInvoker, pagingCommandInvoker: PagingCommandInvoker);
     ngOnInit(): void;
     ngOnDestroy(): void;
     getElementRef(): ElementRef;

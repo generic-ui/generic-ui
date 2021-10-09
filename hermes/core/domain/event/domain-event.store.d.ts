@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
 import { DomainEvent } from './domain-event';
 import { AggregateId } from '../tactical/aggregate/aggregate-id';
+import { HermesObservable } from '../../../common/stream/observable/hermes.observable';
 export declare class DomainEventStore {
     private readonly domainEvents;
     private readonly domainEvents$;
@@ -10,8 +10,8 @@ export declare class DomainEventStore {
      * First tries to event event in the history,
      * than method waits for future occurrences of the event.
      */
-    waitForEvent(eventType: string): Observable<DomainEvent<AggregateId>>;
-    waitForNextEventOccurrence(eventType: string): Observable<DomainEvent<AggregateId>>;
-    waitForNextEventOccurrence(event: DomainEvent<AggregateId>): Observable<DomainEvent<AggregateId>>;
+    waitForEvent(eventType: string): HermesObservable<DomainEvent<AggregateId>>;
+    waitForNextEventOccurrence(eventType: string): HermesObservable<DomainEvent<AggregateId>>;
+    waitForNextEventOccurrence(event: DomainEvent<AggregateId>): HermesObservable<DomainEvent<AggregateId>>;
     private getEvents;
 }

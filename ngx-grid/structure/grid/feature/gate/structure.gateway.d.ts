@@ -1,12 +1,7 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
-import { ColumnConfig, MultiColumnConfig } from '../../../../composition/core/api/column/column.config';
-import { SchemaTheme } from '../../../../schema/core/api/theme/schema-theme';
-import { SortingConfig } from '../../../sorting/core/api/sorting-config';
-import { FilterConfig } from '../../../filter/core/api/filter-config';
-import { QuickFiltersConfig } from '../../../filter/core/api/quick-filters.config';
 import { EditemItemValues } from '../../../source/core/api/event/editem-item.values';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { CompositionId } from '../../../../composition/core/domain/composition.id';
 import { StructureCommandInvoker } from '../../../core/api/structure.command-invoker';
 import { PagingCommandInvoker } from '../../../paging/core/api/paging.command-invoker';
@@ -18,8 +13,8 @@ import { CompositionEventRepository } from '../../../../composition/core/api/com
 import { FormationEventRepository } from '../../../source/core/api/formation/formation.event-repository';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
-import { StructureInfoPanelArchive } from '../panel/info/structure.info-panel.archive';
-import { StructureSummariesConfigService } from '../panel/summaries/structure.summaries-config.service';
+import { StructureInfoPanelArchive } from '../../core/api/panel/info/structure.info-panel.archive';
+import { StructureSummariesConfigService } from '../../../summaries/feature/structure.summaries-config.service';
 import { StructureCellEditStore } from '../edit/structure.cell-edit.store';
 import { StructureColumnMenuConfigArchive } from '../header/menu/config/structure.column-menu-config.archive';
 import { PagingDisplayModeArchive } from '../../../paging/feature/mode/paging-display-mode.archive';
@@ -33,7 +28,7 @@ import { SchemaReadModelRootId } from '../../../../schema/core/api/schema.read-m
 import { StructureRowDetailConfigArchive } from '../row-detail/structure.row-detail.config-archive';
 import { StructureTitlePanelConfigArchive } from '../panel/banner-panels/title-panel/structure.title-panel.config-archive';
 import { StructureFooterPanelConfigArchive } from '../panel/banner-panels/footer-panel/structure.footer-panel.config-archive';
-import { StructureInfoPanelConfigService } from '../panel/info/structure.info-panel-config.service';
+import { StructureInfoPanelConfigService } from '../../core/api/panel/info/structure.info-panel-config.service';
 import { SortingCommandInvoker } from '../../../sorting/core/api/sorting.command-invoker';
 import { SearchCommandInvoker } from '../../../search/core/api/search.command-invoker';
 import { FieldCommandInvoker } from '../../../field/core/api/field.command-invoker';
@@ -42,10 +37,13 @@ import { StructureColumnInputHandler } from './column/structure-column.input-han
 import { ColumnFieldFactory } from '../../../../composition/core/domain/column/field/colum-field.factory';
 import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
 import { FormationCommandInvoker } from '../../../source/core/api/formation/formation.command-invoker';
-import { TranslationService } from '../../../../l10n/core/api/translation.service';
+import { TranslationFacade } from '../../../../l10n/core/api/translation.facade';
 import { SchemaRowClassArchive } from '../../../../schema/core/api/styling/schema.row-class.archive';
 import { SchemaRowStyleArchive } from '../../../../schema/core/api/styling/schema.row-style.archive';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';
+import { ColumnConfig, MultiColumnConfig } from '../../../../composition/core/api/column/column.config';
+import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
+import { SchemaTheme } from '../../../../schema/core/api/theme/schema-theme';
 /** @internal */
 export declare abstract class StructureGateway extends SmartComponent implements OnChanges, OnInit {
     protected readonly changeDetectorRef: ChangeDetectorRef;
@@ -54,7 +52,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     structureId: StructureId;
     protected compositionId: CompositionId;
     protected schemaId: SchemaReadModelRootId;
-    protected structureCommandService: StructureCommandInvoker;
+    protected structureCommandInvoker: StructureCommandInvoker;
     protected structurePagingCommandDispatcher: PagingCommandInvoker;
     protected pagingEventRepository: PagingEventRepository;
     protected sortingCommandDispatcher: SortingCommandInvoker;
@@ -64,7 +62,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected sourceEventService: SourceEventService;
     protected schemaCommandInvoker: SchemaCommandInvoker;
     protected compositionCommandDispatcher: CompositionCommandInvoker;
-    protected compositionEventService: CompositionEventRepository;
+    protected compositionEventRepository: CompositionEventRepository;
     protected formationEventService: FormationEventRepository;
     protected structureEditModeArchive: StructureEditModeArchive;
     protected structureCellEditArchive: StructureCellEditArchive;
@@ -87,7 +85,8 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive;
     protected structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive;
     protected schemaEventRepository: SchemaEventRepository;
-    protected translationService: TranslationService;
+    protected translationService: TranslationFacade;
+    protected structureInitialValuesReadyArchive: StructureInitialValuesReadyArchive;
     /** *********************
      * INPUTS
      ***********************/
@@ -97,35 +96,23 @@ export declare abstract class StructureGateway extends SmartComponent implements
     autoResizeWidth: boolean;
     source: Array<any>;
     columns: Array<ColumnConfig | MultiColumnConfig>;
-    verticalGrid: boolean;
-    horizontalGrid: boolean;
-    theme: SchemaTheme;
-    loading: boolean;
-    virtualScroll: boolean;
-    sorting: boolean | SortingConfig;
-    filtering: boolean | FilterConfig;
-    quickFilters: boolean | QuickFiltersConfig;
     editMode: boolean;
     cellEditing: boolean;
+    theme: SchemaTheme;
     /** *********************
      * OUTPUTS
      ***********************/
+    themeChanged: EventEmitter<SchemaTheme>;
     columnsChanged: EventEmitter<void>;
     containerWidthChanged: EventEmitter<number>;
     sourceEdited: EventEmitter<EditemItemValues>;
     cellEditEntered: EventEmitter<void>;
     cellEditCanceled: EventEmitter<void>;
     cellEditSubmitted: EventEmitter<void>;
-    themeChanged: EventEmitter<SchemaTheme>;
-    horizontalGridChanged: EventEmitter<boolean>;
-    verticalGridChanged: EventEmitter<boolean>;
     structureColumnInputHandler: StructureColumnInputHandler;
     private changeAfterInit;
-    protected constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher, structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, structureCommandService: StructureCommandInvoker, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository, sortingCommandDispatcher: SortingCommandInvoker, searchCommandDispatcher: SearchCommandInvoker, fieldCommandDispatcher: FieldCommandInvoker, sourceCommandService: SourceCommandInvoker, sourceEventService: SourceEventService, schemaCommandInvoker: SchemaCommandInvoker, compositionCommandDispatcher: CompositionCommandInvoker, compositionEventService: CompositionEventRepository, formationEventService: FormationEventRepository, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, columnFieldFactory: ColumnFieldFactory, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, rowSelectEnabledArchive: RowSelectEnabledRepository, rowSelectionTypeArchive: RowSelectionTypeArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive, formationCommandDispatcher: FormationCommandInvoker, searchEventRepository: SearchEventRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, translationService: TranslationService);
+    protected constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher, structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, structureCommandInvoker: StructureCommandInvoker, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository, sortingCommandDispatcher: SortingCommandInvoker, searchCommandDispatcher: SearchCommandInvoker, fieldCommandDispatcher: FieldCommandInvoker, sourceCommandService: SourceCommandInvoker, sourceEventService: SourceEventService, schemaCommandInvoker: SchemaCommandInvoker, compositionCommandDispatcher: CompositionCommandInvoker, compositionEventRepository: CompositionEventRepository, formationEventService: FormationEventRepository, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, columnFieldFactory: ColumnFieldFactory, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, rowSelectEnabledArchive: RowSelectEnabledRepository, rowSelectionTypeArchive: RowSelectionTypeArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive, formationCommandDispatcher: FormationCommandInvoker, searchEventRepository: SearchEventRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, translationService: TranslationFacade, structureInitialValuesReadyArchive: StructureInitialValuesReadyArchive);
     ngOnChanges(changes: NgChanges<StructureGateway>): void;
     ngOnInit(): void;
-    private connectSchemaEvents;
-    private isInitialized;
-    private isNotInitialized;
     private componentInitialized;
 }

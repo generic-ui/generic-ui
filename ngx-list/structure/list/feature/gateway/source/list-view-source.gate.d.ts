@@ -1,5 +1,5 @@
 import { SourceGate } from '../../../../source/feature/gate/source.gate';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SourceCommandInvoker } from '../../../../source/core/api/source.command-invoker';
 import { SourceEventService } from '../../../../source/core/api/event/source-event.service';
 export declare class ListViewSourceGate extends SourceGate {

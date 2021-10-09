@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { SchemaWarehouse } from '../../../../schema/core/api/schema.warehouse';
 import { SchemaReadModelRootId } from '../../../../schema/core/api/schema.read-model-root-id';
-import { Reactive } from '../../../../common/cdk/reactive/reactive';
+import { Reactive } from '@generic-ui/hermes';
 export declare class SchemaCssClassManager extends Reactive {
     private readonly schemaReadModelRepository;
     private static readonly VERTICAL_GRID_CLASS_NAME;

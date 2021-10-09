@@ -2,7 +2,7 @@ import { AggregateRepository, CommandType, CreateAggregateCommandHandler, Domain
 import { StructureAggregateRepository } from '../structure-aggregate.repository';
 import { CreateStructureCommand } from './create-structure.command';
 import { StructureAggregate } from '../structure.aggregate';
-import { StructureId } from '../structure.id';
+import { StructureId } from '../../api/structure.id';
 export declare class CreateStructureCommandHandler implements CreateAggregateCommandHandler<StructureAggregate, CreateStructureCommand> {
     private readonly structureAggregateRepository;
     private domainEventPublisher;

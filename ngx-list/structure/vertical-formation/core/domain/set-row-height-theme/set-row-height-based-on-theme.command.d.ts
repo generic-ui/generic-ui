@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SchemaTheme } from '../../../../../schema/core/api/theme/schema-theme';
 import { StructureCommand } from '../../../../core/domain/structure.command';
 export declare class SetRowHeightBasedOnThemeCommand extends StructureCommand {

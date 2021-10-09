@@ -1,9 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { ResizeDetector } from '@generic-ui/fabric';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { SchemaRowColoring } from '../../../../schema/core/api/row-coloring/schema-row-coloring';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { StructureCommandInvoker } from '../../../core/api/structure.command-invoker';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { SourceWarehouse } from '../../../source/core/api/source.warehouse';
@@ -11,19 +10,24 @@ import { CompositionCommandInvoker } from '../../../../composition/core/api/comp
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { FormationWarehouse } from '../../../source/core/api/formation/formation.warehouse';
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
-import { StructureVerticalFormationWarehouse } from '../../../vertical-formation/core/api/structure-vertical-formation.warehouse';
+import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
+import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
+import { ResizeDetector } from '../../../../common/cdk/resize-detector/resize.detector';
+import { CompositionId } from '../../../../composition/core/domain/composition.id';
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elRef;
     private readonly ngZone;
     private readonly structureId;
+    private readonly compositionId;
     private readonly structureCommandService;
     private readonly structureWarehouse;
-    private readonly structureVerticalFormationWarehouse;
+    private readonly verticalFormationWarehouse;
     private readonly sourceWarehouse;
     private readonly compositionCommandInvoker;
     private readonly compositionWarehouse;
     private readonly formationWarehouse;
     private readonly resizeDetector;
+    private readonly structureInitialValuesReadyArchive;
     private readonly structureParent;
     sourceCollectionRef: ElementRef;
     columns: Array<CellTemplateWithAccessor>;
@@ -33,7 +37,7 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     private autoResizeWidthEnabled;
     private scrollObservation$;
     private readonly styleModifier;
-    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, ngZone: NgZone, structureId: StructureId, structureCommandService: StructureCommandInvoker, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, sourceWarehouse: SourceWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, formationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureParent: any);
+    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, ngZone: NgZone, structureId: StructureId, compositionId: CompositionId, structureCommandService: StructureCommandInvoker, structureWarehouse: StructureWarehouse, verticalFormationWarehouse: VerticalFormationWarehouse, sourceWarehouse: SourceWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, formationWarehouse: FormationWarehouse, resizeDetector: ResizeDetector, structureInitialValuesReadyArchive: StructureInitialValuesReadyArchive, structureParent: any);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;

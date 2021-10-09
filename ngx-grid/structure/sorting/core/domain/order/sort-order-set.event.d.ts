@@ -1,6 +1,6 @@
 import { CompositionId } from '../../../../../composition/core/domain/composition.id';
 import { FieldId } from '../../../../field/core/domain/field/field.id';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { StructureDomainEvent } from '../../../../core/domain/structure.domain-event';
 export declare class SortOrderSetEvent extends StructureDomainEvent {
     private readonly compositionId;

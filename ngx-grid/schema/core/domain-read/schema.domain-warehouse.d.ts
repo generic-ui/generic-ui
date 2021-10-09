@@ -8,7 +8,7 @@ import { SchemaTheme } from '../api/theme/schema-theme';
 import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 import { SchemaCssClass } from '../api/css-classes/schema-css-class';
 import { SchemaWarehouse } from '../api/schema.warehouse';
-import { Observable } from 'rxjs';
+import { HermesObservable } from '@generic-ui/hermes';
 export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaCssClassesRepository;
     private readonly schemaThemeRepository;
@@ -16,10 +16,10 @@ export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaRowColoringRepository;
     private readonly schemaVerticalGridRepository;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository, schemaThemeRepository: SchemaThemeRepository, schemaHorizontalGridRepository: SchemaHorizontalGridRepository, schemaRowColoringRepository: SchemaRowColoringRepository, schemaVerticalGridRepository: SchemaVerticalGridRepository);
-    onTheme(schemaId?: SchemaReadModelRootId): Observable<SchemaTheme>;
-    onSingleTheme(schemaId?: SchemaReadModelRootId): Observable<SchemaTheme>;
-    onHorizontalGrid(schemaId?: SchemaReadModelRootId): Observable<boolean>;
-    onVerticalGrid(schemaId?: SchemaReadModelRootId): Observable<boolean>;
-    onRowColoring(schemaId?: SchemaReadModelRootId): Observable<SchemaRowColoring>;
-    onCssClasses(schemaId?: SchemaReadModelRootId): Observable<SchemaCssClass>;
+    onTheme(schemaId: SchemaReadModelRootId): HermesObservable<SchemaTheme>;
+    onceTheme(schemaId: SchemaReadModelRootId): HermesObservable<SchemaTheme>;
+    onHorizontalGrid(schemaId: SchemaReadModelRootId): HermesObservable<boolean>;
+    onVerticalGrid(schemaId: SchemaReadModelRootId): HermesObservable<boolean>;
+    onRowColoring(schemaId: SchemaReadModelRootId): HermesObservable<SchemaRowColoring>;
+    onCssClasses(schemaId: SchemaReadModelRootId): HermesObservable<SchemaCssClass>;
 }

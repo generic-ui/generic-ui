@@ -1,17 +1,15 @@
 import { CommandInvoker } from '@generic-ui/hermes';
-import { PagingDispatcher } from '../domain/paging.dispatcher';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { PagingConfig } from './paging-config';
-export declare class PagingCommandInvoker implements CommandInvoker {
-    private pagingDispatcher;
-    constructor(pagingDispatcher: PagingDispatcher);
-    enable(structureId?: StructureId): void;
-    disable(structureId?: StructureId): void;
-    setPaging(paging: PagingConfig, structureId?: StructureId): void;
-    changePageSize(pageSize: number, structureId?: StructureId): void;
-    nextPage(structureId?: StructureId): void;
-    prevPage(structureId?: StructureId): void;
-    goToPage(pageNumber: number, currentPage: number): void;
-    changePagerTop(enabled: boolean, structureId?: StructureId): void;
-    changePagerBottom(enabled: boolean, structureId?: StructureId): void;
+export declare abstract class PagingCommandInvoker implements CommandInvoker {
+    protected constructor();
+    abstract enable(structureId: StructureId): void;
+    abstract disable(structureId: StructureId): void;
+    abstract setPaging(paging: PagingConfig, structureId: StructureId): void;
+    abstract changePageSize(pageSize: number, structureId: StructureId): void;
+    abstract nextPage(structureId: StructureId): void;
+    abstract prevPage(structureId: StructureId): void;
+    abstract goToPage(pageNumber: number, currentPage: number, structureId: StructureId): void;
+    abstract changePagerTop(enabled: boolean, structureId: StructureId): void;
+    abstract changePagerBottom(enabled: boolean, structureId: StructureId): void;
 }

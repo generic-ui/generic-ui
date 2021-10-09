@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { StructureDomainEvent } from '../../../../core/domain/structure.domain-event';
 export declare const StructureSummariesEnabledSetEventName = "StructureSummariesEnabledSetEvent";
 export declare class StructureSummariesEnabledSetEvent extends StructureDomainEvent {

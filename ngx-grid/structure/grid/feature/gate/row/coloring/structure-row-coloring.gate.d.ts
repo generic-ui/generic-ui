@@ -12,7 +12,6 @@ export declare class StructureRowColoringGate extends Gate implements OnChanges,
     private readonly schemaEventRepository;
     rowColoring: RowColoring;
     rowColoringChanged: EventEmitter<SchemaRowColoring>;
-    private readonly localStreamCloser;
     constructor(schemaId: SchemaReadModelRootId, schemaCommandInvoker: SchemaCommandInvoker, schemaEventRepository: SchemaEventRepository);
     ngOnChanges(changes: NgChanges<StructureRowColoringGate>): void;
     ngOnInit(): void;

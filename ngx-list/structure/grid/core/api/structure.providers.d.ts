@@ -4,14 +4,15 @@ import { StructureReadModelRootConverter } from './read/structure.read-model-roo
 import { StructureAggregateFactory } from '../../../core/domain/structure.aggregate-factory';
 import { StructureWarehouse } from './structure.warehouse';
 import { StructureDomainCommandInvoker } from '../../../core/domain/structure.domain-command-invoker';
+import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
 export declare const structureCommandHandlers: Array<Provider>;
 export declare const structureDomainEventHandlers: Provider[];
-export declare const structureProviders: (typeof StructureWarehouse | typeof import("../../../../generic-ui-ngx-list").ɵdh | typeof StructureReadModelRootConverter | typeof import("../../../../generic-ui-ngx-list").ɵdg | typeof import("../../../../generic-ui-ngx-list").ɵhv | {
-    provide: typeof import("../../../../generic-ui-ngx-list").ɵbc;
-    useClass: typeof import("../../../../generic-ui-ngx-list").ɵhu;
+export declare const structureProviders: (typeof StructureInitialValuesReadyArchive | typeof StructureWarehouse | typeof import("../../../../generic-ui-ngx-list").ɵhf | typeof StructureReadModelRootConverter | typeof import("../../../../generic-ui-ngx-list").ɵkn | typeof import("../../../../generic-ui-ngx-list").ɵhe | {
+    provide: typeof import("../../../../generic-ui-ngx-list").ɵbb;
+    useClass: typeof import("../../../../generic-ui-ngx-list").ɵhd;
 } | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../../generic-ui-ngx-list").ɵsq;
+    useClass: typeof import("../../../../generic-ui-ngx-list").ɵsy;
 } | typeof StructureAggregateFactory | {
     provide: typeof StructureCommandInvoker;
     useClass: typeof StructureDomainCommandInvoker;

@@ -1,0 +1,22 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+import { Injectable } from '@angular/core';
+import { AggregateArchive } from '@generic-ui/hermes';
+export class VerticalFormationScrollBarPositionArchive extends AggregateArchive {
+    constructor() {
+        super(VerticalFormationScrollBarPositionArchive.DEFAULT_POSITION);
+    }
+}
+VerticalFormationScrollBarPositionArchive.DEFAULT_POSITION = 0;
+VerticalFormationScrollBarPositionArchive.decorators = [
+    { type: Injectable }
+];
+/** @nocollapse */
+VerticalFormationScrollBarPositionArchive.ctorParameters = () => [];
+if (false) {
+    /** @type {?} */
+    VerticalFormationScrollBarPositionArchive.DEFAULT_POSITION;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmVydGljYWwtZm9ybWF0aW9uLnNjcm9sbC1iYXItcG9zaXRpb24uYXJjaGl2ZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1ncmlkLyIsInNvdXJjZXMiOlsic3RydWN0dXJlL3ZlcnRpY2FsLWZvcm1hdGlvbi9jb3JlL2RvbWFpbi1yZWFkL3Njcm9sbC1iYXIvdmVydGljYWwtZm9ybWF0aW9uLnNjcm9sbC1iYXItcG9zaXRpb24uYXJjaGl2ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUUzQyxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUl0RCxNQUFNLE9BQU8seUNBQTBDLFNBQVEsZ0JBQXdCO0lBSXRGO1FBQ0MsS0FBSyxDQUFDLHlDQUF5QyxDQUFDLGdCQUFnQixDQUFDLENBQUM7SUFDbkUsQ0FBQzs7QUFKZSwwREFBZ0IsR0FBRyxDQUFDLENBQUM7O1lBSHJDLFVBQVU7Ozs7OztJQUdWLDJEQUFxQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgQWdncmVnYXRlQXJjaGl2ZSB9IGZyb20gJ0BnZW5lcmljLXVpL2hlcm1lcyc7XG5cblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIFZlcnRpY2FsRm9ybWF0aW9uU2Nyb2xsQmFyUG9zaXRpb25BcmNoaXZlIGV4dGVuZHMgQWdncmVnYXRlQXJjaGl2ZTxudW1iZXI+IHtcblxuXHRzdGF0aWMgcmVhZG9ubHkgREVGQVVMVF9QT1NJVElPTiA9IDA7XG5cblx0Y29uc3RydWN0b3IoKSB7XG5cdFx0c3VwZXIoVmVydGljYWxGb3JtYXRpb25TY3JvbGxCYXJQb3NpdGlvbkFyY2hpdmUuREVGQVVMVF9QT1NJVElPTik7XG5cdH1cblxufVxuIl19

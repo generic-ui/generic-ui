@@ -3,7 +3,7 @@ import { CellTemplateWithContext } from '../../../../composition/core/domain-rea
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { FieldReadModel } from '../../../field/core/api/read/field.read-model';
 import { FilterWarehouse } from '../../core/api/filter.warehouse';
 import { FilterTypeMap } from '../../core/api/type/filter-type-map';
@@ -11,9 +11,11 @@ import { FilterTypeReadModel } from '../../core/api/type/filter-type.read-model'
 import { FilterTypeId } from '../../core/domain/type/filter-type.id';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 import { ActiveFilterReadModel } from '../../core/api/active/active-filter.read-model';
+import { CompositionId } from '../../../../composition/core/domain/composition.id';
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
+    private readonly compositionId;
     private readonly fieldWarehouse;
     private readonly filterWarehouse;
     private readonly filterCommandDispatcher;
@@ -27,7 +29,7 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     selectedFilterTypeId: FilterTypeId;
     selectedValue: string;
     activeFilters: Array<ActiveFilterReadModel>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
     onColumnSelect(selectedColumn: CellTemplateWithContext): void;
     onFieldSelect(field: FieldReadModel): void;

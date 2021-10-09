@@ -19,13 +19,13 @@ export declare class StructureDefinitionDefaultBuilder extends StructureDefiniti
     constructor();
 }
 export declare class StructureDefinition {
+    static Builder: typeof StructureDefinitionBuilder;
+    static DefaultBuilder: typeof StructureDefinitionDefaultBuilder;
     private readonly headerEnabled;
     private readonly bottomPaging;
     private readonly topPaging;
     private readonly border;
     constructor(headerEnabled: boolean, bottomPaging: PagingDefinition, topPaging: PagingDefinition, border: boolean);
-    static Builder: typeof StructureDefinitionBuilder;
-    static DefaultBuilder: typeof StructureDefinitionDefaultBuilder;
     isHeaderEnabled(): boolean;
     isBorderEnabled(): boolean;
     getBottomPaging(): PagingDefinition;

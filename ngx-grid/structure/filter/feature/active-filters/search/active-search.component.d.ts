@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SearchWarehouse } from '../../../../search/core/api/search.warehouse';
 import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SearchCommandInvoker } from '../../../../search/core/api/search.command-invoker';
 export declare class ActiveSearchComponent extends SmartComponent {
     private readonly changeDetectorRef;

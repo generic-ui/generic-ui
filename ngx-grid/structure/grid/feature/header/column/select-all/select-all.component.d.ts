@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { StructureId } from '../../../../../core/domain/structure.id';
+import { StructureId } from '../../../../../core/api/structure.id';
 import { FormationCommandInvoker } from '../../../../../source/core/api/formation/formation.command-invoker';
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
 import { FormationWarehouse } from '../../../../../source/core/api/formation/formation.warehouse';

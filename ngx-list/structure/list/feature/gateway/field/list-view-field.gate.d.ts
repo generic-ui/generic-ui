@@ -1,5 +1,5 @@
 import { OnChanges } from '@angular/core';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { Gate } from '../../../../../common/cdk/component/gate';
 import { FieldConfig } from '../../../../field/core/api/field.config';
 import { FieldCommandInvoker } from '../../../../field/core/api/field.command-invoker';

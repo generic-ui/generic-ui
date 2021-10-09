@@ -3,7 +3,7 @@ import { DomainEvent } from './domain-event';
 import { AggregateId } from '../tactical/aggregate/aggregate-id';
 import { AggregateRoot } from '../tactical/aggregate/aggregate-root';
 export declare class DomainEventPublisher {
-    private eventStream;
+    private readonly eventStream;
     constructor(eventStream: DomainEventStream);
     publish(event: DomainEvent<AggregateId>): void;
     publish(events: ReadonlyArray<DomainEvent<AggregateId>>): void;

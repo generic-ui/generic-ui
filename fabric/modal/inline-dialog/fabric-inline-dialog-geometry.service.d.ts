@@ -5,7 +5,7 @@ import { FabricPlacement } from '../../common/modal/cords/fabric-placement';
 export declare class InlineDialogGeometryService {
     private platformId;
     private inlineDialogGeometry;
-    private inlineDialogState$;
+    private readonly inlineDialogState$;
     constructor(platformId: any);
     observeInlineDialogCords(): Observable<InlineDialogCords>;
     changeGeometry(inlineDialogRef: ElementRef): void;

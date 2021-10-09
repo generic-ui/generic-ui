@@ -1,6 +1,6 @@
 import { AggregateEvent } from '@generic-ui/hermes';
 import { OriginItemEntity } from '../origin/origin-item-entity';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { Field } from '../../../../field/core/domain/field/field';
 import { OriginId } from '../origin/origin-id';
 import { FormationManager } from '../formation/core/formation-manager';
@@ -30,11 +30,6 @@ export declare class SourceManager {
     editOriginItem(itemId: string, value: any, field: Field, structureId: StructureId): ReadonlyArray<AggregateEvent<StructureId>>;
     deleteAllSelected(structureId: StructureId): Array<AggregateEvent<StructureId>>;
     deleteOriginItem(payload: number | OriginId | Array<number> | Array<OriginId>, structureId: StructureId): Array<AggregateEvent<StructureId>>;
-    private deleteOneOriginItem;
-    private deleteOriginItemByItemId;
-    private deleteOriginItemByIndex;
-    private deleteManyOriginItemByIndex;
-    private deleteManyOriginItemByItemID;
     addOriginItem(item: any, structureId: StructureId): ReadonlyArray<AggregateEvent<StructureId>>;
     selectAll(): void;
     unselectAll(): void;
@@ -45,4 +40,9 @@ export declare class SourceManager {
     private findOriginItem;
     private findOriginItemIndex;
     private recalculatePositions;
+    private deleteOneOriginItem;
+    private deleteOriginItemByItemId;
+    private deleteOriginItemByIndex;
+    private deleteManyOriginItemByIndex;
+    private deleteManyOriginItemByItemID;
 }

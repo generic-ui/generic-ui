@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { RowSelection } from '../../core/api/row-selection';
 import { SelectedRow } from '../../core/api/formation/selected-row';
 import { FormationEventRepository } from '../../core/api/formation/formation.event-repository';
@@ -15,7 +15,6 @@ export declare abstract class SelectionGate extends Gate implements OnChanges, O
     rowSelection: RowSelection;
     itemsSelected: EventEmitter<any>;
     selectedRows: EventEmitter<Array<SelectedRow>>;
-    private readonly localStreamCloser;
     protected constructor(structureId: StructureId, formationEventService: FormationEventRepository, formationCommandDispatcher: FormationCommandInvoker, rowSelectionTypeArchive: RowSelectionTypeArchive);
     ngOnChanges(changes: NgChanges<SelectionGate>): void;
     ngOnInit(): void;

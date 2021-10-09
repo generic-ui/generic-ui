@@ -5,16 +5,16 @@ import { StructureInfoModalComponent } from './info-modal/structure-info-modal.c
 import { SourceWarehouse } from '../../../../source/core/api/source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
 import { CompositionId } from '../../../../../composition/core/domain/composition.id';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SchemaReadModelRootId } from '../../../../../schema/core/api/schema.read-model-root-id';
-import { StructureInfoPanelArchive } from './structure.info-panel.archive';
-import { StructureInfoPanelConfig } from './structure.info-panel.config';
+import { StructureInfoPanelArchive } from '../../../core/api/panel/info/structure.info-panel.archive';
+import { StructureInfoPanelConfig } from '../../../core/api/panel/info/structure.info-panel.config';
 import { StructureDialogSchemaManagerService } from '../../../../../schema/feature/manager/dialog/structure.dialog-schema-manager.service';
-import { TranslationService } from '../../../../../l10n/core/api/translation.service';
+import { TranslationFacade } from '../../../../../l10n/core/api/translation.facade';
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly injector;
-    private readonly sourceReadModelService;
+    private readonly sourceWarehouse;
     private readonly dialog;
     private readonly compositionId;
     private readonly structureId;
@@ -22,7 +22,7 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     private readonly menuColumnManagerService;
     private readonly translationService;
     private readonly schemaManagerService;
-    private readonly structureInfoPanelEnabledArchive;
+    private readonly structureInfoPanelArchive;
     totalItemsSize: number;
     preparedItemsSize: number;
     rowHeight: number;
@@ -31,7 +31,7 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     themeManagerTooltipText: string;
     columnManagerTooltipText: string;
     infoTooltipText: string;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, sourceReadModelService: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationService, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelEnabledArchive: StructureInfoPanelArchive);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, sourceWarehouse: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationFacade, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelArchive: StructureInfoPanelArchive);
     ngOnInit(): void;
     openInfo(): void;
     openColumnManager(): void;

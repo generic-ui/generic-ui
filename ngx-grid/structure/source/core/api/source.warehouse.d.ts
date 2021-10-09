@@ -1,22 +1,21 @@
-import { Observable } from 'rxjs';
-import { StructureReadModelRepository } from '../../../grid/core/api/read/structure.read-model-repository';
-import { StructureSourceOriginRepository } from './origin/structure.source-origin.repository';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { ItemEntity } from '../domain/core/item/item.entity';
-import { StructurePreparedItemsRepository } from './prepared/structure.prepared-items.repository';
 import { OriginItemEntity } from '../domain/origin/origin-item-entity';
-import { Warehouse } from '@generic-ui/hermes';
-export declare class SourceWarehouse implements Warehouse {
-    private structureRepository;
-    private structurePreparedItemsRepository;
-    private structureSourceOriginRepository;
-    constructor(structureRepository: StructureReadModelRepository, structurePreparedItemsRepository: StructurePreparedItemsRepository, structureSourceOriginRepository: StructureSourceOriginRepository);
-    getEntities(structureId?: StructureId): Array<ItemEntity>;
-    onEntities(structureId?: StructureId): Observable<Array<ItemEntity>>;
-    onEntitiesSize(structureId?: StructureId): Observable<number>;
-    onSingleEntities(structureId?: StructureId): Observable<Array<ItemEntity>>;
-    onOriginSize(structureId?: StructureId): Observable<number>;
-    onLoading(structureId?: StructureId): Observable<boolean>;
-    onPreparedEntities(structureId?: StructureId): Observable<Array<OriginItemEntity>>;
-    getPreparedEntities(structureId?: StructureId): Array<OriginItemEntity>;
+import { HermesObservable, Warehouse } from '@generic-ui/hermes';
+export declare abstract class SourceWarehouse implements Warehouse {
+    protected constructor();
+    /**
+     * @deprecated
+     */
+    abstract getEntities(structureId: StructureId): ReadonlyArray<ItemEntity>;
+    abstract onEntities(structureId: StructureId): HermesObservable<ReadonlyArray<ItemEntity>>;
+    abstract onEntitiesSize(structureId: StructureId): HermesObservable<number>;
+    abstract onceEntities(structureId: StructureId): HermesObservable<ReadonlyArray<ItemEntity>>;
+    abstract onOriginSize(structureId: StructureId): HermesObservable<number>;
+    abstract onLoading(structureId: StructureId): HermesObservable<boolean>;
+    abstract onPreparedEntities(structureId: StructureId): HermesObservable<ReadonlyArray<OriginItemEntity>>;
+    /**
+     * @deprecated
+     */
+    abstract getPreparedEntities(structureId: StructureId): ReadonlyArray<OriginItemEntity>;
 }

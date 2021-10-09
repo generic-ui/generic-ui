@@ -183,7 +183,7 @@ export interface GuiRowSelection {
     mode?: string | GuiRowSelectionMode;
 }
 export interface GuiSelectedRow {
-    data?: any;
+    source?: any;
     index: number;
     itemId: any;
 }

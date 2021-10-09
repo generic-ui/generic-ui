@@ -38,6 +38,9 @@ export declare function eventLoggerFactory(enabled: boolean, consoleEventLogger:
 export declare class HermesBaseModule<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>, E extends DomainEvent<I>> extends Reactive implements OnDestroy {
     private hermesLoggersInitializer;
     private hermesApi;
+    private readonly aggregateDefinitionInitializer;
+    private readonly commandHandlerInitializer;
+    private readonly domainEventHandlerInitializer;
     constructor(eventHandlers: Array<DomainEventHandlerImpl<I, E>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<I, A, C>>, commandHandlers: Array<CommandHandlerImpl<I, A, C>>, definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     ngOnDestroy(): void;
     private checkNullCommand;

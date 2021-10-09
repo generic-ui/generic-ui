@@ -1,8 +1,8 @@
 import { Input, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgModule, EventEmitter, ViewChild, Output, Injectable, ChangeDetectorRef, Inject, PLATFORM_ID, InjectionToken, ComponentFactoryResolver, forwardRef, ViewContainerRef, Injector, ApplicationRef, HostListener, ViewChildren, Directive, Optional } from '@angular/core';
 import { CommonModule, isPlatformBrowser, DOCUMENT } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { takeUntil, distinctUntilChanged, filter, take, skip, debounceTime, throttleTime } from 'rxjs/operators';
-import { BehaviorSubject, Subject, fromEvent, timer, ReplaySubject, Observable, of } from 'rxjs';
+import { takeUntil, distinctUntilChanged, filter, take, skip, debounceTime, map } from 'rxjs/operators';
+import { BehaviorSubject, Subject, fromEvent, timer, ReplaySubject } from 'rxjs';
 
 /**
  * @fileoverview added by tsickle
@@ -1144,7 +1144,7 @@ FabricDatePickerComposition[FabricDatePickerComposition.ALL] = 'ALL';
  */
 class FabricDatePickerCompositionService {
     constructor() {
-        this.datePickerFormat$ = new BehaviorSubject(FabricDatePickerCompositionService.DEFAULT_COMPOSITION);
+        this.datePickerFormat$ = new BehaviorSubject(FabricDatePickerComposition.DATE_PICKER);
     }
     /**
      * @return {?}
@@ -1166,52 +1166,66 @@ class FabricDatePickerCompositionService {
      */
     getComposition(datePipeOptions) {
         /** @type {?} */
+        const removeDoubles = datePipeOptions.split(':').join(' ');
+        /** @type {?} */
+        const removeDash = removeDoubles.split('/').join(' ');
+        /** @type {?} */
+        const removeDot = removeDash.split('.').join(' ');
+        /** @type {?} */
+        const removeComa = removeDot.split(',').join(' ');
+        /** @type {?} */
+        const formatArray = removeComa.split(' ');
+        /** @type {?} */
         let composition;
-        /** @type {?} */
-        let timerPicker = datePipeOptions.timePicker;
-        /** @type {?} */
-        const showHours = timerPicker.hours;
-        /** @type {?} */
-        const showMinutes = timerPicker.minutes;
-        /** @type {?} */
-        const showSeconds = timerPicker.seconds;
-        /** @type {?} */
-        const isMeridian = timerPicker.meridian;
-        /** @type {?} */
-        const showDatePicker = datePipeOptions.datePicker === undefined ? true : datePipeOptions.datePicker;
-        /** @type {?} */
-        const showTimePicker = showHours || showMinutes || showSeconds;
-        if (showDatePicker) {
-            composition = composition | FabricDatePickerComposition.DATE_PICKER;
-        }
-        if (showTimePicker) {
-            composition = composition | FabricDatePickerComposition.TIME_PICKER;
-        }
-        if (isMeridian) {
-            composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
-        }
-        if (showHours) {
-            composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
-        }
-        if (showMinutes) {
-            composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
-        }
-        if (showSeconds) {
-            composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
-        }
+        formatArray.forEach((/**
+         * @param {?} formatItem
+         * @return {?}
+         */
+        (formatItem) => {
+            /** @type {?} */
+            const isDays = formatItem.toLowerCase().includes('d');
+            /** @type {?} */
+            const isMonths = formatItem.includes('M');
+            /** @type {?} */
+            const isYears = formatItem.toLowerCase().includes('y');
+            /** @type {?} */
+            const showHours = formatItem.toLowerCase().includes('h');
+            /** @type {?} */
+            const showMinutes = formatItem.includes('m');
+            /** @type {?} */
+            const showSeconds = formatItem.toLowerCase().includes('s');
+            /** @type {?} */
+            const isMeridian = formatItem.includes('h');
+            /** @type {?} */
+            const showDatePicker = isDays || isMonths || isYears;
+            /** @type {?} */
+            const showTimePicker = showHours || showMinutes || showSeconds;
+            if (showDatePicker) {
+                composition = composition | FabricDatePickerComposition.DATE_PICKER;
+            }
+            if (showTimePicker) {
+                composition = composition | FabricDatePickerComposition.TIME_PICKER;
+            }
+            if (isMeridian) {
+                composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
+            }
+            if (showHours) {
+                composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
+            }
+            if (showMinutes) {
+                composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
+            }
+            if (showSeconds) {
+                composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
+            }
+        }));
         return composition;
     }
 }
-FabricDatePickerCompositionService.DEFAULT_COMPOSITION = FabricDatePickerComposition.DATE_PICKER;
 FabricDatePickerCompositionService.decorators = [
     { type: Injectable }
 ];
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCompositionService.DEFAULT_COMPOSITION;
     /**
      * @type {?}
      * @private
@@ -1896,6 +1910,8 @@ class FabricModalThemeService {
                 return Theme.LIGHT;
             case 'dark':
                 return Theme.DARK;
+            default:
+                return Theme.FABRIC;
         }
     }
 }
@@ -2366,9 +2382,8 @@ class FabricDatePickerComponent extends FabricReactive {
         this.formBuilder = formBuilder;
         this.changeDetectorRef = changeDetectorRef;
         this.openDialog = false;
-        this.datePickerOptions = {
-            format: 'dd/MM/yyyy'
-        };
+        this.onlyDialog = false;
+        this.datePipeOptions = 'dd/MM/yyyy';
         this.dateSelected = new EventEmitter();
         this.dialogOpened = new EventEmitter();
         this.datePickerForm = formBuilder.group({
@@ -2380,11 +2395,14 @@ class FabricDatePickerComponent extends FabricReactive {
      * @return {?}
      */
     ngOnChanges(changes) {
-        if (changes.selectedDate) {
-            this.datePickerService.dateSelected(this.selectedDate);
+        if (changes.selectDate) {
+            this.datePickerService.dateSelected(this.selectDate);
         }
-        if (changes.datePickerOptions) {
-            this.datePickerCompositionService.next(this.datePickerOptions);
+        if (changes.onlyDialog) {
+            this.inputDisabled = this.onlyDialog ? 'disabled' : ''; // todo !== null ??
+        }
+        if (changes.datePipeOptions) {
+            this.datePickerCompositionService.next(this.datePipeOptions);
         }
     }
     /**
@@ -2400,6 +2418,7 @@ class FabricDatePickerComponent extends FabricReactive {
          */
         (date) => {
             this.pickedDate = date;
+            this.emitSelectedDate(date);
         }));
         this.datePickerService
             .observeSelectedDate()
@@ -2458,11 +2477,6 @@ class FabricDatePickerComponent extends FabricReactive {
         this.fabricDatePickerInlineDialogService.close();
     }
     /**
-     * @return {?}
-     */
-    selectDate() {
-    }
-    /**
      * @private
      * @param {?} date
      * @return {?}
@@ -2478,7 +2492,11 @@ class FabricDatePickerComponent extends FabricReactive {
         this.datePickerForm
             .controls['date']
             .valueChanges
-            .pipe(distinctUntilChanged(), debounceTime(1500), this.takeUntil())
+            .pipe(distinctUntilChanged(), debounceTime(1500), map((/**
+         * @param {?} day
+         * @return {?}
+         */
+        (day) => this.parse(day))), this.takeUntil())
             .subscribe((/**
          * @param {?} day
          * @return {?}
@@ -2487,11 +2505,69 @@ class FabricDatePickerComponent extends FabricReactive {
             this.datePickerService.dateSelected(day);
         }));
     }
+    /**
+     * @private
+     * @param {?} value
+     * @return {?}
+     */
+    parse(value) {
+        if ((typeof value === 'string') && (value.includes('/'))) {
+            /** @type {?} */
+            const str = value.split('/');
+            /** @type {?} */
+            const dateValues = this.getDateValues(str);
+            /** @type {?} */
+            const dateHasAllValues = dateValues && dateValues.length === 3;
+            if (dateHasAllValues) {
+                return new Date(dateValues[0], dateValues[1], dateValues[2]);
+            }
+            else {
+                return this.pickedDate;
+            }
+        }
+        else {
+            return this.pickedDate;
+        }
+    }
+    /**
+     * @private
+     * @param {?} dateValues
+     * @return {?}
+     */
+    getDateValues(dateValues) {
+        if (this.datePipeOptions.includes('/')) {
+            /** @type {?} */
+            const dateFormatParts = this.datePipeOptions.toLowerCase().split('/');
+            /** @type {?} */
+            let year;
+            /** @type {?} */
+            let month;
+            /** @type {?} */
+            let day;
+            dateFormatParts.forEach((/**
+             * @param {?} datePart
+             * @param {?} i
+             * @return {?}
+             */
+            (datePart, i) => {
+                if (datePart.includes('d')) {
+                    day = +dateValues[i];
+                }
+                if (datePart.includes('m')) {
+                    month = +dateValues[i] - 1;
+                }
+                if (datePart.includes('y')) {
+                    year = +dateValues[i];
+                }
+            }));
+            return [year, month, day];
+        }
+    }
 }
 FabricDatePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'gui-date-picker',
-                template: "<div #datePicker\n\t (click)=\"openDatePicker()\"\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePickerOptions.format\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input\n\t\t\t   readonly>\n\t</form>\n\n\t<gui-date-picker-icon class=\"gui-date-picker-icon\"></gui-date-picker-icon>\n\n</div>\n",
+                template: "<div #datePicker\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePipeOptions\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input\n\t\t\t   readonly>\n\t</form>\n\n\t<gui-date-picker-icon (click)=\"openDatePicker()\"\n\t\t\t\t\t\t  class=\"gui-date-picker-icon\">\n\t</gui-date-picker-icon>\n\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None,
                 styles: [".gui-date-picker{-ms-flex-align:center;align-items:center;display:-ms-inline-flexbox;display:inline-flex;position:relative}.gui-date-picker input,.gui-date-picker-calendar input{background:0 0;border-radius:0;border-width:0 0 1px;font-family:Arial;font-size:14px;padding:4px}.gui-date-picker input:disabled,.gui-date-picker-calendar input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon,.gui-date-picker-calendar .gui-date-picker-icon{cursor:pointer;position:absolute;right:0}", ".gui-dark .gui-input{background:0 0;color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-arrow-icon:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year{color:#333}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#dfb8e6}", ".gui-material .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-material .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-material .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#6200ee}"]
@@ -2509,10 +2585,11 @@ FabricDatePickerComponent.propDecorators = {
     datePickerRef: [{ type: ViewChild, args: ['datePicker', { static: false },] }],
     parentElement: [{ type: Input }],
     theme: [{ type: Input }],
-    selectedDate: [{ type: Input }],
+    selectDate: [{ type: Input }],
     name: [{ type: Input }],
     openDialog: [{ type: Input }],
-    datePickerOptions: [{ type: Input }],
+    onlyDialog: [{ type: Input }],
+    datePipeOptions: [{ type: Input }],
     dateSelected: [{ type: Output }],
     dialogOpened: [{ type: Output }]
 };
@@ -2524,13 +2601,15 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.theme;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.selectedDate;
+    FabricDatePickerComponent.prototype.selectDate;
     /** @type {?} */
     FabricDatePickerComponent.prototype.name;
     /** @type {?} */
     FabricDatePickerComponent.prototype.openDialog;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.datePickerOptions;
+    FabricDatePickerComponent.prototype.onlyDialog;
+    /** @type {?} */
+    FabricDatePickerComponent.prototype.datePipeOptions;
     /** @type {?} */
     FabricDatePickerComponent.prototype.dateSelected;
     /** @type {?} */
@@ -2540,7 +2619,7 @@ if (false) {
     /** @type {?} */
     FabricDatePickerComponent.prototype.pickedDate;
     /** @type {?} */
-    FabricDatePickerComponent.prototype.pickedDateString;
+    FabricDatePickerComponent.prototype.inputDisabled;
     /**
      * @type {?}
      * @private
@@ -2709,6 +2788,8 @@ class FabricDatePickerViewPanelComponent {
                 return `${months[this.activeMonth]} ${this.activeYear}`;
             case FabricCalendarView.YEARS:
                 return `${this.getDisplayedYearRange()}`;
+            default:
+                return '';
         }
     }
     /**
@@ -2724,6 +2805,8 @@ class FabricDatePickerViewPanelComponent {
                 break;
             case FabricCalendarView.YEARS:
                 this.calendarViewService.switchView(FabricCalendarView.DAYS);
+                break;
+            default:
                 break;
         }
     }
@@ -2751,6 +2834,8 @@ class FabricDatePickerViewPanelComponent {
                 break;
             case FabricCalendarView.YEARS:
                 this.datePickerYearsService.next(years);
+                break;
+            default:
                 break;
         }
     }
@@ -2902,10 +2987,19 @@ class FabricTimePickerComponent extends FabricReactive {
         });
     }
     /**
+     * @param {?} changes
+     * @return {?}
+     */
+    ngOnChanges(changes) {
+        if (changes.selectedDate) {
+            if (this.selectedDate) {
+            }
+        }
+    }
+    /**
      * @return {?}
      */
     ngOnInit() {
-        this.setTimeFromSelectedDate();
         if (this.isActive(this.datePickerComposition, FabricDatePickerComposition.TIME_PICKER_HOURS)) {
             this.form
                 .controls['hours']
@@ -2954,6 +3048,7 @@ class FabricTimePickerComponent extends FabricReactive {
                 this.changeSelectedDate();
             }));
         }
+        this.setTimeFromSelectedDate();
     }
     /**
      * @param {?} formControlName
@@ -4195,6 +4290,8 @@ class FabricDropdownComponent extends FabricReactive {
                 this.arrowDirection = Direction.LEFT;
                 break;
             }
+            default:
+                break;
         }
     }
     /**
@@ -4705,6 +4802,8 @@ class FabricDialogThemeService {
                 return Theme.LIGHT;
             case 'dark':
                 return Theme.DARK;
+            default:
+                return Theme.FABRIC;
         }
     }
 }
@@ -5670,6 +5769,8 @@ class FabricNotificationService extends FabricModal {
                 this.getComponentRef().instance.notificationsBottomLeft =
                     this.getComponentRef().instance.notificationsBottomLeft.concat(this.fabricNotification);
                 break;
+            default:
+                break;
         }
         this.getComponentRef().instance.detectChanges();
     }
@@ -5765,6 +5866,8 @@ class FabricNotificationsOverlayComponent extends FabricThemedComponent {
                  * @return {?}
                  */
                 (notification) => notification.index !== selectedNotification.index));
+                break;
+            default:
                 break;
         }
         this.detectChanges();
@@ -7755,7 +7858,7 @@ class FabricToggleButtonComponent extends Indicator {
              * @return {?}
              */
             id => {
-                if (id != this.buttonId) {
+                if (id !== this.buttonId) {
                     this.buttonChecked = !this.buttonChecked;
                     this.removeClass('gui-checked');
                 }
@@ -7891,110 +7994,6 @@ FabricToggleButtonGroupModule.decorators = [
                 ],
                 exports: [
                     FabricToggleButtonGroupComponent
-                ]
-            },] }
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-// import * as elementResizeDetectorMaker_ from 'element-resize-detector';
-//
-// const elementResizeDetectorMaker = elementResizeDetectorMaker_;
-// const elementResizeDetectorMaker = require('element-resize-detector');
-class ResizeDetector {
-    /**
-     * @param {?} platformId
-     */
-    constructor(platformId) {
-        this.platformId = platformId;
-        this.throttleTime = 25;
-        this.unsubscribe$ = new Subject();
-        if (isPlatformBrowser(this.platformId)) {
-            // this.elementResizeDetector = elementResizeDetectorMaker({
-            // 	strategy: 'scroll'
-            // });
-        }
-    }
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    observe(element) {
-        if (isPlatformBrowser(this.platformId)) {
-            /** @type {?} */
-            const producer = (/**
-             * @param {?} observer
-             * @return {?}
-             */
-            (observer) => {
-                // this.elementResizeDetector.listenTo(element, function(htmlElement: HTMLElement) {
-                // 	observer.next(htmlElement);
-                // });
-            });
-            /** @type {?} */
-            const source$ = new Observable(producer);
-            return source$.pipe(throttleTime(this.throttleTime), filter((/**
-             * @param {?} f
-             * @return {?}
-             */
-            (f) => f !== undefined)), takeUntil(this.unsubscribe$));
-        }
-        return of(element);
-    }
-    /**
-     * @param {?} element
-     * @return {?}
-     */
-    destroy(element) {
-        if (this.elementResizeDetector) {
-            this.unsubscribe$.next();
-            this.unsubscribe$.complete();
-            this.elementResizeDetector.uninstall(element);
-        }
-    }
-}
-ResizeDetector.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ResizeDetector.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ResizeDetector.prototype.throttleTime;
-    /**
-     * @type {?}
-     * @private
-     */
-    ResizeDetector.prototype.elementResizeDetector;
-    /**
-     * @type {?}
-     * @private
-     */
-    ResizeDetector.prototype.unsubscribe$;
-    /**
-     * @type {?}
-     * @private
-     */
-    ResizeDetector.prototype.platformId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class ResizeDetectorModule {
-}
-ResizeDetectorModule.decorators = [
-    { type: NgModule, args: [{
-                providers: [
-                    ResizeDetector
                 ]
             },] }
 ];
@@ -8187,8 +8186,7 @@ const modules = [
     FabricSpinnerModule,
     FabricToggleButtonModule,
     FabricToggleButtonGroupModule,
-    FabricInputModule,
-    ResizeDetectorModule
+    FabricInputModule
 ];
 class FabricModule {
 }
@@ -8237,5 +8235,5 @@ class FabricNestedDialogComponent {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDialogThemeService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricMessageModule, FabricMessageService, FabricModalThemeService, FabricModule, FabricNestedDialogComponent, FabricNotificationModule, FabricNotificationPosition, FabricNotificationService, FabricPlacement, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricRatingModule, FabricSelectModule, FabricSliderModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, Placement, ResizeDetector, ResizeDetectorModule, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricDatePickerViewPanelComponent as ɵba, FabricTimePickerComponent as ɵbb, FabricCloseIconModule as ɵbc, selector as ɵbd, FabricCloseIconComponent as ɵbe, FabricDrawerComponent as ɵbf, DialogService as ɵbg, FabricDropdownComponent as ɵbh, GeometryService as ɵbi, DropdownItemComponent as ɵbj, FabricDialogComponent as ɵbk, FabricRadioButtonComponent as ɵbl, FabricRadioGroupComponent as ɵbm, StarIconModule as ɵbn, StarIconComponent as ɵbo, FabricRatingComponent as ɵbp, FabricNotificationsOverlayComponent as ɵbq, FabricModal as ɵbr, FabricNotificationsContainerComponent as ɵbs, FabricNotificationComponent as ɵbt, FabricMessageComponent as ɵbu, FabricSvgTemplateModule as ɵbv, FabricSvgTemplate as ɵbw, FabricTabComponent as ɵbx, TabItemComponent as ɵby, FabricTooltipDirective as ɵbz, FabricButtonGroupComponent as ɵc, FabricTooltipComponent as ɵca, FabricProgressBarComponent as ɵcb, FabricProgressSpinnerComponent as ɵcc, AbstractSpinner as ɵcd, FabricSelectComponent as ɵce, FabricSelectedOptionsRepository as ɵcf, SelectOptionsGeometryService as ɵcg, SelectOptionModalService as ɵch, FabricSelectOptionsComponent as ɵci, FabricSliderComponent as ɵcj, FabricSpinnerComponent as ɵck, FabricToggleButtonComponent as ɵcl, ToggleButtonGroupService as ɵcm, FabricToggleButtonGroupComponent as ɵcn, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, FabricThemedComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, DatePickerIconModule as ɵj, DatePickerIconComponent as ɵk, FabricArrowIconModule as ɵl, FabricArrowIconComponent as ɵm, FabricDatePickerCalendarComponent as ɵn, FabricDatePickerService as ɵo, FabricDatePickerCompositionService as ɵp, FabricDatePickerWeeks as ɵq, FabricDatePickerYears as ɵr, FabricDatePickerYearsService as ɵs, FabricDatePickerCalendarService as ɵt, FabricDatePickerCalendarViewService as ɵu, FabricDatePickerComponent as ɵv, FabricDatePickerInlineDialogService as ɵw, FabricDatePickerDaysViewComponent as ɵx, FabricDatePickerMonthsViewComponent as ɵy, FabricDatePickerYearsComponent as ɵz };
+export { FabricBadgeModule, FabricButtonComponent, FabricButtonGroupModule, FabricButtonModule, FabricCardModule, FabricCheckboxComponent, FabricCheckboxModule, FabricChipComponent, FabricChipModule, FabricDatePickerModule, FabricDialogModule, FabricDialogService, FabricDialogThemeService, FabricDrawerModule, FabricDrawerService, FabricDropdownModule, FabricInlineDialogModule, FabricInlineDialogService, FabricInputComponent, FabricInputModule, FabricMessageModule, FabricMessageService, FabricModalThemeService, FabricModule, FabricNestedDialogComponent, FabricNotificationModule, FabricNotificationPosition, FabricNotificationService, FabricPlacement, FabricProgressBarModule, FabricProgressSpinnerModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricRatingModule, FabricSelectModule, FabricSliderModule, FabricSpinnerModule, FabricTabModule, FabricToggleButtonGroupModule, FabricToggleButtonModule, FabricTooltipModule, Placement, SpinnerMode, Theme, FabricBadgeComponent as ɵa, Indicator as ɵb, FabricDatePickerViewPanelComponent as ɵba, FabricTimePickerComponent as ɵbb, FabricCloseIconModule as ɵbc, selector as ɵbd, FabricCloseIconComponent as ɵbe, FabricDrawerComponent as ɵbf, DialogService as ɵbg, FabricDropdownComponent as ɵbh, GeometryService as ɵbi, DropdownItemComponent as ɵbj, FabricDialogComponent as ɵbk, FabricRadioButtonComponent as ɵbl, FabricRadioGroupComponent as ɵbm, StarIconModule as ɵbn, StarIconComponent as ɵbo, FabricRatingComponent as ɵbp, FabricNotificationsOverlayComponent as ɵbq, FabricModal as ɵbr, FabricNotificationsContainerComponent as ɵbs, FabricNotificationComponent as ɵbt, FabricMessageComponent as ɵbu, FabricSvgTemplateModule as ɵbv, FabricSvgTemplate as ɵbw, FabricTabComponent as ɵbx, TabItemComponent as ɵby, FabricTooltipDirective as ɵbz, FabricButtonGroupComponent as ɵc, FabricTooltipComponent as ɵca, FabricProgressBarComponent as ɵcb, FabricProgressSpinnerComponent as ɵcc, AbstractSpinner as ɵcd, FabricSelectComponent as ɵce, FabricSelectedOptionsRepository as ɵcf, SelectOptionsGeometryService as ɵcg, SelectOptionModalService as ɵch, FabricSelectOptionsComponent as ɵci, FabricSliderComponent as ɵcj, FabricSpinnerComponent as ɵck, FabricToggleButtonComponent as ɵcl, ToggleButtonGroupService as ɵcm, FabricToggleButtonGroupComponent as ɵcn, FabricCardComponent as ɵd, FabricInlineDialogComponent as ɵe, FabricThemedComponent as ɵf, FabricReactive as ɵg, InlineDialogGeometryService as ɵh, themeToken as ɵi, DatePickerIconModule as ɵj, DatePickerIconComponent as ɵk, FabricArrowIconModule as ɵl, FabricArrowIconComponent as ɵm, FabricDatePickerCalendarComponent as ɵn, FabricDatePickerService as ɵo, FabricDatePickerCompositionService as ɵp, FabricDatePickerWeeks as ɵq, FabricDatePickerYears as ɵr, FabricDatePickerYearsService as ɵs, FabricDatePickerCalendarService as ɵt, FabricDatePickerCalendarViewService as ɵu, FabricDatePickerComponent as ɵv, FabricDatePickerInlineDialogService as ɵw, FabricDatePickerDaysViewComponent as ɵx, FabricDatePickerMonthsViewComponent as ɵy, FabricDatePickerYearsComponent as ɵz };
 //# sourceMappingURL=generic-ui-fabric.js.map

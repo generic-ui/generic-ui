@@ -1,8 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID, InjectionToken, NgModule, Optional as Optional$1, Injector } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { __extends, __values, __spread } from 'tslib';
-import { Subject, Observable, of, throwError, BehaviorSubject, ReplaySubject } from 'rxjs';
-import { filter, take, takeUntil, map, distinctUntilChanged } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -264,27 +264,641 @@ function provideEventHandlers(handlers) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var CommandStream = /** @class */ (function (_super) {
-    __extends(CommandStream, _super);
-    function CommandStream() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var HermesSubscription = /** @class */ (function () {
+    function HermesSubscription(finalize, isClosed) {
+        this.closed = false;
+        this.finalize = (/**
+         * @return {?}
+         */
+        function () {
+        });
+        if (finalize !== undefined && finalize !== null &&
+            typeof finalize === 'function') {
+            this.finalize = finalize;
+        }
+        if (isClosed !== undefined && isClosed !== null) {
+            this.closed = isClosed;
+        }
+    }
+    /**
+     * @return {?}
+     */
+    HermesSubscription.prototype.unsubscribe = /**
+     * @return {?}
+     */
+    function () {
+        if (this.closed) {
+            return;
+        }
+        this.closed = true;
+        this.finalize();
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubscription.prototype.getFinalize = /**
+     * @return {?}
+     */
+    function () {
+        return this.finalize;
+    };
+    return HermesSubscription;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscription.prototype.closed;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscription.prototype.finalize;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var /**
+ * @template T
+ */
+HermesSubscriber = /** @class */ (function () {
+    function HermesSubscriber(config) {
+        this.finalize = (/**
+         * @return {?}
+         */
+        function () {
+        });
+        this.completed = false;
+        this.closed = false;
+        this.observer = config;
     }
     /**
      * @param {?} value
      * @return {?}
      */
-    CommandStream.prototype.next = /**
+    HermesSubscriber.prototype.next = /**
      * @param {?} value
      * @return {?}
      */
     function (value) {
-        _super.prototype.next.call(this, value);
+        if (this.isCompleted()) {
+            return;
+        }
+        if (this.observer && this.observer.next) {
+            this.observer.next(value);
+        }
     };
+    /**
+     * @param {?} error
+     * @return {?}
+     */
+    HermesSubscriber.prototype.error = /**
+     * @param {?} error
+     * @return {?}
+     */
+    function (error) {
+        if (this.completed) {
+            return;
+        }
+        if (this.observer && this.observer.error) {
+            this.observer.error(error);
+        }
+        this.unsubscribe();
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubscriber.prototype.complete = /**
+     * @return {?}
+     */
+    function () {
+        if (this.completed) {
+            return;
+        }
+        this.completed = true;
+        if (this.observer && this.observer.complete) {
+            this.observer.complete();
+        }
+        this.unsubscribe();
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubscriber.prototype.unsubscribe = /**
+     * @return {?}
+     */
+    function () {
+        if (this.closed) {
+            return;
+        }
+        this.closed = true;
+        this.completed = true;
+        this.finalize();
+    };
+    /**
+     * @param {?} finalize
+     * @return {?}
+     */
+    HermesSubscriber.prototype.setFinalize = /**
+     * @param {?} finalize
+     * @return {?}
+     */
+    function (finalize) {
+        if (finalize && typeof finalize === 'function') {
+            this.finalize = finalize;
+        }
+        else {
+        }
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    HermesSubscriber.prototype.isCompleted = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return this.completed;
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    HermesSubscriber.prototype.isClosed = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return this.closed;
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    HermesSubscriber.prototype.getObserver = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return this.observer;
+    };
+    return HermesSubscriber;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscriber.prototype.observer;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscriber.prototype.finalize;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscriber.prototype.completed;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubscriber.prototype.closed;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T, R
+ */
+function HermesOperatorFunction() { }
+/**
+ * @template T
+ */
+var  /**
+ * @template T
+ */
+HermesObservable = /** @class */ (function () {
+    function HermesObservable(generator) {
+        this.generatorFn = generator;
+    }
+    /**
+     * @template T, R
+     * @param {...?} operations
+     * @return {?}
+     */
+    HermesObservable.prototype.pipe = /**
+     * @template T, R
+     * @param {...?} operations
+     * @return {?}
+     */
+    function () {
+        var e_1, _a;
+        var operations = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            operations[_i] = arguments[_i];
+        }
+        this.source = this;
+        try {
+            for (var operations_1 = __values(operations), operations_1_1 = operations_1.next(); !operations_1_1.done; operations_1_1 = operations_1.next()) {
+                var operation = operations_1_1.value;
+                this.source = this.innerPipe(operation, this.source);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (operations_1_1 && !operations_1_1.done && (_a = operations_1.return)) _a.call(operations_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return this.source;
+    };
+    /**
+     * @private
+     * @template T, R
+     * @param {?} operation
+     * @param {?} stream$
+     * @return {?}
+     */
+    HermesObservable.prototype.innerPipe = /**
+     * @private
+     * @template T, R
+     * @param {?} operation
+     * @param {?} stream$
+     * @return {?}
+     */
+    function (operation, stream$) {
+        return ((/**
+         * @param {?} input
+         * @return {?}
+         */
+        function (input) {
+            return operation(input);
+        }))(stream$);
+    };
+    /**
+     * @param {?} arg
+     * @return {?}
+     */
+    HermesObservable.prototype.subscribe = /**
+     * @param {?} arg
+     * @return {?}
+     */
+    function (arg) {
+        /** @type {?} */
+        var subscriber;
+        if (arg instanceof HermesSubscriber) {
+            subscriber = arg;
+        }
+        else if (arg !== null && this.isObserver(arg)) {
+            var next = arg.next, error = arg.error, complete = arg.complete;
+            subscriber = this.createSubscriber(next, error, complete);
+        }
+        else {
+            subscriber = this.createSubscriber(arguments[0], arguments[1], arguments[2]);
+        }
+        if (this.generatorFn) {
+            this.generatorFinalize = this.generatorFn(subscriber);
+            subscriber.setFinalize(this.generatorFinalize);
+        }
+        return this.getSubscription();
+    };
+    /**
+     * @protected
+     * @param {?=} next
+     * @param {?=} error
+     * @param {?=} complete
+     * @return {?}
+     */
+    HermesObservable.prototype.createSubscriber = /**
+     * @protected
+     * @param {?=} next
+     * @param {?=} error
+     * @param {?=} complete
+     * @return {?}
+     */
+    function (next, error, complete) {
+        return new HermesSubscriber({
+            next: next,
+            error: error,
+            complete: complete
+        });
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    HermesObservable.prototype.getSubscription = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return new HermesSubscription(this.generatorFinalize);
+    };
+    /**
+     * @private
+     * @param {?} observer
+     * @return {?}
+     */
+    HermesObservable.prototype.isObserver = /**
+     * @private
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        return typeof observer === 'object';
+    };
+    return HermesObservable;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesObservable.prototype.source;
+    /**
+     * @type {?}
+     * @protected
+     */
+    HermesObservable.prototype.generatorFn;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesObservable.prototype.generatorFinalize;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @return {?}
+ */
+function hermesEmptySubscription() {
+    return new HermesSubscription((/**
+     * @return {?}
+     */
+    function () {
+    }), true);
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var  /**
+ * @template T
+ */
+HermesSubject = /** @class */ (function (_super) {
+    __extends(HermesSubject, _super);
+    function HermesSubject() {
+        var _this = _super.call(this) || this;
+        /**
+         * After error
+         */
+        _this.thrownError = null;
+        /**
+         * After complete
+         */
+        _this.isCompleted = false;
+        /**
+         * After unsubscribe
+         */
+        _this.isClosed = false;
+        _this.subscribers = [];
+        return _this;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    HermesSubject.prototype.next = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        var e_1, _a;
+        this.verifyNotClosed();
+        if (this.isCompleted || this.thrownError !== null) {
+            return;
+        }
+        try {
+            for (var _b = __values(this.subscribers), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var subs = _c.value;
+                subs.next(value);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+    };
+    /**
+     * @param {?} error
+     * @return {?}
+     */
+    HermesSubject.prototype.error = /**
+     * @param {?} error
+     * @return {?}
+     */
+    function (error) {
+        var e_2, _a;
+        this.verifyNotClosed();
+        if (this.isCompleted) {
+            return;
+        }
+        this.thrownError = error;
+        try {
+            for (var _b = __values(this.subscribers), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var subs = _c.value;
+                subs.error(error);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        this.subscribers.length = 0;
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubject.prototype.complete = /**
+     * @return {?}
+     */
+    function () {
+        var e_3, _a;
+        this.verifyNotClosed();
+        if (this.isCompleted) {
+            return;
+        }
+        this.isCompleted = true;
+        try {
+            for (var _b = __values(this.subscribers), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var subs = _c.value;
+                subs.complete();
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        this.subscribers.length = 0;
+    };
+    /**
+     * @param {?} arg
+     * @return {?}
+     */
+    HermesSubject.prototype.subscribe = /**
+     * @param {?} arg
+     * @return {?}
+     */
+    function (arg) {
+        this.verifyNotClosed();
+        /** @type {?} */
+        var subscriber;
+        if (arg instanceof HermesSubscriber) {
+            subscriber = arg;
+        }
+        else {
+            subscriber = this.createSubscriber(arguments[0], arguments[1], arguments[2]);
+        }
+        if (this.thrownError !== null) {
+            subscriber.error(this.thrownError);
+            return hermesEmptySubscription();
+        }
+        else if (this.isCompleted) {
+            subscriber.complete();
+            return hermesEmptySubscription();
+        }
+        else {
+            this.subscribers.push(subscriber);
+            return this.getSubscription();
+        }
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubject.prototype.unsubscribe = /**
+     * @return {?}
+     */
+    function () {
+        this.isCompleted = true;
+        this.isClosed = true;
+        this.subscribers.length = 0;
+    };
+    /**
+     * @return {?}
+     */
+    HermesSubject.prototype.toObservable = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var subscription = _this.subscribe((/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) { return observer.next(v); }), (/**
+             * @param {?} error
+             * @return {?}
+             */
+            function (error) { return observer.error(error); }), (/**
+             * @return {?}
+             */
+            function () { return observer.complete(); }));
+            return (/**
+             * @return {?}
+             */
+            function () { return subscription.unsubscribe(); });
+        }));
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    HermesSubject.prototype.verifyNotClosed = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        if (this.isClosed) {
+            throw new Error('Observable already closed');
+        }
+    };
+    return HermesSubject;
+}(HermesObservable));
+if (false) {
+    /**
+     * After error
+     * @type {?}
+     * @private
+     */
+    HermesSubject.prototype.thrownError;
+    /**
+     * After complete
+     * @type {?}
+     * @private
+     */
+    HermesSubject.prototype.isCompleted;
+    /**
+     * After unsubscribe
+     * @type {?}
+     * @private
+     */
+    HermesSubject.prototype.isClosed;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesSubject.prototype.subscribers;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var CommandStream = /** @class */ (function (_super) {
+    __extends(CommandStream, _super);
+    function CommandStream() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
     CommandStream.decorators = [
         { type: Injectable }
     ];
     return CommandStream;
-}(Subject));
+}(HermesSubject));
 
 /**
  * @fileoverview added by tsickle
@@ -556,33 +1170,121 @@ var FILTERED_COMMAND_STREAM = new InjectionToken('FILTERED_COMMAND_STREAM');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @template T
+ * @param {?} observer
+ * @param {?=} next
+ * @param {?=} complete
+ * @return {?}
+ */
+function subscriberForOperator(observer, next, complete) {
+    /** @type {?} */
+    var nextFn = next ? next : (/**
+     * @param {?} v
+     * @return {?}
+     */
+    function (v) {
+        observer.next(v);
+    });
+    /** @type {?} */
+    var completeFn = complete ? complete : (/**
+     * @return {?}
+     */
+    function () {
+        observer.complete();
+    });
+    return new HermesSubscriber({
+        next: nextFn,
+        error: (/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return observer.error(e); }),
+        complete: completeFn
+    });
+}
+/**
+ * @template T
+ * @param {?} observer
+ * @return {?}
+ */
+function subscriberFromObserver(observer) {
+    return new HermesSubscriber({
+        next: (/**
+         * @param {?} v
+         * @return {?}
+         */
+        function (v) { return observer.next(v); }),
+        error: (/**
+         * @param {?} e
+         * @return {?}
+         */
+        function (e) { return observer.error(e); }),
+        complete: (/**
+         * @return {?}
+         */
+        function () { return observer.complete(); })
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} operation
+ * @return {?}
+ */
+function hermesFilter(operation) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                if (operation(value)) {
+                    observer.next(value);
+                }
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * @template C
  */
 var CommandBus = /** @class */ (function (_super) {
     __extends(CommandBus, _super);
     function CommandBus(commandsStream) {
         var _this = _super.call(this) || this;
-        if (commandsStream) {
-            _this.source = commandsStream;
-        }
+        _this.commandsStream = commandsStream;
         return _this;
     }
     /**
-     * @template R
-     * @param {?} operator
+     * @param {?} arg
      * @return {?}
      */
-    CommandBus.prototype.lift = /**
-     * @template R
-     * @param {?} operator
+    CommandBus.prototype.subscribe = /**
+     * @param {?} arg
      * @return {?}
      */
-    function (operator) {
-        /** @type {?} */
-        var observable = new CommandBus();
-        observable.source = this;
-        observable.operator = operator;
-        return observable;
+    function (arg) {
+        return this.commandsStream.toObservable().subscribe(arguments[0], arguments[1], arguments[2]);
     };
     /**
      * @template C2
@@ -600,7 +1302,9 @@ var CommandBus = /** @class */ (function (_super) {
             commandTypes[_i] = arguments[_i];
         }
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .commandsStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} command
          * @return {?}
          */
@@ -628,7 +1332,9 @@ var CommandBus = /** @class */ (function (_super) {
             handlers[_i] = arguments[_i];
         }
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .commandsStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} command
          * @return {?}
          */
@@ -658,7 +1364,9 @@ var CommandBus = /** @class */ (function (_super) {
             handlers[_i] = arguments[_i];
         }
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .commandsStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} command
          * @return {?}
          */
@@ -686,7 +1394,9 @@ var CommandBus = /** @class */ (function (_super) {
      */
     function (handlers, aggregateCommandHandlers) {
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .commandsStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} command
          * @return {?}
          */
@@ -724,10 +1434,17 @@ var CommandBus = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     CommandBus.ctorParameters = function () { return [
-        { type: Subject, decorators: [{ type: Inject, args: [FILTERED_COMMAND_STREAM,] }] }
+        { type: CommandStream, decorators: [{ type: Inject, args: [FILTERED_COMMAND_STREAM,] }] }
     ]; };
     return CommandBus;
-}(Observable));
+}(HermesObservable));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CommandBus.prototype.commandsStream;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1208,10 +1925,121 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @template T
+ * @param {...?} args
+ * @return {?}
+ */
+function hermesOf() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        args.forEach((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            observer.next(value);
+        }));
+        observer.complete();
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @return {?}
+ */
+function hermesEmpty() {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        observer.complete();
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} valuesNumber
+ * @return {?}
+ */
+function hermesTake(valuesNumber) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        if (valuesNumber === 0) {
+            return hermesEmpty();
+        }
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var index = 0;
+            /** @type {?} */
+            var subscriber = new HermesSubscriber({
+                next: (/**
+                 * @param {?} v
+                 * @return {?}
+                 */
+                function (v) {
+                }),
+                error: (/**
+                 * @param {?} e
+                 * @return {?}
+                 */
+                function (e) { return observer.error(e); }),
+                complete: (/**
+                 * @return {?}
+                 */
+                function () { return observer.complete(); })
+            });
+            ((/** @type {?} */ (subscriber))).observer.next = (/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) {
+                if (index < valuesNumber) {
+                    observer.next(v);
+                    index++;
+                    if (index === valuesNumber) {
+                        subscriber.complete();
+                    }
+                }
+            });
+            /** @type {?} */
+            var subscription = source.subscribe(subscriber);
+            return subscription.getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var DomainEventStore = /** @class */ (function () {
     function DomainEventStore() {
         this.domainEvents = [];
-        this.domainEvents$ = new Subject();
+        this.domainEvents$ = new HermesSubject();
     }
     /**
      * @param {?} event
@@ -1266,7 +2094,7 @@ var DomainEventStore = /** @class */ (function () {
         /** @type {?} */
         var event = this.findEventByType(eventType);
         if (event) {
-            return of(event);
+            return hermesOf(event);
         }
         // wait for future occurrence
         return this.waitForNextEventOccurrence(eventType);
@@ -1289,14 +2117,22 @@ var DomainEventStore = /** @class */ (function () {
             eventType = arg;
         }
         else {
-            return throwError(new Error('Unsupported argument type.'));
+            return new HermesObservable((/**
+             * @param {?} observer
+             * @return {?}
+             */
+            function (observer) {
+                observer.error(new Error('Unsupported argument type.'));
+            }));
+            // return throwError(new Error('Unsupported argument type.'));
         }
         return this.domainEvents$
-            .pipe(filter((/**
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} event
          * @return {?}
          */
-        function (event) { return event.constructor.name === eventType; })), take(1));
+        function (event) { return event.constructor.name === eventType; })), hermesTake(1));
     };
     /**
      * @private
@@ -1358,7 +2194,7 @@ var DomainEventStream = /** @class */ (function (_super) {
         { type: DomainEventStore }
     ]; };
     return DomainEventStream;
-}(Subject));
+}(HermesSubject));
 if (false) {
     /**
      * @type {?}
@@ -1473,27 +2309,19 @@ var DomainEventBus = /** @class */ (function (_super) {
     __extends(DomainEventBus, _super);
     function DomainEventBus(eventStream) {
         var _this = _super.call(this) || this;
-        if (eventStream) {
-            _this.source = eventStream;
-        }
+        _this.eventStream = eventStream;
         return _this;
     }
     /**
-     * @template R
-     * @param {?} operator
+     * @param {?} arg
      * @return {?}
      */
-    DomainEventBus.prototype.lift = /**
-     * @template R
-     * @param {?} operator
+    DomainEventBus.prototype.subscribe = /**
+     * @param {?} arg
      * @return {?}
      */
-    function (operator) {
-        /** @type {?} */
-        var observable = new DomainEventBus();
-        observable.source = this;
-        observable.operator = operator;
-        return observable;
+    function (arg) {
+        return this.eventStream.toObservable().subscribe(arguments[0], arguments[1], arguments[2]);
     };
     /**
      * @template E2
@@ -1512,7 +2340,9 @@ var DomainEventBus = /** @class */ (function (_super) {
             events[_i] = arguments[_i];
         }
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .eventStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} domainEvent
          * @return {?}
          */
@@ -1544,7 +2374,9 @@ var DomainEventBus = /** @class */ (function (_super) {
             handlers[_i] = arguments[_i];
         }
         return ((/** @type {?} */ (this)))
-            .pipe(filter((/**
+            .eventStream
+            .toObservable()
+            .pipe(hermesFilter((/**
          * @param {?} event
          * @return {?}
          */
@@ -1582,7 +2414,14 @@ var DomainEventBus = /** @class */ (function (_super) {
         { type: DomainEventStream }
     ]; };
     return DomainEventBus;
-}(Observable));
+}(HermesObservable));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DomainEventBus.prototype.eventStream;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -1597,6 +2436,78 @@ var DomainEventType = MessageType;
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @template T
+ * @param {?} notifier
+ * @return {?}
+ */
+function hermesTakeUntil(notifier) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var subscriber = subscriberFromObserver(observer);
+            /** @type {?} */
+            var notifierSubscriber = new HermesSubscriber({
+                next: (/**
+                 * @return {?}
+                 */
+                function () { return subscriber.complete(); })
+            });
+            notifier.subscribe(notifierSubscriber);
+            /** @type {?} */
+            var subscription = source.subscribe(subscriber);
+            return subscription.getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} source$
+ * @return {?}
+ */
+function toRxJsObservable(source$) {
+    return new Observable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var subscription = source$.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return observer.next(value); }), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        function (error) { return observer.error(error); }), (/**
+         * @return {?}
+         */
+        function () { return observer.complete(); }));
+        return (/**
+         * @return {?}
+         */
+        function () { return subscription.unsubscribe(); });
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * @abstract
  */
 var  /**
@@ -1604,7 +2515,7 @@ var  /**
  */
 Reactive = /** @class */ (function () {
     function Reactive() {
-        this.unsubscribe$ = new Subject();
+        this.hermesUnsubscribe$ = new HermesSubject();
     }
     /**
      * @return {?}
@@ -1613,19 +2524,7 @@ Reactive = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        this.unsubscribe();
-    };
-    /**
-     * @protected
-     * @return {?}
-     */
-    Reactive.prototype.unsubscribe = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
+        this.hermesUnsubscribe();
     };
     /**
      * @protected
@@ -1638,7 +2537,30 @@ Reactive = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return takeUntil(this.unsubscribe$);
+        return takeUntil(toRxJsObservable(this.hermesUnsubscribe$));
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    Reactive.prototype.hermesUnsubscribe = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        this.hermesUnsubscribe$.next();
+        this.hermesUnsubscribe$.complete();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    Reactive.prototype.hermesTakeUntil = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return hermesTakeUntil(this.hermesUnsubscribe$);
     };
     /**
      * @protected
@@ -1649,7 +2571,7 @@ Reactive = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return !this.unsubscribe$.isStopped;
+        return !((/** @type {?} */ (this.hermesUnsubscribe$))).isCompleted;
     };
     return Reactive;
 }());
@@ -1658,7 +2580,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    Reactive.prototype.unsubscribe$;
+    Reactive.prototype.hermesUnsubscribe$;
 }
 
 /**
@@ -1683,7 +2605,7 @@ ReactiveService = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.unsubscribe();
+        this.hermesUnsubscribe();
     };
     return ReactiveService;
 }(Reactive));
@@ -2044,16 +2966,399 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @record
+ * @template T, R
+ * @param {?} convert
+ * @return {?}
+ */
+function hermesMap(convert) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var index = 0;
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                observer.next(convert(value, index++));
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?=} compareFn
+ * @return {?}
+ */
+function hermesDistinctUntilChanged(compareFn) {
+    /** @type {?} */
+    var compare = compareFn ? compareFn : defaultCompareFn;
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var previousValue = null;
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                if (previousValue === null || !compare(previousValue, value)) {
+                    previousValue = value;
+                    observer.next(value);
+                }
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+/**
+ * @template T
+ * @param {?} a
+ * @param {?} b
+ * @return {?}
+ */
+function defaultCompareFn(a, b) {
+    return a === b;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * @template T
  */
-function DefaultAggregateValues() { }
+var  /**
+ * @template T
+ */
+HermesBehaviorSubject = /** @class */ (function (_super) {
+    __extends(HermesBehaviorSubject, _super);
+    function HermesBehaviorSubject(defaultValue) {
+        var _this = _super.call(this) || this;
+        _this.lastValue = defaultValue;
+        return _this;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    HermesBehaviorSubject.prototype.next = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.lastValue = value;
+        _super.prototype.next.call(this, value);
+    };
+    /**
+     * @param {?} arg
+     * @return {?}
+     */
+    HermesBehaviorSubject.prototype.subscribe = /**
+     * @param {?} arg
+     * @return {?}
+     */
+    function (arg) {
+        /** @type {?} */
+        var subscription = _super.prototype.subscribe.call(this, arguments[0], arguments[1], arguments[2]);
+        _super.prototype.next.call(this, this.lastValue);
+        return subscription;
+    };
+    return HermesBehaviorSubject;
+}(HermesSubject));
 if (false) {
-    /** @type {?} */
-    DefaultAggregateValues.prototype.aggregateId;
-    /** @type {?} */
-    DefaultAggregateValues.prototype.value;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesBehaviorSubject.prototype.lastValue;
 }
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var  /**
+ * @template T
+ */
+HermesReplaySubject = /** @class */ (function (_super) {
+    __extends(HermesReplaySubject, _super);
+    function HermesReplaySubject(bufferSize) {
+        if (bufferSize === void 0) { bufferSize = 1; }
+        var _this = _super.call(this) || this;
+        _this.bufferSize = bufferSize;
+        _this.values = [];
+        return _this;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    HermesReplaySubject.prototype.next = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.values.push(value);
+        if (this.bufferSize < this.values.length) {
+            this.values.shift();
+        }
+        _super.prototype.next.call(this, value);
+    };
+    /**
+     * @param {?} arg
+     * @return {?}
+     */
+    HermesReplaySubject.prototype.subscribe = /**
+     * @param {?} arg
+     * @return {?}
+     */
+    function (arg) {
+        var e_1, _a;
+        /** @type {?} */
+        var subscriber;
+        if (arg instanceof HermesSubscriber) {
+            subscriber = arg;
+        }
+        else {
+            subscriber = this.createSubscriber(arguments[0], arguments[1], arguments[2]);
+        }
+        /** @type {?} */
+        var subscription = _super.prototype.subscribe.call(this, subscriber);
+        try {
+            for (var _b = __values(this.values), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var value = _c.value;
+                subscriber.next(value);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        return subscription;
+    };
+    return HermesReplaySubject;
+}(HermesSubject));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesReplaySubject.prototype.values;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesReplaySubject.prototype.bufferSize;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var  /**
+ * @template T
+ */
+HermesArchiveSubject = /** @class */ (function (_super) {
+    __extends(HermesArchiveSubject, _super);
+    function HermesArchiveSubject() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @template T
+     * @param {?=} value
+     * @return {?}
+     */
+    HermesArchiveSubject.of = /**
+     * @template T
+     * @param {?=} value
+     * @return {?}
+     */
+    function (value) {
+        if (value !== undefined) {
+            return new HermesBehaviorSubject(value);
+        }
+        else {
+            return new HermesReplaySubject(1);
+        }
+    };
+    return HermesArchiveSubject;
+}(HermesSubject));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template K, T
+ */
+var  /**
+ * @abstract
+ * @template K, T
+ */
+KeyArchive = /** @class */ (function (_super) {
+    __extends(KeyArchive, _super);
+    function KeyArchive(defaultValue) {
+        var _this = _super.call(this) || this;
+        _this.archive = new KeyMap();
+        _this.defaultValue = Optional.empty();
+        _this.archive$ = HermesArchiveSubject.of();
+        if (defaultValue !== undefined && defaultValue !== null) {
+            _this.defaultValue = Optional.of(defaultValue);
+        }
+        return _this;
+    }
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    KeyArchive.prototype.on = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        var _this = this;
+        this.tryToInitDefault(key);
+        return this.archive$
+            .toObservable()
+            .pipe(hermesFilter((/**
+         * @return {?}
+         */
+        function () { return _this.isNotStopped(); })), hermesMap((/**
+         * @param {?} map
+         * @return {?}
+         */
+        function (map) {
+            return map.get(key);
+        })), hermesFilter((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value.isPresent(); })), hermesMap((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return value.getValueOrNullOrThrowError(); })), hermesDistinctUntilChanged(), this.hermesTakeUntil());
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    KeyArchive.prototype.once = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return this.on(key)
+            .pipe(hermesTake(1));
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    KeyArchive.prototype.get = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        this.tryToInitDefault(key);
+        return this.archive.get(key);
+    };
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    KeyArchive.prototype.next = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        this.archive.set(key, value);
+        this.archive$.next(this.archive);
+    };
+    /**
+     * @private
+     * @param {?} key
+     * @return {?}
+     */
+    KeyArchive.prototype.tryToInitDefault = /**
+     * @private
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        var _this = this;
+        this.defaultValue
+            .ifPresent((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if (!_this.archive.has(key)) {
+                _this.next(key, value);
+            }
+        }));
+    };
+    return KeyArchive;
+}(ReactiveService));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyArchive.prototype.archive;
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyArchive.prototype.archive$;
+    /**
+     * @type {?}
+     * @private
+     */
+    KeyArchive.prototype.defaultValue;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /**
  * @abstract
  * @template T
@@ -2065,87 +3370,10 @@ var  /**
 AggregateArchive = /** @class */ (function (_super) {
     __extends(AggregateArchive, _super);
     function AggregateArchive(defaultValue) {
-        var _this = _super.call(this) || this;
-        _this.archive = new KeyMap();
-        if (defaultValue) {
-            _this.archive.set(defaultValue.aggregateId, defaultValue.value);
-            _this.archive$ = new BehaviorSubject(_this.archive);
-        }
-        else {
-            _this.archive$ = new ReplaySubject(1);
-        }
-        return _this;
+        return _super.call(this, defaultValue) || this;
     }
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    AggregateArchive.prototype.on = /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    function (aggregateId) {
-        var _this = this;
-        return this.archive$
-            .asObservable()
-            .pipe(filter((/**
-         * @return {?}
-         */
-        function () { return _this.isNotStopped(); })), map((/**
-         * @param {?} map
-         * @return {?}
-         */
-        function (map) {
-            return map.get(aggregateId);
-        })), filter((/**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) { return value.isPresent(); })), map((/**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) { return value.getValueOrNullOrThrowError(); })), distinctUntilChanged(), this.takeUntil());
-    };
-    /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    AggregateArchive.prototype.get = /**
-     * @param {?} aggregateId
-     * @return {?}
-     */
-    function (aggregateId) {
-        return this.archive.get(aggregateId);
-    };
-    /**
-     * @param {?} aggregateId
-     * @param {?} value
-     * @return {?}
-     */
-    AggregateArchive.prototype.next = /**
-     * @param {?} aggregateId
-     * @param {?} value
-     * @return {?}
-     */
-    function (aggregateId, value) {
-        this.archive.set(aggregateId, value);
-        this.archive$.next(this.archive);
-    };
     return AggregateArchive;
-}(ReactiveService));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    AggregateArchive.prototype.archive;
-    /**
-     * @type {?}
-     * @private
-     */
-    AggregateArchive.prototype.archive$;
-}
+}(KeyArchive));
 
 /**
  * @fileoverview added by tsickle
@@ -2377,7 +3605,7 @@ ReadModelRootRepository = /** @class */ (function (_super) {
     function ReadModelRootRepository(domainEventBus) {
         var _this = _super.call(this) || this;
         domainEventBus
-            .ofEvent.apply(domainEventBus, __spread(_this.forEvents())).pipe(_this.takeUntil())
+            .ofEvent.apply(domainEventBus, __spread(_this.forEvents())).pipe(_this.hermesTakeUntil())
             .subscribe((/**
          * @param {?} event
          * @return {?}
@@ -2471,11 +3699,11 @@ EventRepository = /** @class */ (function (_super) {
     function (aggregateId, eventType) {
         return this.domainEventBus
             .ofEvent((/** @type {?} */ (eventType)))
-            .pipe(filter((/**
+            .pipe(hermesFilter((/**
          * @param {?} event
          * @return {?}
          */
-        function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })), this.takeUntil());
+        function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })));
     };
     return EventRepository;
 }(ReactiveService));
@@ -2629,6 +3857,481 @@ FeatureModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @template T
+ * @return {?}
+ */
+function hermesNever() {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} interval
+ * @return {?}
+ */
+function hermesInterval(interval) {
+    /** @type {?} */
+    var counter = 0;
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var id = setInterval((/**
+         * @return {?}
+         */
+        function () {
+            observer.next(counter++);
+        }), interval);
+        return (/**
+         * @return {?}
+         */
+        function () {
+            clearInterval(id);
+            observer.complete();
+        });
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} time
+ * @return {?}
+ */
+function hermesTimer(time) {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var id = setTimeout((/**
+         * @return {?}
+         */
+        function () {
+            observer.next(0);
+        }), time);
+        return (/**
+         * @return {?}
+         */
+        function () {
+            clearTimeout(id);
+            observer.complete();
+        });
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} element
+ * @param {?} type
+ * @return {?}
+ */
+function hermesFromEvent(element, type) {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var listener = (/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            observer.next(event);
+        });
+        element.addEventListener(type, listener);
+        return (/**
+         * @return {?}
+         */
+        function () {
+            element.removeEventListener(type, listener);
+        });
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var /**
+ * @template T
+ */
+HermesSingleSubscriber = /** @class */ (function (_super) {
+    __extends(HermesSingleSubscriber, _super);
+    function HermesSingleSubscriber() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    HermesSingleSubscriber.prototype.next = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        if (this.isCompleted()) {
+            return;
+        }
+        /** @type {?} */
+        var observer = this.getObserver();
+        if (observer && observer.next) {
+            observer.next(value);
+            this.complete();
+        }
+    };
+    return HermesSingleSubscriber;
+}(HermesSubscriber));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var  /**
+ * @template T
+ */
+HermesSingle = /** @class */ (function (_super) {
+    __extends(HermesSingle, _super);
+    function HermesSingle() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @protected
+     * @param {?=} next
+     * @param {?=} error
+     * @param {?=} complete
+     * @return {?}
+     */
+    HermesSingle.prototype.createSubscriber = /**
+     * @protected
+     * @param {?=} next
+     * @param {?=} error
+     * @param {?=} complete
+     * @return {?}
+     */
+    function (next, error, complete) {
+        return new HermesSingleSubscriber({
+            next: next,
+            error: error,
+            complete: complete
+        });
+    };
+    return HermesSingle;
+}(HermesObservable));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} source
+ * @return {?}
+ */
+function singleFromObservable(source) {
+    return new HermesSingle((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var subscriber = new HermesSubscriber({
+            next: (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) { return observer.next(value); }),
+            error: (/**
+             * @param {?} error
+             * @return {?}
+             */
+            function (error) { return observer.error(error); }),
+            complete: (/**
+             * @return {?}
+             */
+            function () {
+            })
+        });
+        /** @type {?} */
+        var subscription = source.subscribe(subscriber);
+        return subscription.getFinalize();
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} error
+ * @return {?}
+ */
+function hermesThrowError(error) {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        observer.error(error);
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} valuesNumber
+ * @return {?}
+ */
+function hermesSkip(valuesNumber) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var index = 0;
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                if (index >= valuesNumber) {
+                    observer.next(value);
+                }
+                index++;
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T, R
+ * @param {?} operation
+ * @return {?}
+ */
+function hermesSwitchMap(operation) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var isOuterCompleted = false;
+            /** @type {?} */
+            var innerSubscriber = null;
+            /** @type {?} */
+            var tryToComplete = (/**
+             * @return {?}
+             */
+            function () {
+                if (isOuterCompleted && !innerSubscriber) {
+                    observer.complete();
+                }
+            });
+            /** @type {?} */
+            var outerSubscriber = subscriberForOperator(observer, (/**
+             * @param {?} v
+             * @return {?}
+             */
+            function (v) {
+                if (innerSubscriber) {
+                    innerSubscriber.unsubscribe();
+                }
+                /** @type {?} */
+                var subscriber = new HermesSubscriber({
+                    next: (/**
+                     * @param {?} v2
+                     * @return {?}
+                     */
+                    function (v2) { return observer.next(v2); }),
+                    error: (/**
+                     * @param {?} e
+                     * @return {?}
+                     */
+                    function (e) { return observer.error(e); }),
+                    complete: (/**
+                     * @return {?}
+                     */
+                    function () {
+                        innerSubscriber = null;
+                        tryToComplete();
+                    })
+                });
+                innerSubscriber = subscriber;
+                /** @type {?} */
+                var innerSubscription = operation(v).subscribe(subscriber);
+                return innerSubscription.getFinalize();
+            }), (/**
+             * @return {?}
+             */
+            function () {
+                isOuterCompleted = true;
+                tryToComplete();
+            }));
+            return source.subscribe(outerSubscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} operation
+ * @return {?}
+ */
+function hermesTap(operation) {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                operation(value);
+                observer.next(value);
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @return {?}
+ */
+function hermesToArray() {
+    return (/**
+     * @param {?} source
+     * @return {?}
+     */
+    function (source) {
+        return new HermesObservable((/**
+         * @param {?} observer
+         * @return {?}
+         */
+        function (observer) {
+            /** @type {?} */
+            var values = [];
+            /** @type {?} */
+            var subscriber = subscriberForOperator(observer, (/**
+             * @param {?} value
+             * @return {?}
+             */
+            function (value) {
+                values.push(value);
+            }), (/**
+             * @return {?}
+             */
+            function () {
+                if (values.length > 0) {
+                    observer.next(values);
+                }
+                observer.complete();
+            }));
+            return source.subscribe(subscriber).getFinalize();
+        }));
+    });
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ * @param {?} source$
+ * @return {?}
+ */
+function fromRxJsObservable(source$) {
+    return new HermesObservable((/**
+     * @param {?} observer
+     * @return {?}
+     */
+    function (observer) {
+        /** @type {?} */
+        var subscription = source$.subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return observer.next(value); }), (/**
+         * @param {?} error
+         * @return {?}
+         */
+        function (error) { return observer.error(error); }), (/**
+         * @return {?}
+         */
+        function () { return observer.complete(); }));
+        return (/**
+         * @return {?}
+         */
+        function () { return subscription.unsubscribe(); });
+    }));
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * @abstract
  * @template T
  */
@@ -2638,12 +4341,7 @@ var  /**
  */
 Archive = /** @class */ (function () {
     function Archive(value) {
-        if (value) {
-            this.archive$ = new BehaviorSubject(value);
-        }
-        else {
-            this.archive$ = new ReplaySubject(1);
-        }
+        this.archive$ = HermesArchiveSubject.of(value);
     }
     /**
      * @return {?}
@@ -2652,7 +4350,9 @@ Archive = /** @class */ (function () {
      * @return {?}
      */
     function () {
-        return this.archive$.asObservable();
+        return this.archive$
+            .toObservable()
+            .pipe(hermesDistinctUntilChanged(this.compare));
     };
     /**
      * @param {?} value
@@ -2664,6 +4364,19 @@ Archive = /** @class */ (function () {
      */
     function (value) {
         this.archive$.next(value);
+    };
+    /**
+     * @param {?} one
+     * @param {?} two
+     * @return {?}
+     */
+    Archive.prototype.compare = /**
+     * @param {?} one
+     * @param {?} two
+     * @return {?}
+     */
+    function (one, two) {
+        return one === two;
     };
     return Archive;
 }());
@@ -3055,21 +4768,11 @@ InMemoryAggregateStore = /** @class */ (function (_super) {
         function (a) { return a.clearEvents(); }));
         return optAggregate;
     };
-    // getAll(): Array<T> {
-    // 	return this.inMemoryStore.getAll();
-    // }
-    // getAll(): Array<T> {
-    // 	return this.inMemoryStore.getAll();
-    // }
     /**
      * @param {?} aggregateId
      * @return {?}
      */
-    InMemoryAggregateStore.prototype.remove = 
-    // getAll(): Array<T> {
-    // 	return this.inMemoryStore.getAll();
-    // }
-    /**
+    InMemoryAggregateStore.prototype.remove = /**
      * @param {?} aggregateId
      * @return {?}
      */
@@ -3121,28 +4824,12 @@ InMemoryReadModelStore = /** @class */ (function (_super) {
     function (aggregateId) {
         return this.getValue(aggregateId);
     };
-    // getAll(): ReadonlyArray<R> {
-    // 	return this.inMemoryStore
-    // 			   .getAll()
-    // 			   .map((aggregate: A) => this.toReadModel(aggregate));
-    // }
-    // getAll(): ReadonlyArray<R> {
-    // 	return this.inMemoryStore
-    // 			   .getAll()
-    // 			   .map((aggregate: A) => this.toReadModel(aggregate));
-    // }
     /**
      * @private
      * @param {?} aggregateId
      * @return {?}
      */
-    InMemoryReadModelStore.prototype.getValue = 
-    // getAll(): ReadonlyArray<R> {
-    // 	return this.inMemoryStore
-    // 			   .getAll()
-    // 			   .map((aggregate: A) => this.toReadModel(aggregate));
-    // }
-    /**
+    InMemoryReadModelStore.prototype.getValue = /**
      * @private
      * @param {?} aggregateId
      * @return {?}
@@ -3296,12 +4983,12 @@ var ConsoleCommandLogger = /** @class */ (function (_super) {
     function ConsoleCommandLogger(commandBus) {
         var _this = _super.call(this) || this;
         _this.enabled = false;
-        _this.unsubscribe$ = new Subject();
+        _this.unsubscribe$ = new HermesSubject();
         commandBus
-            .pipe(filter((/**
+            .pipe(hermesFilter((/**
          * @return {?}
          */
-        function () { return _this.enabled; })), takeUntil(_this.unsubscribe$))
+        function () { return _this.enabled; })), hermesTakeUntil(_this.unsubscribe$))
             .subscribe((/**
          * @param {?} command
          * @return {?}
@@ -3425,12 +5112,12 @@ var ConsoleEventLogger = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.aggregateStoreRegister = aggregateStoreRegister;
         _this.enabled = false;
-        _this.unsubscribe$ = new Subject();
+        _this.unsubscribe$ = new HermesSubject();
         eventBus
-            .pipe(filter((/**
+            .pipe(hermesFilter((/**
          * @return {?}
          */
-        function () { return _this.enabled; })), takeUntil(_this.unsubscribe$))
+        function () { return _this.enabled; })), hermesTakeUntil(_this.unsubscribe$))
             .subscribe((/**
          * @param {?} domainEvent
          * @return {?}
@@ -3819,6 +5506,17 @@ AggregateFactoryArchive = /** @class */ (function () {
     function (key) {
         return Optional.of(this.map.get(key));
     };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    AggregateFactoryArchive.prototype.has = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return this.map.has(key);
+    };
     return AggregateFactoryArchive;
 }());
 if (false) {
@@ -3861,6 +5559,17 @@ AggregateRepositoryArchive = /** @class */ (function () {
      */
     function (key) {
         return Optional.of(this.map.get(key));
+    };
+    /**
+     * @param {?} key
+     * @return {?}
+     */
+    AggregateRepositoryArchive.prototype.has = /**
+     * @param {?} key
+     * @return {?}
+     */
+    function (key) {
+        return this.map.has(key);
     };
     return AggregateRepositoryArchive;
 }());
@@ -4186,6 +5895,249 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @template I, E
+ */
+var /**
+ * @template I, E
+ */
+DomainEventHandlerInitializer = /** @class */ (function (_super) {
+    __extends(DomainEventHandlerInitializer, _super);
+    function DomainEventHandlerInitializer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @param {?} eventHandlers
+     * @param {?} domainEventBus
+     * @return {?}
+     */
+    DomainEventHandlerInitializer.prototype.init = /**
+     * @param {?} eventHandlers
+     * @param {?} domainEventBus
+     * @return {?}
+     */
+    function (eventHandlers, domainEventBus) {
+        var _this = this;
+        if (eventHandlers) {
+            /** @type {?} */
+            var set_1 = new Set();
+            /** @type {?} */
+            var filteredHandlers_1 = [];
+            eventHandlers.filter((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                if (!set_1.has(((/** @type {?} */ (handler))).domainEventHandler)) {
+                    set_1.add(((/** @type {?} */ (handler))).domainEventHandler);
+                    filteredHandlers_1.push(handler);
+                }
+            }));
+            filteredHandlers_1.forEach((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                domainEventBus
+                    .ofEventHandler(handler)
+                    .pipe(_this.hermesTakeUntil())
+                    .subscribe((/**
+                 * @param {?} event
+                 * @return {?}
+                 */
+                function (event) {
+                    handler.handleEvent(event);
+                }));
+            }));
+            // console.log('Registered event handlers:', filteredHandlers.length)
+            // console.log('Registered event handlers:', filteredHandlers)
+        }
+    };
+    return DomainEventHandlerInitializer;
+}(Reactive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template I, A, C
+ */
+var /**
+ * @template I, A, C
+ */
+CommandHandlerInitializer = /** @class */ (function (_super) {
+    __extends(CommandHandlerInitializer, _super);
+    function CommandHandlerInitializer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * @param {?} commandHandlers
+     * @param {?} commandBus
+     * @return {?}
+     */
+    CommandHandlerInitializer.prototype.register = /**
+     * @param {?} commandHandlers
+     * @param {?} commandBus
+     * @return {?}
+     */
+    function (commandHandlers, commandBus) {
+        var _this = this;
+        if (commandHandlers) {
+            /** @type {?} */
+            var set_1 = new Set();
+            /** @type {?} */
+            var filteredHandlers_1 = [];
+            commandHandlers.filter((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                if (!set_1.has(((/** @type {?} */ (handler))).commandHandler)) {
+                    set_1.add(((/** @type {?} */ (handler))).commandHandler);
+                    filteredHandlers_1.push(handler);
+                }
+            }));
+            filteredHandlers_1.forEach((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                commandBus
+                    .ofCommandHandler(handler)
+                    .pipe(_this.hermesTakeUntil())
+                    .subscribe((/**
+                 * @param {?} command
+                 * @return {?}
+                 */
+                function (command) {
+                    handler.handleCommand(command);
+                }));
+            }));
+            // console.log('Registered command handlers:' + filteredHandlers.length);
+            // console.log('Registered command handlers:', filteredHandlers);
+        }
+    };
+    /**
+     * @param {?} aggregateCommandHandlers
+     * @param {?} commandBus
+     * @return {?}
+     */
+    CommandHandlerInitializer.prototype.registerAggregateCommandHandlers = /**
+     * @param {?} aggregateCommandHandlers
+     * @param {?} commandBus
+     * @return {?}
+     */
+    function (aggregateCommandHandlers, commandBus) {
+        var _this = this;
+        if (aggregateCommandHandlers) {
+            /** @type {?} */
+            var set_2 = new Set();
+            /** @type {?} */
+            var filteredHandlers_2 = [];
+            aggregateCommandHandlers.filter((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                if (!set_2.has(((/** @type {?} */ (handler))).createAggregateCommandHandler)) {
+                    set_2.add(((/** @type {?} */ (handler))).createAggregateCommandHandler);
+                    filteredHandlers_2.push(handler);
+                }
+            }));
+            filteredHandlers_2.forEach((/**
+             * @param {?} handler
+             * @return {?}
+             */
+            function (handler) {
+                commandBus
+                    .ofCreateAggregateHandler(handler)
+                    .pipe(_this.hermesTakeUntil())
+                    .subscribe((/**
+                 * @param {?} command
+                 * @return {?}
+                 */
+                function (command) {
+                    handler.handleCommand(command);
+                }));
+            }));
+            // console.log('Registered create command handlers:' + filteredHandlers.length);
+            // console.log('Registered create command handlers:', filteredHandlers);
+        }
+    };
+    return CommandHandlerInitializer;
+}(Reactive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template I, A
+ */
+var /**
+ * @template I, A
+ */
+AggregateDefinitionInitializer = /** @class */ (function () {
+    function AggregateDefinitionInitializer() {
+    }
+    /**
+     * @param {?} definedAggregate
+     * @param {?} injector
+     * @param {?} aggregateFactoryArchive
+     * @param {?} aggregateRepositoryArchive
+     * @return {?}
+     */
+    AggregateDefinitionInitializer.prototype.register = /**
+     * @param {?} definedAggregate
+     * @param {?} injector
+     * @param {?} aggregateFactoryArchive
+     * @param {?} aggregateRepositoryArchive
+     * @return {?}
+     */
+    function (definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive) {
+        if (definedAggregate) {
+            /** @type {?} */
+            var set_1 = new Set();
+            /** @type {?} */
+            var filteredDefinitions_1 = [];
+            definedAggregate.filter((/**
+             * @param {?} def
+             * @return {?}
+             */
+            function (def) {
+                if (!set_1.has(def.key)) {
+                    set_1.add(def.key);
+                    filteredDefinitions_1.push(def);
+                }
+            }));
+            filteredDefinitions_1.forEach((/**
+             * @param {?} def
+             * @return {?}
+             */
+            function (def) {
+                /** @type {?} */
+                var factory = injector.get(def.factory);
+                /** @type {?} */
+                var repository = injector.get(def.repository);
+                if (!aggregateFactoryArchive.has(def.key)) {
+                    aggregateFactoryArchive.add(def.key, factory);
+                }
+                if (!aggregateRepositoryArchive.has(def.key)) {
+                    aggregateRepositoryArchive.add(def.key, repository);
+                }
+            }));
+            // console.log('Registered aggregate definition:' + filteredDefinitions.length);
+            // console.log('Registered aggregate definition:', filteredDefinitions);
+        }
+    };
+    return AggregateDefinitionInitializer;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 /** @type {?} */
 var hermesProviders = [
     RandomStringGenerator,
@@ -4251,86 +6203,17 @@ var HermesBaseModule = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.hermesLoggersInitializer = hermesLoggersInitializer;
         _this.hermesApi = hermesApi;
+        _this.aggregateDefinitionInitializer = new AggregateDefinitionInitializer();
+        _this.commandHandlerInitializer = new CommandHandlerInitializer();
+        _this.domainEventHandlerInitializer = new DomainEventHandlerInitializer();
         _this.hermesLoggersInitializer.start();
         _this.checkNullCommand(commandBus, commandHandlers, aggregateCommandHandlers);
         _this.checkCommandHandlerIsCollection(commandHandlers);
         _this.checkDomainEventHandlerIsCollection(eventHandlers);
-        if (definedAggregate) {
-            definedAggregate.forEach((/**
-             * @param {?} def
-             * @return {?}
-             */
-            function (def) {
-                /** @type {?} */
-                var factory = injector.get(def.factory);
-                /** @type {?} */
-                var repository = injector.get(def.repository);
-                aggregateFactoryArchive.add(def.key, factory);
-                aggregateRepositoryArchive.add(def.key, repository);
-            }));
-        }
-        if (aggregateCommandHandlers) {
-            aggregateCommandHandlers.forEach((/**
-             * @param {?} handler
-             * @return {?}
-             */
-            function (handler) {
-                commandBus
-                    .ofCreateAggregateHandler(handler)
-                    .pipe(_this.takeUntil())
-                    .subscribe((/**
-                 * @param {?} command
-                 * @return {?}
-                 */
-                function (command) {
-                    handler.handleCommand(command);
-                }));
-            }));
-        }
-        if (commandHandlers) {
-            commandHandlers.forEach((/**
-             * @param {?} handler
-             * @return {?}
-             */
-            function (handler) {
-                commandBus
-                    .ofCommandHandler(handler)
-                    .pipe(_this.takeUntil())
-                    .subscribe((/**
-                 * @param {?} command
-                 * @return {?}
-                 */
-                function (command) {
-                    handler.handleCommand(command);
-                }));
-            }));
-        }
-        if (eventHandlers) {
-            eventHandlers.forEach((/**
-             * @param {?} handler
-             * @return {?}
-             */
-            function (handler) {
-                domainEventBus
-                    .ofEventHandler(handler)
-                    .pipe(_this.takeUntil())
-                    .subscribe((/**
-                 * @param {?} event
-                 * @return {?}
-                 */
-                function (event) {
-                    handler.handleEvent(event);
-                }));
-            }));
-            // domainEventBus
-            // 	.pipe(this.takeUntil())
-            // 	.subscribe((event: E) => {
-            //
-            // 		eventHandlers.forEach((handler: DomainEventHandlerImpl<I, E>) => {
-            // 			handler.handleEvent(event);
-            // 		});
-            // 	});
-        }
+        _this.aggregateDefinitionInitializer.register(definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive);
+        _this.commandHandlerInitializer.register(commandHandlers, commandBus);
+        _this.commandHandlerInitializer.registerAggregateCommandHandlers(aggregateCommandHandlers, commandBus);
+        _this.domainEventHandlerInitializer.init(eventHandlers, domainEventBus);
         return _this;
     }
     /**
@@ -4342,6 +6225,8 @@ var HermesBaseModule = /** @class */ (function (_super) {
     function () {
         _super.prototype.ngOnDestroy.call(this);
         this.hermesLoggersInitializer.stop();
+        this.commandHandlerInitializer.ngOnDestroy();
+        this.domainEventHandlerInitializer.ngOnDestroy();
     };
     /**
      * @private
@@ -4360,7 +6245,7 @@ var HermesBaseModule = /** @class */ (function (_super) {
     function (commandBus, commandHandlers, aggregateCommandHandlers) {
         commandBus
             .ofNullHandler(commandHandlers, aggregateCommandHandlers)
-            .pipe(this.takeUntil())
+            .pipe(this.hermesTakeUntil())
             .subscribe((/**
          * @param {?} command
          * @return {?}
@@ -4419,6 +6304,21 @@ var HermesBaseModule = /** @class */ (function (_super) {
     return HermesBaseModule;
 }(Reactive));
 if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesBaseModule.prototype.aggregateDefinitionInitializer;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesBaseModule.prototype.commandHandlerInitializer;
+    /**
+     * @type {?}
+     * @private
+     */
+    HermesBaseModule.prototype.domainEventHandlerInitializer;
     /**
      * @type {?}
      * @private
@@ -4703,6 +6603,126 @@ function assertAggregateEvents(actualEvents, expectedEvents) {
         finally { if (e_2) throw e_2.error; }
     }
 }
+/**
+ * @template T
+ * @param {?} createStream
+ * @param {?} desc
+ * @return {?}
+ */
+function testEventRepositoryIsEmptyOnStart(createStream, desc) {
+    it('should be no ' + desc + ' events on start', (/**
+     * @return {?}
+     */
+    function () {
+        expect.assertions(3);
+        // given
+        /** @type {?} */
+        var nextFn = jest.fn();
+        /** @type {?} */
+        var errorFn = jest.fn();
+        /** @type {?} */
+        var completeFn = jest.fn();
+        // when
+        createStream()
+            .subscribe((/**
+         * @return {?}
+         */
+        function () { return nextFn(); }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return errorFn(err); }), (/**
+         * @return {?}
+         */
+        function () { return completeFn(); }));
+        // then
+        expect(nextFn).not.toHaveBeenCalled();
+        expect(errorFn).not.toHaveBeenCalled();
+        expect(completeFn).not.toHaveBeenCalled();
+    }));
+}
+/**
+ * @template T
+ * @param {?} createStream
+ * @param {?} defaultValue
+ * @param {?} desc
+ * @return {?}
+ */
+function testWarehouseDefaultValueOnStart(createStream, defaultValue, desc) {
+    it('should have default value ' + desc, (/**
+     * @return {?}
+     */
+    function () {
+        expect.assertions(4);
+        // given
+        /** @type {?} */
+        var nextFn = jest.fn();
+        /** @type {?} */
+        var errorFn = jest.fn();
+        /** @type {?} */
+        var completeFn = jest.fn();
+        // when
+        createStream()
+            .subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return nextFn(value); }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return errorFn(err); }), (/**
+         * @return {?}
+         */
+        function () { return completeFn(); }));
+        // then
+        expect(nextFn).toHaveBeenCalledWith(defaultValue);
+        expect(nextFn).toHaveBeenCalledTimes(1);
+        expect(errorFn).not.toHaveBeenCalled();
+        expect(completeFn).not.toHaveBeenCalled();
+    }));
+}
+/**
+ * @template T
+ * @param {?} createStream
+ * @param {?} defaultValue
+ * @param {?} desc
+ * @return {?}
+ */
+function testWarehouseDefaultValueOnStartOnce(createStream, defaultValue, desc) {
+    it('should have default value ' + desc, (/**
+     * @return {?}
+     */
+    function () {
+        expect.assertions(4);
+        // given
+        /** @type {?} */
+        var nextFn = jest.fn();
+        /** @type {?} */
+        var errorFn = jest.fn();
+        /** @type {?} */
+        var completeFn = jest.fn();
+        // when
+        createStream()
+            .subscribe((/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) { return nextFn(value); }), (/**
+         * @param {?} err
+         * @return {?}
+         */
+        function (err) { return errorFn(err); }), (/**
+         * @return {?}
+         */
+        function () { return completeFn(); }));
+        // then
+        expect(nextFn).toHaveBeenCalledWith(defaultValue);
+        expect(nextFn).toHaveBeenCalledTimes(1);
+        expect(errorFn).not.toHaveBeenCalled();
+        expect(completeFn).toHaveBeenCalledTimes(1);
+    }));
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4737,5 +6757,5 @@ CreateAggregateCommand = /** @class */ (function (_super) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesId, HermesModule, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, provideEventHandlers, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, CreateAggregateCommandHandlerImpl as ɵba, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, DOMAIN_EVENT_HANDLERS as ɵh, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵi, COMMAND_HANDLERS as ɵj, aggregateDefinitionToken as ɵk, AggregateFactoryArchive as ɵm, AggregateRepositoryArchive as ɵn, HermesLoggersInitializer as ɵo, ConsoleCommandLogger as ɵp, NoopCommandLogger as ɵq, ConsoleEventLogger as ɵr, NoopEventLogger as ɵs, HermesDomainModule as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, domainEventHandlerFactory as ɵw, multiDomainEventHandlerFactory as ɵx, DomainEventHandlerImpl as ɵy, createAggregateCommandHandlerFactory as ɵz };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, provideEventHandlers, singleFromObservable, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce, toRxJsObservable, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, createAggregateCommandHandlerFactory as ɵba, CreateAggregateCommandHandlerImpl as ɵbb, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, KeyArchive as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, HermesDomainModule as ɵu, commandHandlerFactory as ɵv, CommandHandlerImpl as ɵw, domainEventHandlerFactory as ɵx, multiDomainEventHandlerFactory as ɵy, DomainEventHandlerImpl as ɵz };
 //# sourceMappingURL=generic-ui-hermes.js.map

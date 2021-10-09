@@ -8,15 +8,14 @@ import { FormationWarehouse } from '../../../source/core/api/formation/formation
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
 import { VerticalFormationRepository } from '../../../vertical-formation/core/api/vertical-formation.repository';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
-import { StructureId } from '../../../core/domain/structure.id';
-import { SearchPhraseRepository } from '../../../search/core/api/phrase/search-phrase.repository';
-import { SearchHighlightArchive } from '../../../search/core/api/highlight/search-highlight.archive';
-import { StructureVerticalFormationWarehouse } from '../../../vertical-formation/core/api/structure-vertical-formation.warehouse';
+import { StructureId } from '../../../core/api/structure.id';
+import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
 import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
 import { SchemaRowClassArchive } from '../../../../schema/core/api/styling/schema.row-class.archive';
 import { SchemaRowStyleArchive } from '../../../../schema/core/api/styling/schema.row-style.archive';
 import { SchemaRowClass } from '../../../../schema/core/api/styling/schema.row-class';
 import { SchemaRowStyle } from '../../../../schema/core/api/styling/schema.row-style';
+import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
     private readonly changeDetectorRef;
@@ -29,8 +28,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     private readonly verticalFormationRepository;
     private readonly structureId;
     private readonly rowSelectionTypeArchive;
-    private readonly structureSearchPhraseRepository;
-    private readonly structureSearchHighlightArchive;
+    private readonly searchWarehouse;
     private readonly schemaRowClassArchive;
     private readonly schemaRowStyleArchive;
     source: Array<ItemEntity>;
@@ -45,8 +43,8 @@ export declare class StructureContentComponent extends SmartComponent implements
     checkboxSelection: boolean;
     schemaRowClass: SchemaRowClass;
     schemaRowStyle: SchemaRowStyle;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: StructureVerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
-    rowSelectionTypeArchive: RowSelectionTypeArchive, structureSearchPhraseRepository: SearchPhraseRepository, structureSearchHighlightArchive: SearchHighlightArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: VerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    rowSelectionTypeArchive: RowSelectionTypeArchive, searchWarehouse: SearchWarehouse, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;

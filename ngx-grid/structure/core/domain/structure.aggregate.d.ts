@@ -7,7 +7,7 @@ import { SorterCollection } from '../../sorting/core/domain/sorter.collection';
 import { FilterManager } from '../../filter/core/domain/filter.manager';
 import { FieldCollection } from '../../field/core/domain/field-collection';
 import { FormationManager } from '../../source/core/domain/formation/core/formation-manager';
-import { StructureId } from './structure.id';
+import { StructureId } from '../api/structure.id';
 import { StructureEditSourceItemParams } from '../../source/core/domain/origin/edit/structure.edit-source-item.params';
 import { PagingConfig } from '../../paging/core/api/paging-config';
 import { OriginItemEntity } from '../../source/core/domain/origin/origin-item-entity';

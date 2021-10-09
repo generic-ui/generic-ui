@@ -1,19 +1,19 @@
-import { ChangeDetectorRef, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { StructureReadModelRoot } from '../../core/api/read/structure.read-model-root';
 import { StructureDefinition } from '../structure-definition';
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { PagingWarehouse } from '../../../paging/core/api/paging.warehouse';
-import { StructureInfoPanelArchive } from '../panel/info/structure.info-panel.archive';
-import { StructureSummariesArchive } from '../panel/summaries/structure.summaries.archive';
+import { StructureInfoPanelArchive } from '../../core/api/panel/info/structure.info-panel.archive';
+import { StructureSummariesArchive } from '../../../summaries/feature/structure.summaries.archive';
 import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
 import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
 import { StructureTitlePanelConfigArchive } from '../panel/banner-panels/title-panel/structure.title-panel.config-archive';
 import { StructureFooterPanelConfigArchive } from '../panel/banner-panels/footer-panel/structure.footer-panel.config-archive';
-export declare class StructureBlueprintComponent extends SmartComponent {
+export declare class StructureBlueprintComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureDefinition;
     private readonly structureId;

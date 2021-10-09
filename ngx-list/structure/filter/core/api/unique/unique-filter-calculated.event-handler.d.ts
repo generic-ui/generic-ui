@@ -1,10 +1,10 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { UniqueFilterCalculatedEvent } from '../../domain/unique/calculate/unique-filter-calculated.event';
-import { UniqueValuesRepository } from './unique-values.repository';
+import { UniqueValuesArchive } from './unique-values.archive';
 export declare class UniqueFilterCalculatedEventHandler implements DomainEventHandler<StructureId, UniqueFilterCalculatedEvent> {
     private readonly uniqueValuesRepository;
-    constructor(uniqueValuesRepository: UniqueValuesRepository);
+    constructor(uniqueValuesRepository: UniqueValuesArchive);
     forEvent(): DomainEventType<UniqueFilterCalculatedEvent>;
     handle(calculatedEvent: UniqueFilterCalculatedEvent): void;
 }

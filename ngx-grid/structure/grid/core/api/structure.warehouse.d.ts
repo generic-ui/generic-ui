@@ -1,9 +1,9 @@
-import { Observable } from 'rxjs';
-import { AggregateId } from '@generic-ui/hermes';
+import { HermesObservable, Warehouse } from '@generic-ui/hermes';
 import { StructureReadModelRepository } from './read/structure.read-model-repository';
 import { StructureReadModelRoot } from './read/structure.read-model-root';
-export declare class StructureWarehouse {
+import { StructureId } from '../../../core/api/structure.id';
+export declare class StructureWarehouse implements Warehouse {
     private readonly structureRepository;
     constructor(structureRepository: StructureReadModelRepository);
-    onStructure(aggregateId?: AggregateId): Observable<StructureReadModelRoot>;
+    on(structureId: StructureId): HermesObservable<StructureReadModelRoot>;
 }

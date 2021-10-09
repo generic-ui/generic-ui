@@ -2,7 +2,7 @@ import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/h
 import { AddFilterCommand } from './add-filter.command';
 import { StructureAggregate } from '../../../../../core/domain/structure.aggregate';
 export declare class AddFilterCommandHandler implements CommandHandler<StructureAggregate, AddFilterCommand> {
-    private domainEventPublisher;
+    private readonly domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<AddFilterCommand>;
     handle(structure: StructureAggregate, command: AddFilterCommand): void;

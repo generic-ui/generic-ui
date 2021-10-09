@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 import { SortOrder } from '../../../../../composition/core/domain/column/sort/sort-order';
 import { FieldId } from '../../../../field/core/domain/field/field.id';
 import { CompositionId } from '../../../../../composition/core/domain/composition.id';

@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
+import { HermesObservable } from '@generic-ui/hermes';
 export declare class StructureCellEditCloseAllService {
     private readonly closeAll$;
     closeAll(): void;
-    onCloseAll(): Observable<void>;
+    onCloseAll(): HermesObservable<void>;
 }

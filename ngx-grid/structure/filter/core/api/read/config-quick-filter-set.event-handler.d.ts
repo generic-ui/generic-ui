@@ -1,10 +1,10 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
-import { QuickFilterEnabledRepository } from './quick-filter-enabled.repository';
+import { QuickFilterEnabledArchive } from './quick-filter-enabled.archive';
 import { ConfigQuickFilterSetEvent } from '../../domain/quick/config-quick-filter-set.event';
-import { StructureId } from '../../../../core/domain/structure.id';
+import { StructureId } from '../../../../core/api/structure.id';
 export declare class ConfigQuickFilterSetEventHandler implements DomainEventHandler<StructureId, ConfigQuickFilterSetEvent> {
     private structureQuickFilterRepository;
-    constructor(structureQuickFilterRepository: QuickFilterEnabledRepository);
+    constructor(structureQuickFilterRepository: QuickFilterEnabledArchive);
     forEvent(): DomainEventType<ConfigQuickFilterSetEvent>;
     handle(event: ConfigQuickFilterSetEvent): void;
 }

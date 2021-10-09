@@ -1,10 +1,10 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
-import { StructureSummariesRepository } from '../../../summaries/core/api/enabled/structure.summaries.repository';
+import { SummariesEnabledArchive } from '../../../summaries/core/domain/enabled/summaries-enabled-archive.service';
 import { StructureCreatedEvent } from './structure-created.event';
-import { StructureId } from '../structure.id';
+import { StructureId } from '../../api/structure.id';
 export declare class StructureCreatedEventHandler implements DomainEventHandler<StructureId, StructureCreatedEvent> {
-    private structureSummariesRepository;
-    constructor(structureSummariesRepository: StructureSummariesRepository);
+    private summariesEnabledArchive;
+    constructor(summariesEnabledArchive: SummariesEnabledArchive);
     forEvent(): DomainEventType<StructureCreatedEvent>;
     handle(event: StructureCreatedEvent): void;
 }

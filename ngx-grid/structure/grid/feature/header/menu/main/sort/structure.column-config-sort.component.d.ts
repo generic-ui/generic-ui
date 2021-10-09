@@ -6,7 +6,7 @@ import { CompositionWarehouse } from '../../../../../../../composition/core/api/
 import { SmartComponent } from '../../../../../../../common/cdk/component/smart-component';
 import { SortingCommandInvoker } from '../../../../../../sorting/core/api/sorting.command-invoker';
 import { CompositionId } from '../../../../../../../composition/core/domain/composition.id';
-import { StructureId } from '../../../../../../core/domain/structure.id';
+import { StructureId } from '../../../../../../core/api/structure.id';
 export declare class StructureColumnConfigSortComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly compositionId;

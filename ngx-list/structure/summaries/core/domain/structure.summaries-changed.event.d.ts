@@ -1,4 +1,4 @@
-import { StructureId } from '../../../core/domain/structure.id';
+import { StructureId } from '../../../core/api/structure.id';
 import { SummariesValues } from './calculation/summaries.values';
 import { StructureDomainEvent } from '../../../core/domain/structure.domain-event';
 export declare class StructureSummariesChangedEvent extends StructureDomainEvent {

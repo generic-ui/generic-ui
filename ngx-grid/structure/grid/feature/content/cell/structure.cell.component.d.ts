@@ -7,9 +7,11 @@ import { SourceCommandInvoker } from '../../../../source/core/api/source.command
 import { ChangedValueEmitter } from '../../../../../composition/core/domain-read/edit/changed-value.emitter';
 import { ItemEntity } from '../../../../source/core/domain/core/item/item.entity';
 import { StructureCellEditCloseAllService } from '../../edit/structure.cell-edit-close-all.service';
+import { StructureId } from '../../../../core/api/structure.id';
 export declare class StructureCellComponent extends SmartComponent implements AfterViewInit {
     private readonly changeDetectorRef;
     private readonly elementRef;
+    private readonly structureId;
     private readonly structureCellEditArchive;
     private readonly structureCellEditStore;
     private readonly cellEditCloseAllService;
@@ -24,7 +26,7 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandInvoker);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandInvoker);
     ngAfterViewInit(): void;
     isCellEditingEnabled(): boolean;
     enterEditMode(forceCheck?: boolean): void;

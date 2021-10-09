@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../../structure/core/domain/structure.id';
+import { StructureId } from '../../../../../structure/core/api/structure.id';
 import { CompositionCommand } from '../../composition.command';
 export declare class SetCompositionResizeWidthCommand extends CompositionCommand {
     private readonly structureId;

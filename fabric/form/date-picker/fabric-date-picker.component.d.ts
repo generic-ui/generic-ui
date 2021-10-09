@@ -5,7 +5,6 @@ import { FabricDatePickerInlineDialogService } from './fabric.date-picker-inline
 import { FabricReactive } from '../../common/fabric-reactive';
 import { Theme } from '../../themes/theme';
 import { FabricDatePickerCompositionService } from './fabric-date-picker-composition.service';
-import { FabricDatePickerOptions } from './models/fabric-date-picker-options';
 export declare class FabricDatePickerComponent extends FabricReactive implements OnInit, OnDestroy {
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
@@ -15,15 +14,16 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     datePickerRef: ElementRef;
     parentElement: ElementRef;
     theme: Theme;
-    selectedDate: Date;
+    selectDate: Date;
     name: string;
     openDialog: boolean;
-    datePickerOptions: FabricDatePickerOptions;
+    onlyDialog: boolean;
+    datePipeOptions: string;
     dateSelected: EventEmitter<any>;
     dialogOpened: EventEmitter<any>;
     datePickerForm: FormGroup;
     pickedDate: Date;
-    pickedDateString: string;
+    inputDisabled: 'disabled' | '';
     constructor(fabricDatePickerInlineDialogService: FabricDatePickerInlineDialogService, datePickerService: FabricDatePickerService, datePickerCompositionService: FabricDatePickerCompositionService, formBuilder: FormBuilder, changeDetectorRef: ChangeDetectorRef);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnInit(): void;
@@ -31,7 +31,8 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     ngOnDestroy(): void;
     openDatePicker(): void;
     closeDatePicker(): void;
-    selectDate(): void;
     private emitSelectedDate;
     private observeDayChanges;
+    private parse;
+    private getDateValues;
 }

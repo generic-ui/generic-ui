@@ -1517,7 +1517,7 @@
      */
     var FabricDatePickerCompositionService = /** @class */ (function () {
         function FabricDatePickerCompositionService() {
-            this.datePickerFormat$ = new rxjs.BehaviorSubject(FabricDatePickerCompositionService.DEFAULT_COMPOSITION);
+            this.datePickerFormat$ = new rxjs.BehaviorSubject(FabricDatePickerComposition.DATE_PICKER);
         }
         /**
          * @return {?}
@@ -1551,53 +1551,67 @@
          */
         function (datePipeOptions) {
             /** @type {?} */
+            var removeDoubles = datePipeOptions.split(':').join(' ');
+            /** @type {?} */
+            var removeDash = removeDoubles.split('/').join(' ');
+            /** @type {?} */
+            var removeDot = removeDash.split('.').join(' ');
+            /** @type {?} */
+            var removeComa = removeDot.split(',').join(' ');
+            /** @type {?} */
+            var formatArray = removeComa.split(' ');
+            /** @type {?} */
             var composition;
-            /** @type {?} */
-            var timerPicker = datePipeOptions.timePicker;
-            /** @type {?} */
-            var showHours = timerPicker.hours;
-            /** @type {?} */
-            var showMinutes = timerPicker.minutes;
-            /** @type {?} */
-            var showSeconds = timerPicker.seconds;
-            /** @type {?} */
-            var isMeridian = timerPicker.meridian;
-            /** @type {?} */
-            var showDatePicker = datePipeOptions.datePicker === undefined ? true : datePipeOptions.datePicker;
-            /** @type {?} */
-            var showTimePicker = showHours || showMinutes || showSeconds;
-            if (showDatePicker) {
-                composition = composition | FabricDatePickerComposition.DATE_PICKER;
-            }
-            if (showTimePicker) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER;
-            }
-            if (isMeridian) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
-            }
-            if (showHours) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
-            }
-            if (showMinutes) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
-            }
-            if (showSeconds) {
-                composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
-            }
+            formatArray.forEach((/**
+             * @param {?} formatItem
+             * @return {?}
+             */
+            function (formatItem) {
+                /** @type {?} */
+                var isDays = formatItem.toLowerCase().includes('d');
+                /** @type {?} */
+                var isMonths = formatItem.includes('M');
+                /** @type {?} */
+                var isYears = formatItem.toLowerCase().includes('y');
+                /** @type {?} */
+                var showHours = formatItem.toLowerCase().includes('h');
+                /** @type {?} */
+                var showMinutes = formatItem.includes('m');
+                /** @type {?} */
+                var showSeconds = formatItem.toLowerCase().includes('s');
+                /** @type {?} */
+                var isMeridian = formatItem.includes('h');
+                /** @type {?} */
+                var showDatePicker = isDays || isMonths || isYears;
+                /** @type {?} */
+                var showTimePicker = showHours || showMinutes || showSeconds;
+                if (showDatePicker) {
+                    composition = composition | FabricDatePickerComposition.DATE_PICKER;
+                }
+                if (showTimePicker) {
+                    composition = composition | FabricDatePickerComposition.TIME_PICKER;
+                }
+                if (isMeridian) {
+                    composition = composition | FabricDatePickerComposition.TIME_PICKER_MERIDIAN;
+                }
+                if (showHours) {
+                    composition = composition | FabricDatePickerComposition.TIME_PICKER_HOURS;
+                }
+                if (showMinutes) {
+                    composition = composition | FabricDatePickerComposition.TIME_PICKER_MINUTES;
+                }
+                if (showSeconds) {
+                    composition = composition | FabricDatePickerComposition.TIME_PICKER_SECONDS;
+                }
+            }));
             return composition;
         };
-        FabricDatePickerCompositionService.DEFAULT_COMPOSITION = FabricDatePickerComposition.DATE_PICKER;
         FabricDatePickerCompositionService.decorators = [
             { type: core.Injectable }
         ];
         return FabricDatePickerCompositionService;
     }());
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FabricDatePickerCompositionService.DEFAULT_COMPOSITION;
         /**
          * @type {?}
          * @private
@@ -2354,6 +2368,8 @@
                     return Theme.LIGHT;
                 case 'dark':
                     return Theme.DARK;
+                default:
+                    return Theme.FABRIC;
             }
         };
         FabricModalThemeService.decorators = [
@@ -2882,9 +2898,8 @@
             _this.formBuilder = formBuilder;
             _this.changeDetectorRef = changeDetectorRef;
             _this.openDialog = false;
-            _this.datePickerOptions = {
-                format: 'dd/MM/yyyy'
-            };
+            _this.onlyDialog = false;
+            _this.datePipeOptions = 'dd/MM/yyyy';
             _this.dateSelected = new core.EventEmitter();
             _this.dialogOpened = new core.EventEmitter();
             _this.datePickerForm = formBuilder.group({
@@ -2901,11 +2916,14 @@
          * @return {?}
          */
         function (changes) {
-            if (changes.selectedDate) {
-                this.datePickerService.dateSelected(this.selectedDate);
+            if (changes.selectDate) {
+                this.datePickerService.dateSelected(this.selectDate);
             }
-            if (changes.datePickerOptions) {
-                this.datePickerCompositionService.next(this.datePickerOptions);
+            if (changes.onlyDialog) {
+                this.inputDisabled = this.onlyDialog ? 'disabled' : ''; // todo !== null ??
+            }
+            if (changes.datePipeOptions) {
+                this.datePickerCompositionService.next(this.datePipeOptions);
             }
         };
         /**
@@ -2925,6 +2943,7 @@
              */
             function (date) {
                 _this.pickedDate = date;
+                _this.emitSelectedDate(date);
             }));
             this.datePickerService
                 .observeSelectedDate()
@@ -2995,14 +3014,6 @@
             this.fabricDatePickerInlineDialogService.close();
         };
         /**
-         * @return {?}
-         */
-        FabricDatePickerComponent.prototype.selectDate = /**
-         * @return {?}
-         */
-        function () {
-        };
-        /**
          * @private
          * @param {?} date
          * @return {?}
@@ -3028,7 +3039,11 @@
             this.datePickerForm
                 .controls['date']
                 .valueChanges
-                .pipe(operators.distinctUntilChanged(), operators.debounceTime(1500), this.takeUntil())
+                .pipe(operators.distinctUntilChanged(), operators.debounceTime(1500), operators.map((/**
+             * @param {?} day
+             * @return {?}
+             */
+            function (day) { return _this.parse(day); })), this.takeUntil())
                 .subscribe((/**
              * @param {?} day
              * @return {?}
@@ -3037,10 +3052,78 @@
                 _this.datePickerService.dateSelected(day);
             }));
         };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        FabricDatePickerComponent.prototype.parse = /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            if ((typeof value === 'string') && (value.includes('/'))) {
+                /** @type {?} */
+                var str = value.split('/');
+                /** @type {?} */
+                var dateValues = this.getDateValues(str);
+                /** @type {?} */
+                var dateHasAllValues = dateValues && dateValues.length === 3;
+                if (dateHasAllValues) {
+                    return new Date(dateValues[0], dateValues[1], dateValues[2]);
+                }
+                else {
+                    return this.pickedDate;
+                }
+            }
+            else {
+                return this.pickedDate;
+            }
+        };
+        /**
+         * @private
+         * @param {?} dateValues
+         * @return {?}
+         */
+        FabricDatePickerComponent.prototype.getDateValues = /**
+         * @private
+         * @param {?} dateValues
+         * @return {?}
+         */
+        function (dateValues) {
+            if (this.datePipeOptions.includes('/')) {
+                /** @type {?} */
+                var dateFormatParts = this.datePipeOptions.toLowerCase().split('/');
+                /** @type {?} */
+                var year_1;
+                /** @type {?} */
+                var month_1;
+                /** @type {?} */
+                var day_1;
+                dateFormatParts.forEach((/**
+                 * @param {?} datePart
+                 * @param {?} i
+                 * @return {?}
+                 */
+                function (datePart, i) {
+                    if (datePart.includes('d')) {
+                        day_1 = +dateValues[i];
+                    }
+                    if (datePart.includes('m')) {
+                        month_1 = +dateValues[i] - 1;
+                    }
+                    if (datePart.includes('y')) {
+                        year_1 = +dateValues[i];
+                    }
+                }));
+                return [year_1, month_1, day_1];
+            }
+        };
         FabricDatePickerComponent.decorators = [
             { type: core.Component, args: [{
                         selector: 'gui-date-picker',
-                        template: "<div #datePicker\n\t (click)=\"openDatePicker()\"\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePickerOptions.format\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input\n\t\t\t   readonly>\n\t</form>\n\n\t<gui-date-picker-icon class=\"gui-date-picker-icon\"></gui-date-picker-icon>\n\n</div>\n",
+                        template: "<div #datePicker\n\t class=\"gui-date-picker\">\n\n\t<form [formGroup]=\"datePickerForm\">\n\n\t\t<input [attr.disabled]=\"inputDisabled\"\n\t\t\t   [name]=name\n\t\t\t   [value]=\"pickedDate | date: datePipeOptions\"\n\t\t\t   class=\"gui-date-picker-input\"\n\t\t\t   formControlName='date'\n\t\t\t   gui-input\n\t\t\t   readonly>\n\t</form>\n\n\t<gui-date-picker-icon (click)=\"openDatePicker()\"\n\t\t\t\t\t\t  class=\"gui-date-picker-icon\">\n\t</gui-date-picker-icon>\n\n</div>\n",
                         changeDetection: core.ChangeDetectionStrategy.OnPush,
                         encapsulation: core.ViewEncapsulation.None,
                         styles: [".gui-date-picker{-ms-flex-align:center;align-items:center;display:-ms-inline-flexbox;display:inline-flex;position:relative}.gui-date-picker input,.gui-date-picker-calendar input{background:0 0;border-radius:0;border-width:0 0 1px;font-family:Arial;font-size:14px;padding:4px}.gui-date-picker input:disabled,.gui-date-picker-calendar input:disabled{color:#333}.gui-date-picker .gui-date-picker-icon,.gui-date-picker-calendar .gui-date-picker-icon{cursor:pointer;position:absolute;right:0}", ".gui-dark .gui-input{background:0 0;color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-arrow-icon:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell{color:#bdbdbd}.gui-dark .gui-date-picker-calendar .gui-date-picker-cell:hover::after{background:#757575}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year{color:#333}.gui-dark .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-dark .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#dfb8e6}", ".gui-material .gui-date-picker-calendar .gui-date-picker-day.gui-date-picker-selected-day::after,.gui-material .gui-date-picker-calendar .gui-date-picker-month.gui-date-picker-selected-month::after,.gui-material .gui-date-picker-calendar .gui-date-picker-year.gui-date-picker-selected-year::after{background:#6200ee}"]
@@ -3058,10 +3141,11 @@
             datePickerRef: [{ type: core.ViewChild, args: ['datePicker', { static: false },] }],
             parentElement: [{ type: core.Input }],
             theme: [{ type: core.Input }],
-            selectedDate: [{ type: core.Input }],
+            selectDate: [{ type: core.Input }],
             name: [{ type: core.Input }],
             openDialog: [{ type: core.Input }],
-            datePickerOptions: [{ type: core.Input }],
+            onlyDialog: [{ type: core.Input }],
+            datePipeOptions: [{ type: core.Input }],
             dateSelected: [{ type: core.Output }],
             dialogOpened: [{ type: core.Output }]
         };
@@ -3075,13 +3159,15 @@
         /** @type {?} */
         FabricDatePickerComponent.prototype.theme;
         /** @type {?} */
-        FabricDatePickerComponent.prototype.selectedDate;
+        FabricDatePickerComponent.prototype.selectDate;
         /** @type {?} */
         FabricDatePickerComponent.prototype.name;
         /** @type {?} */
         FabricDatePickerComponent.prototype.openDialog;
         /** @type {?} */
-        FabricDatePickerComponent.prototype.datePickerOptions;
+        FabricDatePickerComponent.prototype.onlyDialog;
+        /** @type {?} */
+        FabricDatePickerComponent.prototype.datePipeOptions;
         /** @type {?} */
         FabricDatePickerComponent.prototype.dateSelected;
         /** @type {?} */
@@ -3091,7 +3177,7 @@
         /** @type {?} */
         FabricDatePickerComponent.prototype.pickedDate;
         /** @type {?} */
-        FabricDatePickerComponent.prototype.pickedDateString;
+        FabricDatePickerComponent.prototype.inputDisabled;
         /**
          * @type {?}
          * @private
@@ -3266,6 +3352,8 @@
                     return months[this.activeMonth] + " " + this.activeYear;
                 case FabricCalendarView.YEARS:
                     return "" + this.getDisplayedYearRange();
+                default:
+                    return '';
             }
         };
         /**
@@ -3284,6 +3372,8 @@
                     break;
                 case FabricCalendarView.YEARS:
                     this.calendarViewService.switchView(FabricCalendarView.DAYS);
+                    break;
+                default:
                     break;
             }
         };
@@ -3315,6 +3405,8 @@
                     break;
                 case FabricCalendarView.YEARS:
                     this.datePickerYearsService.next(years);
+                    break;
+                default:
                     break;
             }
         };
@@ -3448,6 +3540,20 @@
             return _this;
         }
         /**
+         * @param {?} changes
+         * @return {?}
+         */
+        FabricTimePickerComponent.prototype.ngOnChanges = /**
+         * @param {?} changes
+         * @return {?}
+         */
+        function (changes) {
+            if (changes.selectedDate) {
+                if (this.selectedDate) {
+                }
+            }
+        };
+        /**
          * @return {?}
          */
         FabricTimePickerComponent.prototype.ngOnInit = /**
@@ -3455,7 +3561,6 @@
          */
         function () {
             var _this = this;
-            this.setTimeFromSelectedDate();
             if (this.isActive(this.datePickerComposition, FabricDatePickerComposition.TIME_PICKER_HOURS)) {
                 this.form
                     .controls['hours']
@@ -3504,6 +3609,7 @@
                     _this.changeSelectedDate();
                 }));
             }
+            this.setTimeFromSelectedDate();
         };
         /**
          * @param {?} formControlName
@@ -4955,6 +5061,8 @@
                     this.arrowDirection = Direction.LEFT;
                     break;
                 }
+                default:
+                    break;
             }
         };
         /**
@@ -5546,6 +5654,8 @@
                     return Theme.LIGHT;
                 case 'dark':
                     return Theme.DARK;
+                default:
+                    return Theme.FABRIC;
             }
         };
         FabricDialogThemeService.decorators = [
@@ -6637,6 +6747,8 @@
                     this.getComponentRef().instance.notificationsBottomLeft =
                         this.getComponentRef().instance.notificationsBottomLeft.concat(this.fabricNotification);
                     break;
+                default:
+                    break;
             }
             this.getComponentRef().instance.detectChanges();
         };
@@ -6730,6 +6842,8 @@
                      * @return {?}
                      */
                     function (notification) { return notification.index !== selectedNotification.index; }));
+                    break;
+                default:
                     break;
             }
             this.detectChanges();
@@ -9008,7 +9122,7 @@
                  * @return {?}
                  */
                 function (id) {
-                    if (id != _this.buttonId) {
+                    if (id !== _this.buttonId) {
                         _this.buttonChecked = !_this.buttonChecked;
                         _this.removeClass('gui-checked');
                     }
@@ -9164,119 +9278,6 @@
                     },] }
         ];
         return FabricToggleButtonGroupModule;
-    }());
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    // import * as elementResizeDetectorMaker_ from 'element-resize-detector';
-    //
-    // const elementResizeDetectorMaker = elementResizeDetectorMaker_;
-    // const elementResizeDetectorMaker = require('element-resize-detector');
-    var ResizeDetector = /** @class */ (function () {
-        function ResizeDetector(platformId) {
-            this.platformId = platformId;
-            this.throttleTime = 25;
-            this.unsubscribe$ = new rxjs.Subject();
-            if (common.isPlatformBrowser(this.platformId)) {
-                // this.elementResizeDetector = elementResizeDetectorMaker({
-                // 	strategy: 'scroll'
-                // });
-            }
-        }
-        /**
-         * @param {?} element
-         * @return {?}
-         */
-        ResizeDetector.prototype.observe = /**
-         * @param {?} element
-         * @return {?}
-         */
-        function (element) {
-            if (common.isPlatformBrowser(this.platformId)) {
-                /** @type {?} */
-                var producer = (/**
-                 * @param {?} observer
-                 * @return {?}
-                 */
-                function (observer) {
-                    // this.elementResizeDetector.listenTo(element, function(htmlElement: HTMLElement) {
-                    // 	observer.next(htmlElement);
-                    // });
-                });
-                /** @type {?} */
-                var source$ = new rxjs.Observable(producer);
-                return source$.pipe(operators.throttleTime(this.throttleTime), operators.filter((/**
-                 * @param {?} f
-                 * @return {?}
-                 */
-                function (f) { return f !== undefined; })), operators.takeUntil(this.unsubscribe$));
-            }
-            return rxjs.of(element);
-        };
-        /**
-         * @param {?} element
-         * @return {?}
-         */
-        ResizeDetector.prototype.destroy = /**
-         * @param {?} element
-         * @return {?}
-         */
-        function (element) {
-            if (this.elementResizeDetector) {
-                this.unsubscribe$.next();
-                this.unsubscribe$.complete();
-                this.elementResizeDetector.uninstall(element);
-            }
-        };
-        ResizeDetector.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ResizeDetector.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] }
-        ]; };
-        return ResizeDetector;
-    }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ResizeDetector.prototype.throttleTime;
-        /**
-         * @type {?}
-         * @private
-         */
-        ResizeDetector.prototype.elementResizeDetector;
-        /**
-         * @type {?}
-         * @private
-         */
-        ResizeDetector.prototype.unsubscribe$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ResizeDetector.prototype.platformId;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var ResizeDetectorModule = /** @class */ (function () {
-        function ResizeDetectorModule() {
-        }
-        ResizeDetectorModule.decorators = [
-            { type: core.NgModule, args: [{
-                        providers: [
-                            ResizeDetector
-                        ]
-                    },] }
-        ];
-        return ResizeDetectorModule;
     }());
 
     /**
@@ -9495,8 +9496,7 @@
         FabricSpinnerModule,
         FabricToggleButtonModule,
         FabricToggleButtonGroupModule,
-        FabricInputModule,
-        ResizeDetectorModule
+        FabricInputModule
     ];
     var FabricModule = /** @class */ (function () {
         function FabricModule() {
@@ -9573,8 +9573,6 @@
     exports.FabricToggleButtonModule = FabricToggleButtonModule;
     exports.FabricTooltipModule = FabricTooltipModule;
     exports.Placement = Placement;
-    exports.ResizeDetector = ResizeDetector;
-    exports.ResizeDetectorModule = ResizeDetectorModule;
     exports.SpinnerMode = SpinnerMode;
     exports.Theme = Theme;
     exports.ɵa = FabricBadgeComponent;
