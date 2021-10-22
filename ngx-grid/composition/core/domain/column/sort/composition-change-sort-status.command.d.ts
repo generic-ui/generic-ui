@@ -1,4 +1,4 @@
-import { CompositionId } from '../../composition.id';
+import { CompositionId } from '../../../api/composition.id';
 import { ChangeSortParams } from './change-sort.params';
 import { CompositionCommand } from '../../composition.command';
 export declare class CompositionChangeSortStatusCommand extends CompositionCommand {

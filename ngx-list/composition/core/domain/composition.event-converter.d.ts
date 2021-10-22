@@ -1,5 +1,5 @@
 import { AggregateEvent, DomainEvent } from '@generic-ui/hermes';
-import { CompositionId } from './composition.id';
+import { CompositionId } from '../api/composition.id';
 export declare class CompositionEventConverter {
     convert(event: AggregateEvent<CompositionId>): DomainEvent<CompositionId>;
     convert(events: Array<AggregateEvent<CompositionId>>): Array<DomainEvent<CompositionId>>;

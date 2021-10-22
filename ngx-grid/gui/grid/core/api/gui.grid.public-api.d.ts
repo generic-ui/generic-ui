@@ -1,21 +1,21 @@
 import { TranslationChange } from '../../../../l10n/core/api/translation-change';
 export declare type FieldAccessor = (element?: any) => any;
-export declare type ViewTemplateFunction = (cellValue: any, item?: any) => string;
+export declare type ViewTemplateFunction = (cellValue?: any, item?: any, index?: number) => string;
 export interface GuiMultiColumn {
-    header?: string;
+    header?: string | ViewTemplateFunction;
     columns?: Array<GuiColumn>;
 }
 export interface GuiColumn {
     field?: string | FieldAccessor;
     type?: string | GuiDataType;
     view?: string | GuiCellView | ViewTemplateFunction;
-    header?: string;
+    header?: string | ViewTemplateFunction;
     width?: string | number;
     enabled?: boolean;
     align?: string | GuiColumnAlign;
     summaries?: GuiColumnSummaries;
-    sorting?: GuiColumnSorting;
-    cellEditing?: GuiColumnCellEditing;
+    sorting?: boolean | GuiColumnSorting;
+    cellEditing?: boolean | GuiColumnCellEditing;
     formatter?: (item: any, index: number) => any;
     matcher?: (item: any) => any;
 }
@@ -101,9 +101,6 @@ export declare enum GuiSortingOrder {
 }
 export interface GuiSorting {
     enabled?: boolean;
-    /**
-     * @experimental
-     */
     multiSorting?: boolean;
 }
 export interface GuiFiltering {
@@ -125,7 +122,7 @@ export interface GuiSummaries {
 }
 export interface GuiColumnSummaries {
     enabled?: boolean;
-    summariesTypes?: Array<any>;
+    summariesTypes?: Array<string>;
 }
 export interface GuiColumnSorting {
     enabled?: boolean;

@@ -5,7 +5,9 @@ import { DataType } from '../../../../structure/field/core/domain/field/data/dat
 import { ViewEntity } from '../../domain/column/view.entity';
 import { ColumnAlign } from '../../domain/column/column-align';
 import { CellValue } from './cell-value';
+import { ColumnDefinitionId } from '../../api/column/column-definition-id';
 export declare class CellTemplateWithAccessor {
+    columnDefinitionId: ColumnDefinitionId;
     template: TemplateRef<any>;
     editTemplate: TemplateRef<any>;
     editable: boolean;
@@ -19,7 +21,7 @@ export declare class CellTemplateWithAccessor {
     private readonly cellEditingEnabled;
     private readonly type;
     private readonly view;
-    constructor(template: TemplateRef<any>, editTemplate: TemplateRef<any>, editable: boolean, templateFun: (value: any, item: any) => any, formatterFun: (value: any, item: any) => any, accessor: (element: any) => any, searchAccessor: (element: any) => any, width: number, columnFieldId: ColumnFieldId, align: ColumnAlign, cellEditingEnabled: boolean, type: DataType, // REFACTOR
+    constructor(columnDefinitionId: ColumnDefinitionId, template: TemplateRef<any>, editTemplate: TemplateRef<any>, editable: boolean, templateFun: (value: any, item: any) => any, formatterFun: (value: any, item: any) => any, accessor: (element: any) => any, searchAccessor: (element: any) => any, width: number, columnFieldId: ColumnFieldId, align: ColumnAlign, cellEditingEnabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity);
     isCellEditingEnabled(): boolean;
     isBooleanDataType(): boolean;
@@ -27,5 +29,6 @@ export declare class CellTemplateWithAccessor {
     isAlignCenter(): boolean;
     isAlignRight(): boolean;
     getValue(entity: ItemEntity, searchPhrase?: string): CellValue;
+    getClasses(): string;
     private findValue;
 }

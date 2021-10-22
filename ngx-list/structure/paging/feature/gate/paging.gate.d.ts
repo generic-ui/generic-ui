@@ -5,7 +5,7 @@ import { StructureId } from '../../../core/api/structure.id';
 import { PagingCommandInvoker } from '../../core/api/paging.command-invoker';
 import { PagingEventRepository } from '../../core/api/paging.event-repository';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';
-import { CompositionId } from '../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare abstract class PagingGate extends Gate implements OnChanges, OnInit {
     protected readonly structureId: StructureId;
     protected readonly compositionId: CompositionId;

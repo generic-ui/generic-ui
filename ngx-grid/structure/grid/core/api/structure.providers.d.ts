@@ -12,7 +12,7 @@ export declare const structureProviders: (typeof StructureInitialValuesReadyArch
     useClass: typeof import("../../../../generic-ui-ngx-grid").ɵx;
 } | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵrd;
+    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵrg;
 } | typeof StructureAggregateFactory | {
     provide: typeof StructureCommandInvoker;
     useClass: typeof StructureDomainCommandInvoker;

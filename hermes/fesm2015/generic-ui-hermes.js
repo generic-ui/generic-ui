@@ -939,7 +939,7 @@ const FILTERED_COMMAND_STREAM = new InjectionToken('FILTERED_COMMAND_STREAM');
  */
 function subscriberForOperator(observer, next, complete) {
     /** @type {?} */
-    let nextFn = next ? next : (/**
+    const nextFn = next ? next : (/**
      * @param {?} v
      * @return {?}
      */
@@ -947,7 +947,7 @@ function subscriberForOperator(observer, next, complete) {
         observer.next(v);
     });
     /** @type {?} */
-    let completeFn = complete ? complete : (/**
+    const completeFn = complete ? complete : (/**
      * @return {?}
      */
     () => {
@@ -2645,7 +2645,7 @@ class KeyArchive extends ReactiveService {
          * @param {?} value
          * @return {?}
          */
-        (value) => value.getValueOrNullOrThrowError())), hermesDistinctUntilChanged(), this.hermesTakeUntil());
+        (value) => value.getValueOrNullOrThrowError())), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
     }
     /**
      * @param {?} key
@@ -2671,6 +2671,23 @@ class KeyArchive extends ReactiveService {
     next(key, value) {
         this.archive.set(key, value);
         this.archive$.next(this.archive);
+    }
+    /**
+     * @protected
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    equals(a, b) {
+        return a === b;
+    }
+    /**
+     * @protected
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    createDefaultValue(defaultValue) {
+        return defaultValue;
     }
     /**
      * @private

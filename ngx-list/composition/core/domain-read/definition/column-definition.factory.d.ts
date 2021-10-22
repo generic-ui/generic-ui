@@ -4,8 +4,8 @@ import { ColumnEntity } from '../../domain/column/column.entity';
 import { ColumnDefinition } from './column-definition';
 import { ActiveColumnEntity } from '../../domain/column/active/active-column.entity';
 export declare class ColumnDefinitionFactory {
-    private viewTemplateRepository;
-    private editTemplateRepository;
+    private readonly viewTemplateRepository;
+    private readonly editTemplateRepository;
     constructor(viewTemplateRepository: ViewTemplateRepository, editTemplateRepository: EditTemplateRepository);
     create(column: ColumnEntity): ColumnDefinition;
     create(column: ActiveColumnEntity): ColumnDefinition;

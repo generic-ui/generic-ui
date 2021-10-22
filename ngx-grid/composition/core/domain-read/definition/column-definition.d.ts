@@ -8,7 +8,7 @@ import { CellTemplateWithAccessor } from './cell-template-with-accessor';
 import { DataType } from '../../../../structure/field/core/domain/field/data/data-type';
 import { ViewEntity } from '../../domain/column/view.entity';
 import { ColumnAlign } from '../../domain/column/column-align';
-import { ColumnDefinitionId } from './column-definition-id';
+import { ColumnDefinitionId } from '../../api/column/column-definition-id';
 export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId> {
     private readonly type;
     private readonly view;
@@ -36,6 +36,6 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     setField(field: ColumnField): void;
     setTemplateFunction(templateFun: (i: any, item: any) => string): void;
     setFormatterFunction(formatter: (i: any, item: any) => string): void;
-    getHeaderCellTemplateWithContext(index: number): CellTemplateWithContext;
-    getContentCellTemplateWithAccessor(): CellTemplateWithAccessor;
+    toHeaderCellTemplateWithContext(index: number): CellTemplateWithContext;
+    toContentCellTemplateWithAccessor(): CellTemplateWithAccessor;
 }

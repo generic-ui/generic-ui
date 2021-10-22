@@ -5,7 +5,7 @@ import { OriginItemEntity } from '../../../source/core/domain/origin/origin-item
 import { Field } from '../../../field/core/domain/field/field';
 export declare class SummariesManager {
     private readonly calculators;
-    static DEFAULT_ENABLED: boolean;
+    static readonly DEFAULT_ENABLED = false;
     private readonly structureId;
     private enabled;
     private readonly values;

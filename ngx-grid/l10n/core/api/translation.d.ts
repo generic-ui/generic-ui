@@ -20,6 +20,7 @@ export declare type Translation = {
     headerMenuMainTab: string;
     headerMenuMainTabColumnSort: string;
     headerMenuMainTabHideColumn: string;
+    headerMenuMainTabHighlightColumn: string;
     headerMenuMainTabMoveLeft: string;
     headerMenuMainTabMoveRight: string;
     headerMenuMainTabColumnSortAscending: string;

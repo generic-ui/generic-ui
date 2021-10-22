@@ -12,7 +12,7 @@ export declare class PagingNavigatorComponent extends PureComponent implements O
     ngOnChanges(): void;
     prevPage(): void;
     nextPage(): void;
+    protected getSelectorName(): string;
     private calculatePrev;
     private calculateNext;
-    protected getSelectorName(): string;
 }

@@ -1,5 +1,5 @@
 import { AggregateFactory } from '@generic-ui/hermes';
-import { CompositionId } from './composition.id';
+import { CompositionId } from '../api/composition.id';
 import { CompositionAggregate } from './composition.aggregate';
 import { ColumnEntityFactory } from './column/column-entity.factory';
 import { CompositionGroupFactory } from './group/composition.group.factory';

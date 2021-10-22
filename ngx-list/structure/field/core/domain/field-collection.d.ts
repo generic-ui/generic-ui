@@ -13,4 +13,5 @@ export declare class FieldCollection {
     initFields(fieldConfigs: Array<FieldConfig>): void;
     addFields(fields: Array<Field>): void;
     private addField;
+    private clear;
 }

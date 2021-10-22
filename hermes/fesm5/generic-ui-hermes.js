@@ -3272,7 +3272,7 @@ KeyArchive = /** @class */ (function (_super) {
          * @param {?} value
          * @return {?}
          */
-        function (value) { return value.getValueOrNullOrThrowError(); })), hermesDistinctUntilChanged(), this.hermesTakeUntil());
+        function (value) { return value.getValueOrNullOrThrowError(); })), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
     };
     /**
      * @param {?} key
@@ -3311,6 +3311,34 @@ KeyArchive = /** @class */ (function (_super) {
     function (key, value) {
         this.archive.set(key, value);
         this.archive$.next(this.archive);
+    };
+    /**
+     * @protected
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    KeyArchive.prototype.equals = /**
+     * @protected
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    function (a, b) {
+        return a === b;
+    };
+    /**
+     * @protected
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    KeyArchive.prototype.createDefaultValue = /**
+     * @protected
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    function (defaultValue) {
+        return defaultValue;
     };
     /**
      * @private

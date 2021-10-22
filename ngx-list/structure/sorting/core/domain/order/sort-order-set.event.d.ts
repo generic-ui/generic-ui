@@ -1,4 +1,4 @@
-import { CompositionId } from '../../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { FieldId } from '../../../../field/core/domain/field/field.id';
 import { StructureId } from '../../../../core/api/structure.id';
 import { StructureDomainEvent } from '../../../../core/domain/structure.domain-event';

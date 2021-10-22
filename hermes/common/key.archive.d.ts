@@ -11,5 +11,7 @@ export declare abstract class KeyArchive<K extends Key, T> extends ReactiveServi
     once(key: K): HermesObservable<T>;
     get(key: K): Optional<T>;
     next(key: K, value: T): void;
+    protected equals(a: T, b: T): boolean;
+    protected createDefaultValue(defaultValue: T): T;
     private tryToInitDefault;
 }

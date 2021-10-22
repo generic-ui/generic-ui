@@ -6,13 +6,13 @@ import { StructureId } from '../../../core/api/structure.id';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { PagingWarehouse } from '../../../paging/core/api/paging.warehouse';
 import { StructureInfoPanelArchive } from '../../core/api/panel/info/structure.info-panel.archive';
-import { StructureSummariesArchive } from '../../../summaries/feature/structure.summaries.archive';
 import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
 import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
 import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-bottom-enabled.archive';
 import { StructureTitlePanelConfigArchive } from '../panel/banner-panels/title-panel/structure.title-panel.config-archive';
 import { StructureFooterPanelConfigArchive } from '../panel/banner-panels/footer-panel/structure.footer-panel.config-archive';
+import { SummariesWarehouse } from '../../../summaries/core/api/summaries.warehouse';
 export declare class StructureBlueprintComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureDefinition;
@@ -20,7 +20,7 @@ export declare class StructureBlueprintComponent extends SmartComponent implemen
     private readonly structureWarehouse;
     private readonly structureInfoPanelArchive;
     private readonly pagingWarehouse;
-    private readonly structureSummariesArchive;
+    private readonly summariesWarehouse;
     private readonly filterWarehouse;
     private readonly searchWarehouse;
     private readonly structureHeaderTopEnabledArchive;
@@ -43,7 +43,7 @@ export declare class StructureBlueprintComponent extends SmartComponent implemen
     items: Array<any>;
     private pagingReadModel;
     private readonly localStreamCloser;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureDefinition: StructureDefinition, structureId: StructureId, structureWarehouse: StructureWarehouse, structureInfoPanelArchive: StructureInfoPanelArchive, pagingWarehouse: PagingWarehouse, structureSummariesArchive: StructureSummariesArchive, filterWarehouse: FilterWarehouse, searchWarehouse: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureDefinition: StructureDefinition, structureId: StructureId, structureWarehouse: StructureWarehouse, structureInfoPanelArchive: StructureInfoPanelArchive, pagingWarehouse: PagingWarehouse, summariesWarehouse: SummariesWarehouse, filterWarehouse: FilterWarehouse, searchWarehouse: SearchWarehouse, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, className: string);
     ngOnInit(): void;
     ngOnDestroy(): void;
     getHeaderTopClasses(): string;

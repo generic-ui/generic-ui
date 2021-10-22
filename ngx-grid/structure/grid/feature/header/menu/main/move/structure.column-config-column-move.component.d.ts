@@ -1,13 +1,12 @@
+import { ElementRef, EventEmitter } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { CompositionCommandInvoker } from '../../../../../../../composition/core/api/composition.command-invoker';
-import { StructureColumnConfigService } from '../../structure.column-config.service';
-import { CompositionId } from '../../../../../../../composition/core/domain/composition.id';
-export declare class StructureColumnConfigColumnMoveComponent {
-    private readonly compositionId;
-    private readonly compositionCommandService;
-    private readonly structureColumnConfigService;
+import { PureComponent } from '../../../../../../../common/cdk/component/pure-component';
+export declare class StructureColumnConfigColumnMoveComponent extends PureComponent {
     column: CellTemplateWithContext;
-    constructor(compositionId: CompositionId, compositionCommandService: CompositionCommandInvoker, structureColumnConfigService: StructureColumnConfigService);
-    moveLeft(column: CellTemplateWithContext): void;
-    moveRight(column: CellTemplateWithContext): void;
+    movedLeft: EventEmitter<void>;
+    movedRight: EventEmitter<void>;
+    constructor(elRef: ElementRef);
+    moveLeft(): void;
+    moveRight(): void;
+    protected getSelectorName(): string;
 }

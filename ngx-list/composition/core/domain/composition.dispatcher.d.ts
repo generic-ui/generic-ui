@@ -1,5 +1,5 @@
 import { CommandDispatcher } from '@generic-ui/hermes';
-import { CompositionId } from './composition.id';
+import { CompositionId } from '../api/composition.id';
 import { ColumnParams } from './column/set-columns/column.params';
 import { ChangeSortParams } from './column/sort/change-sort.params';
 import { ColumnId } from '../api/column/column.id';

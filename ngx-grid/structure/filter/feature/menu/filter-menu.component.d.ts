@@ -11,7 +11,7 @@ import { FilterTypeReadModel } from '../../core/api/type/filter-type.read-model'
 import { FilterTypeId } from '../../core/domain/type/filter-type.id';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 import { ActiveFilterReadModel } from '../../core/api/active/active-filter.read-model';
-import { CompositionId } from '../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;

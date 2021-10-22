@@ -12,5 +12,6 @@ export declare enum CellView {
     DATE = 10,
     BAR = 11,
     PERCENTAGE_BAR = 12,
-    PERCENTAGE = 13
+    PERCENTAGE = 13,
+    NG_TEMPLATE = 14
 }

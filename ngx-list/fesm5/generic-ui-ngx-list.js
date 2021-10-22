@@ -148,6 +148,7 @@ var enTranslation = {
     headerMenuMainTab: 'Menu',
     headerMenuMainTabColumnSort: 'Column sort',
     headerMenuMainTabHideColumn: 'Hide column',
+    headerMenuMainTabHighlightColumn: 'Highlight',
     headerMenuMainTabMoveLeft: 'Move left',
     headerMenuMainTabMoveRight: 'Move right',
     headerMenuMainTabColumnSortAscending: 'Ascending',
@@ -774,98 +775,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/**
- * @abstract
- */
-var SourceCommandInvoker = /** @class */ (function () {
-    function SourceCommandInvoker() {
-    }
-    SourceCommandInvoker.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SourceCommandInvoker.ctorParameters = function () { return []; };
-    return SourceCommandInvoker;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} items
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.setOrigin = function (items, structureId) { };
-    /**
-     * @abstract
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.setLoading = function (enabled, structureId) { };
-    /**
-     * @abstract
-     * @param {?} params
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.editItem = function (params, structureId) { };
-    /**
-     * @abstract
-     * @param {?} itemIndex
-     * @param {?} fieldIndex
-     * @param {?} value
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.editItemByIndex = function (itemIndex, fieldIndex, value, structureId) { };
-    /**
-     * @abstract
-     * @param {?} row
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteRow = function (row, structureId) { };
-    /**
-     * @abstract
-     * @param {?} rows
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteRows = function (rows, structureId) { };
-    /**
-     * @abstract
-     * @param {?} index
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteItemByIndex = function (index, structureId) { };
-    /**
-     * @abstract
-     * @param {?} itemId
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteItemById = function (itemId, structureId) { };
-    /**
-     * @abstract
-     * @param {?} indexes
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteManyItemsByIndex = function (indexes, structureId) { };
-    /**
-     * @abstract
-     * @param {?} itemIds
-     * @param {?} structureId
-     * @return {?}
-     */
-    SourceCommandInvoker.prototype.deleteManyItemsByItemIds = function (itemIds, structureId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var ListViewTemplateArchive = /** @class */ (function (_super) {
     __extends(ListViewTemplateArchive, _super);
     function ListViewTemplateArchive() {
@@ -905,52 +814,6 @@ var listViewProviders = [
     ListViewTemplateArchive,
     ListViewCardTemplateArchive
 ];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @template T
- */
-var /**
- * @template T
- */
-StreamCloser = /** @class */ (function () {
-    function StreamCloser() {
-        this.unsubscribe$ = new HermesSubject();
-    }
-    /**
-     * @return {?}
-     */
-    StreamCloser.prototype.takeUntil = /**
-     * @return {?}
-     */
-    function () {
-        return hermesTakeUntil(this.unsubscribe$);
-    };
-    /**
-     * @return {?}
-     */
-    StreamCloser.prototype.unsubscribe = /**
-     * @return {?}
-     */
-    function () {
-        if (((/** @type {?} */ (this.unsubscribe$))).isCompleted) {
-            return;
-        }
-        this.unsubscribe$.next();
-        this.unsubscribe$.complete();
-    };
-    return StreamCloser;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StreamCloser.prototype.unsubscribe$;
-}
 
 /**
  * @fileoverview added by tsickle
@@ -1228,7 +1091,6 @@ SmartComponent = /** @class */ (function (_super) {
         var _this = _super.call(this, elementRef) || this;
         _this.detector = detector;
         _this.viewInDom = false;
-        _this.streamCloser = new StreamCloser();
         _this.hermesUnsubscribe$ = new HermesSubject();
         return _this;
     }
@@ -1248,7 +1110,6 @@ SmartComponent = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.streamCloser.unsubscribe();
         this.hermesUnsubscribe();
     };
     /**
@@ -1362,7 +1223,6 @@ SmartComponent = /** @class */ (function (_super) {
      * @return {?}
      */
     function () {
-        this.streamCloser.unsubscribe();
         this.hermesUnsubscribe();
     };
     /**
@@ -1388,17 +1248,6 @@ SmartComponent = /** @class */ (function (_super) {
     function () {
         return hermesTakeUntil(this.hermesUnsubscribe$);
     };
-    /**
-     * @protected
-     * @return {?}
-     */
-    SmartComponent.prototype.takeUntil = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
-        return this.streamCloser.takeUntil();
-    };
     return SmartComponent;
 }(GuiComponent));
 if (false) {
@@ -1407,11 +1256,6 @@ if (false) {
      * @private
      */
     SmartComponent.prototype.viewInDom;
-    /**
-     * @type {?}
-     * @private
-     */
-    SmartComponent.prototype.streamCloser;
     /**
      * @type {?}
      * @private
@@ -1634,6 +1478,52 @@ var PagingPosition = {
 };
 PagingPosition[PagingPosition.TOP] = 'TOP';
 PagingPosition[PagingPosition.BOTTOM] = 'BOTTOM';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @template T
+ */
+var /**
+ * @template T
+ */
+StreamCloser = /** @class */ (function () {
+    function StreamCloser() {
+        this.unsubscribe$ = new HermesSubject();
+    }
+    /**
+     * @return {?}
+     */
+    StreamCloser.prototype.takeUntil = /**
+     * @return {?}
+     */
+    function () {
+        return hermesTakeUntil(this.unsubscribe$);
+    };
+    /**
+     * @return {?}
+     */
+    StreamCloser.prototype.unsubscribe = /**
+     * @return {?}
+     */
+    function () {
+        if (((/** @type {?} */ (this.unsubscribe$))).isCompleted) {
+            return;
+        }
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
+    };
+    return StreamCloser;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StreamCloser.prototype.unsubscribe$;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -4405,6 +4295,17 @@ var PagingNavigatorComponent = /** @class */ (function (_super) {
         this.nextPageChanged.emit();
     };
     /**
+     * @protected
+     * @return {?}
+     */
+    PagingNavigatorComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-paging-navigator';
+    };
+    /**
      * @private
      * @return {?}
      */
@@ -4431,17 +4332,6 @@ var PagingNavigatorComponent = /** @class */ (function (_super) {
             return;
         }
         this.nextDisabled = this.paging.isNextPageDisabled();
-    };
-    /**
-     * @protected
-     * @return {?}
-     */
-    PagingNavigatorComponent.prototype.getSelectorName = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
-        return 'gui-paging-navigator';
     };
     PagingNavigatorComponent.decorators = [
         { type: Component, args: [{
@@ -5374,6 +5264,24 @@ var SchemaReadModelRootId = /** @class */ (function (_super) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+LayoutComponent = /** @class */ (function (_super) {
+    __extends(LayoutComponent, _super);
+    function LayoutComponent(elRef) {
+        return _super.call(this, elRef) || this;
+    }
+    return LayoutComponent;
+}(GuiComponent));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * \@internal
  * @param {?} generator
  * @return {?}
@@ -5439,15 +5347,18 @@ var componentListProviders = __spread([
     PagingFeatureModule.forComponent(),
     TranslationFeatureModule.forComponent()
 ]);
-var ListViewComponent = /** @class */ (function () {
-    function ListViewComponent(structureId, listViewReadModelRootId, elementRef, sourceCommandService, containerTemplateArchive, listCardTemplateArchive, structureCommandService, structurePagingCommandDispatcher, listViewCommandDispatcher, translationService) {
-        this.structureId = structureId;
-        this.listViewReadModelRootId = listViewReadModelRootId;
-        this.elementRef = elementRef;
-        this.translationService = translationService;
-        this.translationService.setDefaultTranslation();
-        structureCommandService.create(this.structureId);
-        listViewCommandDispatcher.create(this.listViewReadModelRootId);
+var ListViewComponent = /** @class */ (function (_super) {
+    __extends(ListViewComponent, _super);
+    function ListViewComponent(structureId, listViewReadModelRootId, elementRef, structureCommandService, listViewCommandDispatcher, translationService) {
+        var _this = _super.call(this, elementRef) || this;
+        _this.structureId = structureId;
+        _this.listViewReadModelRootId = listViewReadModelRootId;
+        _this.elementRef = elementRef;
+        _this.addClassToHost('gui-generic');
+        translationService.setDefaultTranslation();
+        structureCommandService.create(_this.structureId);
+        listViewCommandDispatcher.create(_this.listViewReadModelRootId);
+        return _this;
     }
     /**
      * @return {?}
@@ -5458,10 +5369,21 @@ var ListViewComponent = /** @class */ (function () {
     function () {
         return this.elementRef;
     };
+    /**
+     * @protected
+     * @return {?}
+     */
+    ListViewComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-list-view';
+    };
     ListViewComponent.decorators = [
         { type: Component, args: [{
                     selector: 'gui-list-view',
-                    template: "\n\n\t\t<div gui-list-view-layout></div>\n\t",
+                    template: "<div gui-list-view-layout></div>\n",
                     encapsulation: ViewEncapsulation.None,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     providers: __spread(componentListProviders, [
@@ -5471,8 +5393,6 @@ var ListViewComponent = /** @class */ (function () {
                         }
                     ]),
                     host: {
-                        '[class.gui-list-view]': '"true"',
-                        '[class.gui-generic]': '"true"',
                         '[id]': 'structureId.toString()'
                     },
                     styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:-ms-grid;display:grid}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}@use 'common/variables';.gui-grid-cols-1{-ms-grid-columns:(minmax(0,1fr))[1];grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{-ms-grid-columns:(minmax(0,1fr))[2];grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{-ms-grid-columns:(minmax(0,1fr))[3];grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{-ms-grid-columns:(minmax(0,1fr))[4];grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{-ms-grid-columns:(minmax(0,1fr))[5];grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{-ms-grid-columns:(minmax(0,1fr))[6];grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{-ms-grid-columns:(minmax(0,1fr))[7];grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{-ms-grid-columns:(minmax(0,1fr))[8];grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{-ms-grid-columns:(minmax(0,1fr))[9];grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{-ms-grid-rows:(minmax(0,1fr))[1];grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{-ms-grid-rows:(minmax(0,1fr))[2];grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{-ms-grid-rows:(minmax(0,1fr))[3];grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{-ms-grid-rows:(minmax(0,1fr))[4];grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{-ms-grid-rows:(minmax(0,1fr))[5];grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{-ms-grid-rows:(minmax(0,1fr))[6];grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{-ms-grid-rows:(minmax(0,1fr))[7];grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{-ms-grid-rows:(minmax(0,1fr))[8];grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{-ms-grid-rows:(minmax(0,1fr))[9];grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-list-view{border-color:#d6d6d6}.gui-list-view *,.gui-list-view ::after,.gui-list-view ::before{box-sizing:border-box}.gui-list-view input{font-size:13px;outline:0}.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon-svg{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;transition:.2s}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px rgba(0,0,0,.15)}.gui-list-container-card{border-top:1px solid #d6d6d6}", ".gui-list-item{border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px rgba(0,0,0,.15)}@media (min-width:480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width:768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width:1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}", ".gui-list-view.gui-generic .gui-paging{border:0}"]
@@ -5483,16 +5403,12 @@ var ListViewComponent = /** @class */ (function () {
         { type: StructureId },
         { type: ListViewReadModelRootId },
         { type: ElementRef },
-        { type: SourceCommandInvoker },
-        { type: ListViewTemplateArchive },
-        { type: ListViewCardTemplateArchive },
         { type: StructureCommandInvoker },
-        { type: PagingCommandInvoker },
         { type: ListViewCommandInvoker },
         { type: TranslationFacade }
     ]; };
     return ListViewComponent;
-}());
+}(LayoutComponent));
 if (false) {
     /** @type {?} */
     ListViewComponent.prototype.structureId;
@@ -5503,11 +5419,6 @@ if (false) {
      * @private
      */
     ListViewComponent.prototype.elementRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewComponent.prototype.translationService;
 }
 
 /**
@@ -5543,7 +5454,7 @@ var ListViewSourceComponent = /** @class */ (function (_super) {
              * @param {?} i
              * @return {?}
              */
-            function (i) { return i.getData(); }));
+            function (i) { return i.getSourceItem(); }));
         }));
         this.hermesSubscribe(this.containerTemplateArchive.on(), (/**
          * @param {?} template
@@ -5762,7 +5673,7 @@ var ListViewLayoutComponent = /** @class */ (function (_super) {
     ListViewLayoutComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-list-view-layout]',
-                    template: "<div class=\"gui-flex gui-px-6\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n",
+                    template: "<div class=\"gui-flex\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n",
                     encapsulation: ViewEncapsulation.None,
                     changeDetection: ChangeDetectionStrategy.OnPush
                 }] }
@@ -5984,7 +5895,6 @@ var ListViewContainerCardComponent = /** @class */ (function (_super) {
         _this.structureSourceWarehouse = structureSourceWarehouse;
         _this.listCardTemplateArchive = listCardTemplateArchive;
         _this.items = [];
-        _this.localStreamCloser = new StreamCloser();
         _this.addClassToHost('gui-flex');
         _this.addClassToHost('gui-flex-wrap');
         _this.addClassToHost('gui-m-0');
@@ -6009,7 +5919,7 @@ var ListViewContainerCardComponent = /** @class */ (function (_super) {
              * @param {?} i
              * @return {?}
              */
-            function (i) { return i.getData(); }));
+            function (i) { return i.getSourceItem(); }));
         }));
         this.hermesSubscribe(this.listCardTemplateArchive.on(), (/**
          * @param {?} template
@@ -6019,16 +5929,6 @@ var ListViewContainerCardComponent = /** @class */ (function (_super) {
             _this.cardTemplate = template;
             _this.changeDetectorRef.detectChanges();
         }));
-    };
-    /**
-     * @return {?}
-     */
-    ListViewContainerCardComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        this.localStreamCloser.unsubscribe();
-        _super.prototype.ngOnDestroy.call(this);
     };
     /**
      * @protected
@@ -6064,11 +5964,6 @@ if (false) {
     ListViewContainerCardComponent.prototype.items;
     /** @type {?} */
     ListViewContainerCardComponent.prototype.cardTemplate;
-    /**
-     * @type {?}
-     * @private
-     */
-    ListViewContainerCardComponent.prototype.localStreamCloser;
     /**
      * @type {?}
      * @private
@@ -7914,6 +7809,98 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @abstract
+ */
+var SourceCommandInvoker = /** @class */ (function () {
+    function SourceCommandInvoker() {
+    }
+    SourceCommandInvoker.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SourceCommandInvoker.ctorParameters = function () { return []; };
+    return SourceCommandInvoker;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} items
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.setOrigin = function (items, structureId) { };
+    /**
+     * @abstract
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.setLoading = function (enabled, structureId) { };
+    /**
+     * @abstract
+     * @param {?} params
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.editItem = function (params, structureId) { };
+    /**
+     * @abstract
+     * @param {?} itemIndex
+     * @param {?} fieldIndex
+     * @param {?} value
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.editItemByIndex = function (itemIndex, fieldIndex, value, structureId) { };
+    /**
+     * @abstract
+     * @param {?} row
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteRow = function (row, structureId) { };
+    /**
+     * @abstract
+     * @param {?} rows
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteRows = function (rows, structureId) { };
+    /**
+     * @abstract
+     * @param {?} index
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteItemByIndex = function (index, structureId) { };
+    /**
+     * @abstract
+     * @param {?} itemId
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteItemById = function (itemId, structureId) { };
+    /**
+     * @abstract
+     * @param {?} indexes
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteManyItemsByIndex = function (indexes, structureId) { };
+    /**
+     * @abstract
+     * @param {?} itemIds
+     * @param {?} structureId
+     * @return {?}
+     */
+    SourceCommandInvoker.prototype.deleteManyItemsByItemIds = function (itemIds, structureId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var EditemItemValues = /** @class */ (function () {
     function EditemItemValues(after, before) {
         this.after = after;
@@ -8002,9 +7989,9 @@ var SourceEventService = /** @class */ (function () {
          */
         function (event) {
             /** @type {?} */
-            var afterItem = event.getAfterItem().getData();
+            var afterItem = event.getAfterItem().getSourceItem();
             /** @type {?} */
-            var beforeItem = event.getBeforeItem().getData();
+            var beforeItem = event.getBeforeItem().getSourceItem();
             return new EditemItemValues(afterItem, beforeItem);
         })));
     };
@@ -8356,47 +8343,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-/** @type {?} */
-var StructureSummariesChangedAggregateEventName = 'StructureSummariesChangedAggregateEvent';
-var StructureSummariesChangedAggregateEvent = /** @class */ (function (_super) {
-    __extends(StructureSummariesChangedAggregateEvent, _super);
-    function StructureSummariesChangedAggregateEvent(aggregateId, summarizedValues) {
-        var _this = _super.call(this, aggregateId, StructureSummariesChangedAggregateEventName) || this;
-        _this.summarizedValues = summarizedValues;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSummariesChangedAggregateEvent.prototype.toDomainEvent = /**
-     * @return {?}
-     */
-    function () {
-        return new StructureSummariesChangedEvent(this.getAggregateId(), this.summarizedValues);
-    };
-    /**
-     * @return {?}
-     */
-    StructureSummariesChangedAggregateEvent.prototype.getSummaries = /**
-     * @return {?}
-     */
-    function () {
-        return this.summarizedValues;
-    };
-    return StructureSummariesChangedAggregateEvent;
-}(StructureAggregateEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesChangedAggregateEvent.prototype.summarizedValues;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var StructurePreparedEntitiesSetEvent = /** @class */ (function (_super) {
     __extends(StructurePreparedEntitiesSetEvent, _super);
     function StructurePreparedEntitiesSetEvent(aggregateId, preparedItems) {
@@ -8474,7 +8420,7 @@ var SourceDomainEventPublisher = /** @class */ (function () {
             var domainEvent = new StructureSourceItemEditedEvent(structureSourceItemEditedAggregateEvent.getAggregateId(), structureSourceItemEditedAggregateEvent.getBeforeItem(), structureSourceItemEditedAggregateEvent.getAfterItem());
             this.domainEventPublisher.publish(domainEvent);
         }
-        if (event.getType() === StructureSummariesChangedAggregateEventName) {
+        if (event.getType() === 'StructureSummariesChangedAggregateEvent') {
             /** @type {?} */
             var structureSummariesChangedAggregateEvent = ((/** @type {?} */ (event)));
             /** @type {?} */
@@ -9888,6 +9834,13 @@ if (false) {
      * @return {?}
      */
     CompositionWarehouse.prototype.onGroups = function (compositionId) { };
+    /**
+     * @abstract
+     * @param {?} columnId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionWarehouse.prototype.onHighlightedColumn = function (columnId, compositionId) { };
 }
 
 /**
@@ -11075,7 +11028,7 @@ var ColumnSelectorComponent = /** @class */ (function (_super) {
     ColumnSelectorComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-column-selector][columns]',
-                    template: "\n\n\t\tColumn:\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let column of columns\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(column)\">\n\t\t\t\t<ng-container\n\t\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t   context: column.context\">\n\t\t\t\t</ng-container>\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
+                    template: "\n\n\t\tColumn:\n\n\t\t<gui-dropdown>\n\t\t\t<gui-dropdown-item *ngFor=\"let column of columns\"\n\t\t\t\t\t\t\t   (click)=\"onSelectChange(column)\">\n\t\t\t\t<ng-container\n\t\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t   context: column.context\">\n\t\t\t\t</ng-container>\n\t\t\t</gui-dropdown-item>\n\t\t</gui-dropdown>\n\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -14114,7 +14067,7 @@ var StructureInfoModalComponent = /** @class */ (function (_super) {
     StructureInfoModalComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-info-dialog]',
-                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.15.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver.  0.15.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -14866,6 +14819,13 @@ if (false) {
      * @return {?}
      */
     CompositionCommandInvoker.prototype.moveRight = function (columnDefinitionId, compositionId) { };
+    /**
+     * @abstract
+     * @param {?} columnDefinitionId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionCommandInvoker.prototype.highlightColumn = function (columnDefinitionId, compositionId) { };
 }
 
 /**
@@ -16555,187 +16515,6 @@ var StructureEditModeArchive = /** @class */ (function (_super) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var StructureSummariesPanelConfig = /** @class */ (function () {
-    function StructureSummariesPanelConfig(top, bottom) {
-        this.top = false;
-        this.bottom = true;
-        if (top !== undefined && top !== null) {
-            this.top = top;
-        }
-        if (bottom !== undefined && bottom !== null) {
-            this.bottom = bottom;
-        }
-    }
-    /**
-     * @return {?}
-     */
-    StructureSummariesPanelConfig.prototype.itTopEnabled = /**
-     * @return {?}
-     */
-    function () {
-        return this.top;
-    };
-    /**
-     * @return {?}
-     */
-    StructureSummariesPanelConfig.prototype.itBottomEnabled = /**
-     * @return {?}
-     */
-    function () {
-        return this.bottom;
-    };
-    return StructureSummariesPanelConfig;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelConfig.prototype.top;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelConfig.prototype.bottom;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSummariesArchive = /** @class */ (function (_super) {
-    __extends(StructureSummariesArchive, _super);
-    function StructureSummariesArchive() {
-        return _super.call(this, new StructureSummariesPanelConfig()) || this;
-    }
-    StructureSummariesArchive.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    StructureSummariesArchive.ctorParameters = function () { return []; };
-    return StructureSummariesArchive;
-}(Archive));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSummariesPanelConfigConverter = /** @class */ (function () {
-    function StructureSummariesPanelConfigConverter() {
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    StructureSummariesPanelConfigConverter.prototype.convert = /**
-     * @param {?} config
-     * @return {?}
-     */
-    function (config) {
-        if (config.enabled) {
-            return new StructureSummariesPanelConfig(config.top, config.bottom);
-        }
-        else {
-            return new StructureSummariesPanelConfig(false, false);
-        }
-    };
-    StructureSummariesPanelConfigConverter.decorators = [
-        { type: Injectable }
-    ];
-    return StructureSummariesPanelConfigConverter;
-}());
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var SummariesCommandInvoker = /** @class */ (function () {
-    function SummariesCommandInvoker() {
-    }
-    SummariesCommandInvoker.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesCommandInvoker.ctorParameters = function () { return []; };
-    return SummariesCommandInvoker;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesCommandInvoker.prototype.setSummariesEnabled = function (enabled, structureId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSummariesConfigService = /** @class */ (function () {
-    function StructureSummariesConfigService(structureSummariesPanelConfigConverter, structureSummariesArchive, structureSummariesCommandDispatcher, structureId) {
-        this.structureSummariesPanelConfigConverter = structureSummariesPanelConfigConverter;
-        this.structureSummariesArchive = structureSummariesArchive;
-        this.structureSummariesCommandDispatcher = structureSummariesCommandDispatcher;
-        this.structureId = structureId;
-    }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
-    StructureSummariesConfigService.prototype.set = /**
-     * @param {?} config
-     * @return {?}
-     */
-    function (config) {
-        /** @type {?} */
-        var summariesPanelConfig = this.structureSummariesPanelConfigConverter.convert(config);
-        this.structureSummariesArchive.next(summariesPanelConfig);
-        this.structureSummariesCommandDispatcher.setSummariesEnabled(config.enabled, this.structureId);
-    };
-    StructureSummariesConfigService.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    StructureSummariesConfigService.ctorParameters = function () { return [
-        { type: StructureSummariesPanelConfigConverter },
-        { type: StructureSummariesArchive },
-        { type: SummariesCommandInvoker },
-        { type: StructureId }
-    ]; };
-    return StructureSummariesConfigService;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesConfigService.prototype.structureSummariesPanelConfigConverter;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesConfigService.prototype.structureSummariesArchive;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesConfigService.prototype.structureSummariesCommandDispatcher;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesConfigService.prototype.structureId;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /** @type {?} */
 var structureComponentToken = new InjectionToken('StructureComponentToken');
 
@@ -17033,7 +16812,7 @@ if (false) {
  */
 var StructureGateway = /** @class */ (function (_super) {
     __extends(StructureGateway, _super);
-    function StructureGateway(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
+    function StructureGateway(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelEnabledArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, structurePagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
         var _this = _super.call(this, changeDetectorRef, elementRef) || this;
         _this.changeDetectorRef = changeDetectorRef;
         _this.domainEventBus = domainEventBus;
@@ -17057,7 +16836,6 @@ var StructureGateway = /** @class */ (function (_super) {
         _this.structureCellEditArchive = structureCellEditArchive;
         _this.structureInfoPanelEnabledArchive = structureInfoPanelEnabledArchive;
         _this.structureInfoPanelConfigService = structureInfoPanelConfigService;
-        _this.structureSummariesConfigService = structureSummariesConfigService;
         _this.structureCellEditStore = structureCellEditStore;
         _this.columnFieldFactory = columnFieldFactory;
         _this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
@@ -17390,11 +17168,6 @@ if (false) {
      * @type {?}
      * @protected
      */
-    StructureGateway.prototype.structureSummariesConfigService;
-    /**
-     * @type {?}
-     * @protected
-     */
     StructureGateway.prototype.structureCellEditStore;
     /**
      * @type {?}
@@ -17677,7 +17450,7 @@ var FormationEventRepository = /** @class */ (function (_super) {
                 for (var j = 0; j < selectedRows.length; j += 1) {
                     /** @type {?} */
                     var item = itemsMap.get(selectedRows[j]);
-                    selectedItems.push(new SelectedRow(item.getData(), j, item.getId()));
+                    selectedItems.push(new SelectedRow(item.getSourceItem(), j, item.getId()));
                 }
                 return {
                     id: structureId,
@@ -18166,12 +17939,85 @@ var structureRowDetailViewTemplate = new InjectionToken('structureRowDetailViewT
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var StructureRowDetailViewComponent = /** @class */ (function () {
+/**
+ * @abstract
+ */
+var  /**
+ * @abstract
+ */
+DynamicallyCreatedComponent = /** @class */ (function () {
+    function DynamicallyCreatedComponent() {
+        this.subClassConstructor = this.constructor;
+        if (this.hasInputs()) {
+            this.throwError('it cannot have properties annotated with @Inputs().');
+        }
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    DynamicallyCreatedComponent.prototype.hasInputs = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        return false;
+        // Works with Angular 12
+        // return !this.isEmpty((this.constructor as any).ɵcmp.inputs);
+    };
+    /**
+     * @private
+     * @param {?} obj
+     * @return {?}
+     */
+    DynamicallyCreatedComponent.prototype.isEmpty = /**
+     * @private
+     * @param {?} obj
+     * @return {?}
+     */
+    function (obj) {
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    };
+    /**
+     * @private
+     * @param {?} reason
+     * @return {?}
+     */
+    DynamicallyCreatedComponent.prototype.throwError = /**
+     * @private
+     * @param {?} reason
+     * @return {?}
+     */
+    function (reason) {
+        throw new Error("Component \"" + this.subClassConstructor.name + "\" is a DynamicallyCreatedComponent, " + reason + ".");
+    };
+    return DynamicallyCreatedComponent;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    DynamicallyCreatedComponent.prototype.subClassConstructor;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureRowDetailViewComponent = /** @class */ (function (_super) {
+    __extends(StructureRowDetailViewComponent, _super);
     function StructureRowDetailViewComponent(item, template, sanitizer) {
-        this.item = item;
-        this.template = template;
-        this.sanitizer = sanitizer;
-        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.template(this.item.getSource(), this.item.getIndex()));
+        var _this = _super.call(this) || this;
+        _this.item = item;
+        _this.template = template;
+        _this.sanitizer = sanitizer;
+        _this.safeHTML = _this.sanitizer.bypassSecurityTrustHtml(_this.template(_this.item.getSource(), _this.item.getIndex()));
+        return _this;
     }
     /**
      * @return {?}
@@ -18184,7 +18030,8 @@ var StructureRowDetailViewComponent = /** @class */ (function () {
     };
     StructureRowDetailViewComponent.decorators = [
         { type: Component, args: [{
-                    template: "\n\n\t\t<div [innerHTML]=\"safeHTML\"></div>\n\n\t",
+                    selector: 'div[gui-row-detail]',
+                    template: "<div [innerHTML]=\"safeHTML\"></div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -18196,7 +18043,7 @@ var StructureRowDetailViewComponent = /** @class */ (function () {
         { type: DomSanitizer }
     ]; };
     return StructureRowDetailViewComponent;
-}());
+}(DynamicallyCreatedComponent));
 if (false) {
     /** @type {?} */
     StructureRowDetailViewComponent.prototype.selectedRowValue;
@@ -19297,6 +19144,7 @@ var FieldCollection = /** @class */ (function () {
     function (fieldConfigs) {
         /** @type {?} */
         var fields = this.fieldFactory.create(fieldConfigs);
+        this.clear();
         this.addFields(fields);
     };
     /**
@@ -19335,6 +19183,17 @@ var FieldCollection = /** @class */ (function () {
      */
     function (field) {
         this.fields.set(field.getId().toString(), field);
+    };
+    /**
+     * @private
+     * @return {?}
+     */
+    FieldCollection.prototype.clear = /**
+     * @private
+     * @return {?}
+     */
+    function () {
+        this.fields.clear();
     };
     return FieldCollection;
 }());
@@ -19665,14 +19524,21 @@ BaseDataField = /** @class */ (function () {
              * @param {?} entity
              * @return {?}
              */
-            function (entity) { return entity.getData()[accessor]; });
+            function (entity) { return entity.getSourceItem()[accessor]; });
         }
         else if (typeof accessor === 'function') {
             this.accessorMethod = (/**
              * @param {?} entity
              * @return {?}
              */
-            function (entity) { return accessor(entity.getData()); });
+            function (entity) { return accessor(entity.getSourceItem()); });
+        }
+        else {
+            this.accessorMethod = (/**
+             * @param {?} entity
+             * @return {?}
+             */
+            function (entity) { return entity; });
         }
     }
     /**
@@ -22074,10 +21940,10 @@ if (false) {
  */
 var OriginItemEntity = /** @class */ (function (_super) {
     __extends(OriginItemEntity, _super);
-    function OriginItemEntity(id, rawData, position, version) {
+    function OriginItemEntity(id, sourceItem, position, version) {
         if (version === void 0) { version = 0; }
         var _this = _super.call(this, id) || this;
-        _this.rawData = rawData;
+        _this.sourceItem = sourceItem;
         _this.position = position;
         _this.version = version;
         return _this;
@@ -22085,11 +21951,11 @@ var OriginItemEntity = /** @class */ (function (_super) {
     /**
      * @return {?}
      */
-    OriginItemEntity.prototype.getData = /**
+    OriginItemEntity.prototype.getSourceItem = /**
      * @return {?}
      */
     function () {
-        return this.rawData;
+        return this.sourceItem;
     };
     /**
      * @return {?}
@@ -22137,14 +22003,14 @@ var OriginItemEntity = /** @class */ (function (_super) {
      */
     function () {
         /** @type {?} */
-        var rawData = __assign({}, this.rawData);
+        var rawData = __assign({}, this.sourceItem);
         return new OriginItemEntity(this.getId(), rawData, this.version);
     };
     return OriginItemEntity;
 }(Entity));
 if (false) {
     /** @type {?} */
-    OriginItemEntity.prototype.rawData;
+    OriginItemEntity.prototype.sourceItem;
     /**
      * @type {?}
      * @private
@@ -22451,7 +22317,7 @@ var SourceManager = /** @class */ (function () {
         /** @type {?} */
         var itemBeforeChange = item.clone();
         if (item) {
-            item.rawData[field.getAccessor()] = value;
+            item.sourceItem[field.getAccessor()] = value;
             item.bumpVersion();
         }
         return [
@@ -24101,7 +23967,7 @@ var FormationWarehouse = /** @class */ (function () {
              * @return {?}
              */
             function (itemId) { return itemId === item.getId().toString(); }))) {
-                selectedItems.push(new SelectedRow(item.getData(), i, item.getId()));
+                selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
             }
         };
         for (var i = 0; i < length; i += 1) {
@@ -26853,6 +26719,1975 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @abstract
+ */
+var SummariesCommandInvoker = /** @class */ (function () {
+    function SummariesCommandInvoker() {
+    }
+    SummariesCommandInvoker.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesCommandInvoker.ctorParameters = function () { return []; };
+    return SummariesCommandInvoker;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesCommandInvoker.prototype.setSummariesEnabled = function (enabled, structureId) { };
+    /**
+     * @abstract
+     * @param {?} config
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesCommandInvoker.prototype.setConfig = function (config, structureId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var SummariesEventRepository = /** @class */ (function (_super) {
+    __extends(SummariesEventRepository, _super);
+    function SummariesEventRepository(domainEventBus) {
+        return _super.call(this, domainEventBus) || this;
+    }
+    SummariesEventRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesEventRepository.ctorParameters = function () { return [
+        { type: DomainEventBus }
+    ]; };
+    return SummariesEventRepository;
+}(EventRepository));
+if (false) {
+    /**
+     * @abstract
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesEventRepository.prototype.onSummariesChanged = function (structureId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSetSummariesEnabledCommand = /** @class */ (function (_super) {
+    __extends(StructureSetSummariesEnabledCommand, _super);
+    function StructureSetSummariesEnabledCommand(structureId, enabled) {
+        var _this = _super.call(this, structureId, 'StructureSetSummariesEnabledCommand') || this;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSetSummariesEnabledCommand.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return StructureSetSummariesEnabledCommand;
+}(StructureCommand));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSetSummariesEnabledCommand.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var StructureSummariesEnabledSetEventName = 'StructureSummariesEnabledSetEvent';
+var StructureSummariesEnabledSetEvent = /** @class */ (function (_super) {
+    __extends(StructureSummariesEnabledSetEvent, _super);
+    function StructureSummariesEnabledSetEvent(aggregateId, enabled) {
+        var _this = _super.call(this, aggregateId, enabled, StructureSummariesEnabledSetEventName) || this;
+        _this.enabled = enabled;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSummariesEnabledSetEvent.prototype.isEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.enabled;
+    };
+    return StructureSummariesEnabledSetEvent;
+}(StructureDomainEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesEnabledSetEvent.prototype.enabled;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSetSummariesEnabledCommandHandler = /** @class */ (function () {
+    function StructureSetSummariesEnabledCommandHandler(structureSourceDomainEventPublisher, domainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSetSummariesEnabledCommandHandler.prototype.forCommand = /**
+     * @return {?}
+     */
+    function () {
+        return StructureSetSummariesEnabledCommand;
+    };
+    /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    StructureSetSummariesEnabledCommandHandler.prototype.handle = /**
+     * @param {?} structure
+     * @param {?} command
+     * @return {?}
+     */
+    function (structure, command) {
+        /** @type {?} */
+        var enabled = command.isEnabled();
+        structure.setSummariesEnabled(enabled);
+    };
+    /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    StructureSetSummariesEnabledCommandHandler.prototype.publish = /**
+     * @param {?} aggregate
+     * @param {?} command
+     * @return {?}
+     */
+    function (aggregate, command) {
+        /** @type {?} */
+        var enabled = command.isEnabled();
+        /** @type {?} */
+        var aggregateEvents = aggregate.getEvents();
+        this.domainEventPublisher.publish(new StructureSummariesEnabledSetEvent(command.getAggregateId(), enabled));
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    };
+    StructureSetSummariesEnabledCommandHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StructureSetSummariesEnabledCommandHandler.ctorParameters = function () { return [
+        { type: SourceDomainEventPublisher },
+        { type: DomainEventPublisher }
+    ]; };
+    return StructureSetSummariesEnabledCommandHandler;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSetSummariesEnabledCommandHandler.prototype.structureSourceDomainEventPublisher;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSetSummariesEnabledCommandHandler.prototype.domainEventPublisher;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesChangedAggregateEvent = /** @class */ (function (_super) {
+    __extends(StructureSummariesChangedAggregateEvent, _super);
+    function StructureSummariesChangedAggregateEvent(aggregateId, summarizedValues) {
+        var _this = _super.call(this, aggregateId, 'StructureSummariesChangedAggregateEvent') || this;
+        _this.summarizedValues = summarizedValues;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSummariesChangedAggregateEvent.prototype.toDomainEvent = /**
+     * @return {?}
+     */
+    function () {
+        return new StructureSummariesChangedEvent(this.getAggregateId(), this.summarizedValues);
+    };
+    /**
+     * @return {?}
+     */
+    StructureSummariesChangedAggregateEvent.prototype.getSummaries = /**
+     * @return {?}
+     */
+    function () {
+        return this.summarizedValues;
+    };
+    return StructureSummariesChangedAggregateEvent;
+}(StructureAggregateEvent));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesChangedAggregateEvent.prototype.summarizedValues;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesManager = /** @class */ (function () {
+    function SummariesManager(structureId, calculators) {
+        this.calculators = calculators;
+        this.values = new Map();
+        this.structureId = structureId;
+        this.enabled = SummariesManager.DEFAULT_ENABLED;
+    }
+    /**
+     * @param {?} fields
+     * @param {?} entities
+     * @return {?}
+     */
+    SummariesManager.prototype.calculate = /**
+     * @param {?} fields
+     * @param {?} entities
+     * @return {?}
+     */
+    function (fields, entities) {
+        if (!this.enabled) {
+            return [];
+        }
+        /** @type {?} */
+        var calculations = new Map();
+        this.calculators.forEach((/**
+         * @param {?} calc
+         * @return {?}
+         */
+        function (calc) {
+            /** @type {?} */
+            var aggregatedValues = calc.calculate(fields, entities);
+            if (aggregatedValues) {
+                Array.from(aggregatedValues.keys())
+                    .forEach((/**
+                 * @param {?} key
+                 * @return {?}
+                 */
+                function (key) {
+                    calculations.set(key, aggregatedValues.get(key));
+                }));
+            }
+        }));
+        if (calculations.size > 0) {
+            return [
+                new StructureSummariesChangedAggregateEvent(this.structureId, calculations)
+            ];
+        }
+        else {
+            return [];
+        }
+    };
+    /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    SummariesManager.prototype.setEnabled = /**
+     * @param {?} enabled
+     * @return {?}
+     */
+    function (enabled) {
+        this.enabled = enabled;
+    };
+    /**
+     * @return {?}
+     */
+    SummariesManager.prototype.add = /**
+     * @return {?}
+     */
+    function () {
+    };
+    /**
+     * @return {?}
+     */
+    SummariesManager.prototype.remove = /**
+     * @return {?}
+     */
+    function () {
+    };
+    /**
+     * @return {?}
+     */
+    SummariesManager.prototype.update = /**
+     * @return {?}
+     */
+    function () {
+    };
+    SummariesManager.DEFAULT_ENABLED = false;
+    return SummariesManager;
+}());
+if (false) {
+    /** @type {?} */
+    SummariesManager.DEFAULT_ENABLED;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesManager.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesManager.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesManager.prototype.values;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesManager.prototype.calculators;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesEnabledArchive = /** @class */ (function (_super) {
+    __extends(SummariesEnabledArchive, _super);
+    function SummariesEnabledArchive() {
+        return _super.call(this, SummariesManager.DEFAULT_ENABLED) || this;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesEnabledArchive.prototype.init = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        this.next(structureId, SummariesManager.DEFAULT_ENABLED);
+    };
+    SummariesEnabledArchive.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesEnabledArchive.ctorParameters = function () { return []; };
+    return SummariesEnabledArchive;
+}(AggregateArchive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesEnabledSetEventHandler = /** @class */ (function () {
+    function StructureSummariesEnabledSetEventHandler(summariesEnabledArchive) {
+        this.summariesEnabledArchive = summariesEnabledArchive;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSummariesEnabledSetEventHandler.prototype.forEvent = /**
+     * @return {?}
+     */
+    function () {
+        return StructureSummariesEnabledSetEvent;
+    };
+    /**
+     * @param {?} event
+     * @return {?}
+     */
+    StructureSummariesEnabledSetEventHandler.prototype.handle = /**
+     * @param {?} event
+     * @return {?}
+     */
+    function (event) {
+        if (event.ofMessageType('StructureSummariesEnabledSetEvent')) {
+            this.summariesEnabledArchive.next(event.getAggregateId(), event.isEnabled());
+        }
+    };
+    StructureSummariesEnabledSetEventHandler.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StructureSummariesEnabledSetEventHandler.ctorParameters = function () { return [
+        { type: SummariesEnabledArchive }
+    ]; };
+    return StructureSummariesEnabledSetEventHandler;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesEnabledSetEventHandler.prototype.summariesEnabledArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+var SUMMARIES_CALCULATORS = 'GUI - Summaries Calculators';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ * @template T, A
+ */
+var  /**
+ * @abstract
+ * @template T, A
+ */
+SummariesCalculator = /** @class */ (function () {
+    function SummariesCalculator() {
+    }
+    /**
+     * @param {?} fields
+     * @param {?} items
+     * @return {?}
+     */
+    SummariesCalculator.prototype.calculate = /**
+     * @param {?} fields
+     * @param {?} items
+     * @return {?}
+     */
+    function (fields, items) {
+        var _this = this;
+        /** @type {?} */
+        var filteredFields = fields.filter((/**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) { return _this.forDataType(field.getDataType()); }));
+        if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
+            return null;
+        }
+        /** @type {?} */
+        var count = new Map();
+        /** @type {?} */
+        var distinct = new Map();
+        // init
+        filteredFields.forEach((/**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            count.set(key, 0);
+            distinct.set(key, new Set());
+            _this.prepare(field);
+        }));
+        // calculate
+        items.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        function (item) {
+            filteredFields.forEach((/**
+             * @param {?} field
+             * @return {?}
+             */
+            function (field) {
+                /** @type {?} */
+                var key = field.getKey();
+                /** @type {?} */
+                var value = field.getValue(item);
+                if (value !== null || value !== undefined || value !== '') {
+                    if (field.isSummaries(SummariesType.COUNT)) {
+                        /** @type {?} */
+                        var countForField = count.get(key);
+                        count.set(key, countForField + 1);
+                    }
+                    if (field.isSummaries(SummariesType.DISTINCT)) {
+                        /** @type {?} */
+                        var distinctSet = distinct.get(key);
+                        distinctSet.add(value);
+                    }
+                }
+                _this.aggregate(field, value);
+            }));
+        }));
+        filteredFields.forEach((/**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            _this.postCalculate(field, items);
+        }));
+        /** @type {?} */
+        var summaries = new Map();
+        filteredFields.forEach((/**
+         * @param {?} field
+         * @return {?}
+         */
+        function (field) {
+            /** @type {?} */
+            var key = field.getKey();
+            /** @type {?} */
+            var aggregatedValues = _this.generateAggregatedValues(field);
+            if (field.isSummaries(SummariesType.COUNT)) {
+                aggregatedValues.setCount(count.get(key));
+            }
+            if (field.isSummaries(SummariesType.DISTINCT)) {
+                aggregatedValues.setDistinct((distinct.get(key)).size);
+            }
+            summaries.set(key, aggregatedValues);
+        }));
+        return summaries;
+    };
+    return SummariesCalculator;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} dataType
+     * @return {?}
+     */
+    SummariesCalculator.prototype.forDataType = function (dataType) { };
+    /**
+     * @abstract
+     * @param {?} field
+     * @return {?}
+     */
+    SummariesCalculator.prototype.prepare = function (field) { };
+    /**
+     * @abstract
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    SummariesCalculator.prototype.postCalculate = function (field, items) { };
+    /**
+     * @abstract
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    SummariesCalculator.prototype.aggregate = function (field, value) { };
+    /**
+     * @abstract
+     * @param {?} field
+     * @return {?}
+     */
+    SummariesCalculator.prototype.generateAggregatedValues = function (field) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var /**
+ * @abstract
+ */
+SummariesValues = /** @class */ (function () {
+    function SummariesValues() {
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    SummariesValues.prototype.setCount = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.count = value;
+    };
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    SummariesValues.prototype.setDistinct = /**
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        this.distinct = value;
+    };
+    return SummariesValues;
+}());
+if (false) {
+    /** @type {?} */
+    SummariesValues.prototype.count;
+    /** @type {?} */
+    SummariesValues.prototype.distinct;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var BooleanSummarizedValues = /** @class */ (function (_super) {
+    __extends(BooleanSummarizedValues, _super);
+    function BooleanSummarizedValues(truthy, falsy) {
+        var _this = _super.call(this) || this;
+        _this.truthy = truthy;
+        _this.falsy = falsy;
+        return _this;
+    }
+    return BooleanSummarizedValues;
+}(SummariesValues));
+if (false) {
+    /** @type {?} */
+    BooleanSummarizedValues.prototype.truthy;
+    /** @type {?} */
+    BooleanSummarizedValues.prototype.falsy;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var BooleanSummariesCalculator = /** @class */ (function (_super) {
+    __extends(BooleanSummariesCalculator, _super);
+    function BooleanSummariesCalculator() {
+        var _this = _super.call(this) || this;
+        _this.truthy = new Map();
+        _this.falsy = new Map();
+        return _this;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    BooleanSummariesCalculator.prototype.forDataType = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return dataType === DataType.BOOLEAN;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    BooleanSummariesCalculator.prototype.prepare = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        /** @type {?} */
+        var key = field.getKey();
+        if (field.isSummaries(SummariesType.TRUTHY)) {
+            this.truthy.set(key, 0);
+        }
+        if (field.isSummaries(SummariesType.FALSY)) {
+            this.falsy.set(key, 0);
+        }
+    };
+    /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    BooleanSummariesCalculator.prototype.postCalculate = /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    function (field, items) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    BooleanSummariesCalculator.prototype.aggregate = /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    function (field, value) {
+        /** @type {?} */
+        var booleanValue = value;
+        /** @type {?} */
+        var // (value as any === 'true'),
+        key = field.getKey();
+        /** @type {?} */
+        var truthyForField = this.truthy.get(key);
+        /** @type {?} */
+        var falsyForField = this.falsy.get(key);
+        if (booleanValue) {
+            if (field.isSummaries(SummariesType.TRUTHY)) {
+                this.truthy.set(key, truthyForField + 1);
+            }
+        }
+        else {
+            if (field.isSummaries(SummariesType.FALSY)) {
+                this.falsy.set(key, falsyForField + 1);
+            }
+        }
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    BooleanSummariesCalculator.prototype.generateAggregatedValues = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        /** @type {?} */
+        var key = field.getKey();
+        return new BooleanSummarizedValues(this.truthy.get(key), this.falsy.get(key));
+    };
+    BooleanSummariesCalculator.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    BooleanSummariesCalculator.ctorParameters = function () { return []; };
+    return BooleanSummariesCalculator;
+}(SummariesCalculator));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    BooleanSummariesCalculator.prototype.truthy;
+    /**
+     * @type {?}
+     * @private
+     */
+    BooleanSummariesCalculator.prototype.falsy;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var DateSummarizedValues = /** @class */ (function (_super) {
+    __extends(DateSummarizedValues, _super);
+    function DateSummarizedValues() {
+        return _super.call(this) || this;
+    }
+    return DateSummarizedValues;
+}(SummariesValues));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var DateSummariesCalculator = /** @class */ (function (_super) {
+    __extends(DateSummariesCalculator, _super);
+    function DateSummariesCalculator() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    DateSummariesCalculator.prototype.forDataType = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return dataType === DataType.DATE;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    DateSummariesCalculator.prototype.prepare = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    DateSummariesCalculator.prototype.postCalculate = /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    function (field, items) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    DateSummariesCalculator.prototype.aggregate = /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    function (field, value) {
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    DateSummariesCalculator.prototype.generateAggregatedValues = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        return new DateSummarizedValues();
+    };
+    DateSummariesCalculator.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    DateSummariesCalculator.ctorParameters = function () { return []; };
+    return DateSummariesCalculator;
+}(SummariesCalculator));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var NumberSummarizedValues = /** @class */ (function (_super) {
+    __extends(NumberSummarizedValues, _super);
+    function NumberSummarizedValues(sum, min, max, average, median) {
+        var _this = _super.call(this) || this;
+        _this.sum = _this.setValueWithPrecision(sum);
+        _this.min = _this.setValueWithPrecision(min);
+        _this.max = _this.setValueWithPrecision(max);
+        _this.average = _this.setValueWithPrecision(average);
+        _this.median = _this.setValueWithPrecision(median);
+        return _this;
+    }
+    /**
+     * @private
+     * @param {?} value
+     * @return {?}
+     */
+    NumberSummarizedValues.prototype.setValueWithPrecision = /**
+     * @private
+     * @param {?} value
+     * @return {?}
+     */
+    function (value) {
+        if (!value && value !== 0) {
+            return null;
+        }
+        if (value === 0) {
+            return 0;
+        }
+        return +((value).toFixed(2));
+    };
+    return NumberSummarizedValues;
+}(SummariesValues));
+if (false) {
+    /** @type {?} */
+    NumberSummarizedValues.prototype.sum;
+    /** @type {?} */
+    NumberSummarizedValues.prototype.min;
+    /** @type {?} */
+    NumberSummarizedValues.prototype.max;
+    /** @type {?} */
+    NumberSummarizedValues.prototype.average;
+    /** @type {?} */
+    NumberSummarizedValues.prototype.median;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var NumberSummariesCalculator = /** @class */ (function (_super) {
+    __extends(NumberSummariesCalculator, _super);
+    function NumberSummariesCalculator() {
+        var _this = _super.call(this) || this;
+        _this.sum = new Map();
+        _this.min = new Map();
+        _this.max = new Map();
+        _this.average = new Map();
+        _this.median = new Map();
+        return _this;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    NumberSummariesCalculator.prototype.forDataType = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return dataType === DataType.NUMBER;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    NumberSummariesCalculator.prototype.prepare = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        /** @type {?} */
+        var key = field.getKey();
+        this.sum.set(key, 0);
+        this.min.set(key, Number.MAX_SAFE_INTEGER);
+        this.max.set(key, 0);
+    };
+    /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    NumberSummariesCalculator.prototype.postCalculate = /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    function (field, items) {
+        /** @type {?} */
+        var key = field.getKey();
+        if (field.isSummaries(SummariesType.AVERAGE)) {
+            this.average.set(key, this.sum.get(key) / items.length);
+        }
+        if (field.isSummaries(SummariesType.MEDIAN)) {
+            this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
+        }
+    };
+    /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    NumberSummariesCalculator.prototype.aggregate = /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    function (field, value) {
+        /** @type {?} */
+        var numberValue = +value;
+        /** @type {?} */
+        var key = field.getKey();
+        /** @type {?} */
+        var sumForField = this.sum.get(key);
+        /** @type {?} */
+        var minForField = this.min.get(key);
+        /** @type {?} */
+        var maxForField = this.max.get(key);
+        if (field.isSummaries(SummariesType.SUM) || field.isSummaries(SummariesType.AVERAGE)) {
+            this.sum.set(key, sumForField + numberValue);
+        }
+        if (field.isSummaries(SummariesType.MIN)) {
+            if (minForField > numberValue) {
+                this.min.set(key, numberValue);
+            }
+        }
+        if (field.isSummaries(SummariesType.MAX)) {
+            if (maxForField < numberValue) {
+                this.max.set(key, numberValue);
+            }
+        }
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    NumberSummariesCalculator.prototype.generateAggregatedValues = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        /** @type {?} */
+        var key = field.getKey();
+        /** @type {?} */
+        var sum = field.isSummaries(SummariesType.SUM) ? this.sum.get(key) : undefined;
+        /** @type {?} */
+        var min = field.isSummaries(SummariesType.MIN) ? this.min.get(key) : undefined;
+        /** @type {?} */
+        var max = field.isSummaries(SummariesType.MAX) ? this.max.get(key) : undefined;
+        /** @type {?} */
+        var average = field.isSummaries(SummariesType.AVERAGE) ? this.average.get(key) : undefined;
+        /** @type {?} */
+        var median = field.isSummaries(SummariesType.MEDIAN) ? this.median.get(key) : undefined;
+        return new NumberSummarizedValues(sum, min, max, average, median);
+    };
+    NumberSummariesCalculator.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    NumberSummariesCalculator.ctorParameters = function () { return []; };
+    return NumberSummariesCalculator;
+}(SummariesCalculator));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberSummariesCalculator.prototype.sum;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberSummariesCalculator.prototype.min;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberSummariesCalculator.prototype.max;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberSummariesCalculator.prototype.average;
+    /**
+     * @type {?}
+     * @private
+     */
+    NumberSummariesCalculator.prototype.median;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StringSummarizedValues = /** @class */ (function (_super) {
+    __extends(StringSummarizedValues, _super);
+    function StringSummarizedValues() {
+        return _super.call(this) || this;
+    }
+    return StringSummarizedValues;
+}(SummariesValues));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StringSummariesCalculator = /** @class */ (function (_super) {
+    __extends(StringSummariesCalculator, _super);
+    function StringSummariesCalculator() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    StringSummariesCalculator.prototype.forDataType = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return dataType === DataType.STRING;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    StringSummariesCalculator.prototype.prepare = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    StringSummariesCalculator.prototype.postCalculate = /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    function (field, items) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    StringSummariesCalculator.prototype.aggregate = /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    function (field, value) {
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    StringSummariesCalculator.prototype.generateAggregatedValues = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        return new StringSummarizedValues();
+    };
+    StringSummariesCalculator.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StringSummariesCalculator.ctorParameters = function () { return []; };
+    return StringSummariesCalculator;
+}(SummariesCalculator));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var UnknownSummarizedValues = /** @class */ (function (_super) {
+    __extends(UnknownSummarizedValues, _super);
+    function UnknownSummarizedValues() {
+        return _super.call(this) || this;
+    }
+    return UnknownSummarizedValues;
+}(SummariesValues));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var UnknownSummariesCalculator = /** @class */ (function (_super) {
+    __extends(UnknownSummariesCalculator, _super);
+    function UnknownSummariesCalculator() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    UnknownSummariesCalculator.prototype.forDataType = /**
+     * @param {?} dataType
+     * @return {?}
+     */
+    function (dataType) {
+        return dataType === DataType.UNKNOWN;
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    UnknownSummariesCalculator.prototype.prepare = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    UnknownSummariesCalculator.prototype.postCalculate = /**
+     * @param {?} field
+     * @param {?} items
+     * @return {?}
+     */
+    function (field, items) {
+    };
+    /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    UnknownSummariesCalculator.prototype.aggregate = /**
+     * @param {?} field
+     * @param {?} value
+     * @return {?}
+     */
+    function (field, value) {
+    };
+    /**
+     * @param {?} field
+     * @return {?}
+     */
+    UnknownSummariesCalculator.prototype.generateAggregatedValues = /**
+     * @param {?} field
+     * @return {?}
+     */
+    function (field) {
+        return new UnknownSummarizedValues();
+    };
+    UnknownSummariesCalculator.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    UnknownSummariesCalculator.ctorParameters = function () { return []; };
+    return UnknownSummariesCalculator;
+}(SummariesCalculator));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesManagerFactory = /** @class */ (function () {
+    function SummariesManagerFactory(calculators) {
+        this.calculators = calculators;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesManagerFactory.prototype.create = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        return new SummariesManager(structureId, this.calculators);
+    };
+    SummariesManagerFactory.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesManagerFactory.ctorParameters = function () { return [
+        { type: Array, decorators: [{ type: Inject, args: [SUMMARIES_CALCULATORS,] }] }
+    ]; };
+    return SummariesManagerFactory;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesManagerFactory.prototype.calculators;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @param {?} clazz
+ * @return {?}
+ */
+function provideSummariesCalculator(clazz) {
+    return {
+        provide: SUMMARIES_CALCULATORS,
+        useClass: clazz,
+        multi: true
+    };
+}
+/** @type {?} */
+var summariesProviders = [
+    provideSummariesCalculator(BooleanSummariesCalculator),
+    provideSummariesCalculator(DateSummariesCalculator),
+    provideSummariesCalculator(NumberSummariesCalculator),
+    provideSummariesCalculator(StringSummariesCalculator),
+    provideSummariesCalculator(UnknownSummariesCalculator),
+    SummariesManagerFactory
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesDomainModule = /** @class */ (function (_super) {
+    __extends(SummariesDomainModule, _super);
+    function SummariesDomainModule() {
+        return _super.call(this) || this;
+    }
+    /**
+     * @return {?}
+     */
+    SummariesDomainModule.commandHandlers = /**
+     * @return {?}
+     */
+    function () {
+        return __spread(HermesModule.registerCommandHandler(StructureSetSummariesEnabledCommandHandler, structureKey));
+    };
+    /**
+     * @return {?}
+     */
+    SummariesDomainModule.domainEventHandlers = /**
+     * @return {?}
+     */
+    function () {
+        return __spread(HermesModule.registerDomainEventHandler(StructureSummariesEnabledSetEventHandler));
+    };
+    SummariesDomainModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    providers: __spread(summariesProviders),
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    /** @nocollapse */
+    SummariesDomainModule.ctorParameters = function () { return []; };
+    return SummariesDomainModule;
+}(DomainModule));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+var SummariesWarehouse = /** @class */ (function () {
+    function SummariesWarehouse() {
+    }
+    SummariesWarehouse.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesWarehouse.ctorParameters = function () { return []; };
+    return SummariesWarehouse;
+}());
+if (false) {
+    /**
+     * @abstract
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesWarehouse.prototype.onEnabled = function (structureId) { };
+    /**
+     * @abstract
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesWarehouse.prototype.onTopEnabled = function (structureId) { };
+    /**
+     * @abstract
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesWarehouse.prototype.onBottomEnabled = function (structureId) { };
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesPanelConfig = /** @class */ (function () {
+    function StructureSummariesPanelConfig() {
+        this.top = StructureSummariesPanelConfig.defaultTop;
+        this.bottom = StructureSummariesPanelConfig.defaultBottom;
+    }
+    /**
+     * @param {?} top
+     * @return {?}
+     */
+    StructureSummariesPanelConfig.prototype.setTop = /**
+     * @param {?} top
+     * @return {?}
+     */
+    function (top) {
+        this.top = top;
+    };
+    /**
+     * @param {?} bottom
+     * @return {?}
+     */
+    StructureSummariesPanelConfig.prototype.setBottom = /**
+     * @param {?} bottom
+     * @return {?}
+     */
+    function (bottom) {
+        this.bottom = bottom;
+    };
+    /**
+     * @return {?}
+     */
+    StructureSummariesPanelConfig.prototype.isTopEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.top;
+    };
+    /**
+     * @return {?}
+     */
+    StructureSummariesPanelConfig.prototype.isBottomEnabled = /**
+     * @return {?}
+     */
+    function () {
+        return this.bottom;
+    };
+    StructureSummariesPanelConfig.defaultTop = false;
+    StructureSummariesPanelConfig.defaultBottom = true;
+    return StructureSummariesPanelConfig;
+}());
+if (false) {
+    /** @type {?} */
+    StructureSummariesPanelConfig.defaultTop;
+    /** @type {?} */
+    StructureSummariesPanelConfig.defaultBottom;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelConfig.prototype.top;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelConfig.prototype.bottom;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesConfigArchive = /** @class */ (function (_super) {
+    __extends(StructureSummariesConfigArchive, _super);
+    function StructureSummariesConfigArchive() {
+        return _super.call(this, StructureSummariesConfigArchive.default) || this;
+    }
+    StructureSummariesConfigArchive.default = new StructureSummariesPanelConfig();
+    StructureSummariesConfigArchive.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    StructureSummariesConfigArchive.ctorParameters = function () { return []; };
+    return StructureSummariesConfigArchive;
+}(AggregateArchive));
+if (false) {
+    /** @type {?} */
+    StructureSummariesConfigArchive.default;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesDomainWarehouse = /** @class */ (function (_super) {
+    __extends(SummariesDomainWarehouse, _super);
+    function SummariesDomainWarehouse(summariesEnabledArchive, structureSummariesArchive) {
+        var _this = _super.call(this) || this;
+        _this.summariesEnabledArchive = summariesEnabledArchive;
+        _this.structureSummariesArchive = structureSummariesArchive;
+        return _this;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainWarehouse.prototype.onEnabled = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        return this.summariesEnabledArchive.on(structureId);
+    };
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainWarehouse.prototype.onBottomEnabled = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        var _this = this;
+        return this.onEnabled(structureId)
+            .pipe(hermesSwitchMap((/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            return _this.structureSummariesArchive
+                .on(structureId)
+                .pipe(hermesMap((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return enabled && config.isBottomEnabled(); })));
+        })));
+    };
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainWarehouse.prototype.onTopEnabled = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        var _this = this;
+        return this.onEnabled(structureId)
+            .pipe(hermesSwitchMap((/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            return _this.structureSummariesArchive
+                .on(structureId)
+                .pipe(hermesMap((/**
+             * @param {?} config
+             * @return {?}
+             */
+            function (config) { return enabled && config.isTopEnabled(); })));
+        })));
+    };
+    SummariesDomainWarehouse.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesDomainWarehouse.ctorParameters = function () { return [
+        { type: SummariesEnabledArchive },
+        { type: StructureSummariesConfigArchive }
+    ]; };
+    return SummariesDomainWarehouse;
+}(SummariesWarehouse));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesDomainWarehouse.prototype.summariesEnabledArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesDomainWarehouse.prototype.structureSummariesArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesPanelConfigConverter = /** @class */ (function () {
+    function StructureSummariesPanelConfigConverter() {
+    }
+    /**
+     * @param {?} config
+     * @return {?}
+     */
+    StructureSummariesPanelConfigConverter.prototype.convert = /**
+     * @param {?} config
+     * @return {?}
+     */
+    function (config) {
+        /** @type {?} */
+        var panelConfig = new StructureSummariesPanelConfig();
+        if (config.top !== undefined && config.top !== null) {
+            panelConfig.setTop(config.top);
+        }
+        if (config.bottom !== undefined && config.bottom !== null) {
+            panelConfig.setBottom(config.bottom);
+        }
+        return panelConfig;
+    };
+    StructureSummariesPanelConfigConverter.decorators = [
+        { type: Injectable }
+    ];
+    return StructureSummariesPanelConfigConverter;
+}());
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesDomainCommandInvoker = /** @class */ (function (_super) {
+    __extends(SummariesDomainCommandInvoker, _super);
+    function SummariesDomainCommandInvoker(commandDispatcher, configConverter, structureSummariesConfigArchive) {
+        var _this = _super.call(this) || this;
+        _this.commandDispatcher = commandDispatcher;
+        _this.configConverter = configConverter;
+        _this.structureSummariesConfigArchive = structureSummariesConfigArchive;
+        return _this;
+    }
+    /**
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainCommandInvoker.prototype.setSummariesEnabled = /**
+     * @param {?} enabled
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (enabled, structureId) {
+        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+    };
+    /**
+     * @param {?} config
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainCommandInvoker.prototype.setConfig = /**
+     * @param {?} config
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (config, structureId) {
+        /** @type {?} */
+        var summariesPanelConfig = this.configConverter.convert(config);
+        this.setSummariesEnabled(config.enabled, structureId);
+        this.structureSummariesConfigArchive.next(structureId, summariesPanelConfig);
+    };
+    SummariesDomainCommandInvoker.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesDomainCommandInvoker.ctorParameters = function () { return [
+        { type: CommandDispatcher },
+        { type: StructureSummariesPanelConfigConverter },
+        { type: StructureSummariesConfigArchive }
+    ]; };
+    return SummariesDomainCommandInvoker;
+}(SummariesCommandInvoker));
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesDomainCommandInvoker.prototype.commandDispatcher;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesDomainCommandInvoker.prototype.configConverter;
+    /**
+     * @type {?}
+     * @private
+     */
+    SummariesDomainCommandInvoker.prototype.structureSummariesConfigArchive;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesDomainEventRepository = /** @class */ (function (_super) {
+    __extends(SummariesDomainEventRepository, _super);
+    function SummariesDomainEventRepository(domainEventBus) {
+        return _super.call(this, domainEventBus) || this;
+    }
+    /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    SummariesDomainEventRepository.prototype.onSummariesChanged = /**
+     * @param {?} structureId
+     * @return {?}
+     */
+    function (structureId) {
+        return this.onEvent(structureId, StructureSummariesChangedEvent);
+    };
+    SummariesDomainEventRepository.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    SummariesDomainEventRepository.ctorParameters = function () { return [
+        { type: DomainEventBus }
+    ]; };
+    return SummariesDomainEventRepository;
+}(SummariesEventRepository));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesApiModule = /** @class */ (function (_super) {
+    __extends(SummariesApiModule, _super);
+    function SummariesApiModule() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SummariesApiModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        SummariesDomainModule
+                    ],
+                    providers: [
+                        {
+                            provide: SummariesCommandInvoker,
+                            useClass: SummariesDomainCommandInvoker
+                        },
+                        {
+                            provide: SummariesEventRepository,
+                            useClass: SummariesDomainEventRepository
+                        },
+                        {
+                            provide: SummariesWarehouse,
+                            useClass: SummariesDomainWarehouse
+                        },
+                        SummariesEnabledArchive
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    return SummariesApiModule;
+}(ApiModule));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesTranslations = /** @class */ (function () {
+    function SummariesTranslations(distinctTooltip, averageTooltip, minTooltip, maxTooltip, medTooltip, countTooltip) {
+        this.distinctTooltip = distinctTooltip;
+        this.averageTooltip = averageTooltip;
+        this.minTooltip = minTooltip;
+        this.maxTooltip = maxTooltip;
+        this.medTooltip = medTooltip;
+        this.countTooltip = countTooltip;
+    }
+    return SummariesTranslations;
+}());
+if (false) {
+    /** @type {?} */
+    SummariesTranslations.prototype.distinctTooltip;
+    /** @type {?} */
+    SummariesTranslations.prototype.averageTooltip;
+    /** @type {?} */
+    SummariesTranslations.prototype.minTooltip;
+    /** @type {?} */
+    SummariesTranslations.prototype.maxTooltip;
+    /** @type {?} */
+    SummariesTranslations.prototype.medTooltip;
+    /** @type {?} */
+    SummariesTranslations.prototype.countTooltip;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var StructureSummariesPanelComponent = /** @class */ (function (_super) {
+    __extends(StructureSummariesPanelComponent, _super);
+    function StructureSummariesPanelComponent(changeDetectorRef, elementRef, structureId, compositionId, structureSummariesEventRepository, translationService, sourceWarehouse, rowSelectionTypeArchive, compositionWarehouse) {
+        var _this = _super.call(this, changeDetectorRef, elementRef) || this;
+        _this.changeDetectorRef = changeDetectorRef;
+        _this.structureId = structureId;
+        _this.compositionId = compositionId;
+        _this.structureSummariesEventRepository = structureSummariesEventRepository;
+        _this.translationService = translationService;
+        _this.sourceWarehouse = sourceWarehouse;
+        _this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+        _this.compositionWarehouse = compositionWarehouse;
+        _this.sourceEmpty = false;
+        _this.addClassToHost('gui-flex');
+        _this.hermesSubscribe(_this.structureSummariesEventRepository.onSummariesChanged(_this.structureId.toReadModelRootId()), (/**
+         * @param {?} event
+         * @return {?}
+         */
+        function (event) {
+            _this.summaries = event.getSummaries();
+        }));
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    StructureSummariesPanelComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.hermesSubscribe(this.rowSelectionTypeArchive.on(), (/**
+         * @param {?} type
+         * @return {?}
+         */
+        function (type) {
+            _this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+        }));
+        this.hermesSubscribe(this.sourceWarehouse.onEntitiesSize(this.structureId), (/**
+         * @param {?} size
+         * @return {?}
+         */
+        function (size) {
+            _this.sourceEmpty = size === 0;
+        }));
+        this.hermesSubscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (/**
+         * @param {?} columns
+         * @return {?}
+         */
+        function (columns) {
+            _this.headerColumns = columns;
+        }));
+        this.hermesSubscribe(this.translationService.onTranslation(), (/**
+         * @param {?} translation
+         * @return {?}
+         */
+        function (translation) {
+            _this.summariesTranslations = new SummariesTranslations(translation.summariesDistinctValuesTooltip, translation.summariesAverageTooltip, translation.summariesMinTooltip, translation.summariesMaxTooltip, translation.summariesMedTooltip, translation.summariesCountTooltip);
+        }));
+    };
+    /**
+     * @param {?} summaries
+     * @return {?}
+     */
+    StructureSummariesPanelComponent.prototype.isSummariesTypePresent = /**
+     * @param {?} summaries
+     * @return {?}
+     */
+    function (summaries) {
+        return summaries !== undefined && summaries !== null;
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    StructureSummariesPanelComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-structure-summaries-panel';
+    };
+    StructureSummariesPanelComponent.decorators = [
+        { type: Component, args: [{
+                    selector: 'div[gui-structure-summaries-panel][enabled]',
+                    template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    StructureSummariesPanelComponent.ctorParameters = function () { return [
+        { type: ChangeDetectorRef },
+        { type: ElementRef },
+        { type: StructureId },
+        { type: CompositionId },
+        { type: SummariesEventRepository },
+        { type: TranslationFacade },
+        { type: SourceWarehouse },
+        { type: RowSelectionTypeArchive },
+        { type: CompositionWarehouse }
+    ]; };
+    StructureSummariesPanelComponent.propDecorators = {
+        enabled: [{ type: Input }]
+    };
+    return StructureSummariesPanelComponent;
+}(SmartComponent));
+if (false) {
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.enabled;
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.sourceEmpty;
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.headerColumns;
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.summaries;
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.summariesTranslations;
+    /** @type {?} */
+    StructureSummariesPanelComponent.prototype.checkboxSelection;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.changeDetectorRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.compositionId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.structureSummariesEventRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.translationService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.sourceWarehouse;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.rowSelectionTypeArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesPanelComponent.prototype.compositionWarehouse;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var SummariesFeatureModule = /** @class */ (function (_super) {
+    __extends(SummariesFeatureModule, _super);
+    function SummariesFeatureModule(summariesApiModule) {
+        var _this = _super.call(this) || this;
+        if (summariesApiModule === null) {
+            throw new Error('SummariesApiModule is required.');
+        }
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    SummariesFeatureModule.forComponent = /**
+     * @return {?}
+     */
+    function () {
+        return [];
+    };
+    SummariesFeatureModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        FabricModule,
+                        TranslationFeatureModule,
+                        SummariesApiModule
+                    ],
+                    declarations: [
+                        StructureSummariesPanelComponent
+                    ],
+                    exports: [
+                        StructureSummariesPanelComponent
+                    ],
+                    providers: [
+                        StructureSummariesConfigArchive,
+                        StructureSummariesPanelConfigConverter
+                    ]
+                },] }
+    ];
+    /** @nocollapse */
+    SummariesFeatureModule.ctorParameters = function () { return [
+        { type: SummariesApiModule, decorators: [{ type: Optional }] }
+    ]; };
+    return SummariesFeatureModule;
+}(FeatureModule));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
  * \@internal
  * @param {?} generator
  * @return {?}
@@ -26909,8 +28744,6 @@ var structureComponentSelfProviders = [
     StructureEditModeArchive,
     StructureInfoPanelArchive,
     StructureInfoPanelConfigService,
-    StructureSummariesArchive,
-    StructureSummariesConfigService,
     StructureColumnMenuConfigArchive,
     PagingFeatureModule.forComponent(),
     SortingFeatureModule.forComponent(),
@@ -26918,6 +28751,7 @@ var structureComponentSelfProviders = [
     SearchFeatureModule.forComponent(),
     SourceFeatureModule.forComponent(),
     SchemaFeatureModule.forComponent(),
+    SummariesFeatureModule.forComponent(),
     TranslationFeatureModule.forComponent(),
     RowSelectEnabledRepository,
     StructureHeaderTopEnabledArchive,
@@ -26932,8 +28766,8 @@ var structureComponentSelfProviders = [
  */
 var StructureComponent = /** @class */ (function (_super) {
     __extends(StructureComponent, _super);
-    function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive, elementRef, detectorRef, injector, structureDefinition, structureWarehouse, compositionWarehouse, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
-        var _this = _super.call(this, detectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureSummariesConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) || this;
+    function StructureComponent(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive, elementRef, detectorRef, injector, structureDefinition, structureWarehouse, compositionWarehouse, schemaStylesManager, schemaReadModelRootId, domainEventBus, commandDispatcher, structureDetailViewService) {
+        var _this = _super.call(this, detectorRef, elementRef, domainEventBus, commandDispatcher, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandDispatcher, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) || this;
         _this.elementRef = elementRef;
         _this.detectorRef = detectorRef;
         _this.injector = injector;
@@ -26946,7 +28780,6 @@ var StructureComponent = /** @class */ (function (_super) {
         _this.loaderEnabled = false;
         _this.circleLoaderEnabled = true;
         _this.initialLoaderAnimation = false;
-        _this.localStreamCloser = new StreamCloser();
         _this.styleModifier = new StyleModifier(_this.elementRef.nativeElement);
         structureCommandService.create(_this.structureId);
         compositionCommandDispatcher.create(_this.compositionId);
@@ -27032,16 +28865,6 @@ var StructureComponent = /** @class */ (function (_super) {
     /**
      * @return {?}
      */
-    StructureComponent.prototype.ngOnDestroy = /**
-     * @return {?}
-     */
-    function () {
-        this.localStreamCloser.unsubscribe();
-        _super.prototype.ngOnDestroy.call(this);
-    };
-    /**
-     * @return {?}
-     */
     StructureComponent.prototype.isBorderEnabled = /**
      * @return {?}
      */
@@ -27097,7 +28920,7 @@ var StructureComponent = /** @class */ (function (_super) {
                             useExisting: StructureComponent
                         }
                     ]),
-                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:-ms-grid;display:grid}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}@use 'common/variables';.gui-grid-cols-1{-ms-grid-columns:(minmax(0,1fr))[1];grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{-ms-grid-columns:(minmax(0,1fr))[2];grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{-ms-grid-columns:(minmax(0,1fr))[3];grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{-ms-grid-columns:(minmax(0,1fr))[4];grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{-ms-grid-columns:(minmax(0,1fr))[5];grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{-ms-grid-columns:(minmax(0,1fr))[6];grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{-ms-grid-columns:(minmax(0,1fr))[7];grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{-ms-grid-columns:(minmax(0,1fr))[8];grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{-ms-grid-columns:(minmax(0,1fr))[9];grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{-ms-grid-rows:(minmax(0,1fr))[1];grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{-ms-grid-rows:(minmax(0,1fr))[2];grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{-ms-grid-rows:(minmax(0,1fr))[3];grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{-ms-grid-rows:(minmax(0,1fr))[4];grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{-ms-grid-rows:(minmax(0,1fr))[5];grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{-ms-grid-rows:(minmax(0,1fr))[6];grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{-ms-grid-rows:(minmax(0,1fr))[7];grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{-ms-grid-rows:(minmax(0,1fr))[8];grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{-ms-grid-rows:(minmax(0,1fr))[9];grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure ::after,.gui-structure ::before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{background-color:#aaa;border-radius:8px;content:' ';height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGIAAAB2CAYAAAAz4kaDAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAABNRSURBVHhe7V1pU1vHmkYSixEIBAIhME6cXNshjjMkNuBNeMM2U6lUJeOKwfg6W5UrqeRLPuQHJPk2n6Y8+ZaUZ7I5cYwXbEySe+/Unbmp3MQbiM3YGBtvxAVml1iEEJLmeVqniSyD8ILhKDmP3Zw+3X16eZ9+3377nCMpRoMGDSHQKceoQiAQ0H366aexra2tsXogOTk5gGT/M8884y0rK/MFS0UXDMoxKkACcIh1OBxmg8FQ0tzSsmfM43llYHDwhe6engJLZuaC7Vu3dq9Zs2b8xx9/JDlRg6jRCEULUsbHx9ecra3dqDfoV46NjT3r9Y4nMT8uNs6dEJ9wXqfXnytcverv1nTrGWjHsLg4ChAVRJCEzz//PNXj86w/c+pcxcjo8GZdjC4FWUYEPcvodDoUC7gRXEZj0v+tt9sPZKan//Tyyy8PMV/tUL1pIgn79u1L9UxM2FtaLpSPDA9tHRvzZMXGxibAPOl8Ph/LxOCcTMR5vd4kvU5n6+3rNRoTE4d27NjRVV1dPa5Up1qonojc5bnp/nH/+ubmpor+vr5tMPxWLtBAjN/vF2WgDYIMHhGo5caR4eGcgYGB5GxbtrO8vPx2VVWVRxRWKYRaqxVff/112lDX6PrGhuayIdfQFsg4EwLXQxOE4EmEIvwYqRnMQ7oOGmJxulxbz9Wdq3C5XMXHjx83KdWqEqrViC+++MLS09Oz/uKFC7uGXK5tAX/AajBADaASYs4LnwhaoCxz/DsZRBmBRI/Hk9Pf1w8PN9n5xhtvdB8+fFiVmqFKjaAmDA4Ormtvb38Fs3kTkjKFLYKAYf8FCRS4XqefFH4wruRNltHpkG4ZGRkpaWpq2tXf329Xq2aoTiOOHTtm6ejoWHf58uUKCK4EZsYmSHhw6FCHEYt4Tm9vrykpKclZUVGhujVDVUSQhJs3b66FJuyE0Eows20IUALO+QcHrqdHZYSZskHDEq1Wqwt7DFWRoRoiSMKlS5fW3bhx45W+vr4tSMpBoAxF/sNA8ahYkdHtdlvhTRnNZvOQmjRDFUSQBGjBuuvXr5dDE+gd5XKPQK9IEaJS8sHAOhi418BpMsjIdjqdprS0NNWYqXlfrLkwkwSYpB1YoLkwL2S6JODhlocgWAfrIrEAojoriNiCBbx8eHjYXllZmSwKziPmVSOoCbdu3Vrf1tbGhVmYI0qJJFBoFB7DbIH1Ekq9SdAMG8xgCjXj9ddfn1fXdt6IoCaQhCtwUWGzS5CUjQD5/Cb8UDKkECVkmiwr46FHQsZZl9QMQimXPD4+boMmJprMJteOl+fvdsi8mKZDhw6l3+7ttV9sa63AmrANAqF3RCglggKUZkkKNRShZQmey7TQ8jLOHXcoZHmEjEHnYKnDUb/HG/AWw0ylKkXmFHOuEdSEXzs77dfgokITtkB0NopDyb4DUrDhs5lHCphpUtCMh2qQDDJfnk8FFEmamJjIcg66EhOTkly752EBn1MiqAmd3Z321gsXdg04B7YE/AEbRBRxn0ABM/BeEmc1A+NSyJIgkkAwDd6RiLNcXFzctARIkCp/wG8cc49m9w/0J1vS0uf8dsicEfHZZ5+Z4anYWy5c2Ol0urZCcFkQKsWolJgaoTMau+NJLQgVbnic+ZjhghASFF4+HMzjdEA5o2fMk+0aciZa0i3OV199tRNkzMmaMSdEkITR0dFiR0NDhWtwcItOrxckyFkcSUgS8fHxQrgsSwFTuCSFaayHmsI0HqXwExISJu/KRmrDj3zlWnRNbxwZdWf39vWaMi0ZzpdeemlOFvBHSgQGp1u8eLF52D1sb25uLseiuBVpVpLAgROUD+ajiE8FRYA+j8fjg5mhGRPurQTzZZAgQQgBXONlecSnb4AIdkKQwWsDfn8Sb4fATBmt2Tmuf5sDMh4ZESRBecZcXFvrKB8aGirBIMVDnTs1IRINYqH2QgP6oBE9mP18Pm1AGuUr8qkBFJ6sUzmi+cCY0WjsYARYQD5EgWkg6+P1rA/niWPYZ3R3305alLvIVQoz9f0jNFOPhAgMXDxjJgmOekfFqHu0BLPMCpGjPZgJzjqaAz9NBi8IXieFwTwFXgjlitlsrsnLy7vY1dVFN5dvcEySyaOME8pC7cd1159//vkTME03R0ZG0pGWgnqFY8D65VEAzdI8ESQBGUxEasA4MeHL7u7pTl6ckeksfbUUZHz/SMiYdSIwOKEJmL322traiuHhkW26QEwGxiXakvOfw5RxKUhJBI9I80LgHbDzB5KSkv7d5XL1YZ3hxi8LQcxulgsPCihJXruvsLDQgV17LMhYiL6loIwoxAOJkKSE/pvsGQ74bxz3jOfcvn3buDhzsetRLeCzuqELIWFDfX39brfbXYIBWZBlCA4vCDlUIQAEmhceQ2a2F+vB9bS0tJObNm36n3379jlBghv5kwXkteFBAn0J9PT0jGHXXLt69eqD6enpx6klSKZdE23xKNsOvf63fooY/6RjLNvq6ur2wPPb8CjuTc0aEZIEDKb43Llz5ejwVhDCZ8wRtQ75k/sCCgVxLrA3MzMza9asWVMJTajH+aStul+8/fbb3uHh4Xq73X4wKyvrBOsGCT6aMLZJQtiHGcC3RTJAaumpU6f2oL4NX375pXifarYwK0SQhI8//tiEgRWfPXu2AmaA3pEFgjVwsJFAISiLI+NcmK9lZGTU5OfnH4FpqX/vvfceelNFMqAdDUVFRd+CYJJxg2TIvs1EBMuhj/TW0jAxtpEMeFUbZ1MzHpoIdE534MABPoIsPn36dAW8o20QZgY6b5A+fCRIEqA9Ezi9illbg0W2EmmO8vJyd7DUw4OEwtw1rF279mB2dvZxJF1Hk1zUgwt0BHAMiinToQ4LyNguNWO2yHgoIkgCzRGEvwEk7EbHSpCWThKkDZ4JimmYiI2Lu2q1WqtBwhGQWv/mm2+OKUVmDWVlZePUDJi8b0F4FQi4jvYJpcT04FhYTmoGJxzJmK0144GJIAl0UTHruSbQHG1DJ4UmcHJzlrHzM5GBfG7UrmTbbCdXrlx5BIOtn01NCAc1A8ITmpGbm3scbbcjOSITchwMvM2CI4anTwcZpT///POskPFAREhNgCdhh3e0i24lCKGvHnRR0WFplmQIRcj5BMpeweysXr58+VGkNz0KTQgH1wwI8vxzzz1HzaA3dRVt30WG7DsDtUHRCJFHMjBG89jY2NYzZ878GS7yxv379z/wqzr3TQQ69ZsmOGrFmoBOCU1QiggiZIcJDkAOSAJxH8pcXrhw4clly5YdMZlMDXNBggTNFJyBxhUrVnyLPhxHn0kGIfLlkX0nwsdE4Jy3aizUjLPnzv4Z2lL8oGTcFxFoVJCABu3NLc1l7lE3H28G9wnoKBF6lIFuqRyYAvry7Tk5OTVLly49hvOWR2mOpgPJQD8uoA9HuICjj9dwHmCfCfZ5yn1GyBFBj5GljYyObq1vatwd0Osf6PXOeyZCksAbeGdra8sGB50lEz7fPe8T5IAww3yIt8M+f/f4449XYaPVDFMxqhSfc1ALsXFsgrt8GBOjGknX0V9BBjVAakQkgBaaKYtzcHDb6VM/777V1bXhfsm4ZyKwGKVxTWhqPF8xMNC/HQuyzaDXU7pKibtBEhg4IAwsgEFxVFdhCk4sWbLkcHx8fKMaPkxCbcSC21hYWMgF/Bj6yh14gJOHYLc5julA0lCWZioTE7TU4ajd09Xbu+Grr77iZzjuCfdEBB9vdnV1rW9obChzuZxb0GgmGhe3sqenIdhBxa4GFJ+9/bHHHqt54oknjs63JoSD3tT4+HgT9zCcKEi6BhMMSxPcZ3As0wHTTRCFMuItdJfTtfXc2TMVrpF7fwt9RiL4VnZvb6/9QuuFXf0DA9vRoBWNTT5PkMepwDzMJhZANEASjj/55JOVILJJDZoQDpopjLVx1apVB0FGFZKuseMzmyeQhFGyHMZG35ZmSryQcKvrFl3bGV9IiEgENaG7r3vdxUsXXxl0ujaB8Ewk0x6KGSLDdEAeba0fnbuC9eC7RYsWVWVkZJxXkyaEQ2oGyKBmnOQtF3KBoJS4G5SATh+URfAGAe/06y3DQ8Ml9XUNu7p6emZ8C31aIvjyFz+fcOXylV39ff3b/D7f5FvZ7JToWITOKeBUugxNOEFNSE1NVaUmhIOawdshBQUF39hstmMYdsRNn6LyQZkocZDCHXiGa8hV2thIzeiKuGZMSURNTU3a1atX17a1te0cHHBuRp185UV8PkGwr6gi2+UDFR9VVyTxXzANR6rNFWjBSd5OwMLc8tprr42IBqIAdG2pGc8+++xhW7atWm/QX/PTSAXHNjlWn195Jh5MFLKR8sFf2ouMEWhGQ13drkivd05JxC+//PKn9vb2sr6+vu2oSLx3pKcZQp7STIx4/0KYJpEoyGBfqKI4n0A3Ly/MzT2BhfmwxWJp2rt3b1R8ujMU1Ax6U0WFRQezbFnHMNh2jM/HMXKsIEY8bRQCgSDkOym/BfGPhTNQz7/W1tbuvnz58pPIugt3EXH06FGrx+PJHxgYKICg+TSMdU4JkSHI+G3XiTkzEWswXM222b7709InxJoQTZoQDuWubXPhqsIjVmvWSZAgbqEzj2NWzND0QgpCh3WSn1wqwC58TVVVlVlJn8RdRDgcjryxsTF+Uke8ixpMnRrsBD0FHtEQj150qR2qfCL/X/IPWVItjfOxY55t0Ezx4dIGu/0bTDDeCYCZCnBjKvKlDCKB+XBysvkpqJaWljwleRJ3EFFdXZ2BBXo5XLh8nKbOVDlpCpon4S14Yw2x17Js1u+WP5tfhbTm3wMJErxRiENzwcqCwzZbVjW0gTtw3i8T459JJSBLelImEJEPk78yfOG+g4jz588vTUhIKEbFNvrDMxKB1tkJlPNiTbiJteCHgtUFR529vXN6A2+uQM2gN7WmaE1lljWzxu/z/4qxK0/6IjNBWZI0uMNZsDjFmPDLlCyBO4i4ePGiFdrwDC5Ko7oFG4iAoLp54RFdz7BkVhcVFlb6xnyO999//3ejCeEgGbDzDpDxTabVWoUJexOOCl0npcTUoCwhK05uM7RieV1dHT+aNok7iLBarU4wNoDCvCs5ea9lOqBpb2xcbEd6uuV7+7p1h9GQ4/eoCeGgmaJmYMzfWq2Z1XBOOiDpiF9PRFkyQEZuo9HYk52dfcem9g4iNm/e3Ird5D8Q7eQ5LhIqRfAYFrxwaW+YzeYTBUUrD0GT/hAkSEjNKCoo+ibNbD4O23ETyT7KhpByknFFlpzcnfAk/1FUVNQmMhXcQcSLL77YNTo6+k+w3QrT5JamKaxSLlrUnBtpaWk1xRvshwd7Bx1080SBPxCoGfSmijcXf5uenl4Ned1A8hBkJLQjVG6UJeLDCxYsuAQZn9m5c2eHyFBwBxHE9u3bW7CbrISgT+HCfiR5uF5goeGbd06QdD0xMfFvUK//3rhx46Hert4/JAkSJGOof8hht9sPpKSkfELZkBAEF+SF5UPc9OTLcb1YS0/l5eUdQdlW5AcZUnAXEdSKFStW/IDwXxD2MQi+BST0wZu6CXL+npqa+vkLL7zwcU5Ozn8i/dwfmQQJklFRUVFns9k+Li0t/Q9Yiv0Q+v9CXjdBRj/izZDf0aeffvrAsmXL/tba2npLuXQS07pFn3zySRwqyenq6tqIDcgzcE0HwORPHR0dDWB+XPGr5wx79+5dBZv8CWbScziN7EUEbXWDyWR6e//+/XVK2pzggw8+0EM+Cbm5uc/99NNPdnhImZjUF7Oysn5saGi4BRPm/eijj+66gTiDfxokhF9iiMqpShOoRNznnWtECxESJAQkxEEr9HwoNh0BEjMSoRZEGxH3i7vWCA3zA40IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJNCJUAo0IlUAjQiXQiFAJoo6IQMi3gk2FSHlqxu9SI6KRDM00qQQaESqBRoRKoBGhEmhEqATRRwS/hRCBfhF/SEN+K6GIRzGihgifwTAR0Os8IIC/vAQiAjF6/mYF8gIgg3H+pgvjMXodf12DX48d8fu61YSoIcJiMg2nmlLa9Ho9f51F/CRZbGys2DOExcnNkNmc2paSkqLaX/cKR9QQkZeX15331FN/hbDbDQaDPy4uLsbtdovfZMC5iJMMBGrBlaVP5f11yZIlPcGr1Y+oIYI/FuVyuX5JTk6qx6zvxvQfhdD5i4/it99IDkgahjp0m1JMjZ2//nr2nXfeGVQuVz1m+iJbVeHdd98dTzGlODu7bg/FGsTMT4Lw+Ysmnvi4+IG4hPhav8//l8KVq35YvHhxW35+ftR8b7nic0QP+FXPZrM5Bdpg/+X06XVer4e/DBYTHx/fvXad/dS42/1PaI7rww8/JEFcL6ICUUeERGVlpaGlpSWus7NTbzKZdDBXfqwjE2+99RZ/NT5qCNCgQcPdiIn5f8mUtwsfGiECAAAAAElFTkSuQmCC) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;font-size:13px;border:1px solid #d6d6d6}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:0}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell,.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-radius:50%;border:1px solid transparent}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:0}.gui-structure-border{border:1px solid #d6d6d6}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-paging,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-structure-top-panel{height:42px}", ".gui-material{border-color:rgba(0,0,0,.12);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2)}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material .gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material .gui-search-bar form input,.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover,.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container-element,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:0 0;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px 0 0 #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle,.gui-dark .gui-search-bar:hover .gui-search-icon-svg line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-footer-panel,.gui-dark .gui-title-panel{background:#383838}", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-top-panel{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-summaries-panel,.gui-light .gui-structure-top-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.1);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-structure-top-panel{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
+                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}@use 'common/variables';.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:-ms-grid;display:grid}@use 'common/variables';.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}@use 'common/variables';.gui-grid-cols-1{-ms-grid-columns:(minmax(0,1fr))[1];grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{-ms-grid-columns:(minmax(0,1fr))[2];grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{-ms-grid-columns:(minmax(0,1fr))[3];grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{-ms-grid-columns:(minmax(0,1fr))[4];grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{-ms-grid-columns:(minmax(0,1fr))[5];grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{-ms-grid-columns:(minmax(0,1fr))[6];grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{-ms-grid-columns:(minmax(0,1fr))[7];grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{-ms-grid-columns:(minmax(0,1fr))[8];grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{-ms-grid-columns:(minmax(0,1fr))[9];grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{-ms-grid-rows:(minmax(0,1fr))[1];grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{-ms-grid-rows:(minmax(0,1fr))[2];grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{-ms-grid-rows:(minmax(0,1fr))[3];grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{-ms-grid-rows:(minmax(0,1fr))[4];grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{-ms-grid-rows:(minmax(0,1fr))[5];grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{-ms-grid-rows:(minmax(0,1fr))[6];grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{-ms-grid-rows:(minmax(0,1fr))[7];grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{-ms-grid-rows:(minmax(0,1fr))[8];grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{-ms-grid-rows:(minmax(0,1fr))[9];grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}@use 'common/variables';.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}@use 'common/variables';.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure ::after,.gui-structure ::before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px 0 #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon::after,.gui-clear-search-icon::before{background-color:#aaa;border-radius:8px;content:' ';height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon::before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon::after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover::after,.gui-clear-search-icon:hover::before{background-color:#464646}", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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) center/contain no-repeat;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;font-size:13px;border:1px solid #d6d6d6}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:0 0;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:0}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell,.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top:1px solid;border-top-color:inherit}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-radius:50%;border:1px solid transparent}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:0}.gui-structure-border{border:1px solid #d6d6d6}@-webkit-keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;-ms-grid-row-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox,.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}", "@media (max-width:500px){.gui-paging .gui-paging-stats,.gui-paging>*{padding-left:4px}}", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-row,.gui-content .gui-structure-cell-container{display:-ms-flexbox;display:flex}.gui-content .gui-row .gui-cell,.gui-content .gui-structure-cell-container .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:0 0;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-paging,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-structure-top-panel{height:42px}", ".gui-material{border-color:rgba(0,0,0,.12);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.12);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.12),0 1px 5px 0 rgba(0,0,0,.2)}.gui-material .gui-header,.gui-material.gui-structure{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:0 0}.gui-material .gui-header-cell,.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:0 0;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-badge,.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material .gui-paging,.gui-material .gui-structure-info-panel,.gui-material gui-structure-top-panel{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material .gui-search-bar form input,.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover,.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-even .gui-row.even,.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-paging,.gui-dark .gui-row,.gui-dark .gui-structure-container-element,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{background:#444}.gui-dark .gui-paging,.gui-dark .gui-structure-info-panel,.gui-dark .gui-structure-top-panel{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-modal p,.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:0 0;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px 0 0 #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle,.gui-dark .gui-search-bar:hover .gui-search-icon-svg line{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-footer-panel,.gui-dark .gui-title-panel{background:#383838}", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0;border-color:#f0f0f0 transparent}.gui-light .gui-header,.gui-light.gui-structure{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-even .gui-row.even,.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#333;opacity:.4}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-top-panel{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-paging,.gui-light .gui-structure-info-panel,.gui-light .gui-structure-summaries-panel,.gui-light .gui-structure-top-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:0}", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.1);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.1);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-badge,.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:0 0;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:0 0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:0 0;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-paging,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-structure-top-panel{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-even .gui-row.even,.gui-structure.gui-generic .gui-rows-odd gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s}"]
                 }] }
     ];
     /** @nocollapse */
@@ -27120,7 +28943,6 @@ var StructureComponent = /** @class */ (function (_super) {
         { type: StructureCellEditArchive },
         { type: StructureInfoPanelArchive },
         { type: StructureInfoPanelConfigService },
-        { type: StructureSummariesConfigService },
         { type: StructureCellEditStore },
         { type: ColumnFieldFactory },
         { type: StructureColumnMenuConfigArchive },
@@ -27165,11 +28987,6 @@ if (false) {
      * @private
      */
     StructureComponent.prototype.structure;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureComponent.prototype.localStreamCloser;
     /**
      * @type {?}
      * @private
@@ -27415,7 +29232,7 @@ if (false) {
  */
 var StructureColumnConfigComponent = /** @class */ (function (_super) {
     __extends(StructureColumnConfigComponent, _super);
-    function StructureColumnConfigComponent(changeDetectorRef, elementRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationFacade, structureColumnMenuConfigArchive, column) {
+    function StructureColumnConfigComponent(changeDetectorRef, elementRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationFacade, structureColumnMenuConfigArchive, compositionId, compositionCommandInvoker, injector, column) {
         var _this = _super.call(this, changeDetectorRef, elementRef) || this;
         _this.changeDetectorRef = changeDetectorRef;
         _this.structureId = structureId;
@@ -27424,8 +29241,12 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
         _this.filterWarehouse = filterWarehouse;
         _this.translationFacade = translationFacade;
         _this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
+        _this.compositionId = compositionId;
+        _this.compositionCommandInvoker = compositionCommandInvoker;
+        _this.injector = injector;
         _this.column = column;
         _this.uniqueValues = [];
+        _this.structureColumnConfigService = _this.injector.get(StructureColumnConfigService);
         return _this;
     }
     /**
@@ -27471,6 +29292,46 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
         return this.config && this.config.isEnabled();
     };
     /**
+     * @return {?}
+     */
+    StructureColumnConfigComponent.prototype.hideColumn = /**
+     * @return {?}
+     */
+    function () {
+        this.compositionCommandInvoker.disableColumn(this.column.getColumnDefinitionId(), this.compositionId);
+        this.structureColumnConfigService.close();
+    };
+    /**
+     * @return {?}
+     */
+    StructureColumnConfigComponent.prototype.moveLeft = /**
+     * @return {?}
+     */
+    function () {
+        this.compositionCommandInvoker.moveLeft(this.column.getColumnDefinitionId(), this.compositionId);
+        this.structureColumnConfigService.close();
+    };
+    /**
+     * @return {?}
+     */
+    StructureColumnConfigComponent.prototype.moveRight = /**
+     * @return {?}
+     */
+    function () {
+        this.compositionCommandInvoker.moveRight(this.column.getColumnDefinitionId(), this.compositionId);
+        this.structureColumnConfigService.close();
+    };
+    /**
+     * @return {?}
+     */
+    StructureColumnConfigComponent.prototype.highlightColumn = /**
+     * @return {?}
+     */
+    function () {
+        this.compositionCommandInvoker.highlightColumn(this.column.getColumnDefinitionId(), this.compositionId);
+        this.structureColumnConfigService.close();
+    };
+    /**
      * @private
      * @param {?} translation
      * @return {?}
@@ -27499,7 +29360,7 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
     StructureColumnConfigComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-column-config]',
-                    template: "<div *ngIf=\"isEnabled()\"\n\t class=\"gui-header-menu-tab\">\n\n\t<gui-tab [active]=\"config.getActiveMenu()\" [menu]=\"config.getMenus()\">\n\n\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getMainMenu()\" class=\"gui-tab-item-dropdown\">\n\n\t\t\t\t<gui-structure-column-config-sort *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t\t\t\t\t\t\t  [column]=\"column\"\n\t\t\t\t\t\t\t\t\t\t\t\t  [dropdownTextTranslation]=\"dropdownTextTranslation\">\n\t\t\t\t</gui-structure-column-config-sort>\n\n\t\t\t\t<gui-structure-column-config-column-hide\n\t\t\t\t\t[column]=\"column\">\n\t\t\t\t</gui-structure-column-config-column-hide>\n\n\t\t\t\t<gui-structure-column-config-column-move\n\t\t\t\t\t[column]=\"column\">\n\t\t\t\t</gui-structure-column-config-column-move>\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t<div [fieldId]=\"column.getFieldId()\"\n\t\t\t\t\t gui-unique-value-list>\n\t\t\t\t</div>\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t</div>\n\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t</gui-tab>\n</div>\n",
+                    template: "<div *ngIf=\"isEnabled()\"\n\t class=\"gui-header-menu-tab\">\n\n\t<gui-tab [active]=\"config.getActiveMenu()\" [menu]=\"config.getMenus()\">\n\n\t\t<ng-container *ngIf=\"config.isMainEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getMainMenu()\" class=\"gui-tab-item-dropdown\">\n\n\t\t\t\t<div *ngIf=\"column.isSortEnabled()\" [column]=\"column\"\n\t\t\t\t\t [dropdownTextTranslation]=\"dropdownTextTranslation\"\n\t\t\t\t\t gui-structure-column-config-sort>\n\t\t\t\t</div>\n\n\t\t\t\t<div [column]=\"column\"\n\t\t\t\t\t (columnHidden)=\"hideColumn()\"\n\t\t\t\t\t gui-structure-column-config-column-hide>\n\t\t\t\t</div>\n\n\t\t\t\t<div class=\"gui-header-menu-item\"\n\t\t\t\t\t (click)=\"highlightColumn()\">\n\t\t\t\t\t{{'headerMenuMainTabHighlightColumn' | guiTranslate}}\n\t\t\t\t</div>\n\n\t\t\t\t<div [column]=\"column\"\n\t\t\t\t\t (movedLeft)=\"moveLeft()\"\n\t\t\t\t\t (movedRight)=\"moveRight()\"\n\t\t\t\t\t gui-structure-column-config-column-move>\n\t\t\t\t</div>\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"config.isFilteringEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getFilterMenu()\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t<div [fieldId]=\"column.getFieldId()\"\n\t\t\t\t\t gui-unique-value-list>\n\t\t\t\t</div>\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t\t<ng-container *ngIf=\"config.isColumnManagerEnabled()\">\n\n\t\t\t<gui-tab-item [tab]=\"config.getColumnMenu()\">\n\n\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t</div>\n\n\t\t\t</gui-tab-item>\n\n\t\t</ng-container>\n\n\t</gui-tab>\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -27514,6 +29375,9 @@ var StructureColumnConfigComponent = /** @class */ (function (_super) {
         { type: FilterWarehouse },
         { type: TranslationFacade },
         { type: StructureColumnMenuConfigArchive },
+        { type: CompositionId },
+        { type: CompositionCommandInvoker },
+        { type: Injector },
         { type: CellTemplateWithContext, decorators: [{ type: Inject, args: ['column',] }] }
     ]; };
     StructureColumnConfigComponent.propDecorators = {
@@ -27532,6 +29396,11 @@ if (false) {
     StructureColumnConfigComponent.prototype.hideColumnTitle;
     /** @type {?} */
     StructureColumnConfigComponent.prototype.dropdownTextTranslation;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.structureColumnConfigService;
     /**
      * @type {?}
      * @private
@@ -27567,6 +29436,21 @@ if (false) {
      * @private
      */
     StructureColumnConfigComponent.prototype.structureColumnMenuConfigArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.compositionId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.compositionCommandInvoker;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureColumnConfigComponent.prototype.injector;
     /** @type {?} */
     StructureColumnConfigComponent.prototype.column;
 }
@@ -28675,7 +30559,7 @@ var ItemEntity = /** @class */ (function () {
     /**
      * @return {?}
      */
-    ItemEntity.prototype.getData = /**
+    ItemEntity.prototype.getSourceItem = /**
      * @return {?}
      */
     function () {
@@ -28836,7 +30720,7 @@ var StructureReadModelRootConverter = /** @class */ (function () {
          * @return {?}
          */
         function (originItem) {
-            return new ItemEntity(originItem.rawData, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
+            return new ItemEntity(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
         }));
     };
     StructureReadModelRootConverter.decorators = [
@@ -29549,7 +31433,7 @@ var StructureRowComponent = /** @class */ (function (_super) {
             return this.rowStyle.style || '';
         }
         if (typeof this.rowStyle.styleFunction === 'function') {
-            return this.rowStyle.styleFunction(entity.getData(), entity.getPosition());
+            return this.rowStyle.styleFunction(entity.getSourceItem(), entity.getPosition());
         }
     };
     /**
@@ -29665,7 +31549,7 @@ var StructureRowComponent = /** @class */ (function (_super) {
         }
         if (typeof this.rowClass.classFunction === 'function') {
             if (entity) {
-                clazz = this.rowClass.classFunction(entity.getData(), entity.getPosition()) || '';
+                clazz = this.rowClass.classFunction(entity.getSourceItem(), entity.getPosition()) || '';
             }
         }
         return clazz;
@@ -29802,6 +31686,7 @@ var CellView = {
     BAR: 11,
     PERCENTAGE_BAR: 12,
     PERCENTAGE: 13,
+    NG_TEMPLATE: 14,
 };
 CellView[CellView.TEXT] = 'TEXT';
 CellView[CellView.NUMBER] = 'NUMBER';
@@ -29817,6 +31702,7 @@ CellView[CellView.DATE] = 'DATE';
 CellView[CellView.BAR] = 'BAR';
 CellView[CellView.PERCENTAGE_BAR] = 'PERCENTAGE_BAR';
 CellView[CellView.PERCENTAGE] = 'PERCENTAGE';
+CellView[CellView.NG_TEMPLATE] = 'NG_TEMPLATE';
 
 /**
  * @fileoverview added by tsickle
@@ -29870,8 +31756,9 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var CellTemplateWithAccessor = /** @class */ (function () {
-    function CellTemplateWithAccessor(template, editTemplate, editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
+    function CellTemplateWithAccessor(columnDefinitionId, template, editTemplate, editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
     view) {
+        this.columnDefinitionId = columnDefinitionId;
         this.template = template;
         this.editTemplate = editTemplate;
         this.editable = editable;
@@ -29948,11 +31835,20 @@ var CellTemplateWithAccessor = /** @class */ (function () {
     function (entity, searchPhrase) {
         /** @type {?} */
         var cellValue = this.findValue(entity, searchPhrase);
-        cellValue.value = this.templateFun(cellValue.value, entity.getData());
+        cellValue.value = this.templateFun(cellValue.value, entity.getSourceItem());
         if (this.formatterFun) {
-            cellValue.value = this.formatterFun(cellValue.value, entity.getData());
+            cellValue.value = this.formatterFun(cellValue.value, entity.getSourceItem());
         }
         return cellValue;
+    };
+    /**
+     * @return {?}
+     */
+    CellTemplateWithAccessor.prototype.getClasses = /**
+     * @return {?}
+     */
+    function () {
+        return 'gui-cell-highlighted';
     };
     /**
      * @private
@@ -30031,6 +31927,8 @@ var CellTemplateWithAccessor = /** @class */ (function () {
 }());
 if (false) {
     /** @type {?} */
+    CellTemplateWithAccessor.prototype.columnDefinitionId;
+    /** @type {?} */
     CellTemplateWithAccessor.prototype.template;
     /** @type {?} */
     CellTemplateWithAccessor.prototype.editTemplate;
@@ -30088,20 +31986,59 @@ EditEventType[EditEventType.CANCEL] = 'CANCEL';
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var ColumnId = /** @class */ (function (_super) {
+    __extends(ColumnId, _super);
+    function ColumnId(id) {
+        return _super.call(this, id) || this;
+    }
+    /**
+     * @return {?}
+     */
+    ColumnId.prototype.toString = /**
+     * @return {?}
+     */
+    function () {
+        return this.getId();
+    };
+    return ColumnId;
+}(EntityId));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var StructureCellComponent = /** @class */ (function (_super) {
     __extends(StructureCellComponent, _super);
-    function StructureCellComponent(changeDetectorRef, elementRef, structureId, structureCellEditArchive, structureCellEditStore, cellEditCloseAllService, sourceCommandService) {
+    function StructureCellComponent(changeDetectorRef, elementRef, structureId, compositionId, structureCellEditArchive, structureCellEditStore, cellEditCloseAllService, sourceCommandService, compositionWarehouse) {
         var _this = _super.call(this, changeDetectorRef, elementRef) || this;
         _this.changeDetectorRef = changeDetectorRef;
         _this.elementRef = elementRef;
         _this.structureId = structureId;
+        _this.compositionId = compositionId;
         _this.structureCellEditArchive = structureCellEditArchive;
         _this.structureCellEditStore = structureCellEditStore;
         _this.cellEditCloseAllService = cellEditCloseAllService;
         _this.sourceCommandService = sourceCommandService;
+        _this.compositionWarehouse = compositionWarehouse;
         _this.inEditMode = false;
         return _this;
     }
+    /**
+     * @return {?}
+     */
+    StructureCellComponent.prototype.ngOnInit = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        this.hermesSubscribe(this.compositionWarehouse.onHighlightedColumn(new ColumnId(this.cell.columnDefinitionId.toString()), this.compositionId), (/**
+         * @param {?} value
+         * @return {?}
+         */
+        function (value) {
+            _this.isHighlighted = value;
+        }));
+    };
     /**
      * @return {?}
      */
@@ -30308,7 +32245,7 @@ var StructureCellComponent = /** @class */ (function (_super) {
     StructureCellComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-structure-cell][entity][cell]',
-                    template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight()}\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: { element: cell.getValue(entity, searchPhrase) }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n",
+                    template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight(),'gui-column-highlighted': isHighlighted}\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: {\n\t\t\t\telement: cell.getValue(entity, searchPhrase),\n\t\t\t\t index: entity.getPosition(),\n\t\t\t\t value: cell.getValue(entity, searchPhrase).value,\n\t\t\t\t item: entity.getSourceItem()\n\t\t\t  }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -30318,10 +32255,12 @@ var StructureCellComponent = /** @class */ (function (_super) {
         { type: ChangeDetectorRef },
         { type: ElementRef },
         { type: StructureId },
+        { type: CompositionId },
         { type: StructureCellEditArchive },
         { type: StructureCellEditStore },
         { type: StructureCellEditCloseAllService },
-        { type: SourceCommandInvoker }
+        { type: SourceCommandInvoker },
+        { type: CompositionWarehouse }
     ]; };
     StructureCellComponent.propDecorators = {
         entity: [{ type: Input }],
@@ -30353,6 +32292,8 @@ if (false) {
     StructureCellComponent.prototype.status$;
     /** @type {?} */
     StructureCellComponent.prototype.actualValue;
+    /** @type {?} */
+    StructureCellComponent.prototype.isHighlighted;
     /**
      * @type {?}
      * @private
@@ -30368,6 +32309,11 @@ if (false) {
      * @private
      */
     StructureCellComponent.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureCellComponent.prototype.compositionId;
     /**
      * @type {?}
      * @private
@@ -30388,6 +32334,11 @@ if (false) {
      * @private
      */
     StructureCellComponent.prototype.sourceCommandService;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureCellComponent.prototype.compositionWarehouse;
 }
 
 /**
@@ -30678,7 +32629,7 @@ var StructureContainerComponent = /** @class */ (function (_super) {
          */
         function () {
             hermesFromEvent(_this.elRef.nativeElement, 'scroll')
-                .pipe(hermesTakeUntil(_this.scrollObservation$), _this.takeUntil())
+                .pipe(hermesTakeUntil(_this.scrollObservation$))
                 .subscribe((/**
              * @param {?} event
              * @return {?}
@@ -30852,7 +32803,9 @@ var StructureQuickFiltersComponent = /** @class */ (function () {
     StructureQuickFiltersComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-structure-quick-filters]',
-                    template: "\n\n\t\tQuickFilters\n\n\t"
+                    template: "\n\n\t\tQuickFilters\n\n\t",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     return StructureQuickFiltersComponent;
@@ -30873,7 +32826,7 @@ var STRUCTURE_CSS_CLASS_NAME = new InjectionToken(prefix + " - css className");
  */
 var StructureBlueprintComponent = /** @class */ (function (_super) {
     __extends(StructureBlueprintComponent, _super);
-    function StructureBlueprintComponent(changeDetectorRef, elementRef, structureDefinition, structureId, structureWarehouse, structureInfoPanelArchive, pagingWarehouse, structureSummariesArchive, filterWarehouse, searchWarehouse, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
+    function StructureBlueprintComponent(changeDetectorRef, elementRef, structureDefinition, structureId, structureWarehouse, structureInfoPanelArchive, pagingWarehouse, summariesWarehouse, filterWarehouse, searchWarehouse, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
         var _this = _super.call(this, changeDetectorRef, elementRef) || this;
         _this.changeDetectorRef = changeDetectorRef;
         _this.structureDefinition = structureDefinition;
@@ -30881,7 +32834,7 @@ var StructureBlueprintComponent = /** @class */ (function (_super) {
         _this.structureWarehouse = structureWarehouse;
         _this.structureInfoPanelArchive = structureInfoPanelArchive;
         _this.pagingWarehouse = pagingWarehouse;
-        _this.structureSummariesArchive = structureSummariesArchive;
+        _this.summariesWarehouse = summariesWarehouse;
         _this.filterWarehouse = filterWarehouse;
         _this.searchWarehouse = searchWarehouse;
         _this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
@@ -30958,13 +32911,19 @@ var StructureBlueprintComponent = /** @class */ (function (_super) {
         function (enabled) {
             _this.quickFiltersEnabled = enabled;
         }));
-        this.hermesSubscribe(this.structureSummariesArchive.on(), (/**
-         * @param {?} config
+        this.hermesSubscribe(this.summariesWarehouse.onBottomEnabled(this.structureId), (/**
+         * @param {?} enabled
          * @return {?}
          */
-        function (config) {
-            _this.topSummariesPanelEnabled = config.itTopEnabled();
-            _this.bottomSummariesPanelEnabled = config.itBottomEnabled();
+        function (enabled) {
+            _this.bottomSummariesPanelEnabled = enabled;
+        }));
+        this.hermesSubscribe(this.summariesWarehouse.onTopEnabled(this.structureId), (/**
+         * @param {?} enabled
+         * @return {?}
+         */
+        function (enabled) {
+            _this.topSummariesPanelEnabled = enabled;
         }));
         this.hermesSubscribe(this.structureInfoPanelArchive.on(), (/**
          * @param {?} infoPanel
@@ -31089,7 +33048,7 @@ var StructureBlueprintComponent = /** @class */ (function (_super) {
         { type: StructureWarehouse },
         { type: StructureInfoPanelArchive },
         { type: PagingWarehouse },
-        { type: StructureSummariesArchive },
+        { type: SummariesWarehouse },
         { type: FilterWarehouse },
         { type: SearchWarehouse },
         { type: StructureHeaderTopEnabledArchive },
@@ -31171,7 +33130,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureBlueprintComponent.prototype.structureSummariesArchive;
+    StructureBlueprintComponent.prototype.summariesWarehouse;
     /**
      * @type {?}
      * @private
@@ -32175,166 +34134,6 @@ if (false) {
      * @private
      */
     VerticalFormationFactory.prototype.logger;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var SUMMARIES_CALCULATORS = 'GUI - Summaries Calculators';
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesManager = /** @class */ (function () {
-    function SummariesManager(structureId, calculators) {
-        this.calculators = calculators;
-        this.values = new Map();
-        this.structureId = structureId;
-        this.enabled = SummariesManager.DEFAULT_ENABLED;
-    }
-    /**
-     * @param {?} fields
-     * @param {?} entities
-     * @return {?}
-     */
-    SummariesManager.prototype.calculate = /**
-     * @param {?} fields
-     * @param {?} entities
-     * @return {?}
-     */
-    function (fields, entities) {
-        if (!this.enabled) {
-            return [];
-        }
-        /** @type {?} */
-        var calculations = new Map();
-        this.calculators.forEach((/**
-         * @param {?} calc
-         * @return {?}
-         */
-        function (calc) {
-            /** @type {?} */
-            var aggregatedValues = calc.calculate(fields, entities);
-            if (aggregatedValues) {
-                Array.from(aggregatedValues.keys())
-                    .forEach((/**
-                 * @param {?} key
-                 * @return {?}
-                 */
-                function (key) {
-                    calculations.set(key, aggregatedValues.get(key));
-                }));
-            }
-        }));
-        if (calculations.size > 0) {
-            return [
-                new StructureSummariesChangedAggregateEvent(this.structureId, calculations)
-            ];
-        }
-        else {
-            return [];
-        }
-    };
-    /**
-     * @param {?} enabled
-     * @return {?}
-     */
-    SummariesManager.prototype.setEnabled = /**
-     * @param {?} enabled
-     * @return {?}
-     */
-    function (enabled) {
-        this.enabled = enabled;
-    };
-    /**
-     * @return {?}
-     */
-    SummariesManager.prototype.add = /**
-     * @return {?}
-     */
-    function () {
-    };
-    /**
-     * @return {?}
-     */
-    SummariesManager.prototype.remove = /**
-     * @return {?}
-     */
-    function () {
-    };
-    /**
-     * @return {?}
-     */
-    SummariesManager.prototype.update = /**
-     * @return {?}
-     */
-    function () {
-    };
-    SummariesManager.DEFAULT_ENABLED = false;
-    return SummariesManager;
-}());
-if (false) {
-    /** @type {?} */
-    SummariesManager.DEFAULT_ENABLED;
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesManager.prototype.structureId;
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesManager.prototype.enabled;
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesManager.prototype.values;
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesManager.prototype.calculators;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesManagerFactory = /** @class */ (function () {
-    function SummariesManagerFactory(calculators) {
-        this.calculators = calculators;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesManagerFactory.prototype.create = /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    function (structureId) {
-        return new SummariesManager(structureId, this.calculators);
-    };
-    SummariesManagerFactory.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesManagerFactory.ctorParameters = function () { return [
-        { type: Array, decorators: [{ type: Inject, args: [SUMMARIES_CALCULATORS,] }] }
-    ]; };
-    return SummariesManagerFactory;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesManagerFactory.prototype.calculators;
 }
 
 /**
@@ -34753,34 +36552,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var SummariesEnabledArchive = /** @class */ (function (_super) {
-    __extends(SummariesEnabledArchive, _super);
-    function SummariesEnabledArchive() {
-        return _super.call(this, SummariesManager.DEFAULT_ENABLED) || this;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesEnabledArchive.prototype.init = /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    function (structureId) {
-        this.next(structureId, SummariesManager.DEFAULT_ENABLED);
-    };
-    SummariesEnabledArchive.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesEnabledArchive.ctorParameters = function () { return []; };
-    return SummariesEnabledArchive;
-}(AggregateArchive));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var StructureCreatedEventHandler = /** @class */ (function () {
     function StructureCreatedEventHandler(summariesEnabledArchive) {
         this.summariesEnabledArchive = summariesEnabledArchive;
@@ -35348,7 +37119,7 @@ var ItemEntityFactory = /** @class */ (function () {
      */
     function (originItem) {
         if (originItem instanceof OriginItemEntity) {
-            return new ItemEntity(originItem.rawData, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
+            return new ItemEntity(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
         }
         else {
             return new ItemEntity(originItem, 0);
@@ -35506,7 +37277,7 @@ var StructureColumnConfigTriggerComponent = /** @class */ (function (_super) {
     StructureColumnConfigTriggerComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-structure-column-config-trigger]',
-                    template: "<div #headerDialogContainer\n\t (click)=\"openConfigDialog()\"\n\t *ngIf=\"isEnabled()\"\n\t class=\"gui-header-menu-icon-wrapper\">\n\n\t<gui-structure-column-menu-icon [ngClass]=\"'gui-header-menu-icon'\"></gui-structure-column-menu-icon>\n\n</div>\n",
+                    template: "<div #headerDialogContainer\n\t (click)=\"openConfigDialog()\"\n\t *ngIf=\"isEnabled()\"\n\t class=\"gui-header-menu-icon-wrapper\">\n\n\t<div [ngClass]=\"'gui-header-menu-icon'\" gui-structure-column-menu-icon></div>\n\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -35645,8 +37416,8 @@ var StructureColumnConfigSortComponent = /** @class */ (function (_super) {
     };
     StructureColumnConfigSortComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-config-sort',
-                    template: "<gui-dropdown [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t  [placement]=\"placement\"\n\t\t\t  [showOnHover]=\"true\"\n\t\t\t  [width]=\"225\"\n\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}\n\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"0\" [sort]=\"true\">\n\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}\n\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"180\" [sort]=\"true\">\n\t\t\t</gui-structure-column-menu-arrow-icon>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t{{'headerMenuMainTabColumnSortNone' | guiTranslate}}\n\t</gui-dropdown-item>\n\n</gui-dropdown>\n",
+                    selector: 'div[gui-structure-column-config-sort]',
+                    template: "<gui-dropdown [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t  [placement]=\"placement\"\n\t\t\t  [showOnHover]=\"true\"\n\t\t\t  [width]=\"225\"\n\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}\n\t\t\t<div [rotateDeg]=\"0\" [sort]=\"true\" gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}\n\t\t\t<div [rotateDeg]=\"180\" [sort]=\"true\" gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t{{'headerMenuMainTabColumnSortNone' | guiTranslate}}\n\t</gui-dropdown-item>\n\n</gui-dropdown>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -35708,153 +37479,162 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var StructureColumnConfigColumnHideComponent = /** @class */ (function () {
-    function StructureColumnConfigColumnHideComponent(compositionId, compositionCommandService, structureColumnConfigService) {
-        this.compositionId = compositionId;
-        this.compositionCommandService = compositionCommandService;
-        this.structureColumnConfigService = structureColumnConfigService;
+var StructureColumnConfigColumnHideComponent = /** @class */ (function (_super) {
+    __extends(StructureColumnConfigColumnHideComponent, _super);
+    function StructureColumnConfigColumnHideComponent(elRef) {
+        var _this = _super.call(this, elRef) || this;
+        _this.columnHidden = new EventEmitter();
+        return _this;
     }
     /**
-     * @param {?} column
      * @return {?}
      */
     StructureColumnConfigColumnHideComponent.prototype.hideColumn = /**
-     * @param {?} column
      * @return {?}
      */
-    function (column) {
-        this.compositionCommandService.disableColumn(column.getColumnDefinitionId(), this.compositionId);
-        this.structureColumnConfigService.close();
+    function () {
+        this.columnHidden.emit();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    StructureColumnConfigColumnHideComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-structure-column-config-column-hide';
     };
     StructureColumnConfigColumnHideComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-config-column-hide',
-                    template: "\n\t\t<div class=\"gui-header-menu-item\"\n\t\t\t (click)=\"hideColumn(column)\">\n\t\t\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n\t\t</div>\n\t"
+                    selector: 'div[gui-structure-column-config-column-hide]',
+                    template: "<div (click)=\"hideColumn()\"\n\t class=\"gui-header-menu-item\">\n\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n</div>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
     StructureColumnConfigColumnHideComponent.ctorParameters = function () { return [
-        { type: CompositionId },
-        { type: CompositionCommandInvoker },
-        { type: StructureColumnConfigService }
+        { type: ElementRef }
     ]; };
     StructureColumnConfigColumnHideComponent.propDecorators = {
-        column: [{ type: Input }]
+        column: [{ type: Input }],
+        columnHidden: [{ type: Output }]
     };
     return StructureColumnConfigColumnHideComponent;
-}());
+}(PureComponent));
 if (false) {
     /** @type {?} */
     StructureColumnConfigColumnHideComponent.prototype.column;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.compositionId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.compositionCommandService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.structureColumnConfigService;
+    /** @type {?} */
+    StructureColumnConfigColumnHideComponent.prototype.columnHidden;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var StructureColumnConfigColumnMoveComponent = /** @class */ (function () {
-    function StructureColumnConfigColumnMoveComponent(compositionId, compositionCommandService, structureColumnConfigService) {
-        this.compositionId = compositionId;
-        this.compositionCommandService = compositionCommandService;
-        this.structureColumnConfigService = structureColumnConfigService;
+var StructureColumnConfigColumnMoveComponent = /** @class */ (function (_super) {
+    __extends(StructureColumnConfigColumnMoveComponent, _super);
+    function StructureColumnConfigColumnMoveComponent(elRef) {
+        var _this = _super.call(this, elRef) || this;
+        _this.movedLeft = new EventEmitter();
+        _this.movedRight = new EventEmitter();
+        return _this;
     }
     /**
-     * @param {?} column
      * @return {?}
      */
     StructureColumnConfigColumnMoveComponent.prototype.moveLeft = /**
-     * @param {?} column
      * @return {?}
      */
-    function (column) {
-        this.compositionCommandService.moveLeft(column.getColumnDefinitionId(), this.compositionId);
-        this.structureColumnConfigService.close();
+    function () {
+        this.movedLeft.emit();
     };
     /**
-     * @param {?} column
      * @return {?}
      */
     StructureColumnConfigColumnMoveComponent.prototype.moveRight = /**
-     * @param {?} column
      * @return {?}
      */
-    function (column) {
-        this.compositionCommandService.moveRight(column.getColumnDefinitionId(), this.compositionId);
-        this.structureColumnConfigService.close();
+    function () {
+        this.movedRight.emit();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    StructureColumnConfigColumnMoveComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-structure-column-config-column-move';
     };
     StructureColumnConfigColumnMoveComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-config-column-move',
-                    template: "\n\t\t<div class=\"gui-header-menu-column-move\">\n\t\t\t<div class=\"gui-header-menu-column-move-item left\"\n\t\t\t\t (click)=\"moveLeft(column)\">\n\t\t\t\t<gui-structure-column-menu-arrow-icon [rotateDeg]=\"-90\"></gui-structure-column-menu-arrow-icon>\n\t\t\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t\t\t</div>\n\n\t\t\t<div class=\"gui-header-menu-column-move-item right\"\n\t\t\t\t (click)=\"moveRight(column)\">\n\t\t\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t\t\t<gui-structure-column-menu-arrow-icon></gui-structure-column-menu-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t"
+                    selector: 'div[gui-structure-column-config-column-move][column]',
+                    template: "<div class=\"gui-header-menu-column-move\">\n\t<div (click)=\"moveLeft()\"\n\t\t class=\"gui-header-menu-column-move-item left\">\n\t\t<div [rotateDeg]=\"-90\" gui-structure-column-menu-arrow-icon></div>\n\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t</div>\n\n\t<div (click)=\"moveRight()\"\n\t\t class=\"gui-header-menu-column-move-item right\">\n\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t<div gui-structure-column-menu-arrow-icon></div>\n\t</div>\n</div>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
     StructureColumnConfigColumnMoveComponent.ctorParameters = function () { return [
-        { type: CompositionId },
-        { type: CompositionCommandInvoker },
-        { type: StructureColumnConfigService }
+        { type: ElementRef }
     ]; };
     StructureColumnConfigColumnMoveComponent.propDecorators = {
-        column: [{ type: Input }]
+        column: [{ type: Input }],
+        movedLeft: [{ type: Output }],
+        movedRight: [{ type: Output }]
     };
     return StructureColumnConfigColumnMoveComponent;
-}());
+}(PureComponent));
 if (false) {
     /** @type {?} */
     StructureColumnConfigColumnMoveComponent.prototype.column;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnMoveComponent.prototype.compositionId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnMoveComponent.prototype.compositionCommandService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnMoveComponent.prototype.structureColumnConfigService;
+    /** @type {?} */
+    StructureColumnConfigColumnMoveComponent.prototype.movedLeft;
+    /** @type {?} */
+    StructureColumnConfigColumnMoveComponent.prototype.movedRight;
 }
 
 /**
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var StructureColumnMenuIconComponent = /** @class */ (function () {
-    function StructureColumnMenuIconComponent() {
+var StructureColumnMenuIconComponent = /** @class */ (function (_super) {
+    __extends(StructureColumnMenuIconComponent, _super);
+    function StructureColumnMenuIconComponent(elementRef, changeDetectorRef) {
+        return _super.call(this, elementRef, changeDetectorRef) || this;
     }
+    /**
+     * @protected
+     * @return {?}
+     */
+    StructureColumnMenuIconComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-structure-column-menu-icon';
+    };
     StructureColumnMenuIconComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-menu-icon',
+                    selector: 'div[gui-structure-column-menu-icon]',
                     template: "\n\t\t<svg data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.32 7.46\">\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"3.73\" x2=\"0.75\" y2=\"3.73\"/>\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"0.75\" x2=\"0.75\" y2=\"0.75\"/>\n\t\t\t<line class=\"cls-1\" x1=\"9.57\" y1=\"6.71\" x2=\"0.75\" y2=\"6.71\"/>\n\t\t</svg>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    host: {
-                        '[class.gui-structure-column-menu-icon]': 'true',
-                        '[class.gui-icon]': 'true'
-                    }
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
+    /** @nocollapse */
+    StructureColumnMenuIconComponent.ctorParameters = function () { return [
+        { type: ElementRef },
+        { type: ChangeDetectorRef }
+    ]; };
     return StructureColumnMenuIconComponent;
-}());
+}(IconComponent));
 
 /**
  * @fileoverview added by tsickle
@@ -35880,7 +37660,7 @@ var StructureColumnMenuArrowIconComponent = /** @class */ (function (_super) {
     };
     StructureColumnMenuArrowIconComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-menu-arrow-icon',
+                    selector: 'div[gui-structure-column-menu-arrow-icon]',
                     template: "\n\t\t<div [style.transform]=\"'rotate(' + rotateDeg + 'deg)'\"\n\t\t\t [class.gui-structure-column-menu-sort-icon]=\"sort\">\n\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 10.04 11.72\">\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"2.15\" x2=\"5.02\" y2=\"10.97\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"9.29\" y2=\"5.02\"/>\n\t\t\t\t<line class=\"cls-1\" x1=\"5.02\" y1=\"0.75\" x2=\"0.75\" y2=\"5.02\"/>\n\t\t\t</svg>\n\t\t</div>\n\t",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
@@ -36682,7 +38462,7 @@ var StructureTitlePanelComponent = /** @class */ (function (_super) {
     StructureTitlePanelComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-structure-title-panel]',
-                    template: "\n\t\t<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t\t\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n\t\t</div>\n\t",
+                    template: "<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -36744,7 +38524,7 @@ var StructureFooterPanelComponent = /** @class */ (function (_super) {
     StructureFooterPanelComponent.decorators = [
         { type: Component, args: [{
                     selector: 'div[gui-structure-footer-panel]',
-                    template: "\n\t\t<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t\t\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n\t\t</div>\n\t",
+                    template: "<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n</div>\n",
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }] }
@@ -36887,1485 +38667,6 @@ if (false) {
      */
     SelectAllComponent.prototype.formationWarehouse;
 }
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSetSummariesEnabledCommand = /** @class */ (function (_super) {
-    __extends(StructureSetSummariesEnabledCommand, _super);
-    function StructureSetSummariesEnabledCommand(structureId, enabled) {
-        var _this = _super.call(this, structureId, 'StructureSetSummariesEnabledCommand') || this;
-        _this.enabled = enabled;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSetSummariesEnabledCommand.prototype.isEnabled = /**
-     * @return {?}
-     */
-    function () {
-        return this.enabled;
-    };
-    return StructureSetSummariesEnabledCommand;
-}(StructureCommand));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetSummariesEnabledCommand.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-var StructureSummariesEnabledSetEventName = 'StructureSummariesEnabledSetEvent';
-var StructureSummariesEnabledSetEvent = /** @class */ (function (_super) {
-    __extends(StructureSummariesEnabledSetEvent, _super);
-    function StructureSummariesEnabledSetEvent(aggregateId, enabled) {
-        var _this = _super.call(this, aggregateId, enabled, StructureSummariesEnabledSetEventName) || this;
-        _this.enabled = enabled;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSummariesEnabledSetEvent.prototype.isEnabled = /**
-     * @return {?}
-     */
-    function () {
-        return this.enabled;
-    };
-    return StructureSummariesEnabledSetEvent;
-}(StructureDomainEvent));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesEnabledSetEvent.prototype.enabled;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSetSummariesEnabledCommandHandler = /** @class */ (function () {
-    function StructureSetSummariesEnabledCommandHandler(structureSourceDomainEventPublisher, domainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSetSummariesEnabledCommandHandler.prototype.forCommand = /**
-     * @return {?}
-     */
-    function () {
-        return StructureSetSummariesEnabledCommand;
-    };
-    /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    StructureSetSummariesEnabledCommandHandler.prototype.handle = /**
-     * @param {?} structure
-     * @param {?} command
-     * @return {?}
-     */
-    function (structure, command) {
-        /** @type {?} */
-        var enabled = command.isEnabled();
-        structure.setSummariesEnabled(enabled);
-    };
-    /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    StructureSetSummariesEnabledCommandHandler.prototype.publish = /**
-     * @param {?} aggregate
-     * @param {?} command
-     * @return {?}
-     */
-    function (aggregate, command) {
-        /** @type {?} */
-        var enabled = command.isEnabled();
-        /** @type {?} */
-        var aggregateEvents = aggregate.getEvents();
-        this.domainEventPublisher.publish(new StructureSummariesEnabledSetEvent(command.getAggregateId(), enabled));
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    };
-    StructureSetSummariesEnabledCommandHandler.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    StructureSetSummariesEnabledCommandHandler.ctorParameters = function () { return [
-        { type: SourceDomainEventPublisher },
-        { type: DomainEventPublisher }
-    ]; };
-    return StructureSetSummariesEnabledCommandHandler;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetSummariesEnabledCommandHandler.prototype.structureSourceDomainEventPublisher;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSetSummariesEnabledCommandHandler.prototype.domainEventPublisher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSummariesEnabledSetEventHandler = /** @class */ (function () {
-    function StructureSummariesEnabledSetEventHandler(summariesEnabledArchive) {
-        this.summariesEnabledArchive = summariesEnabledArchive;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSummariesEnabledSetEventHandler.prototype.forEvent = /**
-     * @return {?}
-     */
-    function () {
-        return StructureSummariesEnabledSetEvent;
-    };
-    /**
-     * @param {?} event
-     * @return {?}
-     */
-    StructureSummariesEnabledSetEventHandler.prototype.handle = /**
-     * @param {?} event
-     * @return {?}
-     */
-    function (event) {
-        if (event.ofMessageType('StructureSummariesEnabledSetEvent')) {
-            this.summariesEnabledArchive.next(event.getAggregateId(), event.isEnabled());
-        }
-    };
-    StructureSummariesEnabledSetEventHandler.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    StructureSummariesEnabledSetEventHandler.ctorParameters = function () { return [
-        { type: SummariesEnabledArchive }
-    ]; };
-    return StructureSummariesEnabledSetEventHandler;
-}());
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesEnabledSetEventHandler.prototype.summariesEnabledArchive;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- * @template T, A
- */
-var  /**
- * @abstract
- * @template T, A
- */
-SummariesCalculator = /** @class */ (function () {
-    function SummariesCalculator() {
-    }
-    /**
-     * @param {?} fields
-     * @param {?} items
-     * @return {?}
-     */
-    SummariesCalculator.prototype.calculate = /**
-     * @param {?} fields
-     * @param {?} items
-     * @return {?}
-     */
-    function (fields, items) {
-        var _this = this;
-        /** @type {?} */
-        var filteredFields = fields.filter((/**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) { return _this.forDataType(field.getDataType()); }));
-        if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
-            return null;
-        }
-        /** @type {?} */
-        var count = new Map();
-        /** @type {?} */
-        var distinct = new Map();
-        // init
-        filteredFields.forEach((/**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            count.set(key, 0);
-            distinct.set(key, new Set());
-            _this.prepare(field);
-        }));
-        // calculate
-        items.forEach((/**
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
-            filteredFields.forEach((/**
-             * @param {?} field
-             * @return {?}
-             */
-            function (field) {
-                /** @type {?} */
-                var key = field.getKey();
-                /** @type {?} */
-                var value = field.getValue(item);
-                if (value !== null || value !== undefined || value !== '') {
-                    if (field.isSummaries(SummariesType.COUNT)) {
-                        /** @type {?} */
-                        var countForField = count.get(key);
-                        count.set(key, countForField + 1);
-                    }
-                    if (field.isSummaries(SummariesType.DISTINCT)) {
-                        /** @type {?} */
-                        var distinctSet = distinct.get(key);
-                        distinctSet.add(value);
-                    }
-                }
-                _this.aggregate(field, value);
-            }));
-        }));
-        filteredFields.forEach((/**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            _this.postCalculate(field, items);
-        }));
-        /** @type {?} */
-        var summaries = new Map();
-        filteredFields.forEach((/**
-         * @param {?} field
-         * @return {?}
-         */
-        function (field) {
-            /** @type {?} */
-            var key = field.getKey();
-            /** @type {?} */
-            var aggregatedValues = _this.generateAggregatedValues(field);
-            if (field.isSummaries(SummariesType.COUNT)) {
-                aggregatedValues.setCount(count.get(key));
-            }
-            if (field.isSummaries(SummariesType.DISTINCT)) {
-                aggregatedValues.setDistinct((distinct.get(key)).size);
-            }
-            summaries.set(key, aggregatedValues);
-        }));
-        return summaries;
-    };
-    return SummariesCalculator;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} dataType
-     * @return {?}
-     */
-    SummariesCalculator.prototype.forDataType = function (dataType) { };
-    /**
-     * @abstract
-     * @param {?} field
-     * @return {?}
-     */
-    SummariesCalculator.prototype.prepare = function (field) { };
-    /**
-     * @abstract
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    SummariesCalculator.prototype.postCalculate = function (field, items) { };
-    /**
-     * @abstract
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    SummariesCalculator.prototype.aggregate = function (field, value) { };
-    /**
-     * @abstract
-     * @param {?} field
-     * @return {?}
-     */
-    SummariesCalculator.prototype.generateAggregatedValues = function (field) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var /**
- * @abstract
- */
-SummariesValues = /** @class */ (function () {
-    function SummariesValues() {
-    }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    SummariesValues.prototype.setCount = /**
-     * @param {?} value
-     * @return {?}
-     */
-    function (value) {
-        this.count = value;
-    };
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    SummariesValues.prototype.setDistinct = /**
-     * @param {?} value
-     * @return {?}
-     */
-    function (value) {
-        this.distinct = value;
-    };
-    return SummariesValues;
-}());
-if (false) {
-    /** @type {?} */
-    SummariesValues.prototype.count;
-    /** @type {?} */
-    SummariesValues.prototype.distinct;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var BooleanSummarizedValues = /** @class */ (function (_super) {
-    __extends(BooleanSummarizedValues, _super);
-    function BooleanSummarizedValues(truthy, falsy) {
-        var _this = _super.call(this) || this;
-        _this.truthy = truthy;
-        _this.falsy = falsy;
-        return _this;
-    }
-    return BooleanSummarizedValues;
-}(SummariesValues));
-if (false) {
-    /** @type {?} */
-    BooleanSummarizedValues.prototype.truthy;
-    /** @type {?} */
-    BooleanSummarizedValues.prototype.falsy;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var BooleanSummariesCalculator = /** @class */ (function (_super) {
-    __extends(BooleanSummariesCalculator, _super);
-    function BooleanSummariesCalculator() {
-        var _this = _super.call(this) || this;
-        _this.truthy = new Map();
-        _this.falsy = new Map();
-        return _this;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    BooleanSummariesCalculator.prototype.forDataType = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return dataType === DataType.BOOLEAN;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    BooleanSummariesCalculator.prototype.prepare = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        /** @type {?} */
-        var key = field.getKey();
-        if (field.isSummaries(SummariesType.TRUTHY)) {
-            this.truthy.set(key, 0);
-        }
-        if (field.isSummaries(SummariesType.FALSY)) {
-            this.falsy.set(key, 0);
-        }
-    };
-    /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    BooleanSummariesCalculator.prototype.postCalculate = /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    function (field, items) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    BooleanSummariesCalculator.prototype.aggregate = /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    function (field, value) {
-        /** @type {?} */
-        var booleanValue = value;
-        /** @type {?} */
-        var // (value as any === 'true'),
-        key = field.getKey();
-        /** @type {?} */
-        var truthyForField = this.truthy.get(key);
-        /** @type {?} */
-        var falsyForField = this.falsy.get(key);
-        if (booleanValue) {
-            if (field.isSummaries(SummariesType.TRUTHY)) {
-                this.truthy.set(key, truthyForField + 1);
-            }
-        }
-        else {
-            if (field.isSummaries(SummariesType.FALSY)) {
-                this.falsy.set(key, falsyForField + 1);
-            }
-        }
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    BooleanSummariesCalculator.prototype.generateAggregatedValues = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        /** @type {?} */
-        var key = field.getKey();
-        return new BooleanSummarizedValues(this.truthy.get(key), this.falsy.get(key));
-    };
-    BooleanSummariesCalculator.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    BooleanSummariesCalculator.ctorParameters = function () { return []; };
-    return BooleanSummariesCalculator;
-}(SummariesCalculator));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    BooleanSummariesCalculator.prototype.truthy;
-    /**
-     * @type {?}
-     * @private
-     */
-    BooleanSummariesCalculator.prototype.falsy;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var DateSummarizedValues = /** @class */ (function (_super) {
-    __extends(DateSummarizedValues, _super);
-    function DateSummarizedValues() {
-        return _super.call(this) || this;
-    }
-    return DateSummarizedValues;
-}(SummariesValues));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var DateSummariesCalculator = /** @class */ (function (_super) {
-    __extends(DateSummariesCalculator, _super);
-    function DateSummariesCalculator() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    DateSummariesCalculator.prototype.forDataType = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return dataType === DataType.DATE;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    DateSummariesCalculator.prototype.prepare = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    DateSummariesCalculator.prototype.postCalculate = /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    function (field, items) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    DateSummariesCalculator.prototype.aggregate = /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    function (field, value) {
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    DateSummariesCalculator.prototype.generateAggregatedValues = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        return new DateSummarizedValues();
-    };
-    DateSummariesCalculator.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    DateSummariesCalculator.ctorParameters = function () { return []; };
-    return DateSummariesCalculator;
-}(SummariesCalculator));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var NumberSummarizedValues = /** @class */ (function (_super) {
-    __extends(NumberSummarizedValues, _super);
-    function NumberSummarizedValues(sum, min, max, average, median) {
-        var _this = _super.call(this) || this;
-        _this.sum = _this.setValueWithPrecision(sum);
-        _this.min = _this.setValueWithPrecision(min);
-        _this.max = _this.setValueWithPrecision(max);
-        _this.average = _this.setValueWithPrecision(average);
-        _this.median = _this.setValueWithPrecision(median);
-        return _this;
-    }
-    /**
-     * @private
-     * @param {?} value
-     * @return {?}
-     */
-    NumberSummarizedValues.prototype.setValueWithPrecision = /**
-     * @private
-     * @param {?} value
-     * @return {?}
-     */
-    function (value) {
-        if (!value && value !== 0) {
-            return null;
-        }
-        if (value === 0) {
-            return 0;
-        }
-        return +((value).toFixed(2));
-    };
-    return NumberSummarizedValues;
-}(SummariesValues));
-if (false) {
-    /** @type {?} */
-    NumberSummarizedValues.prototype.sum;
-    /** @type {?} */
-    NumberSummarizedValues.prototype.min;
-    /** @type {?} */
-    NumberSummarizedValues.prototype.max;
-    /** @type {?} */
-    NumberSummarizedValues.prototype.average;
-    /** @type {?} */
-    NumberSummarizedValues.prototype.median;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var NumberSummariesCalculator = /** @class */ (function (_super) {
-    __extends(NumberSummariesCalculator, _super);
-    function NumberSummariesCalculator() {
-        var _this = _super.call(this) || this;
-        _this.sum = new Map();
-        _this.min = new Map();
-        _this.max = new Map();
-        _this.average = new Map();
-        _this.median = new Map();
-        return _this;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    NumberSummariesCalculator.prototype.forDataType = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return dataType === DataType.NUMBER;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    NumberSummariesCalculator.prototype.prepare = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        /** @type {?} */
-        var key = field.getKey();
-        this.sum.set(key, 0);
-        this.min.set(key, Number.MAX_SAFE_INTEGER);
-        this.max.set(key, 0);
-    };
-    /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    NumberSummariesCalculator.prototype.postCalculate = /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    function (field, items) {
-        /** @type {?} */
-        var key = field.getKey();
-        if (field.isSummaries(SummariesType.AVERAGE)) {
-            this.average.set(key, this.sum.get(key) / items.length);
-        }
-        if (field.isSummaries(SummariesType.MEDIAN)) {
-            this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
-        }
-    };
-    /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    NumberSummariesCalculator.prototype.aggregate = /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    function (field, value) {
-        /** @type {?} */
-        var numberValue = +value;
-        /** @type {?} */
-        var key = field.getKey();
-        /** @type {?} */
-        var sumForField = this.sum.get(key);
-        /** @type {?} */
-        var minForField = this.min.get(key);
-        /** @type {?} */
-        var maxForField = this.max.get(key);
-        if (field.isSummaries(SummariesType.SUM) || field.isSummaries(SummariesType.AVERAGE)) {
-            this.sum.set(key, sumForField + numberValue);
-        }
-        if (field.isSummaries(SummariesType.MIN)) {
-            if (minForField > numberValue) {
-                this.min.set(key, numberValue);
-            }
-        }
-        if (field.isSummaries(SummariesType.MAX)) {
-            if (maxForField < numberValue) {
-                this.max.set(key, numberValue);
-            }
-        }
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    NumberSummariesCalculator.prototype.generateAggregatedValues = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        /** @type {?} */
-        var key = field.getKey();
-        /** @type {?} */
-        var sum = field.isSummaries(SummariesType.SUM) ? this.sum.get(key) : undefined;
-        /** @type {?} */
-        var min = field.isSummaries(SummariesType.MIN) ? this.min.get(key) : undefined;
-        /** @type {?} */
-        var max = field.isSummaries(SummariesType.MAX) ? this.max.get(key) : undefined;
-        /** @type {?} */
-        var average = field.isSummaries(SummariesType.AVERAGE) ? this.average.get(key) : undefined;
-        /** @type {?} */
-        var median = field.isSummaries(SummariesType.MEDIAN) ? this.median.get(key) : undefined;
-        return new NumberSummarizedValues(sum, min, max, average, median);
-    };
-    NumberSummariesCalculator.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    NumberSummariesCalculator.ctorParameters = function () { return []; };
-    return NumberSummariesCalculator;
-}(SummariesCalculator));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    NumberSummariesCalculator.prototype.sum;
-    /**
-     * @type {?}
-     * @private
-     */
-    NumberSummariesCalculator.prototype.min;
-    /**
-     * @type {?}
-     * @private
-     */
-    NumberSummariesCalculator.prototype.max;
-    /**
-     * @type {?}
-     * @private
-     */
-    NumberSummariesCalculator.prototype.average;
-    /**
-     * @type {?}
-     * @private
-     */
-    NumberSummariesCalculator.prototype.median;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StringSummarizedValues = /** @class */ (function (_super) {
-    __extends(StringSummarizedValues, _super);
-    function StringSummarizedValues() {
-        return _super.call(this) || this;
-    }
-    return StringSummarizedValues;
-}(SummariesValues));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StringSummariesCalculator = /** @class */ (function (_super) {
-    __extends(StringSummariesCalculator, _super);
-    function StringSummariesCalculator() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    StringSummariesCalculator.prototype.forDataType = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return dataType === DataType.STRING;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    StringSummariesCalculator.prototype.prepare = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    StringSummariesCalculator.prototype.postCalculate = /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    function (field, items) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    StringSummariesCalculator.prototype.aggregate = /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    function (field, value) {
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    StringSummariesCalculator.prototype.generateAggregatedValues = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        return new StringSummarizedValues();
-    };
-    StringSummariesCalculator.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    StringSummariesCalculator.ctorParameters = function () { return []; };
-    return StringSummariesCalculator;
-}(SummariesCalculator));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var UnknownSummarizedValues = /** @class */ (function (_super) {
-    __extends(UnknownSummarizedValues, _super);
-    function UnknownSummarizedValues() {
-        return _super.call(this) || this;
-    }
-    return UnknownSummarizedValues;
-}(SummariesValues));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var UnknownSummariesCalculator = /** @class */ (function (_super) {
-    __extends(UnknownSummariesCalculator, _super);
-    function UnknownSummariesCalculator() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    UnknownSummariesCalculator.prototype.forDataType = /**
-     * @param {?} dataType
-     * @return {?}
-     */
-    function (dataType) {
-        return dataType === DataType.UNKNOWN;
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    UnknownSummariesCalculator.prototype.prepare = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    UnknownSummariesCalculator.prototype.postCalculate = /**
-     * @param {?} field
-     * @param {?} items
-     * @return {?}
-     */
-    function (field, items) {
-    };
-    /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    UnknownSummariesCalculator.prototype.aggregate = /**
-     * @param {?} field
-     * @param {?} value
-     * @return {?}
-     */
-    function (field, value) {
-    };
-    /**
-     * @param {?} field
-     * @return {?}
-     */
-    UnknownSummariesCalculator.prototype.generateAggregatedValues = /**
-     * @param {?} field
-     * @return {?}
-     */
-    function (field) {
-        return new UnknownSummarizedValues();
-    };
-    UnknownSummariesCalculator.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    UnknownSummariesCalculator.ctorParameters = function () { return []; };
-    return UnknownSummariesCalculator;
-}(SummariesCalculator));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @param {?} clazz
- * @return {?}
- */
-function provideSummariesCalculator(clazz) {
-    return {
-        provide: SUMMARIES_CALCULATORS,
-        useClass: clazz,
-        multi: true
-    };
-}
-/** @type {?} */
-var summariesProviders = [
-    provideSummariesCalculator(BooleanSummariesCalculator),
-    provideSummariesCalculator(DateSummariesCalculator),
-    provideSummariesCalculator(NumberSummariesCalculator),
-    provideSummariesCalculator(StringSummariesCalculator),
-    provideSummariesCalculator(UnknownSummariesCalculator),
-    SummariesManagerFactory
-];
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesDomainModule = /** @class */ (function (_super) {
-    __extends(SummariesDomainModule, _super);
-    function SummariesDomainModule() {
-        return _super.call(this) || this;
-    }
-    /**
-     * @return {?}
-     */
-    SummariesDomainModule.commandHandlers = /**
-     * @return {?}
-     */
-    function () {
-        return __spread(HermesModule.registerCommandHandler(StructureSetSummariesEnabledCommandHandler, structureKey));
-    };
-    /**
-     * @return {?}
-     */
-    SummariesDomainModule.domainEventHandlers = /**
-     * @return {?}
-     */
-    function () {
-        return __spread(HermesModule.registerDomainEventHandler(StructureSummariesEnabledSetEventHandler));
-    };
-    SummariesDomainModule.decorators = [
-        { type: NgModule, args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    providers: __spread(summariesProviders),
-                    declarations: [],
-                    exports: []
-                },] }
-    ];
-    /** @nocollapse */
-    SummariesDomainModule.ctorParameters = function () { return []; };
-    return SummariesDomainModule;
-}(DomainModule));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var SummariesEventRepository = /** @class */ (function (_super) {
-    __extends(SummariesEventRepository, _super);
-    function SummariesEventRepository(domainEventBus) {
-        return _super.call(this, domainEventBus) || this;
-    }
-    SummariesEventRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesEventRepository.ctorParameters = function () { return [
-        { type: DomainEventBus }
-    ]; };
-    return SummariesEventRepository;
-}(EventRepository));
-if (false) {
-    /**
-     * @abstract
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesEventRepository.prototype.onSummariesChanged = function (structureId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
-var SummariesWarehouse = /** @class */ (function () {
-    function SummariesWarehouse() {
-    }
-    SummariesWarehouse.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesWarehouse.ctorParameters = function () { return []; };
-    return SummariesWarehouse;
-}());
-if (false) {
-    /**
-     * @abstract
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesWarehouse.prototype.onSummariesEnabled = function (structureId) { };
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesDomainWarehouse = /** @class */ (function (_super) {
-    __extends(SummariesDomainWarehouse, _super);
-    function SummariesDomainWarehouse(structureSummariesRepository) {
-        var _this = _super.call(this) || this;
-        _this.structureSummariesRepository = structureSummariesRepository;
-        return _this;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesDomainWarehouse.prototype.onSummariesEnabled = /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    function (structureId) {
-        return this.structureSummariesRepository.on(structureId);
-    };
-    SummariesDomainWarehouse.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesDomainWarehouse.ctorParameters = function () { return [
-        { type: SummariesEnabledArchive }
-    ]; };
-    return SummariesDomainWarehouse;
-}(SummariesWarehouse));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesDomainWarehouse.prototype.structureSummariesRepository;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesDomainCommandInvoker = /** @class */ (function (_super) {
-    __extends(SummariesDomainCommandInvoker, _super);
-    function SummariesDomainCommandInvoker(commandDispatcher) {
-        var _this = _super.call(this) || this;
-        _this.commandDispatcher = commandDispatcher;
-        return _this;
-    }
-    /**
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesDomainCommandInvoker.prototype.setSummariesEnabled = /**
-     * @param {?} enabled
-     * @param {?} structureId
-     * @return {?}
-     */
-    function (enabled, structureId) {
-        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
-    };
-    SummariesDomainCommandInvoker.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesDomainCommandInvoker.ctorParameters = function () { return [
-        { type: CommandDispatcher }
-    ]; };
-    return SummariesDomainCommandInvoker;
-}(SummariesCommandInvoker));
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SummariesDomainCommandInvoker.prototype.commandDispatcher;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesDomainEventRepository = /** @class */ (function (_super) {
-    __extends(SummariesDomainEventRepository, _super);
-    function SummariesDomainEventRepository(domainEventBus) {
-        return _super.call(this, domainEventBus) || this;
-    }
-    /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    SummariesDomainEventRepository.prototype.onSummariesChanged = /**
-     * @param {?} structureId
-     * @return {?}
-     */
-    function (structureId) {
-        return this.onEvent(structureId, StructureSummariesChangedEvent);
-    };
-    SummariesDomainEventRepository.decorators = [
-        { type: Injectable }
-    ];
-    /** @nocollapse */
-    SummariesDomainEventRepository.ctorParameters = function () { return [
-        { type: DomainEventBus }
-    ]; };
-    return SummariesDomainEventRepository;
-}(SummariesEventRepository));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesApiModule = /** @class */ (function (_super) {
-    __extends(SummariesApiModule, _super);
-    function SummariesApiModule() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    SummariesApiModule.decorators = [
-        { type: NgModule, args: [{
-                    imports: [
-                        CommonModule,
-                        SummariesDomainModule
-                    ],
-                    providers: [
-                        {
-                            provide: SummariesCommandInvoker,
-                            useClass: SummariesDomainCommandInvoker
-                        },
-                        {
-                            provide: SummariesEventRepository,
-                            useClass: SummariesDomainEventRepository
-                        },
-                        {
-                            provide: SummariesWarehouse,
-                            useClass: SummariesDomainWarehouse
-                        },
-                        SummariesEnabledArchive
-                    ],
-                    declarations: [],
-                    exports: []
-                },] }
-    ];
-    return SummariesApiModule;
-}(ApiModule));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesTranslations = /** @class */ (function () {
-    function SummariesTranslations(distinctTooltip, averageTooltip, minTooltip, maxTooltip, medTooltip, countTooltip) {
-        this.distinctTooltip = distinctTooltip;
-        this.averageTooltip = averageTooltip;
-        this.minTooltip = minTooltip;
-        this.maxTooltip = maxTooltip;
-        this.medTooltip = medTooltip;
-        this.countTooltip = countTooltip;
-    }
-    return SummariesTranslations;
-}());
-if (false) {
-    /** @type {?} */
-    SummariesTranslations.prototype.distinctTooltip;
-    /** @type {?} */
-    SummariesTranslations.prototype.averageTooltip;
-    /** @type {?} */
-    SummariesTranslations.prototype.minTooltip;
-    /** @type {?} */
-    SummariesTranslations.prototype.maxTooltip;
-    /** @type {?} */
-    SummariesTranslations.prototype.medTooltip;
-    /** @type {?} */
-    SummariesTranslations.prototype.countTooltip;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var StructureSummariesPanelComponent = /** @class */ (function (_super) {
-    __extends(StructureSummariesPanelComponent, _super);
-    function StructureSummariesPanelComponent(changeDetectorRef, elementRef, structureId, structureSummariesEventRepository, translationService, sourceReadModelService, rowSelectionTypeArchive, compositionReadModelService) {
-        var _this = _super.call(this, changeDetectorRef, elementRef) || this;
-        _this.changeDetectorRef = changeDetectorRef;
-        _this.structureId = structureId;
-        _this.structureSummariesEventRepository = structureSummariesEventRepository;
-        _this.translationService = translationService;
-        _this.sourceReadModelService = sourceReadModelService;
-        _this.rowSelectionTypeArchive = rowSelectionTypeArchive;
-        _this.compositionReadModelService = compositionReadModelService;
-        _this.sourceEmpty = false;
-        _this.addClassToHost('gui-flex');
-        _this.hermesSubscribe(_this.structureSummariesEventRepository.onSummariesChanged(_this.structureId.toReadModelRootId()), (/**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            _this.summaries = event.getSummaries();
-        }));
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    StructureSummariesPanelComponent.prototype.ngOnInit = /**
-     * @return {?}
-     */
-    function () {
-        var _this = this;
-        this.hermesSubscribe(this.rowSelectionTypeArchive.on(), (/**
-         * @param {?} type
-         * @return {?}
-         */
-        function (type) {
-            _this.checkboxSelection = type === RowSelectionType.CHECKBOX;
-        }));
-        this.hermesSubscribe(this.sourceReadModelService.onEntitiesSize(this.structureId), (/**
-         * @param {?} size
-         * @return {?}
-         */
-        function (size) {
-            _this.sourceEmpty = size === 0;
-        }));
-        this.hermesSubscribe(this.compositionReadModelService.onHeaderColumns(this.structureId), (/**
-         * @param {?} columns
-         * @return {?}
-         */
-        function (columns) {
-            _this.headerColumns = columns;
-        }));
-        this.hermesSubscribe(this.translationService.onTranslation(), (/**
-         * @param {?} translation
-         * @return {?}
-         */
-        function (translation) {
-            _this.summariesTranslations = new SummariesTranslations(translation.summariesDistinctValuesTooltip, translation.summariesAverageTooltip, translation.summariesMinTooltip, translation.summariesMaxTooltip, translation.summariesMedTooltip, translation.summariesCountTooltip);
-        }));
-    };
-    /**
-     * @param {?} summaries
-     * @return {?}
-     */
-    StructureSummariesPanelComponent.prototype.isSummariesTypePresent = /**
-     * @param {?} summaries
-     * @return {?}
-     */
-    function (summaries) {
-        return summaries !== undefined && summaries !== null;
-    };
-    /**
-     * @protected
-     * @return {?}
-     */
-    StructureSummariesPanelComponent.prototype.getSelectorName = /**
-     * @protected
-     * @return {?}
-     */
-    function () {
-        return 'gui-structure-summaries-panel';
-    };
-    StructureSummariesPanelComponent.decorators = [
-        { type: Component, args: [{
-                    selector: 'div[gui-structure-summaries-panel][enabled]',
-                    template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n",
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    StructureSummariesPanelComponent.ctorParameters = function () { return [
-        { type: ChangeDetectorRef },
-        { type: ElementRef },
-        { type: StructureId },
-        { type: SummariesEventRepository },
-        { type: TranslationFacade },
-        { type: SourceWarehouse },
-        { type: RowSelectionTypeArchive },
-        { type: CompositionWarehouse }
-    ]; };
-    StructureSummariesPanelComponent.propDecorators = {
-        enabled: [{ type: Input }]
-    };
-    return StructureSummariesPanelComponent;
-}(SmartComponent));
-if (false) {
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.enabled;
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.sourceEmpty;
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.headerColumns;
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.summaries;
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.summariesTranslations;
-    /** @type {?} */
-    StructureSummariesPanelComponent.prototype.checkboxSelection;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.structureId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.structureSummariesEventRepository;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.translationService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.sourceReadModelService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.rowSelectionTypeArchive;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureSummariesPanelComponent.prototype.compositionReadModelService;
-}
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-var SummariesFeatureModule = /** @class */ (function (_super) {
-    __extends(SummariesFeatureModule, _super);
-    function SummariesFeatureModule(summariesApiModule) {
-        var _this = _super.call(this) || this;
-        if (summariesApiModule === null) {
-            throw new Error('SummariesApiModule is required.');
-        }
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    SummariesFeatureModule.forComponent = /**
-     * @return {?}
-     */
-    function () {
-        return [];
-    };
-    SummariesFeatureModule.decorators = [
-        { type: NgModule, args: [{
-                    imports: [
-                        CommonModule,
-                        FabricModule,
-                        TranslationFeatureModule,
-                        SummariesApiModule
-                    ],
-                    declarations: [
-                        StructureSummariesPanelComponent
-                    ],
-                    exports: [
-                        StructureSummariesPanelComponent
-                    ],
-                    providers: [
-                        StructureSummariesArchive,
-                        StructureSummariesConfigService,
-                        StructureSummariesPanelConfigConverter
-                    ]
-                },] }
-    ];
-    /** @nocollapse */
-    SummariesFeatureModule.ctorParameters = function () { return [
-        { type: SummariesApiModule, decorators: [{ type: Optional }] }
-    ]; };
-    return SummariesFeatureModule;
-}(FeatureModule));
 
 /**
  * @fileoverview added by tsickle
@@ -41399,27 +41700,6 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-var ColumnId = /** @class */ (function (_super) {
-    __extends(ColumnId, _super);
-    function ColumnId(id) {
-        return _super.call(this, id) || this;
-    }
-    /**
-     * @return {?}
-     */
-    ColumnId.prototype.toString = /**
-     * @return {?}
-     */
-    function () {
-        return this.getId();
-    };
-    return ColumnId;
-}(EntityId));
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 /**
  * @abstract
  */
@@ -44120,7 +44400,7 @@ var ColumnDefinition = /** @class */ (function (_super) {
      * @param {?} index
      * @return {?}
      */
-    ColumnDefinition.prototype.getHeaderCellTemplateWithContext = /**
+    ColumnDefinition.prototype.toHeaderCellTemplateWithContext = /**
      * @param {?} index
      * @return {?}
      */
@@ -44142,7 +44422,7 @@ var ColumnDefinition = /** @class */ (function (_super) {
     /**
      * @return {?}
      */
-    ColumnDefinition.prototype.getContentCellTemplateWithAccessor = /**
+    ColumnDefinition.prototype.toContentCellTemplateWithAccessor = /**
      * @return {?}
      */
     function () {
@@ -44163,7 +44443,7 @@ var ColumnDefinition = /** @class */ (function (_super) {
         function (entity) {
             return _this.field.getSearchAccessor()(entity);
         });
-        return new CellTemplateWithAccessor(this.cellTemplate, this.editTemplate, true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
+        return new CellTemplateWithAccessor(this.columnDefinitionId, this.cellTemplate, this.editTemplate, true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
     };
     return ColumnDefinition;
 }(ReadModelEntity));
@@ -44288,8 +44568,18 @@ var ColumnDefinitionFactory = /** @class */ (function () {
     function (column) {
         /** @type {?} */
         var columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getSortStatus(), column.getSortingEnabled());
-        columnDef.cellTemplate = this.findViewTemplate(column.getCellView());
-        columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        if (column.getCellView() === CellView.NG_TEMPLATE) {
+            columnDef.cellTemplate = column.getColumnConfig().templateRef;
+        }
+        else {
+            columnDef.cellTemplate = this.findViewTemplate(column.getCellView());
+        }
+        if (typeof column.getHeader() === 'function') {
+            columnDef.headerTemplate = this.findViewTemplate(CellView.FUNCTION);
+        }
+        else {
+            columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        }
         columnDef.setTemplateFunction(column.getTemplateFunction());
         columnDef.setFormatterFunction(column.getFormatterFunction());
         columnDef.editTemplate = this.findEditTemplate(column.getDataType());
@@ -44310,8 +44600,18 @@ var ColumnDefinitionFactory = /** @class */ (function () {
         /** @type {?} */
         var columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), true, // remove,
         activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getSortStatus(), activeColumn.getSortingEnabled());
-        columnDef.cellTemplate = this.findViewTemplate(activeColumn.getCellView());
-        columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        if (activeColumn.getCellView() === CellView.NG_TEMPLATE) {
+            columnDef.cellTemplate = activeColumn.getColumnConfig().templateRef;
+        }
+        else {
+            columnDef.cellTemplate = this.findViewTemplate(activeColumn.getCellView());
+        }
+        if (typeof activeColumn.getHeader() === 'function') {
+            columnDef.headerTemplate = this.findViewTemplate(CellView.FUNCTION);
+        }
+        else {
+            columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+        }
         columnDef.setTemplateFunction(activeColumn.getTemplateFunction());
         columnDef.setFormatterFunction(activeColumn.getFormatterFunction());
         columnDef.editTemplate = this.findEditTemplate(activeColumn.getDataType());
@@ -44434,7 +44734,7 @@ var CompositionReadModeRoot = /** @class */ (function (_super) {
          * @param {?} index
          * @return {?}
          */
-        function (column, index) { return column.getHeaderCellTemplateWithContext(index); }));
+        function (column, index) { return column.toHeaderCellTemplateWithContext(index); }));
     };
     /**
      * @return {?}
@@ -44449,7 +44749,7 @@ var CompositionReadModeRoot = /** @class */ (function (_super) {
          * @param {?} index
          * @return {?}
          */
-        function (column, index) { return column.getHeaderCellTemplateWithContext(index); }));
+        function (column, index) { return column.toHeaderCellTemplateWithContext(index); }));
     };
     /**
      * @return {?}
@@ -44463,7 +44763,7 @@ var CompositionReadModeRoot = /** @class */ (function (_super) {
          * @param {?} column
          * @return {?}
          */
-        function (column) { return column.getContentCellTemplateWithAccessor(); }));
+        function (column) { return column.toContentCellTemplateWithAccessor(); }));
     };
     /**
      * @return {?}
@@ -44967,6 +45267,150 @@ if (false) {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+var ColumnHighlightManager = /** @class */ (function () {
+    function ColumnHighlightManager() {
+        this.enabled = true;
+        this.highlightedColumns = new Set(); // should be set of ColumnId
+    }
+    // should be set of ColumnId
+    /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    ColumnHighlightManager.prototype.isHighlighted = 
+    // should be set of ColumnId
+    /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    function (columnId) {
+        return this.highlightedColumns.has(columnId.toString());
+    };
+    /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    ColumnHighlightManager.prototype.toggle = /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    function (columnId) {
+        if (this.highlightedColumns.has(columnId.toString())) {
+            this.highlightedColumns.delete(columnId.toString());
+        }
+        else {
+            this.highlightedColumns.add(columnId.toString());
+        }
+    };
+    /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    ColumnHighlightManager.prototype.remove = /**
+     * @param {?} columnId
+     * @return {?}
+     */
+    function (columnId) {
+        this.highlightedColumns.delete(columnId.toString());
+    };
+    return ColumnHighlightManager;
+}());
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnHighlightManager.prototype.enabled;
+    /**
+     * @type {?}
+     * @private
+     */
+    ColumnHighlightManager.prototype.highlightedColumns;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var ColumnHighlightArchive = /** @class */ (function (_super) {
+    __extends(ColumnHighlightArchive, _super);
+    function ColumnHighlightArchive() {
+        return _super.call(this, new ColumnHighlightManager()) || this;
+    }
+    /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    ColumnHighlightArchive.prototype.toggle = /**
+     * @param {?} key
+     * @param {?} value
+     * @return {?}
+     */
+    function (key, value) {
+        var _this = this;
+        this.get(key)
+            .ifPresent((/**
+         * @param {?} manager
+         * @return {?}
+         */
+        function (manager) {
+            manager.toggle(value);
+            _this.next(key, manager);
+        }));
+    };
+    /**
+     * @protected
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    ColumnHighlightArchive.prototype.equals = /**
+     * @protected
+     * @param {?} a
+     * @param {?} b
+     * @return {?}
+     */
+    function (a, b) {
+        return false;
+    };
+    /**
+     * @protected
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    ColumnHighlightArchive.prototype.createDefaultValue = /**
+     * @protected
+     * @param {?} defaultValue
+     * @return {?}
+     */
+    function (defaultValue) {
+        return new ColumnHighlightManager();
+    };
+    ColumnHighlightArchive.decorators = [
+        { type: Injectable }
+    ];
+    /** @nocollapse */
+    ColumnHighlightArchive.ctorParameters = function () { return []; };
+    __decorate([
+        Override,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [ColumnHighlightManager, ColumnHighlightManager]),
+        __metadata("design:returntype", Boolean)
+    ], ColumnHighlightArchive.prototype, "equals", null);
+    __decorate([
+        Override,
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [ColumnHighlightManager]),
+        __metadata("design:returntype", ColumnHighlightManager)
+    ], ColumnHighlightArchive.prototype, "createDefaultValue", null);
+    return ColumnHighlightArchive;
+}(AggregateArchive));
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 var CompositionDomainModule = /** @class */ (function (_super) {
     __extends(CompositionDomainModule, _super);
     function CompositionDomainModule() {
@@ -45001,7 +45445,8 @@ var CompositionDomainModule = /** @class */ (function (_super) {
                         ColumnPresentationConverter,
                         CompositionEventConverter,
                         ColumnFieldFactory,
-                        CompositionGroupFactory
+                        CompositionGroupFactory,
+                        ColumnHighlightArchive
                     ]),
                     declarations: [],
                     exports: []
@@ -45082,10 +45527,11 @@ if (false) {
  */
 var CompositionDomainCommandInvoker = /** @class */ (function (_super) {
     __extends(CompositionDomainCommandInvoker, _super);
-    function CompositionDomainCommandInvoker(compositionDispatcher, compositionGroupRepository) {
+    function CompositionDomainCommandInvoker(compositionDispatcher, compositionGroupRepository, columnHighlightArchive) {
         var _this = _super.call(this) || this;
         _this.compositionDispatcher = compositionDispatcher;
         _this.compositionGroupRepository = compositionGroupRepository;
+        _this.columnHighlightArchive = columnHighlightArchive;
         return _this;
     }
     /**
@@ -45218,6 +45664,19 @@ var CompositionDomainCommandInvoker = /** @class */ (function (_super) {
         this.compositionDispatcher.moveRight(compositionId, this.toColumnId(columnDefinitionId));
     };
     /**
+     * @param {?} columnDefinitionId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionDomainCommandInvoker.prototype.highlightColumn = /**
+     * @param {?} columnDefinitionId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    function (columnDefinitionId, compositionId) {
+        this.columnHighlightArchive.toggle(compositionId, new ColumnId(columnDefinitionId.getId()));
+    };
+    /**
      * @private
      * @param {?} defId
      * @return {?}
@@ -45236,7 +45695,8 @@ var CompositionDomainCommandInvoker = /** @class */ (function (_super) {
     /** @nocollapse */
     CompositionDomainCommandInvoker.ctorParameters = function () { return [
         { type: CompositionDispatcher },
-        { type: CompositionGroupArchive }
+        { type: CompositionGroupArchive },
+        { type: ColumnHighlightArchive }
     ]; };
     return CompositionDomainCommandInvoker;
 }(CompositionCommandInvoker));
@@ -45251,6 +45711,11 @@ if (false) {
      * @private
      */
     CompositionDomainCommandInvoker.prototype.compositionGroupRepository;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionDomainCommandInvoker.prototype.columnHighlightArchive;
 }
 
 /**
@@ -45311,10 +45776,11 @@ var CompositionDomainEventRepository = /** @class */ (function (_super) {
  */
 var CompositionDomainWarehouse = /** @class */ (function (_super) {
     __extends(CompositionDomainWarehouse, _super);
-    function CompositionDomainWarehouse(compositionRepository, compositionGroupArchive) {
+    function CompositionDomainWarehouse(compositionRepository, compositionGroupArchive, columnHighlightArchive) {
         var _this = _super.call(this) || this;
         _this.compositionRepository = compositionRepository;
         _this.compositionGroupArchive = compositionGroupArchive;
+        _this.columnHighlightArchive = columnHighlightArchive;
         return _this;
     }
     /**
@@ -45490,13 +45956,33 @@ var CompositionDomainWarehouse = /** @class */ (function (_super) {
     function (compositionId) {
         return this.compositionGroupArchive.on(compositionId);
     };
+    /**
+     * @param {?} columnId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    CompositionDomainWarehouse.prototype.onHighlightedColumn = /**
+     * @param {?} columnId
+     * @param {?} compositionId
+     * @return {?}
+     */
+    function (columnId, compositionId) {
+        return this.columnHighlightArchive
+            .on(compositionId)
+            .pipe(hermesMap((/**
+         * @param {?} manager
+         * @return {?}
+         */
+        function (manager) { return manager.isHighlighted(columnId); })));
+    };
     CompositionDomainWarehouse.decorators = [
         { type: Injectable }
     ];
     /** @nocollapse */
     CompositionDomainWarehouse.ctorParameters = function () { return [
         { type: CompositionReadModelRootRepository },
-        { type: CompositionGroupArchive }
+        { type: CompositionGroupArchive },
+        { type: ColumnHighlightArchive }
     ]; };
     return CompositionDomainWarehouse;
 }(CompositionWarehouse));
@@ -45511,6 +45997,11 @@ if (false) {
      * @private
      */
     CompositionDomainWarehouse.prototype.compositionGroupArchive;
+    /**
+     * @type {?}
+     * @private
+     */
+    CompositionDomainWarehouse.prototype.columnHighlightArchive;
 }
 
 /**
@@ -45775,7 +46266,7 @@ var InputEditTemplateComponent = /** @class */ (function (_super) {
         this.focusField(inputElement);
         this.emitValueChange(inputElement.value);
         hermesFromEvent(inputElement, 'blur')
-            .pipe(this.takeUntil())
+            .pipe(this.hermesTakeUntil())
             .subscribe((/**
          * @return {?}
          */
@@ -45790,7 +46281,7 @@ var InputEditTemplateComponent = /** @class */ (function (_super) {
          * @param {?} e
          * @return {?}
          */
-        function (e) { return e.keyCode === _this.ENTER_KEY_CODE; })), this.takeUntil())
+        function (e) { return e.keyCode === _this.ENTER_KEY_CODE; })), this.hermesTakeUntil())
             .subscribe((/**
          * @return {?}
          */
@@ -45803,7 +46294,7 @@ var InputEditTemplateComponent = /** @class */ (function (_super) {
          * @param {?} e
          * @return {?}
          */
-        function (e) { return e.keyCode === _this.ESC_KEY_CODE; })), this.takeUntil())
+        function (e) { return e.keyCode === _this.ESC_KEY_CODE; })), this.hermesTakeUntil())
             .subscribe((/**
          * @return {?}
          */
@@ -45838,7 +46329,7 @@ var InputEditTemplateComponent = /** @class */ (function (_super) {
         fromRxJsObservable(this.filterForm
             .controls[this.filterFieldName]
             .valueChanges)
-            .pipe(this.takeUntil())
+            .pipe(this.hermesTakeUntil())
             .subscribe((/**
          * @param {?} value
          * @return {?}
@@ -47217,9 +47708,10 @@ if (false) {
  */
 var StructureSummariesGate = /** @class */ (function (_super) {
     __extends(StructureSummariesGate, _super);
-    function StructureSummariesGate(structureSummariesConfigService) {
+    function StructureSummariesGate(structureId, summariesCommandInvoker) {
         var _this = _super.call(this) || this;
-        _this.structureSummariesConfigService = structureSummariesConfigService;
+        _this.structureId = structureId;
+        _this.summariesCommandInvoker = summariesCommandInvoker;
         return _this;
     }
     /**
@@ -47232,7 +47724,7 @@ var StructureSummariesGate = /** @class */ (function (_super) {
      */
     function (changes) {
         if (this.isDefined('summaries', changes)) {
-            this.structureSummariesConfigService.set(this.summaries);
+            this.summariesCommandInvoker.setConfig(this.summaries, this.structureId);
         }
     };
     StructureSummariesGate.decorators = [
@@ -47242,7 +47734,8 @@ var StructureSummariesGate = /** @class */ (function (_super) {
     ];
     /** @nocollapse */
     StructureSummariesGate.ctorParameters = function () { return [
-        { type: StructureSummariesConfigService }
+        { type: StructureId },
+        { type: SummariesCommandInvoker }
     ]; };
     StructureSummariesGate.propDecorators = {
         summaries: [{ type: Input }]
@@ -47256,7 +47749,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    StructureSummariesGate.prototype.structureSummariesConfigService;
+    StructureSummariesGate.prototype.structureId;
+    /**
+     * @type {?}
+     * @private
+     */
+    StructureSummariesGate.prototype.summariesCommandInvoker;
 }
 
 /**
@@ -48209,5 +48707,5 @@ var GuiListModule = /** @class */ (function () {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { GuiListComponent, GuiListDefaultTranslation, GuiListFieldType, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, SetPagingCommandHandler as ɵba, StructureAggregateRepository as ɵbb, structureKey as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, PagingCommandInvoker as ɵbg, PagingDomainCommandInvoker as ɵbh, PagingWarehouse as ɵbi, PagingDomainWarehouse as ɵbj, PagingRepository as ɵbk, StructureReadModelRepository as ɵbl, PagingEventRepository as ɵbm, PagingDomainEventRepository as ɵbn, PagingConverter as ɵbo, TranslationFeatureModule as ɵbp, TranslationApiModule as ɵbq, TranslationPipe as ɵbr, TranslationFacade as ɵbs, TranslationDomainFacade as ɵbt, PagingComponent as ɵbu, SmartComponent as ɵbv, GuiComponent as ɵbw, CssClassModifier as ɵbx, StructureId as ɵby, SourceWarehouse as ɵbz, ListViewApiModule as ɵc, PagingDisplayModeArchive as ɵca, PagingNavigatorComponent as ɵcb, PureComponent as ɵcc, PagingSelectComponent as ɵcd, PagingStatsComponent as ɵce, AlternativePagingNavigatorComponent as ɵcf, AlternativePagingPagesComponent as ɵcg, SearchFeatureModule as ɵch, SearchApiModule as ɵci, SearchDomainModule as ɵcj, SearchManagerFactory as ɵck, SearchDispatcher as ɵcl, SearchHighlightArchive as ɵcm, SearchPlaceholderArchive as ɵcn, SetConfigSearchingCommandHandler as ɵco, StructureSetSearchPhraseCommandHandler as ɵcp, SourceDomainEventPublisher as ɵcq, SearchPhraseSetEventHandler as ɵcr, SearchPhraseArchive as ɵcs, ConfigSearchingSetEventHandler as ɵct, SearchingEnabledArchive as ɵcu, SearchCommandInvoker as ɵcv, SearchDomainCommandInvoker as ɵcw, SearchWarehouse as ɵcx, SearchDomainWarehouse as ɵcy, SearchEventRepository as ɵcz, ListViewAggregateFactory as ɵd, SearchDomainEventRepository as ɵda, SearchIconComponent as ɵdb, IconComponent as ɵdc, StaticComponent as ɵdd, SearchComponent as ɵde, StructureWarehouse as ɵdf, EmptySourceFeatureModule as ɵdg, EmptySourceComponent as ɵdh, SortingSelectorFeatureModule as ɵdi, SortingSelectorComponent as ɵdj, FilterMenuFeatureModule as ɵdk, FilterApiModule as ɵdl, FilterDomainModule as ɵdm, FilterManagerFactory as ɵdn, SetConfigFilterCommandHandler as ɵdo, SetConfigQuickFilterCommandHandler as ɵdp, ToggleFilterCommandHandler as ɵdq, AddFilterCommandHandler as ɵdr, RemoveAllFiltersCommandHandler as ɵds, RemoveFilterCommandHandler as ɵdt, SelectUniqueFilterCommandHandler as ɵdu, SelectAllUniqueFilterCommandHandler as ɵdv, UnselectUniqueFilterCommandHandler as ɵdw, UnselectAllUniqueFilterCommandHandler as ɵdx, ConfigQuickFilterSetEventHandler as ɵdy, QuickFilterEnabledArchive as ɵdz, InMemoryListViewAggregateRepository as ɵe, ConfigFilterSetEventHandler as ɵea, FilterEnabledArchive as ɵeb, FilterTypeConfigFilterSetEventHandler as ɵec, FilterTypeArchive as ɵed, FilterTypeMap as ɵee, FilterTypeReadModel as ɵef, FilterTypeId as ɵeg, ActiveFiltersSetEventHandler as ɵeh, ActiveFilterArchive as ɵei, UniqueFilterCalculatedEventHandler as ɵej, UniqueValuesArchive as ɵek, UniqueValuesReadModel as ɵel, UniqueValueReadModel as ɵem, UniqueValueId as ɵen, FilterTypeFieldsInitedEventHandler as ɵeo, FilterCommandInvoker as ɵep, FilterWarehouse as ɵeq, ActiveFilterListModule as ɵer, fabricImports as ɵes, ActiveFilterListComponent as ɵet, ActiveSearchComponent as ɵeu, FilterIconComponent as ɵev, FilterMenuComponent as ɵew, CompositionId as ɵex, FieldWarehouse as ɵey, FieldReadModelArchive as ɵez, ListViewAggregateRepository as ɵf, CompositionWarehouse as ɵfa, FilterMenuTriggerComponent as ɵfb, filterContainerToken as ɵfc, ColumnSelectorComponent as ɵfe, FilterTypeSelectorComponent as ɵff, FilterValueComponent as ɵfg, FieldSelectorComponent as ɵfh, listViewIdFactoryForList as ɵfi, structureIdFactoryForList as ɵfj, compositionIdFactoryForList as ɵfk, schemaIdFactoryForList as ɵfl, componentListProviders as ɵfm, ListViewComponent as ɵfn, StructureIdGenerator as ɵfo, SchemaReadModelRootId as ɵfp, ListViewReadModelRootId as ɵfq, listViewProviders as ɵfr, ListViewTemplateArchive as ɵfs, ListViewCardTemplateArchive as ɵft, SourceCommandInvoker as ɵfu, StructureCommandInvoker as ɵfv, ListViewItemComponent as ɵfw, ListViewLayoutComponent as ɵfx, ListViewSourceComponent as ɵfy, ListViewContainerCardComponent as ɵfz, InMemoryListViewAggregateStore as ɵg, ListViewCardItemComponent as ɵga, ListViewContainerModeSelectComponent as ɵgb, listViewGatewayDeclarations as ɵgc, ListViewPagingGate as ɵgd, PagingGate as ɵge, Gate as ɵgf, ListViewModeGate as ɵgg, ListViewTemplateGate as ɵgh, ListViewFieldGate as ɵgi, FieldCommandInvoker as ɵgj, ListViewSearchingGate as ɵgk, SearchingGate as ɵgl, ListViewL10nGate as ɵgm, ListViewSourceGate as ɵgn, SourceGate as ɵgo, SourceEventService as ɵgp, createStructureDefinition as ɵgq, StructureModule as ɵgr, StructureAggregateFactory as ɵgs, SourceManagerFactory as ɵgt, FormationManagerFactory as ɵgu, VerticalFormationFactory as ɵgv, SummariesManagerFactory as ɵgw, SUMMARIES_CALCULATORS as ɵgx, SummariesCalculator as ɵgy, FieldCollectionFactory as ɵgz, InMemoryListViewStore as ɵh, FieldFactory as ɵha, FieldIdGenerator as ɵhb, DataFieldFactory as ɵhc, InMemoryStructureAggregateRepository as ɵhd, InMemoryStructureAggregateStore as ɵhe, InMemoryStructureStore as ɵhf, CreateStructureCommandHandler as ɵhg, SortingDomainModule as ɵhh, ToggleSortCommandHandler as ɵhi, SetSortingCommandHandler as ɵhj, SetSortOrderCommandHandler as ɵhk, FieldDomainModule as ɵhl, InitFieldsCommandHandler as ɵhm, FieldsInitedEventHandler as ɵhn, FieldUiConverter as ɵho, SourceDomainModule as ɵhp, SourceDispatcher as ɵhq, FormationDispatcher as ɵhr, SourceSetLoadingCommandHandler as ɵhs, SetOriginCommandHandler as ɵht, StructureEditSourceItemCommandHandler as ɵhu, SetEnabledSelectionCommandHandler as ɵhv, SetSelectionModeCommandHandler as ɵhw, SelectAllRowsCommandHandler as ɵhx, UnselectAllRowsCommandHandler as ɵhy, DeleteOriginItemCommandHandler as ɵhz, CreateListViewCommandHandler as ɵi, ToggleSelectedRowCommandHandler as ɵia, StructureOriginChangedEventHandler as ɵib, StructureSourceOriginArchive as ɵic, SelectedRowChangedEventHandler as ɵid, RowSelectedRepository as ɵie, SelectionModeSetEventHandler as ɵif, RowSelectionModeRepository as ɵig, StructurePreparedItemsEventHandler as ɵih, StructurePreparedItemsArchive as ɵii, SummariesDomainModule as ɵij, provideSummariesCalculator as ɵik, summariesProviders as ɵil, BooleanSummariesCalculator as ɵim, DateSummariesCalculator as ɵin, NumberSummariesCalculator as ɵio, StringSummariesCalculator as ɵip, UnknownSummariesCalculator as ɵiq, StructureSetSummariesEnabledCommandHandler as ɵir, StructureSummariesEnabledSetEventHandler as ɵis, SummariesEnabledArchive as ɵit, VerticalFormationDomainModule as ɵiu, SetScrollPositionCommandHandler as ɵiv, SetVerticalScrollEnabledCommandHandler as ɵiw, SetRowHeightBasedOnThemeCommandHandler as ɵix, SetRowHeightCommandHandler as ɵiy, StructureSetHeightCommandHandler as ɵiz, ListViewDomainModule as ɵj, SetScrollBarPositionCommandHandler as ɵja, ScrollBarPositionSetEventHandler as ɵjb, VerticalFormationScrollBarPositionArchive as ɵjc, structureCommandHandlers as ɵjd, structureDomainEventHandlers as ɵje, structureProviders as ɵjf, StructureCreatedEventHandler as ɵjg, ResizeDetectorModule as ɵjh, ResizeDetector as ɵji, SortingFeatureModule as ɵjj, SortingApiModule as ɵjk, SortingCommandInvoker as ɵjl, FieldFeatureModule as ɵjm, FieldApiModule as ɵjn, SourceFeatureModule as ɵjo, SourceApiModule as ɵjp, SourceConverter as ɵjq, SourceDomainCommandInvoker as ɵjr, SourceDomainWarehouse as ɵjs, FormationEventRepository as ɵjt, FormationCommandInvoker as ɵju, FormationWarehouse as ɵjv, RowSelectionTypeArchive as ɵjw, SummariesFeatureModule as ɵjx, SummariesApiModule as ɵjy, SummariesCommandInvoker as ɵjz, ListViewDispatcher as ɵk, SummariesDomainCommandInvoker as ɵka, SummariesEventRepository as ɵkb, SummariesDomainEventRepository as ɵkc, SummariesWarehouse as ɵkd, SummariesDomainWarehouse as ɵke, StructureSummariesPanelComponent as ɵkf, StructureSummariesArchive as ɵkg, StructureSummariesConfigService as ɵkh, StructureSummariesPanelConfigConverter as ɵki, VerticalFormationFeatureModule as ɵkj, VerticalFormationApiModule as ɵkk, VerticalFormationConverter as ɵkl, VerticalFormationRepository as ɵkm, InMemoryStructureReadStore as ɵkn, StructureReadModelRootConverter as ɵko, VerticalFormationWarehouse as ɵkp, VerticalFormationDomainWarehouse as ɵkq, SchemaFeatureModule as ɵkr, SchemaApiModule as ɵks, schemaKey as ɵkt, SchemaAggregateFactory as ɵku, InMemorySchemaAggregateRepository as ɵkv, SchemaAggregateRepository as ɵkw, InMemorySchemaAggregateStore as ɵkx, InMemorySchemaStore as ɵky, CreateSchemaCommandHandler as ɵkz, SetListViewModeCommandHandler as ɵl, SchemaDomainModule as ɵla, SetSchemaThemeCommandHandler as ɵlb, SetRowColoringCommandHandler as ɵlc, SetSchemaHorizontalGridCommandHandler as ɵld, SetSchemaVerticalGridCommandHandler as ɵle, SchemaThemeRepository as ɵlf, SchemaHorizontalGridRepository as ɵlg, SchemaRowColoringRepository as ɵlh, SchemaVerticalGridRepository as ɵli, SchemaCssClassesEventHandler as ɵlj, SchemaCssClassesRepository as ɵlk, SchemaDispatcher as ɵll, SchemaCommandInvoker as ɵlm, SchemaDomainCommandInvoker as ɵln, SchemaWarehouse as ɵlo, SchemaDomainWarehouse as ɵlp, SchemaEventRepository as ɵlq, SchemaDomainEventRepository as ɵlr, SchemaRowClassArchive as ɵls, SchemaRowStyleArchive as ɵlt, StructureSharedModule as ɵlu, CssClassModule as ɵlv, StructureInfoPanelModule as ɵlw, NumberFormatterModule as ɵlx, NumberFormatterPipe as ɵly, StructureColumnManagerModule as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, StructureColumnManagerComponent as ɵma, CompositionCommandInvoker as ɵmb, StructureDialogColumnManagerComponent as ɵmc, StructureMenuColumnManagerComponent as ɵmd, StructureColumnManagerIconComponent as ɵme, StructureDialogColumnManagerService as ɵmf, StructureThemeConverter as ɵmg, SchemaManagerModule as ɵmh, StructureSchemaMangerComponent as ɵmi, StructureDialogSchemaManagerComponent as ɵmj, StructureSchemaManagerIconComponent as ɵmk, StructureDialogSchemaManagerService as ɵml, SourceCounterFeatureModule as ɵmm, ActiveFilterMenuTriggerDirective as ɵmn, ActiveFilterService as ɵmo, ActiveFilterMenuComponent as ɵmp, StructureInfoPanelComponent as ɵmq, StructureInfoPanelArchive as ɵmr, StructureInfoModalComponent as ɵms, StructureInfoIconComponent as ɵmt, StructureInfoPanelConfigConverter as ɵmu, StructureTopPanelModule as ɵmv, StructureTopPanelComponent as ɵmw, StructureColumnMenuModule as ɵmx, UniqueValueListModule as ɵmy, UniqueValueListComponent as ɵmz, ListViewModeSetEventHandler as ɵn, StructureColumnConfigComponent as ɵna, StructureColumnMenuConfigArchive as ɵnb, CellTemplateWithContext as ɵnc, CellContext as ɵnd, CellValueType as ɵne, CellValue as ɵnf, FieldId as ɵng, ColumnDefinitionId as ɵnh, SortOrder as ɵni, ColumnAlign as ɵnj, StructureColumnConfigTriggerComponent as ɵnk, StructureColumnConfigService as ɵnl, StructureColumnConfigSortComponent as ɵnm, StructureColumnConfigColumnHideComponent as ɵnn, StructureColumnConfigColumnMoveComponent as ɵno, StructureColumnMenuIconComponent as ɵnp, StructureColumnMenuArrowIconComponent as ɵnq, CompositionFeatureModule as ɵnr, CompositionApiModule as ɵns, compositionKey as ɵnt, CompositionAggregateFactory as ɵnu, ColumnEntityFactory as ɵnv, ColumnPresentationConverter as ɵnw, CompositionGroupFactory as ɵnx, InMemoryCompositionAggregateRepository as ɵny, CompositionAggregateRepository as ɵnz, ListViewModeArchive as ɵo, InMemoryCompositionAggregateStore as ɵoa, InMemoryCompositionStore as ɵob, CreateCompositionCommandHandler as ɵoc, CompositionDomainModule as ɵod, inMemoryCompositionCommandProviders as ɵoe, inMemoryCompositionReadModelProviders as ɵof, inMemoryCompositionProviders as ɵog, CompositionDispatcher as ɵoh, CompositionEventConverter as ɵoi, ColumnFieldFactory as ɵoj, SetColumnsCommandHandler as ɵok, SetCompositionWidthCommandHandler as ɵol, SetCompositionResizeWidthCommandHandler as ɵom, SetCompositionContainerWidthCommandHandler as ɵon, CompositionSetColumnEnabledCommandHandler as ɵoo, CompositionChangeSortStatusCommandHandler as ɵop, CompositionMoveLeftColumnCommandHandler as ɵoq, CompositionMoveRightColumnCommandHandler as ɵor, SetGroupsCommandHandler as ɵos, CompositionChangeSortStatusEventHandler as ɵot, InMemoryCompositionReadStore as ɵou, CompositionReadModelRootConverter as ɵov, ColumnDefinitionFactory as ɵow, ViewTemplateRepository as ɵox, ViewTemplateFactory as ɵoy, TemplateFactory as ɵoz, ListViewSelectorToggledEventHandler as ɵp, EditTemplateRepository as ɵpa, EditTemplateFactory as ɵpb, CompositionReadModelRootRepository as ɵpc, InMemoryCompositionRepository as ɵpd, CompositionGroupArchive as ɵpe, GroupCollection as ɵpf, Group as ɵpg, GroupId as ɵph, CompositionDomainCommandInvoker as ɵpi, CompositionDomainWarehouse as ɵpj, CompositionEventRepository as ɵpk, CompositionDomainEventRepository as ɵpl, SanitizeModule as ɵpm, SafePipe as ɵpn, ViewTemplatesComponent as ɵpo, EditTemplatesComponent as ɵpp, StringEditTemplateComponent as ɵpq, InputEditTemplateComponent as ɵpr, EditCommunicationComponent as ɵps, Override as ɵpt, NumberEditTemplateComponent as ɵpu, BooleanEditTemplateComponent as ɵpv, DateEditTemplateComponent as ɵpw, ColumnQueryComponent as ɵpx, FunctionViewComponent as ɵpy, BarViewComponent as ɵpz, ListViewSelectorArchive as ɵq, PercentageViewComponent as ɵqa, TextViewComponent as ɵqb, LoggerModule as ɵqc, ConsoleLogger as ɵqd, structureIdFactoryForGrid as ɵqe, compositionIdFactoryForGrid as ɵqf, schemaIdFactoryForGrid as ɵqg, structureComponentSelfProviders as ɵqh, StructureComponent as ɵqi, StructureGateway as ɵqj, StructureEditModeArchive as ɵqk, StructureCellEditArchive as ɵql, StructureInfoPanelConfigService as ɵqm, StructureCellEditStore as ɵqn, RowSelectEnabledRepository as ɵqo, StructureHeaderTopEnabledArchive as ɵqp, StructureHeaderBottomEnabledArchive as ɵqq, StructureRowDetailConfigArchive as ɵqr, StructureTitlePanelConfigArchive as ɵqs, StructureFooterPanelConfigArchive as ɵqt, StructureInitialValuesReadyArchive as ɵqu, SchemaCssClassManager as ɵqv, StructureCellEditCloseAllService as ɵqw, StructureRowDetailService as ɵqx, structureComponentToken as ɵqy, StructureDefinition as ɵqz, ListViewCommandInvoker as ɵr, PagingDefinition as ɵra, StructureHeaderComponent as ɵrb, StructureHeaderColumnsComponent as ɵrc, StructureHeaderFiltersComponent as ɵrd, StructureHeaderGroupsComponent as ɵre, StructureHeaderFilterComponent as ɵrf, SelectAllComponent as ɵrg, StructureContentComponent as ɵrh, StructureRowComponent as ɵri, StructureCellComponent as ɵrj, StructureCellEditComponent as ɵrk, StructureCellEditBooleanComponent as ɵrl, StructureContainerComponent as ɵrm, structureParentComponent as ɵrn, StructureQuickFiltersComponent as ɵro, StructureBlueprintComponent as ɵrp, STRUCTURE_CSS_CLASS_NAME as ɵrq, StructureRowDetailViewComponent as ɵrr, structureRowDetailViewItem as ɵrs, structureRowDetailViewTemplate as ɵrt, SelectedRow as ɵru, OriginId as ɵrv, StructureTitlePanelComponent as ɵrw, StructureBannerPanel as ɵrx, StructureFooterPanelComponent as ɵry, structureGates as ɵrz, ListViewEventRepository as ɵs, StructureColumnHeaderGate as ɵsa, StructurePagingGate as ɵsb, StructureSearchingGate as ɵsc, StructureSelectionGate as ɵsd, SelectionGate as ɵse, StructureL10nGate as ɵsf, StructurePanelGate as ɵsg, StructureRowDetailGate as ɵsh, StructureColumnMenuGate as ɵsi, StructureSummariesGate as ɵsj, StructureInfoPanelGate as ɵsk, StructureRowClassGate as ɵsl, StructureRowStyleGate as ɵsm, StructureRowColoringGate as ɵsn, ThemeGridGate as ɵso, StructureSortingGate as ɵsp, SourceLoadingGate as ɵsq, StructureFilterGate as ɵsr, StructureQuickFiltersGate as ɵss, VerticalFormationGate as ɵst, ItemEntityFactory as ɵsu, inMemoryStructureCommandProviders as ɵsv, inMemoryStructureReadProviders as ɵsw, inMemoryStructureProviders as ɵsx, InMemoryStructureRepository as ɵsy, StructureDomainCommandInvoker as ɵsz, ListViewWarehouse as ɵt, GuiListGateway as ɵta, GuiListItemComponent as ɵtb, GuiListCardComponent as ɵtc, guiListProviders as ɵtd, PagingFeatureModule as ɵu, PagingApiModule as ɵv, PagingDomainModule as ɵw, PagingDispatcher as ɵx, PagingManagerFactory as ɵy, Logger as ɵz };
+export { GuiListComponent, GuiListDefaultTranslation, GuiListFieldType, GuiListMode, GuiListModule, ListViewFeatureModule as ɵa, listViewKey as ɵb, SetPagingCommandHandler as ɵba, StructureAggregateRepository as ɵbb, structureKey as ɵbc, NextPageCommandHandler as ɵbd, PrevPageCommandHandler as ɵbe, ChangePagesizeCommandHandler as ɵbf, PagingCommandInvoker as ɵbg, PagingDomainCommandInvoker as ɵbh, PagingWarehouse as ɵbi, PagingDomainWarehouse as ɵbj, PagingRepository as ɵbk, StructureReadModelRepository as ɵbl, PagingEventRepository as ɵbm, PagingDomainEventRepository as ɵbn, PagingConverter as ɵbo, TranslationFeatureModule as ɵbp, TranslationApiModule as ɵbq, TranslationPipe as ɵbr, TranslationFacade as ɵbs, TranslationDomainFacade as ɵbt, PagingComponent as ɵbu, SmartComponent as ɵbv, GuiComponent as ɵbw, CssClassModifier as ɵbx, StructureId as ɵby, SourceWarehouse as ɵbz, ListViewApiModule as ɵc, PagingDisplayModeArchive as ɵca, PagingNavigatorComponent as ɵcb, PureComponent as ɵcc, PagingSelectComponent as ɵcd, PagingStatsComponent as ɵce, AlternativePagingNavigatorComponent as ɵcf, AlternativePagingPagesComponent as ɵcg, SearchFeatureModule as ɵch, SearchApiModule as ɵci, SearchDomainModule as ɵcj, SearchManagerFactory as ɵck, SearchDispatcher as ɵcl, SearchHighlightArchive as ɵcm, SearchPlaceholderArchive as ɵcn, SetConfigSearchingCommandHandler as ɵco, StructureSetSearchPhraseCommandHandler as ɵcp, SourceDomainEventPublisher as ɵcq, SearchPhraseSetEventHandler as ɵcr, SearchPhraseArchive as ɵcs, ConfigSearchingSetEventHandler as ɵct, SearchingEnabledArchive as ɵcu, SearchCommandInvoker as ɵcv, SearchDomainCommandInvoker as ɵcw, SearchWarehouse as ɵcx, SearchDomainWarehouse as ɵcy, SearchEventRepository as ɵcz, ListViewAggregateFactory as ɵd, SearchDomainEventRepository as ɵda, SearchIconComponent as ɵdb, IconComponent as ɵdc, StaticComponent as ɵdd, SearchComponent as ɵde, StructureWarehouse as ɵdf, EmptySourceFeatureModule as ɵdg, EmptySourceComponent as ɵdh, SortingSelectorFeatureModule as ɵdi, SortingSelectorComponent as ɵdj, FilterMenuFeatureModule as ɵdk, FilterApiModule as ɵdl, FilterDomainModule as ɵdm, FilterManagerFactory as ɵdn, SetConfigFilterCommandHandler as ɵdo, SetConfigQuickFilterCommandHandler as ɵdp, ToggleFilterCommandHandler as ɵdq, AddFilterCommandHandler as ɵdr, RemoveAllFiltersCommandHandler as ɵds, RemoveFilterCommandHandler as ɵdt, SelectUniqueFilterCommandHandler as ɵdu, SelectAllUniqueFilterCommandHandler as ɵdv, UnselectUniqueFilterCommandHandler as ɵdw, UnselectAllUniqueFilterCommandHandler as ɵdx, ConfigQuickFilterSetEventHandler as ɵdy, QuickFilterEnabledArchive as ɵdz, InMemoryListViewAggregateRepository as ɵe, ConfigFilterSetEventHandler as ɵea, FilterEnabledArchive as ɵeb, FilterTypeConfigFilterSetEventHandler as ɵec, FilterTypeArchive as ɵed, FilterTypeMap as ɵee, FilterTypeReadModel as ɵef, FilterTypeId as ɵeg, ActiveFiltersSetEventHandler as ɵeh, ActiveFilterArchive as ɵei, UniqueFilterCalculatedEventHandler as ɵej, UniqueValuesArchive as ɵek, UniqueValuesReadModel as ɵel, UniqueValueReadModel as ɵem, UniqueValueId as ɵen, FilterTypeFieldsInitedEventHandler as ɵeo, FilterCommandInvoker as ɵep, FilterWarehouse as ɵeq, ActiveFilterListModule as ɵer, fabricImports as ɵes, ActiveFilterListComponent as ɵet, ActiveSearchComponent as ɵeu, FilterIconComponent as ɵev, FilterMenuComponent as ɵew, CompositionId as ɵex, FieldWarehouse as ɵey, FieldReadModelArchive as ɵez, ListViewAggregateRepository as ɵf, CompositionWarehouse as ɵfa, FilterMenuTriggerComponent as ɵfb, filterContainerToken as ɵfc, ColumnSelectorComponent as ɵfe, FilterTypeSelectorComponent as ɵff, FilterValueComponent as ɵfg, FieldSelectorComponent as ɵfh, listViewIdFactoryForList as ɵfi, structureIdFactoryForList as ɵfj, compositionIdFactoryForList as ɵfk, schemaIdFactoryForList as ɵfl, componentListProviders as ɵfm, ListViewComponent as ɵfn, LayoutComponent as ɵfo, StructureIdGenerator as ɵfp, SchemaReadModelRootId as ɵfq, ListViewReadModelRootId as ɵfr, listViewProviders as ɵfs, ListViewTemplateArchive as ɵft, ListViewCardTemplateArchive as ɵfu, StructureCommandInvoker as ɵfv, ListViewItemComponent as ɵfw, ListViewLayoutComponent as ɵfx, ListViewSourceComponent as ɵfy, ListViewContainerCardComponent as ɵfz, InMemoryListViewAggregateStore as ɵg, ListViewCardItemComponent as ɵga, ListViewContainerModeSelectComponent as ɵgb, listViewGatewayDeclarations as ɵgc, ListViewPagingGate as ɵgd, PagingGate as ɵge, Gate as ɵgf, ListViewModeGate as ɵgg, ListViewTemplateGate as ɵgh, ListViewFieldGate as ɵgi, FieldCommandInvoker as ɵgj, ListViewSearchingGate as ɵgk, SearchingGate as ɵgl, ListViewL10nGate as ɵgm, ListViewSourceGate as ɵgn, SourceGate as ɵgo, SourceCommandInvoker as ɵgp, SourceEventService as ɵgq, createStructureDefinition as ɵgr, StructureModule as ɵgs, StructureAggregateFactory as ɵgt, SourceManagerFactory as ɵgu, FormationManagerFactory as ɵgv, VerticalFormationFactory as ɵgw, SummariesManagerFactory as ɵgx, SUMMARIES_CALCULATORS as ɵgy, SummariesCalculator as ɵgz, InMemoryListViewStore as ɵh, FieldCollectionFactory as ɵha, FieldFactory as ɵhb, FieldIdGenerator as ɵhc, DataFieldFactory as ɵhd, InMemoryStructureAggregateRepository as ɵhe, InMemoryStructureAggregateStore as ɵhf, InMemoryStructureStore as ɵhg, CreateStructureCommandHandler as ɵhh, SortingDomainModule as ɵhi, ToggleSortCommandHandler as ɵhj, SetSortingCommandHandler as ɵhk, SetSortOrderCommandHandler as ɵhl, FieldDomainModule as ɵhm, InitFieldsCommandHandler as ɵhn, FieldsInitedEventHandler as ɵho, FieldUiConverter as ɵhp, SourceDomainModule as ɵhq, SourceDispatcher as ɵhr, FormationDispatcher as ɵhs, SourceSetLoadingCommandHandler as ɵht, SetOriginCommandHandler as ɵhu, StructureEditSourceItemCommandHandler as ɵhv, SetEnabledSelectionCommandHandler as ɵhw, SetSelectionModeCommandHandler as ɵhx, SelectAllRowsCommandHandler as ɵhy, UnselectAllRowsCommandHandler as ɵhz, CreateListViewCommandHandler as ɵi, DeleteOriginItemCommandHandler as ɵia, ToggleSelectedRowCommandHandler as ɵib, StructureOriginChangedEventHandler as ɵic, StructureSourceOriginArchive as ɵid, SelectedRowChangedEventHandler as ɵie, RowSelectedRepository as ɵif, SelectionModeSetEventHandler as ɵig, RowSelectionModeRepository as ɵih, StructurePreparedItemsEventHandler as ɵii, StructurePreparedItemsArchive as ɵij, SummariesDomainModule as ɵik, provideSummariesCalculator as ɵil, summariesProviders as ɵim, BooleanSummariesCalculator as ɵin, DateSummariesCalculator as ɵio, NumberSummariesCalculator as ɵip, StringSummariesCalculator as ɵiq, UnknownSummariesCalculator as ɵir, StructureSetSummariesEnabledCommandHandler as ɵis, StructureSummariesEnabledSetEventHandler as ɵit, SummariesEnabledArchive as ɵiu, VerticalFormationDomainModule as ɵiv, SetScrollPositionCommandHandler as ɵiw, SetVerticalScrollEnabledCommandHandler as ɵix, SetRowHeightBasedOnThemeCommandHandler as ɵiy, SetRowHeightCommandHandler as ɵiz, ListViewDomainModule as ɵj, StructureSetHeightCommandHandler as ɵja, SetScrollBarPositionCommandHandler as ɵjb, ScrollBarPositionSetEventHandler as ɵjc, VerticalFormationScrollBarPositionArchive as ɵjd, structureCommandHandlers as ɵje, structureDomainEventHandlers as ɵjf, structureProviders as ɵjg, StructureCreatedEventHandler as ɵjh, ResizeDetectorModule as ɵji, ResizeDetector as ɵjj, SortingFeatureModule as ɵjk, SortingApiModule as ɵjl, SortingCommandInvoker as ɵjm, FieldFeatureModule as ɵjn, FieldApiModule as ɵjo, SourceFeatureModule as ɵjp, SourceApiModule as ɵjq, SourceConverter as ɵjr, SourceDomainCommandInvoker as ɵjs, SourceDomainWarehouse as ɵjt, FormationEventRepository as ɵju, FormationCommandInvoker as ɵjv, FormationWarehouse as ɵjw, RowSelectionTypeArchive as ɵjx, SummariesFeatureModule as ɵjy, SummariesApiModule as ɵjz, ListViewDispatcher as ɵk, SummariesCommandInvoker as ɵka, SummariesDomainCommandInvoker as ɵkb, StructureSummariesPanelConfigConverter as ɵkc, StructureSummariesConfigArchive as ɵkd, StructureSummariesPanelConfig as ɵke, SummariesEventRepository as ɵkf, SummariesDomainEventRepository as ɵkg, SummariesWarehouse as ɵkh, SummariesDomainWarehouse as ɵki, StructureSummariesPanelComponent as ɵkj, VerticalFormationFeatureModule as ɵkk, VerticalFormationApiModule as ɵkl, VerticalFormationConverter as ɵkm, VerticalFormationRepository as ɵkn, InMemoryStructureReadStore as ɵko, StructureReadModelRootConverter as ɵkp, VerticalFormationWarehouse as ɵkq, VerticalFormationDomainWarehouse as ɵkr, SchemaFeatureModule as ɵks, SchemaApiModule as ɵkt, schemaKey as ɵku, SchemaAggregateFactory as ɵkv, InMemorySchemaAggregateRepository as ɵkw, SchemaAggregateRepository as ɵkx, InMemorySchemaAggregateStore as ɵky, InMemorySchemaStore as ɵkz, SetListViewModeCommandHandler as ɵl, CreateSchemaCommandHandler as ɵla, SchemaDomainModule as ɵlb, SetSchemaThemeCommandHandler as ɵlc, SetRowColoringCommandHandler as ɵld, SetSchemaHorizontalGridCommandHandler as ɵle, SetSchemaVerticalGridCommandHandler as ɵlf, SchemaThemeRepository as ɵlg, SchemaHorizontalGridRepository as ɵlh, SchemaRowColoringRepository as ɵli, SchemaVerticalGridRepository as ɵlj, SchemaCssClassesEventHandler as ɵlk, SchemaCssClassesRepository as ɵll, SchemaDispatcher as ɵlm, SchemaCommandInvoker as ɵln, SchemaDomainCommandInvoker as ɵlo, SchemaWarehouse as ɵlp, SchemaDomainWarehouse as ɵlq, SchemaEventRepository as ɵlr, SchemaDomainEventRepository as ɵls, SchemaRowClassArchive as ɵlt, SchemaRowStyleArchive as ɵlu, StructureSharedModule as ɵlv, CssClassModule as ɵlw, StructureInfoPanelModule as ɵlx, NumberFormatterModule as ɵly, NumberFormatterPipe as ɵlz, ToggleListViewSelectorCommandHandler as ɵm, StructureColumnManagerModule as ɵma, StructureColumnManagerComponent as ɵmb, CompositionCommandInvoker as ɵmc, StructureDialogColumnManagerComponent as ɵmd, StructureMenuColumnManagerComponent as ɵme, StructureColumnManagerIconComponent as ɵmf, StructureDialogColumnManagerService as ɵmg, StructureThemeConverter as ɵmh, SchemaManagerModule as ɵmi, StructureSchemaMangerComponent as ɵmj, StructureDialogSchemaManagerComponent as ɵmk, StructureSchemaManagerIconComponent as ɵml, StructureDialogSchemaManagerService as ɵmm, SourceCounterFeatureModule as ɵmn, ActiveFilterMenuTriggerDirective as ɵmo, ActiveFilterService as ɵmp, ActiveFilterMenuComponent as ɵmq, StructureInfoPanelComponent as ɵmr, StructureInfoPanelArchive as ɵms, StructureInfoModalComponent as ɵmt, StructureInfoIconComponent as ɵmu, StructureInfoPanelConfigConverter as ɵmv, StructureTopPanelModule as ɵmw, StructureTopPanelComponent as ɵmx, StructureColumnMenuModule as ɵmy, UniqueValueListModule as ɵmz, ListViewModeSetEventHandler as ɵn, UniqueValueListComponent as ɵna, StructureColumnConfigComponent as ɵnb, StructureColumnMenuConfigArchive as ɵnc, CellTemplateWithContext as ɵnd, CellContext as ɵne, CellValueType as ɵnf, CellValue as ɵng, FieldId as ɵnh, ColumnDefinitionId as ɵni, SortOrder as ɵnj, ColumnAlign as ɵnk, StructureColumnConfigTriggerComponent as ɵnl, StructureColumnConfigService as ɵnm, StructureColumnConfigSortComponent as ɵnn, StructureColumnConfigColumnHideComponent as ɵno, StructureColumnConfigColumnMoveComponent as ɵnp, StructureColumnMenuIconComponent as ɵnq, StructureColumnMenuArrowIconComponent as ɵnr, CompositionFeatureModule as ɵns, CompositionApiModule as ɵnt, compositionKey as ɵnu, CompositionAggregateFactory as ɵnv, ColumnEntityFactory as ɵnw, ColumnPresentationConverter as ɵnx, CompositionGroupFactory as ɵny, InMemoryCompositionAggregateRepository as ɵnz, ListViewModeArchive as ɵo, CompositionAggregateRepository as ɵoa, InMemoryCompositionAggregateStore as ɵob, InMemoryCompositionStore as ɵoc, CreateCompositionCommandHandler as ɵod, CompositionDomainModule as ɵoe, inMemoryCompositionCommandProviders as ɵof, inMemoryCompositionReadModelProviders as ɵog, inMemoryCompositionProviders as ɵoh, CompositionDispatcher as ɵoi, CompositionEventConverter as ɵoj, ColumnFieldFactory as ɵok, ColumnHighlightArchive as ɵol, Override as ɵom, SetColumnsCommandHandler as ɵon, SetCompositionWidthCommandHandler as ɵoo, SetCompositionResizeWidthCommandHandler as ɵop, SetCompositionContainerWidthCommandHandler as ɵoq, CompositionSetColumnEnabledCommandHandler as ɵor, CompositionChangeSortStatusCommandHandler as ɵos, CompositionMoveLeftColumnCommandHandler as ɵot, CompositionMoveRightColumnCommandHandler as ɵou, SetGroupsCommandHandler as ɵov, CompositionChangeSortStatusEventHandler as ɵow, InMemoryCompositionReadStore as ɵox, CompositionReadModelRootConverter as ɵoy, ColumnDefinitionFactory as ɵoz, ListViewSelectorToggledEventHandler as ɵp, ViewTemplateRepository as ɵpa, ViewTemplateFactory as ɵpb, TemplateFactory as ɵpc, EditTemplateRepository as ɵpd, EditTemplateFactory as ɵpe, CompositionReadModelRootRepository as ɵpf, InMemoryCompositionRepository as ɵpg, CompositionGroupArchive as ɵph, GroupCollection as ɵpi, Group as ɵpj, GroupId as ɵpk, CompositionDomainCommandInvoker as ɵpl, CompositionDomainWarehouse as ɵpm, CompositionEventRepository as ɵpn, CompositionDomainEventRepository as ɵpo, SanitizeModule as ɵpp, SafePipe as ɵpq, ViewTemplatesComponent as ɵpr, EditTemplatesComponent as ɵps, StringEditTemplateComponent as ɵpt, InputEditTemplateComponent as ɵpu, EditCommunicationComponent as ɵpv, NumberEditTemplateComponent as ɵpw, BooleanEditTemplateComponent as ɵpx, DateEditTemplateComponent as ɵpy, ColumnQueryComponent as ɵpz, ListViewSelectorArchive as ɵq, FunctionViewComponent as ɵqa, BarViewComponent as ɵqb, PercentageViewComponent as ɵqc, TextViewComponent as ɵqd, LoggerModule as ɵqe, ConsoleLogger as ɵqf, structureIdFactoryForGrid as ɵqg, compositionIdFactoryForGrid as ɵqh, schemaIdFactoryForGrid as ɵqi, structureComponentSelfProviders as ɵqj, StructureComponent as ɵqk, StructureGateway as ɵql, StructureEditModeArchive as ɵqm, StructureCellEditArchive as ɵqn, StructureInfoPanelConfigService as ɵqo, StructureCellEditStore as ɵqp, RowSelectEnabledRepository as ɵqq, StructureHeaderTopEnabledArchive as ɵqr, StructureHeaderBottomEnabledArchive as ɵqs, StructureRowDetailConfigArchive as ɵqt, StructureTitlePanelConfigArchive as ɵqu, StructureFooterPanelConfigArchive as ɵqv, StructureInitialValuesReadyArchive as ɵqw, SchemaCssClassManager as ɵqx, StructureCellEditCloseAllService as ɵqy, StructureRowDetailService as ɵqz, ListViewCommandInvoker as ɵr, structureComponentToken as ɵra, StructureDefinition as ɵrb, PagingDefinition as ɵrc, StructureHeaderComponent as ɵrd, StructureHeaderColumnsComponent as ɵre, StructureHeaderFiltersComponent as ɵrf, StructureHeaderGroupsComponent as ɵrg, StructureHeaderFilterComponent as ɵrh, SelectAllComponent as ɵri, StructureContentComponent as ɵrj, StructureRowComponent as ɵrk, StructureCellComponent as ɵrl, StructureCellEditComponent as ɵrm, StructureCellEditBooleanComponent as ɵrn, StructureContainerComponent as ɵro, structureParentComponent as ɵrp, StructureQuickFiltersComponent as ɵrq, StructureBlueprintComponent as ɵrr, STRUCTURE_CSS_CLASS_NAME as ɵrs, StructureRowDetailViewComponent as ɵrt, DynamicallyCreatedComponent as ɵru, structureRowDetailViewItem as ɵrv, structureRowDetailViewTemplate as ɵrw, SelectedRow as ɵrx, OriginItemEntity as ɵry, OriginId as ɵrz, ListViewEventRepository as ɵs, StructureTitlePanelComponent as ɵsa, StructureBannerPanel as ɵsb, StructureFooterPanelComponent as ɵsc, structureGates as ɵsd, StructureColumnHeaderGate as ɵse, StructurePagingGate as ɵsf, StructureSearchingGate as ɵsg, StructureSelectionGate as ɵsh, SelectionGate as ɵsi, StructureL10nGate as ɵsj, StructurePanelGate as ɵsk, StructureRowDetailGate as ɵsl, StructureColumnMenuGate as ɵsm, StructureSummariesGate as ɵsn, StructureInfoPanelGate as ɵso, StructureRowClassGate as ɵsp, StructureRowStyleGate as ɵsq, StructureRowColoringGate as ɵsr, ThemeGridGate as ɵss, StructureSortingGate as ɵst, SourceLoadingGate as ɵsu, StructureFilterGate as ɵsv, StructureQuickFiltersGate as ɵsw, VerticalFormationGate as ɵsx, ItemEntityFactory as ɵsy, inMemoryStructureCommandProviders as ɵsz, ListViewWarehouse as ɵt, inMemoryStructureReadProviders as ɵta, inMemoryStructureProviders as ɵtb, InMemoryStructureRepository as ɵtc, StructureDomainCommandInvoker as ɵtd, GuiListGateway as ɵte, GuiListItemComponent as ɵtf, GuiListCardComponent as ɵtg, guiListProviders as ɵth, PagingFeatureModule as ɵu, PagingApiModule as ɵv, PagingDomainModule as ɵw, PagingDispatcher as ɵx, PagingManagerFactory as ɵy, Logger as ɵz };
 //# sourceMappingURL=generic-ui-ngx-list.js.map

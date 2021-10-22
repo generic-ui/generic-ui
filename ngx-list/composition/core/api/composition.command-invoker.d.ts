@@ -1,7 +1,7 @@
 import { CommandInvoker } from '@generic-ui/hermes';
-import { CompositionId } from '../domain/composition.id';
+import { CompositionId } from './composition.id';
 import { ColumnParams } from '../domain/column/set-columns/column.params';
-import { ColumnDefinitionId } from '../domain-read/definition/column-definition-id';
+import { ColumnDefinitionId } from './column/column-definition-id';
 export declare abstract class CompositionCommandInvoker implements CommandInvoker {
     protected constructor();
     abstract create(compositionId: CompositionId): void;
@@ -14,4 +14,5 @@ export declare abstract class CompositionCommandInvoker implements CommandInvoke
     abstract disableColumn(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     abstract moveLeft(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     abstract moveRight(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
+    abstract highlightColumn(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
 }

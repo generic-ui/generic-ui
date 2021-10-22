@@ -3,7 +3,7 @@ import { CompositionReadModeRoot } from '../../../domain-read/composition.read-m
 import { CompositionAggregate } from '../../../domain/composition.aggregate';
 import { InMemoryCompositionStore } from '../in-memory.composition.store';
 import { CompositionReadModelRootConverter } from '../../../domain-read/composition.read-model-root-converter';
-import { CompositionId } from '../../../domain/composition.id';
+import { CompositionId } from '../../../api/composition.id';
 import { CompositionReadModelRootId } from '../../../api/composition.read-model-root-id';
 export declare class InMemoryCompositionReadStore extends InMemoryReadModelStore<CompositionReadModelRootId, CompositionReadModeRoot, CompositionId, CompositionAggregate> {
     private inMemoryCompositionStore;

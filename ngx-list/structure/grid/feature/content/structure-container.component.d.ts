@@ -13,7 +13,7 @@ import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
 import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
 import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
 import { ResizeDetector } from '../../../../common/cdk/resize-detector/resize.detector';
-import { CompositionId } from '../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elRef;
     private readonly ngZone;

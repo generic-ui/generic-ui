@@ -4,7 +4,7 @@ import { ColumnSortingConfig } from '../../../../composition/core/api/sort/colum
 export interface FieldConfig {
     field: string;
     type?: DataType;
-    matcher?: (item: any) => any;
+    matcher?: (item?: any, index?: number) => any;
     summaries?: ColumnSummariesConfig;
     sorting?: ColumnSortingConfig;
 }

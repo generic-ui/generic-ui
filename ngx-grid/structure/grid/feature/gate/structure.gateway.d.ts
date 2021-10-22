@@ -2,7 +2,7 @@ import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit } from '
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { EditemItemValues } from '../../../source/core/api/event/editem-item.values';
 import { StructureId } from '../../../core/api/structure.id';
-import { CompositionId } from '../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../composition/core/api/composition.id';
 import { StructureCommandInvoker } from '../../../core/api/structure.command-invoker';
 import { PagingCommandInvoker } from '../../../paging/core/api/paging.command-invoker';
 import { PagingEventRepository } from '../../../paging/core/api/paging.event-repository';
@@ -14,7 +14,6 @@ import { FormationEventRepository } from '../../../source/core/api/formation/for
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureInfoPanelArchive } from '../../core/api/panel/info/structure.info-panel.archive';
-import { StructureSummariesConfigService } from '../../../summaries/feature/structure.summaries-config.service';
 import { StructureCellEditStore } from '../edit/structure.cell-edit.store';
 import { StructureColumnMenuConfigArchive } from '../header/menu/config/structure.column-menu-config.archive';
 import { PagingDisplayModeArchive } from '../../../paging/feature/mode/paging-display-mode.archive';
@@ -68,7 +67,6 @@ export declare abstract class StructureGateway extends SmartComponent implements
     protected structureCellEditArchive: StructureCellEditArchive;
     protected structureInfoPanelEnabledArchive: StructureInfoPanelArchive;
     protected structureInfoPanelConfigService: StructureInfoPanelConfigService;
-    protected structureSummariesConfigService: StructureSummariesConfigService;
     protected structureCellEditStore: StructureCellEditStore;
     protected columnFieldFactory: ColumnFieldFactory;
     protected structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive;
@@ -111,7 +109,7 @@ export declare abstract class StructureGateway extends SmartComponent implements
     cellEditSubmitted: EventEmitter<void>;
     structureColumnInputHandler: StructureColumnInputHandler;
     private changeAfterInit;
-    protected constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher, structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, structureCommandInvoker: StructureCommandInvoker, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository, sortingCommandDispatcher: SortingCommandInvoker, searchCommandDispatcher: SearchCommandInvoker, fieldCommandDispatcher: FieldCommandInvoker, sourceCommandService: SourceCommandInvoker, sourceEventService: SourceEventService, schemaCommandInvoker: SchemaCommandInvoker, compositionCommandDispatcher: CompositionCommandInvoker, compositionEventRepository: CompositionEventRepository, formationEventService: FormationEventRepository, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureSummariesConfigService: StructureSummariesConfigService, structureCellEditStore: StructureCellEditStore, columnFieldFactory: ColumnFieldFactory, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, rowSelectEnabledArchive: RowSelectEnabledRepository, rowSelectionTypeArchive: RowSelectionTypeArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive, formationCommandDispatcher: FormationCommandInvoker, searchEventRepository: SearchEventRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, translationService: TranslationFacade, structureInitialValuesReadyArchive: StructureInitialValuesReadyArchive);
+    protected constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher, structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, structureCommandInvoker: StructureCommandInvoker, structurePagingCommandDispatcher: PagingCommandInvoker, pagingEventRepository: PagingEventRepository, sortingCommandDispatcher: SortingCommandInvoker, searchCommandDispatcher: SearchCommandInvoker, fieldCommandDispatcher: FieldCommandInvoker, sourceCommandService: SourceCommandInvoker, sourceEventService: SourceEventService, schemaCommandInvoker: SchemaCommandInvoker, compositionCommandDispatcher: CompositionCommandInvoker, compositionEventRepository: CompositionEventRepository, formationEventService: FormationEventRepository, structureEditModeArchive: StructureEditModeArchive, structureCellEditArchive: StructureCellEditArchive, structureInfoPanelEnabledArchive: StructureInfoPanelArchive, structureInfoPanelConfigService: StructureInfoPanelConfigService, structureCellEditStore: StructureCellEditStore, columnFieldFactory: ColumnFieldFactory, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, structurePagingDisplayModeArchive: PagingDisplayModeArchive, rowSelectEnabledArchive: RowSelectEnabledRepository, rowSelectionTypeArchive: RowSelectionTypeArchive, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive, formationCommandDispatcher: FormationCommandInvoker, searchEventRepository: SearchEventRepository, structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive, structureDetailViewConfigArchive: StructureRowDetailConfigArchive, structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive, schemaEventRepository: SchemaEventRepository, translationService: TranslationFacade, structureInitialValuesReadyArchive: StructureInitialValuesReadyArchive);
     ngOnChanges(changes: NgChanges<StructureGateway>): void;
     ngOnInit(): void;
     private componentInitialized;

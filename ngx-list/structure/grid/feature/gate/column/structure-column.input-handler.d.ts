@@ -1,7 +1,7 @@
 import { CommandDispatcher, DomainEventBus } from '@generic-ui/hermes';
 import { StructureId } from '../../../../core/api/structure.id';
 import { CompositionCommandInvoker } from '../../../../../composition/core/api/composition.command-invoker';
-import { CompositionId } from '../../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { ColumnFieldFactory } from '../../../../../composition/core/domain/column/field/colum-field.factory';
 import { NgChanges } from '../../../../../common/cdk/component/ng-changes';
 import { StructureGateway } from '../structure.gateway';

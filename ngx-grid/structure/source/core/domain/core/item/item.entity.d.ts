@@ -4,7 +4,7 @@ export declare class ItemEntity {
     private readonly position;
     private readonly version;
     constructor(source: any, position: number, id?: string, version?: number);
-    getData(): any;
+    getSourceItem(): any;
     getUiId(): string;
     getId(): string;
     getVersion(): number;

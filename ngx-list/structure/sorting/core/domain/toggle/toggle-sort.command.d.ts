@@ -1,5 +1,5 @@
 import { StructureId } from '../../../../core/api/structure.id';
-import { CompositionId } from '../../../../../composition/core/domain/composition.id';
+import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { FieldId } from '../../../../field/core/domain/field/field.id';
 import { StructureCommand } from '../../../../core/domain/structure.command';
 export declare class ToggleSortCommand extends StructureCommand {

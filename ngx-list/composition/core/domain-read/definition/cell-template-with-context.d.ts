@@ -3,7 +3,7 @@ import { CellContext } from './cell-context';
 import { FieldId } from '../../../../structure/field/core/domain/field/field.id';
 import { SortOrder } from '../../domain/column/sort/sort-order';
 import { ColumnAlign } from '../../domain/column/column-align';
-import { ColumnDefinitionId } from './column-definition-id';
+import { ColumnDefinitionId } from '../../api/column/column-definition-id';
 export declare class CellTemplateWithContext {
     viewTemplate: TemplateRef<any>;
     editTemplate: TemplateRef<any>;

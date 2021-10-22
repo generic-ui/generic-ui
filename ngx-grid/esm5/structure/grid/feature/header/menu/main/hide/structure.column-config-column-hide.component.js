@@ -2,64 +2,60 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-import { Component, Input } from '@angular/core';
+import * as tslib_1 from "tslib";
+import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../../../composition/core/domain-read/definition/cell-template-with-context';
-import { CompositionCommandInvoker } from '../../../../../../../composition/core/api/composition.command-invoker';
-import { StructureColumnConfigService } from '../../structure.column-config.service';
-import { CompositionId } from '../../../../../../../composition/core/domain/composition.id';
-var StructureColumnConfigColumnHideComponent = /** @class */ (function () {
-    function StructureColumnConfigColumnHideComponent(compositionId, compositionCommandService, structureColumnConfigService) {
-        this.compositionId = compositionId;
-        this.compositionCommandService = compositionCommandService;
-        this.structureColumnConfigService = structureColumnConfigService;
+import { PureComponent } from '../../../../../../../common/cdk/component/pure-component';
+var StructureColumnConfigColumnHideComponent = /** @class */ (function (_super) {
+    tslib_1.__extends(StructureColumnConfigColumnHideComponent, _super);
+    function StructureColumnConfigColumnHideComponent(elRef) {
+        var _this = _super.call(this, elRef) || this;
+        _this.columnHidden = new EventEmitter();
+        return _this;
     }
     /**
-     * @param {?} column
      * @return {?}
      */
     StructureColumnConfigColumnHideComponent.prototype.hideColumn = /**
-     * @param {?} column
      * @return {?}
      */
-    function (column) {
-        this.compositionCommandService.disableColumn(column.getColumnDefinitionId(), this.compositionId);
-        this.structureColumnConfigService.close();
+    function () {
+        this.columnHidden.emit();
+    };
+    /**
+     * @protected
+     * @return {?}
+     */
+    StructureColumnConfigColumnHideComponent.prototype.getSelectorName = /**
+     * @protected
+     * @return {?}
+     */
+    function () {
+        return 'gui-structure-column-config-column-hide';
     };
     StructureColumnConfigColumnHideComponent.decorators = [
         { type: Component, args: [{
-                    selector: 'gui-structure-column-config-column-hide',
-                    template: "\n\t\t<div class=\"gui-header-menu-item\"\n\t\t\t (click)=\"hideColumn(column)\">\n\t\t\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n\t\t</div>\n\t"
+                    selector: 'div[gui-structure-column-config-column-hide]',
+                    template: "<div (click)=\"hideColumn()\"\n\t class=\"gui-header-menu-item\">\n\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n</div>\n",
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
                 }] }
     ];
     /** @nocollapse */
     StructureColumnConfigColumnHideComponent.ctorParameters = function () { return [
-        { type: CompositionId },
-        { type: CompositionCommandInvoker },
-        { type: StructureColumnConfigService }
+        { type: ElementRef }
     ]; };
     StructureColumnConfigColumnHideComponent.propDecorators = {
-        column: [{ type: Input }]
+        column: [{ type: Input }],
+        columnHidden: [{ type: Output }]
     };
     return StructureColumnConfigColumnHideComponent;
-}());
+}(PureComponent));
 export { StructureColumnConfigColumnHideComponent };
 if (false) {
     /** @type {?} */
     StructureColumnConfigColumnHideComponent.prototype.column;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.compositionId;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.compositionCommandService;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureColumnConfigColumnHideComponent.prototype.structureColumnConfigService;
+    /** @type {?} */
+    StructureColumnConfigColumnHideComponent.prototype.columnHidden;
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmNvbHVtbi1jb25maWctY29sdW1uLWhpZGUuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvZ3JpZC9mZWF0dXJlL2hlYWRlci9tZW51L21haW4vaGlkZS9zdHJ1Y3R1cmUuY29sdW1uLWNvbmZpZy1jb2x1bW4taGlkZS5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRWpELE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxNQUFNLHlGQUF5RixDQUFDO0FBQ2xJLE9BQU8sRUFBRSx5QkFBeUIsRUFBRSxNQUFNLHVFQUF1RSxDQUFDO0FBQ2xILE9BQU8sRUFBRSw0QkFBNEIsRUFBRSxNQUFNLHVDQUF1QyxDQUFDO0FBQ3JGLE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSw2REFBNkQsQ0FBQztBQUc1RjtJQWNDLGtEQUE2QixhQUE0QixFQUNyQyx5QkFBb0QsRUFDcEQsNEJBQTBEO1FBRmpELGtCQUFhLEdBQWIsYUFBYSxDQUFlO1FBQ3JDLDhCQUF5QixHQUF6Qix5QkFBeUIsQ0FBMkI7UUFDcEQsaUNBQTRCLEdBQTVCLDRCQUE0QixDQUE4QjtJQUM5RSxDQUFDOzs7OztJQUVELDZEQUFVOzs7O0lBQVYsVUFBVyxNQUErQjtRQUN6QyxJQUFJLENBQUMseUJBQXlCLENBQUMsYUFBYSxDQUFDLE1BQU0sQ0FBQyxxQkFBcUIsRUFBRSxFQUFFLElBQUksQ0FBQyxhQUFhLENBQUMsQ0FBQztRQUVqRyxJQUFJLENBQUMsNEJBQTRCLENBQUMsS0FBSyxFQUFFLENBQUM7SUFDM0MsQ0FBQzs7Z0JBdkJELFNBQVMsU0FBQztvQkFDVixRQUFRLEVBQUUseUNBQXlDO29CQUNuRCxRQUFRLEVBQUUsMkpBS1Q7aUJBQ0Q7Ozs7Z0JBWFEsYUFBYTtnQkFGYix5QkFBeUI7Z0JBQ3pCLDRCQUE0Qjs7O3lCQWVuQyxLQUFLOztJQWNQLCtDQUFDO0NBQUEsQUF6QkQsSUF5QkM7U0FoQlksd0NBQXdDOzs7SUFFcEQsMERBQ2dDOzs7OztJQUVwQixpRUFBNkM7Ozs7O0lBQ3RELDZFQUFxRTs7Ozs7SUFDckUsZ0ZBQTJFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBDZWxsVGVtcGxhdGVXaXRoQ29udGV4dCB9IGZyb20gJy4uLy4uLy4uLy4uLy4uLy4uLy4uL2NvbXBvc2l0aW9uL2NvcmUvZG9tYWluLXJlYWQvZGVmaW5pdGlvbi9jZWxsLXRlbXBsYXRlLXdpdGgtY29udGV4dCc7XG5pbXBvcnQgeyBDb21wb3NpdGlvbkNvbW1hbmRJbnZva2VyIH0gZnJvbSAnLi4vLi4vLi4vLi4vLi4vLi4vLi4vY29tcG9zaXRpb24vY29yZS9hcGkvY29tcG9zaXRpb24uY29tbWFuZC1pbnZva2VyJztcbmltcG9ydCB7IFN0cnVjdHVyZUNvbHVtbkNvbmZpZ1NlcnZpY2UgfSBmcm9tICcuLi8uLi9zdHJ1Y3R1cmUuY29sdW1uLWNvbmZpZy5zZXJ2aWNlJztcbmltcG9ydCB7IENvbXBvc2l0aW9uSWQgfSBmcm9tICcuLi8uLi8uLi8uLi8uLi8uLi8uLi9jb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9jb21wb3NpdGlvbi5pZCc7XG5cblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZ3VpLXN0cnVjdHVyZS1jb2x1bW4tY29uZmlnLWNvbHVtbi1oaWRlJyxcblx0dGVtcGxhdGU6IGBcblx0XHQ8ZGl2IGNsYXNzPVwiZ3VpLWhlYWRlci1tZW51LWl0ZW1cIlxuXHRcdFx0IChjbGljayk9XCJoaWRlQ29sdW1uKGNvbHVtbilcIj5cblx0XHRcdHt7J2hlYWRlck1lbnVNYWluVGFiSGlkZUNvbHVtbicgfCBndWlUcmFuc2xhdGV9fVxuXHRcdDwvZGl2PlxuXHRgXG59KVxuZXhwb3J0IGNsYXNzIFN0cnVjdHVyZUNvbHVtbkNvbmZpZ0NvbHVtbkhpZGVDb21wb25lbnQge1xuXG5cdEBJbnB1dCgpXG5cdGNvbHVtbjogQ2VsbFRlbXBsYXRlV2l0aENvbnRleHQ7XG5cblx0Y29uc3RydWN0b3IocHJpdmF0ZSByZWFkb25seSBjb21wb3NpdGlvbklkOiBDb21wb3NpdGlvbklkLFxuXHRcdFx0XHRwcml2YXRlIHJlYWRvbmx5IGNvbXBvc2l0aW9uQ29tbWFuZFNlcnZpY2U6IENvbXBvc2l0aW9uQ29tbWFuZEludm9rZXIsXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgc3RydWN0dXJlQ29sdW1uQ29uZmlnU2VydmljZTogU3RydWN0dXJlQ29sdW1uQ29uZmlnU2VydmljZSkge1xuXHR9XG5cblx0aGlkZUNvbHVtbihjb2x1bW46IENlbGxUZW1wbGF0ZVdpdGhDb250ZXh0KTogdm9pZCB7XG5cdFx0dGhpcy5jb21wb3NpdGlvbkNvbW1hbmRTZXJ2aWNlLmRpc2FibGVDb2x1bW4oY29sdW1uLmdldENvbHVtbkRlZmluaXRpb25JZCgpLCB0aGlzLmNvbXBvc2l0aW9uSWQpO1xuXG5cdFx0dGhpcy5zdHJ1Y3R1cmVDb2x1bW5Db25maWdTZXJ2aWNlLmNsb3NlKCk7XG5cdH1cblxufVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmNvbHVtbi1jb25maWctY29sdW1uLWhpZGUuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvZ3JpZC9mZWF0dXJlL2hlYWRlci9tZW51L21haW4vaGlkZS9zdHJ1Y3R1cmUuY29sdW1uLWNvbmZpZy1jb2x1bW4taGlkZS5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsU0FBUyxFQUFFLFVBQVUsRUFBRSxZQUFZLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUUvSCxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSx5RkFBeUYsQ0FBQztBQUNsSSxPQUFPLEVBQUUsYUFBYSxFQUFFLE1BQU0sMERBQTBELENBQUM7QUFHekY7SUFNOEQsb0VBQWE7SUFRMUUsa0RBQVksS0FBaUI7UUFBN0IsWUFDQyxrQkFBTSxLQUFLLENBQUMsU0FDWjtRQUpELGtCQUFZLEdBQUcsSUFBSSxZQUFZLEVBQVEsQ0FBQzs7SUFJeEMsQ0FBQzs7OztJQUVELDZEQUFVOzs7SUFBVjtRQUNDLElBQUksQ0FBQyxZQUFZLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDMUIsQ0FBQzs7Ozs7SUFFUyxrRUFBZTs7OztJQUF6QjtRQUNDLE9BQU8seUNBQXlDLENBQUM7SUFDbEQsQ0FBQzs7Z0JBeEJELFNBQVMsU0FBQztvQkFDVixRQUFRLEVBQUUsOENBQThDO29CQUN4RCwySUFBbUU7b0JBQ25FLGVBQWUsRUFBRSx1QkFBdUIsQ0FBQyxNQUFNO29CQUMvQyxhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTtpQkFDckM7Ozs7Z0JBWDRDLFVBQVU7Ozt5QkFjckQsS0FBSzsrQkFHTCxNQUFNOztJQWVSLCtDQUFDO0NBQUEsQUExQkQsQ0FNOEQsYUFBYSxHQW9CMUU7U0FwQlksd0NBQXdDOzs7SUFFcEQsMERBQ2dDOztJQUVoQyxnRUFDd0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ29tcG9uZW50LCBFbGVtZW50UmVmLCBFdmVudEVtaXR0ZXIsIElucHV0LCBPdXRwdXQsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IENlbGxUZW1wbGF0ZVdpdGhDb250ZXh0IH0gZnJvbSAnLi4vLi4vLi4vLi4vLi4vLi4vLi4vY29tcG9zaXRpb24vY29yZS9kb21haW4tcmVhZC9kZWZpbml0aW9uL2NlbGwtdGVtcGxhdGUtd2l0aC1jb250ZXh0JztcbmltcG9ydCB7IFB1cmVDb21wb25lbnQgfSBmcm9tICcuLi8uLi8uLi8uLi8uLi8uLi8uLi9jb21tb24vY2RrL2NvbXBvbmVudC9wdXJlLWNvbXBvbmVudCc7XG5cblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZGl2W2d1aS1zdHJ1Y3R1cmUtY29sdW1uLWNvbmZpZy1jb2x1bW4taGlkZV0nLFxuXHR0ZW1wbGF0ZVVybDogJy4vc3RydWN0dXJlLmNvbHVtbi1jb25maWctY29sdW1uLWhpZGUuY29tcG9uZW50Lmh0bWwnLFxuXHRjaGFuZ2VEZXRlY3Rpb246IENoYW5nZURldGVjdGlvblN0cmF0ZWd5Lk9uUHVzaCxcblx0ZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZVxufSlcbmV4cG9ydCBjbGFzcyBTdHJ1Y3R1cmVDb2x1bW5Db25maWdDb2x1bW5IaWRlQ29tcG9uZW50IGV4dGVuZHMgUHVyZUNvbXBvbmVudCB7XG5cblx0QElucHV0KClcblx0Y29sdW1uOiBDZWxsVGVtcGxhdGVXaXRoQ29udGV4dDtcblxuXHRAT3V0cHV0KClcblx0Y29sdW1uSGlkZGVuID0gbmV3IEV2ZW50RW1pdHRlcjx2b2lkPigpO1xuXG5cdGNvbnN0cnVjdG9yKGVsUmVmOiBFbGVtZW50UmVmKSB7XG5cdFx0c3VwZXIoZWxSZWYpO1xuXHR9XG5cblx0aGlkZUNvbHVtbigpOiB2b2lkIHtcblx0XHR0aGlzLmNvbHVtbkhpZGRlbi5lbWl0KCk7XG5cdH1cblxuXHRwcm90ZWN0ZWQgZ2V0U2VsZWN0b3JOYW1lKCk6IHN0cmluZyB7XG5cdFx0cmV0dXJuICdndWktc3RydWN0dXJlLWNvbHVtbi1jb25maWctY29sdW1uLWhpZGUnO1xuXHR9XG5cbn1cbiJdfQ==

@@ -1,5 +1,5 @@
 import { AggregateId, DomainEvent } from '@generic-ui/hermes';
-import { CompositionId } from '../../composition.id';
+import { CompositionId } from '../../../api/composition.id';
 import { ActiveColumnEntity } from '../active/active-column.entity';
 import { CompositionAggregateEvent } from '../../composition.aggregate-event';
 export declare class CompositionChangeSortStatusAggregateEvent extends CompositionAggregateEvent {
