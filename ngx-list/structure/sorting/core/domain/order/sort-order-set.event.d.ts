@@ -12,4 +12,3 @@ export declare class SortOrderSetEvent extends StructureDomainEvent {
     getCompositionId(): CompositionId;
     getDirections(): any;
 }
-//# sourceMappingURL=sort-order-set.event.d.ts.map

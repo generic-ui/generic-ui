@@ -3,4 +3,3 @@ export declare class ColumnFieldId {
     constructor(id: string);
     getId(): string;
 }
-//# sourceMappingURL=column-field.id.d.ts.map

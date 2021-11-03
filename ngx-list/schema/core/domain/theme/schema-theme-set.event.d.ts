@@ -6,4 +6,3 @@ export declare class SchemaThemeSetEvent extends SchemaDomainEvent {
     constructor(schemaId: SchemaId, theme: SchemaTheme);
     getTheme(): SchemaTheme;
 }
-//# sourceMappingURL=schema-theme-set.event.d.ts.map

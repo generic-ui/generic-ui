@@ -13,4 +13,3 @@ export declare class FilterSettings {
     setSearchingConfig(config: SearchConfig): void;
     setQuickFiltersConfig(config: QuickFiltersConfig): void;
 }
-//# sourceMappingURL=filter.settings.d.ts.map

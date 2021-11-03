@@ -7,4 +7,3 @@ export declare class CompositionMoveLeftColumnCommand extends CompositionCommand
     constructor(compositionId: CompositionId, columnId: ColumnId);
     getColumnId(): ColumnId;
 }
-//# sourceMappingURL=composition.move-left-column.command.d.ts.map

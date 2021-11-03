@@ -6,4 +6,3 @@ export declare class GuiGridPagingConverter {
     private convertString;
     private convertEnum;
 }
-//# sourceMappingURL=gui.grid.paging.converter.d.ts.map

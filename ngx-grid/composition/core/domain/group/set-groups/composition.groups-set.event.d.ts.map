@@ -1,1 +1,0 @@
-{"version":3,"file":"composition.groups-set.event.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-grid/src/composition/core/domain/group/set-groups/composition.groups-set.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,sBAAsB,EAAE,MAAM,gCAAgC,CAAC;AAExE,qBAAa,yBAA0B,SAAQ,sBAAsB;gBAExD,aAAa,EAAE,aAAa;CAGxC"}

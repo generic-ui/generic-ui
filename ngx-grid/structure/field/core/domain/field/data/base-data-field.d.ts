@@ -16,4 +16,3 @@ export declare abstract class BaseDataField {
     getSortValue(entity: OriginItemEntity): any;
     getSearchValue(entity: OriginItemEntity): any;
 }
-//# sourceMappingURL=base-data-field.d.ts.map

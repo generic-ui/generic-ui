@@ -39,4 +39,3 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     toHeaderCellTemplateWithContext(index: number): CellTemplateWithContext;
     toContentCellTemplateWithAccessor(): CellTemplateWithAccessor;
 }
-//# sourceMappingURL=column-definition.d.ts.map

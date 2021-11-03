@@ -1,7 +1,6 @@
 import { DomainEventBus, HermesObservable, Reactive } from '@generic-ui/hermes';
 import { StructureId } from '../../../core/api/structure.id';
 import { InMemoryStructureReadStore } from '../../../core/infrastructure/in-memory/api/in-memory-structure.read-store';
-import * as i0 from "@angular/core";
 export declare class VerticalFormationRepository extends Reactive {
     private readonly domainEventBus;
     private readonly inMemoryStructureReadStore;
@@ -14,7 +13,4 @@ export declare class VerticalFormationRepository extends Reactive {
     onTopMargin(structureId: StructureId): HermesObservable<number>;
     private onVerticalFormation;
     private next;
-    static ɵfac: i0.ɵɵFactoryDeclaration<VerticalFormationRepository, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<VerticalFormationRepository>;
 }
-//# sourceMappingURL=vertical-formation.repository.d.ts.map

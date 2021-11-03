@@ -13,4 +13,3 @@ export declare class UnknownDataField extends DataField<any> {
     equals(item: OriginItemEntity, value: any): boolean;
     getDisplayValue(item: any): string;
 }
-//# sourceMappingURL=unknown-data-field.d.ts.map

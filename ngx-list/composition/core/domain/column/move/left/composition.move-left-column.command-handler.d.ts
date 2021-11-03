@@ -3,7 +3,6 @@ import { CompositionAggregateRepository } from '../../../composition.aggregate-r
 import { CompositionEventConverter } from '../../../composition.event-converter';
 import { CompositionAggregate } from '../../../composition.aggregate';
 import { CompositionMoveLeftColumnCommand } from './composition.move-left-column.command';
-import * as i0 from "@angular/core";
 export declare class CompositionMoveLeftColumnCommandHandler implements CommandHandler<CompositionAggregate, CompositionMoveLeftColumnCommand> {
     private readonly compositionAggregateRepository;
     protected domainEventPublisher: DomainEventPublisher;
@@ -13,7 +12,4 @@ export declare class CompositionMoveLeftColumnCommandHandler implements CommandH
     handle(aggregate: CompositionAggregate, command: CompositionMoveLeftColumnCommand): void;
     publish(aggregate: CompositionAggregate, command: CompositionMoveLeftColumnCommand): void;
     private publishEvents;
-    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionMoveLeftColumnCommandHandler, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CompositionMoveLeftColumnCommandHandler>;
 }
-//# sourceMappingURL=composition.move-left-column.command-handler.d.ts.map

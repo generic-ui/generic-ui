@@ -5,4 +5,3 @@ export declare class ListViewSelectorToggledEvent extends ListViewDomainEvent {
     constructor(schemaId: ListViewId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=list-view-selector-toggled.event.d.ts.map

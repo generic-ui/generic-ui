@@ -7,4 +7,3 @@ export declare class SummariesTranslations {
     readonly countTooltip: string;
     constructor(distinctTooltip: string, averageTooltip: string, minTooltip: string, maxTooltip: string, medTooltip: string, countTooltip: string);
 }
-//# sourceMappingURL=structure.summaries-translations.d.ts.map

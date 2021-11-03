@@ -4,4 +4,3 @@ export declare enum FabricPlacement {
     BEFORE = 3,
     AFTER = 4
 }
-//# sourceMappingURL=fabric-placement.d.ts.map

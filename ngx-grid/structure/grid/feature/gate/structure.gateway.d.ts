@@ -38,7 +38,6 @@ import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.
 import { SchemaTheme } from '../../../../schema/core/api/theme/schema-theme';
 import { CellEditConfig } from '../../core/api/edit/cell-edit.config';
 import { ColumnAutoConfigurator } from '../../../../composition/core/api/column/auto/column-auto.configurator';
-import * as i0 from "@angular/core";
 /** @internal */
 export declare abstract class StructureGateway extends SmartComponent implements OnChanges, OnInit {
     protected readonly changeDetectorRef: ChangeDetectorRef;
@@ -103,7 +102,4 @@ export declare abstract class StructureGateway extends SmartComponent implements
     ngOnChanges(changes: NgChanges<StructureGateway>): void;
     ngOnInit(): void;
     private componentInitialized;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureGateway, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureGateway, never, never, { "maxHeight": "maxHeight"; "width": "width"; "rowHeight": "rowHeight"; "autoResizeWidth": "autoResizeWidth"; "source": "source"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "theme": "theme"; }, { "themeChanged": "themeChanged"; "columnsChanged": "columnsChanged"; "containerWidthChanged": "containerWidthChanged"; "sourceEdited": "sourceEdited"; "cellEditEntered": "cellEditEntered"; "cellEditCanceled": "cellEditCanceled"; "cellEditSubmitted": "cellEditSubmitted"; }, never>;
 }
-//# sourceMappingURL=structure.gateway.d.ts.map

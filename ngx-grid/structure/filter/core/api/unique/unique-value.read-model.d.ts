@@ -10,4 +10,3 @@ export declare class UniqueValueReadModel {
     geDisplayValue(): string;
     isEnabled(): boolean;
 }
-//# sourceMappingURL=unique-value.read-model.d.ts.map

@@ -10,4 +10,3 @@ export declare abstract class BaseFilterType<T> {
     filterMany(entities: Array<OriginItemEntity>, field: Field, value: T): Array<OriginItemEntity>;
     filterOne(entity: OriginItemEntity, field: Field, value: T): boolean;
 }
-//# sourceMappingURL=base-filter-type.d.ts.map

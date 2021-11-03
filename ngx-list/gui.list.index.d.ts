@@ -4,4 +4,3 @@ export { StructureComponent } from './structure/grid/feature/structure.component
 export { GuiListItemComponent } from './gui/list/feature/item/gui.list-item.component';
 export { GuiListCardComponent } from './gui/list/feature/card/gui.list-card.component';
 export { GuiListPaging, GuiListMode, GuiListView, GuiListField, GuiListFieldType, GuiListSearching, GuiListLocalization, GuiListTranslation, GuiListDefaultTranslation } from './gui/list/core/api/gui.list.public-api';
-//# sourceMappingURL=gui.list.index.d.ts.map

@@ -1,5 +1,4 @@
 import { AfterViewInit, ElementRef, EventEmitter, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
-import * as i0 from "@angular/core";
 export declare class FabricCheckboxComponent implements OnChanges, AfterViewInit {
     private elementRef;
     private renderer;
@@ -15,7 +14,4 @@ export declare class FabricCheckboxComponent implements OnChanges, AfterViewInit
     ngOnChanges(changes: SimpleChanges): void;
     ngAfterViewInit(): void;
     check(event: Event): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricCheckboxComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricCheckboxComponent, "gui-checkbox", never, { "name": "name"; "inputChecked": "checked"; "disabled": "disabled"; "readonly": "readonly"; "indeterminate": "indeterminate"; }, { "changed": "changed"; }, never, ["*"]>;
 }
-//# sourceMappingURL=checkbox.component.d.ts.map

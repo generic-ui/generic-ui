@@ -6,4 +6,3 @@ export declare class SetSchemaThemeCommand extends SchemaCommand {
     constructor(schemaId: SchemaId, theme: SchemaTheme);
     getTheme(): SchemaTheme;
 }
-//# sourceMappingURL=set-schema-theme.command.d.ts.map

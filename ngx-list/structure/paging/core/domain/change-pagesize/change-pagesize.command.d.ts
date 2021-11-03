@@ -5,4 +5,3 @@ export declare class ChangePagesizeCommand extends StructureCommand {
     constructor(structureId: StructureId, pageSize: number);
     getPageSize(): number;
 }
-//# sourceMappingURL=change-pagesize.command.d.ts.map

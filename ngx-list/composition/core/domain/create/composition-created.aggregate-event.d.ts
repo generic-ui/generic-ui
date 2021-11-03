@@ -5,4 +5,3 @@ export declare class CompositionCreatedAggregateEvent extends CompositionAggrega
     constructor(compositionId: CompositionId);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
-//# sourceMappingURL=composition-created.aggregate-event.d.ts.map

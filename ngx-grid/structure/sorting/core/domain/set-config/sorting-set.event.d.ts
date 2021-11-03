@@ -3,4 +3,3 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class SortingSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
-//# sourceMappingURL=sorting-set.event.d.ts.map

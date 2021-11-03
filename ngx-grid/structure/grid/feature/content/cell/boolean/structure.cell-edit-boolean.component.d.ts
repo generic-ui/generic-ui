@@ -6,7 +6,6 @@ import { SmartComponent } from '../../../../../../common/cdk/component/smart-com
 import { SourceCommandInvoker } from '../../../../../source/core/api/source.command-invoker';
 import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
 import { StructureId } from '../../../../../core/api/structure.id';
-import * as i0 from "@angular/core";
 export declare class StructureCellEditBooleanComponent extends SmartComponent implements OnChanges {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -25,7 +24,4 @@ export declare class StructureCellEditBooleanComponent extends SmartComponent im
     private initEditContext;
     private observeValueChanges;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellEditBooleanComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditBooleanComponent, "div[gui-structure-cell-edit-boolean][entity][cell]", never, { "entity": "entity"; "cell": "cell"; }, {}, never, never>;
 }
-//# sourceMappingURL=structure.cell-edit-boolean.component.d.ts.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"read-model-entity.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/gui-hermes/src/core/api/read/read-model-entity.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,wBAAwB,CAAC;AAE3D,8BAAsB,eAAe,CAAC,CAAC,SAAS,iBAAiB;IAEhE,OAAO,CAAC,QAAQ,CAAC,QAAQ,CAAI;IAE7B,SAAS,aAAa,GAAG,EAAE,CAAC;IAI5B,KAAK,IAAI,CAAC;CAGV"}

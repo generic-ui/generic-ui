@@ -27,4 +27,3 @@ export interface AggregateConfig<I extends AggregateId, A extends AggregateRoot<
     createHandler: CreateAggregateCommandHandler<A, C>;
     commandHandlers: Array<Provider>;
 }
-//# sourceMappingURL=define.d.ts.map

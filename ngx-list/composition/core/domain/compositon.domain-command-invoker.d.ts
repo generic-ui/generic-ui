@@ -5,7 +5,6 @@ import { ColumnParams } from './column/set-columns/column.params';
 import { ColumnDefinitionId } from '../api/column/column-definition-id';
 import { CompositionCommandInvoker } from '../api/composition.command-invoker';
 import { ColumnHighlightArchive } from './highlight/column-highlight.archive';
-import * as i0 from "@angular/core";
 export declare class CompositionDomainCommandInvoker extends CompositionCommandInvoker {
     private readonly compositionDispatcher;
     private readonly compositionGroupRepository;
@@ -23,7 +22,4 @@ export declare class CompositionDomainCommandInvoker extends CompositionCommandI
     moveRight(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     highlightColumn(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     private toColumnId;
-    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionDomainCommandInvoker, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CompositionDomainCommandInvoker>;
 }
-//# sourceMappingURL=compositon.domain-command-invoker.d.ts.map

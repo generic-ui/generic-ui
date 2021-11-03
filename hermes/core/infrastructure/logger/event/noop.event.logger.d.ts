@@ -6,4 +6,3 @@ export declare class NoopEventLogger extends DomainEventLogger {
     stop(): void;
     print(event: DomainEvent<AggregateId>): void;
 }
-//# sourceMappingURL=noop.event.logger.d.ts.map

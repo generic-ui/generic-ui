@@ -6,4 +6,3 @@ export declare class GroupCollection {
     getGroups(): Array<Group>;
     isVisible(): boolean;
 }
-//# sourceMappingURL=group.collection.d.ts.map

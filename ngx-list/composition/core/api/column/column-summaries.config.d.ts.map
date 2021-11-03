@@ -1,1 +1,0 @@
-{"version":3,"file":"column-summaries.config.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/composition/core/api/column/column-summaries.config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,4DAA4D,CAAC;AAE3F,MAAM,WAAW,qBAAqB;IAErC,OAAO,CAAC,EAAE,OAAO,CAAC;IAElB,cAAc,CAAC,EAAE,KAAK,CAAC,aAAa,CAAC,CAAC;CAEtC"}

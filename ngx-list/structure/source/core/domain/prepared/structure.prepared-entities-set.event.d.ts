@@ -6,4 +6,3 @@ export declare class StructurePreparedEntitiesSetEvent extends StructureDomainEv
     constructor(aggregateId: StructureId, preparedItems: Array<OriginItemEntity>);
     getPreparedItems(): Array<OriginItemEntity>;
 }
-//# sourceMappingURL=structure.prepared-entities-set.event.d.ts.map

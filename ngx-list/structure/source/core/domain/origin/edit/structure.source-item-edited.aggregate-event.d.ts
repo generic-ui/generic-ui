@@ -10,4 +10,3 @@ export declare class StructureSourceItemEditedAggregateEvent extends StructureAg
     getBeforeItem(): OriginItemEntity;
     getAfterItem(): OriginItemEntity;
 }
-//# sourceMappingURL=structure.source-item-edited.aggregate-event.d.ts.map

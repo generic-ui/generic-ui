@@ -5,4 +5,3 @@ export declare class StructureCreatedAggregateEvent extends StructureAggregateEv
     constructor(aggregateId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=structure-created.aggregate-event.d.ts.map

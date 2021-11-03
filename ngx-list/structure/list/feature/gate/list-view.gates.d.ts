@@ -6,4 +6,3 @@ import { ListViewSearchingGate } from './searching/list-view-searching.gate';
 import { ListViewL10nGate } from './l10n/list-view-l10n.gate';
 import { ListViewSourceGate } from './source/list-view-source.gate';
 export declare const listViewGatewayDeclarations: (typeof ListViewPagingGate | typeof ListViewModeGate | typeof ListViewTemplateGate | typeof ListViewFieldGate | typeof ListViewSearchingGate | typeof ListViewL10nGate | typeof ListViewSourceGate)[];
-//# sourceMappingURL=list-view.gates.d.ts.map

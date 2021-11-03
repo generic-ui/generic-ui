@@ -8,4 +8,3 @@ export declare class StructureOriginChangedAggregateEvent extends StructureAggre
     toDomainEvent(): DomainEvent<StructureId>;
     getOrigin(): Array<OriginItemEntity>;
 }
-//# sourceMappingURL=structure.origin-changed.aggregate-event.d.ts.map

@@ -14,4 +14,3 @@ export declare class NumberDataField extends DataField<number> {
     equals(item: OriginItemEntity, value: number): boolean;
     getDisplayValue(item: number): string;
 }
-//# sourceMappingURL=number-data-field.d.ts.map

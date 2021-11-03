@@ -16,4 +16,3 @@ export declare class ColumnEntity extends AbstractColumnEntity {
     getSortStatus(): SortOrder;
     setSortStatus(status: SortOrder): void;
 }
-//# sourceMappingURL=column.entity.d.ts.map

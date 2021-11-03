@@ -8,4 +8,3 @@ export declare class ActiveFilterReadModel {
     getText(): string;
     getFilterId(): FilterId;
 }
-//# sourceMappingURL=active-filter.read-model.d.ts.map

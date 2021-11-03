@@ -6,7 +6,6 @@ import { SchemaCommandInvoker } from '../../../../../../schema/core/api/schema.c
 import { SchemaEventRepository } from '../../../../../../schema/core/api/schema.event-repository';
 import { SchemaReadModelRootId } from '../../../../../../schema/core/api/schema.read-model-root-id';
 import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
-import * as i0 from "@angular/core";
 export declare class StructureRowColoringGate extends Gate implements OnChanges, OnInit, OnDestroy {
     private readonly schemaId;
     private readonly schemaCommandInvoker;
@@ -17,7 +16,4 @@ export declare class StructureRowColoringGate extends Gate implements OnChanges,
     ngOnChanges(changes: NgChanges<StructureRowColoringGate>): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowColoringGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowColoringGate, "gui-structure[rowColoring]", never, { "rowColoring": "rowColoring"; }, { "rowColoringChanged": "rowColoringChanged"; }, never>;
 }
-//# sourceMappingURL=structure-row-coloring.gate.d.ts.map

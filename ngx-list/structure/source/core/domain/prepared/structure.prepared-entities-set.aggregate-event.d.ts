@@ -8,4 +8,3 @@ export declare class StructurePreparedEntitiesSetAggregateEvent extends Structur
     toDomainEvent(): DomainEvent<StructureId>;
     getPreparedItems(): Array<OriginItemEntity>;
 }
-//# sourceMappingURL=structure.prepared-entities-set.aggregate-event.d.ts.map

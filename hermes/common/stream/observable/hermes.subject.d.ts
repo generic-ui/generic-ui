@@ -25,4 +25,3 @@ export declare class HermesSubject<T> extends HermesObservable<T> {
     toObservable(): HermesObservable<T>;
     private verifyNotClosed;
 }
-//# sourceMappingURL=hermes.subject.d.ts.map

@@ -8,4 +8,3 @@ export declare class FilterAddedEvent extends StructureDomainEvent {
     private readonly value;
     constructor(aggregateId: StructureId, fieldId: FieldId, filterTypeId: FilterTypeId, value: any);
 }
-//# sourceMappingURL=filter-added.event.d.ts.map

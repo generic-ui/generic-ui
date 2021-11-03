@@ -6,4 +6,3 @@ export declare class CellEditorManager {
     constructor(config: CellEditConfig);
     isEnabled(value: any, item: any, index: number): boolean;
 }
-//# sourceMappingURL=cell-editor.manager.d.ts.map

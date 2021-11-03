@@ -1,1 +1,0 @@
-{"version":3,"file":"message-type.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/gui-hermes/src/core/domain/message/message-type.ts"],"names":[],"mappings":"AAAA,eAAO,MAAM,WAAW,qBAAW,CAAC;AAGpC,MAAM,WAAW,WAAW,CAAC,CAAC,CAAE,SAAQ,QAAQ;IAC/C,KAAI,GAAG,IAAI,EAAE,GAAG,EAAE,GAAG,CAAC,CAAC;CACvB"}

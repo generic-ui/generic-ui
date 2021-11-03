@@ -6,4 +6,3 @@ export declare class ClassModifier extends Modifier<ClassModifierApi> {
     protected createModifier(htmlElement: HTMLElement): ClassModifierApi;
     private static readonly ClassModifier;
 }
-//# sourceMappingURL=class-modifier.d.ts.map

@@ -16,7 +16,6 @@ import { NgChanges } from '../../../../common/cdk/component/ng-changes';
 import { GuiGridColumnComponent } from './column/gui.grid-column.component';
 import { GuiGridCellEditConverter } from './column/cell-editing/gui.grid.cell-edit.converter';
 import { CellEditConfig } from '../../../../structure/grid/core/api/edit/cell-edit.config';
-import * as i0 from "@angular/core";
 export declare abstract class GuiGridGateway implements OnChanges, AfterContentInit {
     guiGridColumnComponent: QueryList<GuiGridColumnComponent>;
     /**
@@ -121,7 +120,4 @@ export declare abstract class GuiGridGateway implements OnChanges, AfterContentI
     onHorizontalGrid(value: boolean): void;
     onVerticalGrid(value: boolean): void;
     onRowColoring(value: RowColoring): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridGateway, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiGridGateway, never, never, { "columnHeaderTop": "columnHeaderTop"; "columnHeaderBottom": "columnHeaderBottom"; "maxHeight": "maxHeight"; "width": "width"; "rowHeight": "rowHeight"; "autoResizeWidth": "autoResizeWidth"; "source": "source"; "columns": "columns"; "paging": "paging"; "verticalGrid": "verticalGrid"; "horizontalGrid": "horizontalGrid"; "theme": "theme"; "rowColoring": "rowColoring"; "rowSelection": "rowSelection"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "loading": "loading"; "virtualScroll": "virtualScroll"; "sorting": "sorting"; "searching": "searching"; "titlePanel": "titlePanel"; "footerPanel": "footerPanel"; "filtering": "filtering"; "quickFilters": "quickFilters"; "editMode": "editMode"; "cellEditing": "cellEditing"; "infoPanel": "infoPanel"; "summaries": "summaries"; "columnMenu": "columnMenu"; "rowDetail": "rowDetail"; "localization": "localization"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; "columnsChanged": "columnsChanged"; "containerWidthChanged": "containerWidthChanged"; "sourceEdited": "sourceEdited"; "cellEditEntered": "cellEditEntered"; "cellEditCanceled": "cellEditCanceled"; "cellEditSubmitted": "cellEditSubmitted"; "searchPhraseChanged": "searchPhraseChanged"; "themeChanged": "themeChanged"; "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; "rowColoringChanged": "rowColoringChanged"; }, ["guiGridColumnComponent"]>;
 }
-//# sourceMappingURL=gui.grid-gateway.d.ts.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"composition-created.event.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/composition/core/domain/create/composition-created.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AACzD,OAAO,EAAE,sBAAsB,EAAE,MAAM,6BAA6B,CAAC;AAErE,qBAAa,uBAAwB,SAAQ,sBAAsB;gBAEtD,aAAa,EAAE,aAAa;CAGxC"}

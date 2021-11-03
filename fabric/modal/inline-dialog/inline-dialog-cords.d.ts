@@ -10,4 +10,3 @@ export declare class InlineDialogCords extends FabricCords {
     private static defaultInlineDialogOffset;
     constructor(invokerElementRef: ElementRef, invokedElementRef: ElementRef, window: Window, placement?: FabricPlacement, inlineDialogOffset?: number);
 }
-//# sourceMappingURL=inline-dialog-cords.d.ts.map

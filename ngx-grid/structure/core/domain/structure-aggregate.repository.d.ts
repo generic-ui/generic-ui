@@ -5,4 +5,3 @@ export declare abstract class StructureAggregateRepository extends AggregateRepo
     abstract findById(aggregateId: StructureId): Optional<StructureAggregate>;
     abstract save(aggregate: StructureAggregate): void;
 }
-//# sourceMappingURL=structure-aggregate.repository.d.ts.map

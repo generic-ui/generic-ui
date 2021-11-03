@@ -3,4 +3,3 @@ export declare class SorterId {
     constructor(id: string);
     getId(): string;
 }
-//# sourceMappingURL=sorter.id.d.ts.map

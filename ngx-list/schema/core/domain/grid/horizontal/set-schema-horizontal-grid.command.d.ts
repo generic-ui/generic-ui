@@ -5,4 +5,3 @@ export declare class SetSchemaHorizontalGridCommand extends SchemaCommand {
     constructor(schemaId: SchemaId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=set-schema-horizontal-grid.command.d.ts.map

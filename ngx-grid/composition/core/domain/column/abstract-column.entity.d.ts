@@ -34,4 +34,3 @@ export declare abstract class AbstractColumnEntity extends Entity<ColumnId> {
     isCellEditingEnabled(): boolean;
     private setInitialAlign;
 }
-//# sourceMappingURL=abstract-column.entity.d.ts.map

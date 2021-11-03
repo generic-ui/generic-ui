@@ -6,4 +6,3 @@ export declare class SetConfigSearchingCommand extends StructureCommand {
     constructor(structureId: StructureId, searchConfig: SearchConfig);
     getConfig(): SearchConfig;
 }
-//# sourceMappingURL=set-config-searching.command.d.ts.map

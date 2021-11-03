@@ -13,7 +13,6 @@ import { StructureHeaderBottomEnabledArchive } from '../header/structure-header-
 import { StructureTitlePanelConfigArchive } from '../panel/banner-panels/title-panel/structure.title-panel.config-archive';
 import { StructureFooterPanelConfigArchive } from '../panel/banner-panels/footer-panel/structure.footer-panel.config-archive';
 import { SummariesWarehouse } from '../../../summaries/core/api/summaries.warehouse';
-import * as i0 from "@angular/core";
 export declare class StructureBlueprintComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureDefinition;
@@ -55,7 +54,4 @@ export declare class StructureBlueprintComponent extends SmartComponent implemen
     isPagingBottomEnabled(): boolean;
     isSourceEmpty(): boolean;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureBlueprintComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureBlueprintComponent, "div[gui-structure-blueprint]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=structure.blueprint.component.d.ts.map

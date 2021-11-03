@@ -4,7 +4,6 @@ import { CompositionWarehouse } from '../../../../composition/core/api/compositi
 import { CellTemplateWithContext } from '../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { CompositionCommandInvoker } from '../../../../composition/core/api/composition.command-invoker';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
-import * as i0 from "@angular/core";
 export declare class StructureColumnManagerComponent extends SmartComponent implements OnInit {
     private changeDetectorRef;
     private compositionId;
@@ -16,7 +15,4 @@ export declare class StructureColumnManagerComponent extends SmartComponent impl
     ngOnInit(): void;
     toggleColumn(column: CellTemplateWithContext): void;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnManagerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnManagerComponent, "div[gui-structure-column-manager]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=structure.column-manager.component.d.ts.map

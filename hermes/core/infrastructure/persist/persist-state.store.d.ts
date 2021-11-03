@@ -10,4 +10,3 @@ export declare abstract class PersistStateStore<I extends ReadModelRootId, A ext
     getAll(): Array<A>;
     clear(): void;
 }
-//# sourceMappingURL=persist-state.store.d.ts.map

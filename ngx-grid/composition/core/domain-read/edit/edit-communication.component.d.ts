@@ -2,7 +2,6 @@ import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { ChangedValueEmitter } from './changed-value.emitter';
 import { EditEventType } from './state/edit.event-type';
-import * as i0 from "@angular/core";
 export declare abstract class EditCommunicationComponent<T> extends SmartComponent {
     value: T;
     valueChanges: ChangedValueEmitter<T>;
@@ -15,7 +14,4 @@ export declare abstract class EditCommunicationComponent<T> extends SmartCompone
     submit(): void;
     cancel(): void;
     private emitStatus;
-    static ɵfac: i0.ɵɵFactoryDeclaration<EditCommunicationComponent<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<EditCommunicationComponent<any>, never, never, { "value": "value"; "valueChanges": "valueChanges"; "status": "status"; "focus": "focus"; "parent": "parent"; }, {}, never>;
 }
-//# sourceMappingURL=edit-communication.component.d.ts.map

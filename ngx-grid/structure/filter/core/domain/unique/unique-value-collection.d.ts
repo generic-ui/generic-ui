@@ -17,4 +17,3 @@ export declare class UniqueValueCollection {
     private calculateAllSelected;
     private calculateAllDisabled;
 }
-//# sourceMappingURL=unique-value-collection.d.ts.map

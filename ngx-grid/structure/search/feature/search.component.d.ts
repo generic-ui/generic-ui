@@ -6,7 +6,6 @@ import { StructureId } from '../../core/api/structure.id';
 import { SearchCommandInvoker } from '../core/api/search.command-invoker';
 import { SearchWarehouse } from '../core/api/search.warehouse';
 import { HermesSubscription } from '@generic-ui/hermes';
-import * as i0 from "@angular/core";
 export declare class SearchComponent extends SmartComponent implements OnInit {
     private readonly formBuilder;
     private readonly changeDetectorRef;
@@ -26,7 +25,4 @@ export declare class SearchComponent extends SmartComponent implements OnInit {
     protected getSelectorName(): string;
     private observeChanges;
     private stopObserveChanges;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SearchComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SearchComponent, "div[gui-search-bar]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=search.component.d.ts.map

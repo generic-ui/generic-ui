@@ -8,4 +8,3 @@ export interface FabricNotificationConfig {
     timer?: FabricNotificationTimer;
     position?: FabricNotificationPosition;
 }
-//# sourceMappingURL=fabric-notification-config.d.ts.map

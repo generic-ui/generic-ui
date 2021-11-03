@@ -4,4 +4,3 @@ export declare enum FabricNotificationPosition {
     BOTTOM_RIGHT = 2,
     BOTTOM_LEFT = 3
 }
-//# sourceMappingURL=fabric-notification-position.d.ts.map

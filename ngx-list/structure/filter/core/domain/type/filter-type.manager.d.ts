@@ -23,4 +23,3 @@ export declare class FilterTypeManager {
     private generateId;
     private addFilterTypes;
 }
-//# sourceMappingURL=filter-type.manager.d.ts.map

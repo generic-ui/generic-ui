@@ -7,4 +7,3 @@ export declare class ListViewTemplate {
     getTemplateRef(): TemplateRef<any>;
     getTemplateMethod(): (item: any) => string;
 }
-//# sourceMappingURL=list-view-template.d.ts.map

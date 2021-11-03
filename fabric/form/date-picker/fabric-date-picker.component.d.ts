@@ -5,7 +5,6 @@ import { FabricDatePickerInlineDialogService } from './fabric.date-picker-inline
 import { FabricReactive } from '../../common/fabric-reactive';
 import { Theme } from '../../themes/theme';
 import { FabricDatePickerCompositionService } from './fabric-date-picker-composition.service';
-import * as i0 from "@angular/core";
 export declare class FabricDatePickerComponent extends FabricReactive implements OnInit, OnDestroy {
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
@@ -36,7 +35,4 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     private observeDayChanges;
     private parse;
     private getDateValues;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerComponent, "gui-date-picker", never, { "parentElement": "parentElement"; "theme": "theme"; "selectDate": "selectDate"; "name": "name"; "openDialog": "openDialog"; "onlyDialog": "onlyDialog"; "datePipeOptions": "datePipeOptions"; }, { "dateSelected": "dateSelected"; "dialogOpened": "dialogOpened"; }, never, never>;
 }
-//# sourceMappingURL=fabric-date-picker.component.d.ts.map

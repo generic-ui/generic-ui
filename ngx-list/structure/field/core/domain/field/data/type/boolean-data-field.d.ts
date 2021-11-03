@@ -13,4 +13,3 @@ export declare class BooleanDataField extends DataField<boolean> {
     equals(item: OriginItemEntity, value: boolean): boolean;
     getDisplayValue(item: boolean): string;
 }
-//# sourceMappingURL=boolean-data-field.d.ts.map

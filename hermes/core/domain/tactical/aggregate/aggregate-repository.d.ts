@@ -5,4 +5,3 @@ export declare abstract class AggregateRepository<I extends AggregateId, A exten
     abstract findById(aggregateId: I): Optional<A>;
     abstract save(aggregate: A): void;
 }
-//# sourceMappingURL=aggregate-repository.d.ts.map

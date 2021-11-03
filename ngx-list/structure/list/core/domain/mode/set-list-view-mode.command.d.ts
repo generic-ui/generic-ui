@@ -6,4 +6,3 @@ export declare class SetListViewModeCommand extends ListViewCommand {
     constructor(listViewId: ListViewId, mode: ListViewMode);
     getMode(): ListViewMode;
 }
-//# sourceMappingURL=set-list-view-mode.command.d.ts.map

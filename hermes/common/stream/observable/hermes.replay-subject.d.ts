@@ -9,4 +9,3 @@ export declare class HermesReplaySubject<T> extends HermesSubject<T> {
     subscribe(next?: (value: T) => void, error?: (error: any) => void, complete?: () => void): HermesSubscription;
     subscribe(subscriber: HermesSubscriber<T>): HermesSubscription;
 }
-//# sourceMappingURL=hermes.replay-subject.d.ts.map

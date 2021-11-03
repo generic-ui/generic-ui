@@ -14,7 +14,6 @@ import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api
 import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
 import { ResizeDetector } from '../../../../common/cdk/resize-detector/resize.detector';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
-import * as i0 from "@angular/core";
 export declare class StructureContainerComponent extends SmartComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly elRef;
     private readonly ngZone;
@@ -48,7 +47,4 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     private enableScrollObservation;
     private disableScrollObservation;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureContainerComponent, [null, null, null, null, null, null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContainerComponent, "div[gui-structure-container]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=structure-container.component.d.ts.map

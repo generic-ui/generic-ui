@@ -1,1 +1,0 @@
-{"version":3,"file":"number-formatter.pipe.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-grid/src/common/cdk/number-formatter/number-formatter.pipe.ts"],"names":[],"mappings":"AAAA,OAAO,EAAQ,aAAa,EAAE,MAAM,eAAe,CAAC;;AAEpD,qBACa,mBAAoB,YAAW,aAAa;IAExD,SAAS,CAAC,MAAM,EAAE,MAAM,GAAG,MAAM;yCAFrB,mBAAmB;uCAAnB,mBAAmB;CAM/B"}

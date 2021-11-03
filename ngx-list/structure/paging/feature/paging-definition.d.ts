@@ -16,4 +16,3 @@ export declare class PagingDefinition {
     constructor(enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=paging-definition.d.ts.map

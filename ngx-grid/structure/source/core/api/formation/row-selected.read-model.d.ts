@@ -9,4 +9,3 @@ export declare class RowSelectedReadModel {
     isAllUnselected(): boolean;
     isIndeterminate(): boolean;
 }
-//# sourceMappingURL=row-selected.read-model.d.ts.map

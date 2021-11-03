@@ -9,4 +9,3 @@ export interface StyleModifierApi extends ModifierApi {
     removeStyleByName(name: string): void;
     clear(): void;
 }
-//# sourceMappingURL=style-modifier-api.d.ts.map

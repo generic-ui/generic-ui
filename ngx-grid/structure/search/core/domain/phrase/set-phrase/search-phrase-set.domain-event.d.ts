@@ -7,4 +7,3 @@ export declare class SearchPhraseSetDomainEvent extends StructureDomainEvent {
     getPhrase(): string;
     isInitial(): boolean;
 }
-//# sourceMappingURL=search-phrase-set.domain-event.d.ts.map

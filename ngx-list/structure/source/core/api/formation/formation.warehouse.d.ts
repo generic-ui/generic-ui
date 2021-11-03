@@ -6,7 +6,6 @@ import { RowSelectionModeRepository } from './mode/row-selection-mode.repository
 import { RowSelectionMode } from '../row-selection';
 import { SelectedRow } from './selected-row';
 import { SourceWarehouse } from '../source.warehouse';
-import * as i0 from "@angular/core";
 export declare class FormationWarehouse implements Warehouse {
     private readonly rowSelectedRepository;
     private readonly rowSelectionModeRepository;
@@ -17,7 +16,4 @@ export declare class FormationWarehouse implements Warehouse {
     getSelectedItemIds(structureId: StructureId): Array<string>;
     onSelectedRows(structureId: StructureId): HermesObservable<Array<string>>;
     onMode(structureId: StructureId): HermesObservable<RowSelectionMode>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FormationWarehouse, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FormationWarehouse>;
 }
-//# sourceMappingURL=formation.warehouse.d.ts.map

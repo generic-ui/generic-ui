@@ -14,4 +14,3 @@ export declare const inMemoryStructureReadProviders: (typeof InMemoryStructureRe
     useClass: typeof InMemoryStructureRepository;
 })[];
 export declare const inMemoryStructureProviders: (typeof InMemoryStructureStore)[];
-//# sourceMappingURL=in-memory.structure.providers.d.ts.map

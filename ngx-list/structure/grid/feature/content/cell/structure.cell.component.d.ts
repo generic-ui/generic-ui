@@ -10,7 +10,6 @@ import { StructureId } from '../../../../core/api/structure.id';
 import { CompositionWarehouse } from '../../../../../composition/core/api/composition.warehouse';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { CellEditorManager } from '../../../core/domain/edit/cell-editor.manager';
-import * as i0 from "@angular/core";
 export declare class StructureCellComponent extends SmartComponent implements AfterViewInit {
     private readonly changeDetectorRef;
     private readonly elementRef;
@@ -47,7 +46,4 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     private publishEditCancel;
     private publishEditSubmit;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": "entity"; "cell": "cell"; "editMode": "editMode"; "cellEditorManager": "cellEditorManager"; "searchPhrase": "searchPhrase"; "rowIndex": "rowIndex"; "columnIndex": "columnIndex"; }, {}, never, never>;
 }
-//# sourceMappingURL=structure.cell.component.d.ts.map

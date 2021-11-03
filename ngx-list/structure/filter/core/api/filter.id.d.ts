@@ -3,4 +3,3 @@ export declare class FilterId {
     constructor(filterId: string);
     toString(): string;
 }
-//# sourceMappingURL=filter.id.d.ts.map

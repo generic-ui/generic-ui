@@ -10,4 +10,3 @@ export declare class ToggleFilterCommand extends StructureCommand {
     getExternalFilterId(): string;
     getFilterValue(): string;
 }
-//# sourceMappingURL=toggle-filter.command.d.ts.map

@@ -2,7 +2,6 @@ import { ElementRef } from '@angular/core';
 import { SchemaWarehouse } from '../../../../schema/core/api/schema.warehouse';
 import { SchemaReadModelRootId } from '../../../../schema/core/api/schema.read-model-root-id';
 import { Reactive } from '@generic-ui/hermes';
-import * as i0 from "@angular/core";
 export declare class SchemaCssClassManager extends Reactive {
     private readonly schemaReadModelRepository;
     private static readonly VERTICAL_GRID_CLASS_NAME;
@@ -28,7 +27,4 @@ export declare class SchemaCssClassManager extends Reactive {
     private removeRowColoringClasses;
     private addClass;
     private removeClass;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SchemaCssClassManager, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SchemaCssClassManager>;
 }
-//# sourceMappingURL=schema-css-class.manager.d.ts.map

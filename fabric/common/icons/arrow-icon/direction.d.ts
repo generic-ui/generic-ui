@@ -4,4 +4,3 @@ export declare enum Direction {
     LEFT = 180,
     RIGHT = 0
 }
-//# sourceMappingURL=direction.d.ts.map

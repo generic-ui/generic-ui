@@ -4,4 +4,3 @@ export declare class SchemaId extends AggregateId {
     constructor(id: string);
     toReadModelRootId(): SchemaReadModelRootId;
 }
-//# sourceMappingURL=schema.id.d.ts.map

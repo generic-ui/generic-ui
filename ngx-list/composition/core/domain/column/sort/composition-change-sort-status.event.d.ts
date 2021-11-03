@@ -7,4 +7,3 @@ export declare class CompositionChangeSortStatusEvent extends CompositionDomainE
     getCompositionId(): CompositionId;
     getActiveColumns(): Array<ActiveColumnEntity>;
 }
-//# sourceMappingURL=composition-change-sort-status.event.d.ts.map

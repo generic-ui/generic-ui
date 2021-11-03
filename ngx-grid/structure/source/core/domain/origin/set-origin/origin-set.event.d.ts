@@ -6,4 +6,3 @@ export declare class OriginSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, origin: Array<OriginItemEntity>);
     getOrigin(): Array<OriginItemEntity>;
 }
-//# sourceMappingURL=origin-set.event.d.ts.map

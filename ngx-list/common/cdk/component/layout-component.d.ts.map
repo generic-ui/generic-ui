@@ -1,1 +1,0 @@
-{"version":3,"file":"layout-component.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-list/src/common/cdk/component/layout-component.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,MAAM,iBAAiB,CAAC;AAC/C,OAAO,EAAa,UAAU,EAAE,MAAM,eAAe,CAAC;;AAEtD,8BACsB,eAAgB,SAAQ,YAAY;IAEzD,SAAS,aAAa,KAAK,EAAE,UAAU;yCAFlB,eAAe;2CAAf,eAAe;CAKpC"}

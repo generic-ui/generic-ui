@@ -1,6 +1,48 @@
 /**
  * Generated bundle index. Do not edit.
  */
-/// <amd-module name="@generic-ui/fabric" />
 export * from './public-api';
-//# sourceMappingURL=generic-ui-fabric.d.ts.map
+export { FabricReactive as ɵd } from './common/fabric-reactive';
+export { FabricArrowIconComponent as ɵj } from './common/icons/arrow-icon/fabric-arrow-icon.component';
+export { FabricArrowIconModule as ɵi } from './common/icons/arrow-icon/fabric-arrow-icon.module';
+export { FabricCloseIconComponent as ɵz, selector as ɵy } from './common/icons/close-icon/fabric-close-icon.component';
+export { FabricCloseIconModule as ɵx } from './common/icons/close-icon/fabric-close-icon.module';
+export { DatePickerIconComponent as ɵh } from './common/icons/date-picker-icon/date-picker-icon.component';
+export { DatePickerIconModule as ɵg } from './common/icons/date-picker-icon/date-picker-icon.module';
+export { StarIconComponent as ɵbf } from './common/icons/star-icon/star-icon.component';
+export { StarIconModule as ɵbe } from './common/icons/star-icon/star-icon.module';
+export { FabricModal as ɵbh } from './common/modal/fabric-modal';
+export { FabricThemedComponent as ɵc } from './common/modal/fabric-themed-component';
+export { FabricSvgTemplate as ɵbm } from './common/svg-template/fabric-svg-template';
+export { FabricSvgTemplateModule as ɵbl } from './common/svg-template/fabric-svg-template.module';
+export { FabricDatePickerCalendarViewService as ɵq } from './form/date-picker/calendar/fabric-date-picker-calendar-view.service';
+export { FabricDatePickerCalendarService as ɵp } from './form/date-picker/calendar/fabric-date-picker-calendar.service';
+export { FabricTimePickerComponent as ɵw } from './form/date-picker/calendar/time/fabric-time-picker.component';
+export { FabricDatePickerDaysViewComponent as ɵs } from './form/date-picker/calendar/view/days/fabric-date-picker-days-view.component';
+export { FabricDatePickerViewPanelComponent as ɵv } from './form/date-picker/calendar/view/fabric-date-picker-view-panel.component';
+export { FabricDatePickerMonthsViewComponent as ɵt } from './form/date-picker/calendar/view/months/fabric-date-picker-months-view.component';
+export { FabricDatePickerYearsComponent as ɵu } from './form/date-picker/calendar/view/years/fabric-date-picker-years.component';
+export { FabricDatePickerWeeks as ɵm } from './form/date-picker/calendar/weeks/fabric-date-picker.weeks';
+export { FabricDatePickerYearsService as ɵo } from './form/date-picker/calendar/years/fabric-date-picker-years.service';
+export { FabricDatePickerYears as ɵn } from './form/date-picker/calendar/years/fabric-date-picker.years';
+export { FabricDatePickerCompositionService as ɵl } from './form/date-picker/fabric-date-picker-composition.service';
+export { FabricDatePickerService as ɵk } from './form/date-picker/fabric-date-picker.service';
+export { FabricDatePickerInlineDialogService as ɵr } from './form/date-picker/fabric.date-picker-inline-dialog.service';
+export { SelectOptionsGeometryService as ɵbp } from './form/select/options/select-options-geometry.service';
+export { FabricSelectOptionsComponent as ɵbr } from './form/select/options/select-options.component';
+export { SelectOptionModalService as ɵbq } from './form/select/select-option-modal.service';
+export { FabricSelectedOptionsRepository as ɵbo } from './form/select/selected-option.repository';
+export { ToggleButtonGroupService as ɵbs } from './general/button/toggle-button-group/toggle-button-group.service';
+export { Indicator as ɵa } from './general/indicator';
+export { AbstractSpinner as ɵbn } from './general/spinners/abstract-spinner';
+export { DialogService as ɵbb } from './modal/common/dialog.service';
+export { FabricDialogComponent as ɵbd } from './modal/dialog/fabric-dialog.component';
+export { FabricDrawerComponent as ɵba } from './modal/drawer/fabric-drawer.component';
+export { InlineDialogGeometryService as ɵe } from './modal/inline-dialog/fabric-inline-dialog-geometry.service';
+export { FabricInlineDialogComponent as ɵb } from './modal/inline-dialog/fabric-inline-dialog.component';
+export { FabricMessageComponent as ɵbk } from './modal/message/fabric-message.component';
+export { FabricNotificationComponent as ɵbj } from './modal/notification/fabric-notification.component';
+export { FabricNotificationsContainerComponent as ɵbi } from './modal/notification/fabric-notifications-container.component';
+export { FabricNotificationsOverlayComponent as ɵbg } from './modal/notification/fabric-notifications-overlay.component';
+export { GeometryService as ɵbc } from './navigation/dropdown/geometry.service';
+export { themeToken as ɵf } from './themes/theme.token';

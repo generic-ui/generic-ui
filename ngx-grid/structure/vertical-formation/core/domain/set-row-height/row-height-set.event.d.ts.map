@@ -1,1 +1,0 @@
-{"version":3,"file":"row-height-set.event.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-grid/src/structure/vertical-formation/core/domain/set-row-height/row-height-set.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mCAAmC,CAAC;AAChE,OAAO,EAAE,oBAAoB,EAAE,MAAM,gDAAgD,CAAC;AAEtF,qBAAa,iBAAkB,SAAQ,oBAAoB;gBAE9C,WAAW,EAAE,WAAW;CAGpC"}

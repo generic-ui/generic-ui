@@ -3,4 +3,3 @@ export declare type HermesObserver<T> = {
     error: (error: any) => void;
     complete: () => void;
 };
-//# sourceMappingURL=hermes.observer.d.ts.map

@@ -8,7 +8,6 @@ import { FieldCollectionFactory } from '../../field/core/domain/field-collection
 import { StructureId } from '../api/structure.id';
 import { StructureAggregate } from './structure.aggregate';
 import { SearchManagerFactory } from '../../search/core/domain/search.manager-factory';
-import * as i0 from "@angular/core";
 export declare class StructureAggregateFactory extends AggregateFactory<StructureId, StructureAggregate> {
     private readonly pagingAggregateFactory;
     private readonly sourceManagerFactory;
@@ -20,7 +19,4 @@ export declare class StructureAggregateFactory extends AggregateFactory<Structur
     constructor(pagingAggregateFactory: PagingManagerFactory, sourceManagerFactory: SourceManagerFactory, verticalFormationFactory: VerticalFormationFactory, summariesManagerFactory: SummariesManagerFactory, filterManagerFactory: FilterManagerFactory, searchManagerFactory: SearchManagerFactory, fieldCollectionFactory: FieldCollectionFactory);
     create(structureId: StructureId): StructureAggregate;
     init(structureAggregate: StructureAggregate): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureAggregateFactory, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<StructureAggregateFactory>;
 }
-//# sourceMappingURL=structure.aggregate-factory.d.ts.map

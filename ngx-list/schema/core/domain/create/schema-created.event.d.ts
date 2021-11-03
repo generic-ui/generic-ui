@@ -3,4 +3,3 @@ import { SchemaId } from '../schema.id';
 export declare class SchemaCreatedEvent extends SchemaDomainEvent {
     constructor(aggregateId: SchemaId);
 }
-//# sourceMappingURL=schema-created.event.d.ts.map

@@ -5,7 +5,6 @@ import { StructureColumnConfigService } from '../structure.column-config.service
 import { StructureColumnMenuConfig } from '../config/structure.column-menu-config';
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
 import { StructureColumnMenuConfigArchive } from '../config/structure.column-menu-config.archive';
-import * as i0 from "@angular/core";
 export declare class StructureColumnConfigTriggerComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
     private readonly changeDetectorRef;
@@ -21,7 +20,4 @@ export declare class StructureColumnConfigTriggerComponent extends SmartComponen
     closeConfigDialog(): void;
     isEnabled(): boolean;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigTriggerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigTriggerComponent, "div[gui-structure-column-config-trigger]", never, { "column": "column"; }, {}, never, never>;
 }
-//# sourceMappingURL=structure.column-config-trigger.component.d.ts.map

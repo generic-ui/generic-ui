@@ -6,4 +6,3 @@ export declare class UniqueFilterCalculatedEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, map: Map<string, Array<UniqueValue>>);
     getUniqueValues(): Map<string, Array<UniqueValue>>;
 }
-//# sourceMappingURL=unique-filter-calculated.event.d.ts.map

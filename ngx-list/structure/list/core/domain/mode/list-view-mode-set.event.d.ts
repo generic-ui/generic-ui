@@ -6,4 +6,3 @@ export declare class ListViewModeSetEvent extends ListViewDomainEvent {
     constructor(schemaId: ListViewId, mode: ListViewMode);
     getTheme(): ListViewMode;
 }
-//# sourceMappingURL=list-view-mode-set.event.d.ts.map

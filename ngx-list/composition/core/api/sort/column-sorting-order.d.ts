@@ -3,4 +3,3 @@ export declare enum ColumnSortingOrder {
     ASC = 1,
     DESC = 2
 }
-//# sourceMappingURL=column-sorting-order.d.ts.map

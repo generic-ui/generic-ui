@@ -46,7 +46,6 @@ import { SchemaRowStyleArchive } from '../../../schema/core/api/styling/schema.r
 import { NgChanges } from '../../../common/cdk/component/ng-changes';
 import { StructureInitialValuesReadyArchive } from '../../core/api/structure.initial-values-ready.archive';
 import { ColumnAutoConfigurator } from '../../../composition/core/api/column/auto/column-auto.configurator';
-import * as i0 from "@angular/core";
 /** @internal */
 export declare function structureIdFactoryForGrid(generator: StructureIdGenerator): StructureId;
 /** @internal */
@@ -77,7 +76,4 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     getStructureId(): StructureId;
     getElementRef(): ElementRef;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureComponent, "gui-structure", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=structure.component.d.ts.map

@@ -5,4 +5,3 @@ export declare class GuiGridRowSelectionConverter {
     private convertMode;
     private convertType;
 }
-//# sourceMappingURL=gui.grid.row-selection.converter.d.ts.map

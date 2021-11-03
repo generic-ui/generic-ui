@@ -1,5 +1,4 @@
 import { HermesObservable } from '@generic-ui/hermes';
-import * as i0 from "@angular/core";
 export declare type ObservedSize = {
     bottom: number;
     height: number;
@@ -15,7 +14,4 @@ export declare class ResizeDetector {
     constructor(platformId: any);
     on(element: HTMLElement): HermesObservable<ObservedSize>;
     destroy(element: HTMLElement): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ResizeDetector, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ResizeDetector>;
 }
-//# sourceMappingURL=resize.detector.d.ts.map

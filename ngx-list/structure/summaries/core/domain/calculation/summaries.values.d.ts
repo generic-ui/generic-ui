@@ -4,4 +4,3 @@ export declare abstract class SummariesValues {
     setCount(value: number): void;
     setDistinct(value: number): void;
 }
-//# sourceMappingURL=summaries.values.d.ts.map

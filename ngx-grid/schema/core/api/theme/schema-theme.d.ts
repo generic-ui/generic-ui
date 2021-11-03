@@ -5,4 +5,3 @@ export declare enum SchemaTheme {
     DARK = 3,
     GENERIC = 4
 }
-//# sourceMappingURL=schema-theme.d.ts.map

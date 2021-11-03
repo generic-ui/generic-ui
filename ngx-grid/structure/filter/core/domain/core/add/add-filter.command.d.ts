@@ -11,4 +11,3 @@ export declare class AddFilterCommand extends StructureCommand {
     getFilterTypeId(): FilterTypeId;
     getValue(): any;
 }
-//# sourceMappingURL=add-filter.command.d.ts.map

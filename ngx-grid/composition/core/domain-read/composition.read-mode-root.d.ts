@@ -22,4 +22,3 @@ export declare class CompositionReadModeRoot extends ReadModelRoot<CompositionRe
     equals(composition: CompositionReadModeRoot): boolean;
     equalsByColumns(columns: Array<ColumnDefinition>): boolean;
 }
-//# sourceMappingURL=composition.read-mode-root.d.ts.map

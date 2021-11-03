@@ -7,4 +7,3 @@ export declare class CompositionChangeSortStatusAggregateEvent extends Compositi
     constructor(aggregateId: AggregateId, activeColumns: Array<ActiveColumnEntity>);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
-//# sourceMappingURL=composition-change-sort-status.aggregate-event.d.ts.map

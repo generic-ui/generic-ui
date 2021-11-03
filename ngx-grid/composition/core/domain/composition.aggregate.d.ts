@@ -48,4 +48,3 @@ export declare class CompositionAggregate extends AggregateRoot<CompositionId> {
     private findColumnIndex;
     private getMinColumnWidth;
 }
-//# sourceMappingURL=composition.aggregate.d.ts.map

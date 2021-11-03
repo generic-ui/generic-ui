@@ -5,4 +5,3 @@ export declare class SetScrollPositionCommand extends StructureCommand {
     constructor(structureId: StructureId, position: number);
     getPosition(): number;
 }
-//# sourceMappingURL=set-scroll-position.command.d.ts.map

@@ -1,5 +1,4 @@
 import { ElementRef, Renderer2, SimpleChanges } from '@angular/core';
-import * as i0 from "@angular/core";
 export declare class FabricProgressBarComponent {
     private elementRef;
     private renderer;
@@ -15,7 +14,4 @@ export declare class FabricProgressBarComponent {
     ngOnChanges(changes: SimpleChanges): void;
     private addClass;
     private removeClass;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricProgressBarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricProgressBarComponent, "gui-progress-bar", never, { "progress": "progress"; "color": "color"; "height": "height"; "width": "width"; "textTop": "textTop"; "textAlign": "textAlign"; "primary": "primary"; "secondary": "secondary"; }, {}, never, ["*"]>;
 }
-//# sourceMappingURL=progress-bar.component.d.ts.map

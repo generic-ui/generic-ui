@@ -1,35 +1,22 @@
 import { ChangeDetectionStrategy, Component, Input, ViewChild, ViewEncapsulation } from '@angular/core';
-import * as i0 from "@angular/core";
-const _c0 = ["svgEl"];
 export class FabricSvgTemplate {
     // todo sanitize
     ngAfterViewInit() {
         this.svgRef.nativeElement.innerHTML = this.svg;
     }
 }
-FabricSvgTemplate.ɵfac = function FabricSvgTemplate_Factory(t) { return new (t || FabricSvgTemplate)(); };
-FabricSvgTemplate.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: FabricSvgTemplate, selectors: [["gui-svg-template"]], viewQuery: function FabricSvgTemplate_Query(rf, ctx) { if (rf & 1) {
-        i0.ɵɵviewQuery(_c0, 5);
-    } if (rf & 2) {
-        let _t;
-        i0.ɵɵqueryRefresh(_t = i0.ɵɵloadQuery()) && (ctx.svgRef = _t.first);
-    } }, inputs: { svg: "svg" }, decls: 2, vars: 0, consts: [["svgEl", ""]], template: function FabricSvgTemplate_Template(rf, ctx) { if (rf & 1) {
-        i0.ɵɵelement(0, "div", null, 0);
-    } }, encapsulation: 2, changeDetection: 0 });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FabricSvgTemplate, [{
-        type: Component,
-        args: [{
+FabricSvgTemplate.decorators = [
+    { type: Component, args: [{
                 selector: 'gui-svg-template',
                 template: `
 		<div #svgEl></div>
 	`,
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush
-            }]
-    }], null, { svgRef: [{
-            type: ViewChild,
-            args: ['svgEl', { static: false }]
-        }], svg: [{
-            type: Input
-        }] }); })();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLXN2Zy10ZW1wbGF0ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktZmFicmljL3NyYy9jb21tb24vc3ZnLXRlbXBsYXRlL2ZhYnJpYy1zdmctdGVtcGxhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFpQix1QkFBdUIsRUFBRSxTQUFTLEVBQWMsS0FBSyxFQUFFLFNBQVMsRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7O0FBVW5JLE1BQU0sT0FBTyxpQkFBaUI7SUFPOUIsZ0JBQWdCO0lBQ2YsZUFBZTtRQUNkLElBQUksQ0FBQyxNQUFNLENBQUMsYUFBYSxDQUFDLFNBQVMsR0FBRyxJQUFJLENBQUMsR0FBRyxDQUFDO0lBQ2hELENBQUM7O2tGQVZXLGlCQUFpQjtvRUFBakIsaUJBQWlCOzs7Ozs7UUFMNUIsK0JBQWtCOzt1RkFLUCxpQkFBaUI7Y0FSN0IsU0FBUztlQUFDO2dCQUNWLFFBQVEsRUFBRSxrQkFBa0I7Z0JBQzVCLFFBQVEsRUFBRTs7RUFFVDtnQkFDRCxhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTtnQkFDckMsZUFBZSxFQUFFLHVCQUF1QixDQUFDLE1BQU07YUFDL0M7Z0JBR0EsTUFBTTtrQkFETCxTQUFTO21CQUFDLE9BQU8sRUFBRSxFQUFFLE1BQU0sRUFBRSxLQUFLLEVBQUU7WUFJckMsR0FBRztrQkFERixLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQWZ0ZXJWaWV3SW5pdCwgQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksIENvbXBvbmVudCwgRWxlbWVudFJlZiwgSW5wdXQsIFZpZXdDaGlsZCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZ3VpLXN2Zy10ZW1wbGF0ZScsXG5cdHRlbXBsYXRlOiBgXG5cdFx0PGRpdiAjc3ZnRWw+PC9kaXY+XG5cdGAsXG5cdGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmUsXG5cdGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoXG59KVxuZXhwb3J0IGNsYXNzIEZhYnJpY1N2Z1RlbXBsYXRlIGltcGxlbWVudHMgQWZ0ZXJWaWV3SW5pdCB7XG5cdEBWaWV3Q2hpbGQoJ3N2Z0VsJywgeyBzdGF0aWM6IGZhbHNlIH0pXG5cdHN2Z1JlZjogRWxlbWVudFJlZjtcblxuXHRASW5wdXQoKVxuXHRzdmc6IHN0cmluZztcblxuLy8gdG9kbyBzYW5pdGl6ZVxuXHRuZ0FmdGVyVmlld0luaXQoKSB7XG5cdFx0dGhpcy5zdmdSZWYubmF0aXZlRWxlbWVudC5pbm5lckhUTUwgPSB0aGlzLnN2Zztcblx0fVxufVxuIl19
+            },] }
+];
+FabricSvgTemplate.propDecorators = {
+    svgRef: [{ type: ViewChild, args: ['svgEl', { static: false },] }],
+    svg: [{ type: Input }]
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLXN2Zy10ZW1wbGF0ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktZmFicmljL3NyYy9jb21tb24vc3ZnLXRlbXBsYXRlL2ZhYnJpYy1zdmctdGVtcGxhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFpQix1QkFBdUIsRUFBRSxTQUFTLEVBQWMsS0FBSyxFQUFFLFNBQVMsRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQVVuSSxNQUFNLE9BQU8saUJBQWlCO0lBTzlCLGdCQUFnQjtJQUNmLGVBQWU7UUFDZCxJQUFJLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDLEdBQUcsQ0FBQztJQUNoRCxDQUFDOzs7WUFsQkQsU0FBUyxTQUFDO2dCQUNWLFFBQVEsRUFBRSxrQkFBa0I7Z0JBQzVCLFFBQVEsRUFBRTs7RUFFVDtnQkFDRCxhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTtnQkFDckMsZUFBZSxFQUFFLHVCQUF1QixDQUFDLE1BQU07YUFDL0M7OztxQkFFQyxTQUFTLFNBQUMsT0FBTyxFQUFFLEVBQUUsTUFBTSxFQUFFLEtBQUssRUFBRTtrQkFHcEMsS0FBSyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFmdGVyVmlld0luaXQsIENoYW5nZURldGVjdGlvblN0cmF0ZWd5LCBDb21wb25lbnQsIEVsZW1lbnRSZWYsIElucHV0LCBWaWV3Q2hpbGQsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBDb21wb25lbnQoe1xuXHRzZWxlY3RvcjogJ2d1aS1zdmctdGVtcGxhdGUnLFxuXHR0ZW1wbGF0ZTogYFxuXHRcdDxkaXYgI3N2Z0VsPjwvZGl2PlxuXHRgLFxuXHRlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lLFxuXHRjaGFuZ2VEZXRlY3Rpb246IENoYW5nZURldGVjdGlvblN0cmF0ZWd5Lk9uUHVzaFxufSlcbmV4cG9ydCBjbGFzcyBGYWJyaWNTdmdUZW1wbGF0ZSBpbXBsZW1lbnRzIEFmdGVyVmlld0luaXQge1xuXHRAVmlld0NoaWxkKCdzdmdFbCcsIHsgc3RhdGljOiBmYWxzZSB9KVxuXHRzdmdSZWY6IEVsZW1lbnRSZWY7XG5cblx0QElucHV0KClcblx0c3ZnOiBzdHJpbmc7XG5cbi8vIHRvZG8gc2FuaXRpemVcblx0bmdBZnRlclZpZXdJbml0KCkge1xuXHRcdHRoaXMuc3ZnUmVmLm5hdGl2ZUVsZW1lbnQuaW5uZXJIVE1MID0gdGhpcy5zdmc7XG5cdH1cbn1cbiJdfQ==

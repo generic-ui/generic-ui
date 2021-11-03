@@ -12,7 +12,6 @@ import { FilterTypeId } from '../../core/domain/type/filter-type.id';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 import { ActiveFilterReadModel } from '../../core/api/active/active-filter.read-model';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
-import * as i0 from "@angular/core";
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -40,7 +39,4 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     onValueChanged(value: string): void;
     clearAddFilterForm(): void;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FilterMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuComponent, "div[gui-filter-menu]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=filter-menu.component.d.ts.map

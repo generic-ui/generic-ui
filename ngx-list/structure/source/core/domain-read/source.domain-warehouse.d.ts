@@ -6,7 +6,6 @@ import { HermesObservable } from '@generic-ui/hermes';
 import { SourceWarehouse } from '../api/source.warehouse';
 import { StructurePreparedItemsArchive } from '../domain/prepared/structure.prepared-items.archive';
 import { StructureSourceOriginArchive } from '../domain/origin/structure.source-origin.archive';
-import * as i0 from "@angular/core";
 export declare class SourceDomainWarehouse extends SourceWarehouse {
     private readonly structureRepository;
     private readonly structurePreparedItemsRepository;
@@ -26,7 +25,4 @@ export declare class SourceDomainWarehouse extends SourceWarehouse {
      * @deprecated
      */
     getPreparedEntities(structureId: StructureId): ReadonlyArray<OriginItemEntity>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SourceDomainWarehouse, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SourceDomainWarehouse>;
 }
-//# sourceMappingURL=source.domain-warehouse.d.ts.map

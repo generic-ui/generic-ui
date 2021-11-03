@@ -5,4 +5,3 @@ export interface InfoPanelConfig {
     schemaManager?: boolean;
     sourceSize?: boolean;
 }
-//# sourceMappingURL=info-panel.config.d.ts.map

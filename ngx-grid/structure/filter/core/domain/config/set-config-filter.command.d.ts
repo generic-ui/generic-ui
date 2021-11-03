@@ -6,4 +6,3 @@ export declare class SetConfigFilterCommand extends StructureCommand {
     constructor(structureId: StructureId, filterConfig: FilterConfig);
     getConfig(): FilterConfig;
 }
-//# sourceMappingURL=set-config-filter.command.d.ts.map

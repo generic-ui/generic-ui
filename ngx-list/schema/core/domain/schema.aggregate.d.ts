@@ -19,4 +19,3 @@ export declare class SchemaAggregate extends AggregateRoot<SchemaId> {
     setHorizontalGrid(enabled: boolean): void;
     private setTheme;
 }
-//# sourceMappingURL=schema.aggregate.d.ts.map

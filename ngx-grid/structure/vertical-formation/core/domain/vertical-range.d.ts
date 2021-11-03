@@ -7,4 +7,3 @@ export declare class VerticalRange {
     getEnd(): number;
     getMargin(): number;
 }
-//# sourceMappingURL=vertical-range.d.ts.map

@@ -8,4 +8,3 @@ export declare class CompositionChangeSortStatusCommand extends CompositionComma
     getCompositionId(): CompositionId;
     getSortParams(): Array<ChangeSortParams>;
 }
-//# sourceMappingURL=composition-change-sort-status.command.d.ts.map

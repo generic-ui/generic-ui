@@ -22,4 +22,3 @@ export declare class StructureColumnInputHandler {
     private convertColumnFieldIds;
     private convertColumns;
 }
-//# sourceMappingURL=structure-column.input-handler.d.ts.map

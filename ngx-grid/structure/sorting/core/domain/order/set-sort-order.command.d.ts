@@ -12,4 +12,3 @@ export declare class SetSortOrderCommand extends StructureCommand {
     getFieldId(): FieldId;
     getSortOrder(): SortOrder;
 }
-//# sourceMappingURL=set-sort-order.command.d.ts.map

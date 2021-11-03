@@ -5,4 +5,3 @@ export declare abstract class AggregateId extends HermesId<string> {
     abstract toReadModelRootId(): ReadModelRootId;
     toString(): string;
 }
-//# sourceMappingURL=aggregate-id.d.ts.map

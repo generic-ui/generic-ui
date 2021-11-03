@@ -6,4 +6,3 @@ export declare class CompositionMoveRightColumnCommand extends CompositionComman
     constructor(compositionId: CompositionId, columnId: ColumnId);
     getColumnId(): ColumnId;
 }
-//# sourceMappingURL=composition.move-right-column.command.d.ts.map

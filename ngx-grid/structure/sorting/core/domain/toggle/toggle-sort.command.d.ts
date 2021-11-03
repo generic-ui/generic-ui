@@ -9,4 +9,3 @@ export declare class ToggleSortCommand extends StructureCommand {
     getCompositionId(): CompositionId;
     getFieldId(): FieldId;
 }
-//# sourceMappingURL=toggle-sort.command.d.ts.map

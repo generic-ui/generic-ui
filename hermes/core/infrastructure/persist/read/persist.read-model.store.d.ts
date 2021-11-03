@@ -14,4 +14,3 @@ export declare abstract class PersistReadModelStore<I extends ReadModelRootId, R
     private getAllValues;
     private getValue;
 }
-//# sourceMappingURL=persist.read-model.store.d.ts.map

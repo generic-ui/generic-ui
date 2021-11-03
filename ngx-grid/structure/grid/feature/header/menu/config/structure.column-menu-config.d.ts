@@ -24,4 +24,3 @@ export declare class StructureColumnMenuConfig {
     setFilterMenu(filterMenu: string): void;
     setColumnsMenu(columnsMenu: string): void;
 }
-//# sourceMappingURL=structure.column-menu-config.d.ts.map

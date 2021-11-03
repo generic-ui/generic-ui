@@ -1,1 +1,0 @@
-{"version":3,"file":"fabric-time-values.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/gui-fabric/src/form/date-picker/models/fabric-time-values.ts"],"names":[],"mappings":"AAAA,qBAAa,gBAAgB;IAEhB,QAAQ,CAAC,KAAK,EAAE,MAAM;IAC/B,QAAQ,CAAC,OAAO,EAAE,MAAM;IACxB,QAAQ,CAAC,OAAO,EAAE,MAAM;gBAFN,KAAK,EAAE,MAAM,EACtB,OAAO,EAAE,MAAM,EACf,OAAO,EAAE,MAAM;CAE3B"}

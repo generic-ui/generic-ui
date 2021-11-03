@@ -21,4 +21,3 @@ export declare abstract class DataField<T> extends BaseDataField {
     setSummariesEnabled(enabled: boolean): void;
     private assignSummaries;
 }
-//# sourceMappingURL=data-field.d.ts.map

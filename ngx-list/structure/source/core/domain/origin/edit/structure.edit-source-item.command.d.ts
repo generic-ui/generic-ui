@@ -6,4 +6,3 @@ export declare class StructureEditSourceItemCommand extends StructureCommand {
     constructor(structureId: StructureId, params: StructureEditSourceItemParams);
     getParams(): StructureEditSourceItemParams;
 }
-//# sourceMappingURL=structure.edit-source-item.command.d.ts.map

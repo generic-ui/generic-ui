@@ -5,4 +5,3 @@ export declare class SetRowHeightCommand extends StructureCommand {
     constructor(structureId: StructureId, rowHeight: number);
     getRowHeight(): number;
 }
-//# sourceMappingURL=set-row-height.command.d.ts.map

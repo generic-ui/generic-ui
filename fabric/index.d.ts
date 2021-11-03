@@ -67,4 +67,3 @@ export { SpinnerMode } from './general/spinners/progress-spinner/spinner-mode';
 export { FabricPlacement } from './common/modal/cords/fabric-placement';
 export { GuiTabItem } from './layout/tab/fabric-tab-item';
 export { GuiSelectOption } from './form/select/select-option';
-//# sourceMappingURL=index.d.ts.map

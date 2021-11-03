@@ -1,1 +1,0 @@
-{"version":3,"file":"hermes.single-subscriber.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/gui-hermes/src/common/stream/observable/subscriber/hermes.single-subscriber.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,qBAAqB,CAAC;AAEvD,qBAAa,sBAAsB,CAAC,CAAC,CAAE,SAAQ,gBAAgB,CAAC,CAAC,CAAC;IAEjE,IAAI,CAAC,KAAK,EAAE,CAAC,GAAG,IAAI;CAcpB"}

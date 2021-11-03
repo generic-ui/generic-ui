@@ -6,4 +6,3 @@ export declare class FilterTypeReadModel {
     getId(): FilterTypeId;
     getName(): string;
 }
-//# sourceMappingURL=filter-type.read-model.d.ts.map

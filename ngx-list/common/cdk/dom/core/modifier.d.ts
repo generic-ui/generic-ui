@@ -6,4 +6,3 @@ export declare abstract class Modifier<T extends ModifierApi> {
     getElement(htmlElement: HTMLElement): T;
     getHost(): T;
 }
-//# sourceMappingURL=modifier.d.ts.map

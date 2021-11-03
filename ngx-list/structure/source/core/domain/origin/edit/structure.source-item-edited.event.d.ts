@@ -8,4 +8,3 @@ export declare class StructureSourceItemEditedEvent extends StructureDomainEvent
     getBeforeItem(): OriginItemEntity;
     getAfterItem(): OriginItemEntity;
 }
-//# sourceMappingURL=structure.source-item-edited.event.d.ts.map

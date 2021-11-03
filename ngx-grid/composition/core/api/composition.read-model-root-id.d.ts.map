@@ -1,1 +1,0 @@
-{"version":3,"file":"composition.read-model-root-id.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-grid/src/composition/core/api/composition.read-model-root-id.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,oBAAoB,CAAC;AAErD,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;AAEjD,qBAAa,0BAA2B,SAAQ,eAAe;gBAElD,EAAE,EAAE,MAAM;IAItB,aAAa,IAAI,aAAa;CAG9B"}

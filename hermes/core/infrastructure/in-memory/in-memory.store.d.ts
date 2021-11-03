@@ -11,4 +11,3 @@ export declare abstract class InMemoryStore<I extends AggregateId, A extends Agg
     delete(aggregateId: I): void;
     clear(): void;
 }
-//# sourceMappingURL=in-memory.store.d.ts.map

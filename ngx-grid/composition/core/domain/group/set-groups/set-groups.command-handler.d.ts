@@ -3,7 +3,6 @@ import { CompositionAggregateRepository } from '../../composition.aggregate-repo
 import { CompositionEventConverter } from '../../composition.event-converter';
 import { CompositionAggregate } from '../../composition.aggregate';
 import { SetGroupsCommand } from './set-groups.command';
-import * as i0 from "@angular/core";
 export declare class SetGroupsCommandHandler implements CommandHandler<CompositionAggregate, SetGroupsCommand> {
     private readonly compositionAggregateRepository;
     private readonly domainEventPublisher;
@@ -13,7 +12,4 @@ export declare class SetGroupsCommandHandler implements CommandHandler<Compositi
     handle(aggregate: CompositionAggregate, command: SetGroupsCommand): void;
     publish(aggregate: CompositionAggregate, command: SetGroupsCommand): void;
     private publishEvents;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SetGroupsCommandHandler, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SetGroupsCommandHandler>;
 }
-//# sourceMappingURL=set-groups.command-handler.d.ts.map

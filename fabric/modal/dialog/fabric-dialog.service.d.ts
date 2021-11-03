@@ -1,7 +1,6 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, OnDestroy, Type } from '@angular/core';
 import { Theme } from '../../themes/theme';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
-import * as i0 from "@angular/core";
 export declare class FabricDialogService implements OnDestroy {
     private readonly componentFactoryResolver;
     private readonly applicationRef;
@@ -19,7 +18,4 @@ export declare class FabricDialogService implements OnDestroy {
     private closeOnEscKey;
     private createAndAppend;
     private removeDialog;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDialogService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FabricDialogService>;
 }
-//# sourceMappingURL=fabric-dialog.service.d.ts.map

@@ -7,7 +7,6 @@ import { CommandDispatcher } from '@generic-ui/hermes';
 import { SourceWarehouse } from '../api/source.warehouse';
 import { SelectedRow } from '../api/formation/selected-row';
 import { SourceCommandInvoker } from '../api/source.command-invoker';
-import * as i0 from "@angular/core";
 export declare class SourceDomainCommandInvoker extends SourceCommandInvoker {
     private readonly commandDispatcher;
     private readonly sourceDispatcher;
@@ -24,7 +23,4 @@ export declare class SourceDomainCommandInvoker extends SourceCommandInvoker {
     deleteItemById(itemId: OriginId, structureId: StructureId): void;
     deleteManyItemsByIndex(indexes: Array<number>, structureId: StructureId): void;
     deleteManyItemsByItemIds(itemIds: Array<OriginId>, structureId: StructureId): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SourceDomainCommandInvoker, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<SourceDomainCommandInvoker>;
 }
-//# sourceMappingURL=source.domain.command-invoker.d.ts.map

@@ -8,4 +8,3 @@ export interface PagingConfig {
     pagerBottom?: boolean;
     displayMode?: PagingDisplayMode;
 }
-//# sourceMappingURL=paging-config.d.ts.map

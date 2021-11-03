@@ -6,4 +6,3 @@ export declare class SetCompositionWidthCommand extends CompositionCommand {
     constructor(structureId: StructureId, width: number);
     getWidth(): number;
 }
-//# sourceMappingURL=set-composition-width.command.d.ts.map

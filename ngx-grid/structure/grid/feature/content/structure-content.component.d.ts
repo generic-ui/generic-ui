@@ -16,7 +16,6 @@ import { SchemaRowClass } from '../../../../schema/core/api/styling/schema.row-c
 import { SchemaRowStyle } from '../../../../schema/core/api/styling/schema.row-style';
 import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
 import { CellEditorManager } from '../../core/domain/edit/cell-editor.manager';
-import * as i0 from "@angular/core";
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
     private readonly changeDetectorRef;
@@ -50,7 +49,4 @@ export declare class StructureContentComponent extends SmartComponent implements
     translateY(index: number): string;
     toggleSelectedRow(entity: ItemEntity): void;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never>;
 }
-//# sourceMappingURL=structure-content.component.d.ts.map

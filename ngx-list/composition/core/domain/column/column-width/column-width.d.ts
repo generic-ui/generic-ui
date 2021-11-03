@@ -20,4 +20,3 @@ export declare class ColumnWidth {
     private percentageToNumber;
     private isStringNumber;
 }
-//# sourceMappingURL=column-width.d.ts.map

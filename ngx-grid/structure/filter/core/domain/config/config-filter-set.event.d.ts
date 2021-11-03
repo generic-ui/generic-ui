@@ -5,4 +5,3 @@ export declare class ConfigFilterSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, enabled: boolean);
     getEnabled(): boolean;
 }
-//# sourceMappingURL=config-filter-set.event.d.ts.map

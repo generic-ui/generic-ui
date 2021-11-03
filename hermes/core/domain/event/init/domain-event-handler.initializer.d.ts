@@ -6,4 +6,3 @@ import { Reactive } from '../../../../common/reactive';
 export declare class DomainEventHandlerInitializer<I extends AggregateId, E extends DomainEvent<I>> extends Reactive {
     init(eventHandlers: Array<DomainEventHandlerImpl<I, E>>, domainEventBus: DomainEventBus): void;
 }
-//# sourceMappingURL=domain-event-handler.initializer.d.ts.map

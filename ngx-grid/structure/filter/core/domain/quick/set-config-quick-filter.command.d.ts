@@ -6,4 +6,3 @@ export declare class SetConfigQuickFilterCommand extends StructureCommand {
     constructor(structureId: StructureId, quickFiltersConfig: QuickFiltersConfig);
     getConfig(): QuickFiltersConfig;
 }
-//# sourceMappingURL=set-config-quick-filter.command.d.ts.map

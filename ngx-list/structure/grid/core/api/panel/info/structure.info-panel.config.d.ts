@@ -12,4 +12,3 @@ export declare class StructureInfoPanelConfig {
     isSchemaManagerEnabled(): boolean;
     private isNotUndefinedOrNull;
 }
-//# sourceMappingURL=structure.info-panel.config.d.ts.map

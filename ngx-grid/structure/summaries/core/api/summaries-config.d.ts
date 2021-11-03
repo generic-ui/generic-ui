@@ -3,4 +3,3 @@ export interface SummariesConfig {
     top?: boolean;
     bottom?: boolean;
 }
-//# sourceMappingURL=summaries-config.d.ts.map

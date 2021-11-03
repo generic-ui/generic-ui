@@ -3,4 +3,3 @@ export declare enum CssClass {
     PAGING_TOP_CLASS_NAME = "gui-paging-top",
     PAGING_BOTTOM_CLASS_NAME = "gui-paging-bottom"
 }
-//# sourceMappingURL=css-class.d.ts.map

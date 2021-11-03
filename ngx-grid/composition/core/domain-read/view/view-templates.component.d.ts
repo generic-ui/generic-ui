@@ -1,7 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { CellView } from '../../domain/column/cell-view';
 import { TemplatesComponent } from '../template/templates.component';
-import * as i0 from "@angular/core";
 export declare class ViewTemplatesComponent implements TemplatesComponent {
     textTemplate: TemplateRef<any>;
     numberTemplate: TemplateRef<any>;
@@ -18,7 +17,4 @@ export declare class ViewTemplatesComponent implements TemplatesComponent {
     percentageBarTemplate: TemplateRef<any>;
     percentageTemplate: TemplateRef<any>;
     getTemplate(view: CellView): TemplateRef<any>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ViewTemplatesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ViewTemplatesComponent, "ng-component", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=view-templates.component.d.ts.map

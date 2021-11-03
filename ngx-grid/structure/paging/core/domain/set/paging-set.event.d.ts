@@ -3,4 +3,3 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class PagingSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
-//# sourceMappingURL=paging-set.event.d.ts.map

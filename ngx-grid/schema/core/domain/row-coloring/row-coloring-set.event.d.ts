@@ -6,4 +6,3 @@ export declare class RowColoringSetEvent extends SchemaDomainEvent {
     constructor(schemaId: SchemaId, rowColoring: SchemaRowColoring);
     getRowColoring(): SchemaRowColoring;
 }
-//# sourceMappingURL=row-coloring-set.event.d.ts.map

@@ -1,6 +1,5 @@
 import { ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FabricNotification } from './fabric-notification';
-import * as i0 from "@angular/core";
 export declare class FabricNotificationComponent implements OnInit, OnDestroy {
     private renderer;
     notificationRef: ElementRef;
@@ -13,7 +12,4 @@ export declare class FabricNotificationComponent implements OnInit, OnDestroy {
     closeNotification(): void;
     addCloseAnimation(): void;
     isRightSide(): boolean;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricNotificationComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationComponent, "gui-notification", never, { "notification": "notification"; }, { "onNotificationClose": "onNotificationClose"; }, never, never>;
 }
-//# sourceMappingURL=fabric-notification.component.d.ts.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"logger.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-list/src/common/cdk/logger/logger.ts"],"names":[],"mappings":"AAAA,8BAAsB,MAAM;IAE3B,QAAQ,CAAC,IAAI,CAAC,IAAI,EAAE,MAAM,GAAG,IAAI;IAEjC,QAAQ,CAAC,KAAK,CAAC,IAAI,EAAE,MAAM,GAAG,IAAI;CAElC"}

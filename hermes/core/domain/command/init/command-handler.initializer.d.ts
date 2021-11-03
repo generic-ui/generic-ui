@@ -9,4 +9,3 @@ export declare class CommandHandlerInitializer<I extends AggregateId, A extends 
     register(commandHandlers: Array<CommandHandlerImpl<I, A, C>>, commandBus: CommandBus): void;
     registerAggregateCommandHandlers(aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<I, A, C>>, commandBus: CommandBus): void;
 }
-//# sourceMappingURL=command-handler.initializer.d.ts.map

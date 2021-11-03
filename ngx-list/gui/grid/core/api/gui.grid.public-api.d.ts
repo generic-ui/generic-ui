@@ -195,4 +195,3 @@ export interface GuiCellEdit {
 }
 export declare type GuiTranslation = TranslationChange;
 export declare const GuiDefaultTranslation: import("../../../../l10n/core/api/translation").Translation;
-//# sourceMappingURL=gui.grid.public-api.d.ts.map

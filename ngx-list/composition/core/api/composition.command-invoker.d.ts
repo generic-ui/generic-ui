@@ -2,7 +2,6 @@ import { CommandInvoker } from '@generic-ui/hermes';
 import { CompositionId } from './composition.id';
 import { ColumnParams } from '../domain/column/set-columns/column.params';
 import { ColumnDefinitionId } from './column/column-definition-id';
-import * as i0 from "@angular/core";
 export declare abstract class CompositionCommandInvoker implements CommandInvoker {
     protected constructor();
     abstract create(compositionId: CompositionId): void;
@@ -16,7 +15,4 @@ export declare abstract class CompositionCommandInvoker implements CommandInvoke
     abstract moveLeft(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     abstract moveRight(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
     abstract highlightColumn(columnDefinitionId: ColumnDefinitionId, compositionId: CompositionId): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionCommandInvoker, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CompositionCommandInvoker>;
 }
-//# sourceMappingURL=composition.command-invoker.d.ts.map

@@ -9,7 +9,6 @@ import { TranslationFacade } from '../../../l10n/core/api/translation.facade';
 import { CompositionId } from '../../../composition/core/api/composition.id';
 import { SchemaReadModelRootId } from '../../../schema/core/api/schema.read-model-root-id';
 import { LayoutComponent } from '../../../common/cdk/component/layout-component';
-import * as i0 from "@angular/core";
 /** @internal */
 export declare function listViewIdFactoryForList(generator: StructureIdGenerator): ListViewReadModelRootId;
 /** @internal */
@@ -34,7 +33,4 @@ export declare class ListViewComponent extends LayoutComponent implements Filter
     constructor(structureId: StructureId, listViewReadModelRootId: ListViewReadModelRootId, elementRef: ElementRef, structureCommandService: StructureCommandInvoker, listViewCommandDispatcher: ListViewCommandInvoker, translationService: TranslationFacade);
     getElementRef(): ElementRef;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ListViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewComponent, "gui-list-view", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=list-view.component.d.ts.map

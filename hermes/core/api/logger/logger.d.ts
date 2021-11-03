@@ -8,4 +8,3 @@ export declare abstract class Logger<M extends Message<any>> {
     log(message: M): void;
     protected shouldPrint(message: M): boolean;
 }
-//# sourceMappingURL=logger.d.ts.map

@@ -9,4 +9,3 @@ export declare class SelectedRow {
     getIndex(): number;
     getItemId(): OriginId;
 }
-//# sourceMappingURL=selected-row.d.ts.map

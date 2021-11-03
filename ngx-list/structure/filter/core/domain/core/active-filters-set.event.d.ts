@@ -6,4 +6,3 @@ export declare class ActiveFiltersSetEvent extends StructureDomainEvent {
     constructor(structureId: StructureId, filters: ReadonlyArray<ActiveFilterReadModel>);
     getFilters(): ReadonlyArray<any>;
 }
-//# sourceMappingURL=active-filters-set.event.d.ts.map

@@ -3,4 +3,3 @@ import { KeyArchive } from './key.archive';
 export declare abstract class AggregateArchive<T> extends KeyArchive<AggregateId, T> {
     protected constructor(defaultValue?: T);
 }
-//# sourceMappingURL=aggregate.archive.d.ts.map

@@ -10,4 +10,3 @@ export declare class BooleanColumnPresentation extends ColumnPresentation {
     getDefaultView(): CellView;
     getDefaultAlign(view: ViewEntity): ColumnAlign;
 }
-//# sourceMappingURL=boolean-column.presentation.d.ts.map

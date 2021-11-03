@@ -5,4 +5,3 @@ export declare class GuiGridColumnAlignConverter {
     private convertTypeEnum;
     private convertTypeString;
 }
-//# sourceMappingURL=gui.grid.column-align.converter.d.ts.map

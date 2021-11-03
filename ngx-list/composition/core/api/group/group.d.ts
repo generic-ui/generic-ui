@@ -5,4 +5,3 @@ export declare class Group {
     readonly width: number;
     constructor(id: GroupId, header: string, width: number);
 }
-//# sourceMappingURL=group.d.ts.map

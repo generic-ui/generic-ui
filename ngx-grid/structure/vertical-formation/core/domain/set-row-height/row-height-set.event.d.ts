@@ -3,4 +3,3 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class RowHeightSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
-//# sourceMappingURL=row-height-set.event.d.ts.map

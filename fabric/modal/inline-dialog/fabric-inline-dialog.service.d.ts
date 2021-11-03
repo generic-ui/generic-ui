@@ -4,7 +4,6 @@ import { Theme } from '../../themes/theme';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
 import { Observable } from 'rxjs';
 import { FabricPlacement } from '../../common/modal/cords/fabric-placement';
-import * as i0 from "@angular/core";
 export declare class FabricInlineDialogService implements OnDestroy {
     private componentFactoryResolver;
     private applicationRef;
@@ -31,7 +30,4 @@ export declare class FabricInlineDialogService implements OnDestroy {
     private removeInlineDialog;
     private setOpened;
     private closeOnEscKey;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricInlineDialogService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FabricInlineDialogService>;
 }
-//# sourceMappingURL=fabric-inline-dialog.service.d.ts.map

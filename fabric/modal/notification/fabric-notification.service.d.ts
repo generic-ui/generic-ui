@@ -3,7 +3,6 @@ import { FabricNotificationsOverlayComponent } from './fabric-notifications-over
 import { FabricNotification } from './fabric-notification';
 import { FabricNotificationConfig } from './fabric-notification-config';
 import { FabricModal } from '../../common/modal/fabric-modal';
-import * as i0 from "@angular/core";
 export declare class FabricNotificationService extends FabricModal<FabricNotificationsOverlayComponent> implements OnDestroy {
     private static readonly DEFAULT_DURATION;
     fabricNotification: FabricNotification;
@@ -17,7 +16,4 @@ export declare class FabricNotificationService extends FabricModal<FabricNotific
     private removeNotificationContainer;
     private createFabricNotification;
     private pushNotification;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FabricNotificationService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FabricNotificationService>;
 }
-//# sourceMappingURL=fabric-notification.service.d.ts.map

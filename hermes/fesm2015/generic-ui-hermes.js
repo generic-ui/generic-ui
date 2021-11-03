@@ -1,5 +1,4 @@
-import * as i0 from '@angular/core';
-import { PLATFORM_ID, Injectable, Inject, InjectionToken, NgModule, Optional as Optional$1 } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID, InjectionToken, NgModule, Optional as Optional$1, Injector } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -60,14 +59,14 @@ class HermesApi {
         }
     }
 }
-HermesApi.ɵfac = function HermesApi_Factory(t) { return new (t || HermesApi)(i0.ɵɵinject(PLATFORM_ID), i0.ɵɵinject(CommandLogger), i0.ɵɵinject(DomainEventLogger)); };
-HermesApi.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: HermesApi, factory: HermesApi.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HermesApi, [{
-        type: Injectable
-    }], function () { return [{ type: Object, decorators: [{
-                type: Inject,
-                args: [PLATFORM_ID]
-            }] }, { type: CommandLogger }, { type: DomainEventLogger }]; }, null); })();
+HermesApi.decorators = [
+    { type: Injectable }
+];
+HermesApi.ctorParameters = () => [
+    { type: Object, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+    { type: CommandLogger },
+    { type: DomainEventLogger }
+];
 
 function enableHermesLoggers(domainName, windowObject) {
     const winRef = windowObject ? windowObject : window;
@@ -324,11 +323,9 @@ class HermesSubject extends HermesObservable {
 
 class CommandStream extends HermesSubject {
 }
-CommandStream.ɵfac = /*@__PURE__*/ function () { let ɵCommandStream_BaseFactory; return function CommandStream_Factory(t) { return (ɵCommandStream_BaseFactory || (ɵCommandStream_BaseFactory = i0.ɵɵgetInheritedFactory(CommandStream)))(t || CommandStream); }; }();
-CommandStream.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: CommandStream, factory: CommandStream.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CommandStream, [{
-        type: Injectable
-    }], null, null); })();
+CommandStream.decorators = [
+    { type: Injectable }
+];
 
 class CommandDispatcher {
     constructor(commandStream) {
@@ -338,11 +335,12 @@ class CommandDispatcher {
         this.commandStream.next(command);
     }
 }
-CommandDispatcher.ɵfac = function CommandDispatcher_Factory(t) { return new (t || CommandDispatcher)(i0.ɵɵinject(CommandStream)); };
-CommandDispatcher.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: CommandDispatcher, factory: CommandDispatcher.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CommandDispatcher, [{
-        type: Injectable
-    }], function () { return [{ type: CommandStream }]; }, null); })();
+CommandDispatcher.decorators = [
+    { type: Injectable }
+];
+CommandDispatcher.ctorParameters = () => [
+    { type: CommandStream }
+];
 
 class RandomStringGenerator {
     static generate() {
@@ -350,11 +348,9 @@ class RandomStringGenerator {
     }
 }
 RandomStringGenerator.index = 0;
-RandomStringGenerator.ɵfac = function RandomStringGenerator_Factory(t) { return new (t || RandomStringGenerator)(); };
-RandomStringGenerator.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: RandomStringGenerator, factory: RandomStringGenerator.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RandomStringGenerator, [{
-        type: Injectable
-    }], null, null); })();
+RandomStringGenerator.decorators = [
+    { type: Injectable }
+];
 
 class Message {
     constructor(aggregateId, messageType, messageId = RandomStringGenerator.generate()) {
@@ -500,14 +496,12 @@ class CommandBus extends HermesObservable {
         }));
     }
 }
-CommandBus.ɵfac = function CommandBus_Factory(t) { return new (t || CommandBus)(i0.ɵɵinject(FILTERED_COMMAND_STREAM)); };
-CommandBus.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: CommandBus, factory: CommandBus.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CommandBus, [{
-        type: Injectable
-    }], function () { return [{ type: CommandStream, decorators: [{
-                type: Inject,
-                args: [FILTERED_COMMAND_STREAM]
-            }] }]; }, null); })();
+CommandBus.decorators = [
+    { type: Injectable }
+];
+CommandBus.ctorParameters = () => [
+    { type: CommandStream, decorators: [{ type: Inject, args: [FILTERED_COMMAND_STREAM,] }] }
+];
 
 class AggregateEvent {
     constructor(aggregateId, type) {
@@ -725,11 +719,9 @@ class DomainEventStore {
         return this.domainEvents;
     }
 }
-DomainEventStore.ɵfac = function DomainEventStore_Factory(t) { return new (t || DomainEventStore)(); };
-DomainEventStore.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: DomainEventStore, factory: DomainEventStore.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainEventStore, [{
-        type: Injectable
-    }], null, null); })();
+DomainEventStore.decorators = [
+    { type: Injectable }
+];
 
 class DomainEventStream extends HermesSubject {
     constructor(eventStore) {
@@ -741,11 +733,12 @@ class DomainEventStream extends HermesSubject {
         this.eventStore.next(event);
     }
 }
-DomainEventStream.ɵfac = function DomainEventStream_Factory(t) { return new (t || DomainEventStream)(i0.ɵɵinject(DomainEventStore)); };
-DomainEventStream.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: DomainEventStream, factory: DomainEventStream.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainEventStream, [{
-        type: Injectable
-    }], function () { return [{ type: DomainEventStore }]; }, null); })();
+DomainEventStream.decorators = [
+    { type: Injectable }
+];
+DomainEventStream.ctorParameters = () => [
+    { type: DomainEventStore }
+];
 
 class DomainEventPublisher {
     constructor(eventStream) {
@@ -780,11 +773,12 @@ class DomainEventPublisher {
         this.eventStream.next(event);
     }
 }
-DomainEventPublisher.ɵfac = function DomainEventPublisher_Factory(t) { return new (t || DomainEventPublisher)(i0.ɵɵinject(DomainEventStream)); };
-DomainEventPublisher.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: DomainEventPublisher, factory: DomainEventPublisher.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainEventPublisher, [{
-        type: Injectable
-    }], function () { return [{ type: DomainEventStream }]; }, null); })();
+DomainEventPublisher.decorators = [
+    { type: Injectable }
+];
+DomainEventPublisher.ctorParameters = () => [
+    { type: DomainEventStream }
+];
 
 class DomainEventBus extends HermesObservable {
     constructor(eventStream) {
@@ -839,11 +833,12 @@ class DomainEventBus extends HermesObservable {
         }
     }
 }
-DomainEventBus.ɵfac = function DomainEventBus_Factory(t) { return new (t || DomainEventBus)(i0.ɵɵinject(DomainEventStream)); };
-DomainEventBus.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: DomainEventBus, factory: DomainEventBus.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainEventBus, [{
-        type: Injectable
-    }], function () { return [{ type: DomainEventStream }]; }, null); })();
+DomainEventBus.decorators = [
+    { type: Injectable }
+];
+DomainEventBus.ctorParameters = () => [
+    { type: DomainEventStream }
+];
 
 const DomainEventType = MessageType;
 
@@ -889,11 +884,10 @@ class Reactive {
         return !this.hermesUnsubscribe$.isCompleted;
     }
 }
-Reactive.ɵfac = function Reactive_Factory(t) { return new (t || Reactive)(); };
-Reactive.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: Reactive, factory: Reactive.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Reactive, [{
-        type: Injectable
-    }], function () { return []; }, null); })();
+Reactive.decorators = [
+    { type: Injectable }
+];
+Reactive.ctorParameters = () => [];
 
 class ReactiveService extends Reactive {
     constructor() {
@@ -903,11 +897,10 @@ class ReactiveService extends Reactive {
         this.hermesUnsubscribe();
     }
 }
-ReactiveService.ɵfac = function ReactiveService_Factory(t) { return new (t || ReactiveService)(); };
-ReactiveService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ReactiveService, factory: ReactiveService.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ReactiveService, [{
-        type: Injectable
-    }], function () { return []; }, null); })();
+ReactiveService.decorators = [
+    { type: Injectable }
+];
+ReactiveService.ctorParameters = () => [];
 
 class Optional {
     constructor(value) {
@@ -1292,30 +1285,22 @@ class DomainModule {
     constructor() {
     }
 }
-DomainModule.ɵfac = function DomainModule_Factory(t) { return new (t || DomainModule)(); };
-DomainModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: DomainModule });
-DomainModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainModule, [{
-        type: NgModule
-    }], function () { return []; }, null); })();
+DomainModule.decorators = [
+    { type: NgModule }
+];
+DomainModule.ctorParameters = () => [];
 
 class ApiModule {
 }
-ApiModule.ɵfac = function ApiModule_Factory(t) { return new (t || ApiModule)(); };
-ApiModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: ApiModule });
-ApiModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ApiModule, [{
-        type: NgModule
-    }], null, null); })();
+ApiModule.decorators = [
+    { type: NgModule }
+];
 
 class FeatureModule {
 }
-FeatureModule.ɵfac = function FeatureModule_Factory(t) { return new (t || FeatureModule)(); };
-FeatureModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: FeatureModule });
-FeatureModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeatureModule, [{
-        type: NgModule
-    }], null, null); })();
+FeatureModule.decorators = [
+    { type: NgModule }
+];
 
 function hermesNever() {
     return new HermesObservable((observer) => {
@@ -1683,11 +1668,12 @@ class ConsoleCommandLogger extends CommandLogger {
         console.log(command.toString(), command);
     }
 }
-ConsoleCommandLogger.ɵfac = function ConsoleCommandLogger_Factory(t) { return new (t || ConsoleCommandLogger)(i0.ɵɵinject(CommandBus)); };
-ConsoleCommandLogger.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ConsoleCommandLogger, factory: ConsoleCommandLogger.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConsoleCommandLogger, [{
-        type: Injectable
-    }], function () { return [{ type: CommandBus }]; }, null); })();
+ConsoleCommandLogger.decorators = [
+    { type: Injectable }
+];
+ConsoleCommandLogger.ctorParameters = () => [
+    { type: CommandBus }
+];
 
 class NoopCommandLogger extends CommandLogger {
     start() {
@@ -1726,11 +1712,13 @@ class ConsoleEventLogger extends DomainEventLogger {
         console.log(domainEvent.toString(), domainEvent, aggregates);
     }
 }
-ConsoleEventLogger.ɵfac = function ConsoleEventLogger_Factory(t) { return new (t || ConsoleEventLogger)(i0.ɵɵinject(DomainEventBus), i0.ɵɵinject(AggregateStoreRegister)); };
-ConsoleEventLogger.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ConsoleEventLogger, factory: ConsoleEventLogger.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ConsoleEventLogger, [{
-        type: Injectable
-    }], function () { return [{ type: DomainEventBus }, { type: AggregateStoreRegister }]; }, null); })();
+ConsoleEventLogger.decorators = [
+    { type: Injectable }
+];
+ConsoleEventLogger.ctorParameters = () => [
+    { type: DomainEventBus },
+    { type: AggregateStoreRegister }
+];
 
 class NoopEventLogger extends DomainEventLogger {
     start() {
@@ -1766,14 +1754,14 @@ class HermesLoggersInitializer {
         }
     }
 }
-HermesLoggersInitializer.ɵfac = function HermesLoggersInitializer_Factory(t) { return new (t || HermesLoggersInitializer)(i0.ɵɵinject(PLATFORM_ID), i0.ɵɵinject(CommandLogger), i0.ɵɵinject(DomainEventLogger)); };
-HermesLoggersInitializer.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: HermesLoggersInitializer, factory: HermesLoggersInitializer.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HermesLoggersInitializer, [{
-        type: Injectable
-    }], function () { return [{ type: undefined, decorators: [{
-                type: Inject,
-                args: [PLATFORM_ID]
-            }] }, { type: CommandLogger }, { type: DomainEventLogger }]; }, null); })();
+HermesLoggersInitializer.decorators = [
+    { type: Injectable }
+];
+HermesLoggersInitializer.ctorParameters = () => [
+    { type: undefined, decorators: [{ type: Inject, args: [PLATFORM_ID,] }] },
+    { type: CommandLogger },
+    { type: DomainEventLogger }
+];
 
 function createAggregateCommandHandlerFactory(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName, domainEventPublisher) {
     return new CreateAggregateCommandHandlerImpl(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName, domainEventPublisher);
@@ -1872,13 +1860,9 @@ class HermesDomainModule {
     ngOnDestroy() {
     }
 }
-HermesDomainModule.ɵfac = function HermesDomainModule_Factory(t) { return new (t || HermesDomainModule)(); };
-HermesDomainModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: HermesDomainModule });
-HermesDomainModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HermesDomainModule, [{
-        type: NgModule,
-        args: [{}]
-    }], null, null); })();
+HermesDomainModule.decorators = [
+    { type: NgModule, args: [{},] }
+];
 
 const COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
 
@@ -2176,31 +2160,22 @@ class HermesBaseModule extends Reactive {
         }
     }
 }
-HermesBaseModule.ɵfac = function HermesBaseModule_Factory(t) { return new (t || HermesBaseModule)(i0.ɵɵinject(DOMAIN_EVENT_HANDLERS, 8), i0.ɵɵinject(CREATE_AGGREGATE_COMMAND_HANDLERS, 8), i0.ɵɵinject(COMMAND_HANDLERS, 8), i0.ɵɵinject(aggregateDefinitionToken, 8), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(AggregateFactoryArchive), i0.ɵɵinject(AggregateRepositoryArchive), i0.ɵɵinject(CommandBus), i0.ɵɵinject(DomainEventBus), i0.ɵɵinject(HermesLoggersInitializer), i0.ɵɵinject(HermesApi)); };
-HermesBaseModule.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: HermesBaseModule, factory: HermesBaseModule.ɵfac });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HermesBaseModule, [{
-        type: Injectable
-    }], function () { return [{ type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [DOMAIN_EVENT_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [CREATE_AGGREGATE_COMMAND_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [COMMAND_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [aggregateDefinitionToken]
-            }] }, { type: i0.Injector }, { type: AggregateFactoryArchive }, { type: AggregateRepositoryArchive }, { type: CommandBus }, { type: DomainEventBus }, { type: HermesLoggersInitializer }, { type: HermesApi }]; }, null); })();
+HermesBaseModule.decorators = [
+    { type: Injectable }
+];
+HermesBaseModule.ctorParameters = () => [
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [aggregateDefinitionToken,] }] },
+    { type: Injector },
+    { type: AggregateFactoryArchive },
+    { type: AggregateRepositoryArchive },
+    { type: CommandBus },
+    { type: DomainEventBus },
+    { type: HermesLoggersInitializer },
+    { type: HermesApi }
+];
 class HermesModule extends HermesBaseModule {
     constructor(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
         super(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi);
@@ -2301,41 +2276,27 @@ class HermesModule extends HermesBaseModule {
         ];
     }
 }
-HermesModule.ɵfac = function HermesModule_Factory(t) { return new (t || HermesModule)(i0.ɵɵinject(DOMAIN_EVENT_HANDLERS, 8), i0.ɵɵinject(CREATE_AGGREGATE_COMMAND_HANDLERS, 8), i0.ɵɵinject(COMMAND_HANDLERS, 8), i0.ɵɵinject(aggregateDefinitionToken, 8), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(AggregateFactoryArchive), i0.ɵɵinject(AggregateRepositoryArchive), i0.ɵɵinject(CommandBus), i0.ɵɵinject(DomainEventBus), i0.ɵɵinject(HermesLoggersInitializer), i0.ɵɵinject(HermesApi)); };
-HermesModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: HermesModule });
-HermesModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ providers: providers, imports: [[
-            CommonModule
-        ]] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HermesModule, [{
-        type: NgModule,
-        args: [{
+HermesModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [
                     CommonModule
                 ],
                 providers: providers
-            }]
-    }], function () { return [{ type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [DOMAIN_EVENT_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [CREATE_AGGREGATE_COMMAND_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [COMMAND_HANDLERS]
-            }] }, { type: Array, decorators: [{
-                type: Optional$1
-            }, {
-                type: Inject,
-                args: [aggregateDefinitionToken]
-            }] }, { type: i0.Injector }, { type: AggregateFactoryArchive }, { type: AggregateRepositoryArchive }, { type: CommandBus }, { type: DomainEventBus }, { type: HermesLoggersInitializer }, { type: HermesApi }]; }, null); })();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(HermesModule, { imports: [CommonModule] }); })();
+            },] }
+];
+HermesModule.ctorParameters = () => [
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [COMMAND_HANDLERS,] }] },
+    { type: Array, decorators: [{ type: Optional$1 }, { type: Inject, args: [aggregateDefinitionToken,] }] },
+    { type: Injector },
+    { type: AggregateFactoryArchive },
+    { type: AggregateRepositoryArchive },
+    { type: CommandBus },
+    { type: DomainEventBus },
+    { type: HermesLoggersInitializer },
+    { type: HermesApi }
+];
 
 function assertDomainEvents(actualEvents, expectedEvents) {
     expect(actualEvents.length).toEqual(expectedEvents.length);
@@ -2413,5 +2374,5 @@ class CreateAggregateCommand extends Command {
  * Generated bundle index. Do not edit.
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, provideEventHandlers, singleFromObservable, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce, toRxJsObservable };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, provideEventHandlers, singleFromObservable, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce, toRxJsObservable, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, CreateAggregateCommandHandlerImpl as ɵba, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, KeyArchive as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, domainEventHandlerFactory as ɵw, multiDomainEventHandlerFactory as ɵx, DomainEventHandlerImpl as ɵy, createAggregateCommandHandlerFactory as ɵz };
 //# sourceMappingURL=generic-ui-hermes.js.map

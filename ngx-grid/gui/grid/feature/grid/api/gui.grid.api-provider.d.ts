@@ -81,4 +81,3 @@ export declare class GuiGridApiProvider {
     constructor(structureId: StructureId, schemaId: SchemaReadModelRootId, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, sourceCommandInvoker: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, gridThemeCommandInvoker: GuiGridThemeCommandInvoker, structureCommandInvoker: StructureCommandInvoker, summariesCommandInvoker: SummariesCommandInvoker, sortingCommandInvoker: SortingCommandInvoker, pagingCommandInvoker: PagingCommandInvoker);
     provide(): GuiGridApi;
 }
-//# sourceMappingURL=gui.grid.api-provider.d.ts.map

@@ -44,4 +44,3 @@ export declare type Translation = {
     summariesTruthy: string;
     summariesFalsy: string;
 };
-//# sourceMappingURL=translation.d.ts.map

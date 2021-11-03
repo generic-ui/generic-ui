@@ -6,4 +6,3 @@ export declare class StructureSummariesChangedEvent extends StructureDomainEvent
     constructor(structureId: StructureId, values: Map<string, SummariesValues>);
     getSummaries(): Map<string, SummariesValues>;
 }
-//# sourceMappingURL=structure.summaries-changed.event.d.ts.map

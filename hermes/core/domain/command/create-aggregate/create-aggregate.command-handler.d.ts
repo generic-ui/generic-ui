@@ -5,4 +5,3 @@ import { CommandType } from '../handler/command-type';
 export interface CreateAggregateCommandHandler<A extends AggregateRoot<AggregateId>, C extends CreateAggregateCommand> {
     forCommand(): CommandType<C>;
 }
-//# sourceMappingURL=create-aggregate.command-handler.d.ts.map

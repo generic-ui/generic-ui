@@ -4,4 +4,3 @@ import { DataType } from '../../../../structure/field/core/domain/field/data/dat
 export interface TemplatesComponent {
     getTemplate(view: CellView | DataType): TemplateRef<any>;
 }
-//# sourceMappingURL=templates.component.d.ts.map

@@ -5,4 +5,3 @@ export declare enum Theme {
     LIGHT = "LIGHT",
     DARK = "DARK"
 }
-//# sourceMappingURL=theme.d.ts.map

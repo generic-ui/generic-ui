@@ -35,4 +35,3 @@ export declare class VerticalFormation {
     setLogger(logger: Logger): void;
     calcFullHeight(): number;
 }
-//# sourceMappingURL=vertical-formation.d.ts.map

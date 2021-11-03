@@ -7,4 +7,3 @@ export interface AggregateDefinition<I extends AggregateId, A extends AggregateR
     factory: AggregateFactory<I, A>;
     repository: AggregateRepository<I, A>;
 }
-//# sourceMappingURL=aggregate-definition.d.ts.map

@@ -7,4 +7,3 @@ export declare class FilterAddedAggregateEvent extends StructureAggregateEvent {
     constructor(aggregateId: StructureId, activeFilters: ReadonlyArray<ActiveFilterReadModel>);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=filter-added.aggregate-event.d.ts.map

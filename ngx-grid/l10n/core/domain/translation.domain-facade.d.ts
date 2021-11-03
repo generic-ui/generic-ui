@@ -2,7 +2,6 @@ import { TranslationFacade } from '../api/translation.facade';
 import { Translation } from '../api/translation';
 import { TranslationChange } from '../api/translation-change';
 import { HermesObservable } from '@generic-ui/hermes';
-import * as i0 from "@angular/core";
 export declare class TranslationDomainFacade extends TranslationFacade {
     private readonly defaultTranslation;
     private readonly dictionary;
@@ -15,7 +14,4 @@ export declare class TranslationDomainFacade extends TranslationFacade {
     setResolver(resolver: (key: string, value: string) => string): void;
     private changeTranslationAndPropagate;
     private setResolverAndPropagate;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TranslationDomainFacade, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TranslationDomainFacade>;
 }
-//# sourceMappingURL=translation.domain-facade.d.ts.map

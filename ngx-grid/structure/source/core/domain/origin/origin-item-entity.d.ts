@@ -12,4 +12,3 @@ export declare class OriginItemEntity extends Entity<OriginId> {
     setPosition(position: number): void;
     clone(): OriginItemEntity;
 }
-//# sourceMappingURL=origin-item-entity.d.ts.map

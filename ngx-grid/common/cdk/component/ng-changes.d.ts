@@ -21,4 +21,3 @@ export declare type Changes<T> = {
     isFirstChange(): boolean;
 };
 export {};
-//# sourceMappingURL=ng-changes.d.ts.map

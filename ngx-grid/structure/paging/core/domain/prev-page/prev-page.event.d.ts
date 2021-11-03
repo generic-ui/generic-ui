@@ -3,4 +3,3 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class PrevPageEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
-//# sourceMappingURL=prev-page.event.d.ts.map

@@ -11,4 +11,3 @@ export declare enum SummariesType {
     EARLIEST = 256,
     LATEST = 512
 }
-//# sourceMappingURL=summaries.type.d.ts.map

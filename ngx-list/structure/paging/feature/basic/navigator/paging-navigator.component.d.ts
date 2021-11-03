@@ -1,7 +1,6 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { Paging } from '../../../core/api/read/paging';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
-import * as i0 from "@angular/core";
 export declare class PagingNavigatorComponent extends PureComponent implements OnChanges {
     paging: Paging;
     sourceSize?: number;
@@ -16,7 +15,4 @@ export declare class PagingNavigatorComponent extends PureComponent implements O
     protected getSelectorName(): string;
     private calculatePrev;
     private calculateNext;
-    static ɵfac: i0.ɵɵFactoryDeclaration<PagingNavigatorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingNavigatorComponent, "div[gui-paging-navigator][paging]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, never>;
 }
-//# sourceMappingURL=paging-navigator.component.d.ts.map

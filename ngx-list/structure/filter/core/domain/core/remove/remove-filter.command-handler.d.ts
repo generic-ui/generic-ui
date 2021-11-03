@@ -1,14 +1,10 @@
 import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/hermes';
 import { RemoveFilterCommand } from './remove-filter.command';
 import { StructureAggregate } from '../../../../../core/domain/structure.aggregate';
-import * as i0 from "@angular/core";
 export declare class RemoveFilterCommandHandler implements CommandHandler<StructureAggregate, RemoveFilterCommand> {
     private domainEventPublisher;
     constructor(domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<RemoveFilterCommand>;
     handle(structure: StructureAggregate, command: RemoveFilterCommand): void;
     publish(aggregate: StructureAggregate, command: RemoveFilterCommand): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<RemoveFilterCommandHandler, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<RemoveFilterCommandHandler>;
 }
-//# sourceMappingURL=remove-filter.command-handler.d.ts.map

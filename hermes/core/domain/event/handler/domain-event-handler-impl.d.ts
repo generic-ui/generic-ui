@@ -15,4 +15,3 @@ export declare class DomainEventHandlerImpl<I extends AggregateId, E extends Dom
     private createDomainEventTypes;
     private createDomainEventInstance;
 }
-//# sourceMappingURL=domain-event-handler-impl.d.ts.map

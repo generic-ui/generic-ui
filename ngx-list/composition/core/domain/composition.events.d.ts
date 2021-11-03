@@ -8,4 +8,3 @@ export declare const CompositionAggregateEvents: {
     CompositionColumnMovedRightAggregateEvent: string;
     GroupsSetAggregateEvent: string;
 };
-//# sourceMappingURL=composition.events.d.ts.map

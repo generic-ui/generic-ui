@@ -5,4 +5,3 @@ export declare class ConfigSearchingSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=config-searching-set.event.d.ts.map

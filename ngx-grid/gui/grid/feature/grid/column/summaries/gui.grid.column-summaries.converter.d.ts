@@ -5,4 +5,3 @@ export declare class GuiGridColumnSummariesConverter {
     private convertSummariesTypes;
     private convertSummariesType;
 }
-//# sourceMappingURL=gui.grid.column-summaries.converter.d.ts.map

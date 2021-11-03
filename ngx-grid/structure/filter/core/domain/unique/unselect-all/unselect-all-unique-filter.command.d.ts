@@ -6,4 +6,3 @@ export declare class UnselectAllUniqueFilterCommand extends StructureCommand {
     constructor(structureId: StructureId, fieldId: FieldId);
     getFieldId(): FieldId;
 }
-//# sourceMappingURL=unselect-all-unique-filter.command.d.ts.map

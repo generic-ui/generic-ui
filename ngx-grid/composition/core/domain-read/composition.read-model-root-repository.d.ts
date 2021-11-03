@@ -5,4 +5,3 @@ export declare abstract class CompositionReadModelRootRepository extends ReadMod
     protected constructor(domainEventBus: DomainEventBus);
     abstract on(compositionId: CompositionId): HermesObservable<Readonly<CompositionReadModeRoot>>;
 }
-//# sourceMappingURL=composition.read-model-root-repository.d.ts.map

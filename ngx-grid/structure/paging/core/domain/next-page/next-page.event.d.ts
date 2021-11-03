@@ -3,4 +3,3 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class NextPageEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
-//# sourceMappingURL=next-page.event.d.ts.map

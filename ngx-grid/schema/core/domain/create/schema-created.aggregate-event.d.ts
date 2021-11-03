@@ -5,4 +5,3 @@ export declare class SchemaCreatedAggregateEvent extends SchemaAggregateEvent {
     constructor(aggregateId: SchemaId);
     toDomainEvent(): DomainEvent<SchemaId>;
 }
-//# sourceMappingURL=schema-created.aggregate-event.d.ts.map

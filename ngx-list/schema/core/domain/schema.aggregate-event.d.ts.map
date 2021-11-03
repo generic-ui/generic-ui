@@ -1,1 +1,0 @@
-{"version":3,"file":"schema.aggregate-event.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-list/src/schema/core/domain/schema.aggregate-event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,oBAAoB,CAAC;AACpD,OAAO,EAAE,QAAQ,EAAE,MAAM,aAAa,CAAC;AAEvC,8BAAsB,oBAAqB,SAAQ,cAAc,CAAC,QAAQ,CAAC;CAC1E"}

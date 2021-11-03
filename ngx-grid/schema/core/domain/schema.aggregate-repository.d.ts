@@ -5,4 +5,3 @@ export declare abstract class SchemaAggregateRepository extends AggregateReposit
     abstract findById(schemaId: SchemaId): Optional<SchemaAggregate>;
     abstract save(aggregate: SchemaAggregate): void;
 }
-//# sourceMappingURL=schema.aggregate-repository.d.ts.map

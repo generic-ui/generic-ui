@@ -7,4 +7,3 @@ export declare class CompositionColumnMovedRightAggregateEvent extends Compositi
     constructor(aggregateId: AggregateId, activeColumns: Array<ActiveColumnEntity>);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
-//# sourceMappingURL=composition.column-moved-right.aggregate-event.d.ts.map

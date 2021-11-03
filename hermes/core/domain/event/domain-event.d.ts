@@ -6,4 +6,3 @@ export declare abstract class DomainEvent<I extends AggregateId = AggregateId> e
     isSameType(event: DomainEvent<I>): boolean;
     getPayload(): any;
 }
-//# sourceMappingURL=domain-event.d.ts.map

@@ -6,7 +6,6 @@ import { SmartComponent } from '../../../../../../common/cdk/component/smart-com
 import { SourceCommandInvoker } from '../../../../../source/core/api/source.command-invoker';
 import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
 import { StructureId } from '../../../../../core/api/structure.id';
-import * as i0 from "@angular/core";
 export declare class StructureCellEditComponent extends SmartComponent implements OnChanges {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -29,7 +28,4 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     private publishEditCancel;
     private publishEditSubmit;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellEditComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditComponent, "div[gui-structure-cell-edit][entity][cell]", never, { "entity": "entity"; "cell": "cell"; }, {}, never, never>;
 }
-//# sourceMappingURL=structure.cell-edit.component.d.ts.map

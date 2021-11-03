@@ -8,4 +8,3 @@ export declare class SelectedRowChangedAggregateEvent extends StructureAggregate
     constructor(structureId: StructureId, selectedRows: Array<string>, allSelected: boolean, allUnselected: boolean);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=selected-row-changed.aggregate-event.d.ts.map

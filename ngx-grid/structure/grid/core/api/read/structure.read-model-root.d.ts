@@ -20,4 +20,3 @@ export declare class StructureReadModelRoot extends ReadModelRoot<StructureReadM
     isReadyToDisplay(): boolean;
     isVerticalScrollEnabled(): boolean;
 }
-//# sourceMappingURL=structure.read-model-root.d.ts.map

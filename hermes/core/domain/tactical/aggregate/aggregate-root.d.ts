@@ -15,4 +15,3 @@ export declare abstract class AggregateRoot<I extends AggregateId> {
     clearEvents(): void;
     equals(aggregate: AggregateRoot<I>): boolean;
 }
-//# sourceMappingURL=aggregate-root.d.ts.map

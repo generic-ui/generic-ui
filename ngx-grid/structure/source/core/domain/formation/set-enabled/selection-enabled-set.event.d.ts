@@ -5,4 +5,3 @@ export declare class SelectionEnabledSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=selection-enabled-set.event.d.ts.map

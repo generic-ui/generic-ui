@@ -5,4 +5,3 @@ export declare class ChangedValueEmitter<T> {
     emit(value: T): void;
     on(): HermesObservable<T>;
 }
-//# sourceMappingURL=changed-value.emitter.d.ts.map

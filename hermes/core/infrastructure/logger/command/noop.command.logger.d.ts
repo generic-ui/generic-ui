@@ -6,4 +6,3 @@ export declare class NoopCommandLogger extends CommandLogger {
     stop(): void;
     protected print(command: Command<AggregateId>): void;
 }
-//# sourceMappingURL=noop.command.logger.d.ts.map

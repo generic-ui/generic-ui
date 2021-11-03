@@ -4,4 +4,3 @@ export declare abstract class ReadModelRoot<T extends ReadModelRootId> {
     protected constructor(gui: T);
     getId(): T;
 }
-//# sourceMappingURL=read-model-root.d.ts.map

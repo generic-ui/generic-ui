@@ -8,4 +8,3 @@ export declare class StructureSummariesChangedAggregateEvent extends StructureAg
     toDomainEvent(): DomainEvent<StructureId>;
     getSummaries(): Map<string, SummariesValues>;
 }
-//# sourceMappingURL=structure.summaries-changed.aggregate-event.d.ts.map

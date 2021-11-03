@@ -6,4 +6,3 @@ export declare class SetSelectionModeCommand extends StructureCommand {
     constructor(structureId: StructureId, mode: RowSelectionMode);
     getMode(): RowSelectionMode;
 }
-//# sourceMappingURL=set-selection-mode.command.d.ts.map

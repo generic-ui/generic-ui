@@ -5,4 +5,3 @@ export declare class ColumnsSetAggregateEvent extends CompositionAggregateEvent 
     constructor(compositionId: CompositionId);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
-//# sourceMappingURL=columns-set.aggregate-event.d.ts.map

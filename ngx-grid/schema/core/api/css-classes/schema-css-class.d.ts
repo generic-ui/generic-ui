@@ -8,4 +8,3 @@ export declare class SchemaCssClass {
     constructor(verticalGrid: boolean, horizontalGrid: boolean, theme: SchemaTheme, rowColoring: SchemaRowColoring);
     getRowColoring(): SchemaRowColoring;
 }
-//# sourceMappingURL=schema-css-class.d.ts.map

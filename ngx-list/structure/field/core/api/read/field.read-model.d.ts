@@ -10,4 +10,3 @@ export declare class FieldReadModel {
     getDataType(): DataType;
     getName(): string;
 }
-//# sourceMappingURL=field.read-model.d.ts.map

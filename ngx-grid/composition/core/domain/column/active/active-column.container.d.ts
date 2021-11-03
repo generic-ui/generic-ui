@@ -30,4 +30,3 @@ export declare class ActiveColumnContainer {
     private getCompositionId;
     private findColumnIndex;
 }
-//# sourceMappingURL=active-column.container.d.ts.map

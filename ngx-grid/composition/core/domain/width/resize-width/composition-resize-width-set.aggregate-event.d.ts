@@ -5,4 +5,3 @@ export declare class CompositionResizeWidthSetAggregateEvent extends Composition
     constructor(compositionId: CompositionId);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
-//# sourceMappingURL=composition-resize-width-set.aggregate-event.d.ts.map

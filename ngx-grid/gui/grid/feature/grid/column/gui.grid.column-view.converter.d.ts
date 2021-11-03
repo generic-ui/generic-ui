@@ -5,4 +5,3 @@ export declare class GuiGridColumnViewConverter {
     private convertString;
     private convertEnum;
 }
-//# sourceMappingURL=gui.grid.column-view.converter.d.ts.map

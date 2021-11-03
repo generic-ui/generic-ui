@@ -16,4 +16,3 @@ export declare class SummariesManager {
     remove(): void;
     update(): void;
 }
-//# sourceMappingURL=summaries.manager.d.ts.map

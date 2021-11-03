@@ -3,4 +3,3 @@ import { Command } from '../command';
 export declare abstract class CreateAggregateCommand extends Command<AggregateId> {
     protected constructor(aggregateId: AggregateId, type: string);
 }
-//# sourceMappingURL=create-aggregate.command.d.ts.map

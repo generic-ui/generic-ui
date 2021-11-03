@@ -3,4 +3,3 @@ import { GuiCellEdit } from '../../../../core/api/gui.grid.public-api';
 export declare class GuiGridCellEditConverter {
     convert(config: boolean | GuiCellEdit): CellEditConfig;
 }
-//# sourceMappingURL=gui.grid.cell-edit.converter.d.ts.map

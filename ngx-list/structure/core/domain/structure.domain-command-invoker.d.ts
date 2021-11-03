@@ -8,7 +8,6 @@ import { StructureCommandInvoker } from '../api/structure.command-invoker';
 import { SchemaTheme } from '../../../schema/core/api/theme/schema-theme';
 import { CellEditConfig } from '../../grid/core/api/edit/cell-edit.config';
 import { StructureCellEditArchive } from '../../grid/feature/edit/structure.cell-edit.archive';
-import * as i0 from "@angular/core";
 export declare class StructureDomainCommandInvoker extends StructureCommandInvoker {
     private readonly commandDispatcher;
     private readonly structureFilterCommandService;
@@ -29,7 +28,4 @@ export declare class StructureDomainCommandInvoker extends StructureCommandInvok
     setContainerHeight(height: number, structureId: StructureId): void;
     setRowHeightBasedOnTheme(theme: SchemaTheme, structureId: StructureId): void;
     setCellEdit(cellEdit: CellEditConfig, structureId: StructureId): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<StructureDomainCommandInvoker, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<StructureDomainCommandInvoker>;
 }
-//# sourceMappingURL=structure.domain-command-invoker.d.ts.map

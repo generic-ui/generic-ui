@@ -5,4 +5,3 @@ export declare class CompositionContainerWidthCalculator {
     calculateMinWidth(columnWidths: Array<ColumnWidth>): number;
     private segregateColumns;
 }
-//# sourceMappingURL=composition-container-width.calculator.d.ts.map

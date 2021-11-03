@@ -5,4 +5,3 @@ export declare class SetOriginCommand extends StructureCommand {
     constructor(structureId: StructureId, items?: Array<any>);
     getItems(): Array<any>;
 }
-//# sourceMappingURL=set-origin.command.d.ts.map

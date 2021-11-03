@@ -8,4 +8,3 @@ export declare class ToggleSelectedRowCommand extends StructureCommand {
     getSelectedRow(): string;
     getType(): RowSelectToggleType;
 }
-//# sourceMappingURL=toggle-selected-row.command.d.ts.map

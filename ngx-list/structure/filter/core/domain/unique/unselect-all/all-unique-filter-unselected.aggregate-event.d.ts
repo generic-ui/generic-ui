@@ -5,4 +5,3 @@ export declare class AllUniqueFilterUnselectedAggregateEvent extends StructureAg
     constructor(aggregateId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=all-unique-filter-unselected.aggregate-event.d.ts.map

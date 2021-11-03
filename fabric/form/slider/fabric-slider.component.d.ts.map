@@ -1,1 +1,0 @@
-{"version":3,"file":"fabric-slider.component.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/form/slider/fabric-slider.component.ts"],"names":[],"mappings":"AAAA,OAAO,EAAsC,YAAY,EAAoC,MAAM,eAAe,CAAC;;AAEnH,qBAWa,qBAAqB;IAEjC,OAAO,EAAE,OAAO,CAAC;IAGjB,OAAO,oBAAsB;IAE7B,MAAM,CAAC,KAAK,EAAE,KAAK,GAAG,IAAI;yCAPd,qBAAqB;2CAArB,qBAAqB;CAYjC"}

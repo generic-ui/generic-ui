@@ -28,4 +28,3 @@ export declare class CellTemplateWithContext {
     isAlignCenter(): boolean;
     isAlignRight(): boolean;
 }
-//# sourceMappingURL=cell-template-with-context.d.ts.map

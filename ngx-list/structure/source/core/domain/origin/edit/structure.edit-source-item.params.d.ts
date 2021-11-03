@@ -9,4 +9,3 @@ export declare class StructureEditSourceItemParams {
     getColumnFieldId(): ColumnFieldId;
     getValue(): any;
 }
-//# sourceMappingURL=structure.edit-source-item.params.d.ts.map

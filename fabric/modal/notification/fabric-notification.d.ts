@@ -7,4 +7,3 @@ export declare class FabricNotification {
     readonly position: FabricNotificationPosition;
     constructor(description: string, index: number, timer: FabricNotificationTimer, position: FabricNotificationPosition);
 }
-//# sourceMappingURL=fabric-notification.d.ts.map

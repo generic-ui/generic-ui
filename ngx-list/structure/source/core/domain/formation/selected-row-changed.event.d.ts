@@ -9,4 +9,3 @@ export declare class SelectedRowChangedEvent extends StructureDomainEvent {
     isAllSelected(): boolean;
     isAllUnselected(): boolean;
 }
-//# sourceMappingURL=selected-row-changed.event.d.ts.map

@@ -7,4 +7,3 @@ export declare class ColumnParams {
     getColumn(): ColumnConfig;
     getField(): ColumnField;
 }
-//# sourceMappingURL=column.params.d.ts.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"fabric-svg-template.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/common/svg-template/fabric-svg-template.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAsC,UAAU,EAAuC,MAAM,eAAe,CAAC;;AAEnI,qBAQa,iBAAkB,YAAW,aAAa;IAEtD,MAAM,EAAE,UAAU,CAAC;IAGnB,GAAG,EAAE,MAAM,CAAC;IAGZ,eAAe;yCARH,iBAAiB;2CAAjB,iBAAiB;CAW7B"}

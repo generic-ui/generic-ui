@@ -8,4 +8,3 @@ export declare abstract class StructureReadModelRepository extends Reactive {
     protected abstract forEvents(): Array<typeof DomainEvent>;
     protected abstract subs(event: DomainEvent<StructureId>): void;
 }
-//# sourceMappingURL=structure.read-model-repository.d.ts.map

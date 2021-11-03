@@ -10,4 +10,3 @@ export declare abstract class EventRepository<R extends ReadModelRootId, I exten
     protected constructor(domainEventBus: DomainEventBus);
     protected onEvent(aggregateId: R, eventType: Type<DomainEvent<I>>): HermesObservable<DomainEvent<any>>;
 }
-//# sourceMappingURL=event.repository.d.ts.map

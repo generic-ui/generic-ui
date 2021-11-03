@@ -5,4 +5,3 @@ export declare class SetVerticalScrollEnabledCommand extends StructureCommand {
     constructor(structureId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=set-vertical-scroll-enabled.command.d.ts.map

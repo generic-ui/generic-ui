@@ -6,4 +6,3 @@ export declare enum DataType {
     DATE = 4,
     CUSTOM = 5
 }
-//# sourceMappingURL=data-type.d.ts.map

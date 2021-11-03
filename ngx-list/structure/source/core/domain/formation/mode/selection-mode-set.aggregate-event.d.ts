@@ -7,4 +7,3 @@ export declare class SelectionModeSetAggregateEvent extends StructureAggregateEv
     constructor(structureId: StructureId, mode: RowSelectionMode);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=selection-mode-set.aggregate-event.d.ts.map

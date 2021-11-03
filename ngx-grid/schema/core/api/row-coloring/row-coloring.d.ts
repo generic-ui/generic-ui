@@ -3,4 +3,3 @@ export declare enum RowColoring {
     EVEN = 1,
     ODD = 2
 }
-//# sourceMappingURL=row-coloring.d.ts.map

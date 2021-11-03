@@ -7,14 +7,13 @@ import { StructureDomainCommandInvoker } from '../../../core/domain/structure.do
 import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
 export declare const structureCommandHandlers: Array<Provider>;
 export declare const structureDomainEventHandlers: Provider[][];
-export declare const structureProviders: (typeof StructureInitialValuesReadyArchive | typeof StructureWarehouse | typeof StructureReadModelRootConverter | typeof import("../../../core/infrastructure/in-memory/in-memory.structure.store").InMemoryStructureStore[] | typeof StructureAggregateFactory | (typeof import("../../../core/infrastructure/in-memory/domain/in-memory.structure.aggregate-store").InMemoryStructureAggregateStore | {
-    provide: typeof import("../../../core/domain/structure-aggregate.repository").StructureAggregateRepository;
-    useClass: typeof import("../../../core/infrastructure/in-memory/domain/in-memory.structure-aggregate.repository").InMemoryStructureAggregateRepository;
-})[][] | (typeof import("../../../core/infrastructure/in-memory/api/in-memory-structure.read-store").InMemoryStructureReadStore | {
+export declare const structureProviders: (typeof StructureInitialValuesReadyArchive | typeof StructureWarehouse | typeof StructureReadModelRootConverter | typeof import("../../../../generic-ui-ngx-grid").ɵba[] | typeof StructureAggregateFactory | (typeof import("../../../../generic-ui-ngx-grid").ɵz | {
+    provide: typeof import("../../../../generic-ui-ngx-grid").ɵy;
+    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵx;
+})[][] | (typeof import("../../../../generic-ui-ngx-grid").ɵim | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../core/infrastructure/in-memory/api/in-memory.structure.repository").InMemoryStructureRepository;
+    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵri;
 })[][] | {
     provide: typeof StructureCommandInvoker;
     useClass: typeof StructureDomainCommandInvoker;
 })[];
-//# sourceMappingURL=structure.providers.d.ts.map

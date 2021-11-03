@@ -4,4 +4,3 @@ export declare class StructureFooterPanelConfigArchive extends Archive<Structure
     private static readonly footerPanelConfig;
     constructor();
 }
-//# sourceMappingURL=structure.footer-panel.config-archive.d.ts.map

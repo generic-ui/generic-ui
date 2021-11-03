@@ -14,4 +14,3 @@ export declare class ColumnField {
     getSearchAccessor(): ColumnFieldAccessor;
     getDataType(): DataType;
 }
-//# sourceMappingURL=column-field.d.ts.map

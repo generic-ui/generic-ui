@@ -10,4 +10,3 @@ export declare class GuiGridColumnConverter {
     convert(configs: Array<GuiColumn | GuiMultiColumn>): Array<ColumnConfig | MultiColumnConfig>;
     private convertColumn;
 }
-//# sourceMappingURL=gui.grid.column.converter.d.ts.map

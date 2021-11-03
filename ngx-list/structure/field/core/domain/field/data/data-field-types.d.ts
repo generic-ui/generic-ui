@@ -4,4 +4,3 @@ import { DateDataField } from './type/date-data-field';
 import { NumberDataField } from './type/number-data-field';
 import { UnknownDataField } from './type/unknown-data-field';
 export declare type DataFieldTypes = BooleanDataField | DateDataField | NumberDataField | StringDataField | UnknownDataField;
-//# sourceMappingURL=data-field-types.d.ts.map

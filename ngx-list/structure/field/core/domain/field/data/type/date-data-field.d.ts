@@ -13,4 +13,3 @@ export declare class DateDataField extends DataField<Date> {
     equals(item: OriginItemEntity, value: Date): boolean;
     getDisplayValue(item: Date): string;
 }
-//# sourceMappingURL=date-data-field.d.ts.map

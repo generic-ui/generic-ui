@@ -6,4 +6,3 @@ export declare abstract class FabricGeometry {
     protected getHeight(): number;
     protected getWidth(): number;
 }
-//# sourceMappingURL=fabric-geometry.d.ts.map

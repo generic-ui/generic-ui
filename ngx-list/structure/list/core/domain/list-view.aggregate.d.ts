@@ -11,4 +11,3 @@ export declare class ListViewAggregate extends AggregateRoot<ListViewId> {
     private initSelectorVisibility;
     private emitEventAfterSelectorVisibilityChange;
 }
-//# sourceMappingURL=list-view.aggregate.d.ts.map

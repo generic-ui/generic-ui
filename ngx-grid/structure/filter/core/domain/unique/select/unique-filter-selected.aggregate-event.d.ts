@@ -5,4 +5,3 @@ export declare class UniqueFilterSelectedAggregateEvent extends StructureAggrega
     constructor(aggregateId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=unique-filter-selected.aggregate-event.d.ts.map

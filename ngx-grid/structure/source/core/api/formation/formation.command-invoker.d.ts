@@ -3,7 +3,6 @@ import { FormationDispatcher } from '../../domain/formation/formation.dispatcher
 import { StructureId } from '../../../../core/api/structure.id';
 import { RowSelectionMode } from '../row-selection';
 import { RowSelectToggleType } from '../../domain/formation/core/row-select-toggle-type';
-import * as i0 from "@angular/core";
 export declare class FormationCommandInvoker implements CommandInvoker {
     private readonly commandDispatcher;
     private readonly formationDispatcher;
@@ -14,7 +13,4 @@ export declare class FormationCommandInvoker implements CommandInvoker {
     setSelection(enabled: boolean, structureId: StructureId): void;
     selectAll(structureId: StructureId): void;
     unselectAll(structureId: StructureId): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<FormationCommandInvoker, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<FormationCommandInvoker>;
 }
-//# sourceMappingURL=formation.command-invoker.d.ts.map

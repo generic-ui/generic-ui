@@ -9,4 +9,3 @@ export declare class CellValue {
     static text(value: any): CellValue;
     static HTML(value: any): CellValue;
 }
-//# sourceMappingURL=cell-value.d.ts.map

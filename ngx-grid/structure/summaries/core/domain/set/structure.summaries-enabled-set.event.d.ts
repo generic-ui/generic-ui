@@ -6,4 +6,3 @@ export declare class StructureSummariesEnabledSetEvent extends StructureDomainEv
     constructor(aggregateId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
-//# sourceMappingURL=structure.summaries-enabled-set.event.d.ts.map

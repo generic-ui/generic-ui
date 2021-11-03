@@ -7,4 +7,3 @@ export declare class SetGroupsCommand extends CompositionCommand {
     constructor(compositionId: CompositionId, configs: Array<ColumnConfig | MultiColumnConfig>);
     getConfigs(): Array<ColumnConfig | MultiColumnConfig>;
 }
-//# sourceMappingURL=set-groups.command.d.ts.map

@@ -4,7 +4,6 @@ import { SchemaEventRepository } from '../../../core/api/schema.event-repository
 import { SchemaReadModelRootId } from '../../../core/api/schema.read-model-root-id';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
-import * as i0 from "@angular/core";
 export declare class ThemeGridGate extends Gate implements OnChanges, OnInit {
     private readonly schemaId;
     private readonly schemaCommandInvoker;
@@ -16,7 +15,4 @@ export declare class ThemeGridGate extends Gate implements OnChanges, OnInit {
     constructor(schemaId: SchemaReadModelRootId, schemaCommandInvoker: SchemaCommandInvoker, schemaEventRepository: SchemaEventRepository);
     ngOnChanges(changes: NgChanges<ThemeGridGate>): void;
     ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ThemeGridGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ThemeGridGate, "gui-structure[verticalGrid][horizontalGrid]", never, { "verticalGrid": "verticalGrid"; "horizontalGrid": "horizontalGrid"; }, { "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; }, never>;
 }
-//# sourceMappingURL=theme-grid.gate.d.ts.map

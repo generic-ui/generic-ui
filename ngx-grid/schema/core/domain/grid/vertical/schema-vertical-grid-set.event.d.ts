@@ -5,4 +5,3 @@ export declare class SchemaVerticalGridSetEvent extends SchemaDomainEvent {
     constructor(schemaId: SchemaId, verticalGrid: boolean);
     getVerticalGrid(): boolean;
 }
-//# sourceMappingURL=schema-vertical-grid-set.event.d.ts.map

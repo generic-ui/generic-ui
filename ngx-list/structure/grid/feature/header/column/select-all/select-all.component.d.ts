@@ -4,7 +4,6 @@ import { FormationCommandInvoker } from '../../../../../source/core/api/formatio
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
 import { FormationWarehouse } from '../../../../../source/core/api/formation/formation.warehouse';
 import { RowSelectionModeRepository } from '../../../../../source/core/api/formation/mode/row-selection-mode.repository';
-import * as i0 from "@angular/core";
 export declare class SelectAllComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -18,7 +17,4 @@ export declare class SelectAllComponent extends SmartComponent implements OnInit
     ngOnInit(): void;
     toggleSelectAll(): void;
     protected getSelectorName(): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SelectAllComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectAllComponent, "div[gui-select-all]", never, {}, {}, never, never>;
 }
-//# sourceMappingURL=select-all.component.d.ts.map

@@ -9,4 +9,3 @@ export declare class FieldsInitedEvent extends StructureDomainEvent {
     fields: Array<Field>);
     getFields(): Array<Field>;
 }
-//# sourceMappingURL=fields-inited.event.d.ts.map

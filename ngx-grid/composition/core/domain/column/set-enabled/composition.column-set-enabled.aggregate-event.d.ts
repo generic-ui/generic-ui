@@ -8,4 +8,3 @@ export declare class CompositionColumnSetEnabledAggregateEvent extends Compositi
     toDomainEvent(): DomainEvent<CompositionId>;
     getActiveColumns(): Array<ActiveColumnEntity>;
 }
-//# sourceMappingURL=composition.column-set-enabled.aggregate-event.d.ts.map

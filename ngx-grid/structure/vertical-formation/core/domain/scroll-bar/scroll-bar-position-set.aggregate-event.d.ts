@@ -6,4 +6,3 @@ export declare class ScrollBarPositionSetAggregateEvent extends StructureAggrega
     constructor(schemaId: StructureId, position: number);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=scroll-bar-position-set.aggregate-event.d.ts.map

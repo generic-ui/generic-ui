@@ -10,4 +10,3 @@ export declare abstract class SummariesCalculator<T, A extends SummariesValues> 
     abstract generateAggregatedValues(field: Field): A;
     calculate(fields: Array<Field>, items: Array<OriginItemEntity>): Map<string, A>;
 }
-//# sourceMappingURL=summaries.calculator.d.ts.map

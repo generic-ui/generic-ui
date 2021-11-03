@@ -14,4 +14,3 @@ export declare class Geometry {
     canOpenUpward(): boolean;
     private calculate;
 }
-//# sourceMappingURL=geometry.d.ts.map

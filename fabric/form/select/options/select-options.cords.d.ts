@@ -15,4 +15,3 @@ export declare class SelectOptionsCords {
     private calculateCords;
     private calculateDirection;
 }
-//# sourceMappingURL=select-options.cords.d.ts.map

@@ -5,4 +5,3 @@ export declare class AllFiltersRemovedAggregateEvent extends StructureAggregateE
     constructor(aggregateId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
-//# sourceMappingURL=all-filters-removed.aggregate-event.d.ts.map

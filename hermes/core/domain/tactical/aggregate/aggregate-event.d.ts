@@ -10,4 +10,3 @@ export declare abstract class AggregateEvent<T extends AggregateId> {
     equals(event: AggregateEvent<T>): boolean;
     equalsByType(event: AggregateEvent<T>): boolean;
 }
-//# sourceMappingURL=aggregate-event.d.ts.map

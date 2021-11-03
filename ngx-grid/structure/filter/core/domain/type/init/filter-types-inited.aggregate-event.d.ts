@@ -8,4 +8,3 @@ export declare class FilterTypesInitedAggregateEvent extends StructureAggregateE
     toDomainEvent(): DomainEvent<StructureId>;
     getFilterTypes(): Map<string, Array<FilterTypeReadModel>>;
 }
-//# sourceMappingURL=filter-types-inited.aggregate-event.d.ts.map

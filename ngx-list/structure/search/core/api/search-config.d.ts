@@ -4,4 +4,3 @@ export interface SearchConfig {
     placeholder?: string;
     phrase?: string;
 }
-//# sourceMappingURL=search-config.d.ts.map

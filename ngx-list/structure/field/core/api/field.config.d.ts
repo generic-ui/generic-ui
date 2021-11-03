@@ -8,4 +8,3 @@ export interface FieldConfig {
     summaries?: ColumnSummariesConfig;
     sorting?: ColumnSortingConfig;
 }
-//# sourceMappingURL=field.config.d.ts.map

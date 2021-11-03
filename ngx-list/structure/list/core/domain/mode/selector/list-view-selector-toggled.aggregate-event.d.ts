@@ -6,4 +6,3 @@ export declare class ListViewSelectorToggledAggregateEvent extends ListViewAggre
     constructor(listViewId: ListViewId, enabled: boolean);
     toDomainEvent(): DomainEvent<ListViewId>;
 }
-//# sourceMappingURL=list-view-selector-toggled.aggregate-event.d.ts.map
