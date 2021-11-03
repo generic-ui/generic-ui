@@ -1,6 +1,7 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FabricTooltipComponent } from './fabric-tooltip.component';
 import { FabricReactive } from '../../common/fabric-reactive';
+import * as i0 from "@angular/core";
 export declare class FabricTooltipDirective extends FabricReactive implements OnInit, OnDestroy {
     private readonly componentFactoryResolver;
     private readonly injector;
@@ -18,4 +19,7 @@ export declare class FabricTooltipDirective extends FabricReactive implements On
     private show;
     private hide;
     private calculateCords;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricTooltipDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricTooltipDirective, "[gui-tooltip]", ["guiTooltip"], { "text": "gui-tooltip"; }, {}, never>;
 }
+//# sourceMappingURL=fabric-tooltip.directive.d.ts.map

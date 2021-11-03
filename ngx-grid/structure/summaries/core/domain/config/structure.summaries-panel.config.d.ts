@@ -8,3 +8,4 @@ export declare class StructureSummariesPanelConfig {
     isTopEnabled(): boolean;
     isBottomEnabled(): boolean;
 }
+//# sourceMappingURL=structure.summaries-panel.config.d.ts.map

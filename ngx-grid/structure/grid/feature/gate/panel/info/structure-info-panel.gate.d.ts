@@ -3,9 +3,13 @@ import { InfoPanelConfig } from '../../../../core/api/panel/info/info-panel.conf
 import { Gate } from '../../../../../../common/cdk/component/gate';
 import { StructureInfoPanelConfigService } from '../../../../core/api/panel/info/structure.info-panel-config.service';
 import { NgChanges } from '../../../../../../common/cdk/component/ng-changes';
+import * as i0 from "@angular/core";
 export declare class StructureInfoPanelGate extends Gate implements OnChanges {
     protected readonly structureInfoPanelConfigService: StructureInfoPanelConfigService;
     infoPanel: boolean | InfoPanelConfig;
     constructor(structureInfoPanelConfigService: StructureInfoPanelConfigService);
     ngOnChanges(changes: NgChanges<StructureInfoPanelGate>): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureInfoPanelGate, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureInfoPanelGate, "gui-structure[infoPanel]", never, { "infoPanel": "infoPanel"; }, {}, never>;
 }
+//# sourceMappingURL=structure-info-panel.gate.d.ts.map

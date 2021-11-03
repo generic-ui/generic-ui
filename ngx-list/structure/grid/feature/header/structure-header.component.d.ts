@@ -10,6 +10,7 @@ import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api
 import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
 import { Group } from '../../../../composition/core/api/group/group';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
+import * as i0 from "@angular/core";
 export declare class StructureHeaderComponent extends SmartComponent implements OnInit, AfterViewInit {
     private readonly changeDetectorRef;
     private readonly eventBus;
@@ -32,4 +33,7 @@ export declare class StructureHeaderComponent extends SmartComponent implements 
     ngOnInit(): void;
     ngAfterViewInit(): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderComponent, "div[gui-structure-header]", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=structure-header.component.d.ts.map

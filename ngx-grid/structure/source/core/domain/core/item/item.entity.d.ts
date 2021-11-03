@@ -15,3 +15,4 @@ export declare class ItemEntity {
     equals(entity: ItemEntity): boolean;
     equalsById(id: string): boolean;
 }
+//# sourceMappingURL=item.entity.d.ts.map

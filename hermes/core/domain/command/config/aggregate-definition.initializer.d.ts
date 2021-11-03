@@ -6,3 +6,4 @@ import { Injector } from '@angular/core';
 export declare class AggregateDefinitionInitializer<I extends AggregateId, A extends AggregateRoot<I>> {
     register(definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>): void;
 }
+//# sourceMappingURL=aggregate-definition.initializer.d.ts.map

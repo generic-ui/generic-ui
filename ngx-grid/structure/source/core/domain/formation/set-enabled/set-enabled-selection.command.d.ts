@@ -5,3 +5,4 @@ export declare class SetEnabledSelectionCommand extends StructureCommand {
     constructor(structureId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
+//# sourceMappingURL=set-enabled-selection.command.d.ts.map

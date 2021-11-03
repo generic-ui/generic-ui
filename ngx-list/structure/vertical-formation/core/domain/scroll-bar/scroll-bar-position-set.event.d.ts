@@ -5,3 +5,4 @@ export declare class ScrollBarPositionSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, position: number);
     getPosition(): number;
 }
+//# sourceMappingURL=scroll-bar-position-set.event.d.ts.map

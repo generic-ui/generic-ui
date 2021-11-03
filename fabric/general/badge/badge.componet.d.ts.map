@@ -1,0 +1,1 @@
+{"version":3,"file":"badge.componet.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/general/badge/badge.componet.ts"],"names":[],"mappings":"AAAA,OAAO,EAAsC,UAAU,EAAE,SAAS,EAAqB,MAAM,eAAe,CAAC;AAE7G,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;;AAGzC,qBAca,oBAAqB,SAAQ,SAAS;gBAEtC,UAAU,EAAE,UAAU,EAC/B,QAAQ,EAAE,SAAS;yCAHV,oBAAoB;2CAApB,oBAAoB;CAMhC"}

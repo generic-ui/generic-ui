@@ -6,3 +6,4 @@ export declare class AttributeModifier extends Modifier<AttributeModifierApi> {
     constructor(htmlElement?: HTMLElement);
     protected createModifier(htmlElement: HTMLElement): AttributeModifierApi;
 }
+//# sourceMappingURL=attribute-modifier.d.ts.map

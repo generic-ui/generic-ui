@@ -7,3 +7,4 @@ export declare class SchemaThemeSetAggregateEvent extends SchemaAggregateEvent {
     constructor(schemaId: SchemaId, theme: SchemaTheme);
     toDomainEvent(): DomainEvent<SchemaId>;
 }
+//# sourceMappingURL=schema-theme-set.aggregate-event.d.ts.map

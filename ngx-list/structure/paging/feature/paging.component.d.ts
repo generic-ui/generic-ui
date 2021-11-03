@@ -9,6 +9,7 @@ import { PagingPosition } from './paging-position';
 import { CssClassModifier } from '../../common/css-class/css-class.modifier';
 import { NgChanges } from '../../../common/cdk/component/ng-changes';
 import { StructureId } from '../../core/api/structure.id';
+import * as i0 from "@angular/core";
 export declare class PagingComponent extends SmartComponent implements OnInit {
     private readonly elRef;
     private readonly changeDetectorRef;
@@ -34,4 +35,7 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     prevPage(): void;
     private calculatePagingVisibility;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<PagingComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never>;
 }
+//# sourceMappingURL=paging.component.d.ts.map

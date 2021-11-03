@@ -12,3 +12,4 @@ export declare class UniqueValuesReadModel {
     isIndeterminate(fieldId: FieldId): boolean;
     private calculateSelection;
 }
+//# sourceMappingURL=unique-values.read-model.d.ts.map

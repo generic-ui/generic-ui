@@ -1,25 +1,14 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, ViewEncapsulation } from '@angular/core';
 import { AbstractSpinner } from '../abstract-spinner';
 import { SpinnerMode } from './spinner-mode';
+import * as i0 from "@angular/core";
 export class FabricProgressSpinnerComponent extends AbstractSpinner {
-    /**
-     * @param {?} elementRef
-     * @param {?} renderer
-     */
     constructor(elementRef, renderer) {
         super(elementRef, renderer);
         this.value = 0;
         this.animationsDisabled = true;
         this.secondCircleDisabled = true;
     }
-    /**
-     * @param {?} changes
-     * @return {?}
-     */
     ngOnChanges(changes) {
         super.ngOnChanges(changes);
         this.calculateValuePercentage(this.circumference, this.value);
@@ -42,53 +31,55 @@ export class FabricProgressSpinnerComponent extends AbstractSpinner {
             this.removeClass('gui-second-circle-disabled');
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.calculateValuePercentage(this.circumference, this.value);
     }
-    /**
-     * @protected
-     * @param {?} circumference
-     * @param {?} value
-     * @return {?}
-     */
     calculateValuePercentage(circumference, value) {
         this.valuePercentage = circumference - (value * circumference / 100);
     }
 }
-FabricProgressSpinnerComponent.decorators = [
-    { type: Component, args: [{
+FabricProgressSpinnerComponent.ɵfac = function FabricProgressSpinnerComponent_Factory(t) { return new (t || FabricProgressSpinnerComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2)); };
+FabricProgressSpinnerComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: FabricProgressSpinnerComponent, selectors: [["gui-progress-spinner"]], inputs: { value: "value", mode: "mode", color: "color" }, features: [i0.ɵɵInheritDefinitionFeature, i0.ɵɵNgOnChangesFeature], decls: 5, vars: 30, consts: [[1, "gui-progress-spinner"], [1, "circle-outer"], ["cx", "50%", "cy", "50%"], [1, "circle-inner"]], template: function FabricProgressSpinnerComponent_Template(rf, ctx) { if (rf & 1) {
+        i0.ɵɵelementStart(0, "div", 0);
+        i0.ɵɵnamespaceSVG();
+        i0.ɵɵelementStart(1, "svg", 1);
+        i0.ɵɵelement(2, "circle", 2);
+        i0.ɵɵelementEnd();
+        i0.ɵɵelementStart(3, "svg", 3);
+        i0.ɵɵelement(4, "circle", 2);
+        i0.ɵɵelementEnd();
+        i0.ɵɵelementEnd();
+    } if (rf & 2) {
+        i0.ɵɵstyleProp("height", ctx.circleSize, "px")("width", ctx.circleSize, "px");
+        i0.ɵɵadvance(1);
+        i0.ɵɵstyleProp("height", ctx.circleSize, "px")("width", ctx.circleSize, "px");
+        i0.ɵɵadvance(1);
+        i0.ɵɵstyleProp("stroke-dasharray", ctx.circumference)("stroke-dashoffset", ctx.valuePercentage)("stroke-width", ctx.width)("stroke", ctx.color);
+        i0.ɵɵattribute("r", ctx.r);
+        i0.ɵɵadvance(1);
+        i0.ɵɵstyleProp("height", ctx.circleSize, "px")("width", ctx.circleSize, "px");
+        i0.ɵɵadvance(1);
+        i0.ɵɵstyleProp("stroke-dasharray", ctx.croppedCircle)("stroke-dashoffset", ctx.circumference)("stroke-width", ctx.width)("stroke", ctx.color);
+        i0.ɵɵattribute("r", ctx.r);
+    } }, styles: [".gui-progress-spinner{display:inline-block;margin:4px;position:relative;-ms-transform:rotate(-90deg);transform:rotate(-90deg)}.gui-progress-spinner circle{fill:transparent;stroke:#999}.gui-progress-spinner svg{position:absolute}.gui-progress-spinner .circle-inner{animation:gui-spin-reverse 2s infinite linear forwards reverse}.gui-progress-spinner .circle-outer{-webkit-animation:gui-spin 2s infinite linear forwards;animation:gui-spin 2s infinite linear forwards}.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner .circle-outer{-webkit-animation:none;animation:none}.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner.gui-progress-spinner{-webkit-animation:none;animation:none}.gui-second-circle-disabled .gui-progress-spinner.gui-progress-spinner .circle-inner{opacity:0}.gui-primary .gui-progress-spinner.gui-progress-spinner circle{stroke:#2185d0}.gui-secondary .gui-progress-spinner.gui-progress-spinner circle{stroke:#3cb371}\n", ".gui-material .gui-progress-spinner circle{stroke:#3949ab}.gui-material .gui-primary .gui-progress-spinner circle{stroke:#6200ee}.gui-material .gui-secondary .gui-progress-spinner circle{stroke:#0097a7}\n", ".gui-dark .gui-progress-spinner circle{stroke:#424242}.gui-dark .gui-primary .gui-progress-spinner circle{stroke:#ce93d8}.gui-dark .gui-secondary .gui-progress-spinner circle{stroke:#80cbc4}\n"], encapsulation: 2, changeDetection: 0 });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FabricProgressSpinnerComponent, [{
+        type: Component,
+        args: [{
                 selector: 'gui-progress-spinner',
-                template: "<div\n\t[style.height.px]=\"circleSize\"\n\t[style.width.px]=\"circleSize\"\n\tclass=\"gui-progress-spinner\">\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-outer\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"circumference\"\n\t\t\t[style.stroke-dashoffset]=\"valuePercentage\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n\t<svg\n\t\t[style.height.px]=\"circleSize\"\n\t\t[style.width.px]=\"circleSize\"\n\t\tclass=\"circle-inner\">\n\t\t<circle\n\t\t\t[attr.r]=\"r\"\n\t\t\t[style.stroke-dasharray]=\"croppedCircle\"\n\t\t\t[style.stroke-dashoffset]=\"circumference\"\n\t\t\t[style.stroke-width]=\"width\"\n\t\t\t[style.stroke]=\"color\"\n\t\t\tcx=\"50%\"\n\t\t\tcy=\"50%\">\n\t\t</circle>\n\t</svg>\n</div>\n",
+                templateUrl: './progress-spinner.component.html',
+                styleUrls: [
+                    './progress-spinner.ngx.scss',
+                    './themes/progress-spinner.material.ngx.scss',
+                    './themes/progress-spinner.dark.ngx.scss'
+                ],
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-                styles: [".gui-progress-spinner{display:inline-block;margin:4px;position:relative;-ms-transform:rotate(-90deg);transform:rotate(-90deg)}.gui-progress-spinner circle{fill:transparent;stroke:#999}.gui-progress-spinner svg{position:absolute}.gui-progress-spinner .circle-inner{animation:2s linear infinite reverse forwards gui-spin-reverse}.gui-progress-spinner .circle-outer{-webkit-animation:2s linear infinite forwards gui-spin;animation:2s linear infinite forwards gui-spin}.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner .circle-outer,.gui-animations-disabled .gui-progress-spinner.gui-progress-spinner.gui-progress-spinner{-webkit-animation:none;animation:none}.gui-second-circle-disabled .gui-progress-spinner.gui-progress-spinner .circle-inner{opacity:0}.gui-primary .gui-progress-spinner.gui-progress-spinner circle{stroke:#2185d0}.gui-secondary .gui-progress-spinner.gui-progress-spinner circle{stroke:#3cb371}", ".gui-material .gui-progress-spinner circle{stroke:#3949ab}.gui-material .gui-primary .gui-progress-spinner circle{stroke:#6200ee}.gui-material .gui-secondary .gui-progress-spinner circle{stroke:#0097a7}", ".gui-dark .gui-progress-spinner circle{stroke:#424242}.gui-dark .gui-primary .gui-progress-spinner circle{stroke:#ce93d8}.gui-dark .gui-secondary .gui-progress-spinner circle{stroke:#80cbc4}"]
-            }] }
-];
-/** @nocollapse */
-FabricProgressSpinnerComponent.ctorParameters = () => [
-    { type: ElementRef },
-    { type: Renderer2 }
-];
-FabricProgressSpinnerComponent.propDecorators = {
-    value: [{ type: Input }],
-    mode: [{ type: Input }],
-    color: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.value;
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.mode;
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.color;
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.animationsDisabled;
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.secondCircleDisabled;
-    /** @type {?} */
-    FabricProgressSpinnerComponent.prototype.valuePercentage;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZ3Jlc3Mtc3Bpbm5lci5jb21wb25lbnQuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9mYWJyaWMvIiwic291cmNlcyI6WyJnZW5lcmFsL3NwaW5uZXJzL3Byb2dyZXNzLXNwaW5uZXIvcHJvZ3Jlc3Mtc3Bpbm5lci5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxTQUFTLEVBQUUsVUFBVSxFQUFFLEtBQUssRUFBcUIsU0FBUyxFQUFpQixpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUV0SixPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0scUJBQXFCLENBQUM7QUFDdEQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLGdCQUFnQixDQUFDO0FBYTdDLE1BQU0sT0FBTyw4QkFBK0IsU0FBUSxlQUFlOzs7OztJQWlCbEUsWUFBWSxVQUFzQixFQUMvQixRQUFtQjtRQUNyQixLQUFLLENBQUMsVUFBVSxFQUFFLFFBQVEsQ0FBQyxDQUFDO1FBaEI3QixVQUFLLEdBQVcsQ0FBQyxDQUFDO1FBUWxCLHVCQUFrQixHQUFZLElBQUksQ0FBQztRQUVuQyx5QkFBb0IsR0FBWSxJQUFJLENBQUM7SUFPckMsQ0FBQzs7Ozs7SUFFRCxXQUFXLENBQUMsT0FBc0I7UUFDakMsS0FBSyxDQUFDLFdBQVcsQ0FBQyxPQUFPLENBQUMsQ0FBQztRQUUzQixJQUFJLENBQUMsd0JBQXdCLENBQUMsSUFBSSxDQUFDLGFBQWEsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7UUFFOUQsSUFBSSxJQUFJLENBQUMsSUFBSSxLQUFLLFdBQVcsQ0FBQyxJQUFJLEVBQUU7WUFDbkMsSUFBSSxDQUFDLGtCQUFrQixHQUFHLEtBQUssQ0FBQztZQUNoQyxJQUFJLENBQUMsb0JBQW9CLEdBQUcsS0FBSyxDQUFDO1lBQ2xDLElBQUksQ0FBQyxLQUFLLEdBQUcsQ0FBQyxDQUFDO1lBQ2YsSUFBSSxDQUFDLGFBQWEsR0FBRyxJQUFJLENBQUMsYUFBYSxDQUFDO1NBQ3hDO1FBRUQsSUFBSSxJQUFJLENBQUMsa0JBQWtCLEVBQUU7WUFDNUIsSUFBSSxDQUFDLFFBQVEsQ0FBQyx5QkFBeUIsQ0FBQyxDQUFDO1NBQ3pDO2FBQU07WUFDTixJQUFJLENBQUMsV0FBVyxDQUFDLHlCQUF5QixDQUFDLENBQUM7U0FDNUM7UUFFRCxJQUFJLElBQUksQ0FBQyxvQkFBb0IsRUFBRTtZQUM5QixJQUFJLENBQUMsUUFBUSxDQUFDLDRCQUE0QixDQUFDLENBQUM7U0FDNUM7YUFBTTtZQUNOLElBQUksQ0FBQyxXQUFXLENBQUMsNEJBQTRCLENBQUMsQ0FBQztTQUMvQztJQUNGLENBQUM7Ozs7SUFFRCxRQUFRO1FBQ1AsSUFBSSxDQUFDLHdCQUF3QixDQUFDLElBQUksQ0FBQyxhQUFhLEVBQUUsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQy9ELENBQUM7Ozs7Ozs7SUFFUyx3QkFBd0IsQ0FBQyxhQUFxQixFQUFFLEtBQWE7UUFDdEUsSUFBSSxDQUFDLGVBQWUsR0FBRyxhQUFhLEdBQUcsQ0FBQyxLQUFLLEdBQUcsYUFBYSxHQUFHLEdBQUcsQ0FBQyxDQUFDO0lBQ3RFLENBQUM7OztZQWhFRCxTQUFTLFNBQUM7Z0JBQ1YsUUFBUSxFQUFFLHNCQUFzQjtnQkFDaEMsODNCQUFnRDtnQkFNaEQsZUFBZSxFQUFFLHVCQUF1QixDQUFDLE1BQU07Z0JBQy9DLGFBQWEsRUFBRSxpQkFBaUIsQ0FBQyxJQUFJOzthQUNyQzs7OztZQWY0QyxVQUFVO1lBQTRCLFNBQVM7OztvQkFrQjFGLEtBQUs7bUJBR0wsS0FBSztvQkFHTCxLQUFLOzs7O0lBTk4sK0NBQ2tCOztJQUVsQiw4Q0FDa0I7O0lBRWxCLCtDQUNjOztJQUVkLDREQUFtQzs7SUFFbkMsOERBQXFDOztJQUVyQyx5REFBd0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ29tcG9uZW50LCBFbGVtZW50UmVmLCBJbnB1dCwgT25DaGFuZ2VzLCBPbkluaXQsIFJlbmRlcmVyMiwgU2ltcGxlQ2hhbmdlcywgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgQWJzdHJhY3RTcGlubmVyIH0gZnJvbSAnLi4vYWJzdHJhY3Qtc3Bpbm5lcic7XG5pbXBvcnQgeyBTcGlubmVyTW9kZSB9IGZyb20gJy4vc3Bpbm5lci1tb2RlJztcblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZ3VpLXByb2dyZXNzLXNwaW5uZXInLFxuXHR0ZW1wbGF0ZVVybDogJy4vcHJvZ3Jlc3Mtc3Bpbm5lci5jb21wb25lbnQuaHRtbCcsXG5cdHN0eWxlVXJsczogW1xuXHRcdCcuL3Byb2dyZXNzLXNwaW5uZXIubmd4LnNjc3MnLFxuXHRcdCcuL3RoZW1lcy9wcm9ncmVzcy1zcGlubmVyLm1hdGVyaWFsLm5neC5zY3NzJyxcblx0XHQnLi90aGVtZXMvcHJvZ3Jlc3Mtc3Bpbm5lci5kYXJrLm5neC5zY3NzJ1xuXHRdLFxuXHRjaGFuZ2VEZXRlY3Rpb246IENoYW5nZURldGVjdGlvblN0cmF0ZWd5Lk9uUHVzaCxcblx0ZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZVxufSlcbmV4cG9ydCBjbGFzcyBGYWJyaWNQcm9ncmVzc1NwaW5uZXJDb21wb25lbnQgZXh0ZW5kcyBBYnN0cmFjdFNwaW5uZXIgaW1wbGVtZW50cyBPbkNoYW5nZXMsIE9uSW5pdCB7XG5cblx0QElucHV0KClcblx0dmFsdWU6IG51bWJlciA9IDA7XG5cblx0QElucHV0KClcblx0bW9kZTogU3Bpbm5lck1vZGU7XG5cblx0QElucHV0KClcblx0Y29sb3I6IHN0cmluZztcblxuXHRhbmltYXRpb25zRGlzYWJsZWQ6IGJvb2xlYW4gPSB0cnVlO1xuXG5cdHNlY29uZENpcmNsZURpc2FibGVkOiBib29sZWFuID0gdHJ1ZTtcblxuXHR2YWx1ZVBlcmNlbnRhZ2U6IG51bWJlcjtcblxuXHRjb25zdHJ1Y3RvcihlbGVtZW50UmVmOiBFbGVtZW50UmVmLFxuXHRcdFx0XHRyZW5kZXJlcjogUmVuZGVyZXIyKSB7XG5cdFx0c3VwZXIoZWxlbWVudFJlZiwgcmVuZGVyZXIpO1xuXHR9XG5cblx0bmdPbkNoYW5nZXMoY2hhbmdlczogU2ltcGxlQ2hhbmdlcykge1xuXHRcdHN1cGVyLm5nT25DaGFuZ2VzKGNoYW5nZXMpO1xuXG5cdFx0dGhpcy5jYWxjdWxhdGVWYWx1ZVBlcmNlbnRhZ2UodGhpcy5jaXJjdW1mZXJlbmNlLCB0aGlzLnZhbHVlKTtcblxuXHRcdGlmICh0aGlzLm1vZGUgPT09IFNwaW5uZXJNb2RlLlNwaW4pIHtcblx0XHRcdHRoaXMuYW5pbWF0aW9uc0Rpc2FibGVkID0gZmFsc2U7XG5cdFx0XHR0aGlzLnNlY29uZENpcmNsZURpc2FibGVkID0gZmFsc2U7XG5cdFx0XHR0aGlzLnZhbHVlID0gMDtcblx0XHRcdHRoaXMuY2lyY3VtZmVyZW5jZSA9IHRoaXMuY3JvcHBlZENpcmNsZTtcblx0XHR9XG5cblx0XHRpZiAodGhpcy5hbmltYXRpb25zRGlzYWJsZWQpIHtcblx0XHRcdHRoaXMuYWRkQ2xhc3MoJ2d1aS1hbmltYXRpb25zLWRpc2FibGVkJyk7XG5cdFx0fSBlbHNlIHtcblx0XHRcdHRoaXMucmVtb3ZlQ2xhc3MoJ2d1aS1hbmltYXRpb25zLWRpc2FibGVkJyk7XG5cdFx0fVxuXG5cdFx0aWYgKHRoaXMuc2Vjb25kQ2lyY2xlRGlzYWJsZWQpIHtcblx0XHRcdHRoaXMuYWRkQ2xhc3MoJ2d1aS1zZWNvbmQtY2lyY2xlLWRpc2FibGVkJyk7XG5cdFx0fSBlbHNlIHtcblx0XHRcdHRoaXMucmVtb3ZlQ2xhc3MoJ2d1aS1zZWNvbmQtY2lyY2xlLWRpc2FibGVkJyk7XG5cdFx0fVxuXHR9XG5cblx0bmdPbkluaXQoKSB7XG5cdFx0dGhpcy5jYWxjdWxhdGVWYWx1ZVBlcmNlbnRhZ2UodGhpcy5jaXJjdW1mZXJlbmNlLCB0aGlzLnZhbHVlKTtcblx0fVxuXG5cdHByb3RlY3RlZCBjYWxjdWxhdGVWYWx1ZVBlcmNlbnRhZ2UoY2lyY3VtZmVyZW5jZTogbnVtYmVyLCB2YWx1ZTogbnVtYmVyKSB7XG5cdFx0dGhpcy52YWx1ZVBlcmNlbnRhZ2UgPSBjaXJjdW1mZXJlbmNlIC0gKHZhbHVlICogY2lyY3VtZmVyZW5jZSAvIDEwMCk7XG5cdH1cbn1cbiJdfQ==
+                encapsulation: ViewEncapsulation.None
+            }]
+    }], function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, { value: [{
+            type: Input
+        }], mode: [{
+            type: Input
+        }], color: [{
+            type: Input
+        }] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJvZ3Jlc3Mtc3Bpbm5lci5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvZ3VpLWZhYnJpYy9zcmMvZ2VuZXJhbC9zcGlubmVycy9wcm9ncmVzcy1zcGlubmVyL3Byb2dyZXNzLXNwaW5uZXIuY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL2d1aS1mYWJyaWMvc3JjL2dlbmVyYWwvc3Bpbm5lcnMvcHJvZ3Jlc3Mtc3Bpbm5lci9wcm9ncmVzcy1zcGlubmVyLmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxTQUFTLEVBQWMsS0FBSyxFQUErQyxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUV0SixPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0scUJBQXFCLENBQUM7QUFDdEQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLGdCQUFnQixDQUFDOztBQWE3QyxNQUFNLE9BQU8sOEJBQStCLFNBQVEsZUFBZTtJQWlCbEUsWUFBWSxVQUFzQixFQUMvQixRQUFtQjtRQUNyQixLQUFLLENBQUMsVUFBVSxFQUFFLFFBQVEsQ0FBQyxDQUFDO1FBaEI3QixVQUFLLEdBQVcsQ0FBQyxDQUFDO1FBUWxCLHVCQUFrQixHQUFZLElBQUksQ0FBQztRQUVuQyx5QkFBb0IsR0FBWSxJQUFJLENBQUM7SUFPckMsQ0FBQztJQUVELFdBQVcsQ0FBQyxPQUFzQjtRQUNqQyxLQUFLLENBQUMsV0FBVyxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBRTNCLElBQUksQ0FBQyx3QkFBd0IsQ0FBQyxJQUFJLENBQUMsYUFBYSxFQUFFLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUU5RCxJQUFJLElBQUksQ0FBQyxJQUFJLEtBQUssV0FBVyxDQUFDLElBQUksRUFBRTtZQUNuQyxJQUFJLENBQUMsa0JBQWtCLEdBQUcsS0FBSyxDQUFDO1lBQ2hDLElBQUksQ0FBQyxvQkFBb0IsR0FBRyxLQUFLLENBQUM7WUFDbEMsSUFBSSxDQUFDLEtBQUssR0FBRyxDQUFDLENBQUM7WUFDZixJQUFJLENBQUMsYUFBYSxHQUFHLElBQUksQ0FBQyxhQUFhLENBQUM7U0FDeEM7UUFFRCxJQUFJLElBQUksQ0FBQyxrQkFBa0IsRUFBRTtZQUM1QixJQUFJLENBQUMsUUFBUSxDQUFDLHlCQUF5QixDQUFDLENBQUM7U0FDekM7YUFBTTtZQUNOLElBQUksQ0FBQyxXQUFXLENBQUMseUJBQXlCLENBQUMsQ0FBQztTQUM1QztRQUVELElBQUksSUFBSSxDQUFDLG9CQUFvQixFQUFFO1lBQzlCLElBQUksQ0FBQyxRQUFRLENBQUMsNEJBQTRCLENBQUMsQ0FBQztTQUM1QzthQUFNO1lBQ04sSUFBSSxDQUFDLFdBQVcsQ0FBQyw0QkFBNEIsQ0FBQyxDQUFDO1NBQy9DO0lBQ0YsQ0FBQztJQUVELFFBQVE7UUFDUCxJQUFJLENBQUMsd0JBQXdCLENBQUMsSUFBSSxDQUFDLGFBQWEsRUFBRSxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDL0QsQ0FBQztJQUVTLHdCQUF3QixDQUFDLGFBQXFCLEVBQUUsS0FBYTtRQUN0RSxJQUFJLENBQUMsZUFBZSxHQUFHLGFBQWEsR0FBRyxDQUFDLEtBQUssR0FBRyxhQUFhLEdBQUcsR0FBRyxDQUFDLENBQUM7SUFDdEUsQ0FBQzs7NEdBckRXLDhCQUE4QjtpRkFBOUIsOEJBQThCO1FDaEIzQyw4QkFHOEI7UUFDN0IsbUJBR3NCO1FBSHRCLDhCQUdzQjtRQUNyQiw0QkFRUztRQUNWLGlCQUFNO1FBQ04sOEJBR3NCO1FBQ3JCLDRCQVFTO1FBQ1YsaUJBQU07UUFDUCxpQkFBTTs7UUEvQkwsOENBQThCLCtCQUFBO1FBSTdCLGVBQThCO1FBQTlCLDhDQUE4QiwrQkFBQTtRQUs3QixlQUF3QztRQUF4QyxxREFBd0MsMENBQUEsMkJBQUEscUJBQUE7UUFEeEMsMEJBQVk7UUFVYixlQUE4QjtRQUE5Qiw4Q0FBOEIsK0JBQUE7UUFLN0IsZUFBd0M7UUFBeEMscURBQXdDLHdDQUFBLDJCQUFBLHFCQUFBO1FBRHhDLDBCQUFZOzt1RkRQRiw4QkFBOEI7Y0FYMUMsU0FBUztlQUFDO2dCQUNWLFFBQVEsRUFBRSxzQkFBc0I7Z0JBQ2hDLFdBQVcsRUFBRSxtQ0FBbUM7Z0JBQ2hELFNBQVMsRUFBRTtvQkFDViw2QkFBNkI7b0JBQzdCLDZDQUE2QztvQkFDN0MseUNBQXlDO2lCQUN6QztnQkFDRCxlQUFlLEVBQUUsdUJBQXVCLENBQUMsTUFBTTtnQkFDL0MsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUk7YUFDckM7cUZBSUEsS0FBSztrQkFESixLQUFLO1lBSU4sSUFBSTtrQkFESCxLQUFLO1lBSU4sS0FBSztrQkFESixLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksIENvbXBvbmVudCwgRWxlbWVudFJlZiwgSW5wdXQsIE9uQ2hhbmdlcywgT25Jbml0LCBSZW5kZXJlcjIsIFNpbXBsZUNoYW5nZXMsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEFic3RyYWN0U3Bpbm5lciB9IGZyb20gJy4uL2Fic3RyYWN0LXNwaW5uZXInO1xuaW1wb3J0IHsgU3Bpbm5lck1vZGUgfSBmcm9tICcuL3NwaW5uZXItbW9kZSc7XG5cbkBDb21wb25lbnQoe1xuXHRzZWxlY3RvcjogJ2d1aS1wcm9ncmVzcy1zcGlubmVyJyxcblx0dGVtcGxhdGVVcmw6ICcuL3Byb2dyZXNzLXNwaW5uZXIuY29tcG9uZW50Lmh0bWwnLFxuXHRzdHlsZVVybHM6IFtcblx0XHQnLi9wcm9ncmVzcy1zcGlubmVyLm5neC5zY3NzJyxcblx0XHQnLi90aGVtZXMvcHJvZ3Jlc3Mtc3Bpbm5lci5tYXRlcmlhbC5uZ3guc2NzcycsXG5cdFx0Jy4vdGhlbWVzL3Byb2dyZXNzLXNwaW5uZXIuZGFyay5uZ3guc2Nzcydcblx0XSxcblx0Y2hhbmdlRGV0ZWN0aW9uOiBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneS5PblB1c2gsXG5cdGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmVcbn0pXG5leHBvcnQgY2xhc3MgRmFicmljUHJvZ3Jlc3NTcGlubmVyQ29tcG9uZW50IGV4dGVuZHMgQWJzdHJhY3RTcGlubmVyIGltcGxlbWVudHMgT25DaGFuZ2VzLCBPbkluaXQge1xuXG5cdEBJbnB1dCgpXG5cdHZhbHVlOiBudW1iZXIgPSAwO1xuXG5cdEBJbnB1dCgpXG5cdG1vZGU6IFNwaW5uZXJNb2RlO1xuXG5cdEBJbnB1dCgpXG5cdGNvbG9yOiBzdHJpbmc7XG5cblx0YW5pbWF0aW9uc0Rpc2FibGVkOiBib29sZWFuID0gdHJ1ZTtcblxuXHRzZWNvbmRDaXJjbGVEaXNhYmxlZDogYm9vbGVhbiA9IHRydWU7XG5cblx0dmFsdWVQZXJjZW50YWdlOiBudW1iZXI7XG5cblx0Y29uc3RydWN0b3IoZWxlbWVudFJlZjogRWxlbWVudFJlZixcblx0XHRcdFx0cmVuZGVyZXI6IFJlbmRlcmVyMikge1xuXHRcdHN1cGVyKGVsZW1lbnRSZWYsIHJlbmRlcmVyKTtcblx0fVxuXG5cdG5nT25DaGFuZ2VzKGNoYW5nZXM6IFNpbXBsZUNoYW5nZXMpIHtcblx0XHRzdXBlci5uZ09uQ2hhbmdlcyhjaGFuZ2VzKTtcblxuXHRcdHRoaXMuY2FsY3VsYXRlVmFsdWVQZXJjZW50YWdlKHRoaXMuY2lyY3VtZmVyZW5jZSwgdGhpcy52YWx1ZSk7XG5cblx0XHRpZiAodGhpcy5tb2RlID09PSBTcGlubmVyTW9kZS5TcGluKSB7XG5cdFx0XHR0aGlzLmFuaW1hdGlvbnNEaXNhYmxlZCA9IGZhbHNlO1xuXHRcdFx0dGhpcy5zZWNvbmRDaXJjbGVEaXNhYmxlZCA9IGZhbHNlO1xuXHRcdFx0dGhpcy52YWx1ZSA9IDA7XG5cdFx0XHR0aGlzLmNpcmN1bWZlcmVuY2UgPSB0aGlzLmNyb3BwZWRDaXJjbGU7XG5cdFx0fVxuXG5cdFx0aWYgKHRoaXMuYW5pbWF0aW9uc0Rpc2FibGVkKSB7XG5cdFx0XHR0aGlzLmFkZENsYXNzKCdndWktYW5pbWF0aW9ucy1kaXNhYmxlZCcpO1xuXHRcdH0gZWxzZSB7XG5cdFx0XHR0aGlzLnJlbW92ZUNsYXNzKCdndWktYW5pbWF0aW9ucy1kaXNhYmxlZCcpO1xuXHRcdH1cblxuXHRcdGlmICh0aGlzLnNlY29uZENpcmNsZURpc2FibGVkKSB7XG5cdFx0XHR0aGlzLmFkZENsYXNzKCdndWktc2Vjb25kLWNpcmNsZS1kaXNhYmxlZCcpO1xuXHRcdH0gZWxzZSB7XG5cdFx0XHR0aGlzLnJlbW92ZUNsYXNzKCdndWktc2Vjb25kLWNpcmNsZS1kaXNhYmxlZCcpO1xuXHRcdH1cblx0fVxuXG5cdG5nT25Jbml0KCkge1xuXHRcdHRoaXMuY2FsY3VsYXRlVmFsdWVQZXJjZW50YWdlKHRoaXMuY2lyY3VtZmVyZW5jZSwgdGhpcy52YWx1ZSk7XG5cdH1cblxuXHRwcm90ZWN0ZWQgY2FsY3VsYXRlVmFsdWVQZXJjZW50YWdlKGNpcmN1bWZlcmVuY2U6IG51bWJlciwgdmFsdWU6IG51bWJlcikge1xuXHRcdHRoaXMudmFsdWVQZXJjZW50YWdlID0gY2lyY3VtZmVyZW5jZSAtICh2YWx1ZSAqIGNpcmN1bWZlcmVuY2UgLyAxMDApO1xuXHR9XG59XG4iLCI8ZGl2XG5cdFtzdHlsZS5oZWlnaHQucHhdPVwiY2lyY2xlU2l6ZVwiXG5cdFtzdHlsZS53aWR0aC5weF09XCJjaXJjbGVTaXplXCJcblx0Y2xhc3M9XCJndWktcHJvZ3Jlc3Mtc3Bpbm5lclwiPlxuXHQ8c3ZnXG5cdFx0W3N0eWxlLmhlaWdodC5weF09XCJjaXJjbGVTaXplXCJcblx0XHRbc3R5bGUud2lkdGgucHhdPVwiY2lyY2xlU2l6ZVwiXG5cdFx0Y2xhc3M9XCJjaXJjbGUtb3V0ZXJcIj5cblx0XHQ8Y2lyY2xlXG5cdFx0XHRbYXR0ci5yXT1cInJcIlxuXHRcdFx0W3N0eWxlLnN0cm9rZS1kYXNoYXJyYXldPVwiY2lyY3VtZmVyZW5jZVwiXG5cdFx0XHRbc3R5bGUuc3Ryb2tlLWRhc2hvZmZzZXRdPVwidmFsdWVQZXJjZW50YWdlXCJcblx0XHRcdFtzdHlsZS5zdHJva2Utd2lkdGhdPVwid2lkdGhcIlxuXHRcdFx0W3N0eWxlLnN0cm9rZV09XCJjb2xvclwiXG5cdFx0XHRjeD1cIjUwJVwiXG5cdFx0XHRjeT1cIjUwJVwiPlxuXHRcdDwvY2lyY2xlPlxuXHQ8L3N2Zz5cblx0PHN2Z1xuXHRcdFtzdHlsZS5oZWlnaHQucHhdPVwiY2lyY2xlU2l6ZVwiXG5cdFx0W3N0eWxlLndpZHRoLnB4XT1cImNpcmNsZVNpemVcIlxuXHRcdGNsYXNzPVwiY2lyY2xlLWlubmVyXCI+XG5cdFx0PGNpcmNsZVxuXHRcdFx0W2F0dHIucl09XCJyXCJcblx0XHRcdFtzdHlsZS5zdHJva2UtZGFzaGFycmF5XT1cImNyb3BwZWRDaXJjbGVcIlxuXHRcdFx0W3N0eWxlLnN0cm9rZS1kYXNob2Zmc2V0XT1cImNpcmN1bWZlcmVuY2VcIlxuXHRcdFx0W3N0eWxlLnN0cm9rZS13aWR0aF09XCJ3aWR0aFwiXG5cdFx0XHRbc3R5bGUuc3Ryb2tlXT1cImNvbG9yXCJcblx0XHRcdGN4PVwiNTAlXCJcblx0XHRcdGN5PVwiNTAlXCI+XG5cdFx0PC9jaXJjbGU+XG5cdDwvc3ZnPlxuPC9kaXY+XG4iXX0=

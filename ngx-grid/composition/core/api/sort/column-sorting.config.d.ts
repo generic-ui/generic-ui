@@ -4,3 +4,4 @@ export interface ColumnSortingConfig {
     matcher?: (item: any) => any;
     order?: ColumnSortingOrder;
 }
+//# sourceMappingURL=column-sorting.config.d.ts.map

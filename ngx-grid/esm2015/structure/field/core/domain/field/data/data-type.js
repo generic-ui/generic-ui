@@ -1,21 +1,10 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const DataType = {
-    UNKNOWN: 0,
-    NUMBER: 1,
-    STRING: 2,
-    BOOLEAN: 3,
-    DATE: 4,
-    CUSTOM: 5,
-};
-export { DataType };
-DataType[DataType.UNKNOWN] = 'UNKNOWN';
-DataType[DataType.NUMBER] = 'NUMBER';
-DataType[DataType.STRING] = 'STRING';
-DataType[DataType.BOOLEAN] = 'BOOLEAN';
-DataType[DataType.DATE] = 'DATE';
-DataType[DataType.CUSTOM] = 'CUSTOM';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0YS10eXBlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvZmllbGQvY29yZS9kb21haW4vZmllbGQvZGF0YS9kYXRhLXR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsVUFBTztJQUNQLFNBQU07SUFDTixTQUFNO0lBQ04sVUFBTztJQUNQLE9BQUk7SUFDSixTQUFNIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gRGF0YVR5cGUge1xuXHRVTktOT1dOLFxuXHROVU1CRVIsXG5cdFNUUklORyxcblx0Qk9PTEVBTixcblx0REFURSxcblx0Q1VTVE9NXG59XG4iXX0=
+export var DataType;
+(function (DataType) {
+    DataType[DataType["UNKNOWN"] = 0] = "UNKNOWN";
+    DataType[DataType["NUMBER"] = 1] = "NUMBER";
+    DataType[DataType["STRING"] = 2] = "STRING";
+    DataType[DataType["BOOLEAN"] = 3] = "BOOLEAN";
+    DataType[DataType["DATE"] = 4] = "DATE";
+    DataType[DataType["CUSTOM"] = 5] = "CUSTOM";
+})(DataType || (DataType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGF0YS10eXBlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1ncmlkL3NyYy9zdHJ1Y3R1cmUvZmllbGQvY29yZS9kb21haW4vZmllbGQvZGF0YS9kYXRhLXR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksUUFPWDtBQVBELFdBQVksUUFBUTtJQUNuQiw2Q0FBTyxDQUFBO0lBQ1AsMkNBQU0sQ0FBQTtJQUNOLDJDQUFNLENBQUE7SUFDTiw2Q0FBTyxDQUFBO0lBQ1AsdUNBQUksQ0FBQTtJQUNKLDJDQUFNLENBQUE7QUFDUCxDQUFDLEVBUFcsUUFBUSxLQUFSLFFBQVEsUUFPbkIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBEYXRhVHlwZSB7XG5cdFVOS05PV04sXG5cdE5VTUJFUixcblx0U1RSSU5HLFxuXHRCT09MRUFOLFxuXHREQVRFLFxuXHRDVVNUT01cbn1cbiJdfQ==

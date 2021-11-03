@@ -1,0 +1,1 @@
+{"version":3,"file":"chip.component.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/general/chip/chip.component.ts"],"names":[],"mappings":"AAAA,OAAO,EAAsC,UAAU,EAAE,SAAS,EAAqB,MAAM,eAAe,CAAC;AAE7G,OAAO,EAAE,SAAS,EAAE,MAAM,cAAc,CAAC;;AAEzC,qBAea,mBAAoB,SAAQ,SAAS;gBAErC,UAAU,EAAE,UAAU,EAC/B,QAAQ,EAAE,SAAS;yCAHV,mBAAmB;2CAAnB,mBAAmB;CAM/B"}

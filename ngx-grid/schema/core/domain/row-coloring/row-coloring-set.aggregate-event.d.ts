@@ -7,3 +7,4 @@ export declare class RowColoringSetAggregateEvent extends SchemaAggregateEvent {
     constructor(schemaId: SchemaId, rowColoring: SchemaRowColoring);
     toDomainEvent(): DomainEvent<SchemaId>;
 }
+//# sourceMappingURL=row-coloring-set.aggregate-event.d.ts.map

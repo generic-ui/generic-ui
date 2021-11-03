@@ -9,6 +9,7 @@ import { FabricDatePickerCalendarService } from './fabric-date-picker-calendar.s
 import { FabricDatePickerYearsService } from './years/fabric-date-picker-years.service';
 import { FabricDatePickerCompositionService } from '../fabric-date-picker-composition.service';
 import { FabricDatePickerComposition } from '../models/fabric-date-picker-composition';
+import * as i0 from "@angular/core";
 export declare class FabricDatePickerCalendarComponent extends FabricReactive implements OnInit {
     private readonly datePickerService;
     private readonly datePickerFormatService;
@@ -34,4 +35,7 @@ export declare class FabricDatePickerCalendarComponent extends FabricReactive im
     getCalendarView(): FabricCalendarView;
     isVisible(activeComposition: FabricDatePickerComposition, checkedComposition: FabricDatePickerComposition): boolean;
     private calculateDatePickerData;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerCalendarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerCalendarComponent, "gui-date-picker-toggle", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=fabric-date-picker-calendar.component.d.ts.map

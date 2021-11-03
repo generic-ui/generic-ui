@@ -1,34 +1,21 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Directive } from '@angular/core';
-import { PagingCommandInvoker } from '../../../../paging/core/api/paging.command-invoker';
-import { PagingEventRepository } from '../../../../paging/core/api/paging.event-repository';
-import { StructureId } from '../../../../core/api/structure.id';
 import { PagingGate } from '../../../../paging/feature/gate/paging.gate';
-import { CompositionId } from '../../../../../composition/core/api/composition.id';
+import * as i0 from "@angular/core";
+import * as i1 from "../../../../core/api/structure.id";
+import * as i2 from "../../../../../composition/core/api/composition.id";
+import * as i3 from "../../../../paging/core/api/paging.command-invoker";
+import * as i4 from "../../../../paging/core/api/paging.event-repository";
 export class ListViewPagingGate extends PagingGate {
-    /**
-     * @param {?} structureId
-     * @param {?} compositionId
-     * @param {?} structurePagingCommandDispatcher
-     * @param {?} pagingEventRepository
-     */
     constructor(structureId, compositionId, structurePagingCommandDispatcher, pagingEventRepository) {
         super(structureId, compositionId, structurePagingCommandDispatcher, pagingEventRepository);
     }
 }
-ListViewPagingGate.decorators = [
-    { type: Directive, args: [{
+ListViewPagingGate.ɵfac = function ListViewPagingGate_Factory(t) { return new (t || ListViewPagingGate)(i0.ɵɵdirectiveInject(i1.StructureId), i0.ɵɵdirectiveInject(i2.CompositionId), i0.ɵɵdirectiveInject(i3.PagingCommandInvoker), i0.ɵɵdirectiveInject(i4.PagingEventRepository)); };
+ListViewPagingGate.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: ListViewPagingGate, selectors: [["gui-list-view", "paging", ""]], features: [i0.ɵɵInheritDefinitionFeature] });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ListViewPagingGate, [{
+        type: Directive,
+        args: [{
                 selector: 'gui-list-view[paging]'
-            },] }
-];
-/** @nocollapse */
-ListViewPagingGate.ctorParameters = () => [
-    { type: StructureId },
-    { type: CompositionId },
-    { type: PagingCommandInvoker },
-    { type: PagingEventRepository }
-];
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LXBhZ2luZy5nYXRlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvbGlzdC9mZWF0dXJlL2dhdGUvcGFnaW5nL2xpc3Qtdmlldy1wYWdpbmcuZ2F0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUUxQyxPQUFPLEVBQUUsb0JBQW9CLEVBQUUsTUFBTSxvREFBb0QsQ0FBQztBQUMxRixPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSxxREFBcUQsQ0FBQztBQUM1RixPQUFPLEVBQUUsV0FBVyxFQUFFLE1BQU0sbUNBQW1DLENBQUM7QUFDaEUsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLDZDQUE2QyxDQUFDO0FBQ3pFLE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSxvREFBb0QsQ0FBQztBQU1uRixNQUFNLE9BQU8sa0JBQW1CLFNBQVEsVUFBVTs7Ozs7OztJQUVqRCxZQUFZLFdBQXdCLEVBQ2pDLGFBQTRCLEVBQzVCLGdDQUFzRCxFQUN0RCxxQkFBNEM7UUFDOUMsS0FBSyxDQUFDLFdBQVcsRUFBRSxhQUFhLEVBQUUsZ0NBQWdDLEVBQUUscUJBQXFCLENBQUMsQ0FBQztJQUM1RixDQUFDOzs7WUFWRCxTQUFTLFNBQUM7Z0JBQ1YsUUFBUSxFQUFFLHVCQUF1QjthQUNqQzs7OztZQVBRLFdBQVc7WUFFWCxhQUFhO1lBSmIsb0JBQW9CO1lBQ3BCLHFCQUFxQiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpcmVjdGl2ZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBQYWdpbmdDb21tYW5kSW52b2tlciB9IGZyb20gJy4uLy4uLy4uLy4uL3BhZ2luZy9jb3JlL2FwaS9wYWdpbmcuY29tbWFuZC1pbnZva2VyJztcbmltcG9ydCB7IFBhZ2luZ0V2ZW50UmVwb3NpdG9yeSB9IGZyb20gJy4uLy4uLy4uLy4uL3BhZ2luZy9jb3JlL2FwaS9wYWdpbmcuZXZlbnQtcmVwb3NpdG9yeSc7XG5pbXBvcnQgeyBTdHJ1Y3R1cmVJZCB9IGZyb20gJy4uLy4uLy4uLy4uL2NvcmUvYXBpL3N0cnVjdHVyZS5pZCc7XG5pbXBvcnQgeyBQYWdpbmdHYXRlIH0gZnJvbSAnLi4vLi4vLi4vLi4vcGFnaW5nL2ZlYXR1cmUvZ2F0ZS9wYWdpbmcuZ2F0ZSc7XG5pbXBvcnQgeyBDb21wb3NpdGlvbklkIH0gZnJvbSAnLi4vLi4vLi4vLi4vLi4vY29tcG9zaXRpb24vY29yZS9hcGkvY29tcG9zaXRpb24uaWQnO1xuXG5cbkBEaXJlY3RpdmUoe1xuXHRzZWxlY3RvcjogJ2d1aS1saXN0LXZpZXdbcGFnaW5nXSdcbn0pXG5leHBvcnQgY2xhc3MgTGlzdFZpZXdQYWdpbmdHYXRlIGV4dGVuZHMgUGFnaW5nR2F0ZSB7XG5cblx0Y29uc3RydWN0b3Ioc3RydWN0dXJlSWQ6IFN0cnVjdHVyZUlkLFxuXHRcdFx0XHRjb21wb3NpdGlvbklkOiBDb21wb3NpdGlvbklkLFxuXHRcdFx0XHRzdHJ1Y3R1cmVQYWdpbmdDb21tYW5kRGlzcGF0Y2hlcjogUGFnaW5nQ29tbWFuZEludm9rZXIsXG5cdFx0XHRcdHBhZ2luZ0V2ZW50UmVwb3NpdG9yeTogUGFnaW5nRXZlbnRSZXBvc2l0b3J5KSB7XG5cdFx0c3VwZXIoc3RydWN0dXJlSWQsIGNvbXBvc2l0aW9uSWQsIHN0cnVjdHVyZVBhZ2luZ0NvbW1hbmREaXNwYXRjaGVyLCBwYWdpbmdFdmVudFJlcG9zaXRvcnkpO1xuXHR9XG5cbn1cbiJdfQ==
+            }]
+    }], function () { return [{ type: i1.StructureId }, { type: i2.CompositionId }, { type: i3.PagingCommandInvoker }, { type: i4.PagingEventRepository }]; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LXBhZ2luZy5nYXRlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9zdHJ1Y3R1cmUvbGlzdC9mZWF0dXJlL2dhdGUvcGFnaW5nL2xpc3Qtdmlldy1wYWdpbmcuZ2F0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBSzFDLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSw2Q0FBNkMsQ0FBQzs7Ozs7O0FBT3pFLE1BQU0sT0FBTyxrQkFBbUIsU0FBUSxVQUFVO0lBRWpELFlBQVksV0FBd0IsRUFDakMsYUFBNEIsRUFDNUIsZ0NBQXNELEVBQ3RELHFCQUE0QztRQUM5QyxLQUFLLENBQUMsV0FBVyxFQUFFLGFBQWEsRUFBRSxnQ0FBZ0MsRUFBRSxxQkFBcUIsQ0FBQyxDQUFDO0lBQzVGLENBQUM7O29GQVBXLGtCQUFrQjtxRUFBbEIsa0JBQWtCO3VGQUFsQixrQkFBa0I7Y0FIOUIsU0FBUztlQUFDO2dCQUNWLFFBQVEsRUFBRSx1QkFBdUI7YUFDakMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBEaXJlY3RpdmUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgUGFnaW5nQ29tbWFuZEludm9rZXIgfSBmcm9tICcuLi8uLi8uLi8uLi9wYWdpbmcvY29yZS9hcGkvcGFnaW5nLmNvbW1hbmQtaW52b2tlcic7XG5pbXBvcnQgeyBQYWdpbmdFdmVudFJlcG9zaXRvcnkgfSBmcm9tICcuLi8uLi8uLi8uLi9wYWdpbmcvY29yZS9hcGkvcGFnaW5nLmV2ZW50LXJlcG9zaXRvcnknO1xuaW1wb3J0IHsgU3RydWN0dXJlSWQgfSBmcm9tICcuLi8uLi8uLi8uLi9jb3JlL2FwaS9zdHJ1Y3R1cmUuaWQnO1xuaW1wb3J0IHsgUGFnaW5nR2F0ZSB9IGZyb20gJy4uLy4uLy4uLy4uL3BhZ2luZy9mZWF0dXJlL2dhdGUvcGFnaW5nLmdhdGUnO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25JZCB9IGZyb20gJy4uLy4uLy4uLy4uLy4uL2NvbXBvc2l0aW9uL2NvcmUvYXBpL2NvbXBvc2l0aW9uLmlkJztcblxuXG5ARGlyZWN0aXZlKHtcblx0c2VsZWN0b3I6ICdndWktbGlzdC12aWV3W3BhZ2luZ10nXG59KVxuZXhwb3J0IGNsYXNzIExpc3RWaWV3UGFnaW5nR2F0ZSBleHRlbmRzIFBhZ2luZ0dhdGUge1xuXG5cdGNvbnN0cnVjdG9yKHN0cnVjdHVyZUlkOiBTdHJ1Y3R1cmVJZCxcblx0XHRcdFx0Y29tcG9zaXRpb25JZDogQ29tcG9zaXRpb25JZCxcblx0XHRcdFx0c3RydWN0dXJlUGFnaW5nQ29tbWFuZERpc3BhdGNoZXI6IFBhZ2luZ0NvbW1hbmRJbnZva2VyLFxuXHRcdFx0XHRwYWdpbmdFdmVudFJlcG9zaXRvcnk6IFBhZ2luZ0V2ZW50UmVwb3NpdG9yeSkge1xuXHRcdHN1cGVyKHN0cnVjdHVyZUlkLCBjb21wb3NpdGlvbklkLCBzdHJ1Y3R1cmVQYWdpbmdDb21tYW5kRGlzcGF0Y2hlciwgcGFnaW5nRXZlbnRSZXBvc2l0b3J5KTtcblx0fVxuXG59XG4iXX0=

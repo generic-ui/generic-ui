@@ -5,3 +5,4 @@ export declare abstract class PersistAnemia<I extends ReadModelRootId> {
     getReadModelRootId(): I;
     getId(): string;
 }
+//# sourceMappingURL=persist-anemia.d.ts.map

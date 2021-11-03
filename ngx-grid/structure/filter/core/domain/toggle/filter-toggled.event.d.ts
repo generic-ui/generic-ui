@@ -3,3 +3,4 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class FilterToggledEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
+//# sourceMappingURL=filter-toggled.event.d.ts.map

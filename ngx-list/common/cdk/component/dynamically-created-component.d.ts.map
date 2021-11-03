@@ -1,0 +1,1 @@
+{"version":3,"file":"dynamically-created-component.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-list/src/common/cdk/component/dynamically-created-component.ts"],"names":[],"mappings":";AAEA,8BACsB,2BAA2B;IAEhD,OAAO,CAAC,QAAQ,CAAC,mBAAmB,CAAW;IAE/C,SAAS;IAOT,OAAO,CAAC,SAAS;IAQjB,OAAO,CAAC,OAAO;IASf,OAAO,CAAC,UAAU;yCA5BG,2BAA2B;2CAA3B,2BAA2B;CA+BhD"}

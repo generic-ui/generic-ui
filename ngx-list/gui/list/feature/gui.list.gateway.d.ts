@@ -10,6 +10,7 @@ import { ListViewMode } from '../../../structure/list/core/domain/mode/list-view
 import { FieldConfig } from '../../../structure/field/core/api/field.config';
 import { SearchConfig } from '../../../structure/search/core/api/search-config';
 import { NgChanges } from '../../../common/cdk/component/ng-changes';
+import * as i0 from "@angular/core";
 export declare abstract class GuiListGateway implements OnChanges {
     listItem: GuiListItemComponent;
     listCard: GuiListCardComponent;
@@ -33,4 +34,7 @@ export declare abstract class GuiListGateway implements OnChanges {
     listFields: Array<FieldConfig>;
     searchConfig: SearchConfig;
     ngOnChanges(changes: NgChanges<GuiListGateway>): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<GuiListGateway, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiListGateway, never, never, { "source": "source"; "template": "template"; "cardTemplate": "cardTemplate"; "paging": "paging"; "view": "view"; "fields": "fields"; "searching": "searching"; "localization": "localization"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "searchPhraseChanged": "searchPhraseChanged"; }, ["listItem", "listCard"]>;
 }
+//# sourceMappingURL=gui.list.gateway.d.ts.map

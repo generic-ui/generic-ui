@@ -5,3 +5,4 @@ export declare class HermesSubscription {
     unsubscribe(): void;
     getFinalize(): () => void;
 }
+//# sourceMappingURL=hermes.subscription.d.ts.map

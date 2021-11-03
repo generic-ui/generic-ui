@@ -1,47 +1,20 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
-import { StructureInfoPanelArchive } from './structure.info-panel.archive';
-import { StructureInfoPanelConfigConverter } from './structure.info-panel.config-converter';
+import * as i0 from "@angular/core";
+import * as i1 from "./structure.info-panel.config-converter";
+import * as i2 from "./structure.info-panel.archive";
 export class StructureInfoPanelConfigService {
-    /**
-     * @param {?} structureInfoPanelConfigConverter
-     * @param {?} structureInfoPanelArchive
-     */
     constructor(structureInfoPanelConfigConverter, structureInfoPanelArchive) {
         this.structureInfoPanelConfigConverter = structureInfoPanelConfigConverter;
         this.structureInfoPanelArchive = structureInfoPanelArchive;
     }
-    /**
-     * @param {?} config
-     * @return {?}
-     */
     set(config) {
-        /** @type {?} */
         const infoPanelConfig = this.structureInfoPanelConfigConverter.convert(config);
         this.structureInfoPanelArchive.next(infoPanelConfig);
     }
 }
-StructureInfoPanelConfigService.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-StructureInfoPanelConfigService.ctorParameters = () => [
-    { type: StructureInfoPanelConfigConverter },
-    { type: StructureInfoPanelArchive }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureInfoPanelConfigService.prototype.structureInfoPanelConfigConverter;
-    /**
-     * @type {?}
-     * @private
-     */
-    StructureInfoPanelConfigService.prototype.structureInfoPanelArchive;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmluZm8tcGFuZWwtY29uZmlnLnNlcnZpY2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtZ3JpZC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9ncmlkL2NvcmUvYXBpL3BhbmVsL2luZm8vc3RydWN0dXJlLmluZm8tcGFuZWwtY29uZmlnLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFFLHlCQUF5QixFQUFFLE1BQU0sZ0NBQWdDLENBQUM7QUFDM0UsT0FBTyxFQUFFLGlDQUFpQyxFQUFFLE1BQU0seUNBQXlDLENBQUM7QUFJNUYsTUFBTSxPQUFPLCtCQUErQjs7Ozs7SUFFM0MsWUFBb0IsaUNBQW9FLEVBQzdFLHlCQUFvRDtRQUQzQyxzQ0FBaUMsR0FBakMsaUNBQWlDLENBQW1DO1FBQzdFLDhCQUF5QixHQUF6Qix5QkFBeUIsQ0FBMkI7SUFDL0QsQ0FBQzs7Ozs7SUFFRCxHQUFHLENBQUMsTUFBdUI7O2NBQ3BCLGVBQWUsR0FBRyxJQUFJLENBQUMsaUNBQWlDLENBQUMsT0FBTyxDQUFDLE1BQU0sQ0FBQztRQUU5RSxJQUFJLENBQUMseUJBQXlCLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO0lBQ3RELENBQUM7OztZQVhELFVBQVU7Ozs7WUFIRixpQ0FBaUM7WUFEakMseUJBQXlCOzs7Ozs7O0lBT3JCLDRFQUE0RTs7Ozs7SUFDckYsb0VBQTREIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgSW5mb1BhbmVsQ29uZmlnIH0gZnJvbSAnLi9pbmZvLXBhbmVsLmNvbmZpZyc7XG5pbXBvcnQgeyBTdHJ1Y3R1cmVJbmZvUGFuZWxBcmNoaXZlIH0gZnJvbSAnLi9zdHJ1Y3R1cmUuaW5mby1wYW5lbC5hcmNoaXZlJztcbmltcG9ydCB7IFN0cnVjdHVyZUluZm9QYW5lbENvbmZpZ0NvbnZlcnRlciB9IGZyb20gJy4vc3RydWN0dXJlLmluZm8tcGFuZWwuY29uZmlnLWNvbnZlcnRlcic7XG5cblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIFN0cnVjdHVyZUluZm9QYW5lbENvbmZpZ1NlcnZpY2Uge1xuXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgc3RydWN0dXJlSW5mb1BhbmVsQ29uZmlnQ29udmVydGVyOiBTdHJ1Y3R1cmVJbmZvUGFuZWxDb25maWdDb252ZXJ0ZXIsXG5cdFx0XHRcdHByaXZhdGUgc3RydWN0dXJlSW5mb1BhbmVsQXJjaGl2ZTogU3RydWN0dXJlSW5mb1BhbmVsQXJjaGl2ZSkge1xuXHR9XG5cblx0c2V0KGNvbmZpZzogSW5mb1BhbmVsQ29uZmlnKTogdm9pZCB7XG5cdFx0Y29uc3QgaW5mb1BhbmVsQ29uZmlnID0gdGhpcy5zdHJ1Y3R1cmVJbmZvUGFuZWxDb25maWdDb252ZXJ0ZXIuY29udmVydChjb25maWcpO1xuXG5cdFx0dGhpcy5zdHJ1Y3R1cmVJbmZvUGFuZWxBcmNoaXZlLm5leHQoaW5mb1BhbmVsQ29uZmlnKTtcblx0fVxuXG59XG4iXX0=
+StructureInfoPanelConfigService.ɵfac = function StructureInfoPanelConfigService_Factory(t) { return new (t || StructureInfoPanelConfigService)(i0.ɵɵinject(i1.StructureInfoPanelConfigConverter), i0.ɵɵinject(i2.StructureInfoPanelArchive)); };
+StructureInfoPanelConfigService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: StructureInfoPanelConfigService, factory: StructureInfoPanelConfigService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(StructureInfoPanelConfigService, [{
+        type: Injectable
+    }], function () { return [{ type: i1.StructureInfoPanelConfigConverter }, { type: i2.StructureInfoPanelArchive }]; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmluZm8tcGFuZWwtY29uZmlnLnNlcnZpY2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL3N0cnVjdHVyZS9ncmlkL2NvcmUvYXBpL3BhbmVsL2luZm8vc3RydWN0dXJlLmluZm8tcGFuZWwtY29uZmlnLnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7OztBQU8zQyxNQUFNLE9BQU8sK0JBQStCO0lBRTNDLFlBQW9CLGlDQUFvRSxFQUM3RSx5QkFBb0Q7UUFEM0Msc0NBQWlDLEdBQWpDLGlDQUFpQyxDQUFtQztRQUM3RSw4QkFBeUIsR0FBekIseUJBQXlCLENBQTJCO0lBQy9ELENBQUM7SUFFRCxHQUFHLENBQUMsTUFBdUI7UUFDMUIsTUFBTSxlQUFlLEdBQUcsSUFBSSxDQUFDLGlDQUFpQyxDQUFDLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQztRQUUvRSxJQUFJLENBQUMseUJBQXlCLENBQUMsSUFBSSxDQUFDLGVBQWUsQ0FBQyxDQUFDO0lBQ3RELENBQUM7OzhHQVZXLCtCQUErQjtxRkFBL0IsK0JBQStCLFdBQS9CLCtCQUErQjt1RkFBL0IsK0JBQStCO2NBRDNDLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBJbmZvUGFuZWxDb25maWcgfSBmcm9tICcuL2luZm8tcGFuZWwuY29uZmlnJztcbmltcG9ydCB7IFN0cnVjdHVyZUluZm9QYW5lbEFyY2hpdmUgfSBmcm9tICcuL3N0cnVjdHVyZS5pbmZvLXBhbmVsLmFyY2hpdmUnO1xuaW1wb3J0IHsgU3RydWN0dXJlSW5mb1BhbmVsQ29uZmlnQ29udmVydGVyIH0gZnJvbSAnLi9zdHJ1Y3R1cmUuaW5mby1wYW5lbC5jb25maWctY29udmVydGVyJztcblxuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgU3RydWN0dXJlSW5mb1BhbmVsQ29uZmlnU2VydmljZSB7XG5cblx0Y29uc3RydWN0b3IocHJpdmF0ZSBzdHJ1Y3R1cmVJbmZvUGFuZWxDb25maWdDb252ZXJ0ZXI6IFN0cnVjdHVyZUluZm9QYW5lbENvbmZpZ0NvbnZlcnRlcixcblx0XHRcdFx0cHJpdmF0ZSBzdHJ1Y3R1cmVJbmZvUGFuZWxBcmNoaXZlOiBTdHJ1Y3R1cmVJbmZvUGFuZWxBcmNoaXZlKSB7XG5cdH1cblxuXHRzZXQoY29uZmlnOiBJbmZvUGFuZWxDb25maWcpOiB2b2lkIHtcblx0XHRjb25zdCBpbmZvUGFuZWxDb25maWcgPSB0aGlzLnN0cnVjdHVyZUluZm9QYW5lbENvbmZpZ0NvbnZlcnRlci5jb252ZXJ0KGNvbmZpZyk7XG5cblx0XHR0aGlzLnN0cnVjdHVyZUluZm9QYW5lbEFyY2hpdmUubmV4dChpbmZvUGFuZWxDb25maWcpO1xuXHR9XG5cbn1cbiJdfQ==

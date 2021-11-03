@@ -5,3 +5,4 @@ export declare class ListViewCreatedAggregateEvent extends ListViewAggregateEven
     constructor(aggregateId: ListViewId);
     toDomainEvent(): DomainEvent<ListViewId>;
 }
+//# sourceMappingURL=list-view-created.aggregate-event.d.ts.map

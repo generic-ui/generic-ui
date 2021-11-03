@@ -15,3 +15,4 @@ export declare enum CellView {
     PERCENTAGE = 13,
     NG_TEMPLATE = 14
 }
+//# sourceMappingURL=cell-view.d.ts.map

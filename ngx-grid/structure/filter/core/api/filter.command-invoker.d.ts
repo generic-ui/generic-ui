@@ -5,6 +5,7 @@ import { FieldId } from '../../../field/core/domain/field/field.id';
 import { FilterTypeId } from '../domain/type/filter-type.id';
 import { FilterId } from './filter.id';
 import { UniqueValueId } from '../domain/unique/unique-value-id';
+import * as i0 from "@angular/core";
 export declare class FilterCommandInvoker implements CommandInvoker {
     private commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);
@@ -16,4 +17,7 @@ export declare class FilterCommandInvoker implements CommandInvoker {
     unselectAllUniqueFilter(fieldId: FieldId, structureId: StructureId): void;
     selectUniqueFilter(fieldId: FieldId, uniqueValueId: UniqueValueId, structureId: StructureId): void;
     unselectUniqueFilter(fieldId: FieldId, uniqueValueId: UniqueValueId, structureId: StructureId): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FilterCommandInvoker, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FilterCommandInvoker>;
 }
+//# sourceMappingURL=filter.command-invoker.d.ts.map

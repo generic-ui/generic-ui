@@ -6,3 +6,4 @@ export declare class SetCompositionResizeWidthCommand extends CompositionCommand
     constructor(structureId: StructureId, enabled: boolean);
     getEnabled(): boolean;
 }
+//# sourceMappingURL=set-composition-resize-width.command.d.ts.map

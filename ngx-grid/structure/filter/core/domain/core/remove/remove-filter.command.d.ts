@@ -6,3 +6,4 @@ export declare class RemoveFilterCommand extends StructureCommand {
     constructor(structureId: StructureId, filterId: FilterId);
     getFilterId(): FilterId;
 }
+//# sourceMappingURL=remove-filter.command.d.ts.map

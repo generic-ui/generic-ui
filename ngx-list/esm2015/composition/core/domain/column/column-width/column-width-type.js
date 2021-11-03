@@ -1,15 +1,7 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const ColumnWidthType = {
-    PERCENTAGE: 0,
-    NUMBER: 1,
-    AUTO: 2,
-};
-export { ColumnWidthType };
-ColumnWidthType[ColumnWidthType.PERCENTAGE] = 'PERCENTAGE';
-ColumnWidthType[ColumnWidthType.NUMBER] = 'NUMBER';
-ColumnWidthType[ColumnWidthType.AUTO] = 'AUTO';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLXdpZHRoLXR5cGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbImNvbXBvc2l0aW9uL2NvcmUvZG9tYWluL2NvbHVtbi9jb2x1bW4td2lkdGgvY29sdW1uLXdpZHRoLXR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsYUFBVTtJQUNWLFNBQU07SUFDTixPQUFJIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gQ29sdW1uV2lkdGhUeXBlIHtcblx0UEVSQ0VOVEFHRSxcblx0TlVNQkVSLFxuXHRBVVRPXG59XG4iXX0=
+export var ColumnWidthType;
+(function (ColumnWidthType) {
+    ColumnWidthType[ColumnWidthType["PERCENTAGE"] = 0] = "PERCENTAGE";
+    ColumnWidthType[ColumnWidthType["NUMBER"] = 1] = "NUMBER";
+    ColumnWidthType[ColumnWidthType["AUTO"] = 2] = "AUTO";
+})(ColumnWidthType || (ColumnWidthType = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLXdpZHRoLXR5cGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2NvbXBvc2l0aW9uL2NvcmUvZG9tYWluL2NvbHVtbi9jb2x1bW4td2lkdGgvY29sdW1uLXdpZHRoLXR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksZUFJWDtBQUpELFdBQVksZUFBZTtJQUMxQixpRUFBVSxDQUFBO0lBQ1YseURBQU0sQ0FBQTtJQUNOLHFEQUFJLENBQUE7QUFDTCxDQUFDLEVBSlcsZUFBZSxLQUFmLGVBQWUsUUFJMUIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBDb2x1bW5XaWR0aFR5cGUge1xuXHRQRVJDRU5UQUdFLFxuXHROVU1CRVIsXG5cdEFVVE9cbn1cbiJdfQ==

@@ -6,3 +6,4 @@ export declare class SelectorVisibility {
     setEnabled(enabled: boolean): void;
     setVisible(visible: boolean): void;
 }
+//# sourceMappingURL=selector-visibility.d.ts.map

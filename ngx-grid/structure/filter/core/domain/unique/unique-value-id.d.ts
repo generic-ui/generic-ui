@@ -4,3 +4,4 @@ export declare class UniqueValueId {
     toString(): string;
     equals(uniqueValueId: UniqueValueId): boolean;
 }
+//# sourceMappingURL=unique-value-id.d.ts.map

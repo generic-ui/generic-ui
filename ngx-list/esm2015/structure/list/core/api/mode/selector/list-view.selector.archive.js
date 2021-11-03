@@ -1,22 +1,15 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
 import { AggregateArchive } from '@generic-ui/hermes';
+import * as i0 from "@angular/core";
 export class ListViewSelectorArchive extends AggregateArchive {
     constructor() {
         super(ListViewSelectorArchive.default);
     }
 }
 ListViewSelectorArchive.default = false;
-ListViewSelectorArchive.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ListViewSelectorArchive.ctorParameters = () => [];
-if (false) {
-    /** @type {?} */
-    ListViewSelectorArchive.default;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LnNlbGVjdG9yLmFyY2hpdmUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9saXN0L2NvcmUvYXBpL21vZGUvc2VsZWN0b3IvbGlzdC12aWV3LnNlbGVjdG9yLmFyY2hpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFM0MsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFJdEQsTUFBTSxPQUFPLHVCQUF3QixTQUFRLGdCQUF5QjtJQUlyRTtRQUNDLEtBQUssQ0FBQyx1QkFBdUIsQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUN4QyxDQUFDOztBQUplLCtCQUFPLEdBQUcsS0FBSyxDQUFDOztZQUhoQyxVQUFVOzs7Ozs7SUFHVixnQ0FBZ0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEFnZ3JlZ2F0ZUFyY2hpdmUgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBMaXN0Vmlld1NlbGVjdG9yQXJjaGl2ZSBleHRlbmRzIEFnZ3JlZ2F0ZUFyY2hpdmU8Ym9vbGVhbj4ge1xuXG5cdHN0YXRpYyByZWFkb25seSBkZWZhdWx0ID0gZmFsc2U7XG5cblx0Y29uc3RydWN0b3IoKSB7XG5cdFx0c3VwZXIoTGlzdFZpZXdTZWxlY3RvckFyY2hpdmUuZGVmYXVsdCk7XG5cdH1cblxufVxuIl19
+ListViewSelectorArchive.ɵfac = function ListViewSelectorArchive_Factory(t) { return new (t || ListViewSelectorArchive)(); };
+ListViewSelectorArchive.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ListViewSelectorArchive, factory: ListViewSelectorArchive.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ListViewSelectorArchive, [{
+        type: Injectable
+    }], function () { return []; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LnNlbGVjdG9yLmFyY2hpdmUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL3N0cnVjdHVyZS9saXN0L2NvcmUvYXBpL21vZGUvc2VsZWN0b3IvbGlzdC12aWV3LnNlbGVjdG9yLmFyY2hpdmUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUUzQyxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQzs7QUFJdEQsTUFBTSxPQUFPLHVCQUF3QixTQUFRLGdCQUF5QjtJQUlyRTtRQUNDLEtBQUssQ0FBQyx1QkFBdUIsQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUN4QyxDQUFDOztBQUplLCtCQUFPLEdBQUcsS0FBSyxDQUFDOzhGQUZwQix1QkFBdUI7NkVBQXZCLHVCQUF1QixXQUF2Qix1QkFBdUI7dUZBQXZCLHVCQUF1QjtjQURuQyxVQUFVIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBBZ2dyZWdhdGVBcmNoaXZlIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgTGlzdFZpZXdTZWxlY3RvckFyY2hpdmUgZXh0ZW5kcyBBZ2dyZWdhdGVBcmNoaXZlPGJvb2xlYW4+IHtcblxuXHRzdGF0aWMgcmVhZG9ubHkgZGVmYXVsdCA9IGZhbHNlO1xuXG5cdGNvbnN0cnVjdG9yKCkge1xuXHRcdHN1cGVyKExpc3RWaWV3U2VsZWN0b3JBcmNoaXZlLmRlZmF1bHQpO1xuXHR9XG5cbn1cbiJdfQ==

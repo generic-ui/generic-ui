@@ -13,3 +13,4 @@ export declare class StringDataField extends DataField<string> {
     equals(item: OriginItemEntity, value: string): boolean;
     getDisplayValue(item: string): string;
 }
+//# sourceMappingURL=string-data-field.d.ts.map

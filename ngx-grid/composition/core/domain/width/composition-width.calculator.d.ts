@@ -10,3 +10,4 @@ export declare class CompositionWidthCalculator {
     private adjustPercentageWidth;
     private adjustAutoWidth;
 }
+//# sourceMappingURL=composition-width.calculator.d.ts.map

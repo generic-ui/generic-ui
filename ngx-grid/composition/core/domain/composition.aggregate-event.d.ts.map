@@ -1,0 +1,1 @@
+{"version":3,"file":"composition.aggregate-event.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-grid/src/composition/core/domain/composition.aggregate-event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,oBAAoB,CAAC;AACpD,OAAO,EAAE,aAAa,EAAE,MAAM,uBAAuB,CAAC;AAEtD,8BAAsB,yBAA0B,SAAQ,cAAc,CAAC,aAAa,CAAC;CACpF"}

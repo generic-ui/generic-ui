@@ -5,3 +5,4 @@ export declare class SourceSetLoadingCommand extends StructureCommand {
     constructor(structureId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
+//# sourceMappingURL=source-set-loading.command.d.ts.map

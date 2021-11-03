@@ -3,6 +3,7 @@ import { CompositionId } from '../api/composition.id';
 import { ColumnParams } from './column/set-columns/column.params';
 import { ChangeSortParams } from './column/sort/change-sort.params';
 import { ColumnId } from '../api/column/column.id';
+import * as i0 from "@angular/core";
 export declare class CompositionDispatcher {
     private commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);
@@ -16,4 +17,7 @@ export declare class CompositionDispatcher {
     setColumnEnabled(compositionId: CompositionId, columnId: ColumnId, enabled: boolean): void;
     moveLeft(compositionId: CompositionId, columnId: ColumnId): void;
     moveRight(compositionId: CompositionId, columnId: ColumnId): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionDispatcher, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<CompositionDispatcher>;
 }
+//# sourceMappingURL=composition.dispatcher.d.ts.map

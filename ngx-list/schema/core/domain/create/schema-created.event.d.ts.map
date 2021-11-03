@@ -1,0 +1,1 @@
+{"version":3,"file":"schema-created.event.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/schema/core/domain/create/schema-created.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,wBAAwB,CAAC;AAC3D,OAAO,EAAE,QAAQ,EAAE,MAAM,cAAc,CAAC;AAGxC,qBAAa,kBAAmB,SAAQ,iBAAiB;gBAE5C,WAAW,EAAE,QAAQ;CAGjC"}

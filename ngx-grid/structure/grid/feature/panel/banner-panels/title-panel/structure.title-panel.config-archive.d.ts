@@ -4,3 +4,4 @@ export declare class StructureTitlePanelConfigArchive extends Archive<StructureB
     private static readonly titlePanelConfig;
     constructor();
 }
+//# sourceMappingURL=structure.title-panel.config-archive.d.ts.map

@@ -14,3 +14,4 @@ export declare abstract class Message<I extends AggregateId> {
     ofMessageType(messageTypes: Array<string>): boolean;
     private isMessageType;
 }
+//# sourceMappingURL=message.d.ts.map

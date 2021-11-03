@@ -7,3 +7,4 @@ export declare class SetSearchPhraseCommand extends StructureCommand {
     getPhrase(): string;
     isInitial(): boolean;
 }
+//# sourceMappingURL=set-search-phrase.command.d.ts.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"fabric-notification-timer.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/modal/notification/fabric-notification-timer.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,uBAAuB;IACvC,QAAQ,CAAC,QAAQ,CAAC,EAAE,MAAM,CAAA;IAC1B,QAAQ,CAAC,OAAO,CAAC,EAAE,OAAO,CAAA;IAC1B,QAAQ,CAAC,WAAW,CAAC,EAAE,OAAO,CAAA;CAC9B"}

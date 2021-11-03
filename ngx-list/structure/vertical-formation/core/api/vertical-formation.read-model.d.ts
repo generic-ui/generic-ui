@@ -11,3 +11,4 @@ export declare class VerticalFormationReadModel {
     getViewPortHeight(): number;
     getRowHeight(): number;
 }
+//# sourceMappingURL=vertical-formation.read-model.d.ts.map

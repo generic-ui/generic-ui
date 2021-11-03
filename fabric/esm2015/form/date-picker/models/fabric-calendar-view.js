@@ -1,15 +1,7 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const FabricCalendarView = {
-    DAYS: 0,
-    MONTHS: 1,
-    YEARS: 2,
-};
-export { FabricCalendarView };
-FabricCalendarView[FabricCalendarView.DAYS] = 'DAYS';
-FabricCalendarView[FabricCalendarView.MONTHS] = 'MONTHS';
-FabricCalendarView[FabricCalendarView.YEARS] = 'YEARS';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWNhbGVuZGFyLXZpZXcuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9mYWJyaWMvIiwic291cmNlcyI6WyJmb3JtL2RhdGUtcGlja2VyL21vZGVscy9mYWJyaWMtY2FsZW5kYXItdmlldy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7SUFDQyxPQUFJO0lBQ0osU0FBTTtJQUNOLFFBQUsiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBGYWJyaWNDYWxlbmRhclZpZXcge1xuXHREQVlTLFxuXHRNT05USFMsXG5cdFlFQVJTXG59XG4iXX0=
+export var FabricCalendarView;
+(function (FabricCalendarView) {
+    FabricCalendarView[FabricCalendarView["DAYS"] = 0] = "DAYS";
+    FabricCalendarView[FabricCalendarView["MONTHS"] = 1] = "MONTHS";
+    FabricCalendarView[FabricCalendarView["YEARS"] = 2] = "YEARS";
+})(FabricCalendarView || (FabricCalendarView = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWNhbGVuZGFyLXZpZXcuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvZ3VpLWZhYnJpYy9zcmMvZm9ybS9kYXRlLXBpY2tlci9tb2RlbHMvZmFicmljLWNhbGVuZGFyLXZpZXcudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksa0JBSVg7QUFKRCxXQUFZLGtCQUFrQjtJQUM3QiwyREFBSSxDQUFBO0lBQ0osK0RBQU0sQ0FBQTtJQUNOLDZEQUFLLENBQUE7QUFDTixDQUFDLEVBSlcsa0JBQWtCLEtBQWxCLGtCQUFrQixRQUk3QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIEZhYnJpY0NhbGVuZGFyVmlldyB7XG5cdERBWVMsXG5cdE1PTlRIUyxcblx0WUVBUlNcbn1cbiJdfQ==

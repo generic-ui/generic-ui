@@ -6,3 +6,4 @@ export declare abstract class Archive<T> {
     next(value: T): void;
     compare(one: T, two: T): boolean;
 }
+//# sourceMappingURL=archive.d.ts.map

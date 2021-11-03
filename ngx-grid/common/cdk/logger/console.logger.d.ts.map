@@ -1,0 +1,1 @@
+{"version":3,"file":"console.logger.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/ngx-grid/src/common/cdk/logger/console.logger.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAElC,qBAAa,aAAc,SAAQ,MAAM;IAExC,IAAI,CAAC,IAAI,EAAE,MAAM,GAAG,IAAI;IAKxB,KAAK,CAAC,IAAI,EAAE,MAAM,GAAG,IAAI;CAKzB"}

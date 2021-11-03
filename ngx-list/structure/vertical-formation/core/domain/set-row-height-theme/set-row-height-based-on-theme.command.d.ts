@@ -6,3 +6,4 @@ export declare class SetRowHeightBasedOnThemeCommand extends StructureCommand {
     constructor(structureId: StructureId, theme: SchemaTheme);
     getTheme(): number;
 }
+//# sourceMappingURL=set-row-height-based-on-theme.command.d.ts.map

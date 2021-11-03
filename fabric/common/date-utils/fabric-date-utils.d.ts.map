@@ -1,0 +1,1 @@
+{"version":3,"file":"fabric-date-utils.d.ts","sourceRoot":"","sources":["../../../build-cli/projects/gui-fabric/src/common/date-utils/fabric-date-utils.ts"],"names":[],"mappings":"AAAA,qBAAa,eAAe;IAE3B,MAAM,CAAC,YAAY,CAAC,QAAQ,EAAE,IAAI,EAAE,UAAU,EAAE,IAAI,GAAG,OAAO;IAM9D,MAAM,CAAC,OAAO,CAAC,IAAI,EAAE,IAAI,EAAE,KAAK,EAAE,MAAM,EAAE,IAAI,EAAE,MAAM,GAAG,OAAO;CAIhE"}

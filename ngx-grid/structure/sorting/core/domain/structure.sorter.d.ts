@@ -16,3 +16,4 @@ export declare class StructureSorter {
     setDirection(direction: boolean): void;
     sort(entities: Array<OriginItemEntity>): Array<OriginItemEntity>;
 }
+//# sourceMappingURL=structure.sorter.d.ts.map

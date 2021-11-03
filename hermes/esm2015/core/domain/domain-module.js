@@ -1,15 +1,13 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
+import { NgModule } from '@angular/core';
+import * as i0 from "@angular/core";
 export class DomainModule {
-    /**
-     * @protected
-     */
     constructor() {
     }
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tYWluLW1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2hlcm1lcy8iLCJzb3VyY2VzIjpbImNvcmUvZG9tYWluL2RvbWFpbi1tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBLE1BQU0sT0FBZ0IsWUFBWTs7OztJQUVqQztJQUNBLENBQUM7Q0FFRCIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBhYnN0cmFjdCBjbGFzcyBEb21haW5Nb2R1bGUge1xuXG5cdHByb3RlY3RlZCBjb25zdHJ1Y3RvcigpIHtcblx0fVxuXG59XG4iXX0=
+DomainModule.ɵfac = function DomainModule_Factory(t) { return new (t || DomainModule)(); };
+DomainModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: DomainModule });
+DomainModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DomainModule, [{
+        type: NgModule
+    }], function () { return []; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZG9tYWluLW1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktaGVybWVzL3NyYy9jb3JlL2RvbWFpbi9kb21haW4tbW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxRQUFRLEVBQUUsTUFBTSxlQUFlLENBQUM7O0FBR3pDLE1BQU0sT0FBZ0IsWUFBWTtJQUVqQztJQUNBLENBQUM7O3dFQUhvQixZQUFZOzhEQUFaLFlBQVk7O3VGQUFaLFlBQVk7Y0FEakMsUUFBUSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE5nTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbkBOZ01vZHVsZSgpXG5leHBvcnQgYWJzdHJhY3QgY2xhc3MgRG9tYWluTW9kdWxlIHtcblxuXHRwcm90ZWN0ZWQgY29uc3RydWN0b3IoKSB7XG5cdH1cblxufVxuIl19

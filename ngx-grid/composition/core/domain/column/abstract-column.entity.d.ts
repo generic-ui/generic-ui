@@ -30,7 +30,8 @@ export declare abstract class AbstractColumnEntity extends Entity<ColumnId> {
     getAlign(): ColumnAlign;
     setWidth(width: number): void;
     getWidth(): number;
-    getSortingEnabled(): boolean;
+    isSortingEnabled(): boolean;
     isCellEditingEnabled(): boolean;
     private setInitialAlign;
 }
+//# sourceMappingURL=abstract-column.entity.d.ts.map

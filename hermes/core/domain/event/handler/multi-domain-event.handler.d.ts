@@ -5,3 +5,4 @@ export interface MultiDomainEventHandler<I extends AggregateId, E extends Domain
     forEvents(): Array<DomainEventType<E>>;
     handle(event: E): void;
 }
+//# sourceMappingURL=multi-domain-event.handler.d.ts.map

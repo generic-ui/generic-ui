@@ -13,3 +13,4 @@ export interface CommandHandler<A extends AggregateRoot<AggregateId>, C extends 
      */
     publish(aggregate: A, command: C): void;
 }
+//# sourceMappingURL=command.handler.d.ts.map

@@ -1,12 +1,7 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {string} */
-const CssClass = {
-    SELECTED: 'selected',
-    PAGING_TOP_CLASS_NAME: 'gui-paging-top',
-    PAGING_BOTTOM_CLASS_NAME: 'gui-paging-bottom',
-};
-export { CssClass };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzLWNsYXNzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWdyaWQvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvY29tbW9uL2Nzcy1jbGFzcy9jc3MtY2xhc3MudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsVUFBVyxVQUFVO0lBQ3JCLHVCQUF3QixnQkFBZ0I7SUFDeEMsMEJBQTJCLG1CQUFtQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENzc0NsYXNzIHtcblx0U0VMRUNURUQgPSAnc2VsZWN0ZWQnLFxuXHRQQUdJTkdfVE9QX0NMQVNTX05BTUUgPSAnZ3VpLXBhZ2luZy10b3AnLFxuXHRQQUdJTkdfQk9UVE9NX0NMQVNTX05BTUUgPSAnZ3VpLXBhZ2luZy1ib3R0b20nXG59XG4iXX0=
+export var CssClass;
+(function (CssClass) {
+    CssClass["SELECTED"] = "selected";
+    CssClass["PAGING_TOP_CLASS_NAME"] = "gui-paging-top";
+    CssClass["PAGING_BOTTOM_CLASS_NAME"] = "gui-paging-bottom";
+})(CssClass || (CssClass = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3NzLWNsYXNzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1ncmlkL3NyYy9zdHJ1Y3R1cmUvY29tbW9uL2Nzcy1jbGFzcy9jc3MtY2xhc3MudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksUUFJWDtBQUpELFdBQVksUUFBUTtJQUNuQixpQ0FBcUIsQ0FBQTtJQUNyQixvREFBd0MsQ0FBQTtJQUN4QywwREFBOEMsQ0FBQTtBQUMvQyxDQUFDLEVBSlcsUUFBUSxLQUFSLFFBQVEsUUFJbkIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBDc3NDbGFzcyB7XG5cdFNFTEVDVEVEID0gJ3NlbGVjdGVkJyxcblx0UEFHSU5HX1RPUF9DTEFTU19OQU1FID0gJ2d1aS1wYWdpbmctdG9wJyxcblx0UEFHSU5HX0JPVFRPTV9DTEFTU19OQU1FID0gJ2d1aS1wYWdpbmctYm90dG9tJ1xufVxuIl19

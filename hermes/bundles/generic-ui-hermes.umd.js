@@ -1,8 +1,28 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@generic-ui/hermes', ['exports', '@angular/core', '@angular/common', 'rxjs', 'rxjs/operators'], factory) :
-    (global = global || self, factory((global['generic-ui'] = global['generic-ui'] || {}, global['generic-ui'].hermes = {}), global.ng.core, global.ng.common, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, core, common, rxjs, operators) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global["generic-ui"] = global["generic-ui"] || {}, global["generic-ui"].hermes = {}), global.ng.core, global.ng.common, global.rxjs, global.rxjs.operators));
+})(this, (function (exports, i0, common, rxjs, operators) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () { return e[k]; }
+                    });
+                }
+            });
+        }
+        n["default"] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,273 +39,274 @@
     and limitations under the License.
     ***************************************************************************** */
     /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
+    var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
         return extendStatics(d, b);
     };
-
     function __extends(d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
-
-    var __assign = function() {
+    var __assign = function () {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
-
     function __rest(s, e) {
         var t = {};
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
-                t[p[i]] = s[p[i]];
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)
+                if (e.indexOf(p[i]) < 0)
+                    t[p[i]] = s[p[i]];
         return t;
     }
-
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
-
     function __param(paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); }
+        return function (target, key) { decorator(target, key, paramIndex); };
     }
-
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
     }
-
     function __awaiter(thisArg, _arguments, P, generator) {
         return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
             function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
-
     function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
         function verb(n) { return function (v) { return step([n, v]); }; }
         function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (_) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
                 }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
-
     function __exportStar(m, exports) {
-        for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+        for (var p in m)
+            if (!exports.hasOwnProperty(p))
+                exports[p] = m[p];
     }
-
     function __values(o) {
         var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
-        if (m) return m.call(o);
+        if (m)
+            return m.call(o);
         return {
             next: function () {
-                if (o && i >= o.length) o = void 0;
+                if (o && i >= o.length)
+                    o = void 0;
                 return { value: o && o[i++], done: !o };
             }
         };
     }
-
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m) return o;
+        if (!m)
+            return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
         }
-        catch (error) { e = { error: error }; }
+        catch (error) {
+            e = { error: error };
+        }
         finally {
             try {
-                if (r && !r.done && (m = i["return"])) m.call(i);
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
             }
-            finally { if (e) throw e.error; }
+            finally {
+                if (e)
+                    throw e.error;
+            }
         }
         return ar;
     }
-
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
-
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
     }
-
     function __asyncGenerator(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var g = generator.apply(thisArg, _arguments || []), i, q = [];
         return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
         function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
         function fulfill(value) { resume("next", value); }
         function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
     }
-
     function __asyncDelegator(o) {
         var i, p;
         return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
         function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
     }
-
     function __asyncValues(o) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var m = o[Symbol.asyncIterator], i;
         return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
         function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
     }
-
     function __makeTemplateObject(cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
         return cooked;
-    };
-
+    }
+    ;
     function __importStar(mod) {
-        if (mod && mod.__esModule) return mod;
+        if (mod && mod.__esModule)
+            return mod;
         var result = {};
-        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k))
+                    result[k] = mod[k];
         result.default = mod;
         return result;
     }
-
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template M
-     */
-    var   /**
-     * @abstract
-     * @template M
-     */
-    Logger = /** @class */ (function () {
+    var Logger = /** @class */ (function () {
         function Logger() {
         }
-        /**
-         * @param {?} domainName
-         * @return {?}
-         */
-        Logger.prototype.setDomain = /**
-         * @param {?} domainName
-         * @return {?}
-         */
-        function (domainName) {
+        Logger.prototype.setDomain = function (domainName) {
             this.domainName = domainName;
         };
-        /**
-         * @param {?} message
-         * @return {?}
-         */
-        Logger.prototype.log = /**
-         * @param {?} message
-         * @return {?}
-         */
-        function (message) {
+        Logger.prototype.log = function (message) {
             if (this.shouldPrint(message)) {
                 this.print(message);
             }
         };
-        /**
-         * @protected
-         * @param {?} message
-         * @return {?}
-         */
-        Logger.prototype.shouldPrint = /**
-         * @protected
-         * @param {?} message
-         * @return {?}
-         */
-        function (message) {
+        Logger.prototype.shouldPrint = function (message) {
             if (!this.domainName) {
                 return true;
             }
-            /** @type {?} */
             var log = message.toString();
             return log.includes(this.domainName);
         };
         return Logger;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Logger.prototype.domainName;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        Logger.prototype.start = function () { };
-        /**
-         * @abstract
-         * @return {?}
-         */
-        Logger.prototype.stop = function () { };
-        /**
-         * @abstract
-         * @protected
-         * @param {?} message
-         * @return {?}
-         */
-        Logger.prototype.print = function (message) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    CommandLogger = /** @class */ (function (_super) {
+    var CommandLogger = /** @class */ (function (_super) {
         __extends(CommandLogger, _super);
         function CommandLogger() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -293,17 +314,7 @@
         return CommandLogger;
     }(Logger));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    DomainEventLogger = /** @class */ (function (_super) {
+    var DomainEventLogger = /** @class */ (function (_super) {
         __extends(DomainEventLogger, _super);
         function DomainEventLogger() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -311,11 +322,6 @@
         return DomainEventLogger;
     }(Logger));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var hermesApi = 'hermesApi';
     var HermesApi = /** @class */ (function () {
         function HermesApi(platformId, commandLogger, eventLogger) {
@@ -323,17 +329,8 @@
             this.commandLogger = commandLogger;
             this.eventLogger = eventLogger;
             if (common.isPlatformBrowser(this.platformId)) {
-                /** @type {?} */
-                var api = (/**
-                 * @param {?} api
-                 * @return {?}
-                 */
-                function (api) {
+                var api = function (api) {
                     return {
-                        /**
-                         * @param {?} enabled
-                         * @return {?}
-                         */
                         set loggers(enabled) {
                             if (enabled) {
                                 api.commandLogger.start();
@@ -344,10 +341,6 @@
                                 api.eventLogger.stop();
                             }
                         },
-                        /**
-                         * @param {?} domainName
-                         * @return {?}
-                         */
                         set domain(domainName) {
                             if (domainName) {
                                 api.commandLogger.setDomain(domainName);
@@ -355,110 +348,56 @@
                             }
                         }
                     };
-                });
+                };
                 window[hermesApi] = api(this);
                 window[hermesApi].loggers = false;
             }
         }
-        HermesApi.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        HermesApi.ctorParameters = function () { return [
-            { type: Object, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
-            { type: CommandLogger },
-            { type: DomainEventLogger }
-        ]; };
         return HermesApi;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesApi.prototype.platformId;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesApi.prototype.commandLogger;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesApi.prototype.eventLogger;
-    }
+    HermesApi.ɵfac = function HermesApi_Factory(t) { return new (t || HermesApi)(i0__namespace.ɵɵinject(i0.PLATFORM_ID), i0__namespace.ɵɵinject(CommandLogger), i0__namespace.ɵɵinject(DomainEventLogger)); };
+    HermesApi.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: HermesApi, factory: HermesApi.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HermesApi, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: Object, decorators: [{
+                            type: i0.Inject,
+                            args: [i0.PLATFORM_ID]
+                        }] }, { type: CommandLogger }, { type: DomainEventLogger }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?=} domainName
-     * @param {?=} windowObject
-     * @return {?}
-     */
     function enableHermesLoggers(domainName, windowObject) {
-        /** @type {?} */
         var winRef = windowObject ? windowObject : window;
         if (domainName) {
             winRef[hermesApi].domain = domainName;
         }
         winRef[hermesApi].loggers = true;
     }
-    /**
-     * @param {?=} windowObject
-     * @return {?}
-     */
     function disableHermesLoggers(windowObject) {
-        /** @type {?} */
         var winRef = windowObject ? windowObject : window;
         delete winRef[hermesApi].domain;
         winRef[hermesApi].loggers = false;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var DOMAIN_EVENT_HANDLERS = 'HERMES - DOMAIN_EVENT_HANDLERS_TOKEN';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, E
-     * @param {?} handlers
-     * @return {?}
-     */
     function provideEventHandlers(handlers) {
-        return (/** @type {?} */ (handlers.map((/**
-         * @param {?} handler
-         * @return {?}
-         */
-        function (handler) {
+        return handlers.map(function (handler) {
             return {
                 provide: DOMAIN_EVENT_HANDLERS,
                 useClass: handler,
                 multi: true
             };
-        }))));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var HermesSubscription = /** @class */ (function () {
         function HermesSubscription(finalize, isClosed) {
             this.closed = false;
-            this.finalize = (/**
-             * @return {?}
-             */
-            function () {
-            });
+            this.finalize = function () {
+            };
             if (finalize !== undefined && finalize !== null &&
                 typeof finalize === 'function') {
                 this.finalize = finalize;
@@ -467,73 +406,28 @@
                 this.closed = isClosed;
             }
         }
-        /**
-         * @return {?}
-         */
-        HermesSubscription.prototype.unsubscribe = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubscription.prototype.unsubscribe = function () {
             if (this.closed) {
                 return;
             }
             this.closed = true;
             this.finalize();
         };
-        /**
-         * @return {?}
-         */
-        HermesSubscription.prototype.getFinalize = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubscription.prototype.getFinalize = function () {
             return this.finalize;
         };
         return HermesSubscription;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscription.prototype.closed;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscription.prototype.finalize;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var /**
-     * @template T
-     */
-    HermesSubscriber = /** @class */ (function () {
+    var HermesSubscriber = /** @class */ (function () {
         function HermesSubscriber(config) {
-            this.finalize = (/**
-             * @return {?}
-             */
-            function () {
-            });
+            this.finalize = function () {
+            };
             this.completed = false;
             this.closed = false;
             this.observer = config;
         }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        HermesSubscriber.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        HermesSubscriber.prototype.next = function (value) {
             if (this.isCompleted()) {
                 return;
             }
@@ -541,15 +435,7 @@
                 this.observer.next(value);
             }
         };
-        /**
-         * @param {?} error
-         * @return {?}
-         */
-        HermesSubscriber.prototype.error = /**
-         * @param {?} error
-         * @return {?}
-         */
-        function (error) {
+        HermesSubscriber.prototype.error = function (error) {
             if (this.completed) {
                 return;
             }
@@ -558,13 +444,7 @@
             }
             this.unsubscribe();
         };
-        /**
-         * @return {?}
-         */
-        HermesSubscriber.prototype.complete = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubscriber.prototype.complete = function () {
             if (this.completed) {
                 return;
             }
@@ -574,13 +454,7 @@
             }
             this.unsubscribe();
         };
-        /**
-         * @return {?}
-         */
-        HermesSubscriber.prototype.unsubscribe = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubscriber.prototype.unsubscribe = function () {
             if (this.closed) {
                 return;
             }
@@ -588,109 +462,30 @@
             this.completed = true;
             this.finalize();
         };
-        /**
-         * @param {?} finalize
-         * @return {?}
-         */
-        HermesSubscriber.prototype.setFinalize = /**
-         * @param {?} finalize
-         * @return {?}
-         */
-        function (finalize) {
+        HermesSubscriber.prototype.setFinalize = function (finalize) {
             if (finalize && typeof finalize === 'function') {
                 this.finalize = finalize;
             }
             else {
             }
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        HermesSubscriber.prototype.isCompleted = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        HermesSubscriber.prototype.isCompleted = function () {
             return this.completed;
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        HermesSubscriber.prototype.isClosed = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        HermesSubscriber.prototype.isClosed = function () {
             return this.closed;
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        HermesSubscriber.prototype.getObserver = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        HermesSubscriber.prototype.getObserver = function () {
             return this.observer;
         };
         return HermesSubscriber;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscriber.prototype.observer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscriber.prototype.finalize;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscriber.prototype.completed;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubscriber.prototype.closed;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     * @template T, R
-     */
-    function HermesOperatorFunction() { }
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesObservable = /** @class */ (function () {
+    var HermesObservable = /** @class */ (function () {
         function HermesObservable(generator) {
             this.generatorFn = generator;
         }
-        /**
-         * @template T, R
-         * @param {...?} operations
-         * @return {?}
-         */
-        HermesObservable.prototype.pipe = /**
-         * @template T, R
-         * @param {...?} operations
-         * @return {?}
-         */
-        function () {
+        HermesObservable.prototype.pipe = function () {
             var e_1, _a;
             var operations = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -712,39 +507,12 @@
             }
             return this.source;
         };
-        /**
-         * @private
-         * @template T, R
-         * @param {?} operation
-         * @param {?} stream$
-         * @return {?}
-         */
-        HermesObservable.prototype.innerPipe = /**
-         * @private
-         * @template T, R
-         * @param {?} operation
-         * @param {?} stream$
-         * @return {?}
-         */
-        function (operation, stream$) {
-            return ((/**
-             * @param {?} input
-             * @return {?}
-             */
-            function (input) {
+        HermesObservable.prototype.innerPipe = function (operation, stream$) {
+            return (function (input) {
                 return operation(input);
-            }))(stream$);
+            })(stream$);
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        HermesObservable.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
-            /** @type {?} */
+        HermesObservable.prototype.subscribe = function (arg) {
             var subscriber;
             if (arg instanceof HermesSubscriber) {
                 subscriber = arg;
@@ -762,97 +530,28 @@
             }
             return this.getSubscription();
         };
-        /**
-         * @protected
-         * @param {?=} next
-         * @param {?=} error
-         * @param {?=} complete
-         * @return {?}
-         */
-        HermesObservable.prototype.createSubscriber = /**
-         * @protected
-         * @param {?=} next
-         * @param {?=} error
-         * @param {?=} complete
-         * @return {?}
-         */
-        function (next, error, complete) {
+        HermesObservable.prototype.createSubscriber = function (next, error, complete) {
             return new HermesSubscriber({
                 next: next,
                 error: error,
                 complete: complete
             });
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        HermesObservable.prototype.getSubscription = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        HermesObservable.prototype.getSubscription = function () {
             return new HermesSubscription(this.generatorFinalize);
         };
-        /**
-         * @private
-         * @param {?} observer
-         * @return {?}
-         */
-        HermesObservable.prototype.isObserver = /**
-         * @private
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
+        HermesObservable.prototype.isObserver = function (observer) {
             return typeof observer === 'object';
         };
         return HermesObservable;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesObservable.prototype.source;
-        /**
-         * @type {?}
-         * @protected
-         */
-        HermesObservable.prototype.generatorFn;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesObservable.prototype.generatorFinalize;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @return {?}
-     */
     function hermesEmptySubscription() {
-        return new HermesSubscription((/**
-         * @return {?}
-         */
-        function () {
-        }), true);
+        return new HermesSubscription(function () {
+        }, true);
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesSubject = /** @class */ (function (_super) {
+    var HermesSubject = /** @class */ (function (_super) {
         __extends(HermesSubject, _super);
         function HermesSubject() {
             var _this = _super.call(this) || this;
@@ -871,15 +570,7 @@
             _this.subscribers = [];
             return _this;
         }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        HermesSubject.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        HermesSubject.prototype.next = function (value) {
             var e_1, _a;
             this.verifyNotClosed();
             if (this.isCompleted || this.thrownError !== null) {
@@ -899,15 +590,7 @@
                 finally { if (e_1) throw e_1.error; }
             }
         };
-        /**
-         * @param {?} error
-         * @return {?}
-         */
-        HermesSubject.prototype.error = /**
-         * @param {?} error
-         * @return {?}
-         */
-        function (error) {
+        HermesSubject.prototype.error = function (error) {
             var e_2, _a;
             this.verifyNotClosed();
             if (this.isCompleted) {
@@ -929,13 +612,7 @@
             }
             this.subscribers.length = 0;
         };
-        /**
-         * @return {?}
-         */
-        HermesSubject.prototype.complete = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubject.prototype.complete = function () {
             var e_3, _a;
             this.verifyNotClosed();
             if (this.isCompleted) {
@@ -957,17 +634,8 @@
             }
             this.subscribers.length = 0;
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        HermesSubject.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        HermesSubject.prototype.subscribe = function (arg) {
             this.verifyNotClosed();
-            /** @type {?} */
             var subscriber;
             if (arg instanceof HermesSubscriber) {
                 subscriber = arg;
@@ -988,314 +656,117 @@
                 return this.getSubscription();
             }
         };
-        /**
-         * @return {?}
-         */
-        HermesSubject.prototype.unsubscribe = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubject.prototype.unsubscribe = function () {
             this.isCompleted = true;
             this.isClosed = true;
             this.subscribers.length = 0;
         };
-        /**
-         * @return {?}
-         */
-        HermesSubject.prototype.toObservable = /**
-         * @return {?}
-         */
-        function () {
+        HermesSubject.prototype.toObservable = function () {
             var _this = this;
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
-                var subscription = _this.subscribe((/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                function (v) { return observer.next(v); }), (/**
-                 * @param {?} error
-                 * @return {?}
-                 */
-                function (error) { return observer.error(error); }), (/**
-                 * @return {?}
-                 */
-                function () { return observer.complete(); }));
-                return (/**
-                 * @return {?}
-                 */
-                function () { return subscription.unsubscribe(); });
-            }));
+            return new HermesObservable(function (observer) {
+                var subscription = _this.subscribe(function (v) { return observer.next(v); }, function (error) { return observer.error(error); }, function () { return observer.complete(); });
+                return function () { return subscription.unsubscribe(); };
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        HermesSubject.prototype.verifyNotClosed = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        HermesSubject.prototype.verifyNotClosed = function () {
             if (this.isClosed) {
                 throw new Error('Observable already closed');
             }
         };
         return HermesSubject;
     }(HermesObservable));
-    if (false) {
-        /**
-         * After error
-         * @type {?}
-         * @private
-         */
-        HermesSubject.prototype.thrownError;
-        /**
-         * After complete
-         * @type {?}
-         * @private
-         */
-        HermesSubject.prototype.isCompleted;
-        /**
-         * After unsubscribe
-         * @type {?}
-         * @private
-         */
-        HermesSubject.prototype.isClosed;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesSubject.prototype.subscribers;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var CommandStream = /** @class */ (function (_super) {
         __extends(CommandStream, _super);
         function CommandStream() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        CommandStream.decorators = [
-            { type: core.Injectable }
-        ];
         return CommandStream;
     }(HermesSubject));
+    CommandStream.ɵfac = /*@__PURE__*/ function () { var ɵCommandStream_BaseFactory; return function CommandStream_Factory(t) { return (ɵCommandStream_BaseFactory || (ɵCommandStream_BaseFactory = i0__namespace.ɵɵgetInheritedFactory(CommandStream)))(t || CommandStream); }; }();
+    CommandStream.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: CommandStream, factory: CommandStream.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(CommandStream, [{
+                type: i0.Injectable
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var CommandDispatcher = /** @class */ (function () {
         function CommandDispatcher(commandStream) {
             this.commandStream = commandStream;
         }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandDispatcher.prototype.dispatch = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        CommandDispatcher.prototype.dispatch = function (command) {
             this.commandStream.next(command);
         };
-        CommandDispatcher.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CommandDispatcher.ctorParameters = function () { return [
-            { type: CommandStream }
-        ]; };
         return CommandDispatcher;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandDispatcher.prototype.commandStream;
-    }
+    CommandDispatcher.ɵfac = function CommandDispatcher_Factory(t) { return new (t || CommandDispatcher)(i0__namespace.ɵɵinject(CommandStream)); };
+    CommandDispatcher.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: CommandDispatcher, factory: CommandDispatcher.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(CommandDispatcher, [{
+                type: i0.Injectable
+            }], function () { return [{ type: CommandStream }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var RandomStringGenerator = /** @class */ (function () {
         function RandomStringGenerator() {
         }
-        /**
-         * @return {?}
-         */
-        RandomStringGenerator.generate = /**
-         * @return {?}
-         */
-        function () {
+        RandomStringGenerator.generate = function () {
             return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + ("" + RandomStringGenerator.index++);
         };
-        RandomStringGenerator.index = 0;
-        RandomStringGenerator.decorators = [
-            { type: core.Injectable }
-        ];
         return RandomStringGenerator;
     }());
-    if (false) {
-        /** @type {?} */
-        RandomStringGenerator.index;
-    }
+    RandomStringGenerator.index = 0;
+    RandomStringGenerator.ɵfac = function RandomStringGenerator_Factory(t) { return new (t || RandomStringGenerator)(); };
+    RandomStringGenerator.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: RandomStringGenerator, factory: RandomStringGenerator.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(RandomStringGenerator, [{
+                type: i0.Injectable
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    Message = /** @class */ (function () {
+    var Message = /** @class */ (function () {
         function Message(aggregateId, messageType, messageId) {
             if (messageId === void 0) { messageId = RandomStringGenerator.generate(); }
             this.aggregateId = aggregateId;
             this.messageType = messageType;
             this.messageId = messageId;
         }
-        /**
-         * @return {?}
-         */
-        Message.prototype.getMessageType = /**
-         * @return {?}
-         */
-        function () {
+        Message.prototype.getMessageType = function () {
             return this.messageType;
         };
-        /**
-         * @return {?}
-         */
-        Message.prototype.getAggregateId = /**
-         * @return {?}
-         */
-        function () {
+        Message.prototype.getAggregateId = function () {
             return this.aggregateId;
         };
-        /**
-         * @return {?}
-         */
-        Message.prototype.getMessageId = /**
-         * @return {?}
-         */
-        function () {
+        Message.prototype.getMessageId = function () {
             return this.messageId;
         };
-        /**
-         * @return {?}
-         */
-        Message.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
+        Message.prototype.toString = function () {
             return this.messageType;
         };
-        /**
-         * @param {?} message
-         * @return {?}
-         */
-        Message.prototype.equalsByType = /**
-         * @param {?} message
-         * @return {?}
-         */
-        function (message) {
+        Message.prototype.equalsByType = function (message) {
             return this.getMessageType() === message.getMessageType();
         };
-        /**
-         * @param {?} message
-         * @return {?}
-         */
-        Message.prototype.equals = /**
-         * @param {?} message
-         * @return {?}
-         */
-        function (message) {
+        Message.prototype.equals = function (message) {
             return (this.getMessageType() === message.getMessageType()) && (this.messageId === message.messageId);
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        Message.prototype.ofMessageType = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        Message.prototype.ofMessageType = function (arg) {
             var _this = this;
             if (Array.isArray(arg)) {
-                /** @type {?} */
-                var found = arg.find((/**
-                 * @param {?} messageType
-                 * @return {?}
-                 */
-                function (messageType) { return _this.isMessageType(messageType); }));
+                var found = arg.find(function (messageType) { return _this.isMessageType(messageType); });
                 return !!found;
             }
             else {
                 return this.isMessageType(arg);
             }
         };
-        /**
-         * @private
-         * @param {?} messageType
-         * @return {?}
-         */
-        Message.prototype.isMessageType = /**
-         * @private
-         * @param {?} messageType
-         * @return {?}
-         */
-        function (messageType) {
+        Message.prototype.isMessageType = function (messageType) {
             return this.getMessageType() === messageType;
         };
         return Message;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Message.prototype.aggregateId;
-        /**
-         * @type {?}
-         * @protected
-         */
-        Message.prototype.messageType;
-        /**
-         * @type {?}
-         * @private
-         */
-        Message.prototype.messageId;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    Command = /** @class */ (function (_super) {
+    var Command = /** @class */ (function (_super) {
         __extends(Command, _super);
         function Command() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -1303,158 +774,51 @@
         return Command;
     }(Message));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var MessageType = Function;
-    // WARNING: interface has both a type and a value, skipping emit
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var CommandType = MessageType;
-    // WARNING: interface has both a type and a value, skipping emit
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, A
-     */
-    var   /**
-     * @abstract
-     * @template I, A
-     */
-    AggregateFactory = /** @class */ (function () {
+    var AggregateFactory = /** @class */ (function () {
         function AggregateFactory() {
         }
         return AggregateFactory;
     }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        AggregateFactory.prototype.create = function (aggregateId) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var FILTERED_COMMAND_STREAM = new core.InjectionToken('FILTERED_COMMAND_STREAM');
+    var FILTERED_COMMAND_STREAM = new i0.InjectionToken('FILTERED_COMMAND_STREAM');
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} observer
-     * @param {?=} next
-     * @param {?=} complete
-     * @return {?}
-     */
     function subscriberForOperator(observer, next, complete) {
-        /** @type {?} */
-        var nextFn = next ? next : (/**
-         * @param {?} v
-         * @return {?}
-         */
-        function (v) {
+        var nextFn = next ? next : function (v) {
             observer.next(v);
-        });
-        /** @type {?} */
-        var completeFn = complete ? complete : (/**
-         * @return {?}
-         */
-        function () {
+        }, completeFn = complete ? complete : function () {
             observer.complete();
-        });
+        };
         return new HermesSubscriber({
             next: nextFn,
-            error: (/**
-             * @param {?} e
-             * @return {?}
-             */
-            function (e) { return observer.error(e); }),
+            error: function (e) { return observer.error(e); },
             complete: completeFn
         });
     }
-    /**
-     * @template T
-     * @param {?} observer
-     * @return {?}
-     */
     function subscriberFromObserver(observer) {
         return new HermesSubscriber({
-            next: (/**
-             * @param {?} v
-             * @return {?}
-             */
-            function (v) { return observer.next(v); }),
-            error: (/**
-             * @param {?} e
-             * @return {?}
-             */
-            function (e) { return observer.error(e); }),
-            complete: (/**
-             * @return {?}
-             */
-            function () { return observer.complete(); })
+            next: function (v) { return observer.next(v); },
+            error: function (e) { return observer.error(e); },
+            complete: function () { return observer.complete(); }
         });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} operation
-     * @return {?}
-     */
     function hermesFilter(operation) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+        return function (source) {
+            return new HermesObservable(function (observer) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     if (operation(value)) {
                         observer.next(value);
                     }
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template C
-     */
     var CommandBus = /** @class */ (function (_super) {
         __extends(CommandBus, _super);
         function CommandBus(commandsStream) {
@@ -1462,459 +826,173 @@
             _this.commandsStream = commandsStream;
             return _this;
         }
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        CommandBus.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        CommandBus.prototype.subscribe = function (arg) {
             return this.commandsStream.toObservable().subscribe(arguments[0], arguments[1], arguments[2]);
         };
-        /**
-         * @template C2
-         * @param {...?} commandTypes
-         * @return {?}
-         */
-        CommandBus.prototype.ofCommand = /**
-         * @template C2
-         * @param {...?} commandTypes
-         * @return {?}
-         */
-        function () {
+        CommandBus.prototype.ofCommand = function () {
             var commandTypes = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 commandTypes[_i] = arguments[_i];
             }
-            return ((/** @type {?} */ (this)))
+            return this
                 .commandsStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
-                return commandTypes.some((/**
-                 * @param {?} commandType
-                 * @return {?}
-                 */
-                function (commandType) { return command.ofMessageType(commandType); }));
-            })));
+                .pipe(hermesFilter(function (command) {
+                return commandTypes.some(function (commandType) { return command.ofMessageType(commandType); });
+            }));
         };
-        /**
-         * @template C2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        CommandBus.prototype.ofCommandHandler = /**
-         * @template C2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        function () {
+        CommandBus.prototype.ofCommandHandler = function () {
             var handlers = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 handlers[_i] = arguments[_i];
             }
-            return ((/** @type {?} */ (this)))
+            return this
                 .commandsStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
-                return handlers.some((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
+                .pipe(hermesFilter(function (command) {
+                return handlers.some(function (handler) {
                     return handler.forCommand(command);
-                }));
-            })));
+                });
+            }));
         };
-        /**
-         * @template C2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        CommandBus.prototype.ofCreateAggregateHandler = /**
-         * @template C2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        function () {
+        CommandBus.prototype.ofCreateAggregateHandler = function () {
             var handlers = [];
             for (var _i = 0; _i < arguments.length; _i++) {
                 handlers[_i] = arguments[_i];
             }
-            return ((/** @type {?} */ (this)))
+            return this
                 .commandsStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
-                return handlers.some((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
+                .pipe(hermesFilter(function (command) {
+                return handlers.some(function (handler) {
                     return handler.forCommand(command);
-                }));
-            })));
+                });
+            }));
         };
-        /**
-         * @template C2
-         * @param {?} handlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        CommandBus.prototype.ofNullHandler = /**
-         * @template C2
-         * @param {?} handlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        function (handlers, aggregateCommandHandlers) {
-            return ((/** @type {?} */ (this)))
+        CommandBus.prototype.ofNullHandler = function (handlers, aggregateCommandHandlers) {
+            return this
                 .commandsStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
+                .pipe(hermesFilter(function (command) {
                 if (!handlers && !aggregateCommandHandlers) {
                     return true;
                 }
-                /** @type {?} */
                 var foundHandlerForCommand = true;
                 if (handlers) {
                     foundHandlerForCommand =
-                        !handlers.some((/**
-                         * @param {?} handler
-                         * @return {?}
-                         */
-                        function (handler) {
+                        !handlers.some(function (handler) {
                             return handler.forCommand(command);
-                        }));
+                        });
                 }
                 if (aggregateCommandHandlers) {
                     foundHandlerForCommand = foundHandlerForCommand &&
-                        !aggregateCommandHandlers.some((/**
-                         * @param {?} handler
-                         * @return {?}
-                         */
-                        function (handler) {
+                        !aggregateCommandHandlers.some(function (handler) {
                             return handler.forCommand(command);
-                        }));
+                        });
                 }
                 return foundHandlerForCommand;
-            })));
+            }));
         };
-        CommandBus.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        CommandBus.ctorParameters = function () { return [
-            { type: CommandStream, decorators: [{ type: core.Inject, args: [FILTERED_COMMAND_STREAM,] }] }
-        ]; };
         return CommandBus;
     }(HermesObservable));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandBus.prototype.commandsStream;
-    }
+    CommandBus.ɵfac = function CommandBus_Factory(t) { return new (t || CommandBus)(i0__namespace.ɵɵinject(FILTERED_COMMAND_STREAM)); };
+    CommandBus.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: CommandBus, factory: CommandBus.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(CommandBus, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CommandStream, decorators: [{
+                            type: i0.Inject,
+                            args: [FILTERED_COMMAND_STREAM]
+                        }] }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    AggregateEvent = /** @class */ (function () {
+    var AggregateEvent = /** @class */ (function () {
         function AggregateEvent(aggregateId, type) {
             this.aggregateId = aggregateId;
             this.type = type;
         }
-        /**
-         * @return {?}
-         */
-        AggregateEvent.prototype.getAggregateId = /**
-         * @return {?}
-         */
-        function () {
+        AggregateEvent.prototype.getAggregateId = function () {
             return this.aggregateId;
         };
-        /**
-         * @return {?}
-         */
-        AggregateEvent.prototype.getType = /**
-         * @return {?}
-         */
-        function () {
+        AggregateEvent.prototype.getType = function () {
             return this.type;
         };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        AggregateEvent.prototype.equals = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        AggregateEvent.prototype.equals = function (event) {
             return this.equalsByType(event) &&
                 this.getAggregateId().equals(event.getAggregateId());
         };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        AggregateEvent.prototype.equalsByType = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        AggregateEvent.prototype.equalsByType = function (event) {
             return this.getType() === event.getType();
         };
         return AggregateEvent;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateEvent.prototype.aggregateId;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateEvent.prototype.type;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        AggregateEvent.prototype.toDomainEvent = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var AggregateEventType = MessageType;
-    // WARNING: interface has both a type and a value, skipping emit
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, A
-     */
-    var   /**
-     * @abstract
-     * @template I, A
-     */
-    AggregateRepository = /** @class */ (function () {
+    var AggregateRepository = /** @class */ (function () {
         function AggregateRepository() {
         }
         return AggregateRepository;
     }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        AggregateRepository.prototype.findById = function (aggregateId) { };
-        /**
-         * @abstract
-         * @param {?} aggregate
-         * @return {?}
-         */
-        AggregateRepository.prototype.save = function (aggregate) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, S
-     */
-    var   /**
-     * @abstract
-     * @template I, S
-     */
-    AggregateStore = /** @class */ (function () {
+    var AggregateStore = /** @class */ (function () {
         function AggregateStore() {
         }
         return AggregateStore;
     }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} aggregate
-         * @return {?}
-         */
-        AggregateStore.prototype.save = function (aggregate) { };
-        /**
-         * @abstract
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        AggregateStore.prototype.findById = function (aggregateId) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var AggregateStoreRegister = /** @class */ (function () {
         function AggregateStoreRegister() {
             this.stores = [];
         }
-        /**
-         * @param {?} store
-         * @return {?}
-         */
-        AggregateStoreRegister.prototype.register = /**
-         * @param {?} store
-         * @return {?}
-         */
-        function (store) {
+        AggregateStoreRegister.prototype.register = function (store) {
             this.stores.push(store);
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        AggregateStoreRegister.prototype.captureAggregatesSnapshot = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        AggregateStoreRegister.prototype.captureAggregatesSnapshot = function (aggregateId) {
             if (!aggregateId) {
                 return {};
             }
-            /** @type {?} */
             var aggregates = {};
-            this.stores.forEach((/**
-             * @param {?} store
-             * @return {?}
-             */
-            function (store) {
-                /** @type {?} */
+            this.stores.forEach(function (store) {
                 var aggregate = store.findById(aggregateId);
                 if (aggregate) {
-                    /** @type {?} */
                     var aggregateName = aggregate.constructor.name;
                     aggregates[aggregateName] = aggregate;
                 }
-            }));
+            });
             return this.cloneAggregates(aggregates);
         };
-        /**
-         * @private
-         * @param {?} aggregates
-         * @return {?}
-         */
-        AggregateStoreRegister.prototype.cloneAggregates = /**
-         * @private
-         * @param {?} aggregates
-         * @return {?}
-         */
-        function (aggregates) {
+        AggregateStoreRegister.prototype.cloneAggregates = function (aggregates) {
             // return JSON.parse(JSON.stringify(aggregates));
             return aggregates;
         };
         return AggregateStoreRegister;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateStoreRegister.prototype.stores;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    AggregateRoot = /** @class */ (function () {
+    var AggregateRoot = /** @class */ (function () {
         function AggregateRoot(aggregateId, type) {
             this.type = type;
             this.aggregateId = aggregateId;
             this.events = [];
         }
-        /**
-         * @return {?}
-         */
-        AggregateRoot.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        AggregateRoot.prototype.getId = function () {
             return this.aggregateId;
         };
-        /**
-         * @return {?}
-         */
-        AggregateRoot.prototype.getType = /**
-         * @return {?}
-         */
-        function () {
+        AggregateRoot.prototype.getType = function () {
             return this.type;
         };
-        /**
-         * @return {?}
-         */
-        AggregateRoot.prototype.getEvents = /**
-         * @return {?}
-         */
-        function () {
-            return (/** @type {?} */ (this.events));
+        AggregateRoot.prototype.getEvents = function () {
+            return this.events;
         };
-        /**
-         * @param {?} args
-         * @return {?}
-         */
-        AggregateRoot.prototype.addEvent = /**
-         * @param {?} args
-         * @return {?}
-         */
-        function (args) {
+        AggregateRoot.prototype.addEvent = function (args) {
             var e_1, _a;
             if (Array.isArray(args)) {
                 try {
                     for (var args_1 = __values(args), args_1_1 = args_1.next(); !args_1_1.done; args_1_1 = args_1.next()) {
-                        var event_1 = args_1_1.value;
-                        this.events.push(event_1);
+                        var event = args_1_1.value;
+                        this.events.push(event);
                     }
                 }
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -1926,284 +1004,91 @@
                 }
             }
             else {
-                this.events.push((/** @type {?} */ (args)));
+                this.events.push(args);
             }
         };
-        /**
-         * @return {?}
-         */
-        AggregateRoot.prototype.clearEvents = /**
-         * @return {?}
-         */
-        function () {
+        AggregateRoot.prototype.clearEvents = function () {
             this.events.length = 0;
         };
-        /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        AggregateRoot.prototype.equals = /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        function (aggregate) {
+        AggregateRoot.prototype.equals = function (aggregate) {
             return aggregate.getId().toString() === this.getId().toString();
         };
         return AggregateRoot;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateRoot.prototype.aggregateId;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateRoot.prototype.events;
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateRoot.prototype.type;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        AggregateRoot.prototype.createEvent = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    HermesId = /** @class */ (function () {
+    var HermesId = /** @class */ (function () {
         function HermesId(uid) {
             this.uid = uid;
         }
-        /**
-         * @return {?}
-         */
-        HermesId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        HermesId.prototype.getId = function () {
             return this.uid;
         };
-        /**
-         * @param {?} hermesId
-         * @return {?}
-         */
-        HermesId.prototype.equals = /**
-         * @param {?} hermesId
-         * @return {?}
-         */
-        function (hermesId) {
+        HermesId.prototype.equals = function (hermesId) {
             return this.uid === hermesId.getId();
         };
         return HermesId;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesId.prototype.uid;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        HermesId.prototype.toString = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    AggregateId = /** @class */ (function (_super) {
+    var AggregateId = /** @class */ (function (_super) {
         __extends(AggregateId, _super);
         function AggregateId(uid) {
             return _super.call(this, uid) || this;
         }
-        /**
-         * @return {?}
-         */
-        AggregateId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
+        AggregateId.prototype.toString = function () {
             return _super.prototype.getId.call(this);
         };
         return AggregateId;
     }(HermesId));
-    if (false) {
-        /**
-         * @abstract
-         * @return {?}
-         */
-        AggregateId.prototype.toReadModelRootId = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    DomainEvent = /** @class */ (function (_super) {
+    var DomainEvent = /** @class */ (function (_super) {
         __extends(DomainEvent, _super);
         function DomainEvent(aggregateId, payload, messageType) {
             var _this = _super.call(this, aggregateId, messageType) || this;
             _this.payload = payload;
             return _this;
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEvent.prototype.isSameType = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        DomainEvent.prototype.isSameType = function (event) {
             return this.constructor.name === event.constructor.name;
         };
-        /**
-         * @return {?}
-         */
-        DomainEvent.prototype.getPayload = /**
-         * @return {?}
-         */
-        function () {
+        DomainEvent.prototype.getPayload = function () {
             return this.payload;
         };
         return DomainEvent;
     }(Message));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEvent.prototype.payload;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {...?} args
-     * @return {?}
-     */
     function hermesOf() {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            args.forEach((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
+        return new HermesObservable(function (observer) {
+            args.forEach(function (value) {
                 observer.next(value);
-            }));
+            });
             observer.complete();
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @return {?}
-     */
     function hermesEmpty() {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
+        return new HermesObservable(function (observer) {
             observer.complete();
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} valuesNumber
-     * @return {?}
-     */
     function hermesTake(valuesNumber) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
+        return function (source) {
             if (valuesNumber === 0) {
                 return hermesEmpty();
             }
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+            return new HermesObservable(function (observer) {
                 var index = 0;
-                /** @type {?} */
                 var subscriber = new HermesSubscriber({
-                    next: (/**
-                     * @param {?} v
-                     * @return {?}
-                     */
-                    function (v) {
-                    }),
-                    error: (/**
-                     * @param {?} e
-                     * @return {?}
-                     */
-                    function (e) { return observer.error(e); }),
-                    complete: (/**
-                     * @return {?}
-                     */
-                    function () { return observer.complete(); })
+                    next: function (v) {
+                    },
+                    error: function (e) { return observer.error(e); },
+                    complete: function () { return observer.complete(); }
                 });
-                ((/** @type {?} */ (subscriber))).observer.next = (/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                function (v) {
+                subscriber.observer.next = function (v) {
                     if (index < valuesNumber) {
                         observer.next(v);
                         index++;
@@ -2211,74 +1096,35 @@
                             subscriber.complete();
                         }
                     }
-                });
-                /** @type {?} */
+                };
                 var subscription = source.subscribe(subscriber);
                 return subscription.getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var DomainEventStore = /** @class */ (function () {
         function DomainEventStore() {
             this.domainEvents = [];
             this.domainEvents$ = new HermesSubject();
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventStore.prototype.next = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        DomainEventStore.prototype.next = function (event) {
             this.domainEvents.push(event);
             this.domainEvents$.next(event);
         };
-        /**
-         * @param {?} eventType
-         * @return {?}
-         */
-        DomainEventStore.prototype.findEventByType = /**
-         * @param {?} eventType
-         * @return {?}
-         */
-        function (eventType) {
-            /** @type {?} */
+        DomainEventStore.prototype.findEventByType = function (eventType) {
             var events = this.getEvents();
             return events.reverse()
-                .find((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
+                .find(function (event) {
                 return event.constructor.name === eventType;
-            }));
+            });
         };
         /**
          * First tries to event event in the history,
          * than method waits for future occurrences of the event.
          */
-        /**
-         * First tries to event event in the history,
-         * than method waits for future occurrences of the event.
-         * @param {?} eventType
-         * @return {?}
-         */
-        DomainEventStore.prototype.waitForEvent = /**
-         * First tries to event event in the history,
-         * than method waits for future occurrences of the event.
-         * @param {?} eventType
-         * @return {?}
-         */
-        function (eventType) {
+        DomainEventStore.prototype.waitForEvent = function (eventType) {
             // find in a history
-            /** @type {?} */
             var event = this.findEventByType(eventType);
             if (event) {
                 return hermesOf(event);
@@ -2286,16 +1132,7 @@
             // wait for future occurrence
             return this.waitForNextEventOccurrence(eventType);
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        DomainEventStore.prototype.waitForNextEventOccurrence = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
-            /** @type {?} */
+        DomainEventStore.prototype.waitForNextEventOccurrence = function (arg) {
             var eventType;
             if (arg instanceof DomainEvent) {
                 eventType = arg.constructor.name;
@@ -2304,56 +1141,28 @@
                 eventType = arg;
             }
             else {
-                return new HermesObservable((/**
-                 * @param {?} observer
-                 * @return {?}
-                 */
-                function (observer) {
+                return new HermesObservable(function (observer) {
                     observer.error(new Error('Unsupported argument type.'));
-                }));
+                });
                 // return throwError(new Error('Unsupported argument type.'));
             }
             return this.domainEvents$
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.constructor.name === eventType; })), hermesTake(1));
+                .pipe(hermesFilter(function (event) { return event.constructor.name === eventType; }), hermesTake(1));
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        DomainEventStore.prototype.getEvents = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        DomainEventStore.prototype.getEvents = function () {
             return this.domainEvents;
         };
-        DomainEventStore.decorators = [
-            { type: core.Injectable }
-        ];
         return DomainEventStore;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventStore.prototype.domainEvents;
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventStore.prototype.domainEvents$;
-    }
+    DomainEventStore.ɵfac = function DomainEventStore_Factory(t) { return new (t || DomainEventStore)(); };
+    DomainEventStore.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: DomainEventStore, factory: DomainEventStore.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(DomainEventStore, [{
+                type: i0.Injectable
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var DomainEventStream = /** @class */ (function (_super) {
         __extends(DomainEventStream, _super);
         function DomainEventStream(eventStore) {
@@ -2361,52 +1170,25 @@
             _this.eventStore = eventStore;
             return _this;
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventStream.prototype.next = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        DomainEventStream.prototype.next = function (event) {
             _super.prototype.next.call(this, event);
             this.eventStore.next(event);
         };
-        DomainEventStream.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        DomainEventStream.ctorParameters = function () { return [
-            { type: DomainEventStore }
-        ]; };
         return DomainEventStream;
     }(HermesSubject));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventStream.prototype.eventStore;
-    }
+    DomainEventStream.ɵfac = function DomainEventStream_Factory(t) { return new (t || DomainEventStream)(i0__namespace.ɵɵinject(DomainEventStore)); };
+    DomainEventStream.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: DomainEventStream, factory: DomainEventStream.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(DomainEventStream, [{
+                type: i0.Injectable
+            }], function () { return [{ type: DomainEventStore }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var DomainEventPublisher = /** @class */ (function () {
         function DomainEventPublisher(eventStream) {
             this.eventStream = eventStream;
         }
-        /**
-         * @param {?} args
-         * @return {?}
-         */
-        DomainEventPublisher.prototype.publish = /**
-         * @param {?} args
-         * @return {?}
-         */
-        function (args) {
+        DomainEventPublisher.prototype.publish = function (args) {
             var e_1, _a;
             if (Array.isArray(args)) {
                 try {
@@ -2427,36 +1209,14 @@
                 this.publishEvent(args);
             }
         };
-        /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        DomainEventPublisher.prototype.publishFromAggregate = /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        function (aggregate) {
+        DomainEventPublisher.prototype.publishFromAggregate = function (aggregate) {
             var _this = this;
             aggregate.getEvents()
-                .forEach((/**
-             * @param {?} aggregateEvent
-             * @return {?}
-             */
-            function (aggregateEvent) {
+                .forEach(function (aggregateEvent) {
                 _this.publish(aggregateEvent.toDomainEvent());
-            }));
+            });
         };
-        /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventPublisher.prototype.publishEvent = /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        DomainEventPublisher.prototype.publishEvent = function (event) {
             if (!event) {
                 // eslint-disable-next-line no-console
                 console.error(event + " is not defined");
@@ -2468,30 +1228,16 @@
             }
             this.eventStream.next(event);
         };
-        DomainEventPublisher.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        DomainEventPublisher.ctorParameters = function () { return [
-            { type: DomainEventStream }
-        ]; };
         return DomainEventPublisher;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventPublisher.prototype.eventStream;
-    }
+    DomainEventPublisher.ɵfac = function DomainEventPublisher_Factory(t) { return new (t || DomainEventPublisher)(i0__namespace.ɵɵinject(DomainEventStream)); };
+    DomainEventPublisher.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: DomainEventPublisher, factory: DomainEventPublisher.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(DomainEventPublisher, [{
+                type: i0.Injectable
+            }], function () { return [{ type: DomainEventStream }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template E
-     */
     var DomainEventBus = /** @class */ (function (_super) {
         __extends(DomainEventBus, _super);
         function DomainEventBus(eventStream) {
@@ -2499,315 +1245,136 @@
             _this.eventStream = eventStream;
             return _this;
         }
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        DomainEventBus.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        DomainEventBus.prototype.subscribe = function (arg) {
             return this.eventStream.toObservable().subscribe(arguments[0], arguments[1], arguments[2]);
         };
-        /**
-         * @template E2
-         * @param {...?} events
-         * @return {?}
-         */
-        DomainEventBus.prototype.ofEvent = /**
-         * @template E2
-         * @param {...?} events
-         * @return {?}
-         */
-        function () {
+        DomainEventBus.prototype.ofEvents = function (events) {
             var _this = this;
-            var events = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                events[_i] = arguments[_i];
-            }
-            return ((/** @type {?} */ (this)))
+            return this
                 .eventStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} domainEvent
-             * @return {?}
-             */
-            function (domainEvent) {
-                return events.some((/**
-                 * @param {?} event
-                 * @return {?}
-                 */
-                function (event) {
-                    /** @type {?} */
+                .pipe(hermesFilter(function (domainEvent) {
+                return events.some(function (event) {
                     var eventInstance = _this.createEventInstance(event);
                     return eventInstance.equalsByType(domainEvent);
-                }));
-            })));
+                });
+            }));
         };
-        /**
-         * @template E2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        DomainEventBus.prototype.ofEventHandler = /**
-         * @template E2
-         * @param {...?} handlers
-         * @return {?}
-         */
-        function () {
-            var handlers = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                handlers[_i] = arguments[_i];
-            }
-            return ((/** @type {?} */ (this)))
+        DomainEventBus.prototype.ofEventHandlers = function (handlers) {
+            return this
                 .eventStream
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                return handlers.some((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) { return handler.forEvents([event]); }));
-            })));
+                .pipe(hermesFilter(function (event) {
+                return handlers.some(function (handler) { return handler.forEvents([event]); });
+            }));
         };
-        /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventBus.prototype.createEventInstance = /**
-         * @private
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
-            /** @type {?} */
-            var args = [];
-            /** @type {?} */
-            var argumentLength = event.constructor.length;
+        DomainEventBus.prototype.createEventInstance = function (event) {
+            var args = [], argumentLength = event.constructor.length;
             args.fill(undefined, 0, argumentLength);
-            return (new (((/** @type {?} */ (event))).bind.apply(((/** @type {?} */ (event))), __spread([void 0], args)))());
+            if (args.length === 0) {
+                return (new event());
+            }
+            else if (args.length === 1) {
+                return (new event(args[0]));
+            }
+            else if (args.length === 2) {
+                return (new event(args[0], args[1]));
+            }
+            else if (args.length === 3) {
+                return (new event(args[0], args[1], args[2]));
+            }
+            else if (args.length === 4) {
+                return (new event(args[0], args[1], args[2], args[3]));
+            }
+            else if (args.length === 5) {
+                return (new event(args[0], args[1], args[2], args[3], args[4]));
+            }
+            else {
+                throw new Error('DomainEventBus constructor out of arguments');
+            }
         };
-        DomainEventBus.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        DomainEventBus.ctorParameters = function () { return [
-            { type: DomainEventStream }
-        ]; };
         return DomainEventBus;
     }(HermesObservable));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventBus.prototype.eventStream;
-    }
+    DomainEventBus.ɵfac = function DomainEventBus_Factory(t) { return new (t || DomainEventBus)(i0__namespace.ɵɵinject(DomainEventStream)); };
+    DomainEventBus.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: DomainEventBus, factory: DomainEventBus.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(DomainEventBus, [{
+                type: i0.Injectable
+            }], function () { return [{ type: DomainEventStream }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var DomainEventType = MessageType;
-    // WARNING: interface has both a type and a value, skipping emit
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} notifier
-     * @return {?}
-     */
     function hermesTakeUntil(notifier) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var subscriber = subscriberFromObserver(observer);
-                /** @type {?} */
                 var notifierSubscriber = new HermesSubscriber({
-                    next: (/**
-                     * @return {?}
-                     */
-                    function () { return subscriber.complete(); })
+                    next: function () { return subscriber.complete(); }
                 });
                 notifier.subscribe(notifierSubscriber);
-                /** @type {?} */
                 var subscription = source.subscribe(subscriber);
                 return subscription.getFinalize();
-            }));
+            });
+        };
+    }
+
+    function toRxJsObservable(source$) {
+        return new rxjs.Observable(function (observer) {
+            var subscription = source$.subscribe(function (value) { return observer.next(value); }, function (error) { return observer.error(error); }, function () { return observer.complete(); });
+            return function () { return subscription.unsubscribe(); };
         });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} source$
-     * @return {?}
-     */
-    function toRxJsObservable(source$) {
-        return new rxjs.Observable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
-            var subscription = source$.subscribe((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return observer.next(value); }), (/**
-             * @param {?} error
-             * @return {?}
-             */
-            function (error) { return observer.error(error); }), (/**
-             * @return {?}
-             */
-            function () { return observer.complete(); }));
-            return (/**
-             * @return {?}
-             */
-            function () { return subscription.unsubscribe(); });
-        }));
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    Reactive = /** @class */ (function () {
+    var Reactive = /** @class */ (function () {
         function Reactive() {
             this.hermesUnsubscribe$ = new HermesSubject();
         }
-        /**
-         * @return {?}
-         */
-        Reactive.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        Reactive.prototype.ngOnDestroy = function () {
             this.hermesUnsubscribe();
         };
-        /**
-         * @protected
-         * @template T
-         * @return {?}
-         */
-        Reactive.prototype.takeUntil = /**
-         * @protected
-         * @template T
-         * @return {?}
-         */
-        function () {
+        Reactive.prototype.takeUntil = function () {
             return operators.takeUntil(toRxJsObservable(this.hermesUnsubscribe$));
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        Reactive.prototype.hermesUnsubscribe = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        Reactive.prototype.hermesUnsubscribe = function () {
             this.hermesUnsubscribe$.next();
             this.hermesUnsubscribe$.complete();
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        Reactive.prototype.hermesTakeUntil = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
+        Reactive.prototype.hermesTakeUntil = function () {
             return hermesTakeUntil(this.hermesUnsubscribe$);
         };
-        /**
-         * @protected
-         * @return {?}
-         */
-        Reactive.prototype.isNotStopped = /**
-         * @protected
-         * @return {?}
-         */
-        function () {
-            return !((/** @type {?} */ (this.hermesUnsubscribe$))).isCompleted;
+        Reactive.prototype.isNotStopped = function () {
+            return !this.hermesUnsubscribe$.isCompleted;
         };
         return Reactive;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Reactive.prototype.hermesUnsubscribe$;
-    }
+    Reactive.ɵfac = function Reactive_Factory(t) { return new (t || Reactive)(); };
+    Reactive.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: Reactive, factory: Reactive.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(Reactive, [{
+                type: i0.Injectable
+            }], function () { return []; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    ReactiveService = /** @class */ (function (_super) {
+    var ReactiveService = /** @class */ (function (_super) {
         __extends(ReactiveService, _super);
         function ReactiveService() {
             return _super.call(this) || this;
         }
-        /**
-         * @return {?}
-         */
-        ReactiveService.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        ReactiveService.prototype.ngOnDestroy = function () {
             this.hermesUnsubscribe();
         };
         return ReactiveService;
     }(Reactive));
+    ReactiveService.ɵfac = function ReactiveService_Factory(t) { return new (t || ReactiveService)(); };
+    ReactiveService.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: ReactiveService, factory: ReactiveService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(ReactiveService, [{
+                type: i0.Injectable
+            }], function () { return []; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    Optional = /** @class */ (function () {
+    var Optional = /** @class */ (function () {
         function Optional(value) {
             if (Optional.isValueEmpty(value)) {
                 this.value = null;
@@ -2817,97 +1384,33 @@
             }
             return this;
         }
-        /**
-         * @return {?}
-         */
-        Optional.empty = /**
-         * @return {?}
-         */
-        function () {
+        Optional.empty = function () {
             return new Optional(null);
         };
-        /**
-         * @template U
-         * @param {?} value
-         * @return {?}
-         */
-        Optional.of = /**
-         * @template U
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        Optional.of = function (value) {
             return new Optional(value);
         };
-        /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        Optional.isValueEmpty = /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        Optional.isValueEmpty = function (value) {
             return typeof value === 'undefined' || value === null;
         };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.isEmpty = /**
-         * @return {?}
-         */
-        function () {
+        Optional.prototype.isEmpty = function () {
             return Optional.isValueEmpty(this.value);
         };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.isPresent = /**
-         * @return {?}
-         */
-        function () {
+        Optional.prototype.isPresent = function () {
             return !this.isEmpty();
         };
-        /**
-         * @param {?} filterer
-         * @return {?}
-         */
-        Optional.prototype.filter = /**
-         * @param {?} filterer
-         * @return {?}
-         */
-        function (filterer) {
+        Optional.prototype.filter = function (filterer) {
             if (this.isPresent() && filterer(this.value)) {
                 return this;
             }
             return Optional.empty();
         };
-        /**
-         * @param {?} callback
-         * @return {?}
-         */
-        Optional.prototype.forEach = /**
-         * @param {?} callback
-         * @return {?}
-         */
-        function (callback) {
+        Optional.prototype.forEach = function (callback) {
             if (this.isPresent()) {
                 callback(this.value);
             }
         };
-        /**
-         * @template U
-         * @param {?} mapper
-         * @return {?}
-         */
-        Optional.prototype.map = /**
-         * @template U
-         * @param {?} mapper
-         * @return {?}
-         */
-        function (mapper) {
+        Optional.prototype.map = function (mapper) {
             if (this.isPresent()) {
                 return new Optional(mapper(this.value));
             }
@@ -2916,82 +1419,32 @@
         /**
          * @deprecated
          */
-        /**
-         * @deprecated
-         * @return {?}
-         */
-        Optional.prototype.getValueOrNullOrThrowError = /**
-         * @deprecated
-         * @return {?}
-         */
-        function () {
+        Optional.prototype.getValueOrNullOrThrowError = function () {
             return this.value;
         };
-        /**
-         * @return {?}
-         */
-        Optional.prototype.getOrThrow = /**
-         * @return {?}
-         */
-        function () {
+        Optional.prototype.getOrThrow = function () {
             if (this.isEmpty()) {
                 throw new Error('Called getOrThrow on an empty Optional');
             }
             return this.value;
         };
-        /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        Optional.prototype.getOrElse = /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        function (other) {
+        Optional.prototype.getOrElse = function (other) {
             if (this.isPresent()) {
                 return this.value;
             }
             return other();
         };
-        /**
-         * @param {?} method
-         * @return {?}
-         */
-        Optional.prototype.ifPresent = /**
-         * @param {?} method
-         * @return {?}
-         */
-        function (method) {
+        Optional.prototype.ifPresent = function (method) {
             if (this.isPresent()) {
                 method(this.value);
             }
         };
-        /**
-         * @param {?} method
-         * @return {?}
-         */
-        Optional.prototype.ifEmpty = /**
-         * @param {?} method
-         * @return {?}
-         */
-        function (method) {
+        Optional.prototype.ifEmpty = function (method) {
             if (this.isEmpty()) {
                 method();
             }
         };
-        /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        Optional.prototype.orElse = /**
-         * @template U
-         * @param {?} other
-         * @return {?}
-         */
-        function (other) {
+        Optional.prototype.orElse = function (other) {
             if (this.isPresent()) {
                 return this;
             }
@@ -2999,39 +1452,13 @@
         };
         return Optional;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Optional.prototype.value;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template K, T
-     */
-    var   /**
-     * @template K, T
-     */
-    KeyMap = /** @class */ (function () {
+    var KeyMap = /** @class */ (function () {
         function KeyMap() {
             this.keys = new Map();
             this.values = new WeakMap();
         }
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyMap.prototype.get = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
-            /** @type {?} */
+        KeyMap.prototype.get = function (key) {
             var internalKey = this.getInternalKey(key);
             if (internalKey !== undefined) {
                 return Optional.of(this.values.get(internalKey));
@@ -3040,262 +1467,90 @@
                 return Optional.empty();
             }
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyMap.prototype.has = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
-            /** @type {?} */
+        KeyMap.prototype.has = function (key) {
             var internalKey = this.getInternalKey(key);
             return this.values.has(internalKey);
         };
-        /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        KeyMap.prototype.set = /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        function (key, value) {
+        KeyMap.prototype.set = function (key, value) {
             this.keys.set(key.toString(), key);
             this.values.set(key, value);
         };
-        /**
-         * @return {?}
-         */
-        KeyMap.prototype.size = /**
-         * @return {?}
-         */
-        function () {
+        KeyMap.prototype.size = function () {
             return this.keys.size;
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyMap.prototype.remove = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyMap.prototype.remove = function (key) {
             if (this.hasInternalKey(key)) {
                 this.keys.delete(key.toString());
                 this.values.delete(key);
             }
         };
-        /**
-         * @return {?}
-         */
-        KeyMap.prototype.removeAll = /**
-         * @return {?}
-         */
-        function () {
+        KeyMap.prototype.removeAll = function () {
             var _this = this;
-            this.keys.forEach((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
+            this.keys.forEach(function (value) {
                 _this.values.delete(value);
-            }));
+            });
             this.keys.clear();
         };
-        /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        KeyMap.prototype.getInternalKey = /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyMap.prototype.getInternalKey = function (key) {
             return this.keys.get(key.toString());
         };
-        /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        KeyMap.prototype.hasInternalKey = /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyMap.prototype.hasInternalKey = function (key) {
             return this.keys.has(key.toString());
         };
         return KeyMap;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        KeyMap.prototype.keys;
-        /**
-         * @type {?}
-         * @private
-         */
-        KeyMap.prototype.values;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T, R
-     * @param {?} convert
-     * @return {?}
-     */
     function hermesMap(convert) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var index = 0;
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     observer.next(convert(value, index++));
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?=} compareFn
-     * @return {?}
-     */
     function hermesDistinctUntilChanged(compareFn) {
-        /** @type {?} */
         var compare = compareFn ? compareFn : defaultCompareFn;
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var previousValue = null;
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     if (previousValue === null || !compare(previousValue, value)) {
                         previousValue = value;
                         observer.next(value);
                     }
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
-    /**
-     * @template T
-     * @param {?} a
-     * @param {?} b
-     * @return {?}
-     */
     function defaultCompareFn(a, b) {
         return a === b;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesBehaviorSubject = /** @class */ (function (_super) {
+    var HermesBehaviorSubject = /** @class */ (function (_super) {
         __extends(HermesBehaviorSubject, _super);
         function HermesBehaviorSubject(defaultValue) {
             var _this = _super.call(this) || this;
             _this.lastValue = defaultValue;
             return _this;
         }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        HermesBehaviorSubject.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        HermesBehaviorSubject.prototype.next = function (value) {
             this.lastValue = value;
             _super.prototype.next.call(this, value);
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        HermesBehaviorSubject.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
-            /** @type {?} */
+        HermesBehaviorSubject.prototype.subscribe = function (arg) {
             var subscription = _super.prototype.subscribe.call(this, arguments[0], arguments[1], arguments[2]);
             _super.prototype.next.call(this, this.lastValue);
             return subscription;
         };
         return HermesBehaviorSubject;
     }(HermesSubject));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBehaviorSubject.prototype.lastValue;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesReplaySubject = /** @class */ (function (_super) {
+    var HermesReplaySubject = /** @class */ (function (_super) {
         __extends(HermesReplaySubject, _super);
         function HermesReplaySubject(bufferSize) {
             if (bufferSize === void 0) { bufferSize = 1; }
@@ -3304,32 +1559,15 @@
             _this.values = [];
             return _this;
         }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        HermesReplaySubject.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        HermesReplaySubject.prototype.next = function (value) {
             this.values.push(value);
             if (this.bufferSize < this.values.length) {
                 this.values.shift();
             }
             _super.prototype.next.call(this, value);
         };
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        HermesReplaySubject.prototype.subscribe = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        HermesReplaySubject.prototype.subscribe = function (arg) {
             var e_1, _a;
-            /** @type {?} */
             var subscriber;
             if (arg instanceof HermesSubscriber) {
                 subscriber = arg;
@@ -3337,7 +1575,6 @@
             else {
                 subscriber = this.createSubscriber(arguments[0], arguments[1], arguments[2]);
             }
-            /** @type {?} */
             var subscription = _super.prototype.subscribe.call(this, subscriber);
             try {
                 for (var _b = __values(this.values), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -3356,45 +1593,13 @@
         };
         return HermesReplaySubject;
     }(HermesSubject));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesReplaySubject.prototype.values;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesReplaySubject.prototype.bufferSize;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesArchiveSubject = /** @class */ (function (_super) {
+    var HermesArchiveSubject = /** @class */ (function (_super) {
         __extends(HermesArchiveSubject, _super);
         function HermesArchiveSubject() {
             return _super.call(this) || this;
         }
-        /**
-         * @template T
-         * @param {?=} value
-         * @return {?}
-         */
-        HermesArchiveSubject.of = /**
-         * @template T
-         * @param {?=} value
-         * @return {?}
-         */
-        function (value) {
+        HermesArchiveSubject.of = function (value) {
             if (value !== undefined) {
                 return new HermesBehaviorSubject(value);
             }
@@ -3405,19 +1610,7 @@
         return HermesArchiveSubject;
     }(HermesSubject));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template K, T
-     */
-    var   /**
-     * @abstract
-     * @template K, T
-     */
-    KeyArchive = /** @class */ (function (_super) {
+    var KeyArchive = /** @class */ (function (_super) {
         __extends(KeyArchive, _super);
         function KeyArchive(defaultValue) {
             var _this = _super.call(this) || this;
@@ -3429,160 +1622,46 @@
             }
             return _this;
         }
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyArchive.prototype.on = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyArchive.prototype.on = function (key) {
             var _this = this;
             this.tryToInitDefault(key);
             return this.archive$
                 .toObservable()
-                .pipe(hermesFilter((/**
-             * @return {?}
-             */
-            function () { return _this.isNotStopped(); })), hermesMap((/**
-             * @param {?} map
-             * @return {?}
-             */
-            function (map) {
+                .pipe(hermesFilter(function () { return _this.isNotStopped(); }), hermesMap(function (map) {
                 return map.get(key);
-            })), hermesFilter((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return value.isPresent(); })), hermesMap((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return value.getValueOrNullOrThrowError(); })), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
+            }), hermesFilter(function (value) { return value.isPresent(); }), hermesMap(function (value) { return value.getValueOrNullOrThrowError(); }), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyArchive.prototype.once = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyArchive.prototype.once = function (key) {
             return this.on(key)
                 .pipe(hermesTake(1));
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        KeyArchive.prototype.get = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyArchive.prototype.get = function (key) {
             this.tryToInitDefault(key);
             return this.archive.get(key);
         };
-        /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        KeyArchive.prototype.next = /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        function (key, value) {
+        KeyArchive.prototype.next = function (key, value) {
             this.archive.set(key, value);
             this.archive$.next(this.archive);
         };
-        /**
-         * @protected
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */
-        KeyArchive.prototype.equals = /**
-         * @protected
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */
-        function (a, b) {
+        KeyArchive.prototype.equals = function (a, b) {
             return a === b;
         };
-        /**
-         * @protected
-         * @param {?} defaultValue
-         * @return {?}
-         */
-        KeyArchive.prototype.createDefaultValue = /**
-         * @protected
-         * @param {?} defaultValue
-         * @return {?}
-         */
-        function (defaultValue) {
+        KeyArchive.prototype.createDefaultValue = function (defaultValue) {
             return defaultValue;
         };
-        /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        KeyArchive.prototype.tryToInitDefault = /**
-         * @private
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        KeyArchive.prototype.tryToInitDefault = function (key) {
             var _this = this;
             this.defaultValue
-                .ifPresent((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) {
+                .ifPresent(function (value) {
                 if (!_this.archive.has(key)) {
                     _this.next(key, value);
                 }
-            }));
+            });
         };
         return KeyArchive;
     }(ReactiveService));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        KeyArchive.prototype.archive;
-        /**
-         * @type {?}
-         * @private
-         */
-        KeyArchive.prototype.archive$;
-        /**
-         * @type {?}
-         * @private
-         */
-        KeyArchive.prototype.defaultValue;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    AggregateArchive = /** @class */ (function (_super) {
+    var AggregateArchive = /** @class */ (function (_super) {
         __extends(AggregateArchive, _super);
         function AggregateArchive(defaultValue) {
             return _super.call(this, defaultValue) || this;
@@ -3590,242 +1669,77 @@
         return AggregateArchive;
     }(KeyArchive));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, E, V
-     */
-    var   /**
-     * @abstract
-     * @template I, E, V
-     */
-    EventDrivenRepository = /** @class */ (function (_super) {
+    var EventDrivenRepository = /** @class */ (function (_super) {
         __extends(EventDrivenRepository, _super);
         function EventDrivenRepository(defaultValues) {
             return _super.call(this, defaultValues) || this;
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        EventDrivenRepository.prototype.handle = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        EventDrivenRepository.prototype.handle = function (event) {
             this.next(event.getAggregateId(), event.getPayload());
         };
         return EventDrivenRepository;
     }(AggregateArchive));
-    if (false) {
-        /**
-         * @abstract
-         * @return {?}
-         */
-        EventDrivenRepository.prototype.forEvent = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    ReadModelEntity = /** @class */ (function () {
+    var ReadModelEntity = /** @class */ (function () {
         function ReadModelEntity(gui) {
             this.entityId = gui;
         }
-        /**
-         * @return {?}
-         */
-        ReadModelEntity.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelEntity.prototype.getId = function () {
             return this.entityId;
         };
         return ReadModelEntity;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReadModelEntity.prototype.entityId;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReadModelEntityId = /** @class */ (function () {
         function ReadModelEntityId(uid) {
             this.uid = uid;
         }
-        /**
-         * @return {?}
-         */
-        ReadModelEntityId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelEntityId.prototype.toString = function () {
             return this.uid;
         };
-        /**
-         * @return {?}
-         */
-        ReadModelEntityId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelEntityId.prototype.getId = function () {
             return this.uid;
         };
-        /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        ReadModelEntityId.prototype.equals = /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        function (entityId) {
+        ReadModelEntityId.prototype.equals = function (entityId) {
             return this.uid === entityId.getId();
         };
         return ReadModelEntityId;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReadModelEntityId.prototype.uid;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    ReadModelRoot = /** @class */ (function () {
+    var ReadModelRoot = /** @class */ (function () {
         function ReadModelRoot(gui) {
             this.rootId = gui;
         }
-        /**
-         * @return {?}
-         */
-        ReadModelRoot.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelRoot.prototype.getId = function () {
             return this.rootId;
         };
         return ReadModelRoot;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReadModelRoot.prototype.rootId;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    ReadModelRootId = /** @class */ (function () {
+    var ReadModelRootId = /** @class */ (function () {
         function ReadModelRootId(uid) {
             this.uid = uid;
         }
-        /**
-         * @return {?}
-         */
-        ReadModelRootId.prototype.toString = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelRootId.prototype.toString = function () {
             return this.uid;
         };
-        /**
-         * @return {?}
-         */
-        ReadModelRootId.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        ReadModelRootId.prototype.getId = function () {
             return this.uid;
         };
-        /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        ReadModelRootId.prototype.equals = /**
-         * @param {?} entityId
-         * @return {?}
-         */
-        function (entityId) {
+        ReadModelRootId.prototype.equals = function (entityId) {
             return this.uid === entityId.getId();
         };
         return ReadModelRootId;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReadModelRootId.prototype.uid;
-        /**
-         * @abstract
-         * @return {?}
-         */
-        ReadModelRootId.prototype.toAggregateId = function () { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    ReadModelRootRepository = /** @class */ (function (_super) {
+    var ReadModelRootRepository = /** @class */ (function (_super) {
         __extends(ReadModelRootRepository, _super);
         function ReadModelRootRepository(domainEventBus) {
             var _this = _super.call(this) || this;
             domainEventBus
-                .ofEvent.apply(domainEventBus, __spread(_this.forEvents())).pipe(_this.hermesTakeUntil())
-                .subscribe((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
+                .ofEvents(_this.forEvents())
+                .pipe(_this.hermesTakeUntil())
+                .subscribe(function (event) {
                 try {
                     _this.subscribe(event);
                 }
@@ -3833,162 +1747,49 @@
                     // eslint-disable-next-line no-console
                     console.error(e);
                 }
-            }));
+            });
             return _this;
         }
         return ReadModelRootRepository;
     }(Reactive));
-    if (false) {
-        /**
-         * @abstract
-         * @protected
-         * @return {?}
-         */
-        ReadModelRootRepository.prototype.forEvents = function () { };
-        /**
-         * @abstract
-         * @protected
-         * @param {?} event
-         * @return {?}
-         */
-        ReadModelRootRepository.prototype.subscribe = function (event) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, R
-     */
-    var   /**
-     * @abstract
-     * @template I, R
-     */
-    ReadModelStore = /** @class */ (function () {
+    var ReadModelStore = /** @class */ (function () {
         function ReadModelStore() {
         }
         return ReadModelStore;
     }());
-    if (false) {
-        /**
-         * @abstract
-         * @param {?} readModelRootId
-         * @return {?}
-         */
-        ReadModelStore.prototype.getById = function (readModelRootId) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template R, I
-     */
-    var   /**
-     * @abstract
-     * @template R, I
-     */
-    EventRepository = /** @class */ (function (_super) {
+    var EventRepository = /** @class */ (function (_super) {
         __extends(EventRepository, _super);
         function EventRepository(domainEventBus) {
             var _this = _super.call(this) || this;
             _this.domainEventBus = domainEventBus;
             return _this;
         }
-        /**
-         * @protected
-         * @param {?} aggregateId
-         * @param {?} eventType
-         * @return {?}
-         */
-        EventRepository.prototype.onEvent = /**
-         * @protected
-         * @param {?} aggregateId
-         * @param {?} eventType
-         * @return {?}
-         */
-        function (aggregateId, eventType) {
+        EventRepository.prototype.onEvent = function (aggregateId, eventType) {
             return this.domainEventBus
-                .ofEvent((/** @type {?} */ (eventType)))
-                .pipe(hermesFilter((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) { return event.getAggregateId().toString() === aggregateId.toString(); })));
+                .ofEvents([
+                eventType
+            ])
+                .pipe(hermesFilter(function (event) { return event.getAggregateId().toString() === aggregateId.toString(); }));
         };
         return EventRepository;
     }(ReactiveService));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        EventRepository.prototype.domainEventBus;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    Entity = /** @class */ (function () {
+    var Entity = /** @class */ (function () {
         function Entity(id) {
             this.entityId = id;
         }
-        /**
-         * @return {?}
-         */
-        Entity.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        Entity.prototype.getId = function () {
             return this.entityId;
         };
-        /**
-         * @param {?} entity
-         * @return {?}
-         */
-        Entity.prototype.equals = /**
-         * @param {?} entity
-         * @return {?}
-         */
-        function (entity) {
+        Entity.prototype.equals = function (entity) {
             return this.entityId.equals(entity.getId());
         };
         return Entity;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Entity.prototype.entityId;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    EntityId = /** @class */ (function (_super) {
+    var EntityId = /** @class */ (function (_super) {
         __extends(EntityId, _super);
         function EntityId() {
             return _super !== null && _super.apply(this, arguments) || this;
@@ -3996,219 +1797,106 @@
         return EntityId;
     }(HermesId));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} target
-     * @return {?}
-     */
     function ValueObject(target) {
     }
-    /**
-     * @param {?} target
-     * @return {?}
-     */
     function DomainObject(target) {
     }
-    /**
-     * @param {?} target
-     * @return {?}
-     */
     function ReadModelObject(target) {
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    DomainModule = /** @class */ (function () {
+    var DomainModule = /** @class */ (function () {
         function DomainModule() {
         }
         return DomainModule;
     }());
+    DomainModule.ɵfac = function DomainModule_Factory(t) { return new (t || DomainModule)(); };
+    DomainModule.ɵmod = /*@__PURE__*/ i0__namespace.ɵɵdefineNgModule({ type: DomainModule });
+    DomainModule.ɵinj = /*@__PURE__*/ i0__namespace.ɵɵdefineInjector({});
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(DomainModule, [{
+                type: i0.NgModule
+            }], function () { return []; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    ApiModule = /** @class */ (function () {
+    var ApiModule = /** @class */ (function () {
         function ApiModule() {
         }
         return ApiModule;
     }());
+    ApiModule.ɵfac = function ApiModule_Factory(t) { return new (t || ApiModule)(); };
+    ApiModule.ɵmod = /*@__PURE__*/ i0__namespace.ɵɵdefineNgModule({ type: ApiModule });
+    ApiModule.ɵinj = /*@__PURE__*/ i0__namespace.ɵɵdefineInjector({});
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(ApiModule, [{
+                type: i0.NgModule
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    FeatureModule = /** @class */ (function () {
+    var FeatureModule = /** @class */ (function () {
         function FeatureModule() {
         }
         return FeatureModule;
     }());
+    FeatureModule.ɵfac = function FeatureModule_Factory(t) { return new (t || FeatureModule)(); };
+    FeatureModule.ɵmod = /*@__PURE__*/ i0__namespace.ɵɵdefineNgModule({ type: FeatureModule });
+    FeatureModule.ɵinj = /*@__PURE__*/ i0__namespace.ɵɵdefineInjector({});
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(FeatureModule, [{
+                type: i0.NgModule
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @return {?}
-     */
     function hermesNever() {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-        }));
+        return new HermesObservable(function (observer) {
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} interval
-     * @return {?}
-     */
     function hermesInterval(interval) {
-        /** @type {?} */
         var counter = 0;
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
-            var id = setInterval((/**
-             * @return {?}
-             */
-            function () {
+        return new HermesObservable(function (observer) {
+            var id = setInterval(function () {
                 observer.next(counter++);
-            }), interval);
-            return (/**
-             * @return {?}
-             */
-            function () {
+            }, interval);
+            return function () {
                 clearInterval(id);
                 observer.complete();
-            });
-        }));
+            };
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} time
-     * @return {?}
-     */
     function hermesTimer(time) {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
-            var id = setTimeout((/**
-             * @return {?}
-             */
-            function () {
+        return new HermesObservable(function (observer) {
+            var id = setTimeout(function () {
                 observer.next(0);
-            }), time);
-            return (/**
-             * @return {?}
-             */
-            function () {
+            }, time);
+            return function () {
                 clearTimeout(id);
                 observer.complete();
-            });
-        }));
+            };
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} element
-     * @param {?} type
-     * @return {?}
-     */
     function hermesFromEvent(element, type) {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
-            var listener = (/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
+        return new HermesObservable(function (observer) {
+            var listener = function (event) {
                 observer.next(event);
-            });
+            };
             element.addEventListener(type, listener);
-            return (/**
-             * @return {?}
-             */
-            function () {
+            return function () {
                 element.removeEventListener(type, listener);
-            });
-        }));
+            };
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var /**
-     * @template T
-     */
-    HermesSingleSubscriber = /** @class */ (function (_super) {
+    var HermesSingleSubscriber = /** @class */ (function (_super) {
         __extends(HermesSingleSubscriber, _super);
         function HermesSingleSubscriber() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        HermesSingleSubscriber.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        HermesSingleSubscriber.prototype.next = function (value) {
             if (this.isCompleted()) {
                 return;
             }
-            /** @type {?} */
             var observer = this.getObserver();
             if (observer && observer.next) {
                 observer.next(value);
@@ -4218,36 +1906,12 @@
         return HermesSingleSubscriber;
     }(HermesSubscriber));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     */
-    var   /**
-     * @template T
-     */
-    HermesSingle = /** @class */ (function (_super) {
+    var HermesSingle = /** @class */ (function (_super) {
         __extends(HermesSingle, _super);
         function HermesSingle() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @protected
-         * @param {?=} next
-         * @param {?=} error
-         * @param {?=} complete
-         * @return {?}
-         */
-        HermesSingle.prototype.createSubscriber = /**
-         * @protected
-         * @param {?=} next
-         * @param {?=} error
-         * @param {?=} complete
-         * @return {?}
-         */
-        function (next, error, complete) {
+        HermesSingle.prototype.createSubscriber = function (next, error, complete) {
             return new HermesSingleSubscriber({
                 next: next,
                 error: error,
@@ -4257,581 +1921,193 @@
         return HermesSingle;
     }(HermesObservable));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} source
-     * @return {?}
-     */
     function singleFromObservable(source) {
-        return new HermesSingle((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
+        return new HermesSingle(function (observer) {
             var subscriber = new HermesSubscriber({
-                next: (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) { return observer.next(value); }),
-                error: (/**
-                 * @param {?} error
-                 * @return {?}
-                 */
-                function (error) { return observer.error(error); }),
-                complete: (/**
-                 * @return {?}
-                 */
-                function () {
-                })
+                next: function (value) { return observer.next(value); },
+                error: function (error) { return observer.error(error); },
+                complete: function () {
+                }
             });
-            /** @type {?} */
             var subscription = source.subscribe(subscriber);
             return subscription.getFinalize();
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} error
-     * @return {?}
-     */
     function hermesThrowError(error) {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
+        return new HermesObservable(function (observer) {
             observer.error(error);
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} valuesNumber
-     * @return {?}
-     */
     function hermesSkip(valuesNumber) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var index = 0;
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     if (index >= valuesNumber) {
                         observer.next(value);
                     }
                     index++;
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T, R
-     * @param {?} operation
-     * @return {?}
-     */
     function hermesSwitchMap(operation) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var isOuterCompleted = false;
-                /** @type {?} */
                 var innerSubscriber = null;
-                /** @type {?} */
-                var tryToComplete = (/**
-                 * @return {?}
-                 */
-                function () {
+                var tryToComplete = function () {
                     if (isOuterCompleted && !innerSubscriber) {
                         observer.complete();
                     }
-                });
-                /** @type {?} */
-                var outerSubscriber = subscriberForOperator(observer, (/**
-                 * @param {?} v
-                 * @return {?}
-                 */
-                function (v) {
+                };
+                var outerSubscriber = subscriberForOperator(observer, function (v) {
                     if (innerSubscriber) {
                         innerSubscriber.unsubscribe();
                     }
-                    /** @type {?} */
                     var subscriber = new HermesSubscriber({
-                        next: (/**
-                         * @param {?} v2
-                         * @return {?}
-                         */
-                        function (v2) { return observer.next(v2); }),
-                        error: (/**
-                         * @param {?} e
-                         * @return {?}
-                         */
-                        function (e) { return observer.error(e); }),
-                        complete: (/**
-                         * @return {?}
-                         */
-                        function () {
+                        next: function (v2) { return observer.next(v2); },
+                        error: function (e) { return observer.error(e); },
+                        complete: function () {
                             innerSubscriber = null;
                             tryToComplete();
-                        })
+                        }
                     });
                     innerSubscriber = subscriber;
-                    /** @type {?} */
                     var innerSubscription = operation(v).subscribe(subscriber);
                     return innerSubscription.getFinalize();
-                }), (/**
-                 * @return {?}
-                 */
-                function () {
+                }, function () {
                     isOuterCompleted = true;
                     tryToComplete();
-                }));
+                });
                 return source.subscribe(outerSubscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} operation
-     * @return {?}
-     */
     function hermesTap(operation) {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+        return function (source) {
+            return new HermesObservable(function (observer) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     operation(value);
                     observer.next(value);
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
-        });
+            });
+        };
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @return {?}
-     */
     function hermesToArray() {
-        return (/**
-         * @param {?} source
-         * @return {?}
-         */
-        function (source) {
-            return new HermesObservable((/**
-             * @param {?} observer
-             * @return {?}
-             */
-            function (observer) {
-                /** @type {?} */
+        return function (source) {
+            return new HermesObservable(function (observer) {
                 var values = [];
-                /** @type {?} */
-                var subscriber = subscriberForOperator(observer, (/**
-                 * @param {?} value
-                 * @return {?}
-                 */
-                function (value) {
+                var subscriber = subscriberForOperator(observer, function (value) {
                     values.push(value);
-                }), (/**
-                 * @return {?}
-                 */
-                function () {
+                }, function () {
                     if (values.length > 0) {
                         observer.next(values);
                     }
                     observer.complete();
-                }));
+                });
                 return source.subscribe(subscriber).getFinalize();
-            }));
+            });
+        };
+    }
+
+    function fromRxJsObservable(source$) {
+        return new HermesObservable(function (observer) {
+            var subscription = source$.subscribe(function (value) { return observer.next(value); }, function (error) { return observer.error(error); }, function () { return observer.complete(); });
+            return function () { return subscription.unsubscribe(); };
         });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template T
-     * @param {?} source$
-     * @return {?}
-     */
-    function fromRxJsObservable(source$) {
-        return new HermesObservable((/**
-         * @param {?} observer
-         * @return {?}
-         */
-        function (observer) {
-            /** @type {?} */
-            var subscription = source$.subscribe((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return observer.next(value); }), (/**
-             * @param {?} error
-             * @return {?}
-             */
-            function (error) { return observer.error(error); }), (/**
-             * @return {?}
-             */
-            function () { return observer.complete(); }));
-            return (/**
-             * @return {?}
-             */
-            function () { return subscription.unsubscribe(); });
-        }));
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template T
-     */
-    var   /**
-     * @abstract
-     * @template T
-     */
-    Archive = /** @class */ (function () {
+    var Archive = /** @class */ (function () {
         function Archive(value) {
             this.archive$ = HermesArchiveSubject.of(value);
         }
-        /**
-         * @return {?}
-         */
-        Archive.prototype.on = /**
-         * @return {?}
-         */
-        function () {
+        Archive.prototype.on = function () {
             return this.archive$
                 .toObservable()
                 .pipe(hermesDistinctUntilChanged(this.compare));
         };
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        Archive.prototype.next = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        Archive.prototype.next = function (value) {
             this.archive$.next(value);
         };
-        /**
-         * @param {?} one
-         * @param {?} two
-         * @return {?}
-         */
-        Archive.prototype.compare = /**
-         * @param {?} one
-         * @param {?} two
-         * @return {?}
-         */
-        function (one, two) {
+        Archive.prototype.compare = function (one, two) {
             return one === two;
         };
         return Archive;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        Archive.prototype.archive$;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I
-     */
-    var   /**
-     * @abstract
-     * @template I
-     */
-    PersistAnemia = /** @class */ (function () {
+    var PersistAnemia = /** @class */ (function () {
         function PersistAnemia(uid) {
             this.readModelRootId = uid;
         }
-        /**
-         * @return {?}
-         */
-        PersistAnemia.prototype.getReadModelRootId = /**
-         * @return {?}
-         */
-        function () {
+        PersistAnemia.prototype.getReadModelRootId = function () {
             return this.readModelRootId;
         };
-        /**
-         * @return {?}
-         */
-        PersistAnemia.prototype.getId = /**
-         * @return {?}
-         */
-        function () {
+        PersistAnemia.prototype.getId = function () {
             return this.getReadModelRootId().toString();
         };
         return PersistAnemia;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        PersistAnemia.prototype.readModelRootId;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, A
-     */
-    var   /**
-     * @abstract
-     * @template I, A
-     */
-    PersistStateStore = /** @class */ (function () {
+    var PersistStateStore = /** @class */ (function () {
         function PersistStateStore() {
             this.state = new Map();
         }
-        /**
-         * @param {?} anemia
-         * @return {?}
-         */
-        PersistStateStore.prototype.set = /**
-         * @param {?} anemia
-         * @return {?}
-         */
-        function (anemia) {
+        PersistStateStore.prototype.set = function (anemia) {
             this.state.set(anemia.getId(), anemia);
         };
-        /**
-         * @param {?} anemias
-         * @return {?}
-         */
-        PersistStateStore.prototype.setMany = /**
-         * @param {?} anemias
-         * @return {?}
-         */
-        function (anemias) {
+        PersistStateStore.prototype.setMany = function (anemias) {
             var _this = this;
-            anemias.forEach((/**
-             * @param {?} anemia
-             * @return {?}
-             */
-            function (anemia) {
+            anemias.forEach(function (anemia) {
                 _this.set(anemia);
-            }));
+            });
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        PersistStateStore.prototype.get = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        PersistStateStore.prototype.get = function (aggregateId) {
             return Optional.of(this.state.get(aggregateId.toString()));
         };
-        /**
-         * @return {?}
-         */
-        PersistStateStore.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
+        PersistStateStore.prototype.getAll = function () {
             return Array.from(this.state.values());
         };
-        /**
-         * @return {?}
-         */
-        PersistStateStore.prototype.clear = /**
-         * @return {?}
-         */
-        function () {
+        PersistStateStore.prototype.clear = function () {
             this.state.clear();
         };
         return PersistStateStore;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        PersistStateStore.prototype.state;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, R, A
-     */
-    var   /**
-     * @abstract
-     * @template I, R, A
-     */
-    PersistReadModelStore = /** @class */ (function (_super) {
+    var PersistReadModelStore = /** @class */ (function (_super) {
         __extends(PersistReadModelStore, _super);
         function PersistReadModelStore(stateStore) {
             var _this = _super.call(this) || this;
             _this.stateStore = stateStore;
             return _this;
         }
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        PersistReadModelStore.prototype.getById = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        PersistReadModelStore.prototype.getById = function (aggregateId) {
             return this.getValue(aggregateId);
         };
-        /**
-         * @return {?}
-         */
-        PersistReadModelStore.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
+        PersistReadModelStore.prototype.getAll = function () {
             return this.getAllValues();
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        PersistReadModelStore.prototype.getAllValues = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        PersistReadModelStore.prototype.getAllValues = function () {
             var _this = this;
             return this.stateStore
                 .getAll()
-                .map((/**
-             * @param {?} anemia
-             * @return {?}
-             */
-            function (anemia) { return _this.toReadModel(anemia); }));
+                .map(function (anemia) { return _this.toReadModel(anemia); });
         };
-        /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        PersistReadModelStore.prototype.getValue = /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
-            /** @type {?} */
+        PersistReadModelStore.prototype.getValue = function (aggregateId) {
             var optAnemia = this.stateStore.get(aggregateId);
             return optAnemia.map(this.toReadModel);
         };
         return PersistReadModelStore;
     }(ReadModelStore));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        PersistReadModelStore.prototype.stateStore;
-        /**
-         * @abstract
-         * @param {?} anemia
-         * @return {?}
-         */
-        PersistReadModelStore.prototype.toReadModel = function (anemia) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, D, A
-     */
-    var   /**
-     * @abstract
-     * @template I, D, A
-     */
-    PersistAggregateStore = /** @class */ (function (_super) {
+    var PersistAggregateStore = /** @class */ (function (_super) {
         __extends(PersistAggregateStore, _super);
         function PersistAggregateStore(stateStore, aggregateStoreRegister) {
             var _this = _super.call(this) || this;
@@ -4840,98 +2116,24 @@
             _this.aggregateStoreRegister.register(_this);
             return _this;
         }
-        /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.save = /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        function (aggregate) {
+        PersistAggregateStore.prototype.save = function (aggregate) {
             this.saveValue(aggregate);
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.findById = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        PersistAggregateStore.prototype.findById = function (aggregateId) {
             return this.getValue(aggregateId);
         };
-        /**
-         * @private
-         * @param {?} aggregate
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.saveValue = /**
-         * @private
-         * @param {?} aggregate
-         * @return {?}
-         */
-        function (aggregate) {
-            /** @type {?} */
+        PersistAggregateStore.prototype.saveValue = function (aggregate) {
             var anemia = this.toAnemia(aggregate);
             this.stateStore.set(anemia);
         };
-        /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.getValue = /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
-            /** @type {?} */
+        PersistAggregateStore.prototype.getValue = function (aggregateId) {
             var optAnemia = this.stateStore.get(aggregateId);
             return optAnemia.map(this.fromAnemia);
         };
         return PersistAggregateStore;
     }(AggregateStore));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        PersistAggregateStore.prototype.stateStore;
-        /**
-         * @type {?}
-         * @private
-         */
-        PersistAggregateStore.prototype.aggregateStoreRegister;
-        /**
-         * @abstract
-         * @param {?} aggregate
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.toAnemia = function (aggregate) { };
-        /**
-         * @abstract
-         * @param {?} anemia
-         * @return {?}
-         */
-        PersistAggregateStore.prototype.fromAnemia = function (anemia) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, T
-     */
-    var   /**
-     * @abstract
-     * @template I, T
-     */
-    InMemoryAggregateStore = /** @class */ (function (_super) {
+    var InMemoryAggregateStore = /** @class */ (function (_super) {
         __extends(InMemoryAggregateStore, _super);
         function InMemoryAggregateStore(inMemoryStore, aggregateStoreRegister) {
             var _this = _super.call(this) || this;
@@ -4940,259 +2142,80 @@
             _this.aggregateStoreRegister.register(_this);
             return _this;
         }
-        /**
-         * @param {?} arg
-         * @return {?}
-         */
-        InMemoryAggregateStore.prototype.save = /**
-         * @param {?} arg
-         * @return {?}
-         */
-        function (arg) {
+        InMemoryAggregateStore.prototype.save = function (arg) {
             var _this = this;
             if (Array.isArray(arg)) {
-                arg.forEach((/**
-                 * @param {?} aggregate
-                 * @return {?}
-                 */
-                function (aggregate) {
+                arg.forEach(function (aggregate) {
                     _this.inMemoryStore.set(aggregate);
-                }));
+                });
             }
             else {
-                /** @type {?} */
                 var aggregate = arg;
                 this.inMemoryStore.set(aggregate);
             }
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryAggregateStore.prototype.findById = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
-            /** @type {?} */
+        InMemoryAggregateStore.prototype.findById = function (aggregateId) {
             var optAggregate = this.inMemoryStore.get(aggregateId);
-            optAggregate.ifPresent((/**
-             * @param {?} a
-             * @return {?}
-             */
-            function (a) { return a.clearEvents(); }));
+            optAggregate.ifPresent(function (a) { return a.clearEvents(); });
             return optAggregate;
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryAggregateStore.prototype.remove = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        InMemoryAggregateStore.prototype.remove = function (aggregateId) {
             this.inMemoryStore.delete(aggregateId);
         };
         return InMemoryAggregateStore;
     }(AggregateStore));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InMemoryAggregateStore.prototype.inMemoryStore;
-        /**
-         * @type {?}
-         * @private
-         */
-        InMemoryAggregateStore.prototype.aggregateStoreRegister;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, R, B, A
-     */
-    var   /**
-     * @abstract
-     * @template I, R, B, A
-     */
-    InMemoryReadModelStore = /** @class */ (function (_super) {
+    var InMemoryReadModelStore = /** @class */ (function (_super) {
         __extends(InMemoryReadModelStore, _super);
         function InMemoryReadModelStore(inMemoryStore) {
             var _this = _super.call(this) || this;
             _this.inMemoryStore = inMemoryStore;
             return _this;
         }
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryReadModelStore.prototype.getById = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        InMemoryReadModelStore.prototype.getById = function (aggregateId) {
             return this.getValue(aggregateId);
         };
-        /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryReadModelStore.prototype.getValue = /**
-         * @private
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
-            /** @type {?} */
+        InMemoryReadModelStore.prototype.getValue = function (aggregateId) {
             var optAggregate = this.inMemoryStore.get(aggregateId);
             return optAggregate.map(this.toReadModel.bind(this));
         };
         return InMemoryReadModelStore;
     }(ReadModelStore));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InMemoryReadModelStore.prototype.inMemoryStore;
-        /**
-         * @abstract
-         * @param {?} aggregate
-         * @return {?}
-         */
-        InMemoryReadModelStore.prototype.toReadModel = function (aggregate) { };
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     * @template I, A
-     */
-    var   /**
-     * @abstract
-     * @template I, A
-     */
-    InMemoryStore = /** @class */ (function () {
+    var InMemoryStore = /** @class */ (function () {
         function InMemoryStore() {
             this.state = new Map();
         }
-        /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        InMemoryStore.prototype.set = /**
-         * @param {?} aggregate
-         * @return {?}
-         */
-        function (aggregate) {
+        InMemoryStore.prototype.set = function (aggregate) {
             this.state.set(aggregate.getId().toString(), aggregate);
         };
-        /**
-         * @param {?} aggregates
-         * @return {?}
-         */
-        InMemoryStore.prototype.setMany = /**
-         * @param {?} aggregates
-         * @return {?}
-         */
-        function (aggregates) {
+        InMemoryStore.prototype.setMany = function (aggregates) {
             var _this = this;
-            aggregates.forEach((/**
-             * @param {?} aggregate
-             * @return {?}
-             */
-            function (aggregate) {
+            aggregates.forEach(function (aggregate) {
                 _this.set(aggregate);
-            }));
+            });
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryStore.prototype.get = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        InMemoryStore.prototype.get = function (aggregateId) {
             return Optional.of(this.state.get(aggregateId.toString()));
         };
-        /**
-         * @return {?}
-         */
-        InMemoryStore.prototype.getAll = /**
-         * @return {?}
-         */
-        function () {
-            return Array.from(this.state.values()).map((/**
-             * @param {?} v
-             * @return {?}
-             */
-            function (v) { return Optional.of(v); }));
+        InMemoryStore.prototype.getAll = function () {
+            return Array.from(this.state.values()).map(function (v) { return Optional.of(v); });
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryStore.prototype.has = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        InMemoryStore.prototype.has = function (aggregateId) {
             return this.state.has(aggregateId.toString());
         };
-        /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        InMemoryStore.prototype.delete = /**
-         * @param {?} aggregateId
-         * @return {?}
-         */
-        function (aggregateId) {
+        InMemoryStore.prototype.delete = function (aggregateId) {
             this.state.delete(aggregateId.toString());
         };
-        /**
-         * @return {?}
-         */
-        InMemoryStore.prototype.clear = /**
-         * @return {?}
-         */
-        function () {
+        InMemoryStore.prototype.clear = function () {
             this.state.clear();
         };
         return InMemoryStore;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        InMemoryStore.prototype.state;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMMAND_LOGGER_ENABLED = 'GUI - COMMAND_LOGGER_ENABLED';
-    /** @type {?} */
     var EVENT_LOGGER_ENABLED = 'GUI - EVENT_LOGGER_ENABLED';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ConsoleCommandLogger = /** @class */ (function (_super) {
         __extends(ConsoleCommandLogger, _super);
         function ConsoleCommandLogger(commandBus) {
@@ -5200,127 +2223,50 @@
             _this.enabled = false;
             _this.unsubscribe$ = new HermesSubject();
             commandBus
-                .pipe(hermesFilter((/**
-             * @return {?}
-             */
-            function () { return _this.enabled; })), hermesTakeUntil(_this.unsubscribe$))
-                .subscribe((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
+                .pipe(hermesFilter(function () { return _this.enabled; }), hermesTakeUntil(_this.unsubscribe$))
+                .subscribe(function (command) {
                 _this.log(command);
-            }));
+            });
             return _this;
         }
-        /**
-         * @return {?}
-         */
-        ConsoleCommandLogger.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleCommandLogger.prototype.ngOnDestroy = function () {
             this.unsubscribe$.next();
             this.unsubscribe$.complete();
         };
-        /**
-         * @return {?}
-         */
-        ConsoleCommandLogger.prototype.start = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleCommandLogger.prototype.start = function () {
             this.enabled = true;
         };
-        /**
-         * @return {?}
-         */
-        ConsoleCommandLogger.prototype.stop = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleCommandLogger.prototype.stop = function () {
             this.enabled = false;
         };
-        /**
-         * @protected
-         * @param {?} command
-         * @return {?}
-         */
-        ConsoleCommandLogger.prototype.print = /**
-         * @protected
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        ConsoleCommandLogger.prototype.print = function (command) {
             // eslint-disable-next-line no-console
             console.log(command.toString(), command);
         };
-        ConsoleCommandLogger.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ConsoleCommandLogger.ctorParameters = function () { return [
-            { type: CommandBus }
-        ]; };
         return ConsoleCommandLogger;
     }(CommandLogger));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConsoleCommandLogger.prototype.enabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        ConsoleCommandLogger.prototype.unsubscribe$;
-    }
+    ConsoleCommandLogger.ɵfac = function ConsoleCommandLogger_Factory(t) { return new (t || ConsoleCommandLogger)(i0__namespace.ɵɵinject(CommandBus)); };
+    ConsoleCommandLogger.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: ConsoleCommandLogger, factory: ConsoleCommandLogger.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(ConsoleCommandLogger, [{
+                type: i0.Injectable
+            }], function () { return [{ type: CommandBus }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var NoopCommandLogger = /** @class */ (function (_super) {
         __extends(NoopCommandLogger, _super);
         function NoopCommandLogger() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @return {?}
-         */
-        NoopCommandLogger.prototype.start = /**
-         * @return {?}
-         */
-        function () {
+        NoopCommandLogger.prototype.start = function () {
         };
-        /**
-         * @return {?}
-         */
-        NoopCommandLogger.prototype.stop = /**
-         * @return {?}
-         */
-        function () {
+        NoopCommandLogger.prototype.stop = function () {
         };
-        /**
-         * @protected
-         * @param {?} command
-         * @return {?}
-         */
-        NoopCommandLogger.prototype.print = /**
-         * @protected
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        NoopCommandLogger.prototype.print = function (command) {
         };
         return NoopCommandLogger;
     }(CommandLogger));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ConsoleEventLogger = /** @class */ (function (_super) {
         __extends(ConsoleEventLogger, _super);
         function ConsoleEventLogger(eventBus, aggregateStoreRegister) {
@@ -5329,239 +2275,94 @@
             _this.enabled = false;
             _this.unsubscribe$ = new HermesSubject();
             eventBus
-                .pipe(hermesFilter((/**
-             * @return {?}
-             */
-            function () { return _this.enabled; })), hermesTakeUntil(_this.unsubscribe$))
-                .subscribe((/**
-             * @param {?} domainEvent
-             * @return {?}
-             */
-            function (domainEvent) {
+                .pipe(hermesFilter(function () { return _this.enabled; }), hermesTakeUntil(_this.unsubscribe$))
+                .subscribe(function (domainEvent) {
                 _this.log(domainEvent);
-            }));
+            });
             return _this;
         }
-        /**
-         * @return {?}
-         */
-        ConsoleEventLogger.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleEventLogger.prototype.ngOnDestroy = function () {
             this.unsubscribe$.next();
             this.unsubscribe$.complete();
         };
-        /**
-         * @return {?}
-         */
-        ConsoleEventLogger.prototype.start = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleEventLogger.prototype.start = function () {
             this.enabled = true;
         };
-        /**
-         * @return {?}
-         */
-        ConsoleEventLogger.prototype.stop = /**
-         * @return {?}
-         */
-        function () {
+        ConsoleEventLogger.prototype.stop = function () {
             this.enabled = false;
         };
-        /**
-         * @protected
-         * @param {?} domainEvent
-         * @return {?}
-         */
-        ConsoleEventLogger.prototype.print = /**
-         * @protected
-         * @param {?} domainEvent
-         * @return {?}
-         */
-        function (domainEvent) {
-            /** @type {?} */
-            var aggregateId = domainEvent.getAggregateId();
-            /** @type {?} */
-            var aggregates = this.aggregateStoreRegister.captureAggregatesSnapshot(aggregateId);
+        ConsoleEventLogger.prototype.print = function (domainEvent) {
+            var aggregateId = domainEvent.getAggregateId(), aggregates = this.aggregateStoreRegister.captureAggregatesSnapshot(aggregateId);
             // eslint-disable-next-line no-console
             console.log(domainEvent.toString(), domainEvent, aggregates);
         };
-        ConsoleEventLogger.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        ConsoleEventLogger.ctorParameters = function () { return [
-            { type: DomainEventBus },
-            { type: AggregateStoreRegister }
-        ]; };
         return ConsoleEventLogger;
     }(DomainEventLogger));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ConsoleEventLogger.prototype.enabled;
-        /**
-         * @type {?}
-         * @private
-         */
-        ConsoleEventLogger.prototype.unsubscribe$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ConsoleEventLogger.prototype.aggregateStoreRegister;
-    }
+    ConsoleEventLogger.ɵfac = function ConsoleEventLogger_Factory(t) { return new (t || ConsoleEventLogger)(i0__namespace.ɵɵinject(DomainEventBus), i0__namespace.ɵɵinject(AggregateStoreRegister)); };
+    ConsoleEventLogger.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: ConsoleEventLogger, factory: ConsoleEventLogger.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(ConsoleEventLogger, [{
+                type: i0.Injectable
+            }], function () { return [{ type: DomainEventBus }, { type: AggregateStoreRegister }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var NoopEventLogger = /** @class */ (function (_super) {
         __extends(NoopEventLogger, _super);
         function NoopEventLogger() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @return {?}
-         */
-        NoopEventLogger.prototype.start = /**
-         * @return {?}
-         */
-        function () {
+        NoopEventLogger.prototype.start = function () {
         };
-        /**
-         * @return {?}
-         */
-        NoopEventLogger.prototype.stop = /**
-         * @return {?}
-         */
-        function () {
+        NoopEventLogger.prototype.stop = function () {
         };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        NoopEventLogger.prototype.print = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        NoopEventLogger.prototype.print = function (event) {
         };
         return NoopEventLogger;
     }(DomainEventLogger));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var HermesLoggersInitializer = /** @class */ (function () {
         function HermesLoggersInitializer(platformId, commandLogger, eventLogger) {
             this.platformId = platformId;
             this.commandLogger = commandLogger;
             this.eventLogger = eventLogger;
         }
-        /**
-         * @return {?}
-         */
-        HermesLoggersInitializer.prototype.start = /**
-         * @return {?}
-         */
-        function () {
+        HermesLoggersInitializer.prototype.start = function () {
             this.loggersStart();
         };
-        /**
-         * @return {?}
-         */
-        HermesLoggersInitializer.prototype.stop = /**
-         * @return {?}
-         */
-        function () {
+        HermesLoggersInitializer.prototype.stop = function () {
             this.loggersStop();
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        HermesLoggersInitializer.prototype.loggersStart = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        HermesLoggersInitializer.prototype.loggersStart = function () {
             if (common.isPlatformBrowser(this.platformId)) {
                 this.commandLogger.start();
                 this.eventLogger.start();
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        HermesLoggersInitializer.prototype.loggersStop = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        HermesLoggersInitializer.prototype.loggersStop = function () {
             if (common.isPlatformBrowser(this.platformId)) {
                 this.commandLogger.stop();
                 this.eventLogger.stop();
             }
         };
-        HermesLoggersInitializer.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        HermesLoggersInitializer.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [core.PLATFORM_ID,] }] },
-            { type: CommandLogger },
-            { type: DomainEventLogger }
-        ]; };
         return HermesLoggersInitializer;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesLoggersInitializer.prototype.platformId;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesLoggersInitializer.prototype.commandLogger;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesLoggersInitializer.prototype.eventLogger;
-    }
+    HermesLoggersInitializer.ɵfac = function HermesLoggersInitializer_Factory(t) { return new (t || HermesLoggersInitializer)(i0__namespace.ɵɵinject(i0.PLATFORM_ID), i0__namespace.ɵɵinject(CommandLogger), i0__namespace.ɵɵinject(DomainEventLogger)); };
+    HermesLoggersInitializer.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: HermesLoggersInitializer, factory: HermesLoggersInitializer.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HermesLoggersInitializer, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [i0.PLATFORM_ID]
+                        }] }, { type: CommandLogger }, { type: DomainEventLogger }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, A, C
-     * @param {?} createAggregateCommandHandler
-     * @param {?} factoryArchive
-     * @param {?} aggregateRepositoryArchive
-     * @param {?} aggregateName
-     * @param {?} domainEventPublisher
-     * @return {?}
-     */
     function createAggregateCommandHandlerFactory(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName, domainEventPublisher) {
         return new CreateAggregateCommandHandlerImpl(createAggregateCommandHandler, factoryArchive, aggregateRepositoryArchive, aggregateName, domainEventPublisher);
     }
-    /**
-     * @template I, A, C
-     */
-    var   /**
-     * @template I, A, C
-     */
-    CreateAggregateCommandHandlerImpl = /** @class */ (function () {
+    var CreateAggregateCommandHandlerImpl = /** @class */ (function () {
         function CreateAggregateCommandHandlerImpl(createAggregateCommandHandler, aggregateFactoryArchive, aggregateRepositoryArchive, aggregateType, domainEventPublisher) {
             this.createAggregateCommandHandler = createAggregateCommandHandler;
             this.aggregateFactoryArchive = aggregateFactoryArchive;
@@ -5570,492 +2371,196 @@
             this.domainEventPublisher = domainEventPublisher;
             this.commandType = this.createCommandInstance().getMessageType();
         }
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CreateAggregateCommandHandlerImpl.prototype.handleCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        CreateAggregateCommandHandlerImpl.prototype.handleCommand = function (command) {
             var _this = this;
-            /** @type {?} */
-            var aggregateId = (/** @type {?} */ (command.getAggregateId()));
-            /** @type {?} */
+            var aggregateId = command.getAggregateId();
             var optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
-            optFactory.ifPresent((/**
-             * @param {?} factory
-             * @return {?}
-             */
-            function (factory) {
-                /** @type {?} */
+            optFactory.ifPresent(function (factory) {
                 var aggregate = factory.create(aggregateId);
-                /** @type {?} */
-                var type = aggregate.getType();
-                /** @type {?} */
-                var createCommandConstructor = aggregate.createEvent();
-                /** @type {?} */
+                var type = aggregate.getType(), createCommandConstructor = aggregate.createEvent();
                 var createCommand = new createCommandConstructor(aggregateId, type);
                 aggregate.addEvent(createCommand);
-                /** @type {?} */
                 var optRepository = _this.aggregateRepositoryArchive.get(_this.aggregateType);
-                optRepository.ifPresent((/**
-                 * @param {?} repo
-                 * @return {?}
-                 */
-                function (repo) {
+                optRepository.ifPresent(function (repo) {
                     repo.save(aggregate);
                     _this.domainEventPublisher.publishFromAggregate(aggregate);
-                }));
-            }));
+                });
+            });
         };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CreateAggregateCommandHandlerImpl.prototype.forCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        CreateAggregateCommandHandlerImpl.prototype.forCommand = function (command) {
             return this.commandType === command.getMessageType();
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        CreateAggregateCommandHandlerImpl.prototype.createCommandInstance = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a;
-            /** @type {?} */
-            var args = [];
-            /** @type {?} */
-            var argumentLength = this.createAggregateCommandHandler.forCommand().constructor.length;
+        CreateAggregateCommandHandlerImpl.prototype.createCommandInstance = function () {
+            var args = [], argumentLength = this.createAggregateCommandHandler.forCommand().constructor.length;
             args.fill(undefined, 0, argumentLength);
-            return (new ((_a = ((/** @type {?} */ (this.createAggregateCommandHandler.forCommand())))).bind.apply(_a, __spread([void 0], args)))());
+            if (args.length === 0) {
+                return (new (this.createAggregateCommandHandler.forCommand())());
+            }
+            else if (args.length === 1) {
+                return (new (this.createAggregateCommandHandler.forCommand())(args[0]));
+            }
+            else if (args.length === 2) {
+                return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1]));
+            }
+            else if (args.length === 3) {
+                return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2]));
+            }
+            else if (args.length === 4) {
+                return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3]));
+            }
+            else if (args.length === 5) {
+                return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
+            }
+            else {
+                throw new Error('CreateAggregateCommandHandlerImpl constructor out of arguments');
+            }
         };
         return CreateAggregateCommandHandlerImpl;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.commandType;
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.createAggregateCommandHandler;
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.aggregateFactoryArchive;
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.aggregateRepositoryArchive;
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.aggregateType;
-        /**
-         * @type {?}
-         * @private
-         */
-        CreateAggregateCommandHandlerImpl.prototype.domainEventPublisher;
-    }
 
     /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * ngc for grid package for some reasons doesn't allow to use injection token
-     * @type {?}
      */
     var CREATE_AGGREGATE_COMMAND_HANDLERS = 'HERMES - CREATE_AGGREGATE_COMMAND_HANDLERS';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, A
-     */
-    var   /**
-     * @template I, A
-     */
-    AggregateFactoryArchive = /** @class */ (function () {
+    var AggregateFactoryArchive = /** @class */ (function () {
         function AggregateFactoryArchive() {
             this.map = new Map();
         }
-        /**
-         * @param {?} key
-         * @param {?} factory
-         * @return {?}
-         */
-        AggregateFactoryArchive.prototype.add = /**
-         * @param {?} key
-         * @param {?} factory
-         * @return {?}
-         */
-        function (key, factory) {
+        AggregateFactoryArchive.prototype.add = function (key, factory) {
             this.map.set(key, factory);
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        AggregateFactoryArchive.prototype.get = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        AggregateFactoryArchive.prototype.get = function (key) {
             return Optional.of(this.map.get(key));
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        AggregateFactoryArchive.prototype.has = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        AggregateFactoryArchive.prototype.has = function (key) {
             return this.map.has(key);
         };
         return AggregateFactoryArchive;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateFactoryArchive.prototype.map;
-    }
-    /**
-     * @template I, A
-     */
-    var   /**
-     * @template I, A
-     */
-    AggregateRepositoryArchive = /** @class */ (function () {
+    var AggregateRepositoryArchive = /** @class */ (function () {
         function AggregateRepositoryArchive() {
             this.map = new Map();
         }
-        /**
-         * @param {?} key
-         * @param {?} repository
-         * @return {?}
-         */
-        AggregateRepositoryArchive.prototype.add = /**
-         * @param {?} key
-         * @param {?} repository
-         * @return {?}
-         */
-        function (key, repository) {
+        AggregateRepositoryArchive.prototype.add = function (key, repository) {
             this.map.set(key, repository);
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        AggregateRepositoryArchive.prototype.get = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        AggregateRepositoryArchive.prototype.get = function (key) {
             return Optional.of(this.map.get(key));
         };
-        /**
-         * @param {?} key
-         * @return {?}
-         */
-        AggregateRepositoryArchive.prototype.has = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        AggregateRepositoryArchive.prototype.has = function (key) {
             return this.map.has(key);
         };
         return AggregateRepositoryArchive;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AggregateRepositoryArchive.prototype.map;
-    }
-    /**
-     * @record
-     * @template I, A, C
-     */
-    function AggregateConfig() { }
-    if (false) {
-        /** @type {?} */
-        AggregateConfig.prototype.repository;
-        /** @type {?} */
-        AggregateConfig.prototype.factory;
-        /** @type {?} */
-        AggregateConfig.prototype.key;
-        /** @type {?} */
-        AggregateConfig.prototype.createHandler;
-        /** @type {?} */
-        AggregateConfig.prototype.commandHandlers;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var aggregateDefinitionToken = 'Hermes - aggregateDefinitionToken';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var HermesDomainModule = /** @class */ (function () {
         function HermesDomainModule() {
         }
-        /**
-         * @return {?}
-         */
-        HermesDomainModule.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        HermesDomainModule.prototype.ngOnDestroy = function () {
         };
-        HermesDomainModule.decorators = [
-            { type: core.NgModule, args: [{},] }
-        ];
         return HermesDomainModule;
     }());
+    HermesDomainModule.ɵfac = function HermesDomainModule_Factory(t) { return new (t || HermesDomainModule)(); };
+    HermesDomainModule.ɵmod = /*@__PURE__*/ i0__namespace.ɵɵdefineNgModule({ type: HermesDomainModule });
+    HermesDomainModule.ɵinj = /*@__PURE__*/ i0__namespace.ɵɵdefineInjector({});
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HermesDomainModule, [{
+                type: i0.NgModule,
+                args: [{}]
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, A, C
-     * @param {?} commandHandler
-     * @param {?} aggregateRepositoryArchive
-     * @param {?} aggregateName
-     * @return {?}
-     */
     function commandHandlerFactory(commandHandler, aggregateRepositoryArchive, aggregateName) {
         return new CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateName);
     }
-    /**
-     * @template I, A, C
-     */
-    var   /**
-     * @template I, A, C
-     */
-    CommandHandlerImpl = /** @class */ (function () {
+    var CommandHandlerImpl = /** @class */ (function () {
         function CommandHandlerImpl(commandHandler, aggregateRepositoryArchive, aggregateType) {
             this.commandHandler = commandHandler;
             this.aggregateRepositoryArchive = aggregateRepositoryArchive;
             this.aggregateType = aggregateType;
             this.commandType = this.createCommandInstance().getMessageType();
         }
-        /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandlerImpl.prototype.publishDomainEvents = /**
-         * @param {?} aggregate
-         * @param {?} command
-         * @return {?}
-         */
-        function (aggregate, command) {
+        CommandHandlerImpl.prototype.publishDomainEvents = function (aggregate, command) {
             this.commandHandler.publish(aggregate, command);
         };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandlerImpl.prototype.handleCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        CommandHandlerImpl.prototype.handleCommand = function (command) {
             var _this = this;
-            /** @type {?} */
-            var aggregateId = (/** @type {?} */ (command.getAggregateId()));
-            /** @type {?} */
+            var aggregateId = command.getAggregateId();
             var optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
-            optRepository.ifPresent((/**
-             * @param {?} repo
-             * @return {?}
-             */
-            function (repo) {
-                /** @type {?} */
+            optRepository.ifPresent(function (repo) {
                 var optAggregate = repo.findById(aggregateId);
-                optAggregate.ifPresent((/**
-                 * @param {?} aggregate
-                 * @return {?}
-                 */
-                function (aggregate) {
+                optAggregate.ifPresent(function (aggregate) {
                     _this.commandHandler.handle(aggregate, command);
                     _this.publishDomainEvents(aggregate, command);
-                }));
-            }));
+                });
+            });
         };
-        /**
-         * @param {?} command
-         * @return {?}
-         */
-        CommandHandlerImpl.prototype.forCommand = /**
-         * @param {?} command
-         * @return {?}
-         */
-        function (command) {
+        CommandHandlerImpl.prototype.forCommand = function (command) {
             return this.commandType === command.getMessageType();
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        CommandHandlerImpl.prototype.createCommandInstance = /**
-         * @private
-         * @return {?}
-         */
-        function () {
-            var _a;
-            /** @type {?} */
-            var args = [];
-            /** @type {?} */
-            var argumentLength = this.commandHandler.forCommand().constructor.length;
+        CommandHandlerImpl.prototype.createCommandInstance = function () {
+            var args = [], argumentLength = this.commandHandler.forCommand().constructor.length;
             args.fill(undefined, 0, argumentLength);
-            return (new ((_a = ((/** @type {?} */ (this.commandHandler.forCommand())))).bind.apply(_a, __spread([void 0], args)))());
+            if (args.length === 0) {
+                return (new (this.commandHandler.forCommand())());
+            }
+            else if (args.length === 1) {
+                return (new (this.commandHandler.forCommand())(args[0]));
+            }
+            else if (args.length === 2) {
+                return (new (this.commandHandler.forCommand())(args[0], args[1]));
+            }
+            else if (args.length === 3) {
+                return (new (this.commandHandler.forCommand())(args[0], args[1], args[2]));
+            }
+            else if (args.length === 4) {
+                return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3]));
+            }
+            else if (args.length === 5) {
+                return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
+            }
+            else {
+                throw new Error('CommandHandlerImpl constructor out of arguments');
+            }
         };
         return CommandHandlerImpl;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandlerImpl.prototype.commandType;
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandlerImpl.prototype.commandHandler;
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandlerImpl.prototype.aggregateRepositoryArchive;
-        /**
-         * @type {?}
-         * @private
-         */
-        CommandHandlerImpl.prototype.aggregateType;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, E
-     * @param {?} domainEventHandler
-     * @return {?}
-     */
     function domainEventHandlerFactory(domainEventHandler) {
         return new DomainEventHandlerImpl(domainEventHandler, [domainEventHandler.forEvent()]);
     }
-    /**
-     * @template I, E
-     * @param {?} domainEventHandler
-     * @return {?}
-     */
     function multiDomainEventHandlerFactory(domainEventHandler) {
         return new DomainEventHandlerImpl(domainEventHandler, domainEventHandler.forEvents());
     }
-    /**
-     * @template I, E
-     */
-    var   /**
-     * @template I, E
-     */
-    DomainEventHandlerImpl = /** @class */ (function () {
+    var DomainEventHandlerImpl = /** @class */ (function () {
         function DomainEventHandlerImpl(domainEventHandler, events) {
             this.domainEventHandler = domainEventHandler;
             this.events = events;
             this.eventTypes = this.createDomainEventTypes();
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
-        DomainEventHandlerImpl.prototype.handleEvent = /**
-         * @param {?} event
-         * @return {?}
-         */
-        function (event) {
+        DomainEventHandlerImpl.prototype.handleEvent = function (event) {
             this.domainEventHandler.handle(event);
         };
-        /**
-         * @param {?} events
-         * @return {?}
-         */
-        DomainEventHandlerImpl.prototype.forEvents = /**
-         * @param {?} events
-         * @return {?}
-         */
-        function (events) {
+        DomainEventHandlerImpl.prototype.forEvents = function (events) {
             var _this = this;
-            return events.some((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
-                return _this.eventTypes.some((/**
-                 * @param {?} type
-                 * @return {?}
-                 */
-                function (type) {
+            return events.some(function (event) {
+                return _this.eventTypes.some(function (type) {
                     return type === event.getMessageType();
-                }));
-            }));
+                });
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        DomainEventHandlerImpl.prototype.createDomainEventTypes = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        DomainEventHandlerImpl.prototype.createDomainEventTypes = function () {
             var e_1, _a;
-            /** @type {?} */
             var types = [];
             try {
                 for (var _b = __values(this.events), _c = _b.next(); !_c.done; _c = _b.next()) {
-                    var event_1 = _c.value;
-                    /** @type {?} */
-                    var instance = this.createDomainEventInstance(event_1);
+                    var event = _c.value;
+                    var instance = this.createDomainEventInstance(event);
                     types.push(instance.getMessageType());
                 }
             }
@@ -6068,102 +2573,58 @@
             }
             return types;
         };
-        /**
-         * @private
-         * @param {?} eventType
-         * @return {?}
-         */
-        DomainEventHandlerImpl.prototype.createDomainEventInstance = /**
-         * @private
-         * @param {?} eventType
-         * @return {?}
-         */
-        function (eventType) {
-            /** @type {?} */
-            var args = [];
-            /** @type {?} */
-            var argumentLength = eventType.constructor.length;
+        DomainEventHandlerImpl.prototype.createDomainEventInstance = function (eventType) {
+            var args = [], argumentLength = eventType.constructor.length;
             args.fill(undefined, 0, argumentLength);
-            return (new (((/** @type {?} */ (eventType))).bind.apply(((/** @type {?} */ (eventType))), __spread([void 0], args)))());
+            if (args.length === 0) {
+                return (new eventType());
+            }
+            else if (args.length === 1) {
+                return (new eventType(args[0]));
+            }
+            else if (args.length === 2) {
+                return (new eventType(args[0], args[1]));
+            }
+            else if (args.length === 3) {
+                return (new eventType(args[0], args[1], args[2]));
+            }
+            else if (args.length === 4) {
+                return (new eventType(args[0], args[1], args[2], args[3]));
+            }
+            else if (args.length === 5) {
+                return (new eventType(args[0], args[1], args[2], args[3], args[4]));
+            }
+            else {
+                throw new Error('DomainEventHandler constructor out of arguments');
+            }
         };
         return DomainEventHandlerImpl;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventHandlerImpl.prototype.eventTypes;
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventHandlerImpl.prototype.domainEventHandler;
-        /**
-         * @type {?}
-         * @private
-         */
-        DomainEventHandlerImpl.prototype.events;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, E
-     */
-    var /**
-     * @template I, E
-     */
-    DomainEventHandlerInitializer = /** @class */ (function (_super) {
+    var DomainEventHandlerInitializer = /** @class */ (function (_super) {
         __extends(DomainEventHandlerInitializer, _super);
         function DomainEventHandlerInitializer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @param {?} eventHandlers
-         * @param {?} domainEventBus
-         * @return {?}
-         */
-        DomainEventHandlerInitializer.prototype.init = /**
-         * @param {?} eventHandlers
-         * @param {?} domainEventBus
-         * @return {?}
-         */
-        function (eventHandlers, domainEventBus) {
+        DomainEventHandlerInitializer.prototype.init = function (eventHandlers, domainEventBus) {
             var _this = this;
             if (eventHandlers) {
-                /** @type {?} */
                 var set_1 = new Set();
-                /** @type {?} */
                 var filteredHandlers_1 = [];
-                eventHandlers.filter((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
-                    if (!set_1.has(((/** @type {?} */ (handler))).domainEventHandler)) {
-                        set_1.add(((/** @type {?} */ (handler))).domainEventHandler);
+                eventHandlers.filter(function (handler) {
+                    if (!set_1.has(handler.domainEventHandler)) {
+                        set_1.add(handler.domainEventHandler);
                         filteredHandlers_1.push(handler);
                     }
-                }));
-                filteredHandlers_1.forEach((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
+                });
+                filteredHandlers_1.forEach(function (handler) {
                     domainEventBus
-                        .ofEventHandler(handler)
+                        .ofEventHandlers([handler])
                         .pipe(_this.hermesTakeUntil())
-                        .subscribe((/**
-                     * @param {?} event
-                     * @return {?}
-                     */
-                    function (event) {
+                        .subscribe(function (event) {
                         handler.handleEvent(event);
-                    }));
-                }));
+                    });
+                });
                 // console.log('Registered event handlers:', filteredHandlers.length)
                 // console.log('Registered event handlers:', filteredHandlers)
             }
@@ -6171,111 +2632,53 @@
         return DomainEventHandlerInitializer;
     }(Reactive));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, A, C
-     */
-    var /**
-     * @template I, A, C
-     */
-    CommandHandlerInitializer = /** @class */ (function (_super) {
+    var CommandHandlerInitializer = /** @class */ (function (_super) {
         __extends(CommandHandlerInitializer, _super);
         function CommandHandlerInitializer() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        /**
-         * @param {?} commandHandlers
-         * @param {?} commandBus
-         * @return {?}
-         */
-        CommandHandlerInitializer.prototype.register = /**
-         * @param {?} commandHandlers
-         * @param {?} commandBus
-         * @return {?}
-         */
-        function (commandHandlers, commandBus) {
+        CommandHandlerInitializer.prototype.register = function (commandHandlers, commandBus) {
             var _this = this;
             if (commandHandlers) {
-                /** @type {?} */
                 var set_1 = new Set();
-                /** @type {?} */
                 var filteredHandlers_1 = [];
-                commandHandlers.filter((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
-                    if (!set_1.has(((/** @type {?} */ (handler))).commandHandler)) {
-                        set_1.add(((/** @type {?} */ (handler))).commandHandler);
+                commandHandlers.filter(function (handler) {
+                    if (!set_1.has(handler.commandHandler)) {
+                        set_1.add(handler.commandHandler);
                         filteredHandlers_1.push(handler);
                     }
-                }));
-                filteredHandlers_1.forEach((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
+                });
+                filteredHandlers_1.forEach(function (handler) {
                     commandBus
                         .ofCommandHandler(handler)
                         .pipe(_this.hermesTakeUntil())
-                        .subscribe((/**
-                     * @param {?} command
-                     * @return {?}
-                     */
-                    function (command) {
+                        .subscribe(function (command) {
                         handler.handleCommand(command);
-                    }));
-                }));
+                    });
+                });
                 // console.log('Registered command handlers:' + filteredHandlers.length);
                 // console.log('Registered command handlers:', filteredHandlers);
             }
         };
-        /**
-         * @param {?} aggregateCommandHandlers
-         * @param {?} commandBus
-         * @return {?}
-         */
-        CommandHandlerInitializer.prototype.registerAggregateCommandHandlers = /**
-         * @param {?} aggregateCommandHandlers
-         * @param {?} commandBus
-         * @return {?}
-         */
-        function (aggregateCommandHandlers, commandBus) {
+        CommandHandlerInitializer.prototype.registerAggregateCommandHandlers = function (aggregateCommandHandlers, commandBus) {
             var _this = this;
             if (aggregateCommandHandlers) {
-                /** @type {?} */
                 var set_2 = new Set();
-                /** @type {?} */
                 var filteredHandlers_2 = [];
-                aggregateCommandHandlers.filter((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
-                    if (!set_2.has(((/** @type {?} */ (handler))).createAggregateCommandHandler)) {
-                        set_2.add(((/** @type {?} */ (handler))).createAggregateCommandHandler);
+                aggregateCommandHandlers.filter(function (handler) {
+                    if (!set_2.has(handler.createAggregateCommandHandler)) {
+                        set_2.add(handler.createAggregateCommandHandler);
                         filteredHandlers_2.push(handler);
                     }
-                }));
-                filteredHandlers_2.forEach((/**
-                 * @param {?} handler
-                 * @return {?}
-                 */
-                function (handler) {
+                });
+                filteredHandlers_2.forEach(function (handler) {
                     commandBus
                         .ofCreateAggregateHandler(handler)
                         .pipe(_this.hermesTakeUntil())
-                        .subscribe((/**
-                     * @param {?} command
-                     * @return {?}
-                     */
-                    function (command) {
+                        .subscribe(function (command) {
                         handler.handleCommand(command);
-                    }));
-                }));
+                    });
+                });
                 // console.log('Registered create command handlers:' + filteredHandlers.length);
                 // console.log('Registered create command handlers:', filteredHandlers);
             }
@@ -6283,65 +2686,28 @@
         return CommandHandlerInitializer;
     }(Reactive));
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I, A
-     */
-    var /**
-     * @template I, A
-     */
-    AggregateDefinitionInitializer = /** @class */ (function () {
+    var AggregateDefinitionInitializer = /** @class */ (function () {
         function AggregateDefinitionInitializer() {
         }
-        /**
-         * @param {?} definedAggregate
-         * @param {?} injector
-         * @param {?} aggregateFactoryArchive
-         * @param {?} aggregateRepositoryArchive
-         * @return {?}
-         */
-        AggregateDefinitionInitializer.prototype.register = /**
-         * @param {?} definedAggregate
-         * @param {?} injector
-         * @param {?} aggregateFactoryArchive
-         * @param {?} aggregateRepositoryArchive
-         * @return {?}
-         */
-        function (definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive) {
+        AggregateDefinitionInitializer.prototype.register = function (definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive) {
             if (definedAggregate) {
-                /** @type {?} */
                 var set_1 = new Set();
-                /** @type {?} */
                 var filteredDefinitions_1 = [];
-                definedAggregate.filter((/**
-                 * @param {?} def
-                 * @return {?}
-                 */
-                function (def) {
+                definedAggregate.filter(function (def) {
                     if (!set_1.has(def.key)) {
                         set_1.add(def.key);
                         filteredDefinitions_1.push(def);
                     }
-                }));
-                filteredDefinitions_1.forEach((/**
-                 * @param {?} def
-                 * @return {?}
-                 */
-                function (def) {
-                    /** @type {?} */
-                    var factory = injector.get(def.factory);
-                    /** @type {?} */
-                    var repository = injector.get(def.repository);
+                });
+                filteredDefinitions_1.forEach(function (def) {
+                    var factory = injector.get(def.factory), repository = injector.get(def.repository);
                     if (!aggregateFactoryArchive.has(def.key)) {
                         aggregateFactoryArchive.add(def.key, factory);
                     }
                     if (!aggregateRepositoryArchive.has(def.key)) {
                         aggregateRepositoryArchive.add(def.key, repository);
                     }
-                }));
+                });
                 // console.log('Registered aggregate definition:' + filteredDefinitions.length);
                 // console.log('Registered aggregate definition:', filteredDefinitions);
             }
@@ -6349,12 +2715,18 @@
         return AggregateDefinitionInitializer;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var hermesProviders = [
+    var providers = [
+        { provide: EVENT_LOGGER_ENABLED, useValue: true },
+        { provide: COMMAND_LOGGER_ENABLED, useValue: true },
+        { provide: CommandLogger, useFactory: commandLoggerFactory, deps: [COMMAND_LOGGER_ENABLED, ConsoleCommandLogger, NoopCommandLogger] },
+        { provide: DomainEventLogger, useFactory: eventLoggerFactory, deps: [EVENT_LOGGER_ENABLED, ConsoleEventLogger, NoopEventLogger] },
+        ConsoleCommandLogger,
+        NoopCommandLogger,
+        NoopEventLogger,
+        ConsoleEventLogger,
+        HermesLoggersInitializer,
+        AggregateFactoryArchive,
+        AggregateRepositoryArchive,
         RandomStringGenerator,
         { provide: FILTERED_COMMAND_STREAM, useExisting: CommandStream },
         CommandBus,
@@ -6367,26 +2739,6 @@
         DomainEventStore,
         HermesApi
     ];
-    /** @type {?} */
-    var providers = __spread([
-        { provide: EVENT_LOGGER_ENABLED, useValue: true },
-        { provide: COMMAND_LOGGER_ENABLED, useValue: true },
-        { provide: CommandLogger, useFactory: commandLoggerFactory, deps: [COMMAND_LOGGER_ENABLED, ConsoleCommandLogger, NoopCommandLogger] },
-        { provide: DomainEventLogger, useFactory: eventLoggerFactory, deps: [EVENT_LOGGER_ENABLED, ConsoleEventLogger, NoopEventLogger] },
-        ConsoleCommandLogger,
-        NoopCommandLogger,
-        NoopEventLogger,
-        ConsoleEventLogger,
-        HermesLoggersInitializer,
-        AggregateFactoryArchive,
-        AggregateRepositoryArchive
-    ], hermesProviders);
-    /**
-     * @param {?} enabled
-     * @param {?} consoleCommandLogger
-     * @param {?} noopCommandLogger
-     * @return {?}
-     */
     function commandLoggerFactory(enabled, consoleCommandLogger, noopCommandLogger) {
         if (enabled) {
             return consoleCommandLogger;
@@ -6395,12 +2747,6 @@
             return noopCommandLogger;
         }
     }
-    /**
-     * @param {?} enabled
-     * @param {?} consoleEventLogger
-     * @param {?} noopEventLogger
-     * @return {?}
-     */
     function eventLoggerFactory(enabled, consoleEventLogger, noopEventLogger) {
         if (enabled) {
             return consoleEventLogger;
@@ -6409,9 +2755,6 @@
             return noopEventLogger;
         }
     }
-    /**
-     * @template I, A, C, E
-     */
     var HermesBaseModule = /** @class */ (function (_super) {
         __extends(HermesBaseModule, _super);
         function HermesBaseModule(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
@@ -6431,151 +2774,75 @@
             _this.domainEventHandlerInitializer.init(eventHandlers, domainEventBus);
             return _this;
         }
-        /**
-         * @return {?}
-         */
-        HermesBaseModule.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        HermesBaseModule.prototype.ngOnDestroy = function () {
             _super.prototype.ngOnDestroy.call(this);
             this.hermesLoggersInitializer.stop();
             this.commandHandlerInitializer.ngOnDestroy();
             this.domainEventHandlerInitializer.ngOnDestroy();
         };
-        /**
-         * @private
-         * @param {?} commandBus
-         * @param {?} commandHandlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        HermesBaseModule.prototype.checkNullCommand = /**
-         * @private
-         * @param {?} commandBus
-         * @param {?} commandHandlers
-         * @param {?} aggregateCommandHandlers
-         * @return {?}
-         */
-        function (commandBus, commandHandlers, aggregateCommandHandlers) {
+        HermesBaseModule.prototype.checkNullCommand = function (commandBus, commandHandlers, aggregateCommandHandlers) {
             commandBus
                 .ofNullHandler(commandHandlers, aggregateCommandHandlers)
                 .pipe(this.hermesTakeUntil())
-                .subscribe((/**
-             * @param {?} command
-             * @return {?}
-             */
-            function (command) {
+                .subscribe(function (command) {
                 // eslint-disable-next-line no-console
                 console.error("Command " + command.toString() + " was not intercepted by any CommandHandler.");
-            }));
+            });
         };
-        /**
-         * @private
-         * @param {?} commandHandlers
-         * @return {?}
-         */
-        HermesBaseModule.prototype.checkCommandHandlerIsCollection = /**
-         * @private
-         * @param {?} commandHandlers
-         * @return {?}
-         */
-        function (commandHandlers) {
+        HermesBaseModule.prototype.checkCommandHandlerIsCollection = function (commandHandlers) {
             if (commandHandlers && !Array.isArray(commandHandlers)) {
                 // eslint-disable-next-line no-console
                 console.warn('You might provided commandHandler without specifying "multi: true".');
             }
         };
-        /**
-         * @private
-         * @param {?} eventHandlers
-         * @return {?}
-         */
-        HermesBaseModule.prototype.checkDomainEventHandlerIsCollection = /**
-         * @private
-         * @param {?} eventHandlers
-         * @return {?}
-         */
-        function (eventHandlers) {
+        HermesBaseModule.prototype.checkDomainEventHandlerIsCollection = function (eventHandlers) {
             if (eventHandlers && !Array.isArray(eventHandlers)) {
                 // eslint-disable-next-line no-console
                 console.warn('You might provided eventHandler without specifying "multi: true".');
             }
         };
-        /** @nocollapse */
-        HermesBaseModule.ctorParameters = function () { return [
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
-            { type: core.Injector },
-            { type: AggregateFactoryArchive },
-            { type: AggregateRepositoryArchive },
-            { type: CommandBus },
-            { type: DomainEventBus },
-            { type: HermesLoggersInitializer },
-            { type: HermesApi }
-        ]; };
         return HermesBaseModule;
     }(Reactive));
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBaseModule.prototype.aggregateDefinitionInitializer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBaseModule.prototype.commandHandlerInitializer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBaseModule.prototype.domainEventHandlerInitializer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBaseModule.prototype.hermesLoggersInitializer;
-        /**
-         * @type {?}
-         * @private
-         */
-        HermesBaseModule.prototype.hermesApi;
-    }
+    HermesBaseModule.ɵfac = function HermesBaseModule_Factory(t) { return new (t || HermesBaseModule)(i0__namespace.ɵɵinject(DOMAIN_EVENT_HANDLERS, 8), i0__namespace.ɵɵinject(CREATE_AGGREGATE_COMMAND_HANDLERS, 8), i0__namespace.ɵɵinject(COMMAND_HANDLERS, 8), i0__namespace.ɵɵinject(aggregateDefinitionToken, 8), i0__namespace.ɵɵinject(i0__namespace.Injector), i0__namespace.ɵɵinject(AggregateFactoryArchive), i0__namespace.ɵɵinject(AggregateRepositoryArchive), i0__namespace.ɵɵinject(CommandBus), i0__namespace.ɵɵinject(DomainEventBus), i0__namespace.ɵɵinject(HermesLoggersInitializer), i0__namespace.ɵɵinject(HermesApi)); };
+    HermesBaseModule.ɵprov = /*@__PURE__*/ i0__namespace.ɵɵdefineInjectable({ token: HermesBaseModule, factory: HermesBaseModule.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HermesBaseModule, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [DOMAIN_EVENT_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [CREATE_AGGREGATE_COMMAND_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [COMMAND_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [aggregateDefinitionToken]
+                        }] }, { type: i0__namespace.Injector }, { type: AggregateFactoryArchive }, { type: AggregateRepositoryArchive }, { type: CommandBus }, { type: DomainEventBus }, { type: HermesLoggersInitializer }, { type: HermesApi }];
+        }, null);
+    })();
     var HermesModule = /** @class */ (function (_super) {
         __extends(HermesModule, _super);
         function HermesModule(eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) {
             return _super.call(this, eventHandlers, aggregateCommandHandlers, commandHandlers, definedAggregate, injector, aggregateFactoryArchive, aggregateRepositoryArchive, commandBus, domainEventBus, hermesLoggersInitializer, hermesApi) || this;
         }
-        /**
-         * @template I, A, C
-         * @param {?} aggregateKey
-         * @param {?} factory
-         * @param {?} repository
-         * @param {?} createCommandHandler
-         * @param {?=} commandHandlers
-         * @param {?=} domainEventHandlers
-         * @return {?}
-         */
-        HermesModule.defineAggregate = /**
-         * @template I, A, C
-         * @param {?} aggregateKey
-         * @param {?} factory
-         * @param {?} repository
-         * @param {?} createCommandHandler
-         * @param {?=} commandHandlers
-         * @param {?=} domainEventHandlers
-         * @return {?}
-         */
-        function (aggregateKey, factory, repository, createCommandHandler, commandHandlers, domainEventHandlers) {
+        HermesModule.defineAggregate = function (aggregateKey, factory, repository, createCommandHandler, commandHandlers, domainEventHandlers) {
             if (commandHandlers === void 0) { commandHandlers = []; }
             if (domainEventHandlers === void 0) { domainEventHandlers = []; }
             return {
                 ngModule: HermesDomainModule,
-                providers: __spread([{
+                providers: [{
                         provide: aggregateDefinitionToken,
                         multi: true,
                         useValue: {
@@ -6588,37 +2855,21 @@
                         useValue: aggregateKey
                     },
                     factory,
-                    repository], HermesModule.registerCreateCommandHandler(createCommandHandler, aggregateKey), commandHandlers, domainEventHandlers)
+                    repository,
+                    HermesModule.registerCreateCommandHandler(createCommandHandler, aggregateKey),
+                    commandHandlers,
+                    domainEventHandlers
+                ]
             };
         };
-        /**
-         * @param {?=} config
-         * @return {?}
-         */
-        HermesModule.withConfig = /**
-         * @param {?=} config
-         * @return {?}
-         */
-        function (config) {
+        HermesModule.withConfig = function (config) {
             if (config === void 0) { config = { loggers: false }; }
             return {
                 ngModule: HermesModule,
                 providers: providers
             };
         };
-        /**
-         * @template I, A, C
-         * @param {?} commandHandlerType
-         * @param {?} aggregateName
-         * @return {?}
-         */
-        HermesModule.registerCommandHandler = /**
-         * @template I, A, C
-         * @param {?} commandHandlerType
-         * @param {?} aggregateName
-         * @return {?}
-         */
-        function (commandHandlerType, aggregateName) {
+        HermesModule.registerCommandHandler = function (commandHandlerType, aggregateName) {
             return [
                 {
                     provide: commandHandlerType,
@@ -6635,17 +2886,7 @@
                 }
             ];
         };
-        /**
-         * @template I, E
-         * @param {?} domainEventHandlerType
-         * @return {?}
-         */
-        HermesModule.registerDomainEventHandler = /**
-         * @template I, E
-         * @param {?} domainEventHandlerType
-         * @return {?}
-         */
-        function (domainEventHandlerType) {
+        HermesModule.registerDomainEventHandler = function (domainEventHandlerType) {
             return [
                 {
                     provide: domainEventHandlerType,
@@ -6660,17 +2901,7 @@
                 }
             ];
         };
-        /**
-         * @template I, E
-         * @param {?} domainEventHandlerType
-         * @return {?}
-         */
-        HermesModule.registerMultiDomainEventHandler = /**
-         * @template I, E
-         * @param {?} domainEventHandlerType
-         * @return {?}
-         */
-        function (domainEventHandlerType) {
+        HermesModule.registerMultiDomainEventHandler = function (domainEventHandlerType) {
             return [
                 {
                     provide: domainEventHandlerType,
@@ -6685,21 +2916,7 @@
                 }
             ];
         };
-        /**
-         * @private
-         * @template I, A, C
-         * @param {?} createCommandHandlerType
-         * @param {?} aggregateName
-         * @return {?}
-         */
-        HermesModule.registerCreateCommandHandler = /**
-         * @private
-         * @template I, A, C
-         * @param {?} createCommandHandlerType
-         * @param {?} aggregateName
-         * @return {?}
-         */
-        function (createCommandHandlerType, aggregateName) {
+        HermesModule.registerCreateCommandHandler = function (createCommandHandlerType, aggregateName) {
             return [
                 {
                     provide: createCommandHandlerType,
@@ -6718,53 +2935,55 @@
                 }
             ];
         };
-        HermesModule.decorators = [
-            { type: core.NgModule, args: [{
+        return HermesModule;
+    }(HermesBaseModule));
+    HermesModule.ɵfac = function HermesModule_Factory(t) { return new (t || HermesModule)(i0__namespace.ɵɵinject(DOMAIN_EVENT_HANDLERS, 8), i0__namespace.ɵɵinject(CREATE_AGGREGATE_COMMAND_HANDLERS, 8), i0__namespace.ɵɵinject(COMMAND_HANDLERS, 8), i0__namespace.ɵɵinject(aggregateDefinitionToken, 8), i0__namespace.ɵɵinject(i0__namespace.Injector), i0__namespace.ɵɵinject(AggregateFactoryArchive), i0__namespace.ɵɵinject(AggregateRepositoryArchive), i0__namespace.ɵɵinject(CommandBus), i0__namespace.ɵɵinject(DomainEventBus), i0__namespace.ɵɵinject(HermesLoggersInitializer), i0__namespace.ɵɵinject(HermesApi)); };
+    HermesModule.ɵmod = /*@__PURE__*/ i0__namespace.ɵɵdefineNgModule({ type: HermesModule });
+    HermesModule.ɵinj = /*@__PURE__*/ i0__namespace.ɵɵdefineInjector({ providers: providers, imports: [[
+                common.CommonModule
+            ]] });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HermesModule, [{
+                type: i0.NgModule,
+                args: [{
                         imports: [
                             common.CommonModule
                         ],
                         providers: providers
-                    },] }
-        ];
-        /** @nocollapse */
-        HermesModule.ctorParameters = function () { return [
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [DOMAIN_EVENT_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CREATE_AGGREGATE_COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [COMMAND_HANDLERS,] }] },
-            { type: Array, decorators: [{ type: core.Optional }, { type: core.Inject, args: [aggregateDefinitionToken,] }] },
-            { type: core.Injector },
-            { type: AggregateFactoryArchive },
-            { type: AggregateRepositoryArchive },
-            { type: CommandBus },
-            { type: DomainEventBus },
-            { type: HermesLoggersInitializer },
-            { type: HermesApi }
-        ]; };
-        return HermesModule;
-    }(HermesBaseModule));
+                    }]
+            }], function () {
+            return [{ type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [DOMAIN_EVENT_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [CREATE_AGGREGATE_COMMAND_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [COMMAND_HANDLERS]
+                        }] }, { type: Array, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [aggregateDefinitionToken]
+                        }] }, { type: i0__namespace.Injector }, { type: AggregateFactoryArchive }, { type: AggregateRepositoryArchive }, { type: CommandBus }, { type: DomainEventBus }, { type: HermesLoggersInitializer }, { type: HermesApi }];
+        }, null);
+    })();
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0__namespace.ɵɵsetNgModuleScope(HermesModule, { imports: [common.CommonModule] }); })();
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @template I
-     * @param {?} actualEvents
-     * @param {?} expectedEvents
-     * @return {?}
-     */
     function assertDomainEvents(actualEvents, expectedEvents) {
         var e_1, _a;
         expect(actualEvents.length).toEqual(expectedEvents.length);
         var _loop_1 = function (actualEvent) {
-            /** @type {?} */
-            var expectedEvent = expectedEvents.find((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
+            var expectedEvent = expectedEvents.find(function (event) {
                 return event.equalsByType(actualEvent);
-            }));
+            });
             expect(expectedEvent).toBeDefined();
             expect(actualEvent.equalsByType(expectedEvent)).toBeTruthy();
             // expect(actualEvent.aggregateId).toEqual(expectedEvent.aggregateId, 'Events aggregateId should be the same');
@@ -6784,24 +3003,13 @@
             finally { if (e_1) throw e_1.error; }
         }
     }
-    /**
-     * @template T
-     * @param {?} actualEvents
-     * @param {?} expectedEvents
-     * @return {?}
-     */
     function assertAggregateEvents(actualEvents, expectedEvents) {
         var e_2, _a;
         expect(actualEvents.length).toEqual(expectedEvents.length, 'Aggregate events');
         var _loop_2 = function (actualEvent) {
-            /** @type {?} */
-            var expectedEvent = expectedEvents.find((/**
-             * @param {?} event
-             * @return {?}
-             */
-            function (event) {
+            var expectedEvent = expectedEvents.find(function (event) {
                 return event.equals(actualEvent);
-            }));
+            });
             expect(expectedEvent).toBeDefined();
         };
         try {
@@ -6818,144 +3026,62 @@
             finally { if (e_2) throw e_2.error; }
         }
     }
-    /**
-     * @template T
-     * @param {?} createStream
-     * @param {?} desc
-     * @return {?}
-     */
     function testEventRepositoryIsEmptyOnStart(createStream, desc) {
-        it('should be no ' + desc + ' events on start', (/**
-         * @return {?}
-         */
-        function () {
+        it('should be no ' + desc + ' events on start', function () {
             expect.assertions(3);
             // given
-            /** @type {?} */
-            var nextFn = jest.fn();
-            /** @type {?} */
-            var errorFn = jest.fn();
-            /** @type {?} */
-            var completeFn = jest.fn();
+            var nextFn = jest.fn(), errorFn = jest.fn(), completeFn = jest.fn();
             // when
             createStream()
-                .subscribe((/**
-             * @return {?}
-             */
-            function () { return nextFn(); }), (/**
-             * @param {?} err
-             * @return {?}
-             */
-            function (err) { return errorFn(err); }), (/**
-             * @return {?}
-             */
-            function () { return completeFn(); }));
+                .subscribe(function () { return nextFn(); }, function (err) { return errorFn(err); }, function () { return completeFn(); });
             // then
             expect(nextFn).not.toHaveBeenCalled();
             expect(errorFn).not.toHaveBeenCalled();
             expect(completeFn).not.toHaveBeenCalled();
-        }));
+        });
     }
-    /**
-     * @template T
-     * @param {?} createStream
-     * @param {?} defaultValue
-     * @param {?} desc
-     * @return {?}
-     */
     function testWarehouseDefaultValueOnStart(createStream, defaultValue, desc) {
-        it('should have default value ' + desc, (/**
-         * @return {?}
-         */
-        function () {
+        it('should have default value ' + desc, function () {
             expect.assertions(4);
             // given
-            /** @type {?} */
-            var nextFn = jest.fn();
-            /** @type {?} */
-            var errorFn = jest.fn();
-            /** @type {?} */
-            var completeFn = jest.fn();
+            var nextFn = jest.fn(), errorFn = jest.fn(), completeFn = jest.fn();
             // when
             createStream()
-                .subscribe((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return nextFn(value); }), (/**
-             * @param {?} err
-             * @return {?}
-             */
-            function (err) { return errorFn(err); }), (/**
-             * @return {?}
-             */
-            function () { return completeFn(); }));
+                .subscribe(function (value) { return nextFn(value); }, function (err) { return errorFn(err); }, function () { return completeFn(); });
             // then
             expect(nextFn).toHaveBeenCalledWith(defaultValue);
             expect(nextFn).toHaveBeenCalledTimes(1);
             expect(errorFn).not.toHaveBeenCalled();
             expect(completeFn).not.toHaveBeenCalled();
-        }));
+        });
     }
-    /**
-     * @template T
-     * @param {?} createStream
-     * @param {?} defaultValue
-     * @param {?} desc
-     * @return {?}
-     */
     function testWarehouseDefaultValueOnStartOnce(createStream, defaultValue, desc) {
-        it('should have default value ' + desc, (/**
-         * @return {?}
-         */
-        function () {
+        it('should have default value ' + desc, function () {
             expect.assertions(4);
             // given
-            /** @type {?} */
-            var nextFn = jest.fn();
-            /** @type {?} */
-            var errorFn = jest.fn();
-            /** @type {?} */
-            var completeFn = jest.fn();
+            var nextFn = jest.fn(), errorFn = jest.fn(), completeFn = jest.fn();
             // when
             createStream()
-                .subscribe((/**
-             * @param {?} value
-             * @return {?}
-             */
-            function (value) { return nextFn(value); }), (/**
-             * @param {?} err
-             * @return {?}
-             */
-            function (err) { return errorFn(err); }), (/**
-             * @return {?}
-             */
-            function () { return completeFn(); }));
+                .subscribe(function (value) { return nextFn(value); }, function (err) { return errorFn(err); }, function () { return completeFn(); });
             // then
             expect(nextFn).toHaveBeenCalledWith(defaultValue);
             expect(nextFn).toHaveBeenCalledTimes(1);
             expect(errorFn).not.toHaveBeenCalled();
             expect(completeFn).toHaveBeenCalledTimes(1);
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @abstract
-     */
-    var   /**
-     * @abstract
-     */
-    CreateAggregateCommand = /** @class */ (function (_super) {
+    var CreateAggregateCommand = /** @class */ (function (_super) {
         __extends(CreateAggregateCommand, _super);
         function CreateAggregateCommand(aggregateId, type) {
             return _super.call(this, aggregateId, type) || this;
         }
         return CreateAggregateCommand;
     }(Command));
+
+    /**
+     * Generated bundle index. Do not edit.
+     */
 
     exports.AggregateArchive = AggregateArchive;
     exports.AggregateEvent = AggregateEvent;
@@ -6993,6 +3119,7 @@
     exports.HermesApi = HermesApi;
     exports.HermesArchiveSubject = HermesArchiveSubject;
     exports.HermesBehaviorSubject = HermesBehaviorSubject;
+    exports.HermesDomainModule = HermesDomainModule;
     exports.HermesId = HermesId;
     exports.HermesModule = HermesModule;
     exports.HermesObservable = HermesObservable;
@@ -7047,35 +3174,8 @@
     exports.testWarehouseDefaultValueOnStart = testWarehouseDefaultValueOnStart;
     exports.testWarehouseDefaultValueOnStartOnce = testWarehouseDefaultValueOnStartOnce;
     exports.toRxJsObservable = toRxJsObservable;
-    exports.ɵa = commandLoggerFactory;
-    exports.ɵb = eventLoggerFactory;
-    exports.ɵba = createAggregateCommandHandlerFactory;
-    exports.ɵbb = CreateAggregateCommandHandlerImpl;
-    exports.ɵc = HermesBaseModule;
-    exports.ɵd = Logger;
-    exports.ɵe = Message;
-    exports.ɵf = FILTERED_COMMAND_STREAM;
-    exports.ɵg = DomainEventStore;
-    exports.ɵh = KeyArchive;
-    exports.ɵi = DOMAIN_EVENT_HANDLERS;
-    exports.ɵj = CREATE_AGGREGATE_COMMAND_HANDLERS;
-    exports.ɵk = COMMAND_HANDLERS;
-    exports.ɵl = aggregateDefinitionToken;
-    exports.ɵn = AggregateFactoryArchive;
-    exports.ɵo = AggregateRepositoryArchive;
-    exports.ɵp = HermesLoggersInitializer;
-    exports.ɵq = ConsoleCommandLogger;
-    exports.ɵr = NoopCommandLogger;
-    exports.ɵs = ConsoleEventLogger;
-    exports.ɵt = NoopEventLogger;
-    exports.ɵu = HermesDomainModule;
-    exports.ɵv = commandHandlerFactory;
-    exports.ɵw = CommandHandlerImpl;
-    exports.ɵx = domainEventHandlerFactory;
-    exports.ɵy = multiDomainEventHandlerFactory;
-    exports.ɵz = DomainEventHandlerImpl;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=generic-ui-hermes.umd.js.map

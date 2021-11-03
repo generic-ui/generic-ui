@@ -1,0 +1,1 @@
+{"version":3,"file":"fabric-reactive.d.ts","sourceRoot":"","sources":["../../build-cli/projects/gui-fabric/src/common/fabric-reactive.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAwB,MAAM,eAAe,CAAC;;AAIhE,8BACsB,cAAe,YAAW,SAAS;IAExD,OAAO,CAAC,QAAQ,CAAC,YAAY,CAAuB;IAEpD,SAAS;IAGT,WAAW;IAIX,SAAS,CAAC,WAAW,IAAI,IAAI;IAU7B,SAAS,CAAC,SAAS;yCArBE,cAAc;2CAAd,cAAc;CAyBnC"}

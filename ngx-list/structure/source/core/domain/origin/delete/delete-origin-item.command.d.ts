@@ -22,3 +22,4 @@ export declare class DeleteOriginItemCommand extends StructureCommand {
     getType(): DeleteCommandPayloadType;
     getPayload(): number | OriginId | Array<number> | Array<OriginId>;
 }
+//# sourceMappingURL=delete-origin-item.command.d.ts.map

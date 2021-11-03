@@ -1,0 +1,1 @@
+{"version":3,"file":"read-model-root.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/gui-hermes/src/core/api/read/read-model-root.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,sBAAsB,CAAC;AAEvD,8BAAsB,aAAa,CAAC,CAAC,SAAS,eAAe;IAE5D,OAAO,CAAC,QAAQ,CAAC,MAAM,CAAI;IAE3B,SAAS,aAAa,GAAG,EAAE,CAAC;IAI5B,KAAK,IAAI,CAAC;CAIV"}

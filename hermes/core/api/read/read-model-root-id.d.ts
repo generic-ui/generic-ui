@@ -7,3 +7,4 @@ export declare abstract class ReadModelRootId {
     getId(): string;
     equals(entityId: ReadModelRootId): boolean;
 }
+//# sourceMappingURL=read-model-root-id.d.ts.map

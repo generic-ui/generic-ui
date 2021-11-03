@@ -3,3 +3,4 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class VerticalScrollEnabledSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
+//# sourceMappingURL=vertical-scroll-enabled-set.event.d.ts.map

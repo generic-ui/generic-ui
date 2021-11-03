@@ -9,8 +9,8 @@ Supported libraries and frameworks:
  * jQuery - <a href="https://github.com/generic-ui/generic-ui/tree/master/jquery-grid" >Grid for jQuery</a>
  * Angular - <a href="https://github.com/generic-ui/generic-ui/tree/master/ngx-grid" >Grid for Angular</a>,
  * JavaScript - <a href="https://github.com/generic-ui/generic-ui/tree/master/grid" >Grid for Vanilla JavaScript</a>,
- * React - TBD,
- * Vue.js - TBD.
+ * React - soon,
+ * Vue.js - soon.
 
 
 Grid is a rich library with many features like:
@@ -24,7 +24,7 @@ Grid is a rich library with many features like:
  * Templates.
 
 
-To find more details about this Generic UI Grid library visit our website <a href="http://generic-ui.com/">Generic Ui - Grid - homepage</a>.
+To find more details about this Generic UI Grid library visit our website <a href="http://generic-ui.com/">homepage</a>.
 You will find there <a href="http://generic-ui.com/guide">full documentation and easy to read guide</a> on how to use *Grid*.
 
 ## License:

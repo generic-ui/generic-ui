@@ -7,3 +7,4 @@ export declare class ListViewModeSetAggregateEvent extends ListViewAggregateEven
     constructor(listViewId: ListViewId, mode: ListViewMode);
     toDomainEvent(): DomainEvent<ListViewId>;
 }
+//# sourceMappingURL=list-view-mode-set.aggregate-event.d.ts.map

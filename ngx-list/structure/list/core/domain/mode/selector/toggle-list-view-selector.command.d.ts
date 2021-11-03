@@ -5,3 +5,4 @@ export declare class ToggleListViewSelectorCommand extends ListViewCommand {
     constructor(listViewId: ListViewId, enabled: boolean);
     iseEnabled(): boolean;
 }
+//# sourceMappingURL=toggle-list-view-selector.command.d.ts.map

@@ -4,3 +4,4 @@ export declare class BooleanSummarizedValues extends SummariesValues {
     readonly falsy: number;
     constructor(truthy: number, falsy: number);
 }
+//# sourceMappingURL=boolean-summarized.values.d.ts.map

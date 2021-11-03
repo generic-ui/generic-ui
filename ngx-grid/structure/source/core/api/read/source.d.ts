@@ -3,3 +3,4 @@ export declare class Source {
     constructor(loading: boolean);
     isLoading(): boolean;
 }
+//# sourceMappingURL=source.d.ts.map

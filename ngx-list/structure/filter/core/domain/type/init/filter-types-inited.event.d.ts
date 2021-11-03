@@ -6,3 +6,4 @@ export declare class FilterTypesInitedEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, map: Map<string, Array<FilterTypeReadModel>>);
     getMap(): Map<string, Array<FilterTypeReadModel>>;
 }
+//# sourceMappingURL=filter-types-inited.event.d.ts.map

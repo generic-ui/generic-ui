@@ -8,3 +8,4 @@ export declare class HermesBehaviorSubject<T> extends HermesSubject<T> {
     subscribe(next?: (value: T) => void, error?: (error: any) => void, complete?: () => void): HermesSubscription;
     subscribe(subscriber: HermesSubscriber<T>): HermesSubscription;
 }
+//# sourceMappingURL=hermes.behavior-subject.d.ts.map

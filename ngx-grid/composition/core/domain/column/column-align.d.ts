@@ -3,3 +3,4 @@ export declare enum ColumnAlign {
     CENTER = 1,
     LEFT = 2
 }
+//# sourceMappingURL=column-align.d.ts.map

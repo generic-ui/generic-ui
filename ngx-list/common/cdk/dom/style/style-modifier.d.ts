@@ -6,3 +6,4 @@ export declare class StyleModifier extends Modifier<StyleModifierApi> {
     protected createModifier(htmlElement: HTMLElement): StyleModifierApi;
     private static readonly StyleModifier;
 }
+//# sourceMappingURL=style-modifier.d.ts.map

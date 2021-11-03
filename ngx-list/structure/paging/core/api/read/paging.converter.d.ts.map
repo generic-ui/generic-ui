@@ -1,0 +1,1 @@
+{"version":3,"file":"paging.converter.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-list/src/structure/paging/core/api/read/paging.converter.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;;AAGlC,qBACa,eAAe;IAE3B,OAAO,CAAC,SAAS,EAAE,aAAa,GAAG,MAAM;yCAF7B,eAAe;6CAAf,eAAe;CAkB3B"}

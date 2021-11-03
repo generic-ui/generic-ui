@@ -1,15 +1,7 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const ColumnAlign = {
-    RIGHT: 0,
-    CENTER: 1,
-    LEFT: 2,
-};
-export { ColumnAlign };
-ColumnAlign[ColumnAlign.RIGHT] = 'RIGHT';
-ColumnAlign[ColumnAlign.CENTER] = 'CENTER';
-ColumnAlign[ColumnAlign.LEFT] = 'LEFT';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWFsaWduLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJjb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9jb2x1bW4vY29sdW1uLWFsaWduLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztJQUNDLFFBQUs7SUFDTCxTQUFNO0lBQ04sT0FBSSIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENvbHVtbkFsaWduIHtcblx0UklHSFQsXG5cdENFTlRFUixcblx0TEVGVFxufVxuIl19
+export var ColumnAlign;
+(function (ColumnAlign) {
+    ColumnAlign[ColumnAlign["RIGHT"] = 0] = "RIGHT";
+    ColumnAlign[ColumnAlign["CENTER"] = 1] = "CENTER";
+    ColumnAlign[ColumnAlign["LEFT"] = 2] = "LEFT";
+})(ColumnAlign || (ColumnAlign = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWFsaWduLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9jb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9jb2x1bW4vY29sdW1uLWFsaWduLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLFdBSVg7QUFKRCxXQUFZLFdBQVc7SUFDdEIsK0NBQUssQ0FBQTtJQUNMLGlEQUFNLENBQUE7SUFDTiw2Q0FBSSxDQUFBO0FBQ0wsQ0FBQyxFQUpXLFdBQVcsS0FBWCxXQUFXLFFBSXRCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gQ29sdW1uQWxpZ24ge1xuXHRSSUdIVCxcblx0Q0VOVEVSLFxuXHRMRUZUXG59XG4iXX0=

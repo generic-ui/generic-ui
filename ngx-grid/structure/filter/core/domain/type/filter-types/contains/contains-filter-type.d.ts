@@ -7,3 +7,4 @@ export declare class ContainsFilterType extends BaseFilterType<string> {
     getName(): string;
     protected filterEntity(entity: OriginItemEntity, field: Field, value: string): boolean;
 }
+//# sourceMappingURL=contains-filter-type.d.ts.map

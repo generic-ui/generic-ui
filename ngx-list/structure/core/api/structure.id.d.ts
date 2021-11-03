@@ -4,3 +4,4 @@ export declare class StructureId extends AggregateId {
     constructor(id: string);
     toReadModelRootId(): StructureReadModelRootId;
 }
+//# sourceMappingURL=structure.id.d.ts.map

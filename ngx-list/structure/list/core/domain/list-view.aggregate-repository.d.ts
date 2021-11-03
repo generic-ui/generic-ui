@@ -5,3 +5,4 @@ export declare abstract class ListViewAggregateRepository extends AggregateRepos
     abstract findById(listViewId: ListViewId): Optional<ListViewAggregate>;
     abstract save(aggregate: ListViewAggregate): void;
 }
+//# sourceMappingURL=list-view.aggregate-repository.d.ts.map

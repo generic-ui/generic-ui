@@ -4,3 +4,4 @@ export interface ClassModifierApi extends ModifierApi {
     remove(...classes: Array<string>): void;
     clear(): void;
 }
+//# sourceMappingURL=class-modifier-api.d.ts.map

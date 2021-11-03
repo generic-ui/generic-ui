@@ -9,3 +9,4 @@ export declare class CompositionSetColumnEnabledCommand extends CompositionComma
     getColumnId(): ColumnId;
     isEnabled(): boolean;
 }
+//# sourceMappingURL=composition.set-column-enabled.command.d.ts.map

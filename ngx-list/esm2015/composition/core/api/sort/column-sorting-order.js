@@ -1,15 +1,7 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const ColumnSortingOrder = {
-    NONE: 0,
-    ASC: 1,
-    DESC: 2,
-};
-export { ColumnSortingOrder };
-ColumnSortingOrder[ColumnSortingOrder.NONE] = 'NONE';
-ColumnSortingOrder[ColumnSortingOrder.ASC] = 'ASC';
-ColumnSortingOrder[ColumnSortingOrder.DESC] = 'DESC';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLXNvcnRpbmctb3JkZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbImNvbXBvc2l0aW9uL2NvcmUvYXBpL3NvcnQvY29sdW1uLXNvcnRpbmctb3JkZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsT0FBSTtJQUNKLE1BQUc7SUFDSCxPQUFJIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gQ29sdW1uU29ydGluZ09yZGVyIHtcblx0Tk9ORSxcblx0QVNDLFxuXHRERVNDXG59XG4iXX0=
+export var ColumnSortingOrder;
+(function (ColumnSortingOrder) {
+    ColumnSortingOrder[ColumnSortingOrder["NONE"] = 0] = "NONE";
+    ColumnSortingOrder[ColumnSortingOrder["ASC"] = 1] = "ASC";
+    ColumnSortingOrder[ColumnSortingOrder["DESC"] = 2] = "DESC";
+})(ColumnSortingOrder || (ColumnSortingOrder = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLXNvcnRpbmctb3JkZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2NvbXBvc2l0aW9uL2NvcmUvYXBpL3NvcnQvY29sdW1uLXNvcnRpbmctb3JkZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksa0JBSVg7QUFKRCxXQUFZLGtCQUFrQjtJQUM3QiwyREFBSSxDQUFBO0lBQ0oseURBQUcsQ0FBQTtJQUNILDJEQUFJLENBQUE7QUFDTCxDQUFDLEVBSlcsa0JBQWtCLEtBQWxCLGtCQUFrQixRQUk3QiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENvbHVtblNvcnRpbmdPcmRlciB7XG5cdE5PTkUsXG5cdEFTQyxcblx0REVTQ1xufVxuIl19

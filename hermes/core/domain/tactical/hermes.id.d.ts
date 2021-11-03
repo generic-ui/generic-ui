@@ -5,3 +5,4 @@ export declare abstract class HermesId<T> {
     getId(): T;
     equals(hermesId: HermesId<T>): boolean;
 }
+//# sourceMappingURL=hermes.id.d.ts.map

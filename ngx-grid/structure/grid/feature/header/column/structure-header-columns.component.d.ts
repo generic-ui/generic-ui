@@ -5,6 +5,7 @@ import { SortingCommandInvoker } from '../../../../sorting/core/api/sorting.comm
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { StructureId } from '../../../../core/api/structure.id';
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
+import * as i0 from "@angular/core";
 export declare class StructureHeaderColumnsComponent extends SmartComponent {
     private readonly elementRef;
     private readonly injector;
@@ -22,4 +23,7 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent {
     isSortDesc(column: CellTemplateWithContext): boolean;
     isGlobalSortEnabled(): boolean;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderColumnsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "checkboxSelection": "checkboxSelection"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure-header-columns.component.d.ts.map

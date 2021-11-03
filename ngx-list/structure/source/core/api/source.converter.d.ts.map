@@ -1,0 +1,1 @@
+{"version":3,"file":"source.converter.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/structure/source/core/api/source.converter.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,MAAM,EAAE,MAAM,eAAe,CAAC;AACvC,OAAO,EAAE,aAAa,EAAE,MAAM,+BAA+B,CAAC;;AAE9D,qBACa,eAAe;IAE3B,OAAO,CAAC,SAAS,EAAE,aAAa,GAAG,MAAM;yCAF7B,eAAe;6CAAf,eAAe;CAM3B"}

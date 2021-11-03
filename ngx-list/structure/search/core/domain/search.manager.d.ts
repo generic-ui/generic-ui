@@ -8,3 +8,4 @@ export declare class SearchManager {
     removeSearchFilters(): void;
     search(entities: Array<OriginItemEntity>): Array<OriginItemEntity>;
 }
+//# sourceMappingURL=search.manager.d.ts.map

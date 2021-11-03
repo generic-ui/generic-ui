@@ -6,3 +6,4 @@ export declare class InitFieldsCommand extends StructureCommand {
     constructor(structureId: StructureId, fieldConfigs: Array<FieldConfig>);
     getFieldConfigs(): Array<FieldConfig>;
 }
+//# sourceMappingURL=init-fields.command.d.ts.map

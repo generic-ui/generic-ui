@@ -5,3 +5,4 @@ export declare class SetSchemaVerticalGridCommand extends SchemaCommand {
     constructor(schemaId: SchemaId, enabled: boolean);
     isEnabled(): boolean;
 }
+//# sourceMappingURL=set-schema-vertical-grid.command.d.ts.map

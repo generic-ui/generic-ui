@@ -3,6 +3,7 @@ import { StructureEditSourceItemParams } from '../domain/origin/edit/structure.e
 import { SelectedRow } from './formation/selected-row';
 import { OriginId } from '../domain/origin/origin-id';
 import { CommandInvoker } from '@generic-ui/hermes';
+import * as i0 from "@angular/core";
 export declare abstract class SourceCommandInvoker implements CommandInvoker {
     protected constructor();
     abstract setOrigin(items: Array<any>, structureId: StructureId): void;
@@ -15,4 +16,7 @@ export declare abstract class SourceCommandInvoker implements CommandInvoker {
     abstract deleteItemById(itemId: OriginId, structureId: StructureId): void;
     abstract deleteManyItemsByIndex(indexes: Array<number>, structureId: StructureId): void;
     abstract deleteManyItemsByItemIds(itemIds: Array<OriginId>, structureId: StructureId): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SourceCommandInvoker, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SourceCommandInvoker>;
 }
+//# sourceMappingURL=source.command-invoker.d.ts.map

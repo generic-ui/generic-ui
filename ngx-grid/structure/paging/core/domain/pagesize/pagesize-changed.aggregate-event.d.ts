@@ -5,3 +5,4 @@ export declare class PagesizeChangedAggregateEvent extends StructureAggregateEve
     constructor(structureId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
+//# sourceMappingURL=pagesize-changed.aggregate-event.d.ts.map

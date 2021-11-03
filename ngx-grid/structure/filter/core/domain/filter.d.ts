@@ -12,3 +12,4 @@ export declare class Filter {
     getFieldId(): FieldId;
     getFilterValue(): any;
 }
+//# sourceMappingURL=filter.d.ts.map

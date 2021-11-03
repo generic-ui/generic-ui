@@ -8,6 +8,7 @@ import { CommandStream } from './command.stream';
 import { HermesSubscription } from '../../../common/stream/subscription/hermes.subscription';
 import { HermesSubscriber } from '../../../common/stream/observable/subscriber/hermes.subscriber';
 import { HermesObservable } from '../../../common/stream/observable/hermes.observable';
+import * as i0 from "@angular/core";
 export declare class CommandBus<C = Command<AggregateId>> extends HermesObservable<C> {
     private readonly commandsStream;
     constructor(commandsStream: CommandStream);
@@ -17,4 +18,7 @@ export declare class CommandBus<C = Command<AggregateId>> extends HermesObservab
     ofCommandHandler<C2 extends C>(...handlers: Array<CommandHandlerImpl<AggregateId, AggregateRoot<AggregateId>, Command<AggregateId>>>): any;
     ofCreateAggregateHandler<C2 extends C>(...handlers: Array<CreateAggregateCommandHandlerImpl<any, AggregateRoot<AggregateId>, CreateAggregateCommand>>): any;
     ofNullHandler<C2 extends C>(handlers: Array<CommandHandlerImpl<AggregateId, AggregateRoot<AggregateId>, Command<AggregateId>>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<AggregateId, AggregateRoot<AggregateId>, CreateAggregateCommand>>): any;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CommandBus<any>, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<CommandBus<any>>;
 }
+//# sourceMappingURL=command.bus.d.ts.map

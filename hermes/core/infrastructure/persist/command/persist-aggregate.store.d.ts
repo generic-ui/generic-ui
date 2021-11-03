@@ -17,3 +17,4 @@ export declare abstract class PersistAggregateStore<I extends AggregateId, D ext
     private saveValue;
     private getValue;
 }
+//# sourceMappingURL=persist-aggregate.store.d.ts.map

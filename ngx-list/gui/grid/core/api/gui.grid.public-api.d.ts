@@ -188,5 +188,11 @@ export interface GuiLocalization {
     translation?: GuiTranslation;
     translationResolver?: (key: string, value: string) => string;
 }
+export interface GuiCellEdit {
+    enabled?: boolean;
+    rowEdit?: (value: any, item: any, index: number) => boolean;
+    cellEdit?: (value: any, item: any, index: number) => boolean;
+}
 export declare type GuiTranslation = TranslationChange;
 export declare const GuiDefaultTranslation: import("../../../../l10n/core/api/translation").Translation;
+//# sourceMappingURL=gui.grid.public-api.d.ts.map

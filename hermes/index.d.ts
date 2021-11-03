@@ -95,6 +95,7 @@ export { InMemoryAggregateStore } from './core/infrastructure/in-memory/command/
 export { InMemoryReadModelStore } from './core/infrastructure/in-memory/read/in-memory.read-model.store';
 export { InMemoryStore } from './core/infrastructure/in-memory/in-memory.store';
 export { HermesModule } from './core/api/hermes.module';
+export { HermesDomainModule } from './core/api/hermes.domain.module';
 export { HermesModuleConfig } from './core/api/hermes-module-config';
 export { COMMAND_LOGGER_ENABLED } from './core/domain/hermes-tokens';
 export { EVENT_LOGGER_ENABLED } from './core/domain/hermes-tokens';
@@ -104,3 +105,4 @@ export { EVENT_LOGGER_ENABLED } from './core/domain/hermes-tokens';
 export { assertDomainEvents, assertAggregateEvents, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce } from './testing/helpers';
 export { CreateAggregateCommand } from './core/domain/command/create-aggregate/create-aggregate.command';
 export { CreateAggregateCommandHandler } from './core/domain/command/create-aggregate/create-aggregate.command-handler';
+//# sourceMappingURL=index.d.ts.map

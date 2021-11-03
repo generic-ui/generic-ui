@@ -17,3 +17,4 @@ export declare class UniqueFilterManager {
     getAll(fields: Array<Field>): Map<string, Array<UniqueValue>>;
     getValues(field: Field): Optional<Array<UniqueValue>>;
 }
+//# sourceMappingURL=unique-filter-manager.d.ts.map

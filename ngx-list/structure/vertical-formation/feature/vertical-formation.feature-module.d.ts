@@ -1,7 +1,12 @@
 import { Provider } from '@angular/core';
 import { FeatureModule } from '@generic-ui/hermes';
-import { VerticalFormationApiModule } from '../core/api/vertical-formation.api-module';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+import * as i2 from "../core/api/vertical-formation.api-module";
 export declare class VerticalFormationFeatureModule extends FeatureModule {
     static forComponent(): Array<Provider>;
-    constructor(verticalFormationApiModule: VerticalFormationApiModule);
+    static ɵfac: i0.ɵɵFactoryDeclaration<VerticalFormationFeatureModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<VerticalFormationFeatureModule, never, [typeof i1.CommonModule, typeof i2.VerticalFormationApiModule], never>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<VerticalFormationFeatureModule>;
 }
+//# sourceMappingURL=vertical-formation.feature-module.d.ts.map

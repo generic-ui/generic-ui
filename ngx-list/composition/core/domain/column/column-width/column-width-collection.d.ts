@@ -16,3 +16,4 @@ export declare class ColumnWidthCollection {
     private calculate;
     private setContainerWidth;
 }
+//# sourceMappingURL=column-width-collection.d.ts.map

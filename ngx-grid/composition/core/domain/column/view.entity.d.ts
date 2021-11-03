@@ -8,3 +8,4 @@ export declare class ViewEntity {
     getCellView(): CellView;
     getTemplateFunction(): any;
 }
+//# sourceMappingURL=view.entity.d.ts.map

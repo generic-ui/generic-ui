@@ -5,3 +5,4 @@ export declare abstract class CompositionAggregateRepository extends AggregateRe
     abstract findById(compositionId: CompositionId): Optional<CompositionAggregate>;
     abstract save(aggregate: CompositionAggregate): void;
 }
+//# sourceMappingURL=composition.aggregate-repository.d.ts.map

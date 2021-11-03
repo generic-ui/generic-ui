@@ -1,39 +1,19 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const CellView = {
-    TEXT: 0,
-    NUMBER: 1,
-    CHIP: 2,
-    LINK: 3,
-    IMAGE: 4,
-    BOLD: 5,
-    ITALIC: 6,
-    CHECKBOX: 7,
-    CUSTOM: 8,
-    FUNCTION: 9,
-    DATE: 10,
-    BAR: 11,
-    PERCENTAGE_BAR: 12,
-    PERCENTAGE: 13,
-    NG_TEMPLATE: 14,
-};
-export { CellView };
-CellView[CellView.TEXT] = 'TEXT';
-CellView[CellView.NUMBER] = 'NUMBER';
-CellView[CellView.CHIP] = 'CHIP';
-CellView[CellView.LINK] = 'LINK';
-CellView[CellView.IMAGE] = 'IMAGE';
-CellView[CellView.BOLD] = 'BOLD';
-CellView[CellView.ITALIC] = 'ITALIC';
-CellView[CellView.CHECKBOX] = 'CHECKBOX';
-CellView[CellView.CUSTOM] = 'CUSTOM';
-CellView[CellView.FUNCTION] = 'FUNCTION';
-CellView[CellView.DATE] = 'DATE';
-CellView[CellView.BAR] = 'BAR';
-CellView[CellView.PERCENTAGE_BAR] = 'PERCENTAGE_BAR';
-CellView[CellView.PERCENTAGE] = 'PERCENTAGE';
-CellView[CellView.NG_TEMPLATE] = 'NG_TEMPLATE';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2VsbC12aWV3LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJjb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9jb2x1bW4vY2VsbC12aWV3LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztJQUNDLE9BQUk7SUFDSixTQUFNO0lBQ04sT0FBSTtJQUNKLE9BQUk7SUFDSixRQUFLO0lBQ0wsT0FBSTtJQUNKLFNBQU07SUFDTixXQUFRO0lBQ1IsU0FBTTtJQUNOLFdBQVE7SUFDUixRQUFJO0lBQ0osT0FBRztJQUNILGtCQUFjO0lBQ2QsY0FBVTtJQUNWLGVBQVciLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBDZWxsVmlldyB7XG5cdFRFWFQsXG5cdE5VTUJFUixcblx0Q0hJUCxcblx0TElOSyxcblx0SU1BR0UsXG5cdEJPTEQsXG5cdElUQUxJQyxcblx0Q0hFQ0tCT1gsXG5cdENVU1RPTSxcblx0RlVOQ1RJT04sXG5cdERBVEUsXG5cdEJBUixcblx0UEVSQ0VOVEFHRV9CQVIsXG5cdFBFUkNFTlRBR0UsXG5cdE5HX1RFTVBMQVRFXG59XG4iXX0=
+export var CellView;
+(function (CellView) {
+    CellView[CellView["TEXT"] = 0] = "TEXT";
+    CellView[CellView["NUMBER"] = 1] = "NUMBER";
+    CellView[CellView["CHIP"] = 2] = "CHIP";
+    CellView[CellView["LINK"] = 3] = "LINK";
+    CellView[CellView["IMAGE"] = 4] = "IMAGE";
+    CellView[CellView["BOLD"] = 5] = "BOLD";
+    CellView[CellView["ITALIC"] = 6] = "ITALIC";
+    CellView[CellView["CHECKBOX"] = 7] = "CHECKBOX";
+    CellView[CellView["CUSTOM"] = 8] = "CUSTOM";
+    CellView[CellView["FUNCTION"] = 9] = "FUNCTION";
+    CellView[CellView["DATE"] = 10] = "DATE";
+    CellView[CellView["BAR"] = 11] = "BAR";
+    CellView[CellView["PERCENTAGE_BAR"] = 12] = "PERCENTAGE_BAR";
+    CellView[CellView["PERCENTAGE"] = 13] = "PERCENTAGE";
+    CellView[CellView["NG_TEMPLATE"] = 14] = "NG_TEMPLATE";
+})(CellView || (CellView = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2VsbC12aWV3LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9jb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9jb2x1bW4vY2VsbC12aWV3LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLFFBZ0JYO0FBaEJELFdBQVksUUFBUTtJQUNuQix1Q0FBSSxDQUFBO0lBQ0osMkNBQU0sQ0FBQTtJQUNOLHVDQUFJLENBQUE7SUFDSix1Q0FBSSxDQUFBO0lBQ0oseUNBQUssQ0FBQTtJQUNMLHVDQUFJLENBQUE7SUFDSiwyQ0FBTSxDQUFBO0lBQ04sK0NBQVEsQ0FBQTtJQUNSLDJDQUFNLENBQUE7SUFDTiwrQ0FBUSxDQUFBO0lBQ1Isd0NBQUksQ0FBQTtJQUNKLHNDQUFHLENBQUE7SUFDSCw0REFBYyxDQUFBO0lBQ2Qsb0RBQVUsQ0FBQTtJQUNWLHNEQUFXLENBQUE7QUFDWixDQUFDLEVBaEJXLFFBQVEsS0FBUixRQUFRLFFBZ0JuQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIENlbGxWaWV3IHtcblx0VEVYVCxcblx0TlVNQkVSLFxuXHRDSElQLFxuXHRMSU5LLFxuXHRJTUFHRSxcblx0Qk9MRCxcblx0SVRBTElDLFxuXHRDSEVDS0JPWCxcblx0Q1VTVE9NLFxuXHRGVU5DVElPTixcblx0REFURSxcblx0QkFSLFxuXHRQRVJDRU5UQUdFX0JBUixcblx0UEVSQ0VOVEFHRSxcblx0TkdfVEVNUExBVEVcbn1cbiJdfQ==

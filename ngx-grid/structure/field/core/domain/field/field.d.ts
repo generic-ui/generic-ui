@@ -53,3 +53,4 @@ export declare class Field {
     filter(item: OriginItemEntity, filterPhrase: any): boolean;
     sort(entityOne: OriginItemEntity, entityTwo: OriginItemEntity, direction: boolean): number;
 }
+//# sourceMappingURL=field.d.ts.map

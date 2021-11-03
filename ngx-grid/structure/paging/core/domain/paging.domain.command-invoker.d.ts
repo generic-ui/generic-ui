@@ -2,6 +2,7 @@ import { PagingDispatcher } from './paging.dispatcher';
 import { StructureId } from '../../../core/api/structure.id';
 import { PagingConfig } from '../api/paging-config';
 import { PagingCommandInvoker } from '../api/paging.command-invoker';
+import * as i0 from "@angular/core";
 export declare class PagingDomainCommandInvoker extends PagingCommandInvoker {
     private readonly pagingDispatcher;
     constructor(pagingDispatcher: PagingDispatcher);
@@ -14,4 +15,7 @@ export declare class PagingDomainCommandInvoker extends PagingCommandInvoker {
     goToPage(pageNumber: number, currentPage: number, structureId: StructureId): void;
     changePagerTop(enabled: boolean, structureId: StructureId): void;
     changePagerBottom(enabled: boolean, structureId: StructureId): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<PagingDomainCommandInvoker, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<PagingDomainCommandInvoker>;
 }
+//# sourceMappingURL=paging.domain.command-invoker.d.ts.map

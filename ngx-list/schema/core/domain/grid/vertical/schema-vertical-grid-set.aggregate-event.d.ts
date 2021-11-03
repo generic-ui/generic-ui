@@ -6,3 +6,4 @@ export declare class SchemaVerticalGridSetAggregateEvent extends SchemaAggregate
     constructor(schemaId: SchemaId, verticalGrid: boolean);
     toDomainEvent(): DomainEvent<SchemaId>;
 }
+//# sourceMappingURL=schema-vertical-grid-set.aggregate-event.d.ts.map

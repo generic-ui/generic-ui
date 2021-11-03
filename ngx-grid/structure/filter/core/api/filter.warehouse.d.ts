@@ -8,6 +8,7 @@ import { ActiveFilterReadModel } from './active/active-filter.read-model';
 import { ActiveFilterArchive } from './active/active-filter.archive';
 import { UniqueValuesReadModel } from './unique/unique-values.read-model';
 import { UniqueValuesArchive } from './unique/unique-values.archive';
+import * as i0 from "@angular/core";
 export declare class FilterWarehouse implements Warehouse {
     private readonly filterEnabledArchive;
     private readonly structureQuickFilterRepository;
@@ -20,4 +21,7 @@ export declare class FilterWarehouse implements Warehouse {
     onFilterTypes(structureId: StructureId): HermesObservable<FilterTypeMap>;
     onActiveFilters(structureId: StructureId): HermesObservable<ReadonlyArray<ActiveFilterReadModel>>;
     onUniqueValues(structureId: StructureId): HermesObservable<UniqueValuesReadModel>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FilterWarehouse, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FilterWarehouse>;
 }
+//# sourceMappingURL=filter.warehouse.d.ts.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"hermes.id.d.ts","sourceRoot":"","sources":["../../../../build-cli/projects/gui-hermes/src/core/domain/tactical/hermes.id.ts"],"names":[],"mappings":"AAAA,8BAAsB,QAAQ,CAAC,CAAC;IAE/B,OAAO,CAAC,QAAQ,CAAC,GAAG,CAAI;IAExB,SAAS,aAAa,GAAG,EAAE,CAAC;IAI5B,QAAQ,CAAC,QAAQ,IAAI,MAAM;IAE3B,KAAK,IAAI,CAAC;IAIV,MAAM,CAAC,QAAQ,EAAE,QAAQ,CAAC,CAAC,CAAC,GAAG,OAAO;CAGtC"}

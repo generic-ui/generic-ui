@@ -5,3 +5,4 @@ export declare class PageChangedAggregateEvent extends StructureAggregateEvent {
     constructor(structureId: StructureId);
     toDomainEvent(): DomainEvent<StructureId>;
 }
+//# sourceMappingURL=page-changed.aggregate-event.d.ts.map

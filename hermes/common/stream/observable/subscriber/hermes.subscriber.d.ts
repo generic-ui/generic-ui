@@ -14,3 +14,4 @@ export declare class HermesSubscriber<T> {
     protected isClosed(): boolean;
     protected getObserver(): Partial<HermesObserver<T>>;
 }
+//# sourceMappingURL=hermes.subscriber.d.ts.map

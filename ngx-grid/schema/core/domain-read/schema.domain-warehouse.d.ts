@@ -9,6 +9,7 @@ import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 import { SchemaCssClass } from '../api/css-classes/schema-css-class';
 import { SchemaWarehouse } from '../api/schema.warehouse';
 import { HermesObservable } from '@generic-ui/hermes';
+import * as i0 from "@angular/core";
 export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaCssClassesRepository;
     private readonly schemaThemeRepository;
@@ -22,4 +23,7 @@ export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     onVerticalGrid(schemaId: SchemaReadModelRootId): HermesObservable<boolean>;
     onRowColoring(schemaId: SchemaReadModelRootId): HermesObservable<SchemaRowColoring>;
     onCssClasses(schemaId: SchemaReadModelRootId): HermesObservable<SchemaCssClass>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SchemaDomainWarehouse, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SchemaDomainWarehouse>;
 }
+//# sourceMappingURL=schema.domain-warehouse.d.ts.map

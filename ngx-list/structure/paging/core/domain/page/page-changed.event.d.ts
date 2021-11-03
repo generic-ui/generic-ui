@@ -3,3 +3,4 @@ import { StructureDomainEvent } from '../../../../core/domain/structure.domain-e
 export declare class PageChangedEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
+//# sourceMappingURL=page-changed.event.d.ts.map

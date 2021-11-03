@@ -3,6 +3,7 @@ import { BooleanSummarizedValues } from './boolean-summarized.values';
 import { DataType } from '../../../../../field/core/domain/field/data/data-type';
 import { OriginItemEntity } from '../../../../../source/core/domain/origin/origin-item-entity';
 import { Field } from '../../../../../field/core/domain/field/field';
+import * as i0 from "@angular/core";
 export declare class BooleanSummariesCalculator extends SummariesCalculator<boolean, BooleanSummarizedValues> {
     private readonly truthy;
     private readonly falsy;
@@ -12,4 +13,7 @@ export declare class BooleanSummariesCalculator extends SummariesCalculator<bool
     postCalculate(field: Field, items: Array<OriginItemEntity>): void;
     aggregate(field: Field, value: boolean): void;
     generateAggregatedValues(field: Field): BooleanSummarizedValues;
+    static ɵfac: i0.ɵɵFactoryDeclaration<BooleanSummariesCalculator, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<BooleanSummariesCalculator>;
 }
+//# sourceMappingURL=boolean-summaries.calculator.d.ts.map

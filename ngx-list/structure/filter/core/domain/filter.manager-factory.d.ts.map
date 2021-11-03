@@ -1,0 +1,1 @@
+{"version":3,"file":"filter.manager-factory.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/structure/filter/core/domain/filter.manager-factory.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,aAAa,EAAE,MAAM,kBAAkB,CAAC;;AAGjD,qBACa,oBAAoB;IAEhC,MAAM,CAAC,OAAO,GAAE,OAAe,GAAG,aAAa;yCAFnC,oBAAoB;6CAApB,oBAAoB;CAKhC"}

@@ -1,14 +1,9 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {string} */
-const Theme = {
-    FABRIC: 'FABRIC',
-    MATERIAL: 'MATERIAL',
-    GENERIC: 'GENERIC',
-    LIGHT: 'LIGHT',
-    DARK: 'DARK',
-};
-export { Theme };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGhlbWUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9mYWJyaWMvIiwic291cmNlcyI6WyJ0aGVtZXMvdGhlbWUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsUUFBUyxRQUFRO0lBQ2pCLFVBQVcsVUFBVTtJQUNyQixTQUFVLFNBQVM7SUFDbkIsT0FBUSxPQUFPO0lBQ2YsTUFBTyxNQUFNIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gVGhlbWUge1xuXHRGQUJSSUMgPSAnRkFCUklDJyxcblx0TUFURVJJQUwgPSAnTUFURVJJQUwnLFxuXHRHRU5FUklDID0gJ0dFTkVSSUMnLFxuXHRMSUdIVCA9ICdMSUdIVCcsXG5cdERBUksgPSAnREFSSydcbn1cbiJdfQ==
+export var Theme;
+(function (Theme) {
+    Theme["FABRIC"] = "FABRIC";
+    Theme["MATERIAL"] = "MATERIAL";
+    Theme["GENERIC"] = "GENERIC";
+    Theme["LIGHT"] = "LIGHT";
+    Theme["DARK"] = "DARK";
+})(Theme || (Theme = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGhlbWUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvZ3VpLWZhYnJpYy9zcmMvdGhlbWVzL3RoZW1lLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLEtBTVg7QUFORCxXQUFZLEtBQUs7SUFDaEIsMEJBQWlCLENBQUE7SUFDakIsOEJBQXFCLENBQUE7SUFDckIsNEJBQW1CLENBQUE7SUFDbkIsd0JBQWUsQ0FBQTtJQUNmLHNCQUFhLENBQUE7QUFDZCxDQUFDLEVBTlcsS0FBSyxLQUFMLEtBQUssUUFNaEIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBUaGVtZSB7XG5cdEZBQlJJQyA9ICdGQUJSSUMnLFxuXHRNQVRFUklBTCA9ICdNQVRFUklBTCcsXG5cdEdFTkVSSUMgPSAnR0VORVJJQycsXG5cdExJR0hUID0gJ0xJR0hUJyxcblx0REFSSyA9ICdEQVJLJ1xufVxuIl19

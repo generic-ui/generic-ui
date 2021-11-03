@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { EditCommunicationComponent } from '../edit-communication.component';
+import * as i0 from "@angular/core";
 export declare class DateEditTemplateComponent extends EditCommunicationComponent<Date> {
     private readonly changeDetectorRef;
     datePickerRef: ElementRef;
@@ -12,4 +13,7 @@ export declare class DateEditTemplateComponent extends EditCommunicationComponen
     toggle(changed: Date): void;
     dialogOpened(opened: boolean): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DateEditTemplateComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DateEditTemplateComponent, "gui-date-edit", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=date-edit-template.component.d.ts.map

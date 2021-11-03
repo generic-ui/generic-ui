@@ -14,3 +14,4 @@ export declare const inMemoryCompositionReadModelProviders: (typeof InMemoryComp
     useClass: typeof InMemoryCompositionRepository;
 })[];
 export declare const inMemoryCompositionProviders: (typeof InMemoryCompositionStore)[];
+//# sourceMappingURL=in-memory.composition.providers.d.ts.map

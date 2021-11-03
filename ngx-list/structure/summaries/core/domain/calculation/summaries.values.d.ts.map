@@ -1,0 +1,1 @@
+{"version":3,"file":"summaries.values.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-list/src/structure/summaries/core/domain/calculation/summaries.values.ts"],"names":[],"mappings":"AAAA,8BAAsB,eAAe;IAE7B,KAAK,EAAE,MAAM,CAAC;IACd,QAAQ,EAAE,MAAM,CAAC;IAExB,QAAQ,CAAC,KAAK,EAAE,MAAM,GAAG,IAAI;IAI7B,WAAW,CAAC,KAAK,EAAE,MAAM,GAAG,IAAI;CAIhC"}

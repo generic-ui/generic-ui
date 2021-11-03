@@ -1,0 +1,1 @@
+{"version":3,"file":"aggregate.archive.d.ts","sourceRoot":"","sources":["../../build-cli/projects/gui-hermes/src/common/aggregate.archive.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,gDAAgD,CAAC;AAC7E,OAAO,EAAE,UAAU,EAAE,MAAM,eAAe,CAAC;AAG3C,8BAAsB,gBAAgB,CAAC,CAAC,CAAE,SAAQ,UAAU,CAAC,WAAW,EAAE,CAAC,CAAC;IAE3E,SAAS,aAAa,YAAY,CAAC,EAAE,CAAC;CAItC"}

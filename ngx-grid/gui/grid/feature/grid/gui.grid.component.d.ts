@@ -12,6 +12,7 @@ import { StructureCommandInvoker } from '../../../../structure/core/api/structur
 import { PagingCommandInvoker } from '../../../../structure/paging/core/api/paging.command-invoker';
 import { SummariesCommandInvoker } from '../../../../structure/summaries/core/api/summaries.command-invoker';
 import { SortingCommandInvoker } from '../../../../structure/sorting/core/api/sorting.command-invoker';
+import * as i0 from "@angular/core";
 export declare class GuiGridComponent extends GuiGridGateway implements OnInit, OnDestroy {
     private readonly platformId;
     private readonly elementRef;
@@ -44,4 +45,7 @@ export declare class GuiGridComponent extends GuiGridGateway implements OnInit, 
     detectChanges(): void;
     private exposeGridId;
     private initApi;
+    static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridComponent, "gui-grid", never, { "gridId": "gridId"; }, {}, never, never>;
 }
+//# sourceMappingURL=gui.grid.component.d.ts.map

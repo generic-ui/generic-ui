@@ -9,3 +9,4 @@ export declare class DateColumnPresentation extends ColumnPresentation {
     getDefaultView(): CellView;
     getDefaultAlign(): ColumnAlign;
 }
+//# sourceMappingURL=date-column.presentation.d.ts.map

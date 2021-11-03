@@ -11,6 +11,7 @@ import { StructureInfoPanelArchive } from '../../../core/api/panel/info/structur
 import { StructureInfoPanelConfig } from '../../../core/api/panel/info/structure.info-panel.config';
 import { StructureDialogSchemaManagerService } from '../../../../../schema/feature/manager/dialog/structure.dialog-schema-manager.service';
 import { TranslationFacade } from '../../../../../l10n/core/api/translation.facade';
+import * as i0 from "@angular/core";
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly injector;
@@ -37,4 +38,7 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     openColumnManager(): void;
     openSchemaManager(): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureInfoPanelComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoPanelComponent, "div[gui-structure-info-panel]", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=structure.info-panel.component.d.ts.map

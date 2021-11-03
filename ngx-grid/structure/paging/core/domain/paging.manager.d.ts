@@ -38,3 +38,4 @@ export declare class PagingManager {
     private setPage;
     private setPageSize;
 }
+//# sourceMappingURL=paging.manager.d.ts.map

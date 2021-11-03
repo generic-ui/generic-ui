@@ -5,3 +5,4 @@ export declare class ConfigQuickFilterSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId, enabled: boolean);
     getEnabled(): boolean;
 }
+//# sourceMappingURL=config-quick-filter-set.event.d.ts.map

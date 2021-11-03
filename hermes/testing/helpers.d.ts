@@ -7,3 +7,4 @@ export declare function assertAggregateEvents<T extends AggregateId>(actualEvent
 export declare function testEventRepositoryIsEmptyOnStart<T>(createStream: () => HermesObservable<T>, desc: string): void;
 export declare function testWarehouseDefaultValueOnStart<T>(createStream: () => HermesObservable<T>, defaultValue: T, desc: string): void;
 export declare function testWarehouseDefaultValueOnStartOnce<T>(createStream: () => HermesObservable<T>, defaultValue: T, desc: string): void;
+//# sourceMappingURL=helpers.d.ts.map

@@ -6,3 +6,4 @@ export declare class SelectionEnabledSetAggregateEvent extends StructureAggregat
     constructor(structureId: StructureId, enabled: boolean);
     toDomainEvent(): DomainEvent<StructureId>;
 }
+//# sourceMappingURL=selection-enabled-set.aggregate-event.d.ts.map

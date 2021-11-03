@@ -38,3 +38,4 @@ export interface GuiListLocalization {
 }
 export declare type GuiListTranslation = TranslationChange;
 export declare const GuiListDefaultTranslation: import("../../../../l10n/core/api/translation").Translation;
+//# sourceMappingURL=gui.list.public-api.d.ts.map

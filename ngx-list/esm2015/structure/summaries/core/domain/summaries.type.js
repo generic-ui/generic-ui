@@ -1,31 +1,22 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const SummariesType = {
-    COUNT: 1024,
-    DISTINCT: 1,
-    SUM: 2,
-    AVERAGE: 4,
-    MIN: 8,
-    MAX: 16,
-    MEDIAN: 32,
-    TRUTHY: 64,
-    FALSY: 128,
-    EARLIEST: 256,
-    LATEST: 512,
-};
-export { SummariesType };
-SummariesType[SummariesType.COUNT] = 'COUNT';
-SummariesType[SummariesType.DISTINCT] = 'DISTINCT';
-SummariesType[SummariesType.SUM] = 'SUM';
-SummariesType[SummariesType.AVERAGE] = 'AVERAGE';
-SummariesType[SummariesType.MIN] = 'MIN';
-SummariesType[SummariesType.MAX] = 'MAX';
-SummariesType[SummariesType.MEDIAN] = 'MEDIAN';
-SummariesType[SummariesType.TRUTHY] = 'TRUTHY';
-SummariesType[SummariesType.FALSY] = 'FALSY';
-SummariesType[SummariesType.EARLIEST] = 'EARLIEST';
-SummariesType[SummariesType.LATEST] = 'LATEST';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3VtbWFyaWVzLnR5cGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtbGlzdC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9zdW1tYXJpZXMvY29yZS9kb21haW4vc3VtbWFyaWVzLnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsV0FBZTtJQUNmLFdBQWlCO0lBQ2pCLE1BQVk7SUFDWixVQUFnQjtJQUNoQixNQUFZO0lBQ1osT0FBWTtJQUNaLFVBQWU7SUFDZixVQUFlO0lBQ2YsVUFBYztJQUNkLGFBQWlCO0lBQ2pCLFdBQWUiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBTdW1tYXJpZXNUeXBlIHtcblx0Q09VTlQgPSAxIDw8IDEwLFxuXHRESVNUSU5DVCA9IDEgPDwgMCxcblx0U1VNID0gMSA8PCAxLFxuXHRBVkVSQUdFID0gMSA8PCAyLFxuXHRNSU4gPSAxIDw8IDMsXG5cdE1BWCA9IDEgPDwgNCxcblx0TUVESUFOID0gMSA8PCA1LFxuXHRUUlVUSFkgPSAxIDw8IDYsIC8vIGRvZXNuJ3Qgd29ya1xuXHRGQUxTWSA9IDEgPDwgNywgLy8gZG9lc24ndCB3b3JrXG5cdEVBUkxJRVNUID0gMSA8PCA4LCAvLyBkb2Vzbid0IHdvcmtcblx0TEFURVNUID0gMSA8PCA5LCAvLyBkb2Vzbid0IHdvcmtcbn1cblxuLy8gY291bnRcbi8vIGNvdW50IGRpc3RpbmN0XG4vLyBwZXJjZW50aWxlXG4vLyBzdGQuZGV2XG4vLyBzdGQuZGV2IFBvcFxuLy8gdmFyaWFuY2Vcbi8vIHZhcmlhbmNlIHBvcFxuIl19
+export var SummariesType;
+(function (SummariesType) {
+    SummariesType[SummariesType["COUNT"] = 1024] = "COUNT";
+    SummariesType[SummariesType["DISTINCT"] = 1] = "DISTINCT";
+    SummariesType[SummariesType["SUM"] = 2] = "SUM";
+    SummariesType[SummariesType["AVERAGE"] = 4] = "AVERAGE";
+    SummariesType[SummariesType["MIN"] = 8] = "MIN";
+    SummariesType[SummariesType["MAX"] = 16] = "MAX";
+    SummariesType[SummariesType["MEDIAN"] = 32] = "MEDIAN";
+    SummariesType[SummariesType["TRUTHY"] = 64] = "TRUTHY";
+    SummariesType[SummariesType["FALSY"] = 128] = "FALSY";
+    SummariesType[SummariesType["EARLIEST"] = 256] = "EARLIEST";
+    SummariesType[SummariesType["LATEST"] = 512] = "LATEST";
+})(SummariesType || (SummariesType = {}));
+// count
+// count distinct
+// percentile
+// std.dev
+// std.dev Pop
+// variance
+// variance pop
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3VtbWFyaWVzLnR5cGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL3N0cnVjdHVyZS9zdW1tYXJpZXMvY29yZS9kb21haW4vc3VtbWFyaWVzLnR5cGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksYUFZWDtBQVpELFdBQVksYUFBYTtJQUN4QixzREFBZSxDQUFBO0lBQ2YseURBQWlCLENBQUE7SUFDakIsK0NBQVksQ0FBQTtJQUNaLHVEQUFnQixDQUFBO0lBQ2hCLCtDQUFZLENBQUE7SUFDWixnREFBWSxDQUFBO0lBQ1osc0RBQWUsQ0FBQTtJQUNmLHNEQUFlLENBQUE7SUFDZixxREFBYyxDQUFBO0lBQ2QsMkRBQWlCLENBQUE7SUFDakIsdURBQWUsQ0FBQTtBQUNoQixDQUFDLEVBWlcsYUFBYSxLQUFiLGFBQWEsUUFZeEI7QUFFRCxRQUFRO0FBQ1IsaUJBQWlCO0FBQ2pCLGFBQWE7QUFDYixVQUFVO0FBQ1YsY0FBYztBQUNkLFdBQVc7QUFDWCxlQUFlIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gU3VtbWFyaWVzVHlwZSB7XG5cdENPVU5UID0gMSA8PCAxMCxcblx0RElTVElOQ1QgPSAxIDw8IDAsXG5cdFNVTSA9IDEgPDwgMSxcblx0QVZFUkFHRSA9IDEgPDwgMixcblx0TUlOID0gMSA8PCAzLFxuXHRNQVggPSAxIDw8IDQsXG5cdE1FRElBTiA9IDEgPDwgNSxcblx0VFJVVEhZID0gMSA8PCA2LCAvLyBkb2Vzbid0IHdvcmtcblx0RkFMU1kgPSAxIDw8IDcsIC8vIGRvZXNuJ3Qgd29ya1xuXHRFQVJMSUVTVCA9IDEgPDwgOCwgLy8gZG9lc24ndCB3b3JrXG5cdExBVEVTVCA9IDEgPDwgOSwgLy8gZG9lc24ndCB3b3JrXG59XG5cbi8vIGNvdW50XG4vLyBjb3VudCBkaXN0aW5jdFxuLy8gcGVyY2VudGlsZVxuLy8gc3RkLmRldlxuLy8gc3RkLmRldiBQb3Bcbi8vIHZhcmlhbmNlXG4vLyB2YXJpYW5jZSBwb3BcbiJdfQ==

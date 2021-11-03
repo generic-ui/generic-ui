@@ -9,3 +9,4 @@ export declare class VerticalFormationContainerHeight {
     setSourceSize(height: number): void;
     private getContainerHeight;
 }
+//# sourceMappingURL=vertical-formation.container-height.d.ts.map

@@ -5,3 +5,4 @@ export declare class StructureSetSummariesEnabledCommand extends StructureComman
     constructor(structureId: StructureId, enabled: boolean);
     isEnabled(): boolean;
 }
+//# sourceMappingURL=structure.set-summaries-enabled.command.d.ts.map

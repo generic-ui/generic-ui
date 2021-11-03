@@ -7,3 +7,4 @@ export declare class UniqueFilterCalculatedAggregateEvent extends StructureAggre
     constructor(aggregateId: StructureId, map: Map<string, Array<UniqueValue>>);
     toDomainEvent(): DomainEvent<StructureId>;
 }
+//# sourceMappingURL=unique-filter-calculated.aggregate-event.d.ts.map

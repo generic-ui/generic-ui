@@ -9,3 +9,4 @@ export declare class FieldMatchers {
     getSortMatcher(): Optional<FieldMatcherType>;
     getSearchMatcher(): Optional<FieldMatcherType>;
 }
+//# sourceMappingURL=field.matchers.d.ts.map

@@ -5,3 +5,4 @@ export declare class CompositionWidthSetAggregateEvent extends CompositionAggreg
     constructor(aggregateId: AggregateId);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
+//# sourceMappingURL=composition-width-set.aggregate-event.d.ts.map

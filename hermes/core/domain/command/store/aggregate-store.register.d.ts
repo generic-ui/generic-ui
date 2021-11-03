@@ -9,3 +9,4 @@ export declare class AggregateStoreRegister {
     };
     private cloneAggregates;
 }
+//# sourceMappingURL=aggregate-store.register.d.ts.map

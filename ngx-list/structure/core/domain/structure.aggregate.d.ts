@@ -91,3 +91,4 @@ export declare class StructureAggregate extends AggregateRoot<StructureId> {
     private generateCalculateUniqueValuesAggregateEvent;
     private generateSelectedRowChangedEvent;
 }
+//# sourceMappingURL=structure.aggregate.d.ts.map

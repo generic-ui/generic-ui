@@ -1,5 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { Changes } from './ng-changes';
+import * as i0 from "@angular/core";
 export declare abstract class GuiComponent {
     private readonly innerElementRef;
     private readonly innerClassModifier;
@@ -9,4 +10,7 @@ export declare abstract class GuiComponent {
     removeClassFromHost(className: string): void;
     hasChanged<T>(prop: Changes<T>): boolean;
     private addHostClass;
+    static ɵfac: i0.ɵɵFactoryDeclaration<GuiComponent, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiComponent, never, never, {}, {}, never>;
 }
+//# sourceMappingURL=gui-component.d.ts.map

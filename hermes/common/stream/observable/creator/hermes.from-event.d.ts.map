@@ -1,0 +1,1 @@
+{"version":3,"file":"hermes.from-event.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/gui-hermes/src/common/stream/observable/creator/hermes.from-event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,MAAM,sBAAsB,CAAC;AAExD,aAAK,SAAS,GAAG,MAAM,CAAC;AAExB,wBAAgB,eAAe,CAAC,OAAO,EAAE,WAAW,EAAE,IAAI,EAAE,SAAS,GAAG,gBAAgB,CAAC,GAAG,CAAC,CAc5F"}

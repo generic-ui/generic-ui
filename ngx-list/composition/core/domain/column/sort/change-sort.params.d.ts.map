@@ -1,0 +1,1 @@
+{"version":3,"file":"change-sort.params.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-list/src/composition/core/domain/column/sort/change-sort.params.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,0BAA0B,CAAC;AAEzD,qBAAa,gBAAgB;aAEA,OAAO,EAAE,aAAa;aAC/B,SAAS,EAAE,OAAO;gBADT,OAAO,EAAE,aAAa,EAC/B,SAAS,EAAE,OAAO;CAGrC"}

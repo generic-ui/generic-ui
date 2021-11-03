@@ -15,3 +15,4 @@ export declare abstract class KeyArchive<K extends Key, T> extends ReactiveServi
     protected createDefaultValue(defaultValue: T): T;
     private tryToInitDefault;
 }
+//# sourceMappingURL=key.archive.d.ts.map

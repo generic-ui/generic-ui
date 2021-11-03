@@ -6,3 +6,4 @@ export declare class GuiGridRowColoringConverter {
     private convertString;
     private convertEnum;
 }
+//# sourceMappingURL=gui.grid.row-coloring.converter.d.ts.map

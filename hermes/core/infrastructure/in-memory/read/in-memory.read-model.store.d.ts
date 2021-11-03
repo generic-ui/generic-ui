@@ -12,3 +12,4 @@ export declare abstract class InMemoryReadModelStore<I extends ReadModelRootId, 
     getById(aggregateId: B): Optional<R>;
     private getValue;
 }
+//# sourceMappingURL=in-memory.read-model.store.d.ts.map

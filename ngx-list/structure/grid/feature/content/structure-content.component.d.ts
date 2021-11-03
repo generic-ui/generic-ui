@@ -2,7 +2,6 @@ import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
 import { FormationCommandInvoker } from '../../../source/core/api/formation/formation.command-invoker';
-import { StructureCellEditArchive } from '../edit/structure.cell-edit.archive';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { FormationWarehouse } from '../../../source/core/api/formation/formation.warehouse';
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
@@ -16,11 +15,12 @@ import { SchemaRowStyleArchive } from '../../../../schema/core/api/styling/schem
 import { SchemaRowClass } from '../../../../schema/core/api/styling/schema.row-class';
 import { SchemaRowStyle } from '../../../../schema/core/api/styling/schema.row-style';
 import { SearchWarehouse } from '../../../search/core/api/search.warehouse';
+import { CellEditorManager } from '../../core/domain/edit/cell-editor.manager';
+import * as i0 from "@angular/core";
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
     private readonly changeDetectorRef;
     private readonly formationCommandService;
-    private readonly structureCellEditArchive;
     private readonly structureEditModeArchive;
     private readonly formationWarehouse;
     private readonly structureWarehouse;
@@ -34,7 +34,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
-    cellEditing: boolean;
+    cellEditing: CellEditorManager;
     rowHeight: number;
     searchPhrase: string;
     highlighting: boolean;
@@ -43,11 +43,14 @@ export declare class StructureContentComponent extends SmartComponent implements
     checkboxSelection: boolean;
     schemaRowClass: SchemaRowClass;
     schemaRowStyle: SchemaRowStyle;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureCellEditArchive: StructureCellEditArchive, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: VerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: VerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
     rowSelectionTypeArchive: RowSelectionTypeArchive, searchWarehouse: SearchWarehouse, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;
     toggleSelectedRow(entity: ItemEntity): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureContentComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure-content.component.d.ts.map

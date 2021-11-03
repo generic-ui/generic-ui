@@ -1,25 +1,8 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 export class FabricTimeValues {
-    /**
-     * @param {?} hours
-     * @param {?} minutes
-     * @param {?} seconds
-     */
     constructor(hours, minutes, seconds) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
     }
 }
-if (false) {
-    /** @type {?} */
-    FabricTimeValues.prototype.hours;
-    /** @type {?} */
-    FabricTimeValues.prototype.minutes;
-    /** @type {?} */
-    FabricTimeValues.prototype.seconds;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLXRpbWUtdmFsdWVzLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvZmFicmljLyIsInNvdXJjZXMiOlsiZm9ybS9kYXRlLXBpY2tlci9tb2RlbHMvZmFicmljLXRpbWUtdmFsdWVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxNQUFNLE9BQU8sZ0JBQWdCOzs7Ozs7SUFFNUIsWUFBcUIsS0FBYSxFQUN0QixPQUFlLEVBQ2YsT0FBZTtRQUZOLFVBQUssR0FBTCxLQUFLLENBQVE7UUFDdEIsWUFBTyxHQUFQLE9BQU8sQ0FBUTtRQUNmLFlBQU8sR0FBUCxPQUFPLENBQVE7SUFDM0IsQ0FBQztDQUNEOzs7SUFKWSxpQ0FBc0I7O0lBQy9CLG1DQUF3Qjs7SUFDeEIsbUNBQXdCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIEZhYnJpY1RpbWVWYWx1ZXMge1xuXG5cdGNvbnN0cnVjdG9yKHJlYWRvbmx5IGhvdXJzOiBudW1iZXIsXG5cdFx0XHRcdHJlYWRvbmx5IG1pbnV0ZXM6IG51bWJlcixcblx0XHRcdFx0cmVhZG9ubHkgc2Vjb25kczogbnVtYmVyKSB7XG5cdH1cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLXRpbWUtdmFsdWVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL2d1aS1mYWJyaWMvc3JjL2Zvcm0vZGF0ZS1waWNrZXIvbW9kZWxzL2ZhYnJpYy10aW1lLXZhbHVlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLE9BQU8sZ0JBQWdCO0lBRTVCLFlBQXFCLEtBQWEsRUFDdEIsT0FBZSxFQUNmLE9BQWU7UUFGTixVQUFLLEdBQUwsS0FBSyxDQUFRO1FBQ3RCLFlBQU8sR0FBUCxPQUFPLENBQVE7UUFDZixZQUFPLEdBQVAsT0FBTyxDQUFRO0lBQzNCLENBQUM7Q0FDRCIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBGYWJyaWNUaW1lVmFsdWVzIHtcblxuXHRjb25zdHJ1Y3RvcihyZWFkb25seSBob3VyczogbnVtYmVyLFxuXHRcdFx0XHRyZWFkb25seSBtaW51dGVzOiBudW1iZXIsXG5cdFx0XHRcdHJlYWRvbmx5IHNlY29uZHM6IG51bWJlcikge1xuXHR9XG59XG4iXX0=

@@ -1,15 +1,11 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @abstract
- */
+import { NgModule } from '@angular/core';
+import * as i0 from "@angular/core";
 export class FeatureModule {
-    /**
-     * @protected
-     */
-    constructor() {
-    }
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmVhdHVyZS1tb2R1bGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9oZXJtZXMvIiwic291cmNlcyI6WyJmZWF0dXJlL2ZlYXR1cmUtbW9kdWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQSxNQUFNLE9BQWdCLGFBQWE7Ozs7SUFFbEM7SUFDQSxDQUFDO0NBRUQiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgYWJzdHJhY3QgY2xhc3MgRmVhdHVyZU1vZHVsZSB7XG5cblx0cHJvdGVjdGVkIGNvbnN0cnVjdG9yKCkge1xuXHR9XG5cbn1cbiJdfQ==
+FeatureModule.ɵfac = function FeatureModule_Factory(t) { return new (t || FeatureModule)(); };
+FeatureModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: FeatureModule });
+FeatureModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({});
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FeatureModule, [{
+        type: NgModule
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmVhdHVyZS1tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvZ3VpLWhlcm1lcy9zcmMvZmVhdHVyZS9mZWF0dXJlLW1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDOztBQUd6QyxNQUFNLE9BQWdCLGFBQWE7OzBFQUFiLGFBQWE7K0RBQWIsYUFBYTs7dUZBQWIsYUFBYTtjQURsQyxRQUFRIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQE5nTW9kdWxlKClcbmV4cG9ydCBhYnN0cmFjdCBjbGFzcyBGZWF0dXJlTW9kdWxlIHtcblxuXHQvLyBwcm90ZWN0ZWQgY29uc3RydWN0b3IoKSB7XG5cdC8vIH1cblxufVxuIl19

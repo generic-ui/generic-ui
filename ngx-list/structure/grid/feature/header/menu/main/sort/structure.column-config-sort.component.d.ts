@@ -7,6 +7,7 @@ import { SmartComponent } from '../../../../../../../common/cdk/component/smart-
 import { SortingCommandInvoker } from '../../../../../../sorting/core/api/sorting.command-invoker';
 import { CompositionId } from '../../../../../../../composition/core/api/composition.id';
 import { StructureId } from '../../../../../../core/api/structure.id';
+import * as i0 from "@angular/core";
 export declare class StructureColumnConfigSortComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly compositionId;
@@ -25,4 +26,7 @@ export declare class StructureColumnConfigSortComponent extends SmartComponent i
     isNoneSort(): boolean;
     setSortOrder(sort: SortOrder): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigSortComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure.column-config-sort.component.d.ts.map

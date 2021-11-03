@@ -1,0 +1,11 @@
+export class GuiGridCellEditConverter {
+    convert(config) {
+        if (typeof config === 'boolean') {
+            return {
+                enabled: config
+            };
+        }
+        return config;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3VpLmdyaWQuY2VsbC1lZGl0LmNvbnZlcnRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvZ3VpL2dyaWQvZmVhdHVyZS9ncmlkL2NvbHVtbi9jZWxsLWVkaXRpbmcvZ3VpLmdyaWQuY2VsbC1lZGl0LmNvbnZlcnRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFJQSxNQUFNLE9BQU8sd0JBQXdCO0lBRXBDLE9BQU8sQ0FBQyxNQUE2QjtRQUVwQyxJQUFJLE9BQU8sTUFBTSxLQUFLLFNBQVMsRUFBRTtZQUNoQyxPQUFPO2dCQUNOLE9BQU8sRUFBRSxNQUFNO2FBQ2YsQ0FBQztTQUNGO1FBRUQsT0FBTyxNQUFNLENBQUM7SUFDZixDQUFDO0NBQ0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDZWxsRWRpdENvbmZpZyB9IGZyb20gJy4uLy4uLy4uLy4uLy4uLy4uL3N0cnVjdHVyZS9ncmlkL2NvcmUvYXBpL2VkaXQvY2VsbC1lZGl0LmNvbmZpZyc7XG5pbXBvcnQgeyBHdWlDZWxsRWRpdCB9IGZyb20gJy4uLy4uLy4uLy4uL2NvcmUvYXBpL2d1aS5ncmlkLnB1YmxpYy1hcGknO1xuXG5cbmV4cG9ydCBjbGFzcyBHdWlHcmlkQ2VsbEVkaXRDb252ZXJ0ZXIge1xuXG5cdGNvbnZlcnQoY29uZmlnOiBib29sZWFuIHwgR3VpQ2VsbEVkaXQpOiBDZWxsRWRpdENvbmZpZyB7XG5cblx0XHRpZiAodHlwZW9mIGNvbmZpZyA9PT0gJ2Jvb2xlYW4nKSB7XG5cdFx0XHRyZXR1cm4ge1xuXHRcdFx0XHRlbmFibGVkOiBjb25maWdcblx0XHRcdH07XG5cdFx0fVxuXG5cdFx0cmV0dXJuIGNvbmZpZztcblx0fVxufVxuIl19

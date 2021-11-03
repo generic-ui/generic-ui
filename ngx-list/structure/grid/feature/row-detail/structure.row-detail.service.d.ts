@@ -5,6 +5,7 @@ import { StructureId } from '../../../core/api/structure.id';
 import { StructureRowDetailConfigArchive } from './structure.row-detail.config-archive';
 import { RowDetailConfig } from './row-detail.config';
 import { Reactive } from '@generic-ui/hermes';
+import * as i0 from "@angular/core";
 export declare class StructureRowDetailService extends Reactive {
     private readonly injector;
     private readonly structureId;
@@ -18,4 +19,7 @@ export declare class StructureRowDetailService extends Reactive {
     init(ref: ElementRef): void;
     private turnOn;
     private turnOff;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowDetailService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<StructureRowDetailService>;
 }
+//# sourceMappingURL=structure.row-detail.service.d.ts.map

@@ -7,3 +7,4 @@ export declare abstract class ReadModelRootRepository<I extends AggregateId> ext
     protected abstract forEvents(): Array<typeof DomainEvent>;
     protected abstract subscribe(event: DomainEvent<I>): void;
 }
+//# sourceMappingURL=read-model-root.repository.d.ts.map

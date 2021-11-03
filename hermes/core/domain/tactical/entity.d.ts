@@ -5,3 +5,4 @@ export declare abstract class Entity<T extends EntityId> {
     getId(): EntityId;
     equals(entity: Entity<T>): boolean;
 }
+//# sourceMappingURL=entity.d.ts.map

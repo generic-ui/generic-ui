@@ -24,3 +24,4 @@ export declare class FilterManager {
     remove(filterId: FilterId): void;
     private getFilterType;
 }
+//# sourceMappingURL=filter.manager.d.ts.map

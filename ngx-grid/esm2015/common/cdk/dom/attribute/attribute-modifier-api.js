@@ -1,22 +1,2 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-export function AttributeModifierApi() { }
-if (false) {
-    /**
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
-    AttributeModifierApi.prototype.setAttribute = function (name, value) { };
-    /**
-     * @param {?} name
-     * @return {?}
-     */
-    AttributeModifierApi.prototype.removeAttribute = function (name) { };
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXR0cmlidXRlLW1vZGlmaWVyLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1ncmlkLyIsInNvdXJjZXMiOlsiY29tbW9uL2Nkay9kb20vYXR0cmlidXRlL2F0dHJpYnV0ZS1tb2RpZmllci1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUVBLDBDQUtDOzs7Ozs7O0lBSEEseUVBQWdEOzs7OztJQUVoRCxxRUFBb0MiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb2RpZmllckFwaSB9IGZyb20gJy4uL2NvcmUvbW9kaWZpZXItYXBpJztcblxuZXhwb3J0IGludGVyZmFjZSBBdHRyaWJ1dGVNb2RpZmllckFwaSBleHRlbmRzIE1vZGlmaWVyQXBpIHtcblxuXHRzZXRBdHRyaWJ1dGUobmFtZTogc3RyaW5nLCB2YWx1ZTogc3RyaW5nKTogdm9pZDtcblxuXHRyZW1vdmVBdHRyaWJ1dGUobmFtZTogc3RyaW5nKTogdm9pZDtcbn1cbiJdfQ==
+export {};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXR0cmlidXRlLW1vZGlmaWVyLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvY29tbW9uL2Nkay9kb20vYXR0cmlidXRlL2F0dHJpYnV0ZS1tb2RpZmllci1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE1vZGlmaWVyQXBpIH0gZnJvbSAnLi4vY29yZS9tb2RpZmllci1hcGknO1xuXG5leHBvcnQgaW50ZXJmYWNlIEF0dHJpYnV0ZU1vZGlmaWVyQXBpIGV4dGVuZHMgTW9kaWZpZXJBcGkge1xuXG5cdHNldEF0dHJpYnV0ZShuYW1lOiBzdHJpbmcsIHZhbHVlOiBzdHJpbmcpOiB2b2lkO1xuXG5cdHJlbW92ZUF0dHJpYnV0ZShuYW1lOiBzdHJpbmcpOiB2b2lkO1xufVxuIl19

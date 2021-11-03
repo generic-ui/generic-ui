@@ -6,3 +6,4 @@ export declare class SchemaHorizontalGridSetAggregateEvent extends SchemaAggrega
     constructor(schemaId: SchemaId, horizontalGrid: boolean);
     toDomainEvent(): DomainEvent<SchemaId>;
 }
+//# sourceMappingURL=schema-horizontal-grid-set.aggregate-event.d.ts.map

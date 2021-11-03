@@ -6,3 +6,4 @@ export declare class SetSortingCommand extends StructureCommand {
     constructor(structureId: StructureId, sortingConfig: SortingConfig);
     getSortingConfig(): SortingConfig;
 }
+//# sourceMappingURL=set-sorting.command.d.ts.map

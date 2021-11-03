@@ -14,3 +14,4 @@ export declare class GuiGridThemeCommandInvoker {
     setVerticalGrid(verticalGrid: boolean, schemaId: SchemaReadModelRootId): void;
     setHorizontalGrid(horizontalGrid: boolean, schemaId: SchemaReadModelRootId): void;
 }
+//# sourceMappingURL=gui.grid.theme.command-invoker.d.ts.map

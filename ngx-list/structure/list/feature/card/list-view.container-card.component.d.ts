@@ -4,6 +4,7 @@ import { SmartComponent } from '../../../../common/cdk/component/smart-component
 import { StructureId } from '../../../core/api/structure.id';
 import { ListViewCardTemplate } from './template/list-view.card-template';
 import { ListViewCardTemplateArchive } from './template/list-view.card-template.archive';
+import * as i0 from "@angular/core";
 export declare class ListViewContainerCardComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -14,4 +15,7 @@ export declare class ListViewContainerCardComponent extends SmartComponent imple
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, structureSourceWarehouse: SourceWarehouse, listCardTemplateArchive: ListViewCardTemplateArchive);
     ngOnInit(): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ListViewContainerCardComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewContainerCardComponent, "div[gui-list-container-card]", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=list-view.container-card.component.d.ts.map

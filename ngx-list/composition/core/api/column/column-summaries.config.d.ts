@@ -3,3 +3,4 @@ export interface ColumnSummariesConfig {
     enabled?: boolean;
     summariesTypes?: Array<SummariesType>;
 }
+//# sourceMappingURL=column-summaries.config.d.ts.map

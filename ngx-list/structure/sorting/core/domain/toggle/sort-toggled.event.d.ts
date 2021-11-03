@@ -12,3 +12,4 @@ export declare class SortToggledEvent extends StructureDomainEvent {
     getCompositionId(): CompositionId;
     getDirections(): any;
 }
+//# sourceMappingURL=sort-toggled.event.d.ts.map

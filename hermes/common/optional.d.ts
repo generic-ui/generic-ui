@@ -19,3 +19,4 @@ export declare class Optional<T> {
     ifEmpty(method: () => void): void;
     orElse<U extends T>(other: () => Optional<U>): Optional<T>;
 }
+//# sourceMappingURL=optional.d.ts.map

@@ -3,3 +3,4 @@ import { DomainEvent } from './event/domain-event';
 import { AggregateId } from './tactical/aggregate/aggregate-id';
 import { DomainEventHandler } from './event/handler/domain-event.handler';
 export declare function provideEventHandlers<I extends AggregateId, E extends DomainEvent<I>>(handlers: Array<Type<DomainEventHandler<I, E>>>): Array<StaticProvider>;
+//# sourceMappingURL=provider.helpers.d.ts.map

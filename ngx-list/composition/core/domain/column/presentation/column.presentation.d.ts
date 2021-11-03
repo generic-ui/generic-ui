@@ -6,3 +6,4 @@ export declare abstract class ColumnPresentation {
     abstract getDefaultView(): CellView;
     abstract getDefaultAlign(view: ViewEntity): ColumnAlign;
 }
+//# sourceMappingURL=column.presentation.d.ts.map

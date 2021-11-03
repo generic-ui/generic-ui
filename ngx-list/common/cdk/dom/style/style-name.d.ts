@@ -3,3 +3,4 @@ export declare enum StyleName {
     HEIGHT = "height",
     PADDING_TOP = "padding-top"
 }
+//# sourceMappingURL=style-name.d.ts.map

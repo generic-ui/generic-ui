@@ -33,3 +33,4 @@ export interface ColumnConfig {
     matcher?: (item: any, index: number) => any;
     templateRef?: TemplateRef<any>;
 }
+//# sourceMappingURL=column.config.d.ts.map

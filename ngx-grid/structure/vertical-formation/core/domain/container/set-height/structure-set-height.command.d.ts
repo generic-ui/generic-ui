@@ -5,3 +5,4 @@ export declare class StructureSetHeightCommand extends StructureCommand {
     constructor(structureId: StructureId, height: number);
     getHeight(): number;
 }
+//# sourceMappingURL=structure-set-height.command.d.ts.map

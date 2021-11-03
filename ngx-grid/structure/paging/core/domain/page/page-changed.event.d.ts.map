@@ -1,0 +1,1 @@
+{"version":3,"file":"page-changed.event.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-grid/src/structure/paging/core/domain/page/page-changed.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mCAAmC,CAAC;AAChE,OAAO,EAAE,oBAAoB,EAAE,MAAM,gDAAgD,CAAC;AAEtF,qBAAa,gBAAiB,SAAQ,oBAAoB;gBAE7C,WAAW,EAAE,WAAW;CAGpC"}

@@ -6,6 +6,7 @@ import { StructureId } from '../../../../core/api/structure.id';
 import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
 import { Group } from '../../../../../composition/core/api/group/group';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
+import * as i0 from "@angular/core";
 export declare class StructureHeaderGroupsComponent extends PureComponent {
     private readonly elementRef;
     private readonly injector;
@@ -24,4 +25,7 @@ export declare class StructureHeaderGroupsComponent extends PureComponent {
     isSortDesc(column: CellTemplateWithContext): boolean;
     isGlobalSortEnabled(): boolean;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderGroupsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderGroupsComponent, "div[gui-structure-header-groups][groups][checkboxSelection]", never, { "groups": "groups"; "showGroups": "showGroups"; "checkboxSelection": "checkboxSelection"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure-header-groups.component.d.ts.map

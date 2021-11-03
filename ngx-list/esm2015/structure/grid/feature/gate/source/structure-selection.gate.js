@@ -1,41 +1,23 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Directive, Input } from '@angular/core';
-import { StructureId } from '../../../../core/api/structure.id';
 import { SelectionGate } from '../../../../source/feature/gate/selection.gate';
-import { FormationEventRepository } from '../../../../source/core/api/formation/formation.event-repository';
-import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
-import { RowSelectionTypeArchive } from '../../../../source/core/api/formation/type/row-selection-type.archive';
+import * as i0 from "@angular/core";
+import * as i1 from "../../../../core/api/structure.id";
+import * as i2 from "../../../../source/core/api/formation/formation.event-repository";
+import * as i3 from "../../../../source/core/api/formation/formation.command-invoker";
+import * as i4 from "../../../../source/core/api/formation/type/row-selection-type.archive";
 export class StructureSelectionGate extends SelectionGate {
-    /**
-     * @param {?} structureId
-     * @param {?} formationEventService
-     * @param {?} formationCommandDispatcher
-     * @param {?} rowSelectionTypeArchive
-     */
     constructor(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
         super(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive);
     }
 }
-StructureSelectionGate.decorators = [
-    { type: Directive, args: [{
+StructureSelectionGate.ɵfac = function StructureSelectionGate_Factory(t) { return new (t || StructureSelectionGate)(i0.ɵɵdirectiveInject(i1.StructureId), i0.ɵɵdirectiveInject(i2.FormationEventRepository), i0.ɵɵdirectiveInject(i3.FormationCommandInvoker), i0.ɵɵdirectiveInject(i4.RowSelectionTypeArchive)); };
+StructureSelectionGate.ɵdir = /*@__PURE__*/ i0.ɵɵdefineDirective({ type: StructureSelectionGate, selectors: [["gui-structure", "rowSelection", ""], ["gui-structure", "selectionGate", ""]], inputs: { selectionGate: "selectionGate" }, features: [i0.ɵɵInheritDefinitionFeature] });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(StructureSelectionGate, [{
+        type: Directive,
+        args: [{
                 selector: 'gui-structure[rowSelection], gui-structure[selectionGate]'
-            },] }
-];
-/** @nocollapse */
-StructureSelectionGate.ctorParameters = () => [
-    { type: StructureId },
-    { type: FormationEventRepository },
-    { type: FormationCommandInvoker },
-    { type: RowSelectionTypeArchive }
-];
-StructureSelectionGate.propDecorators = {
-    selectionGate: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    StructureSelectionGate.prototype.selectionGate;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLXNlbGVjdGlvbi5nYXRlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJzdHJ1Y3R1cmUvZ3JpZC9mZWF0dXJlL2dhdGUvc291cmNlL3N0cnVjdHVyZS1zZWxlY3Rpb24uZ2F0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFakQsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLG1DQUFtQyxDQUFDO0FBQ2hFLE9BQU8sRUFBRSxhQUFhLEVBQUUsTUFBTSxnREFBZ0QsQ0FBQztBQUMvRSxPQUFPLEVBQUUsd0JBQXdCLEVBQUUsTUFBTSxrRUFBa0UsQ0FBQztBQUM1RyxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSxpRUFBaUUsQ0FBQztBQUMxRyxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSx1RUFBdUUsQ0FBQztBQU1oSCxNQUFNLE9BQU8sc0JBQXVCLFNBQVEsYUFBYTs7Ozs7OztJQUt4RCxZQUFZLFdBQXdCLEVBQ2pDLHFCQUErQyxFQUMvQywwQkFBbUQsRUFDbkQsdUJBQWdEO1FBQ2xELEtBQUssQ0FBQyxXQUFXLEVBQUUscUJBQXFCLEVBQUUsMEJBQTBCLEVBQUUsdUJBQXVCLENBQUMsQ0FBQztJQUNoRyxDQUFDOzs7WUFiRCxTQUFTLFNBQUM7Z0JBQ1YsUUFBUSxFQUFFLDJEQUEyRDthQUNyRTs7OztZQVRRLFdBQVc7WUFFWCx3QkFBd0I7WUFDeEIsdUJBQXVCO1lBQ3ZCLHVCQUF1Qjs7OzRCQVE5QixLQUFLOzs7O0lBQU4sK0NBQ29CIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgRGlyZWN0aXZlLCBJbnB1dCB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBTdHJ1Y3R1cmVJZCB9IGZyb20gJy4uLy4uLy4uLy4uL2NvcmUvYXBpL3N0cnVjdHVyZS5pZCc7XG5pbXBvcnQgeyBTZWxlY3Rpb25HYXRlIH0gZnJvbSAnLi4vLi4vLi4vLi4vc291cmNlL2ZlYXR1cmUvZ2F0ZS9zZWxlY3Rpb24uZ2F0ZSc7XG5pbXBvcnQgeyBGb3JtYXRpb25FdmVudFJlcG9zaXRvcnkgfSBmcm9tICcuLi8uLi8uLi8uLi9zb3VyY2UvY29yZS9hcGkvZm9ybWF0aW9uL2Zvcm1hdGlvbi5ldmVudC1yZXBvc2l0b3J5JztcbmltcG9ydCB7IEZvcm1hdGlvbkNvbW1hbmRJbnZva2VyIH0gZnJvbSAnLi4vLi4vLi4vLi4vc291cmNlL2NvcmUvYXBpL2Zvcm1hdGlvbi9mb3JtYXRpb24uY29tbWFuZC1pbnZva2VyJztcbmltcG9ydCB7IFJvd1NlbGVjdGlvblR5cGVBcmNoaXZlIH0gZnJvbSAnLi4vLi4vLi4vLi4vc291cmNlL2NvcmUvYXBpL2Zvcm1hdGlvbi90eXBlL3Jvdy1zZWxlY3Rpb24tdHlwZS5hcmNoaXZlJztcblxuXG5ARGlyZWN0aXZlKHtcblx0c2VsZWN0b3I6ICdndWktc3RydWN0dXJlW3Jvd1NlbGVjdGlvbl0sIGd1aS1zdHJ1Y3R1cmVbc2VsZWN0aW9uR2F0ZV0nXG59KVxuZXhwb3J0IGNsYXNzIFN0cnVjdHVyZVNlbGVjdGlvbkdhdGUgZXh0ZW5kcyBTZWxlY3Rpb25HYXRlIHtcblxuXHRASW5wdXQoKVxuXHRzZWxlY3Rpb25HYXRlOiB2b2lkO1xuXG5cdGNvbnN0cnVjdG9yKHN0cnVjdHVyZUlkOiBTdHJ1Y3R1cmVJZCxcblx0XHRcdFx0Zm9ybWF0aW9uRXZlbnRTZXJ2aWNlOiBGb3JtYXRpb25FdmVudFJlcG9zaXRvcnksXG5cdFx0XHRcdGZvcm1hdGlvbkNvbW1hbmREaXNwYXRjaGVyOiBGb3JtYXRpb25Db21tYW5kSW52b2tlcixcblx0XHRcdFx0cm93U2VsZWN0aW9uVHlwZUFyY2hpdmU6IFJvd1NlbGVjdGlvblR5cGVBcmNoaXZlKSB7XG5cdFx0c3VwZXIoc3RydWN0dXJlSWQsIGZvcm1hdGlvbkV2ZW50U2VydmljZSwgZm9ybWF0aW9uQ29tbWFuZERpc3BhdGNoZXIsIHJvd1NlbGVjdGlvblR5cGVBcmNoaXZlKTtcblx0fVxuXG59XG4iXX0=
+            }]
+    }], function () { return [{ type: i1.StructureId }, { type: i2.FormationEventRepository }, { type: i3.FormationCommandInvoker }, { type: i4.RowSelectionTypeArchive }]; }, { selectionGate: [{
+            type: Input
+        }] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLXNlbGVjdGlvbi5nYXRlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9zdHJ1Y3R1cmUvZ3JpZC9mZWF0dXJlL2dhdGUvc291cmNlL3N0cnVjdHVyZS1zZWxlY3Rpb24uZ2F0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUdqRCxPQUFPLEVBQUUsYUFBYSxFQUFFLE1BQU0sZ0RBQWdELENBQUM7Ozs7OztBQVMvRSxNQUFNLE9BQU8sc0JBQXVCLFNBQVEsYUFBYTtJQUt4RCxZQUFZLFdBQXdCLEVBQ2pDLHFCQUErQyxFQUMvQywwQkFBbUQsRUFDbkQsdUJBQWdEO1FBQ2xELEtBQUssQ0FBQyxXQUFXLEVBQUUscUJBQXFCLEVBQUUsMEJBQTBCLEVBQUUsdUJBQXVCLENBQUMsQ0FBQztJQUNoRyxDQUFDOzs0RkFWVyxzQkFBc0I7eUVBQXRCLHNCQUFzQjt1RkFBdEIsc0JBQXNCO2NBSGxDLFNBQVM7ZUFBQztnQkFDVixRQUFRLEVBQUUsMkRBQTJEO2FBQ3JFO2lMQUlBLGFBQWE7a0JBRFosS0FBSyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IERpcmVjdGl2ZSwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgU3RydWN0dXJlSWQgfSBmcm9tICcuLi8uLi8uLi8uLi9jb3JlL2FwaS9zdHJ1Y3R1cmUuaWQnO1xuaW1wb3J0IHsgU2VsZWN0aW9uR2F0ZSB9IGZyb20gJy4uLy4uLy4uLy4uL3NvdXJjZS9mZWF0dXJlL2dhdGUvc2VsZWN0aW9uLmdhdGUnO1xuaW1wb3J0IHsgRm9ybWF0aW9uRXZlbnRSZXBvc2l0b3J5IH0gZnJvbSAnLi4vLi4vLi4vLi4vc291cmNlL2NvcmUvYXBpL2Zvcm1hdGlvbi9mb3JtYXRpb24uZXZlbnQtcmVwb3NpdG9yeSc7XG5pbXBvcnQgeyBGb3JtYXRpb25Db21tYW5kSW52b2tlciB9IGZyb20gJy4uLy4uLy4uLy4uL3NvdXJjZS9jb3JlL2FwaS9mb3JtYXRpb24vZm9ybWF0aW9uLmNvbW1hbmQtaW52b2tlcic7XG5pbXBvcnQgeyBSb3dTZWxlY3Rpb25UeXBlQXJjaGl2ZSB9IGZyb20gJy4uLy4uLy4uLy4uL3NvdXJjZS9jb3JlL2FwaS9mb3JtYXRpb24vdHlwZS9yb3ctc2VsZWN0aW9uLXR5cGUuYXJjaGl2ZSc7XG5cblxuQERpcmVjdGl2ZSh7XG5cdHNlbGVjdG9yOiAnZ3VpLXN0cnVjdHVyZVtyb3dTZWxlY3Rpb25dLCBndWktc3RydWN0dXJlW3NlbGVjdGlvbkdhdGVdJ1xufSlcbmV4cG9ydCBjbGFzcyBTdHJ1Y3R1cmVTZWxlY3Rpb25HYXRlIGV4dGVuZHMgU2VsZWN0aW9uR2F0ZSB7XG5cblx0QElucHV0KClcblx0c2VsZWN0aW9uR2F0ZTogdm9pZDtcblxuXHRjb25zdHJ1Y3RvcihzdHJ1Y3R1cmVJZDogU3RydWN0dXJlSWQsXG5cdFx0XHRcdGZvcm1hdGlvbkV2ZW50U2VydmljZTogRm9ybWF0aW9uRXZlbnRSZXBvc2l0b3J5LFxuXHRcdFx0XHRmb3JtYXRpb25Db21tYW5kRGlzcGF0Y2hlcjogRm9ybWF0aW9uQ29tbWFuZEludm9rZXIsXG5cdFx0XHRcdHJvd1NlbGVjdGlvblR5cGVBcmNoaXZlOiBSb3dTZWxlY3Rpb25UeXBlQXJjaGl2ZSkge1xuXHRcdHN1cGVyKHN0cnVjdHVyZUlkLCBmb3JtYXRpb25FdmVudFNlcnZpY2UsIGZvcm1hdGlvbkNvbW1hbmREaXNwYXRjaGVyLCByb3dTZWxlY3Rpb25UeXBlQXJjaGl2ZSk7XG5cdH1cblxufVxuIl19

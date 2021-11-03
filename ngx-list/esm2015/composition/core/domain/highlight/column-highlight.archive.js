@@ -1,65 +1,36 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-import * as tslib_1 from "tslib";
+import { __decorate } from "tslib";
 import { AggregateArchive } from '@generic-ui/hermes';
 import { ColumnHighlightManager } from './column-highlight.manager';
 import { Injectable } from '@angular/core';
 import { Override } from '../../../../common/cdk/decorators';
+import * as i0 from "@angular/core";
 export class ColumnHighlightArchive extends AggregateArchive {
     constructor() {
         super(new ColumnHighlightManager());
     }
-    /**
-     * @param {?} key
-     * @param {?} value
-     * @return {?}
-     */
     toggle(key, value) {
         this.get(key)
-            .ifPresent((/**
-         * @param {?} manager
-         * @return {?}
-         */
-        (manager) => {
+            .ifPresent((manager) => {
             manager.toggle(value);
             this.next(key, manager);
-        }));
+        });
     }
-    /**
-     * @protected
-     * @param {?} a
-     * @param {?} b
-     * @return {?}
-     */
     equals(a, b) {
         return false;
     }
-    /**
-     * @protected
-     * @param {?} defaultValue
-     * @return {?}
-     */
     createDefaultValue(defaultValue) {
         return new ColumnHighlightManager();
     }
 }
-ColumnHighlightArchive.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ColumnHighlightArchive.ctorParameters = () => [];
-tslib_1.__decorate([
-    Override,
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [ColumnHighlightManager, ColumnHighlightManager]),
-    tslib_1.__metadata("design:returntype", Boolean)
+ColumnHighlightArchive.ɵfac = function ColumnHighlightArchive_Factory(t) { return new (t || ColumnHighlightArchive)(); };
+ColumnHighlightArchive.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ColumnHighlightArchive, factory: ColumnHighlightArchive.ɵfac });
+__decorate([
+    Override
 ], ColumnHighlightArchive.prototype, "equals", null);
-tslib_1.__decorate([
-    Override,
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [ColumnHighlightManager]),
-    tslib_1.__metadata("design:returntype", ColumnHighlightManager)
+__decorate([
+    Override
 ], ColumnHighlightArchive.prototype, "createDefaultValue", null);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWhpZ2hsaWdodC5hcmNoaXZlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJjb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9oaWdobGlnaHQvY29sdW1uLWhpZ2hsaWdodC5hcmNoaXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLGdCQUFnQixFQUFFLE1BQU0sb0JBQW9CLENBQUM7QUFDdEQsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFDcEUsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sbUNBQW1DLENBQUM7QUFLN0QsTUFBTSxPQUFPLHNCQUF1QixTQUFRLGdCQUF3QztJQUVuRjtRQUNDLEtBQUssQ0FBQyxJQUFJLHNCQUFzQixFQUFFLENBQUMsQ0FBQztJQUNyQyxDQUFDOzs7Ozs7SUFFRCxNQUFNLENBQUMsR0FBa0IsRUFBRSxLQUFlO1FBQ3pDLElBQUksQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDO2FBQ1gsU0FBUzs7OztRQUFDLENBQUMsT0FBTyxFQUFFLEVBQUU7WUFDdEIsT0FBTyxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUN0QixJQUFJLENBQUMsSUFBSSxDQUFDLEdBQUcsRUFBRSxPQUFPLENBQUMsQ0FBQztRQUN6QixDQUFDLEVBQUMsQ0FBQztJQUNMLENBQUM7Ozs7Ozs7SUFHUyxNQUFNLENBQUMsQ0FBeUIsRUFBRSxDQUF5QjtRQUNwRSxPQUFPLEtBQUssQ0FBQztJQUNkLENBQUM7Ozs7OztJQUdTLGtCQUFrQixDQUFDLFlBQW9DO1FBQ2hFLE9BQU8sSUFBSSxzQkFBc0IsRUFBRSxDQUFDO0lBQ3JDLENBQUM7OztZQXZCRCxVQUFVOzs7O0FBZ0JWO0lBREMsUUFBUTs7NkNBQ1csc0JBQXNCLEVBQUssc0JBQXNCOztvREFFcEU7QUFHRDtJQURDLFFBQVE7OzZDQUNrQyxzQkFBc0I7NENBQUcsc0JBQXNCO2dFQUV6RiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFnZ3JlZ2F0ZUFyY2hpdmUgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuaW1wb3J0IHsgQ29sdW1uSGlnaGxpZ2h0TWFuYWdlciB9IGZyb20gJy4vY29sdW1uLWhpZ2hsaWdodC5tYW5hZ2VyJztcbmltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IE92ZXJyaWRlIH0gZnJvbSAnLi4vLi4vLi4vLi4vY29tbW9uL2Nkay9kZWNvcmF0b3JzJztcbmltcG9ydCB7IENvbXBvc2l0aW9uSWQgfSBmcm9tICcuLi8uLi9hcGkvY29tcG9zaXRpb24uaWQnO1xuaW1wb3J0IHsgQ29sdW1uSWQgfSBmcm9tICcuLi8uLi9hcGkvY29sdW1uL2NvbHVtbi5pZCc7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBDb2x1bW5IaWdobGlnaHRBcmNoaXZlIGV4dGVuZHMgQWdncmVnYXRlQXJjaGl2ZTxDb2x1bW5IaWdobGlnaHRNYW5hZ2VyPiB7XG5cblx0Y29uc3RydWN0b3IoKSB7XG5cdFx0c3VwZXIobmV3IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIoKSk7XG5cdH1cblxuXHR0b2dnbGUoa2V5OiBDb21wb3NpdGlvbklkLCB2YWx1ZTogQ29sdW1uSWQpIHtcblx0XHR0aGlzLmdldChrZXkpXG5cdFx0XHQuaWZQcmVzZW50KChtYW5hZ2VyKSA9PiB7XG5cdFx0XHRcdG1hbmFnZXIudG9nZ2xlKHZhbHVlKTtcblx0XHRcdFx0dGhpcy5uZXh0KGtleSwgbWFuYWdlcik7XG5cdFx0XHR9KTtcblx0fVxuXG5cdEBPdmVycmlkZVxuXHRwcm90ZWN0ZWQgZXF1YWxzKGE6IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIsIGI6IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIpOiBib29sZWFuIHtcblx0XHRyZXR1cm4gZmFsc2U7XG5cdH1cblxuXHRAT3ZlcnJpZGVcblx0cHJvdGVjdGVkIGNyZWF0ZURlZmF1bHRWYWx1ZShkZWZhdWx0VmFsdWU6IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIpOiBDb2x1bW5IaWdobGlnaHRNYW5hZ2VyIHtcblx0XHRyZXR1cm4gbmV3IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIoKTtcblx0fVxuXG59XG4iXX0=
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ColumnHighlightArchive, [{
+        type: Injectable
+    }], function () { return []; }, { equals: [], createDefaultValue: [] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLWhpZ2hsaWdodC5hcmNoaXZlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9jb21wb3NpdGlvbi9jb3JlL2RvbWFpbi9oaWdobGlnaHQvY29sdW1uLWhpZ2hsaWdodC5hcmNoaXZlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUN0RCxPQUFPLEVBQUUsc0JBQXNCLEVBQUUsTUFBTSw0QkFBNEIsQ0FBQztBQUNwRSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzNDLE9BQU8sRUFBRSxRQUFRLEVBQUUsTUFBTSxtQ0FBbUMsQ0FBQzs7QUFLN0QsTUFBTSxPQUFPLHNCQUF1QixTQUFRLGdCQUF3QztJQUVuRjtRQUNDLEtBQUssQ0FBQyxJQUFJLHNCQUFzQixFQUFFLENBQUMsQ0FBQztJQUNyQyxDQUFDO0lBRUQsTUFBTSxDQUFDLEdBQWtCLEVBQUUsS0FBZTtRQUN6QyxJQUFJLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQzthQUNYLFNBQVMsQ0FBQyxDQUFDLE9BQU8sRUFBRSxFQUFFO1lBQ3RCLE9BQU8sQ0FBQyxNQUFNLENBQUMsS0FBSyxDQUFDLENBQUM7WUFDdEIsSUFBSSxDQUFDLElBQUksQ0FBQyxHQUFHLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFDekIsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBR1MsTUFBTSxDQUFDLENBQXlCLEVBQUUsQ0FBeUI7UUFDcEUsT0FBTyxLQUFLLENBQUM7SUFDZCxDQUFDO0lBR1Msa0JBQWtCLENBQUMsWUFBb0M7UUFDaEUsT0FBTyxJQUFJLHNCQUFzQixFQUFFLENBQUM7SUFDckMsQ0FBQzs7NEZBdEJXLHNCQUFzQjs0RUFBdEIsc0JBQXNCLFdBQXRCLHNCQUFzQjtBQWVsQztJQURDLFFBQVE7b0RBR1I7QUFHRDtJQURDLFFBQVE7Z0VBR1I7dUZBdEJXLHNCQUFzQjtjQURsQyxVQUFVO3NDQWdCQSxNQUFNLE1BS04sa0JBQWtCIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQWdncmVnYXRlQXJjaGl2ZSB9IGZyb20gJ0BnZW5lcmljLXVpL2hlcm1lcyc7XG5pbXBvcnQgeyBDb2x1bW5IaWdobGlnaHRNYW5hZ2VyIH0gZnJvbSAnLi9jb2x1bW4taGlnaGxpZ2h0Lm1hbmFnZXInO1xuaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgT3ZlcnJpZGUgfSBmcm9tICcuLi8uLi8uLi8uLi9jb21tb24vY2RrL2RlY29yYXRvcnMnO1xuaW1wb3J0IHsgQ29tcG9zaXRpb25JZCB9IGZyb20gJy4uLy4uL2FwaS9jb21wb3NpdGlvbi5pZCc7XG5pbXBvcnQgeyBDb2x1bW5JZCB9IGZyb20gJy4uLy4uL2FwaS9jb2x1bW4vY29sdW1uLmlkJztcblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIENvbHVtbkhpZ2hsaWdodEFyY2hpdmUgZXh0ZW5kcyBBZ2dyZWdhdGVBcmNoaXZlPENvbHVtbkhpZ2hsaWdodE1hbmFnZXI+IHtcblxuXHRjb25zdHJ1Y3RvcigpIHtcblx0XHRzdXBlcihuZXcgQ29sdW1uSGlnaGxpZ2h0TWFuYWdlcigpKTtcblx0fVxuXG5cdHRvZ2dsZShrZXk6IENvbXBvc2l0aW9uSWQsIHZhbHVlOiBDb2x1bW5JZCkge1xuXHRcdHRoaXMuZ2V0KGtleSlcblx0XHRcdC5pZlByZXNlbnQoKG1hbmFnZXIpID0+IHtcblx0XHRcdFx0bWFuYWdlci50b2dnbGUodmFsdWUpO1xuXHRcdFx0XHR0aGlzLm5leHQoa2V5LCBtYW5hZ2VyKTtcblx0XHRcdH0pO1xuXHR9XG5cblx0QE92ZXJyaWRlXG5cdHByb3RlY3RlZCBlcXVhbHMoYTogQ29sdW1uSGlnaGxpZ2h0TWFuYWdlciwgYjogQ29sdW1uSGlnaGxpZ2h0TWFuYWdlcik6IGJvb2xlYW4ge1xuXHRcdHJldHVybiBmYWxzZTtcblx0fVxuXG5cdEBPdmVycmlkZVxuXHRwcm90ZWN0ZWQgY3JlYXRlRGVmYXVsdFZhbHVlKGRlZmF1bHRWYWx1ZTogQ29sdW1uSGlnaGxpZ2h0TWFuYWdlcik6IENvbHVtbkhpZ2hsaWdodE1hbmFnZXIge1xuXHRcdHJldHVybiBuZXcgQ29sdW1uSGlnaGxpZ2h0TWFuYWdlcigpO1xuXHR9XG5cbn1cbiJdfQ==

@@ -1,0 +1,1 @@
+{"version":3,"file":"active-column.entity.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-list/src/composition/core/domain/column/active/active-column.entity.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,YAAY,EAAE,MAAM,kBAAkB,CAAC;AAIhD,qBAAa,kBAAmB,SAAQ,YAAY;IAEnD,MAAM,CAAC,UAAU,CAAC,MAAM,EAAE,YAAY,GAAG,kBAAkB;IAY3D,OAAO;CAoBP"}

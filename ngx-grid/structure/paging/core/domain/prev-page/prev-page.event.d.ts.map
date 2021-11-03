@@ -1,0 +1,1 @@
+{"version":3,"file":"prev-page.event.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-grid/src/structure/paging/core/domain/prev-page/prev-page.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mCAAmC,CAAC;AAChE,OAAO,EAAE,oBAAoB,EAAE,MAAM,gDAAgD,CAAC;AAEtF,qBAAa,aAAc,SAAQ,oBAAoB;gBAE1C,WAAW,EAAE,WAAW;CAGpC"}

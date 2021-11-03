@@ -1,39 +1,40 @@
 {
   "name": "@generic-ui/ngx-list",
   "description": "Generic UI - Angular List library",
-  "version": " 0.15.1",
+  "version": " 0.16.0",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
-    "@angular/forms": "^8.0.0",
-    "@angular/platform-browser": "^8.0.0",
+    "@angular/common": "12.2.11",
+    "@angular/core": "12.2.11",
+    "@angular/forms": "12.2.11",
+    "@angular/platform-browser": "12.2.11",
     "@generic-ui/fabric": "latest",
     "@generic-ui/hermes": "latest",
-    "rxjs": "^6.0.0"
+    "rxjs": "6.6.7"
   },
   "keywords": [
     "list",
+    "data list",
     "generic",
     "angular"
   ],
   "homepage": "https://generic-ui.com",
   "bugs": "https://github.com/generic-ui/generic-ui/issues",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/generic-ui/generic-ui.git"
   },
   "main": "bundles/generic-ui-ngx-list.umd.js",
-  "module": "fesm5/generic-ui-ngx-list.js",
+  "module": "fesm2015/generic-ui-ngx-list.js",
   "es2015": "fesm2015/generic-ui-ngx-list.js",
-  "esm5": "esm5/generic-ui-ngx-list.js",
   "esm2015": "esm2015/generic-ui-ngx-list.js",
-  "fesm5": "fesm5/generic-ui-ngx-list.js",
   "fesm2015": "fesm2015/generic-ui-ngx-list.js",
   "typings": "generic-ui-ngx-list.d.ts",
-  "metadata": "generic-ui-ngx-list.metadata.json",
   "sideEffects": false,
-  "dependencies": {
-    "tslib": "^1.9.0"
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
   }
 }

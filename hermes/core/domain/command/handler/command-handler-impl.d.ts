@@ -15,3 +15,4 @@ export declare class CommandHandlerImpl<I extends AggregateId, A extends Aggrega
     forCommand(command: C): boolean;
     private createCommandInstance;
 }
+//# sourceMappingURL=command-handler-impl.d.ts.map

@@ -15,3 +15,4 @@ export declare abstract class TemplateFactory<T extends TemplatesComponent> {
     private generateMap;
     private findAndSetTemplate;
 }
+//# sourceMappingURL=template.factory.d.ts.map

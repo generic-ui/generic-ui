@@ -6,14 +6,15 @@ import { StructureWarehouse } from './structure.warehouse';
 import { StructureDomainCommandInvoker } from '../../../core/domain/structure.domain-command-invoker';
 import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';
 export declare const structureCommandHandlers: Array<Provider>;
-export declare const structureDomainEventHandlers: Provider[];
-export declare const structureProviders: (typeof StructureInitialValuesReadyArchive | typeof StructureWarehouse | typeof import("../../../../generic-ui-ngx-list").ɵhg | typeof StructureReadModelRootConverter | typeof import("../../../../generic-ui-ngx-list").ɵko | typeof import("../../../../generic-ui-ngx-list").ɵhf | {
-    provide: typeof import("../../../../generic-ui-ngx-list").ɵbb;
-    useClass: typeof import("../../../../generic-ui-ngx-list").ɵhe;
-} | {
+export declare const structureDomainEventHandlers: Provider[][];
+export declare const structureProviders: (typeof StructureWarehouse | typeof StructureInitialValuesReadyArchive | typeof StructureReadModelRootConverter | typeof import("../../../core/infrastructure/in-memory/in-memory.structure.store").InMemoryStructureStore[] | typeof StructureAggregateFactory | (typeof import("../../../core/infrastructure/in-memory/domain/in-memory.structure.aggregate-store").InMemoryStructureAggregateStore | {
+    provide: typeof import("../../../core/domain/structure-aggregate.repository").StructureAggregateRepository;
+    useClass: typeof import("../../../core/infrastructure/in-memory/domain/in-memory.structure-aggregate.repository").InMemoryStructureAggregateRepository;
+})[][] | (typeof import("../../../core/infrastructure/in-memory/api/in-memory-structure.read-store").InMemoryStructureReadStore | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../../generic-ui-ngx-list").ɵtc;
-} | typeof StructureAggregateFactory | {
+    useClass: typeof import("../../../core/infrastructure/in-memory/api/in-memory.structure.repository").InMemoryStructureRepository;
+})[][] | {
     provide: typeof StructureCommandInvoker;
     useClass: typeof StructureDomainCommandInvoker;
 })[];
+//# sourceMappingURL=structure.providers.d.ts.map

@@ -1,35 +1,20 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import * as i0 from "@angular/core";
 export class FabricDatePickerCalendarViewService {
     constructor() {
         this.activeView$ = new Subject();
     }
-    /**
-     * @return {?}
-     */
     onActiveView() {
         return this.activeView$.asObservable();
     }
-    /**
-     * @param {?} viewName
-     * @return {?}
-     */
     switchView(viewName) {
         this.activeView$.next(viewName);
     }
 }
-FabricDatePickerCalendarViewService.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerCalendarViewService.prototype.activeView$;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWRhdGUtcGlja2VyLWNhbGVuZGFyLXZpZXcuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2ZhYnJpYy8iLCJzb3VyY2VzIjpbImZvcm0vZGF0ZS1waWNrZXIvY2FsZW5kYXIvZmFicmljLWRhdGUtcGlja2VyLWNhbGVuZGFyLXZpZXcuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQWMsT0FBTyxFQUFFLE1BQU0sTUFBTSxDQUFDO0FBSTNDLE1BQU0sT0FBTyxtQ0FBbUM7SUFEaEQ7UUFHUyxnQkFBVyxHQUFHLElBQUksT0FBTyxFQUFzQixDQUFDO0lBVXpELENBQUM7Ozs7SUFSQSxZQUFZO1FBQ1gsT0FBTyxJQUFJLENBQUMsV0FBVyxDQUFDLFlBQVksRUFBRSxDQUFDO0lBQ3hDLENBQUM7Ozs7O0lBRUQsVUFBVSxDQUFDLFFBQTRCO1FBQ3RDLElBQUksQ0FBQyxXQUFXLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQ2pDLENBQUM7OztZQVhELFVBQVU7Ozs7Ozs7SUFHViwwREFBd0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBPYnNlcnZhYmxlLCBTdWJqZWN0IH0gZnJvbSAncnhqcyc7XG5pbXBvcnQgeyBGYWJyaWNDYWxlbmRhclZpZXcgfSBmcm9tICcuLi9tb2RlbHMvZmFicmljLWNhbGVuZGFyLXZpZXcnO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgRmFicmljRGF0ZVBpY2tlckNhbGVuZGFyVmlld1NlcnZpY2Uge1xuXG5cdHByaXZhdGUgYWN0aXZlVmlldyQgPSBuZXcgU3ViamVjdDxGYWJyaWNDYWxlbmRhclZpZXc+KCk7XG5cblx0b25BY3RpdmVWaWV3KCk6IE9ic2VydmFibGU8RmFicmljQ2FsZW5kYXJWaWV3PiB7XG5cdFx0cmV0dXJuIHRoaXMuYWN0aXZlVmlldyQuYXNPYnNlcnZhYmxlKCk7XG5cdH1cblxuXHRzd2l0Y2hWaWV3KHZpZXdOYW1lOiBGYWJyaWNDYWxlbmRhclZpZXcpOiB2b2lkIHtcblx0XHR0aGlzLmFjdGl2ZVZpZXckLm5leHQodmlld05hbWUpO1xuXHR9XG5cbn1cbiJdfQ==
+FabricDatePickerCalendarViewService.ɵfac = function FabricDatePickerCalendarViewService_Factory(t) { return new (t || FabricDatePickerCalendarViewService)(); };
+FabricDatePickerCalendarViewService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: FabricDatePickerCalendarViewService, factory: FabricDatePickerCalendarViewService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FabricDatePickerCalendarViewService, [{
+        type: Injectable
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWRhdGUtcGlja2VyLWNhbGVuZGFyLXZpZXcuc2VydmljZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktZmFicmljL3NyYy9mb3JtL2RhdGUtcGlja2VyL2NhbGVuZGFyL2ZhYnJpYy1kYXRlLXBpY2tlci1jYWxlbmRhci12aWV3LnNlcnZpY2UudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUMzQyxPQUFPLEVBQWMsT0FBTyxFQUFFLE1BQU0sTUFBTSxDQUFDOztBQUkzQyxNQUFNLE9BQU8sbUNBQW1DO0lBRGhEO1FBR1MsZ0JBQVcsR0FBRyxJQUFJLE9BQU8sRUFBc0IsQ0FBQztLQVV4RDtJQVJBLFlBQVk7UUFDWCxPQUFPLElBQUksQ0FBQyxXQUFXLENBQUMsWUFBWSxFQUFFLENBQUM7SUFDeEMsQ0FBQztJQUVELFVBQVUsQ0FBQyxRQUE0QjtRQUN0QyxJQUFJLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsQ0FBQztJQUNqQyxDQUFDOztzSEFWVyxtQ0FBbUM7eUZBQW5DLG1DQUFtQyxXQUFuQyxtQ0FBbUM7dUZBQW5DLG1DQUFtQztjQUQvQyxVQUFVIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgT2JzZXJ2YWJsZSwgU3ViamVjdCB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgRmFicmljQ2FsZW5kYXJWaWV3IH0gZnJvbSAnLi4vbW9kZWxzL2ZhYnJpYy1jYWxlbmRhci12aWV3JztcblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIEZhYnJpY0RhdGVQaWNrZXJDYWxlbmRhclZpZXdTZXJ2aWNlIHtcblxuXHRwcml2YXRlIGFjdGl2ZVZpZXckID0gbmV3IFN1YmplY3Q8RmFicmljQ2FsZW5kYXJWaWV3PigpO1xuXG5cdG9uQWN0aXZlVmlldygpOiBPYnNlcnZhYmxlPEZhYnJpY0NhbGVuZGFyVmlldz4ge1xuXHRcdHJldHVybiB0aGlzLmFjdGl2ZVZpZXckLmFzT2JzZXJ2YWJsZSgpO1xuXHR9XG5cblx0c3dpdGNoVmlldyh2aWV3TmFtZTogRmFicmljQ2FsZW5kYXJWaWV3KTogdm9pZCB7XG5cdFx0dGhpcy5hY3RpdmVWaWV3JC5uZXh0KHZpZXdOYW1lKTtcblx0fVxuXG59XG4iXX0=

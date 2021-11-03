@@ -12,3 +12,4 @@ export declare class KeyMap<K extends Key, T> {
     private getInternalKey;
     private hasInternalKey;
 }
+//# sourceMappingURL=key-map.d.ts.map

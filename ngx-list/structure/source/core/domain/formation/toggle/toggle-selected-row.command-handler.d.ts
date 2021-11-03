@@ -2,6 +2,7 @@ import { CommandHandler, CommandType, DomainEventPublisher } from '@generic-ui/h
 import { StructureAggregateRepository } from '../../../../../core/domain/structure-aggregate.repository';
 import { ToggleSelectedRowCommand } from './toggle-selected-row.command';
 import { StructureAggregate } from '../../../../../core/domain/structure.aggregate';
+import * as i0 from "@angular/core";
 export declare class ToggleSelectedRowCommandHandler implements CommandHandler<StructureAggregate, ToggleSelectedRowCommand> {
     private structureAggregateRepository;
     private domainEventPublisher;
@@ -9,4 +10,7 @@ export declare class ToggleSelectedRowCommandHandler implements CommandHandler<S
     forCommand(): CommandType<ToggleSelectedRowCommand>;
     handle(aggregate: StructureAggregate, command: ToggleSelectedRowCommand): void;
     publish(aggregate: StructureAggregate, command: ToggleSelectedRowCommand): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ToggleSelectedRowCommandHandler, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ToggleSelectedRowCommandHandler>;
 }
+//# sourceMappingURL=toggle-selected-row.command-handler.d.ts.map

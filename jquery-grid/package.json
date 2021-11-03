@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/jquery-grid",
-	"version": " 0.15.1",
+	"version": " 0.16.0",
 	"description": "Generic UI - jQuery Grid",
 	"license": "MIT",
 	"module": "dist/jquery.gui-grid.js",
@@ -12,7 +12,7 @@
 		"generic",
 		"jquery",
 		"plugin",
-		"data tables"
+		"data table"
 	],
 	"homepage": "https://generic-ui.com",
 	"bugs": "https://github.com/generic-ui/generic-ui/issues",

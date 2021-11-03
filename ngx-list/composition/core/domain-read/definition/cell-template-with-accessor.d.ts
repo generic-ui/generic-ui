@@ -32,3 +32,4 @@ export declare class CellTemplateWithAccessor {
     getClasses(): string;
     private findValue;
 }
+//# sourceMappingURL=cell-template-with-accessor.d.ts.map

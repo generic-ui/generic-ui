@@ -7,3 +7,4 @@ export declare class SetColumnsCommand extends CompositionCommand {
     constructor(compositionId: CompositionId, columns: Array<ColumnParams>);
     getParams(): Array<ColumnParams>;
 }
+//# sourceMappingURL=set-columns.command.d.ts.map

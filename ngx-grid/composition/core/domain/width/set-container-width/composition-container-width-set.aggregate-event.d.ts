@@ -6,3 +6,4 @@ export declare class CompositionContainerWidthSetAggregateEvent extends Composit
     constructor(compositionId: CompositionId, containerWidth: number);
     toDomainEvent(): DomainEvent<CompositionId>;
 }
+//# sourceMappingURL=composition-container-width-set.aggregate-event.d.ts.map

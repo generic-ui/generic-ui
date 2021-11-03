@@ -8,3 +8,4 @@ export declare class NumberSummarizedValues extends SummariesValues {
     constructor(sum: number, min: number, max: number, average: number, median: number);
     private setValueWithPrecision;
 }
+//# sourceMappingURL=number-summarized.values.d.ts.map

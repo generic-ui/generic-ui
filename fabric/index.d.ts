@@ -1,6 +1,7 @@
 export { Theme } from './themes/theme';
 export { FabricModule } from './fabric.module';
 export { FabricBadgeModule } from './general/badge/fabric-badge.module';
+export { FabricBadgeComponent } from './general/badge/badge.componet';
 export { FabricButtonModule } from './general/button/button/fabric-button.module';
 export { FabricButtonGroupModule } from './general/button/button-group/fabric-button-group.module';
 export { FabricCardModule } from './layout/card/fabric-card.module';
@@ -41,8 +42,29 @@ export { FabricButtonComponent } from './general/button/button/button.component'
 export { FabricChipComponent } from './general/chip/chip.component';
 export { FabricCheckboxComponent } from './form/checkbox/checkbox.component';
 export { FabricInputComponent } from './form/input/input.component';
+export { FabricButtonGroupComponent } from './general/button/button-group/button-group.component';
+export { FabricCardComponent } from './layout/card/card.component';
+export { FabricDatePickerCalendarComponent } from './form/date-picker/calendar/fabric-date-picker-calendar.component';
+export { FabricDatePickerComponent } from './form/date-picker/fabric-date-picker.component';
+export { FabricDropdownComponent } from './navigation/dropdown/dropdown.component';
+export { DropdownItemComponent } from './navigation/dropdown/dropdown-items/dropdown-item.component';
+export { FabricRadioButtonComponent } from './form/radio-button/radio-button.component';
+export { FabricRadioGroupComponent } from './form/radio-group/radio-group.component';
+export { FabricRatingComponent } from './general/rating/fabric-rating.component';
+export { FabricTabComponent } from './layout/tab/tab.component';
+export { TabItemComponent } from './layout/tab/tab-item/tab-item.component';
+export { FabricTooltipDirective } from './modal/tooltip/fabric-tooltip.directive';
+export { FabricTooltipComponent } from './modal/tooltip/fabric-tooltip.component';
+export { FabricProgressBarComponent } from './general/progress-bar/progress-bar.component';
+export { FabricProgressSpinnerComponent } from './general/spinners/progress-spinner/progress-spinner.component';
+export { FabricSelectComponent } from './form/select/select.component';
+export { FabricSliderComponent } from './form/slider/fabric-slider.component';
+export { FabricSpinnerComponent } from './general/spinners/spinner/spinner.component';
+export { FabricToggleButtonComponent } from './general/button/toggle-button/toggle-button.component';
+export { FabricToggleButtonGroupComponent } from './general/button/toggle-button-group/toggle-button-group.component';
 export { Placement } from './navigation/dropdown/placement';
 export { SpinnerMode } from './general/spinners/progress-spinner/spinner-mode';
 export { FabricPlacement } from './common/modal/cords/fabric-placement';
 export { GuiTabItem } from './layout/tab/fabric-tab-item';
 export { GuiSelectOption } from './form/select/select-option';
+//# sourceMappingURL=index.d.ts.map

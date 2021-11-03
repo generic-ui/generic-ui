@@ -5,3 +5,4 @@ export declare class SelectOptionsGeometry {
     getHeight(): number;
     getWidth(): number;
 }
+//# sourceMappingURL=select-geometry.d.ts.map

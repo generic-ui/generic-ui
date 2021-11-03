@@ -6,3 +6,4 @@ export declare class SetPagingCommand extends StructureCommand {
     constructor(structureId: StructureId, config: PagingConfig);
     getPagingConfig(): PagingConfig;
 }
+//# sourceMappingURL=set-paging.command.d.ts.map

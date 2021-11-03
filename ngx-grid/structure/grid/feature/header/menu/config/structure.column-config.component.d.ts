@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, ElementRef, OnInit, Injector } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
 import { StructureCommandInvoker } from '../../../../../core/api/structure.command-invoker';
 import { CellTemplateWithContext } from '../../../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
@@ -10,6 +10,7 @@ import { StructureId } from '../../../../../core/api/structure.id';
 import { TranslationFacade } from '../../../../../../l10n/core/api/translation.facade';
 import { CompositionId } from '../../../../../../composition/core/api/composition.id';
 import { CompositionCommandInvoker } from '../../../../../../composition/core/api/composition.command-invoker';
+import * as i0 from "@angular/core";
 export declare class StructureColumnConfigComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -37,4 +38,7 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     highlightColumn(): void;
     private setTabTitles;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=structure.column-config.component.d.ts.map

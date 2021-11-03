@@ -19,3 +19,4 @@ export declare class SorterCollection {
     sort(entities: Array<OriginItemEntity>): Array<OriginItemEntity>;
     getAll(): Array<StructureSorter>;
 }
+//# sourceMappingURL=sorter.collection.d.ts.map

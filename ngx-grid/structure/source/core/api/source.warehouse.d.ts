@@ -2,6 +2,7 @@ import { StructureId } from '../../../core/api/structure.id';
 import { ItemEntity } from '../domain/core/item/item.entity';
 import { OriginItemEntity } from '../domain/origin/origin-item-entity';
 import { HermesObservable, Warehouse } from '@generic-ui/hermes';
+import * as i0 from "@angular/core";
 export declare abstract class SourceWarehouse implements Warehouse {
     protected constructor();
     /**
@@ -18,4 +19,7 @@ export declare abstract class SourceWarehouse implements Warehouse {
      * @deprecated
      */
     abstract getPreparedEntities(structureId: StructureId): ReadonlyArray<OriginItemEntity>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SourceWarehouse, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SourceWarehouse>;
 }
+//# sourceMappingURL=source.warehouse.d.ts.map

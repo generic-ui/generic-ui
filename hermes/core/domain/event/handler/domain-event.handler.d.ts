@@ -5,3 +5,4 @@ export interface DomainEventHandler<I extends AggregateId, E extends DomainEvent
     forEvent(): DomainEventType<E>;
     handle(event: E): void;
 }
+//# sourceMappingURL=domain-event.handler.d.ts.map

@@ -26,3 +26,4 @@ export declare class Paging {
     sample(source: Array<any>): Array<any>;
     compare(target: Paging): boolean;
 }
+//# sourceMappingURL=paging.d.ts.map

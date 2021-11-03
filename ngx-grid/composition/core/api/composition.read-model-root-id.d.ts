@@ -4,3 +4,4 @@ export declare class CompositionReadModelRootId extends ReadModelRootId {
     constructor(id: string);
     toAggregateId(): CompositionId;
 }
+//# sourceMappingURL=composition.read-model-root-id.d.ts.map

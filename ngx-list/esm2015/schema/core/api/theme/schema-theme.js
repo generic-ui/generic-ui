@@ -1,19 +1,9 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const SchemaTheme = {
-    FABRIC: 0,
-    MATERIAL: 1,
-    LIGHT: 2,
-    DARK: 3,
-    GENERIC: 4,
-};
-export { SchemaTheme };
-SchemaTheme[SchemaTheme.FABRIC] = 'FABRIC';
-SchemaTheme[SchemaTheme.MATERIAL] = 'MATERIAL';
-SchemaTheme[SchemaTheme.LIGHT] = 'LIGHT';
-SchemaTheme[SchemaTheme.DARK] = 'DARK';
-SchemaTheme[SchemaTheme.GENERIC] = 'GENERIC';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLXRoZW1lLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJzY2hlbWEvY29yZS9hcGkvdGhlbWUvc2NoZW1hLXRoZW1lLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7OztJQUNDLFNBQU07SUFDTixXQUFRO0lBQ1IsUUFBSztJQUNMLE9BQUk7SUFDSixVQUFPIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gU2NoZW1hVGhlbWUge1xuXHRGQUJSSUMsXG5cdE1BVEVSSUFMLFxuXHRMSUdIVCxcblx0REFSSyxcblx0R0VORVJJQ1xufVxuIl19
+export var SchemaTheme;
+(function (SchemaTheme) {
+    SchemaTheme[SchemaTheme["FABRIC"] = 0] = "FABRIC";
+    SchemaTheme[SchemaTheme["MATERIAL"] = 1] = "MATERIAL";
+    SchemaTheme[SchemaTheme["LIGHT"] = 2] = "LIGHT";
+    SchemaTheme[SchemaTheme["DARK"] = 3] = "DARK";
+    SchemaTheme[SchemaTheme["GENERIC"] = 4] = "GENERIC";
+})(SchemaTheme || (SchemaTheme = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLXRoZW1lLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9zY2hlbWEvY29yZS9hcGkvdGhlbWUvc2NoZW1hLXRoZW1lLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLFdBTVg7QUFORCxXQUFZLFdBQVc7SUFDdEIsaURBQU0sQ0FBQTtJQUNOLHFEQUFRLENBQUE7SUFDUiwrQ0FBSyxDQUFBO0lBQ0wsNkNBQUksQ0FBQTtJQUNKLG1EQUFPLENBQUE7QUFDUixDQUFDLEVBTlcsV0FBVyxLQUFYLFdBQVcsUUFNdEIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBTY2hlbWFUaGVtZSB7XG5cdEZBQlJJQyxcblx0TUFURVJJQUwsXG5cdExJR0hULFxuXHREQVJLLFxuXHRHRU5FUklDXG59XG4iXX0=

@@ -12,3 +12,4 @@ export declare class FieldsInitedAggregateEvent extends StructureAggregateEvent 
     getFieldConfigs(): Array<FieldConfig>;
     getFields(): Array<Field>;
 }
+//# sourceMappingURL=fields-inited.aggregate-event.d.ts.map

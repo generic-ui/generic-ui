@@ -4,6 +4,7 @@ import { SelectOptionsGeometryService } from './select-options-geometry.service'
 import { FabricSelectedOptionsRepository } from '../selected-option.repository';
 import { FabricThemedComponent } from '../../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../../themes/fabric-modal-theme.service';
+import * as i0 from "@angular/core";
 export declare class FabricSelectOptionsComponent extends FabricThemedComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly selectOptionsGeometryService;
     private readonly selectService;
@@ -24,4 +25,7 @@ export declare class FabricSelectOptionsComponent extends FabricThemedComponent 
     isOptionSelected(option: GuiSelectOption): boolean;
     getOptionValue(option: GuiSelectOption): number | string;
     initOpenAnimation(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectOptionsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=select-options.component.d.ts.map

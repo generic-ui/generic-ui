@@ -1,0 +1,1 @@
+{"version":3,"file":"composition-width-set.event.d.ts","sourceRoot":"","sources":["../../../../../../build-cli/projects/ngx-list/src/composition/core/domain/width/set-width/composition-width-set.event.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,6BAA6B,CAAC;AAC5D,OAAO,EAAE,sBAAsB,EAAE,MAAM,gCAAgC,CAAC;AAExE,qBAAa,wBAAyB,SAAQ,sBAAsB;gBAEvD,aAAa,EAAE,aAAa;CAGxC"}

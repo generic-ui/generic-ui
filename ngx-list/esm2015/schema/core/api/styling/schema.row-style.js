@@ -1,15 +1,2 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-export function SchemaRowStyle() { }
-if (false) {
-    /** @type {?|undefined} */
-    SchemaRowStyle.prototype.style;
-    /** @type {?|undefined} */
-    SchemaRowStyle.prototype.styleFunction;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLnJvdy1zdHlsZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsic2NoZW1hL2NvcmUvYXBpL3N0eWxpbmcvc2NoZW1hLnJvdy1zdHlsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBRUEsb0NBTUM7OztJQUpBLCtCQUFlOztJQUVmLHVDQUFzQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFNjaGVtYVN0eWxpbmdGdW5jdGlvbiB9IGZyb20gJy4vc2NoZW1hLnN0eWxpbmctZnVuY3Rpb24nO1xuXG5leHBvcnQgaW50ZXJmYWNlIFNjaGVtYVJvd1N0eWxlIHtcblxuXHRzdHlsZT86IHN0cmluZztcblxuXHRzdHlsZUZ1bmN0aW9uPzogU2NoZW1hU3R5bGluZ0Z1bmN0aW9uO1xuXG59XG4iXX0=
+export {};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLnJvdy1zdHlsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtbGlzdC9zcmMvc2NoZW1hL2NvcmUvYXBpL3N0eWxpbmcvc2NoZW1hLnJvdy1zdHlsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgU2NoZW1hU3R5bGluZ0Z1bmN0aW9uIH0gZnJvbSAnLi9zY2hlbWEuc3R5bGluZy1mdW5jdGlvbic7XG5cbmV4cG9ydCBpbnRlcmZhY2UgU2NoZW1hUm93U3R5bGUge1xuXG5cdHN0eWxlPzogc3RyaW5nO1xuXG5cdHN0eWxlRnVuY3Rpb24/OiBTY2hlbWFTdHlsaW5nRnVuY3Rpb247XG5cbn1cbiJdfQ==

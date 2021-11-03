@@ -3,3 +3,4 @@ export declare enum ColumnWidthType {
     NUMBER = 1,
     AUTO = 2
 }
+//# sourceMappingURL=column-width-type.d.ts.map

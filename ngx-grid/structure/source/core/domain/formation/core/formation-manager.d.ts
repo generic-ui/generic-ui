@@ -19,3 +19,4 @@ export declare class FormationManager {
     calculateAllUnselected(): void;
     unselectRow(itemId: string): void;
 }
+//# sourceMappingURL=formation-manager.d.ts.map

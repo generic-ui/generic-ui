@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, QueryList, Renderer2 } fr
 import { Direction } from '../../common/icons/arrow-icon/direction';
 import { FabricReactive } from '../../common/fabric-reactive';
 import { GuiTabItem } from './fabric-tab-item';
+import * as i0 from "@angular/core";
 export declare class FabricTabComponent extends FabricReactive implements AfterViewInit {
     private renderer;
     private changeDetectorRef;
@@ -30,4 +31,7 @@ export declare class FabricTabComponent extends FabricReactive implements AfterV
     private checkIfMenuFitsOnResize;
     private calculateMenuWidth;
     private showMenuArrows;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricTabComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTabComponent, "gui-tab", never, { "menu": "menu"; "active": "active"; "scrollActive": "scrollActive"; }, {}, never, ["*"]>;
 }
+//# sourceMappingURL=tab.component.d.ts.map

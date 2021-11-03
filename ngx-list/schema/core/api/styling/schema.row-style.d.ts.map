@@ -1,0 +1,1 @@
+{"version":3,"file":"schema.row-style.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/schema/core/api/styling/schema.row-style.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,qBAAqB,EAAE,MAAM,2BAA2B,CAAC;AAElE,MAAM,WAAW,cAAc;IAE9B,KAAK,CAAC,EAAE,MAAM,CAAC;IAEf,aAAa,CAAC,EAAE,qBAAqB,CAAC;CAEtC"}

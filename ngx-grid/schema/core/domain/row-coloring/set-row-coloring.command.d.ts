@@ -6,3 +6,4 @@ export declare class SetRowColoringCommand extends SchemaCommand {
     constructor(schemaId: SchemaId, coloring: SchemaRowColoring);
     getColoring(): SchemaRowColoring;
 }
+//# sourceMappingURL=set-row-coloring.command.d.ts.map

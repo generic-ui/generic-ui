@@ -3,3 +3,4 @@ export declare enum SortOrder {
     DESC = 1,
     NONE = 2
 }
+//# sourceMappingURL=sort-order.d.ts.map

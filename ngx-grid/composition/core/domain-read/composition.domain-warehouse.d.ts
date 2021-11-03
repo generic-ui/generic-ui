@@ -10,6 +10,7 @@ import { CompositionWarehouse } from '../api/composition.warehouse';
 import { HermesObservable } from '@generic-ui/hermes';
 import { ColumnId } from '../api/column/column.id';
 import { ColumnHighlightArchive } from '../domain/highlight/column-highlight.archive';
+import * as i0 from "@angular/core";
 export declare class CompositionDomainWarehouse extends CompositionWarehouse {
     private readonly compositionRepository;
     private readonly compositionGroupArchive;
@@ -25,4 +26,7 @@ export declare class CompositionDomainWarehouse extends CompositionWarehouse {
     onResizeWidth(compositionId: CompositionId): HermesObservable<boolean>;
     onGroups(compositionId: CompositionId): HermesObservable<GroupCollection>;
     onHighlightedColumn(columnId: ColumnId, compositionId: CompositionId): HermesObservable<boolean>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionDomainWarehouse, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<CompositionDomainWarehouse>;
 }
+//# sourceMappingURL=composition.domain-warehouse.d.ts.map

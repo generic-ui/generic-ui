@@ -3,3 +3,4 @@ import { StructureDomainEvent } from '../../../../../core/domain/structure.domai
 export declare class UniqueFilterUnselectedEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
+//# sourceMappingURL=unique-filter-unselected.event.d.ts.map

@@ -8,6 +8,8 @@ import { SmartComponent } from '../../../../../common/cdk/component/smart-compon
 import { GuiRowClass, GuiRowStyle } from '../../../../../gui/grid/core/api/gui.grid.public-api';
 import { CssClassModifier } from '../../../../common/css-class/css-class.modifier';
 import { NgChanges } from '../../../../../common/cdk/component/ng-changes';
+import { CellEditorManager } from '../../../core/domain/edit/cell-editor.manager';
+import * as i0 from "@angular/core";
 export declare class StructureRowComponent extends SmartComponent implements OnChanges, OnInit {
     private readonly changeDetectorRef;
     private readonly elRef;
@@ -18,7 +20,7 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     entity: ItemEntity;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
-    cellEditing: boolean;
+    cellEditing: CellEditorManager;
     searchPhrase: string;
     index: number;
     rowStyle: GuiRowStyle;
@@ -43,4 +45,7 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     private updateRowClass;
     private calculateRowClass;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure-row.component.d.ts.map

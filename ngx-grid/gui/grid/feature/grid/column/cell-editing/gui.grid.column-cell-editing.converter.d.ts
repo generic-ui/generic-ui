@@ -3,3 +3,4 @@ import { ColumnCellEditingConfig } from '../../../../../../composition/core/api/
 export declare class GuiGridColumnCellEditingConverter {
     convert(config: boolean | GuiColumnCellEditing): ColumnCellEditingConfig;
 }
+//# sourceMappingURL=gui.grid.column-cell-editing.converter.d.ts.map

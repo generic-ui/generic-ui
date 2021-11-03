@@ -1,45 +1,23 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
-import { VerticalFormationScrollBarPositionArchive } from './vertical-formation.scroll-bar-position.archive';
 import { ScrollBarPositionSetEvent } from '../../domain/scroll-bar/scroll-bar-position-set.event';
+import * as i0 from "@angular/core";
+import * as i1 from "./vertical-formation.scroll-bar-position.archive";
 export class ScrollBarPositionSetEventHandler {
-    /**
-     * @param {?} positionRepository
-     */
     constructor(positionRepository) {
         this.positionRepository = positionRepository;
     }
-    /**
-     * @return {?}
-     */
     forEvent() {
         return ScrollBarPositionSetEvent;
     }
-    /**
-     * @param {?} event
-     * @return {?}
-     */
     handle(event) {
         if (event.ofMessageType('ScrollBarPositionSetEvent')) {
             this.positionRepository.next(event.getAggregateId(), event.getPosition());
         }
     }
 }
-ScrollBarPositionSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ScrollBarPositionSetEventHandler.ctorParameters = () => [
-    { type: VerticalFormationScrollBarPositionArchive }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ScrollBarPositionSetEventHandler.prototype.positionRepository;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2Nyb2xsLWJhci1wb3NpdGlvbi1zZXQuZXZlbnQtaGFuZGxlci5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1ncmlkLyIsInNvdXJjZXMiOlsic3RydWN0dXJlL3ZlcnRpY2FsLWZvcm1hdGlvbi9jb3JlL2RvbWFpbi1yZWFkL3Njcm9sbC1iYXIvc2Nyb2xsLWJhci1wb3NpdGlvbi1zZXQuZXZlbnQtaGFuZGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUkzQyxPQUFPLEVBQUUseUNBQXlDLEVBQUUsTUFBTSxrREFBa0QsQ0FBQztBQUM3RyxPQUFPLEVBQUUseUJBQXlCLEVBQUUsTUFBTSx1REFBdUQsQ0FBQztBQUtsRyxNQUFNLE9BQU8sZ0NBQWdDOzs7O0lBRTVDLFlBQW9CLGtCQUE2RDtRQUE3RCx1QkFBa0IsR0FBbEIsa0JBQWtCLENBQTJDO0lBQ2pGLENBQUM7Ozs7SUFFRCxRQUFRO1FBQ1AsT0FBTyx5QkFBeUIsQ0FBQztJQUNsQyxDQUFDOzs7OztJQUVELE1BQU0sQ0FBQyxLQUFnQztRQUV0QyxJQUFJLEtBQUssQ0FBQyxhQUFhLENBQUMsMkJBQTJCLENBQUMsRUFBRTtZQUNyRCxJQUFJLENBQUMsa0JBQWtCLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxjQUFjLEVBQUUsRUFBRSxLQUFLLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQztTQUMxRTtJQUVGLENBQUM7OztZQWhCRCxVQUFVOzs7O1lBTEYseUNBQXlDOzs7Ozs7O0lBUXJDLDhEQUFxRSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgRG9tYWluRXZlbnRIYW5kbGVyLCBEb21haW5FdmVudFR5cGUgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5pbXBvcnQgeyBWZXJ0aWNhbEZvcm1hdGlvblNjcm9sbEJhclBvc2l0aW9uQXJjaGl2ZSB9IGZyb20gJy4vdmVydGljYWwtZm9ybWF0aW9uLnNjcm9sbC1iYXItcG9zaXRpb24uYXJjaGl2ZSc7XG5pbXBvcnQgeyBTY3JvbGxCYXJQb3NpdGlvblNldEV2ZW50IH0gZnJvbSAnLi4vLi4vZG9tYWluL3Njcm9sbC1iYXIvc2Nyb2xsLWJhci1wb3NpdGlvbi1zZXQuZXZlbnQnO1xuaW1wb3J0IHsgU3RydWN0dXJlSWQgfSBmcm9tICcuLi8uLi8uLi8uLi9jb3JlL2FwaS9zdHJ1Y3R1cmUuaWQnO1xuXG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBTY3JvbGxCYXJQb3NpdGlvblNldEV2ZW50SGFuZGxlciBpbXBsZW1lbnRzIERvbWFpbkV2ZW50SGFuZGxlcjxTdHJ1Y3R1cmVJZCwgU2Nyb2xsQmFyUG9zaXRpb25TZXRFdmVudD4ge1xuXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgcG9zaXRpb25SZXBvc2l0b3J5OiBWZXJ0aWNhbEZvcm1hdGlvblNjcm9sbEJhclBvc2l0aW9uQXJjaGl2ZSkge1xuXHR9XG5cblx0Zm9yRXZlbnQoKTogRG9tYWluRXZlbnRUeXBlPFNjcm9sbEJhclBvc2l0aW9uU2V0RXZlbnQ+IHtcblx0XHRyZXR1cm4gU2Nyb2xsQmFyUG9zaXRpb25TZXRFdmVudDtcblx0fVxuXG5cdGhhbmRsZShldmVudDogU2Nyb2xsQmFyUG9zaXRpb25TZXRFdmVudCk6IHZvaWQge1xuXG5cdFx0aWYgKGV2ZW50Lm9mTWVzc2FnZVR5cGUoJ1Njcm9sbEJhclBvc2l0aW9uU2V0RXZlbnQnKSkge1xuXHRcdFx0dGhpcy5wb3NpdGlvblJlcG9zaXRvcnkubmV4dChldmVudC5nZXRBZ2dyZWdhdGVJZCgpLCBldmVudC5nZXRQb3NpdGlvbigpKTtcblx0XHR9XG5cblx0fVxuXG59XG4iXX0=
+ScrollBarPositionSetEventHandler.ɵfac = function ScrollBarPositionSetEventHandler_Factory(t) { return new (t || ScrollBarPositionSetEventHandler)(i0.ɵɵinject(i1.VerticalFormationScrollBarPositionArchive)); };
+ScrollBarPositionSetEventHandler.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ScrollBarPositionSetEventHandler, factory: ScrollBarPositionSetEventHandler.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ScrollBarPositionSetEventHandler, [{
+        type: Injectable
+    }], function () { return [{ type: i1.VerticalFormationScrollBarPositionArchive }]; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2Nyb2xsLWJhci1wb3NpdGlvbi1zZXQuZXZlbnQtaGFuZGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvc3RydWN0dXJlL3ZlcnRpY2FsLWZvcm1hdGlvbi9jb3JlL2RvbWFpbi1yZWFkL3Njcm9sbC1iYXIvc2Nyb2xsLWJhci1wb3NpdGlvbi1zZXQuZXZlbnQtaGFuZGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBSzNDLE9BQU8sRUFBRSx5QkFBeUIsRUFBRSxNQUFNLHVEQUF1RCxDQUFDOzs7QUFLbEcsTUFBTSxPQUFPLGdDQUFnQztJQUU1QyxZQUFvQixrQkFBNkQ7UUFBN0QsdUJBQWtCLEdBQWxCLGtCQUFrQixDQUEyQztJQUNqRixDQUFDO0lBRUQsUUFBUTtRQUNQLE9BQU8seUJBQXlCLENBQUM7SUFDbEMsQ0FBQztJQUVELE1BQU0sQ0FBQyxLQUFnQztRQUV0QyxJQUFJLEtBQUssQ0FBQyxhQUFhLENBQUMsMkJBQTJCLENBQUMsRUFBRTtZQUNyRCxJQUFJLENBQUMsa0JBQWtCLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxjQUFjLEVBQUUsRUFBRSxLQUFLLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQztTQUMxRTtJQUVGLENBQUM7O2dIQWZXLGdDQUFnQztzRkFBaEMsZ0NBQWdDLFdBQWhDLGdDQUFnQzt1RkFBaEMsZ0NBQWdDO2NBRDVDLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IERvbWFpbkV2ZW50SGFuZGxlciwgRG9tYWluRXZlbnRUeXBlIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuaW1wb3J0IHsgVmVydGljYWxGb3JtYXRpb25TY3JvbGxCYXJQb3NpdGlvbkFyY2hpdmUgfSBmcm9tICcuL3ZlcnRpY2FsLWZvcm1hdGlvbi5zY3JvbGwtYmFyLXBvc2l0aW9uLmFyY2hpdmUnO1xuaW1wb3J0IHsgU2Nyb2xsQmFyUG9zaXRpb25TZXRFdmVudCB9IGZyb20gJy4uLy4uL2RvbWFpbi9zY3JvbGwtYmFyL3Njcm9sbC1iYXItcG9zaXRpb24tc2V0LmV2ZW50JztcbmltcG9ydCB7IFN0cnVjdHVyZUlkIH0gZnJvbSAnLi4vLi4vLi4vLi4vY29yZS9hcGkvc3RydWN0dXJlLmlkJztcblxuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgU2Nyb2xsQmFyUG9zaXRpb25TZXRFdmVudEhhbmRsZXIgaW1wbGVtZW50cyBEb21haW5FdmVudEhhbmRsZXI8U3RydWN0dXJlSWQsIFNjcm9sbEJhclBvc2l0aW9uU2V0RXZlbnQ+IHtcblxuXHRjb25zdHJ1Y3Rvcihwcml2YXRlIHBvc2l0aW9uUmVwb3NpdG9yeTogVmVydGljYWxGb3JtYXRpb25TY3JvbGxCYXJQb3NpdGlvbkFyY2hpdmUpIHtcblx0fVxuXG5cdGZvckV2ZW50KCk6IERvbWFpbkV2ZW50VHlwZTxTY3JvbGxCYXJQb3NpdGlvblNldEV2ZW50PiB7XG5cdFx0cmV0dXJuIFNjcm9sbEJhclBvc2l0aW9uU2V0RXZlbnQ7XG5cdH1cblxuXHRoYW5kbGUoZXZlbnQ6IFNjcm9sbEJhclBvc2l0aW9uU2V0RXZlbnQpOiB2b2lkIHtcblxuXHRcdGlmIChldmVudC5vZk1lc3NhZ2VUeXBlKCdTY3JvbGxCYXJQb3NpdGlvblNldEV2ZW50JykpIHtcblx0XHRcdHRoaXMucG9zaXRpb25SZXBvc2l0b3J5Lm5leHQoZXZlbnQuZ2V0QWdncmVnYXRlSWQoKSwgZXZlbnQuZ2V0UG9zaXRpb24oKSk7XG5cdFx0fVxuXG5cdH1cblxufVxuIl19

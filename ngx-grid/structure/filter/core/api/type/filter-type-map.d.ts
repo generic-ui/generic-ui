@@ -5,3 +5,4 @@ export declare class FilterTypeMap {
     constructor(map: Map<string, Array<FilterTypeReadModel>>);
     getFilterTypes(fieldId: FieldId): Array<FilterTypeReadModel>;
 }
+//# sourceMappingURL=filter-type-map.d.ts.map

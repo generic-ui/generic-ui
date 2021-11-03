@@ -7,3 +7,4 @@ export declare class Dictionary {
     getTranslation(): Translation;
     setResolver(resolver: (key: string, value: string) => string): void;
 }
+//# sourceMappingURL=dictionary.d.ts.map

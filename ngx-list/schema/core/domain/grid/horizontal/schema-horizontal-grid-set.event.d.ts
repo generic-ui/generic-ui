@@ -5,3 +5,4 @@ export declare class SchemaHorizontalGridSetEvent extends SchemaDomainEvent {
     constructor(schemaId: SchemaId, horizontalGrid: boolean);
     getHorizontalGrid(): boolean;
 }
+//# sourceMappingURL=schema-horizontal-grid-set.event.d.ts.map

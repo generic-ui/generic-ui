@@ -9,3 +9,4 @@ export declare class StringColumnPresentation extends ColumnPresentation {
     getDefaultView(): CellView;
     getDefaultAlign(): ColumnAlign;
 }
+//# sourceMappingURL=string-column.presentation.d.ts.map

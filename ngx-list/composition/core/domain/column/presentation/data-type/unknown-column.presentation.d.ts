@@ -9,3 +9,4 @@ export declare class UnknownColumnPresentation extends ColumnPresentation {
     getDefaultView(): CellView;
     getDefaultAlign(): ColumnAlign;
 }
+//# sourceMappingURL=unknown-column.presentation.d.ts.map

@@ -1,6 +1,6 @@
 {
 	"name": "@generic-ui/grid",
-	"version": " 0.15.1",
+	"version": " 0.16.0",
 	"description": "Generic UI - Grid",
 	"license": "MIT",
 	"module": "dist/gui-grid.js",
@@ -11,7 +11,7 @@
 		"grid",
 		"generic",
 		"javascript",
-		"data tables"
+		"data table"
 	],
 	"homepage": "https://generic-ui.com",
 	"bugs": "https://github.com/generic-ui/generic-ui/issues",

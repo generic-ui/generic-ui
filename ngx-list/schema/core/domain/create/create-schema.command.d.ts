@@ -3,3 +3,4 @@ import { SchemaId } from '../schema.id';
 export declare class CreateSchemaCommand extends CreateAggregateCommand {
     constructor(schemaId: SchemaId);
 }
+//# sourceMappingURL=create-schema.command.d.ts.map

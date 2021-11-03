@@ -10,3 +10,4 @@ export declare class NumberColumnPresentation extends ColumnPresentation {
     getDefaultView(): CellView;
     getDefaultAlign(view: ViewEntity): ColumnAlign;
 }
+//# sourceMappingURL=number-column.presentation.d.ts.map

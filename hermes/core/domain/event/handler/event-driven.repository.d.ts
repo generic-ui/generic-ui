@@ -8,3 +8,4 @@ export declare abstract class EventDrivenRepository<I extends AggregateId, E ext
     abstract forEvent(): DomainEventType<E>;
     handle(event: E): void;
 }
+//# sourceMappingURL=event-driven.repository.d.ts.map

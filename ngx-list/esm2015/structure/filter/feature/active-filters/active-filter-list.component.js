@@ -1,20 +1,27 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
-import { FilterWarehouse } from '../../core/api/filter.warehouse';
-import { StructureId } from '../../../core/api/structure.id';
-import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
+import * as i0 from "@angular/core";
+import * as i1 from "../../../core/api/structure.id";
+import * as i2 from "../../core/api/filter.warehouse";
+import * as i3 from "../../core/api/filter.command-invoker";
+import * as i4 from "@angular/common";
+import * as i5 from "./search/active-search.component";
+const _c0 = ["gui-active-filter-list", ""];
+function ActiveFilterListComponent_div_0_Template(rf, ctx) { if (rf & 1) {
+    const _r3 = i0.ɵɵgetCurrentView();
+    i0.ɵɵelementStart(0, "div");
+    i0.ɵɵtext(1);
+    i0.ɵɵelementStart(2, "span", 2);
+    i0.ɵɵlistener("click", function ActiveFilterListComponent_div_0_Template_span_click_2_listener() { const restoredCtx = i0.ɵɵrestoreView(_r3); const filter_r1 = restoredCtx.$implicit; const ctx_r2 = i0.ɵɵnextContext(); return ctx_r2.removeFilter(filter_r1); });
+    i0.ɵɵtext(3, "X");
+    i0.ɵɵelementEnd();
+    i0.ɵɵelementEnd();
+} if (rf & 2) {
+    const filter_r1 = ctx.$implicit;
+    i0.ɵɵadvance(1);
+    i0.ɵɵtextInterpolate1(" ", filter_r1.getText(), " ");
+} }
 export class ActiveFilterListComponent extends SmartComponent {
-    /**
-     * @param {?} changeDetectorRef
-     * @param {?} elementRef
-     * @param {?} structureId
-     * @param {?} filterWarehouse
-     * @param {?} filterCommandDispatcher
-     */
     constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
@@ -23,71 +30,32 @@ export class ActiveFilterListComponent extends SmartComponent {
         this.filterCommandDispatcher = filterCommandDispatcher;
         this.activeFilters = [];
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
-        this.hermesSubscribe(this.filterWarehouse.onActiveFilters(this.structureId), (/**
-         * @param {?} activeFilters
-         * @return {?}
-         */
-        (activeFilters) => {
+        this.hermesSubscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
             this.activeFilters = activeFilters;
-        }));
+        });
     }
-    /**
-     * @param {?} filter
-     * @return {?}
-     */
     removeFilter(filter) {
         this.filterCommandDispatcher.removeFilter(filter.getFilterId(), this.structureId);
     }
-    /**
-     * @protected
-     * @return {?}
-     */
     getSelectorName() {
         return 'gui-active-filter-list';
     }
 }
-ActiveFilterListComponent.decorators = [
-    { type: Component, args: [{
+ActiveFilterListComponent.ɵfac = function ActiveFilterListComponent_Factory(t) { return new (t || ActiveFilterListComponent)(i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1.StructureId), i0.ɵɵdirectiveInject(i2.FilterWarehouse), i0.ɵɵdirectiveInject(i3.FilterCommandInvoker)); };
+ActiveFilterListComponent.ɵcmp = /*@__PURE__*/ i0.ɵɵdefineComponent({ type: ActiveFilterListComponent, selectors: [["div", "gui-active-filter-list", ""]], features: [i0.ɵɵInheritDefinitionFeature], attrs: _c0, decls: 2, vars: 1, consts: [[4, "ngFor", "ngForOf"], ["gui-active-search", ""], [3, "click"]], template: function ActiveFilterListComponent_Template(rf, ctx) { if (rf & 1) {
+        i0.ɵɵtemplate(0, ActiveFilterListComponent_div_0_Template, 4, 1, "div", 0);
+        i0.ɵɵelement(1, "div", 1);
+    } if (rf & 2) {
+        i0.ɵɵproperty("ngForOf", ctx.activeFilters);
+    } }, directives: [i4.NgForOf, i5.ActiveSearchComponent], encapsulation: 2, changeDetection: 0 });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ActiveFilterListComponent, [{
+        type: Component,
+        args: [{
                 selector: 'div[gui-active-filter-list]',
-                template: "<div *ngFor=\"let filter of activeFilters\">\n\t{{filter.getText()}}\n\t<span (click)=\"removeFilter(filter)\">X</span>\n</div>\n\n<div gui-active-search></div>\n",
+                templateUrl: './active-filter-list.component.html',
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
-];
-/** @nocollapse */
-ActiveFilterListComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef },
-    { type: ElementRef },
-    { type: StructureId },
-    { type: FilterWarehouse },
-    { type: FilterCommandInvoker }
-];
-if (false) {
-    /** @type {?} */
-    ActiveFilterListComponent.prototype.activeFilters;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterListComponent.prototype.changeDetectorRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterListComponent.prototype.structureId;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterListComponent.prototype.filterWarehouse;
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFilterListComponent.prototype.filterCommandDispatcher;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWN0aXZlLWZpbHRlci1saXN0LmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL25neC1saXN0LyIsInNvdXJjZXMiOlsic3RydWN0dXJlL2ZpbHRlci9mZWF0dXJlL2FjdGl2ZS1maWx0ZXJzL2FjdGl2ZS1maWx0ZXItbGlzdC5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBRSx1QkFBdUIsRUFBRSxpQkFBaUIsRUFBRSxTQUFTLEVBQUUsVUFBVSxFQUFVLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRTdILE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxrREFBa0QsQ0FBQztBQUNsRixPQUFPLEVBQUUsZUFBZSxFQUFFLE1BQU0saUNBQWlDLENBQUM7QUFFbEUsT0FBTyxFQUFFLFdBQVcsRUFBRSxNQUFNLGdDQUFnQyxDQUFDO0FBQzdELE9BQU8sRUFBRSxvQkFBb0IsRUFBRSxNQUFNLHVDQUF1QyxDQUFDO0FBUzdFLE1BQU0sT0FBTyx5QkFBMEIsU0FBUSxjQUFjOzs7Ozs7OztJQUk1RCxZQUE2QixpQkFBb0MsRUFDOUQsVUFBc0IsRUFDTCxXQUF3QixFQUN4QixlQUFnQyxFQUNoQyx1QkFBNkM7UUFDaEUsS0FBSyxDQUFDLGlCQUFpQixFQUFFLFVBQVUsQ0FBQyxDQUFDO1FBTFQsc0JBQWlCLEdBQWpCLGlCQUFpQixDQUFtQjtRQUU3QyxnQkFBVyxHQUFYLFdBQVcsQ0FBYTtRQUN4QixvQkFBZSxHQUFmLGVBQWUsQ0FBaUI7UUFDaEMsNEJBQXVCLEdBQXZCLHVCQUF1QixDQUFzQjtRQU5qRSxrQkFBYSxHQUFpQyxFQUFFLENBQUM7SUFRakQsQ0FBQzs7OztJQUVELFFBQVE7UUFFUCxJQUFJLENBQUMsZUFBZSxDQUNuQixJQUFJLENBQUMsZUFBZSxDQUFDLGVBQWUsQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDOzs7O1FBQ3RELENBQUMsYUFBMkMsRUFBRSxFQUFFO1lBQy9DLElBQUksQ0FBQyxhQUFhLEdBQUcsYUFBYSxDQUFDO1FBQ3BDLENBQUMsRUFDRCxDQUFDO0lBQ0gsQ0FBQzs7Ozs7SUFFRCxZQUFZLENBQUMsTUFBNkI7UUFDekMsSUFBSSxDQUFDLHVCQUF1QixDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUMsV0FBVyxFQUFFLEVBQUUsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDO0lBQ25GLENBQUM7Ozs7O0lBRVMsZUFBZTtRQUN4QixPQUFPLHdCQUF3QixDQUFDO0lBQ2pDLENBQUM7OztZQWxDRCxTQUFTLFNBQUM7Z0JBQ1YsUUFBUSxFQUFFLDZCQUE2QjtnQkFDdkMsOEtBQWtEO2dCQUNsRCxlQUFlLEVBQUUsdUJBQXVCLENBQUMsTUFBTTtnQkFDL0MsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUk7YUFDckM7Ozs7WUFkaUMsaUJBQWlCO1lBQWEsVUFBVTtZQUtqRSxXQUFXO1lBRlgsZUFBZTtZQUdmLG9CQUFvQjs7OztJQVc1QixrREFBaUQ7Ozs7O0lBRXJDLHNEQUFxRDs7Ozs7SUFFOUQsZ0RBQXlDOzs7OztJQUN6QyxvREFBaUQ7Ozs7O0lBQ2pELDREQUE4RCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENoYW5nZURldGVjdGlvblN0cmF0ZWd5LCBDaGFuZ2VEZXRlY3RvclJlZiwgQ29tcG9uZW50LCBFbGVtZW50UmVmLCBPbkluaXQsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IFNtYXJ0Q29tcG9uZW50IH0gZnJvbSAnLi4vLi4vLi4vLi4vY29tbW9uL2Nkay9jb21wb25lbnQvc21hcnQtY29tcG9uZW50JztcbmltcG9ydCB7IEZpbHRlcldhcmVob3VzZSB9IGZyb20gJy4uLy4uL2NvcmUvYXBpL2ZpbHRlci53YXJlaG91c2UnO1xuaW1wb3J0IHsgQWN0aXZlRmlsdGVyUmVhZE1vZGVsIH0gZnJvbSAnLi4vLi4vY29yZS9hcGkvYWN0aXZlL2FjdGl2ZS1maWx0ZXIucmVhZC1tb2RlbCc7XG5pbXBvcnQgeyBTdHJ1Y3R1cmVJZCB9IGZyb20gJy4uLy4uLy4uL2NvcmUvYXBpL3N0cnVjdHVyZS5pZCc7XG5pbXBvcnQgeyBGaWx0ZXJDb21tYW5kSW52b2tlciB9IGZyb20gJy4uLy4uL2NvcmUvYXBpL2ZpbHRlci5jb21tYW5kLWludm9rZXInO1xuXG5cbkBDb21wb25lbnQoe1xuXHRzZWxlY3RvcjogJ2RpdltndWktYWN0aXZlLWZpbHRlci1saXN0XScsXG5cdHRlbXBsYXRlVXJsOiAnLi9hY3RpdmUtZmlsdGVyLWxpc3QuY29tcG9uZW50Lmh0bWwnLFxuXHRjaGFuZ2VEZXRlY3Rpb246IENoYW5nZURldGVjdGlvblN0cmF0ZWd5Lk9uUHVzaCxcblx0ZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZVxufSlcbmV4cG9ydCBjbGFzcyBBY3RpdmVGaWx0ZXJMaXN0Q29tcG9uZW50IGV4dGVuZHMgU21hcnRDb21wb25lbnQgaW1wbGVtZW50cyBPbkluaXQge1xuXG5cdGFjdGl2ZUZpbHRlcnM6IEFycmF5PEFjdGl2ZUZpbHRlclJlYWRNb2RlbD4gPSBbXTtcblxuXHRjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IGNoYW5nZURldGVjdG9yUmVmOiBDaGFuZ2VEZXRlY3RvclJlZixcblx0XHRcdFx0ZWxlbWVudFJlZjogRWxlbWVudFJlZixcblx0XHRcdFx0cHJpdmF0ZSByZWFkb25seSBzdHJ1Y3R1cmVJZDogU3RydWN0dXJlSWQsXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgZmlsdGVyV2FyZWhvdXNlOiBGaWx0ZXJXYXJlaG91c2UsXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgZmlsdGVyQ29tbWFuZERpc3BhdGNoZXI6IEZpbHRlckNvbW1hbmRJbnZva2VyKSB7XG5cdFx0c3VwZXIoY2hhbmdlRGV0ZWN0b3JSZWYsIGVsZW1lbnRSZWYpO1xuXHR9XG5cblx0bmdPbkluaXQoKSB7XG5cblx0XHR0aGlzLmhlcm1lc1N1YnNjcmliZShcblx0XHRcdHRoaXMuZmlsdGVyV2FyZWhvdXNlLm9uQWN0aXZlRmlsdGVycyh0aGlzLnN0cnVjdHVyZUlkKSxcblx0XHRcdChhY3RpdmVGaWx0ZXJzOiBBcnJheTxBY3RpdmVGaWx0ZXJSZWFkTW9kZWw+KSA9PiB7XG5cdFx0XHRcdHRoaXMuYWN0aXZlRmlsdGVycyA9IGFjdGl2ZUZpbHRlcnM7XG5cdFx0XHR9XG5cdFx0KTtcblx0fVxuXG5cdHJlbW92ZUZpbHRlcihmaWx0ZXI6IEFjdGl2ZUZpbHRlclJlYWRNb2RlbCk6IHZvaWQge1xuXHRcdHRoaXMuZmlsdGVyQ29tbWFuZERpc3BhdGNoZXIucmVtb3ZlRmlsdGVyKGZpbHRlci5nZXRGaWx0ZXJJZCgpLCB0aGlzLnN0cnVjdHVyZUlkKTtcblx0fVxuXG5cdHByb3RlY3RlZCBnZXRTZWxlY3Rvck5hbWUoKTogc3RyaW5nIHtcblx0XHRyZXR1cm4gJ2d1aS1hY3RpdmUtZmlsdGVyLWxpc3QnO1xuXHR9XG59XG4iXX0=
+            }]
+    }], function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1.StructureId }, { type: i2.FilterWarehouse }, { type: i3.FilterCommandInvoker }]; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWN0aXZlLWZpbHRlci1saXN0LmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtbGlzdC9zcmMvc3RydWN0dXJlL2ZpbHRlci9mZWF0dXJlL2FjdGl2ZS1maWx0ZXJzL2FjdGl2ZS1maWx0ZXItbGlzdC5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL3N0cnVjdHVyZS9maWx0ZXIvZmVhdHVyZS9hY3RpdmUtZmlsdGVycy9hY3RpdmUtZmlsdGVyLWxpc3QuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFxQixTQUFTLEVBQXNCLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRTdILE9BQU8sRUFBRSxjQUFjLEVBQUUsTUFBTSxrREFBa0QsQ0FBQzs7Ozs7Ozs7OztJQ0ZsRiwyQkFBMEM7SUFDekMsWUFDQTtJQUFBLCtCQUFxQztJQUEvQixtUUFBOEI7SUFBQyxpQkFBQztJQUFBLGlCQUFPO0lBQzlDLGlCQUFNOzs7SUFGTCxlQUNBO0lBREEsb0RBQ0E7O0FEYUQsTUFBTSxPQUFPLHlCQUEwQixTQUFRLGNBQWM7SUFJNUQsWUFBNkIsaUJBQW9DLEVBQzlELFVBQXNCLEVBQ0wsV0FBd0IsRUFDeEIsZUFBZ0MsRUFDaEMsdUJBQTZDO1FBQ2hFLEtBQUssQ0FBQyxpQkFBaUIsRUFBRSxVQUFVLENBQUMsQ0FBQztRQUxULHNCQUFpQixHQUFqQixpQkFBaUIsQ0FBbUI7UUFFN0MsZ0JBQVcsR0FBWCxXQUFXLENBQWE7UUFDeEIsb0JBQWUsR0FBZixlQUFlLENBQWlCO1FBQ2hDLDRCQUF1QixHQUF2Qix1QkFBdUIsQ0FBc0I7UUFOakUsa0JBQWEsR0FBaUMsRUFBRSxDQUFDO0lBUWpELENBQUM7SUFFRCxRQUFRO1FBRVAsSUFBSSxDQUFDLGVBQWUsQ0FDbkIsSUFBSSxDQUFDLGVBQWUsQ0FBQyxlQUFlLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxFQUN0RCxDQUFDLGFBQTJDLEVBQUUsRUFBRTtZQUMvQyxJQUFJLENBQUMsYUFBYSxHQUFHLGFBQWEsQ0FBQztRQUNwQyxDQUFDLENBQ0QsQ0FBQztJQUNILENBQUM7SUFFRCxZQUFZLENBQUMsTUFBNkI7UUFDekMsSUFBSSxDQUFDLHVCQUF1QixDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUMsV0FBVyxFQUFFLEVBQUUsSUFBSSxDQUFDLFdBQVcsQ0FBQyxDQUFDO0lBQ25GLENBQUM7SUFFUyxlQUFlO1FBQ3hCLE9BQU8sd0JBQXdCLENBQUM7SUFDakMsQ0FBQzs7a0dBNUJXLHlCQUF5Qjs0RUFBekIseUJBQXlCO1FDZnRDLDBFQUdNO1FBRU4seUJBQTZCOztRQUxMLDJDQUFnQjs7dUZEZTNCLHlCQUF5QjtjQU5yQyxTQUFTO2VBQUM7Z0JBQ1YsUUFBUSxFQUFFLDZCQUE2QjtnQkFDdkMsV0FBVyxFQUFFLHFDQUFxQztnQkFDbEQsZUFBZSxFQUFFLHVCQUF1QixDQUFDLE1BQU07Z0JBQy9DLGFBQWEsRUFBRSxpQkFBaUIsQ0FBQyxJQUFJO2FBQ3JDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksIENoYW5nZURldGVjdG9yUmVmLCBDb21wb25lbnQsIEVsZW1lbnRSZWYsIE9uSW5pdCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgU21hcnRDb21wb25lbnQgfSBmcm9tICcuLi8uLi8uLi8uLi9jb21tb24vY2RrL2NvbXBvbmVudC9zbWFydC1jb21wb25lbnQnO1xuaW1wb3J0IHsgRmlsdGVyV2FyZWhvdXNlIH0gZnJvbSAnLi4vLi4vY29yZS9hcGkvZmlsdGVyLndhcmVob3VzZSc7XG5pbXBvcnQgeyBBY3RpdmVGaWx0ZXJSZWFkTW9kZWwgfSBmcm9tICcuLi8uLi9jb3JlL2FwaS9hY3RpdmUvYWN0aXZlLWZpbHRlci5yZWFkLW1vZGVsJztcbmltcG9ydCB7IFN0cnVjdHVyZUlkIH0gZnJvbSAnLi4vLi4vLi4vY29yZS9hcGkvc3RydWN0dXJlLmlkJztcbmltcG9ydCB7IEZpbHRlckNvbW1hbmRJbnZva2VyIH0gZnJvbSAnLi4vLi4vY29yZS9hcGkvZmlsdGVyLmNvbW1hbmQtaW52b2tlcic7XG5cblxuQENvbXBvbmVudCh7XG5cdHNlbGVjdG9yOiAnZGl2W2d1aS1hY3RpdmUtZmlsdGVyLWxpc3RdJyxcblx0dGVtcGxhdGVVcmw6ICcuL2FjdGl2ZS1maWx0ZXItbGlzdC5jb21wb25lbnQuaHRtbCcsXG5cdGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxuXHRlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lXG59KVxuZXhwb3J0IGNsYXNzIEFjdGl2ZUZpbHRlckxpc3RDb21wb25lbnQgZXh0ZW5kcyBTbWFydENvbXBvbmVudCBpbXBsZW1lbnRzIE9uSW5pdCB7XG5cblx0YWN0aXZlRmlsdGVyczogQXJyYXk8QWN0aXZlRmlsdGVyUmVhZE1vZGVsPiA9IFtdO1xuXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgY2hhbmdlRGV0ZWN0b3JSZWY6IENoYW5nZURldGVjdG9yUmVmLFxuXHRcdFx0XHRlbGVtZW50UmVmOiBFbGVtZW50UmVmLFxuXHRcdFx0XHRwcml2YXRlIHJlYWRvbmx5IHN0cnVjdHVyZUlkOiBTdHJ1Y3R1cmVJZCxcblx0XHRcdFx0cHJpdmF0ZSByZWFkb25seSBmaWx0ZXJXYXJlaG91c2U6IEZpbHRlcldhcmVob3VzZSxcblx0XHRcdFx0cHJpdmF0ZSByZWFkb25seSBmaWx0ZXJDb21tYW5kRGlzcGF0Y2hlcjogRmlsdGVyQ29tbWFuZEludm9rZXIpIHtcblx0XHRzdXBlcihjaGFuZ2VEZXRlY3RvclJlZiwgZWxlbWVudFJlZik7XG5cdH1cblxuXHRuZ09uSW5pdCgpIHtcblxuXHRcdHRoaXMuaGVybWVzU3Vic2NyaWJlKFxuXHRcdFx0dGhpcy5maWx0ZXJXYXJlaG91c2Uub25BY3RpdmVGaWx0ZXJzKHRoaXMuc3RydWN0dXJlSWQpLFxuXHRcdFx0KGFjdGl2ZUZpbHRlcnM6IEFycmF5PEFjdGl2ZUZpbHRlclJlYWRNb2RlbD4pID0+IHtcblx0XHRcdFx0dGhpcy5hY3RpdmVGaWx0ZXJzID0gYWN0aXZlRmlsdGVycztcblx0XHRcdH1cblx0XHQpO1xuXHR9XG5cblx0cmVtb3ZlRmlsdGVyKGZpbHRlcjogQWN0aXZlRmlsdGVyUmVhZE1vZGVsKTogdm9pZCB7XG5cdFx0dGhpcy5maWx0ZXJDb21tYW5kRGlzcGF0Y2hlci5yZW1vdmVGaWx0ZXIoZmlsdGVyLmdldEZpbHRlcklkKCksIHRoaXMuc3RydWN0dXJlSWQpO1xuXHR9XG5cblx0cHJvdGVjdGVkIGdldFNlbGVjdG9yTmFtZSgpOiBzdHJpbmcge1xuXHRcdHJldHVybiAnZ3VpLWFjdGl2ZS1maWx0ZXItbGlzdCc7XG5cdH1cbn1cbiIsIjxkaXYgKm5nRm9yPVwibGV0IGZpbHRlciBvZiBhY3RpdmVGaWx0ZXJzXCI+XG5cdHt7ZmlsdGVyLmdldFRleHQoKX19XG5cdDxzcGFuIChjbGljayk9XCJyZW1vdmVGaWx0ZXIoZmlsdGVyKVwiPlg8L3NwYW4+XG48L2Rpdj5cblxuPGRpdiBndWktYWN0aXZlLXNlYXJjaD48L2Rpdj5cbiJdfQ==

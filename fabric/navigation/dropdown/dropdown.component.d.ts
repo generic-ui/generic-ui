@@ -3,6 +3,7 @@ import { GeometryService } from './geometry.service';
 import { Placement } from './placement';
 import { FabricReactive } from '../../common/fabric-reactive';
 import { Direction } from '../../common/icons/arrow-icon/direction';
+import * as i0 from "@angular/core";
 export declare class FabricDropdownComponent extends FabricReactive implements OnChanges, OnInit {
     private readonly platformId;
     private readonly elementRef;
@@ -50,4 +51,7 @@ export declare class FabricDropdownComponent extends FabricReactive implements O
     private isContainerDisabled;
     private addClass;
     private removeClass;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDropdownComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDropdownComponent, "gui-dropdown", never, { "disabled": "disabled"; "dropdownText": "dropdownText"; "arrow": "arrow"; "placement": "placement"; "width": "width"; "showOnHover": "showOnHover"; }, {}, never, ["*"]>;
 }
+//# sourceMappingURL=dropdown.component.d.ts.map

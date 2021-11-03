@@ -3,6 +3,7 @@ import { SearchConfig } from '../api/search-config';
 import { StructureId } from '../../../core/api/structure.id';
 import { SearchHighlightArchive } from './highlight/search-highlight.archive';
 import { SearchPlaceholderArchive } from './placeholder/search-placeholder.archive';
+import * as i0 from "@angular/core";
 export declare class SearchDispatcher {
     private readonly commandDispatcher;
     private readonly searchHighlightArchive;
@@ -11,4 +12,7 @@ export declare class SearchDispatcher {
     setSearchingConfig(config: SearchConfig, structureId: StructureId): void;
     search(phrase: string, structureId: StructureId): void;
     private searchOnInit;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SearchDispatcher, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SearchDispatcher>;
 }
+//# sourceMappingURL=search.dispatcher.d.ts.map

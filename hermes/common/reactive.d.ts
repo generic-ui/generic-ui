@@ -1,4 +1,5 @@
 import { MonoTypeOperatorFunction } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare abstract class Reactive {
     private readonly hermesUnsubscribe$;
     protected constructor();
@@ -7,4 +8,7 @@ export declare abstract class Reactive {
     protected hermesUnsubscribe(): void;
     protected hermesTakeUntil(): any;
     protected isNotStopped(): boolean;
+    static ɵfac: i0.ɵɵFactoryDeclaration<Reactive, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<Reactive>;
 }
+//# sourceMappingURL=reactive.d.ts.map

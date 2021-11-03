@@ -1,0 +1,1 @@
+{"version":3,"file":"gui.list-item.component.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/gui/list/feature/item/gui.list-item.component.ts"],"names":[],"mappings":"AAAA,OAAO,EAA2B,WAAW,EAAE,MAAM,eAAe,CAAC;;AAErE,qBAIa,oBAAoB;IAGhC,WAAW,EAAE,WAAW,CAAC,GAAG,CAAC,CAAC;yCAHlB,oBAAoB;2CAApB,oBAAoB;CAKhC"}

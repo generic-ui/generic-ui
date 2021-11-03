@@ -4,6 +4,7 @@ import { FilterCommandInvoker } from '../../../../filter/core/api/filter.command
 import { StructureId } from '../../../../core/api/structure.id';
 import { CellTemplateWithContext } from '../../../../../composition/core/domain-read/definition/cell-template-with-context';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
+import * as i0 from "@angular/core";
 export declare class StructureHeaderFiltersComponent extends PureComponent implements OnInit {
     private readonly structureFilterCommandService;
     private readonly formBuilder;
@@ -21,4 +22,7 @@ export declare class StructureHeaderFiltersComponent extends PureComponent imple
     turnOnFilterMode(): void;
     turnOffFilterMode(): void;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderFiltersComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFiltersComponent, "div[gui-structure-header-filters][columns]", never, { "columns": "columns"; }, { "closed": "closed"; }, never, never>;
 }
+//# sourceMappingURL=structure-header-filters.component.d.ts.map

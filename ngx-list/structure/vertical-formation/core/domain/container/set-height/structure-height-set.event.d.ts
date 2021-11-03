@@ -3,3 +3,4 @@ import { StructureDomainEvent } from '../../../../../core/domain/structure.domai
 export declare class StructureHeightSetEvent extends StructureDomainEvent {
     constructor(aggregateId: StructureId);
 }
+//# sourceMappingURL=structure-height-set.event.d.ts.map

@@ -1,14 +1,17 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SafePipe } from './safe.pipe';
+import * as i0 from "@angular/core";
 export class SanitizeModule {
 }
-SanitizeModule.decorators = [
-    { type: NgModule, args: [{
+SanitizeModule.ɵfac = function SanitizeModule_Factory(t) { return new (t || SanitizeModule)(); };
+SanitizeModule.ɵmod = /*@__PURE__*/ i0.ɵɵdefineNgModule({ type: SanitizeModule });
+SanitizeModule.ɵinj = /*@__PURE__*/ i0.ɵɵdefineInjector({ imports: [[
+            CommonModule
+        ]] });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SanitizeModule, [{
+        type: NgModule,
+        args: [{
                 imports: [
                     CommonModule
                 ],
@@ -18,6 +21,7 @@ SanitizeModule.decorators = [
                 exports: [
                     SafePipe
                 ]
-            },] }
-];
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2FuaXRpemUubW9kdWxlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQGdlbmVyaWMtdWkvbmd4LWxpc3QvIiwic291cmNlcyI6WyJjb21tb24vY2RrL3Nhbml0aXplL3Nhbml0aXplLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsT0FBTyxFQUFFLFFBQVEsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUN6QyxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0saUJBQWlCLENBQUM7QUFFL0MsT0FBTyxFQUFFLFFBQVEsRUFBRSxNQUFNLGFBQWEsQ0FBQztBQWF2QyxNQUFNLE9BQU8sY0FBYzs7O1lBWDFCLFFBQVEsU0FBQztnQkFDVCxPQUFPLEVBQUU7b0JBQ1IsWUFBWTtpQkFDWjtnQkFDRCxZQUFZLEVBQUU7b0JBQ2IsUUFBUTtpQkFDUjtnQkFDRCxPQUFPLEVBQUU7b0JBQ1IsUUFBUTtpQkFDUjthQUNEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IENvbW1vbk1vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvbW1vbic7XG5cbmltcG9ydCB7IFNhZmVQaXBlIH0gZnJvbSAnLi9zYWZlLnBpcGUnO1xuXG5ATmdNb2R1bGUoe1xuXHRpbXBvcnRzOiBbXG5cdFx0Q29tbW9uTW9kdWxlXG5cdF0sXG5cdGRlY2xhcmF0aW9uczogW1xuXHRcdFNhZmVQaXBlXG5cdF0sXG5cdGV4cG9ydHM6IFtcblx0XHRTYWZlUGlwZVxuXHRdXG59KVxuZXhwb3J0IGNsYXNzIFNhbml0aXplTW9kdWxlIHtcbn1cbiJdfQ==
+            }]
+    }], null, null); })();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(SanitizeModule, { declarations: [SafePipe], imports: [CommonModule], exports: [SafePipe] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2FuaXRpemUubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9jb21tb24vY2RrL3Nhbml0aXplL3Nhbml0aXplLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUUvQyxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sYUFBYSxDQUFDOztBQWF2QyxNQUFNLE9BQU8sY0FBYzs7NEVBQWQsY0FBYztnRUFBZCxjQUFjO29FQVZqQjtZQUNSLFlBQVk7U0FDWjt1RkFRVyxjQUFjO2NBWDFCLFFBQVE7ZUFBQztnQkFDVCxPQUFPLEVBQUU7b0JBQ1IsWUFBWTtpQkFDWjtnQkFDRCxZQUFZLEVBQUU7b0JBQ2IsUUFBUTtpQkFDUjtnQkFDRCxPQUFPLEVBQUU7b0JBQ1IsUUFBUTtpQkFDUjthQUNEOzt3RkFDWSxjQUFjLG1CQU56QixRQUFRLGFBSFIsWUFBWSxhQU1aLFFBQVEiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcblxuaW1wb3J0IHsgU2FmZVBpcGUgfSBmcm9tICcuL3NhZmUucGlwZSc7XG5cbkBOZ01vZHVsZSh7XG5cdGltcG9ydHM6IFtcblx0XHRDb21tb25Nb2R1bGVcblx0XSxcblx0ZGVjbGFyYXRpb25zOiBbXG5cdFx0U2FmZVBpcGVcblx0XSxcblx0ZXhwb3J0czogW1xuXHRcdFNhZmVQaXBlXG5cdF1cbn0pXG5leHBvcnQgY2xhc3MgU2FuaXRpemVNb2R1bGUge1xufVxuIl19

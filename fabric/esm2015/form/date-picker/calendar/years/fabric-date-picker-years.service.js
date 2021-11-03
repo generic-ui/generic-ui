@@ -1,35 +1,20 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import * as i0 from "@angular/core";
 export class FabricDatePickerYearsService {
     constructor() {
         this.years$ = new Subject();
     }
-    /**
-     * @return {?}
-     */
     onYears() {
         return this.years$.asObservable();
     }
-    /**
-     * @param {?} years
-     * @return {?}
-     */
     next(years) {
         this.years$.next(years);
     }
 }
-FabricDatePickerYearsService.decorators = [
-    { type: Injectable }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    FabricDatePickerYearsService.prototype.years$;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWRhdGUtcGlja2VyLXllYXJzLnNlcnZpY2UuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9mYWJyaWMvIiwic291cmNlcyI6WyJmb3JtL2RhdGUtcGlja2VyL2NhbGVuZGFyL3llYXJzL2ZhYnJpYy1kYXRlLXBpY2tlci15ZWFycy5zZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzNDLE9BQU8sRUFBYyxPQUFPLEVBQUUsTUFBTSxNQUFNLENBQUM7QUFHM0MsTUFBTSxPQUFPLDRCQUE0QjtJQUR6QztRQUdrQixXQUFNLEdBQUcsSUFBSSxPQUFPLEVBQXdCLENBQUM7SUFVL0QsQ0FBQzs7OztJQVJBLE9BQU87UUFDTixPQUFPLElBQUksQ0FBQyxNQUFNLENBQUMsWUFBWSxFQUFFLENBQUM7SUFDbkMsQ0FBQzs7Ozs7SUFFRCxJQUFJLENBQUMsS0FBMkI7UUFDL0IsSUFBSSxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLENBQUM7SUFDekIsQ0FBQzs7O1lBWEQsVUFBVTs7Ozs7OztJQUdWLDhDQUE4RCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEluamVjdGFibGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IE9ic2VydmFibGUsIFN1YmplY3QgfSBmcm9tICdyeGpzJztcblxuQEluamVjdGFibGUoKVxuZXhwb3J0IGNsYXNzIEZhYnJpY0RhdGVQaWNrZXJZZWFyc1NlcnZpY2Uge1xuXG5cdHByaXZhdGUgcmVhZG9ubHkgeWVhcnMkID0gbmV3IFN1YmplY3Q8QXJyYXk8QXJyYXk8bnVtYmVyPj4+KCk7XG5cblx0b25ZZWFycygpOiBPYnNlcnZhYmxlPEFycmF5PEFycmF5PG51bWJlcj4+PiB7XG5cdFx0cmV0dXJuIHRoaXMueWVhcnMkLmFzT2JzZXJ2YWJsZSgpO1xuXHR9XG5cblx0bmV4dCh5ZWFyczogQXJyYXk8QXJyYXk8bnVtYmVyPj4pOiB2b2lkIHtcblx0XHR0aGlzLnllYXJzJC5uZXh0KHllYXJzKTtcblx0fVxuXG59XG4iXX0=
+FabricDatePickerYearsService.ɵfac = function FabricDatePickerYearsService_Factory(t) { return new (t || FabricDatePickerYearsService)(); };
+FabricDatePickerYearsService.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: FabricDatePickerYearsService, factory: FabricDatePickerYearsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FabricDatePickerYearsService, [{
+        type: Injectable
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWRhdGUtcGlja2VyLXllYXJzLnNlcnZpY2UuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvZ3VpLWZhYnJpYy9zcmMvZm9ybS9kYXRlLXBpY2tlci9jYWxlbmRhci95ZWFycy9mYWJyaWMtZGF0ZS1waWNrZXIteWVhcnMuc2VydmljZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzNDLE9BQU8sRUFBYyxPQUFPLEVBQUUsTUFBTSxNQUFNLENBQUM7O0FBRzNDLE1BQU0sT0FBTyw0QkFBNEI7SUFEekM7UUFHa0IsV0FBTSxHQUFHLElBQUksT0FBTyxFQUF3QixDQUFDO0tBVTlEO0lBUkEsT0FBTztRQUNOLE9BQU8sSUFBSSxDQUFDLE1BQU0sQ0FBQyxZQUFZLEVBQUUsQ0FBQztJQUNuQyxDQUFDO0lBRUQsSUFBSSxDQUFDLEtBQTJCO1FBQy9CLElBQUksQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQ3pCLENBQUM7O3dHQVZXLDRCQUE0QjtrRkFBNUIsNEJBQTRCLFdBQTVCLDRCQUE0Qjt1RkFBNUIsNEJBQTRCO2NBRHhDLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBPYnNlcnZhYmxlLCBTdWJqZWN0IH0gZnJvbSAncnhqcyc7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBGYWJyaWNEYXRlUGlja2VyWWVhcnNTZXJ2aWNlIHtcblxuXHRwcml2YXRlIHJlYWRvbmx5IHllYXJzJCA9IG5ldyBTdWJqZWN0PEFycmF5PEFycmF5PG51bWJlcj4+PigpO1xuXG5cdG9uWWVhcnMoKTogT2JzZXJ2YWJsZTxBcnJheTxBcnJheTxudW1iZXI+Pj4ge1xuXHRcdHJldHVybiB0aGlzLnllYXJzJC5hc09ic2VydmFibGUoKTtcblx0fVxuXG5cdG5leHQoeWVhcnM6IEFycmF5PEFycmF5PG51bWJlcj4+KTogdm9pZCB7XG5cdFx0dGhpcy55ZWFycyQubmV4dCh5ZWFycyk7XG5cdH1cblxufVxuIl19

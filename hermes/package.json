@@ -1,22 +1,22 @@
 {
   "name": "@generic-ui/hermes",
-  "version": " 0.15.1",
+  "version": " 0.16.0",
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0",
-    "rxjs": "^6.0.0"
+    "@angular/common": "12.2.11",
+    "@angular/core": "12.2.11",
+    "rxjs": "6.6.7"
   },
   "main": "bundles/generic-ui-hermes.umd.js",
-  "module": "fesm5/generic-ui-hermes.js",
+  "module": "fesm2015/generic-ui-hermes.js",
   "es2015": "fesm2015/generic-ui-hermes.js",
-  "esm5": "esm5/generic-ui-hermes.js",
   "esm2015": "esm2015/generic-ui-hermes.js",
-  "fesm5": "fesm5/generic-ui-hermes.js",
   "fesm2015": "fesm2015/generic-ui-hermes.js",
   "typings": "generic-ui-hermes.d.ts",
-  "metadata": "generic-ui-hermes.metadata.json",
   "sideEffects": false,
-  "dependencies": {
-    "tslib": "^1.9.0"
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
   }
 }

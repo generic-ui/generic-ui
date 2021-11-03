@@ -1,0 +1,1 @@
+{"version":3,"file":"group.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-list/src/composition/core/api/group/group.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,YAAY,CAAC;AAErC,qBAAa,KAAK;aAEW,EAAE,EAAE,OAAO;aACpB,MAAM,EAAE,MAAM;aACd,KAAK,EAAE,MAAM;gBAFJ,EAAE,EAAE,OAAO,EACpB,MAAM,EAAE,MAAM,EACd,KAAK,EAAE,MAAM;CAGhC"}

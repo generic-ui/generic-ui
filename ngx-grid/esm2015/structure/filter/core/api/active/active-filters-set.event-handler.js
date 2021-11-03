@@ -1,47 +1,24 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Injectable } from '@angular/core';
 import { ActiveFiltersSetEvent } from '../../domain/core/active-filters-set.event';
-import { ActiveFilterArchive } from './active-filter.archive';
+import * as i0 from "@angular/core";
+import * as i1 from "./active-filter.archive";
 export class ActiveFiltersSetEventHandler {
-    /**
-     * @param {?} activeFilterRepository
-     */
     constructor(activeFilterRepository) {
         this.activeFilterRepository = activeFilterRepository;
     }
-    /**
-     * @return {?}
-     */
     forEvent() {
         return ActiveFiltersSetEvent;
     }
-    /**
-     * @param {?} activeFiltersSetEvent
-     * @return {?}
-     */
     handle(activeFiltersSetEvent) {
         if (activeFiltersSetEvent.ofMessageType('ActiveFiltersSetEvent')) {
-            /** @type {?} */
             const activeFilters = activeFiltersSetEvent.getFilters();
             this.activeFilterRepository.next(activeFiltersSetEvent.getAggregateId(), activeFilters);
         }
     }
 }
-ActiveFiltersSetEventHandler.decorators = [
-    { type: Injectable }
-];
-/** @nocollapse */
-ActiveFiltersSetEventHandler.ctorParameters = () => [
-    { type: ActiveFilterArchive }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ActiveFiltersSetEventHandler.prototype.activeFilterRepository;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWN0aXZlLWZpbHRlcnMtc2V0LmV2ZW50LWhhbmRsZXIuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AZ2VuZXJpYy11aS9uZ3gtZ3JpZC8iLCJzb3VyY2VzIjpbInN0cnVjdHVyZS9maWx0ZXIvY29yZS9hcGkvYWN0aXZlL2FjdGl2ZS1maWx0ZXJzLXNldC5ldmVudC1oYW5kbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBSzNDLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxNQUFNLDRDQUE0QyxDQUFDO0FBQ25GLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHlCQUF5QixDQUFDO0FBSTlELE1BQU0sT0FBTyw0QkFBNEI7Ozs7SUFFeEMsWUFBNkIsc0JBQTJDO1FBQTNDLDJCQUFzQixHQUF0QixzQkFBc0IsQ0FBcUI7SUFDeEUsQ0FBQzs7OztJQUVELFFBQVE7UUFDUCxPQUFPLHFCQUFxQixDQUFDO0lBQzlCLENBQUM7Ozs7O0lBRUQsTUFBTSxDQUFDLHFCQUE0QztRQUVsRCxJQUFJLHFCQUFxQixDQUFDLGFBQWEsQ0FBQyx1QkFBdUIsQ0FBQyxFQUFFOztrQkFFM0QsYUFBYSxHQUF5QyxxQkFBcUIsQ0FBQyxVQUFVLEVBQUU7WUFFOUYsSUFBSSxDQUFDLHNCQUFzQixDQUFDLElBQUksQ0FBQyxxQkFBcUIsQ0FBQyxjQUFjLEVBQUUsRUFBRSxhQUFhLENBQUMsQ0FBQztTQUN4RjtJQUNGLENBQUM7OztZQWxCRCxVQUFVOzs7O1lBSEYsbUJBQW1COzs7Ozs7O0lBTWYsOERBQTREIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSW5qZWN0YWJsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBEb21haW5FdmVudEhhbmRsZXIsIERvbWFpbkV2ZW50VHlwZSB9IGZyb20gJ0BnZW5lcmljLXVpL2hlcm1lcyc7XG5cbmltcG9ydCB7IFN0cnVjdHVyZUlkIH0gZnJvbSAnLi4vLi4vLi4vLi4vY29yZS9hcGkvc3RydWN0dXJlLmlkJztcbmltcG9ydCB7IEFjdGl2ZUZpbHRlcnNTZXRFdmVudCB9IGZyb20gJy4uLy4uL2RvbWFpbi9jb3JlL2FjdGl2ZS1maWx0ZXJzLXNldC5ldmVudCc7XG5pbXBvcnQgeyBBY3RpdmVGaWx0ZXJBcmNoaXZlIH0gZnJvbSAnLi9hY3RpdmUtZmlsdGVyLmFyY2hpdmUnO1xuaW1wb3J0IHsgQWN0aXZlRmlsdGVyUmVhZE1vZGVsIH0gZnJvbSAnLi9hY3RpdmUtZmlsdGVyLnJlYWQtbW9kZWwnO1xuXG5ASW5qZWN0YWJsZSgpXG5leHBvcnQgY2xhc3MgQWN0aXZlRmlsdGVyc1NldEV2ZW50SGFuZGxlciBpbXBsZW1lbnRzIERvbWFpbkV2ZW50SGFuZGxlcjxTdHJ1Y3R1cmVJZCwgQWN0aXZlRmlsdGVyc1NldEV2ZW50PiB7XG5cblx0Y29uc3RydWN0b3IocHJpdmF0ZSByZWFkb25seSBhY3RpdmVGaWx0ZXJSZXBvc2l0b3J5OiBBY3RpdmVGaWx0ZXJBcmNoaXZlKSB7XG5cdH1cblxuXHRmb3JFdmVudCgpOiBEb21haW5FdmVudFR5cGU8QWN0aXZlRmlsdGVyc1NldEV2ZW50PiB7XG5cdFx0cmV0dXJuIEFjdGl2ZUZpbHRlcnNTZXRFdmVudDtcblx0fVxuXG5cdGhhbmRsZShhY3RpdmVGaWx0ZXJzU2V0RXZlbnQ6IEFjdGl2ZUZpbHRlcnNTZXRFdmVudCk6IHZvaWQge1xuXG5cdFx0aWYgKGFjdGl2ZUZpbHRlcnNTZXRFdmVudC5vZk1lc3NhZ2VUeXBlKCdBY3RpdmVGaWx0ZXJzU2V0RXZlbnQnKSkge1xuXG5cdFx0XHRjb25zdCBhY3RpdmVGaWx0ZXJzOiBSZWFkb25seUFycmF5PEFjdGl2ZUZpbHRlclJlYWRNb2RlbD4gPSBhY3RpdmVGaWx0ZXJzU2V0RXZlbnQuZ2V0RmlsdGVycygpO1xuXG5cdFx0XHR0aGlzLmFjdGl2ZUZpbHRlclJlcG9zaXRvcnkubmV4dChhY3RpdmVGaWx0ZXJzU2V0RXZlbnQuZ2V0QWdncmVnYXRlSWQoKSwgYWN0aXZlRmlsdGVycyk7XG5cdFx0fVxuXHR9XG5cbn1cbiJdfQ==
+ActiveFiltersSetEventHandler.ɵfac = function ActiveFiltersSetEventHandler_Factory(t) { return new (t || ActiveFiltersSetEventHandler)(i0.ɵɵinject(i1.ActiveFilterArchive)); };
+ActiveFiltersSetEventHandler.ɵprov = /*@__PURE__*/ i0.ɵɵdefineInjectable({ token: ActiveFiltersSetEventHandler, factory: ActiveFiltersSetEventHandler.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ActiveFiltersSetEventHandler, [{
+        type: Injectable
+    }], function () { return [{ type: i1.ActiveFilterArchive }]; }, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYWN0aXZlLWZpbHRlcnMtc2V0LmV2ZW50LWhhbmRsZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL3N0cnVjdHVyZS9maWx0ZXIvY29yZS9hcGkvYWN0aXZlL2FjdGl2ZS1maWx0ZXJzLXNldC5ldmVudC1oYW5kbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFLM0MsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sNENBQTRDLENBQUM7OztBQUtuRixNQUFNLE9BQU8sNEJBQTRCO0lBRXhDLFlBQTZCLHNCQUEyQztRQUEzQywyQkFBc0IsR0FBdEIsc0JBQXNCLENBQXFCO0lBQ3hFLENBQUM7SUFFRCxRQUFRO1FBQ1AsT0FBTyxxQkFBcUIsQ0FBQztJQUM5QixDQUFDO0lBRUQsTUFBTSxDQUFDLHFCQUE0QztRQUVsRCxJQUFJLHFCQUFxQixDQUFDLGFBQWEsQ0FBQyx1QkFBdUIsQ0FBQyxFQUFFO1lBRWpFLE1BQU0sYUFBYSxHQUF5QyxxQkFBcUIsQ0FBQyxVQUFVLEVBQUUsQ0FBQztZQUUvRixJQUFJLENBQUMsc0JBQXNCLENBQUMsSUFBSSxDQUFDLHFCQUFxQixDQUFDLGNBQWMsRUFBRSxFQUFFLGFBQWEsQ0FBQyxDQUFDO1NBQ3hGO0lBQ0YsQ0FBQzs7d0dBakJXLDRCQUE0QjtrRkFBNUIsNEJBQTRCLFdBQTVCLDRCQUE0Qjt1RkFBNUIsNEJBQTRCO2NBRHhDLFVBQVUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBJbmplY3RhYmxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IERvbWFpbkV2ZW50SGFuZGxlciwgRG9tYWluRXZlbnRUeXBlIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuaW1wb3J0IHsgU3RydWN0dXJlSWQgfSBmcm9tICcuLi8uLi8uLi8uLi9jb3JlL2FwaS9zdHJ1Y3R1cmUuaWQnO1xuaW1wb3J0IHsgQWN0aXZlRmlsdGVyc1NldEV2ZW50IH0gZnJvbSAnLi4vLi4vZG9tYWluL2NvcmUvYWN0aXZlLWZpbHRlcnMtc2V0LmV2ZW50JztcbmltcG9ydCB7IEFjdGl2ZUZpbHRlckFyY2hpdmUgfSBmcm9tICcuL2FjdGl2ZS1maWx0ZXIuYXJjaGl2ZSc7XG5pbXBvcnQgeyBBY3RpdmVGaWx0ZXJSZWFkTW9kZWwgfSBmcm9tICcuL2FjdGl2ZS1maWx0ZXIucmVhZC1tb2RlbCc7XG5cbkBJbmplY3RhYmxlKClcbmV4cG9ydCBjbGFzcyBBY3RpdmVGaWx0ZXJzU2V0RXZlbnRIYW5kbGVyIGltcGxlbWVudHMgRG9tYWluRXZlbnRIYW5kbGVyPFN0cnVjdHVyZUlkLCBBY3RpdmVGaWx0ZXJzU2V0RXZlbnQ+IHtcblxuXHRjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IGFjdGl2ZUZpbHRlclJlcG9zaXRvcnk6IEFjdGl2ZUZpbHRlckFyY2hpdmUpIHtcblx0fVxuXG5cdGZvckV2ZW50KCk6IERvbWFpbkV2ZW50VHlwZTxBY3RpdmVGaWx0ZXJzU2V0RXZlbnQ+IHtcblx0XHRyZXR1cm4gQWN0aXZlRmlsdGVyc1NldEV2ZW50O1xuXHR9XG5cblx0aGFuZGxlKGFjdGl2ZUZpbHRlcnNTZXRFdmVudDogQWN0aXZlRmlsdGVyc1NldEV2ZW50KTogdm9pZCB7XG5cblx0XHRpZiAoYWN0aXZlRmlsdGVyc1NldEV2ZW50Lm9mTWVzc2FnZVR5cGUoJ0FjdGl2ZUZpbHRlcnNTZXRFdmVudCcpKSB7XG5cblx0XHRcdGNvbnN0IGFjdGl2ZUZpbHRlcnM6IFJlYWRvbmx5QXJyYXk8QWN0aXZlRmlsdGVyUmVhZE1vZGVsPiA9IGFjdGl2ZUZpbHRlcnNTZXRFdmVudC5nZXRGaWx0ZXJzKCk7XG5cblx0XHRcdHRoaXMuYWN0aXZlRmlsdGVyUmVwb3NpdG9yeS5uZXh0KGFjdGl2ZUZpbHRlcnNTZXRFdmVudC5nZXRBZ2dyZWdhdGVJZCgpLCBhY3RpdmVGaWx0ZXJzKTtcblx0XHR9XG5cdH1cblxufVxuIl19

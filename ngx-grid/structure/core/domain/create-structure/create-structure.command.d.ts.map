@@ -1,0 +1,1 @@
+{"version":3,"file":"create-structure.command.d.ts","sourceRoot":"","sources":["../../../../../build-cli/projects/ngx-grid/src/structure/core/domain/create-structure/create-structure.command.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,wBAAwB,CAAC;AACrD,OAAO,EAAE,gBAAgB,EAAE,MAAM,sBAAsB,CAAC;AAExD,qBAAa,sBAAuB,SAAQ,gBAAgB;gBAE/C,WAAW,EAAE,WAAW;CAIpC"}

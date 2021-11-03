@@ -10,3 +10,4 @@ export declare abstract class FabricCords extends FabricGeometry {
     private calculateCords;
     private calculateDirection;
 }
+//# sourceMappingURL=fabric-cords.d.ts.map

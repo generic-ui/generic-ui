@@ -5,3 +5,4 @@ export declare class SetScrollBarPositionCommand extends StructureCommand {
     constructor(structureId: StructureId, position: number);
     getPosition(): number;
 }
+//# sourceMappingURL=set-scroll-bar-position.command.d.ts.map

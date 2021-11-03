@@ -46,3 +46,4 @@ export declare class SourceManager {
     private deleteManyOriginItemByIndex;
     private deleteManyOriginItemByItemID;
 }
+//# sourceMappingURL=source.manager.d.ts.map

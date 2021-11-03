@@ -4,3 +4,4 @@ export declare abstract class ReadModelEntity<T extends ReadModelEntityId> {
     protected constructor(gui: T);
     getId(): T;
 }
+//# sourceMappingURL=read-model-entity.d.ts.map

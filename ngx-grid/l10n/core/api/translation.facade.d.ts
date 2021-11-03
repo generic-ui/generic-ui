@@ -8,3 +8,4 @@ export declare abstract class TranslationFacade {
     abstract changeTranslation(change: TranslationChange): void;
     abstract setResolver(resolver: (key: string, value: string) => string): void;
 }
+//# sourceMappingURL=translation.facade.d.ts.map

@@ -1,7 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../../composition/core/domain-read/definition/cell-template-with-accessor';
-import { StructureCellEditArchive } from '../../edit/structure.cell-edit.archive';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourceCommandInvoker } from '../../../../source/core/api/source.command-invoker';
 import { ChangedValueEmitter } from '../../../../../composition/core/domain-read/edit/changed-value.emitter';
@@ -10,12 +9,13 @@ import { StructureCellEditCloseAllService } from '../../edit/structure.cell-edit
 import { StructureId } from '../../../../core/api/structure.id';
 import { CompositionWarehouse } from '../../../../../composition/core/api/composition.warehouse';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
+import { CellEditorManager } from '../../../core/domain/edit/cell-editor.manager';
+import * as i0 from "@angular/core";
 export declare class StructureCellComponent extends SmartComponent implements AfterViewInit {
     private readonly changeDetectorRef;
     private readonly elementRef;
     private readonly structureId;
     private readonly compositionId;
-    private readonly structureCellEditArchive;
     private readonly structureCellEditStore;
     private readonly cellEditCloseAllService;
     private readonly sourceCommandService;
@@ -23,15 +23,17 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     entity: ItemEntity;
     cell: CellTemplateWithAccessor;
     editMode: boolean;
-    cellEditingEnabled: boolean;
+    cellEditorManager: CellEditorManager;
     searchPhrase: string;
+    rowIndex: number;
+    columnIndex: number;
     inEditMode: boolean;
     editContext: any;
     valueChanges$: ChangedValueEmitter<any>;
     status$: ChangedValueEmitter<any>;
     actualValue: any;
     isHighlighted: boolean;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, structureCellEditArchive: StructureCellEditArchive, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandInvoker, compositionWarehouse: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, structureCellEditStore: StructureCellEditStore, cellEditCloseAllService: StructureCellEditCloseAllService, sourceCommandService: SourceCommandInvoker, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     isCellEditingEnabled(): boolean;
@@ -45,4 +47,7 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     private publishEditCancel;
     private publishEditSubmit;
     protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": "entity"; "cell": "cell"; "editMode": "editMode"; "cellEditorManager": "cellEditorManager"; "searchPhrase": "searchPhrase"; "rowIndex": "rowIndex"; "columnIndex": "columnIndex"; }, {}, never, never>;
 }
+//# sourceMappingURL=structure.cell.component.d.ts.map

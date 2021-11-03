@@ -18,3 +18,4 @@ export declare class HermesObservable<T> {
     protected getSubscription(): HermesSubscription;
     private isObserver;
 }
+//# sourceMappingURL=hermes.observable.d.ts.map

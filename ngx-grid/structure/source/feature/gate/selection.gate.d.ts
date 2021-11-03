@@ -7,6 +7,7 @@ import { FormationEventRepository } from '../../core/api/formation/formation.eve
 import { FormationCommandInvoker } from '../../core/api/formation/formation.command-invoker';
 import { RowSelectionTypeArchive } from '../../core/api/formation/type/row-selection-type.archive';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';
+import * as i0 from "@angular/core";
 export declare abstract class SelectionGate extends Gate implements OnChanges, OnInit, OnDestroy {
     protected readonly structureId: StructureId;
     protected readonly formationEventService: FormationEventRepository;
@@ -19,4 +20,7 @@ export declare abstract class SelectionGate extends Gate implements OnChanges, O
     ngOnChanges(changes: NgChanges<SelectionGate>): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SelectionGate, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SelectionGate, never, never, { "rowSelection": "rowSelection"; }, { "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; }, never>;
 }
+//# sourceMappingURL=selection.gate.d.ts.map

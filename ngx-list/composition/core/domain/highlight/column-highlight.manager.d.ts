@@ -6,3 +6,4 @@ export declare class ColumnHighlightManager {
     toggle(columnId: ColumnId): void;
     remove(columnId: ColumnId): void;
 }
+//# sourceMappingURL=column-highlight.manager.d.ts.map

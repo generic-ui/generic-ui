@@ -5,6 +5,7 @@ import { SearchWarehouse } from '../api/search.warehouse';
 import { HermesObservable } from '@generic-ui/hermes';
 import { SearchHighlightArchive } from '../domain/highlight/search-highlight.archive';
 import { SearchPlaceholderArchive } from '../domain/placeholder/search-placeholder.archive';
+import * as i0 from "@angular/core";
 export declare class SearchDomainWarehouse extends SearchWarehouse {
     private readonly searchingEnabledArchive;
     private readonly searchPhraseArchive;
@@ -15,4 +16,7 @@ export declare class SearchDomainWarehouse extends SearchWarehouse {
     onPhrase(structureId: StructureId): HermesObservable<string>;
     onHighlight(structureId: StructureId): HermesObservable<boolean>;
     onPlaceholder(structureId: StructureId): HermesObservable<string>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SearchDomainWarehouse, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SearchDomainWarehouse>;
 }
+//# sourceMappingURL=search.domain-warehouse.d.ts.map

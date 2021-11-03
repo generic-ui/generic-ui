@@ -5,6 +5,7 @@ import { Theme } from '../../themes/theme';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
 import { FabricThemedComponent } from '../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../themes/fabric-modal-theme.service';
+import * as i0 from "@angular/core";
 export declare class FabricInlineDialogComponent extends FabricThemedComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly componentFactoryResolver;
     private readonly changeDetectorRef;
@@ -24,4 +25,7 @@ export declare class FabricInlineDialogComponent extends FabricThemedComponent i
     clickOutside(event: any): void;
     private isContainerClicked;
     private createNestedComponent;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricInlineDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricInlineDialogComponent, "ng-component", never, {}, {}, never, never>;
 }
+//# sourceMappingURL=fabric-inline-dialog.component.d.ts.map

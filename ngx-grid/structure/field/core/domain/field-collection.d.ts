@@ -15,3 +15,4 @@ export declare class FieldCollection {
     private addField;
     private clear;
 }
+//# sourceMappingURL=field-collection.d.ts.map

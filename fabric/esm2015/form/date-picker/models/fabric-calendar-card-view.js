@@ -1,13 +1,6 @@
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @enum {number} */
-const FabricCalendarCardView = {
-    NEXT: 0,
-    PREV: 1,
-};
-export { FabricCalendarCardView };
-FabricCalendarCardView[FabricCalendarCardView.NEXT] = 'NEXT';
-FabricCalendarCardView[FabricCalendarCardView.PREV] = 'PREV';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWNhbGVuZGFyLWNhcmQtdmlldy5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BnZW5lcmljLXVpL2ZhYnJpYy8iLCJzb3VyY2VzIjpbImZvcm0vZGF0ZS1waWNrZXIvbW9kZWxzL2ZhYnJpYy1jYWxlbmRhci1jYXJkLXZpZXcudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7O0lBQ0MsT0FBSTtJQUNKLE9BQUkiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBGYWJyaWNDYWxlbmRhckNhcmRWaWV3IHtcblx0TkVYVCxcblx0UFJFVlxufVxuIl19
+export var FabricCalendarCardView;
+(function (FabricCalendarCardView) {
+    FabricCalendarCardView[FabricCalendarCardView["NEXT"] = 0] = "NEXT";
+    FabricCalendarCardView[FabricCalendarCardView["PREV"] = 1] = "PREV";
+})(FabricCalendarCardView || (FabricCalendarCardView = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZmFicmljLWNhbGVuZGFyLWNhcmQtdmlldy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktZmFicmljL3NyYy9mb3JtL2RhdGUtcGlja2VyL21vZGVscy9mYWJyaWMtY2FsZW5kYXItY2FyZC12aWV3LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLHNCQUdYO0FBSEQsV0FBWSxzQkFBc0I7SUFDakMsbUVBQUksQ0FBQTtJQUNKLG1FQUFJLENBQUE7QUFDTCxDQUFDLEVBSFcsc0JBQXNCLEtBQXRCLHNCQUFzQixRQUdqQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIEZhYnJpY0NhbGVuZGFyQ2FyZFZpZXcge1xuXHRORVhULFxuXHRQUkVWXG59XG4iXX0=

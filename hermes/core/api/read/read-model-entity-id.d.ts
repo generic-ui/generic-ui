@@ -5,3 +5,4 @@ export declare class ReadModelEntityId {
     getId(): string;
     equals(entityId: ReadModelEntityId): boolean;
 }
+//# sourceMappingURL=read-model-entity-id.d.ts.map

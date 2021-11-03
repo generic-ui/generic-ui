@@ -31,3 +31,4 @@ export declare class StructureDefinition {
     getBottomPaging(): PagingDefinition;
     getTopPaging(): PagingDefinition;
 }
+//# sourceMappingURL=structure-definition.d.ts.map

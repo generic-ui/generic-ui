@@ -4,3 +4,4 @@ export declare class ChangeSortParams {
     readonly direction: boolean;
     constructor(fieldId: ColumnFieldId, direction: boolean);
 }
+//# sourceMappingURL=change-sort.params.d.ts.map
