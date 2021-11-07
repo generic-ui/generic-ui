@@ -35,6 +35,6 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     moveLeft(): void;
     moveRight(): void;
     highlightColumn(): void;
-    private setTabTitles;
     protected getSelectorName(): string;
+    private setTabTitles;
 }

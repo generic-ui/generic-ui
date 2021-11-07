@@ -14,11 +14,11 @@ export declare type DeleteOriginItemPayload = {
 export declare class DeleteOriginItemCommand extends StructureCommand {
     private readonly payload;
     private readonly type;
+    constructor(structureId: StructureId, payload: number | OriginId | Array<number> | Array<OriginId>, type: DeleteCommandPayloadType);
     static byIndex(structureId: StructureId, index: number): DeleteOriginItemCommand;
     static byManyIndex(structureId: StructureId, indexes: Array<number>): DeleteOriginItemCommand;
     static byItemId(structureId: StructureId, itemId: OriginId): DeleteOriginItemCommand;
     static byManyItemId(structureId: StructureId, itemIds: Array<OriginId>): DeleteOriginItemCommand;
-    constructor(structureId: StructureId, payload: number | OriginId | Array<number> | Array<OriginId>, type: DeleteCommandPayloadType);
     getType(): DeleteCommandPayloadType;
     getPayload(): number | OriginId | Array<number> | Array<OriginId>;
 }

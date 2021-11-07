@@ -11,10 +11,10 @@ export declare class PagingManager {
     private pagerTop;
     private pagerBottom;
     private sourceSize;
-    static default(logger: Logger): PagingManager;
     private readonly events;
     private readonly logger;
     private constructor();
+    static default(logger: Logger): PagingManager;
     static fromConfig(paging: PagingConfigWithId, logger: Logger): PagingManager;
     isEnabled(): boolean;
     isDisabled(): boolean;

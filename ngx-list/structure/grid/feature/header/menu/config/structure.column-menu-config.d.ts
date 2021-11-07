@@ -4,12 +4,12 @@ export declare class StructureColumnMenuConfig {
     private sort;
     private filter;
     private columnsManager;
-    static default(): StructureColumnMenuConfig;
-    static fromConfig(config: ColumnMenuConfig): StructureColumnMenuConfig;
     private mainMenu;
     private filterMenu;
     private columnsMenu;
     constructor(enabled?: boolean, sort?: boolean, filter?: boolean, columnsManager?: boolean);
+    static default(): StructureColumnMenuConfig;
+    static fromConfig(config: ColumnMenuConfig): StructureColumnMenuConfig;
     isEnabled(): boolean;
     isMainEnabled(): boolean;
     isSortingEnabled(): boolean;

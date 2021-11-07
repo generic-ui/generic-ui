@@ -1,5 +1,5 @@
 import { StructureId } from '../../../../core/api/structure.id';
-import { FilterConfig } from '../../api/filter-config';
+import { FilterConfig } from '../../api/filter.config';
 import { StructureCommand } from '../../../../core/domain/structure.command';
 export declare class SetConfigFilterCommand extends StructureCommand {
     private readonly filterConfig;

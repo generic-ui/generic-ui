@@ -14,8 +14,8 @@ import { OriginItemEntity } from '../../source/core/domain/origin/origin-item-en
 import { SortingConfig } from '../../sorting/core/api/sorting-config';
 import { FieldId } from '../../field/core/domain/field/field.id';
 import { StructureSorter } from '../../sorting/core/domain/structure.sorter';
-import { FilterConfig } from '../../filter/core/api/filter-config';
-import { QuickFiltersConfig } from '../../filter/core/api/quick-filters.config';
+import { FilterConfig } from '../../filter/core/api/filter.config';
+import { QuickFiltersConfig } from '../../filter/core/api/quick-filter/quick-filters.config';
 import { SearchConfig } from '../../search/core/api/search-config';
 import { SearchManager } from '../../search/core/domain/search.manager';
 import { SortOrder } from '../../../composition/core/domain/column/sort/sort-order';

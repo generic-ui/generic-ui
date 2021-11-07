@@ -20,8 +20,8 @@ export declare class StructureCellEditBooleanComponent extends SmartComponent im
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, sourceCommandService: SourceCommandInvoker);
     ngOnChanges(changes: NgChanges<StructureCellEditBooleanComponent>): void;
     ngOnInit(): void;
+    protected getSelectorName(): string;
     private submitChanges;
     private initEditContext;
     private observeValueChanges;
-    protected getSelectorName(): string;
 }

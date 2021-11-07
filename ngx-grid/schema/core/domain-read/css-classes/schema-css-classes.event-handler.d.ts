@@ -15,7 +15,7 @@ export declare class SchemaCssClassesEventHandler implements MultiDomainEventHan
     verticalGrid: boolean;
     schemaTheme: SchemaTheme;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository);
-    private publish;
     forEvents(): Array<DomainEventType<SchemaCssClassesEventType>>;
     handle(event: SchemaCssClassesEventType): void;
+    private publish;
 }

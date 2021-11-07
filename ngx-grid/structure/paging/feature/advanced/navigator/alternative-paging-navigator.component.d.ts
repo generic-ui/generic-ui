@@ -18,7 +18,7 @@ export declare class AlternativePagingNavigatorComponent extends PureComponent i
     nextPage(): void;
     firstPage(): void;
     lastPage(): void;
+    protected getSelectorName(): string;
     private calculatePrev;
     private calculateNext;
-    protected getSelectorName(): string;
 }

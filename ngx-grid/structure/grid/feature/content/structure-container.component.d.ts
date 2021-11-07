@@ -41,10 +41,10 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
+    protected getSelectorName(): string;
     private setContainerHeight;
     private setSourceHeight;
     private recalculateContainer;
     private enableScrollObservation;
     private disableScrollObservation;
-    protected getSelectorName(): string;
 }

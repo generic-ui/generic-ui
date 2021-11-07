@@ -10,9 +10,9 @@ export declare const structureDomainEventHandlers: Provider[][];
 export declare const structureProviders: (typeof StructureInitialValuesReadyArchive | typeof StructureWarehouse | typeof StructureReadModelRootConverter | typeof import("../../../../generic-ui-ngx-grid").ɵba[] | typeof StructureAggregateFactory | (typeof import("../../../../generic-ui-ngx-grid").ɵz | {
     provide: typeof import("../../../../generic-ui-ngx-grid").ɵy;
     useClass: typeof import("../../../../generic-ui-ngx-grid").ɵx;
-})[][] | (typeof import("../../../../generic-ui-ngx-grid").ɵim | {
+})[][] | (typeof import("../../../../generic-ui-ngx-grid").ɵio | {
     provide: typeof import("./read/structure.read-model-repository").StructureReadModelRepository;
-    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵri;
+    useClass: typeof import("../../../../generic-ui-ngx-grid").ɵrk;
 })[][] | {
     provide: typeof StructureCommandInvoker;
     useClass: typeof StructureDomainCommandInvoker;

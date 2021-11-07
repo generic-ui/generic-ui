@@ -11,7 +11,7 @@ export declare class PagingSelectComponent extends PureComponent implements OnCh
     constructor(elementRef: ElementRef);
     ngOnChanges(changes: NgChanges<PagingSelectComponent>): void;
     changePageSize(pageSize: GuiSelectOption): void;
+    protected getSelectorName(): string;
     private getSelectPageSizes;
     private getSelectPageSize;
-    protected getSelectorName(): string;
 }

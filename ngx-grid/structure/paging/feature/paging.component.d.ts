@@ -32,6 +32,6 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     changePageSize(pageSize: number): void;
     nextPage(): void;
     prevPage(): void;
-    private calculatePagingVisibility;
     protected getSelectorName(): string;
+    private calculatePagingVisibility;
 }

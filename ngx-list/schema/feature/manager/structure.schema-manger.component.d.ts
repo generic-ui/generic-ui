@@ -23,7 +23,7 @@ export declare class StructureSchemaMangerComponent extends SmartComponent imple
     toggleRowColoring(schemaRowColoring: GuiSelectOption): void;
     toggleVerticalGrid(verticalGrid: boolean): void;
     toggleHorizontalGrid(horizontalGrid: boolean): void;
+    protected getSelectorName(): string;
     private toTheme;
     private toRowColoring;
-    protected getSelectorName(): string;
 }

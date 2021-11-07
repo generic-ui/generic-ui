@@ -1,7 +1,7 @@
 import { CommandInvoker } from '@generic-ui/hermes';
 import { StructureId } from './structure.id';
-import { FilterConfig } from '../../filter/core/api/filter-config';
-import { QuickFiltersConfig } from '../../filter/core/api/quick-filters.config';
+import { FilterConfig } from '../../filter/core/api/filter.config';
+import { QuickFiltersConfig } from '../../filter/core/api/quick-filter/quick-filters.config';
 import { SchemaTheme } from '../../../schema/core/api/theme/schema-theme';
 import { CellEditConfig } from '../../grid/core/api/edit/cell-edit.config';
 export declare abstract class StructureCommandInvoker implements CommandInvoker {

@@ -14,7 +14,7 @@ export declare class ListViewContainerModeSelectComponent extends SmartComponent
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, listViewReadModelRootId: ListViewReadModelRootId, listViewWarehouse: ListViewWarehouse, listViewModeRepository: ListViewModeArchive);
     ngOnInit(): void;
     changeContainerMode(mode: GuiSelectOption): void;
+    protected getSelectorName(): string;
     private toGuiSelectOption;
     private toListViewMode;
-    protected getSelectorName(): string;
 }

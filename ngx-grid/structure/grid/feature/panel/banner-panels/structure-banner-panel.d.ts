@@ -5,8 +5,8 @@ import { HermesObservable } from '@generic-ui/hermes';
 export declare abstract class StructureBannerPanel extends SmartComponent implements OnInit {
     bannerPanel: string | (() => string);
     protected constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef);
-    ngOnInit(): void;
     abstract onBannerPanelConfig(): HermesObservable<StructureBannerPanelConfig>;
     abstract getSelectorName(): string;
     abstract getPanelTitle(): string;
+    ngOnInit(): void;
 }

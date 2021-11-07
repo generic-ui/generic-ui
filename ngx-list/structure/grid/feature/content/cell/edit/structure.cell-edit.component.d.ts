@@ -21,11 +21,11 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     ngOnChanges(changes: NgChanges<StructureCellEditComponent>): void;
     ngOnInit(): void;
     submitChangesAndExit(): void;
+    protected getSelectorName(): string;
     private initEditContext;
     private observeValueChanges;
     private publishEditState;
     private publishEditEnter;
     private publishEditCancel;
     private publishEditSubmit;
-    protected getSelectorName(): string;
 }

@@ -4,11 +4,11 @@ import { FieldId } from './field.id';
 import { OriginItemEntity } from '../../../../source/core/domain/origin/origin-item-entity';
 import { SummariesType } from '../../../../summaries/core/domain/summaries.type';
 export declare class Field {
-    static of(id: FieldId, dataField: DataFieldTypes, name: string): Field;
     private readonly id;
     private readonly field;
     private readonly name;
     constructor(id: FieldId, field: DataFieldTypes, name: string);
+    static of(id: FieldId, dataField: DataFieldTypes, name: string): Field;
     getId(): FieldId;
     getKey(): string;
     getDataType(): DataType;
