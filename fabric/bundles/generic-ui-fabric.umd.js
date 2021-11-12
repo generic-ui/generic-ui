@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('rxjs/operators'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@generic-ui/fabric', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'rxjs/operators', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global["generic-ui"] = global["generic-ui"] || {}, global["generic-ui"].fabric = {}), global.ng.core, global.ng.common, global.ng.forms, global.rxjs.operators, global.rxjs));
-})(this, (function (exports, core, common, forms, operators, rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('rxjs/operators'), require('rxjs'), require('rxjs/')) :
+    typeof define === 'function' && define.amd ? define('@generic-ui/fabric', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'rxjs/operators', 'rxjs', 'rxjs/'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global["generic-ui"] = global["generic-ui"] || {}, global["generic-ui"].fabric = {}), global.ng.core, global.ng.common, global.ng.forms, global.rxjs.operators, global.rxjs, global.rxjs[""]));
+})(this, (function (exports, core, common, forms, operators, rxjs, _) { 'use strict';
 
     exports.Theme = void 0;
     (function (Theme) {
@@ -14,18 +14,18 @@
     })(exports.Theme || (exports.Theme = {}));
 
     /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    Copyright (c) Microsoft Corporation.
 
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
     var extendStatics = function (d, b) {
@@ -59,9 +59,10 @@
             if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
                 t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++)
-                if (e.indexOf(p[i]) < 0)
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
                     t[p[i]] = s[p[i]];
+            }
         return t;
     }
     function __decorate(decorators, target, key, desc) {
@@ -82,6 +83,7 @@
             return Reflect.metadata(metadataKey, metadataValue);
     }
     function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
             function fulfilled(value) { try {
                 step(generator.next(value));
@@ -95,7 +97,7 @@
             catch (e) {
                 reject(e);
             } }
-            function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
@@ -168,22 +170,29 @@
             return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
+    function __createBinding(o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        o[k2] = m[k];
+    }
     function __exportStar(m, exports) {
         for (var p in m)
-            if (!exports.hasOwnProperty(p))
+            if (p !== "default" && !exports.hasOwnProperty(p))
                 exports[p] = m[p];
     }
     function __values(o) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
         if (m)
             return m.call(o);
-        return {
-            next: function () {
-                if (o && i >= o.length)
-                    o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -214,6 +223,15 @@
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    }
+    ;
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
     }
@@ -272,6 +290,19 @@
     }
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+    function __classPrivateFieldGet(receiver, privateMap) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to get private field on non-instance");
+        }
+        return privateMap.get(receiver);
+    }
+    function __classPrivateFieldSet(receiver, privateMap, value) {
+        if (!privateMap.has(receiver)) {
+            throw new TypeError("attempted to set private field on non-instance");
+        }
+        privateMap.set(receiver, value);
+        return value;
     }
 
     var Indicator = /** @class */ (function () {
@@ -718,28 +749,19 @@
             return this.weeks;
         };
         FabricDatePickerWeeks.prototype.createWeeks = function (date) {
-            var day = date.getDate();
-            if (this.weeks[0].length === 0 && day === 1) {
-                this.createWeek(date, this.weeks[0]);
-            }
-            if (this.weeks[1].length === 0 && day > this.getLastDayNumber(this.weeks[0])) {
-                this.createWeek(this.getLastDayDate(this.weeks[0]), this.weeks[1]);
-            }
-            if (this.weeks[2].length === 0 && day > this.getLastDayNumber(this.weeks[1])) {
-                this.createWeek(this.getLastDayDate(this.weeks[1]), this.weeks[2]);
-            }
-            if (this.weeks[3].length === 0 && day > this.getLastDayNumber(this.weeks[2])) {
-                this.createWeek(this.getLastDayDate(this.weeks[2]), this.weeks[3]);
-            }
-            if (this.weeks[4].length === 0 && day >= this.getLastDayNumber(this.weeks[3])) {
-                this.createWeek(this.getLastDayDate(this.weeks[3]), this.weeks[4]);
-            }
-            if (this.weeks[5].length === 0 && day >= this.getLastDayNumber(this.weeks[4])) {
-                this.createWeek(this.getLastDayDate(this.weeks[4]), this.weeks[5]);
+            var day = date.getDate(), maxWeekNumber = 6;
+            for (var i = 0; i < maxWeekNumber; i++) {
+                if (day === 1) {
+                    this.addDaysToWeek(i, date);
+                }
+                else if (this.canAddDaysToWeek(i, day)) {
+                    this.addDaysToWeek(i, this.getLastDayDate(this.weeks[i - 1]));
+                }
             }
             this.weeks = [this.weeks[0], this.weeks[1], this.weeks[2], this.weeks[3], this.weeks[4], this.weeks[5]];
         };
-        FabricDatePickerWeeks.prototype.createWeek = function (date, week) {
+        FabricDatePickerWeeks.prototype.addDaysToWeek = function (weekNumber, date) {
+            var week = this.weeks[weekNumber];
             for (var i = 1; i <= 7; i++) {
                 var isFirstDaySunday = date.getDay() === 0 && this.weeks[0].length === 0;
                 var day = void 0;
@@ -764,6 +786,11 @@
         FabricDatePickerWeeks.prototype.getLastDayDate = function (week) {
             var lastDay = week[week.length - 1].getDate();
             return new Date(week[week.length - 1].setDate(lastDay));
+        };
+        FabricDatePickerWeeks.prototype.canAddDaysToWeek = function (weekNumber, day) {
+            return this.weeks[weekNumber].length === 0
+                && this.weeks[weekNumber - 1].length === 7
+                && day > this.getLastDayNumber(this.weeks[weekNumber - 1]);
         };
         FabricDatePickerWeeks.prototype.resetWeeks = function () {
             this.weeks = [];
@@ -1108,7 +1135,7 @@
                     },
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None,
-                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-date-picker-calendar{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;border-radius:4px;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0 0 12px;width:268px}.gui-date-picker-header{font-size:13px;font-weight:normal;text-align:center;border-top:1px solid #999}.gui-date-picker-cell{border-radius:4px;border-color:transparent;border-style:solid;border-width:1px;padding:2px 4px;position:relative;text-align:center;font-size:13px;z-index:0}.gui-date-picker-cell:before{border:1px solid #999;border-radius:50%;box-sizing:border-box;content:\"\";display:none;height:36px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:36px;z-index:-1}.gui-date-picker-cell:after{background:transparent;border-radius:50%;box-sizing:border-box;content:\"\";display:block;height:32px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:32px;z-index:-1}.gui-date-picker-cell:hover:after{background:#e6e6e6}.gui-date-picker-day{color:#333;cursor:pointer;opacity:.2}.gui-date-picker-day.gui-date-picker-selected-month{opacity:1}.gui-date-picker-month,.gui-date-picker-year{cursor:pointer}.gui-date-picker-year{font-size:13px}.gui-date-picker-day.gui-date-picker-current-day:before,.gui-date-picker-month.gui-date-picker-current-month:before,.gui-date-picker-year.gui-date-picker-current-year:before{display:block}.gui-date-picker-day.gui-date-picker-selected-day{pointer-events:none}.gui-date-picker-day.gui-date-picker-selected-day,.gui-date-picker-month.gui-date-picker-selected-month,.gui-date-picker-year.gui-date-picker-selected-year{color:#fff}.gui-date-picker-day.gui-date-picker-selected-day:after,.gui-date-picker-month.gui-date-picker-selected-month:after,.gui-date-picker-year.gui-date-picker-selected-year:after{background:#2185d0}.gui-date-picker-arrows{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:32px}.gui-date-picker-view-padding{padding:0 8px}.gui-date-picker-view-border-top{border-top:1px solid #999}gui-time-picker{border-top:1px solid #999;margin:6px 0 0;padding:12px 0 2.6666666667px}gui-time-picker form{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center}gui-time-picker.only-time-picker{border-top:none}.gui-time-picker-button-wrapper{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;padding-right:8px}.gui-time-picker-button-wrapper .gui-button{font-size:12px}.gui-time-picker-item{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;margin:0 8px;position:relative}.gui-time-picker-item input{box-sizing:border-box;max-width:24px;text-align:center}.gui-time-picker-item input::-webkit-outer-spin-button,.gui-time-picker-item input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.gui-time-picker-item input[type=number]{-moz-appearance:textfield}.gui-time-picker-item .gui-date-picker-arrow:nth-of-type(1){margin-bottom:2px}.gui-time-picker-item .gui-date-picker-arrow:nth-of-type(2){margin-top:6px}.gui-date-picker-view-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:16px 18px}.gui-date-picker-view-panel .gui-date-picker-view-panel-date{cursor:pointer;font-size:14px;font-weight:bold;margin:0;pointer-events:auto}.gui-date-picker-arrow{position:relative;z-index:0}.gui-date-picker-arrow:hover:after{background:#e6e6e6;border-radius:50%;box-sizing:border-box;content:\"\";display:block;height:24px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:24px;z-index:-1}\n"]
+                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-date-picker-calendar{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;box-sizing:border-box;font-family:Roboto,\"Helvetica Neue\",sans-serif;border-radius:4px;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding:0 0 12px;width:268px}.gui-date-picker-header{font-size:13px;font-weight:normal;text-align:center;border-top:1px solid #999}.gui-date-picker-cell{border-radius:4px;border-color:transparent;border-style:solid;border-width:1px;padding:2px 4px;position:relative;text-align:center;font-size:13px;z-index:0}.gui-date-picker-cell:before{border:1px solid #999;border-radius:50%;box-sizing:border-box;content:\"\";display:none;height:36px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:36px;z-index:-1}.gui-date-picker-cell:after{background:transparent;border-radius:50%;box-sizing:border-box;content:\"\";display:block;height:32px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:32px;z-index:-1}.gui-date-picker-cell:hover:after{background:#e6e6e6}.gui-date-picker-day{color:#333;cursor:pointer;opacity:.2}.gui-date-picker-day.gui-date-picker-selected-month{opacity:1}.gui-date-picker-month,.gui-date-picker-year{cursor:pointer}.gui-date-picker-year{font-size:13px}.gui-date-picker-day.gui-date-picker-current-day:before,.gui-date-picker-month.gui-date-picker-current-month:before,.gui-date-picker-year.gui-date-picker-current-year:before{display:block}.gui-date-picker-day.gui-date-picker-selected-day{pointer-events:none}.gui-date-picker-day.gui-date-picker-selected-day,.gui-date-picker-month.gui-date-picker-selected-month,.gui-date-picker-year.gui-date-picker-selected-year{color:#fff}.gui-date-picker-day.gui-date-picker-selected-day:after,.gui-date-picker-month.gui-date-picker-selected-month:after,.gui-date-picker-year.gui-date-picker-selected-year:after{background:#2185d0}.gui-date-picker-arrows{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:32px}.gui-date-picker-view-padding{padding:0 8px}.gui-date-picker-view-border-top{border-top:1px solid #999}gui-time-picker{border-top:1px solid #999;margin:6px 0 0;padding:12px 0 2.6666666667px}gui-time-picker form{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center}gui-time-picker.only-time-picker{border-top:none}.gui-time-picker-button-wrapper{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;padding-right:8px}.gui-time-picker-button-wrapper .gui-button{font-size:12px}.gui-time-picker-item{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;margin:0 8px;position:relative}.gui-time-picker-item input{box-sizing:border-box;max-width:24px;text-align:center}.gui-time-picker-item input::-webkit-outer-spin-button,.gui-time-picker-item input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}.gui-time-picker-item input[type=number]{-moz-appearance:textfield}.gui-time-picker-item .gui-date-picker-arrow:nth-of-type(1){margin-bottom:2px}.gui-time-picker-item .gui-date-picker-arrow:nth-of-type(2){margin-top:6px}.gui-date-picker-view-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:16px 18px}.gui-date-picker-view-panel .gui-date-picker-view-panel-date{cursor:pointer;font-size:14px;font-weight:bold;margin:0;pointer-events:auto}.gui-date-picker-arrow{position:relative;z-index:0}.gui-date-picker-arrow:hover:after{background:#e6e6e6;border-radius:50%;box-sizing:border-box;content:\"\";display:block;height:24px;left:50%;position:absolute;top:50%;-ms-transform:translateX(-50%) translateY(-50%);transform:translate(-50%) translateY(-50%);width:24px;z-index:-1}\n"]
                 },] }
     ];
     FabricDatePickerCalendarComponent.ctorParameters = function () { return [
@@ -1533,6 +1560,22 @@
         { type: FabricInlineDialogService }
     ]; };
 
+    var FabricDateUtils = /** @class */ (function () {
+        function FabricDateUtils() {
+        }
+        FabricDateUtils.areDatesSame = function (firstDay, secondDate) {
+            return firstDay && secondDate &&
+                firstDay.getDate() === secondDate.getDate() &&
+                firstDay.getMonth() === secondDate.getMonth() &&
+                firstDay.getFullYear() === secondDate.getFullYear();
+        };
+        FabricDateUtils.isMonth = function (date, month, year) {
+            return date.getMonth() === month &&
+                date.getFullYear() === year;
+        };
+        return FabricDateUtils;
+    }());
+
     var FabricDatePickerComponent = /** @class */ (function (_super) {
         __extends(FabricDatePickerComponent, _super);
         function FabricDatePickerComponent(fabricDatePickerInlineDialogService, datePickerService, datePickerCompositionService, formBuilder, changeDetectorRef) {
@@ -1554,7 +1597,9 @@
         }
         FabricDatePickerComponent.prototype.ngOnChanges = function (changes) {
             if (changes.selectDate) {
-                this.datePickerService.dateSelected(this.selectDate);
+                if (!FabricDateUtils.areDatesSame(this.selectDate, this.pickedDate)) {
+                    this.datePickerService.dateSelected(this.selectDate);
+                }
             }
             if (changes.onlyDialog) {
                 this.inputDisabled = this.onlyDialog ? 'disabled' : ''; // todo !== null ??
@@ -1565,13 +1610,6 @@
         };
         FabricDatePickerComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.datePickerService
-                .observeSelectedDate()
-                .pipe(operators.take(1), this.takeUntil())
-                .subscribe(function (date) {
-                _this.pickedDate = date;
-                _this.emitSelectedDate(date);
-            });
             this.datePickerService
                 .observeSelectedDate()
                 .pipe(operators.skip(1), this.takeUntil())
@@ -1587,9 +1625,18 @@
                 .subscribe(function (opened) {
                 _this.dialogOpened.emit(opened);
             });
-            this.observeDayChanges();
+            // this.observeDayChanges();
         };
         FabricDatePickerComponent.prototype.ngAfterViewInit = function () {
+            var _this = this;
+            this.datePickerService
+                .observeSelectedDate()
+                .pipe(operators.take(1), this.takeUntil())
+                .subscribe(function (date) {
+                _this.pickedDate = date;
+                _this.emitSelectedDate(date);
+                _this.changeDetectorRef.detectChanges();
+            });
             if (this.openDialog) {
                 this.openDatePicker();
             }
@@ -1613,6 +1660,7 @@
         };
         FabricDatePickerComponent.prototype.observeDayChanges = function () {
             var _this = this;
+            // currently disabled
             this.datePickerForm
                 .controls['date']
                 .valueChanges
@@ -2075,21 +2123,6 @@
         [{ nr: 9, name: 'Oct' }, { nr: 10, name: 'Nov' }, { nr: 11, name: 'Dec' }]
     ];
 
-    var FabricDateUtils = /** @class */ (function () {
-        function FabricDateUtils() {
-        }
-        FabricDateUtils.areDatesSame = function (firstDay, secondDate) {
-            return firstDay.getDate() === secondDate.getDate() &&
-                firstDay.getMonth() === secondDate.getMonth() &&
-                firstDay.getFullYear() === secondDate.getFullYear();
-        };
-        FabricDateUtils.isMonth = function (date, month, year) {
-            return date.getMonth() === month &&
-                date.getFullYear() === year;
-        };
-        return FabricDateUtils;
-    }());
-
     var FabricDatePickerMonthsViewComponent = /** @class */ (function () {
         function FabricDatePickerMonthsViewComponent(calendarService, calendarViewService) {
             this.calendarService = calendarService;
@@ -2247,87 +2280,163 @@
                 },] }
     ];
 
-    var DialogService = /** @class */ (function (_super) {
-        __extends(DialogService, _super);
-        function DialogService() {
-            return _super.call(this) || this;
-        }
-        return DialogService;
-    }(FabricReactive));
-
-    var FabricDrawerService = /** @class */ (function (_super) {
-        __extends(FabricDrawerService, _super);
-        function FabricDrawerService(componentFactoryResolver, applicationRef, injector, document) {
+    var FabricModal = /** @class */ (function (_super) {
+        __extends(FabricModal, _super);
+        function FabricModal(componentFactoryResolver, applicationRef, injector, document) {
             var _this = _super.call(this) || this;
             _this.componentFactoryResolver = componentFactoryResolver;
             _this.applicationRef = applicationRef;
             _this.injector = injector;
             _this.document = document;
-            _this.drawerRef = null;
+            _this.componentRef = null;
             return _this;
         }
-        FabricDrawerService.prototype.ngOnDestroy = function () {
-            this.removeDrawer();
-            _super.prototype.ngOnDestroy.call(this);
+        FabricModal.prototype.ngOnDestroy = function () {
+            this.removeComponent();
         };
-        FabricDrawerService.prototype.open = function (element, component, config) {
+        FabricModal.prototype.createAndAppend = function (config) {
+            var componentInjector = (config === null || config === void 0 ? void 0 : config.injector) ? config.injector : this.injector;
+            this.componentRef = this.componentFactoryResolver
+                .resolveComponentFactory(this.getComponent())
+                .create(componentInjector);
+            this.applicationRef.attachView(this.componentRef.hostView);
+            var domModalElement = this.componentRef.hostView
+                .rootNodes[0];
+            this.getElement(config === null || config === void 0 ? void 0 : config.appendToElement).appendChild(domModalElement);
+            if (config === null || config === void 0 ? void 0 : config.afterCompCreation) {
+                config === null || config === void 0 ? void 0 : config.afterCompCreation();
+            }
+            this.componentRef.changeDetectorRef.detectChanges();
+        };
+        FabricModal.prototype.removeComponent = function () {
+            if (this.componentRef) {
+                this.applicationRef.detachView(this.componentRef.hostView);
+                this.componentRef.destroy();
+                this.componentRef = null;
+            }
+        };
+        FabricModal.prototype.getComponentRef = function () {
+            return this.componentRef;
+        };
+        FabricModal.prototype.getInjector = function () {
+            return this.injector;
+        };
+        FabricModal.prototype.getDocument = function () {
+            return this.document;
+        };
+        FabricModal.prototype.onCloseOnEsc = function () {
+            var close$ = _.fromEvent(this.getDocument(), 'keyup');
+            return close$
+                .pipe(operators.filter(function (key) { return key.code === 'Escape'; }), this.takeUntil());
+        };
+        FabricModal.prototype.getElement = function (el) {
+            return el ? el.nativeElement : this.document.body;
+        };
+        return FabricModal;
+    }(FabricReactive));
+    FabricModal.decorators = [
+        { type: core.Directive }
+    ];
+    FabricModal.ctorParameters = function () { return [
+        { type: core.ComponentFactoryResolver },
+        { type: core.ApplicationRef },
+        { type: core.Injector },
+        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+    ]; };
+
+    var FabricDrawerService = /** @class */ (function (_super) {
+        __extends(FabricDrawerService, _super);
+        function FabricDrawerService(componentFactoryResolver, applicationRef, injector, document) {
+            var _this = _super.call(this, componentFactoryResolver, applicationRef, injector, document) || this;
+            /** To prevent multiple timers **/
+            _this.inProgress = false;
+            return _this;
+        }
+        FabricDrawerService.prototype.getComponent = function () {
+            return FabricDrawerComponent;
+        };
+        FabricDrawerService.prototype.open = function (config) {
             if (event) {
                 event.stopPropagation();
             }
-            if (!this.drawerRef) {
-                var theme = exports.Theme.FABRIC, parentInjector = this.injector, closeOnClickOutside = false;
-                if (config && config.theme) {
-                    theme = config.theme;
-                }
-                if (config && config.injector) {
-                    parentInjector = config.injector;
-                }
-                if (config && config.closeOnClickOutside) {
-                    closeOnClickOutside = config.closeOnClickOutside;
-                }
-                var injector = core.Injector.create({
-                    providers: [{
-                            provide: themeToken,
-                            useValue: theme
-                        }],
-                    parent: parentInjector
-                });
-                this.createAndAppend(element, component, injector, closeOnClickOutside);
-                this.closeOnEscKey();
+            if (this.getComponentRef() && (config === null || config === void 0 ? void 0 : config.preventReopeningDrawer)) {
+                return;
+            }
+            if (this.getComponentRef() && !this.inProgress && !(config === null || config === void 0 ? void 0 : config.preventReopeningDrawer)) {
+                this.waitAndCreateNewDrawer(config);
+            }
+            else {
+                this.createDrawer(config);
             }
         };
         FabricDrawerService.prototype.close = function () {
-            this.removeDrawer();
+            var _this = this;
+            if (this.getComponentRef()) {
+                this.getComponentInstance().visible = false;
+                this.getComponentInstance().detectChanges();
+                rxjs.timer(300)
+                    .pipe(this.takeUntil())
+                    .subscribe(function () {
+                    _this.removeComponent();
+                    _this.inProgress = false;
+                });
+            }
+        };
+        FabricDrawerService.prototype.createDrawer = function (config) {
+            var _this = this;
+            if (this.getComponentRef()) {
+                this.removeComponent();
+            }
+            var theme = exports.Theme.FABRIC, parentInjector = this.getInjector(), closeOnClickOutside = false;
+            if (config && config.theme) {
+                theme = config.theme;
+            }
+            if (config && config.injector) {
+                parentInjector = config.injector;
+            }
+            if (config && config.closeOnClickOutside) {
+                closeOnClickOutside = config.closeOnClickOutside;
+            }
+            var injector = core.Injector.create({
+                providers: [{
+                        provide: themeToken,
+                        useValue: theme
+                    }],
+                parent: parentInjector
+            });
+            this.createAndAppend({
+                injector: injector,
+                afterCompCreation: function () { return _this.applyInstanceVars(config); },
+                appendToElement: config === null || config === void 0 ? void 0 : config.appendToElement
+            });
+            this.closeOnEscKey();
+        };
+        FabricDrawerService.prototype.waitAndCreateNewDrawer = function (config) {
+            var _this = this;
+            this.inProgress = true;
+            this.close();
+            rxjs.timer(400)
+                .pipe(this.takeUntil())
+                .subscribe(function () {
+                _this.createDrawer(config);
+            });
+        };
+        FabricDrawerService.prototype.applyInstanceVars = function (config) {
+            this.getComponentInstance().width = config === null || config === void 0 ? void 0 : config.width;
+            this.getComponentInstance().dialogNestedComponent = config === null || config === void 0 ? void 0 : config.component;
+            this.getComponentInstance().closeOnClickOutside = config === null || config === void 0 ? void 0 : config.closeOnClickOutside;
+            this.getComponentInstance().isFixed = !(config === null || config === void 0 ? void 0 : config.appendToElement);
         };
         FabricDrawerService.prototype.closeOnEscKey = function () {
             var _this = this;
-            var close$ = rxjs.fromEvent(this.document, 'keyup');
-            close$
-                .pipe(operators.filter(function (key) { return key.code === 'Escape'; }), this.takeUntil())
+            this.onCloseOnEsc()
                 .subscribe(function () { return _this.close(); });
         };
-        FabricDrawerService.prototype.createAndAppend = function (element, component, injector, closeOnClickOutside) {
-            var componentRef = this.componentFactoryResolver
-                .resolveComponentFactory(FabricDrawerComponent)
-                .create(injector);
-            componentRef.instance.dialogNestedComponent = component;
-            componentRef.instance.closeOnClickOutside = closeOnClickOutside;
-            componentRef.changeDetectorRef.detectChanges();
-            this.applicationRef.attachView(componentRef.hostView);
-            var domDrawerElement = componentRef.hostView
-                .rootNodes[0];
-            element.nativeElement.appendChild(domDrawerElement);
-            this.drawerRef = componentRef;
-        };
-        FabricDrawerService.prototype.removeDrawer = function () {
-            if (this.drawerRef) {
-                this.applicationRef.detachView(this.drawerRef.hostView);
-                this.drawerRef.destroy();
-                this.drawerRef = null;
-            }
+        FabricDrawerService.prototype.getComponentInstance = function () {
+            return this.getComponentRef().instance;
         };
         return FabricDrawerService;
-    }(DialogService));
+    }(FabricModal));
     FabricDrawerService.decorators = [
         { type: core.Injectable }
     ];
@@ -2346,12 +2455,22 @@
             _this.changeDetectorRef = changeDetectorRef;
             _this.elRef = elRef;
             _this.dialogService = dialogService;
+            _this.width = '400px';
             _this.closeOnClickOutside = false;
+            _this.visible = false;
+            _this.isFixed = false;
             return _this;
         }
         FabricDrawerComponent.prototype.ngAfterViewInit = function () {
+            var _this = this;
             _super.prototype.ngAfterViewInit.call(this);
-            this.createNestedComponent(this.dialogNestedComponent);
+            this.createNestedComponent();
+            rxjs.timer(0)
+                .pipe(this.takeUntil())
+                .subscribe(function () {
+                _this.visible = true;
+                _this.changeDetectorRef.detectChanges();
+            });
         };
         FabricDrawerComponent.prototype.closeDrawer = function () {
             this.dialogService.close();
@@ -2363,6 +2482,9 @@
                 }
             }
         };
+        FabricDrawerComponent.prototype.detectChanges = function () {
+            this.changeDetectorRef.detectChanges();
+        };
         FabricDrawerComponent.prototype.isContainerClicked = function (event) {
             var dialogContentRef = this.elRef.nativeElement.querySelector('.gui-drawer-content');
             if (dialogContentRef) {
@@ -2370,8 +2492,8 @@
             }
             return false;
         };
-        FabricDrawerComponent.prototype.createNestedComponent = function (component) {
-            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+        FabricDrawerComponent.prototype.createNestedComponent = function () {
+            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.dialogNestedComponent);
             this.container.createComponent(componentFactory);
             this.changeDetectorRef.detectChanges();
         };
@@ -2379,10 +2501,10 @@
     }(FabricThemedComponent));
     FabricDrawerComponent.decorators = [
         { type: core.Component, args: [{
-                    template: "<div (document:click)=\"clickOutside($event)\"\n\t class=\"gui-drawer-wrapper\">\n\t<div class=\"gui-drawer-content\">\n\t\t<gui-close-icon (click)=\"closeDrawer()\"></gui-close-icon>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
+                    template: "<div (document:click)=\"clickOutside($event)\"\n\t [class.gui-drawer-visible]=\"visible\"\n\t [class.gui-drawer-fixed]=\"isFixed\"\n\t [style.max-width]=\"width\"\n\t class=\"gui-drawer-wrapper\">\n\t<div\n\t\t class=\"gui-drawer-content\">\n\t\t<gui-close-icon (click)=\"closeDrawer()\"></gui-close-icon>\n\t\t<ng-template #container></ng-template>\n\t</div>\n</div>\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None,
-                    styles: [".gui-drawer-wrapper{display:-ms-flexbox;display:flex;font-family:Arial;height:100%;position:absolute;right:0;top:0;z-index:1000}.gui-drawer-wrapper .gui-drawer-content{background-color:#fff;box-shadow:-3px 0 4px #ccc;height:100%;max-width:400px;position:relative}\n"]
+                    styles: [".gui-drawer-wrapper{display:-ms-flexbox;display:flex;font-family:Arial;height:100%;width:auto;position:absolute;padding-left:50px;right:0;top:0;overflow:hidden;z-index:1000}.gui-drawer-wrapper .gui-drawer-content{background-color:#fff;height:100%;position:relative;box-shadow:-6px 0 16px -8px rgba(0,0,0,.078),-9px 0 28px rgba(0,0,0,.051),-12px 0 48px 16px rgba(0,0,0,.031);margin-left:auto;-ms-transform:translateX(100%);transform:translate(100%);transition:transform .3s ease-in-out}.gui-drawer-wrapper.gui-drawer-visible .gui-drawer-content{-ms-transform:translateX(0);transform:translate(0)}.gui-drawer-wrapper.gui-drawer-fixed{position:fixed;height:100vh}\n", ".gui-dark .gui-drawer-wrapper .gui-drawer-content{background:#424242;box-shadow:0 1px 2px #424242;color:#bdbdbd}\n"]
                 },] }
     ];
     FabricDrawerComponent.ctorParameters = function () { return [
@@ -2394,8 +2516,7 @@
         { type: core.Renderer2 }
     ]; };
     FabricDrawerComponent.propDecorators = {
-        container: [{ type: core.ViewChild, args: ['container', { read: core.ViewContainerRef, static: false },] }],
-        closeOnClickOutside: [{ type: core.Input }]
+        container: [{ type: core.ViewChild, args: ['container', { read: core.ViewContainerRef, static: false },] }]
     };
 
     var selector = 'gui-close-icon';
@@ -2857,7 +2978,7 @@
                     },
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None,
-                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-fabric-dialog *,.gui-fabric-dialog *:after,.gui-fabric-dialog *:before{box-sizing:border-box}.gui-fabric-dialog input{font-size:13px;outline:0}.gui-dialog-blanket{background:rgba(0,0,0,.32);height:100%;left:0;pointer-events:none;position:fixed;top:0;width:100%;z-index:1000}.gui-dialog-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;font-family:Arial;height:100%;-ms-flex-pack:center;justify-content:center;left:0;pointer-events:auto;position:fixed;top:0;width:100%;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{-webkit-animation:display-dialog .1s ease-in;animation:display-dialog .1s ease-in;background-color:#fff;border-radius:4px;box-shadow:0 3px 7px #999;max-width:400px;padding:24px;position:relative}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-title{color:#333;font-size:20px;margin:0 0 16px}@-webkit-keyframes display-dialog{0%{transform:scale(0)}to{transform:scale(1)}}@keyframes display-dialog{0%{transform:scale(0)}to{transform:scale(1)}}\n", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;box-shadow:0 1px 2px #424242;color:#bdbdbd}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{background:#bdbdbd}\n"]
+                    styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-fabric-dialog *,.gui-fabric-dialog *:after,.gui-fabric-dialog *:before{box-sizing:border-box}.gui-fabric-dialog input{font-size:13px;outline:0}.gui-dialog-blanket{background:rgba(0,0,0,.32);height:100%;left:0;pointer-events:none;position:fixed;top:0;width:100%;z-index:1000}.gui-dialog-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;font-family:Arial;height:100%;-ms-flex-pack:center;justify-content:center;left:0;pointer-events:auto;position:fixed;top:0;width:100%;z-index:1000}.gui-dialog-wrapper .gui-dialog-content{-webkit-animation:display-dialog .1s ease-in;animation:display-dialog .1s ease-in;background-color:#fff;border-radius:4px;box-shadow:0 3px 7px #999;max-width:1200px;padding:24px;position:relative}.gui-dialog-wrapper .gui-dialog-content .gui-dialog-title{color:#333;font-size:20px;margin:0 0 16px}@-webkit-keyframes display-dialog{0%{transform:scale(0)}to{transform:scale(1)}}@keyframes display-dialog{0%{transform:scale(0)}to{transform:scale(1)}}\n", ".gui-dark .gui-dialog-wrapper .gui-dialog-content{background:#424242;box-shadow:0 1px 2px #424242;color:#bdbdbd}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:before,.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-dialog-close:after{background:#bdbdbd}\n"]
                 },] }
     ];
     FabricDialogComponent.ctorParameters = function () { return [
@@ -3326,60 +3447,6 @@
         return FabricNotification;
     }());
 
-    var FabricModal = /** @class */ (function (_super) {
-        __extends(FabricModal, _super);
-        function FabricModal(componentFactoryResolver, applicationRef, injector, document) {
-            var _this = _super.call(this) || this;
-            _this.componentFactoryResolver = componentFactoryResolver;
-            _this.applicationRef = applicationRef;
-            _this.injector = injector;
-            _this.document = document;
-            _this.componentRef = null;
-            return _this;
-        }
-        FabricModal.prototype.ngOnDestroy = function () {
-            this.removeComponent();
-        };
-        FabricModal.prototype.createAndAppend = function (injector) {
-            var componentInjector = injector ? injector : this.injector;
-            var componentRef = this.componentFactoryResolver
-                .resolveComponentFactory(this.getComponent())
-                .create(componentInjector);
-            componentRef.changeDetectorRef.detectChanges();
-            this.applicationRef.attachView(componentRef.hostView);
-            var domModalElement = componentRef.hostView
-                .rootNodes[0];
-            this.document.body.appendChild(domModalElement);
-            this.componentRef = componentRef;
-        };
-        FabricModal.prototype.removeComponent = function () {
-            if (this.componentRef) {
-                this.applicationRef.detachView(this.componentRef.hostView);
-                this.componentRef.destroy();
-                this.componentRef = null;
-            }
-        };
-        FabricModal.prototype.getComponentRef = function () {
-            return this.componentRef;
-        };
-        FabricModal.prototype.getInjector = function () {
-            return this.injector;
-        };
-        FabricModal.prototype.getDocument = function () {
-            return this.document;
-        };
-        return FabricModal;
-    }(FabricReactive));
-    FabricModal.decorators = [
-        { type: core.Directive }
-    ];
-    FabricModal.ctorParameters = function () { return [
-        { type: core.ComponentFactoryResolver },
-        { type: core.ApplicationRef },
-        { type: core.Injector },
-        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
-    ]; };
-
     var FabricNotificationService = /** @class */ (function (_super) {
         __extends(FabricNotificationService, _super);
         function FabricNotificationService(componentFactoryResolver, applicationRef, injector, document) {
@@ -3415,7 +3482,7 @@
                         }],
                     parent: parentInjector
                 });
-                this.createAndAppend(injector);
+                this.createAndAppend({ injector: injector });
                 this.pushNotification(position);
             }
             else {
@@ -3628,12 +3695,17 @@
             return FabricMessageComponent;
         };
         FabricMessageService.prototype.open = function (text) {
-            this.createAndAppend();
-            this.getComponentRef().instance.text = text;
-            this.getComponentRef().instance.detectChanges();
+            var _this = this;
+            this.createAndAppend({
+                afterCompCreation: function () { return _this.afterCompCreation(text); }
+            });
         };
         FabricMessageService.prototype.close = function () {
             this.removeComponent();
+        };
+        FabricMessageService.prototype.afterCompCreation = function (text) {
+            this.getComponentRef().instance.text = text;
+            this.getComponentRef().instance.detectChanges();
         };
         return FabricMessageService;
     }(FabricModal));
@@ -4192,15 +4264,20 @@
             return FabricSelectOptionsComponent;
         };
         SelectOptionModalService.prototype.open = function (options, width) {
-            this.createAndAppend();
+            var _this = this;
+            this.createAndAppend({
+                afterCompCreation: function () { return _this.afterCompCreation(options, width); }
+            });
+        };
+        SelectOptionModalService.prototype.closeOptions = function () {
+            this.removeComponent();
+        };
+        SelectOptionModalService.prototype.afterCompCreation = function (options, width) {
             this.getComponentRef().instance.options = options;
             this.getComponentRef().instance.width = width;
             this.getComponentRef().instance.detectChanges();
             this.selectOptionsGeometryService.setGeometry(this.getComponentRef().instance.getElementRef());
             this.getComponentRef().instance.detectChanges();
-        };
-        SelectOptionModalService.prototype.closeOptions = function () {
-            this.removeComponent();
         };
         return SelectOptionModalService;
     }(FabricModal));
@@ -4384,7 +4461,7 @@
                         SelectOptionsGeometryService,
                         SelectOptionModalService
                     ],
-                    styles: [".gui-select .gui-select-container{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#fff;border-color:#d6d6d6;border-radius:4px;border-style:solid;border-width:1px;box-sizing:content-box;color:#333;cursor:pointer;display:inline-block;font:14px Arial;padding:8px 24px 8px 12px;position:relative}.gui-select .gui-select-container:hover{border-color:#999}.gui-select .gui-select-container .gui-select-arrow{border:4px solid transparent;border-color:#595959 transparent transparent transparent;height:0;margin:8px;position:absolute;right:5px;top:5px;width:0}.gui-select.gui-options-opened .gui-select-container{border-color:#6fb4e8 #6fb4e8 transparent #6fb4e8;border-radius:4px 4px 0 0;border-width:1px}.gui-select.gui-downward .gui-options-list{border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-top:none;border-width:1px}.gui-select.gui-downward .gui-option{border-color:#e6e6e6;border-style:solid;border-width:1px 0 0 0}.gui-select.gui-upward .gui-select-container{padding:8px 12px 8px 24px;-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select.gui-upward .gui-select-container .gui-select-value{-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select.gui-upward .gui-select-container .gui-select-arrow{border:4px solid transparent;border-color:transparent transparent #595959 transparent;bottom:5px;left:5px;top:auto}.gui-select.gui-upward .gui-options-list{border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-top:none;border-width:1px}.gui-select.gui-upward .gui-option{border-color:#e6e6e6;border-style:solid;border-width:0 0 1px 0;-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select .gui-disabled{color:#ccc;pointer-events:none}.gui-select .gui-disabled .gui-select-arrow{border-color:#cccccc transparent transparent transparent}.gui-select .initAnimationDisabled.gui-options-list{display:none}.gui-options-list{background:#fff;border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-width:0 1px 1px 1px;overflow:hidden;padding:0;position:absolute;z-index:1000}.gui-options-list .gui-option{box-sizing:content-box;cursor:pointer;font-size:14px;list-style-type:none;padding:8px 24px 8px 12px}.gui-options-list .gui-option:hover{background:#dcdcdc}.gui-options-list .gui-option-selected{background:#e6e6e6;font-weight:bold}.gui-options-list.gui-upward{-webkit-animation:loadUpward .2s forwards;animation:loadUpward .2s forwards;border-bottom:none;border-color:#6fb4e8;border-radius:4px 4px 0 0;border-style:solid;border-width:1px}@-webkit-keyframes loadUpward{0%{transform:translateY(50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}@keyframes loadUpward{0%{transform:translateY(50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}.gui-options-list.gui-downward{-webkit-animation:loadDownward .2s forwards;animation:loadDownward .2s forwards;border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-width:0 1px 1px 1px}@-webkit-keyframes loadDownward{0%{transform:translateY(-50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}@keyframes loadDownward{0%{transform:translateY(-50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}\n", ".gui-material .gui-select .gui-select-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-options-list .gui-option{font-family:Roboto,\"Helvetica Neue\",sans-serif}\n", ".gui-dark .gui-select .gui-select-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-select .gui-select-container:hover{border-color:#ce93d8}.gui-dark .gui-select .gui-select-container .gui-select-arrow{border-color:#ce93d8 transparent transparent transparent}.gui-dark .gui-select.gui-options-opened .gui-select-container{border-color:#ce93d8}.gui-dark .gui-select.gui-upward .gui-select-container .gui-select-arrow{border-color:transparent transparent #ce93d8 transparent}.gui-dark .gui-select .gui-disabled{opacity:.36}.gui-dark .gui-options-list{border-color:#ce93d8}.gui-dark .gui-options-list .gui-option{background:#424242;border-color:#757575;color:#bdbdbd}.gui-dark .gui-options-list .gui-option:hover{background:#616161}.gui-dark .gui-options-list .gui-option-selected{background:#757575}\n", ".gui-light .gui-select .gui-select-container{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light .gui-options-list .gui-option:hover{background:#f6f6f5}\n"]
+                    styles: [".gui-select .gui-select-container{min-height:16px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#fff;border-color:#d6d6d6;border-radius:4px;border-style:solid;border-width:1px;box-sizing:content-box;color:#333;cursor:pointer;display:inline-block;font:14px Arial;padding:8px 24px 8px 12px;position:relative}.gui-select .gui-select-container:hover{border-color:#999}.gui-select .gui-select-container .gui-select-arrow{border:4px solid transparent;border-color:#595959 transparent transparent transparent;height:0;margin:8px;position:absolute;right:5px;top:5px;width:0}.gui-select.gui-options-opened .gui-select-container{border-color:#6fb4e8 #6fb4e8 transparent #6fb4e8;border-radius:4px 4px 0 0;border-width:1px}.gui-select.gui-downward .gui-options-list{border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-top:none;border-width:1px}.gui-select.gui-downward .gui-option{border-color:#e6e6e6;border-style:solid;border-width:1px 0 0 0}.gui-select.gui-upward .gui-select-container{padding:8px 12px 8px 24px;-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select.gui-upward .gui-select-container .gui-select-value{-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select.gui-upward .gui-select-container .gui-select-arrow{border:4px solid transparent;border-color:transparent transparent #595959 transparent;bottom:5px;left:5px;top:auto}.gui-select.gui-upward .gui-options-list{border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-top:none;border-width:1px}.gui-select.gui-upward .gui-option{border-color:#e6e6e6;border-style:solid;border-width:0 0 1px 0;-ms-transform:rotate(180deg);transform:rotate(180deg)}.gui-select .gui-disabled{color:#ccc;pointer-events:none}.gui-select .gui-disabled .gui-select-arrow{border-color:#cccccc transparent transparent transparent}.gui-select .initAnimationDisabled.gui-options-list{display:none}.gui-options-list{background:#fff;border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-width:0 1px 1px 1px;overflow:hidden;padding:0;position:absolute;z-index:1000}.gui-options-list .gui-option{box-sizing:content-box;cursor:pointer;font-size:14px;list-style-type:none;padding:8px 24px 8px 12px}.gui-options-list .gui-option:hover{background:#dcdcdc}.gui-options-list .gui-option-selected{background:#e6e6e6;font-weight:bold}.gui-options-list.gui-upward{-webkit-animation:loadUpward .2s forwards;animation:loadUpward .2s forwards;border-bottom:none;border-color:#6fb4e8;border-radius:4px 4px 0 0;border-style:solid;border-width:1px}@-webkit-keyframes loadUpward{0%{transform:translateY(50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}@keyframes loadUpward{0%{transform:translateY(50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}.gui-options-list.gui-downward{-webkit-animation:loadDownward .2s forwards;animation:loadDownward .2s forwards;border-color:#6fb4e8;border-radius:0 0 4px 4px;border-style:solid;border-width:0 1px 1px 1px}@-webkit-keyframes loadDownward{0%{transform:translateY(-50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}@keyframes loadDownward{0%{transform:translateY(-50%) scaleY(0)}to{transform:translateY(0) scaleY(1)}}\n", ".gui-material .gui-select .gui-select-container{font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-material .gui-options-list .gui-option{font-family:Roboto,\"Helvetica Neue\",sans-serif}\n", ".gui-dark .gui-select .gui-select-container{background:#424242;border-color:#616161;color:#bdbdbd}.gui-dark .gui-select .gui-select-container:hover{border-color:#ce93d8}.gui-dark .gui-select .gui-select-container .gui-select-arrow{border-color:#ce93d8 transparent transparent transparent}.gui-dark .gui-select.gui-options-opened .gui-select-container{border-color:#ce93d8}.gui-dark .gui-select.gui-upward .gui-select-container .gui-select-arrow{border-color:transparent transparent #ce93d8 transparent}.gui-dark .gui-select .gui-disabled{opacity:.36}.gui-dark .gui-options-list{border-color:#ce93d8}.gui-dark .gui-options-list .gui-option{background:#424242;border-color:#757575;color:#bdbdbd}.gui-dark .gui-options-list .gui-option:hover{background:#616161}.gui-dark .gui-options-list .gui-option-selected{background:#757575}\n", ".gui-light .gui-select .gui-select-container{background:#fff;color:#333;font-family:Roboto,\"Helvetica Neue\",sans-serif}.gui-light .gui-options-list .gui-option:hover{background:#f6f6f5}\n"]
                 },] }
     ];
     FabricSelectComponent.ctorParameters = function () { return [
@@ -4955,24 +5032,23 @@
     exports["ɵa"] = Indicator;
     exports["ɵb"] = FabricInlineDialogComponent;
     exports["ɵba"] = FabricDrawerComponent;
-    exports["ɵbb"] = DialogService;
+    exports["ɵbb"] = FabricModal;
     exports["ɵbc"] = GeometryService;
     exports["ɵbd"] = FabricDialogComponent;
     exports["ɵbe"] = StarIconModule;
     exports["ɵbf"] = StarIconComponent;
     exports["ɵbg"] = FabricNotificationsOverlayComponent;
-    exports["ɵbh"] = FabricModal;
-    exports["ɵbi"] = FabricNotificationsContainerComponent;
-    exports["ɵbj"] = FabricNotificationComponent;
-    exports["ɵbk"] = FabricMessageComponent;
-    exports["ɵbl"] = FabricSvgTemplateModule;
-    exports["ɵbm"] = FabricSvgTemplate;
-    exports["ɵbn"] = AbstractSpinner;
-    exports["ɵbo"] = FabricSelectedOptionsRepository;
-    exports["ɵbp"] = SelectOptionsGeometryService;
-    exports["ɵbq"] = SelectOptionModalService;
-    exports["ɵbr"] = FabricSelectOptionsComponent;
-    exports["ɵbs"] = ToggleButtonGroupService;
+    exports["ɵbh"] = FabricNotificationsContainerComponent;
+    exports["ɵbi"] = FabricNotificationComponent;
+    exports["ɵbj"] = FabricMessageComponent;
+    exports["ɵbk"] = FabricSvgTemplateModule;
+    exports["ɵbl"] = FabricSvgTemplate;
+    exports["ɵbm"] = AbstractSpinner;
+    exports["ɵbn"] = FabricSelectedOptionsRepository;
+    exports["ɵbo"] = SelectOptionsGeometryService;
+    exports["ɵbp"] = SelectOptionModalService;
+    exports["ɵbq"] = FabricSelectOptionsComponent;
+    exports["ɵbr"] = ToggleButtonGroupService;
     exports["ɵc"] = FabricThemedComponent;
     exports["ɵd"] = FabricReactive;
     exports["ɵe"] = InlineDialogGeometryService;

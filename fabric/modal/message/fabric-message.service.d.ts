@@ -6,4 +6,5 @@ export declare class FabricMessageService extends FabricModal<FabricMessageCompo
     getComponent(): Type<FabricMessageComponent>;
     open(text: string): void;
     close(): void;
+    private afterCompCreation;
 }

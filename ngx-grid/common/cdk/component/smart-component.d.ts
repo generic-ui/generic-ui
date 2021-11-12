@@ -4,16 +4,15 @@ import { HermesObservable } from '@generic-ui/hermes';
 export declare abstract class SmartComponent extends GuiComponent {
     protected readonly detector: ChangeDetectorRef;
     private viewInDom;
-    private readonly hermesUnsubscribe$;
+    private readonly unsubscribe$;
     protected constructor(detector: ChangeDetectorRef, elementRef: ElementRef);
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     reRender(): void;
     isViewInDom(): boolean;
-    hermesSubscribe<T>(stream$: HermesObservable<T>, callback: (value: T) => void): void;
-    hermesSubscribeWithoutRender<T>(stream$: HermesObservable<T>, callback: (value: T) => void): void;
+    subscribe<T>(stream$: HermesObservable<T>, callback: (value: T) => void): void;
+    subscribeWithoutRender<T>(stream$: HermesObservable<T>, callback: (value: T) => void): void;
     subscribeAndEmit<V>(stream$: HermesObservable<V>, emitter: EventEmitter<V>, mapper?: (value: V) => any): void;
     protected unsubscribe(): void;
-    protected hermesUnsubscribe(): void;
-    protected hermesTakeUntil(): any;
+    protected takeUntil(): any;
 }

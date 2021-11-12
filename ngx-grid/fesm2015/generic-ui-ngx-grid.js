@@ -1,6 +1,6 @@
 import { Injectable, Component, ContentChild, TemplateRef, Input, EventEmitter, Directive, ContentChildren, Output, InjectionToken, ViewEncapsulation, Inject, PLATFORM_ID, ElementRef, ChangeDetectorRef, ViewChild, ChangeDetectionStrategy, NgModule, Pipe, Injector, Optional as Optional$1, NgZone, ComponentFactoryResolver, Attribute, Renderer2 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { Command, CommandDispatcher, AggregateArchive, hermesMap, HermesSubject, hermesTakeUntil, Archive, ReadModelRootId, AggregateId, EventRepository, DomainEventBus, DomainEvent, AggregateEvent, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ReadModelObject, Reactive, hermesFilter, hermesTake, hermesSwitchMap, ApiModule, HermesReplaySubject, FeatureModule, fromRxJsObservable, Optional, RandomStringGenerator, Entity, EntityId, hermesDistinctUntilChanged, toRxJsObservable, AggregateRoot, AggregateFactory, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, CreateAggregateCommand, EventDrivenRepository, hermesTimer, ReadModelRoot, InMemoryReadModelStore, hermesEmpty, hermesFromEvent, DomainObject, KeyMap, HermesId, ReadModelEntity, ReadModelEntityId, ReadModelRootRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { Command, CommandDispatcher, AggregateArchive, hermesMap, hermesFilter, hermesTake, hermesSwitchMap, HermesSubject, hermesTakeUntil, Archive, ReadModelRootId, AggregateId, EventRepository, DomainEventBus, DomainEvent, AggregateEvent, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ReadModelObject, Reactive, ApiModule, HermesReplaySubject, FeatureModule, singleFromObservable, Optional, fromRxJsObservable, RandomStringGenerator, Entity, EntityId, hermesDistinctUntilChanged, toRxJsObservable, AggregateRoot, AggregateFactory, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, CreateAggregateCommand, EventDrivenRepository, hermesTimer, ReadModelRoot, InMemoryReadModelStore, hermesEmpty, hermesFromEvent, DomainObject, KeyMap, HermesId, ReadModelEntity, ReadModelEntityId, ReadModelRootRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricModule, Theme, FabricDialogService, FabricDrawerService, FabricModalThemeService, FabricPlacement, FabricInlineDialogService, Placement, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
 import { __decorate } from 'tslib';
@@ -466,6 +466,14 @@ class GuiGridColumnConverter {
     }
     convertColumn(guiColumn) {
         const columnConfig = {};
+        if (guiColumn.name !== undefined && guiColumn.name !== null) {
+            columnConfig.name = guiColumn.name;
+        }
+        else if (guiColumn.field !== undefined && guiColumn.field !== null) {
+            if (typeof guiColumn.field === 'string') {
+                columnConfig.name = guiColumn.field;
+            }
+        }
         if (guiColumn.type !== undefined && guiColumn.type !== null) {
             columnConfig.type = this.columnTypeConverter.convertType(guiColumn.type);
         }
@@ -856,6 +864,7 @@ GuiGridColumnComponent.decorators = [
 ];
 GuiGridColumnComponent.propDecorators = {
     templateRef: [{ type: ContentChild, args: [TemplateRef, { static: true },] }],
+    name: [{ type: Input }],
     field: [{ type: Input }],
     type: [{ type: Input }],
     view: [{ type: Input }],
@@ -879,6 +888,27 @@ class GuiGridCellEditConverter {
         }
         return config;
     }
+}
+
+function checkInput(prop) {
+    return {
+        isChanged: () => {
+            return hasChanged(prop);
+        },
+        ifChanged: (callback) => {
+            if (hasChanged(prop)) {
+                callback();
+            }
+        }
+    };
+}
+function ifChanged(prop, callback) {
+    if (hasChanged(prop)) {
+        callback(prop.currentValue);
+    }
+}
+function hasChanged(prop) {
+    return prop !== undefined && prop.currentValue !== undefined;
 }
 
 class GuiGridGateway {
@@ -912,30 +942,30 @@ class GuiGridGateway {
         this.guiGridCellEditConverter = new GuiGridCellEditConverter();
     }
     ngOnChanges(changes) {
-        if (changes.columns !== undefined && changes.columns.currentValue !== undefined) {
+        ifChanged(changes.columns, () => {
             this.columnsConfig = this.gridColumnConverter.convert(this.columns);
-        }
-        if (changes.theme !== undefined && changes.theme.currentValue !== undefined) {
+        });
+        ifChanged(changes.theme, () => {
             this.themeConfig = this.gridThemeConverter.convert(this.theme);
-        }
-        if (changes.rowColoring !== undefined && changes.rowColoring.currentValue !== undefined) {
+        });
+        ifChanged(changes.rowColoring, () => {
             this.rowColoringConfig = this.gridRowColoringConverter.convert(this.rowColoring);
-        }
-        if (changes.columnMenu !== undefined && changes.columnMenu.currentValue !== undefined) {
+        });
+        ifChanged(changes.columnMenu, () => {
             this.columnMenuConfig = this.gridColumnMenuConverter.convert(this.columnMenu);
-        }
-        if (changes.rowSelection !== undefined && changes.rowSelection.currentValue !== undefined) {
+        });
+        ifChanged(changes.rowSelection, () => {
             this.rowSelectionConfig = this.gridRowSelectionConverter.convert(this.rowSelection);
-        }
-        if (changes.cellEditing !== undefined && changes.cellEditing.currentValue !== undefined) {
+        });
+        ifChanged(changes.cellEditing, () => {
             this.cellEditingConfig = this.guiGridCellEditConverter.convert(this.cellEditing);
-        }
+        });
         // TODO
-        if (changes.paging !== undefined && changes.paging.currentValue !== undefined) {
+        ifChanged(changes.paging, () => {
             if (typeof this.paging !== 'boolean') {
                 this.paging = this.gridPagingConverter.convert(this.paging);
             }
-        }
+        });
     }
     ngAfterContentInit() {
         if (this.guiGridColumnComponent && this.guiGridColumnComponent.toArray().length > 0) {
@@ -1100,11 +1130,15 @@ class SelectedRow {
 }
 
 class GuiGridApiProvider {
-    constructor(structureId, schemaId, formationCommandDispatcher, formationWarehouse, sourceCommandInvoker, searchCommandInvoker, gridThemeCommandInvoker, structureCommandInvoker, summariesCommandInvoker, sortingCommandInvoker, pagingCommandInvoker) {
+    constructor(structureId, compositionId, schemaId, formationCommandDispatcher, formationWarehouse, compositionCommandInvoker, compositionWarehouse, filterIntegration, sourceCommandInvoker, searchCommandInvoker, gridThemeCommandInvoker, structureCommandInvoker, summariesCommandInvoker, sortingCommandInvoker, pagingCommandInvoker) {
         this.structureId = structureId;
+        this.compositionId = compositionId;
         this.schemaId = schemaId;
         this.formationCommandInvoker = formationCommandDispatcher;
         this.formationWarehouse = formationWarehouse;
+        this.compositionCommandInvoker = compositionCommandInvoker;
+        this.compositionWarehouse = compositionWarehouse;
+        this.filterIntegration = filterIntegration;
         this.sourceCommandInvoker = sourceCommandInvoker;
         this.searchCommandInvoker = searchCommandInvoker;
         this.gridThemeCommandInvoker = gridThemeCommandInvoker;
@@ -1114,7 +1148,7 @@ class GuiGridApiProvider {
         this.pagingCommandInvoker = pagingCommandInvoker;
     }
     provide() {
-        const structureId = this.structureId, schemaId = this.schemaId, fcd = this.formationCommandInvoker, fw = this.formationWarehouse, scd = this.sourceCommandInvoker, searchCommandInvoker = this.searchCommandInvoker, gridThemeCommandInvoker = this.gridThemeCommandInvoker, structureCommandInvoker = this.structureCommandInvoker, summariesCommandInvoker = this.summariesCommandInvoker, sortingCommandInvoker = this.sortingCommandInvoker, pagingCommandInvoker = this.pagingCommandInvoker;
+        const structureId = this.structureId, compositionId = this.compositionId, schemaId = this.schemaId, fcd = this.formationCommandInvoker, fw = this.formationWarehouse, compositionCommandInvoker = this.compositionCommandInvoker, compositionWarehouse = this.compositionWarehouse, filterIntegration = this.filterIntegration, scd = this.sourceCommandInvoker, searchCommandInvoker = this.searchCommandInvoker, gridThemeCommandInvoker = this.gridThemeCommandInvoker, structureCommandInvoker = this.structureCommandInvoker, summariesCommandInvoker = this.summariesCommandInvoker, sortingCommandInvoker = this.sortingCommandInvoker, pagingCommandInvoker = this.pagingCommandInvoker;
         return {
             setSource(source) {
                 scd.setOrigin(source, structureId);
@@ -1146,6 +1180,28 @@ class GuiGridApiProvider {
             },
             unselectAll() {
                 fcd.unselectAll(structureId);
+            },
+            /**
+             * Columns
+             */
+            getColumns() {
+                let columns = [];
+                compositionWarehouse.onTemplateColumns(compositionId)
+                    .subscribe((v) => {
+                    columns = v;
+                });
+                return columns;
+            },
+            /**
+             * Filtering
+             */
+            getFilterTypes(columnName) {
+                return filterIntegration.getFilterTypes(columnName, compositionId, structureId);
+            },
+            filter(columnName, filterType, value) {
+                filterIntegration.filter(columnName, filterType, value, compositionId, structureId);
+            },
+            filterByColumnId(columnId, filterType, value) {
             },
             /**
              * Paging
@@ -1487,6 +1543,7 @@ class ClassModifier extends Modifier {
         return new ClassModifier.ClassModifier(htmlElement);
     }
 }
+// eslint-disable-next-line
 ClassModifier.ClassModifier = (_a$1 = class {
         constructor(htmlElement) {
             this.htmlElement = htmlElement;
@@ -1531,6 +1588,7 @@ class StyleModifier extends Modifier {
         return new StyleModifier.StyleModifier(htmlElement);
     }
 }
+// eslint-disable-next-line
 StyleModifier.StyleModifier = (_a = class {
         constructor(htmlElement) {
             this.htmlElement = htmlElement;
@@ -1760,11 +1818,123 @@ StructureDefinition.DefaultBuilder = StructureDefinitionDefaultBuilder;
 /** @internal */
 const guiGridStructureDefinition = new StructureDefinition.DefaultBuilder().build();
 
+class CompositionCommandInvoker {
+    constructor() {
+    }
+}
+CompositionCommandInvoker.decorators = [
+    { type: Injectable }
+];
+CompositionCommandInvoker.ctorParameters = () => [];
+
+class CompositionWarehouse {
+    constructor() {
+    }
+}
+CompositionWarehouse.decorators = [
+    { type: Injectable }
+];
+CompositionWarehouse.ctorParameters = () => [];
+
+class FilterWarehouse {
+    constructor() {
+    }
+}
+FilterWarehouse.decorators = [
+    { type: Injectable }
+];
+FilterWarehouse.ctorParameters = () => [];
+
+class FieldId {
+    constructor(id) {
+        this.id = id;
+    }
+    getId() {
+        return this.id;
+    }
+    equals(fieldId) {
+        return fieldId.toString() === this.id;
+    }
+    toString() {
+        return this.id;
+    }
+}
+
+class FilterCommandInvoker {
+    constructor() {
+    }
+}
+FilterCommandInvoker.decorators = [
+    { type: Injectable }
+];
+FilterCommandInvoker.ctorParameters = () => [];
+
+class FilterIntegration {
+    constructor(compositionWarehouse, filterCommandInvoker, filterWarehouse) {
+        this.compositionWarehouse = compositionWarehouse;
+        this.filterCommandInvoker = filterCommandInvoker;
+        this.filterWarehouse = filterWarehouse;
+    }
+    getFilterTypes(columnName, compositionId, structureId) {
+        let fieldTypes = [];
+        this.compositionWarehouse
+            .onTemplateColumns(compositionId)
+            .pipe(hermesMap((cols) => {
+            return cols.find((col) => {
+                return col.getName() === columnName;
+            });
+        }), hermesFilter((col) => {
+            return col !== undefined;
+        }), hermesTake(1), hermesSwitchMap((col) => {
+            return this.filterWarehouse
+                .onFilterTypesForFieldId(new FieldId(col.columnFieldId.getId()), structureId);
+        }))
+            .subscribe((types) => {
+            fieldTypes = types.map((type) => type.getName());
+        });
+        return fieldTypes;
+    }
+    filter(columnName, filterType, value, compositionId, structureId) {
+        this.compositionWarehouse
+            .onTemplateColumns(compositionId)
+            .pipe(hermesMap((cols) => {
+            return cols.find((col) => {
+                return col.getName() === columnName;
+            });
+        }), hermesFilter((col) => {
+            return col !== undefined;
+        }), hermesTake(1), hermesSwitchMap((col) => {
+            return this.filterWarehouse
+                .onceFilterTypeId(new FieldId(col.columnFieldId.getId()), filterType, structureId)
+                .pipe(hermesMap((filterTypeId) => {
+                return {
+                    fieldId: new FieldId(col.columnFieldId.getId()),
+                    filterTypeId: filterTypeId
+                };
+            }));
+        }))
+            .subscribe((params) => {
+            const { fieldId, filterTypeId } = params;
+            filterTypeId.ifPresent((ftId) => {
+                this.filterCommandInvoker.add(fieldId, ftId, value, structureId);
+            });
+        });
+    }
+}
+FilterIntegration.decorators = [
+    { type: Injectable }
+];
+FilterIntegration.ctorParameters = () => [
+    { type: CompositionWarehouse },
+    { type: FilterCommandInvoker },
+    { type: FilterWarehouse }
+];
+
 const ɵ0 = guiGridStructureDefinition;
 class GuiGridComponent extends GuiGridGateway {
     constructor(platformId, elementRef, changeDetectorRef, gridRegister, gridIdGenerator, 
     // delegate
-    formationCommandDispatcher, formationWarehouse, sourceCommandDispatcher, searchCommandInvoker, schemaCommandInvoker, structureCommandDispatcher, summariesCommandInvoker, sortingCommandInvoker, pagingCommandInvoker) {
+    formationCommandDispatcher, formationWarehouse, compositionCommandInvoker, compositionWarehouse, filterIntegration, sourceCommandDispatcher, searchCommandInvoker, schemaCommandInvoker, structureCommandDispatcher, summariesCommandInvoker, sortingCommandInvoker, pagingCommandInvoker) {
         super();
         this.platformId = platformId;
         this.elementRef = elementRef;
@@ -1773,6 +1943,9 @@ class GuiGridComponent extends GuiGridGateway {
         this.gridIdGenerator = gridIdGenerator;
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.formationWarehouse = formationWarehouse;
+        this.compositionCommandInvoker = compositionCommandInvoker;
+        this.compositionWarehouse = compositionWarehouse;
+        this.filterIntegration = filterIntegration;
         this.sourceCommandDispatcher = sourceCommandDispatcher;
         this.searchCommandInvoker = searchCommandInvoker;
         this.schemaCommandInvoker = schemaCommandInvoker;
@@ -1825,7 +1998,7 @@ class GuiGridComponent extends GuiGridGateway {
         this.attributeModifier.getHost().setAttribute(GuiGridComponent.GUI_GRID_ID, this.localGridId);
     }
     initApi() {
-        this.api = new GuiGridApiProvider(this.structureRef.structureId, this.structureRef.schemaReadModelRootId, this.formationCommandDispatcher, this.formationWarehouse, this.sourceCommandDispatcher, this.searchCommandInvoker, this.gridThemeCommandInvoker, this.structureCommandDispatcher, this.summariesCommandInvoker, this.sortingCommandInvoker, this.pagingCommandInvoker).provide();
+        this.api = new GuiGridApiProvider(this.structureRef.structureId, this.structureRef.compositionId, this.structureRef.schemaReadModelRootId, this.formationCommandDispatcher, this.formationWarehouse, this.compositionCommandInvoker, this.compositionWarehouse, this.filterIntegration, this.sourceCommandDispatcher, this.searchCommandInvoker, this.gridThemeCommandInvoker, this.structureCommandDispatcher, this.summariesCommandInvoker, this.sortingCommandInvoker, this.pagingCommandInvoker).provide();
     }
 }
 GuiGridComponent.GUI_GRID_ID = 'gui-grid-id';
@@ -1855,6 +2028,9 @@ GuiGridComponent.ctorParameters = () => [
     { type: GuiGridIdGenerator },
     { type: FormationCommandInvoker },
     { type: FormationWarehouse },
+    { type: CompositionCommandInvoker },
+    { type: CompositionWarehouse },
+    { type: FilterIntegration },
     { type: SourceCommandInvoker },
     { type: SearchCommandInvoker },
     { type: SchemaCommandInvoker },
@@ -1906,6 +2082,11 @@ class GuiComponent {
     hasChanged(prop) {
         return prop !== undefined && prop.currentValue !== undefined;
     }
+    ifChanged(prop, callback) {
+        if (this.hasChanged(prop)) {
+            callback();
+        }
+    }
     addHostClass() {
         this.innerClassModifier.getHost().add(this.getSelectorName());
     }
@@ -1922,13 +2103,13 @@ class SmartComponent extends GuiComponent {
         super(elementRef);
         this.detector = detector;
         this.viewInDom = false;
-        this.hermesUnsubscribe$ = new HermesSubject();
+        this.unsubscribe$ = new HermesSubject();
     }
     ngAfterViewInit() {
         this.viewInDom = true;
     }
     ngOnDestroy() {
-        this.hermesUnsubscribe();
+        this.unsubscribe();
     }
     reRender() {
         if (this.isViewInDom()) {
@@ -1938,17 +2119,17 @@ class SmartComponent extends GuiComponent {
     isViewInDom() {
         return this.viewInDom;
     }
-    hermesSubscribe(stream$, callback) {
+    subscribe(stream$, callback) {
         stream$
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((streamValues) => {
             callback(streamValues);
             this.reRender();
         });
     }
-    hermesSubscribeWithoutRender(stream$, callback) {
+    subscribeWithoutRender(stream$, callback) {
         stream$
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((streamValues) => {
             callback(streamValues);
         });
@@ -1956,20 +2137,17 @@ class SmartComponent extends GuiComponent {
     // for gate
     subscribeAndEmit(stream$, emitter, mapper = (value) => value) {
         stream$
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((value) => {
             emitter.emit(mapper(value));
         });
     }
     unsubscribe() {
-        this.hermesUnsubscribe();
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
-    hermesUnsubscribe() {
-        this.hermesUnsubscribe$.next();
-        this.hermesUnsubscribe$.complete();
-    }
-    hermesTakeUntil() {
-        return hermesTakeUntil(this.hermesUnsubscribe$);
+    takeUntil() {
+        return hermesTakeUntil(this.unsubscribe$);
     }
 }
 SmartComponent.decorators = [
@@ -2101,14 +2279,14 @@ class PagingComponent extends SmartComponent {
         }
     }
     ngOnInit() {
-        this.hermesSubscribe(this.pagingDisplayModeArchive.on(), (mode) => {
+        this.subscribe(this.pagingDisplayModeArchive.on(), (mode) => {
             this.alternativeDisplay = mode === PagingDisplayMode.ADVANCED;
         });
-        this.hermesSubscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
+        this.subscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
             this.paging = paging;
             this.calculatePagingVisibility();
         });
-        this.hermesSubscribe(this.sourceWarehouse.onOriginSize(this.structureId), (size) => {
+        this.subscribe(this.sourceWarehouse.onOriginSize(this.structureId), (size) => {
             this.sourceSize = size;
         });
     }
@@ -2202,12 +2380,12 @@ class PagingSelectComponent extends PureComponent {
         this.pageSizeChanged = new EventEmitter();
     }
     ngOnChanges(changes) {
-        if (changes.paging) {
+        ifChanged(changes.paging, () => {
             if (this.paging) {
                 this.selectPageSizes = this.getSelectPageSizes();
                 this.selectPageSize = this.getSelectPageSize(this.paging.getPageSize());
             }
-        }
+        });
     }
     changePageSize(pageSize) {
         this.pageSizeChanged.emit(+pageSize.value);
@@ -3373,7 +3551,7 @@ class StructureInfoModalComponent extends StaticComponent {
 StructureInfoModalComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-info-dialog]',
-                template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.2\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -3622,16 +3800,16 @@ class StructureInfoPanelComponent extends SmartComponent {
         this.infoModal = StructureInfoModalComponent;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.structureInfoPanelArchive.on(), (infoPanel) => {
+        this.subscribe(this.structureInfoPanelArchive.on(), (infoPanel) => {
             this.infoPanelConfig = infoPanel;
         });
-        this.hermesSubscribe(this.sourceWarehouse.onOriginSize(this.structureId), (size) => {
+        this.subscribe(this.sourceWarehouse.onOriginSize(this.structureId), (size) => {
             this.totalItemsSize = size;
         });
-        this.hermesSubscribe(this.sourceWarehouse.onPreparedEntities(this.structureId), (preparedItems) => {
+        this.subscribe(this.sourceWarehouse.onPreparedEntities(this.structureId), (preparedItems) => {
             this.preparedItemsSize = preparedItems.length;
         });
-        this.hermesSubscribe(this.translationService.onTranslation(), (translation) => {
+        this.subscribe(this.translationService.onTranslation(), (translation) => {
             this.themeManagerTooltipText = translation.infoPanelThemeMangerTooltipText;
             this.columnManagerTooltipText = translation.infoPanelColumnManagerTooltipText;
             this.infoTooltipText = translation.infoPanelInfoTooltipText;
@@ -3673,24 +3851,6 @@ StructureInfoPanelComponent.ctorParameters = () => [
     { type: StructureInfoPanelArchive }
 ];
 
-class CompositionWarehouse {
-    constructor() {
-    }
-}
-CompositionWarehouse.decorators = [
-    { type: Injectable }
-];
-CompositionWarehouse.ctorParameters = () => [];
-
-class CompositionCommandInvoker {
-    constructor() {
-    }
-}
-CompositionCommandInvoker.decorators = [
-    { type: Injectable }
-];
-CompositionCommandInvoker.ctorParameters = () => [];
-
 class StructureColumnManagerComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionWarehouse) {
         super(changeDetectorRef, elementRef);
@@ -3701,7 +3861,7 @@ class StructureColumnManagerComponent extends SmartComponent {
         this.addClassToHost('gui-block');
     }
     ngOnInit() {
-        this.hermesSubscribe(this.compositionWarehouse.onAllColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionWarehouse.onAllColumns(this.compositionId), (columns) => {
             this.columns = columns;
             this.enabledColumnsCount = this.columns
                 .map((c) => +c.isEnabled())
@@ -3926,22 +4086,22 @@ class StructureSchemaMangerComponent extends SmartComponent {
         });
     }
     ngOnInit() {
-        this.hermesSubscribe(this.schemaWarehouse.onRowColoring(this.schemaReadModelRootId), (rowColoring) => {
+        this.subscribe(this.schemaWarehouse.onRowColoring(this.schemaReadModelRootId), (rowColoring) => {
             this.selectedRowColoring = {
                 value: SchemaRowColoring[rowColoring],
                 name: SchemaRowColoring[rowColoring]
             };
         });
-        this.hermesSubscribe(this.schemaWarehouse.onTheme(this.schemaReadModelRootId), (schemaTheme) => {
+        this.subscribe(this.schemaWarehouse.onTheme(this.schemaReadModelRootId), (schemaTheme) => {
             this.selectedTheme = {
                 value: SchemaTheme[schemaTheme],
                 name: SchemaTheme[schemaTheme]
             };
         });
-        this.hermesSubscribe(this.schemaWarehouse.onVerticalGrid(this.schemaReadModelRootId), (verticalGrid) => {
+        this.subscribe(this.schemaWarehouse.onVerticalGrid(this.schemaReadModelRootId), (verticalGrid) => {
             this.verticalGrid = verticalGrid;
         });
-        this.hermesSubscribe(this.schemaWarehouse.onHorizontalGrid(this.schemaReadModelRootId), (horizontalGrid) => {
+        this.subscribe(this.schemaWarehouse.onHorizontalGrid(this.schemaReadModelRootId), (horizontalGrid) => {
             this.horizontalGrid = horizontalGrid;
         });
     }
@@ -4196,33 +4356,14 @@ FieldWarehouse.ctorParameters = () => [
     { type: FieldReadModelArchive }
 ];
 
-class FilterWarehouse {
-    constructor() {
-    }
-}
-FilterWarehouse.decorators = [
-    { type: Injectable }
-];
-FilterWarehouse.ctorParameters = () => [];
-
-class FilterCommandInvoker {
-    constructor() {
-    }
-}
-FilterCommandInvoker.decorators = [
-    { type: Injectable }
-];
-FilterCommandInvoker.ctorParameters = () => [];
-
 class FilterMenuComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, structureId, compositionId, fieldWarehouse, filterWarehouse, filterCommandDispatcher, compositionWarehouse) {
+    constructor(changeDetectorRef, elementRef, structureId, compositionId, fieldWarehouse, filterWarehouse, filterCommandInvoker, compositionWarehouse) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.compositionId = compositionId;
         this.fieldWarehouse = fieldWarehouse;
         this.filterWarehouse = filterWarehouse;
-        this.filterCommandDispatcher = filterCommandDispatcher;
+        this.filterCommandInvoker = filterCommandInvoker;
         this.compositionWarehouse = compositionWarehouse;
         this.columns = [];
         this.fields = [];
@@ -4230,50 +4371,50 @@ class FilterMenuComponent extends SmartComponent {
         this.addClassToHost('gui-block');
     }
     ngOnInit() {
-        this.hermesSubscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
+        this.subscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
             this.activeFilters = activeFilters;
         });
-        this.hermesSubscribe(this.filterWarehouse.onFilterTypes(this.structureId), (filterTypeMap) => {
+        this.subscribe(this.filterWarehouse.onFilterTypes(this.structureId), (filterTypeMap) => {
             this.filterTypeMap = filterTypeMap;
         });
-        this.hermesSubscribe(this.fieldWarehouse.onFields(this.structureId), (fieldReadModels) => {
+        this.subscribe(this.fieldWarehouse.onFields(this.structureId), (fieldReadModels) => {
             this.fields = fieldReadModels;
         });
-        this.hermesSubscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
             this.columns = columns;
         });
-    }
-    onColumnSelect(selectedColumn) {
-        this.selectedColumn = selectedColumn;
-        this.filterTypes = this.filterTypeMap.getFilterTypes(this.selectedColumn.getFieldId());
-        this.changeDetectorRef.detectChanges();
     }
     onFieldSelect(field) {
         this.selectedField = field;
         this.filterTypes = this.filterTypeMap.getFilterTypes(this.selectedField.getFieldId());
-        this.changeDetectorRef.detectChanges();
+        this.reRender();
     }
     onFilterTypeSelect(filterTypeId) {
         this.selectedFilterTypeId = filterTypeId;
-        this.changeDetectorRef.detectChanges();
+        this.reRender();
     }
     removeAllFilters() {
-        this.filterCommandDispatcher.removeAllFilters(this.structureId);
-    }
-    addFilter() {
-        const fieldId = this.selectedField.getFieldId(), filterTypeId = this.selectedFilterTypeId, value = this.selectedValue;
-        this.filterCommandDispatcher.add(fieldId, filterTypeId, value, this.structureId);
-        this.clearAddFilterForm();
+        this.filterCommandInvoker.removeAll(this.structureId);
     }
     onValueChanged(value) {
         this.selectedValue = value;
     }
+    addFilter() {
+        const fieldId = this.selectedField.getFieldId(), filterTypeId = this.selectedFilterTypeId, value = this.selectedValue;
+        this.filterCommandInvoker.add(fieldId, filterTypeId, value, this.structureId);
+        this.clearAddFilterForm();
+    }
+    onRemovedFilter(filterId) {
+        event.preventDefault();
+        this.filterCommandInvoker.remove(filterId, this.structureId);
+    }
+    removeFilter() { }
     clearAddFilterForm() {
         this.selectedColumn = null;
         this.selectedField = null;
         this.selectedFilterTypeId = null;
         this.selectedValue = null;
-        this.changeDetectorRef.detectChanges();
+        this.reRender();
     }
     getSelectorName() {
         return 'gui-filter-menu';
@@ -4282,7 +4423,7 @@ class FilterMenuComponent extends SmartComponent {
 FilterMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-filter-menu]',
-                template: "<div>\n\t<div gui-active-filter-list></div>\n</div>\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<div>\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\" gui-field-selector></div>\n\n\t<ng-container *ngIf=\"selectedColumn\">\n\t\t{{selectedColumn.getFieldId()}}\n\t</ng-container>\n</div>\n\n<div>\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>\n\n\t<ng-container *ngIf=\"selectedFilterTypeId\">\n\t\t{{selectedFilterTypeId.toString()}}\n\t</ng-container>\n</div>\n\n<div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>\n\n</div>\n\n<div>\n\t<button (click)=\"addFilter()\"\n\t\t\t[disabled]=\"!selectedFilterTypeId\"\n\t\t\t[primary]=\"true\" gui-button>\n\t\tFilter\n\t</button>\n</div>\n\n<div>\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[secondary]=\"true\" gui-button>\n\t\tClear filters\n\t</button>\n</div>\n",
+                template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div gui-filter-menu-active-filters\n\t (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\">\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div *ngIf=\"selectedFilterTypeId\"\n\t\t (valueChanged)=\"onValueChanged($event)\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -4301,15 +4442,25 @@ FilterMenuComponent.ctorParameters = () => [
 const filterContainerToken = new InjectionToken('Filter container token');
 
 class FilterMenuTriggerComponent extends SmartComponent {
-    constructor(detector, elementRef, injector, drawerService, filterContainerRef) {
+    constructor(detector, elementRef, injector, drawerService, fabricDialogService, structureId, filterWarehouse, filterContainerRef) {
         super(detector, elementRef);
         this.injector = injector;
         this.drawerService = drawerService;
+        this.fabricDialogService = fabricDialogService;
+        this.structureId = structureId;
+        this.filterWarehouse = filterWarehouse;
         this.filterContainerRef = filterContainerRef;
+        this.activeFiltersExist = false;
+    }
+    ngOnInit() {
+        this.subscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
+            this.activeFiltersExist = activeFilters.length > 0;
+        });
     }
     openDrawer() {
         const elementRef = this.filterContainerRef.getElementRef();
-        this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
+        this.fabricDialogService.open(FilterMenuComponent, { injector: this.injector });
+        // this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
     }
     getSelectorName() {
         return 'gui-filter-menu-trigger';
@@ -4318,10 +4469,10 @@ class FilterMenuTriggerComponent extends SmartComponent {
 FilterMenuTriggerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-filter-menu-trigger]',
-                template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\" class=\"gui-filter-icon-wrapper\">\n\t<div gui-filter-icon></div>\n</div>\n",
+                template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\n\t<div gui-filter-icon></div>\n</div>\n",
                 encapsulation: ViewEncapsulation.None,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                styles: [".gui-filter-icon-wrapper{margin-right:24px}.gui-filter-menu{width:400px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"]
+                styles: [".gui-filter-icon-wrapper{margin-right:24px;position:relative;width:19px;height:19px}.gui-filter-active{position:absolute;top:-6px;left:-6px;border:2px solid #aaa!important;width:27px;height:27px;border-radius:50%}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"]
             },] }
 ];
 FilterMenuTriggerComponent.ctorParameters = () => [
@@ -4329,6 +4480,9 @@ FilterMenuTriggerComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Injector },
     { type: FabricDrawerService },
+    { type: FabricDialogService },
+    { type: StructureId },
+    { type: FilterWarehouse },
     { type: undefined, decorators: [{ type: Inject, args: [filterContainerToken,] }] }
 ];
 
@@ -4378,8 +4532,24 @@ class FilterTypeSelectorComponent extends PureComponent {
     constructor(elementRef) {
         super(elementRef);
         this.filterTypeSelected = new EventEmitter();
+        this.filterTypesAsOptions = [];
+        this.disabled = true;
     }
-    onSelectChange(filterType) {
+    ngOnChanges(changes) {
+        this.ifChanged(changes.filterTypes, () => {
+            this.filterTypesAsOptions = this.filterTypes.map((filter) => {
+                return {
+                    name: filter.getId().toString(),
+                    value: filter.getName()
+                };
+            });
+            this.disabled = this.filterTypesAsOptions.length === 0;
+        });
+    }
+    onSelectChange(option) {
+        const filterType = this.filterTypes.find((filterType) => {
+            return filterType.getId().toString() === option.name;
+        });
         this.filterTypeSelected.emit(filterType.getId());
     }
     getSelectorName() {
@@ -4389,7 +4559,7 @@ class FilterTypeSelectorComponent extends PureComponent {
 FilterTypeSelectorComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-filter-type-selector][filterTypes]',
-                template: "<ng-container>\n\tFilter Type:\n</ng-container>\n\n<gui-dropdown>\n\t<gui-dropdown-item (click)=\"onSelectChange(filterType)\"\n\t\t\t\t\t   *ngFor=\"let filterType of filterTypes\">\n\t\t{{filterType.getName()}}\n\t</gui-dropdown-item>\n</gui-dropdown>\n",
+                template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -4450,7 +4620,18 @@ class FieldSelectorComponent extends PureComponent {
         super(elementRef);
         this.fieldSelected = new EventEmitter();
     }
-    onSelectChange(field) {
+    ngOnChanges(changes) {
+        ifChanged(changes.fields, () => {
+            this.fieldsAsOptions = this.fields.map((field) => {
+                return {
+                    name: field.getFieldId().toString(),
+                    value: field.getName()
+                };
+            });
+        });
+    }
+    onFieldSelected(fieldId) {
+        const field = this.fields.find((field) => field.getFieldId().toString() === fieldId.name);
         this.fieldSelected.emit(field);
     }
     getSelectorName() {
@@ -4461,16 +4642,10 @@ FieldSelectorComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-field-selector][fields]',
                 template: `
-
-		Field:
-
-		<gui-dropdown>
-			<gui-dropdown-item *ngFor="let field of fields"
-							   (click)="onSelectChange(field)">
-				{{field.getName()}}
-			</gui-dropdown-item>
-		</gui-dropdown>
-
+		<gui-select (optionChanged)="onFieldSelected($event)"
+					[options]="fieldsAsOptions"
+					[placeholder]="'Select column'">
+		</gui-select>
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -4940,6 +5115,15 @@ class ActiveFilterReadModel {
     }
     getFilterId() {
         return this.filterId;
+    }
+    getFieldName() {
+        return this.fieldName;
+    }
+    getFilterTypeName() {
+        return this.filterTypeName;
+    }
+    getValue() {
+        return this.value;
     }
 }
 
@@ -5495,11 +5679,25 @@ class DomainFilterWarehouse extends FilterWarehouse {
     onFilterTypes(structureId) {
         return this.filterTypeArchive.on(structureId);
     }
+    onFilterTypesForFieldId(fieldId, structureId) {
+        return this.onFilterTypes(structureId)
+            .pipe(hermesMap((map) => {
+            return map.getFilterTypes(fieldId);
+        }));
+    }
     onActiveFilters(structureId) {
         return this.activeFilterArchive.on(structureId);
     }
     onUniqueValues(structureId) {
         return this.uniqueValuesArchive.on(structureId);
+    }
+    onceFilterTypeId(fieldId, filterTypeName, structureId) {
+        return singleFromObservable(this.onFilterTypes(structureId)
+            .pipe(hermesMap((map) => {
+            const filterTypes = map.getFilterTypes(fieldId);
+            const filterType = filterTypes.find((fieldType) => fieldType.getName() === filterTypeName);
+            return Optional.of(filterType.getId());
+        })));
     }
 }
 DomainFilterWarehouse.decorators = [
@@ -5518,16 +5716,16 @@ class DomainFilterCommandInvoker extends FilterCommandInvoker {
         super();
         this.commandDispatcher = commandDispatcher;
     }
-    setFilteringEnabled(config, structureId) {
+    setConfig(config, structureId) {
         this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
     }
     add(fieldId, filterTypeId, value, structureId) {
         this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
     }
-    removeAllFilters(structureId) {
+    removeAll(structureId) {
         this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
     }
-    removeFilter(filterId, structureId) {
+    remove(filterId, structureId) {
         this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
     }
     selectAllUniqueFilter(fieldId, structureId) {
@@ -5571,7 +5769,8 @@ FilterApiModule.decorators = [
                     ActiveFilterArchive,
                     UniqueValuesArchive,
                     FilterEnabledArchive,
-                    QuickFilterEnabledArchive
+                    QuickFilterEnabledArchive,
+                    FilterIntegration
                 ],
                 declarations: [],
                 exports: []
@@ -5581,19 +5780,18 @@ FilterApiModule.decorators = [
 class ActiveFilterListComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
         this.filterCommandDispatcher = filterCommandDispatcher;
         this.activeFilters = [];
     }
     ngOnInit() {
-        this.hermesSubscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
+        this.subscribe(this.filterWarehouse.onActiveFilters(this.structureId), (activeFilters) => {
             this.activeFilters = activeFilters;
         });
     }
     removeFilter(filter) {
-        this.filterCommandDispatcher.removeFilter(filter.getFilterId(), this.structureId);
+        this.filterCommandDispatcher.remove(filter.getFilterId(), this.structureId);
     }
     getSelectorName() {
         return 'gui-active-filter-list';
@@ -5633,7 +5831,7 @@ class ActiveSearchComponent extends SmartComponent {
         this.searchWarehouse = searchWarehouse;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
+        this.subscribe(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
             this.phrase = phrase;
         });
     }
@@ -5683,6 +5881,70 @@ ActiveFilterListModule.decorators = [
             },] }
 ];
 
+class FilterMenuActiveFiltersComponent extends PureComponent {
+    constructor(elementRef) {
+        super(elementRef);
+        this.removedFilter = new EventEmitter();
+        this.addClassToHost('gui-py-8');
+    }
+    remove(filter) {
+        this.removedFilter.emit(filter.getFilterId());
+    }
+    getSelectorName() {
+        return 'gui-filter-menu-active-filters';
+    }
+}
+FilterMenuActiveFiltersComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'div[gui-filter-menu-active-filters][activeFilters]',
+                template: `
+
+		<div *ngIf="activeFilters && activeFilters.length > 0"
+		class=""
+		style="border-top: 1px dashed; border-bottom: 1px dashed">
+
+			<h4>Active filters:</h4>
+
+			<div *ngFor="let filter of activeFilters"
+				 class="gui-flex gui-justify-between ">
+
+				<div>
+				<span [gui-tooltip]="'Column name ' + filter.getFieldName()">
+					{{filter.getFieldName()}}
+				</span>
+
+					<span [gui-tooltip]="'Filter type ' + filter.getFilterTypeName()">
+					{{filter.getFilterTypeName()}}
+				</span>
+
+					<span [gui-tooltip]="'Value ' + filter.getValue()">
+					{{filter.getValue()}}
+				</span>
+				</div>
+
+
+				<button (click)="remove(filter)">Remove</button>
+			</div>
+
+		</div>
+
+		<br/>
+		<br/>
+		<br/>
+
+	`,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            },] }
+];
+FilterMenuActiveFiltersComponent.ctorParameters = () => [
+    { type: ElementRef }
+];
+FilterMenuActiveFiltersComponent.propDecorators = {
+    activeFilters: [{ type: Input }],
+    removedFilter: [{ type: Output }]
+};
+
 class FilterMenuFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
@@ -5704,7 +5966,8 @@ FilterMenuFeatureModule.decorators = [
                     ColumnSelectorComponent,
                     FilterTypeSelectorComponent,
                     FilterValueComponent,
-                    FieldSelectorComponent
+                    FieldSelectorComponent,
+                    FilterMenuActiveFiltersComponent
                 ],
                 exports: [
                     FilterMenuTriggerComponent
@@ -6452,10 +6715,10 @@ class StructureGateway extends SmartComponent {
         this.translationService.setDefaultTranslation();
     }
     ngOnChanges(changes) {
-        if (changes.editMode !== undefined && changes.editMode.currentValue !== undefined) {
+        ifChanged(changes.editMode, () => {
             this.structureEditModeArchive.next(this.editMode);
-        }
-        if (changes.cellEditing !== undefined && changes.cellEditing.currentValue !== undefined) {
+        });
+        ifChanged(changes.cellEditing, () => {
             let editingConfig;
             if (typeof this.cellEditing === 'boolean') {
                 editingConfig = {
@@ -6466,43 +6729,43 @@ class StructureGateway extends SmartComponent {
                 editingConfig = this.cellEditing;
             }
             this.structureCommandInvoker.setCellEdit(editingConfig, this.structureId);
-        }
-        if (changes.width !== undefined && changes.width.currentValue !== undefined) {
-            this.compositionCommandDispatcher.setWidth(this.width, this.compositionId);
-        }
-        if (changes.theme !== undefined && changes.theme.currentValue !== undefined) {
+        });
+        ifChanged(changes.width, (width) => {
+            this.compositionCommandDispatcher.setWidth(width, this.compositionId);
+        });
+        ifChanged(changes.theme, () => {
             this.schemaCommandInvoker.setTheme(this.theme, this.schemaId, this.structureId);
-        }
-        if (changes.rowHeight !== undefined && changes.rowHeight.currentValue !== undefined) {
+        });
+        ifChanged(changes.rowHeight, () => {
             this.structureCommandInvoker.setRowHeight(this.rowHeight, this.structureId);
-        }
-        if (changes.autoResizeWidth !== undefined && changes.autoResizeWidth.currentValue !== undefined) {
+        });
+        ifChanged(changes.autoResizeWidth, () => {
             this.compositionCommandDispatcher.setResizeWidth(this.autoResizeWidth, this.compositionId);
-        }
+        });
         /**
          * Columns
          */
         this.structureColumnInputHandler.handle(changes);
-        if (changes.maxHeight && this.maxHeight) {
+        ifChanged(changes.maxHeight, () => {
             this.structureCommandInvoker.setContainerHeight(this.maxHeight, this.structureId);
-        }
+        });
         /**
          * Setting source should be last step
          */
-        if (changes.source !== undefined && changes.source.currentValue !== undefined) {
+        ifChanged(changes.source, () => {
             this.sourceCommandService.setOrigin(this.source, this.structureId);
-        }
+        });
     }
     ngOnInit() {
         this.compositionEventRepository
             .onColumnsChanged(this.compositionId.toReadModelRootId())
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe(() => {
             this.columnsChanged.emit();
         });
         this.compositionEventRepository
             .onContainerWidthChanged(this.compositionId.toReadModelRootId())
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((containerWidth) => {
             this.containerWidthChanged.emit(containerWidth);
         });
@@ -6513,7 +6776,7 @@ class StructureGateway extends SmartComponent {
         });
         this.structureCellEditStore
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((state) => {
             switch (state) {
                 case StructureCellEditState.ENTER:
@@ -6837,7 +7100,11 @@ class StructureRowDetailService extends Reactive {
                     { provide: structureRowDetailViewTemplate, useValue: this.config.template }
                 ]
             });
-            this.drawerService.open(this.elementRef, StructureRowDetailViewComponent, { injector: injector });
+            this.drawerService.open({
+                appendToElement: this.elementRef,
+                component: StructureRowDetailViewComponent,
+                injector: injector
+            });
         });
     }
     turnOn() {
@@ -7570,13 +7837,13 @@ class SearchComponent extends SmartComponent {
     }
     ngOnInit() {
         this.observeChanges();
-        this.hermesSubscribe(this.searchWarehouse.onPlaceholder(this.structureId), (placeholder) => {
+        this.subscribe(this.searchWarehouse.onPlaceholder(this.structureId), (placeholder) => {
             this.placeholder = placeholder;
         });
-        this.hermesSubscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (searchingEnabled) => {
+        this.subscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (searchingEnabled) => {
             this.searchingEnabled = searchingEnabled;
         });
-        this.hermesSubscribeWithoutRender(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
+        this.subscribeWithoutRender(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
             if (phrase === undefined) {
                 phrase = null;
             }
@@ -7601,7 +7868,7 @@ class SearchComponent extends SmartComponent {
                 .controls[SearchComponent.FORM_SEARCH_NAME]
                 .valueChanges
                 .pipe(debounceTime(200)))
-                .pipe(this.hermesTakeUntil())
+                .pipe(this.takeUntil())
                 .subscribe((phrase) => {
                 this.searchCommandDispatcher.search(phrase, this.structureId);
             });
@@ -8204,21 +8471,6 @@ class DataFieldFactory {
 DataFieldFactory.decorators = [
     { type: Injectable }
 ];
-
-class FieldId {
-    constructor(id) {
-        this.id = id;
-    }
-    getId() {
-        return this.id;
-    }
-    equals(fieldId) {
-        return fieldId.toString() === this.id;
-    }
-    toString() {
-        return this.id;
-    }
-}
 
 class FieldIdGenerator {
     generateId() {
@@ -10850,21 +11102,21 @@ class StructureSummariesPanelComponent extends SmartComponent {
         this.compositionWarehouse = compositionWarehouse;
         this.sourceEmpty = false;
         this.addClassToHost('gui-flex');
-        this.hermesSubscribe(this.structureSummariesEventRepository.onSummariesChanged(this.structureId.toReadModelRootId()), (event) => {
+        this.subscribe(this.structureSummariesEventRepository.onSummariesChanged(this.structureId.toReadModelRootId()), (event) => {
             this.summaries = event.getSummaries();
         });
     }
     ngOnInit() {
-        this.hermesSubscribe(this.rowSelectionTypeArchive.on(), (type) => {
+        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
             this.checkboxSelection = type === RowSelectionType.CHECKBOX;
         });
-        this.hermesSubscribe(this.sourceWarehouse.onEntitiesSize(this.structureId), (size) => {
+        this.subscribe(this.sourceWarehouse.onEntitiesSize(this.structureId), (size) => {
             this.sourceEmpty = size === 0;
         });
-        this.hermesSubscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
             this.headerColumns = columns;
         });
-        this.hermesSubscribe(this.translationService.onTranslation(), (translation) => {
+        this.subscribe(this.translationService.onTranslation(), (translation) => {
             this.summariesTranslations = new SummariesTranslations(translation.summariesDistinctValuesTooltip, translation.summariesAverageTooltip, translation.summariesMinTooltip, translation.summariesMaxTooltip, translation.summariesMedTooltip, translation.summariesCountTooltip);
         });
     }
@@ -10962,7 +11214,7 @@ class StructureComponent extends StructureGateway {
     }
     ngOnInit() {
         super.ngOnInit();
-        this.hermesSubscribe(this.structureWarehouse.on(this.structureId), (structureReadModelRoot) => {
+        this.subscribe(this.structureWarehouse.on(this.structureId), (structureReadModelRoot) => {
             this.structure = structureReadModelRoot;
             this.loaderEnabled = structureReadModelRoot.getSource().isLoading();
             this.circleLoaderEnabled = structureReadModelRoot.isLoaderVisible();
@@ -10985,7 +11237,7 @@ class StructureComponent extends StructureGateway {
              * When gui-grid is in dynamic container which is created later then grid.
              */
             hermesTimer(0)
-                .pipe(this.hermesTakeUntil())
+                .pipe(this.takeUntil())
                 .subscribe(() => {
                 width = this.elementRef.nativeElement.offsetWidth;
                 if (width > 0) {
@@ -10995,7 +11247,7 @@ class StructureComponent extends StructureGateway {
         }
         this.schemaStylesManager
             .init(this.elementRef, this.schemaReadModelRootId);
-        this.hermesSubscribeWithoutRender(this.compositionWarehouse.onWidth(this.compositionId), (width) => {
+        this.subscribeWithoutRender(this.compositionWarehouse.onWidth(this.compositionId), (width) => {
             this.styleModifier.getHost().setWidth(width);
         });
     }
@@ -11075,7 +11327,7 @@ StructureComponent.decorators = [
                         useExisting: StructureComponent
                     }
                 ],
-                styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:bold}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure{border-color:#d6d6d6;font-size:14px}.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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);background-position:center;background-repeat:no-repeat;background-size:contain;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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);background-position:center;background-repeat:no-repeat;background-size:contain;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:bold}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:bold;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}\n", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-summaries-value{font-weight:bold}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div{display:inline-block}.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:bold}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns{height:42px}.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:rgba(0,0,0,.122);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.122);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px rgba(0,0,0,.141),0 3px 1px -2px rgba(0,0,0,.122),0 1px 5px rgba(0,0,0,.2)}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:bold}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:bold}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.102);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.102);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:bold}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"]
+                styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:bold}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure{border-color:#d6d6d6;font-size:14px}.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-title .gui-sort{display:none;height:14px;margin-left:4px;width:14px}.gui-header .gui-header-cell .gui-header-title .gui-sort-asc{background:url(data:image/png;base64,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);background-position:center;background-repeat:no-repeat;background-size:contain;display:block}.gui-header .gui-header-cell .gui-header-title .gui-sort-desc{background:url(data:image/png;base64,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);background-position:center;background-repeat:no-repeat;background-size:contain;display:block}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:bold}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:bold;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}\n", ".gui-structure-column-manager ol li:hover{background:#ecedee}.gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-dialog-column-manager .gui-dialog-title{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-summaries-value{font-weight:bold}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div{display:inline-block}.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:bold}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-header-item-active .gui-item .gui-sort{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns{height:42px}.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:rgba(0,0,0,.122);font-family:Arial;font-size:14px}.gui-material *{border-color:rgba(0,0,0,.122);font-size:14px}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px rgba(0,0,0,.141),0 3px 1px -2px rgba(0,0,0,.122),0 1px 5px rgba(0,0,0,.2)}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:bold}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button{padding:0}.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0;font-size:14px}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-dark.gui-rows-odd .gui-row.odd{background:#4f4f4f}.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p{color:#f0f0f0}.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0;font-size:14px}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:bold}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#7cb9f652}.gui-light.gui-rows-odd .gui-row.odd{background:#f7f7f7}.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:rgba(34,36,38,.102);font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:rgba(34,36,38,.102);font-size:14px}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:bold}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd{background:#f9fafb}.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button{padding:0}.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"]
             },] }
 ];
 StructureComponent.ctorParameters = () => [
@@ -11204,10 +11456,10 @@ class StructureColumnConfigComponent extends SmartComponent {
         this.structureColumnConfigService = this.injector.get(StructureColumnConfigService);
     }
     ngOnInit() {
-        this.hermesSubscribe(this.filterWarehouse.onUniqueValues(this.structureId), (uniqueValuesReadModel) => {
+        this.subscribe(this.filterWarehouse.onUniqueValues(this.structureId), (uniqueValuesReadModel) => {
             this.uniqueValues = uniqueValuesReadModel.getValues(this.column.getFieldId());
         });
-        this.hermesSubscribe(this.structureColumnMenuConfigArchive
+        this.subscribe(this.structureColumnMenuConfigArchive
             .on()
             .pipe(hermesSwitchMap((config) => {
             this.config = config;
@@ -11499,26 +11751,26 @@ class StructureHeaderComponent extends SmartComponent {
         this.styleModifier = new StyleModifier(elementRef.nativeElement);
     }
     ngOnInit() {
-        this.hermesSubscribe(this.rowSelectionTypeArchive.on(), (type) => {
+        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
             this.checkboxSelection = type === RowSelectionType.CHECKBOX;
         });
-        this.hermesSubscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
             this.headerColumns = columns;
         });
-        this.hermesSubscribeWithoutRender(this.compositionWarehouse.onContainerWidth(this.compositionId), (width) => {
+        this.subscribeWithoutRender(this.compositionWarehouse.onContainerWidth(this.compositionId), (width) => {
             this.styleModifier.getElement(this.containerRef.nativeElement).setWidth(width);
         });
-        this.hermesSubscribe(this.filterWarehouse.onFilteringEnabled(this.structureId), (enabled) => {
+        this.subscribe(this.filterWarehouse.onFilteringEnabled(this.structureId), (enabled) => {
             this.filterRowEnabled = enabled;
         });
-        this.hermesSubscribe(this.compositionWarehouse.onGroups(this.compositionId), (collection) => {
+        this.subscribe(this.compositionWarehouse.onGroups(this.compositionId), (collection) => {
             this.showGroups = collection.isVisible();
             this.groups = collection.getGroups();
         });
     }
     ngAfterViewInit() {
         super.ngAfterViewInit();
-        this.hermesSubscribeWithoutRender(this.structureVerticalFormationWarehouse.onRowHeight(this.structureId), (rowHeight) => {
+        this.subscribeWithoutRender(this.structureVerticalFormationWarehouse.onRowHeight(this.structureId), (rowHeight) => {
             const headerHeight = +(rowHeight) + 2;
             if (this.filtersRef) {
                 this.styleModifier.getElement(this.filtersRef.nativeElement).setHeight(headerHeight);
@@ -11869,7 +12121,8 @@ class VerticalFormationRepository extends Reactive {
             AllUniqueFilterSelectedEvent,
             UniqueFilterSelectedEvent,
             PageChangedEvent,
-            PagingSetEvent
+            PagingSetEvent,
+            ActiveFiltersSetEvent
         ])
             .pipe(this.hermesTakeUntil())
             .subscribe((event) => {
@@ -11943,25 +12196,25 @@ class StructureContentComponent extends SmartComponent {
         this.checkboxSelection = false;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.rowSelectionTypeArchive.on(), (type) => {
+        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
             this.checkboxSelection = type === RowSelectionType.CHECKBOX;
         });
-        this.hermesSubscribe(this.structureEditModeArchive.on(), (enabled) => {
+        this.subscribe(this.structureEditModeArchive.on(), (enabled) => {
             this.editMode = enabled;
         });
-        this.hermesSubscribe(this.structureWarehouse.onEditManager(this.structureId), (manager) => {
+        this.subscribe(this.structureWarehouse.onEditManager(this.structureId), (manager) => {
             this.cellEditing = manager;
         });
-        this.hermesSubscribe(this.schemaRowClassArchive.on(), (schemaRowClass) => {
+        this.subscribe(this.schemaRowClassArchive.on(), (schemaRowClass) => {
             this.schemaRowClass = schemaRowClass;
         });
-        this.hermesSubscribe(this.schemaRowStyleArchive.on(), (schemaRowStyle) => {
+        this.subscribe(this.schemaRowStyleArchive.on(), (schemaRowStyle) => {
             this.schemaRowStyle = schemaRowStyle;
         });
-        this.hermesSubscribe(this.structureVerticalFormationWarehouse.onRowHeight(this.structureId), (rowHeight) => {
+        this.subscribe(this.structureVerticalFormationWarehouse.onRowHeight(this.structureId), (rowHeight) => {
             this.rowHeight = rowHeight;
         });
-        this.hermesSubscribe(fromRxJsObservable(combineLatest(toRxJsObservable(this.searchWarehouse.onPhrase(this.structureId)), toRxJsObservable(this.searchWarehouse.onHighlight(this.structureId)))), (args) => {
+        this.subscribe(fromRxJsObservable(combineLatest(toRxJsObservable(this.searchWarehouse.onPhrase(this.structureId)), toRxJsObservable(this.searchWarehouse.onHighlight(this.structureId)))), (args) => {
             const searchPhrase = args[0], highlighting = args[1];
             this.highlighting = highlighting;
             this.searchPhrase = searchPhrase;
@@ -12030,20 +12283,20 @@ class StructureRowComponent extends SmartComponent {
         this.classModifier = new ClassModifier(this.elRef.nativeElement);
     }
     ngOnChanges(changes) {
-        if (changes.entity !== undefined && changes.entity.currentValue !== undefined) {
+        ifChanged(changes.entity, () => {
             this.checkSelectedItem();
             this.updateRowClass(changes.entity.previousValue);
             this.updateRowStyle(changes.entity.previousValue);
-        }
-        if (changes.rowClass !== undefined && changes.rowClass.currentValue !== undefined) {
+        });
+        ifChanged(changes.rowClass, () => {
             this.updateRowClass();
-        }
-        if (changes.rowStyle !== undefined && changes.rowStyle.currentValue !== undefined) {
+        });
+        ifChanged(changes.rowStyle, () => {
             this.updateRowStyle();
-        }
+        });
     }
     ngOnInit() {
-        this.hermesSubscribeWithoutRender(this.formationWarehouse.onRowSelectedReadModel(this.structureId), (row) => {
+        this.subscribeWithoutRender(this.formationWarehouse.onRowSelectedReadModel(this.structureId), (row) => {
             this.row = row;
             const prevValue = this.selectedItem;
             this.checkSelectedItem();
@@ -12083,6 +12336,9 @@ class StructureRowComponent extends SmartComponent {
                 }
             }
         }
+    }
+    getSelectorName() {
+        return 'gui-structure-row';
     }
     calculateRowStyle(entity) {
         if (!this.rowStyle) {
@@ -12155,9 +12411,6 @@ class StructureRowComponent extends SmartComponent {
         }
         return clazz;
     }
-    getSelectorName() {
-        return 'gui-structure-row';
-    }
 }
 StructureRowComponent.decorators = [
     { type: Component, args: [{
@@ -12218,13 +12471,13 @@ class StructureCellComponent extends SmartComponent {
         this.inEditMode = false;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.compositionWarehouse.onHighlightedColumn(new ColumnId(this.cell.columnDefinitionId.toString()), this.compositionId), (value) => {
+        this.subscribe(this.compositionWarehouse.onHighlightedColumn(new ColumnId(this.cell.columnDefinitionId.toString()), this.compositionId), (value) => {
             this.isHighlighted = value;
         });
     }
     ngAfterViewInit() {
         super.ngAfterViewInit();
-        this.hermesSubscribeWithoutRender(this.cellEditCloseAllService.onCloseAll(), () => {
+        this.subscribeWithoutRender(this.cellEditCloseAllService.onCloseAll(), () => {
             this.exitEditMode();
         });
     }
@@ -12238,7 +12491,7 @@ class StructureCellComponent extends SmartComponent {
         }
         this.cellEditCloseAllService.closeAll();
         hermesTimer(0)
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe(() => {
             this.inEditMode = true;
             this.valueChanges$ = new ChangedValueEmitter();
@@ -12270,10 +12523,13 @@ class StructureCellComponent extends SmartComponent {
         this.sourceCommandService.editItem(new StructureEditSourceItemParams(itemId, fieldId, updatedValue), this.structureId);
         this.exitEditMode();
     }
+    getSelectorName() {
+        return 'gui-structure-cell';
+    }
     observeFieldStatus() {
         this.status$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((status) => {
             switch (status) {
                 case EditEventType.SUBMIT:
@@ -12292,7 +12548,7 @@ class StructureCellComponent extends SmartComponent {
     observeValueChanges() {
         this.valueChanges$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((value) => {
             this.actualValue = value;
         });
@@ -12308,9 +12564,6 @@ class StructureCellComponent extends SmartComponent {
     }
     publishEditSubmit() {
         this.publishEditState(StructureCellEditState.SUBMIT);
-    }
-    getSelectorName() {
-        return 'gui-structure-cell';
     }
 }
 StructureCellComponent.decorators = [
@@ -12394,17 +12647,17 @@ class StructureContainerComponent extends SmartComponent {
         this.styleModifier = new StyleModifier(this.elRef.nativeElement);
     }
     ngOnInit() {
-        this.hermesSubscribeWithoutRender(this.verticalFormationWarehouse.onContainerHeight(this.structureId), (containerHeight) => {
+        this.subscribeWithoutRender(this.verticalFormationWarehouse.onContainerHeight(this.structureId), (containerHeight) => {
             this.setContainerHeight(containerHeight);
         });
-        this.hermesSubscribe(fromRxJsObservable(toRxJsObservable(this.structureInitialValuesReadyArchive.once(this.structureId))
+        this.subscribe(fromRxJsObservable(toRxJsObservable(this.structureInitialValuesReadyArchive.once(this.structureId))
             .pipe(flatMap(() => {
             return combineLatest(toRxJsObservable(this.sourceWarehouse.onEntities(this.structureId)), toRxJsObservable(this.compositionWarehouse.onTemplateColumns(this.compositionId)));
         }))), (arr) => {
             this.source = arr[0];
             this.columns = arr[1];
         });
-        this.hermesSubscribeWithoutRender(this.compositionWarehouse.onResizeWidth(this.compositionId), (enabled) => {
+        this.subscribeWithoutRender(this.compositionWarehouse.onResizeWidth(this.compositionId), (enabled) => {
             this.autoResizeWidthEnabled = enabled;
         });
     }
@@ -12412,16 +12665,16 @@ class StructureContainerComponent extends SmartComponent {
         super.ngAfterViewInit();
         // turn on when structure is ready
         if (this.structureParent) {
-            this.hermesSubscribeWithoutRender(this.resizeDetector
+            this.subscribeWithoutRender(this.resizeDetector
                 .on(this.structureParent.getElementRef().nativeElement)
                 .pipe(hermesFilter(() => this.autoResizeWidthEnabled), hermesMap((size) => size.width), hermesDistinctUntilChanged()), (width) => {
                 this.recalculateContainer(width);
             });
         }
-        this.hermesSubscribeWithoutRender(this.compositionWarehouse.onContainerWidth(this.compositionId), (width) => {
+        this.subscribeWithoutRender(this.compositionWarehouse.onContainerWidth(this.compositionId), (width) => {
             this.styleModifier.getElement(this.sourceCollectionRef.nativeElement).setWidth(width);
         });
-        this.hermesSubscribeWithoutRender(this.verticalFormationWarehouse.onVerticalScrollEnabled(this.structureId), (enabled) => {
+        this.subscribeWithoutRender(this.verticalFormationWarehouse.onVerticalScrollEnabled(this.structureId), (enabled) => {
             if (enabled) {
                 this.enableScrollObservation();
             }
@@ -12429,7 +12682,7 @@ class StructureContainerComponent extends SmartComponent {
                 this.disableScrollObservation();
             }
         });
-        this.hermesSubscribeWithoutRender(this.structureWarehouse
+        this.subscribeWithoutRender(this.structureWarehouse
             .on(this.structureId)
             .pipe(hermesFilter((str) => {
             return str.isVerticalScrollEnabled();
@@ -12437,7 +12690,7 @@ class StructureContainerComponent extends SmartComponent {
             const topMargin = structure.getTopMargin(), sourceHeight = structure.getSourceHeight();
             this.setSourceHeight(topMargin, sourceHeight);
         });
-        this.hermesSubscribeWithoutRender(this.verticalFormationWarehouse.onScrollBarPosition(this.structureId), (scrollPosition) => {
+        this.subscribeWithoutRender(this.verticalFormationWarehouse.onScrollBarPosition(this.structureId), (scrollPosition) => {
             this.elRef.nativeElement.scrollTop = scrollPosition;
         });
     }
@@ -12552,41 +12805,41 @@ class StructureBlueprintComponent extends SmartComponent {
         this.contentCssClass = `gui-${this.className}-content`;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.structureHeaderTopEnabledArchive.on(), (topHeaderEnabled) => {
+        this.subscribe(this.structureHeaderTopEnabledArchive.on(), (topHeaderEnabled) => {
             this.topHeaderEnabled = topHeaderEnabled;
         });
-        this.hermesSubscribe(this.structureHeaderBottomEnabledArchive.on(), (bottomHeaderEnabled) => {
+        this.subscribe(this.structureHeaderBottomEnabledArchive.on(), (bottomHeaderEnabled) => {
             this.bottomHeaderEnabled = bottomHeaderEnabled;
         });
-        this.hermesSubscribe(this.structureWarehouse.on(this.structureId), (structure) => {
+        this.subscribe(this.structureWarehouse.on(this.structureId), (structure) => {
             this.structure = structure;
             this.items = structure.getEntities();
         });
-        this.hermesSubscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
+        this.subscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
             this.pagingReadModel = paging;
         });
-        this.hermesSubscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
+        this.subscribe(this.pagingWarehouse.onPaging(this.structureId), (paging) => {
             this.pagingReadModel = paging;
         });
-        this.hermesSubscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (enabled) => {
+        this.subscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (enabled) => {
             this.searchEnabled = enabled;
         });
-        this.hermesSubscribe(this.filterWarehouse.onQuickFiltersEnabled(this.structureId), (enabled) => {
+        this.subscribe(this.filterWarehouse.onQuickFiltersEnabled(this.structureId), (enabled) => {
             this.quickFiltersEnabled = enabled;
         });
-        this.hermesSubscribe(this.summariesWarehouse.onBottomEnabled(this.structureId), (enabled) => {
+        this.subscribe(this.summariesWarehouse.onBottomEnabled(this.structureId), (enabled) => {
             this.bottomSummariesPanelEnabled = enabled;
         });
-        this.hermesSubscribe(this.summariesWarehouse.onTopEnabled(this.structureId), (enabled) => {
+        this.subscribe(this.summariesWarehouse.onTopEnabled(this.structureId), (enabled) => {
             this.topSummariesPanelEnabled = enabled;
         });
-        this.hermesSubscribe(this.structureInfoPanelArchive.on(), (infoPanel) => {
+        this.subscribe(this.structureInfoPanelArchive.on(), (infoPanel) => {
             this.infoPanelEnabled = infoPanel.isEnabled();
         });
-        this.hermesSubscribe(this.structureTitlePanelConfigArchive.on(), (titlePanel) => {
+        this.subscribe(this.structureTitlePanelConfigArchive.on(), (titlePanel) => {
             this.titlePanelEnabled = titlePanel.enabled;
         });
-        this.hermesSubscribe(this.structureFooterPanelConfigArchive.on(), (footerPanel) => {
+        this.subscribe(this.structureFooterPanelConfigArchive.on(), (footerPanel) => {
             this.footerPanelEnabled = footerPanel.enabled;
         });
     }
@@ -13975,7 +14228,7 @@ class StructureDomainCommandInvoker extends StructureCommandInvoker {
         this.sourceDispatcher.setOrigin(structureId, items);
     }
     setFilterConfig(config, structureId) {
-        this.structureFilterCommandService.setFilteringEnabled(config, structureId);
+        this.structureFilterCommandService.setConfig(config, structureId);
     }
     setQuickFiltersConfig(config, structureId) {
         this.commandDispatcher.dispatch(new SetConfigQuickFilterCommand(structureId, config));
@@ -14093,7 +14346,8 @@ StructureTopPanelComponent.decorators = [
 
 		<div gui-search-bar
 			 class="gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto"></div>
-		<!--		<gui-filter-menu-trigger></gui-filter-menu-trigger>-->
+
+<!--		<div gui-filter-menu-trigger></div>-->
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -14134,7 +14388,7 @@ class StructureColumnConfigTriggerComponent extends SmartComponent {
         this.structureColumnConfigService = structureColumnConfigService;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.structureColumnMenuConfigArchive.on(), (config) => {
+        this.subscribe(this.structureColumnMenuConfigArchive.on(), (config) => {
             this.config = config;
         });
     }
@@ -14184,7 +14438,7 @@ class StructureColumnConfigSortComponent extends SmartComponent {
     }
     ngOnInit() {
         this.sortStatus = this.column.getSortStatus();
-        this.hermesSubscribe(this.compositionReadModelService.onSortOrder(this.column.getFieldId(), this.compositionId), (sortStatus) => {
+        this.subscribe(this.compositionReadModelService.onSortOrder(this.column.getFieldId(), this.compositionId), (sortStatus) => {
             this.sortStatus = sortStatus;
         });
     }
@@ -14351,14 +14605,13 @@ StructureColumnMenuArrowIconComponent.propDecorators = {
 class UniqueValueListComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandInvoker) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
         this.filterCommandInvoker = filterCommandInvoker;
         this.uniqueValues = [];
     }
     ngOnInit() {
-        this.hermesSubscribe(this.filterWarehouse.onUniqueValues(this.structureId), (uniqueValuesReadModel) => {
+        this.subscribe(this.filterWarehouse.onUniqueValues(this.structureId), (uniqueValuesReadModel) => {
             this.uniqueValues = uniqueValuesReadModel.getValues(this.fieldId);
             this.selectAllChecked = uniqueValuesReadModel.isSelectAllChecked(this.fieldId);
             this.selectAllIndeterminate = uniqueValuesReadModel.isIndeterminate(this.fieldId);
@@ -14486,12 +14739,12 @@ class StructureCellEditComponent extends SmartComponent {
         this.sourceCommandService = sourceCommandService;
     }
     ngOnChanges(changes) {
-        if (changes.entity !== null && changes.entity !== undefined) {
+        ifChanged(changes.entity, () => {
             this.initEditContext();
-        }
-        if (changes.cell !== null && changes.cell !== undefined) {
+        });
+        ifChanged(changes.cell, () => {
             this.initEditContext();
-        }
+        });
     }
     ngOnInit() {
         this.initEditContext();
@@ -14515,7 +14768,7 @@ class StructureCellEditComponent extends SmartComponent {
         };
         this.status$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((status) => {
             switch (status) {
                 case EditEventType.SUBMIT:
@@ -14534,7 +14787,7 @@ class StructureCellEditComponent extends SmartComponent {
     observeValueChanges() {
         this.valueChanges$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((value) => {
             this.actualValue = value;
         });
@@ -14589,12 +14842,12 @@ class StructureCellEditBooleanComponent extends SmartComponent {
         this.sourceCommandService = sourceCommandService;
     }
     ngOnChanges(changes) {
-        if (changes.entity !== null && changes.entity !== undefined) {
+        ifChanged(changes.entity, () => {
             this.initEditContext();
-        }
-        if (changes.cell !== null && changes.cell !== undefined) {
+        });
+        ifChanged(changes.cell, () => {
             this.initEditContext();
-        }
+        });
     }
     ngOnInit() {
         this.initEditContext();
@@ -14619,7 +14872,7 @@ class StructureCellEditBooleanComponent extends SmartComponent {
         this.observeValueChanges();
         this.status$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((status) => {
             switch (status) {
                 case EditEventType.SUBMIT:
@@ -14633,7 +14886,7 @@ class StructureCellEditBooleanComponent extends SmartComponent {
     observeValueChanges() {
         this.valueChanges$
             .on()
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((value) => {
             this.actualValue = value;
         });
@@ -14673,7 +14926,7 @@ class StructureBannerPanel extends SmartComponent {
         super(changeDetectorRef, elementRef);
     }
     ngOnInit() {
-        this.hermesSubscribe(this.onBannerPanelConfig(), (config) => {
+        this.subscribe(this.onBannerPanelConfig(), (config) => {
             this.bannerPanel = config.template;
             if (typeof this.bannerPanel === 'function') {
                 this.bannerPanel = this.bannerPanel();
@@ -14815,10 +15068,10 @@ class SelectAllComponent extends SmartComponent {
         this.modeMulti = false;
     }
     ngOnInit() {
-        this.hermesSubscribe(this.formationWarehouse.onMode(this.structureId), (mode) => {
+        this.subscribe(this.formationWarehouse.onMode(this.structureId), (mode) => {
             this.modeMulti = mode === RowSelectionMode.MULTIPLE;
         });
-        this.hermesSubscribe(this.formationWarehouse.onRowSelectedReadModel(this.structureId), (rowSelectedReadModel) => {
+        this.subscribe(this.formationWarehouse.onRowSelectedReadModel(this.structureId), (rowSelectedReadModel) => {
             this.selectAllChecked = rowSelectedReadModel.isAllSelected();
             this.selectAllIndeterminate = rowSelectedReadModel.isIndeterminate();
         });
@@ -17080,9 +17333,10 @@ class CellValue {
 }
 
 class CellTemplateWithAccessor {
-    constructor(columnDefinitionId, template, editTemplate, editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
+    constructor(columnDefinitionId, name, template, editTemplate, editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
     view) {
         this.columnDefinitionId = columnDefinitionId;
+        this.name = name;
         this.template = template;
         this.editTemplate = editTemplate;
         this.editable = editable;
@@ -17111,6 +17365,9 @@ class CellTemplateWithAccessor {
     }
     isAlignRight() {
         return this.align === ColumnAlign.RIGHT;
+    }
+    getName() {
+        return this.name;
     }
     // REFACTOR #1581
     getValue(entity, searchPhrase) {
@@ -17175,11 +17432,12 @@ class CellTemplateWithAccessor {
 
 class ColumnDefinition extends ReadModelEntity {
     constructor(field, columnDefinitionId, // REFACTOR Id first argument
-    enabled, type, // REFACTOR
+    name, enabled, type, // REFACTOR
     view, // REFACTOR
     align, // REFACTOR
     header, cellEditingEnabled, sort = SortOrder.NONE, sortable = true) {
         super(columnDefinitionId);
+        this.name = name;
         this.type = type;
         this.view = view;
         this.align = align;
@@ -17225,7 +17483,7 @@ class ColumnDefinition extends ReadModelEntity {
         }, searchAccessor = (entity) => {
             return this.field.getSearchAccessor()(entity);
         };
-        return new CellTemplateWithAccessor(this.columnDefinitionId, this.cellTemplate, this.editTemplate, true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
+        return new CellTemplateWithAccessor(this.columnDefinitionId, this.name, this.cellTemplate, this.editTemplate, true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
     }
 }
 
@@ -17248,8 +17506,11 @@ class ColumnDefinitionFactory {
             return this.createFromActiveColumnEntity(column);
         }
     }
+    createColumns(columns) {
+        return columns.map((column) => this.create(column));
+    }
     createFromColumnEntity(column) {
-        const columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getSortStatus(), column.isSortingEnabled());
+        const columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.getColumnConfig().name, column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getSortStatus(), column.isSortingEnabled());
         if (column.getCellView() === CellView.NG_TEMPLATE) {
             columnDef.cellTemplate = column.getColumnConfig().templateRef;
         }
@@ -17269,7 +17530,7 @@ class ColumnDefinitionFactory {
         return columnDef;
     }
     createFromActiveColumnEntity(activeColumn) {
-        const columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), true, // remove,
+        const columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), activeColumn.getColumnConfig().name, true, // remove,
         activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getSortStatus(), activeColumn.isSortingEnabled());
         if (activeColumn.getCellView() === CellView.NG_TEMPLATE) {
             columnDef.cellTemplate = activeColumn.getColumnConfig().templateRef;
@@ -17288,9 +17549,6 @@ class ColumnDefinitionFactory {
         columnDef.editTemplate = this.findEditTemplate(activeColumn.getDataType());
         columnDef.width = +activeColumn.getWidth();
         return columnDef;
-    }
-    createColumns(columns) {
-        return columns.map((column) => this.create(column));
     }
     findViewTemplate(view) {
         if (view === CellView.FUNCTION) {
@@ -17967,20 +18225,20 @@ class InputEditTemplateComponent extends EditCommunicationComponent {
         this.focusField(inputElement);
         this.emitValueChange(inputElement.value);
         hermesFromEvent(inputElement, 'blur')
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe(() => {
             this.unsubscribe();
             this.submit();
         });
         const keyup$ = hermesFromEvent(inputElement, 'keyup');
         keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.hermesTakeUntil())
+            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.takeUntil())
             .subscribe(() => {
             this.unsubscribe();
             this.submit();
         });
         keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.hermesTakeUntil())
+            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.takeUntil())
             .subscribe(() => {
             this.unsubscribe();
             this.cancel();
@@ -17995,7 +18253,7 @@ class InputEditTemplateComponent extends EditCommunicationComponent {
         fromRxJsObservable(this.filterForm
             .controls[this.filterFieldName]
             .valueChanges)
-            .pipe(this.hermesTakeUntil())
+            .pipe(this.takeUntil())
             .subscribe((value) => {
             this.emitValueChange(value);
         });
@@ -18249,9 +18507,9 @@ class BarViewComponent extends PureComponent {
         this.showPercentage = false;
     }
     ngOnChanges(changes) {
-        if (changes.value !== undefined && changes.value !== null) {
+        ifChanged(changes.value, () => {
             this.width = this.value > 100 ? 100 : this.value;
-        }
+        });
     }
     getSelectorName() {
         return 'gui-bar-view';
@@ -19424,5 +19682,5 @@ GuiGridModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { GuiBooleanCellView, GuiCellView, GuiColumnAlign, GuiDataType, GuiDateCellView, GuiDefaultTranslation, GuiGridColumnComponent, GuiGridComponent, GuiGridModule, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiRowSelectionMode, GuiRowSelectionType, GuiSortingOrder, GuiStringCellView, GuiTheme, createStructureDefinition as ɵa, StructureModule as ɵb, InMemoryStructureStore as ɵba, CreateStructureCommandHandler as ɵbb, PagingDomainModule as ɵbc, PagingDispatcher as ɵbd, SetPagingCommandHandler as ɵbe, NextPageCommandHandler as ɵbf, PrevPageCommandHandler as ɵbg, ChangePagesizeCommandHandler as ɵbh, SortingDomainModule as ɵbi, ToggleSortCommandHandler as ɵbj, SetSortingCommandHandler as ɵbk, SetSortOrderCommandHandler as ɵbl, FieldDomainModule as ɵbm, InitFieldsCommandHandler as ɵbn, FieldsInitedEventHandler as ɵbo, FieldReadModelArchive as ɵbp, FieldUiConverter as ɵbq, SearchDomainModule as ɵbr, SearchDispatcher as ɵbs, SearchHighlightArchive as ɵbt, SearchPlaceholderArchive as ɵbu, SetConfigSearchingCommandHandler as ɵbv, StructureSetSearchPhraseCommandHandler as ɵbw, SourceDomainEventPublisher as ɵbx, SearchPhraseSetEventHandler as ɵby, SearchPhraseArchive as ɵbz, TranslationFeatureModule as ɵc, ConfigSearchingSetEventHandler as ɵca, SearchingEnabledArchive as ɵcb, FilterDomainModule as ɵcc, SetConfigFilterCommandHandler as ɵcd, SetConfigQuickFilterCommandHandler as ɵce, ToggleFilterCommandHandler as ɵcf, AddFilterCommandHandler as ɵcg, RemoveAllFiltersCommandHandler as ɵch, RemoveFilterCommandHandler as ɵci, SelectUniqueFilterCommandHandler as ɵcj, SelectAllUniqueFilterCommandHandler as ɵck, UnselectUniqueFilterCommandHandler as ɵcl, UnselectAllUniqueFilterCommandHandler as ɵcm, ConfigQuickFilterSetEventHandler as ɵcn, QuickFilterEnabledArchive as ɵco, ConfigFilterSetEventHandler as ɵcp, FilterEnabledArchive as ɵcq, FilterTypeConfigFilterSetEventHandler as ɵcr, FilterTypeArchive as ɵcs, FilterTypeMap as ɵct, FilterTypeReadModel as ɵcu, FilterTypeId as ɵcv, ActiveFiltersSetEventHandler as ɵcw, ActiveFilterArchive as ɵcx, UniqueFilterCalculatedEventHandler as ɵcy, UniqueValuesArchive as ɵcz, TranslationApiModule as ɵd, UniqueValuesReadModel as ɵda, UniqueValueReadModel as ɵdb, UniqueValueId as ɵdc, FilterTypeFieldsInitedEventHandler as ɵdd, SourceDomainModule as ɵde, SourceDispatcher as ɵdf, FormationDispatcher as ɵdg, SourceSetLoadingCommandHandler as ɵdh, SetOriginCommandHandler as ɵdi, StructureEditSourceItemCommandHandler as ɵdj, SetEnabledSelectionCommandHandler as ɵdk, SetSelectionModeCommandHandler as ɵdl, SelectAllRowsCommandHandler as ɵdm, UnselectAllRowsCommandHandler as ɵdn, DeleteOriginItemCommandHandler as ɵdo, ToggleSelectedRowCommandHandler as ɵdp, StructureOriginChangedEventHandler as ɵdq, StructureSourceOriginArchive as ɵdr, SelectedRowChangedEventHandler as ɵds, RowSelectedRepository as ɵdt, SelectionModeSetEventHandler as ɵdu, RowSelectionModeRepository as ɵdv, StructurePreparedItemsEventHandler as ɵdw, StructurePreparedItemsArchive as ɵdx, SummariesDomainModule as ɵdy, provideSummariesCalculator as ɵdz, TranslationPipe as ɵe, BooleanSummariesCalculator as ɵea, DateSummariesCalculator as ɵeb, NumberSummariesCalculator as ɵec, StringSummariesCalculator as ɵed, UnknownSummariesCalculator as ɵee, StructureSetSummariesEnabledCommandHandler as ɵef, StructureSummariesEnabledSetEventHandler as ɵeg, SummariesEnabledArchive as ɵeh, VerticalFormationDomainModule as ɵei, SetScrollPositionCommandHandler as ɵej, SetVerticalScrollEnabledCommandHandler as ɵek, SetRowHeightBasedOnThemeCommandHandler as ɵel, SetRowHeightCommandHandler as ɵem, StructureSetHeightCommandHandler as ɵen, SetScrollBarPositionCommandHandler as ɵeo, ScrollBarPositionSetEventHandler as ɵep, VerticalFormationScrollBarPositionArchive as ɵeq, structureCommandHandlers as ɵer, structureDomainEventHandlers as ɵes, structureProviders as ɵet, StructureCreatedEventHandler as ɵeu, fabricImports as ɵev, ResizeDetectorModule as ɵew, ResizeDetector as ɵex, PagingFeatureModule as ɵey, PagingApiModule as ɵez, TranslationFacade as ɵf, PagingCommandInvoker as ɵfa, PagingDomainCommandInvoker as ɵfb, PagingWarehouse as ɵfc, PagingDomainWarehouse as ɵfd, PagingRepository as ɵfe, StructureReadModelRepository as ɵff, PagingEventRepository as ɵfg, PagingDomainEventRepository as ɵfh, PagingConverter as ɵfi, PagingComponent as ɵfj, SmartComponent as ɵfk, GuiComponent as ɵfl, CssClassModifier as ɵfm, StructureId as ɵfn, SourceWarehouse as ɵfo, PagingDisplayModeArchive as ɵfp, PagingNavigatorComponent as ɵfq, PureComponent as ɵfr, PagingSelectComponent as ɵfs, PagingStatsComponent as ɵft, AlternativePagingNavigatorComponent as ɵfu, AlternativePagingPagesComponent as ɵfv, SortingFeatureModule as ɵfw, SortingApiModule as ɵfx, SortingCommandInvoker as ɵfy, FieldFeatureModule as ɵfz, TranslationDomainFacade as ɵg, FieldApiModule as ɵga, FieldCommandInvoker as ɵgb, FieldWarehouse as ɵgc, SearchFeatureModule as ɵgd, SearchApiModule as ɵge, SearchCommandInvoker as ɵgf, SearchDomainCommandInvoker as ɵgg, SearchWarehouse as ɵgh, SearchDomainWarehouse as ɵgi, SearchEventRepository as ɵgj, SearchDomainEventRepository as ɵgk, SearchIconComponent as ɵgl, IconComponent as ɵgm, StaticComponent as ɵgn, SearchComponent as ɵgo, StructureWarehouse as ɵgp, StructureCellEditArchive as ɵgq, CellEditorManager as ɵgr, FilterMenuFeatureModule as ɵgt, FilterApiModule as ɵgu, FilterCommandInvoker as ɵgv, DomainFilterCommandInvoker as ɵgw, FilterWarehouse as ɵgx, DomainFilterWarehouse as ɵgy, ActiveFilterListModule as ɵgz, structureKey as ɵh, ActiveFilterListComponent as ɵha, ActiveSearchComponent as ɵhb, FilterIconComponent as ɵhc, FilterMenuComponent as ɵhd, CompositionId as ɵhe, CompositionWarehouse as ɵhf, FilterMenuTriggerComponent as ɵhg, filterContainerToken as ɵhh, ColumnSelectorComponent as ɵhj, FilterTypeSelectorComponent as ɵhk, FilterValueComponent as ɵhl, FieldSelectorComponent as ɵhm, SourceFeatureModule as ɵhn, SourceApiModule as ɵho, SourceConverter as ɵhp, SourceCommandInvoker as ɵhq, SourceDomainCommandInvoker as ɵhr, SourceDomainWarehouse as ɵhs, SourceEventService as ɵht, FormationEventRepository as ɵhu, FormationCommandInvoker as ɵhv, FormationWarehouse as ɵhw, RowSelectionTypeArchive as ɵhx, SummariesFeatureModule as ɵhy, SummariesApiModule as ɵhz, StructureAggregateFactory as ɵi, SummariesCommandInvoker as ɵia, SummariesDomainCommandInvoker as ɵib, StructureSummariesPanelConfigConverter as ɵic, StructureSummariesConfigArchive as ɵid, StructureSummariesPanelConfig as ɵie, SummariesEventRepository as ɵif, SummariesDomainEventRepository as ɵig, SummariesWarehouse as ɵih, SummariesDomainWarehouse as ɵii, StructureSummariesPanelComponent as ɵij, VerticalFormationFeatureModule as ɵik, VerticalFormationApiModule as ɵil, VerticalFormationConverter as ɵim, VerticalFormationRepository as ɵin, InMemoryStructureReadStore as ɵio, StructureReadModelRootConverter as ɵip, VerticalFormationWarehouse as ɵiq, VerticalFormationDomainWarehouse as ɵir, SchemaFeatureModule as ɵis, SchemaApiModule as ɵit, schemaKey as ɵiu, SchemaAggregateFactory as ɵiv, InMemorySchemaAggregateRepository as ɵiw, SchemaAggregateRepository as ɵix, InMemorySchemaAggregateStore as ɵiy, InMemorySchemaStore as ɵiz, PagingManagerFactory as ɵj, CreateSchemaCommandHandler as ɵja, SchemaDomainModule as ɵjb, SetSchemaThemeCommandHandler as ɵjc, SetRowColoringCommandHandler as ɵjd, SetSchemaHorizontalGridCommandHandler as ɵje, SetSchemaVerticalGridCommandHandler as ɵjf, SchemaThemeRepository as ɵjg, SchemaHorizontalGridRepository as ɵjh, SchemaRowColoringRepository as ɵji, SchemaVerticalGridRepository as ɵjj, SchemaCssClassesEventHandler as ɵjk, SchemaCssClassesRepository as ɵjl, SchemaDispatcher as ɵjm, SchemaCommandInvoker as ɵjn, SchemaDomainCommandInvoker as ɵjo, StructureCommandInvoker as ɵjp, SchemaWarehouse as ɵjq, SchemaDomainWarehouse as ɵjr, SchemaEventRepository as ɵjs, SchemaDomainEventRepository as ɵjt, SchemaRowClassArchive as ɵju, SchemaRowStyleArchive as ɵjv, StructureSharedModule as ɵjw, CssClassModule as ɵjx, StructureInfoPanelModule as ɵjy, NumberFormatterModule as ɵjz, Logger as ɵk, NumberFormatterPipe as ɵka, StructureColumnManagerModule as ɵkb, StructureColumnManagerComponent as ɵkc, CompositionCommandInvoker as ɵkd, StructureDialogColumnManagerComponent as ɵke, StructureMenuColumnManagerComponent as ɵkf, StructureColumnManagerIconComponent as ɵkg, StructureDialogColumnManagerService as ɵkh, StructureThemeConverter as ɵki, SchemaManagerModule as ɵkj, StructureSchemaMangerComponent as ɵkk, SchemaReadModelRootId as ɵkl, StructureDialogSchemaManagerComponent as ɵkm, StructureSchemaManagerIconComponent as ɵkn, StructureDialogSchemaManagerService as ɵko, SourceCounterFeatureModule as ɵkp, ActiveFilterMenuTriggerDirective as ɵkq, ActiveFilterService as ɵkr, ActiveFilterMenuComponent as ɵks, StructureInfoPanelComponent as ɵkt, StructureInfoPanelArchive as ɵku, StructureInfoModalComponent as ɵkv, StructureInfoIconComponent as ɵkw, StructureInfoPanelConfigConverter as ɵkx, StructureTopPanelModule as ɵky, StructureTopPanelComponent as ɵkz, SourceManagerFactory as ɵl, StructureColumnMenuModule as ɵla, UniqueValueListModule as ɵlb, UniqueValueListComponent as ɵlc, StructureColumnConfigComponent as ɵld, StructureColumnMenuConfigArchive as ɵle, CellTemplateWithContext as ɵlf, CellContext as ɵlg, CellValueType as ɵlh, CellValue as ɵli, FieldId as ɵlj, ColumnDefinitionId as ɵlk, SortOrder as ɵll, ColumnAlign as ɵlm, StructureColumnConfigTriggerComponent as ɵln, StructureColumnConfigService as ɵlo, StructureColumnConfigSortComponent as ɵlp, StructureColumnConfigColumnHideComponent as ɵlq, StructureColumnConfigColumnMoveComponent as ɵlr, StructureColumnMenuIconComponent as ɵls, StructureColumnMenuArrowIconComponent as ɵlt, EmptySourceFeatureModule as ɵlu, EmptySourceComponent as ɵlv, CompositionFeatureModule as ɵlw, CompositionApiModule as ɵlx, compositionKey as ɵly, CompositionAggregateFactory as ɵlz, FormationManagerFactory as ɵm, ColumnEntityFactory as ɵma, ColumnPresentationConverter as ɵmb, CompositionGroupFactory as ɵmc, InMemoryCompositionAggregateRepository as ɵmd, CompositionAggregateRepository as ɵme, InMemoryCompositionAggregateStore as ɵmf, InMemoryCompositionStore as ɵmg, CreateCompositionCommandHandler as ɵmh, CompositionDomainModule as ɵmi, inMemoryCompositionCommandProviders as ɵmj, inMemoryCompositionReadModelProviders as ɵmk, inMemoryCompositionProviders as ɵml, CompositionDispatcher as ɵmm, CompositionEventConverter as ɵmn, ColumnFieldFactory as ɵmo, ColumnHighlightArchive as ɵmp, Override as ɵmq, SetColumnsCommandHandler as ɵmr, SetCompositionWidthCommandHandler as ɵms, SetCompositionResizeWidthCommandHandler as ɵmt, SetCompositionContainerWidthCommandHandler as ɵmu, CompositionSetColumnEnabledCommandHandler as ɵmv, CompositionChangeSortStatusCommandHandler as ɵmw, CompositionMoveLeftColumnCommandHandler as ɵmx, CompositionMoveRightColumnCommandHandler as ɵmy, SetGroupsCommandHandler as ɵmz, VerticalFormationFactory as ɵn, CompositionChangeSortStatusEventHandler as ɵna, InMemoryCompositionReadStore as ɵnb, CompositionReadModelRootConverter as ɵnc, ColumnDefinitionFactory as ɵnd, ViewTemplateRepository as ɵne, ViewTemplateFactory as ɵnf, TemplateFactory as ɵng, EditTemplateRepository as ɵnh, EditTemplateFactory as ɵni, CompositionReadModelRootRepository as ɵnj, InMemoryCompositionRepository as ɵnk, CompositionGroupArchive as ɵnl, GroupCollection as ɵnm, Group as ɵnn, GroupId as ɵno, CompositionDomainCommandInvoker as ɵnp, CompositionDomainWarehouse as ɵnq, CompositionEventRepository as ɵnr, CompositionDomainEventRepository as ɵns, ColumnAutoConfigurator as ɵnt, DomainColumnAutoConfigurator as ɵnu, SanitizeModule as ɵnv, SafePipe as ɵnw, ViewTemplatesComponent as ɵnx, EditTemplatesComponent as ɵny, StringEditTemplateComponent as ɵnz, SummariesManagerFactory as ɵo, InputEditTemplateComponent as ɵoa, EditCommunicationComponent as ɵob, NumberEditTemplateComponent as ɵoc, BooleanEditTemplateComponent as ɵod, DateEditTemplateComponent as ɵoe, ColumnQueryComponent as ɵof, FunctionViewComponent as ɵog, BarViewComponent as ɵoh, PercentageViewComponent as ɵoi, TextViewComponent as ɵoj, LoggerModule as ɵok, ConsoleLogger as ɵol, structureIdFactoryForGrid as ɵom, compositionIdFactoryForGrid as ɵon, schemaIdFactoryForGrid as ɵoo, StructureComponent as ɵop, StructureGateway as ɵoq, StructureEditModeArchive as ɵor, StructureInfoPanelConfigService as ɵos, StructureCellEditStore as ɵot, RowSelectEnabledRepository as ɵou, StructureHeaderBottomEnabledArchive as ɵov, StructureInitialValuesReadyArchive as ɵow, StructureIdGenerator as ɵox, SchemaCssClassManager as ɵoy, StructureCellEditCloseAllService as ɵoz, SUMMARIES_CALCULATORS as ɵp, StructureHeaderTopEnabledArchive as ɵpa, StructureRowDetailConfigArchive as ɵpb, StructureRowDetailService as ɵpc, StructureTitlePanelConfigArchive as ɵpd, StructureFooterPanelConfigArchive as ɵpe, structureComponentToken as ɵpf, StructureDefinition as ɵpg, PagingDefinition as ɵph, StructureHeaderComponent as ɵpi, StructureHeaderColumnsComponent as ɵpj, StructureHeaderFiltersComponent as ɵpk, StructureHeaderGroupsComponent as ɵpl, StructureHeaderFilterComponent as ɵpm, SelectAllComponent as ɵpn, StructureContentComponent as ɵpo, StructureRowComponent as ɵpp, StructureCellComponent as ɵpq, StructureCellEditComponent as ɵpr, StructureCellEditBooleanComponent as ɵps, StructureContainerComponent as ɵpt, structureParentComponent as ɵpu, StructureQuickFiltersComponent as ɵpv, StructureBlueprintComponent as ɵpw, STRUCTURE_CSS_CLASS_NAME as ɵpx, StructureRowDetailViewComponent as ɵpy, DynamicallyCreatedComponent as ɵpz, SummariesCalculator as ɵq, structureRowDetailViewItem as ɵqa, structureRowDetailViewTemplate as ɵqb, SelectedRow as ɵqc, OriginItemEntity as ɵqd, OriginId as ɵqe, StructureTitlePanelComponent as ɵqf, StructureBannerPanel as ɵqg, StructureFooterPanelComponent as ɵqh, structureGates as ɵqi, StructureColumnHeaderGate as ɵqj, Gate as ɵqk, StructurePagingGate as ɵql, PagingGate as ɵqm, StructureSearchingGate as ɵqn, SearchingGate as ɵqo, StructureSelectionGate as ɵqp, SelectionGate as ɵqq, StructureL10nGate as ɵqr, StructurePanelGate as ɵqs, StructureRowDetailGate as ɵqt, StructureColumnMenuGate as ɵqu, StructureSummariesGate as ɵqv, StructureInfoPanelGate as ɵqw, StructureRowClassGate as ɵqx, StructureRowStyleGate as ɵqy, StructureRowColoringGate as ɵqz, FilterManagerFactory as ɵr, ThemeGridGate as ɵra, StructureSortingGate as ɵrb, SourceLoadingGate as ɵrc, StructureFilterGate as ɵrd, StructureQuickFiltersGate as ɵre, VerticalFormationGate as ɵrf, ItemEntityFactory as ɵrg, inMemoryStructureCommandProviders as ɵrh, inMemoryStructureReadProviders as ɵri, inMemoryStructureProviders as ɵrj, InMemoryStructureRepository as ɵrk, StructureDomainCommandInvoker as ɵrl, GuiGridGateway as ɵrm, guiGridStructureDefinition as ɵrn, GuiGridRegister as ɵro, GuiGridIdGenerator as ɵrp, SearchManagerFactory as ɵs, FieldCollectionFactory as ɵt, FieldFactory as ɵu, FieldIdGenerator as ɵv, DataFieldFactory as ɵw, InMemoryStructureAggregateRepository as ɵx, StructureAggregateRepository as ɵy, InMemoryStructureAggregateStore as ɵz };
+export { GuiBooleanCellView, GuiCellView, GuiColumnAlign, GuiDataType, GuiDateCellView, GuiDefaultTranslation, GuiGridColumnComponent, GuiGridComponent, GuiGridModule, GuiNumberCellView, GuiPagingDisplay, GuiRowColoring, GuiRowSelectionMode, GuiRowSelectionType, GuiSortingOrder, GuiStringCellView, GuiTheme, createStructureDefinition as ɵa, StructureModule as ɵb, InMemoryStructureStore as ɵba, CreateStructureCommandHandler as ɵbb, PagingDomainModule as ɵbc, PagingDispatcher as ɵbd, SetPagingCommandHandler as ɵbe, NextPageCommandHandler as ɵbf, PrevPageCommandHandler as ɵbg, ChangePagesizeCommandHandler as ɵbh, SortingDomainModule as ɵbi, ToggleSortCommandHandler as ɵbj, SetSortingCommandHandler as ɵbk, SetSortOrderCommandHandler as ɵbl, FieldDomainModule as ɵbm, InitFieldsCommandHandler as ɵbn, FieldsInitedEventHandler as ɵbo, FieldReadModelArchive as ɵbp, FieldUiConverter as ɵbq, SearchDomainModule as ɵbr, SearchDispatcher as ɵbs, SearchHighlightArchive as ɵbt, SearchPlaceholderArchive as ɵbu, SetConfigSearchingCommandHandler as ɵbv, StructureSetSearchPhraseCommandHandler as ɵbw, SourceDomainEventPublisher as ɵbx, SearchPhraseSetEventHandler as ɵby, SearchPhraseArchive as ɵbz, TranslationFeatureModule as ɵc, ConfigSearchingSetEventHandler as ɵca, SearchingEnabledArchive as ɵcb, FilterDomainModule as ɵcc, SetConfigFilterCommandHandler as ɵcd, SetConfigQuickFilterCommandHandler as ɵce, ToggleFilterCommandHandler as ɵcf, AddFilterCommandHandler as ɵcg, RemoveAllFiltersCommandHandler as ɵch, RemoveFilterCommandHandler as ɵci, SelectUniqueFilterCommandHandler as ɵcj, SelectAllUniqueFilterCommandHandler as ɵck, UnselectUniqueFilterCommandHandler as ɵcl, UnselectAllUniqueFilterCommandHandler as ɵcm, ConfigQuickFilterSetEventHandler as ɵcn, QuickFilterEnabledArchive as ɵco, ConfigFilterSetEventHandler as ɵcp, FilterEnabledArchive as ɵcq, FilterTypeConfigFilterSetEventHandler as ɵcr, FilterTypeArchive as ɵcs, FilterTypeMap as ɵct, FilterTypeReadModel as ɵcu, FilterTypeId as ɵcv, ActiveFiltersSetEventHandler as ɵcw, ActiveFilterArchive as ɵcx, UniqueFilterCalculatedEventHandler as ɵcy, UniqueValuesArchive as ɵcz, TranslationApiModule as ɵd, UniqueValuesReadModel as ɵda, UniqueValueReadModel as ɵdb, UniqueValueId as ɵdc, FilterTypeFieldsInitedEventHandler as ɵdd, SourceDomainModule as ɵde, SourceDispatcher as ɵdf, FormationDispatcher as ɵdg, SourceSetLoadingCommandHandler as ɵdh, SetOriginCommandHandler as ɵdi, StructureEditSourceItemCommandHandler as ɵdj, SetEnabledSelectionCommandHandler as ɵdk, SetSelectionModeCommandHandler as ɵdl, SelectAllRowsCommandHandler as ɵdm, UnselectAllRowsCommandHandler as ɵdn, DeleteOriginItemCommandHandler as ɵdo, ToggleSelectedRowCommandHandler as ɵdp, StructureOriginChangedEventHandler as ɵdq, StructureSourceOriginArchive as ɵdr, SelectedRowChangedEventHandler as ɵds, RowSelectedRepository as ɵdt, SelectionModeSetEventHandler as ɵdu, RowSelectionModeRepository as ɵdv, StructurePreparedItemsEventHandler as ɵdw, StructurePreparedItemsArchive as ɵdx, SummariesDomainModule as ɵdy, provideSummariesCalculator as ɵdz, TranslationPipe as ɵe, BooleanSummariesCalculator as ɵea, DateSummariesCalculator as ɵeb, NumberSummariesCalculator as ɵec, StringSummariesCalculator as ɵed, UnknownSummariesCalculator as ɵee, StructureSetSummariesEnabledCommandHandler as ɵef, StructureSummariesEnabledSetEventHandler as ɵeg, SummariesEnabledArchive as ɵeh, VerticalFormationDomainModule as ɵei, SetScrollPositionCommandHandler as ɵej, SetVerticalScrollEnabledCommandHandler as ɵek, SetRowHeightBasedOnThemeCommandHandler as ɵel, SetRowHeightCommandHandler as ɵem, StructureSetHeightCommandHandler as ɵen, SetScrollBarPositionCommandHandler as ɵeo, ScrollBarPositionSetEventHandler as ɵep, VerticalFormationScrollBarPositionArchive as ɵeq, structureCommandHandlers as ɵer, structureDomainEventHandlers as ɵes, structureProviders as ɵet, StructureCreatedEventHandler as ɵeu, fabricImports as ɵev, ResizeDetectorModule as ɵew, ResizeDetector as ɵex, PagingFeatureModule as ɵey, PagingApiModule as ɵez, TranslationFacade as ɵf, PagingCommandInvoker as ɵfa, PagingDomainCommandInvoker as ɵfb, PagingWarehouse as ɵfc, PagingDomainWarehouse as ɵfd, PagingRepository as ɵfe, StructureReadModelRepository as ɵff, PagingEventRepository as ɵfg, PagingDomainEventRepository as ɵfh, PagingConverter as ɵfi, PagingComponent as ɵfj, SmartComponent as ɵfk, GuiComponent as ɵfl, CssClassModifier as ɵfm, StructureId as ɵfn, SourceWarehouse as ɵfo, PagingDisplayModeArchive as ɵfp, PagingNavigatorComponent as ɵfq, PureComponent as ɵfr, PagingSelectComponent as ɵfs, PagingStatsComponent as ɵft, AlternativePagingNavigatorComponent as ɵfu, AlternativePagingPagesComponent as ɵfv, SortingFeatureModule as ɵfw, SortingApiModule as ɵfx, SortingCommandInvoker as ɵfy, FieldFeatureModule as ɵfz, TranslationDomainFacade as ɵg, FieldApiModule as ɵga, FieldCommandInvoker as ɵgb, FieldWarehouse as ɵgc, SearchFeatureModule as ɵgd, SearchApiModule as ɵge, SearchCommandInvoker as ɵgf, SearchDomainCommandInvoker as ɵgg, SearchWarehouse as ɵgh, SearchDomainWarehouse as ɵgi, SearchEventRepository as ɵgj, SearchDomainEventRepository as ɵgk, SearchIconComponent as ɵgl, IconComponent as ɵgm, StaticComponent as ɵgn, SearchComponent as ɵgo, StructureWarehouse as ɵgp, StructureCellEditArchive as ɵgq, CellEditorManager as ɵgr, FilterMenuFeatureModule as ɵgt, FilterApiModule as ɵgu, FilterCommandInvoker as ɵgv, DomainFilterCommandInvoker as ɵgw, FilterWarehouse as ɵgx, DomainFilterWarehouse as ɵgy, FilterIntegration as ɵgz, structureKey as ɵh, CompositionWarehouse as ɵha, ActiveFilterListModule as ɵhb, ActiveFilterListComponent as ɵhc, ActiveSearchComponent as ɵhd, FilterIconComponent as ɵhe, FilterMenuComponent as ɵhf, CompositionId as ɵhg, FilterMenuTriggerComponent as ɵhh, filterContainerToken as ɵhi, ColumnSelectorComponent as ɵhk, FilterTypeSelectorComponent as ɵhl, FilterValueComponent as ɵhm, FieldSelectorComponent as ɵhn, FilterMenuActiveFiltersComponent as ɵho, SourceFeatureModule as ɵhp, SourceApiModule as ɵhq, SourceConverter as ɵhr, SourceCommandInvoker as ɵhs, SourceDomainCommandInvoker as ɵht, SourceDomainWarehouse as ɵhu, SourceEventService as ɵhv, FormationEventRepository as ɵhw, FormationCommandInvoker as ɵhx, FormationWarehouse as ɵhy, RowSelectionTypeArchive as ɵhz, StructureAggregateFactory as ɵi, SummariesFeatureModule as ɵia, SummariesApiModule as ɵib, SummariesCommandInvoker as ɵic, SummariesDomainCommandInvoker as ɵid, StructureSummariesPanelConfigConverter as ɵie, StructureSummariesConfigArchive as ɵif, StructureSummariesPanelConfig as ɵig, SummariesEventRepository as ɵih, SummariesDomainEventRepository as ɵii, SummariesWarehouse as ɵij, SummariesDomainWarehouse as ɵik, StructureSummariesPanelComponent as ɵil, VerticalFormationFeatureModule as ɵim, VerticalFormationApiModule as ɵin, VerticalFormationConverter as ɵio, VerticalFormationRepository as ɵip, InMemoryStructureReadStore as ɵiq, StructureReadModelRootConverter as ɵir, VerticalFormationWarehouse as ɵis, VerticalFormationDomainWarehouse as ɵit, SchemaFeatureModule as ɵiu, SchemaApiModule as ɵiv, schemaKey as ɵiw, SchemaAggregateFactory as ɵix, InMemorySchemaAggregateRepository as ɵiy, SchemaAggregateRepository as ɵiz, PagingManagerFactory as ɵj, InMemorySchemaAggregateStore as ɵja, InMemorySchemaStore as ɵjb, CreateSchemaCommandHandler as ɵjc, SchemaDomainModule as ɵjd, SetSchemaThemeCommandHandler as ɵje, SetRowColoringCommandHandler as ɵjf, SetSchemaHorizontalGridCommandHandler as ɵjg, SetSchemaVerticalGridCommandHandler as ɵjh, SchemaThemeRepository as ɵji, SchemaHorizontalGridRepository as ɵjj, SchemaRowColoringRepository as ɵjk, SchemaVerticalGridRepository as ɵjl, SchemaCssClassesEventHandler as ɵjm, SchemaCssClassesRepository as ɵjn, SchemaDispatcher as ɵjo, SchemaCommandInvoker as ɵjp, SchemaDomainCommandInvoker as ɵjq, StructureCommandInvoker as ɵjr, SchemaWarehouse as ɵjs, SchemaDomainWarehouse as ɵjt, SchemaEventRepository as ɵju, SchemaDomainEventRepository as ɵjv, SchemaRowClassArchive as ɵjw, SchemaRowStyleArchive as ɵjx, StructureSharedModule as ɵjy, CssClassModule as ɵjz, Logger as ɵk, StructureInfoPanelModule as ɵka, NumberFormatterModule as ɵkb, NumberFormatterPipe as ɵkc, StructureColumnManagerModule as ɵkd, StructureColumnManagerComponent as ɵke, CompositionCommandInvoker as ɵkf, StructureDialogColumnManagerComponent as ɵkg, StructureMenuColumnManagerComponent as ɵkh, StructureColumnManagerIconComponent as ɵki, StructureDialogColumnManagerService as ɵkj, StructureThemeConverter as ɵkk, SchemaManagerModule as ɵkl, StructureSchemaMangerComponent as ɵkm, SchemaReadModelRootId as ɵkn, StructureDialogSchemaManagerComponent as ɵko, StructureSchemaManagerIconComponent as ɵkp, StructureDialogSchemaManagerService as ɵkq, SourceCounterFeatureModule as ɵkr, ActiveFilterMenuTriggerDirective as ɵks, ActiveFilterService as ɵkt, ActiveFilterMenuComponent as ɵku, StructureInfoPanelComponent as ɵkv, StructureInfoPanelArchive as ɵkw, StructureInfoModalComponent as ɵkx, StructureInfoIconComponent as ɵky, StructureInfoPanelConfigConverter as ɵkz, SourceManagerFactory as ɵl, StructureTopPanelModule as ɵla, StructureTopPanelComponent as ɵlb, StructureColumnMenuModule as ɵlc, UniqueValueListModule as ɵld, UniqueValueListComponent as ɵle, StructureColumnConfigComponent as ɵlf, StructureColumnMenuConfigArchive as ɵlg, CellTemplateWithContext as ɵlh, CellContext as ɵli, CellValueType as ɵlj, CellValue as ɵlk, FieldId as ɵll, ColumnDefinitionId as ɵlm, SortOrder as ɵln, ColumnAlign as ɵlo, StructureColumnConfigTriggerComponent as ɵlp, StructureColumnConfigService as ɵlq, StructureColumnConfigSortComponent as ɵlr, StructureColumnConfigColumnHideComponent as ɵls, StructureColumnConfigColumnMoveComponent as ɵlt, StructureColumnMenuIconComponent as ɵlu, StructureColumnMenuArrowIconComponent as ɵlv, EmptySourceFeatureModule as ɵlw, EmptySourceComponent as ɵlx, CompositionFeatureModule as ɵly, CompositionApiModule as ɵlz, FormationManagerFactory as ɵm, compositionKey as ɵma, CompositionAggregateFactory as ɵmb, ColumnEntityFactory as ɵmc, ColumnPresentationConverter as ɵmd, CompositionGroupFactory as ɵme, InMemoryCompositionAggregateRepository as ɵmf, CompositionAggregateRepository as ɵmg, InMemoryCompositionAggregateStore as ɵmh, InMemoryCompositionStore as ɵmi, CreateCompositionCommandHandler as ɵmj, CompositionDomainModule as ɵmk, inMemoryCompositionCommandProviders as ɵml, inMemoryCompositionReadModelProviders as ɵmm, inMemoryCompositionProviders as ɵmn, CompositionDispatcher as ɵmo, CompositionEventConverter as ɵmp, ColumnFieldFactory as ɵmq, ColumnHighlightArchive as ɵmr, Override as ɵms, SetColumnsCommandHandler as ɵmt, SetCompositionWidthCommandHandler as ɵmu, SetCompositionResizeWidthCommandHandler as ɵmv, SetCompositionContainerWidthCommandHandler as ɵmw, CompositionSetColumnEnabledCommandHandler as ɵmx, CompositionChangeSortStatusCommandHandler as ɵmy, CompositionMoveLeftColumnCommandHandler as ɵmz, VerticalFormationFactory as ɵn, CompositionMoveRightColumnCommandHandler as ɵna, SetGroupsCommandHandler as ɵnb, CompositionChangeSortStatusEventHandler as ɵnc, InMemoryCompositionReadStore as ɵnd, CompositionReadModelRootConverter as ɵne, ColumnDefinitionFactory as ɵnf, ViewTemplateRepository as ɵng, ViewTemplateFactory as ɵnh, TemplateFactory as ɵni, EditTemplateRepository as ɵnj, EditTemplateFactory as ɵnk, CompositionReadModelRootRepository as ɵnl, InMemoryCompositionRepository as ɵnm, CompositionGroupArchive as ɵnn, GroupCollection as ɵno, Group as ɵnp, GroupId as ɵnq, CompositionDomainCommandInvoker as ɵnr, CompositionDomainWarehouse as ɵns, CompositionEventRepository as ɵnt, CompositionDomainEventRepository as ɵnu, ColumnAutoConfigurator as ɵnv, DomainColumnAutoConfigurator as ɵnw, SanitizeModule as ɵnx, SafePipe as ɵny, ViewTemplatesComponent as ɵnz, SummariesManagerFactory as ɵo, EditTemplatesComponent as ɵoa, StringEditTemplateComponent as ɵob, InputEditTemplateComponent as ɵoc, EditCommunicationComponent as ɵod, NumberEditTemplateComponent as ɵoe, BooleanEditTemplateComponent as ɵof, DateEditTemplateComponent as ɵog, ColumnQueryComponent as ɵoh, FunctionViewComponent as ɵoi, BarViewComponent as ɵoj, PercentageViewComponent as ɵok, TextViewComponent as ɵol, LoggerModule as ɵom, ConsoleLogger as ɵon, structureIdFactoryForGrid as ɵoo, compositionIdFactoryForGrid as ɵop, schemaIdFactoryForGrid as ɵoq, StructureComponent as ɵor, StructureGateway as ɵos, StructureEditModeArchive as ɵot, StructureInfoPanelConfigService as ɵou, StructureCellEditStore as ɵov, RowSelectEnabledRepository as ɵow, StructureHeaderBottomEnabledArchive as ɵox, StructureInitialValuesReadyArchive as ɵoy, StructureIdGenerator as ɵoz, SUMMARIES_CALCULATORS as ɵp, SchemaCssClassManager as ɵpa, StructureCellEditCloseAllService as ɵpb, StructureHeaderTopEnabledArchive as ɵpc, StructureRowDetailConfigArchive as ɵpd, StructureRowDetailService as ɵpe, StructureTitlePanelConfigArchive as ɵpf, StructureFooterPanelConfigArchive as ɵpg, structureComponentToken as ɵph, StructureDefinition as ɵpi, PagingDefinition as ɵpj, StructureHeaderComponent as ɵpk, StructureHeaderColumnsComponent as ɵpl, StructureHeaderFiltersComponent as ɵpm, StructureHeaderGroupsComponent as ɵpn, StructureHeaderFilterComponent as ɵpo, SelectAllComponent as ɵpp, StructureContentComponent as ɵpq, StructureRowComponent as ɵpr, StructureCellComponent as ɵps, StructureCellEditComponent as ɵpt, StructureCellEditBooleanComponent as ɵpu, StructureContainerComponent as ɵpv, structureParentComponent as ɵpw, StructureQuickFiltersComponent as ɵpx, StructureBlueprintComponent as ɵpy, STRUCTURE_CSS_CLASS_NAME as ɵpz, SummariesCalculator as ɵq, StructureRowDetailViewComponent as ɵqa, DynamicallyCreatedComponent as ɵqb, structureRowDetailViewItem as ɵqc, structureRowDetailViewTemplate as ɵqd, SelectedRow as ɵqe, OriginItemEntity as ɵqf, OriginId as ɵqg, StructureTitlePanelComponent as ɵqh, StructureBannerPanel as ɵqi, StructureFooterPanelComponent as ɵqj, structureGates as ɵqk, StructureColumnHeaderGate as ɵql, Gate as ɵqm, StructurePagingGate as ɵqn, PagingGate as ɵqo, StructureSearchingGate as ɵqp, SearchingGate as ɵqq, StructureSelectionGate as ɵqr, SelectionGate as ɵqs, StructureL10nGate as ɵqt, StructurePanelGate as ɵqu, StructureRowDetailGate as ɵqv, StructureColumnMenuGate as ɵqw, StructureSummariesGate as ɵqx, StructureInfoPanelGate as ɵqy, StructureRowClassGate as ɵqz, FilterManagerFactory as ɵr, StructureRowStyleGate as ɵra, StructureRowColoringGate as ɵrb, ThemeGridGate as ɵrc, StructureSortingGate as ɵrd, SourceLoadingGate as ɵre, StructureFilterGate as ɵrf, StructureQuickFiltersGate as ɵrg, VerticalFormationGate as ɵrh, ItemEntityFactory as ɵri, inMemoryStructureCommandProviders as ɵrj, inMemoryStructureReadProviders as ɵrk, inMemoryStructureProviders as ɵrl, InMemoryStructureRepository as ɵrm, StructureDomainCommandInvoker as ɵrn, GuiGridGateway as ɵro, guiGridStructureDefinition as ɵrp, GuiGridRegister as ɵrq, GuiGridIdGenerator as ɵrr, SearchManagerFactory as ɵs, FieldCollectionFactory as ɵt, FieldFactory as ɵu, FieldIdGenerator as ɵv, DataFieldFactory as ɵw, InMemoryStructureAggregateRepository as ɵx, StructureAggregateRepository as ɵy, InMemoryStructureAggregateStore as ɵz };
 //# sourceMappingURL=generic-ui-ngx-grid.js.map

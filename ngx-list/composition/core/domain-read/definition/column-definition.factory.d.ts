@@ -9,9 +9,9 @@ export declare class ColumnDefinitionFactory {
     constructor(viewTemplateRepository: ViewTemplateRepository, editTemplateRepository: EditTemplateRepository);
     create(column: ColumnEntity): ColumnDefinition;
     create(column: ActiveColumnEntity): ColumnDefinition;
+    createColumns(columns: Array<ColumnEntity>): Array<ColumnDefinition>;
     private createFromColumnEntity;
     private createFromActiveColumnEntity;
-    createColumns(columns: Array<ColumnEntity>): Array<ColumnDefinition>;
     private findViewTemplate;
     private findEditTemplate;
 }

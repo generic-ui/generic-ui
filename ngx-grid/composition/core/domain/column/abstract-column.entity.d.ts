@@ -11,9 +11,9 @@ export declare abstract class AbstractColumnEntity extends Entity<ColumnId> {
     private columnField;
     private header?;
     private width?;
-    protected align: ColumnAlign;
     private columnConfig;
     protected view: ViewEntity;
+    protected align: ColumnAlign;
     protected presentation: ColumnPresentation;
     protected constructor(columnId: ColumnId, columnField: ColumnField, columnConfig: ColumnConfig, presentation: ColumnPresentation, header?: string | HeaderTemplate, align?: ColumnAlign, view?: ViewEntity, width?: number);
     getPresentation(): ColumnPresentation;

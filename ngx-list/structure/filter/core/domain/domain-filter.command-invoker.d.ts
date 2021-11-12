@@ -9,10 +9,10 @@ import { UniqueValueId } from './unique/unique-value-id';
 export declare class DomainFilterCommandInvoker extends FilterCommandInvoker {
     private commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);
-    setFilteringEnabled(config: FilterConfig, structureId: StructureId): void;
+    setConfig(config: FilterConfig, structureId: StructureId): void;
     add(fieldId: FieldId, filterTypeId: FilterTypeId, value: any, structureId: StructureId): void;
-    removeAllFilters(structureId: StructureId): void;
-    removeFilter(filterId: FilterId, structureId: StructureId): void;
+    removeAll(structureId: StructureId): void;
+    remove(filterId: FilterId, structureId: StructureId): void;
     selectAllUniqueFilter(fieldId: FieldId, structureId: StructureId): void;
     unselectAllUniqueFilter(fieldId: FieldId, structureId: StructureId): void;
     selectUniqueFilter(fieldId: FieldId, uniqueValueId: UniqueValueId, structureId: StructureId): void;

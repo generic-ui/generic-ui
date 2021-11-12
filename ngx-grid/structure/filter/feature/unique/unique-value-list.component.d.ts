@@ -6,7 +6,6 @@ import { FilterWarehouse } from '../../core/api/filter.warehouse';
 import { UniqueValueReadModel } from '../../core/api/unique/unique-value.read-model';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 export declare class UniqueValueListComponent extends SmartComponent implements OnInit {
-    private readonly changeDetectorRef;
     private readonly structureId;
     private readonly filterWarehouse;
     private readonly filterCommandInvoker;

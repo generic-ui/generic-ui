@@ -62,6 +62,7 @@ export { FabricSliderComponent } from './form/slider/fabric-slider.component';
 export { FabricSpinnerComponent } from './general/spinners/spinner/spinner.component';
 export { FabricToggleButtonComponent } from './general/button/toggle-button/toggle-button.component';
 export { FabricToggleButtonGroupComponent } from './general/button/toggle-button-group/toggle-button-group.component';
+export { FabricDrawerConfig } from './modal/drawer/fabric-drawer.config';
 export { Placement } from './navigation/dropdown/placement';
 export { SpinnerMode } from './general/spinners/progress-spinner/spinner-mode';
 export { FabricPlacement } from './common/modal/cords/fabric-placement';

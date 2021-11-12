@@ -37,11 +37,11 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     trackByFn(): number;
     selectRow(): void;
     checkSelectedItem(): void;
+    protected getSelectorName(): string;
     private calculateRowStyle;
     private updateRowStyle;
     private removeRowStyles;
     private renderRowStyles;
     private updateRowClass;
     private calculateRowClass;
-    protected getSelectorName(): string;
 }

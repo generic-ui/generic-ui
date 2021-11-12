@@ -49,11 +49,11 @@ export declare class HermesBaseModule<I extends AggregateId, A extends Aggregate
     private checkDomainEventHandlerIsCollection;
 }
 export declare class HermesModule extends HermesBaseModule<any, any, any, any> {
+    constructor(eventHandlers: Array<DomainEventHandlerImpl<any, any>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<any, any, any>>, commandHandlers: Array<CommandHandlerImpl<any, any, any>>, definedAggregate: Array<AggregateDefinition<any, any>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<any, any>, aggregateRepositoryArchive: AggregateRepositoryArchive<any, any>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     static defineAggregate<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>>(aggregateKey: string, factory: Type<AggregateFactory<I, A>>, repository: Type<AggregateRepository<I, A>>, createCommandHandler: Type<CreateAggregateCommandHandler<A, C>>, commandHandlers?: Array<Provider>, domainEventHandlers?: Array<Provider>): ModuleWithProviders<HermesDomainModule>;
     static withConfig(config?: HermesModuleConfig): ModuleWithProviders<HermesModule>;
     static registerCommandHandler<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>>(commandHandlerType: Type<CommandHandler<A, C>>, aggregateName: string): Array<Provider>;
     static registerDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<DomainEventHandler<I, E>>): Array<Provider>;
     static registerMultiDomainEventHandler<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: Type<MultiDomainEventHandler<I, E>>): Array<Provider>;
-    constructor(eventHandlers: Array<DomainEventHandlerImpl<any, any>>, aggregateCommandHandlers: Array<CreateAggregateCommandHandlerImpl<any, any, any>>, commandHandlers: Array<CommandHandlerImpl<any, any, any>>, definedAggregate: Array<AggregateDefinition<any, any>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<any, any>, aggregateRepositoryArchive: AggregateRepositoryArchive<any, any>, commandBus: CommandBus, domainEventBus: DomainEventBus, hermesLoggersInitializer: HermesLoggersInitializer, hermesApi: HermesApi);
     private static registerCreateCommandHandler;
 }

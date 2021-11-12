@@ -13,6 +13,10 @@ import { SearchConfig } from '../../../../../structure/search/core/api/search-co
 import { SummariesCommandInvoker } from '../../../../../structure/summaries/core/api/summaries.command-invoker';
 import { SortingCommandInvoker } from '../../../../../structure/sorting/core/api/sorting.command-invoker';
 import { SortingConfig } from '../../../../../structure/sorting/core/api/sorting-config';
+import { CompositionWarehouse } from '../../../../../composition/core/api/composition.warehouse';
+import { CompositionCommandInvoker } from '../../../../../composition/core/api/composition.command-invoker';
+import { CompositionId } from '../../../../../composition/core/api/composition.id';
+import { FilterIntegration } from '../../../../../structure/filter/core/api-integration/filter.integration';
 export interface GuiGridApi {
     setSource(source: Array<any>): void;
     showLoading(): void;
@@ -23,6 +27,16 @@ export interface GuiGridApi {
     deleteSelectedRows(): void;
     deleteRow(row: GuiSelectedRow): void;
     deleteRows(rows: Array<GuiSelectedRow>): void;
+    /**
+     * Columns
+     */
+    getColumns(): Array<any>;
+    /**
+     * Filtering
+     */
+    getFilterTypes(columnName: string): Array<string>;
+    filter(columnName: string, filterType: string, value: any): void;
+    filterByColumnId(columnId: any, filterType: string, value: any): void;
     /**
      * Paging
      */
@@ -68,9 +82,13 @@ export interface GuiGridApi {
 }
 export declare class GuiGridApiProvider {
     private readonly structureId;
+    private readonly compositionId;
     private readonly schemaId;
     private readonly formationCommandInvoker;
     private readonly formationWarehouse;
+    private readonly compositionCommandInvoker;
+    private readonly compositionWarehouse;
+    private readonly filterIntegration;
     private readonly sourceCommandInvoker;
     private readonly searchCommandInvoker;
     private readonly gridThemeCommandInvoker;
@@ -78,6 +96,6 @@ export declare class GuiGridApiProvider {
     private readonly summariesCommandInvoker;
     private readonly sortingCommandInvoker;
     private readonly pagingCommandInvoker;
-    constructor(structureId: StructureId, schemaId: SchemaReadModelRootId, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, sourceCommandInvoker: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, gridThemeCommandInvoker: GuiGridThemeCommandInvoker, structureCommandInvoker: StructureCommandInvoker, summariesCommandInvoker: SummariesCommandInvoker, sortingCommandInvoker: SortingCommandInvoker, pagingCommandInvoker: PagingCommandInvoker);
+    constructor(structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, filterIntegration: FilterIntegration, sourceCommandInvoker: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, gridThemeCommandInvoker: GuiGridThemeCommandInvoker, structureCommandInvoker: StructureCommandInvoker, summariesCommandInvoker: SummariesCommandInvoker, sortingCommandInvoker: SortingCommandInvoker, pagingCommandInvoker: PagingCommandInvoker);
     provide(): GuiGridApi;
 }

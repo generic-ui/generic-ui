@@ -9,12 +9,16 @@ export declare class FabricDrawerComponent extends FabricThemedComponent impleme
     private readonly elRef;
     private readonly dialogService;
     container: ViewContainerRef;
+    width: string;
     closeOnClickOutside: boolean;
     dialogNestedComponent: Type<FabricNestedDialogComponent>;
+    visible: boolean;
+    isFixed: boolean;
     constructor(componentFactoryResolver: ComponentFactoryResolver, changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, dialogService: FabricDrawerService, themeModalService: FabricModalThemeService, renderer: Renderer2);
     ngAfterViewInit(): void;
     closeDrawer(): void;
     clickOutside(event: any): void;
+    detectChanges(): void;
     private isContainerClicked;
     private createNestedComponent;
 }

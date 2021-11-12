@@ -12,13 +12,13 @@ import { FilterTypeId } from '../../core/domain/type/filter-type.id';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 import { ActiveFilterReadModel } from '../../core/api/active/active-filter.read-model';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
+import { FilterId } from '../../core/api/filter.id';
 export declare class FilterMenuComponent extends SmartComponent implements OnInit {
-    private readonly changeDetectorRef;
     private readonly structureId;
     private readonly compositionId;
     private readonly fieldWarehouse;
     private readonly filterWarehouse;
-    private readonly filterCommandDispatcher;
+    private readonly filterCommandInvoker;
     private readonly compositionWarehouse;
     selectedColumn: CellTemplateWithContext;
     columns: Array<CellTemplateWithContext>;
@@ -29,14 +29,15 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     selectedFilterTypeId: FilterTypeId;
     selectedValue: string;
     activeFilters: Array<ActiveFilterReadModel>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandDispatcher: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandInvoker: FilterCommandInvoker, compositionWarehouse: CompositionWarehouse);
     ngOnInit(): void;
-    onColumnSelect(selectedColumn: CellTemplateWithContext): void;
     onFieldSelect(field: FieldReadModel): void;
     onFilterTypeSelect(filterTypeId: FilterTypeId): void;
     removeAllFilters(): void;
-    addFilter(): void;
     onValueChanged(value: string): void;
+    addFilter(): void;
+    onRemovedFilter(filterId: FilterId): void;
+    removeFilter(): void;
     clearAddFilterForm(): void;
     protected getSelectorName(): string;
 }

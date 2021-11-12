@@ -10,6 +10,7 @@ import { ViewEntity } from '../../domain/column/view.entity';
 import { ColumnAlign } from '../../domain/column/column-align';
 import { ColumnDefinitionId } from '../../api/column/column-definition-id';
 export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId> {
+    private readonly name;
     private readonly type;
     private readonly view;
     private readonly align;
@@ -27,7 +28,7 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     private enabled;
     private cellEditingEnabled;
     constructor(field: ColumnField, columnDefinitionId: ColumnDefinitionId, // REFACTOR Id first argument
-    enabled: boolean, type: DataType, // REFACTOR
+    name: string, enabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity, // REFACTOR
     align: ColumnAlign, // REFACTOR
     header: string | HeaderTemplate, cellEditingEnabled: boolean, sort?: SortOrder, sortable?: boolean);

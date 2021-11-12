@@ -6,6 +6,7 @@ export interface GuiMultiColumn {
     columns?: Array<GuiColumn>;
 }
 export interface GuiColumn {
+    name?: string;
     field?: string | FieldAccessor;
     type?: string | GuiDataType;
     view?: string | GuiCellView | ViewTemplateFunction;

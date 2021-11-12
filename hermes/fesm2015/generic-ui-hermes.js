@@ -96,8 +96,8 @@ function provideEventHandlers(handlers) {
 class HermesSubscription {
     constructor(finalize, isClosed) {
         this.closed = false;
-        this.finalize = () => {
-        };
+        // tslint-disable-next-line
+        this.finalize = () => { };
         if (finalize !== undefined && finalize !== null &&
             typeof finalize === 'function') {
             this.finalize = finalize;
@@ -120,6 +120,7 @@ class HermesSubscription {
 
 class HermesSubscriber {
     constructor(config) {
+        // eslint-disable-next-line
         this.finalize = () => {
         };
         this.completed = false;
@@ -190,11 +191,6 @@ class HermesObservable {
         }
         return this.source;
     }
-    innerPipe(operation, stream$) {
-        return ((input) => {
-            return operation(input);
-        })(stream$);
-    }
     subscribe(arg) {
         let subscriber;
         if (arg instanceof HermesSubscriber) {
@@ -222,6 +218,11 @@ class HermesObservable {
     }
     getSubscription() {
         return new HermesSubscription(this.generatorFinalize);
+    }
+    innerPipe(operation, stream$) {
+        return ((input) => {
+            return operation(input);
+        })(stream$);
     }
     isObserver(observer) {
         return typeof observer === 'object';
@@ -1102,6 +1103,9 @@ class HermesReplaySubject extends HermesSubject {
 }
 
 class HermesArchiveSubject extends HermesSubject {
+    constructor() {
+        super();
+    }
     static of(value) {
         if (value !== undefined) {
             return new HermesBehaviorSubject(value);
@@ -1109,9 +1113,6 @@ class HermesArchiveSubject extends HermesSubject {
         else {
             return new HermesReplaySubject(1);
         }
-    }
-    constructor() {
-        super();
     }
 }
 

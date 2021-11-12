@@ -39,11 +39,11 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     enterEditMode(forceCheck?: boolean): void;
     exitEditMode(): void;
     submitChangesAndExit(): void;
+    protected getSelectorName(): string;
     private observeFieldStatus;
     private observeValueChanges;
     private publishEditState;
     private publishEditEnter;
     private publishEditCancel;
     private publishEditSubmit;
-    protected getSelectorName(): string;
 }

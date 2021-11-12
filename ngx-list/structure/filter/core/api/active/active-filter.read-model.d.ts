@@ -7,4 +7,7 @@ export declare class ActiveFilterReadModel {
     constructor(filterId: FilterId, fieldName: string, filterTypeName: string, value: any);
     getText(): string;
     getFilterId(): FilterId;
+    getFieldName(): string;
+    getFilterTypeName(): string;
+    getValue(): any;
 }

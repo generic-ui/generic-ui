@@ -9,4 +9,5 @@ export declare class SelectOptionModalService extends FabricModal<FabricSelectOp
     getComponent(): Type<FabricSelectOptionsComponent>;
     open(options: Array<GuiSelectOption>, width: number): void;
     closeOptions(): void;
+    private afterCompCreation;
 }

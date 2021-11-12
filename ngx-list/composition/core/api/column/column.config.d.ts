@@ -13,6 +13,7 @@ export interface MultiColumnConfig {
     columns?: Array<ColumnConfig>;
 }
 export interface ColumnConfig {
+    name?: string;
     /**
      * Template accessor
      */

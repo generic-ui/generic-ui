@@ -7,10 +7,10 @@ import { FilterId } from './filter.id';
 import { UniqueValueId } from '../domain/unique/unique-value-id';
 export declare abstract class FilterCommandInvoker implements CommandInvoker {
     protected constructor();
-    abstract setFilteringEnabled(config: FilterConfig, structureId: StructureId): void;
+    abstract setConfig(config: FilterConfig, structureId: StructureId): void;
     abstract add(fieldId: FieldId, filterTypeId: FilterTypeId, value: any, structureId: StructureId): void;
-    abstract removeAllFilters(structureId: StructureId): void;
-    abstract removeFilter(filterId: FilterId, structureId: StructureId): void;
+    abstract removeAll(structureId: StructureId): void;
+    abstract remove(filterId: FilterId, structureId: StructureId): void;
     abstract selectAllUniqueFilter(fieldId: FieldId, structureId: StructureId): void;
     abstract unselectAllUniqueFilter(fieldId: FieldId, structureId: StructureId): void;
     abstract selectUniqueFilter(fieldId: FieldId, uniqueValueId: UniqueValueId, structureId: StructureId): void;

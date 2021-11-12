@@ -8,5 +8,6 @@ export declare abstract class GuiComponent {
     addClassToHost(className: string): void;
     removeClassFromHost(className: string): void;
     hasChanged<T>(prop: Changes<T>): boolean;
+    ifChanged<T>(prop: Changes<T>, callback: () => void): void;
     private addHostClass;
 }

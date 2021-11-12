@@ -8,6 +8,7 @@ import { CellValue } from './cell-value';
 import { ColumnDefinitionId } from '../../api/column/column-definition-id';
 export declare class CellTemplateWithAccessor {
     columnDefinitionId: ColumnDefinitionId;
+    private readonly name;
     template: TemplateRef<any>;
     editTemplate: TemplateRef<any>;
     editable: boolean;
@@ -21,13 +22,14 @@ export declare class CellTemplateWithAccessor {
     private readonly cellEditingEnabled;
     private readonly type;
     private readonly view;
-    constructor(columnDefinitionId: ColumnDefinitionId, template: TemplateRef<any>, editTemplate: TemplateRef<any>, editable: boolean, templateFun: (value: any, item: any) => any, formatterFun: (value: any, item: any) => any, accessor: (element: any) => any, searchAccessor: (element: any) => any, width: number, columnFieldId: ColumnFieldId, align: ColumnAlign, cellEditingEnabled: boolean, type: DataType, // REFACTOR
+    constructor(columnDefinitionId: ColumnDefinitionId, name: string, template: TemplateRef<any>, editTemplate: TemplateRef<any>, editable: boolean, templateFun: (value: any, item: any) => any, formatterFun: (value: any, item: any) => any, accessor: (element: any) => any, searchAccessor: (element: any) => any, width: number, columnFieldId: ColumnFieldId, align: ColumnAlign, cellEditingEnabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity);
     isCellEditingEnabled(): boolean;
     isBooleanDataType(): boolean;
     isAlignLeft(): boolean;
     isAlignCenter(): boolean;
     isAlignRight(): boolean;
+    getName(): string;
     getValue(entity: ItemEntity, searchPhrase?: string): CellValue;
     getClasses(): string;
     private findValue;

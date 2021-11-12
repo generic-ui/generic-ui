@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FabricDatePickerService } from './fabric-date-picker.service';
 import { FabricDatePickerInlineDialogService } from './fabric.date-picker-inline-dialog.service';
 import { FabricReactive } from '../../common/fabric-reactive';
 import { Theme } from '../../themes/theme';
 import { FabricDatePickerCompositionService } from './fabric-date-picker-composition.service';
-export declare class FabricDatePickerComponent extends FabricReactive implements OnInit, OnDestroy {
+export declare class FabricDatePickerComponent extends FabricReactive implements OnChanges, OnInit, AfterViewInit, OnDestroy {
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
     private readonly datePickerCompositionService;
