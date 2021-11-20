@@ -1,8 +1,8 @@
 import { ElementRef, OnChanges } from '@angular/core';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
-import { Paging } from '../../../core/api/read/paging';
+import { PagingModel } from '../../../core/api/paging.model';
 export declare class PagingStatsComponent extends PureComponent implements OnChanges {
-    paging: Paging;
+    paging: PagingModel;
     sourceSize: number;
     firstItemIndex: number;
     lastItemIndex: number;

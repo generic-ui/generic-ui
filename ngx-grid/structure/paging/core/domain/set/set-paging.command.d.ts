@@ -1,5 +1,5 @@
 import { StructureId } from '../../../../core/api/structure.id';
-import { PagingConfig } from '../../api/paging-config';
+import { PagingConfig } from '../../api/config/paging-config';
 import { StructureCommand } from '../../../../core/domain/structure.command';
 export declare class SetPagingCommand extends StructureCommand {
     private readonly config;

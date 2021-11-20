@@ -32,6 +32,7 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     view: ViewEntity, // REFACTOR
     align: ColumnAlign, // REFACTOR
     header: string | HeaderTemplate, cellEditingEnabled: boolean, sort?: SortOrder, sortable?: boolean);
+    getName(): string;
     isEnabled(): boolean;
     setHeader(header: string): void;
     setField(field: ColumnField): void;

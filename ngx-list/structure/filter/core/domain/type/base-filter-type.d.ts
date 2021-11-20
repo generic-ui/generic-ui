@@ -1,12 +1,12 @@
 import { OriginItemEntity } from '../../../../source/core/domain/origin/origin-item-entity';
-import { Field } from '../../../../field/core/domain/field/field';
+import { FieldEntity } from '../../../../field/core/domain/field/field.entity';
 import { FilterTypeId } from './filter-type.id';
-export declare abstract class BaseFilterType<T> {
-    private readonly filterTypeId;
+import { EntityId } from '@generic-ui/hermes';
+export declare abstract class BaseFilterType<T> extends EntityId<FilterTypeId> {
     protected constructor(filterTypeId: FilterTypeId);
     abstract getName(): string;
-    protected abstract filterEntity(entity: OriginItemEntity, field: Field, value: T): boolean;
-    getId(): FilterTypeId;
-    filterMany(entities: Array<OriginItemEntity>, field: Field, value: T): Array<OriginItemEntity>;
-    filterOne(entity: OriginItemEntity, field: Field, value: T): boolean;
+    protected abstract filterEntity(entity: OriginItemEntity, field: FieldEntity, value: T): boolean;
+    toString(): string;
+    filterMany(entities: Array<OriginItemEntity>, field: FieldEntity, value: T): Array<OriginItemEntity>;
+    filterOne(entity: OriginItemEntity, field: FieldEntity, value: T): boolean;
 }

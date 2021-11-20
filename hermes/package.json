@@ -1,6 +1,6 @@
 {
   "name": "@generic-ui/hermes",
-  "version": " 0.16.2",
+  "version": " 0.16.3",
   "dependencies": {
     "tslib": "^2.0.0"
   },

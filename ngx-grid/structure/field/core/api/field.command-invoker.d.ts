@@ -1,9 +1,7 @@
-import { CommandDispatcher, CommandInvoker, DomainEventBus } from '@generic-ui/hermes';
+import { CommandInvoker } from '@generic-ui/hermes';
 import { StructureId } from '../../../core/api/structure.id';
 import { FieldConfig } from './field.config';
-export declare class FieldCommandInvoker implements CommandInvoker {
-    private readonly domainEventBus;
-    private readonly commandDispatcher;
-    constructor(domainEventBus: DomainEventBus, commandDispatcher: CommandDispatcher);
-    initFields(fieldConfigs: Array<FieldConfig>, structureId: StructureId): void;
+export declare abstract class FieldCommandInvoker implements CommandInvoker {
+    protected constructor();
+    abstract initFields(fieldConfigs: Array<FieldConfig>, structureId: StructureId): void;
 }

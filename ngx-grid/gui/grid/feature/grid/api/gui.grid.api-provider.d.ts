@@ -1,13 +1,13 @@
 import { GuiRowColoring, GuiSelectedRow, GuiTheme } from '../../../core/api/gui.grid.public-api';
-import { FormationCommandInvoker } from '../../../../../structure/source/core/api/formation/formation.command-invoker';
+import { FormationCommandInvoker } from '../../../../../structure/formation/core/api/formation.command-invoker';
 import { StructureId } from '../../../../../structure/core/api/structure.id';
 import { SourceCommandInvoker } from '../../../../../structure/source/core/api/source.command-invoker';
-import { FormationWarehouse } from '../../../../../structure/source/core/api/formation/formation.warehouse';
+import { FormationWarehouse } from '../../../../../structure/formation/core/api/formation.warehouse';
 import { SearchCommandInvoker } from '../../../../../structure/search/core/api/search.command-invoker';
 import { SchemaReadModelRootId } from '../../../../../schema/core/api/schema.read-model-root-id';
 import { GuiGridThemeCommandInvoker } from '../theme/gui.grid.theme.command-invoker';
 import { StructureCommandInvoker } from '../../../../../structure/core/api/structure.command-invoker';
-import { PagingConfig } from '../../../../../structure/paging/core/api/paging-config';
+import { PagingConfig } from '../../../../../structure/paging/core/api/config/paging-config';
 import { PagingCommandInvoker } from '../../../../../structure/paging/core/api/paging.command-invoker';
 import { SearchConfig } from '../../../../../structure/search/core/api/search-config';
 import { SummariesCommandInvoker } from '../../../../../structure/summaries/core/api/summaries.command-invoker';
@@ -17,6 +17,7 @@ import { CompositionWarehouse } from '../../../../../composition/core/api/compos
 import { CompositionCommandInvoker } from '../../../../../composition/core/api/composition.command-invoker';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { FilterIntegration } from '../../../../../structure/filter/core/api-integration/filter.integration';
+import { GuiFilter, GuiFilterCollection } from './filter/gui.filter';
 export interface GuiGridApi {
     setSource(source: Array<any>): void;
     showLoading(): void;
@@ -34,9 +35,14 @@ export interface GuiGridApi {
     /**
      * Filtering
      */
-    getFilterTypes(columnName: string): Array<string>;
+    getFilters(): GuiFilterCollection;
+    getFiltersForColumn(columnName: string): Array<GuiFilter>;
+    getFilterTypes(): Array<string>;
+    getFilterTypesForColumn(columnName: string): Array<string>;
+    removeAll(): void;
+    removeFilter(filterId: string): void;
+    removeFiltersFromColumn(columnName: string): void;
     filter(columnName: string, filterType: string, value: any): void;
-    filterByColumnId(columnId: any, filterType: string, value: any): void;
     /**
      * Paging
      */

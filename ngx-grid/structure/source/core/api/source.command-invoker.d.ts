@@ -1,6 +1,6 @@
 import { StructureId } from '../../../core/api/structure.id';
 import { StructureEditSourceItemParams } from '../domain/origin/edit/structure.edit-source-item.params';
-import { SelectedRow } from './formation/selected-row';
+import { SelectedRow } from '../../../formation/core/api/row-selected/selected-row';
 import { OriginId } from '../domain/origin/origin-id';
 import { CommandInvoker } from '@generic-ui/hermes';
 export declare abstract class SourceCommandInvoker implements CommandInvoker {

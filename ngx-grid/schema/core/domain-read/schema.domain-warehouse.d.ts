@@ -8,7 +8,7 @@ import { SchemaTheme } from '../api/theme/schema-theme';
 import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 import { SchemaCssClass } from '../api/css-classes/schema-css-class';
 import { SchemaWarehouse } from '../api/schema.warehouse';
-import { HermesObservable } from '@generic-ui/hermes';
+import { HermesObservable, HermesSingle } from '@generic-ui/hermes';
 export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaCssClassesRepository;
     private readonly schemaThemeRepository;
@@ -17,7 +17,7 @@ export declare class SchemaDomainWarehouse extends SchemaWarehouse {
     private readonly schemaVerticalGridRepository;
     constructor(schemaCssClassesRepository: SchemaCssClassesRepository, schemaThemeRepository: SchemaThemeRepository, schemaHorizontalGridRepository: SchemaHorizontalGridRepository, schemaRowColoringRepository: SchemaRowColoringRepository, schemaVerticalGridRepository: SchemaVerticalGridRepository);
     onTheme(schemaId: SchemaReadModelRootId): HermesObservable<SchemaTheme>;
-    onceTheme(schemaId: SchemaReadModelRootId): HermesObservable<SchemaTheme>;
+    onceTheme(schemaId: SchemaReadModelRootId): HermesSingle<SchemaTheme>;
     onHorizontalGrid(schemaId: SchemaReadModelRootId): HermesObservable<boolean>;
     onVerticalGrid(schemaId: SchemaReadModelRootId): HermesObservable<boolean>;
     onRowColoring(schemaId: SchemaReadModelRootId): HermesObservable<SchemaRowColoring>;

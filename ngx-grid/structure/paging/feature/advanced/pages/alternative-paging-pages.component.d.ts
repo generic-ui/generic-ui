@@ -1,5 +1,5 @@
 import { ElementRef, OnChanges } from '@angular/core';
-import { Paging } from '../../../core/api/read/paging';
+import { PagingModel } from '../../../core/api/paging.model';
 import { PagingCommandInvoker } from '../../../core/api/paging.command-invoker';
 import { NgChanges } from '../../../../../common/cdk/component/ng-changes';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
@@ -7,7 +7,7 @@ import { StructureId } from '../../../../core/api/structure.id';
 export declare class AlternativePagingPagesComponent extends PureComponent implements OnChanges {
     private readonly structureId;
     private readonly pagingCommandService;
-    paging: Paging;
+    paging: PagingModel;
     sourceSize?: number;
     currentPage: number;
     pages: Array<number>;

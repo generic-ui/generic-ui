@@ -25,4 +25,5 @@ export declare class CompositionDomainWarehouse extends CompositionWarehouse {
     onResizeWidth(compositionId: CompositionId): HermesObservable<boolean>;
     onGroups(compositionId: CompositionId): HermesObservable<GroupCollection>;
     onHighlightedColumn(columnId: ColumnId, compositionId: CompositionId): HermesObservable<boolean>;
+    findColumnNames(compositionId: CompositionId): ReadonlyArray<string>;
 }

@@ -1,6 +1,6 @@
 import { ElementRef, Injector } from '@angular/core';
 import { FabricDrawerService } from '@generic-ui/fabric';
-import { FormationEventRepository } from '../../../source/core/api/formation/formation.event-repository';
+import { FormationEventRepository } from '../../../formation/core/api/formation.event-repository';
 import { StructureId } from '../../../core/api/structure.id';
 import { StructureRowDetailConfigArchive } from './structure.row-detail.config-archive';
 import { RowDetailConfig } from './row-detail.config';

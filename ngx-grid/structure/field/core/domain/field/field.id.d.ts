@@ -1,5 +1,5 @@
-import { Key } from '@generic-ui/hermes';
-export declare class FieldId implements Key {
+import { EntityId, Key } from '@generic-ui/hermes';
+export declare class FieldId extends EntityId implements Key {
     private readonly id;
     constructor(id: string);
     getId(): string;

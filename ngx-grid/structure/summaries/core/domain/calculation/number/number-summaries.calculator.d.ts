@@ -2,7 +2,7 @@ import { SummariesCalculator } from '../summaries.calculator';
 import { NumberSummarizedValues } from './number-summarized.values';
 import { DataType } from '../../../../../field/core/domain/field/data/data-type';
 import { OriginItemEntity } from '../../../../../source/core/domain/origin/origin-item-entity';
-import { Field } from '../../../../../field/core/domain/field/field';
+import { FieldEntity } from '../../../../../field/core/domain/field/field.entity';
 export declare class NumberSummariesCalculator extends SummariesCalculator<number, NumberSummarizedValues> {
     private readonly sum;
     private readonly min;
@@ -11,8 +11,8 @@ export declare class NumberSummariesCalculator extends SummariesCalculator<numbe
     private readonly median;
     constructor();
     forDataType(dataType: DataType): boolean;
-    prepare(field: Field): void;
-    postCalculate(field: Field, items: Array<OriginItemEntity>): void;
-    aggregate(field: Field, value: number): void;
-    generateAggregatedValues(field: Field): NumberSummarizedValues;
+    prepare(field: FieldEntity): void;
+    postCalculate(field: FieldEntity, items: Array<OriginItemEntity>): void;
+    aggregate(field: FieldEntity, value: number): void;
+    generateAggregatedValues(field: FieldEntity): NumberSummarizedValues;
 }

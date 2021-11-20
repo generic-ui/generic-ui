@@ -17,6 +17,8 @@ export declare class FabricInlineDialogComponent extends FabricThemedComponent i
     inlineDialogNestedInjector: Injector;
     dialogTopAttribute: number;
     dialogLeftAttribute: number;
+    visible: boolean;
+    width: string;
     constructor(componentFactoryResolver: ComponentFactoryResolver, changeDetectorRef: ChangeDetectorRef, inlineDialogService: FabricInlineDialogService, elRef: ElementRef, inlineDialogGeometryService: InlineDialogGeometryService, renderer: Renderer2, themeService: FabricModalThemeService, theme: Theme);
     ngOnInit(): void;
     ngAfterViewInit(): void;

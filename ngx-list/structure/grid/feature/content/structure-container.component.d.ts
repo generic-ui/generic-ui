@@ -8,7 +8,7 @@ import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { SourceWarehouse } from '../../../source/core/api/source.warehouse';
 import { CompositionCommandInvoker } from '../../../../composition/core/api/composition.command-invoker';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
-import { FormationWarehouse } from '../../../source/core/api/formation/formation.warehouse';
+import { FormationWarehouse } from '../../../formation/core/api/formation.warehouse';
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
 import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
 import { StructureInitialValuesReadyArchive } from '../../../core/api/structure.initial-values-ready.archive';

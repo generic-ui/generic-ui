@@ -1,9 +1,9 @@
 import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Gate } from '../../../../common/cdk/component/gate';
 import { StructureId } from '../../../core/api/structure.id';
-import { EditemItemValues } from '../../core/api/event/editem-item.values';
+import { EditedItemModel } from '../../core/api/edit/edited-item.model';
 import { SourceCommandInvoker } from '../../core/api/source.command-invoker';
-import { SourceEventService } from '../../core/api/event/source-event.service';
+import { SourceEventService } from '../../core/api/edit/source-event.service';
 import { NgChanges } from '../../../../common/cdk/component/ng-changes';
 export declare abstract class SourceGate extends Gate implements OnChanges, OnInit, OnDestroy {
     protected readonly structureId: StructureId;
@@ -11,7 +11,7 @@ export declare abstract class SourceGate extends Gate implements OnChanges, OnIn
     protected readonly sourceEventService: SourceEventService;
     source: Array<any>;
     items: Array<any>;
-    sourceEdited: EventEmitter<EditemItemValues>;
+    sourceEdited: EventEmitter<EditedItemModel>;
     protected constructor(structureId: StructureId, sourceCommandInvoker: SourceCommandInvoker, sourceEventService: SourceEventService);
     ngOnChanges(changes: NgChanges<SourceGate>): void;
     ngOnInit(): void;

@@ -3,7 +3,7 @@ import { CellTemplateWithContext } from '../../../../../composition/core/domain-
 import { SortingCommandInvoker } from '../../../../sorting/core/api/sorting.command-invoker';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { StructureId } from '../../../../core/api/structure.id';
-import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
+import { FormationCommandInvoker } from '../../../../formation/core/api/formation.command-invoker';
 import { Group } from '../../../../../composition/core/api/group/group';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
 export declare class StructureHeaderGroupsComponent extends PureComponent {

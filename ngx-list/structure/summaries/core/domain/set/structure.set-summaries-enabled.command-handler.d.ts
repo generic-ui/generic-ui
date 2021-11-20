@@ -4,7 +4,7 @@ import { StructureSetSummariesEnabledCommand } from './structure.set-summaries-e
 import { StructureAggregate } from '../../../../core/domain/structure.aggregate';
 export declare class StructureSetSummariesEnabledCommandHandler implements CommandHandler<StructureAggregate, StructureSetSummariesEnabledCommand> {
     private readonly structureSourceDomainEventPublisher;
-    private domainEventPublisher;
+    private readonly domainEventPublisher;
     constructor(structureSourceDomainEventPublisher: SourceDomainEventPublisher, domainEventPublisher: DomainEventPublisher);
     forCommand(): CommandType<StructureSetSummariesEnabledCommand>;
     handle(structure: StructureAggregate, command: StructureSetSummariesEnabledCommand): void;

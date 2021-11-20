@@ -2,6 +2,7 @@ import { Injectable, Inject, PLATFORM_ID, InjectionToken, NgModule, Optional as 
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { TestBed } from '@angular/core/testing';
 
 class Logger {
     setDomain(domainName) {
@@ -986,7 +987,7 @@ class KeyMap {
         this.keys = new Map();
         this.values = new WeakMap();
     }
-    get(key) {
+    find(key) {
         const internalKey = this.getInternalKey(key);
         if (internalKey !== undefined) {
             return Optional.of(this.values.get(internalKey));
@@ -1116,6 +1117,42 @@ class HermesArchiveSubject extends HermesSubject {
     }
 }
 
+class HermesSingleSubscriber extends HermesSubscriber {
+    next(value) {
+        if (this.isCompleted()) {
+            return;
+        }
+        const observer = this.getObserver();
+        if (observer && observer.next) {
+            observer.next(value);
+            this.complete();
+        }
+    }
+}
+
+class HermesSingle extends HermesObservable {
+    createSubscriber(next, error, complete) {
+        return new HermesSingleSubscriber({
+            next,
+            error,
+            complete
+        });
+    }
+}
+
+function singleFromObservable(source) {
+    return new HermesSingle((observer) => {
+        const subscriber = new HermesSubscriber({
+            next: (value) => observer.next(value),
+            error: (error) => observer.error(error),
+            complete: () => {
+            }
+        });
+        const subscription = source.subscribe(subscriber);
+        return subscription.getFinalize();
+    });
+}
+
 class KeyArchive extends ReactiveService {
     constructor(defaultValue) {
         super();
@@ -1131,16 +1168,15 @@ class KeyArchive extends ReactiveService {
         return this.archive$
             .toObservable()
             .pipe(hermesFilter(() => this.isNotStopped()), hermesMap((map) => {
-            return map.get(key);
+            return map.find(key);
         }), hermesFilter((value) => value.isPresent()), hermesMap((value) => value.getValueOrNullOrThrowError()), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
     }
     once(key) {
-        return this.on(key)
-            .pipe(hermesTake(1));
+        return singleFromObservable(this.on(key));
     }
-    get(key) {
+    find(key) {
         this.tryToInitDefault(key);
-        return this.archive.get(key);
+        return this.archive.find(key);
     }
     next(key, value) {
         this.archive.set(key, value);
@@ -1342,42 +1378,6 @@ function hermesFromEvent(element, type) {
         return () => {
             element.removeEventListener(type, listener);
         };
-    });
-}
-
-class HermesSingleSubscriber extends HermesSubscriber {
-    next(value) {
-        if (this.isCompleted()) {
-            return;
-        }
-        const observer = this.getObserver();
-        if (observer && observer.next) {
-            observer.next(value);
-            this.complete();
-        }
-    }
-}
-
-class HermesSingle extends HermesObservable {
-    createSubscriber(next, error, complete) {
-        return new HermesSingleSubscriber({
-            next,
-            error,
-            complete
-        });
-    }
-}
-
-function singleFromObservable(source) {
-    return new HermesSingle((observer) => {
-        const subscriber = new HermesSubscriber({
-            next: (value) => observer.next(value),
-            error: (error) => observer.error(error),
-            complete: () => {
-            }
-        });
-        const subscription = source.subscribe(subscriber);
-        return subscription.getFinalize();
     });
 }
 
@@ -2334,7 +2334,7 @@ function testEventRepositoryIsEmptyOnStart(createStream, desc) {
         expect(completeFn).not.toHaveBeenCalled();
     });
 }
-function testWarehouseDefaultValueOnStart(createStream, defaultValue, desc) {
+function onDefaultValuesWarehouseTest(createStream, defaultValue, desc) {
     it('should have default value ' + desc, () => {
         expect.assertions(4);
         // given
@@ -2349,7 +2349,7 @@ function testWarehouseDefaultValueOnStart(createStream, defaultValue, desc) {
         expect(completeFn).not.toHaveBeenCalled();
     });
 }
-function testWarehouseDefaultValueOnStartOnce(createStream, defaultValue, desc) {
+function onceDefaultValuesWarehouseTest(createStream, defaultValue, desc) {
     it('should have default value ' + desc, () => {
         expect.assertions(4);
         // given
@@ -2364,6 +2364,42 @@ function testWarehouseDefaultValueOnStartOnce(createStream, defaultValue, desc) 
         expect(completeFn).toHaveBeenCalledTimes(1);
     });
 }
+function findDefaultValuesWarehouseTest(createValue, defaultValue, desc) {
+    it('should find default value' + desc, function () {
+        expect.assertions(1);
+        expect(createValue()).toEqual(Optional.of(defaultValue));
+    });
+}
+function commandInterceptedByHandlerTest(dispatch, handlerType) {
+    it('should trigger command handler', () => {
+        expect.assertions(1);
+        // given
+        const handler = TestBed.get(handlerType), handlerSpy = jest.spyOn(handler, 'handle');
+        // when
+        dispatch();
+        // then
+        expect(handlerSpy).toHaveBeenCalled();
+    });
+}
+function commandPublishEventTest(dispatch, eventType) {
+    it('should dispatch event', () => {
+        expect.assertions(1);
+        // given
+        TestBed.get(DomainEventBus)
+            .subscribe((event) => {
+            // then
+            if (event instanceof eventType) {
+                expect(event instanceof eventType).toEqual(true);
+            }
+        });
+        // when
+        dispatch();
+    });
+}
+function commandTriggersHandlerAndPublishEventTest(dispatch, handlerType, eventType) {
+    commandInterceptedByHandlerTest(dispatch, handlerType);
+    commandPublishEventTest(dispatch, eventType);
+}
 
 class CreateAggregateCommand extends Command {
     constructor(aggregateId, type) {
@@ -2375,5 +2411,5 @@ class CreateAggregateCommand extends Command {
  * Generated bundle index. Do not edit.
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, disableHermesLoggers, enableHermesLoggers, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, provideEventHandlers, singleFromObservable, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce, toRxJsObservable, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, CreateAggregateCommandHandlerImpl as ɵba, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, KeyArchive as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, domainEventHandlerFactory as ɵw, multiDomainEventHandlerFactory as ɵx, DomainEventHandlerImpl as ɵy, createAggregateCommandHandlerFactory as ɵz };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandBus, CommandDispatcher, CommandLogger, CommandStream, CommandType, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventLogger, DomainEventPublisher, DomainEventStream, DomainEventType, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, onDefaultValuesWarehouseTest, onceDefaultValuesWarehouseTest, provideEventHandlers, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable, commandLoggerFactory as ɵa, eventLoggerFactory as ɵb, CreateAggregateCommandHandlerImpl as ɵba, HermesBaseModule as ɵc, Logger as ɵd, Message as ɵe, FILTERED_COMMAND_STREAM as ɵf, DomainEventStore as ɵg, KeyArchive as ɵh, DOMAIN_EVENT_HANDLERS as ɵi, CREATE_AGGREGATE_COMMAND_HANDLERS as ɵj, COMMAND_HANDLERS as ɵk, aggregateDefinitionToken as ɵl, AggregateFactoryArchive as ɵn, AggregateRepositoryArchive as ɵo, HermesLoggersInitializer as ɵp, ConsoleCommandLogger as ɵq, NoopCommandLogger as ɵr, ConsoleEventLogger as ɵs, NoopEventLogger as ɵt, commandHandlerFactory as ɵu, CommandHandlerImpl as ɵv, domainEventHandlerFactory as ɵw, multiDomainEventHandlerFactory as ɵx, DomainEventHandlerImpl as ɵy, createAggregateCommandHandlerFactory as ɵz };
 //# sourceMappingURL=generic-ui-hermes.js.map

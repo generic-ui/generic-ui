@@ -5,7 +5,7 @@ import { FieldWarehouse } from '../../../field/core/api/field.warehouse';
 import { OriginId } from '../domain/origin/origin-id';
 import { CommandDispatcher } from '@generic-ui/hermes';
 import { SourceWarehouse } from '../api/source.warehouse';
-import { SelectedRow } from '../api/formation/selected-row';
+import { SelectedRow } from '../../../formation/core/api/row-selected/selected-row';
 import { SourceCommandInvoker } from '../api/source.command-invoker';
 export declare class SourceDomainCommandInvoker extends SourceCommandInvoker {
     private readonly commandDispatcher;

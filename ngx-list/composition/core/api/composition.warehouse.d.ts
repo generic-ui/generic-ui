@@ -18,4 +18,5 @@ export declare abstract class CompositionWarehouse implements Warehouse {
     abstract onResizeWidth(compositionId: CompositionId): HermesObservable<boolean>;
     abstract onGroups(compositionId: CompositionId): HermesObservable<GroupCollection>;
     abstract onHighlightedColumn(columnId: ColumnId, compositionId: CompositionId): HermesObservable<boolean>;
+    abstract findColumnNames(compositionId: CompositionId): ReadonlyArray<string>;
 }

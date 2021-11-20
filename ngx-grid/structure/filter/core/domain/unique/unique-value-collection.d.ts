@@ -1,11 +1,11 @@
 import { UniqueValue } from './unique-value';
 import { UniqueValueId } from './unique-value-id';
-import { Field } from '../../../../field/core/domain/field/field';
+import { FieldEntity } from '../../../../field/core/domain/field/field.entity';
 export declare class UniqueValueCollection {
     private readonly values;
     private allSelected;
     private allDisabled;
-    constructor(values: Array<any>, field: Field);
+    constructor(values: Array<any>, field: FieldEntity);
     getAll(): Array<UniqueValue>;
     isAllSelected(): boolean;
     isAllDisabled(): boolean;

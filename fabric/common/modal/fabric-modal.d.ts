@@ -14,6 +14,7 @@ export declare abstract class FabricModal<T> extends FabricReactive implements O
     createAndAppend(config?: FabricModalConfig): void;
     removeComponent(): void;
     getComponentRef(): ComponentRef<T>;
+    getComponentInstance(): T;
     getInjector(): Injector;
     getDocument(): any;
     onCloseOnEsc(): Observable<any>;

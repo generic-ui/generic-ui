@@ -1,15 +1,15 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
 import { CellTemplateWithAccessor } from '../../../../composition/core/domain-read/definition/cell-template-with-accessor';
-import { FormationCommandInvoker } from '../../../source/core/api/formation/formation.command-invoker';
+import { FormationCommandInvoker } from '../../../formation/core/api/formation.command-invoker';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
-import { FormationWarehouse } from '../../../source/core/api/formation/formation.warehouse';
+import { FormationWarehouse } from '../../../formation/core/api/formation.warehouse';
 import { ItemEntity } from '../../../source/core/domain/core/item/item.entity';
-import { VerticalFormationRepository } from '../../../vertical-formation/core/api/vertical-formation.repository';
+import { VerticalFormationRepository } from '../../../vertical-formation/core/domain-read/vertical-formation.repository';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { StructureId } from '../../../core/api/structure.id';
 import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
-import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
+import { RowSelectionTypeArchive } from '../../../formation/core/api/type/row-selection-type.archive';
 import { SchemaRowClassArchive } from '../../../../schema/core/api/styling/schema.row-class.archive';
 import { SchemaRowStyleArchive } from '../../../../schema/core/api/styling/schema.row-style.archive';
 import { SchemaRowClass } from '../../../../schema/core/api/styling/schema.row-class';
@@ -19,7 +19,7 @@ import { CellEditorManager } from '../../core/domain/edit/cell-editor.manager';
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
     private readonly changeDetectorRef;
-    private readonly formationCommandService;
+    private readonly formationCommandInvoker;
     private readonly structureEditModeArchive;
     private readonly formationWarehouse;
     private readonly structureWarehouse;
@@ -42,7 +42,7 @@ export declare class StructureContentComponent extends SmartComponent implements
     checkboxSelection: boolean;
     schemaRowClass: SchemaRowClass;
     schemaRowStyle: SchemaRowStyle;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandService: FormationCommandInvoker, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: VerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandInvoker: FormationCommandInvoker, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, structureVerticalFormationWarehouse: VerticalFormationWarehouse, verticalFormationRepository: VerticalFormationRepository, structureId: StructureId, // REfactor
     rowSelectionTypeArchive: RowSelectionTypeArchive, searchWarehouse: SearchWarehouse, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
     ngOnInit(): void;
     trackByFn(): number;

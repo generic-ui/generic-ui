@@ -102,6 +102,6 @@ export { EVENT_LOGGER_ENABLED } from './core/domain/hermes-tokens';
 /**
  * Testing
  */
-export { assertDomainEvents, assertAggregateEvents, testEventRepositoryIsEmptyOnStart, testWarehouseDefaultValueOnStart, testWarehouseDefaultValueOnStartOnce } from './testing/helpers';
+export { assertDomainEvents, assertAggregateEvents, testEventRepositoryIsEmptyOnStart, findDefaultValuesWarehouseTest, onDefaultValuesWarehouseTest, onceDefaultValuesWarehouseTest, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest } from './testing/helpers';
 export { CreateAggregateCommand } from './core/domain/command/create-aggregate/create-aggregate.command';
 export { CreateAggregateCommandHandler } from './core/domain/command/create-aggregate/create-aggregate.command-handler';

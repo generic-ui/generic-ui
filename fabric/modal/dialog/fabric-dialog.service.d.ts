@@ -1,21 +1,12 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, Injector, OnDestroy, Type } from '@angular/core';
-import { Theme } from '../../themes/theme';
-import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
-export declare class FabricDialogService implements OnDestroy {
-    private readonly componentFactoryResolver;
-    private readonly applicationRef;
-    private readonly injector;
-    private document;
-    dialogRef: ComponentRef<FabricNestedDialogComponent>;
-    private readonly unsub$;
+import { ApplicationRef, ComponentFactoryResolver, Injector, Type } from '@angular/core';
+import { FabricDialogComponent } from './fabric-dialog.component';
+import { FabricModal } from '../../common/modal/fabric-modal';
+import { FabricDialogConfig } from './fabric-dialog.config';
+export declare class FabricDialogService extends FabricModal<FabricDialogComponent> {
     constructor(componentFactoryResolver: ComponentFactoryResolver, applicationRef: ApplicationRef, injector: Injector, document: any);
-    ngOnDestroy(): void;
-    open(component: Type<FabricNestedDialogComponent>, config?: {
-        injector?: Injector;
-        theme?: Theme;
-    }): void;
+    getComponent(): Type<FabricDialogComponent>;
+    open(config: FabricDialogConfig): void;
     close(): void;
     private closeOnEscKey;
-    private createAndAppend;
-    private removeDialog;
+    private afterComponentCreation;
 }

@@ -1,6 +1,6 @@
 import { PagingDispatcher } from './paging.dispatcher';
 import { StructureId } from '../../../core/api/structure.id';
-import { PagingConfig } from '../api/paging-config';
+import { PagingConfig } from '../api/config/paging-config';
 import { PagingCommandInvoker } from '../api/paging.command-invoker';
 export declare class PagingDomainCommandInvoker extends PagingCommandInvoker {
     private readonly pagingDispatcher;

@@ -7,7 +7,7 @@ import { SmartComponent } from '../../../../common/cdk/component/smart-component
 import { SourceWarehouse } from '../../../source/core/api/source.warehouse';
 import { TranslationFacade } from '../../../../l10n/core/api/translation.facade';
 import { SummariesTranslations } from '../structure.summaries-translations';
-import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
+import { RowSelectionTypeArchive } from '../../../formation/core/api/type/row-selection-type.archive';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare class StructureSummariesPanelComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;

@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@generic-ui/hermes', ['exports', '@angular/core', '@angular/common', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global["generic-ui"] = global["generic-ui"] || {}, global["generic-ui"].hermes = {}), global.ng.core, global.ng.common, global.rxjs, global.rxjs.operators));
-})(this, (function (exports, core, common, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@angular/core/testing')) :
+    typeof define === 'function' && define.amd ? define('@generic-ui/hermes', ['exports', '@angular/core', '@angular/common', 'rxjs', 'rxjs/operators', '@angular/core/testing'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global["generic-ui"] = global["generic-ui"] || {}, global["generic-ui"].hermes = {}), global.ng.core, global.ng.common, global.rxjs, global.rxjs.operators, global.ng.core.testing));
+})(this, (function (exports, core, common, rxjs, operators, testing) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1438,7 +1438,7 @@
             this.keys = new Map();
             this.values = new WeakMap();
         }
-        KeyMap.prototype.get = function (key) {
+        KeyMap.prototype.find = function (key) {
             var internalKey = this.getInternalKey(key);
             if (internalKey !== undefined) {
                 return Optional.of(this.values.get(internalKey));
@@ -1590,6 +1590,52 @@
         return HermesArchiveSubject;
     }(HermesSubject));
 
+    var HermesSingleSubscriber = /** @class */ (function (_super) {
+        __extends(HermesSingleSubscriber, _super);
+        function HermesSingleSubscriber() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        HermesSingleSubscriber.prototype.next = function (value) {
+            if (this.isCompleted()) {
+                return;
+            }
+            var observer = this.getObserver();
+            if (observer && observer.next) {
+                observer.next(value);
+                this.complete();
+            }
+        };
+        return HermesSingleSubscriber;
+    }(HermesSubscriber));
+
+    var HermesSingle = /** @class */ (function (_super) {
+        __extends(HermesSingle, _super);
+        function HermesSingle() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        HermesSingle.prototype.createSubscriber = function (next, error, complete) {
+            return new HermesSingleSubscriber({
+                next: next,
+                error: error,
+                complete: complete
+            });
+        };
+        return HermesSingle;
+    }(HermesObservable));
+
+    function singleFromObservable(source) {
+        return new HermesSingle(function (observer) {
+            var subscriber = new HermesSubscriber({
+                next: function (value) { return observer.next(value); },
+                error: function (error) { return observer.error(error); },
+                complete: function () {
+                }
+            });
+            var subscription = source.subscribe(subscriber);
+            return subscription.getFinalize();
+        });
+    }
+
     var KeyArchive = /** @class */ (function (_super) {
         __extends(KeyArchive, _super);
         function KeyArchive(defaultValue) {
@@ -1608,16 +1654,15 @@
             return this.archive$
                 .toObservable()
                 .pipe(hermesFilter(function () { return _this.isNotStopped(); }), hermesMap(function (map) {
-                return map.get(key);
+                return map.find(key);
             }), hermesFilter(function (value) { return value.isPresent(); }), hermesMap(function (value) { return value.getValueOrNullOrThrowError(); }), hermesDistinctUntilChanged(this.equals), this.hermesTakeUntil());
         };
         KeyArchive.prototype.once = function (key) {
-            return this.on(key)
-                .pipe(hermesTake(1));
+            return singleFromObservable(this.on(key));
         };
-        KeyArchive.prototype.get = function (key) {
+        KeyArchive.prototype.find = function (key) {
             this.tryToInitDefault(key);
-            return this.archive.get(key);
+            return this.archive.find(key);
         };
         KeyArchive.prototype.next = function (key, value) {
             this.archive.set(key, value);
@@ -1851,52 +1896,6 @@
             return function () {
                 element.removeEventListener(type, listener);
             };
-        });
-    }
-
-    var HermesSingleSubscriber = /** @class */ (function (_super) {
-        __extends(HermesSingleSubscriber, _super);
-        function HermesSingleSubscriber() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        HermesSingleSubscriber.prototype.next = function (value) {
-            if (this.isCompleted()) {
-                return;
-            }
-            var observer = this.getObserver();
-            if (observer && observer.next) {
-                observer.next(value);
-                this.complete();
-            }
-        };
-        return HermesSingleSubscriber;
-    }(HermesSubscriber));
-
-    var HermesSingle = /** @class */ (function (_super) {
-        __extends(HermesSingle, _super);
-        function HermesSingle() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        HermesSingle.prototype.createSubscriber = function (next, error, complete) {
-            return new HermesSingleSubscriber({
-                next: next,
-                error: error,
-                complete: complete
-            });
-        };
-        return HermesSingle;
-    }(HermesObservable));
-
-    function singleFromObservable(source) {
-        return new HermesSingle(function (observer) {
-            var subscriber = new HermesSubscriber({
-                next: function (value) { return observer.next(value); },
-                error: function (error) { return observer.error(error); },
-                complete: function () {
-                }
-            });
-            var subscription = source.subscribe(subscriber);
-            return subscription.getFinalize();
         });
     }
 
@@ -2964,7 +2963,7 @@
             expect(completeFn).not.toHaveBeenCalled();
         });
     }
-    function testWarehouseDefaultValueOnStart(createStream, defaultValue, desc) {
+    function onDefaultValuesWarehouseTest(createStream, defaultValue, desc) {
         it('should have default value ' + desc, function () {
             expect.assertions(4);
             // given
@@ -2979,7 +2978,7 @@
             expect(completeFn).not.toHaveBeenCalled();
         });
     }
-    function testWarehouseDefaultValueOnStartOnce(createStream, defaultValue, desc) {
+    function onceDefaultValuesWarehouseTest(createStream, defaultValue, desc) {
         it('should have default value ' + desc, function () {
             expect.assertions(4);
             // given
@@ -2993,6 +2992,42 @@
             expect(errorFn).not.toHaveBeenCalled();
             expect(completeFn).toHaveBeenCalledTimes(1);
         });
+    }
+    function findDefaultValuesWarehouseTest(createValue, defaultValue, desc) {
+        it('should find default value' + desc, function () {
+            expect.assertions(1);
+            expect(createValue()).toEqual(Optional.of(defaultValue));
+        });
+    }
+    function commandInterceptedByHandlerTest(dispatch, handlerType) {
+        it('should trigger command handler', function () {
+            expect.assertions(1);
+            // given
+            var handler = testing.TestBed.get(handlerType), handlerSpy = jest.spyOn(handler, 'handle');
+            // when
+            dispatch();
+            // then
+            expect(handlerSpy).toHaveBeenCalled();
+        });
+    }
+    function commandPublishEventTest(dispatch, eventType) {
+        it('should dispatch event', function () {
+            expect.assertions(1);
+            // given
+            testing.TestBed.get(DomainEventBus)
+                .subscribe(function (event) {
+                // then
+                if (event instanceof eventType) {
+                    expect(event instanceof eventType).toEqual(true);
+                }
+            });
+            // when
+            dispatch();
+        });
+    }
+    function commandTriggersHandlerAndPublishEventTest(dispatch, handlerType, eventType) {
+        commandInterceptedByHandlerTest(dispatch, handlerType);
+        commandPublishEventTest(dispatch, eventType);
     }
 
     var CreateAggregateCommand = /** @class */ (function (_super) {
@@ -3073,8 +3108,12 @@
     exports.ValueObject = ValueObject;
     exports.assertAggregateEvents = assertAggregateEvents;
     exports.assertDomainEvents = assertDomainEvents;
+    exports.commandInterceptedByHandlerTest = commandInterceptedByHandlerTest;
+    exports.commandPublishEventTest = commandPublishEventTest;
+    exports.commandTriggersHandlerAndPublishEventTest = commandTriggersHandlerAndPublishEventTest;
     exports.disableHermesLoggers = disableHermesLoggers;
     exports.enableHermesLoggers = enableHermesLoggers;
+    exports.findDefaultValuesWarehouseTest = findDefaultValuesWarehouseTest;
     exports.fromRxJsObservable = fromRxJsObservable;
     exports.hermesDistinctUntilChanged = hermesDistinctUntilChanged;
     exports.hermesEmpty = hermesEmpty;
@@ -3092,11 +3131,11 @@
     exports.hermesThrowError = hermesThrowError;
     exports.hermesTimer = hermesTimer;
     exports.hermesToArray = hermesToArray;
+    exports.onDefaultValuesWarehouseTest = onDefaultValuesWarehouseTest;
+    exports.onceDefaultValuesWarehouseTest = onceDefaultValuesWarehouseTest;
     exports.provideEventHandlers = provideEventHandlers;
     exports.singleFromObservable = singleFromObservable;
     exports.testEventRepositoryIsEmptyOnStart = testEventRepositoryIsEmptyOnStart;
-    exports.testWarehouseDefaultValueOnStart = testWarehouseDefaultValueOnStart;
-    exports.testWarehouseDefaultValueOnStartOnce = testWarehouseDefaultValueOnStartOnce;
     exports.toRxJsObservable = toRxJsObservable;
     exports["ɵa"] = commandLoggerFactory;
     exports["ɵb"] = eventLoggerFactory;

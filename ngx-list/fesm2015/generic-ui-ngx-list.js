@@ -1,7 +1,7 @@
 import { Component, ContentChild, TemplateRef, EventEmitter, Directive, Input, Output, ViewEncapsulation, Inject, PLATFORM_ID, Injectable, ElementRef, ChangeDetectorRef, ChangeDetectionStrategy, NgModule, Pipe, InjectionToken, ViewChild, Injector, Optional as Optional$1, NgZone, ComponentFactoryResolver, Attribute, Renderer2 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FabricModule, FabricSelectModule, FabricDrawerService, FabricDialogService, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, FabricModalThemeService, FabricPlacement, FabricInlineDialogService, Placement, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
-import { ReadModelRootId, AggregateId, Archive, HermesSubject, hermesTakeUntil, EventRepository, DomainEventBus, DomainEvent, AggregateEvent, Command, CommandDispatcher, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ReadModelObject, Reactive, hermesFilter, hermesMap, hermesTake, hermesSwitchMap, ApiModule, HermesReplaySubject, FeatureModule, CreateAggregateCommand, AggregateArchive, AggregateRoot, AggregateFactory, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, fromRxJsObservable, singleFromObservable, Optional, RandomStringGenerator, Entity, EntityId, hermesDistinctUntilChanged, toRxJsObservable, EventDrivenRepository, hermesTimer, ReadModelRoot, InMemoryReadModelStore, hermesEmpty, hermesFromEvent, DomainObject, KeyMap, HermesId, ReadModelEntity, ReadModelEntityId, ReadModelRootRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { ReadModelRootId, AggregateId, Archive, HermesSubject, hermesTakeUntil, EventRepository, DomainEventBus, DomainEvent, AggregateEvent, Command, CommandDispatcher, AggregateRepository, DomainEventPublisher, DomainModule, HermesModule, ReadModelObject, Reactive, hermesFilter, hermesMap, singleFromObservable, hermesSwitchMap, ApiModule, HermesReplaySubject, FeatureModule, CreateAggregateCommand, AggregateArchive, AggregateRoot, AggregateFactory, InMemoryStore, InMemoryAggregateStore, AggregateStoreRegister, fromRxJsObservable, Entity, EntityId, Optional, hermesTake, RandomStringGenerator, hermesDistinctUntilChanged, toRxJsObservable, EventDrivenRepository, hermesTimer, ReadModelRoot, InMemoryReadModelStore, hermesEmpty, hermesFromEvent, DomainObject, KeyMap, HermesId, ReadModelEntity, ReadModelEntityId, ReadModelRootRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import { __decorate } from 'tslib';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, throttleTime, flatMap } from 'rxjs/operators';
@@ -1154,10 +1154,10 @@ class PagingDispatcher {
     constructor(commandDispatcher) {
         this.commandDispatcher = commandDispatcher;
     }
-    setPaging(structureId, paging) {
+    setPaging(paging, structureId) {
         this.commandDispatcher.dispatch(new SetPagingCommand(structureId, paging));
     }
-    changePageSize(structureId, pageSize) {
+    changePageSize(pageSize, structureId) {
         this.commandDispatcher.dispatch(new ChangePagesizeCommand(structureId, pageSize));
     }
     nextPage(structureId) {
@@ -1341,7 +1341,7 @@ PagingDomainModule.decorators = [
 ];
 PagingDomainModule.ctorParameters = () => [];
 
-let Paging = class Paging {
+let PagingModel = class PagingModel {
     constructor(enabled, page, pageSize, pageSizes, pagerTop, pagerBottom, isNextDisabled, isPrevDisabled, start, end, sourceSize) {
         this.enabled = enabled;
         this.page = page;
@@ -1403,13 +1403,13 @@ let Paging = class Paging {
         return JSON.stringify(this) === JSON.stringify(target);
     }
 };
-Paging = __decorate([
+PagingModel = __decorate([
     ReadModelObject
-], Paging);
+], PagingModel);
 
 class PagingConverter {
     convert(aggregate) {
-        return new Paging(aggregate.isEnabled(), aggregate.getPage(), aggregate.getPageSize(), aggregate.getPageSizes(), aggregate.isPagerTop(), aggregate.isPagerBottom(), aggregate.isNextPageDisabled(), aggregate.isPrevPageDisabled(), aggregate.calculateStart(), aggregate.calculateEnd(), aggregate.getSourceSize());
+        return new PagingModel(aggregate.isEnabled(), aggregate.getPage(), aggregate.getPageSize(), aggregate.getPageSizes(), aggregate.isPagerTop(), aggregate.isPagerBottom(), aggregate.isNextPageDisabled(), aggregate.isPrevPageDisabled(), aggregate.calculateStart(), aggregate.calculateEnd(), aggregate.getSourceSize());
     }
 }
 PagingConverter.decorators = [
@@ -1460,9 +1460,7 @@ class PagingDomainWarehouse extends PagingWarehouse {
         return this.pagingRepository.on(structureId);
     }
     oncePaging(structureId) {
-        return this.pagingRepository
-            .on(structureId)
-            .pipe(hermesTake(1));
+        return singleFromObservable(this.pagingRepository.on(structureId));
     }
 }
 PagingDomainWarehouse.decorators = [
@@ -1478,16 +1476,16 @@ class PagingDomainCommandInvoker extends PagingCommandInvoker {
         this.pagingDispatcher = pagingDispatcher;
     }
     enable(structureId) {
-        this.pagingDispatcher.setPaging(structureId, { enabled: true });
+        this.pagingDispatcher.setPaging({ enabled: true }, structureId);
     }
     disable(structureId) {
-        this.pagingDispatcher.setPaging(structureId, { enabled: false });
+        this.pagingDispatcher.setPaging({ enabled: false }, structureId);
     }
     setPaging(paging, structureId) {
-        this.pagingDispatcher.setPaging(structureId, paging);
+        this.pagingDispatcher.setPaging(paging, structureId);
     }
     changePageSize(pageSize, structureId) {
-        this.pagingDispatcher.changePageSize(structureId, pageSize);
+        this.pagingDispatcher.changePageSize(pageSize, structureId);
     }
     nextPage(structureId) {
         this.pagingDispatcher.nextPage(structureId);
@@ -1510,10 +1508,10 @@ class PagingDomainCommandInvoker extends PagingCommandInvoker {
         }
     }
     changePagerTop(enabled, structureId) {
-        this.pagingDispatcher.setPaging(structureId, { pagerTop: enabled });
+        this.pagingDispatcher.setPaging({ pagerTop: enabled }, structureId);
     }
     changePagerBottom(enabled, structureId) {
-        this.pagingDispatcher.setPaging(structureId, { pagerBottom: enabled });
+        this.pagingDispatcher.setPaging({ pagerBottom: enabled }, structureId);
     }
 }
 PagingDomainCommandInvoker.decorators = [
@@ -2274,7 +2272,7 @@ class EmptySourceComponent extends PureComponent {
         this.addClassToHost('gui-px-6');
     }
     ngOnChanges(changes) {
-        if (this.hasChanged(changes.items)) {
+        ifChanged(changes.items, () => {
             if (this.items.length === 0) {
                 this.removeClassFromHost('gui-hidden');
                 this.addClassToHost('gui-block');
@@ -2283,7 +2281,7 @@ class EmptySourceComponent extends PureComponent {
                 this.removeClassFromHost('gui-block');
                 this.addClassToHost('gui-hidden');
             }
-        }
+        });
     }
     getSelectorName() {
         return 'gui-empty-source';
@@ -2937,32 +2935,14 @@ ListViewTemplateGate.propDecorators = {
     cardTemplate: [{ type: Input }]
 };
 
-class InitFieldsCommand extends StructureCommand {
-    constructor(structureId, fieldConfigs) {
-        super(structureId, 'InitFieldsCommand');
-        this.fieldConfigs = fieldConfigs;
-    }
-    getFieldConfigs() {
-        return this.fieldConfigs;
-    }
-}
-
 class FieldCommandInvoker {
-    constructor(domainEventBus, commandDispatcher) {
-        this.domainEventBus = domainEventBus;
-        this.commandDispatcher = commandDispatcher;
-    }
-    initFields(fieldConfigs, structureId) {
-        this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
+    constructor() {
     }
 }
 FieldCommandInvoker.decorators = [
     { type: Injectable }
 ];
-FieldCommandInvoker.ctorParameters = () => [
-    { type: DomainEventBus },
-    { type: CommandDispatcher }
-];
+FieldCommandInvoker.ctorParameters = () => [];
 
 class ListViewFieldGate extends Gate {
     constructor(structureId, fieldCommandDispatcher) {
@@ -3102,7 +3082,7 @@ SourceCommandInvoker.decorators = [
 ];
 SourceCommandInvoker.ctorParameters = () => [];
 
-class EditemItemValues {
+class EditedItemModel {
     constructor(after, before) {
         this.after = after;
         this.before = before;
@@ -3134,7 +3114,7 @@ class SourceEventService {
         ])
             .pipe(hermesFilter((event) => event.getAggregateId().toString() === structureId.toString()), hermesMap((event) => {
             const afterItem = event.getAfterItem().getSourceItem(), beforeItem = event.getBeforeItem().getSourceItem();
-            return new EditemItemValues(afterItem, beforeItem);
+            return new EditedItemModel(afterItem, beforeItem);
         }));
     }
 }
@@ -4011,31 +3991,14 @@ CompositionWarehouse.decorators = [
 ];
 CompositionWarehouse.ctorParameters = () => [];
 
-class FieldReadModelArchive extends AggregateArchive {
-    constructor() {
-        super(FieldReadModelArchive.default);
-    }
-}
-FieldReadModelArchive.default = [];
-FieldReadModelArchive.decorators = [
-    { type: Injectable }
-];
-FieldReadModelArchive.ctorParameters = () => [];
-
 class FieldWarehouse {
-    constructor(fieldReadModelArchive) {
-        this.fieldReadModelArchive = fieldReadModelArchive;
-    }
-    onFields(structureId) {
-        return this.fieldReadModelArchive.on(structureId);
+    constructor() {
     }
 }
 FieldWarehouse.decorators = [
     { type: Injectable }
 ];
-FieldWarehouse.ctorParameters = () => [
-    { type: FieldReadModelArchive }
-];
+FieldWarehouse.ctorParameters = () => [];
 
 class FilterWarehouse {
     constructor() {
@@ -4107,7 +4070,8 @@ class FilterMenuComponent extends SmartComponent {
         event.preventDefault();
         this.filterCommandInvoker.remove(filterId, this.structureId);
     }
-    removeFilter() { }
+    removeFilter() {
+    }
     clearAddFilterForm() {
         this.selectedColumn = null;
         this.selectedField = null;
@@ -4122,7 +4086,7 @@ class FilterMenuComponent extends SmartComponent {
 FilterMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-filter-menu]',
-                template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div gui-filter-menu-active-filters\n\t (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\">\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div *ngIf=\"selectedFilterTypeId\"\n\t\t (valueChanged)=\"onValueChanged($event)\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n",
+                template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -4156,7 +4120,7 @@ class FilterMenuTriggerComponent extends SmartComponent {
     }
     openDrawer() {
         const elementRef = this.filterContainerRef.getElementRef();
-        this.fabricDialogService.open(FilterMenuComponent, { injector: this.injector });
+        this.fabricDialogService.open({ component: FilterMenuComponent, injector: this.injector });
         // this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
     }
     getSelectorName() {
@@ -4256,7 +4220,7 @@ class FilterTypeSelectorComponent extends PureComponent {
 FilterTypeSelectorComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-filter-type-selector][filterTypes]',
-                template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n",
+                template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -4591,8 +4555,9 @@ SetConfigQuickFilterCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
 
-class Filter {
+class Filter extends Entity {
     constructor(filterId, fieldId, filterTypeId, filterValue) {
+        super(filterId);
         this.filterId = filterId;
         this.fieldId = fieldId;
         this.filterTypeId = filterTypeId;
@@ -4647,12 +4612,17 @@ class FilterSettings {
     }
 }
 
-class BaseFilterType {
+class BaseFilterType extends EntityId {
+    // private readonly filterTypeId: FilterTypeId;
     constructor(filterTypeId) {
-        this.filterTypeId = filterTypeId;
+        super(filterTypeId);
+        // this.filterTypeId = filterTypeId;
     }
-    getId() {
-        return this.filterTypeId;
+    // getId(): FilterTypeId {
+    // 	return this.filterTypeId;
+    // }
+    toString() {
+        return this.getId().toString();
     }
     filterMany(entities, field, value) {
         if (entities.length === 0) {
@@ -4680,8 +4650,9 @@ class ContainsFilterType extends BaseFilterType {
     }
 }
 
-class FilterTypeId {
+class FilterTypeId extends EntityId {
     constructor(id) {
+        super(id);
         this.id = id;
     }
     toString() {
@@ -4697,7 +4668,7 @@ class FilterTypeIdGenerator {
 }
 FilterTypeIdGenerator.index = 0;
 
-class FilterTypeReadModel {
+class FilterTypeModel {
     constructor(id, name) {
         this.filterTypeId = id;
         this.name = name;
@@ -4727,7 +4698,7 @@ class FilterTypeManager {
         const map = new Map();
         for (const fieldId of this.fieldIds) {
             const filterTypes = this.map.get(fieldId), readModels = filterTypes.map(f => {
-                return new FilterTypeReadModel(f.getId(), f.getName());
+                return new FilterTypeModel(f.getId(), f.getName());
             });
             map.set(fieldId.toString(), readModels);
         }
@@ -4784,12 +4755,12 @@ class FilterTypeManager {
     }
 }
 
-class FilterId {
+class FilterId extends EntityId {
     constructor(filterId) {
-        this.id = filterId;
+        super(filterId);
     }
     toString() {
-        return this.id;
+        return this.getId();
     }
 }
 
@@ -4800,7 +4771,7 @@ class FilterIdGenerator {
 }
 FilterIdGenerator.index = 0;
 
-class ActiveFilterReadModel {
+class ActiveFilterModel {
     constructor(filterId, fieldName, filterTypeName, value) {
         this.filterId = filterId;
         this.fieldName = fieldName;
@@ -4841,7 +4812,7 @@ class FilterManager {
     getAllActiveFilters(fields) {
         return this.activeFilters
             .map((af) => {
-            return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
+            return new ActiveFilterModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
         });
     }
     getFilterTypes() {
@@ -4928,15 +4899,15 @@ FilterEnabledArchive.decorators = [
 FilterEnabledArchive.ctorParameters = () => [];
 
 class ConfigFilterSetEventHandler {
-    constructor(structureFilterRepository) {
-        this.structureFilterRepository = structureFilterRepository;
+    constructor(filterEnabledArchive) {
+        this.filterEnabledArchive = filterEnabledArchive;
     }
     forEvent() {
         return ConfigFilterSetEvent;
     }
     handle(event) {
         if (event.ofMessageType('ConfigFilterSetEvent')) {
-            this.structureFilterRepository.next(event.getAggregateId(), event.getEnabled());
+            this.filterEnabledArchive.next(event.getAggregateId(), event.getEnabled());
         }
     }
 }
@@ -4947,12 +4918,18 @@ ConfigFilterSetEventHandler.ctorParameters = () => [
     { type: FilterEnabledArchive }
 ];
 
-class FilterTypeMap {
+class FilterTypeCollectionModel {
     constructor(map) {
         this.map = map;
     }
     getFilterTypes(fieldId) {
-        return this.map.get(fieldId.toString());
+        const result = this.map.get(fieldId.toString());
+        if (result === undefined) {
+            return [];
+        }
+        else {
+            return result;
+        }
     }
 }
 
@@ -4961,7 +4938,7 @@ class FilterTypeArchive extends AggregateArchive {
         super(FilterTypeArchive.default);
     }
 }
-FilterTypeArchive.default = new FilterTypeMap(new Map());
+FilterTypeArchive.default = new FilterTypeCollectionModel(new Map());
 FilterTypeArchive.decorators = [
     { type: Injectable }
 ];
@@ -4987,7 +4964,7 @@ class FilterTypeConfigFilterSetEventHandler {
     handle(filterTypesInitedEvent) {
         if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
             const map = filterTypesInitedEvent.getMap();
-            this.filterTypeArchive.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
+            this.filterTypeArchive.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeCollectionModel(map));
         }
     }
 }
@@ -5050,7 +5027,7 @@ class UniqueFilterCalculatedEvent extends StructureDomainEvent {
     }
 }
 
-class UniqueValuesReadModel {
+class UniqueValueCollectionModel {
     constructor(map) {
         this.map = new Map();
         this.allSelected = new Map();
@@ -5082,18 +5059,18 @@ class UniqueValuesReadModel {
     }
 }
 
-class UniqueValuesArchive extends AggregateArchive {
+class UniqueValueCollectionArchive extends AggregateArchive {
     constructor() {
-        super(UniqueValuesArchive.default);
+        super(UniqueValueCollectionArchive.default);
     }
 }
-UniqueValuesArchive.default = new UniqueValuesReadModel(new Map());
-UniqueValuesArchive.decorators = [
+UniqueValueCollectionArchive.default = new UniqueValueCollectionModel(new Map());
+UniqueValueCollectionArchive.decorators = [
     { type: Injectable }
 ];
-UniqueValuesArchive.ctorParameters = () => [];
+UniqueValueCollectionArchive.ctorParameters = () => [];
 
-class UniqueValueReadModel {
+class UniqueValueModel {
     constructor(id, value, enabled) {
         this.id = id;
         this.value = value;
@@ -5126,11 +5103,11 @@ class UniqueFilterCalculatedEventHandler {
             calculatedEvent.getUniqueValues()
                 .forEach((values, key) => {
                 const valuesRM = values.map((uv) => {
-                    return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
+                    return new UniqueValueModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
                 });
                 uvRM.set(key, valuesRM);
             });
-            const uniqueValues = new UniqueValuesReadModel(uvRM);
+            const uniqueValues = new UniqueValueCollectionModel(uvRM);
             this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
         }
     }
@@ -5139,7 +5116,7 @@ UniqueFilterCalculatedEventHandler.decorators = [
     { type: Injectable }
 ];
 UniqueFilterCalculatedEventHandler.ctorParameters = () => [
-    { type: UniqueValuesArchive }
+    { type: UniqueValueCollectionArchive }
 ];
 
 class FieldsInitedEvent extends StructureDomainEvent {
@@ -5315,6 +5292,42 @@ SelectUniqueFilterCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
 
+class FilterDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    setConfig(config, structureId) {
+        this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
+    }
+    add(fieldId, filterTypeId, value, structureId) {
+        this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
+    }
+    removeAll(structureId) {
+        this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
+    }
+    remove(filterId, structureId) {
+        this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
+    }
+    selectAllUniqueFilter(fieldId, structureId) {
+        this.commandDispatcher.dispatch(new SelectAllUniqueFilterCommand(structureId, fieldId));
+    }
+    unselectAllUniqueFilter(fieldId, structureId) {
+        this.commandDispatcher.dispatch(new UnselectAllUniqueFilterCommand(structureId, fieldId));
+    }
+    selectUniqueFilter(fieldId, uniqueValueId, structureId) {
+        this.commandDispatcher.dispatch(new SelectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+    }
+    unselectUniqueFilter(fieldId, uniqueValueId, structureId) {
+        this.commandDispatcher.dispatch(new UnselectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+    }
+}
+FilterDispatcher.decorators = [
+    { type: Injectable }
+];
+FilterDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
+];
+
 class FilterDomainModule extends DomainModule {
     constructor() {
         super();
@@ -5350,7 +5363,8 @@ FilterDomainModule.decorators = [
                     CommonModule
                 ],
                 providers: [
-                    FilterManagerFactory
+                    FilterManagerFactory,
+                    FilterDispatcher
                 ],
                 declarations: [],
                 exports: []
@@ -5358,7 +5372,7 @@ FilterDomainModule.decorators = [
 ];
 FilterDomainModule.ctorParameters = () => [];
 
-class DomainFilterWarehouse extends FilterWarehouse {
+class FilterDomainWarehouse extends FilterWarehouse {
     constructor(filterEnabledArchive, structureQuickFilterRepository, filterTypeArchive, uniqueValuesArchive, activeFilterArchive) {
         super();
         this.filterEnabledArchive = filterEnabledArchive;
@@ -5385,6 +5399,9 @@ class DomainFilterWarehouse extends FilterWarehouse {
     onActiveFilters(structureId) {
         return this.activeFilterArchive.on(structureId);
     }
+    findFilters(structureId) {
+        return this.activeFilterArchive.find(structureId);
+    }
     onUniqueValues(structureId) {
         return this.uniqueValuesArchive.on(structureId);
     }
@@ -5393,60 +5410,66 @@ class DomainFilterWarehouse extends FilterWarehouse {
             .pipe(hermesMap((map) => {
             const filterTypes = map.getFilterTypes(fieldId);
             const filterType = filterTypes.find((fieldType) => fieldType.getName() === filterTypeName);
-            return Optional.of(filterType.getId());
+            if (filterType === undefined) {
+                return Optional.empty();
+            }
+            else {
+                return Optional.of(filterType.getId());
+            }
         })));
     }
 }
-DomainFilterWarehouse.decorators = [
+FilterDomainWarehouse.decorators = [
     { type: Injectable }
 ];
-DomainFilterWarehouse.ctorParameters = () => [
+FilterDomainWarehouse.ctorParameters = () => [
     { type: FilterEnabledArchive },
     { type: QuickFilterEnabledArchive },
     { type: FilterTypeArchive },
-    { type: UniqueValuesArchive },
+    { type: UniqueValueCollectionArchive },
     { type: ActiveFilterArchive }
 ];
 
-class DomainFilterCommandInvoker extends FilterCommandInvoker {
-    constructor(commandDispatcher) {
+class FilterDomainCommandInvoker extends FilterCommandInvoker {
+    constructor(filterDispatcher) {
         super();
-        this.commandDispatcher = commandDispatcher;
+        this.filterDispatcher = filterDispatcher;
     }
     setConfig(config, structureId) {
-        this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
+        this.filterDispatcher.setConfig(config, structureId);
     }
     add(fieldId, filterTypeId, value, structureId) {
-        this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
+        this.filterDispatcher.add(fieldId, filterTypeId, value, structureId);
     }
     removeAll(structureId) {
-        this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
+        this.filterDispatcher.removeAll(structureId);
     }
     remove(filterId, structureId) {
-        this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
+        this.filterDispatcher.remove(filterId, structureId);
     }
     selectAllUniqueFilter(fieldId, structureId) {
-        this.commandDispatcher.dispatch(new SelectAllUniqueFilterCommand(structureId, fieldId));
+        this.filterDispatcher.selectAllUniqueFilter(fieldId, structureId);
     }
     unselectAllUniqueFilter(fieldId, structureId) {
-        this.commandDispatcher.dispatch(new UnselectAllUniqueFilterCommand(structureId, fieldId));
+        this.filterDispatcher.unselectAllUniqueFilter(fieldId, structureId);
     }
     selectUniqueFilter(fieldId, uniqueValueId, structureId) {
-        this.commandDispatcher.dispatch(new SelectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        this.filterDispatcher.selectUniqueFilter(fieldId, uniqueValueId, structureId);
     }
     unselectUniqueFilter(fieldId, uniqueValueId, structureId) {
-        this.commandDispatcher.dispatch(new UnselectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        this.filterDispatcher.unselectUniqueFilter(fieldId, uniqueValueId, structureId);
     }
 }
-DomainFilterCommandInvoker.decorators = [
+FilterDomainCommandInvoker.decorators = [
     { type: Injectable }
 ];
-DomainFilterCommandInvoker.ctorParameters = () => [
-    { type: CommandDispatcher }
+FilterDomainCommandInvoker.ctorParameters = () => [
+    { type: FilterDispatcher }
 ];
 
-class FieldId {
+class FieldId extends EntityId {
     constructor(id) {
+        super(id);
         this.id = id;
     }
     getId() {
@@ -5466,8 +5489,8 @@ class FilterIntegration {
         this.filterCommandInvoker = filterCommandInvoker;
         this.filterWarehouse = filterWarehouse;
     }
-    getFilterTypes(columnName, compositionId, structureId) {
-        let fieldTypes = [];
+    findFilterTypes(columnName, compositionId, structureId) {
+        let filterTypes = [];
         this.compositionWarehouse
             .onTemplateColumns(compositionId)
             .pipe(hermesMap((cols) => {
@@ -5481,9 +5504,28 @@ class FilterIntegration {
                 .onFilterTypesForFieldId(new FieldId(col.columnFieldId.getId()), structureId);
         }))
             .subscribe((types) => {
-            fieldTypes = types.map((type) => type.getName());
+            filterTypes = types.map((type) => type.getName());
         });
-        return fieldTypes;
+        return filterTypes;
+    }
+    findFilters(compositionId, structureId) {
+        const filters = this.filterWarehouse.findFilters(structureId).getValueOrNullOrThrowError();
+        const columnNames = this.compositionWarehouse.findColumnNames(compositionId);
+        const obj = {};
+        for (let i = 0; i < columnNames.length; i += 1) {
+            obj[columnNames[i]] = filters.filter((filter) => {
+                return filter.getFieldName() === columnNames[i];
+            })
+                .map((filter) => {
+                return {
+                    columnName: filter.getFieldName(),
+                    filterId: filter.getFilterId().toString(),
+                    type: filter.getFilterTypeName(),
+                    value: filter.getValue()
+                };
+            });
+        }
+        return obj;
     }
     filter(columnName, filterType, value, compositionId, structureId) {
         this.compositionWarehouse
@@ -5532,15 +5574,15 @@ FilterApiModule.decorators = [
                 providers: [
                     {
                         provide: FilterCommandInvoker,
-                        useClass: DomainFilterCommandInvoker
+                        useClass: FilterDomainCommandInvoker
                     },
                     {
                         provide: FilterWarehouse,
-                        useClass: DomainFilterWarehouse
+                        useClass: FilterDomainWarehouse
                     },
                     FilterTypeArchive,
                     ActiveFilterArchive,
-                    UniqueValuesArchive,
+                    UniqueValueCollectionArchive,
                     FilterEnabledArchive,
                     QuickFilterEnabledArchive,
                     FilterIntegration
@@ -5832,7 +5874,7 @@ class StructureInfoModalComponent extends StaticComponent {
 StructureInfoModalComponent.decorators = [
     { type: Component, args: [{
                 selector: 'div[gui-info-dialog]',
-                template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.2\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.3\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             },] }
@@ -5917,8 +5959,9 @@ class StructureDialogColumnManagerService extends Reactive {
             .onceTheme(readModelId)
             .pipe(this.hermesTakeUntil())
             .subscribe((theme) => {
-            this.fabricDialogService.open(StructureDialogColumnManagerComponent, {
+            this.fabricDialogService.open({
                 injector: injector,
+                component: StructureDialogColumnManagerComponent,
                 theme: this.structureThemeConverter.convertTheme(theme)
             });
         });
@@ -6024,8 +6067,9 @@ class StructureDialogSchemaManagerService extends Reactive {
             providers: [{ provide: SchemaReadModelRootId, useValue: readModelId }],
             parent: parentInjector
         });
-        this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
-            injector: injector
+        this.fabricDialogService.open({
+            injector: injector,
+            component: StructureDialogSchemaManagerComponent
         });
     }
 }
@@ -6070,7 +6114,7 @@ class StructureInfoPanelComponent extends SmartComponent {
         });
     }
     openInfo() {
-        this.dialog.open(this.infoModal);
+        this.dialog.open({ component: this.infoModal });
     }
     openColumnManager() {
         this.menuColumnManagerService.open(this.compositionId, this.schemaReadModelRootId, this.injector);
@@ -6507,10 +6551,10 @@ ActiveFilterMenuComponent.decorators = [
 ];
 
 class ActiveFilterService extends Reactive {
-    constructor(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+    constructor(injector, schemaWarehouse, structureThemeConverter, fabricDialogService) {
         super();
         this.injector = injector;
-        this.schemaReadModelRepository = schemaReadModelRepository;
+        this.schemaWarehouse = schemaWarehouse;
         this.structureThemeConverter = structureThemeConverter;
         this.fabricDialogService = fabricDialogService;
     }
@@ -6522,12 +6566,13 @@ class ActiveFilterService extends Reactive {
                 { provide: StructureId, useValue: structureId }
             ]
         });
-        this.schemaReadModelRepository
+        this.schemaWarehouse
             .onceTheme(readModelId)
             .pipe(this.hermesTakeUntil())
             .subscribe((theme) => {
-            this.fabricDialogService.open(ActiveFilterMenuComponent, {
+            this.fabricDialogService.open({
                 injector: injector,
+                component: ActiveFilterMenuComponent,
                 theme: this.structureThemeConverter.convertTheme(theme)
             });
         });
@@ -7038,68 +7083,24 @@ StructureInfoPanelConfigService.ctorParameters = () => [
     { type: StructureInfoPanelArchive }
 ];
 
-class SetSortingCommand extends StructureCommand {
-    constructor(structureId, sortingConfig) {
-        super(structureId, 'SetSortingCommand');
-        this.sortingConfig = sortingConfig;
-    }
-    getSortingConfig() {
-        return this.sortingConfig;
-    }
-}
-
-class ToggleSortCommand extends StructureCommand {
-    constructor(structureId, compositionId, fieldId) {
-        super(structureId, 'ToggleSortCommand');
-        this.compositionId = compositionId;
-        this.fieldId = fieldId;
-    }
-    getCompositionId() {
-        return this.compositionId;
-    }
-    getFieldId() {
-        return this.fieldId;
-    }
-}
-
-class SetSortOrderCommand extends StructureCommand {
-    constructor(structureId, compositionId, fieldId, sortOrder) {
-        super(structureId, 'SetSortOrderCommand');
-        this.compositionId = compositionId;
-        this.fieldId = fieldId;
-        this.sortOrder = sortOrder;
-    }
-    getCompositionId() {
-        return this.compositionId;
-    }
-    getFieldId() {
-        return this.fieldId;
-    }
-    getSortOrder() {
-        return this.sortOrder;
-    }
-}
-
 class SortingCommandInvoker {
-    constructor(commandDispatcher) {
-        this.commandDispatcher = commandDispatcher;
-    }
-    setSortingConfig(config, structureId) {
-        this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
-    }
-    toggleSort(fieldId, compositionId, structureId) {
-        this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
-    }
-    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
-        this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
+    constructor() {
     }
 }
 SortingCommandInvoker.decorators = [
     { type: Injectable }
 ];
-SortingCommandInvoker.ctorParameters = () => [
-    { type: CommandDispatcher }
-];
+SortingCommandInvoker.ctorParameters = () => [];
+
+class InitFieldsCommand extends StructureCommand {
+    constructor(structureId, fieldConfigs) {
+        super(structureId, 'InitFieldsCommand');
+        this.fieldConfigs = fieldConfigs;
+    }
+    getFieldConfigs() {
+        return this.fieldConfigs;
+    }
+}
 
 class ColumnFieldId {
     constructor(id) {
@@ -7324,98 +7325,14 @@ RowSelectionTypeArchive.decorators = [
 ];
 RowSelectionTypeArchive.ctorParameters = () => [];
 
-class ToggleSelectedRowCommand extends StructureCommand {
-    constructor(structureId, selectedRow, type) {
-        super(structureId, 'ToggleSelectedRowCommand');
-        this.selectedRow = selectedRow;
-        this.type = type;
-    }
-    getSelectedRow() {
-        return this.selectedRow;
-    }
-    getType() {
-        return this.type;
-    }
-}
-
-class FormationDispatcher {
-    constructor(commandDispatcher) {
-        this.commandDispatcher = commandDispatcher;
-    }
-    toggleSelectedRow(structureId, selectedRow, type) {
-        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
-    }
-}
-FormationDispatcher.decorators = [
-    { type: Injectable }
-];
-FormationDispatcher.ctorParameters = () => [
-    { type: CommandDispatcher }
-];
-
-class SetEnabledSelectionCommand extends StructureCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'SetEnabledSelectionCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetSelectionModeCommand extends StructureCommand {
-    constructor(structureId, mode) {
-        super(structureId, 'SetSelectionModeCommand');
-        this.mode = mode;
-    }
-    getMode() {
-        return this.mode;
-    }
-}
-
-class SelectAllRowsCommand extends StructureCommand {
-    constructor(structureId) {
-        super(structureId, 'SelectAllRowsCommand');
-    }
-}
-
-class UnselectAllRowsCommand extends StructureCommand {
-    constructor(structureId) {
-        super(structureId, 'UnselectAllRowsCommand');
-    }
-}
-
 class FormationCommandInvoker {
-    constructor(commandDispatcher, formationDispatcher) {
-        this.commandDispatcher = commandDispatcher;
-        this.formationDispatcher = formationDispatcher;
-    }
-    setDefaultFormation(structureId) {
-        // this.commandDispatcher.dispatch(new )
-    }
-    toggleSelectedRow(selectedRow, type, structureId) {
-        this.formationDispatcher.toggleSelectedRow(structureId, selectedRow, type);
-    }
-    changeMode(mode, structureId) {
-        this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
-    }
-    setSelection(enabled, structureId) {
-        this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
-    }
-    selectAll(structureId) {
-        this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
-    }
-    unselectAll(structureId) {
-        this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
+    constructor() {
     }
 }
 FormationCommandInvoker.decorators = [
     { type: Injectable }
 ];
-FormationCommandInvoker.ctorParameters = () => [
-    { type: CommandDispatcher },
-    { type: FormationDispatcher }
-];
+FormationCommandInvoker.ctorParameters = () => [];
 
 class SchemaRowClassArchive extends Archive {
     constructor() {
@@ -7446,8 +7363,7 @@ class StructureInitialValuesReadyArchive extends AggregateArchive {
             .pipe(hermesFilter(v => v));
     }
     once(aggregateId) {
-        return this.on(aggregateId)
-            .pipe(hermesTake(1));
+        return singleFromObservable(this.on(aggregateId));
     }
 }
 StructureInitialValuesReadyArchive.default = false;
@@ -7464,7 +7380,7 @@ ColumnAutoConfigurator.decorators = [
 
 /** @internal */
 class StructureGateway extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
+    constructor(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandInvoker, searchCommandInvoker, fieldCommandInvoker, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.domainEventBus = domainEventBus;
@@ -7476,9 +7392,9 @@ class StructureGateway extends SmartComponent {
         this.structureCommandInvoker = structureCommandInvoker;
         this.structurePagingCommandDispatcher = structurePagingCommandDispatcher;
         this.pagingEventRepository = pagingEventRepository;
-        this.sortingCommandDispatcher = sortingCommandDispatcher;
-        this.searchCommandDispatcher = searchCommandDispatcher;
-        this.fieldCommandDispatcher = fieldCommandDispatcher;
+        this.sortingCommandInvoker = sortingCommandInvoker;
+        this.searchCommandInvoker = searchCommandInvoker;
+        this.fieldCommandInvoker = fieldCommandInvoker;
         this.sourceCommandService = sourceCommandService;
         this.sourceEventService = sourceEventService;
         this.schemaCommandInvoker = schemaCommandInvoker;
@@ -7926,6 +7842,20 @@ StructureFooterPanelConfigArchive.footerPanelConfig = {
     template: 'Footer Panel'
 };
 
+class ToggleSortCommand extends StructureCommand {
+    constructor(structureId, compositionId, fieldId) {
+        super(structureId, 'ToggleSortCommand');
+        this.compositionId = compositionId;
+        this.fieldId = fieldId;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    getFieldId() {
+        return this.fieldId;
+    }
+}
+
 class SortToggledEvent extends StructureDomainEvent {
     constructor(aggregateId, compositionId, directions) {
         super(aggregateId, { compositionId, directions }, 'SortToggledEvent');
@@ -7973,6 +7903,16 @@ ToggleSortCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
 
+class SetSortingCommand extends StructureCommand {
+    constructor(structureId, sortingConfig) {
+        super(structureId, 'SetSortingCommand');
+        this.sortingConfig = sortingConfig;
+    }
+    getSortingConfig() {
+        return this.sortingConfig;
+    }
+}
+
 class SortingSetEvent extends StructureDomainEvent {
     constructor(aggregateId) {
         super(aggregateId, null, 'SortingSetEvent');
@@ -8000,6 +7940,24 @@ SetSortingCommandHandler.decorators = [
 SetSortingCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
+
+class SetSortOrderCommand extends StructureCommand {
+    constructor(structureId, compositionId, fieldId, sortOrder) {
+        super(structureId, 'SetSortOrderCommand');
+        this.compositionId = compositionId;
+        this.fieldId = fieldId;
+        this.sortOrder = sortOrder;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    getFieldId() {
+        return this.fieldId;
+    }
+    getSortOrder() {
+        return this.sortOrder;
+    }
+}
 
 class SortOrderSetEvent extends StructureDomainEvent {
     constructor(aggregateId, compositionId, directions) {
@@ -8048,6 +8006,27 @@ SetSortOrderCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
 
+class SortingDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    setSortingConfig(config, structureId) {
+        this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
+    }
+    toggleSort(fieldId, compositionId, structureId) {
+        this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
+    }
+    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
+        this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
+    }
+}
+SortingDispatcher.decorators = [
+    { type: Injectable }
+];
+SortingDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
+];
+
 class SortingDomainModule extends DomainModule {
     constructor() {
         super();
@@ -8065,12 +8044,36 @@ SortingDomainModule.decorators = [
                 imports: [
                     CommonModule
                 ],
-                providers: [],
+                providers: [
+                    SortingDispatcher
+                ],
                 declarations: [],
                 exports: []
             },] }
 ];
 SortingDomainModule.ctorParameters = () => [];
+
+class SortingDomainCommandInvoker extends SortingCommandInvoker {
+    constructor(sortingDispatcher) {
+        super();
+        this.sortingDispatcher = sortingDispatcher;
+    }
+    setSortingConfig(config, structureId) {
+        this.sortingDispatcher.setSortingConfig(config, structureId);
+    }
+    toggleSort(fieldId, compositionId, structureId) {
+        this.sortingDispatcher.toggleSort(fieldId, compositionId, structureId);
+    }
+    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
+        this.sortingDispatcher.setSortOrder(fieldId, sortOrder, compositionId, structureId);
+    }
+}
+SortingDomainCommandInvoker.decorators = [
+    { type: Injectable }
+];
+SortingDomainCommandInvoker.ctorParameters = () => [
+    { type: SortingDispatcher }
+];
 
 class SortingApiModule extends ApiModule {
 }
@@ -8081,7 +8084,10 @@ SortingApiModule.decorators = [
                     SortingDomainModule
                 ],
                 providers: [
-                    SortingCommandInvoker
+                    {
+                        provide: SortingCommandInvoker,
+                        useClass: SortingDomainCommandInvoker
+                    }
                 ],
                 declarations: [],
                 exports: []
@@ -8104,7 +8110,18 @@ SortingFeatureModule.decorators = [
             },] }
 ];
 
-class FieldReadModel {
+class FieldArchive extends AggregateArchive {
+    constructor() {
+        super(FieldArchive.default);
+    }
+}
+FieldArchive.default = [];
+FieldArchive.decorators = [
+    { type: Injectable }
+];
+FieldArchive.ctorParameters = () => [];
+
+class FieldModel {
     constructor(id, dataType, name) {
         this.id = id;
         this.dataType = dataType;
@@ -8124,17 +8141,17 @@ class FieldReadModel {
     }
 }
 
-class FieldUiConverter {
+class FieldConverter {
     convert(fields) {
         return fields.map((field) => {
             return this.convertOne(field);
         });
     }
     convertOne(field) {
-        return new FieldReadModel(field.getId(), field.getDataType(), field.getName());
+        return new FieldModel(field.getId(), field.getDataType(), field.getName());
     }
 }
-FieldUiConverter.decorators = [
+FieldConverter.decorators = [
     { type: Injectable }
 ];
 
@@ -8176,14 +8193,15 @@ class FieldCollection {
     }
 }
 
-class Field {
+class FieldEntity extends Entity {
     constructor(id, field, name) {
+        super(id);
         this.id = id;
         this.field = field;
         this.name = name;
     }
     static of(id, dataField, name) {
-        return new Field(id, dataField, name);
+        return new FieldEntity(id, dataField, name);
     }
     getId() {
         return this.id;
@@ -8665,14 +8683,14 @@ DataFieldFactory.decorators = [
     { type: Injectable }
 ];
 
-class FieldIdGenerator {
+class FieldEntityIdGenerator {
     generateId() {
         const id = RandomStringGenerator.generate();
         return new FieldId(id);
     }
 }
 
-class FieldFactory {
+class FieldEntityFactory {
     constructor(fieldIdGenerator, dataFieldFactory) {
         this.fieldIdGenerator = fieldIdGenerator;
         this.dataFieldFactory = dataFieldFactory;
@@ -8683,7 +8701,7 @@ class FieldFactory {
         }
         return configs.map((fieldConfig, index) => {
             const fieldId = this.fieldIdGenerator.generateId(), dataField = this.dataFieldFactory.create(fieldConfig);
-            return new Field(fieldId, dataField, this.getFieldName(fieldConfig, index));
+            return new FieldEntity(fieldId, dataField, this.getFieldName(fieldConfig, index));
         });
     }
     getFieldName(fieldConfig, index) {
@@ -8695,11 +8713,11 @@ class FieldFactory {
         }
     }
 }
-FieldFactory.decorators = [
+FieldEntityFactory.decorators = [
     { type: Injectable }
 ];
-FieldFactory.ctorParameters = () => [
-    { type: FieldIdGenerator },
+FieldEntityFactory.ctorParameters = () => [
+    { type: FieldEntityIdGenerator },
     { type: DataFieldFactory }
 ];
 
@@ -8715,7 +8733,7 @@ FieldCollectionFactory.decorators = [
     { type: Injectable }
 ];
 FieldCollectionFactory.ctorParameters = () => [
-    { type: FieldFactory }
+    { type: FieldEntityFactory }
 ];
 
 class InitFieldsCommandHandler {
@@ -8741,17 +8759,17 @@ InitFieldsCommandHandler.ctorParameters = () => [
 ];
 
 class FieldsInitedEventHandler {
-    constructor(fieldReadModelRepository, fieldUiConverter) {
-        this.fieldReadModelRepository = fieldReadModelRepository;
-        this.fieldUiConverter = fieldUiConverter;
+    constructor(fieldArchive, fieldConverter) {
+        this.fieldArchive = fieldArchive;
+        this.fieldConverter = fieldConverter;
     }
     forEvent() {
         return FieldsInitedEvent;
     }
     handle(event) {
         if (event.ofMessageType('FieldsInitedEvent')) {
-            const fields = this.fieldUiConverter.convert(event.getFields());
-            this.fieldReadModelRepository.next(event.getAggregateId(), fields);
+            const fields = this.fieldConverter.convert(event.getFields());
+            this.fieldArchive.next(event.getAggregateId(), fields);
         }
     }
 }
@@ -8759,8 +8777,23 @@ FieldsInitedEventHandler.decorators = [
     { type: Injectable }
 ];
 FieldsInitedEventHandler.ctorParameters = () => [
-    { type: FieldReadModelArchive },
-    { type: FieldUiConverter }
+    { type: FieldArchive },
+    { type: FieldConverter }
+];
+
+class FieldDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    initFields(fieldConfigs, structureId) {
+        this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
+    }
+}
+FieldDispatcher.decorators = [
+    { type: Injectable }
+];
+FieldDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
 ];
 
 class FieldDomainModule extends DomainModule {
@@ -8782,13 +8815,51 @@ FieldDomainModule.decorators = [
     { type: NgModule, args: [{
                 providers: [
                     FieldCollectionFactory,
-                    FieldFactory,
-                    FieldIdGenerator,
-                    DataFieldFactory
+                    FieldEntityFactory,
+                    FieldEntityIdGenerator,
+                    DataFieldFactory,
+                    FieldDispatcher
                 ]
             },] }
 ];
 FieldDomainModule.ctorParameters = () => [];
+
+class FieldDomainWarehouse extends FieldWarehouse {
+    constructor(fieldReadModelArchive) {
+        super();
+        this.fieldReadModelArchive = fieldReadModelArchive;
+    }
+    onFields(structureId) {
+        return this.fieldReadModelArchive.on(structureId);
+    }
+    findFields(structureId) {
+        return this.fieldReadModelArchive.find(structureId);
+    }
+}
+FieldDomainWarehouse.decorators = [
+    { type: Injectable }
+];
+FieldDomainWarehouse.ctorParameters = () => [
+    { type: FieldArchive }
+];
+
+class FieldDomainCommandInvoker extends FieldCommandInvoker {
+    constructor(domainEventBus, fieldDispatcher) {
+        super();
+        this.domainEventBus = domainEventBus;
+        this.fieldDispatcher = fieldDispatcher;
+    }
+    initFields(fieldConfigs, structureId) {
+        this.fieldDispatcher.initFields(fieldConfigs, structureId);
+    }
+}
+FieldDomainCommandInvoker.decorators = [
+    { type: Injectable }
+];
+FieldDomainCommandInvoker.ctorParameters = () => [
+    { type: DomainEventBus },
+    { type: FieldDispatcher }
+];
 
 class FieldApiModule extends ApiModule {
 }
@@ -8799,10 +8870,16 @@ FieldApiModule.decorators = [
                     FieldDomainModule
                 ],
                 providers: [
-                    FieldCommandInvoker,
-                    FieldReadModelArchive,
-                    FieldUiConverter,
-                    FieldWarehouse
+                    {
+                        provide: FieldCommandInvoker,
+                        useClass: FieldDomainCommandInvoker
+                    },
+                    FieldArchive,
+                    FieldConverter,
+                    {
+                        provide: FieldWarehouse,
+                        useClass: FieldDomainWarehouse
+                    }
                 ]
             },] }
 ];
@@ -8823,7 +8900,7 @@ FieldFeatureModule.decorators = [
             },] }
 ];
 
-let Source = class Source {
+let SourceIsLoadingModel = class SourceIsLoadingModel {
     constructor(loading) {
         this.loading = loading;
     }
@@ -8831,13 +8908,13 @@ let Source = class Source {
         return this.loading;
     }
 };
-Source = __decorate([
+SourceIsLoadingModel = __decorate([
     ReadModelObject
-], Source);
+], SourceIsLoadingModel);
 
 class SourceConverter {
     convert(aggregate) {
-        return new Source(aggregate.isLoading());
+        return new SourceIsLoadingModel(aggregate.isLoading());
     }
 }
 SourceConverter.decorators = [
@@ -9338,213 +9415,6 @@ SourceManagerFactory.ctorParameters = () => [
     { type: FormationManagerFactory }
 ];
 
-class SetEnabledSelectionCommandHandler {
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    forCommand() {
-        return SetEnabledSelectionCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.setSelection(command.isEnabled());
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-SetEnabledSelectionCommandHandler.decorators = [
-    { type: Injectable }
-];
-SetEnabledSelectionCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-
-class ToggleSelectedRowCommandHandler {
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    forCommand() {
-        return ToggleSelectedRowCommand;
-    }
-    handle(aggregate, command) {
-        const selectedRow = command.getSelectedRow(), type = command.getType();
-        aggregate.toggleRow(selectedRow, type);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-ToggleSelectedRowCommandHandler.decorators = [
-    { type: Injectable }
-];
-ToggleSelectedRowCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-
-class RowSelectedRepository extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-RowSelectedRepository.decorators = [
-    { type: Injectable }
-];
-RowSelectedRepository.ctorParameters = () => [];
-
-class RowSelectedReadModel {
-    constructor(itemIds, allSelected, allUnselected) {
-        this.itemIds = new Array();
-        this.itemIds = itemIds;
-        this.allSelected = allSelected;
-        this.allUnselected = allUnselected;
-    }
-    getAll() {
-        return this.itemIds;
-    }
-    isSelected(id) {
-        return this.itemIds.some((itemId) => itemId === id);
-    }
-    isAllSelected() {
-        return this.allSelected;
-    }
-    isAllUnselected() {
-        return this.allUnselected;
-    }
-    isIndeterminate() {
-        return !(this.isAllSelected() || this.isAllUnselected());
-    }
-}
-
-class SelectedRowChangedEventHandler {
-    constructor(rowSelectedRepository) {
-        this.rowSelectedRepository = rowSelectedRepository;
-    }
-    forEvent() {
-        return SelectedRowChangedEvent;
-    }
-    handle(rowChangedEvent) {
-        if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
-            const rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
-            this.rowSelectedRepository.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
-        }
-    }
-}
-SelectedRowChangedEventHandler.decorators = [
-    { type: Injectable }
-];
-SelectedRowChangedEventHandler.ctorParameters = () => [
-    { type: RowSelectedRepository }
-];
-
-class SetSelectionModeCommandHandler {
-    constructor(domainEventPublisher) {
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    forCommand() {
-        return SetSelectionModeCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.setSelectionMode(command.getMode());
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-SetSelectionModeCommandHandler.decorators = [
-    { type: Injectable }
-];
-SetSelectionModeCommandHandler.ctorParameters = () => [
-    { type: DomainEventPublisher }
-];
-
-class SelectAllRowsCommandHandler {
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    forCommand() {
-        return SelectAllRowsCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.selectAll();
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-SelectAllRowsCommandHandler.decorators = [
-    { type: Injectable }
-];
-SelectAllRowsCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-
-class UnselectAllRowsCommandHandler {
-    constructor(structureAggregateRepository, domainEventPublisher) {
-        this.structureAggregateRepository = structureAggregateRepository;
-        this.domainEventPublisher = domainEventPublisher;
-    }
-    forCommand() {
-        return UnselectAllRowsCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.unselectAll();
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-UnselectAllRowsCommandHandler.decorators = [
-    { type: Injectable }
-];
-UnselectAllRowsCommandHandler.ctorParameters = () => [
-    { type: StructureAggregateRepository },
-    { type: DomainEventPublisher }
-];
-
-class SelectionModeSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, mode) {
-        super(aggregateId, mode, 'SelectionModeSetEvent');
-        this.mode = mode;
-    }
-    getMode() {
-        return this.mode;
-    }
-}
-
-class RowSelectionModeRepository extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-RowSelectionModeRepository.decorators = [
-    { type: Injectable }
-];
-RowSelectionModeRepository.ctorParameters = () => [];
-
-class SelectionModeSetEventHandler {
-    constructor(rowSelectionModeRepository) {
-        this.rowSelectionModeRepository = rowSelectionModeRepository;
-    }
-    forEvent() {
-        return SelectionModeSetEvent;
-    }
-    handle(modeSetEvent) {
-        if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
-            this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
-        }
-    }
-}
-SelectionModeSetEventHandler.decorators = [
-    { type: Injectable }
-];
-SelectionModeSetEventHandler.ctorParameters = () => [
-    { type: RowSelectionModeRepository }
-];
-
 var DeleteCommandPayloadType;
 (function (DeleteCommandPayloadType) {
     DeleteCommandPayloadType[DeleteCommandPayloadType["INDEX"] = 0] = "INDEX";
@@ -9639,7 +9509,7 @@ class StructurePreparedItemsArchive extends AggregateArchive {
      * @deprecated
      */
     getPreparedItems(structureId) {
-        return this.get(structureId).getValueOrNullOrThrowError();
+        return this.find(structureId).getValueOrNullOrThrowError();
     }
 }
 StructurePreparedItemsArchive.default = [];
@@ -9678,19 +9548,12 @@ class SourceDomainModule extends DomainModule {
             HermesModule.registerCommandHandler(SourceSetLoadingCommandHandler, structureKey),
             HermesModule.registerCommandHandler(SetOriginCommandHandler, structureKey),
             HermesModule.registerCommandHandler(StructureEditSourceItemCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(SetEnabledSelectionCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(SetSelectionModeCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(SelectAllRowsCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(UnselectAllRowsCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(DeleteOriginItemCommandHandler, structureKey),
-            HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, structureKey)
+            HermesModule.registerCommandHandler(DeleteOriginItemCommandHandler, structureKey)
         ];
     }
     static domainEventHandlers() {
         return [
             HermesModule.registerDomainEventHandler(StructureOriginChangedEventHandler),
-            HermesModule.registerDomainEventHandler(SelectedRowChangedEventHandler),
-            HermesModule.registerDomainEventHandler(SelectionModeSetEventHandler),
             HermesModule.registerDomainEventHandler(StructurePreparedItemsEventHandler)
         ];
     }
@@ -9703,59 +9566,13 @@ SourceDomainModule.decorators = [
                 providers: [
                     SourceDispatcher,
                     SourceManagerFactory,
-                    SourceDomainEventPublisher,
-                    FormationDispatcher,
-                    FormationManagerFactory
+                    SourceDomainEventPublisher
                 ],
                 declarations: [],
                 exports: []
             },] }
 ];
 SourceDomainModule.ctorParameters = () => [];
-
-class FormationWarehouse {
-    constructor(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
-        this.rowSelectedRepository = rowSelectedRepository;
-        this.rowSelectionModeRepository = rowSelectionModeRepository;
-        this.sourceWarehouse = sourceWarehouse;
-    }
-    getSelectedRows(structureId) {
-        const items = this.sourceWarehouse.getPreparedEntities(structureId), selectedItemIds = this.getSelectedItemIds(structureId);
-        const selectedItems = [], length = items.length;
-        for (let i = 0; i < length; i += 1) {
-            const item = items[i];
-            if (selectedItemIds.some((itemId) => itemId === item.getId().toString())) {
-                selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
-            }
-        }
-        return selectedItems;
-    }
-    onRowSelectedReadModel(structureId) {
-        return this.rowSelectedRepository
-            .on(structureId);
-    }
-    getSelectedItemIds(structureId) {
-        return this.rowSelectedRepository.get(structureId).getValueOrNullOrThrowError().getAll();
-    }
-    onSelectedRows(structureId) {
-        return this.rowSelectedRepository
-            .on(structureId)
-            .pipe(hermesMap((rm) => {
-            return rm.getAll();
-        }));
-    }
-    onMode(structureId) {
-        return this.rowSelectionModeRepository.on(structureId);
-    }
-}
-FormationWarehouse.decorators = [
-    { type: Injectable }
-];
-FormationWarehouse.ctorParameters = () => [
-    { type: RowSelectedRepository },
-    { type: RowSelectionModeRepository },
-    { type: SourceWarehouse }
-];
 
 class SourceDomainWarehouse extends SourceWarehouse {
     constructor(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
@@ -9764,10 +9581,7 @@ class SourceDomainWarehouse extends SourceWarehouse {
         this.structurePreparedItemsRepository = structurePreparedItemsRepository;
         this.structureSourceOriginRepository = structureSourceOriginRepository;
     }
-    /**
-     * @deprecated
-     */
-    getEntities(structureId) {
+    findEntities(structureId) {
         return this.structureRepository.getStructure(structureId).getEntities();
     }
     onEntities(structureId) {
@@ -9794,8 +9608,7 @@ class SourceDomainWarehouse extends SourceWarehouse {
         }));
     }
     onceEntities(structureId) {
-        return this.onEntities(structureId)
-            .pipe(hermesTake(1));
+        return singleFromObservable(this.onEntities(structureId));
     }
     onOriginSize(structureId) {
         return this.structureSourceOriginRepository
@@ -9810,10 +9623,7 @@ class SourceDomainWarehouse extends SourceWarehouse {
     onPreparedEntities(structureId) {
         return this.structurePreparedItemsRepository.on(structureId);
     }
-    /**
-     * @deprecated
-     */
-    getPreparedEntities(structureId) {
+    findPreparedEntities(structureId) {
         return this.structurePreparedItemsRepository.getPreparedItems(structureId);
     }
 }
@@ -9936,12 +9746,7 @@ SourceApiModule.decorators = [
                         provide: SourceWarehouse,
                         useClass: SourceDomainWarehouse
                     },
-                    SourceEventService,
-                    RowSelectedRepository,
-                    FormationEventRepository,
-                    FormationCommandInvoker,
-                    FormationWarehouse,
-                    RowSelectionModeRepository
+                    SourceEventService
                 ],
                 declarations: [],
                 exports: []
@@ -9950,9 +9755,7 @@ SourceApiModule.decorators = [
 
 class SourceFeatureModule extends FeatureModule {
     static forComponent() {
-        return [
-            RowSelectionTypeArchive
-        ];
+        return [];
     }
 }
 SourceFeatureModule.decorators = [
@@ -10577,8 +10380,7 @@ class SchemaDomainWarehouse extends SchemaWarehouse {
             .on(schemaId.toAggregateId());
     }
     onceTheme(schemaId) {
-        return this.onTheme(schemaId)
-            .pipe(hermesTake(1));
+        return singleFromObservable(this.onTheme(schemaId));
     }
     onHorizontalGrid(schemaId) {
         return this.schemaHorizontalGridRepository
@@ -11208,6 +11010,21 @@ SummariesManagerFactory.ctorParameters = () => [
     { type: Array, decorators: [{ type: Inject, args: [SUMMARIES_CALCULATORS,] }] }
 ];
 
+class SummariesDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    setSummariesEnabled(enabled, structureId) {
+        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+    }
+}
+SummariesDispatcher.decorators = [
+    { type: Injectable }
+];
+SummariesDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
+];
+
 class SummariesDomainModule extends DomainModule {
     constructor() {
         super();
@@ -11230,7 +11047,8 @@ SummariesDomainModule.decorators = [
                     provideSummariesCalculator(NumberSummariesCalculator),
                     provideSummariesCalculator(StringSummariesCalculator),
                     provideSummariesCalculator(UnknownSummariesCalculator),
-                    SummariesManagerFactory
+                    SummariesManagerFactory,
+                    SummariesDispatcher
                 ],
                 declarations: [],
                 exports: []
@@ -11330,14 +11148,14 @@ StructureSummariesPanelConfigConverter.decorators = [
 ];
 
 class SummariesDomainCommandInvoker extends SummariesCommandInvoker {
-    constructor(commandDispatcher, configConverter, structureSummariesConfigArchive) {
+    constructor(summariesDispatcher, configConverter, structureSummariesConfigArchive) {
         super();
-        this.commandDispatcher = commandDispatcher;
+        this.summariesDispatcher = summariesDispatcher;
         this.configConverter = configConverter;
         this.structureSummariesConfigArchive = structureSummariesConfigArchive;
     }
     setSummariesEnabled(enabled, structureId) {
-        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+        this.summariesDispatcher.setSummariesEnabled(enabled, structureId);
     }
     setConfig(config, structureId) {
         const summariesPanelConfig = this.configConverter.convert(config);
@@ -11349,7 +11167,7 @@ SummariesDomainCommandInvoker.decorators = [
     { type: Injectable }
 ];
 SummariesDomainCommandInvoker.ctorParameters = () => [
-    { type: CommandDispatcher },
+    { type: SummariesDispatcher },
     { type: StructureSummariesPanelConfigConverter },
     { type: StructureSummariesConfigArchive }
 ];
@@ -11495,6 +11313,453 @@ SummariesFeatureModule.decorators = [
             },] }
 ];
 
+class FormationWarehouse {
+    constructor() {
+    }
+}
+FormationWarehouse.decorators = [
+    { type: Injectable }
+];
+FormationWarehouse.ctorParameters = () => [];
+
+class RowSelectedReadModel {
+    constructor(itemIds, allSelected, allUnselected) {
+        this.itemIds = new Array();
+        this.itemIds = itemIds;
+        this.allSelected = allSelected;
+        this.allUnselected = allUnselected;
+    }
+    getAll() {
+        return this.itemIds;
+    }
+    isSelected(id) {
+        return this.itemIds.some((itemId) => itemId === id);
+    }
+    isAllSelected() {
+        return this.allSelected;
+    }
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+    isIndeterminate() {
+        return !(this.isAllSelected() || this.isAllUnselected());
+    }
+}
+
+class RowSelectedArchive extends AggregateArchive {
+    constructor() {
+        super(RowSelectedArchive.default);
+    }
+}
+RowSelectedArchive.default = new RowSelectedReadModel([], false, false);
+RowSelectedArchive.decorators = [
+    { type: Injectable }
+];
+RowSelectedArchive.ctorParameters = () => [];
+
+class RowSelectionModeArchive extends AggregateArchive {
+    constructor() {
+        super(RowSelectionModeArchive.default);
+    }
+}
+RowSelectionModeArchive.default = RowSelectionMode.SINGLE;
+RowSelectionModeArchive.decorators = [
+    { type: Injectable }
+];
+RowSelectionModeArchive.ctorParameters = () => [];
+
+class SetEnabledSelectionCommand extends StructureCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'SetEnabledSelectionCommand');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class SetEnabledSelectionCommandHandler {
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    forCommand() {
+        return SetEnabledSelectionCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.setSelection(command.isEnabled());
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+}
+SetEnabledSelectionCommandHandler.decorators = [
+    { type: Injectable }
+];
+SetEnabledSelectionCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+
+class ToggleSelectedRowCommand extends StructureCommand {
+    constructor(structureId, selectedRow, type) {
+        super(structureId, 'ToggleSelectedRowCommand');
+        this.selectedRow = selectedRow;
+        this.type = type;
+    }
+    getSelectedRow() {
+        return this.selectedRow;
+    }
+    getType() {
+        return this.type;
+    }
+}
+
+class ToggleSelectedRowCommandHandler {
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    forCommand() {
+        return ToggleSelectedRowCommand;
+    }
+    handle(aggregate, command) {
+        const selectedRow = command.getSelectedRow(), type = command.getType();
+        aggregate.toggleRow(selectedRow, type);
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+}
+ToggleSelectedRowCommandHandler.decorators = [
+    { type: Injectable }
+];
+ToggleSelectedRowCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+
+class SetSelectionModeCommand extends StructureCommand {
+    constructor(structureId, mode) {
+        super(structureId, 'SetSelectionModeCommand');
+        this.mode = mode;
+    }
+    getMode() {
+        return this.mode;
+    }
+}
+
+class SelectAllRowsCommand extends StructureCommand {
+    constructor(structureId) {
+        super(structureId, 'SelectAllRowsCommand');
+    }
+}
+
+class UnselectAllRowsCommand extends StructureCommand {
+    constructor(structureId) {
+        super(structureId, 'UnselectAllRowsCommand');
+    }
+}
+
+class FormationDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    toggleSelectedRow(selectedRow, type, structureId) {
+        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
+    }
+    changeMode(mode, structureId) {
+        this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
+    }
+    setSelection(enabled, structureId) {
+        this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
+    }
+    selectAll(structureId) {
+        this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
+    }
+    unselectAll(structureId) {
+        this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
+    }
+}
+FormationDispatcher.decorators = [
+    { type: Injectable }
+];
+FormationDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
+];
+
+class SelectedRowChangedEventHandler {
+    constructor(rowSelectedRepository) {
+        this.rowSelectedRepository = rowSelectedRepository;
+    }
+    forEvent() {
+        return SelectedRowChangedEvent;
+    }
+    handle(rowChangedEvent) {
+        if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
+            const rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
+            this.rowSelectedRepository.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
+        }
+    }
+}
+SelectedRowChangedEventHandler.decorators = [
+    { type: Injectable }
+];
+SelectedRowChangedEventHandler.ctorParameters = () => [
+    { type: RowSelectedArchive }
+];
+
+class SetSelectionModeCommandHandler {
+    constructor(domainEventPublisher) {
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    forCommand() {
+        return SetSelectionModeCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.setSelectionMode(command.getMode());
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+}
+SetSelectionModeCommandHandler.decorators = [
+    { type: Injectable }
+];
+SetSelectionModeCommandHandler.ctorParameters = () => [
+    { type: DomainEventPublisher }
+];
+
+class SelectAllRowsCommandHandler {
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    forCommand() {
+        return SelectAllRowsCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.selectAll();
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+}
+SelectAllRowsCommandHandler.decorators = [
+    { type: Injectable }
+];
+SelectAllRowsCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+
+class UnselectAllRowsCommandHandler {
+    constructor(structureAggregateRepository, domainEventPublisher) {
+        this.structureAggregateRepository = structureAggregateRepository;
+        this.domainEventPublisher = domainEventPublisher;
+    }
+    forCommand() {
+        return UnselectAllRowsCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.unselectAll();
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(aggregate);
+    }
+}
+UnselectAllRowsCommandHandler.decorators = [
+    { type: Injectable }
+];
+UnselectAllRowsCommandHandler.ctorParameters = () => [
+    { type: StructureAggregateRepository },
+    { type: DomainEventPublisher }
+];
+
+class SelectionModeSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, mode) {
+        super(aggregateId, mode, 'SelectionModeSetEvent');
+        this.mode = mode;
+    }
+    getMode() {
+        return this.mode;
+    }
+}
+
+class SelectionModeSetEventHandler {
+    constructor(rowSelectionModeRepository) {
+        this.rowSelectionModeRepository = rowSelectionModeRepository;
+    }
+    forEvent() {
+        return SelectionModeSetEvent;
+    }
+    handle(modeSetEvent) {
+        if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
+            this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
+        }
+    }
+}
+SelectionModeSetEventHandler.decorators = [
+    { type: Injectable }
+];
+SelectionModeSetEventHandler.ctorParameters = () => [
+    { type: RowSelectionModeArchive }
+];
+
+class FormationDomainModule extends DomainModule {
+    constructor() {
+        super();
+    }
+    static commandHandlers() {
+        return [
+            HermesModule.registerCommandHandler(SetEnabledSelectionCommandHandler, structureKey),
+            HermesModule.registerCommandHandler(SetSelectionModeCommandHandler, structureKey),
+            HermesModule.registerCommandHandler(SelectAllRowsCommandHandler, structureKey),
+            HermesModule.registerCommandHandler(UnselectAllRowsCommandHandler, structureKey),
+            HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, structureKey)
+        ];
+    }
+    static domainEventHandlers() {
+        return [
+            HermesModule.registerDomainEventHandler(SelectedRowChangedEventHandler),
+            HermesModule.registerDomainEventHandler(SelectionModeSetEventHandler)
+        ];
+    }
+}
+FormationDomainModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ],
+                providers: [
+                    FormationDispatcher,
+                    FormationManagerFactory
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+FormationDomainModule.ctorParameters = () => [];
+
+class FormationDomainWarehouse extends FormationWarehouse {
+    constructor(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
+        super();
+        this.rowSelectedRepository = rowSelectedRepository;
+        this.rowSelectionModeRepository = rowSelectionModeRepository;
+        this.sourceWarehouse = sourceWarehouse;
+    }
+    findSelectedRows(structureId) {
+        const items = this.sourceWarehouse.findPreparedEntities(structureId), selectedItemIds = this.findSelectedItemIds(structureId).getValueOrNullOrThrowError();
+        const selectedItems = [], length = items.length;
+        for (let i = 0; i < length; i += 1) {
+            const item = items[i];
+            if (selectedItemIds.some((itemId) => itemId === item.getId().toString())) {
+                selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
+            }
+        }
+        return Optional.of(selectedItems);
+    }
+    onRowSelectedReadModel(structureId) {
+        return this.rowSelectedRepository
+            .on(structureId);
+    }
+    findSelectedItemIds(structureId) {
+        return this.rowSelectedRepository
+            .find(structureId)
+            .map((r) => {
+            return r.getAll();
+        });
+    }
+    onSelectedRows(structureId) {
+        return this.rowSelectedRepository
+            .on(structureId)
+            .pipe(hermesMap((rm) => {
+            return rm.getAll();
+        }));
+    }
+    onMode(structureId) {
+        return this.rowSelectionModeRepository.on(structureId);
+    }
+}
+FormationDomainWarehouse.decorators = [
+    { type: Injectable }
+];
+FormationDomainWarehouse.ctorParameters = () => [
+    { type: RowSelectedArchive },
+    { type: RowSelectionModeArchive },
+    { type: SourceWarehouse }
+];
+
+class FormationDomainCommandInvoker extends FormationCommandInvoker {
+    constructor(formationDispatcher) {
+        super();
+        this.formationDispatcher = formationDispatcher;
+    }
+    toggleSelectedRow(selectedRow, type, structureId) {
+        this.formationDispatcher.toggleSelectedRow(selectedRow, type, structureId);
+    }
+    changeMode(mode, structureId) {
+        this.formationDispatcher.changeMode(mode, structureId);
+    }
+    setSelection(enabled, structureId) {
+        this.formationDispatcher.setSelection(enabled, structureId);
+    }
+    selectAll(structureId) {
+        this.formationDispatcher.selectAll(structureId);
+    }
+    unselectAll(structureId) {
+        this.formationDispatcher.unselectAll(structureId);
+    }
+}
+FormationDomainCommandInvoker.decorators = [
+    { type: Injectable }
+];
+FormationDomainCommandInvoker.ctorParameters = () => [
+    { type: FormationDispatcher }
+];
+
+class FormationApiModule extends ApiModule {
+}
+FormationApiModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FormationDomainModule
+                ],
+                providers: [
+                    RowSelectedArchive,
+                    FormationEventRepository,
+                    {
+                        provide: FormationCommandInvoker,
+                        useClass: FormationDomainCommandInvoker
+                    },
+                    {
+                        provide: FormationWarehouse,
+                        useClass: FormationDomainWarehouse
+                    },
+                    RowSelectionModeArchive
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+
+class FormationFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [
+            RowSelectionTypeArchive
+        ];
+    }
+}
+FormationFeatureModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule,
+                    FormationApiModule
+                ],
+                declarations: [],
+                exports: []
+            },] }
+];
+
 /** @internal */
 function structureIdFactoryForGrid(generator) {
     return new StructureId('gui-grid-' + generator.generateId());
@@ -11625,6 +11890,7 @@ StructureComponent.decorators = [
                     PagingFeatureModule.forComponent(),
                     SortingFeatureModule.forComponent(),
                     FieldFeatureModule.forComponent(),
+                    FormationFeatureModule.forComponent(),
                     SearchFeatureModule.forComponent(),
                     SourceFeatureModule.forComponent(),
                     SchemaFeatureModule.forComponent(),
@@ -12211,7 +12477,7 @@ InMemoryStructureStore.decorators = [
     { type: Injectable }
 ];
 
-let VerticalFormationReadModel = class VerticalFormationReadModel {
+let VerticalFormationModel = class VerticalFormationModel {
     constructor(enabled, topMargin, sourceHeight, viewportHeight, rowHeight) {
         this.enabled = enabled;
         this.topMargin = topMargin;
@@ -12235,14 +12501,14 @@ let VerticalFormationReadModel = class VerticalFormationReadModel {
         return this.rowHeight;
     }
 };
-VerticalFormationReadModel = __decorate([
+VerticalFormationModel = __decorate([
     ReadModelObject
-], VerticalFormationReadModel);
+], VerticalFormationModel);
 
 class VerticalFormationConverter {
     convert(verticalFormation) {
         const enabled = verticalFormation.isEnabled(), topMargin = verticalFormation.getTopMargin(), sourceHeight = verticalFormation.getSourceHeight(), viewportHeight = verticalFormation.getViewPortHeight(), rowHeight = verticalFormation.getRowHeight();
-        return new VerticalFormationReadModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight);
+        return new VerticalFormationModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight);
     }
 }
 VerticalFormationConverter.decorators = [
@@ -12498,12 +12764,12 @@ VerticalFormationRepository.ctorParameters = () => [
 ];
 
 class StructureContentComponent extends SmartComponent {
-    constructor(elementRef, changeDetectorRef, formationCommandService, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
+    constructor(elementRef, changeDetectorRef, formationCommandInvoker, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
     rowSelectionTypeArchive, searchWarehouse, schemaRowClassArchive, schemaRowStyleArchive) {
         super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
-        this.formationCommandService = formationCommandService;
+        this.formationCommandInvoker = formationCommandInvoker;
         this.structureEditModeArchive = structureEditModeArchive;
         this.formationWarehouse = formationWarehouse;
         this.structureWarehouse = structureWarehouse;
@@ -12558,7 +12824,7 @@ class StructureContentComponent extends SmartComponent {
     }
     toggleSelectedRow(entity) {
         if (!this.checkboxSelection) {
-            this.formationCommandService.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
+            this.formationCommandInvoker.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
         }
     }
     getSelectorName() {
@@ -13772,7 +14038,7 @@ class StructureAggregate extends AggregateRoot {
         this.sourceManager = sourceManager;
         this.verticalFormation = verticalFormation;
         this.summariesManager = summariesManager;
-        this.sorterCollection = sorterCollection;
+        this.sorterManager = sorterCollection;
         this.filterManager = filterManager;
         this.uniqueFilterManager = uniqueFilterManager;
         this.searchManager = searchManager;
@@ -13918,19 +14184,19 @@ class StructureAggregate extends AggregateRoot {
         return this.getEvents();
     }
     setSortingConfig(config) {
-        this.sorterCollection.setConfig(config);
+        this.sorterManager.setConfig(config);
     }
     toggleSort(fieldId) {
         const field = this.fieldCollection.getField(fieldId);
-        this.sorterCollection.toggle(field);
+        this.sorterManager.toggle(field);
         this.calculateSource();
-        return this.sorterCollection.getAll();
+        return this.sorterManager.getAll();
     }
     setSortOrder(fieldId, sortOrder) {
         const field = this.fieldCollection.getField(fieldId);
-        this.sorterCollection.setSortOrder(field, sortOrder);
+        this.sorterManager.setSortOrder(field, sortOrder);
         this.calculateSource();
-        return this.sorterCollection.getAll();
+        return this.sorterManager.getAll();
     }
     setFilterConfig(config) {
         this.filterManager.getSettings().setFilterConfig(config);
@@ -14021,7 +14287,7 @@ class StructureAggregate extends AggregateRoot {
         // unique filtering
         this.sourceManager.setEntities(this.uniqueFilterManager.filterAll(this.sourceManager.getEntities(), this.fieldCollection.getAllFields()));
         // sorting
-        const ents = this.sorterCollection.sort(this.sourceManager.getEntities());
+        const ents = this.sorterManager.sort(this.sourceManager.getEntities());
         this.sourceManager.setEntities(ents);
         // calculate filteredEntities
         this.sourceManager.setPreparedEntities();
@@ -14067,7 +14333,7 @@ __decorate([
     Override
 ], StructureAggregate.prototype, "clearEvents", null);
 
-class StructureSorter {
+class Sorter {
     constructor(id, field, direction = true) {
         this.rank = 1;
         this.sorterId = id;
@@ -14111,7 +14377,7 @@ class SorterId {
     }
 }
 
-class SorterCollection {
+class SorterManager {
     constructor(enabled = false, multi = false) {
         this.sorters = new Map();
         this.enabled = enabled;
@@ -14152,7 +14418,7 @@ class SorterCollection {
         }
     }
     add(field, direction = true) {
-        this.addSorter(field.getId(), new StructureSorter(new SorterId(RandomStringGenerator.generate()), field, direction));
+        this.addSorter(field.getId(), new Sorter(new SorterId(RandomStringGenerator.generate()), field, direction));
     }
     addSorter(fieldId, sorter) {
         if (!this.multi) {
@@ -14304,7 +14570,7 @@ class UniqueFilterManager {
     }
     calculate(entities, field) {
         const fieldId = field.getId();
-        const optUVM = this.uniqueValueMap.get(fieldId);
+        const optUVM = this.uniqueValueMap.find(fieldId);
         optUVM.ifEmpty(() => {
             const set = new Set();
             for (const entity of entities) {
@@ -14333,7 +14599,7 @@ class UniqueFilterManager {
     filter(entities, field) {
         let values = [];
         this.uniqueValueMap
-            .get(field.getId())
+            .find(field.getId())
             .ifPresent((uvc) => {
             if (uvc.isAllSelected()) {
                 values = entities;
@@ -14356,28 +14622,28 @@ class UniqueFilterManager {
     }
     selectAll(fieldId) {
         this.uniqueValueMap
-            .get(fieldId)
+            .find(fieldId)
             .ifPresent((uvc) => {
             uvc.selectAll();
         });
     }
     select(fieldId, uniqueValueId) {
         this.uniqueValueMap
-            .get(fieldId)
+            .find(fieldId)
             .ifPresent((uvc) => {
             uvc.select(uniqueValueId);
         });
     }
     unselectAll(fieldId) {
         this.uniqueValueMap
-            .get(fieldId)
+            .find(fieldId)
             .ifPresent((uvc) => {
             uvc.unselectAll();
         });
     }
     unselect(fieldId, uniqueValueId) {
         this.uniqueValueMap
-            .get(fieldId)
+            .find(fieldId)
             .ifPresent((uvc) => {
             uvc.unselect(uniqueValueId);
         });
@@ -14394,7 +14660,7 @@ class UniqueFilterManager {
     }
     getValues(field) {
         return this.uniqueValueMap
-            .get(field.getId())
+            .find(field.getId())
             .map((uvc) => {
             return uvc.getAll();
         });
@@ -14414,7 +14680,7 @@ class StructureAggregateFactory extends AggregateFactory {
     }
     create(structureId) {
         const paging = this.pagingAggregateFactory.createDefault(), source = this.sourceManagerFactory.createDefault(), verticalFormation = this.verticalFormationFactory.create(structureId);
-        const sorterContainer = new SorterCollection(), filterContainer = this.filterManagerFactory.create(false), fieldContainer = this.fieldCollectionFactory.create(), summariesManager = this.summariesManagerFactory.create(structureId), searchManager = this.searchManagerFactory.create();
+        const sorterContainer = new SorterManager(), filterContainer = this.filterManagerFactory.create(false), fieldContainer = this.fieldCollectionFactory.create(), summariesManager = this.summariesManagerFactory.create(structureId), searchManager = this.searchManagerFactory.create();
         const structureAggregate = new StructureAggregate(structureId, paging, source, verticalFormation, summariesManager, sorterContainer, filterContainer, new UniqueFilterManager(), searchManager, fieldContainer);
         this.init(structureAggregate);
         return structureAggregate;
@@ -14463,36 +14729,6 @@ class CreateStructureCommand extends StructureCommand {
     }
 }
 
-class SetVerticalScrollEnabledCommand extends StructureCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'SetVerticalScrollEnabledCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetScrollBarPositionCommand extends StructureCommand {
-    constructor(structureId, position) {
-        super(structureId, 'SetScrollBarPositionCommand');
-        this.position = position;
-    }
-    getPosition() {
-        return this.position;
-    }
-}
-
-class SetScrollPositionCommand extends StructureCommand {
-    constructor(structureId, position) {
-        super(structureId, 'SetScrollPositionCommand');
-        this.position = position;
-    }
-    getPosition() {
-        return this.position;
-    }
-}
-
 class SetRowHeightCommand extends StructureCommand {
     constructor(structureId, rowHeight) {
         super(structureId, 'SetRowHeightCommand');
@@ -14523,34 +14759,50 @@ class SetRowHeightBasedOnThemeCommand extends StructureCommand {
     }
 }
 
+class VerticalFormationCommandInvoker {
+    constructor() {
+    }
+}
+VerticalFormationCommandInvoker.decorators = [
+    { type: Injectable }
+];
+VerticalFormationCommandInvoker.ctorParameters = () => [];
+
 class StructureDomainCommandInvoker extends StructureCommandInvoker {
-    constructor(commandDispatcher, structureFilterCommandService, sourceDispatcher, structureCellEditArchive) {
+    constructor(commandDispatcher, structureFilterCommandService, sourceDispatcher, verticalFormationCommandInvoker, structureCellEditArchive) {
         super();
         this.commandDispatcher = commandDispatcher;
         this.structureFilterCommandService = structureFilterCommandService;
         this.sourceDispatcher = sourceDispatcher;
+        this.verticalFormationCommandInvoker = verticalFormationCommandInvoker;
         this.structureCellEditArchive = structureCellEditArchive;
     }
     create(structureId) {
         this.commandDispatcher.dispatch(new CreateStructureCommand(structureId));
     }
+    // REMOVE
     enableVirtualScroll(structureId) {
-        this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, true));
+        this.verticalFormationCommandInvoker.enableVirtualScroll(structureId);
     }
+    // REMOVE
     disableVirtualScroll(structureId) {
-        this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, false));
+        this.verticalFormationCommandInvoker.disableVirtualScroll(structureId);
     }
+    // REMOVE
     scrollToTop(structureId) {
-        this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, 0));
+        this.verticalFormationCommandInvoker.scrollToTop(structureId);
     }
+    // REMOVE
     scrollToBottom(structureId) {
-        this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, Number.MAX_SAFE_INTEGER));
+        this.verticalFormationCommandInvoker.scrollToBottom(structureId);
     }
+    // REMOVE
     scrollToIndex(index, structureId) {
-        this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, index));
+        this.verticalFormationCommandInvoker.scrollToIndex(index, structureId);
     }
+    // REMOVE
     setScrollPosition(position, structureId) {
-        this.commandDispatcher.dispatch(new SetScrollPositionCommand(structureId, position));
+        this.verticalFormationCommandInvoker.setScrollPosition(position, structureId);
     }
     setOrigin(items, structureId) {
         this.sourceDispatcher.setOrigin(structureId, items);
@@ -14564,9 +14816,11 @@ class StructureDomainCommandInvoker extends StructureCommandInvoker {
     setRowHeight(rowHeight, structureId) {
         this.commandDispatcher.dispatch(new SetRowHeightCommand(structureId, +rowHeight));
     }
+    // REMOVE
     setContainerHeight(height, structureId) {
         this.commandDispatcher.dispatch(new StructureSetHeightCommand(structureId, +height));
     }
+    // REMOVE
     setRowHeightBasedOnTheme(theme, structureId) {
         this.commandDispatcher.dispatch(new SetRowHeightBasedOnThemeCommand(structureId, theme));
     }
@@ -14581,6 +14835,7 @@ StructureDomainCommandInvoker.ctorParameters = () => [
     { type: CommandDispatcher },
     { type: FilterCommandInvoker },
     { type: SourceDispatcher },
+    { type: VerticalFormationCommandInvoker },
     { type: StructureCellEditArchive }
 ];
 
@@ -14675,7 +14930,7 @@ StructureTopPanelComponent.decorators = [
 		<div gui-search-bar
 			 class="gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto"></div>
 
-<!--		<div gui-filter-menu-trigger></div>-->
+		<!--		<div gui-filter-menu-trigger></div>-->
 
 	`,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15376,10 +15631,20 @@ SelectAllComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: ElementRef },
     { type: StructureId },
-    { type: RowSelectionModeRepository },
+    { type: RowSelectionModeArchive },
     { type: FormationCommandInvoker },
     { type: FormationWarehouse }
 ];
+
+class SetScrollPositionCommand extends StructureCommand {
+    constructor(structureId, position) {
+        super(structureId, 'SetScrollPositionCommand');
+        this.position = position;
+    }
+    getPosition() {
+        return this.position;
+    }
+}
 
 class SetScrollPositionCommandHandler {
     constructor(domainEventPublisher) {
@@ -15402,6 +15667,16 @@ SetScrollPositionCommandHandler.decorators = [
 SetScrollPositionCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
 ];
+
+class SetVerticalScrollEnabledCommand extends StructureCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'SetVerticalScrollEnabledCommand');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
 
 class SetVerticalScrollEnabledCommandHandler {
     constructor(domainEventPublisher) {
@@ -15523,6 +15798,16 @@ ScrollBarPositionSetEventHandler.ctorParameters = () => [
     { type: VerticalFormationScrollBarPositionArchive }
 ];
 
+class SetScrollBarPositionCommand extends StructureCommand {
+    constructor(structureId, position) {
+        super(structureId, 'SetScrollBarPositionCommand');
+        this.position = position;
+    }
+    getPosition() {
+        return this.position;
+    }
+}
+
 class SetScrollBarPositionCommandHandler {
     constructor(domainEventPublisher) {
         this.domainEventPublisher = domainEventPublisher;
@@ -15543,6 +15828,27 @@ SetScrollBarPositionCommandHandler.decorators = [
 ];
 SetScrollBarPositionCommandHandler.ctorParameters = () => [
     { type: DomainEventPublisher }
+];
+
+class VerticalFormationDispatcher {
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
+    }
+    setVirtualScrollEnabled(enabled, structureId) {
+        this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, enabled));
+    }
+    scrollTo(position, structureId) {
+        this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, position));
+    }
+    setScrollPosition(position, structureId) {
+        this.commandDispatcher.dispatch(new SetScrollPositionCommand(structureId, position));
+    }
+}
+VerticalFormationDispatcher.decorators = [
+    { type: Injectable }
+];
+VerticalFormationDispatcher.ctorParameters = () => [
+    { type: CommandDispatcher }
 ];
 
 class VerticalFormationDomainModule extends DomainModule {
@@ -15571,7 +15877,8 @@ VerticalFormationDomainModule.decorators = [
                     CommonModule
                 ],
                 providers: [
-                    VerticalFormationFactory
+                    VerticalFormationFactory,
+                    VerticalFormationDispatcher
                 ],
                 declarations: [],
                 exports: []
@@ -15609,6 +15916,37 @@ VerticalFormationDomainWarehouse.ctorParameters = () => [
     { type: VerticalFormationScrollBarPositionArchive }
 ];
 
+class VerticalFormationDomainCommandInvoker extends VerticalFormationCommandInvoker {
+    constructor(verticalFormationDispatcher) {
+        super();
+        this.verticalFormationDispatcher = verticalFormationDispatcher;
+    }
+    enableVirtualScroll(structureId) {
+        this.verticalFormationDispatcher.setVirtualScrollEnabled(true, structureId);
+    }
+    disableVirtualScroll(structureId) {
+        this.verticalFormationDispatcher.setVirtualScrollEnabled(false, structureId);
+    }
+    scrollToTop(structureId) {
+        this.verticalFormationDispatcher.scrollTo(0, structureId);
+    }
+    scrollToBottom(structureId) {
+        this.verticalFormationDispatcher.scrollTo(Number.MAX_SAFE_INTEGER, structureId);
+    }
+    scrollToIndex(index, structureId) {
+        this.verticalFormationDispatcher.scrollTo(index, structureId);
+    }
+    setScrollPosition(position, structureId) {
+        this.verticalFormationDispatcher.setScrollPosition(position, structureId);
+    }
+}
+VerticalFormationDomainCommandInvoker.decorators = [
+    { type: Injectable }
+];
+VerticalFormationDomainCommandInvoker.ctorParameters = () => [
+    { type: VerticalFormationDispatcher }
+];
+
 class VerticalFormationApiModule extends ApiModule {
 }
 VerticalFormationApiModule.decorators = [
@@ -15623,6 +15961,10 @@ VerticalFormationApiModule.decorators = [
                     {
                         provide: VerticalFormationWarehouse,
                         useClass: VerticalFormationDomainWarehouse
+                    },
+                    {
+                        provide: VerticalFormationCommandInvoker,
+                        useClass: VerticalFormationDomainCommandInvoker
                     },
                     VerticalFormationScrollBarPositionArchive
                 ],
@@ -17740,6 +18082,9 @@ class ColumnDefinition extends ReadModelEntity {
         this.sortStatus = sort;
         this.sortable = sortable;
     }
+    getName() {
+        return this.name;
+    }
     isEnabled() {
         return this.enabled;
     }
@@ -17980,6 +18325,10 @@ class InMemoryCompositionRepository extends CompositionReadModelRootRepository {
             return compositionIdToComposition.has(key);
         }), hermesMap((compositionIdToComposition) => compositionIdToComposition.get(compositionId.getId())));
     }
+    find(compositionId) {
+        const key = compositionId.getId();
+        return Optional.of(this.compositionIdToComposition.get(key));
+    }
     forEvents() {
         return [
             CompositionCreatedEvent,
@@ -18086,7 +18435,7 @@ class ColumnHighlightArchive extends AggregateArchive {
         super(new ColumnHighlightManager());
     }
     toggle(key, value) {
-        this.get(key)
+        this.find(key)
             .ifPresent((manager) => {
             manager.toggle(value);
             this.next(key, manager);
@@ -18311,6 +18660,15 @@ class CompositionDomainWarehouse extends CompositionWarehouse {
         return this.columnHighlightArchive
             .on(compositionId)
             .pipe(hermesMap((manager) => manager.isHighlighted(columnId)));
+    }
+    findColumnNames(compositionId) {
+        let names = [];
+        this.compositionRepository
+            .find(compositionId)
+            .ifPresent((value) => {
+            names = value.getAllColumns().map((cd) => cd.getName());
+        });
+        return names;
     }
 }
 CompositionDomainWarehouse.decorators = [
@@ -19285,9 +19643,9 @@ class StructureSummariesGate extends Gate {
         this.summariesCommandInvoker = summariesCommandInvoker;
     }
     ngOnChanges(changes) {
-        if (this.isDefined('summaries', changes)) {
+        ifChanged(changes.summaries, () => {
             this.summariesCommandInvoker.setConfig(this.summaries, this.structureId);
-        }
+        });
     }
 }
 StructureSummariesGate.decorators = [
@@ -19515,7 +19873,7 @@ class StructureSortingGate extends Gate {
         this.sortingCommandInvoker = sortingCommandInvoker;
     }
     ngOnChanges(changes) {
-        if (this.isDefined('sorting', changes)) {
+        ifChanged(changes.sorting, () => {
             let sorting;
             if (typeof this.sorting === 'boolean') {
                 sorting = {
@@ -19526,7 +19884,7 @@ class StructureSortingGate extends Gate {
                 sorting = this.sorting;
             }
             this.sortingCommandInvoker.setSortingConfig(sorting, this.structureId);
-        }
+        });
     }
 }
 StructureSortingGate.decorators = [
@@ -19549,7 +19907,7 @@ class StructureFilterGate extends Gate {
         this.structureCommandInvoker = structureCommandInvoker;
     }
     ngOnChanges(changes) {
-        if (this.isDefined('filtering', changes)) {
+        ifChanged(changes.filtering, () => {
             let filtering;
             if (typeof this.filtering === 'boolean') {
                 filtering = {
@@ -19560,7 +19918,7 @@ class StructureFilterGate extends Gate {
                 filtering = this.filtering;
             }
             this.structureCommandInvoker.setFilterConfig(filtering, this.structureId);
-        }
+        });
     }
 }
 StructureFilterGate.decorators = [
@@ -19583,7 +19941,7 @@ class StructureQuickFiltersGate extends Gate {
         this.structureCommandInvoker = structureCommandInvoker;
     }
     ngOnChanges(changes) {
-        if (this.isDefined('quickFilters', changes)) {
+        ifChanged(changes.quickFilters, () => {
             let quickFilters;
             if (typeof this.quickFilters === 'boolean') {
                 quickFilters = {
@@ -19594,7 +19952,7 @@ class StructureQuickFiltersGate extends Gate {
                 quickFilters = this.quickFilters;
             }
             this.structureCommandInvoker.setQuickFiltersConfig(quickFilters, this.structureId);
-        }
+        });
     }
 }
 StructureQuickFiltersGate.decorators = [
@@ -19678,6 +20036,7 @@ const imports$1 = [
         SearchDomainModule.commandHandlers(),
         FilterDomainModule.commandHandlers(),
         SourceDomainModule.commandHandlers(),
+        FormationDomainModule.commandHandlers(),
         SummariesDomainModule.commandHandlers(),
         VerticalFormationDomainModule.commandHandlers(),
         structureCommandHandlers
@@ -19686,6 +20045,7 @@ const imports$1 = [
         SearchDomainModule.domainEventHandlers(),
         FilterDomainModule.domainEventHandlers(),
         SourceDomainModule.domainEventHandlers(),
+        FormationDomainModule.domainEventHandlers(),
         SummariesDomainModule.domainEventHandlers(),
         FieldDomainModule.domainEventHandlers(),
         VerticalFormationDomainModule.domainEventHandlers()
@@ -19698,6 +20058,7 @@ const imports$1 = [
     PagingFeatureModule,
     SortingFeatureModule,
     FieldFeatureModule,
+    FormationFeatureModule,
     SearchFeatureModule,
     FilterMenuFeatureModule,
     SourceFeatureModule,
@@ -19853,5 +20214,5 @@ GuiListModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { GuiListCardComponent, GuiListComponent, GuiListDefaultTranslation, GuiListFieldType, GuiListItemComponent, GuiListMode, GuiListModule, StructureComponent, structureIdFactoryForGrid as ɵa, compositionIdFactoryForGrid as ɵb, PagingDispatcher as ɵba, PagingManagerFactory as ɵbb, Logger as ɵbc, SetPagingCommandHandler as ɵbd, StructureAggregateRepository as ɵbe, structureKey as ɵbf, NextPageCommandHandler as ɵbg, PrevPageCommandHandler as ɵbh, ChangePagesizeCommandHandler as ɵbi, PagingCommandInvoker as ɵbj, PagingDomainCommandInvoker as ɵbk, PagingWarehouse as ɵbl, PagingDomainWarehouse as ɵbm, PagingRepository as ɵbn, StructureReadModelRepository as ɵbo, PagingEventRepository as ɵbp, PagingDomainEventRepository as ɵbq, PagingConverter as ɵbr, TranslationFeatureModule as ɵbs, TranslationApiModule as ɵbt, TranslationPipe as ɵbu, TranslationFacade as ɵbv, TranslationDomainFacade as ɵbw, PagingComponent as ɵbx, SmartComponent as ɵby, GuiComponent as ɵbz, schemaIdFactoryForGrid as ɵc, CssClassModifier as ɵca, StructureId as ɵcb, SourceWarehouse as ɵcc, PagingDisplayModeArchive as ɵcd, PagingNavigatorComponent as ɵce, PureComponent as ɵcf, PagingSelectComponent as ɵcg, PagingStatsComponent as ɵch, AlternativePagingNavigatorComponent as ɵci, AlternativePagingPagesComponent as ɵcj, SearchFeatureModule as ɵck, SearchApiModule as ɵcl, SearchDomainModule as ɵcm, SearchManagerFactory as ɵcn, SearchDispatcher as ɵco, SearchHighlightArchive as ɵcp, SearchPlaceholderArchive as ɵcq, SetConfigSearchingCommandHandler as ɵcr, StructureSetSearchPhraseCommandHandler as ɵcs, SourceDomainEventPublisher as ɵct, SearchPhraseSetEventHandler as ɵcu, SearchPhraseArchive as ɵcv, ConfigSearchingSetEventHandler as ɵcw, SearchingEnabledArchive as ɵcx, SearchCommandInvoker as ɵcy, SearchDomainCommandInvoker as ɵcz, ListViewFeatureModule as ɵd, SearchWarehouse as ɵda, SearchDomainWarehouse as ɵdb, SearchEventRepository as ɵdc, SearchDomainEventRepository as ɵdd, SearchIconComponent as ɵde, IconComponent as ɵdf, StaticComponent as ɵdg, SearchComponent as ɵdh, StructureWarehouse as ɵdi, StructureCellEditArchive as ɵdj, CellEditorManager as ɵdk, EmptySourceFeatureModule as ɵdm, EmptySourceComponent as ɵdn, SortingSelectorFeatureModule as ɵdo, SortingSelectorComponent as ɵdp, FilterMenuFeatureModule as ɵdq, FilterApiModule as ɵdr, FilterDomainModule as ɵds, FilterManagerFactory as ɵdt, SetConfigFilterCommandHandler as ɵdu, SetConfigQuickFilterCommandHandler as ɵdv, ToggleFilterCommandHandler as ɵdw, AddFilterCommandHandler as ɵdx, RemoveAllFiltersCommandHandler as ɵdy, RemoveFilterCommandHandler as ɵdz, listViewKey as ɵe, SelectUniqueFilterCommandHandler as ɵea, SelectAllUniqueFilterCommandHandler as ɵeb, UnselectUniqueFilterCommandHandler as ɵec, UnselectAllUniqueFilterCommandHandler as ɵed, ConfigQuickFilterSetEventHandler as ɵee, QuickFilterEnabledArchive as ɵef, ConfigFilterSetEventHandler as ɵeg, FilterEnabledArchive as ɵeh, FilterTypeConfigFilterSetEventHandler as ɵei, FilterTypeArchive as ɵej, FilterTypeMap as ɵek, FilterTypeReadModel as ɵel, FilterTypeId as ɵem, ActiveFiltersSetEventHandler as ɵen, ActiveFilterArchive as ɵeo, UniqueFilterCalculatedEventHandler as ɵep, UniqueValuesArchive as ɵeq, UniqueValuesReadModel as ɵer, UniqueValueReadModel as ɵes, UniqueValueId as ɵet, FilterTypeFieldsInitedEventHandler as ɵeu, FilterCommandInvoker as ɵev, DomainFilterCommandInvoker as ɵew, FilterWarehouse as ɵex, DomainFilterWarehouse as ɵey, FilterIntegration as ɵez, ListViewApiModule as ɵf, CompositionWarehouse as ɵfa, ActiveFilterListModule as ɵfb, fabricImports as ɵfc, ActiveFilterListComponent as ɵfd, ActiveSearchComponent as ɵfe, FilterIconComponent as ɵff, FilterMenuComponent as ɵfg, CompositionId as ɵfh, FieldWarehouse as ɵfi, FieldReadModelArchive as ɵfj, FilterMenuTriggerComponent as ɵfk, filterContainerToken as ɵfl, ColumnSelectorComponent as ɵfn, FilterTypeSelectorComponent as ɵfo, FilterValueComponent as ɵfp, FieldSelectorComponent as ɵfq, FilterMenuActiveFiltersComponent as ɵfr, listViewIdFactoryForList as ɵfs, structureIdFactoryForList as ɵft, compositionIdFactoryForList as ɵfu, schemaIdFactoryForList as ɵfv, ListViewComponent as ɵfw, LayoutComponent as ɵfx, StructureIdGenerator as ɵfy, SchemaReadModelRootId as ɵfz, ListViewAggregateFactory as ɵg, ListViewReadModelRootId as ɵga, listViewProviders as ɵgb, ListViewTemplateArchive as ɵgc, ListViewCardTemplateArchive as ɵgd, StructureCommandInvoker as ɵge, ListViewItemComponent as ɵgf, ListViewLayoutComponent as ɵgg, ListViewSourceComponent as ɵgh, ListViewContainerCardComponent as ɵgi, ListViewCardItemComponent as ɵgj, ListViewContainerModeSelectComponent as ɵgk, listViewGatewayDeclarations as ɵgl, ListViewPagingGate as ɵgm, PagingGate as ɵgn, Gate as ɵgo, ListViewModeGate as ɵgp, ListViewTemplateGate as ɵgq, ListViewFieldGate as ɵgr, FieldCommandInvoker as ɵgs, ListViewSearchingGate as ɵgt, SearchingGate as ɵgu, ListViewL10nGate as ɵgv, ListViewSourceGate as ɵgw, SourceGate as ɵgx, SourceCommandInvoker as ɵgy, SourceEventService as ɵgz, InMemoryListViewAggregateRepository as ɵh, createStructureDefinition as ɵha, StructureModule as ɵhb, StructureAggregateFactory as ɵhc, SourceManagerFactory as ɵhd, FormationManagerFactory as ɵhe, VerticalFormationFactory as ɵhf, SummariesManagerFactory as ɵhg, SUMMARIES_CALCULATORS as ɵhh, SummariesCalculator as ɵhi, FieldCollectionFactory as ɵhj, FieldFactory as ɵhk, FieldIdGenerator as ɵhl, DataFieldFactory as ɵhm, InMemoryStructureAggregateRepository as ɵhn, InMemoryStructureAggregateStore as ɵho, InMemoryStructureStore as ɵhp, CreateStructureCommandHandler as ɵhq, SortingDomainModule as ɵhr, ToggleSortCommandHandler as ɵhs, SetSortingCommandHandler as ɵht, SetSortOrderCommandHandler as ɵhu, FieldDomainModule as ɵhv, InitFieldsCommandHandler as ɵhw, FieldsInitedEventHandler as ɵhx, FieldUiConverter as ɵhy, SourceDomainModule as ɵhz, ListViewAggregateRepository as ɵi, SourceDispatcher as ɵia, FormationDispatcher as ɵib, SourceSetLoadingCommandHandler as ɵic, SetOriginCommandHandler as ɵid, StructureEditSourceItemCommandHandler as ɵie, SetEnabledSelectionCommandHandler as ɵif, SetSelectionModeCommandHandler as ɵig, SelectAllRowsCommandHandler as ɵih, UnselectAllRowsCommandHandler as ɵii, DeleteOriginItemCommandHandler as ɵij, ToggleSelectedRowCommandHandler as ɵik, StructureOriginChangedEventHandler as ɵil, StructureSourceOriginArchive as ɵim, SelectedRowChangedEventHandler as ɵin, RowSelectedRepository as ɵio, SelectionModeSetEventHandler as ɵip, RowSelectionModeRepository as ɵiq, StructurePreparedItemsEventHandler as ɵir, StructurePreparedItemsArchive as ɵis, SummariesDomainModule as ɵit, provideSummariesCalculator as ɵiu, BooleanSummariesCalculator as ɵiv, DateSummariesCalculator as ɵiw, NumberSummariesCalculator as ɵix, StringSummariesCalculator as ɵiy, UnknownSummariesCalculator as ɵiz, InMemoryListViewAggregateStore as ɵj, StructureSetSummariesEnabledCommandHandler as ɵja, StructureSummariesEnabledSetEventHandler as ɵjb, SummariesEnabledArchive as ɵjc, VerticalFormationDomainModule as ɵjd, SetScrollPositionCommandHandler as ɵje, SetVerticalScrollEnabledCommandHandler as ɵjf, SetRowHeightBasedOnThemeCommandHandler as ɵjg, SetRowHeightCommandHandler as ɵjh, StructureSetHeightCommandHandler as ɵji, SetScrollBarPositionCommandHandler as ɵjj, ScrollBarPositionSetEventHandler as ɵjk, VerticalFormationScrollBarPositionArchive as ɵjl, structureCommandHandlers as ɵjm, structureDomainEventHandlers as ɵjn, structureProviders as ɵjo, StructureCreatedEventHandler as ɵjp, ResizeDetectorModule as ɵjq, ResizeDetector as ɵjr, SortingFeatureModule as ɵjs, SortingApiModule as ɵjt, SortingCommandInvoker as ɵju, FieldFeatureModule as ɵjv, FieldApiModule as ɵjw, SourceFeatureModule as ɵjx, SourceApiModule as ɵjy, SourceConverter as ɵjz, InMemoryListViewStore as ɵk, SourceDomainCommandInvoker as ɵka, SourceDomainWarehouse as ɵkb, FormationEventRepository as ɵkc, FormationCommandInvoker as ɵkd, FormationWarehouse as ɵke, RowSelectionTypeArchive as ɵkf, SummariesFeatureModule as ɵkg, SummariesApiModule as ɵkh, SummariesCommandInvoker as ɵki, SummariesDomainCommandInvoker as ɵkj, StructureSummariesPanelConfigConverter as ɵkk, StructureSummariesConfigArchive as ɵkl, StructureSummariesPanelConfig as ɵkm, SummariesEventRepository as ɵkn, SummariesDomainEventRepository as ɵko, SummariesWarehouse as ɵkp, SummariesDomainWarehouse as ɵkq, StructureSummariesPanelComponent as ɵkr, VerticalFormationFeatureModule as ɵks, VerticalFormationApiModule as ɵkt, VerticalFormationConverter as ɵku, VerticalFormationRepository as ɵkv, InMemoryStructureReadStore as ɵkw, StructureReadModelRootConverter as ɵkx, VerticalFormationWarehouse as ɵky, VerticalFormationDomainWarehouse as ɵkz, CreateListViewCommandHandler as ɵl, SchemaFeatureModule as ɵla, SchemaApiModule as ɵlb, schemaKey as ɵlc, SchemaAggregateFactory as ɵld, InMemorySchemaAggregateRepository as ɵle, SchemaAggregateRepository as ɵlf, InMemorySchemaAggregateStore as ɵlg, InMemorySchemaStore as ɵlh, CreateSchemaCommandHandler as ɵli, SchemaDomainModule as ɵlj, SetSchemaThemeCommandHandler as ɵlk, SetRowColoringCommandHandler as ɵll, SetSchemaHorizontalGridCommandHandler as ɵlm, SetSchemaVerticalGridCommandHandler as ɵln, SchemaThemeRepository as ɵlo, SchemaHorizontalGridRepository as ɵlp, SchemaRowColoringRepository as ɵlq, SchemaVerticalGridRepository as ɵlr, SchemaCssClassesEventHandler as ɵls, SchemaCssClassesRepository as ɵlt, SchemaDispatcher as ɵlu, SchemaCommandInvoker as ɵlv, SchemaDomainCommandInvoker as ɵlw, SchemaWarehouse as ɵlx, SchemaDomainWarehouse as ɵly, SchemaEventRepository as ɵlz, ListViewDomainModule as ɵm, SchemaDomainEventRepository as ɵma, SchemaRowClassArchive as ɵmb, SchemaRowStyleArchive as ɵmc, StructureSharedModule as ɵmd, CssClassModule as ɵme, StructureInfoPanelModule as ɵmf, NumberFormatterModule as ɵmg, NumberFormatterPipe as ɵmh, StructureColumnManagerModule as ɵmi, StructureColumnManagerComponent as ɵmj, CompositionCommandInvoker as ɵmk, StructureDialogColumnManagerComponent as ɵml, StructureMenuColumnManagerComponent as ɵmm, StructureColumnManagerIconComponent as ɵmn, StructureDialogColumnManagerService as ɵmo, StructureThemeConverter as ɵmp, SchemaManagerModule as ɵmq, StructureSchemaMangerComponent as ɵmr, StructureDialogSchemaManagerComponent as ɵms, StructureSchemaManagerIconComponent as ɵmt, StructureDialogSchemaManagerService as ɵmu, SourceCounterFeatureModule as ɵmv, ActiveFilterMenuTriggerDirective as ɵmw, ActiveFilterService as ɵmx, ActiveFilterMenuComponent as ɵmy, StructureInfoPanelComponent as ɵmz, ListViewDispatcher as ɵn, StructureInfoPanelArchive as ɵna, StructureInfoModalComponent as ɵnb, StructureInfoIconComponent as ɵnc, StructureInfoPanelConfigConverter as ɵnd, StructureTopPanelModule as ɵne, StructureTopPanelComponent as ɵnf, StructureColumnMenuModule as ɵng, UniqueValueListModule as ɵnh, UniqueValueListComponent as ɵni, StructureColumnConfigComponent as ɵnj, StructureColumnMenuConfigArchive as ɵnk, CellTemplateWithContext as ɵnl, CellContext as ɵnm, CellValueType as ɵnn, CellValue as ɵno, FieldId as ɵnp, ColumnDefinitionId as ɵnq, SortOrder as ɵnr, ColumnAlign as ɵns, StructureColumnConfigTriggerComponent as ɵnt, StructureColumnConfigService as ɵnu, StructureColumnConfigSortComponent as ɵnv, StructureColumnConfigColumnHideComponent as ɵnw, StructureColumnConfigColumnMoveComponent as ɵnx, StructureColumnMenuIconComponent as ɵny, StructureColumnMenuArrowIconComponent as ɵnz, SetListViewModeCommandHandler as ɵo, CompositionFeatureModule as ɵoa, CompositionApiModule as ɵob, compositionKey as ɵoc, CompositionAggregateFactory as ɵod, ColumnEntityFactory as ɵoe, ColumnPresentationConverter as ɵof, CompositionGroupFactory as ɵog, InMemoryCompositionAggregateRepository as ɵoh, CompositionAggregateRepository as ɵoi, InMemoryCompositionAggregateStore as ɵoj, InMemoryCompositionStore as ɵok, CreateCompositionCommandHandler as ɵol, CompositionDomainModule as ɵom, inMemoryCompositionCommandProviders as ɵon, inMemoryCompositionReadModelProviders as ɵoo, inMemoryCompositionProviders as ɵop, CompositionDispatcher as ɵoq, CompositionEventConverter as ɵor, ColumnFieldFactory as ɵos, ColumnHighlightArchive as ɵot, Override as ɵou, SetColumnsCommandHandler as ɵov, SetCompositionWidthCommandHandler as ɵow, SetCompositionResizeWidthCommandHandler as ɵox, SetCompositionContainerWidthCommandHandler as ɵoy, CompositionSetColumnEnabledCommandHandler as ɵoz, ToggleListViewSelectorCommandHandler as ɵp, CompositionChangeSortStatusCommandHandler as ɵpa, CompositionMoveLeftColumnCommandHandler as ɵpb, CompositionMoveRightColumnCommandHandler as ɵpc, SetGroupsCommandHandler as ɵpd, CompositionChangeSortStatusEventHandler as ɵpe, InMemoryCompositionReadStore as ɵpf, CompositionReadModelRootConverter as ɵpg, ColumnDefinitionFactory as ɵph, ViewTemplateRepository as ɵpi, ViewTemplateFactory as ɵpj, TemplateFactory as ɵpk, EditTemplateRepository as ɵpl, EditTemplateFactory as ɵpm, CompositionReadModelRootRepository as ɵpn, InMemoryCompositionRepository as ɵpo, CompositionGroupArchive as ɵpp, GroupCollection as ɵpq, Group as ɵpr, GroupId as ɵps, CompositionDomainCommandInvoker as ɵpt, CompositionDomainWarehouse as ɵpu, CompositionEventRepository as ɵpv, CompositionDomainEventRepository as ɵpw, ColumnAutoConfigurator as ɵpx, DomainColumnAutoConfigurator as ɵpy, SanitizeModule as ɵpz, ListViewModeSetEventHandler as ɵq, SafePipe as ɵqa, ViewTemplatesComponent as ɵqb, EditTemplatesComponent as ɵqc, StringEditTemplateComponent as ɵqd, InputEditTemplateComponent as ɵqe, EditCommunicationComponent as ɵqf, NumberEditTemplateComponent as ɵqg, BooleanEditTemplateComponent as ɵqh, DateEditTemplateComponent as ɵqi, ColumnQueryComponent as ɵqj, FunctionViewComponent as ɵqk, BarViewComponent as ɵql, PercentageViewComponent as ɵqm, TextViewComponent as ɵqn, LoggerModule as ɵqo, ConsoleLogger as ɵqp, StructureGateway as ɵqq, StructureEditModeArchive as ɵqr, StructureInfoPanelConfigService as ɵqs, StructureCellEditStore as ɵqt, RowSelectEnabledRepository as ɵqu, StructureHeaderBottomEnabledArchive as ɵqv, StructureInitialValuesReadyArchive as ɵqw, SchemaCssClassManager as ɵqx, StructureCellEditCloseAllService as ɵqy, StructureHeaderTopEnabledArchive as ɵqz, ListViewModeArchive as ɵr, StructureRowDetailConfigArchive as ɵra, StructureRowDetailService as ɵrb, StructureTitlePanelConfigArchive as ɵrc, StructureFooterPanelConfigArchive as ɵrd, structureComponentToken as ɵre, StructureDefinition as ɵrf, PagingDefinition as ɵrg, StructureHeaderComponent as ɵrh, StructureHeaderColumnsComponent as ɵri, StructureHeaderFiltersComponent as ɵrj, StructureHeaderGroupsComponent as ɵrk, StructureHeaderFilterComponent as ɵrl, SelectAllComponent as ɵrm, StructureContentComponent as ɵrn, StructureRowComponent as ɵro, StructureCellComponent as ɵrp, StructureCellEditComponent as ɵrq, StructureCellEditBooleanComponent as ɵrr, StructureContainerComponent as ɵrs, structureParentComponent as ɵrt, StructureQuickFiltersComponent as ɵru, StructureBlueprintComponent as ɵrv, STRUCTURE_CSS_CLASS_NAME as ɵrw, StructureRowDetailViewComponent as ɵrx, DynamicallyCreatedComponent as ɵry, structureRowDetailViewItem as ɵrz, ListViewSelectorToggledEventHandler as ɵs, structureRowDetailViewTemplate as ɵsa, SelectedRow as ɵsb, OriginItemEntity as ɵsc, OriginId as ɵsd, StructureTitlePanelComponent as ɵse, StructureBannerPanel as ɵsf, StructureFooterPanelComponent as ɵsg, structureGates as ɵsh, StructureColumnHeaderGate as ɵsi, StructurePagingGate as ɵsj, StructureSearchingGate as ɵsk, StructureSelectionGate as ɵsl, SelectionGate as ɵsm, StructureL10nGate as ɵsn, StructurePanelGate as ɵso, StructureRowDetailGate as ɵsp, StructureColumnMenuGate as ɵsq, StructureSummariesGate as ɵsr, StructureInfoPanelGate as ɵss, StructureRowClassGate as ɵst, StructureRowStyleGate as ɵsu, StructureRowColoringGate as ɵsv, ThemeGridGate as ɵsw, StructureSortingGate as ɵsx, SourceLoadingGate as ɵsy, StructureFilterGate as ɵsz, ListViewSelectorArchive as ɵt, StructureQuickFiltersGate as ɵta, VerticalFormationGate as ɵtb, ItemEntityFactory as ɵtc, inMemoryStructureCommandProviders as ɵtd, inMemoryStructureReadProviders as ɵte, inMemoryStructureProviders as ɵtf, InMemoryStructureRepository as ɵtg, StructureDomainCommandInvoker as ɵth, GuiListGateway as ɵti, guiListProviders as ɵtj, ListViewCommandInvoker as ɵu, ListViewEventRepository as ɵv, ListViewWarehouse as ɵw, PagingFeatureModule as ɵx, PagingApiModule as ɵy, PagingDomainModule as ɵz };
+export { GuiListCardComponent, GuiListComponent, GuiListDefaultTranslation, GuiListFieldType, GuiListItemComponent, GuiListMode, GuiListModule, StructureComponent, structureIdFactoryForGrid as ɵa, compositionIdFactoryForGrid as ɵb, PagingDispatcher as ɵba, PagingManagerFactory as ɵbb, Logger as ɵbc, SetPagingCommandHandler as ɵbd, StructureAggregateRepository as ɵbe, structureKey as ɵbf, NextPageCommandHandler as ɵbg, PrevPageCommandHandler as ɵbh, ChangePagesizeCommandHandler as ɵbi, PagingCommandInvoker as ɵbj, PagingDomainCommandInvoker as ɵbk, PagingWarehouse as ɵbl, PagingDomainWarehouse as ɵbm, PagingRepository as ɵbn, StructureReadModelRepository as ɵbo, PagingEventRepository as ɵbp, PagingDomainEventRepository as ɵbq, PagingConverter as ɵbr, TranslationFeatureModule as ɵbs, TranslationApiModule as ɵbt, TranslationPipe as ɵbu, TranslationFacade as ɵbv, TranslationDomainFacade as ɵbw, PagingComponent as ɵbx, SmartComponent as ɵby, GuiComponent as ɵbz, schemaIdFactoryForGrid as ɵc, CssClassModifier as ɵca, StructureId as ɵcb, SourceWarehouse as ɵcc, PagingDisplayModeArchive as ɵcd, PagingNavigatorComponent as ɵce, PureComponent as ɵcf, PagingSelectComponent as ɵcg, PagingStatsComponent as ɵch, AlternativePagingNavigatorComponent as ɵci, AlternativePagingPagesComponent as ɵcj, SearchFeatureModule as ɵck, SearchApiModule as ɵcl, SearchDomainModule as ɵcm, SearchManagerFactory as ɵcn, SearchDispatcher as ɵco, SearchHighlightArchive as ɵcp, SearchPlaceholderArchive as ɵcq, SetConfigSearchingCommandHandler as ɵcr, StructureSetSearchPhraseCommandHandler as ɵcs, SourceDomainEventPublisher as ɵct, SearchPhraseSetEventHandler as ɵcu, SearchPhraseArchive as ɵcv, ConfigSearchingSetEventHandler as ɵcw, SearchingEnabledArchive as ɵcx, SearchCommandInvoker as ɵcy, SearchDomainCommandInvoker as ɵcz, ListViewFeatureModule as ɵd, SearchWarehouse as ɵda, SearchDomainWarehouse as ɵdb, SearchEventRepository as ɵdc, SearchDomainEventRepository as ɵdd, SearchIconComponent as ɵde, IconComponent as ɵdf, StaticComponent as ɵdg, SearchComponent as ɵdh, StructureWarehouse as ɵdi, StructureCellEditArchive as ɵdj, CellEditorManager as ɵdk, EmptySourceFeatureModule as ɵdm, EmptySourceComponent as ɵdn, SortingSelectorFeatureModule as ɵdo, SortingSelectorComponent as ɵdp, FilterMenuFeatureModule as ɵdq, FilterApiModule as ɵdr, FilterDomainModule as ɵds, FilterManagerFactory as ɵdt, FilterDispatcher as ɵdu, SetConfigFilterCommandHandler as ɵdv, SetConfigQuickFilterCommandHandler as ɵdw, ToggleFilterCommandHandler as ɵdx, AddFilterCommandHandler as ɵdy, RemoveAllFiltersCommandHandler as ɵdz, listViewKey as ɵe, RemoveFilterCommandHandler as ɵea, SelectUniqueFilterCommandHandler as ɵeb, SelectAllUniqueFilterCommandHandler as ɵec, UnselectUniqueFilterCommandHandler as ɵed, UnselectAllUniqueFilterCommandHandler as ɵee, ConfigQuickFilterSetEventHandler as ɵef, QuickFilterEnabledArchive as ɵeg, ConfigFilterSetEventHandler as ɵeh, FilterEnabledArchive as ɵei, FilterTypeConfigFilterSetEventHandler as ɵej, FilterTypeArchive as ɵek, FilterTypeCollectionModel as ɵel, FilterTypeModel as ɵem, FilterTypeId as ɵen, ActiveFiltersSetEventHandler as ɵeo, ActiveFilterArchive as ɵep, UniqueFilterCalculatedEventHandler as ɵeq, UniqueValueCollectionArchive as ɵer, UniqueValueCollectionModel as ɵes, UniqueValueModel as ɵet, UniqueValueId as ɵeu, FilterTypeFieldsInitedEventHandler as ɵev, FilterCommandInvoker as ɵew, FilterDomainCommandInvoker as ɵex, FilterWarehouse as ɵey, FilterDomainWarehouse as ɵez, ListViewApiModule as ɵf, FilterIntegration as ɵfa, CompositionWarehouse as ɵfb, ActiveFilterListModule as ɵfc, fabricImports as ɵfd, ActiveFilterListComponent as ɵfe, ActiveSearchComponent as ɵff, FilterIconComponent as ɵfg, FilterMenuComponent as ɵfh, CompositionId as ɵfi, FieldWarehouse as ɵfj, FilterMenuTriggerComponent as ɵfk, filterContainerToken as ɵfl, ColumnSelectorComponent as ɵfn, FilterTypeSelectorComponent as ɵfo, FilterValueComponent as ɵfp, FieldSelectorComponent as ɵfq, FilterMenuActiveFiltersComponent as ɵfr, listViewIdFactoryForList as ɵfs, structureIdFactoryForList as ɵft, compositionIdFactoryForList as ɵfu, schemaIdFactoryForList as ɵfv, ListViewComponent as ɵfw, LayoutComponent as ɵfx, StructureIdGenerator as ɵfy, SchemaReadModelRootId as ɵfz, ListViewAggregateFactory as ɵg, ListViewReadModelRootId as ɵga, listViewProviders as ɵgb, ListViewTemplateArchive as ɵgc, ListViewCardTemplateArchive as ɵgd, StructureCommandInvoker as ɵge, ListViewItemComponent as ɵgf, ListViewLayoutComponent as ɵgg, ListViewSourceComponent as ɵgh, ListViewContainerCardComponent as ɵgi, ListViewCardItemComponent as ɵgj, ListViewContainerModeSelectComponent as ɵgk, listViewGatewayDeclarations as ɵgl, ListViewPagingGate as ɵgm, PagingGate as ɵgn, Gate as ɵgo, ListViewModeGate as ɵgp, ListViewTemplateGate as ɵgq, ListViewFieldGate as ɵgr, FieldCommandInvoker as ɵgs, ListViewSearchingGate as ɵgt, SearchingGate as ɵgu, ListViewL10nGate as ɵgv, ListViewSourceGate as ɵgw, SourceGate as ɵgx, SourceCommandInvoker as ɵgy, SourceEventService as ɵgz, InMemoryListViewAggregateRepository as ɵh, createStructureDefinition as ɵha, StructureModule as ɵhb, StructureAggregateFactory as ɵhc, SourceManagerFactory as ɵhd, FormationManagerFactory as ɵhe, VerticalFormationFactory as ɵhf, SummariesManagerFactory as ɵhg, SUMMARIES_CALCULATORS as ɵhh, SummariesCalculator as ɵhi, FieldCollectionFactory as ɵhj, FieldEntityFactory as ɵhk, FieldEntityIdGenerator as ɵhl, DataFieldFactory as ɵhm, InMemoryStructureAggregateRepository as ɵhn, InMemoryStructureAggregateStore as ɵho, InMemoryStructureStore as ɵhp, CreateStructureCommandHandler as ɵhq, SortingDomainModule as ɵhr, SortingDispatcher as ɵhs, ToggleSortCommandHandler as ɵht, SetSortingCommandHandler as ɵhu, SetSortOrderCommandHandler as ɵhv, FieldDomainModule as ɵhw, FieldDispatcher as ɵhx, InitFieldsCommandHandler as ɵhy, FieldsInitedEventHandler as ɵhz, ListViewAggregateRepository as ɵi, FieldArchive as ɵia, FieldConverter as ɵib, SourceDomainModule as ɵic, SourceDispatcher as ɵid, SourceSetLoadingCommandHandler as ɵie, SetOriginCommandHandler as ɵif, StructureEditSourceItemCommandHandler as ɵig, DeleteOriginItemCommandHandler as ɵih, StructureOriginChangedEventHandler as ɵii, StructureSourceOriginArchive as ɵij, StructurePreparedItemsEventHandler as ɵik, StructurePreparedItemsArchive as ɵil, FormationDomainModule as ɵim, FormationDispatcher as ɵin, SetEnabledSelectionCommandHandler as ɵio, SetSelectionModeCommandHandler as ɵip, SelectAllRowsCommandHandler as ɵiq, UnselectAllRowsCommandHandler as ɵir, ToggleSelectedRowCommandHandler as ɵis, SelectedRowChangedEventHandler as ɵit, RowSelectedArchive as ɵiu, RowSelectedReadModel as ɵiv, SelectionModeSetEventHandler as ɵiw, RowSelectionModeArchive as ɵix, SummariesDomainModule as ɵiy, provideSummariesCalculator as ɵiz, InMemoryListViewAggregateStore as ɵj, BooleanSummariesCalculator as ɵja, DateSummariesCalculator as ɵjb, NumberSummariesCalculator as ɵjc, StringSummariesCalculator as ɵjd, UnknownSummariesCalculator as ɵje, SummariesDispatcher as ɵjf, StructureSetSummariesEnabledCommandHandler as ɵjg, StructureSummariesEnabledSetEventHandler as ɵjh, SummariesEnabledArchive as ɵji, VerticalFormationDomainModule as ɵjj, VerticalFormationDispatcher as ɵjk, SetScrollPositionCommandHandler as ɵjl, SetVerticalScrollEnabledCommandHandler as ɵjm, SetRowHeightBasedOnThemeCommandHandler as ɵjn, SetRowHeightCommandHandler as ɵjo, StructureSetHeightCommandHandler as ɵjp, SetScrollBarPositionCommandHandler as ɵjq, ScrollBarPositionSetEventHandler as ɵjr, VerticalFormationScrollBarPositionArchive as ɵjs, structureCommandHandlers as ɵjt, structureDomainEventHandlers as ɵju, structureProviders as ɵjv, StructureCreatedEventHandler as ɵjw, ResizeDetectorModule as ɵjx, ResizeDetector as ɵjy, SortingFeatureModule as ɵjz, InMemoryListViewStore as ɵk, SortingApiModule as ɵka, SortingCommandInvoker as ɵkb, SortingDomainCommandInvoker as ɵkc, FieldFeatureModule as ɵkd, FieldApiModule as ɵke, FieldDomainCommandInvoker as ɵkf, FieldDomainWarehouse as ɵkg, FormationFeatureModule as ɵkh, FormationApiModule as ɵki, FormationEventRepository as ɵkj, FormationCommandInvoker as ɵkk, FormationDomainCommandInvoker as ɵkl, FormationWarehouse as ɵkm, FormationDomainWarehouse as ɵkn, RowSelectionTypeArchive as ɵko, SourceFeatureModule as ɵkp, SourceApiModule as ɵkq, SourceConverter as ɵkr, SourceDomainCommandInvoker as ɵks, SourceDomainWarehouse as ɵkt, SummariesFeatureModule as ɵku, SummariesApiModule as ɵkv, SummariesCommandInvoker as ɵkw, SummariesDomainCommandInvoker as ɵkx, StructureSummariesPanelConfigConverter as ɵky, StructureSummariesConfigArchive as ɵkz, CreateListViewCommandHandler as ɵl, StructureSummariesPanelConfig as ɵla, SummariesEventRepository as ɵlb, SummariesDomainEventRepository as ɵlc, SummariesWarehouse as ɵld, SummariesDomainWarehouse as ɵle, StructureSummariesPanelComponent as ɵlf, VerticalFormationFeatureModule as ɵlg, VerticalFormationApiModule as ɵlh, VerticalFormationConverter as ɵli, VerticalFormationRepository as ɵlj, InMemoryStructureReadStore as ɵlk, StructureReadModelRootConverter as ɵll, VerticalFormationWarehouse as ɵlm, VerticalFormationDomainWarehouse as ɵln, VerticalFormationCommandInvoker as ɵlo, VerticalFormationDomainCommandInvoker as ɵlp, SchemaFeatureModule as ɵlq, SchemaApiModule as ɵlr, schemaKey as ɵls, SchemaAggregateFactory as ɵlt, InMemorySchemaAggregateRepository as ɵlu, SchemaAggregateRepository as ɵlv, InMemorySchemaAggregateStore as ɵlw, InMemorySchemaStore as ɵlx, CreateSchemaCommandHandler as ɵly, SchemaDomainModule as ɵlz, ListViewDomainModule as ɵm, SetSchemaThemeCommandHandler as ɵma, SetRowColoringCommandHandler as ɵmb, SetSchemaHorizontalGridCommandHandler as ɵmc, SetSchemaVerticalGridCommandHandler as ɵmd, SchemaThemeRepository as ɵme, SchemaHorizontalGridRepository as ɵmf, SchemaRowColoringRepository as ɵmg, SchemaVerticalGridRepository as ɵmh, SchemaCssClassesEventHandler as ɵmi, SchemaCssClassesRepository as ɵmj, SchemaDispatcher as ɵmk, SchemaCommandInvoker as ɵml, SchemaDomainCommandInvoker as ɵmm, SchemaWarehouse as ɵmn, SchemaDomainWarehouse as ɵmo, SchemaEventRepository as ɵmp, SchemaDomainEventRepository as ɵmq, SchemaRowClassArchive as ɵmr, SchemaRowStyleArchive as ɵms, StructureSharedModule as ɵmt, CssClassModule as ɵmu, StructureInfoPanelModule as ɵmv, NumberFormatterModule as ɵmw, NumberFormatterPipe as ɵmx, StructureColumnManagerModule as ɵmy, StructureColumnManagerComponent as ɵmz, ListViewDispatcher as ɵn, CompositionCommandInvoker as ɵna, StructureDialogColumnManagerComponent as ɵnb, StructureMenuColumnManagerComponent as ɵnc, StructureColumnManagerIconComponent as ɵnd, StructureDialogColumnManagerService as ɵne, StructureThemeConverter as ɵnf, SchemaManagerModule as ɵng, StructureSchemaMangerComponent as ɵnh, StructureDialogSchemaManagerComponent as ɵni, StructureSchemaManagerIconComponent as ɵnj, StructureDialogSchemaManagerService as ɵnk, SourceCounterFeatureModule as ɵnl, ActiveFilterMenuTriggerDirective as ɵnm, ActiveFilterService as ɵnn, ActiveFilterMenuComponent as ɵno, StructureInfoPanelComponent as ɵnp, StructureInfoPanelArchive as ɵnq, StructureInfoModalComponent as ɵnr, StructureInfoIconComponent as ɵns, StructureInfoPanelConfigConverter as ɵnt, StructureTopPanelModule as ɵnu, StructureTopPanelComponent as ɵnv, StructureColumnMenuModule as ɵnw, UniqueValueListModule as ɵnx, UniqueValueListComponent as ɵny, StructureColumnConfigComponent as ɵnz, SetListViewModeCommandHandler as ɵo, StructureColumnMenuConfigArchive as ɵoa, CellTemplateWithContext as ɵob, CellContext as ɵoc, CellValueType as ɵod, CellValue as ɵoe, FieldId as ɵof, ColumnDefinitionId as ɵog, SortOrder as ɵoh, ColumnAlign as ɵoi, StructureColumnConfigTriggerComponent as ɵoj, StructureColumnConfigService as ɵok, StructureColumnConfigSortComponent as ɵol, StructureColumnConfigColumnHideComponent as ɵom, StructureColumnConfigColumnMoveComponent as ɵon, StructureColumnMenuIconComponent as ɵoo, StructureColumnMenuArrowIconComponent as ɵop, CompositionFeatureModule as ɵoq, CompositionApiModule as ɵor, compositionKey as ɵos, CompositionAggregateFactory as ɵot, ColumnEntityFactory as ɵou, ColumnPresentationConverter as ɵov, CompositionGroupFactory as ɵow, InMemoryCompositionAggregateRepository as ɵox, CompositionAggregateRepository as ɵoy, InMemoryCompositionAggregateStore as ɵoz, ToggleListViewSelectorCommandHandler as ɵp, InMemoryCompositionStore as ɵpa, CreateCompositionCommandHandler as ɵpb, CompositionDomainModule as ɵpc, inMemoryCompositionCommandProviders as ɵpd, inMemoryCompositionReadModelProviders as ɵpe, inMemoryCompositionProviders as ɵpf, CompositionDispatcher as ɵpg, CompositionEventConverter as ɵph, ColumnFieldFactory as ɵpi, ColumnHighlightArchive as ɵpj, Override as ɵpk, SetColumnsCommandHandler as ɵpl, SetCompositionWidthCommandHandler as ɵpm, SetCompositionResizeWidthCommandHandler as ɵpn, SetCompositionContainerWidthCommandHandler as ɵpo, CompositionSetColumnEnabledCommandHandler as ɵpp, CompositionChangeSortStatusCommandHandler as ɵpq, CompositionMoveLeftColumnCommandHandler as ɵpr, CompositionMoveRightColumnCommandHandler as ɵps, SetGroupsCommandHandler as ɵpt, CompositionChangeSortStatusEventHandler as ɵpu, InMemoryCompositionReadStore as ɵpv, CompositionReadModelRootConverter as ɵpw, ColumnDefinitionFactory as ɵpx, ViewTemplateRepository as ɵpy, ViewTemplateFactory as ɵpz, ListViewModeSetEventHandler as ɵq, TemplateFactory as ɵqa, EditTemplateRepository as ɵqb, EditTemplateFactory as ɵqc, CompositionReadModelRootRepository as ɵqd, InMemoryCompositionRepository as ɵqe, CompositionGroupArchive as ɵqf, GroupCollection as ɵqg, Group as ɵqh, GroupId as ɵqi, CompositionDomainCommandInvoker as ɵqj, CompositionDomainWarehouse as ɵqk, CompositionEventRepository as ɵql, CompositionDomainEventRepository as ɵqm, ColumnAutoConfigurator as ɵqn, DomainColumnAutoConfigurator as ɵqo, SanitizeModule as ɵqp, SafePipe as ɵqq, ViewTemplatesComponent as ɵqr, EditTemplatesComponent as ɵqs, StringEditTemplateComponent as ɵqt, InputEditTemplateComponent as ɵqu, EditCommunicationComponent as ɵqv, NumberEditTemplateComponent as ɵqw, BooleanEditTemplateComponent as ɵqx, DateEditTemplateComponent as ɵqy, ColumnQueryComponent as ɵqz, ListViewModeArchive as ɵr, FunctionViewComponent as ɵra, BarViewComponent as ɵrb, PercentageViewComponent as ɵrc, TextViewComponent as ɵrd, LoggerModule as ɵre, ConsoleLogger as ɵrf, StructureGateway as ɵrg, StructureEditModeArchive as ɵrh, StructureInfoPanelConfigService as ɵri, StructureCellEditStore as ɵrj, RowSelectEnabledRepository as ɵrk, StructureHeaderBottomEnabledArchive as ɵrl, StructureInitialValuesReadyArchive as ɵrm, SchemaCssClassManager as ɵrn, StructureCellEditCloseAllService as ɵro, StructureHeaderTopEnabledArchive as ɵrp, StructureRowDetailConfigArchive as ɵrq, StructureRowDetailService as ɵrr, StructureTitlePanelConfigArchive as ɵrs, StructureFooterPanelConfigArchive as ɵrt, structureComponentToken as ɵru, StructureDefinition as ɵrv, PagingDefinition as ɵrw, StructureHeaderComponent as ɵrx, StructureHeaderColumnsComponent as ɵry, StructureHeaderFiltersComponent as ɵrz, ListViewSelectorToggledEventHandler as ɵs, StructureHeaderGroupsComponent as ɵsa, StructureHeaderFilterComponent as ɵsb, SelectAllComponent as ɵsc, StructureContentComponent as ɵsd, StructureRowComponent as ɵse, StructureCellComponent as ɵsf, StructureCellEditComponent as ɵsg, StructureCellEditBooleanComponent as ɵsh, StructureContainerComponent as ɵsi, structureParentComponent as ɵsj, StructureQuickFiltersComponent as ɵsk, StructureBlueprintComponent as ɵsl, STRUCTURE_CSS_CLASS_NAME as ɵsm, StructureRowDetailViewComponent as ɵsn, DynamicallyCreatedComponent as ɵso, structureRowDetailViewItem as ɵsp, structureRowDetailViewTemplate as ɵsq, SelectedRow as ɵsr, OriginItemEntity as ɵss, OriginId as ɵst, StructureTitlePanelComponent as ɵsu, StructureBannerPanel as ɵsv, StructureFooterPanelComponent as ɵsw, structureGates as ɵsx, StructureColumnHeaderGate as ɵsy, StructurePagingGate as ɵsz, ListViewSelectorArchive as ɵt, StructureSearchingGate as ɵta, StructureSelectionGate as ɵtb, SelectionGate as ɵtc, StructureL10nGate as ɵtd, StructurePanelGate as ɵte, StructureRowDetailGate as ɵtf, StructureColumnMenuGate as ɵtg, StructureSummariesGate as ɵth, StructureInfoPanelGate as ɵti, StructureRowClassGate as ɵtj, StructureRowStyleGate as ɵtk, StructureRowColoringGate as ɵtl, ThemeGridGate as ɵtm, StructureSortingGate as ɵtn, SourceLoadingGate as ɵto, StructureFilterGate as ɵtp, StructureQuickFiltersGate as ɵtq, VerticalFormationGate as ɵtr, ItemEntityFactory as ɵts, inMemoryStructureCommandProviders as ɵtt, inMemoryStructureReadProviders as ɵtu, inMemoryStructureProviders as ɵtv, InMemoryStructureRepository as ɵtw, StructureDomainCommandInvoker as ɵtx, GuiListGateway as ɵty, guiListProviders as ɵtz, ListViewCommandInvoker as ɵu, ListViewEventRepository as ɵv, ListViewWarehouse as ɵw, PagingFeatureModule as ɵx, PagingApiModule as ɵy, PagingDomainModule as ɵz };
 //# sourceMappingURL=generic-ui-ngx-list.js.map

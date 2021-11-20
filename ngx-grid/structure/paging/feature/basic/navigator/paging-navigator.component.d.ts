@@ -1,8 +1,8 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
-import { Paging } from '../../../core/api/read/paging';
+import { PagingModel } from '../../../core/api/paging.model';
 import { PureComponent } from '../../../../../common/cdk/component/pure-component';
 export declare class PagingNavigatorComponent extends PureComponent implements OnChanges {
-    paging: Paging;
+    paging: PagingModel;
     sourceSize?: number;
     nextPageChanged: EventEmitter<any>;
     prevPageChanged: EventEmitter<any>;

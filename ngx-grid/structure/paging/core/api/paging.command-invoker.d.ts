@@ -1,6 +1,6 @@
 import { CommandInvoker } from '@generic-ui/hermes';
 import { StructureId } from '../../../core/api/structure.id';
-import { PagingConfig } from './paging-config';
+import { PagingConfig } from './config/paging-config';
 export declare abstract class PagingCommandInvoker implements CommandInvoker {
     protected constructor();
     abstract enable(structureId: StructureId): void;

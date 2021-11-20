@@ -1,7 +1,7 @@
 import { FieldCollection } from './field-collection';
-import { FieldFactory } from './field/field.factory';
+import { FieldEntityFactory } from './field/field.entity-factory';
 export declare class FieldCollectionFactory {
     private readonly fieldFactory;
-    constructor(fieldFactory: FieldFactory);
+    constructor(fieldFactory: FieldEntityFactory);
     create(): FieldCollection;
 }

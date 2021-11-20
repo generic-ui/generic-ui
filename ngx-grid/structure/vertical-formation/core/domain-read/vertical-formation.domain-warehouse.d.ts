@@ -1,4 +1,4 @@
-import { VerticalFormationRepository } from '../api/vertical-formation.repository';
+import { VerticalFormationRepository } from './vertical-formation.repository';
 import { VerticalFormationScrollBarPositionArchive } from './scroll-bar/vertical-formation.scroll-bar-position.archive';
 import { StructureId } from '../../../core/api/structure.id';
 import { HermesObservable } from '@generic-ui/hermes';

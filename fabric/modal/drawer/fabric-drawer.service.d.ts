@@ -13,5 +13,4 @@ export declare class FabricDrawerService extends FabricModal<FabricDrawerCompone
     private waitAndCreateNewDrawer;
     private applyInstanceVars;
     private closeOnEscKey;
-    private getComponentInstance;
 }

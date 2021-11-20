@@ -3,7 +3,7 @@ import { SmartComponent } from '../../../../common/cdk/component/smart-component
 import { FieldId } from '../../../field/core/domain/field/field.id';
 import { StructureId } from '../../../core/api/structure.id';
 import { FilterWarehouse } from '../../core/api/filter.warehouse';
-import { UniqueValueReadModel } from '../../core/api/unique/unique-value.read-model';
+import { UniqueValueModel } from '../../core/api/unique/unique-value.model';
 import { FilterCommandInvoker } from '../../core/api/filter.command-invoker';
 export declare class UniqueValueListComponent extends SmartComponent implements OnInit {
     private readonly structureId;
@@ -12,11 +12,11 @@ export declare class UniqueValueListComponent extends SmartComponent implements 
     fieldId: FieldId;
     selectAllChecked: boolean;
     selectAllIndeterminate: boolean;
-    uniqueValues: Array<UniqueValueReadModel>;
+    uniqueValues: Array<UniqueValueModel>;
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, filterWarehouse: FilterWarehouse, filterCommandInvoker: FilterCommandInvoker);
     ngOnInit(): void;
     toggleAllSelect(): void;
-    toggleSelect(uniqueValueReadModel: UniqueValueReadModel): void;
+    toggleSelect(uniqueValueReadModel: UniqueValueModel): void;
     clearFilters(): void;
     protected getSelectorName(): string;
 }

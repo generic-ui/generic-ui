@@ -1,17 +1,17 @@
 import { FieldId } from './field/field.id';
-import { Field } from './field/field';
+import { FieldEntity } from './field/field.entity';
 import { FieldConfig } from '../api/field.config';
-import { FieldFactory } from './field/field.factory';
+import { FieldEntityFactory } from './field/field.entity-factory';
 export declare class FieldCollection {
     private readonly fieldFactory;
     private readonly fields;
-    constructor(fieldFactory: FieldFactory);
-    getField(fieldId: FieldId): Field;
+    constructor(fieldFactory: FieldEntityFactory);
+    getField(fieldId: FieldId): FieldEntity;
     getAllFieldIds(): Array<string>;
-    getAllFields(): Array<Field>;
-    getFieldsAsMap(): Map<string, Field>;
+    getAllFields(): Array<FieldEntity>;
+    getFieldsAsMap(): Map<string, FieldEntity>;
     initFields(fieldConfigs: Array<FieldConfig>): void;
-    addFields(fields: Array<Field>): void;
+    addFields(fields: Array<FieldEntity>): void;
     private addField;
     private clear;
 }

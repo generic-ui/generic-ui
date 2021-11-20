@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { StructureId } from '../../../../../core/api/structure.id';
-import { FormationCommandInvoker } from '../../../../../source/core/api/formation/formation.command-invoker';
+import { FormationCommandInvoker } from '../../../../../formation/core/api/formation.command-invoker';
 import { SmartComponent } from '../../../../../../common/cdk/component/smart-component';
-import { FormationWarehouse } from '../../../../../source/core/api/formation/formation.warehouse';
-import { RowSelectionModeRepository } from '../../../../../source/core/api/formation/mode/row-selection-mode.repository';
+import { FormationWarehouse } from '../../../../../formation/core/api/formation.warehouse';
+import { RowSelectionModeArchive } from '../../../../../formation/core/api/mode/row-selection-mode.archive';
 export declare class SelectAllComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
     private readonly structureId;
@@ -13,7 +13,7 @@ export declare class SelectAllComponent extends SmartComponent implements OnInit
     selectAllChecked: boolean;
     selectAllIndeterminate: boolean;
     modeMulti: boolean;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, rowSelectionModeRepository: RowSelectionModeRepository, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, rowSelectionModeRepository: RowSelectionModeArchive, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse);
     ngOnInit(): void;
     toggleSelectAll(): void;
     protected getSelectorName(): string;

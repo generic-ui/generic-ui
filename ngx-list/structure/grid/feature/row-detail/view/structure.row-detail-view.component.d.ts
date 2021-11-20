@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SelectedRow } from '../../../../source/core/api/formation/selected-row';
+import { SelectedRow } from '../../../../formation/core/api/row-selected/selected-row';
 import { DynamicallyCreatedComponent } from '../../../../../common/cdk/component/dynamically-created-component';
 import { OriginItemEntity } from '../../../../source/core/domain/origin/origin-item-entity';
 export declare class StructureRowDetailViewComponent extends DynamicallyCreatedComponent implements OnInit {

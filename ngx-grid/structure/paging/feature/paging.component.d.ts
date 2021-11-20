@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
-import { Paging } from '../core/api/read/paging';
+import { PagingModel } from '../core/api/paging.model';
 import { PagingWarehouse } from '../core/api/paging.warehouse';
 import { PagingCommandInvoker } from '../core/api/paging.command-invoker';
 import { SourceWarehouse } from '../../source/core/api/source.warehouse';
@@ -21,7 +21,7 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     position: PagingPosition;
     minimal: boolean;
     sourceSize: number;
-    paging: Paging;
+    paging: PagingModel;
     alternativeDisplay: boolean;
     isPagingVisible: boolean;
     private readonly localStreamCloser;

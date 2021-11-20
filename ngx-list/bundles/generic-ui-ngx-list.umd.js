@@ -1555,10 +1555,10 @@
         function PagingDispatcher(commandDispatcher) {
             this.commandDispatcher = commandDispatcher;
         }
-        PagingDispatcher.prototype.setPaging = function (structureId, paging) {
+        PagingDispatcher.prototype.setPaging = function (paging, structureId) {
             this.commandDispatcher.dispatch(new SetPagingCommand(structureId, paging));
         };
-        PagingDispatcher.prototype.changePageSize = function (structureId, pageSize) {
+        PagingDispatcher.prototype.changePageSize = function (pageSize, structureId) {
             this.commandDispatcher.dispatch(new ChangePagesizeCommand(structureId, pageSize));
         };
         PagingDispatcher.prototype.nextPage = function (structureId) {
@@ -1771,8 +1771,8 @@
     ];
     PagingDomainModule.ctorParameters = function () { return []; };
 
-    var Paging = /** @class */ (function () {
-        function Paging(enabled, page, pageSize, pageSizes, pagerTop, pagerBottom, isNextDisabled, isPrevDisabled, start, end, sourceSize) {
+    var PagingModel = /** @class */ (function () {
+        function PagingModel(enabled, page, pageSize, pageSizes, pagerTop, pagerBottom, isNextDisabled, isPrevDisabled, start, end, sourceSize) {
             this.enabled = enabled;
             this.page = page;
             this.pageSize = pageSize;
@@ -1785,43 +1785,43 @@
             this.end = end;
             this.sourceSize = sourceSize;
         }
-        Paging.prototype.isEnabled = function () {
+        PagingModel.prototype.isEnabled = function () {
             return this.enabled;
         };
-        Paging.prototype.getPage = function () {
+        PagingModel.prototype.getPage = function () {
             return this.page;
         };
-        Paging.prototype.getPageSize = function () {
+        PagingModel.prototype.getPageSize = function () {
             return this.pageSize;
         };
-        Paging.prototype.getPageSizes = function () {
+        PagingModel.prototype.getPageSizes = function () {
             return this.pageSizes;
         };
-        Paging.prototype.isPagerTop = function () {
+        PagingModel.prototype.isPagerTop = function () {
             return this.pagerTop;
         };
-        Paging.prototype.isPagerBottom = function () {
+        PagingModel.prototype.isPagerBottom = function () {
             return this.pagerBottom;
         };
-        Paging.prototype.isNextPageDisabled = function () {
+        PagingModel.prototype.isNextPageDisabled = function () {
             return this.isNextDisabled;
         };
-        Paging.prototype.isPrevPageDisabled = function () {
+        PagingModel.prototype.isPrevPageDisabled = function () {
             return this.isPrevDisabled;
         };
-        Paging.prototype.getStart = function () {
+        PagingModel.prototype.getStart = function () {
             return this.start;
         };
-        Paging.prototype.getEnd = function () {
+        PagingModel.prototype.getEnd = function () {
             return this.end;
         };
-        Paging.prototype.getSourceSize = function () {
+        PagingModel.prototype.getSourceSize = function () {
             return this.sourceSize;
         };
-        Paging.prototype.calculateVisiblePages = function (currentPage, numberOfVisiblePages, page) {
+        PagingModel.prototype.calculateVisiblePages = function (currentPage, numberOfVisiblePages, page) {
             return currentPage - numberOfVisiblePages < page && page < currentPage + numberOfVisiblePages;
         };
-        Paging.prototype.sample = function (source) {
+        PagingModel.prototype.sample = function (source) {
             var start = this.getStart();
             if (start !== 0) {
                 start -= 1;
@@ -1829,20 +1829,20 @@
             return source.slice(start, this.getEnd());
         };
         // TODO
-        Paging.prototype.compare = function (target) {
+        PagingModel.prototype.compare = function (target) {
             return JSON.stringify(this) === JSON.stringify(target);
         };
-        return Paging;
+        return PagingModel;
     }());
-    Paging = __decorate([
+    PagingModel = __decorate([
         hermes.ReadModelObject
-    ], Paging);
+    ], PagingModel);
 
     var PagingConverter = /** @class */ (function () {
         function PagingConverter() {
         }
         PagingConverter.prototype.convert = function (aggregate) {
-            return new Paging(aggregate.isEnabled(), aggregate.getPage(), aggregate.getPageSize(), aggregate.getPageSizes(), aggregate.isPagerTop(), aggregate.isPagerBottom(), aggregate.isNextPageDisabled(), aggregate.isPrevPageDisabled(), aggregate.calculateStart(), aggregate.calculateEnd(), aggregate.getSourceSize());
+            return new PagingModel(aggregate.isEnabled(), aggregate.getPage(), aggregate.getPageSize(), aggregate.getPageSizes(), aggregate.isPagerTop(), aggregate.isPagerBottom(), aggregate.isNextPageDisabled(), aggregate.isPrevPageDisabled(), aggregate.calculateStart(), aggregate.calculateEnd(), aggregate.getSourceSize());
         };
         return PagingConverter;
     }());
@@ -1900,9 +1900,7 @@
             return this.pagingRepository.on(structureId);
         };
         PagingDomainWarehouse.prototype.oncePaging = function (structureId) {
-            return this.pagingRepository
-                .on(structureId)
-                .pipe(hermes.hermesTake(1));
+            return hermes.singleFromObservable(this.pagingRepository.on(structureId));
         };
         return PagingDomainWarehouse;
     }(PagingWarehouse));
@@ -1921,16 +1919,16 @@
             return _this;
         }
         PagingDomainCommandInvoker.prototype.enable = function (structureId) {
-            this.pagingDispatcher.setPaging(structureId, { enabled: true });
+            this.pagingDispatcher.setPaging({ enabled: true }, structureId);
         };
         PagingDomainCommandInvoker.prototype.disable = function (structureId) {
-            this.pagingDispatcher.setPaging(structureId, { enabled: false });
+            this.pagingDispatcher.setPaging({ enabled: false }, structureId);
         };
         PagingDomainCommandInvoker.prototype.setPaging = function (paging, structureId) {
-            this.pagingDispatcher.setPaging(structureId, paging);
+            this.pagingDispatcher.setPaging(paging, structureId);
         };
         PagingDomainCommandInvoker.prototype.changePageSize = function (pageSize, structureId) {
-            this.pagingDispatcher.changePageSize(structureId, pageSize);
+            this.pagingDispatcher.changePageSize(pageSize, structureId);
         };
         PagingDomainCommandInvoker.prototype.nextPage = function (structureId) {
             this.pagingDispatcher.nextPage(structureId);
@@ -1953,10 +1951,10 @@
             }
         };
         PagingDomainCommandInvoker.prototype.changePagerTop = function (enabled, structureId) {
-            this.pagingDispatcher.setPaging(structureId, { pagerTop: enabled });
+            this.pagingDispatcher.setPaging({ pagerTop: enabled }, structureId);
         };
         PagingDomainCommandInvoker.prototype.changePagerBottom = function (enabled, structureId) {
-            this.pagingDispatcher.setPaging(structureId, { pagerBottom: enabled });
+            this.pagingDispatcher.setPaging({ pagerBottom: enabled }, structureId);
         };
         return PagingDomainCommandInvoker;
     }(PagingCommandInvoker));
@@ -2827,16 +2825,17 @@
             return _this;
         }
         EmptySourceComponent.prototype.ngOnChanges = function (changes) {
-            if (this.hasChanged(changes.items)) {
-                if (this.items.length === 0) {
-                    this.removeClassFromHost('gui-hidden');
-                    this.addClassToHost('gui-block');
+            var _this = this;
+            ifChanged(changes.items, function () {
+                if (_this.items.length === 0) {
+                    _this.removeClassFromHost('gui-hidden');
+                    _this.addClassToHost('gui-block');
                 }
                 else {
-                    this.removeClassFromHost('gui-block');
-                    this.addClassToHost('gui-hidden');
+                    _this.removeClassFromHost('gui-block');
+                    _this.addClassToHost('gui-hidden');
                 }
-            }
+            });
         };
         EmptySourceComponent.prototype.getSelectorName = function () {
             return 'gui-empty-source';
@@ -3581,36 +3580,15 @@
         cardTemplate: [{ type: core.Input }]
     };
 
-    var InitFieldsCommand = /** @class */ (function (_super) {
-        __extends(InitFieldsCommand, _super);
-        function InitFieldsCommand(structureId, fieldConfigs) {
-            var _this = _super.call(this, structureId, 'InitFieldsCommand') || this;
-            _this.fieldConfigs = fieldConfigs;
-            return _this;
-        }
-        InitFieldsCommand.prototype.getFieldConfigs = function () {
-            return this.fieldConfigs;
-        };
-        return InitFieldsCommand;
-    }(StructureCommand));
-
     var FieldCommandInvoker = /** @class */ (function () {
-        function FieldCommandInvoker(domainEventBus, commandDispatcher) {
-            this.domainEventBus = domainEventBus;
-            this.commandDispatcher = commandDispatcher;
+        function FieldCommandInvoker() {
         }
-        FieldCommandInvoker.prototype.initFields = function (fieldConfigs, structureId) {
-            this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
-        };
         return FieldCommandInvoker;
     }());
     FieldCommandInvoker.decorators = [
         { type: core.Injectable }
     ];
-    FieldCommandInvoker.ctorParameters = function () { return [
-        { type: hermes.DomainEventBus },
-        { type: hermes.CommandDispatcher }
-    ]; };
+    FieldCommandInvoker.ctorParameters = function () { return []; };
 
     var ListViewFieldGate = /** @class */ (function (_super) {
         __extends(ListViewFieldGate, _super);
@@ -3765,12 +3743,12 @@
     ];
     SourceCommandInvoker.ctorParameters = function () { return []; };
 
-    var EditemItemValues = /** @class */ (function () {
-        function EditemItemValues(after, before) {
+    var EditedItemModel = /** @class */ (function () {
+        function EditedItemModel(after, before) {
             this.after = after;
             this.before = before;
         }
-        return EditemItemValues;
+        return EditedItemModel;
     }());
 
     var StructureSourceItemEditedEvent = /** @class */ (function (_super) {
@@ -3801,7 +3779,7 @@
             ])
                 .pipe(hermes.hermesFilter(function (event) { return event.getAggregateId().toString() === structureId.toString(); }), hermes.hermesMap(function (event) {
                 var afterItem = event.getAfterItem().getSourceItem(), beforeItem = event.getBeforeItem().getSourceItem();
-                return new EditemItemValues(afterItem, beforeItem);
+                return new EditedItemModel(afterItem, beforeItem);
             }));
         };
         return SourceEventService;
@@ -4760,34 +4738,15 @@
     ];
     CompositionWarehouse.ctorParameters = function () { return []; };
 
-    var FieldReadModelArchive = /** @class */ (function (_super) {
-        __extends(FieldReadModelArchive, _super);
-        function FieldReadModelArchive() {
-            return _super.call(this, FieldReadModelArchive.default) || this;
-        }
-        return FieldReadModelArchive;
-    }(hermes.AggregateArchive));
-    FieldReadModelArchive.default = [];
-    FieldReadModelArchive.decorators = [
-        { type: core.Injectable }
-    ];
-    FieldReadModelArchive.ctorParameters = function () { return []; };
-
     var FieldWarehouse = /** @class */ (function () {
-        function FieldWarehouse(fieldReadModelArchive) {
-            this.fieldReadModelArchive = fieldReadModelArchive;
+        function FieldWarehouse() {
         }
-        FieldWarehouse.prototype.onFields = function (structureId) {
-            return this.fieldReadModelArchive.on(structureId);
-        };
         return FieldWarehouse;
     }());
     FieldWarehouse.decorators = [
         { type: core.Injectable }
     ];
-    FieldWarehouse.ctorParameters = function () { return [
-        { type: FieldReadModelArchive }
-    ]; };
+    FieldWarehouse.ctorParameters = function () { return []; };
 
     var FilterWarehouse = /** @class */ (function () {
         function FilterWarehouse() {
@@ -4864,7 +4823,8 @@
             event.preventDefault();
             this.filterCommandInvoker.remove(filterId, this.structureId);
         };
-        FilterMenuComponent.prototype.removeFilter = function () { };
+        FilterMenuComponent.prototype.removeFilter = function () {
+        };
         FilterMenuComponent.prototype.clearAddFilterForm = function () {
             this.selectedColumn = null;
             this.selectedField = null;
@@ -4880,7 +4840,7 @@
     FilterMenuComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-filter-menu]',
-                    template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div gui-filter-menu-active-filters\n\t (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\">\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div *ngIf=\"selectedFilterTypeId\"\n\t\t (valueChanged)=\"onValueChanged($event)\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n",
+                    template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -4917,7 +4877,7 @@
         };
         FilterMenuTriggerComponent.prototype.openDrawer = function () {
             var elementRef = this.filterContainerRef.getElementRef();
-            this.fabricDialogService.open(FilterMenuComponent, { injector: this.injector });
+            this.fabricDialogService.open({ component: FilterMenuComponent, injector: this.injector });
             // this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
         };
         FilterMenuTriggerComponent.prototype.getSelectorName = function () {
@@ -5011,7 +4971,7 @@
     FilterTypeSelectorComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-filter-type-selector][filterTypes]',
-                    template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n",
+                    template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -5380,12 +5340,15 @@
         { type: hermes.DomainEventPublisher }
     ]; };
 
-    var Filter = /** @class */ (function () {
+    var Filter = /** @class */ (function (_super) {
+        __extends(Filter, _super);
         function Filter(filterId, fieldId, filterTypeId, filterValue) {
-            this.filterId = filterId;
-            this.fieldId = fieldId;
-            this.filterTypeId = filterTypeId;
-            this.filterValue = filterValue;
+            var _this = _super.call(this, filterId) || this;
+            _this.filterId = filterId;
+            _this.fieldId = fieldId;
+            _this.filterTypeId = filterTypeId;
+            _this.filterValue = filterValue;
+            return _this;
         }
         Filter.prototype.getFilterId = function () {
             return this.filterId;
@@ -5400,7 +5363,7 @@
             return this.filterValue;
         };
         return Filter;
-    }());
+    }(hermes.Entity));
 
     var FilterSettings = /** @class */ (function () {
         function FilterSettings(filteringEnabled, searchEnabled, quickFiltersEnabled) {
@@ -5441,12 +5404,18 @@
         return FilterSettings;
     }());
 
-    var BaseFilterType = /** @class */ (function () {
+    var BaseFilterType = /** @class */ (function (_super) {
+        __extends(BaseFilterType, _super);
+        // private readonly filterTypeId: FilterTypeId;
         function BaseFilterType(filterTypeId) {
-            this.filterTypeId = filterTypeId;
+            return _super.call(this, filterTypeId) || this;
+            // this.filterTypeId = filterTypeId;
         }
-        BaseFilterType.prototype.getId = function () {
-            return this.filterTypeId;
+        // getId(): FilterTypeId {
+        // 	return this.filterTypeId;
+        // }
+        BaseFilterType.prototype.toString = function () {
+            return this.getId().toString();
         };
         BaseFilterType.prototype.filterMany = function (entities, field, value) {
             var _this = this;
@@ -5461,7 +5430,7 @@
             return this.filterEntity(entity, field, value);
         };
         return BaseFilterType;
-    }());
+    }(hermes.EntityId));
 
     var ContainsFilterType = /** @class */ (function (_super) {
         __extends(ContainsFilterType, _super);
@@ -5478,15 +5447,18 @@
         return ContainsFilterType;
     }(BaseFilterType));
 
-    var FilterTypeId = /** @class */ (function () {
+    var FilterTypeId = /** @class */ (function (_super) {
+        __extends(FilterTypeId, _super);
         function FilterTypeId(id) {
-            this.id = id;
+            var _this = _super.call(this, id) || this;
+            _this.id = id;
+            return _this;
         }
         FilterTypeId.prototype.toString = function () {
             return this.id;
         };
         return FilterTypeId;
-    }());
+    }(hermes.EntityId));
 
     var FilterTypeIdGenerator = /** @class */ (function () {
         function FilterTypeIdGenerator() {
@@ -5499,18 +5471,18 @@
     }());
     FilterTypeIdGenerator.index = 0;
 
-    var FilterTypeReadModel = /** @class */ (function () {
-        function FilterTypeReadModel(id, name) {
+    var FilterTypeModel = /** @class */ (function () {
+        function FilterTypeModel(id, name) {
             this.filterTypeId = id;
             this.name = name;
         }
-        FilterTypeReadModel.prototype.getId = function () {
+        FilterTypeModel.prototype.getId = function () {
             return this.filterTypeId;
         };
-        FilterTypeReadModel.prototype.getName = function () {
+        FilterTypeModel.prototype.getName = function () {
             return this.name;
         };
-        return FilterTypeReadModel;
+        return FilterTypeModel;
     }());
 
     var FilterTypeManager = /** @class */ (function () {
@@ -5533,7 +5505,7 @@
                 for (var _b = __values(this.fieldIds), _c = _b.next(); !_c.done; _c = _b.next()) {
                     var fieldId = _c.value;
                     var filterTypes = this.map.get(fieldId), readModels = filterTypes.map(function (f) {
-                        return new FilterTypeReadModel(f.getId(), f.getName());
+                        return new FilterTypeModel(f.getId(), f.getName());
                     });
                     map.set(fieldId.toString(), readModels);
                 }
@@ -5621,15 +5593,16 @@
         return FilterTypeManager;
     }());
 
-    var FilterId = /** @class */ (function () {
+    var FilterId = /** @class */ (function (_super) {
+        __extends(FilterId, _super);
         function FilterId(filterId) {
-            this.id = filterId;
+            return _super.call(this, filterId) || this;
         }
         FilterId.prototype.toString = function () {
-            return this.id;
+            return this.getId();
         };
         return FilterId;
-    }());
+    }(hermes.EntityId));
 
     var FilterIdGenerator = /** @class */ (function () {
         function FilterIdGenerator() {
@@ -5641,29 +5614,29 @@
     }());
     FilterIdGenerator.index = 0;
 
-    var ActiveFilterReadModel = /** @class */ (function () {
-        function ActiveFilterReadModel(filterId, fieldName, filterTypeName, value) {
+    var ActiveFilterModel = /** @class */ (function () {
+        function ActiveFilterModel(filterId, fieldName, filterTypeName, value) {
             this.filterId = filterId;
             this.fieldName = fieldName;
             this.filterTypeName = filterTypeName;
             this.value = value;
         }
-        ActiveFilterReadModel.prototype.getText = function () {
+        ActiveFilterModel.prototype.getText = function () {
             return this.fieldName + ": " + this.filterTypeName + ": " + this.value;
         };
-        ActiveFilterReadModel.prototype.getFilterId = function () {
+        ActiveFilterModel.prototype.getFilterId = function () {
             return this.filterId;
         };
-        ActiveFilterReadModel.prototype.getFieldName = function () {
+        ActiveFilterModel.prototype.getFieldName = function () {
             return this.fieldName;
         };
-        ActiveFilterReadModel.prototype.getFilterTypeName = function () {
+        ActiveFilterModel.prototype.getFilterTypeName = function () {
             return this.filterTypeName;
         };
-        ActiveFilterReadModel.prototype.getValue = function () {
+        ActiveFilterModel.prototype.getValue = function () {
             return this.value;
         };
-        return ActiveFilterReadModel;
+        return ActiveFilterModel;
     }());
 
     var FilterManager = /** @class */ (function () {
@@ -5684,7 +5657,7 @@
             var _this = this;
             return this.activeFilters
                 .map(function (af) {
-                return new ActiveFilterReadModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), _this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
+                return new ActiveFilterModel(af.getFilterId(), (fields.get(af.getFieldId().toString())).getName(), _this.filterTypeManager.getFilterType(af.getFilterTypeId()).getName(), af.getFilterValue());
             });
         };
         FilterManager.prototype.getFilterTypes = function () {
@@ -5792,15 +5765,15 @@
     FilterEnabledArchive.ctorParameters = function () { return []; };
 
     var ConfigFilterSetEventHandler = /** @class */ (function () {
-        function ConfigFilterSetEventHandler(structureFilterRepository) {
-            this.structureFilterRepository = structureFilterRepository;
+        function ConfigFilterSetEventHandler(filterEnabledArchive) {
+            this.filterEnabledArchive = filterEnabledArchive;
         }
         ConfigFilterSetEventHandler.prototype.forEvent = function () {
             return ConfigFilterSetEvent;
         };
         ConfigFilterSetEventHandler.prototype.handle = function (event) {
             if (event.ofMessageType('ConfigFilterSetEvent')) {
-                this.structureFilterRepository.next(event.getAggregateId(), event.getEnabled());
+                this.filterEnabledArchive.next(event.getAggregateId(), event.getEnabled());
             }
         };
         return ConfigFilterSetEventHandler;
@@ -5812,14 +5785,20 @@
         { type: FilterEnabledArchive }
     ]; };
 
-    var FilterTypeMap = /** @class */ (function () {
-        function FilterTypeMap(map) {
+    var FilterTypeCollectionModel = /** @class */ (function () {
+        function FilterTypeCollectionModel(map) {
             this.map = map;
         }
-        FilterTypeMap.prototype.getFilterTypes = function (fieldId) {
-            return this.map.get(fieldId.toString());
+        FilterTypeCollectionModel.prototype.getFilterTypes = function (fieldId) {
+            var result = this.map.get(fieldId.toString());
+            if (result === undefined) {
+                return [];
+            }
+            else {
+                return result;
+            }
         };
-        return FilterTypeMap;
+        return FilterTypeCollectionModel;
     }());
 
     var FilterTypeArchive = /** @class */ (function (_super) {
@@ -5829,7 +5808,7 @@
         }
         return FilterTypeArchive;
     }(hermes.AggregateArchive));
-    FilterTypeArchive.default = new FilterTypeMap(new Map());
+    FilterTypeArchive.default = new FilterTypeCollectionModel(new Map());
     FilterTypeArchive.decorators = [
         { type: core.Injectable }
     ];
@@ -5858,7 +5837,7 @@
         FilterTypeConfigFilterSetEventHandler.prototype.handle = function (filterTypesInitedEvent) {
             if (filterTypesInitedEvent.ofMessageType('FilterTypesInitedEvent')) {
                 var map = filterTypesInitedEvent.getMap();
-                this.filterTypeArchive.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeMap(map));
+                this.filterTypeArchive.next(filterTypesInitedEvent.getAggregateId(), new FilterTypeCollectionModel(map));
             }
         };
         return FilterTypeConfigFilterSetEventHandler;
@@ -5931,30 +5910,30 @@
         return UniqueFilterCalculatedEvent;
     }(StructureDomainEvent));
 
-    var UniqueValuesReadModel = /** @class */ (function () {
-        function UniqueValuesReadModel(map) {
+    var UniqueValueCollectionModel = /** @class */ (function () {
+        function UniqueValueCollectionModel(map) {
             this.map = new Map();
             this.allSelected = new Map();
             this.allDisabled = new Map();
             this.map = map;
             this.calculateSelection();
         }
-        UniqueValuesReadModel.prototype.getValues = function (fieldId) {
+        UniqueValueCollectionModel.prototype.getValues = function (fieldId) {
             return this.map.get(fieldId.toString());
         };
-        UniqueValuesReadModel.prototype.areAllSelected = function (fieldId) {
+        UniqueValueCollectionModel.prototype.areAllSelected = function (fieldId) {
             return this.allSelected.get(fieldId.toString());
         };
-        UniqueValuesReadModel.prototype.areAllDisabled = function (fieldId) {
+        UniqueValueCollectionModel.prototype.areAllDisabled = function (fieldId) {
             return this.allDisabled.get(fieldId.toString());
         };
-        UniqueValuesReadModel.prototype.isSelectAllChecked = function (fieldId) {
+        UniqueValueCollectionModel.prototype.isSelectAllChecked = function (fieldId) {
             return this.areAllSelected(fieldId);
         };
-        UniqueValuesReadModel.prototype.isIndeterminate = function (fieldId) {
+        UniqueValueCollectionModel.prototype.isIndeterminate = function (fieldId) {
             return !(this.areAllSelected(fieldId) || this.areAllDisabled(fieldId));
         };
-        UniqueValuesReadModel.prototype.calculateSelection = function () {
+        UniqueValueCollectionModel.prototype.calculateSelection = function () {
             var e_1, _a;
             try {
                 for (var _b = __values(Array.from(this.map.keys())), _c = _b.next(); !_c.done; _c = _b.next()) {
@@ -5972,41 +5951,41 @@
                 finally { if (e_1) throw e_1.error; }
             }
         };
-        return UniqueValuesReadModel;
+        return UniqueValueCollectionModel;
     }());
 
-    var UniqueValuesArchive = /** @class */ (function (_super) {
-        __extends(UniqueValuesArchive, _super);
-        function UniqueValuesArchive() {
-            return _super.call(this, UniqueValuesArchive.default) || this;
+    var UniqueValueCollectionArchive = /** @class */ (function (_super) {
+        __extends(UniqueValueCollectionArchive, _super);
+        function UniqueValueCollectionArchive() {
+            return _super.call(this, UniqueValueCollectionArchive.default) || this;
         }
-        return UniqueValuesArchive;
+        return UniqueValueCollectionArchive;
     }(hermes.AggregateArchive));
-    UniqueValuesArchive.default = new UniqueValuesReadModel(new Map());
-    UniqueValuesArchive.decorators = [
+    UniqueValueCollectionArchive.default = new UniqueValueCollectionModel(new Map());
+    UniqueValueCollectionArchive.decorators = [
         { type: core.Injectable }
     ];
-    UniqueValuesArchive.ctorParameters = function () { return []; };
+    UniqueValueCollectionArchive.ctorParameters = function () { return []; };
 
-    var UniqueValueReadModel = /** @class */ (function () {
-        function UniqueValueReadModel(id, value, enabled) {
+    var UniqueValueModel = /** @class */ (function () {
+        function UniqueValueModel(id, value, enabled) {
             this.id = id;
             this.value = value;
             this.enabled = enabled;
         }
-        UniqueValueReadModel.prototype.getId = function () {
+        UniqueValueModel.prototype.getId = function () {
             return this.id;
         };
-        UniqueValueReadModel.prototype.getValue = function () {
+        UniqueValueModel.prototype.getValue = function () {
             return this.value;
         };
-        UniqueValueReadModel.prototype.geDisplayValue = function () {
+        UniqueValueModel.prototype.geDisplayValue = function () {
             return this.displayValue;
         };
-        UniqueValueReadModel.prototype.isEnabled = function () {
+        UniqueValueModel.prototype.isEnabled = function () {
             return this.enabled;
         };
-        return UniqueValueReadModel;
+        return UniqueValueModel;
     }());
 
     var UniqueFilterCalculatedEventHandler = /** @class */ (function () {
@@ -6022,11 +6001,11 @@
                 calculatedEvent.getUniqueValues()
                     .forEach(function (values, key) {
                     var valuesRM = values.map(function (uv) {
-                        return new UniqueValueReadModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
+                        return new UniqueValueModel(uv.getId(), uv.getDisplayValue(), uv.isEnabled());
                     });
                     uvRM_1.set(key, valuesRM);
                 });
-                var uniqueValues = new UniqueValuesReadModel(uvRM_1);
+                var uniqueValues = new UniqueValueCollectionModel(uvRM_1);
                 this.uniqueValuesRepository.next(calculatedEvent.getAggregateId(), uniqueValues);
             }
         };
@@ -6036,7 +6015,7 @@
         { type: core.Injectable }
     ];
     UniqueFilterCalculatedEventHandler.ctorParameters = function () { return [
-        { type: UniqueValuesArchive }
+        { type: UniqueValueCollectionArchive }
     ]; };
 
     var FieldsInitedEvent = /** @class */ (function (_super) {
@@ -6234,6 +6213,43 @@
         { type: hermes.DomainEventPublisher }
     ]; };
 
+    var FilterDispatcher = /** @class */ (function () {
+        function FilterDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        FilterDispatcher.prototype.setConfig = function (config, structureId) {
+            this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
+        };
+        FilterDispatcher.prototype.add = function (fieldId, filterTypeId, value, structureId) {
+            this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
+        };
+        FilterDispatcher.prototype.removeAll = function (structureId) {
+            this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
+        };
+        FilterDispatcher.prototype.remove = function (filterId, structureId) {
+            this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
+        };
+        FilterDispatcher.prototype.selectAllUniqueFilter = function (fieldId, structureId) {
+            this.commandDispatcher.dispatch(new SelectAllUniqueFilterCommand(structureId, fieldId));
+        };
+        FilterDispatcher.prototype.unselectAllUniqueFilter = function (fieldId, structureId) {
+            this.commandDispatcher.dispatch(new UnselectAllUniqueFilterCommand(structureId, fieldId));
+        };
+        FilterDispatcher.prototype.selectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
+            this.commandDispatcher.dispatch(new SelectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        };
+        FilterDispatcher.prototype.unselectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
+            this.commandDispatcher.dispatch(new UnselectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        };
+        return FilterDispatcher;
+    }());
+    FilterDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    FilterDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
+    ]; };
+
     var FilterDomainModule = /** @class */ (function (_super) {
         __extends(FilterDomainModule, _super);
         function FilterDomainModule() {
@@ -6271,7 +6287,8 @@
                         common.CommonModule
                     ],
                     providers: [
-                        FilterManagerFactory
+                        FilterManagerFactory,
+                        FilterDispatcher
                     ],
                     declarations: [],
                     exports: []
@@ -6279,9 +6296,9 @@
     ];
     FilterDomainModule.ctorParameters = function () { return []; };
 
-    var DomainFilterWarehouse = /** @class */ (function (_super) {
-        __extends(DomainFilterWarehouse, _super);
-        function DomainFilterWarehouse(filterEnabledArchive, structureQuickFilterRepository, filterTypeArchive, uniqueValuesArchive, activeFilterArchive) {
+    var FilterDomainWarehouse = /** @class */ (function (_super) {
+        __extends(FilterDomainWarehouse, _super);
+        function FilterDomainWarehouse(filterEnabledArchive, structureQuickFilterRepository, filterTypeArchive, uniqueValuesArchive, activeFilterArchive) {
             var _this = _super.call(this) || this;
             _this.filterEnabledArchive = filterEnabledArchive;
             _this.structureQuickFilterRepository = structureQuickFilterRepository;
@@ -6290,91 +6307,102 @@
             _this.activeFilterArchive = activeFilterArchive;
             return _this;
         }
-        DomainFilterWarehouse.prototype.onFilteringEnabled = function (structureId) {
+        FilterDomainWarehouse.prototype.onFilteringEnabled = function (structureId) {
             return this.filterEnabledArchive.on(structureId);
         };
-        DomainFilterWarehouse.prototype.onQuickFiltersEnabled = function (structureId) {
+        FilterDomainWarehouse.prototype.onQuickFiltersEnabled = function (structureId) {
             return this.structureQuickFilterRepository.on(structureId);
         };
-        DomainFilterWarehouse.prototype.onFilterTypes = function (structureId) {
+        FilterDomainWarehouse.prototype.onFilterTypes = function (structureId) {
             return this.filterTypeArchive.on(structureId);
         };
-        DomainFilterWarehouse.prototype.onFilterTypesForFieldId = function (fieldId, structureId) {
+        FilterDomainWarehouse.prototype.onFilterTypesForFieldId = function (fieldId, structureId) {
             return this.onFilterTypes(structureId)
                 .pipe(hermes.hermesMap(function (map) {
                 return map.getFilterTypes(fieldId);
             }));
         };
-        DomainFilterWarehouse.prototype.onActiveFilters = function (structureId) {
+        FilterDomainWarehouse.prototype.onActiveFilters = function (structureId) {
             return this.activeFilterArchive.on(structureId);
         };
-        DomainFilterWarehouse.prototype.onUniqueValues = function (structureId) {
+        FilterDomainWarehouse.prototype.findFilters = function (structureId) {
+            return this.activeFilterArchive.find(structureId);
+        };
+        FilterDomainWarehouse.prototype.onUniqueValues = function (structureId) {
             return this.uniqueValuesArchive.on(structureId);
         };
-        DomainFilterWarehouse.prototype.onceFilterTypeId = function (fieldId, filterTypeName, structureId) {
+        FilterDomainWarehouse.prototype.onceFilterTypeId = function (fieldId, filterTypeName, structureId) {
             return hermes.singleFromObservable(this.onFilterTypes(structureId)
                 .pipe(hermes.hermesMap(function (map) {
                 var filterTypes = map.getFilterTypes(fieldId);
                 var filterType = filterTypes.find(function (fieldType) { return fieldType.getName() === filterTypeName; });
-                return hermes.Optional.of(filterType.getId());
+                if (filterType === undefined) {
+                    return hermes.Optional.empty();
+                }
+                else {
+                    return hermes.Optional.of(filterType.getId());
+                }
             })));
         };
-        return DomainFilterWarehouse;
+        return FilterDomainWarehouse;
     }(FilterWarehouse));
-    DomainFilterWarehouse.decorators = [
+    FilterDomainWarehouse.decorators = [
         { type: core.Injectable }
     ];
-    DomainFilterWarehouse.ctorParameters = function () { return [
+    FilterDomainWarehouse.ctorParameters = function () { return [
         { type: FilterEnabledArchive },
         { type: QuickFilterEnabledArchive },
         { type: FilterTypeArchive },
-        { type: UniqueValuesArchive },
+        { type: UniqueValueCollectionArchive },
         { type: ActiveFilterArchive }
     ]; };
 
-    var DomainFilterCommandInvoker = /** @class */ (function (_super) {
-        __extends(DomainFilterCommandInvoker, _super);
-        function DomainFilterCommandInvoker(commandDispatcher) {
+    var FilterDomainCommandInvoker = /** @class */ (function (_super) {
+        __extends(FilterDomainCommandInvoker, _super);
+        function FilterDomainCommandInvoker(filterDispatcher) {
             var _this = _super.call(this) || this;
-            _this.commandDispatcher = commandDispatcher;
+            _this.filterDispatcher = filterDispatcher;
             return _this;
         }
-        DomainFilterCommandInvoker.prototype.setConfig = function (config, structureId) {
-            this.commandDispatcher.dispatch(new SetConfigFilterCommand(structureId, config));
+        FilterDomainCommandInvoker.prototype.setConfig = function (config, structureId) {
+            this.filterDispatcher.setConfig(config, structureId);
         };
-        DomainFilterCommandInvoker.prototype.add = function (fieldId, filterTypeId, value, structureId) {
-            this.commandDispatcher.dispatch(new AddFilterCommand(structureId, fieldId, filterTypeId, value));
+        FilterDomainCommandInvoker.prototype.add = function (fieldId, filterTypeId, value, structureId) {
+            this.filterDispatcher.add(fieldId, filterTypeId, value, structureId);
         };
-        DomainFilterCommandInvoker.prototype.removeAll = function (structureId) {
-            this.commandDispatcher.dispatch(new RemoveAllFiltersCommand(structureId));
+        FilterDomainCommandInvoker.prototype.removeAll = function (structureId) {
+            this.filterDispatcher.removeAll(structureId);
         };
-        DomainFilterCommandInvoker.prototype.remove = function (filterId, structureId) {
-            this.commandDispatcher.dispatch(new RemoveFilterCommand(structureId, filterId));
+        FilterDomainCommandInvoker.prototype.remove = function (filterId, structureId) {
+            this.filterDispatcher.remove(filterId, structureId);
         };
-        DomainFilterCommandInvoker.prototype.selectAllUniqueFilter = function (fieldId, structureId) {
-            this.commandDispatcher.dispatch(new SelectAllUniqueFilterCommand(structureId, fieldId));
+        FilterDomainCommandInvoker.prototype.selectAllUniqueFilter = function (fieldId, structureId) {
+            this.filterDispatcher.selectAllUniqueFilter(fieldId, structureId);
         };
-        DomainFilterCommandInvoker.prototype.unselectAllUniqueFilter = function (fieldId, structureId) {
-            this.commandDispatcher.dispatch(new UnselectAllUniqueFilterCommand(structureId, fieldId));
+        FilterDomainCommandInvoker.prototype.unselectAllUniqueFilter = function (fieldId, structureId) {
+            this.filterDispatcher.unselectAllUniqueFilter(fieldId, structureId);
         };
-        DomainFilterCommandInvoker.prototype.selectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
-            this.commandDispatcher.dispatch(new SelectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        FilterDomainCommandInvoker.prototype.selectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
+            this.filterDispatcher.selectUniqueFilter(fieldId, uniqueValueId, structureId);
         };
-        DomainFilterCommandInvoker.prototype.unselectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
-            this.commandDispatcher.dispatch(new UnselectUniqueFilterCommand(structureId, fieldId, uniqueValueId));
+        FilterDomainCommandInvoker.prototype.unselectUniqueFilter = function (fieldId, uniqueValueId, structureId) {
+            this.filterDispatcher.unselectUniqueFilter(fieldId, uniqueValueId, structureId);
         };
-        return DomainFilterCommandInvoker;
+        return FilterDomainCommandInvoker;
     }(FilterCommandInvoker));
-    DomainFilterCommandInvoker.decorators = [
+    FilterDomainCommandInvoker.decorators = [
         { type: core.Injectable }
     ];
-    DomainFilterCommandInvoker.ctorParameters = function () { return [
-        { type: hermes.CommandDispatcher }
+    FilterDomainCommandInvoker.ctorParameters = function () { return [
+        { type: FilterDispatcher }
     ]; };
 
-    var FieldId = /** @class */ (function () {
+    var FieldId = /** @class */ (function (_super) {
+        __extends(FieldId, _super);
         function FieldId(id) {
-            this.id = id;
+            var _this = _super.call(this, id) || this;
+            _this.id = id;
+            return _this;
         }
         FieldId.prototype.getId = function () {
             return this.id;
@@ -6386,7 +6414,7 @@
             return this.id;
         };
         return FieldId;
-    }());
+    }(hermes.EntityId));
 
     var FilterIntegration = /** @class */ (function () {
         function FilterIntegration(compositionWarehouse, filterCommandInvoker, filterWarehouse) {
@@ -6394,9 +6422,9 @@
             this.filterCommandInvoker = filterCommandInvoker;
             this.filterWarehouse = filterWarehouse;
         }
-        FilterIntegration.prototype.getFilterTypes = function (columnName, compositionId, structureId) {
+        FilterIntegration.prototype.findFilterTypes = function (columnName, compositionId, structureId) {
             var _this = this;
-            var fieldTypes = [];
+            var filterTypes = [];
             this.compositionWarehouse
                 .onTemplateColumns(compositionId)
                 .pipe(hermes.hermesMap(function (cols) {
@@ -6410,9 +6438,31 @@
                     .onFilterTypesForFieldId(new FieldId(col.columnFieldId.getId()), structureId);
             }))
                 .subscribe(function (types) {
-                fieldTypes = types.map(function (type) { return type.getName(); });
+                filterTypes = types.map(function (type) { return type.getName(); });
             });
-            return fieldTypes;
+            return filterTypes;
+        };
+        FilterIntegration.prototype.findFilters = function (compositionId, structureId) {
+            var filters = this.filterWarehouse.findFilters(structureId).getValueOrNullOrThrowError();
+            var columnNames = this.compositionWarehouse.findColumnNames(compositionId);
+            var obj = {};
+            var _loop_1 = function (i) {
+                obj[columnNames[i]] = filters.filter(function (filter) {
+                    return filter.getFieldName() === columnNames[i];
+                })
+                    .map(function (filter) {
+                    return {
+                        columnName: filter.getFieldName(),
+                        filterId: filter.getFilterId().toString(),
+                        type: filter.getFilterTypeName(),
+                        value: filter.getValue()
+                    };
+                });
+            };
+            for (var i = 0; i < columnNames.length; i += 1) {
+                _loop_1(i);
+            }
+            return obj;
         };
         FilterIntegration.prototype.filter = function (columnName, filterType, value, compositionId, structureId) {
             var _this = this;
@@ -6468,15 +6518,15 @@
                     providers: [
                         {
                             provide: FilterCommandInvoker,
-                            useClass: DomainFilterCommandInvoker
+                            useClass: FilterDomainCommandInvoker
                         },
                         {
                             provide: FilterWarehouse,
-                            useClass: DomainFilterWarehouse
+                            useClass: FilterDomainWarehouse
                         },
                         FilterTypeArchive,
                         ActiveFilterArchive,
-                        UniqueValuesArchive,
+                        UniqueValueCollectionArchive,
                         FilterEnabledArchive,
                         QuickFilterEnabledArchive,
                         FilterIntegration
@@ -6765,7 +6815,7 @@
     StructureInfoModalComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-info-dialog]',
-                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.2\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.3\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -6861,8 +6911,9 @@
                 .onceTheme(readModelId)
                 .pipe(this.hermesTakeUntil())
                 .subscribe(function (theme) {
-                _this.fabricDialogService.open(StructureDialogColumnManagerComponent, {
+                _this.fabricDialogService.open({
                     injector: injector,
+                    component: StructureDialogColumnManagerComponent,
                     theme: _this.structureThemeConverter.convertTheme(theme)
                 });
             });
@@ -6975,8 +7026,9 @@
                 providers: [{ provide: SchemaReadModelRootId, useValue: readModelId }],
                 parent: parentInjector
             });
-            this.fabricDialogService.open(StructureDialogSchemaManagerComponent, {
-                injector: injector
+            this.fabricDialogService.open({
+                injector: injector,
+                component: StructureDialogSchemaManagerComponent
             });
         };
         return StructureDialogSchemaManagerService;
@@ -7025,7 +7077,7 @@
             });
         };
         StructureInfoPanelComponent.prototype.openInfo = function () {
-            this.dialog.open(this.infoModal);
+            this.dialog.open({ component: this.infoModal });
         };
         StructureInfoPanelComponent.prototype.openColumnManager = function () {
             this.menuColumnManagerService.open(this.compositionId, this.schemaReadModelRootId, this.injector);
@@ -7447,10 +7499,10 @@
 
     var ActiveFilterService = /** @class */ (function (_super) {
         __extends(ActiveFilterService, _super);
-        function ActiveFilterService(injector, schemaReadModelRepository, structureThemeConverter, fabricDialogService) {
+        function ActiveFilterService(injector, schemaWarehouse, structureThemeConverter, fabricDialogService) {
             var _this = _super.call(this) || this;
             _this.injector = injector;
-            _this.schemaReadModelRepository = schemaReadModelRepository;
+            _this.schemaWarehouse = schemaWarehouse;
             _this.structureThemeConverter = structureThemeConverter;
             _this.fabricDialogService = fabricDialogService;
             return _this;
@@ -7464,12 +7516,13 @@
                     { provide: StructureId, useValue: structureId }
                 ]
             });
-            this.schemaReadModelRepository
+            this.schemaWarehouse
                 .onceTheme(readModelId)
                 .pipe(this.hermesTakeUntil())
                 .subscribe(function (theme) {
-                _this.fabricDialogService.open(ActiveFilterMenuComponent, {
+                _this.fabricDialogService.open({
                     injector: injector,
+                    component: ActiveFilterMenuComponent,
                     theme: _this.structureThemeConverter.convertTheme(theme)
                 });
             });
@@ -8032,78 +8085,28 @@
         { type: StructureInfoPanelArchive }
     ]; };
 
-    var SetSortingCommand = /** @class */ (function (_super) {
-        __extends(SetSortingCommand, _super);
-        function SetSortingCommand(structureId, sortingConfig) {
-            var _this = _super.call(this, structureId, 'SetSortingCommand') || this;
-            _this.sortingConfig = sortingConfig;
-            return _this;
-        }
-        SetSortingCommand.prototype.getSortingConfig = function () {
-            return this.sortingConfig;
-        };
-        return SetSortingCommand;
-    }(StructureCommand));
-
-    var ToggleSortCommand = /** @class */ (function (_super) {
-        __extends(ToggleSortCommand, _super);
-        function ToggleSortCommand(structureId, compositionId, fieldId) {
-            var _this = _super.call(this, structureId, 'ToggleSortCommand') || this;
-            _this.compositionId = compositionId;
-            _this.fieldId = fieldId;
-            return _this;
-        }
-        ToggleSortCommand.prototype.getCompositionId = function () {
-            return this.compositionId;
-        };
-        ToggleSortCommand.prototype.getFieldId = function () {
-            return this.fieldId;
-        };
-        return ToggleSortCommand;
-    }(StructureCommand));
-
-    var SetSortOrderCommand = /** @class */ (function (_super) {
-        __extends(SetSortOrderCommand, _super);
-        function SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder) {
-            var _this = _super.call(this, structureId, 'SetSortOrderCommand') || this;
-            _this.compositionId = compositionId;
-            _this.fieldId = fieldId;
-            _this.sortOrder = sortOrder;
-            return _this;
-        }
-        SetSortOrderCommand.prototype.getCompositionId = function () {
-            return this.compositionId;
-        };
-        SetSortOrderCommand.prototype.getFieldId = function () {
-            return this.fieldId;
-        };
-        SetSortOrderCommand.prototype.getSortOrder = function () {
-            return this.sortOrder;
-        };
-        return SetSortOrderCommand;
-    }(StructureCommand));
-
     var SortingCommandInvoker = /** @class */ (function () {
-        function SortingCommandInvoker(commandDispatcher) {
-            this.commandDispatcher = commandDispatcher;
+        function SortingCommandInvoker() {
         }
-        SortingCommandInvoker.prototype.setSortingConfig = function (config, structureId) {
-            this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
-        };
-        SortingCommandInvoker.prototype.toggleSort = function (fieldId, compositionId, structureId) {
-            this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
-        };
-        SortingCommandInvoker.prototype.setSortOrder = function (fieldId, sortOrder, compositionId, structureId) {
-            this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
-        };
         return SortingCommandInvoker;
     }());
     SortingCommandInvoker.decorators = [
         { type: core.Injectable }
     ];
-    SortingCommandInvoker.ctorParameters = function () { return [
-        { type: hermes.CommandDispatcher }
-    ]; };
+    SortingCommandInvoker.ctorParameters = function () { return []; };
+
+    var InitFieldsCommand = /** @class */ (function (_super) {
+        __extends(InitFieldsCommand, _super);
+        function InitFieldsCommand(structureId, fieldConfigs) {
+            var _this = _super.call(this, structureId, 'InitFieldsCommand') || this;
+            _this.fieldConfigs = fieldConfigs;
+            return _this;
+        }
+        InitFieldsCommand.prototype.getFieldConfigs = function () {
+            return this.fieldConfigs;
+        };
+        return InitFieldsCommand;
+    }(StructureCommand));
 
     var ColumnFieldId = /** @class */ (function () {
         function ColumnFieldId(id) {
@@ -8342,113 +8345,15 @@
     ];
     RowSelectionTypeArchive.ctorParameters = function () { return []; };
 
-    var ToggleSelectedRowCommand = /** @class */ (function (_super) {
-        __extends(ToggleSelectedRowCommand, _super);
-        function ToggleSelectedRowCommand(structureId, selectedRow, type) {
-            var _this = _super.call(this, structureId, 'ToggleSelectedRowCommand') || this;
-            _this.selectedRow = selectedRow;
-            _this.type = type;
-            return _this;
-        }
-        ToggleSelectedRowCommand.prototype.getSelectedRow = function () {
-            return this.selectedRow;
-        };
-        ToggleSelectedRowCommand.prototype.getType = function () {
-            return this.type;
-        };
-        return ToggleSelectedRowCommand;
-    }(StructureCommand));
-
-    var FormationDispatcher = /** @class */ (function () {
-        function FormationDispatcher(commandDispatcher) {
-            this.commandDispatcher = commandDispatcher;
-        }
-        FormationDispatcher.prototype.toggleSelectedRow = function (structureId, selectedRow, type) {
-            this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
-        };
-        return FormationDispatcher;
-    }());
-    FormationDispatcher.decorators = [
-        { type: core.Injectable }
-    ];
-    FormationDispatcher.ctorParameters = function () { return [
-        { type: hermes.CommandDispatcher }
-    ]; };
-
-    var SetEnabledSelectionCommand = /** @class */ (function (_super) {
-        __extends(SetEnabledSelectionCommand, _super);
-        function SetEnabledSelectionCommand(structureId, enabled) {
-            var _this = _super.call(this, structureId, 'SetEnabledSelectionCommand') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        SetEnabledSelectionCommand.prototype.isEnabled = function () {
-            return this.enabled;
-        };
-        return SetEnabledSelectionCommand;
-    }(StructureCommand));
-
-    var SetSelectionModeCommand = /** @class */ (function (_super) {
-        __extends(SetSelectionModeCommand, _super);
-        function SetSelectionModeCommand(structureId, mode) {
-            var _this = _super.call(this, structureId, 'SetSelectionModeCommand') || this;
-            _this.mode = mode;
-            return _this;
-        }
-        SetSelectionModeCommand.prototype.getMode = function () {
-            return this.mode;
-        };
-        return SetSelectionModeCommand;
-    }(StructureCommand));
-
-    var SelectAllRowsCommand = /** @class */ (function (_super) {
-        __extends(SelectAllRowsCommand, _super);
-        function SelectAllRowsCommand(structureId) {
-            return _super.call(this, structureId, 'SelectAllRowsCommand') || this;
-        }
-        return SelectAllRowsCommand;
-    }(StructureCommand));
-
-    var UnselectAllRowsCommand = /** @class */ (function (_super) {
-        __extends(UnselectAllRowsCommand, _super);
-        function UnselectAllRowsCommand(structureId) {
-            return _super.call(this, structureId, 'UnselectAllRowsCommand') || this;
-        }
-        return UnselectAllRowsCommand;
-    }(StructureCommand));
-
     var FormationCommandInvoker = /** @class */ (function () {
-        function FormationCommandInvoker(commandDispatcher, formationDispatcher) {
-            this.commandDispatcher = commandDispatcher;
-            this.formationDispatcher = formationDispatcher;
+        function FormationCommandInvoker() {
         }
-        FormationCommandInvoker.prototype.setDefaultFormation = function (structureId) {
-            // this.commandDispatcher.dispatch(new )
-        };
-        FormationCommandInvoker.prototype.toggleSelectedRow = function (selectedRow, type, structureId) {
-            this.formationDispatcher.toggleSelectedRow(structureId, selectedRow, type);
-        };
-        FormationCommandInvoker.prototype.changeMode = function (mode, structureId) {
-            this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
-        };
-        FormationCommandInvoker.prototype.setSelection = function (enabled, structureId) {
-            this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
-        };
-        FormationCommandInvoker.prototype.selectAll = function (structureId) {
-            this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
-        };
-        FormationCommandInvoker.prototype.unselectAll = function (structureId) {
-            this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
-        };
         return FormationCommandInvoker;
     }());
     FormationCommandInvoker.decorators = [
         { type: core.Injectable }
     ];
-    FormationCommandInvoker.ctorParameters = function () { return [
-        { type: hermes.CommandDispatcher },
-        { type: FormationDispatcher }
-    ]; };
+    FormationCommandInvoker.ctorParameters = function () { return []; };
 
     var SchemaRowClassArchive = /** @class */ (function (_super) {
         __extends(SchemaRowClassArchive, _super);
@@ -8484,8 +8389,7 @@
                 .pipe(hermes.hermesFilter(function (v) { return v; }));
         };
         StructureInitialValuesReadyArchive.prototype.once = function (aggregateId) {
-            return this.on(aggregateId)
-                .pipe(hermes.hermesTake(1));
+            return hermes.singleFromObservable(this.on(aggregateId));
         };
         return StructureInitialValuesReadyArchive;
     }(hermes.AggregateArchive));
@@ -8507,7 +8411,7 @@
     /** @internal */
     var StructureGateway = /** @class */ (function (_super) {
         __extends(StructureGateway, _super);
-        function StructureGateway(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
+        function StructureGateway(changeDetectorRef, elementRef, domainEventBus, commandDispatcher, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandInvoker, searchCommandInvoker, fieldCommandInvoker, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectEnabledArchive, rowSelectionTypeArchive, schemaRowClassArchive, schemaRowStyleArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
             var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.changeDetectorRef = changeDetectorRef;
             _this.domainEventBus = domainEventBus;
@@ -8519,9 +8423,9 @@
             _this.structureCommandInvoker = structureCommandInvoker;
             _this.structurePagingCommandDispatcher = structurePagingCommandDispatcher;
             _this.pagingEventRepository = pagingEventRepository;
-            _this.sortingCommandDispatcher = sortingCommandDispatcher;
-            _this.searchCommandDispatcher = searchCommandDispatcher;
-            _this.fieldCommandDispatcher = fieldCommandDispatcher;
+            _this.sortingCommandInvoker = sortingCommandInvoker;
+            _this.searchCommandInvoker = searchCommandInvoker;
+            _this.fieldCommandInvoker = fieldCommandInvoker;
             _this.sourceCommandService = sourceCommandService;
             _this.sourceEventService = sourceEventService;
             _this.schemaCommandInvoker = schemaCommandInvoker;
@@ -8997,6 +8901,23 @@
         template: 'Footer Panel'
     };
 
+    var ToggleSortCommand = /** @class */ (function (_super) {
+        __extends(ToggleSortCommand, _super);
+        function ToggleSortCommand(structureId, compositionId, fieldId) {
+            var _this = _super.call(this, structureId, 'ToggleSortCommand') || this;
+            _this.compositionId = compositionId;
+            _this.fieldId = fieldId;
+            return _this;
+        }
+        ToggleSortCommand.prototype.getCompositionId = function () {
+            return this.compositionId;
+        };
+        ToggleSortCommand.prototype.getFieldId = function () {
+            return this.fieldId;
+        };
+        return ToggleSortCommand;
+    }(StructureCommand));
+
     var SortToggledEvent = /** @class */ (function (_super) {
         __extends(SortToggledEvent, _super);
         function SortToggledEvent(aggregateId, compositionId, directions) {
@@ -9048,6 +8969,19 @@
         { type: hermes.DomainEventPublisher }
     ]; };
 
+    var SetSortingCommand = /** @class */ (function (_super) {
+        __extends(SetSortingCommand, _super);
+        function SetSortingCommand(structureId, sortingConfig) {
+            var _this = _super.call(this, structureId, 'SetSortingCommand') || this;
+            _this.sortingConfig = sortingConfig;
+            return _this;
+        }
+        SetSortingCommand.prototype.getSortingConfig = function () {
+            return this.sortingConfig;
+        };
+        return SetSortingCommand;
+    }(StructureCommand));
+
     var SortingSetEvent = /** @class */ (function (_super) {
         __extends(SortingSetEvent, _super);
         function SortingSetEvent(aggregateId) {
@@ -9078,6 +9012,27 @@
     SetSortingCommandHandler.ctorParameters = function () { return [
         { type: hermes.DomainEventPublisher }
     ]; };
+
+    var SetSortOrderCommand = /** @class */ (function (_super) {
+        __extends(SetSortOrderCommand, _super);
+        function SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder) {
+            var _this = _super.call(this, structureId, 'SetSortOrderCommand') || this;
+            _this.compositionId = compositionId;
+            _this.fieldId = fieldId;
+            _this.sortOrder = sortOrder;
+            return _this;
+        }
+        SetSortOrderCommand.prototype.getCompositionId = function () {
+            return this.compositionId;
+        };
+        SetSortOrderCommand.prototype.getFieldId = function () {
+            return this.fieldId;
+        };
+        SetSortOrderCommand.prototype.getSortOrder = function () {
+            return this.sortOrder;
+        };
+        return SetSortOrderCommand;
+    }(StructureCommand));
 
     var SortOrderSetEvent = /** @class */ (function (_super) {
         __extends(SortOrderSetEvent, _super);
@@ -9130,6 +9085,28 @@
         { type: hermes.DomainEventPublisher }
     ]; };
 
+    var SortingDispatcher = /** @class */ (function () {
+        function SortingDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        SortingDispatcher.prototype.setSortingConfig = function (config, structureId) {
+            this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
+        };
+        SortingDispatcher.prototype.toggleSort = function (fieldId, compositionId, structureId) {
+            this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
+        };
+        SortingDispatcher.prototype.setSortOrder = function (fieldId, sortOrder, compositionId, structureId) {
+            this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
+        };
+        return SortingDispatcher;
+    }());
+    SortingDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    SortingDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
+    ]; };
+
     var SortingDomainModule = /** @class */ (function (_super) {
         __extends(SortingDomainModule, _super);
         function SortingDomainModule() {
@@ -9149,12 +9126,39 @@
                     imports: [
                         common.CommonModule
                     ],
-                    providers: [],
+                    providers: [
+                        SortingDispatcher
+                    ],
                     declarations: [],
                     exports: []
                 },] }
     ];
     SortingDomainModule.ctorParameters = function () { return []; };
+
+    var SortingDomainCommandInvoker = /** @class */ (function (_super) {
+        __extends(SortingDomainCommandInvoker, _super);
+        function SortingDomainCommandInvoker(sortingDispatcher) {
+            var _this = _super.call(this) || this;
+            _this.sortingDispatcher = sortingDispatcher;
+            return _this;
+        }
+        SortingDomainCommandInvoker.prototype.setSortingConfig = function (config, structureId) {
+            this.sortingDispatcher.setSortingConfig(config, structureId);
+        };
+        SortingDomainCommandInvoker.prototype.toggleSort = function (fieldId, compositionId, structureId) {
+            this.sortingDispatcher.toggleSort(fieldId, compositionId, structureId);
+        };
+        SortingDomainCommandInvoker.prototype.setSortOrder = function (fieldId, sortOrder, compositionId, structureId) {
+            this.sortingDispatcher.setSortOrder(fieldId, sortOrder, compositionId, structureId);
+        };
+        return SortingDomainCommandInvoker;
+    }(SortingCommandInvoker));
+    SortingDomainCommandInvoker.decorators = [
+        { type: core.Injectable }
+    ];
+    SortingDomainCommandInvoker.ctorParameters = function () { return [
+        { type: SortingDispatcher }
+    ]; };
 
     var SortingApiModule = /** @class */ (function (_super) {
         __extends(SortingApiModule, _super);
@@ -9170,7 +9174,10 @@
                         SortingDomainModule
                     ],
                     providers: [
-                        SortingCommandInvoker
+                        {
+                            provide: SortingCommandInvoker,
+                            useClass: SortingDomainCommandInvoker
+                        }
                     ],
                     declarations: [],
                     exports: []
@@ -9198,42 +9205,55 @@
                 },] }
     ];
 
-    var FieldReadModel = /** @class */ (function () {
-        function FieldReadModel(id, dataType, name) {
+    var FieldArchive = /** @class */ (function (_super) {
+        __extends(FieldArchive, _super);
+        function FieldArchive() {
+            return _super.call(this, FieldArchive.default) || this;
+        }
+        return FieldArchive;
+    }(hermes.AggregateArchive));
+    FieldArchive.default = [];
+    FieldArchive.decorators = [
+        { type: core.Injectable }
+    ];
+    FieldArchive.ctorParameters = function () { return []; };
+
+    var FieldModel = /** @class */ (function () {
+        function FieldModel(id, dataType, name) {
             this.id = id;
             this.dataType = dataType;
             this.name = name;
         }
-        FieldReadModel.prototype.getFieldId = function () {
+        FieldModel.prototype.getFieldId = function () {
             return this.id;
         };
-        FieldReadModel.prototype.getId = function () {
+        FieldModel.prototype.getId = function () {
             return this.id.getId();
         };
-        FieldReadModel.prototype.getDataType = function () {
+        FieldModel.prototype.getDataType = function () {
             return this.dataType;
         };
-        FieldReadModel.prototype.getName = function () {
+        FieldModel.prototype.getName = function () {
             return this.name;
         };
-        return FieldReadModel;
+        return FieldModel;
     }());
 
-    var FieldUiConverter = /** @class */ (function () {
-        function FieldUiConverter() {
+    var FieldConverter = /** @class */ (function () {
+        function FieldConverter() {
         }
-        FieldUiConverter.prototype.convert = function (fields) {
+        FieldConverter.prototype.convert = function (fields) {
             var _this = this;
             return fields.map(function (field) {
                 return _this.convertOne(field);
             });
         };
-        FieldUiConverter.prototype.convertOne = function (field) {
-            return new FieldReadModel(field.getId(), field.getDataType(), field.getName());
+        FieldConverter.prototype.convertOne = function (field) {
+            return new FieldModel(field.getId(), field.getDataType(), field.getName());
         };
-        return FieldUiConverter;
+        return FieldConverter;
     }());
-    FieldUiConverter.decorators = [
+    FieldConverter.decorators = [
         { type: core.Injectable }
     ];
 
@@ -9287,31 +9307,34 @@
         return FieldCollection;
     }());
 
-    var Field = /** @class */ (function () {
-        function Field(id, field, name) {
-            this.id = id;
-            this.field = field;
-            this.name = name;
+    var FieldEntity = /** @class */ (function (_super) {
+        __extends(FieldEntity, _super);
+        function FieldEntity(id, field, name) {
+            var _this = _super.call(this, id) || this;
+            _this.id = id;
+            _this.field = field;
+            _this.name = name;
+            return _this;
         }
-        Field.of = function (id, dataField, name) {
-            return new Field(id, dataField, name);
+        FieldEntity.of = function (id, dataField, name) {
+            return new FieldEntity(id, dataField, name);
         };
-        Field.prototype.getId = function () {
+        FieldEntity.prototype.getId = function () {
             return this.id;
         };
-        Field.prototype.getKey = function () {
+        FieldEntity.prototype.getKey = function () {
             return this.getId().toString();
         };
-        Field.prototype.getDataType = function () {
+        FieldEntity.prototype.getDataType = function () {
             return this.field.getDataType();
         };
-        Field.prototype.getName = function () {
+        FieldEntity.prototype.getName = function () {
             return this.name;
         };
         /**
          * @deprecated
          */
-        Field.prototype.getField = function () {
+        FieldEntity.prototype.getField = function () {
             return this.field;
         };
         /**
@@ -9319,7 +9342,7 @@
          *
          * @deprecated
          */
-        Field.prototype.getAccessor = function () {
+        FieldEntity.prototype.getAccessor = function () {
             return this.field.getAccessor();
         };
         /**
@@ -9327,7 +9350,7 @@
          *
          * @deprecated
          */
-        Field.prototype.getAccessorMethod = function () {
+        FieldEntity.prototype.getAccessorMethod = function () {
             return this.field.getAccessorMethod();
         };
         /**
@@ -9335,13 +9358,13 @@
          *
          * @deprecated
          */
-        Field.prototype.getSearchAccessorMethod = function () {
+        FieldEntity.prototype.getSearchAccessorMethod = function () {
             return this.field.getSearchAccessorMethod();
         };
-        Field.prototype.getValue = function (entity) {
+        FieldEntity.prototype.getValue = function (entity) {
             return this.field.getValue(entity);
         };
-        Field.prototype.getDisplayValue = function (value) {
+        FieldEntity.prototype.getDisplayValue = function (value) {
             return this.field.getDisplayValue(value);
         };
         /**
@@ -9349,7 +9372,7 @@
          *
          * @deprecated
          */
-        Field.prototype.isSummaries = function (type) {
+        FieldEntity.prototype.isSummaries = function (type) {
             return this.field.isSummaries(type);
         };
         /**
@@ -9357,13 +9380,13 @@
          *
          * @deprecated
          */
-        Field.prototype.isSummariesEnabled = function () {
+        FieldEntity.prototype.isSummariesEnabled = function () {
             return this.field.isSummariesEnabled();
         };
-        Field.prototype.search = function (item, searchPhrase) {
+        FieldEntity.prototype.search = function (item, searchPhrase) {
             return this.field.search(item, searchPhrase);
         };
-        Field.prototype.filter = function (item, filterPhrase) {
+        FieldEntity.prototype.filter = function (item, filterPhrase) {
             var value = this.field.getValue(item);
             if (this.field.getDataType() === DataType.NUMBER) {
                 return this.field.filter(value, filterPhrase);
@@ -9381,7 +9404,7 @@
                 return true;
             }
         };
-        Field.prototype.sort = function (entityOne, entityTwo, direction) {
+        FieldEntity.prototype.sort = function (entityOne, entityTwo, direction) {
             var valueOne = direction ? this.field.getSortValue(entityOne) : this.field.getSortValue(entityTwo), valueTwo = direction ? this.field.getSortValue(entityTwo) : this.field.getSortValue(entityOne);
             if (this.field.getDataType() === DataType.NUMBER) {
                 return this.field.sort(valueOne, valueTwo);
@@ -9399,8 +9422,8 @@
                 return 0;
             }
         };
-        return Field;
-    }());
+        return FieldEntity;
+    }(hermes.Entity));
 
     var BaseDataField = /** @class */ (function () {
         function BaseDataField(accessor, dataType, matchers) {
@@ -9797,32 +9820,32 @@
         { type: core.Injectable }
     ];
 
-    var FieldIdGenerator = /** @class */ (function () {
-        function FieldIdGenerator() {
+    var FieldEntityIdGenerator = /** @class */ (function () {
+        function FieldEntityIdGenerator() {
         }
-        FieldIdGenerator.prototype.generateId = function () {
+        FieldEntityIdGenerator.prototype.generateId = function () {
             var id = hermes.RandomStringGenerator.generate();
             return new FieldId(id);
         };
-        return FieldIdGenerator;
+        return FieldEntityIdGenerator;
     }());
 
-    var FieldFactory = /** @class */ (function () {
-        function FieldFactory(fieldIdGenerator, dataFieldFactory) {
+    var FieldEntityFactory = /** @class */ (function () {
+        function FieldEntityFactory(fieldIdGenerator, dataFieldFactory) {
             this.fieldIdGenerator = fieldIdGenerator;
             this.dataFieldFactory = dataFieldFactory;
         }
-        FieldFactory.prototype.create = function (configs) {
+        FieldEntityFactory.prototype.create = function (configs) {
             var _this = this;
             if (!configs) {
                 return [];
             }
             return configs.map(function (fieldConfig, index) {
                 var fieldId = _this.fieldIdGenerator.generateId(), dataField = _this.dataFieldFactory.create(fieldConfig);
-                return new Field(fieldId, dataField, _this.getFieldName(fieldConfig, index));
+                return new FieldEntity(fieldId, dataField, _this.getFieldName(fieldConfig, index));
             });
         };
-        FieldFactory.prototype.getFieldName = function (fieldConfig, index) {
+        FieldEntityFactory.prototype.getFieldName = function (fieldConfig, index) {
             if (typeof fieldConfig.field === 'string') {
                 return fieldConfig.field.toLowerCase();
             }
@@ -9830,13 +9853,13 @@
                 return 'Field #' + index;
             }
         };
-        return FieldFactory;
+        return FieldEntityFactory;
     }());
-    FieldFactory.decorators = [
+    FieldEntityFactory.decorators = [
         { type: core.Injectable }
     ];
-    FieldFactory.ctorParameters = function () { return [
-        { type: FieldIdGenerator },
+    FieldEntityFactory.ctorParameters = function () { return [
+        { type: FieldEntityIdGenerator },
         { type: DataFieldFactory }
     ]; };
 
@@ -9853,7 +9876,7 @@
         { type: core.Injectable }
     ];
     FieldCollectionFactory.ctorParameters = function () { return [
-        { type: FieldFactory }
+        { type: FieldEntityFactory }
     ]; };
 
     var InitFieldsCommandHandler = /** @class */ (function () {
@@ -9880,17 +9903,17 @@
     ]; };
 
     var FieldsInitedEventHandler = /** @class */ (function () {
-        function FieldsInitedEventHandler(fieldReadModelRepository, fieldUiConverter) {
-            this.fieldReadModelRepository = fieldReadModelRepository;
-            this.fieldUiConverter = fieldUiConverter;
+        function FieldsInitedEventHandler(fieldArchive, fieldConverter) {
+            this.fieldArchive = fieldArchive;
+            this.fieldConverter = fieldConverter;
         }
         FieldsInitedEventHandler.prototype.forEvent = function () {
             return FieldsInitedEvent;
         };
         FieldsInitedEventHandler.prototype.handle = function (event) {
             if (event.ofMessageType('FieldsInitedEvent')) {
-                var fields = this.fieldUiConverter.convert(event.getFields());
-                this.fieldReadModelRepository.next(event.getAggregateId(), fields);
+                var fields = this.fieldConverter.convert(event.getFields());
+                this.fieldArchive.next(event.getAggregateId(), fields);
             }
         };
         return FieldsInitedEventHandler;
@@ -9899,8 +9922,24 @@
         { type: core.Injectable }
     ];
     FieldsInitedEventHandler.ctorParameters = function () { return [
-        { type: FieldReadModelArchive },
-        { type: FieldUiConverter }
+        { type: FieldArchive },
+        { type: FieldConverter }
+    ]; };
+
+    var FieldDispatcher = /** @class */ (function () {
+        function FieldDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        FieldDispatcher.prototype.initFields = function (fieldConfigs, structureId) {
+            this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
+        };
+        return FieldDispatcher;
+    }());
+    FieldDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    FieldDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
     ]; };
 
     var FieldDomainModule = /** @class */ (function (_super) {
@@ -9924,13 +9963,57 @@
         { type: core.NgModule, args: [{
                     providers: [
                         FieldCollectionFactory,
-                        FieldFactory,
-                        FieldIdGenerator,
-                        DataFieldFactory
+                        FieldEntityFactory,
+                        FieldEntityIdGenerator,
+                        DataFieldFactory,
+                        FieldDispatcher
                     ]
                 },] }
     ];
     FieldDomainModule.ctorParameters = function () { return []; };
+
+    var FieldDomainWarehouse = /** @class */ (function (_super) {
+        __extends(FieldDomainWarehouse, _super);
+        function FieldDomainWarehouse(fieldReadModelArchive) {
+            var _this = _super.call(this) || this;
+            _this.fieldReadModelArchive = fieldReadModelArchive;
+            return _this;
+        }
+        FieldDomainWarehouse.prototype.onFields = function (structureId) {
+            return this.fieldReadModelArchive.on(structureId);
+        };
+        FieldDomainWarehouse.prototype.findFields = function (structureId) {
+            return this.fieldReadModelArchive.find(structureId);
+        };
+        return FieldDomainWarehouse;
+    }(FieldWarehouse));
+    FieldDomainWarehouse.decorators = [
+        { type: core.Injectable }
+    ];
+    FieldDomainWarehouse.ctorParameters = function () { return [
+        { type: FieldArchive }
+    ]; };
+
+    var FieldDomainCommandInvoker = /** @class */ (function (_super) {
+        __extends(FieldDomainCommandInvoker, _super);
+        function FieldDomainCommandInvoker(domainEventBus, fieldDispatcher) {
+            var _this = _super.call(this) || this;
+            _this.domainEventBus = domainEventBus;
+            _this.fieldDispatcher = fieldDispatcher;
+            return _this;
+        }
+        FieldDomainCommandInvoker.prototype.initFields = function (fieldConfigs, structureId) {
+            this.fieldDispatcher.initFields(fieldConfigs, structureId);
+        };
+        return FieldDomainCommandInvoker;
+    }(FieldCommandInvoker));
+    FieldDomainCommandInvoker.decorators = [
+        { type: core.Injectable }
+    ];
+    FieldDomainCommandInvoker.ctorParameters = function () { return [
+        { type: hermes.DomainEventBus },
+        { type: FieldDispatcher }
+    ]; };
 
     var FieldApiModule = /** @class */ (function (_super) {
         __extends(FieldApiModule, _super);
@@ -9946,10 +10029,16 @@
                         FieldDomainModule
                     ],
                     providers: [
-                        FieldCommandInvoker,
-                        FieldReadModelArchive,
-                        FieldUiConverter,
-                        FieldWarehouse
+                        {
+                            provide: FieldCommandInvoker,
+                            useClass: FieldDomainCommandInvoker
+                        },
+                        FieldArchive,
+                        FieldConverter,
+                        {
+                            provide: FieldWarehouse,
+                            useClass: FieldDomainWarehouse
+                        }
                     ]
                 },] }
     ];
@@ -9975,24 +10064,24 @@
                 },] }
     ];
 
-    var Source = /** @class */ (function () {
-        function Source(loading) {
+    var SourceIsLoadingModel = /** @class */ (function () {
+        function SourceIsLoadingModel(loading) {
             this.loading = loading;
         }
-        Source.prototype.isLoading = function () {
+        SourceIsLoadingModel.prototype.isLoading = function () {
             return this.loading;
         };
-        return Source;
+        return SourceIsLoadingModel;
     }());
-    Source = __decorate([
+    SourceIsLoadingModel = __decorate([
         hermes.ReadModelObject
-    ], Source);
+    ], SourceIsLoadingModel);
 
     var SourceConverter = /** @class */ (function () {
         function SourceConverter() {
         }
         SourceConverter.prototype.convert = function (aggregate) {
-            return new Source(aggregate.isLoading());
+            return new SourceIsLoadingModel(aggregate.isLoading());
         };
         return SourceConverter;
     }());
@@ -10545,228 +10634,6 @@
         { type: FormationManagerFactory }
     ]; };
 
-    var SetEnabledSelectionCommandHandler = /** @class */ (function () {
-        function SetEnabledSelectionCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        SetEnabledSelectionCommandHandler.prototype.forCommand = function () {
-            return SetEnabledSelectionCommand;
-        };
-        SetEnabledSelectionCommandHandler.prototype.handle = function (aggregate, command) {
-            aggregate.setSelection(command.isEnabled());
-        };
-        SetEnabledSelectionCommandHandler.prototype.publish = function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        return SetEnabledSelectionCommandHandler;
-    }());
-    SetEnabledSelectionCommandHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    SetEnabledSelectionCommandHandler.ctorParameters = function () { return [
-        { type: hermes.DomainEventPublisher }
-    ]; };
-
-    var ToggleSelectedRowCommandHandler = /** @class */ (function () {
-        function ToggleSelectedRowCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            this.structureAggregateRepository = structureAggregateRepository;
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        ToggleSelectedRowCommandHandler.prototype.forCommand = function () {
-            return ToggleSelectedRowCommand;
-        };
-        ToggleSelectedRowCommandHandler.prototype.handle = function (aggregate, command) {
-            var selectedRow = command.getSelectedRow(), type = command.getType();
-            aggregate.toggleRow(selectedRow, type);
-        };
-        ToggleSelectedRowCommandHandler.prototype.publish = function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        return ToggleSelectedRowCommandHandler;
-    }());
-    ToggleSelectedRowCommandHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    ToggleSelectedRowCommandHandler.ctorParameters = function () { return [
-        { type: StructureAggregateRepository },
-        { type: hermes.DomainEventPublisher }
-    ]; };
-
-    var RowSelectedRepository = /** @class */ (function (_super) {
-        __extends(RowSelectedRepository, _super);
-        function RowSelectedRepository() {
-            return _super.call(this) || this;
-        }
-        return RowSelectedRepository;
-    }(hermes.AggregateArchive));
-    RowSelectedRepository.decorators = [
-        { type: core.Injectable }
-    ];
-    RowSelectedRepository.ctorParameters = function () { return []; };
-
-    var RowSelectedReadModel = /** @class */ (function () {
-        function RowSelectedReadModel(itemIds, allSelected, allUnselected) {
-            this.itemIds = new Array();
-            this.itemIds = itemIds;
-            this.allSelected = allSelected;
-            this.allUnselected = allUnselected;
-        }
-        RowSelectedReadModel.prototype.getAll = function () {
-            return this.itemIds;
-        };
-        RowSelectedReadModel.prototype.isSelected = function (id) {
-            return this.itemIds.some(function (itemId) { return itemId === id; });
-        };
-        RowSelectedReadModel.prototype.isAllSelected = function () {
-            return this.allSelected;
-        };
-        RowSelectedReadModel.prototype.isAllUnselected = function () {
-            return this.allUnselected;
-        };
-        RowSelectedReadModel.prototype.isIndeterminate = function () {
-            return !(this.isAllSelected() || this.isAllUnselected());
-        };
-        return RowSelectedReadModel;
-    }());
-
-    var SelectedRowChangedEventHandler = /** @class */ (function () {
-        function SelectedRowChangedEventHandler(rowSelectedRepository) {
-            this.rowSelectedRepository = rowSelectedRepository;
-        }
-        SelectedRowChangedEventHandler.prototype.forEvent = function () {
-            return SelectedRowChangedEvent;
-        };
-        SelectedRowChangedEventHandler.prototype.handle = function (rowChangedEvent) {
-            if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
-                var rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
-                this.rowSelectedRepository.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
-            }
-        };
-        return SelectedRowChangedEventHandler;
-    }());
-    SelectedRowChangedEventHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    SelectedRowChangedEventHandler.ctorParameters = function () { return [
-        { type: RowSelectedRepository }
-    ]; };
-
-    var SetSelectionModeCommandHandler = /** @class */ (function () {
-        function SetSelectionModeCommandHandler(domainEventPublisher) {
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        SetSelectionModeCommandHandler.prototype.forCommand = function () {
-            return SetSelectionModeCommand;
-        };
-        SetSelectionModeCommandHandler.prototype.handle = function (aggregate, command) {
-            aggregate.setSelectionMode(command.getMode());
-        };
-        SetSelectionModeCommandHandler.prototype.publish = function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        return SetSelectionModeCommandHandler;
-    }());
-    SetSelectionModeCommandHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    SetSelectionModeCommandHandler.ctorParameters = function () { return [
-        { type: hermes.DomainEventPublisher }
-    ]; };
-
-    var SelectAllRowsCommandHandler = /** @class */ (function () {
-        function SelectAllRowsCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            this.structureAggregateRepository = structureAggregateRepository;
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        SelectAllRowsCommandHandler.prototype.forCommand = function () {
-            return SelectAllRowsCommand;
-        };
-        SelectAllRowsCommandHandler.prototype.handle = function (aggregate, command) {
-            aggregate.selectAll();
-        };
-        SelectAllRowsCommandHandler.prototype.publish = function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        return SelectAllRowsCommandHandler;
-    }());
-    SelectAllRowsCommandHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    SelectAllRowsCommandHandler.ctorParameters = function () { return [
-        { type: StructureAggregateRepository },
-        { type: hermes.DomainEventPublisher }
-    ]; };
-
-    var UnselectAllRowsCommandHandler = /** @class */ (function () {
-        function UnselectAllRowsCommandHandler(structureAggregateRepository, domainEventPublisher) {
-            this.structureAggregateRepository = structureAggregateRepository;
-            this.domainEventPublisher = domainEventPublisher;
-        }
-        UnselectAllRowsCommandHandler.prototype.forCommand = function () {
-            return UnselectAllRowsCommand;
-        };
-        UnselectAllRowsCommandHandler.prototype.handle = function (aggregate, command) {
-            aggregate.unselectAll();
-        };
-        UnselectAllRowsCommandHandler.prototype.publish = function (aggregate, command) {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        };
-        return UnselectAllRowsCommandHandler;
-    }());
-    UnselectAllRowsCommandHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    UnselectAllRowsCommandHandler.ctorParameters = function () { return [
-        { type: StructureAggregateRepository },
-        { type: hermes.DomainEventPublisher }
-    ]; };
-
-    var SelectionModeSetEvent = /** @class */ (function (_super) {
-        __extends(SelectionModeSetEvent, _super);
-        function SelectionModeSetEvent(aggregateId, mode) {
-            var _this = _super.call(this, aggregateId, mode, 'SelectionModeSetEvent') || this;
-            _this.mode = mode;
-            return _this;
-        }
-        SelectionModeSetEvent.prototype.getMode = function () {
-            return this.mode;
-        };
-        return SelectionModeSetEvent;
-    }(StructureDomainEvent));
-
-    var RowSelectionModeRepository = /** @class */ (function (_super) {
-        __extends(RowSelectionModeRepository, _super);
-        function RowSelectionModeRepository() {
-            return _super.call(this) || this;
-        }
-        return RowSelectionModeRepository;
-    }(hermes.AggregateArchive));
-    RowSelectionModeRepository.decorators = [
-        { type: core.Injectable }
-    ];
-    RowSelectionModeRepository.ctorParameters = function () { return []; };
-
-    var SelectionModeSetEventHandler = /** @class */ (function () {
-        function SelectionModeSetEventHandler(rowSelectionModeRepository) {
-            this.rowSelectionModeRepository = rowSelectionModeRepository;
-        }
-        SelectionModeSetEventHandler.prototype.forEvent = function () {
-            return SelectionModeSetEvent;
-        };
-        SelectionModeSetEventHandler.prototype.handle = function (modeSetEvent) {
-            if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
-                this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
-            }
-        };
-        return SelectionModeSetEventHandler;
-    }());
-    SelectionModeSetEventHandler.decorators = [
-        { type: core.Injectable }
-    ];
-    SelectionModeSetEventHandler.ctorParameters = function () { return [
-        { type: RowSelectionModeRepository }
-    ]; };
-
     var DeleteCommandPayloadType;
     (function (DeleteCommandPayloadType) {
         DeleteCommandPayloadType[DeleteCommandPayloadType["INDEX"] = 0] = "INDEX";
@@ -10869,7 +10736,7 @@
          * @deprecated
          */
         StructurePreparedItemsArchive.prototype.getPreparedItems = function (structureId) {
-            return this.get(structureId).getValueOrNullOrThrowError();
+            return this.find(structureId).getValueOrNullOrThrowError();
         };
         return StructurePreparedItemsArchive;
     }(hermes.AggregateArchive));
@@ -10911,19 +10778,12 @@
                 hermes.HermesModule.registerCommandHandler(SourceSetLoadingCommandHandler, structureKey),
                 hermes.HermesModule.registerCommandHandler(SetOriginCommandHandler, structureKey),
                 hermes.HermesModule.registerCommandHandler(StructureEditSourceItemCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(SetEnabledSelectionCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(SetSelectionModeCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(SelectAllRowsCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(UnselectAllRowsCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(DeleteOriginItemCommandHandler, structureKey),
-                hermes.HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, structureKey)
+                hermes.HermesModule.registerCommandHandler(DeleteOriginItemCommandHandler, structureKey)
             ];
         };
         SourceDomainModule.domainEventHandlers = function () {
             return [
                 hermes.HermesModule.registerDomainEventHandler(StructureOriginChangedEventHandler),
-                hermes.HermesModule.registerDomainEventHandler(SelectedRowChangedEventHandler),
-                hermes.HermesModule.registerDomainEventHandler(SelectionModeSetEventHandler),
                 hermes.HermesModule.registerDomainEventHandler(StructurePreparedItemsEventHandler)
             ];
         };
@@ -10937,63 +10797,13 @@
                     providers: [
                         SourceDispatcher,
                         SourceManagerFactory,
-                        SourceDomainEventPublisher,
-                        FormationDispatcher,
-                        FormationManagerFactory
+                        SourceDomainEventPublisher
                     ],
                     declarations: [],
                     exports: []
                 },] }
     ];
     SourceDomainModule.ctorParameters = function () { return []; };
-
-    var FormationWarehouse = /** @class */ (function () {
-        function FormationWarehouse(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
-            this.rowSelectedRepository = rowSelectedRepository;
-            this.rowSelectionModeRepository = rowSelectionModeRepository;
-            this.sourceWarehouse = sourceWarehouse;
-        }
-        FormationWarehouse.prototype.getSelectedRows = function (structureId) {
-            var items = this.sourceWarehouse.getPreparedEntities(structureId), selectedItemIds = this.getSelectedItemIds(structureId);
-            var selectedItems = [], length = items.length;
-            var _loop_1 = function (i) {
-                var item = items[i];
-                if (selectedItemIds.some(function (itemId) { return itemId === item.getId().toString(); })) {
-                    selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
-                }
-            };
-            for (var i = 0; i < length; i += 1) {
-                _loop_1(i);
-            }
-            return selectedItems;
-        };
-        FormationWarehouse.prototype.onRowSelectedReadModel = function (structureId) {
-            return this.rowSelectedRepository
-                .on(structureId);
-        };
-        FormationWarehouse.prototype.getSelectedItemIds = function (structureId) {
-            return this.rowSelectedRepository.get(structureId).getValueOrNullOrThrowError().getAll();
-        };
-        FormationWarehouse.prototype.onSelectedRows = function (structureId) {
-            return this.rowSelectedRepository
-                .on(structureId)
-                .pipe(hermes.hermesMap(function (rm) {
-                return rm.getAll();
-            }));
-        };
-        FormationWarehouse.prototype.onMode = function (structureId) {
-            return this.rowSelectionModeRepository.on(structureId);
-        };
-        return FormationWarehouse;
-    }());
-    FormationWarehouse.decorators = [
-        { type: core.Injectable }
-    ];
-    FormationWarehouse.ctorParameters = function () { return [
-        { type: RowSelectedRepository },
-        { type: RowSelectionModeRepository },
-        { type: SourceWarehouse }
-    ]; };
 
     var SourceDomainWarehouse = /** @class */ (function (_super) {
         __extends(SourceDomainWarehouse, _super);
@@ -11004,10 +10814,7 @@
             _this.structureSourceOriginRepository = structureSourceOriginRepository;
             return _this;
         }
-        /**
-         * @deprecated
-         */
-        SourceDomainWarehouse.prototype.getEntities = function (structureId) {
+        SourceDomainWarehouse.prototype.findEntities = function (structureId) {
             return this.structureRepository.getStructure(structureId).getEntities();
         };
         SourceDomainWarehouse.prototype.onEntities = function (structureId) {
@@ -11034,8 +10841,7 @@
             }));
         };
         SourceDomainWarehouse.prototype.onceEntities = function (structureId) {
-            return this.onEntities(structureId)
-                .pipe(hermes.hermesTake(1));
+            return hermes.singleFromObservable(this.onEntities(structureId));
         };
         SourceDomainWarehouse.prototype.onOriginSize = function (structureId) {
             return this.structureSourceOriginRepository
@@ -11050,10 +10856,7 @@
         SourceDomainWarehouse.prototype.onPreparedEntities = function (structureId) {
             return this.structurePreparedItemsRepository.on(structureId);
         };
-        /**
-         * @deprecated
-         */
-        SourceDomainWarehouse.prototype.getPreparedEntities = function (structureId) {
+        SourceDomainWarehouse.prototype.findPreparedEntities = function (structureId) {
             return this.structurePreparedItemsRepository.getPreparedItems(structureId);
         };
         return SourceDomainWarehouse;
@@ -11187,12 +10990,7 @@
                             provide: SourceWarehouse,
                             useClass: SourceDomainWarehouse
                         },
-                        SourceEventService,
-                        RowSelectedRepository,
-                        FormationEventRepository,
-                        FormationCommandInvoker,
-                        FormationWarehouse,
-                        RowSelectionModeRepository
+                        SourceEventService
                     ],
                     declarations: [],
                     exports: []
@@ -11205,9 +11003,7 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         SourceFeatureModule.forComponent = function () {
-            return [
-                RowSelectionTypeArchive
-            ];
+            return [];
         };
         return SourceFeatureModule;
     }(hermes.FeatureModule));
@@ -11937,8 +11733,7 @@
                 .on(schemaId.toAggregateId());
         };
         SchemaDomainWarehouse.prototype.onceTheme = function (schemaId) {
-            return this.onTheme(schemaId)
-                .pipe(hermes.hermesTake(1));
+            return hermes.singleFromObservable(this.onTheme(schemaId));
         };
         SchemaDomainWarehouse.prototype.onHorizontalGrid = function (schemaId) {
             return this.schemaHorizontalGridRepository
@@ -12629,6 +12424,22 @@
         { type: Array, decorators: [{ type: core.Inject, args: [SUMMARIES_CALCULATORS,] }] }
     ]; };
 
+    var SummariesDispatcher = /** @class */ (function () {
+        function SummariesDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        SummariesDispatcher.prototype.setSummariesEnabled = function (enabled, structureId) {
+            this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+        };
+        return SummariesDispatcher;
+    }());
+    SummariesDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    SummariesDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
+    ]; };
+
     var SummariesDomainModule = /** @class */ (function (_super) {
         __extends(SummariesDomainModule, _super);
         function SummariesDomainModule() {
@@ -12653,7 +12464,8 @@
                         provideSummariesCalculator(NumberSummariesCalculator),
                         provideSummariesCalculator(StringSummariesCalculator),
                         provideSummariesCalculator(UnknownSummariesCalculator),
-                        SummariesManagerFactory
+                        SummariesManagerFactory,
+                        SummariesDispatcher
                     ],
                     declarations: [],
                     exports: []
@@ -12766,15 +12578,15 @@
 
     var SummariesDomainCommandInvoker = /** @class */ (function (_super) {
         __extends(SummariesDomainCommandInvoker, _super);
-        function SummariesDomainCommandInvoker(commandDispatcher, configConverter, structureSummariesConfigArchive) {
+        function SummariesDomainCommandInvoker(summariesDispatcher, configConverter, structureSummariesConfigArchive) {
             var _this = _super.call(this) || this;
-            _this.commandDispatcher = commandDispatcher;
+            _this.summariesDispatcher = summariesDispatcher;
             _this.configConverter = configConverter;
             _this.structureSummariesConfigArchive = structureSummariesConfigArchive;
             return _this;
         }
         SummariesDomainCommandInvoker.prototype.setSummariesEnabled = function (enabled, structureId) {
-            this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+            this.summariesDispatcher.setSummariesEnabled(enabled, structureId);
         };
         SummariesDomainCommandInvoker.prototype.setConfig = function (config, structureId) {
             var summariesPanelConfig = this.configConverter.convert(config);
@@ -12787,7 +12599,7 @@
         { type: core.Injectable }
     ];
     SummariesDomainCommandInvoker.ctorParameters = function () { return [
-        { type: hermes.CommandDispatcher },
+        { type: SummariesDispatcher },
         { type: StructureSummariesPanelConfigConverter },
         { type: StructureSummariesConfigArchive }
     ]; };
@@ -12950,6 +12762,504 @@
                 },] }
     ];
 
+    var FormationWarehouse = /** @class */ (function () {
+        function FormationWarehouse() {
+        }
+        return FormationWarehouse;
+    }());
+    FormationWarehouse.decorators = [
+        { type: core.Injectable }
+    ];
+    FormationWarehouse.ctorParameters = function () { return []; };
+
+    var RowSelectedReadModel = /** @class */ (function () {
+        function RowSelectedReadModel(itemIds, allSelected, allUnselected) {
+            this.itemIds = new Array();
+            this.itemIds = itemIds;
+            this.allSelected = allSelected;
+            this.allUnselected = allUnselected;
+        }
+        RowSelectedReadModel.prototype.getAll = function () {
+            return this.itemIds;
+        };
+        RowSelectedReadModel.prototype.isSelected = function (id) {
+            return this.itemIds.some(function (itemId) { return itemId === id; });
+        };
+        RowSelectedReadModel.prototype.isAllSelected = function () {
+            return this.allSelected;
+        };
+        RowSelectedReadModel.prototype.isAllUnselected = function () {
+            return this.allUnselected;
+        };
+        RowSelectedReadModel.prototype.isIndeterminate = function () {
+            return !(this.isAllSelected() || this.isAllUnselected());
+        };
+        return RowSelectedReadModel;
+    }());
+
+    var RowSelectedArchive = /** @class */ (function (_super) {
+        __extends(RowSelectedArchive, _super);
+        function RowSelectedArchive() {
+            return _super.call(this, RowSelectedArchive.default) || this;
+        }
+        return RowSelectedArchive;
+    }(hermes.AggregateArchive));
+    RowSelectedArchive.default = new RowSelectedReadModel([], false, false);
+    RowSelectedArchive.decorators = [
+        { type: core.Injectable }
+    ];
+    RowSelectedArchive.ctorParameters = function () { return []; };
+
+    var RowSelectionModeArchive = /** @class */ (function (_super) {
+        __extends(RowSelectionModeArchive, _super);
+        function RowSelectionModeArchive() {
+            return _super.call(this, RowSelectionModeArchive.default) || this;
+        }
+        return RowSelectionModeArchive;
+    }(hermes.AggregateArchive));
+    RowSelectionModeArchive.default = RowSelectionMode.SINGLE;
+    RowSelectionModeArchive.decorators = [
+        { type: core.Injectable }
+    ];
+    RowSelectionModeArchive.ctorParameters = function () { return []; };
+
+    var SetEnabledSelectionCommand = /** @class */ (function (_super) {
+        __extends(SetEnabledSelectionCommand, _super);
+        function SetEnabledSelectionCommand(structureId, enabled) {
+            var _this = _super.call(this, structureId, 'SetEnabledSelectionCommand') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        SetEnabledSelectionCommand.prototype.isEnabled = function () {
+            return this.enabled;
+        };
+        return SetEnabledSelectionCommand;
+    }(StructureCommand));
+
+    var SetEnabledSelectionCommandHandler = /** @class */ (function () {
+        function SetEnabledSelectionCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        SetEnabledSelectionCommandHandler.prototype.forCommand = function () {
+            return SetEnabledSelectionCommand;
+        };
+        SetEnabledSelectionCommandHandler.prototype.handle = function (aggregate, command) {
+            aggregate.setSelection(command.isEnabled());
+        };
+        SetEnabledSelectionCommandHandler.prototype.publish = function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        return SetEnabledSelectionCommandHandler;
+    }());
+    SetEnabledSelectionCommandHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    SetEnabledSelectionCommandHandler.ctorParameters = function () { return [
+        { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var ToggleSelectedRowCommand = /** @class */ (function (_super) {
+        __extends(ToggleSelectedRowCommand, _super);
+        function ToggleSelectedRowCommand(structureId, selectedRow, type) {
+            var _this = _super.call(this, structureId, 'ToggleSelectedRowCommand') || this;
+            _this.selectedRow = selectedRow;
+            _this.type = type;
+            return _this;
+        }
+        ToggleSelectedRowCommand.prototype.getSelectedRow = function () {
+            return this.selectedRow;
+        };
+        ToggleSelectedRowCommand.prototype.getType = function () {
+            return this.type;
+        };
+        return ToggleSelectedRowCommand;
+    }(StructureCommand));
+
+    var ToggleSelectedRowCommandHandler = /** @class */ (function () {
+        function ToggleSelectedRowCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        ToggleSelectedRowCommandHandler.prototype.forCommand = function () {
+            return ToggleSelectedRowCommand;
+        };
+        ToggleSelectedRowCommandHandler.prototype.handle = function (aggregate, command) {
+            var selectedRow = command.getSelectedRow(), type = command.getType();
+            aggregate.toggleRow(selectedRow, type);
+        };
+        ToggleSelectedRowCommandHandler.prototype.publish = function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        return ToggleSelectedRowCommandHandler;
+    }());
+    ToggleSelectedRowCommandHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    ToggleSelectedRowCommandHandler.ctorParameters = function () { return [
+        { type: StructureAggregateRepository },
+        { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var SetSelectionModeCommand = /** @class */ (function (_super) {
+        __extends(SetSelectionModeCommand, _super);
+        function SetSelectionModeCommand(structureId, mode) {
+            var _this = _super.call(this, structureId, 'SetSelectionModeCommand') || this;
+            _this.mode = mode;
+            return _this;
+        }
+        SetSelectionModeCommand.prototype.getMode = function () {
+            return this.mode;
+        };
+        return SetSelectionModeCommand;
+    }(StructureCommand));
+
+    var SelectAllRowsCommand = /** @class */ (function (_super) {
+        __extends(SelectAllRowsCommand, _super);
+        function SelectAllRowsCommand(structureId) {
+            return _super.call(this, structureId, 'SelectAllRowsCommand') || this;
+        }
+        return SelectAllRowsCommand;
+    }(StructureCommand));
+
+    var UnselectAllRowsCommand = /** @class */ (function (_super) {
+        __extends(UnselectAllRowsCommand, _super);
+        function UnselectAllRowsCommand(structureId) {
+            return _super.call(this, structureId, 'UnselectAllRowsCommand') || this;
+        }
+        return UnselectAllRowsCommand;
+    }(StructureCommand));
+
+    var FormationDispatcher = /** @class */ (function () {
+        function FormationDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        FormationDispatcher.prototype.toggleSelectedRow = function (selectedRow, type, structureId) {
+            this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
+        };
+        FormationDispatcher.prototype.changeMode = function (mode, structureId) {
+            this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
+        };
+        FormationDispatcher.prototype.setSelection = function (enabled, structureId) {
+            this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
+        };
+        FormationDispatcher.prototype.selectAll = function (structureId) {
+            this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
+        };
+        FormationDispatcher.prototype.unselectAll = function (structureId) {
+            this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
+        };
+        return FormationDispatcher;
+    }());
+    FormationDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    FormationDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
+    ]; };
+
+    var SelectedRowChangedEventHandler = /** @class */ (function () {
+        function SelectedRowChangedEventHandler(rowSelectedRepository) {
+            this.rowSelectedRepository = rowSelectedRepository;
+        }
+        SelectedRowChangedEventHandler.prototype.forEvent = function () {
+            return SelectedRowChangedEvent;
+        };
+        SelectedRowChangedEventHandler.prototype.handle = function (rowChangedEvent) {
+            if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
+                var rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
+                this.rowSelectedRepository.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
+            }
+        };
+        return SelectedRowChangedEventHandler;
+    }());
+    SelectedRowChangedEventHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    SelectedRowChangedEventHandler.ctorParameters = function () { return [
+        { type: RowSelectedArchive }
+    ]; };
+
+    var SetSelectionModeCommandHandler = /** @class */ (function () {
+        function SetSelectionModeCommandHandler(domainEventPublisher) {
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        SetSelectionModeCommandHandler.prototype.forCommand = function () {
+            return SetSelectionModeCommand;
+        };
+        SetSelectionModeCommandHandler.prototype.handle = function (aggregate, command) {
+            aggregate.setSelectionMode(command.getMode());
+        };
+        SetSelectionModeCommandHandler.prototype.publish = function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        return SetSelectionModeCommandHandler;
+    }());
+    SetSelectionModeCommandHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    SetSelectionModeCommandHandler.ctorParameters = function () { return [
+        { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var SelectAllRowsCommandHandler = /** @class */ (function () {
+        function SelectAllRowsCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        SelectAllRowsCommandHandler.prototype.forCommand = function () {
+            return SelectAllRowsCommand;
+        };
+        SelectAllRowsCommandHandler.prototype.handle = function (aggregate, command) {
+            aggregate.selectAll();
+        };
+        SelectAllRowsCommandHandler.prototype.publish = function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        return SelectAllRowsCommandHandler;
+    }());
+    SelectAllRowsCommandHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    SelectAllRowsCommandHandler.ctorParameters = function () { return [
+        { type: StructureAggregateRepository },
+        { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var UnselectAllRowsCommandHandler = /** @class */ (function () {
+        function UnselectAllRowsCommandHandler(structureAggregateRepository, domainEventPublisher) {
+            this.structureAggregateRepository = structureAggregateRepository;
+            this.domainEventPublisher = domainEventPublisher;
+        }
+        UnselectAllRowsCommandHandler.prototype.forCommand = function () {
+            return UnselectAllRowsCommand;
+        };
+        UnselectAllRowsCommandHandler.prototype.handle = function (aggregate, command) {
+            aggregate.unselectAll();
+        };
+        UnselectAllRowsCommandHandler.prototype.publish = function (aggregate, command) {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        };
+        return UnselectAllRowsCommandHandler;
+    }());
+    UnselectAllRowsCommandHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    UnselectAllRowsCommandHandler.ctorParameters = function () { return [
+        { type: StructureAggregateRepository },
+        { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var SelectionModeSetEvent = /** @class */ (function (_super) {
+        __extends(SelectionModeSetEvent, _super);
+        function SelectionModeSetEvent(aggregateId, mode) {
+            var _this = _super.call(this, aggregateId, mode, 'SelectionModeSetEvent') || this;
+            _this.mode = mode;
+            return _this;
+        }
+        SelectionModeSetEvent.prototype.getMode = function () {
+            return this.mode;
+        };
+        return SelectionModeSetEvent;
+    }(StructureDomainEvent));
+
+    var SelectionModeSetEventHandler = /** @class */ (function () {
+        function SelectionModeSetEventHandler(rowSelectionModeRepository) {
+            this.rowSelectionModeRepository = rowSelectionModeRepository;
+        }
+        SelectionModeSetEventHandler.prototype.forEvent = function () {
+            return SelectionModeSetEvent;
+        };
+        SelectionModeSetEventHandler.prototype.handle = function (modeSetEvent) {
+            if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
+                this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
+            }
+        };
+        return SelectionModeSetEventHandler;
+    }());
+    SelectionModeSetEventHandler.decorators = [
+        { type: core.Injectable }
+    ];
+    SelectionModeSetEventHandler.ctorParameters = function () { return [
+        { type: RowSelectionModeArchive }
+    ]; };
+
+    var FormationDomainModule = /** @class */ (function (_super) {
+        __extends(FormationDomainModule, _super);
+        function FormationDomainModule() {
+            return _super.call(this) || this;
+        }
+        FormationDomainModule.commandHandlers = function () {
+            return [
+                hermes.HermesModule.registerCommandHandler(SetEnabledSelectionCommandHandler, structureKey),
+                hermes.HermesModule.registerCommandHandler(SetSelectionModeCommandHandler, structureKey),
+                hermes.HermesModule.registerCommandHandler(SelectAllRowsCommandHandler, structureKey),
+                hermes.HermesModule.registerCommandHandler(UnselectAllRowsCommandHandler, structureKey),
+                hermes.HermesModule.registerCommandHandler(ToggleSelectedRowCommandHandler, structureKey)
+            ];
+        };
+        FormationDomainModule.domainEventHandlers = function () {
+            return [
+                hermes.HermesModule.registerDomainEventHandler(SelectedRowChangedEventHandler),
+                hermes.HermesModule.registerDomainEventHandler(SelectionModeSetEventHandler)
+            ];
+        };
+        return FormationDomainModule;
+    }(hermes.DomainModule));
+    FormationDomainModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [
+                        common.CommonModule
+                    ],
+                    providers: [
+                        FormationDispatcher,
+                        FormationManagerFactory
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+    FormationDomainModule.ctorParameters = function () { return []; };
+
+    var FormationDomainWarehouse = /** @class */ (function (_super) {
+        __extends(FormationDomainWarehouse, _super);
+        function FormationDomainWarehouse(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
+            var _this = _super.call(this) || this;
+            _this.rowSelectedRepository = rowSelectedRepository;
+            _this.rowSelectionModeRepository = rowSelectionModeRepository;
+            _this.sourceWarehouse = sourceWarehouse;
+            return _this;
+        }
+        FormationDomainWarehouse.prototype.findSelectedRows = function (structureId) {
+            var items = this.sourceWarehouse.findPreparedEntities(structureId), selectedItemIds = this.findSelectedItemIds(structureId).getValueOrNullOrThrowError();
+            var selectedItems = [], length = items.length;
+            var _loop_1 = function (i) {
+                var item = items[i];
+                if (selectedItemIds.some(function (itemId) { return itemId === item.getId().toString(); })) {
+                    selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
+                }
+            };
+            for (var i = 0; i < length; i += 1) {
+                _loop_1(i);
+            }
+            return hermes.Optional.of(selectedItems);
+        };
+        FormationDomainWarehouse.prototype.onRowSelectedReadModel = function (structureId) {
+            return this.rowSelectedRepository
+                .on(structureId);
+        };
+        FormationDomainWarehouse.prototype.findSelectedItemIds = function (structureId) {
+            return this.rowSelectedRepository
+                .find(structureId)
+                .map(function (r) {
+                return r.getAll();
+            });
+        };
+        FormationDomainWarehouse.prototype.onSelectedRows = function (structureId) {
+            return this.rowSelectedRepository
+                .on(structureId)
+                .pipe(hermes.hermesMap(function (rm) {
+                return rm.getAll();
+            }));
+        };
+        FormationDomainWarehouse.prototype.onMode = function (structureId) {
+            return this.rowSelectionModeRepository.on(structureId);
+        };
+        return FormationDomainWarehouse;
+    }(FormationWarehouse));
+    FormationDomainWarehouse.decorators = [
+        { type: core.Injectable }
+    ];
+    FormationDomainWarehouse.ctorParameters = function () { return [
+        { type: RowSelectedArchive },
+        { type: RowSelectionModeArchive },
+        { type: SourceWarehouse }
+    ]; };
+
+    var FormationDomainCommandInvoker = /** @class */ (function (_super) {
+        __extends(FormationDomainCommandInvoker, _super);
+        function FormationDomainCommandInvoker(formationDispatcher) {
+            var _this = _super.call(this) || this;
+            _this.formationDispatcher = formationDispatcher;
+            return _this;
+        }
+        FormationDomainCommandInvoker.prototype.toggleSelectedRow = function (selectedRow, type, structureId) {
+            this.formationDispatcher.toggleSelectedRow(selectedRow, type, structureId);
+        };
+        FormationDomainCommandInvoker.prototype.changeMode = function (mode, structureId) {
+            this.formationDispatcher.changeMode(mode, structureId);
+        };
+        FormationDomainCommandInvoker.prototype.setSelection = function (enabled, structureId) {
+            this.formationDispatcher.setSelection(enabled, structureId);
+        };
+        FormationDomainCommandInvoker.prototype.selectAll = function (structureId) {
+            this.formationDispatcher.selectAll(structureId);
+        };
+        FormationDomainCommandInvoker.prototype.unselectAll = function (structureId) {
+            this.formationDispatcher.unselectAll(structureId);
+        };
+        return FormationDomainCommandInvoker;
+    }(FormationCommandInvoker));
+    FormationDomainCommandInvoker.decorators = [
+        { type: core.Injectable }
+    ];
+    FormationDomainCommandInvoker.ctorParameters = function () { return [
+        { type: FormationDispatcher }
+    ]; };
+
+    var FormationApiModule = /** @class */ (function (_super) {
+        __extends(FormationApiModule, _super);
+        function FormationApiModule() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return FormationApiModule;
+    }(hermes.ApiModule));
+    FormationApiModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [
+                        common.CommonModule,
+                        FormationDomainModule
+                    ],
+                    providers: [
+                        RowSelectedArchive,
+                        FormationEventRepository,
+                        {
+                            provide: FormationCommandInvoker,
+                            useClass: FormationDomainCommandInvoker
+                        },
+                        {
+                            provide: FormationWarehouse,
+                            useClass: FormationDomainWarehouse
+                        },
+                        RowSelectionModeArchive
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+
+    var FormationFeatureModule = /** @class */ (function (_super) {
+        __extends(FormationFeatureModule, _super);
+        function FormationFeatureModule() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        FormationFeatureModule.forComponent = function () {
+            return [
+                RowSelectionTypeArchive
+            ];
+        };
+        return FormationFeatureModule;
+    }(hermes.FeatureModule));
+    FormationFeatureModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [
+                        common.CommonModule,
+                        FormationApiModule
+                    ],
+                    declarations: [],
+                    exports: []
+                },] }
+    ];
+
     /** @internal */
     function structureIdFactoryForGrid(generator) {
         return new StructureId('gui-grid-' + generator.generateId());
@@ -13085,6 +13395,7 @@
                         PagingFeatureModule.forComponent(),
                         SortingFeatureModule.forComponent(),
                         FieldFeatureModule.forComponent(),
+                        FormationFeatureModule.forComponent(),
                         SearchFeatureModule.forComponent(),
                         SourceFeatureModule.forComponent(),
                         SchemaFeatureModule.forComponent(),
@@ -13159,19 +13470,19 @@
         { type: StructureRowDetailService }
     ]; };
 
-    exports["ɵnr"] = void 0;
+    exports["ɵoh"] = void 0;
     (function (SortOrder) {
         SortOrder[SortOrder["ASC"] = 0] = "ASC";
         SortOrder[SortOrder["DESC"] = 1] = "DESC";
         SortOrder[SortOrder["NONE"] = 2] = "NONE";
-    })(exports["ɵnr"] || (exports["ɵnr"] = {}));
+    })(exports["ɵoh"] || (exports["ɵoh"] = {}));
 
-    exports["ɵns"] = void 0;
+    exports["ɵoi"] = void 0;
     (function (ColumnAlign) {
         ColumnAlign[ColumnAlign["RIGHT"] = 0] = "RIGHT";
         ColumnAlign[ColumnAlign["CENTER"] = 1] = "CENTER";
         ColumnAlign[ColumnAlign["LEFT"] = 2] = "LEFT";
-    })(exports["ɵns"] || (exports["ɵns"] = {}));
+    })(exports["ɵoi"] || (exports["ɵoi"] = {}));
 
     // Basically header template
     var CellTemplateWithContext = /** @class */ (function () {
@@ -13202,25 +13513,25 @@
             return this.sortable;
         };
         CellTemplateWithContext.prototype.isAscSort = function () {
-            return this.sortStatus === exports["ɵnr"].ASC;
+            return this.sortStatus === exports["ɵoh"].ASC;
         };
         CellTemplateWithContext.prototype.isDescSort = function () {
-            return this.sortStatus === exports["ɵnr"].DESC;
+            return this.sortStatus === exports["ɵoh"].DESC;
         };
         CellTemplateWithContext.prototype.isNoSort = function () {
-            return this.sortStatus === exports["ɵnr"].NONE;
+            return this.sortStatus === exports["ɵoh"].NONE;
         };
         CellTemplateWithContext.prototype.isEnabled = function () {
             return this.enabled;
         };
         CellTemplateWithContext.prototype.isAlignLeft = function () {
-            return this.align === exports["ɵns"].LEFT;
+            return this.align === exports["ɵoi"].LEFT;
         };
         CellTemplateWithContext.prototype.isAlignCenter = function () {
-            return this.align === exports["ɵns"].CENTER;
+            return this.align === exports["ɵoi"].CENTER;
         };
         CellTemplateWithContext.prototype.isAlignRight = function () {
-            return this.align === exports["ɵns"].RIGHT;
+            return this.align === exports["ɵoi"].RIGHT;
         };
         return CellTemplateWithContext;
     }());
@@ -13385,10 +13696,10 @@
             }
         };
         StructureHeaderColumnsComponent.prototype.isSortAsc = function (column) {
-            return column.getSortStatus() === exports["ɵnr"].ASC;
+            return column.getSortStatus() === exports["ɵoh"].ASC;
         };
         StructureHeaderColumnsComponent.prototype.isSortDesc = function (column) {
-            return column.getSortStatus() === exports["ɵnr"].DESC;
+            return column.getSortStatus() === exports["ɵoh"].DESC;
         };
         StructureHeaderColumnsComponent.prototype.isGlobalSortEnabled = function () {
             return this.globalSearching;
@@ -13666,41 +13977,41 @@
         { type: core.Injectable }
     ];
 
-    var VerticalFormationReadModel = /** @class */ (function () {
-        function VerticalFormationReadModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight) {
+    var VerticalFormationModel = /** @class */ (function () {
+        function VerticalFormationModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight) {
             this.enabled = enabled;
             this.topMargin = topMargin;
             this.sourceHeight = sourceHeight;
             this.viewportHeight = viewportHeight;
             this.rowHeight = rowHeight;
         }
-        VerticalFormationReadModel.prototype.isEnabled = function () {
+        VerticalFormationModel.prototype.isEnabled = function () {
             return this.enabled;
         };
-        VerticalFormationReadModel.prototype.getTopMargin = function () {
+        VerticalFormationModel.prototype.getTopMargin = function () {
             return this.topMargin; //  * this.rowHeight;
         };
-        VerticalFormationReadModel.prototype.getSourceHeight = function () {
+        VerticalFormationModel.prototype.getSourceHeight = function () {
             return this.sourceHeight;
         };
-        VerticalFormationReadModel.prototype.getViewPortHeight = function () {
+        VerticalFormationModel.prototype.getViewPortHeight = function () {
             return this.viewportHeight;
         };
-        VerticalFormationReadModel.prototype.getRowHeight = function () {
+        VerticalFormationModel.prototype.getRowHeight = function () {
             return this.rowHeight;
         };
-        return VerticalFormationReadModel;
+        return VerticalFormationModel;
     }());
-    VerticalFormationReadModel = __decorate([
+    VerticalFormationModel = __decorate([
         hermes.ReadModelObject
-    ], VerticalFormationReadModel);
+    ], VerticalFormationModel);
 
     var VerticalFormationConverter = /** @class */ (function () {
         function VerticalFormationConverter() {
         }
         VerticalFormationConverter.prototype.convert = function (verticalFormation) {
             var enabled = verticalFormation.isEnabled(), topMargin = verticalFormation.getTopMargin(), sourceHeight = verticalFormation.getSourceHeight(), viewportHeight = verticalFormation.getViewPortHeight(), rowHeight = verticalFormation.getRowHeight();
-            return new VerticalFormationReadModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight);
+            return new VerticalFormationModel(enabled, topMargin, sourceHeight, viewportHeight, rowHeight);
         };
         return VerticalFormationConverter;
     }());
@@ -13986,12 +14297,12 @@
 
     var StructureContentComponent = /** @class */ (function (_super) {
         __extends(StructureContentComponent, _super);
-        function StructureContentComponent(elementRef, changeDetectorRef, formationCommandService, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
+        function StructureContentComponent(elementRef, changeDetectorRef, formationCommandInvoker, structureEditModeArchive, formationWarehouse, structureWarehouse, structureVerticalFormationWarehouse, verticalFormationRepository, structureId, // REfactor
         rowSelectionTypeArchive, searchWarehouse, schemaRowClassArchive, schemaRowStyleArchive) {
             var _this = _super.call(this, changeDetectorRef, elementRef) || this;
             _this.elementRef = elementRef;
             _this.changeDetectorRef = changeDetectorRef;
-            _this.formationCommandService = formationCommandService;
+            _this.formationCommandInvoker = formationCommandInvoker;
             _this.structureEditModeArchive = structureEditModeArchive;
             _this.formationWarehouse = formationWarehouse;
             _this.structureWarehouse = structureWarehouse;
@@ -14048,7 +14359,7 @@
         };
         StructureContentComponent.prototype.toggleSelectedRow = function (entity) {
             if (!this.checkboxSelection) {
-                this.formationCommandService.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
+                this.formationCommandInvoker.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
             }
         };
         StructureContentComponent.prototype.getSelectorName = function () {
@@ -15363,7 +15674,7 @@
             _this.sourceManager = sourceManager;
             _this.verticalFormation = verticalFormation;
             _this.summariesManager = summariesManager;
-            _this.sorterCollection = sorterCollection;
+            _this.sorterManager = sorterCollection;
             _this.filterManager = filterManager;
             _this.uniqueFilterManager = uniqueFilterManager;
             _this.searchManager = searchManager;
@@ -15512,19 +15823,19 @@
             return this.getEvents();
         };
         StructureAggregate.prototype.setSortingConfig = function (config) {
-            this.sorterCollection.setConfig(config);
+            this.sorterManager.setConfig(config);
         };
         StructureAggregate.prototype.toggleSort = function (fieldId) {
             var field = this.fieldCollection.getField(fieldId);
-            this.sorterCollection.toggle(field);
+            this.sorterManager.toggle(field);
             this.calculateSource();
-            return this.sorterCollection.getAll();
+            return this.sorterManager.getAll();
         };
         StructureAggregate.prototype.setSortOrder = function (fieldId, sortOrder) {
             var field = this.fieldCollection.getField(fieldId);
-            this.sorterCollection.setSortOrder(field, sortOrder);
+            this.sorterManager.setSortOrder(field, sortOrder);
             this.calculateSource();
-            return this.sorterCollection.getAll();
+            return this.sorterManager.getAll();
         };
         StructureAggregate.prototype.setFilterConfig = function (config) {
             this.filterManager.getSettings().setFilterConfig(config);
@@ -15616,7 +15927,7 @@
             // unique filtering
             this.sourceManager.setEntities(this.uniqueFilterManager.filterAll(this.sourceManager.getEntities(), this.fieldCollection.getAllFields()));
             // sorting
-            var ents = this.sorterCollection.sort(this.sourceManager.getEntities());
+            var ents = this.sorterManager.sort(this.sourceManager.getEntities());
             this.sourceManager.setEntities(ents);
             // calculate filteredEntities
             this.sourceManager.setPreparedEntities();
@@ -15663,33 +15974,33 @@
         Override
     ], StructureAggregate.prototype, "clearEvents", null);
 
-    var StructureSorter = /** @class */ (function () {
-        function StructureSorter(id, field, direction) {
+    var Sorter = /** @class */ (function () {
+        function Sorter(id, field, direction) {
             if (direction === void 0) { direction = true; }
             this.rank = 1;
             this.sorterId = id;
             this.field = field;
             this.direction = direction;
         }
-        StructureSorter.prototype.getId = function () {
+        Sorter.prototype.getId = function () {
             return this.sorterId;
         };
-        StructureSorter.prototype.getRank = function () {
+        Sorter.prototype.getRank = function () {
             return this.rank;
         };
-        StructureSorter.prototype.getField = function () {
+        Sorter.prototype.getField = function () {
             return this.field;
         };
-        StructureSorter.prototype.hasDirection = function () {
+        Sorter.prototype.hasDirection = function () {
             return this.direction;
         };
-        StructureSorter.prototype.changeDirection = function () {
+        Sorter.prototype.changeDirection = function () {
             this.direction = !this.direction;
         };
-        StructureSorter.prototype.setDirection = function (direction) {
+        Sorter.prototype.setDirection = function (direction) {
             this.direction = direction;
         };
-        StructureSorter.prototype.sort = function (entities) {
+        Sorter.prototype.sort = function (entities) {
             var _this = this;
             if (entities.length === 0) {
                 return entities;
@@ -15698,7 +16009,7 @@
                 return _this.field.sort(entityOne, entityTwo, _this.direction);
             });
         };
-        return StructureSorter;
+        return Sorter;
     }());
 
     var SorterId = /** @class */ (function () {
@@ -15711,15 +16022,15 @@
         return SorterId;
     }());
 
-    var SorterCollection = /** @class */ (function () {
-        function SorterCollection(enabled, multi) {
+    var SorterManager = /** @class */ (function () {
+        function SorterManager(enabled, multi) {
             if (enabled === void 0) { enabled = false; }
             if (multi === void 0) { multi = false; }
             this.sorters = new Map();
             this.enabled = enabled;
             this.multi = multi;
         }
-        SorterCollection.prototype.setConfig = function (config) {
+        SorterManager.prototype.setConfig = function (config) {
             if (config && config.enabled !== undefined && config.enabled !== null) {
                 this.enabled = config.enabled;
             }
@@ -15728,7 +16039,7 @@
                 this.sorters.clear();
             }
         };
-        SorterCollection.prototype.toggle = function (field) {
+        SorterManager.prototype.toggle = function (field) {
             var fieldId = field.getId(), sorter = this.sorters.get(fieldId.getId());
             if (sorter) {
                 if (sorter.hasDirection()) {
@@ -15742,34 +16053,34 @@
                 this.add(field);
             }
         };
-        SorterCollection.prototype.setSortOrder = function (field, sortOrder) {
+        SorterManager.prototype.setSortOrder = function (field, sortOrder) {
             var fieldId = field.getId(), sorter = this.sorters.get(fieldId.getId());
-            if (sortOrder === exports["ɵnr"].NONE) {
+            if (sortOrder === exports["ɵoh"].NONE) {
                 this.delete(fieldId);
             }
-            else if (sortOrder === exports["ɵnr"].ASC || sortOrder === exports["ɵnr"].DESC) {
+            else if (sortOrder === exports["ɵoh"].ASC || sortOrder === exports["ɵoh"].DESC) {
                 this.delete(fieldId);
-                var direction = sortOrder === exports["ɵnr"].ASC;
+                var direction = sortOrder === exports["ɵoh"].ASC;
                 this.add(field, direction);
             }
         };
-        SorterCollection.prototype.add = function (field, direction) {
+        SorterManager.prototype.add = function (field, direction) {
             if (direction === void 0) { direction = true; }
-            this.addSorter(field.getId(), new StructureSorter(new SorterId(hermes.RandomStringGenerator.generate()), field, direction));
+            this.addSorter(field.getId(), new Sorter(new SorterId(hermes.RandomStringGenerator.generate()), field, direction));
         };
-        SorterCollection.prototype.addSorter = function (fieldId, sorter) {
+        SorterManager.prototype.addSorter = function (fieldId, sorter) {
             if (!this.multi) {
                 this.sorters.clear();
             }
             this.sorters.set(fieldId.getId(), sorter);
         };
-        SorterCollection.prototype.delete = function (fieldId) {
+        SorterManager.prototype.delete = function (fieldId) {
             this.sorters.delete(fieldId.getId());
         };
-        SorterCollection.prototype.update = function () {
+        SorterManager.prototype.update = function () {
         };
         // TODO Remove the loop from sorter.sort
-        SorterCollection.prototype.sort = function (entities) {
+        SorterManager.prototype.sort = function (entities) {
             var e_1, _a;
             var sorters = this.getAll();
             var sortedEntities = Array.from(entities);
@@ -15788,7 +16099,7 @@
             }
             return sortedEntities;
         };
-        SorterCollection.prototype.getAll = function () {
+        SorterManager.prototype.getAll = function () {
             if (!this.enabled) {
                 return [];
             }
@@ -15799,7 +16110,7 @@
             })
                 .reverse();
         };
-        return SorterCollection;
+        return SorterManager;
     }());
 
     var UniqueValue = /** @class */ (function () {
@@ -15937,7 +16248,7 @@
         UniqueFilterManager.prototype.calculate = function (entities, field) {
             var _this = this;
             var fieldId = field.getId();
-            var optUVM = this.uniqueValueMap.get(fieldId);
+            var optUVM = this.uniqueValueMap.find(fieldId);
             optUVM.ifEmpty(function () {
                 var e_1, _a;
                 var set = new Set();
@@ -15999,7 +16310,7 @@
         UniqueFilterManager.prototype.filter = function (entities, field) {
             var values = [];
             this.uniqueValueMap
-                .get(field.getId())
+                .find(field.getId())
                 .ifPresent(function (uvc) {
                 if (uvc.isAllSelected()) {
                     values = entities;
@@ -16033,28 +16344,28 @@
         };
         UniqueFilterManager.prototype.selectAll = function (fieldId) {
             this.uniqueValueMap
-                .get(fieldId)
+                .find(fieldId)
                 .ifPresent(function (uvc) {
                 uvc.selectAll();
             });
         };
         UniqueFilterManager.prototype.select = function (fieldId, uniqueValueId) {
             this.uniqueValueMap
-                .get(fieldId)
+                .find(fieldId)
                 .ifPresent(function (uvc) {
                 uvc.select(uniqueValueId);
             });
         };
         UniqueFilterManager.prototype.unselectAll = function (fieldId) {
             this.uniqueValueMap
-                .get(fieldId)
+                .find(fieldId)
                 .ifPresent(function (uvc) {
                 uvc.unselectAll();
             });
         };
         UniqueFilterManager.prototype.unselect = function (fieldId, uniqueValueId) {
             this.uniqueValueMap
-                .get(fieldId)
+                .find(fieldId)
                 .ifPresent(function (uvc) {
                 uvc.unselect(uniqueValueId);
             });
@@ -16086,7 +16397,7 @@
         };
         UniqueFilterManager.prototype.getValues = function (field) {
             return this.uniqueValueMap
-                .get(field.getId())
+                .find(field.getId())
                 .map(function (uvc) {
                 return uvc.getAll();
             });
@@ -16109,7 +16420,7 @@
         }
         StructureAggregateFactory.prototype.create = function (structureId) {
             var paging = this.pagingAggregateFactory.createDefault(), source = this.sourceManagerFactory.createDefault(), verticalFormation = this.verticalFormationFactory.create(structureId);
-            var sorterContainer = new SorterCollection(), filterContainer = this.filterManagerFactory.create(false), fieldContainer = this.fieldCollectionFactory.create(), summariesManager = this.summariesManagerFactory.create(structureId), searchManager = this.searchManagerFactory.create();
+            var sorterContainer = new SorterManager(), filterContainer = this.filterManagerFactory.create(false), fieldContainer = this.fieldCollectionFactory.create(), summariesManager = this.summariesManagerFactory.create(structureId), searchManager = this.searchManagerFactory.create();
             var structureAggregate = new StructureAggregate(structureId, paging, source, verticalFormation, summariesManager, sorterContainer, filterContainer, new UniqueFilterManager(), searchManager, fieldContainer);
             this.init(structureAggregate);
             return structureAggregate;
@@ -16162,45 +16473,6 @@
         return CreateStructureCommand;
     }(StructureCommand));
 
-    var SetVerticalScrollEnabledCommand = /** @class */ (function (_super) {
-        __extends(SetVerticalScrollEnabledCommand, _super);
-        function SetVerticalScrollEnabledCommand(structureId, enabled) {
-            var _this = _super.call(this, structureId, 'SetVerticalScrollEnabledCommand') || this;
-            _this.enabled = enabled;
-            return _this;
-        }
-        SetVerticalScrollEnabledCommand.prototype.isEnabled = function () {
-            return this.enabled;
-        };
-        return SetVerticalScrollEnabledCommand;
-    }(StructureCommand));
-
-    var SetScrollBarPositionCommand = /** @class */ (function (_super) {
-        __extends(SetScrollBarPositionCommand, _super);
-        function SetScrollBarPositionCommand(structureId, position) {
-            var _this = _super.call(this, structureId, 'SetScrollBarPositionCommand') || this;
-            _this.position = position;
-            return _this;
-        }
-        SetScrollBarPositionCommand.prototype.getPosition = function () {
-            return this.position;
-        };
-        return SetScrollBarPositionCommand;
-    }(StructureCommand));
-
-    var SetScrollPositionCommand = /** @class */ (function (_super) {
-        __extends(SetScrollPositionCommand, _super);
-        function SetScrollPositionCommand(structureId, position) {
-            var _this = _super.call(this, structureId, 'SetScrollPositionCommand') || this;
-            _this.position = position;
-            return _this;
-        }
-        SetScrollPositionCommand.prototype.getPosition = function () {
-            return this.position;
-        };
-        return SetScrollPositionCommand;
-    }(StructureCommand));
-
     var SetRowHeightCommand = /** @class */ (function (_super) {
         __extends(SetRowHeightCommand, _super);
         function SetRowHeightCommand(structureId, rowHeight) {
@@ -16240,36 +16512,53 @@
         return SetRowHeightBasedOnThemeCommand;
     }(StructureCommand));
 
+    var VerticalFormationCommandInvoker = /** @class */ (function () {
+        function VerticalFormationCommandInvoker() {
+        }
+        return VerticalFormationCommandInvoker;
+    }());
+    VerticalFormationCommandInvoker.decorators = [
+        { type: core.Injectable }
+    ];
+    VerticalFormationCommandInvoker.ctorParameters = function () { return []; };
+
     var StructureDomainCommandInvoker = /** @class */ (function (_super) {
         __extends(StructureDomainCommandInvoker, _super);
-        function StructureDomainCommandInvoker(commandDispatcher, structureFilterCommandService, sourceDispatcher, structureCellEditArchive) {
+        function StructureDomainCommandInvoker(commandDispatcher, structureFilterCommandService, sourceDispatcher, verticalFormationCommandInvoker, structureCellEditArchive) {
             var _this = _super.call(this) || this;
             _this.commandDispatcher = commandDispatcher;
             _this.structureFilterCommandService = structureFilterCommandService;
             _this.sourceDispatcher = sourceDispatcher;
+            _this.verticalFormationCommandInvoker = verticalFormationCommandInvoker;
             _this.structureCellEditArchive = structureCellEditArchive;
             return _this;
         }
         StructureDomainCommandInvoker.prototype.create = function (structureId) {
             this.commandDispatcher.dispatch(new CreateStructureCommand(structureId));
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.enableVirtualScroll = function (structureId) {
-            this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, true));
+            this.verticalFormationCommandInvoker.enableVirtualScroll(structureId);
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.disableVirtualScroll = function (structureId) {
-            this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, false));
+            this.verticalFormationCommandInvoker.disableVirtualScroll(structureId);
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.scrollToTop = function (structureId) {
-            this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, 0));
+            this.verticalFormationCommandInvoker.scrollToTop(structureId);
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.scrollToBottom = function (structureId) {
-            this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, Number.MAX_SAFE_INTEGER));
+            this.verticalFormationCommandInvoker.scrollToBottom(structureId);
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.scrollToIndex = function (index, structureId) {
-            this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, index));
+            this.verticalFormationCommandInvoker.scrollToIndex(index, structureId);
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.setScrollPosition = function (position, structureId) {
-            this.commandDispatcher.dispatch(new SetScrollPositionCommand(structureId, position));
+            this.verticalFormationCommandInvoker.setScrollPosition(position, structureId);
         };
         StructureDomainCommandInvoker.prototype.setOrigin = function (items, structureId) {
             this.sourceDispatcher.setOrigin(structureId, items);
@@ -16283,9 +16572,11 @@
         StructureDomainCommandInvoker.prototype.setRowHeight = function (rowHeight, structureId) {
             this.commandDispatcher.dispatch(new SetRowHeightCommand(structureId, +rowHeight));
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.setContainerHeight = function (height, structureId) {
             this.commandDispatcher.dispatch(new StructureSetHeightCommand(structureId, +height));
         };
+        // REMOVE
         StructureDomainCommandInvoker.prototype.setRowHeightBasedOnTheme = function (theme, structureId) {
             this.commandDispatcher.dispatch(new SetRowHeightBasedOnThemeCommand(structureId, theme));
         };
@@ -16301,6 +16592,7 @@
         { type: hermes.CommandDispatcher },
         { type: FilterCommandInvoker },
         { type: SourceDispatcher },
+        { type: VerticalFormationCommandInvoker },
         { type: StructureCellEditArchive }
     ]; };
 
@@ -16405,7 +16697,7 @@
     StructureTopPanelComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-structure-top-panel]',
-                    template: "\n\n\t\t<div gui-search-bar\n\t\t\t class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"></div>\n\n<!--\t\t<div gui-filter-menu-trigger></div>-->\n\n\t",
+                    template: "\n\n\t\t<div gui-search-bar\n\t\t\t class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"></div>\n\n\t\t<!--\t\t<div gui-filter-menu-trigger></div>-->\n\n\t",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -16498,7 +16790,7 @@
             _this.sortingCommandDispatcher = sortingCommandDispatcher;
             _this.compositionReadModelService = compositionReadModelService;
             _this.placement = fabric.Placement.Right;
-            _this.status = exports["ɵnr"];
+            _this.status = exports["ɵoh"];
             return _this;
         }
         StructureColumnConfigSortComponent.prototype.ngOnInit = function () {
@@ -16509,13 +16801,13 @@
             });
         };
         StructureColumnConfigSortComponent.prototype.isAscSort = function () {
-            return this.sortStatus === exports["ɵnr"].ASC;
+            return this.sortStatus === exports["ɵoh"].ASC;
         };
         StructureColumnConfigSortComponent.prototype.isDescSort = function () {
-            return this.sortStatus === exports["ɵnr"].DESC;
+            return this.sortStatus === exports["ɵoh"].DESC;
         };
         StructureColumnConfigSortComponent.prototype.isNoneSort = function () {
-            return this.sortStatus === exports["ɵnr"].NONE;
+            return this.sortStatus === exports["ɵoh"].NONE;
         };
         StructureColumnConfigSortComponent.prototype.setSortOrder = function (sort) {
             event.stopPropagation();
@@ -17131,10 +17423,23 @@
         { type: core.ChangeDetectorRef },
         { type: core.ElementRef },
         { type: StructureId },
-        { type: RowSelectionModeRepository },
+        { type: RowSelectionModeArchive },
         { type: FormationCommandInvoker },
         { type: FormationWarehouse }
     ]; };
+
+    var SetScrollPositionCommand = /** @class */ (function (_super) {
+        __extends(SetScrollPositionCommand, _super);
+        function SetScrollPositionCommand(structureId, position) {
+            var _this = _super.call(this, structureId, 'SetScrollPositionCommand') || this;
+            _this.position = position;
+            return _this;
+        }
+        SetScrollPositionCommand.prototype.getPosition = function () {
+            return this.position;
+        };
+        return SetScrollPositionCommand;
+    }(StructureCommand));
 
     var SetScrollPositionCommandHandler = /** @class */ (function () {
         function SetScrollPositionCommandHandler(domainEventPublisher) {
@@ -17158,6 +17463,19 @@
     SetScrollPositionCommandHandler.ctorParameters = function () { return [
         { type: hermes.DomainEventPublisher }
     ]; };
+
+    var SetVerticalScrollEnabledCommand = /** @class */ (function (_super) {
+        __extends(SetVerticalScrollEnabledCommand, _super);
+        function SetVerticalScrollEnabledCommand(structureId, enabled) {
+            var _this = _super.call(this, structureId, 'SetVerticalScrollEnabledCommand') || this;
+            _this.enabled = enabled;
+            return _this;
+        }
+        SetVerticalScrollEnabledCommand.prototype.isEnabled = function () {
+            return this.enabled;
+        };
+        return SetVerticalScrollEnabledCommand;
+    }(StructureCommand));
 
     var SetVerticalScrollEnabledCommandHandler = /** @class */ (function () {
         function SetVerticalScrollEnabledCommandHandler(domainEventPublisher) {
@@ -17286,6 +17604,19 @@
         { type: VerticalFormationScrollBarPositionArchive }
     ]; };
 
+    var SetScrollBarPositionCommand = /** @class */ (function (_super) {
+        __extends(SetScrollBarPositionCommand, _super);
+        function SetScrollBarPositionCommand(structureId, position) {
+            var _this = _super.call(this, structureId, 'SetScrollBarPositionCommand') || this;
+            _this.position = position;
+            return _this;
+        }
+        SetScrollBarPositionCommand.prototype.getPosition = function () {
+            return this.position;
+        };
+        return SetScrollBarPositionCommand;
+    }(StructureCommand));
+
     var SetScrollBarPositionCommandHandler = /** @class */ (function () {
         function SetScrollBarPositionCommandHandler(domainEventPublisher) {
             this.domainEventPublisher = domainEventPublisher;
@@ -17307,6 +17638,28 @@
     ];
     SetScrollBarPositionCommandHandler.ctorParameters = function () { return [
         { type: hermes.DomainEventPublisher }
+    ]; };
+
+    var VerticalFormationDispatcher = /** @class */ (function () {
+        function VerticalFormationDispatcher(commandDispatcher) {
+            this.commandDispatcher = commandDispatcher;
+        }
+        VerticalFormationDispatcher.prototype.setVirtualScrollEnabled = function (enabled, structureId) {
+            this.commandDispatcher.dispatch(new SetVerticalScrollEnabledCommand(structureId, enabled));
+        };
+        VerticalFormationDispatcher.prototype.scrollTo = function (position, structureId) {
+            this.commandDispatcher.dispatch(new SetScrollBarPositionCommand(structureId, position));
+        };
+        VerticalFormationDispatcher.prototype.setScrollPosition = function (position, structureId) {
+            this.commandDispatcher.dispatch(new SetScrollPositionCommand(structureId, position));
+        };
+        return VerticalFormationDispatcher;
+    }());
+    VerticalFormationDispatcher.decorators = [
+        { type: core.Injectable }
+    ];
+    VerticalFormationDispatcher.ctorParameters = function () { return [
+        { type: hermes.CommandDispatcher }
     ]; };
 
     var VerticalFormationDomainModule = /** @class */ (function (_super) {
@@ -17337,7 +17690,8 @@
                         common.CommonModule
                     ],
                     providers: [
-                        VerticalFormationFactory
+                        VerticalFormationFactory,
+                        VerticalFormationDispatcher
                     ],
                     declarations: [],
                     exports: []
@@ -17378,6 +17732,40 @@
         { type: VerticalFormationScrollBarPositionArchive }
     ]; };
 
+    var VerticalFormationDomainCommandInvoker = /** @class */ (function (_super) {
+        __extends(VerticalFormationDomainCommandInvoker, _super);
+        function VerticalFormationDomainCommandInvoker(verticalFormationDispatcher) {
+            var _this = _super.call(this) || this;
+            _this.verticalFormationDispatcher = verticalFormationDispatcher;
+            return _this;
+        }
+        VerticalFormationDomainCommandInvoker.prototype.enableVirtualScroll = function (structureId) {
+            this.verticalFormationDispatcher.setVirtualScrollEnabled(true, structureId);
+        };
+        VerticalFormationDomainCommandInvoker.prototype.disableVirtualScroll = function (structureId) {
+            this.verticalFormationDispatcher.setVirtualScrollEnabled(false, structureId);
+        };
+        VerticalFormationDomainCommandInvoker.prototype.scrollToTop = function (structureId) {
+            this.verticalFormationDispatcher.scrollTo(0, structureId);
+        };
+        VerticalFormationDomainCommandInvoker.prototype.scrollToBottom = function (structureId) {
+            this.verticalFormationDispatcher.scrollTo(Number.MAX_SAFE_INTEGER, structureId);
+        };
+        VerticalFormationDomainCommandInvoker.prototype.scrollToIndex = function (index, structureId) {
+            this.verticalFormationDispatcher.scrollTo(index, structureId);
+        };
+        VerticalFormationDomainCommandInvoker.prototype.setScrollPosition = function (position, structureId) {
+            this.verticalFormationDispatcher.setScrollPosition(position, structureId);
+        };
+        return VerticalFormationDomainCommandInvoker;
+    }(VerticalFormationCommandInvoker));
+    VerticalFormationDomainCommandInvoker.decorators = [
+        { type: core.Injectable }
+    ];
+    VerticalFormationDomainCommandInvoker.ctorParameters = function () { return [
+        { type: VerticalFormationDispatcher }
+    ]; };
+
     var VerticalFormationApiModule = /** @class */ (function (_super) {
         __extends(VerticalFormationApiModule, _super);
         function VerticalFormationApiModule() {
@@ -17397,6 +17785,10 @@
                         {
                             provide: VerticalFormationWarehouse,
                             useClass: VerticalFormationDomainWarehouse
+                        },
+                        {
+                            provide: VerticalFormationCommandInvoker,
+                            useClass: VerticalFormationDomainCommandInvoker
                         },
                         VerticalFormationScrollBarPositionArchive
                     ],
@@ -17858,10 +18250,10 @@
         ActiveColumnContainer.prototype.changeSort = function (sortParams) {
             var e_1, _a;
             this.columns.forEach(function (column) {
-                column.setSortStatus(exports["ɵnr"].NONE);
+                column.setSortStatus(exports["ɵoh"].NONE);
             });
             var _loop_1 = function (param) {
-                var fieldId = param.fieldId, direction = param.direction, sortStatus = direction ? exports["ɵnr"].ASC : exports["ɵnr"].DESC;
+                var fieldId = param.fieldId, direction = param.direction, sortStatus = direction ? exports["ɵoh"].ASC : exports["ɵoh"].DESC;
                 var columns = this_1.columns.filter(function (column) {
                     return column.getField().getId().getId() === fieldId.getId();
                 });
@@ -18052,10 +18444,10 @@
                 this.align = align;
             }
             else if (columnField.getDataType() === DataType.NUMBER) {
-                this.align = exports["ɵns"].RIGHT;
+                this.align = exports["ɵoi"].RIGHT;
             }
             else {
-                this.align = exports["ɵns"].LEFT;
+                this.align = exports["ɵoi"].LEFT;
             }
         };
         return AbstractColumnEntity;
@@ -18065,7 +18457,7 @@
         __extends(ColumnEntity, _super);
         function ColumnEntity(columnId, columnField, columnConfig, enabled, presentation, header, align, view, width) {
             var _this = _super.call(this, columnId, columnField, columnConfig, presentation, header, align, view, width) || this;
-            _this.sortStatus = exports["ɵnr"].NONE;
+            _this.sortStatus = exports["ɵoh"].NONE;
             _this.enabled = true;
             _this.enabled = enabled;
             if (view === undefined) {
@@ -18457,7 +18849,7 @@
             return CellView.NUMBER;
         };
         NumberColumnPresentation.prototype.getDefaultAlign = function (view) {
-            return exports["ɵns"].RIGHT;
+            return exports["ɵoi"].RIGHT;
         };
         return NumberColumnPresentation;
     }(ColumnPresentation));
@@ -18488,10 +18880,10 @@
         };
         BooleanColumnPresentation.prototype.getDefaultAlign = function (view) {
             if (view.getCellView() === CellView.CHECKBOX) {
-                return exports["ɵns"].CENTER;
+                return exports["ɵoi"].CENTER;
             }
             else {
-                return exports["ɵns"].LEFT;
+                return exports["ɵoi"].LEFT;
             }
         };
         return BooleanColumnPresentation;
@@ -18522,7 +18914,7 @@
             return CellView.DATE;
         };
         DateColumnPresentation.prototype.getDefaultAlign = function () {
-            return exports["ɵns"].LEFT;
+            return exports["ɵoi"].LEFT;
         };
         return DateColumnPresentation;
     }(ColumnPresentation));
@@ -18553,7 +18945,7 @@
             return CellView.TEXT;
         };
         StringColumnPresentation.prototype.getDefaultAlign = function () {
-            return exports["ɵns"].LEFT;
+            return exports["ɵoi"].LEFT;
         };
         return StringColumnPresentation;
     }(ColumnPresentation));
@@ -18579,7 +18971,7 @@
             return CellView.TEXT;
         };
         UnknownColumnPresentation.prototype.getDefaultAlign = function () {
-            return exports["ɵns"].LEFT;
+            return exports["ɵoi"].LEFT;
         };
         return UnknownColumnPresentation;
     }(ColumnPresentation));
@@ -19522,21 +19914,21 @@
         return CellContext;
     }());
 
-    exports["ɵnn"] = void 0;
+    exports["ɵod"] = void 0;
     (function (CellValueType) {
         CellValueType[CellValueType["TEXT"] = 0] = "TEXT";
         CellValueType[CellValueType["HTML"] = 1] = "HTML";
-    })(exports["ɵnn"] || (exports["ɵnn"] = {}));
+    })(exports["ɵod"] || (exports["ɵod"] = {}));
     var CellValue = /** @class */ (function () {
         function CellValue(value, type) {
             this.value = value;
             this.type = type;
         }
         CellValue.text = function (value) {
-            return new CellValue(value, exports["ɵnn"].TEXT);
+            return new CellValue(value, exports["ɵod"].TEXT);
         };
         CellValue.HTML = function (value) {
-            return new CellValue(value, exports["ɵnn"].HTML);
+            return new CellValue(value, exports["ɵod"].HTML);
         };
         return CellValue;
     }());
@@ -19567,13 +19959,13 @@
             return this.type === DataType.BOOLEAN;
         };
         CellTemplateWithAccessor.prototype.isAlignLeft = function () {
-            return this.align === exports["ɵns"].LEFT;
+            return this.align === exports["ɵoi"].LEFT;
         };
         CellTemplateWithAccessor.prototype.isAlignCenter = function () {
-            return this.align === exports["ɵns"].CENTER;
+            return this.align === exports["ɵoi"].CENTER;
         };
         CellTemplateWithAccessor.prototype.isAlignRight = function () {
-            return this.align === exports["ɵns"].RIGHT;
+            return this.align === exports["ɵoi"].RIGHT;
         };
         CellTemplateWithAccessor.prototype.getName = function () {
             return this.name;
@@ -19647,7 +20039,7 @@
         view, // REFACTOR
         align, // REFACTOR
         header, cellEditingEnabled, sort, sortable) {
-            if (sort === void 0) { sort = exports["ɵnr"].NONE; }
+            if (sort === void 0) { sort = exports["ɵoh"].NONE; }
             if (sortable === void 0) { sortable = true; }
             var _this = _super.call(this, columnDefinitionId) || this;
             _this.name = name;
@@ -19664,6 +20056,9 @@
             _this.sortable = sortable;
             return _this;
         }
+        ColumnDefinition.prototype.getName = function () {
+            return this.name;
+        };
         ColumnDefinition.prototype.isEnabled = function () {
             return this.enabled;
         };
@@ -19923,6 +20318,10 @@
                 return compositionIdToComposition.has(key);
             }), hermes.hermesMap(function (compositionIdToComposition) { return compositionIdToComposition.get(compositionId.getId()); }));
         };
+        InMemoryCompositionRepository.prototype.find = function (compositionId) {
+            var key = compositionId.getId();
+            return hermes.Optional.of(this.compositionIdToComposition.get(key));
+        };
         InMemoryCompositionRepository.prototype.forEvents = function () {
             return [
                 CompositionCreatedEvent,
@@ -20035,7 +20434,7 @@
         }
         ColumnHighlightArchive.prototype.toggle = function (key, value) {
             var _this = this;
-            this.get(key)
+            this.find(key)
                 .ifPresent(function (manager) {
                 manager.toggle(value);
                 _this.next(key, manager);
@@ -20273,6 +20672,15 @@
             return this.columnHighlightArchive
                 .on(compositionId)
                 .pipe(hermes.hermesMap(function (manager) { return manager.isHighlighted(columnId); }));
+        };
+        CompositionDomainWarehouse.prototype.findColumnNames = function (compositionId) {
+            var names = [];
+            this.compositionRepository
+                .find(compositionId)
+                .ifPresent(function (value) {
+                names = value.getAllColumns().map(function (cd) { return cd.getName(); });
+            });
+            return names;
         };
         return CompositionDomainWarehouse;
     }(CompositionWarehouse));
@@ -20828,7 +21236,7 @@
             return _this;
         }
         TextViewComponent.prototype.ngOnChanges = function () {
-            this.isHtml = this.value.type === exports["ɵnn"].HTML;
+            this.isHtml = this.value.type === exports["ɵod"].HTML;
         };
         TextViewComponent.prototype.getSelectorName = function () {
             return 'gui-text-view';
@@ -20939,10 +21347,10 @@
             }
         };
         StructureHeaderGroupsComponent.prototype.isSortAsc = function (column) {
-            return column.getSortStatus() === exports["ɵnr"].ASC;
+            return column.getSortStatus() === exports["ɵoh"].ASC;
         };
         StructureHeaderGroupsComponent.prototype.isSortDesc = function (column) {
-            return column.getSortStatus() === exports["ɵnr"].DESC;
+            return column.getSortStatus() === exports["ɵoh"].DESC;
         };
         StructureHeaderGroupsComponent.prototype.isGlobalSortEnabled = function () {
             return this.globalSearching;
@@ -21271,9 +21679,10 @@
             return _this;
         }
         StructureSummariesGate.prototype.ngOnChanges = function (changes) {
-            if (this.isDefined('summaries', changes)) {
-                this.summariesCommandInvoker.setConfig(this.summaries, this.structureId);
-            }
+            var _this = this;
+            ifChanged(changes.summaries, function () {
+                _this.summariesCommandInvoker.setConfig(_this.summaries, _this.structureId);
+            });
         };
         return StructureSummariesGate;
     }(Gate));
@@ -21525,18 +21934,19 @@
             return _this;
         }
         StructureSortingGate.prototype.ngOnChanges = function (changes) {
-            if (this.isDefined('sorting', changes)) {
-                var sorting = void 0;
-                if (typeof this.sorting === 'boolean') {
+            var _this = this;
+            ifChanged(changes.sorting, function () {
+                var sorting;
+                if (typeof _this.sorting === 'boolean') {
                     sorting = {
-                        enabled: this.sorting
+                        enabled: _this.sorting
                     };
                 }
                 else {
-                    sorting = this.sorting;
+                    sorting = _this.sorting;
                 }
-                this.sortingCommandInvoker.setSortingConfig(sorting, this.structureId);
-            }
+                _this.sortingCommandInvoker.setSortingConfig(sorting, _this.structureId);
+            });
         };
         return StructureSortingGate;
     }(Gate));
@@ -21562,18 +21972,19 @@
             return _this;
         }
         StructureFilterGate.prototype.ngOnChanges = function (changes) {
-            if (this.isDefined('filtering', changes)) {
-                var filtering = void 0;
-                if (typeof this.filtering === 'boolean') {
+            var _this = this;
+            ifChanged(changes.filtering, function () {
+                var filtering;
+                if (typeof _this.filtering === 'boolean') {
                     filtering = {
-                        enabled: this.filtering
+                        enabled: _this.filtering
                     };
                 }
                 else {
-                    filtering = this.filtering;
+                    filtering = _this.filtering;
                 }
-                this.structureCommandInvoker.setFilterConfig(filtering, this.structureId);
-            }
+                _this.structureCommandInvoker.setFilterConfig(filtering, _this.structureId);
+            });
         };
         return StructureFilterGate;
     }(Gate));
@@ -21599,18 +22010,19 @@
             return _this;
         }
         StructureQuickFiltersGate.prototype.ngOnChanges = function (changes) {
-            if (this.isDefined('quickFilters', changes)) {
-                var quickFilters = void 0;
-                if (typeof this.quickFilters === 'boolean') {
+            var _this = this;
+            ifChanged(changes.quickFilters, function () {
+                var quickFilters;
+                if (typeof _this.quickFilters === 'boolean') {
                     quickFilters = {
-                        enabled: this.quickFilters
+                        enabled: _this.quickFilters
                     };
                 }
                 else {
-                    quickFilters = this.quickFilters;
+                    quickFilters = _this.quickFilters;
                 }
-                this.structureCommandInvoker.setQuickFiltersConfig(quickFilters, this.structureId);
-            }
+                _this.structureCommandInvoker.setQuickFiltersConfig(quickFilters, _this.structureId);
+            });
         };
         return StructureQuickFiltersGate;
     }(Gate));
@@ -21704,6 +22116,7 @@
             SearchDomainModule.commandHandlers(),
             FilterDomainModule.commandHandlers(),
             SourceDomainModule.commandHandlers(),
+            FormationDomainModule.commandHandlers(),
             SummariesDomainModule.commandHandlers(),
             VerticalFormationDomainModule.commandHandlers(),
             structureCommandHandlers
@@ -21712,6 +22125,7 @@
             SearchDomainModule.domainEventHandlers(),
             FilterDomainModule.domainEventHandlers(),
             SourceDomainModule.domainEventHandlers(),
+            FormationDomainModule.domainEventHandlers(),
             SummariesDomainModule.domainEventHandlers(),
             FieldDomainModule.domainEventHandlers(),
             VerticalFormationDomainModule.domainEventHandlers()
@@ -21724,6 +22138,7 @@
         PagingFeatureModule,
         SortingFeatureModule,
         FieldFeatureModule,
+        FormationFeatureModule,
         SearchFeatureModule,
         FilterMenuFeatureModule,
         SourceFeatureModule,
@@ -21965,50 +22380,50 @@
     exports["ɵdr"] = FilterApiModule;
     exports["ɵds"] = FilterDomainModule;
     exports["ɵdt"] = FilterManagerFactory;
-    exports["ɵdu"] = SetConfigFilterCommandHandler;
-    exports["ɵdv"] = SetConfigQuickFilterCommandHandler;
-    exports["ɵdw"] = ToggleFilterCommandHandler;
-    exports["ɵdx"] = AddFilterCommandHandler;
-    exports["ɵdy"] = RemoveAllFiltersCommandHandler;
-    exports["ɵdz"] = RemoveFilterCommandHandler;
+    exports["ɵdu"] = FilterDispatcher;
+    exports["ɵdv"] = SetConfigFilterCommandHandler;
+    exports["ɵdw"] = SetConfigQuickFilterCommandHandler;
+    exports["ɵdx"] = ToggleFilterCommandHandler;
+    exports["ɵdy"] = AddFilterCommandHandler;
+    exports["ɵdz"] = RemoveAllFiltersCommandHandler;
     exports["ɵe"] = listViewKey;
-    exports["ɵea"] = SelectUniqueFilterCommandHandler;
-    exports["ɵeb"] = SelectAllUniqueFilterCommandHandler;
-    exports["ɵec"] = UnselectUniqueFilterCommandHandler;
-    exports["ɵed"] = UnselectAllUniqueFilterCommandHandler;
-    exports["ɵee"] = ConfigQuickFilterSetEventHandler;
-    exports["ɵef"] = QuickFilterEnabledArchive;
-    exports["ɵeg"] = ConfigFilterSetEventHandler;
-    exports["ɵeh"] = FilterEnabledArchive;
-    exports["ɵei"] = FilterTypeConfigFilterSetEventHandler;
-    exports["ɵej"] = FilterTypeArchive;
-    exports["ɵek"] = FilterTypeMap;
-    exports["ɵel"] = FilterTypeReadModel;
-    exports["ɵem"] = FilterTypeId;
-    exports["ɵen"] = ActiveFiltersSetEventHandler;
-    exports["ɵeo"] = ActiveFilterArchive;
-    exports["ɵep"] = UniqueFilterCalculatedEventHandler;
-    exports["ɵeq"] = UniqueValuesArchive;
-    exports["ɵer"] = UniqueValuesReadModel;
-    exports["ɵes"] = UniqueValueReadModel;
-    exports["ɵet"] = UniqueValueId;
-    exports["ɵeu"] = FilterTypeFieldsInitedEventHandler;
-    exports["ɵev"] = FilterCommandInvoker;
-    exports["ɵew"] = DomainFilterCommandInvoker;
-    exports["ɵex"] = FilterWarehouse;
-    exports["ɵey"] = DomainFilterWarehouse;
-    exports["ɵez"] = FilterIntegration;
+    exports["ɵea"] = RemoveFilterCommandHandler;
+    exports["ɵeb"] = SelectUniqueFilterCommandHandler;
+    exports["ɵec"] = SelectAllUniqueFilterCommandHandler;
+    exports["ɵed"] = UnselectUniqueFilterCommandHandler;
+    exports["ɵee"] = UnselectAllUniqueFilterCommandHandler;
+    exports["ɵef"] = ConfigQuickFilterSetEventHandler;
+    exports["ɵeg"] = QuickFilterEnabledArchive;
+    exports["ɵeh"] = ConfigFilterSetEventHandler;
+    exports["ɵei"] = FilterEnabledArchive;
+    exports["ɵej"] = FilterTypeConfigFilterSetEventHandler;
+    exports["ɵek"] = FilterTypeArchive;
+    exports["ɵel"] = FilterTypeCollectionModel;
+    exports["ɵem"] = FilterTypeModel;
+    exports["ɵen"] = FilterTypeId;
+    exports["ɵeo"] = ActiveFiltersSetEventHandler;
+    exports["ɵep"] = ActiveFilterArchive;
+    exports["ɵeq"] = UniqueFilterCalculatedEventHandler;
+    exports["ɵer"] = UniqueValueCollectionArchive;
+    exports["ɵes"] = UniqueValueCollectionModel;
+    exports["ɵet"] = UniqueValueModel;
+    exports["ɵeu"] = UniqueValueId;
+    exports["ɵev"] = FilterTypeFieldsInitedEventHandler;
+    exports["ɵew"] = FilterCommandInvoker;
+    exports["ɵex"] = FilterDomainCommandInvoker;
+    exports["ɵey"] = FilterWarehouse;
+    exports["ɵez"] = FilterDomainWarehouse;
     exports["ɵf"] = ListViewApiModule;
-    exports["ɵfa"] = CompositionWarehouse;
-    exports["ɵfb"] = ActiveFilterListModule;
-    exports["ɵfc"] = fabricImports;
-    exports["ɵfd"] = ActiveFilterListComponent;
-    exports["ɵfe"] = ActiveSearchComponent;
-    exports["ɵff"] = FilterIconComponent;
-    exports["ɵfg"] = FilterMenuComponent;
-    exports["ɵfh"] = CompositionId;
-    exports["ɵfi"] = FieldWarehouse;
-    exports["ɵfj"] = FieldReadModelArchive;
+    exports["ɵfa"] = FilterIntegration;
+    exports["ɵfb"] = CompositionWarehouse;
+    exports["ɵfc"] = ActiveFilterListModule;
+    exports["ɵfd"] = fabricImports;
+    exports["ɵfe"] = ActiveFilterListComponent;
+    exports["ɵff"] = ActiveSearchComponent;
+    exports["ɵfg"] = FilterIconComponent;
+    exports["ɵfh"] = FilterMenuComponent;
+    exports["ɵfi"] = CompositionId;
+    exports["ɵfj"] = FieldWarehouse;
     exports["ɵfk"] = FilterMenuTriggerComponent;
     exports["ɵfl"] = filterContainerToken;
     exports["ɵfn"] = ColumnSelectorComponent;
@@ -22062,327 +22477,343 @@
     exports["ɵhh"] = SUMMARIES_CALCULATORS;
     exports["ɵhi"] = SummariesCalculator;
     exports["ɵhj"] = FieldCollectionFactory;
-    exports["ɵhk"] = FieldFactory;
-    exports["ɵhl"] = FieldIdGenerator;
+    exports["ɵhk"] = FieldEntityFactory;
+    exports["ɵhl"] = FieldEntityIdGenerator;
     exports["ɵhm"] = DataFieldFactory;
     exports["ɵhn"] = InMemoryStructureAggregateRepository;
     exports["ɵho"] = InMemoryStructureAggregateStore;
     exports["ɵhp"] = InMemoryStructureStore;
     exports["ɵhq"] = CreateStructureCommandHandler;
     exports["ɵhr"] = SortingDomainModule;
-    exports["ɵhs"] = ToggleSortCommandHandler;
-    exports["ɵht"] = SetSortingCommandHandler;
-    exports["ɵhu"] = SetSortOrderCommandHandler;
-    exports["ɵhv"] = FieldDomainModule;
-    exports["ɵhw"] = InitFieldsCommandHandler;
-    exports["ɵhx"] = FieldsInitedEventHandler;
-    exports["ɵhy"] = FieldUiConverter;
-    exports["ɵhz"] = SourceDomainModule;
+    exports["ɵhs"] = SortingDispatcher;
+    exports["ɵht"] = ToggleSortCommandHandler;
+    exports["ɵhu"] = SetSortingCommandHandler;
+    exports["ɵhv"] = SetSortOrderCommandHandler;
+    exports["ɵhw"] = FieldDomainModule;
+    exports["ɵhx"] = FieldDispatcher;
+    exports["ɵhy"] = InitFieldsCommandHandler;
+    exports["ɵhz"] = FieldsInitedEventHandler;
     exports["ɵi"] = ListViewAggregateRepository;
-    exports["ɵia"] = SourceDispatcher;
-    exports["ɵib"] = FormationDispatcher;
-    exports["ɵic"] = SourceSetLoadingCommandHandler;
-    exports["ɵid"] = SetOriginCommandHandler;
-    exports["ɵie"] = StructureEditSourceItemCommandHandler;
-    exports["ɵif"] = SetEnabledSelectionCommandHandler;
-    exports["ɵig"] = SetSelectionModeCommandHandler;
-    exports["ɵih"] = SelectAllRowsCommandHandler;
-    exports["ɵii"] = UnselectAllRowsCommandHandler;
-    exports["ɵij"] = DeleteOriginItemCommandHandler;
-    exports["ɵik"] = ToggleSelectedRowCommandHandler;
-    exports["ɵil"] = StructureOriginChangedEventHandler;
-    exports["ɵim"] = StructureSourceOriginArchive;
-    exports["ɵin"] = SelectedRowChangedEventHandler;
-    exports["ɵio"] = RowSelectedRepository;
-    exports["ɵip"] = SelectionModeSetEventHandler;
-    exports["ɵiq"] = RowSelectionModeRepository;
-    exports["ɵir"] = StructurePreparedItemsEventHandler;
-    exports["ɵis"] = StructurePreparedItemsArchive;
-    exports["ɵit"] = SummariesDomainModule;
-    exports["ɵiu"] = provideSummariesCalculator;
-    exports["ɵiv"] = BooleanSummariesCalculator;
-    exports["ɵiw"] = DateSummariesCalculator;
-    exports["ɵix"] = NumberSummariesCalculator;
-    exports["ɵiy"] = StringSummariesCalculator;
-    exports["ɵiz"] = UnknownSummariesCalculator;
+    exports["ɵia"] = FieldArchive;
+    exports["ɵib"] = FieldConverter;
+    exports["ɵic"] = SourceDomainModule;
+    exports["ɵid"] = SourceDispatcher;
+    exports["ɵie"] = SourceSetLoadingCommandHandler;
+    exports["ɵif"] = SetOriginCommandHandler;
+    exports["ɵig"] = StructureEditSourceItemCommandHandler;
+    exports["ɵih"] = DeleteOriginItemCommandHandler;
+    exports["ɵii"] = StructureOriginChangedEventHandler;
+    exports["ɵij"] = StructureSourceOriginArchive;
+    exports["ɵik"] = StructurePreparedItemsEventHandler;
+    exports["ɵil"] = StructurePreparedItemsArchive;
+    exports["ɵim"] = FormationDomainModule;
+    exports["ɵin"] = FormationDispatcher;
+    exports["ɵio"] = SetEnabledSelectionCommandHandler;
+    exports["ɵip"] = SetSelectionModeCommandHandler;
+    exports["ɵiq"] = SelectAllRowsCommandHandler;
+    exports["ɵir"] = UnselectAllRowsCommandHandler;
+    exports["ɵis"] = ToggleSelectedRowCommandHandler;
+    exports["ɵit"] = SelectedRowChangedEventHandler;
+    exports["ɵiu"] = RowSelectedArchive;
+    exports["ɵiv"] = RowSelectedReadModel;
+    exports["ɵiw"] = SelectionModeSetEventHandler;
+    exports["ɵix"] = RowSelectionModeArchive;
+    exports["ɵiy"] = SummariesDomainModule;
+    exports["ɵiz"] = provideSummariesCalculator;
     exports["ɵj"] = InMemoryListViewAggregateStore;
-    exports["ɵja"] = StructureSetSummariesEnabledCommandHandler;
-    exports["ɵjb"] = StructureSummariesEnabledSetEventHandler;
-    exports["ɵjc"] = SummariesEnabledArchive;
-    exports["ɵjd"] = VerticalFormationDomainModule;
-    exports["ɵje"] = SetScrollPositionCommandHandler;
-    exports["ɵjf"] = SetVerticalScrollEnabledCommandHandler;
-    exports["ɵjg"] = SetRowHeightBasedOnThemeCommandHandler;
-    exports["ɵjh"] = SetRowHeightCommandHandler;
-    exports["ɵji"] = StructureSetHeightCommandHandler;
-    exports["ɵjj"] = SetScrollBarPositionCommandHandler;
-    exports["ɵjk"] = ScrollBarPositionSetEventHandler;
-    exports["ɵjl"] = VerticalFormationScrollBarPositionArchive;
-    exports["ɵjm"] = structureCommandHandlers;
-    exports["ɵjn"] = structureDomainEventHandlers;
-    exports["ɵjo"] = structureProviders;
-    exports["ɵjp"] = StructureCreatedEventHandler;
-    exports["ɵjq"] = ResizeDetectorModule;
-    exports["ɵjr"] = ResizeDetector;
-    exports["ɵjs"] = SortingFeatureModule;
-    exports["ɵjt"] = SortingApiModule;
-    exports["ɵju"] = SortingCommandInvoker;
-    exports["ɵjv"] = FieldFeatureModule;
-    exports["ɵjw"] = FieldApiModule;
-    exports["ɵjx"] = SourceFeatureModule;
-    exports["ɵjy"] = SourceApiModule;
-    exports["ɵjz"] = SourceConverter;
+    exports["ɵja"] = BooleanSummariesCalculator;
+    exports["ɵjb"] = DateSummariesCalculator;
+    exports["ɵjc"] = NumberSummariesCalculator;
+    exports["ɵjd"] = StringSummariesCalculator;
+    exports["ɵje"] = UnknownSummariesCalculator;
+    exports["ɵjf"] = SummariesDispatcher;
+    exports["ɵjg"] = StructureSetSummariesEnabledCommandHandler;
+    exports["ɵjh"] = StructureSummariesEnabledSetEventHandler;
+    exports["ɵji"] = SummariesEnabledArchive;
+    exports["ɵjj"] = VerticalFormationDomainModule;
+    exports["ɵjk"] = VerticalFormationDispatcher;
+    exports["ɵjl"] = SetScrollPositionCommandHandler;
+    exports["ɵjm"] = SetVerticalScrollEnabledCommandHandler;
+    exports["ɵjn"] = SetRowHeightBasedOnThemeCommandHandler;
+    exports["ɵjo"] = SetRowHeightCommandHandler;
+    exports["ɵjp"] = StructureSetHeightCommandHandler;
+    exports["ɵjq"] = SetScrollBarPositionCommandHandler;
+    exports["ɵjr"] = ScrollBarPositionSetEventHandler;
+    exports["ɵjs"] = VerticalFormationScrollBarPositionArchive;
+    exports["ɵjt"] = structureCommandHandlers;
+    exports["ɵju"] = structureDomainEventHandlers;
+    exports["ɵjv"] = structureProviders;
+    exports["ɵjw"] = StructureCreatedEventHandler;
+    exports["ɵjx"] = ResizeDetectorModule;
+    exports["ɵjy"] = ResizeDetector;
+    exports["ɵjz"] = SortingFeatureModule;
     exports["ɵk"] = InMemoryListViewStore;
-    exports["ɵka"] = SourceDomainCommandInvoker;
-    exports["ɵkb"] = SourceDomainWarehouse;
-    exports["ɵkc"] = FormationEventRepository;
-    exports["ɵkd"] = FormationCommandInvoker;
-    exports["ɵke"] = FormationWarehouse;
-    exports["ɵkf"] = RowSelectionTypeArchive;
-    exports["ɵkg"] = SummariesFeatureModule;
-    exports["ɵkh"] = SummariesApiModule;
-    exports["ɵki"] = SummariesCommandInvoker;
-    exports["ɵkj"] = SummariesDomainCommandInvoker;
-    exports["ɵkk"] = StructureSummariesPanelConfigConverter;
-    exports["ɵkl"] = StructureSummariesConfigArchive;
-    exports["ɵkm"] = StructureSummariesPanelConfig;
-    exports["ɵkn"] = SummariesEventRepository;
-    exports["ɵko"] = SummariesDomainEventRepository;
-    exports["ɵkp"] = SummariesWarehouse;
-    exports["ɵkq"] = SummariesDomainWarehouse;
-    exports["ɵkr"] = StructureSummariesPanelComponent;
-    exports["ɵks"] = VerticalFormationFeatureModule;
-    exports["ɵkt"] = VerticalFormationApiModule;
-    exports["ɵku"] = VerticalFormationConverter;
-    exports["ɵkv"] = VerticalFormationRepository;
-    exports["ɵkw"] = InMemoryStructureReadStore;
-    exports["ɵkx"] = StructureReadModelRootConverter;
-    exports["ɵky"] = VerticalFormationWarehouse;
-    exports["ɵkz"] = VerticalFormationDomainWarehouse;
+    exports["ɵka"] = SortingApiModule;
+    exports["ɵkb"] = SortingCommandInvoker;
+    exports["ɵkc"] = SortingDomainCommandInvoker;
+    exports["ɵkd"] = FieldFeatureModule;
+    exports["ɵke"] = FieldApiModule;
+    exports["ɵkf"] = FieldDomainCommandInvoker;
+    exports["ɵkg"] = FieldDomainWarehouse;
+    exports["ɵkh"] = FormationFeatureModule;
+    exports["ɵki"] = FormationApiModule;
+    exports["ɵkj"] = FormationEventRepository;
+    exports["ɵkk"] = FormationCommandInvoker;
+    exports["ɵkl"] = FormationDomainCommandInvoker;
+    exports["ɵkm"] = FormationWarehouse;
+    exports["ɵkn"] = FormationDomainWarehouse;
+    exports["ɵko"] = RowSelectionTypeArchive;
+    exports["ɵkp"] = SourceFeatureModule;
+    exports["ɵkq"] = SourceApiModule;
+    exports["ɵkr"] = SourceConverter;
+    exports["ɵks"] = SourceDomainCommandInvoker;
+    exports["ɵkt"] = SourceDomainWarehouse;
+    exports["ɵku"] = SummariesFeatureModule;
+    exports["ɵkv"] = SummariesApiModule;
+    exports["ɵkw"] = SummariesCommandInvoker;
+    exports["ɵkx"] = SummariesDomainCommandInvoker;
+    exports["ɵky"] = StructureSummariesPanelConfigConverter;
+    exports["ɵkz"] = StructureSummariesConfigArchive;
     exports["ɵl"] = CreateListViewCommandHandler;
-    exports["ɵla"] = SchemaFeatureModule;
-    exports["ɵlb"] = SchemaApiModule;
-    exports["ɵlc"] = schemaKey;
-    exports["ɵld"] = SchemaAggregateFactory;
-    exports["ɵle"] = InMemorySchemaAggregateRepository;
-    exports["ɵlf"] = SchemaAggregateRepository;
-    exports["ɵlg"] = InMemorySchemaAggregateStore;
-    exports["ɵlh"] = InMemorySchemaStore;
-    exports["ɵli"] = CreateSchemaCommandHandler;
-    exports["ɵlj"] = SchemaDomainModule;
-    exports["ɵlk"] = SetSchemaThemeCommandHandler;
-    exports["ɵll"] = SetRowColoringCommandHandler;
-    exports["ɵlm"] = SetSchemaHorizontalGridCommandHandler;
-    exports["ɵln"] = SetSchemaVerticalGridCommandHandler;
-    exports["ɵlo"] = SchemaThemeRepository;
-    exports["ɵlp"] = SchemaHorizontalGridRepository;
-    exports["ɵlq"] = SchemaRowColoringRepository;
-    exports["ɵlr"] = SchemaVerticalGridRepository;
-    exports["ɵls"] = SchemaCssClassesEventHandler;
-    exports["ɵlt"] = SchemaCssClassesRepository;
-    exports["ɵlu"] = SchemaDispatcher;
-    exports["ɵlv"] = SchemaCommandInvoker;
-    exports["ɵlw"] = SchemaDomainCommandInvoker;
-    exports["ɵlx"] = SchemaWarehouse;
-    exports["ɵly"] = SchemaDomainWarehouse;
-    exports["ɵlz"] = SchemaEventRepository;
+    exports["ɵla"] = StructureSummariesPanelConfig;
+    exports["ɵlb"] = SummariesEventRepository;
+    exports["ɵlc"] = SummariesDomainEventRepository;
+    exports["ɵld"] = SummariesWarehouse;
+    exports["ɵle"] = SummariesDomainWarehouse;
+    exports["ɵlf"] = StructureSummariesPanelComponent;
+    exports["ɵlg"] = VerticalFormationFeatureModule;
+    exports["ɵlh"] = VerticalFormationApiModule;
+    exports["ɵli"] = VerticalFormationConverter;
+    exports["ɵlj"] = VerticalFormationRepository;
+    exports["ɵlk"] = InMemoryStructureReadStore;
+    exports["ɵll"] = StructureReadModelRootConverter;
+    exports["ɵlm"] = VerticalFormationWarehouse;
+    exports["ɵln"] = VerticalFormationDomainWarehouse;
+    exports["ɵlo"] = VerticalFormationCommandInvoker;
+    exports["ɵlp"] = VerticalFormationDomainCommandInvoker;
+    exports["ɵlq"] = SchemaFeatureModule;
+    exports["ɵlr"] = SchemaApiModule;
+    exports["ɵls"] = schemaKey;
+    exports["ɵlt"] = SchemaAggregateFactory;
+    exports["ɵlu"] = InMemorySchemaAggregateRepository;
+    exports["ɵlv"] = SchemaAggregateRepository;
+    exports["ɵlw"] = InMemorySchemaAggregateStore;
+    exports["ɵlx"] = InMemorySchemaStore;
+    exports["ɵly"] = CreateSchemaCommandHandler;
+    exports["ɵlz"] = SchemaDomainModule;
     exports["ɵm"] = ListViewDomainModule;
-    exports["ɵma"] = SchemaDomainEventRepository;
-    exports["ɵmb"] = SchemaRowClassArchive;
-    exports["ɵmc"] = SchemaRowStyleArchive;
-    exports["ɵmd"] = StructureSharedModule;
-    exports["ɵme"] = CssClassModule;
-    exports["ɵmf"] = StructureInfoPanelModule;
-    exports["ɵmg"] = NumberFormatterModule;
-    exports["ɵmh"] = NumberFormatterPipe;
-    exports["ɵmi"] = StructureColumnManagerModule;
-    exports["ɵmj"] = StructureColumnManagerComponent;
-    exports["ɵmk"] = CompositionCommandInvoker;
-    exports["ɵml"] = StructureDialogColumnManagerComponent;
-    exports["ɵmm"] = StructureMenuColumnManagerComponent;
-    exports["ɵmn"] = StructureColumnManagerIconComponent;
-    exports["ɵmo"] = StructureDialogColumnManagerService;
-    exports["ɵmp"] = StructureThemeConverter;
-    exports["ɵmq"] = SchemaManagerModule;
-    exports["ɵmr"] = StructureSchemaMangerComponent;
-    exports["ɵms"] = StructureDialogSchemaManagerComponent;
-    exports["ɵmt"] = StructureSchemaManagerIconComponent;
-    exports["ɵmu"] = StructureDialogSchemaManagerService;
-    exports["ɵmv"] = SourceCounterFeatureModule;
-    exports["ɵmw"] = ActiveFilterMenuTriggerDirective;
-    exports["ɵmx"] = ActiveFilterService;
-    exports["ɵmy"] = ActiveFilterMenuComponent;
-    exports["ɵmz"] = StructureInfoPanelComponent;
+    exports["ɵma"] = SetSchemaThemeCommandHandler;
+    exports["ɵmb"] = SetRowColoringCommandHandler;
+    exports["ɵmc"] = SetSchemaHorizontalGridCommandHandler;
+    exports["ɵmd"] = SetSchemaVerticalGridCommandHandler;
+    exports["ɵme"] = SchemaThemeRepository;
+    exports["ɵmf"] = SchemaHorizontalGridRepository;
+    exports["ɵmg"] = SchemaRowColoringRepository;
+    exports["ɵmh"] = SchemaVerticalGridRepository;
+    exports["ɵmi"] = SchemaCssClassesEventHandler;
+    exports["ɵmj"] = SchemaCssClassesRepository;
+    exports["ɵmk"] = SchemaDispatcher;
+    exports["ɵml"] = SchemaCommandInvoker;
+    exports["ɵmm"] = SchemaDomainCommandInvoker;
+    exports["ɵmn"] = SchemaWarehouse;
+    exports["ɵmo"] = SchemaDomainWarehouse;
+    exports["ɵmp"] = SchemaEventRepository;
+    exports["ɵmq"] = SchemaDomainEventRepository;
+    exports["ɵmr"] = SchemaRowClassArchive;
+    exports["ɵms"] = SchemaRowStyleArchive;
+    exports["ɵmt"] = StructureSharedModule;
+    exports["ɵmu"] = CssClassModule;
+    exports["ɵmv"] = StructureInfoPanelModule;
+    exports["ɵmw"] = NumberFormatterModule;
+    exports["ɵmx"] = NumberFormatterPipe;
+    exports["ɵmy"] = StructureColumnManagerModule;
+    exports["ɵmz"] = StructureColumnManagerComponent;
     exports["ɵn"] = ListViewDispatcher;
-    exports["ɵna"] = StructureInfoPanelArchive;
-    exports["ɵnb"] = StructureInfoModalComponent;
-    exports["ɵnc"] = StructureInfoIconComponent;
-    exports["ɵnd"] = StructureInfoPanelConfigConverter;
-    exports["ɵne"] = StructureTopPanelModule;
-    exports["ɵnf"] = StructureTopPanelComponent;
-    exports["ɵng"] = StructureColumnMenuModule;
-    exports["ɵnh"] = UniqueValueListModule;
-    exports["ɵni"] = UniqueValueListComponent;
-    exports["ɵnj"] = StructureColumnConfigComponent;
-    exports["ɵnk"] = StructureColumnMenuConfigArchive;
-    exports["ɵnl"] = CellTemplateWithContext;
-    exports["ɵnm"] = CellContext;
-    exports["ɵno"] = CellValue;
-    exports["ɵnp"] = FieldId;
-    exports["ɵnq"] = ColumnDefinitionId;
-    exports["ɵnt"] = StructureColumnConfigTriggerComponent;
-    exports["ɵnu"] = StructureColumnConfigService;
-    exports["ɵnv"] = StructureColumnConfigSortComponent;
-    exports["ɵnw"] = StructureColumnConfigColumnHideComponent;
-    exports["ɵnx"] = StructureColumnConfigColumnMoveComponent;
-    exports["ɵny"] = StructureColumnMenuIconComponent;
-    exports["ɵnz"] = StructureColumnMenuArrowIconComponent;
+    exports["ɵna"] = CompositionCommandInvoker;
+    exports["ɵnb"] = StructureDialogColumnManagerComponent;
+    exports["ɵnc"] = StructureMenuColumnManagerComponent;
+    exports["ɵnd"] = StructureColumnManagerIconComponent;
+    exports["ɵne"] = StructureDialogColumnManagerService;
+    exports["ɵnf"] = StructureThemeConverter;
+    exports["ɵng"] = SchemaManagerModule;
+    exports["ɵnh"] = StructureSchemaMangerComponent;
+    exports["ɵni"] = StructureDialogSchemaManagerComponent;
+    exports["ɵnj"] = StructureSchemaManagerIconComponent;
+    exports["ɵnk"] = StructureDialogSchemaManagerService;
+    exports["ɵnl"] = SourceCounterFeatureModule;
+    exports["ɵnm"] = ActiveFilterMenuTriggerDirective;
+    exports["ɵnn"] = ActiveFilterService;
+    exports["ɵno"] = ActiveFilterMenuComponent;
+    exports["ɵnp"] = StructureInfoPanelComponent;
+    exports["ɵnq"] = StructureInfoPanelArchive;
+    exports["ɵnr"] = StructureInfoModalComponent;
+    exports["ɵns"] = StructureInfoIconComponent;
+    exports["ɵnt"] = StructureInfoPanelConfigConverter;
+    exports["ɵnu"] = StructureTopPanelModule;
+    exports["ɵnv"] = StructureTopPanelComponent;
+    exports["ɵnw"] = StructureColumnMenuModule;
+    exports["ɵnx"] = UniqueValueListModule;
+    exports["ɵny"] = UniqueValueListComponent;
+    exports["ɵnz"] = StructureColumnConfigComponent;
     exports["ɵo"] = SetListViewModeCommandHandler;
-    exports["ɵoa"] = CompositionFeatureModule;
-    exports["ɵob"] = CompositionApiModule;
-    exports["ɵoc"] = compositionKey;
-    exports["ɵod"] = CompositionAggregateFactory;
-    exports["ɵoe"] = ColumnEntityFactory;
-    exports["ɵof"] = ColumnPresentationConverter;
-    exports["ɵog"] = CompositionGroupFactory;
-    exports["ɵoh"] = InMemoryCompositionAggregateRepository;
-    exports["ɵoi"] = CompositionAggregateRepository;
-    exports["ɵoj"] = InMemoryCompositionAggregateStore;
-    exports["ɵok"] = InMemoryCompositionStore;
-    exports["ɵol"] = CreateCompositionCommandHandler;
-    exports["ɵom"] = CompositionDomainModule;
-    exports["ɵon"] = inMemoryCompositionCommandProviders;
-    exports["ɵoo"] = inMemoryCompositionReadModelProviders;
-    exports["ɵop"] = inMemoryCompositionProviders;
-    exports["ɵoq"] = CompositionDispatcher;
-    exports["ɵor"] = CompositionEventConverter;
-    exports["ɵos"] = ColumnFieldFactory;
-    exports["ɵot"] = ColumnHighlightArchive;
-    exports["ɵou"] = Override;
-    exports["ɵov"] = SetColumnsCommandHandler;
-    exports["ɵow"] = SetCompositionWidthCommandHandler;
-    exports["ɵox"] = SetCompositionResizeWidthCommandHandler;
-    exports["ɵoy"] = SetCompositionContainerWidthCommandHandler;
-    exports["ɵoz"] = CompositionSetColumnEnabledCommandHandler;
+    exports["ɵoa"] = StructureColumnMenuConfigArchive;
+    exports["ɵob"] = CellTemplateWithContext;
+    exports["ɵoc"] = CellContext;
+    exports["ɵoe"] = CellValue;
+    exports["ɵof"] = FieldId;
+    exports["ɵog"] = ColumnDefinitionId;
+    exports["ɵoj"] = StructureColumnConfigTriggerComponent;
+    exports["ɵok"] = StructureColumnConfigService;
+    exports["ɵol"] = StructureColumnConfigSortComponent;
+    exports["ɵom"] = StructureColumnConfigColumnHideComponent;
+    exports["ɵon"] = StructureColumnConfigColumnMoveComponent;
+    exports["ɵoo"] = StructureColumnMenuIconComponent;
+    exports["ɵop"] = StructureColumnMenuArrowIconComponent;
+    exports["ɵoq"] = CompositionFeatureModule;
+    exports["ɵor"] = CompositionApiModule;
+    exports["ɵos"] = compositionKey;
+    exports["ɵot"] = CompositionAggregateFactory;
+    exports["ɵou"] = ColumnEntityFactory;
+    exports["ɵov"] = ColumnPresentationConverter;
+    exports["ɵow"] = CompositionGroupFactory;
+    exports["ɵox"] = InMemoryCompositionAggregateRepository;
+    exports["ɵoy"] = CompositionAggregateRepository;
+    exports["ɵoz"] = InMemoryCompositionAggregateStore;
     exports["ɵp"] = ToggleListViewSelectorCommandHandler;
-    exports["ɵpa"] = CompositionChangeSortStatusCommandHandler;
-    exports["ɵpb"] = CompositionMoveLeftColumnCommandHandler;
-    exports["ɵpc"] = CompositionMoveRightColumnCommandHandler;
-    exports["ɵpd"] = SetGroupsCommandHandler;
-    exports["ɵpe"] = CompositionChangeSortStatusEventHandler;
-    exports["ɵpf"] = InMemoryCompositionReadStore;
-    exports["ɵpg"] = CompositionReadModelRootConverter;
-    exports["ɵph"] = ColumnDefinitionFactory;
-    exports["ɵpi"] = ViewTemplateRepository;
-    exports["ɵpj"] = ViewTemplateFactory;
-    exports["ɵpk"] = TemplateFactory;
-    exports["ɵpl"] = EditTemplateRepository;
-    exports["ɵpm"] = EditTemplateFactory;
-    exports["ɵpn"] = CompositionReadModelRootRepository;
-    exports["ɵpo"] = InMemoryCompositionRepository;
-    exports["ɵpp"] = CompositionGroupArchive;
-    exports["ɵpq"] = GroupCollection;
-    exports["ɵpr"] = Group;
-    exports["ɵps"] = GroupId;
-    exports["ɵpt"] = CompositionDomainCommandInvoker;
-    exports["ɵpu"] = CompositionDomainWarehouse;
-    exports["ɵpv"] = CompositionEventRepository;
-    exports["ɵpw"] = CompositionDomainEventRepository;
-    exports["ɵpx"] = ColumnAutoConfigurator;
-    exports["ɵpy"] = DomainColumnAutoConfigurator;
-    exports["ɵpz"] = SanitizeModule;
+    exports["ɵpa"] = InMemoryCompositionStore;
+    exports["ɵpb"] = CreateCompositionCommandHandler;
+    exports["ɵpc"] = CompositionDomainModule;
+    exports["ɵpd"] = inMemoryCompositionCommandProviders;
+    exports["ɵpe"] = inMemoryCompositionReadModelProviders;
+    exports["ɵpf"] = inMemoryCompositionProviders;
+    exports["ɵpg"] = CompositionDispatcher;
+    exports["ɵph"] = CompositionEventConverter;
+    exports["ɵpi"] = ColumnFieldFactory;
+    exports["ɵpj"] = ColumnHighlightArchive;
+    exports["ɵpk"] = Override;
+    exports["ɵpl"] = SetColumnsCommandHandler;
+    exports["ɵpm"] = SetCompositionWidthCommandHandler;
+    exports["ɵpn"] = SetCompositionResizeWidthCommandHandler;
+    exports["ɵpo"] = SetCompositionContainerWidthCommandHandler;
+    exports["ɵpp"] = CompositionSetColumnEnabledCommandHandler;
+    exports["ɵpq"] = CompositionChangeSortStatusCommandHandler;
+    exports["ɵpr"] = CompositionMoveLeftColumnCommandHandler;
+    exports["ɵps"] = CompositionMoveRightColumnCommandHandler;
+    exports["ɵpt"] = SetGroupsCommandHandler;
+    exports["ɵpu"] = CompositionChangeSortStatusEventHandler;
+    exports["ɵpv"] = InMemoryCompositionReadStore;
+    exports["ɵpw"] = CompositionReadModelRootConverter;
+    exports["ɵpx"] = ColumnDefinitionFactory;
+    exports["ɵpy"] = ViewTemplateRepository;
+    exports["ɵpz"] = ViewTemplateFactory;
     exports["ɵq"] = ListViewModeSetEventHandler;
-    exports["ɵqa"] = SafePipe;
-    exports["ɵqb"] = ViewTemplatesComponent;
-    exports["ɵqc"] = EditTemplatesComponent;
-    exports["ɵqd"] = StringEditTemplateComponent;
-    exports["ɵqe"] = InputEditTemplateComponent;
-    exports["ɵqf"] = EditCommunicationComponent;
-    exports["ɵqg"] = NumberEditTemplateComponent;
-    exports["ɵqh"] = BooleanEditTemplateComponent;
-    exports["ɵqi"] = DateEditTemplateComponent;
-    exports["ɵqj"] = ColumnQueryComponent;
-    exports["ɵqk"] = FunctionViewComponent;
-    exports["ɵql"] = BarViewComponent;
-    exports["ɵqm"] = PercentageViewComponent;
-    exports["ɵqn"] = TextViewComponent;
-    exports["ɵqo"] = LoggerModule;
-    exports["ɵqp"] = ConsoleLogger;
-    exports["ɵqq"] = StructureGateway;
-    exports["ɵqr"] = StructureEditModeArchive;
-    exports["ɵqs"] = StructureInfoPanelConfigService;
-    exports["ɵqt"] = StructureCellEditStore;
-    exports["ɵqu"] = RowSelectEnabledRepository;
-    exports["ɵqv"] = StructureHeaderBottomEnabledArchive;
-    exports["ɵqw"] = StructureInitialValuesReadyArchive;
-    exports["ɵqx"] = SchemaCssClassManager;
-    exports["ɵqy"] = StructureCellEditCloseAllService;
-    exports["ɵqz"] = StructureHeaderTopEnabledArchive;
+    exports["ɵqa"] = TemplateFactory;
+    exports["ɵqb"] = EditTemplateRepository;
+    exports["ɵqc"] = EditTemplateFactory;
+    exports["ɵqd"] = CompositionReadModelRootRepository;
+    exports["ɵqe"] = InMemoryCompositionRepository;
+    exports["ɵqf"] = CompositionGroupArchive;
+    exports["ɵqg"] = GroupCollection;
+    exports["ɵqh"] = Group;
+    exports["ɵqi"] = GroupId;
+    exports["ɵqj"] = CompositionDomainCommandInvoker;
+    exports["ɵqk"] = CompositionDomainWarehouse;
+    exports["ɵql"] = CompositionEventRepository;
+    exports["ɵqm"] = CompositionDomainEventRepository;
+    exports["ɵqn"] = ColumnAutoConfigurator;
+    exports["ɵqo"] = DomainColumnAutoConfigurator;
+    exports["ɵqp"] = SanitizeModule;
+    exports["ɵqq"] = SafePipe;
+    exports["ɵqr"] = ViewTemplatesComponent;
+    exports["ɵqs"] = EditTemplatesComponent;
+    exports["ɵqt"] = StringEditTemplateComponent;
+    exports["ɵqu"] = InputEditTemplateComponent;
+    exports["ɵqv"] = EditCommunicationComponent;
+    exports["ɵqw"] = NumberEditTemplateComponent;
+    exports["ɵqx"] = BooleanEditTemplateComponent;
+    exports["ɵqy"] = DateEditTemplateComponent;
+    exports["ɵqz"] = ColumnQueryComponent;
     exports["ɵr"] = ListViewModeArchive;
-    exports["ɵra"] = StructureRowDetailConfigArchive;
-    exports["ɵrb"] = StructureRowDetailService;
-    exports["ɵrc"] = StructureTitlePanelConfigArchive;
-    exports["ɵrd"] = StructureFooterPanelConfigArchive;
-    exports["ɵre"] = structureComponentToken;
-    exports["ɵrf"] = StructureDefinition;
-    exports["ɵrg"] = PagingDefinition;
-    exports["ɵrh"] = StructureHeaderComponent;
-    exports["ɵri"] = StructureHeaderColumnsComponent;
-    exports["ɵrj"] = StructureHeaderFiltersComponent;
-    exports["ɵrk"] = StructureHeaderGroupsComponent;
-    exports["ɵrl"] = StructureHeaderFilterComponent;
-    exports["ɵrm"] = SelectAllComponent;
-    exports["ɵrn"] = StructureContentComponent;
-    exports["ɵro"] = StructureRowComponent;
-    exports["ɵrp"] = StructureCellComponent;
-    exports["ɵrq"] = StructureCellEditComponent;
-    exports["ɵrr"] = StructureCellEditBooleanComponent;
-    exports["ɵrs"] = StructureContainerComponent;
-    exports["ɵrt"] = structureParentComponent;
-    exports["ɵru"] = StructureQuickFiltersComponent;
-    exports["ɵrv"] = StructureBlueprintComponent;
-    exports["ɵrw"] = STRUCTURE_CSS_CLASS_NAME;
-    exports["ɵrx"] = StructureRowDetailViewComponent;
-    exports["ɵry"] = DynamicallyCreatedComponent;
-    exports["ɵrz"] = structureRowDetailViewItem;
+    exports["ɵra"] = FunctionViewComponent;
+    exports["ɵrb"] = BarViewComponent;
+    exports["ɵrc"] = PercentageViewComponent;
+    exports["ɵrd"] = TextViewComponent;
+    exports["ɵre"] = LoggerModule;
+    exports["ɵrf"] = ConsoleLogger;
+    exports["ɵrg"] = StructureGateway;
+    exports["ɵrh"] = StructureEditModeArchive;
+    exports["ɵri"] = StructureInfoPanelConfigService;
+    exports["ɵrj"] = StructureCellEditStore;
+    exports["ɵrk"] = RowSelectEnabledRepository;
+    exports["ɵrl"] = StructureHeaderBottomEnabledArchive;
+    exports["ɵrm"] = StructureInitialValuesReadyArchive;
+    exports["ɵrn"] = SchemaCssClassManager;
+    exports["ɵro"] = StructureCellEditCloseAllService;
+    exports["ɵrp"] = StructureHeaderTopEnabledArchive;
+    exports["ɵrq"] = StructureRowDetailConfigArchive;
+    exports["ɵrr"] = StructureRowDetailService;
+    exports["ɵrs"] = StructureTitlePanelConfigArchive;
+    exports["ɵrt"] = StructureFooterPanelConfigArchive;
+    exports["ɵru"] = structureComponentToken;
+    exports["ɵrv"] = StructureDefinition;
+    exports["ɵrw"] = PagingDefinition;
+    exports["ɵrx"] = StructureHeaderComponent;
+    exports["ɵry"] = StructureHeaderColumnsComponent;
+    exports["ɵrz"] = StructureHeaderFiltersComponent;
     exports["ɵs"] = ListViewSelectorToggledEventHandler;
-    exports["ɵsa"] = structureRowDetailViewTemplate;
-    exports["ɵsb"] = SelectedRow;
-    exports["ɵsc"] = OriginItemEntity;
-    exports["ɵsd"] = OriginId;
-    exports["ɵse"] = StructureTitlePanelComponent;
-    exports["ɵsf"] = StructureBannerPanel;
-    exports["ɵsg"] = StructureFooterPanelComponent;
-    exports["ɵsh"] = structureGates;
-    exports["ɵsi"] = StructureColumnHeaderGate;
-    exports["ɵsj"] = StructurePagingGate;
-    exports["ɵsk"] = StructureSearchingGate;
-    exports["ɵsl"] = StructureSelectionGate;
-    exports["ɵsm"] = SelectionGate;
-    exports["ɵsn"] = StructureL10nGate;
-    exports["ɵso"] = StructurePanelGate;
-    exports["ɵsp"] = StructureRowDetailGate;
-    exports["ɵsq"] = StructureColumnMenuGate;
-    exports["ɵsr"] = StructureSummariesGate;
-    exports["ɵss"] = StructureInfoPanelGate;
-    exports["ɵst"] = StructureRowClassGate;
-    exports["ɵsu"] = StructureRowStyleGate;
-    exports["ɵsv"] = StructureRowColoringGate;
-    exports["ɵsw"] = ThemeGridGate;
-    exports["ɵsx"] = StructureSortingGate;
-    exports["ɵsy"] = SourceLoadingGate;
-    exports["ɵsz"] = StructureFilterGate;
+    exports["ɵsa"] = StructureHeaderGroupsComponent;
+    exports["ɵsb"] = StructureHeaderFilterComponent;
+    exports["ɵsc"] = SelectAllComponent;
+    exports["ɵsd"] = StructureContentComponent;
+    exports["ɵse"] = StructureRowComponent;
+    exports["ɵsf"] = StructureCellComponent;
+    exports["ɵsg"] = StructureCellEditComponent;
+    exports["ɵsh"] = StructureCellEditBooleanComponent;
+    exports["ɵsi"] = StructureContainerComponent;
+    exports["ɵsj"] = structureParentComponent;
+    exports["ɵsk"] = StructureQuickFiltersComponent;
+    exports["ɵsl"] = StructureBlueprintComponent;
+    exports["ɵsm"] = STRUCTURE_CSS_CLASS_NAME;
+    exports["ɵsn"] = StructureRowDetailViewComponent;
+    exports["ɵso"] = DynamicallyCreatedComponent;
+    exports["ɵsp"] = structureRowDetailViewItem;
+    exports["ɵsq"] = structureRowDetailViewTemplate;
+    exports["ɵsr"] = SelectedRow;
+    exports["ɵss"] = OriginItemEntity;
+    exports["ɵst"] = OriginId;
+    exports["ɵsu"] = StructureTitlePanelComponent;
+    exports["ɵsv"] = StructureBannerPanel;
+    exports["ɵsw"] = StructureFooterPanelComponent;
+    exports["ɵsx"] = structureGates;
+    exports["ɵsy"] = StructureColumnHeaderGate;
+    exports["ɵsz"] = StructurePagingGate;
     exports["ɵt"] = ListViewSelectorArchive;
-    exports["ɵta"] = StructureQuickFiltersGate;
-    exports["ɵtb"] = VerticalFormationGate;
-    exports["ɵtc"] = ItemEntityFactory;
-    exports["ɵtd"] = inMemoryStructureCommandProviders;
-    exports["ɵte"] = inMemoryStructureReadProviders;
-    exports["ɵtf"] = inMemoryStructureProviders;
-    exports["ɵtg"] = InMemoryStructureRepository;
-    exports["ɵth"] = StructureDomainCommandInvoker;
-    exports["ɵti"] = GuiListGateway;
-    exports["ɵtj"] = guiListProviders;
+    exports["ɵta"] = StructureSearchingGate;
+    exports["ɵtb"] = StructureSelectionGate;
+    exports["ɵtc"] = SelectionGate;
+    exports["ɵtd"] = StructureL10nGate;
+    exports["ɵte"] = StructurePanelGate;
+    exports["ɵtf"] = StructureRowDetailGate;
+    exports["ɵtg"] = StructureColumnMenuGate;
+    exports["ɵth"] = StructureSummariesGate;
+    exports["ɵti"] = StructureInfoPanelGate;
+    exports["ɵtj"] = StructureRowClassGate;
+    exports["ɵtk"] = StructureRowStyleGate;
+    exports["ɵtl"] = StructureRowColoringGate;
+    exports["ɵtm"] = ThemeGridGate;
+    exports["ɵtn"] = StructureSortingGate;
+    exports["ɵto"] = SourceLoadingGate;
+    exports["ɵtp"] = StructureFilterGate;
+    exports["ɵtq"] = StructureQuickFiltersGate;
+    exports["ɵtr"] = VerticalFormationGate;
+    exports["ɵts"] = ItemEntityFactory;
+    exports["ɵtt"] = inMemoryStructureCommandProviders;
+    exports["ɵtu"] = inMemoryStructureReadProviders;
+    exports["ɵtv"] = inMemoryStructureProviders;
+    exports["ɵtw"] = InMemoryStructureRepository;
+    exports["ɵtx"] = StructureDomainCommandInvoker;
+    exports["ɵty"] = GuiListGateway;
+    exports["ɵtz"] = guiListProviders;
     exports["ɵu"] = ListViewCommandInvoker;
     exports["ɵv"] = ListViewEventRepository;
     exports["ɵw"] = ListViewWarehouse;

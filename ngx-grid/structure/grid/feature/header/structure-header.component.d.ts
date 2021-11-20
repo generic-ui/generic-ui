@@ -7,7 +7,7 @@ import { FilterWarehouse } from '../../../filter/core/api/filter.warehouse';
 import { CompositionWarehouse } from '../../../../composition/core/api/composition.warehouse';
 import { StructureWarehouse } from '../../core/api/structure.warehouse';
 import { VerticalFormationWarehouse } from '../../../vertical-formation/core/api/vertical-formation.warehouse';
-import { RowSelectionTypeArchive } from '../../../source/core/api/formation/type/row-selection-type.archive';
+import { RowSelectionTypeArchive } from '../../../formation/core/api/type/row-selection-type.archive';
 import { Group } from '../../../../composition/core/api/group/group';
 import { CompositionId } from '../../../../composition/core/api/composition.id';
 export declare class StructureHeaderComponent extends SmartComponent implements OnInit, AfterViewInit {

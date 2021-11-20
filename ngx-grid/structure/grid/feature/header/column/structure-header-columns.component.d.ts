@@ -4,7 +4,7 @@ import { SmartComponent } from '../../../../../common/cdk/component/smart-compon
 import { SortingCommandInvoker } from '../../../../sorting/core/api/sorting.command-invoker';
 import { CompositionId } from '../../../../../composition/core/api/composition.id';
 import { StructureId } from '../../../../core/api/structure.id';
-import { FormationCommandInvoker } from '../../../../source/core/api/formation/formation.command-invoker';
+import { FormationCommandInvoker } from '../../../../formation/core/api/formation.command-invoker';
 export declare class StructureHeaderColumnsComponent extends SmartComponent {
     private readonly elementRef;
     private readonly injector;
