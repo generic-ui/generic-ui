@@ -1,15 +1,15 @@
 {
   "name": "@generic-ui/ngx-grid",
   "description": "Generic UI - Angular Grid library",
-  "version": " 0.16.3",
+  "version": " 0.16.4",
   "license": "MIT",
   "peerDependencies": {
     "@angular/common": "12.2.11",
     "@angular/core": "12.2.11",
     "@angular/forms": "12.2.11",
     "@angular/platform-browser": "12.2.11",
-    "@generic-ui/fabric": "0.16.3",
-    "@generic-ui/hermes": "0.16.3",
+    "@generic-ui/fabric": "0.16.4",
+    "@generic-ui/hermes": "0.16.4",
     "rxjs": "6.6.7"
   },
   "keywords": [

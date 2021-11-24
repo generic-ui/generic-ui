@@ -14,6 +14,8 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     private readonly type;
     private readonly view;
     private readonly align;
+    private readonly cssClasses;
+    private readonly styles;
     cellTemplate: TemplateRef<any>;
     headerTemplate: TemplateRef<any>;
     editTemplate: TemplateRef<any>;
@@ -31,7 +33,7 @@ export declare class ColumnDefinition extends ReadModelEntity<ColumnDefinitionId
     name: string, enabled: boolean, type: DataType, // REFACTOR
     view: ViewEntity, // REFACTOR
     align: ColumnAlign, // REFACTOR
-    header: string | HeaderTemplate, cellEditingEnabled: boolean, sort?: SortOrder, sortable?: boolean);
+    header: string | HeaderTemplate, cellEditingEnabled: boolean, cssClasses: string, styles: string, sort?: SortOrder, sortable?: boolean);
     getName(): string;
     isEnabled(): boolean;
     setHeader(header: string): void;

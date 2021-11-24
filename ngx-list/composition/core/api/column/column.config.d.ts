@@ -33,4 +33,6 @@ export interface ColumnConfig {
     formatter?: (item: any, index: number) => any;
     matcher?: (item: any, index: number) => any;
     templateRef?: TemplateRef<any>;
+    cssClasses?: string;
+    styles?: string;
 }

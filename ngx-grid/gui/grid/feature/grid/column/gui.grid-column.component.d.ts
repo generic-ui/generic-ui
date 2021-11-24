@@ -15,4 +15,6 @@ export declare class GuiGridColumnComponent implements GuiColumn {
     cellEditing?: boolean | GuiColumnCellEditing;
     formatter?: (item: any, index: number) => any;
     matcher?: (item: any) => any;
+    cssClasses?: string;
+    styles?: string;
 }

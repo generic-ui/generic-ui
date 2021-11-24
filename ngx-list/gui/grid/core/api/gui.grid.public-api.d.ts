@@ -19,6 +19,8 @@ export interface GuiColumn {
     cellEditing?: boolean | GuiColumnCellEditing;
     formatter?: (item: any, index: number) => any;
     matcher?: (item: any) => any;
+    cssClasses?: string;
+    styles?: string;
 }
 export declare enum GuiDataType {
     UNKNOWN = 0,

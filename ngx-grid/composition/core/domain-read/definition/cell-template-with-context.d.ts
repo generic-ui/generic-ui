@@ -13,12 +13,16 @@ export declare class CellTemplateWithContext {
     private readonly columnDefinitionId;
     private readonly sortStatus;
     private readonly enabled;
+    private readonly cssClasses;
+    private readonly styles;
     private readonly sortable;
     private readonly align;
-    constructor(viewTemplate: TemplateRef<any>, editTemplate: TemplateRef<any>, context: CellContext, width: number, fieldId: FieldId, columnDefinitionId: ColumnDefinitionId, sortStatus: SortOrder, enabled: boolean, sortable: boolean, align: ColumnAlign);
+    constructor(viewTemplate: TemplateRef<any>, editTemplate: TemplateRef<any>, context: CellContext, width: number, fieldId: FieldId, columnDefinitionId: ColumnDefinitionId, sortStatus: SortOrder, enabled: boolean, cssClasses: string, styles: string, sortable: boolean, align: ColumnAlign);
     getColumnDefinitionId(): ColumnDefinitionId;
     getFieldId(): FieldId;
     getSortStatus(): SortOrder;
+    getCssClasses(): string;
+    getStyles(): string;
     isSortEnabled(): boolean;
     isAscSort(): boolean;
     isDescSort(): boolean;

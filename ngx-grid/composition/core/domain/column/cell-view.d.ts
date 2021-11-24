@@ -13,5 +13,6 @@ export declare enum CellView {
     BAR = 11,
     PERCENTAGE_BAR = 12,
     PERCENTAGE = 13,
-    NG_TEMPLATE = 14
+    NG_TEMPLATE = 14,
+    HTML = 15
 }

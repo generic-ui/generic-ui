@@ -6815,7 +6815,7 @@
     StructureInfoModalComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-info-dialog]',
-                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.3\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
+                    template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-dialog-title gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.16.4\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -13488,7 +13488,7 @@
     var CellTemplateWithContext = /** @class */ (function () {
         function CellTemplateWithContext(viewTemplate, editTemplate, 
         // public editContext: any,
-        context, width, fieldId, columnDefinitionId, sortStatus, enabled, sortable, align) {
+        context, width, fieldId, columnDefinitionId, sortStatus, enabled, cssClasses, styles, sortable, align) {
             this.viewTemplate = viewTemplate;
             this.editTemplate = editTemplate;
             this.context = context;
@@ -13497,6 +13497,8 @@
             this.columnDefinitionId = columnDefinitionId;
             this.sortStatus = sortStatus;
             this.enabled = enabled;
+            this.cssClasses = cssClasses;
+            this.styles = styles;
             this.sortable = sortable;
             this.align = align;
         }
@@ -13508,6 +13510,12 @@
         };
         CellTemplateWithContext.prototype.getSortStatus = function () {
             return this.sortStatus;
+        };
+        CellTemplateWithContext.prototype.getCssClasses = function () {
+            return this.cssClasses;
+        };
+        CellTemplateWithContext.prototype.getStyles = function () {
+            return this.styles;
         };
         CellTemplateWithContext.prototype.isSortEnabled = function () {
             return this.sortable;
@@ -13712,7 +13720,7 @@
     StructureHeaderColumnsComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'div[gui-structure-header-columns][columns]',
-                    template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n",
+                    template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [class]=\"column.getCssClasses()\"\n\t [style]=\"column.getStyles()\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div [ngClass]=\"{'gui-sort-asc': isSortAsc(column), 'gui-sort-desc': isSortDesc(column)}\"\n\t\t\t class=\"gui-sort\">\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n",
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None,
                     providers: [
@@ -18327,6 +18335,7 @@
         CellView[CellView["PERCENTAGE_BAR"] = 12] = "PERCENTAGE_BAR";
         CellView[CellView["PERCENTAGE"] = 13] = "PERCENTAGE";
         CellView[CellView["NG_TEMPLATE"] = 14] = "NG_TEMPLATE";
+        CellView[CellView["HTML"] = 15] = "HTML";
     })(CellView || (CellView = {}));
 
     var ViewEntity = /** @class */ (function () {
@@ -19731,6 +19740,8 @@
                     return this.customTemplate;
                 case CellView.FUNCTION:
                     return this.functionTemplate;
+                case CellView.HTML:
+                    return this.htmlTemplate;
                 case CellView.DATE:
                     return this.dateTemplate;
                 case CellView.BAR:
@@ -19747,7 +19758,7 @@
     }());
     ViewTemplatesComponent.decorators = [
         { type: core.Component, args: [{
-                    template: "\n\n\t\t<ng-template #text let-element=\"element\">\n\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #number let-element=\"element\">\n\t\t\t<span class=\"gui-cell-number\">\n\t\t\t\t{{ element.value }}\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #chip let-element=\"element\">\n\t\t\t<gui-chip>\n\t\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t\t</gui-chip>\n\t\t</ng-template>\n\n\t\t<ng-template #link let-element=\"element\">\n\t\t\t<a gui-button link=\"true\" href=\"{{ element.value }}\">\n\t\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t\t</a>\n\t\t</ng-template>\n\n\t\t<ng-template #image let-element=\"element\">\n\t\t\t<img src=\"{{ element.value }}\"/>\n\t\t</ng-template>\n\n\t\t<ng-template #checkbox let-element=\"element\">\n\t\t\t<span class=\"gui-cell-boolean\">\n\t\t\t\t<gui-checkbox [checked]=\"!!element.value\" [disabled]=\"true\"></gui-checkbox>\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bold let-element=\"element\">\n\t\t\t<gui-view-text bold [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #italic let-element=\"element\">\n\t\t\t<gui-view-text italic [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #custom let-element=\"element\">\n\t\t\t{{ element.value }}\n\t\t</ng-template>\n\n\t\t<ng-template #function let-element=\"element\">\n\t\t\t<gui-function-view [element]=\"element\"></gui-function-view>\n\t\t</ng-template>\n\n\t\t<ng-template #date let-element=\"element\">\n\t\t\t<span class=\"gui-view-text\">{{ element.value | date: 'dd/MM/yyyy' }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bar let-element=\"element\">\n\t\t\t<gui-bar-view [value]=\"element.value\" [showPercentage]=\"false\"></gui-bar-view>\n\t\t</ng-template>\n\n\t\t<ng-template #percentageBar let-element=\"element\">\n\t\t\t<gui-bar-view [value]=\"element.value\" [showPercentage]=\"true\"></gui-bar-view>\n\t\t</ng-template>\n\n\t\t<ng-template #percentage let-element=\"element\">\n\t\t\t<gui-percentage-view [value]=\"element.value\"></gui-percentage-view>\n\t\t</ng-template>\n\n\t"
+                    template: "\n\n\t\t<ng-template #text let-element=\"element\">\n\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #number let-element=\"element\">\n\t\t\t<span class=\"gui-cell-number\">\n\t\t\t\t{{ element.value }}\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #chip let-element=\"element\">\n\t\t\t<gui-chip>\n\t\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t\t</gui-chip>\n\t\t</ng-template>\n\n\t\t<ng-template #link let-element=\"element\">\n\t\t\t<a gui-button link=\"true\" href=\"{{ element.value }}\">\n\t\t\t\t<gui-view-text [value]=\"element\"></gui-view-text>\n\t\t\t</a>\n\t\t</ng-template>\n\n\t\t<ng-template #image let-element=\"element\">\n\t\t\t<img src=\"{{ element.value }}\"/>\n\t\t</ng-template>\n\n\t\t<ng-template #checkbox let-element=\"element\">\n\t\t\t<span class=\"gui-cell-boolean\">\n\t\t\t\t<gui-checkbox [checked]=\"!!element.value\" [disabled]=\"true\"></gui-checkbox>\n\t\t\t</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bold let-element=\"element\">\n\t\t\t<gui-view-text bold [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #italic let-element=\"element\">\n\t\t\t<gui-view-text italic [value]=\"element\"></gui-view-text>\n\t\t</ng-template>\n\n\t\t<ng-template #custom let-element=\"element\">\n\t\t\t{{ element.value }}\n\t\t</ng-template>\n\n\t\t<ng-template #function let-element=\"element\">\n\t\t\t<gui-function-view [element]=\"element\"></gui-function-view>\n\t\t</ng-template>\n\n\t\t<ng-template #html let-element=\"element\">\n\t\t\t<gui-html-view [element]=\"element\"></gui-html-view>\n\t\t</ng-template>\n\n\t\t<ng-template #date let-element=\"element\">\n\t\t\t<span class=\"gui-view-text\">{{ element.value | date: 'dd/MM/yyyy' }}</span>\n\t\t</ng-template>\n\n\t\t<ng-template #bar let-element=\"element\">\n\t\t\t<gui-bar-view [value]=\"element.value\" [showPercentage]=\"false\"></gui-bar-view>\n\t\t</ng-template>\n\n\t\t<ng-template #percentageBar let-element=\"element\">\n\t\t\t<gui-bar-view [value]=\"element.value\" [showPercentage]=\"true\"></gui-bar-view>\n\t\t</ng-template>\n\n\t\t<ng-template #percentage let-element=\"element\">\n\t\t\t<gui-percentage-view [value]=\"element.value\"></gui-percentage-view>\n\t\t</ng-template>\n\n\t"
                 },] }
     ];
     ViewTemplatesComponent.propDecorators = {
@@ -19761,6 +19772,7 @@
         italicTemplate: [{ type: core.ViewChild, args: ['italic', { read: core.TemplateRef, static: true },] }],
         customTemplate: [{ type: core.ViewChild, args: ['custom', { read: core.TemplateRef, static: true },] }],
         functionTemplate: [{ type: core.ViewChild, args: ['function', { read: core.TemplateRef, static: true },] }],
+        htmlTemplate: [{ type: core.ViewChild, args: ['html', { read: core.TemplateRef, static: true },] }],
         dateTemplate: [{ type: core.ViewChild, args: ['date', { read: core.TemplateRef, static: true },] }],
         barTemplate: [{ type: core.ViewChild, args: ['bar', { read: core.TemplateRef, static: true },] }],
         percentageBarTemplate: [{ type: core.ViewChild, args: ['percentageBar', { read: core.TemplateRef, static: true },] }],
@@ -20038,7 +20050,7 @@
         name, enabled, type, // REFACTOR
         view, // REFACTOR
         align, // REFACTOR
-        header, cellEditingEnabled, sort, sortable) {
+        header, cellEditingEnabled, cssClasses, styles, sort, sortable) {
             if (sort === void 0) { sort = exports["ɵoh"].NONE; }
             if (sortable === void 0) { sortable = true; }
             var _this = _super.call(this, columnDefinitionId) || this;
@@ -20046,6 +20058,8 @@
             _this.type = type;
             _this.view = view;
             _this.align = align;
+            _this.cssClasses = cssClasses;
+            _this.styles = styles;
             _this.sortable = true;
             _this.field = field;
             _this.columnDefinitionId = columnDefinitionId;
@@ -20084,7 +20098,7 @@
                 headerCellContext = new CellContext(CellValue.text(header(index)));
             }
             var fieldId = new FieldId(this.field.getId().getId());
-            return new CellTemplateWithContext(this.headerTemplate, this.editTemplate, headerCellContext, this.width, fieldId, this.columnDefinitionId, this.sortStatus, this.enabled, this.sortable, this.align);
+            return new CellTemplateWithContext(this.headerTemplate, this.editTemplate, headerCellContext, this.width, fieldId, this.columnDefinitionId, this.sortStatus, this.enabled, this.cssClasses, this.styles, this.sortable, this.align);
         };
         ColumnDefinition.prototype.toContentCellTemplateWithAccessor = function () {
             var _this = this;
@@ -20124,7 +20138,7 @@
             return columns.map(function (column) { return _this.create(column); });
         };
         ColumnDefinitionFactory.prototype.createFromColumnEntity = function (column) {
-            var columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.getColumnConfig().name, column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getSortStatus(), column.isSortingEnabled());
+            var columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.getColumnConfig().name, column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getColumnConfig().cssClasses, column.getColumnConfig().styles, column.getSortStatus(), column.isSortingEnabled());
             if (column.getCellView() === CellView.NG_TEMPLATE) {
                 columnDef.cellTemplate = column.getColumnConfig().templateRef;
             }
@@ -20135,7 +20149,7 @@
                 columnDef.headerTemplate = this.findViewTemplate(CellView.FUNCTION);
             }
             else {
-                columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
+                columnDef.headerTemplate = this.findViewTemplate(CellView.HTML);
             }
             columnDef.setTemplateFunction(column.getTemplateFunction());
             columnDef.setFormatterFunction(column.getFormatterFunction());
@@ -20145,7 +20159,7 @@
         };
         ColumnDefinitionFactory.prototype.createFromActiveColumnEntity = function (activeColumn) {
             var columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), activeColumn.getColumnConfig().name, true, // remove,
-            activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getSortStatus(), activeColumn.isSortingEnabled());
+            activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getColumnConfig().cssClasses, activeColumn.getColumnConfig().styles, activeColumn.getSortStatus(), activeColumn.isSortingEnabled());
             if (activeColumn.getCellView() === CellView.NG_TEMPLATE) {
                 columnDef.cellTemplate = activeColumn.getColumnConfig().templateRef;
             }
@@ -20153,7 +20167,7 @@
                 columnDef.cellTemplate = this.findViewTemplate(activeColumn.getCellView());
             }
             if (typeof activeColumn.getHeader() === 'function') {
-                columnDef.headerTemplate = this.findViewTemplate(CellView.FUNCTION);
+                columnDef.headerTemplate = this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
             }
             else {
                 columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
@@ -21261,6 +21275,40 @@
         value: [{ type: core.Input }]
     };
 
+    var HtmlViewComponent = /** @class */ (function (_super) {
+        __extends(HtmlViewComponent, _super);
+        function HtmlViewComponent(sanitizer, elRef) {
+            var _this = _super.call(this, elRef) || this;
+            _this.sanitizer = sanitizer;
+            _this.elRef = elRef;
+            _this.addClassToHost('gui-h-full');
+            _this.addClassToHost('gui-w-full');
+            return _this;
+        }
+        HtmlViewComponent.prototype.ngOnChanges = function () {
+            this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
+        };
+        HtmlViewComponent.prototype.getSelectorName = function () {
+            return 'gui-html-view';
+        };
+        return HtmlViewComponent;
+    }(PureComponent));
+    HtmlViewComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'gui-html-view',
+                    template: "\n\n\t\t<div class=\"gui-h-full gui-flex gui-items-center\"\n\t\t\t [innerHTML]=\"safeHTML\">\n\t\t</div>\n\n\t",
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                },] }
+    ];
+    HtmlViewComponent.ctorParameters = function () { return [
+        { type: platformBrowser.DomSanitizer },
+        { type: core.ElementRef }
+    ]; };
+    HtmlViewComponent.propDecorators = {
+        element: [{ type: core.Input }]
+    };
+
     var components = [
         ViewTemplatesComponent,
         EditTemplatesComponent,
@@ -21272,7 +21320,8 @@
         FunctionViewComponent,
         BarViewComponent,
         PercentageViewComponent,
-        TextViewComponent
+        TextViewComponent,
+        HtmlViewComponent
     ];
     var exportDeclarations$2 = [
         ViewTemplatesComponent,
@@ -21284,7 +21333,8 @@
         fabric.FabricInputModule,
         FunctionViewComponent,
         BarViewComponent,
-        PercentageViewComponent
+        PercentageViewComponent,
+        HtmlViewComponent
     ];
     var CompositionFeatureModule = /** @class */ (function (_super) {
         __extends(CompositionFeatureModule, _super);
@@ -22738,83 +22788,84 @@
     exports["ɵrb"] = BarViewComponent;
     exports["ɵrc"] = PercentageViewComponent;
     exports["ɵrd"] = TextViewComponent;
-    exports["ɵre"] = LoggerModule;
-    exports["ɵrf"] = ConsoleLogger;
-    exports["ɵrg"] = StructureGateway;
-    exports["ɵrh"] = StructureEditModeArchive;
-    exports["ɵri"] = StructureInfoPanelConfigService;
-    exports["ɵrj"] = StructureCellEditStore;
-    exports["ɵrk"] = RowSelectEnabledRepository;
-    exports["ɵrl"] = StructureHeaderBottomEnabledArchive;
-    exports["ɵrm"] = StructureInitialValuesReadyArchive;
-    exports["ɵrn"] = SchemaCssClassManager;
-    exports["ɵro"] = StructureCellEditCloseAllService;
-    exports["ɵrp"] = StructureHeaderTopEnabledArchive;
-    exports["ɵrq"] = StructureRowDetailConfigArchive;
-    exports["ɵrr"] = StructureRowDetailService;
-    exports["ɵrs"] = StructureTitlePanelConfigArchive;
-    exports["ɵrt"] = StructureFooterPanelConfigArchive;
-    exports["ɵru"] = structureComponentToken;
-    exports["ɵrv"] = StructureDefinition;
-    exports["ɵrw"] = PagingDefinition;
-    exports["ɵrx"] = StructureHeaderComponent;
-    exports["ɵry"] = StructureHeaderColumnsComponent;
-    exports["ɵrz"] = StructureHeaderFiltersComponent;
+    exports["ɵre"] = HtmlViewComponent;
+    exports["ɵrf"] = LoggerModule;
+    exports["ɵrg"] = ConsoleLogger;
+    exports["ɵrh"] = StructureGateway;
+    exports["ɵri"] = StructureEditModeArchive;
+    exports["ɵrj"] = StructureInfoPanelConfigService;
+    exports["ɵrk"] = StructureCellEditStore;
+    exports["ɵrl"] = RowSelectEnabledRepository;
+    exports["ɵrm"] = StructureHeaderBottomEnabledArchive;
+    exports["ɵrn"] = StructureInitialValuesReadyArchive;
+    exports["ɵro"] = SchemaCssClassManager;
+    exports["ɵrp"] = StructureCellEditCloseAllService;
+    exports["ɵrq"] = StructureHeaderTopEnabledArchive;
+    exports["ɵrr"] = StructureRowDetailConfigArchive;
+    exports["ɵrs"] = StructureRowDetailService;
+    exports["ɵrt"] = StructureTitlePanelConfigArchive;
+    exports["ɵru"] = StructureFooterPanelConfigArchive;
+    exports["ɵrv"] = structureComponentToken;
+    exports["ɵrw"] = StructureDefinition;
+    exports["ɵrx"] = PagingDefinition;
+    exports["ɵry"] = StructureHeaderComponent;
+    exports["ɵrz"] = StructureHeaderColumnsComponent;
     exports["ɵs"] = ListViewSelectorToggledEventHandler;
-    exports["ɵsa"] = StructureHeaderGroupsComponent;
-    exports["ɵsb"] = StructureHeaderFilterComponent;
-    exports["ɵsc"] = SelectAllComponent;
-    exports["ɵsd"] = StructureContentComponent;
-    exports["ɵse"] = StructureRowComponent;
-    exports["ɵsf"] = StructureCellComponent;
-    exports["ɵsg"] = StructureCellEditComponent;
-    exports["ɵsh"] = StructureCellEditBooleanComponent;
-    exports["ɵsi"] = StructureContainerComponent;
-    exports["ɵsj"] = structureParentComponent;
-    exports["ɵsk"] = StructureQuickFiltersComponent;
-    exports["ɵsl"] = StructureBlueprintComponent;
-    exports["ɵsm"] = STRUCTURE_CSS_CLASS_NAME;
-    exports["ɵsn"] = StructureRowDetailViewComponent;
-    exports["ɵso"] = DynamicallyCreatedComponent;
-    exports["ɵsp"] = structureRowDetailViewItem;
-    exports["ɵsq"] = structureRowDetailViewTemplate;
-    exports["ɵsr"] = SelectedRow;
-    exports["ɵss"] = OriginItemEntity;
-    exports["ɵst"] = OriginId;
-    exports["ɵsu"] = StructureTitlePanelComponent;
-    exports["ɵsv"] = StructureBannerPanel;
-    exports["ɵsw"] = StructureFooterPanelComponent;
-    exports["ɵsx"] = structureGates;
-    exports["ɵsy"] = StructureColumnHeaderGate;
-    exports["ɵsz"] = StructurePagingGate;
+    exports["ɵsa"] = StructureHeaderFiltersComponent;
+    exports["ɵsb"] = StructureHeaderGroupsComponent;
+    exports["ɵsc"] = StructureHeaderFilterComponent;
+    exports["ɵsd"] = SelectAllComponent;
+    exports["ɵse"] = StructureContentComponent;
+    exports["ɵsf"] = StructureRowComponent;
+    exports["ɵsg"] = StructureCellComponent;
+    exports["ɵsh"] = StructureCellEditComponent;
+    exports["ɵsi"] = StructureCellEditBooleanComponent;
+    exports["ɵsj"] = StructureContainerComponent;
+    exports["ɵsk"] = structureParentComponent;
+    exports["ɵsl"] = StructureQuickFiltersComponent;
+    exports["ɵsm"] = StructureBlueprintComponent;
+    exports["ɵsn"] = STRUCTURE_CSS_CLASS_NAME;
+    exports["ɵso"] = StructureRowDetailViewComponent;
+    exports["ɵsp"] = DynamicallyCreatedComponent;
+    exports["ɵsq"] = structureRowDetailViewItem;
+    exports["ɵsr"] = structureRowDetailViewTemplate;
+    exports["ɵss"] = SelectedRow;
+    exports["ɵst"] = OriginItemEntity;
+    exports["ɵsu"] = OriginId;
+    exports["ɵsv"] = StructureTitlePanelComponent;
+    exports["ɵsw"] = StructureBannerPanel;
+    exports["ɵsx"] = StructureFooterPanelComponent;
+    exports["ɵsy"] = structureGates;
+    exports["ɵsz"] = StructureColumnHeaderGate;
     exports["ɵt"] = ListViewSelectorArchive;
-    exports["ɵta"] = StructureSearchingGate;
-    exports["ɵtb"] = StructureSelectionGate;
-    exports["ɵtc"] = SelectionGate;
-    exports["ɵtd"] = StructureL10nGate;
-    exports["ɵte"] = StructurePanelGate;
-    exports["ɵtf"] = StructureRowDetailGate;
-    exports["ɵtg"] = StructureColumnMenuGate;
-    exports["ɵth"] = StructureSummariesGate;
-    exports["ɵti"] = StructureInfoPanelGate;
-    exports["ɵtj"] = StructureRowClassGate;
-    exports["ɵtk"] = StructureRowStyleGate;
-    exports["ɵtl"] = StructureRowColoringGate;
-    exports["ɵtm"] = ThemeGridGate;
-    exports["ɵtn"] = StructureSortingGate;
-    exports["ɵto"] = SourceLoadingGate;
-    exports["ɵtp"] = StructureFilterGate;
-    exports["ɵtq"] = StructureQuickFiltersGate;
-    exports["ɵtr"] = VerticalFormationGate;
-    exports["ɵts"] = ItemEntityFactory;
-    exports["ɵtt"] = inMemoryStructureCommandProviders;
-    exports["ɵtu"] = inMemoryStructureReadProviders;
-    exports["ɵtv"] = inMemoryStructureProviders;
-    exports["ɵtw"] = InMemoryStructureRepository;
-    exports["ɵtx"] = StructureDomainCommandInvoker;
-    exports["ɵty"] = GuiListGateway;
-    exports["ɵtz"] = guiListProviders;
+    exports["ɵta"] = StructurePagingGate;
+    exports["ɵtb"] = StructureSearchingGate;
+    exports["ɵtc"] = StructureSelectionGate;
+    exports["ɵtd"] = SelectionGate;
+    exports["ɵte"] = StructureL10nGate;
+    exports["ɵtf"] = StructurePanelGate;
+    exports["ɵtg"] = StructureRowDetailGate;
+    exports["ɵth"] = StructureColumnMenuGate;
+    exports["ɵti"] = StructureSummariesGate;
+    exports["ɵtj"] = StructureInfoPanelGate;
+    exports["ɵtk"] = StructureRowClassGate;
+    exports["ɵtl"] = StructureRowStyleGate;
+    exports["ɵtm"] = StructureRowColoringGate;
+    exports["ɵtn"] = ThemeGridGate;
+    exports["ɵto"] = StructureSortingGate;
+    exports["ɵtp"] = SourceLoadingGate;
+    exports["ɵtq"] = StructureFilterGate;
+    exports["ɵtr"] = StructureQuickFiltersGate;
+    exports["ɵts"] = VerticalFormationGate;
+    exports["ɵtt"] = ItemEntityFactory;
+    exports["ɵtu"] = inMemoryStructureCommandProviders;
+    exports["ɵtv"] = inMemoryStructureReadProviders;
+    exports["ɵtw"] = inMemoryStructureProviders;
+    exports["ɵtx"] = InMemoryStructureRepository;
+    exports["ɵty"] = StructureDomainCommandInvoker;
+    exports["ɵtz"] = GuiListGateway;
     exports["ɵu"] = ListViewCommandInvoker;
+    exports["ɵua"] = guiListProviders;
     exports["ɵv"] = ListViewEventRepository;
     exports["ɵw"] = ListViewWarehouse;
     exports["ɵx"] = PagingFeatureModule;
