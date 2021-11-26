@@ -1,6 +1,8 @@
-## <a href='http://generic-ui.com' >Generic UI Grid</a>
+# <a href='http://generic-ui.com' >Generic UI Grid</a>
 
-Currently highest supported Angular version is 12.2. We are working on bringing Gui libraries to Angular 13.
+
+## Currently highest supported Angular version is 12.2. We are working on bringing Gui libraries to Angular 13.
+
 
 
 Generic UI is a free lightweight data management tool that displays statistic figures in a tabular format. It was developed with ease of implementation and
