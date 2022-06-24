@@ -4,16 +4,17 @@ import { SelectOptionsGeometryService } from './select-options-geometry.service'
 import { FabricSelectedOptionsRepository } from '../selected-option.repository';
 import { FabricThemedComponent } from '../../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../../themes/fabric-modal-theme.service';
+import * as i0 from "@angular/core";
 export declare class FabricSelectOptionsComponent extends FabricThemedComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly selectOptionsGeometryService;
     private readonly selectService;
     private readonly changeDetectorRef;
-    optionListRef: ElementRef;
+    readonly optionListRef?: ElementRef;
     options: Array<GuiSelectOption>;
     optionsContainerLeftAttribute: number;
     optionsContainerTopAttribute: number;
     width: number;
-    selectedOption: GuiSelectOption;
+    selectedOption?: GuiSelectOption;
     canOpenUpward: boolean;
     constructor(selectOptionsGeometryService: SelectOptionsGeometryService, selectService: FabricSelectedOptionsRepository, changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, renderer: Renderer2, themeService: FabricModalThemeService);
     ngOnInit(): void;
@@ -24,4 +25,6 @@ export declare class FabricSelectOptionsComponent extends FabricThemedComponent 
     isOptionSelected(option: GuiSelectOption): boolean;
     getOptionValue(option: GuiSelectOption): number | string;
     initOpenAnimation(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectOptionsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never>;
 }

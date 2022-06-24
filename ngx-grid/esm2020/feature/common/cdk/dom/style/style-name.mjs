@@ -1,0 +1,7 @@
+export var StyleName;
+(function (StyleName) {
+    StyleName["WIDTH"] = "width";
+    StyleName["HEIGHT"] = "height";
+    StyleName["PADDING_TOP"] = "padding-top";
+})(StyleName || (StyleName = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3R5bGUtbmFtZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvZmVhdHVyZS9jb21tb24vY2RrL2RvbS9zdHlsZS9zdHlsZS1uYW1lLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLFNBSVg7QUFKRCxXQUFZLFNBQVM7SUFDcEIsNEJBQWUsQ0FBQTtJQUNmLDhCQUFpQixDQUFBO0lBQ2pCLHdDQUEyQixDQUFBO0FBQzVCLENBQUMsRUFKVyxTQUFTLEtBQVQsU0FBUyxRQUlwQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIFN0eWxlTmFtZSB7XG5cdFdJRFRIID0gJ3dpZHRoJyxcblx0SEVJR0hUID0gJ2hlaWdodCcsXG5cdFBBRERJTkdfVE9QID0gJ3BhZGRpbmctdG9wJ1xufVxuIl19

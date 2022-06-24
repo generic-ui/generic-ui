@@ -1,0 +1,27 @@
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { StructureBannerPanel } from '../structure-banner-panel';
+import * as i0 from "@angular/core";
+import * as i1 from "./structure.title-panel.config-archive";
+import * as i2 from "../../../../../feature/common/cdk/sanitize/safe.pipe";
+export class StructureTitlePanelComponent extends StructureBannerPanel {
+    constructor(structureTitlePanelConfigArchive, changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+        this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
+    }
+    onBannerPanelConfig() {
+        return this.structureTitlePanelConfigArchive.on();
+    }
+    getSelectorName() {
+        return 'gui-structure-title-panel';
+    }
+    getPanelTitle() {
+        return 'Title panel';
+    }
+}
+StructureTitlePanelComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: StructureTitlePanelComponent, deps: [{ token: i1.StructureTitlePanelConfigArchive }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+StructureTitlePanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.11", type: StructureTitlePanelComponent, selector: "div[gui-structure-title-panel]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n", pipes: { "guiSafe": i2.SafePipe }, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: StructureTitlePanelComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'div[gui-structure-title-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div [innerHTML]=\"bannerPanel | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i1.StructureTitlePanelConfigArchive }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLnRpdGxlLXBhbmVsLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvZmVhdHVyZS12aWV3L2dyaWQtdmlldy9wYW5lbC9iYW5uZXItcGFuZWxzL3RpdGxlLXBhbmVsL3N0cnVjdHVyZS50aXRsZS1wYW5lbC5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL2ZlYXR1cmUtdmlldy9ncmlkLXZpZXcvcGFuZWwvYmFubmVyLXBhbmVscy90aXRsZS1wYW5lbC9zdHJ1Y3R1cmUudGl0bGUtcGFuZWwuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFxQixTQUFTLEVBQWMsaUJBQWlCLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFHckgsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sMkJBQTJCLENBQUM7Ozs7QUFXakUsTUFBTSxPQUFPLDRCQUE2QixTQUFRLG9CQUFvQjtJQUVyRSxZQUE2QixnQ0FBa0UsRUFDNUYsaUJBQW9DLEVBQ3BDLFVBQXNCO1FBQ3hCLEtBQUssQ0FBQyxpQkFBaUIsRUFBRSxVQUFVLENBQUMsQ0FBQztRQUhULHFDQUFnQyxHQUFoQyxnQ0FBZ0MsQ0FBa0M7SUFJL0YsQ0FBQztJQUVELG1CQUFtQjtRQUNsQixPQUFPLElBQUksQ0FBQyxnQ0FBZ0MsQ0FBQyxFQUFFLEVBQUUsQ0FBQztJQUNuRCxDQUFDO0lBRUQsZUFBZTtRQUNkLE9BQU8sMkJBQTJCLENBQUM7SUFDcEMsQ0FBQztJQUVELGFBQWE7UUFDWixPQUFPLGFBQWEsQ0FBQztJQUN0QixDQUFDOzswSEFsQlcsNEJBQTRCOzhHQUE1Qiw0QkFBNEIsNkZDZHpDLHFJQUdBOzRGRFdhLDRCQUE0QjtrQkFOeEMsU0FBUzsrQkFDQyxnQ0FBZ0MsbUJBRXpCLHVCQUF1QixDQUFDLE1BQU0saUJBQ2hDLGlCQUFpQixDQUFDLElBQUkiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ2hhbmdlRGV0ZWN0b3JSZWYsIENvbXBvbmVudCwgRWxlbWVudFJlZiwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgU3RydWN0dXJlVGl0bGVQYW5lbENvbmZpZ0FyY2hpdmUgfSBmcm9tICcuL3N0cnVjdHVyZS50aXRsZS1wYW5lbC5jb25maWctYXJjaGl2ZSc7XG5pbXBvcnQgeyBTdHJ1Y3R1cmVCYW5uZXJQYW5lbCB9IGZyb20gJy4uL3N0cnVjdHVyZS1iYW5uZXItcGFuZWwnO1xuaW1wb3J0IHsgU3RydWN0dXJlQmFubmVyUGFuZWxDb25maWcgfSBmcm9tICcuLi9zdHJ1Y3R1cmUtYmFubmVyLXBhbmVsLmNvbmZpZyc7XG5pbXBvcnQgeyBIZXJtZXNPYnNlcnZhYmxlIH0gZnJvbSAnQGdlbmVyaWMtdWkvaGVybWVzJztcblxuXG5AQ29tcG9uZW50KHtcblx0c2VsZWN0b3I6ICdkaXZbZ3VpLXN0cnVjdHVyZS10aXRsZS1wYW5lbF0nLFxuXHR0ZW1wbGF0ZVVybDogJy4vc3RydWN0dXJlLnRpdGxlLXBhbmVsLmNvbXBvbmVudC5odG1sJyxcblx0Y2hhbmdlRGV0ZWN0aW9uOiBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneS5PblB1c2gsXG5cdGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmVcbn0pXG5leHBvcnQgY2xhc3MgU3RydWN0dXJlVGl0bGVQYW5lbENvbXBvbmVudCBleHRlbmRzIFN0cnVjdHVyZUJhbm5lclBhbmVsIHtcblxuXHRjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IHN0cnVjdHVyZVRpdGxlUGFuZWxDb25maWdBcmNoaXZlOiBTdHJ1Y3R1cmVUaXRsZVBhbmVsQ29uZmlnQXJjaGl2ZSxcblx0XHRcdFx0Y2hhbmdlRGV0ZWN0b3JSZWY6IENoYW5nZURldGVjdG9yUmVmLFxuXHRcdFx0XHRlbGVtZW50UmVmOiBFbGVtZW50UmVmKSB7XG5cdFx0c3VwZXIoY2hhbmdlRGV0ZWN0b3JSZWYsIGVsZW1lbnRSZWYpO1xuXHR9XG5cblx0b25CYW5uZXJQYW5lbENvbmZpZygpOiBIZXJtZXNPYnNlcnZhYmxlPFN0cnVjdHVyZUJhbm5lclBhbmVsQ29uZmlnPiB7XG5cdFx0cmV0dXJuIHRoaXMuc3RydWN0dXJlVGl0bGVQYW5lbENvbmZpZ0FyY2hpdmUub24oKTtcblx0fVxuXG5cdGdldFNlbGVjdG9yTmFtZSgpOiBzdHJpbmcge1xuXHRcdHJldHVybiAnZ3VpLXN0cnVjdHVyZS10aXRsZS1wYW5lbCc7XG5cdH1cblxuXHRnZXRQYW5lbFRpdGxlKCk6IHN0cmluZyB7XG5cdFx0cmV0dXJuICdUaXRsZSBwYW5lbCc7XG5cdH1cblxufVxuIiwiPGRpdiBbaW5uZXJIVE1MXT1cImJhbm5lclBhbmVsIHwgZ3VpU2FmZTogJ2h0bWwnXCJcblx0IGNsYXNzPVwiZ3VpLXRpdGxlLXBhbmVsIGd1aS1wLTYgZ3VpLWJvcmRlci1iIGd1aS1ib3JkZXItYi1zb2xpZFwiPlxuPC9kaXY+XG4iXX0=

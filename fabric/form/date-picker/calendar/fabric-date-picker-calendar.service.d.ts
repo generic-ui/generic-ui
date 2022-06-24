@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare class FabricDatePickerCalendarService {
     private readonly activeMonth$;
     private readonly activeYear$;
@@ -8,4 +9,6 @@ export declare class FabricDatePickerCalendarService {
     prevMonth(year: number, month: number): void;
     selectYear(year: number): void;
     selectMonth(month: number): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerCalendarService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FabricDatePickerCalendarService>;
 }

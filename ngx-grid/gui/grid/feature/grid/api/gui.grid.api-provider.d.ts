@@ -1,22 +1,22 @@
 import { GuiRowColoring, GuiSelectedRow, GuiTheme } from '../../../core/api/gui.grid.public-api';
-import { FormationCommandInvoker } from '../../../../../structure/formation/core/api/formation.command-invoker';
-import { StructureId } from '../../../../../structure/core/api/structure.id';
-import { SourceCommandInvoker } from '../../../../../structure/source/core/api/source.command-invoker';
-import { FormationWarehouse } from '../../../../../structure/formation/core/api/formation.warehouse';
-import { SearchCommandInvoker } from '../../../../../structure/search/core/api/search.command-invoker';
-import { SchemaReadModelRootId } from '../../../../../schema/core/api/schema.read-model-root-id';
+import { FormationPublisher } from '../../../../../core/structure/formation/api/formation.publisher';
+import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { SourcePublisher } from '../../../../../core/structure/source/api/source.publisher';
+import { FormationWarehouse } from '../../../../../core/structure/formation/api/formation.warehouse';
+import { SearchPublisher } from '../../../../../core/structure/search/api/search.publisher';
+import { SchemaReadModelRootId } from '../../../../../core/schema/api/global/schema.read-model-root-id';
 import { GuiGridThemeCommandInvoker } from '../theme/gui.grid.theme.command-invoker';
-import { StructureCommandInvoker } from '../../../../../structure/core/api/structure.command-invoker';
-import { PagingConfig } from '../../../../../structure/paging/core/api/config/paging-config';
-import { PagingCommandInvoker } from '../../../../../structure/paging/core/api/paging.command-invoker';
-import { SearchConfig } from '../../../../../structure/search/core/api/search-config';
-import { SummariesCommandInvoker } from '../../../../../structure/summaries/core/api/summaries.command-invoker';
-import { SortingCommandInvoker } from '../../../../../structure/sorting/core/api/sorting.command-invoker';
-import { SortingConfig } from '../../../../../structure/sorting/core/api/sorting-config';
-import { CompositionWarehouse } from '../../../../../composition/core/api/composition.warehouse';
-import { CompositionCommandInvoker } from '../../../../../composition/core/api/composition.command-invoker';
-import { CompositionId } from '../../../../../composition/core/api/composition.id';
-import { FilterIntegration } from '../../../../../structure/filter/core/api-integration/filter.integration';
+import { StructurePublisher } from '../../../../../core/structure/core/api/structure.publisher';
+import { PagingConfig } from '../../../../../core/structure/paging/api/config/paging-config';
+import { PagingPublisher } from '../../../../../core/structure/paging/api/paging.publisher';
+import { SearchConfig } from '../../../../../core/structure/search/api/config/search-config';
+import { SummariesPublisher } from '../../../../../core/structure/summaries/api/summaries.publisher';
+import { SortingPublisher } from '../../../../../core/structure/sorting/api/sorting.publisher';
+import { SortingConfig } from '../../../../../core/structure/sorting/api/config/sorting-config';
+import { CompositionWarehouse } from '../../../../../core/composition/api/composition.warehouse';
+import { CompositionPublisher } from '../../../../../core/composition/api/composition.publisher';
+import { CompositionId } from '../../../../../core/composition/api/global/composition.id';
+import { FilterIntegration } from '../../../../../core/structure/filter/api-integration/filter.integration';
 import { GuiFilter, GuiFilterCollection } from './filter/gui.filter';
 export interface GuiGridApi {
     setSource(source: Array<any>): void;
@@ -102,6 +102,6 @@ export declare class GuiGridApiProvider {
     private readonly summariesCommandInvoker;
     private readonly sortingCommandInvoker;
     private readonly pagingCommandInvoker;
-    constructor(structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, formationCommandDispatcher: FormationCommandInvoker, formationWarehouse: FormationWarehouse, compositionCommandInvoker: CompositionCommandInvoker, compositionWarehouse: CompositionWarehouse, filterIntegration: FilterIntegration, sourceCommandInvoker: SourceCommandInvoker, searchCommandInvoker: SearchCommandInvoker, gridThemeCommandInvoker: GuiGridThemeCommandInvoker, structureCommandInvoker: StructureCommandInvoker, summariesCommandInvoker: SummariesCommandInvoker, sortingCommandInvoker: SortingCommandInvoker, pagingCommandInvoker: PagingCommandInvoker);
+    constructor(structureId: StructureId, compositionId: CompositionId, schemaId: SchemaReadModelRootId, formationCommandDispatcher: FormationPublisher, formationWarehouse: FormationWarehouse, compositionCommandInvoker: CompositionPublisher, compositionWarehouse: CompositionWarehouse, filterIntegration: FilterIntegration, sourceCommandInvoker: SourcePublisher, searchCommandInvoker: SearchPublisher, gridThemeCommandInvoker: GuiGridThemeCommandInvoker, structureCommandInvoker: StructurePublisher, summariesCommandInvoker: SummariesPublisher, sortingCommandInvoker: SortingPublisher, pagingCommandInvoker: PagingPublisher);
     provide(): GuiGridApi;
 }

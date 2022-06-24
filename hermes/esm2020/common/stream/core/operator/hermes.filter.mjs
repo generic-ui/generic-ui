@@ -1,0 +1,15 @@
+import { HermesObservable } from '../observable/hermes.observable';
+import { subscriberForOperator } from './operator-utils';
+export function hermesFilter(operation) {
+    return (source) => {
+        return new HermesObservable(observer => {
+            const subscriber = subscriberForOperator(observer, (value) => {
+                if (operation(value)) {
+                    observer.next(value);
+                }
+            });
+            return source.subscribe(subscriber).getFinalize();
+        });
+    };
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaGVybWVzLmZpbHRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9ndWktaGVybWVzL3NyYy9jb21tb24vc3RyZWFtL2NvcmUvb3BlcmF0b3IvaGVybWVzLmZpbHRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsZ0JBQWdCLEVBQTBCLE1BQU0saUNBQWlDLENBQUM7QUFDM0YsT0FBTyxFQUFFLHFCQUFxQixFQUFFLE1BQU0sa0JBQWtCLENBQUM7QUFFekQsTUFBTSxVQUFVLFlBQVksQ0FBSSxTQUFrQztJQUNqRSxPQUFPLENBQUMsTUFBTSxFQUFFLEVBQUU7UUFDakIsT0FBTyxJQUFJLGdCQUFnQixDQUFDLFFBQVEsQ0FBQyxFQUFFO1lBRXRDLE1BQU0sVUFBVSxHQUFHLHFCQUFxQixDQUFDLFFBQVEsRUFBRSxDQUFDLEtBQUssRUFBRSxFQUFFO2dCQUM1RCxJQUFJLFNBQVMsQ0FBQyxLQUFLLENBQUMsRUFBRTtvQkFDckIsUUFBUSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztpQkFDckI7WUFDRixDQUFDLENBQUMsQ0FBQztZQUVILE9BQU8sTUFBTSxDQUFDLFNBQVMsQ0FBQyxVQUFVLENBQUMsQ0FBQyxXQUFXLEVBQUUsQ0FBQztRQUNuRCxDQUFDLENBQUMsQ0FBQztJQUNKLENBQUMsQ0FBQztBQUNILENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBIZXJtZXNPYnNlcnZhYmxlLCBIZXJtZXNPcGVyYXRvckZ1bmN0aW9uIH0gZnJvbSAnLi4vb2JzZXJ2YWJsZS9oZXJtZXMub2JzZXJ2YWJsZSc7XG5pbXBvcnQgeyBzdWJzY3JpYmVyRm9yT3BlcmF0b3IgfSBmcm9tICcuL29wZXJhdG9yLXV0aWxzJztcblxuZXhwb3J0IGZ1bmN0aW9uIGhlcm1lc0ZpbHRlcjxUPihvcGVyYXRpb246ICh2YWx1ZTogYW55KSA9PiBib29sZWFuKTogSGVybWVzT3BlcmF0b3JGdW5jdGlvbjxULCBUPiB7XG5cdHJldHVybiAoc291cmNlKSA9PiB7XG5cdFx0cmV0dXJuIG5ldyBIZXJtZXNPYnNlcnZhYmxlKG9ic2VydmVyID0+IHtcblxuXHRcdFx0Y29uc3Qgc3Vic2NyaWJlciA9IHN1YnNjcmliZXJGb3JPcGVyYXRvcihvYnNlcnZlciwgKHZhbHVlKSA9PiB7XG5cdFx0XHRcdGlmIChvcGVyYXRpb24odmFsdWUpKSB7XG5cdFx0XHRcdFx0b2JzZXJ2ZXIubmV4dCh2YWx1ZSk7XG5cdFx0XHRcdH1cblx0XHRcdH0pO1xuXG5cdFx0XHRyZXR1cm4gc291cmNlLnN1YnNjcmliZShzdWJzY3JpYmVyKS5nZXRGaW5hbGl6ZSgpO1xuXHRcdH0pO1xuXHR9O1xufVxuIl19

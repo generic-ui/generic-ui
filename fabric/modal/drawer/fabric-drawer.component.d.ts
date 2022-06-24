@@ -3,12 +3,13 @@ import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.comp
 import { FabricDrawerService } from './fabric-drawer.service';
 import { FabricThemedComponent } from '../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../themes/fabric-modal-theme.service';
+import * as i0 from "@angular/core";
 export declare class FabricDrawerComponent extends FabricThemedComponent implements AfterViewInit {
     private readonly componentFactoryResolver;
     private readonly changeDetectorRef;
     private readonly elRef;
     private readonly dialogService;
-    container: ViewContainerRef;
+    readonly container?: ViewContainerRef;
     width: string;
     closeOnClickOutside: boolean;
     dialogNestedComponent: Type<FabricNestedDialogComponent>;
@@ -21,4 +22,6 @@ export declare class FabricDrawerComponent extends FabricThemedComponent impleme
     detectChanges(): void;
     private isContainerClicked;
     private createNestedComponent;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDrawerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDrawerComponent, "ng-component", never, {}, {}, never, never>;
 }

@@ -1,5 +1,5 @@
-import { AggregateId } from '../../domain/tactical/aggregate/aggregate-id';
-import { AggregateRoot } from '../../domain/tactical/aggregate/aggregate-root';
+import { AggregateId } from '../../api/tactical/aggregate/aggregate-id';
+import { AggregateRoot } from '../../api/tactical/aggregate/aggregate-root';
 import { Optional } from '../../../common/optional';
 export declare abstract class InMemoryStore<I extends AggregateId, A extends AggregateRoot<I>> {
     private readonly state;

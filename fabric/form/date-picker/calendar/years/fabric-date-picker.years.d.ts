@@ -1,3 +1,4 @@
+import * as i0 from "@angular/core";
 export declare class FabricDatePickerYears {
     private rowsForDisplay;
     private minYear;
@@ -10,4 +11,6 @@ export declare class FabricDatePickerYears {
     private createYearsPool;
     private divideYearsPool;
     private createRowsForDisplay;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerYears, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FabricDatePickerYears>;
 }

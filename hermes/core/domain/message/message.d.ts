@@ -1,4 +1,4 @@
-import { AggregateId } from '../tactical/aggregate/aggregate-id';
+import { AggregateId } from '../../api/tactical/aggregate/aggregate-id';
 export declare abstract class Message<I extends AggregateId> {
     private readonly aggregateId;
     protected readonly messageType: string;

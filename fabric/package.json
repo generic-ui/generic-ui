@@ -1,20 +1,40 @@
 {
   "name": "@generic-ui/fabric",
-  "version": " 0.16.4",
+  "version": " 0.17.0",
+  "description": "Components library",
+  "license": "MIT",
+  "author": "Team Generic Ui",
+  "homepage": "https://generic-ui.com",
+  "bugs": "https://github.com/generic-ui/generic-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generic-ui/generic-ui.git"
+  },
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "12.2.11",
-    "@angular/core": "12.2.11",
-    "rxjs": "6.6.7"
+    "@angular/common": "~13.3.11",
+    "@angular/core": "~13.3.11"
   },
-  "main": "bundles/generic-ui-fabric.umd.js",
-  "module": "fesm2015/generic-ui-fabric.js",
-  "es2015": "fesm2015/generic-ui-fabric.js",
-  "esm2015": "esm2015/generic-ui-fabric.js",
-  "fesm2015": "fesm2015/generic-ui-fabric.js",
+  "module": "fesm2015/generic-ui-fabric.mjs",
+  "es2020": "fesm2020/generic-ui-fabric.mjs",
+  "esm2020": "esm2020/generic-ui-fabric.mjs",
+  "fesm2020": "fesm2020/generic-ui-fabric.mjs",
+  "fesm2015": "fesm2015/generic-ui-fabric.mjs",
   "typings": "generic-ui-fabric.d.ts",
-  "metadata": "generic-ui-fabric.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./generic-ui-fabric.d.ts",
+      "esm2020": "./esm2020/generic-ui-fabric.mjs",
+      "es2020": "./fesm2020/generic-ui-fabric.mjs",
+      "es2015": "./fesm2015/generic-ui-fabric.mjs",
+      "node": "./fesm2015/generic-ui-fabric.mjs",
+      "default": "./fesm2020/generic-ui-fabric.mjs"
+    }
+  },
   "sideEffects": false
 }

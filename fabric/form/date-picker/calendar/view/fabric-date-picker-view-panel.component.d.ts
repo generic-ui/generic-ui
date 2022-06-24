@@ -5,13 +5,14 @@ import { Direction } from '../../../../common/icons/arrow-icon/direction';
 import { FabricDatePickerYears } from '../years/fabric-date-picker.years';
 import { FabricDatePickerCalendarService } from '../fabric-date-picker-calendar.service';
 import { FabricDatePickerYearsService } from '../years/fabric-date-picker-years.service';
+import * as i0 from "@angular/core";
 export declare class FabricDatePickerViewPanelComponent {
     private readonly calendarViewService;
     private readonly calendarService;
     private readonly datePickerYearsService;
     private readonly datePickerYears;
     fabricCalendarView: FabricCalendarView;
-    selectedDate: Date;
+    selectedDate?: Date;
     activeMonth: number;
     activeYear: number;
     years: Array<Array<number>>;
@@ -23,4 +24,6 @@ export declare class FabricDatePickerViewPanelComponent {
     switchCard(cardView: FabricCalendarCardView): void;
     getDisplayedYearRange(): string;
     private handleMonthChange;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerViewPanelComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerViewPanelComponent, "gui-date-picker-view-panel", never, { "fabricCalendarView": "fabricCalendarView"; "selectedDate": "selectedDate"; "activeMonth": "activeMonth"; "activeYear": "activeYear"; "years": "years"; }, {}, never, never>;
 }

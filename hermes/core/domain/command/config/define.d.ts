@@ -1,11 +1,11 @@
 import { Provider } from '@angular/core';
-import { AggregateFactory } from '../../tactical/aggregate/aggregate-factory';
-import { AggregateRoot } from '../../tactical/aggregate/aggregate-root';
+import { AggregateFactory } from '../../../api/tactical/aggregate/aggregate-factory';
+import { AggregateRoot } from '../../../api/tactical/aggregate/aggregate-root';
 import { Optional } from '../../../../common/optional';
-import { AggregateRepository } from '../../tactical/aggregate/aggregate-repository';
+import { AggregateRepository } from '../../../api/tactical/aggregate/aggregate-repository';
 import { CreateAggregateCommandHandler } from '../create-aggregate/create-aggregate.command-handler';
-import { AggregateId } from '../../tactical/aggregate/aggregate-id';
-import { Command } from '../command';
+import { AggregateId } from '../../../api/tactical/aggregate/aggregate-id';
+import { Command } from '../../../api/command/command';
 export declare class AggregateFactoryArchive<I extends AggregateId, A extends AggregateRoot<I>> {
     private readonly map;
     constructor();
@@ -24,6 +24,6 @@ export interface AggregateConfig<I extends AggregateId, A extends AggregateRoot<
     repository: AggregateRepository<I, A>;
     factory: AggregateFactory<I, A>;
     key: string;
-    createHandler: CreateAggregateCommandHandler<A, C>;
+    createHandler: CreateAggregateCommandHandler<C>;
     commandHandlers: Array<Provider>;
 }

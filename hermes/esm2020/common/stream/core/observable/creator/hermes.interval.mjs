@@ -1,0 +1,14 @@
+import { HermesObservable } from '../hermes.observable';
+export function hermesInterval(interval) {
+    let counter = 0;
+    return new HermesObservable((observer) => {
+        const id = setInterval(() => {
+            observer.next(counter++);
+        }, interval);
+        return () => {
+            clearInterval(id);
+            observer.complete();
+        };
+    });
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaGVybWVzLmludGVydmFsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL2d1aS1oZXJtZXMvc3JjL2NvbW1vbi9zdHJlYW0vY29yZS9vYnNlcnZhYmxlL2NyZWF0b3IvaGVybWVzLmludGVydmFsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxnQkFBZ0IsRUFBRSxNQUFNLHNCQUFzQixDQUFDO0FBR3hELE1BQU0sVUFBVSxjQUFjLENBQUMsUUFBZ0I7SUFFOUMsSUFBSSxPQUFPLEdBQUcsQ0FBQyxDQUFDO0lBRWhCLE9BQU8sSUFBSSxnQkFBZ0IsQ0FBUyxDQUFDLFFBQWdDLEVBQUUsRUFBRTtRQUV4RSxNQUFNLEVBQUUsR0FBRyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQzNCLFFBQVEsQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLENBQUMsQ0FBQztRQUMxQixDQUFDLEVBQUUsUUFBUSxDQUFDLENBQUM7UUFFYixPQUFPLEdBQUcsRUFBRTtZQUNYLGFBQWEsQ0FBQyxFQUFFLENBQUMsQ0FBQztZQUNsQixRQUFRLENBQUMsUUFBUSxFQUFFLENBQUM7UUFDckIsQ0FBQyxDQUFDO0lBQ0gsQ0FBQyxDQUFDLENBQUM7QUFDSixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgSGVybWVzT2JzZXJ2YWJsZSB9IGZyb20gJy4uL2hlcm1lcy5vYnNlcnZhYmxlJztcbmltcG9ydCB7IEhlcm1lc09ic2VydmVyIH0gZnJvbSAnLi4vaGVybWVzLm9ic2VydmVyJztcblxuZXhwb3J0IGZ1bmN0aW9uIGhlcm1lc0ludGVydmFsKGludGVydmFsOiBudW1iZXIpOiBIZXJtZXNPYnNlcnZhYmxlPG51bWJlcj4ge1xuXG5cdGxldCBjb3VudGVyID0gMDtcblxuXHRyZXR1cm4gbmV3IEhlcm1lc09ic2VydmFibGU8bnVtYmVyPigob2JzZXJ2ZXI6IEhlcm1lc09ic2VydmVyPG51bWJlcj4pID0+IHtcblxuXHRcdGNvbnN0IGlkID0gc2V0SW50ZXJ2YWwoKCkgPT4ge1xuXHRcdFx0b2JzZXJ2ZXIubmV4dChjb3VudGVyKyspO1xuXHRcdH0sIGludGVydmFsKTtcblxuXHRcdHJldHVybiAoKSA9PiB7XG5cdFx0XHRjbGVhckludGVydmFsKGlkKTtcblx0XHRcdG9ic2VydmVyLmNvbXBsZXRlKCk7XG5cdFx0fTtcblx0fSk7XG59XG4iXX0=

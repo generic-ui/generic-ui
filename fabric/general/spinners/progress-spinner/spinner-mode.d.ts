@@ -1,3 +1,4 @@
 export declare enum SpinnerMode {
-    Spin = 0
+    NoSpin = 0,
+    Spin = 1
 }

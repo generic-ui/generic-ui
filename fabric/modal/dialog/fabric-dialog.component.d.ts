@@ -3,14 +3,15 @@ import { FabricDialogService } from './fabric-dialog.service';
 import { FabricNestedDialogComponent } from '../common/fabric.nested-dialog.component';
 import { FabricThemedComponent } from '../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../themes/fabric-modal-theme.service';
+import * as i0 from "@angular/core";
 export declare class FabricDialogComponent extends FabricThemedComponent implements AfterViewInit {
     private readonly componentFactoryResolver;
     private readonly changeDetectorRef;
     private readonly elRef;
     private platformId;
     private readonly dialogService;
-    container: ViewContainerRef;
-    dialogNestedComponent: Type<FabricNestedDialogComponent>;
+    readonly container?: ViewContainerRef;
+    dialogNestedComponent?: Type<FabricNestedDialogComponent>;
     visible: boolean;
     width: string;
     height: string;
@@ -23,4 +24,6 @@ export declare class FabricDialogComponent extends FabricThemedComponent impleme
     setTransformOrigin(event: any): void;
     private isContainerClicked;
     private createNestedComponent;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDialogComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDialogComponent, "gui-fabric-dialog", never, {}, {}, never, never>;
 }

@@ -4,6 +4,7 @@ import { SelectOptionsGeometryService } from './options/select-options-geometry.
 import { FabricSelectedOptionsRepository } from './selected-option.repository';
 import { SelectOptionModalService } from './select-option-modal.service';
 import { FabricReactive } from '../../common/fabric-reactive';
+import * as i0 from "@angular/core";
 export declare class FabricSelectComponent extends FabricReactive implements OnInit, OnChanges {
     private readonly selectService;
     private readonly selectOptionsGeometryService;
@@ -12,16 +13,16 @@ export declare class FabricSelectComponent extends FabricReactive implements OnI
     private readonly platformId;
     private readonly elementRef;
     private readonly renderer;
-    containerRef: ElementRef;
+    readonly containerRef?: ElementRef;
     options: Array<GuiSelectOption>;
     placeholder: string;
-    selected: GuiSelectOption;
+    selected?: GuiSelectOption;
     width: number;
     disabled: boolean;
-    optionChanged: EventEmitter<GuiSelectOption>;
-    selectedOption: GuiSelectOption;
-    containerText: string;
-    private scrollListenerFn;
+    readonly optionChanged: EventEmitter<GuiSelectOption>;
+    selectedOption?: GuiSelectOption;
+    containerText?: string;
+    private scrollListenerFn?;
     private doNotEmitValues;
     private opened;
     constructor(selectService: FabricSelectedOptionsRepository, selectOptionsGeometryService: SelectOptionsGeometryService, selectOptionModalService: SelectOptionModalService, changeDetectorRef: ChangeDetectorRef, platformId: any, elementRef: ElementRef, renderer: Renderer2);
@@ -44,4 +45,6 @@ export declare class FabricSelectComponent extends FabricReactive implements OnI
     private isContainerDisabled;
     private addClass;
     private removeClass;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectComponent, "gui-select", never, { "options": "options"; "placeholder": "placeholder"; "selected": "selected"; "width": "width"; "disabled": "disabled"; }, { "optionChanged": "optionChanged"; }, never, never>;
 }

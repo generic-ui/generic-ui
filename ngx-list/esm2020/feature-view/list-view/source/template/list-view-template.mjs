@@ -1,0 +1,16 @@
+export class ListViewTemplate {
+    constructor(template, templRef) {
+        this.template = template;
+        this.templRef = templRef;
+    }
+    hasTemplateRef() {
+        return !!this.templRef;
+    }
+    getTemplateRef() {
+        return this.templRef;
+    }
+    getTemplateMethod() {
+        return this.template;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LXRlbXBsYXRlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1saXN0L3NyYy9mZWF0dXJlLXZpZXcvbGlzdC12aWV3L3NvdXJjZS90ZW1wbGF0ZS9saXN0LXZpZXctdGVtcGxhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUEsTUFBTSxPQUFPLGdCQUFnQjtJQUU1QixZQUE2QixRQUErQixFQUN4QyxRQUEwQjtRQURqQixhQUFRLEdBQVIsUUFBUSxDQUF1QjtRQUN4QyxhQUFRLEdBQVIsUUFBUSxDQUFrQjtJQUM5QyxDQUFDO0lBRUQsY0FBYztRQUNiLE9BQU8sQ0FBQyxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7SUFDeEIsQ0FBQztJQUVELGNBQWM7UUFDYixPQUFPLElBQUksQ0FBQyxRQUFRLENBQUM7SUFDdEIsQ0FBQztJQUVELGlCQUFpQjtRQUNoQixPQUFPLElBQUksQ0FBQyxRQUFRLENBQUM7SUFDdEIsQ0FBQztDQUNEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgVGVtcGxhdGVSZWYgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuZXhwb3J0IGNsYXNzIExpc3RWaWV3VGVtcGxhdGUge1xuXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgdGVtcGxhdGU6IChpdGVtOiBhbnkpID0+IHN0cmluZyxcblx0XHRcdFx0cHJpdmF0ZSByZWFkb25seSB0ZW1wbFJlZjogVGVtcGxhdGVSZWY8YW55Pikge1xuXHR9XG5cblx0aGFzVGVtcGxhdGVSZWYoKTogYm9vbGVhbiB7XG5cdFx0cmV0dXJuICEhdGhpcy50ZW1wbFJlZjtcblx0fVxuXG5cdGdldFRlbXBsYXRlUmVmKCk6IFRlbXBsYXRlUmVmPGFueT4ge1xuXHRcdHJldHVybiB0aGlzLnRlbXBsUmVmO1xuXHR9XG5cblx0Z2V0VGVtcGxhdGVNZXRob2QoKTogKGl0ZW06IGFueSkgPT4gc3RyaW5nIHtcblx0XHRyZXR1cm4gdGhpcy50ZW1wbGF0ZTtcblx0fVxufVxuIl19

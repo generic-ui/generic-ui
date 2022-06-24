@@ -1,4 +1,4 @@
-import { TranslationChange } from '../../../../l10n/core/api/translation-change';
+import { TranslationChange } from '../../../../core/l10n/api/translation-change';
 export declare type FieldAccessor = (element?: any) => any;
 export declare type ViewTemplateFunction = (cellValue?: any, item?: any, index?: number) => string;
 export interface GuiMultiColumn {
@@ -197,4 +197,4 @@ export interface GuiCellEdit {
     cellEdit?: (value: any, item: any, index: number) => boolean;
 }
 export declare type GuiTranslation = TranslationChange;
-export declare const GuiDefaultTranslation: import("../../../../l10n/core/api/translation").Translation;
+export declare const GuiDefaultTranslation: import("../../../../core/l10n/api/translation").Translation;

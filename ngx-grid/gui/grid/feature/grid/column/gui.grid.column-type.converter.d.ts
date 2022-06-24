@@ -1,5 +1,5 @@
 import { GuiDataType } from '../../../core/api/gui.grid.public-api';
-import { DataType } from '../../../../../structure/field/core/domain/field/data/data-type';
+import { DataType } from '../../../../../core/structure/field/domain/field/data/data-type';
 export declare class GuiGridColumnTypeConverter {
     convertType(type: string | GuiDataType): DataType;
     private convertTypeEnum;

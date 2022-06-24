@@ -1,8 +1,9 @@
 import { AggregateDefinition } from './aggregate-definition';
-import { AggregateFactoryArchive, AggregateRepositoryArchive } from './define';
-import { AggregateId } from '../../tactical/aggregate/aggregate-id';
-import { AggregateRoot } from '../../tactical/aggregate/aggregate-root';
-import { Injector } from '@angular/core';
+import { AggregateId } from '../../../api/tactical/aggregate/aggregate-id';
+import { AggregateRoot } from '../../../api/tactical/aggregate/aggregate-root';
 export declare class AggregateDefinitionInitializer<I extends AggregateId, A extends AggregateRoot<I>> {
-    register(definedAggregate: Array<AggregateDefinition<I, A>>, injector: Injector, aggregateFactoryArchive: AggregateFactoryArchive<I, A>, aggregateRepositoryArchive: AggregateRepositoryArchive<I, A>): void;
+    private readonly aggregateFactoryArchive;
+    private readonly aggregateRepositoryArchive;
+    constructor();
+    register(definedAggregate: Array<AggregateDefinition<I, A>>): void;
 }

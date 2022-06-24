@@ -1,8 +1,9 @@
 import { DomainEventLogger } from '../../../domain/event/domain-event.logger';
-import { DomainEvent } from '../../../domain/event/domain-event';
-import { AggregateId } from '../../../domain/tactical/aggregate/aggregate-id';
+import { DomainEvent } from '../../../api/event/domain-event';
+import { AggregateId } from '../../../api/tactical/aggregate/aggregate-id';
 export declare class NoopEventLogger extends DomainEventLogger {
+    constructor();
     start(): void;
     stop(): void;
-    print(event: DomainEvent<AggregateId>): void;
+    print(_event: DomainEvent<AggregateId>): void;
 }

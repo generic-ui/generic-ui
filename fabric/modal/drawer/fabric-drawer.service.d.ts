@@ -2,6 +2,7 @@ import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy, Type } f
 import { FabricDrawerComponent } from './fabric-drawer.component';
 import { FabricModal } from '../../common/modal/fabric-modal';
 import { FabricDrawerConfig } from './fabric-drawer.config';
+import * as i0 from "@angular/core";
 export declare class FabricDrawerService extends FabricModal<FabricDrawerComponent> implements OnDestroy {
     /** To prevent multiple timers **/
     inProgress: boolean;
@@ -13,4 +14,6 @@ export declare class FabricDrawerService extends FabricModal<FabricDrawerCompone
     private waitAndCreateNewDrawer;
     private applyInstanceVars;
     private closeOnEscKey;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDrawerService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<FabricDrawerService>;
 }

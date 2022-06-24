@@ -1,8 +1,9 @@
-import { DomainEventHandler } from './domain-event.handler';
-import { AggregateId } from '../../tactical/aggregate/aggregate-id';
-import { DomainEvent } from '../domain-event';
-import { MultiDomainEventHandler } from './multi-domain-event.handler';
-import { DomainEventType } from './domain-event-type';
+import { DomainEventHandler } from '../../../api/event/domain-event.handler';
+import { AggregateId } from '../../../api/tactical/aggregate/aggregate-id';
+import { DomainEvent } from '../../../api/event/domain-event';
+import { MultiDomainEventHandler } from '../../../api/event/multi-domain-event.handler';
+import { DomainEventType } from '../../../api/event/domain-event-type';
+export declare function domainEventHandlerFactoryAsFactory<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandlerType: DomainEventHandler<I, E>): unknown;
 export declare function domainEventHandlerFactory<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandler: DomainEventHandler<I, E>): DomainEventHandlerImpl<I, E>;
 export declare function multiDomainEventHandlerFactory<I extends AggregateId, E extends DomainEvent<I>>(domainEventHandler: MultiDomainEventHandler<I, E>): DomainEventHandlerImpl<I, E>;
 export declare class DomainEventHandlerImpl<I extends AggregateId, E extends DomainEvent<I>> {

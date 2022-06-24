@@ -1,0 +1,7 @@
+export class EditedItemModel {
+    constructor(after, before) {
+        this.after = after;
+        this.before = before;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWRpdGVkLWl0ZW0ubW9kZWwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2NvcmUvc3RydWN0dXJlL3NvdXJjZS9hcGkvZWRpdC9lZGl0ZWQtaXRlbS5tb2RlbC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLE9BQU8sZUFBZTtJQUUzQixZQUE0QixLQUFVLEVBQ25CLE1BQVc7UUFERixVQUFLLEdBQUwsS0FBSyxDQUFLO1FBQ25CLFdBQU0sR0FBTixNQUFNLENBQUs7SUFDOUIsQ0FBQztDQUVEIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIEVkaXRlZEl0ZW1Nb2RlbCB7XG5cblx0Y29uc3RydWN0b3IocHVibGljIHJlYWRvbmx5IGFmdGVyOiBhbnksXG5cdFx0XHRcdHB1YmxpYyByZWFkb25seSBiZWZvcmU6IGFueSkge1xuXHR9XG5cbn1cbiJdfQ==

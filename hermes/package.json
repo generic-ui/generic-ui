@@ -1,20 +1,44 @@
 {
   "name": "@generic-ui/hermes",
-  "version": " 0.16.4",
+  "version": " 0.17.0",
+  "description": "State management library",
+  "license": "MIT",
+  "author": "Team Generic Ui",
+  "homepage": "https://generic-ui.com",
+  "bugs": "https://github.com/generic-ui/generic-ui/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generic-ui/generic-ui.git"
+  },
+  "keywords": [
+    "state management"
+  ],
   "dependencies": {
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "12.2.11",
-    "@angular/core": "12.2.11",
+    "@angular/common": "~13.3.11",
+    "@angular/core": "~13.3.11",
     "rxjs": "6.6.7"
   },
-  "main": "bundles/generic-ui-hermes.umd.js",
-  "module": "fesm2015/generic-ui-hermes.js",
-  "es2015": "fesm2015/generic-ui-hermes.js",
-  "esm2015": "esm2015/generic-ui-hermes.js",
-  "fesm2015": "fesm2015/generic-ui-hermes.js",
+  "module": "fesm2015/generic-ui-hermes.mjs",
+  "es2020": "fesm2020/generic-ui-hermes.mjs",
+  "esm2020": "esm2020/generic-ui-hermes.mjs",
+  "fesm2020": "fesm2020/generic-ui-hermes.mjs",
+  "fesm2015": "fesm2015/generic-ui-hermes.mjs",
   "typings": "generic-ui-hermes.d.ts",
-  "metadata": "generic-ui-hermes.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./generic-ui-hermes.d.ts",
+      "esm2020": "./esm2020/generic-ui-hermes.mjs",
+      "es2020": "./fesm2020/generic-ui-hermes.mjs",
+      "es2015": "./fesm2015/generic-ui-hermes.mjs",
+      "node": "./fesm2015/generic-ui-hermes.mjs",
+      "default": "./fesm2020/generic-ui-hermes.mjs"
+    }
+  },
   "sideEffects": false
 }

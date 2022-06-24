@@ -1,5 +1,5 @@
-import { AggregateId } from '../../../domain/tactical/aggregate/aggregate-id';
-import { AggregateRoot } from '../../../domain/tactical/aggregate/aggregate-root';
+import { AggregateId } from '../../../api/tactical/aggregate/aggregate-id';
+import { AggregateRoot } from '../../../api/tactical/aggregate/aggregate-root';
 import { ReadModelRoot } from '../../../api/read/read-model-root';
 import { ReadModelStore } from '../../../api/read/store/read-model.store';
 import { InMemoryStore } from '../in-memory.store';

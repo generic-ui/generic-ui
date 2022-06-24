@@ -1,26 +1,27 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FabricDatePickerService } from './fabric-date-picker.service';
-import { FabricDatePickerInlineDialogService } from './fabric.date-picker-inline-dialog.service';
+import { FabricDatePickerInlineDialogService } from './fabric-date-picker-inline-dialog.service';
 import { FabricReactive } from '../../common/fabric-reactive';
 import { Theme } from '../../themes/theme';
 import { FabricDatePickerCompositionService } from './fabric-date-picker-composition.service';
+import * as i0 from "@angular/core";
 export declare class FabricDatePickerComponent extends FabricReactive implements OnChanges, OnInit, AfterViewInit, OnDestroy {
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
     private readonly datePickerCompositionService;
     private readonly formBuilder;
     private readonly changeDetectorRef;
-    datePickerRef: ElementRef;
-    parentElement: ElementRef;
-    theme: Theme;
-    selectDate: Date;
+    readonly datePickerRef?: ElementRef;
+    parentElement?: ElementRef;
+    theme?: Theme;
+    selectDate?: Date;
     name: string;
     openDialog: boolean;
     onlyDialog: boolean;
     datePipeOptions: string;
-    dateSelected: EventEmitter<any>;
-    dialogOpened: EventEmitter<any>;
+    readonly dateSelected: EventEmitter<any>;
+    readonly dialogOpened: EventEmitter<any>;
     datePickerForm: FormGroup;
     pickedDate: Date;
     inputDisabled: 'disabled' | '';
@@ -35,4 +36,6 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     private observeDayChanges;
     private parse;
     private getDateValues;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerComponent, "gui-date-picker", never, { "parentElement": "parentElement"; "theme": "theme"; "selectDate": "selectDate"; "name": "name"; "openDialog": "openDialog"; "onlyDialog": "onlyDialog"; "datePipeOptions": "datePipeOptions"; }, { "dateSelected": "dateSelected"; "dialogOpened": "dialogOpened"; }, never, never>;
 }

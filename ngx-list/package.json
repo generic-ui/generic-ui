@@ -1,15 +1,15 @@
 {
   "name": "@generic-ui/ngx-list",
   "description": "Generic UI - Angular List library",
-  "version": " 0.16.4",
+  "version": " 0.17.0",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "12.2.11",
-    "@angular/core": "12.2.11",
-    "@angular/forms": "12.2.11",
-    "@angular/platform-browser": "12.2.11",
-    "@generic-ui/fabric": "0.16.4",
-    "@generic-ui/hermes": "0.16.4",
+    "@angular/common": "~13.3.11",
+    "@angular/core": "~13.3.11",
+    "@angular/forms": "~13.3.11",
+    "@angular/platform-browser": "~13.3.11",
+    "@generic-ui/fabric": "0.17.0",
+    "@generic-ui/hermes": "0.17.0",
     "rxjs": "6.6.7"
   },
   "keywords": [
@@ -27,12 +27,24 @@
     "type": "git",
     "url": "https://github.com/generic-ui/generic-ui.git"
   },
-  "main": "bundles/generic-ui-ngx-list.umd.js",
-  "module": "fesm2015/generic-ui-ngx-list.js",
-  "es2015": "fesm2015/generic-ui-ngx-list.js",
-  "esm2015": "esm2015/generic-ui-ngx-list.js",
-  "fesm2015": "fesm2015/generic-ui-ngx-list.js",
+  "module": "fesm2015/generic-ui-ngx-list.mjs",
+  "es2020": "fesm2020/generic-ui-ngx-list.mjs",
+  "esm2020": "esm2020/generic-ui-ngx-list.mjs",
+  "fesm2020": "fesm2020/generic-ui-ngx-list.mjs",
+  "fesm2015": "fesm2015/generic-ui-ngx-list.mjs",
   "typings": "generic-ui-ngx-list.d.ts",
-  "metadata": "generic-ui-ngx-list.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./generic-ui-ngx-list.d.ts",
+      "esm2020": "./esm2020/generic-ui-ngx-list.mjs",
+      "es2020": "./fesm2020/generic-ui-ngx-list.mjs",
+      "es2015": "./fesm2015/generic-ui-ngx-list.mjs",
+      "node": "./fesm2015/generic-ui-ngx-list.mjs",
+      "default": "./fesm2020/generic-ui-ngx-list.mjs"
+    }
+  },
   "sideEffects": false
 }

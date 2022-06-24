@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { FieldAccessor, GuiCellView, GuiColumn, GuiColumnAlign, GuiColumnCellEditing, GuiColumnSorting, GuiColumnSummaries, GuiDataType, ViewTemplateFunction } from '../../../core/api/gui.grid.public-api';
+import * as i0 from "@angular/core";
 export declare class GuiGridColumnComponent implements GuiColumn {
     templateRef: TemplateRef<any>;
     name?: string;
@@ -17,4 +18,6 @@ export declare class GuiGridColumnComponent implements GuiColumn {
     matcher?: (item: any) => any;
     cssClasses?: string;
     styles?: string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridColumnComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridColumnComponent, "gui-grid-column", never, { "name": "name"; "field": "field"; "type": "type"; "view": "view"; "header": "header"; "width": "width"; "enabled": "enabled"; "align": "align"; "summaries": "summaries"; "sorting": "sorting"; "cellEditing": "cellEditing"; "formatter": "formatter"; "matcher": "matcher"; "cssClasses": "cssClasses"; "styles": "styles"; }, {}, ["templateRef"], never>;
 }

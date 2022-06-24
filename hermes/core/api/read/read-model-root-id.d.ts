@@ -1,4 +1,4 @@
-import { AggregateId } from '../../domain/tactical/aggregate/aggregate-id';
+import { AggregateId } from '../tactical/aggregate/aggregate-id';
 export declare abstract class ReadModelRootId {
     private readonly uid;
     protected constructor(uid: string);

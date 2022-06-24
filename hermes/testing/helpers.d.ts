@@ -1,7 +1,7 @@
-import { AggregateId } from '../core/domain/tactical/aggregate/aggregate-id';
-import { AggregateEvent } from '../core/domain/tactical/aggregate/aggregate-event';
-import { DomainEvent } from '../core/domain/event/domain-event';
-import { HermesObservable } from '../common/stream/observable/hermes.observable';
+import { AggregateId } from '../core/api/tactical/aggregate/aggregate-id';
+import { AggregateEvent } from '../core/api/tactical/aggregate/aggregate-event';
+import { DomainEvent } from '../core/api/event/domain-event';
+import { HermesObservable } from '../common/stream/core/observable/hermes.observable';
 import { Optional } from '../common/optional';
 export declare function assertDomainEvents<I extends AggregateId>(actualEvents: ReadonlyArray<DomainEvent<I>>, expectedEvents: Array<DomainEvent<I>>): void;
 export declare function assertAggregateEvents<T extends AggregateId>(actualEvents: ReadonlyArray<AggregateEvent<T>>, expectedEvents: Array<AggregateEvent<T>>): void;
@@ -11,4 +11,4 @@ export declare function onceDefaultValuesWarehouseTest<T>(createStream: () => He
 export declare function findDefaultValuesWarehouseTest<T>(createValue: () => Optional<T>, defaultValue: T, desc: string): void;
 export declare function commandInterceptedByHandlerTest(dispatch: () => void, handlerType: any): void;
 export declare function commandPublishEventTest(dispatch: () => void, eventType: any): void;
-export declare function commandTriggersHandlerAndPublishEventTest<A, B>(dispatch: () => void, handlerType: any, eventType: any): void;
+export declare function commandTriggersHandlerAndPublishEventTest(dispatch: () => void, handlerType: any, eventType: any): void;
