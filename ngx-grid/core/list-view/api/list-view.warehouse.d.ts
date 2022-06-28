@@ -1,7 +1,7 @@
 import { HermesObservable, Warehouse } from '@generic-ui/hermes';
 import { ListViewMode } from '../domain/mode/list-view-mode';
 import { ListViewModeArchive } from './mode/list-view.mode.archive';
-import { ListViewId } from '../domain/list-view.id';
+import { ListViewId } from '../core/list-view.id';
 import { ListViewSelectorArchive } from './mode/selector/list-view.selector.archive';
 export declare class ListViewWarehouse implements Warehouse {
     private readonly listViewModeArchive;

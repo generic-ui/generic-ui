@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../../core/composition/domain-read/definition/cell-template-with-context';
-import { StructurePublisher } from '../../../../../core/structure/core/api/structure.publisher';
+import { CellTemplateWithContext } from '../../../../../core/composition/core-read/definition/cell-template-with-context';
+import { StructurePublisher } from '../../../../../core/structure/structure-core/api/structure.publisher';
 import { StructureColumnConfigService } from '../structure.column-config.service';
 import { StructureColumnMenuConfig } from '../config/structure.column-menu-config';
 import { SmartComponent } from '../../../../../feature/common/cdk/component/smart-component';
@@ -22,5 +22,5 @@ export declare class StructureColumnConfigTriggerComponent extends SmartComponen
     isEnabled(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigTriggerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigTriggerComponent, "div[gui-structure-column-config-trigger]", never, { "column": "column"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigTriggerComponent, "div[gui-structure-column-config-trigger]", never, { "column": "column"; }, {}, never, never, false>;
 }

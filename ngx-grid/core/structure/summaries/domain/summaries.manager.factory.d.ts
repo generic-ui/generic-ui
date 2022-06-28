@@ -1,5 +1,5 @@
 import { SummariesCalculator } from './calculation/summaries.calculator';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SummariesManager } from './summaries.manager';
 export declare class SummariesManagerFactory {
     private readonly calculators;

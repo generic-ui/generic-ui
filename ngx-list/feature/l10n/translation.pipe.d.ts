@@ -10,5 +10,5 @@ export declare class TranslationPipe implements PipeTransform, OnDestroy {
     ngOnDestroy(): void;
     transform(key: string): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<TranslationPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<TranslationPipe, "guiTranslate">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<TranslationPipe, "guiTranslate", false>;
 }

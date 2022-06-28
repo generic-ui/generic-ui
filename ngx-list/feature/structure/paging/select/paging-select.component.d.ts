@@ -16,5 +16,5 @@ export declare class PagingSelectComponent extends PureComponent implements OnCh
     private getSelectPageSizes;
     private getSelectPageSize;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingSelectComponent, "div[gui-paging-select][paging]", never, { "paging": "paging"; }, { "pageSizeChanged": "pageSizeChanged"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingSelectComponent, "div[gui-paging-select][paging]", never, { "paging": "paging"; }, { "pageSizeChanged": "pageSizeChanged"; }, never, never, false>;
 }

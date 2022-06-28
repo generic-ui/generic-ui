@@ -11,5 +11,5 @@ export declare class StructureTitlePanelComponent extends StructureBannerPanel {
     getSelectorName(): string;
     getPanelTitle(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureTitlePanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureTitlePanelComponent, "div[gui-structure-title-panel]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureTitlePanelComponent, "div[gui-structure-title-panel]", never, {}, {}, never, never, false>;
 }

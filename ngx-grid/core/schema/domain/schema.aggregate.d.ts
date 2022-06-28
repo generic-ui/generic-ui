@@ -1,5 +1,5 @@
 import { AggregateEvent, AggregateEventType, AggregateRoot } from '@generic-ui/hermes';
-import { SchemaId } from './schema.id';
+import { SchemaId } from '../core/schema.id';
 import { SchemaTheme } from '../api/theme/schema-theme';
 import { SchemaRowColoring } from '../api/row-coloring/schema-row-coloring';
 export declare class SchemaAggregate extends AggregateRoot<SchemaId> {

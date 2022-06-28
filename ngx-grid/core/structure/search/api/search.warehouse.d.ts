@@ -1,5 +1,5 @@
 import { HermesObservable, Warehouse } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 export declare abstract class SearchWarehouse implements Warehouse {
     protected constructor();
     abstract onSearchEnabled(structureId: StructureId): HermesObservable<boolean>;

@@ -10,5 +10,5 @@ export declare class FilterMenuActiveFiltersComponent extends PureComponent {
     remove(filter: ActiveFilterModel): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterMenuActiveFiltersComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuActiveFiltersComponent, "div[gui-filter-menu-active-filters][activeFilters]", never, { "activeFilters": "activeFilters"; }, { "removedFilter": "removedFilter"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuActiveFiltersComponent, "div[gui-filter-menu-active-filters][activeFilters]", never, { "activeFilters": "activeFilters"; }, { "removedFilter": "removedFilter"; }, never, never, false>;
 }

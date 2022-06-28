@@ -8,6 +8,7 @@ export declare function assertAggregateEvents<T extends AggregateId>(actualEvent
 export declare function testEventRepositoryIsEmptyOnStart<T>(createStream: () => HermesObservable<T>, desc: string): void;
 export declare function onDefaultValuesWarehouseTest<T>(createStream: () => HermesObservable<T>, defaultValue: T, desc: string): void;
 export declare function onceDefaultValuesWarehouseTest<T>(createStream: () => HermesObservable<T>, defaultValue: T, desc: string): void;
+export declare function onWarehouseEmpty<T>(createStream: () => HermesObservable<T>, desc: string): void;
 export declare function findDefaultValuesWarehouseTest<T>(createValue: () => Optional<T>, defaultValue: T, desc: string): void;
 export declare function commandInterceptedByHandlerTest(dispatch: () => void, handlerType: any): void;
 export declare function commandPublishEventTest(dispatch: () => void, eventType: any): void;

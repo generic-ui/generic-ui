@@ -1,17 +1,17 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../feature/common/cdk/component/smart-component';
-import { CellTemplateWithAccessor } from '../../../core/composition/domain-read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../core/composition/core-read/definition/cell-template-with-accessor';
 import { SchemaRowColoring } from '../../../core/schema/api/row-coloring/schema-row-coloring';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
-import { StructurePublisher } from '../../../core/structure/core/api/structure.publisher';
-import { StructureWarehouse } from '../../../core/structure/core/api/structure.warehouse';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
+import { StructurePublisher } from '../../../core/structure/structure-core/api/structure.publisher';
+import { StructureWarehouse } from '../../../core/structure/structure-core/api/structure.warehouse';
 import { SourceWarehouse } from '../../../core/structure/source/api/source.warehouse';
 import { CompositionPublisher } from '../../../core/composition/api/composition.publisher';
 import { CompositionWarehouse } from '../../../core/composition/api/composition.warehouse';
 import { FormationWarehouse } from '../../../core/structure/formation/api/formation.warehouse';
-import { ItemEntity } from '../../../core/structure/source/domain/core/item/item.entity';
+import { ItemEntity } from '../../../core/structure/source/domain/item/item.entity';
 import { VerticalFormationWarehouse } from '../../../core/structure/vertical-formation/api/vertical-formation.warehouse';
-import { StructureInitialValuesReadyArchive } from '../../../core/structure/core/api/ready/structure.initial-values-ready.archive';
+import { StructureInitialValuesReadyArchive } from '../../../core/structure/structure-core/api/ready/structure.initial-values-ready.archive';
 import { ResizeDetector } from '../../../feature/common/cdk/resize-detector/resize.detector';
 import { CompositionId } from '../../../core/composition/api/global/composition.id';
 import * as i0 from "@angular/core";
@@ -49,5 +49,5 @@ export declare class StructureContainerComponent extends SmartComponent implemen
     private enableScrollObservation;
     private disableScrollObservation;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureContainerComponent, [null, null, null, null, null, null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContainerComponent, "div[gui-structure-container]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContainerComponent, "div[gui-structure-container]", never, {}, {}, never, never, false>;
 }

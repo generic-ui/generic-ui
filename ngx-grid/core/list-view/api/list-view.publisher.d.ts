@@ -1,5 +1,5 @@
 import { Publisher } from '@generic-ui/hermes';
-import { ListViewDispatcher } from '../domain/list-view.dispatcher';
+import { ListViewDispatcher } from '../core/list-view.dispatcher';
 import { ListViewReadModelRootId } from './global/list-view.read-model-root-id';
 import { ListViewMode } from '../domain/mode/list-view-mode';
 export declare class ListViewPublisher implements Publisher {

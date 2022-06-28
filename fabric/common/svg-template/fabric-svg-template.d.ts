@@ -5,5 +5,5 @@ export declare class FabricSvgTemplate implements AfterViewInit {
     svg: string;
     ngAfterViewInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSvgTemplate, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSvgTemplate, "gui-svg-template", never, { "svg": "svg"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSvgTemplate, "gui-svg-template", never, { "svg": "svg"; }, {}, never, never, false>;
 }

@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SmartComponent } from '../../common/cdk/component/smart-component';
-import { StructureWarehouse } from '../../../core/structure/core/api/structure.warehouse';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { StructureWarehouse } from '../../../core/structure/structure-core/api/structure.warehouse';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import { SearchPublisher } from '../../../core/structure/search/api/search.publisher';
 import { SearchWarehouse } from '../../../core/structure/search/api/search.warehouse';
 import { HermesSubscription } from '@generic-ui/hermes';
@@ -27,5 +27,5 @@ export declare class SearchComponent extends SmartComponent implements OnInit {
     private observeChanges;
     private stopObserveChanges;
     static ɵfac: i0.ɵɵFactoryDeclaration<SearchComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SearchComponent, "div[gui-search-bar]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SearchComponent, "div[gui-search-bar]", never, {}, {}, never, never, false>;
 }

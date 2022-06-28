@@ -4,7 +4,7 @@ import { ColumnConfig, MultiColumnConfig } from '../../../../core/composition/ap
 import { GuiGridColumnConverter } from './column/gui.grid.column.converter';
 import { GuiGridThemeConverter } from './theme/gui.grid.theme.converter';
 import { GuiGridRowColoringConverter } from './theme/coloring/gui.grid.row-coloring.converter';
-import { ColumnMenuConfig } from '../../../../core/structure/core/api/config/column-menu-config';
+import { ColumnMenuConfig } from '../../../../core/structure/structure-core/api/config/column-menu-config';
 import { GuiGridColumnMenuConverter } from './column/menu/gui.grid.column-menu.converter';
 import { GuiGridPagingConverter } from './paging/gui.grid.paging.converter';
 import { SchemaTheme } from '../../../../core/schema/api/theme/schema-theme';
@@ -15,7 +15,7 @@ import { SelectedRow } from '../../../../core/structure/formation/api/row-select
 import { NgChanges } from '../../../../feature/common/cdk/component/ng-changes';
 import { GuiGridColumnComponent } from './column/gui.grid-column.component';
 import { GuiGridCellEditConverter } from './column/cell-editing/gui.grid.cell-edit.converter';
-import { CellEditConfig } from '../../../../core/structure/core/api/edit/cell-edit.config';
+import { CellEditConfig } from '../../../../core/structure/structure-core/api/edit/cell-edit.config';
 import * as i0 from "@angular/core";
 export declare abstract class GuiGridGateway implements OnChanges, AfterContentInit {
     guiGridColumnComponent: QueryList<GuiGridColumnComponent>;
@@ -122,5 +122,5 @@ export declare abstract class GuiGridGateway implements OnChanges, AfterContentI
     onVerticalGrid(value: boolean): void;
     onRowColoring(value: RowColoring): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridGateway, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiGridGateway, never, never, { "columnHeaderTop": "columnHeaderTop"; "columnHeaderBottom": "columnHeaderBottom"; "maxHeight": "maxHeight"; "width": "width"; "rowHeight": "rowHeight"; "autoResizeWidth": "autoResizeWidth"; "source": "source"; "columns": "columns"; "paging": "paging"; "verticalGrid": "verticalGrid"; "horizontalGrid": "horizontalGrid"; "theme": "theme"; "rowColoring": "rowColoring"; "rowSelection": "rowSelection"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "loading": "loading"; "virtualScroll": "virtualScroll"; "sorting": "sorting"; "searching": "searching"; "titlePanel": "titlePanel"; "footerPanel": "footerPanel"; "filtering": "filtering"; "quickFilters": "quickFilters"; "editMode": "editMode"; "cellEditing": "cellEditing"; "infoPanel": "infoPanel"; "summaries": "summaries"; "columnMenu": "columnMenu"; "rowDetail": "rowDetail"; "localization": "localization"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; "columnsChanged": "columnsChanged"; "containerWidthChanged": "containerWidthChanged"; "sourceEdited": "sourceEdited"; "cellEditEntered": "cellEditEntered"; "cellEditCanceled": "cellEditCanceled"; "cellEditSubmitted": "cellEditSubmitted"; "searchPhraseChanged": "searchPhraseChanged"; "themeChanged": "themeChanged"; "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; "rowColoringChanged": "rowColoringChanged"; }, ["guiGridColumnComponent"]>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiGridGateway, never, never, { "columnHeaderTop": "columnHeaderTop"; "columnHeaderBottom": "columnHeaderBottom"; "maxHeight": "maxHeight"; "width": "width"; "rowHeight": "rowHeight"; "autoResizeWidth": "autoResizeWidth"; "source": "source"; "columns": "columns"; "paging": "paging"; "verticalGrid": "verticalGrid"; "horizontalGrid": "horizontalGrid"; "theme": "theme"; "rowColoring": "rowColoring"; "rowSelection": "rowSelection"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "loading": "loading"; "virtualScroll": "virtualScroll"; "sorting": "sorting"; "searching": "searching"; "titlePanel": "titlePanel"; "footerPanel": "footerPanel"; "filtering": "filtering"; "quickFilters": "quickFilters"; "editMode": "editMode"; "cellEditing": "cellEditing"; "infoPanel": "infoPanel"; "summaries": "summaries"; "columnMenu": "columnMenu"; "rowDetail": "rowDetail"; "localization": "localization"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; "columnsChanged": "columnsChanged"; "containerWidthChanged": "containerWidthChanged"; "sourceEdited": "sourceEdited"; "cellEditEntered": "cellEditEntered"; "cellEditCanceled": "cellEditCanceled"; "cellEditSubmitted": "cellEditSubmitted"; "searchPhraseChanged": "searchPhraseChanged"; "themeChanged": "themeChanged"; "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; "rowColoringChanged": "rowColoringChanged"; }, ["guiGridColumnComponent"], never, false>;
 }

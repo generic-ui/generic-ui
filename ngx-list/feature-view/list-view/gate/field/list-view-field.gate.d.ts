@@ -1,5 +1,5 @@
 import { OnChanges } from '@angular/core';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { Gate } from '../../../../feature/common/cdk/component/gate';
 import { FieldConfig } from '../../../../core/structure/field/api/config/field.config';
 import { FieldPublisher } from '../../../../core/structure/field/api/field.publisher';
@@ -12,5 +12,5 @@ export declare class ListViewFieldGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, fieldCommandDispatcher: FieldPublisher);
     ngOnChanges(changes: NgChanges<ListViewFieldGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewFieldGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewFieldGate, "gui-list-view[fields]", never, { "fields": "fields"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewFieldGate, "gui-list-view[fields]", never, { "fields": "fields"; }, {}, never, never, false>;
 }

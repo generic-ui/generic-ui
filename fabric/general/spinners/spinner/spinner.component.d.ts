@@ -6,5 +6,5 @@ export declare class FabricSpinnerComponent extends AbstractSpinner {
     constructor(elementRef: ElementRef, renderer: Renderer2);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSpinnerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSpinnerComponent, "gui-spinner", never, { "color": "color"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSpinnerComponent, "gui-spinner", never, { "color": "color"; }, {}, never, never, false>;
 }

@@ -1,7 +1,7 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
 import { ListViewModeArchive } from './list-view.mode.archive';
-import { ListViewId } from '../../domain/list-view.id';
-import { ListViewModeSetEvent } from '../../domain/mode/list-view-mode-set.event';
+import { ListViewId } from '../../core/list-view.id';
+import { ListViewModeSetEvent } from '../../core/mode/list-view-mode-set.event';
 export declare class ListViewModeSetEventHandler implements DomainEventHandler<ListViewId, ListViewModeSetEvent> {
     private readonly listViewModeArchive;
     constructor(listViewModeArchive: ListViewModeArchive);

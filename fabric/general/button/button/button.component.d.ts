@@ -7,5 +7,5 @@ export declare class FabricButtonComponent extends Indicator {
     constructor(elementRef: ElementRef, renderer: Renderer2);
     ngOnChanges(changes: SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricButtonComponent, "button[gui-button], a[gui-button]", never, { "link": "link"; "text": "text"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricButtonComponent, "button[gui-button], a[gui-button]", never, { "link": "link"; "text": "text"; }, {}, never, ["*"], false>;
 }

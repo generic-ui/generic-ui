@@ -1,20 +1,20 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../feature/common/cdk/component/smart-component';
-import { CellTemplateWithAccessor } from '../../../core/composition/domain-read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../core/composition/core-read/definition/cell-template-with-accessor';
 import { FormationPublisher } from '../../../core/structure/formation/api/formation.publisher';
 import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
 import { FormationWarehouse } from '../../../core/structure/formation/api/formation.warehouse';
-import { ItemEntity } from '../../../core/structure/source/domain/core/item/item.entity';
-import { StructureWarehouse } from '../../../core/structure/core/api/structure.warehouse';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { ItemEntity } from '../../../core/structure/source/domain/item/item.entity';
+import { StructureWarehouse } from '../../../core/structure/structure-core/api/structure.warehouse';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import { VerticalFormationWarehouse } from '../../../core/structure/vertical-formation/api/vertical-formation.warehouse';
 import { RowSelectionTypeArchive } from '../../../core/structure/formation/api/type/row-selection-type.archive';
-import { SchemaRowClassArchive } from '../../../core/schema/api/styling/schema.row-class.archive';
-import { SchemaRowStyleArchive } from '../../../core/schema/api/styling/schema.row-style.archive';
 import { SchemaRowClass } from '../../../core/schema/api/styling/schema.row-class';
 import { SchemaRowStyle } from '../../../core/schema/api/styling/schema.row-style';
 import { SearchWarehouse } from '../../../core/structure/search/api/search.warehouse';
-import { CellEditorManager } from '../../../core/structure/core/domain/edit/cell-editor.manager';
+import { CellEditorManager } from '../../../core/structure/structure-core/domain/edit/cell-editor.manager';
+import { SchemaWarehouse } from '../../../core/schema/api/schema.warehouse';
+import { SchemaReadModelRootId } from '../../../core/schema/api/global/schema.read-model-root-id';
 import * as i0 from "@angular/core";
 export declare class StructureContentComponent extends SmartComponent implements OnInit {
     private readonly elementRef;
@@ -25,10 +25,10 @@ export declare class StructureContentComponent extends SmartComponent implements
     private readonly structureWarehouse;
     private readonly verticalFormationWarehouse;
     private readonly structureId;
+    private readonly schemaReadModelRootId;
     private readonly rowSelectionTypeArchive;
     private readonly searchWarehouse;
-    private readonly schemaRowClassArchive;
-    private readonly schemaRowStyleArchive;
+    private readonly schemaWarehouse;
     source: Array<ItemEntity>;
     columns: Array<CellTemplateWithAccessor>;
     editMode: boolean;
@@ -42,12 +42,13 @@ export declare class StructureContentComponent extends SmartComponent implements
     schemaRowClass: SchemaRowClass;
     schemaRowStyle: SchemaRowStyle;
     constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationCommandInvoker: FormationPublisher, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, verticalFormationWarehouse: VerticalFormationWarehouse, structureId: StructureId, // REfactor
-    rowSelectionTypeArchive: RowSelectionTypeArchive, searchWarehouse: SearchWarehouse, schemaRowClassArchive: SchemaRowClassArchive, schemaRowStyleArchive: SchemaRowStyleArchive);
+    schemaReadModelRootId: SchemaReadModelRootId, // REfactor
+    rowSelectionTypeArchive: RowSelectionTypeArchive, searchWarehouse: SearchWarehouse, schemaWarehouse: SchemaWarehouse);
     ngOnInit(): void;
     trackByFn(): number;
     translateY(index: number): string;
     toggleSelectedRow(entity: ItemEntity): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never, false>;
 }

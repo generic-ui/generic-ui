@@ -12,5 +12,5 @@ export declare class FilterValueComponent extends SmartComponent {
     ngOnInit(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterValueComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterValueComponent, "div[gui-filter-value]", never, {}, { "valueChanged": "valueChanged"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterValueComponent, "div[gui-filter-value]", never, {}, { "valueChanged": "valueChanged"; }, never, never, false>;
 }

@@ -15,5 +15,5 @@ export declare class ListViewLayoutComponent extends SmartComponent implements O
     ngOnInit(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewLayoutComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewLayoutComponent, "div[gui-list-view-layout]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewLayoutComponent, "div[gui-list-view-layout]", never, {}, {}, never, never, false>;
 }

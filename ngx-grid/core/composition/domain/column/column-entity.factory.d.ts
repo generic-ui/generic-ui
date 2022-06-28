@@ -1,4 +1,4 @@
-import { ColumnParams } from './set-columns/column.params';
+import { ColumnParams } from '../../core/column/set-columns/column.params';
 import { ColumnEntity } from './column.entity';
 import { ColumnPresentationConverter } from './presentation/column.presentation.converter';
 export declare class ColumnEntityFactory {

@@ -1,4 +1,4 @@
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { CompositionPublisher } from '../../../../core/composition/api/composition.publisher';
 import { CompositionId } from '../../../../core/composition/api/global/composition.id';
 import { ColumnFieldFactory } from '../../../../core/composition/domain/column/field/colum-field.factory';

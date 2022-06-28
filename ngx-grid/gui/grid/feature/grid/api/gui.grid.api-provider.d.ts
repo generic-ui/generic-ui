@@ -1,12 +1,12 @@
 import { GuiRowColoring, GuiSelectedRow, GuiTheme } from '../../../core/api/gui.grid.public-api';
 import { FormationPublisher } from '../../../../../core/structure/formation/api/formation.publisher';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import { SourcePublisher } from '../../../../../core/structure/source/api/source.publisher';
 import { FormationWarehouse } from '../../../../../core/structure/formation/api/formation.warehouse';
 import { SearchPublisher } from '../../../../../core/structure/search/api/search.publisher';
 import { SchemaReadModelRootId } from '../../../../../core/schema/api/global/schema.read-model-root-id';
 import { GuiGridThemeCommandInvoker } from '../theme/gui.grid.theme.command-invoker';
-import { StructurePublisher } from '../../../../../core/structure/core/api/structure.publisher';
+import { StructurePublisher } from '../../../../../core/structure/structure-core/api/structure.publisher';
 import { PagingConfig } from '../../../../../core/structure/paging/api/config/paging-config';
 import { PagingPublisher } from '../../../../../core/structure/paging/api/paging.publisher';
 import { SearchConfig } from '../../../../../core/structure/search/api/config/search-config';

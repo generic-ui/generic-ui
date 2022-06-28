@@ -28,5 +28,5 @@ export declare class FabricInlineDialogComponent extends FabricThemedComponent i
     private isContainerClicked;
     private createNestedComponent;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricInlineDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricInlineDialogComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricInlineDialogComponent, "ng-component", never, {}, {}, never, never, false>;
 }

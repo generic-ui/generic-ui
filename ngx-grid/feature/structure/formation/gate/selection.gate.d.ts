@@ -1,6 +1,6 @@
 import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Gate } from '../../../common/cdk/component/gate';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { RowSelection } from '../../../../core/structure/formation/api/row-selected/row-selection';
 import { SelectedRow } from '../../../../core/structure/formation/api/row-selected/selected-row';
 import { FormationEventRepository } from '../../../../core/structure/formation/api/formation.event-repository';
@@ -21,5 +21,5 @@ export declare abstract class SelectionGate extends Gate implements OnChanges, O
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectionGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SelectionGate, never, never, { "rowSelection": "rowSelection"; }, { "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; }, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SelectionGate, never, never, { "rowSelection": "rowSelection"; }, { "itemsSelected": "itemsSelected"; "selectedRows": "selectedRows"; }, never, never, false>;
 }

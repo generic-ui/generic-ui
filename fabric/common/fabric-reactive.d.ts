@@ -7,5 +7,5 @@ export declare abstract class FabricReactive implements OnDestroy {
     ngOnDestroy(): void;
     protected unsubscribe(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricReactive, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricReactive, never, never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricReactive, never, never, {}, {}, never, never, false>;
 }

@@ -36,5 +36,5 @@ export declare class FabricDatePickerCalendarComponent extends FabricReactive im
     isVisible(activeComposition: FabricDatePickerComposition, checkedComposition: FabricDatePickerComposition): boolean;
     private calculateDatePickerData;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerCalendarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerCalendarComponent, "gui-date-picker-toggle", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerCalendarComponent, "gui-date-picker-toggle", never, {}, {}, never, never, false>;
 }

@@ -1,6 +1,6 @@
 import { Publisher } from '@generic-ui/hermes';
 import { FilterConfig } from './config/filter.config';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { FieldId } from '../../field/domain/field/field.id';
 import { FilterTypeId } from '../domain/type/filter-type.id';
 import { FilterId } from './id/filter.id';

@@ -12,5 +12,5 @@ export declare abstract class GuiComponent {
     ifChanged<T>(prop: Changes<T>, callback: () => void): void;
     private addHostClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiComponent, never, never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiComponent, never, never, {}, {}, never, never, false>;
 }

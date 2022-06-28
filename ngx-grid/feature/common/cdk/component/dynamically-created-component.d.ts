@@ -6,5 +6,5 @@ export declare abstract class DynamicallyCreatedComponent {
     private isEmpty;
     private throwError;
     static ɵfac: i0.ɵɵFactoryDeclaration<DynamicallyCreatedComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<DynamicallyCreatedComponent, never, never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<DynamicallyCreatedComponent, never, never, {}, {}, never, never, false>;
 }

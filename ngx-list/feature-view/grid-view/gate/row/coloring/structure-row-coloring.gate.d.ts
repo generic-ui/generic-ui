@@ -18,5 +18,5 @@ export declare class StructureRowColoringGate extends Gate implements OnChanges,
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowColoringGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowColoringGate, "gui-structure[rowColoring]", never, { "rowColoring": "rowColoring"; }, { "rowColoringChanged": "rowColoringChanged"; }, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowColoringGate, "gui-structure[rowColoring]", never, { "rowColoring": "rowColoring"; }, { "rowColoringChanged": "rowColoringChanged"; }, never, never, false>;
 }

@@ -1,11 +1,11 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../feature/common/cdk/component/smart-component';
-import { StructureReadModelRoot } from '../../../core/structure/core/api/read/structure.read-model-root';
+import { StructureReadModelRoot } from '../../../core/structure/structure-core/api/read/structure.read-model-root';
 import { StructureDefinition } from '../structure-definition';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
-import { StructureWarehouse } from '../../../core/structure/core/api/structure.warehouse';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
+import { StructureWarehouse } from '../../../core/structure/structure-core/api/structure.warehouse';
 import { PagingWarehouse } from '../../../core/structure/paging/api/paging.warehouse';
-import { StructureInfoPanelArchive } from '../../../core/structure/core/api/panel/info/structure.info-panel.archive';
+import { StructureInfoPanelArchive } from '../../../core/structure/structure-core/api/panel/info/structure.info-panel.archive';
 import { FilterWarehouse } from '../../../core/structure/filter/api/filter.warehouse';
 import { SearchWarehouse } from '../../../core/structure/search/api/search.warehouse';
 import { StructureHeaderTopEnabledArchive } from '../header/structure-header-top-enabled.archive';
@@ -56,5 +56,5 @@ export declare class StructureBlueprintComponent extends SmartComponent implemen
     isSourceEmpty(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureBlueprintComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureBlueprintComponent, "div[gui-structure-blueprint]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureBlueprintComponent, "div[gui-structure-blueprint]", never, {}, {}, never, never, false>;
 }

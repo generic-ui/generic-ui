@@ -20,5 +20,5 @@ export declare class FabricTooltipDirective extends FabricReactive implements On
     private hide;
     private calculateCords;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricTooltipDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricTooltipDirective, "[gui-tooltip]", ["guiTooltip"], { "text": "gui-tooltip"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricTooltipDirective, "[gui-tooltip]", ["guiTooltip"], { "text": "gui-tooltip"; }, {}, never, never, false>;
 }

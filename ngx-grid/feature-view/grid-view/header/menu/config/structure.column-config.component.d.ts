@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
-import { StructurePublisher } from '../../../../../core/structure/core/api/structure.publisher';
-import { CellTemplateWithContext } from '../../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { StructurePublisher } from '../../../../../core/structure/structure-core/api/structure.publisher';
+import { CellTemplateWithContext } from '../../../../../core/composition/core-read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../../feature/common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../../core/composition/api/composition.warehouse';
 import { StructureColumnMenuConfigArchive } from './structure.column-menu-config.archive';
 import { StructureColumnMenuConfig } from './structure.column-menu-config';
 import { FilterWarehouse } from '../../../../../core/structure/filter/api/filter.warehouse';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import { TranslationFacade } from '../../../../../core/l10n/api/translation.facade';
 import { CompositionId } from '../../../../../core/composition/api/global/composition.id';
 import { CompositionPublisher } from '../../../../../core/composition/api/composition.publisher';
@@ -39,5 +39,5 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     protected getSelectorName(): string;
     private setTabTitles;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never, false>;
 }

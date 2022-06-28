@@ -1,5 +1,5 @@
 import { AggregateEvent } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SummariesCalculator } from './calculation/summaries.calculator';
 import { OriginItemEntity } from '../../source/domain/origin/origin-item-entity';
 import { FieldEntity } from '../../field/domain/field/field.entity';

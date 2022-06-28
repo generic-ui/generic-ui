@@ -3,7 +3,7 @@ import { FabricDialogService, FabricDrawerService } from '@generic-ui/fabric';
 import { FilterContainerRef } from '../../../../core/structure/filter/api/config/filter-container-ref';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { FilterWarehouse } from '../../../../core/structure/filter/api/filter.warehouse';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class FilterMenuTriggerComponent extends SmartComponent implements OnInit {
     private readonly injector;
@@ -18,5 +18,5 @@ export declare class FilterMenuTriggerComponent extends SmartComponent implement
     openDrawer(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterMenuTriggerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuTriggerComponent, "div[gui-filter-menu-trigger]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuTriggerComponent, "div[gui-filter-menu-trigger]", never, {}, {}, never, never, false>;
 }

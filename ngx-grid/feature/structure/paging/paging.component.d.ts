@@ -8,7 +8,7 @@ import { PagingDisplayModeArchive } from './mode/paging-display-mode.archive';
 import { PagingPosition } from './paging-position';
 import { CssClassModifier } from '../common/css-class/css-class.modifier';
 import { NgChanges } from '../../common/cdk/component/ng-changes';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class PagingComponent extends SmartComponent implements OnInit {
     private readonly elRef;
@@ -36,5 +36,5 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     protected getSelectorName(): string;
     private calculatePagingVisibility;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never, false>;
 }

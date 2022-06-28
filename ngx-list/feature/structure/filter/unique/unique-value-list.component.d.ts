@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { FieldId } from '../../../../core/structure/field/domain/field/field.id';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { FilterWarehouse } from '../../../../core/structure/filter/api/filter.warehouse';
 import { UniqueValueModel } from '../../../../core/structure/filter/api/unique/unique-value.model';
 import { FilterPublisher } from '../../../../core/structure/filter/api/filter.publisher';
@@ -21,5 +21,5 @@ export declare class UniqueValueListComponent extends SmartComponent implements 
     clearFilters(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<UniqueValueListComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": "fieldId"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": "fieldId"; }, {}, never, never, false>;
 }

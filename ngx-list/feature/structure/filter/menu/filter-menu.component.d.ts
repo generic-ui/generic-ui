@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../core/composition/core-read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
 import { CompositionWarehouse } from '../../../../core/composition/api/composition.warehouse';
 import { FieldWarehouse } from '../../../../core/structure/field/api/field.warehouse';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { FieldModel } from '../../../../core/structure/field/api/model/field.model';
 import { FilterWarehouse } from '../../../../core/structure/filter/api/filter.warehouse';
 import { FilterTypeCollectionModel } from '../../../../core/structure/filter/api/type/filter-type-collection.model';
@@ -42,5 +42,5 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     clearAddFilterForm(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuComponent, "div[gui-filter-menu]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuComponent, "div[gui-filter-menu]", never, {}, {}, never, never, false>;
 }

@@ -1,5 +1,5 @@
-import { StructureId } from '../../core/api/global/structure.id';
-import { ItemEntity } from '../domain/core/item/item.entity';
+import { StructureId } from '../../structure-core/api/global/structure.id';
+import { ItemEntity } from '../domain/item/item.entity';
 import { OriginItemEntity } from '../domain/origin/origin-item-entity';
 import { HermesObservable, HermesSingle, Warehouse } from '@generic-ui/hermes';
 export declare abstract class SourceWarehouse implements Warehouse {

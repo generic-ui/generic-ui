@@ -5,10 +5,10 @@ import { StructureInfoModalComponent } from './info-modal/structure-info-modal.c
 import { SourceWarehouse } from '../../../../core/structure/source/api/source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
 import { CompositionId } from '../../../../core/composition/api/global/composition.id';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { SchemaReadModelRootId } from '../../../../core/schema/api/global/schema.read-model-root-id';
-import { StructureInfoPanelArchive } from '../../../../core/structure/core/api/panel/info/structure.info-panel.archive';
-import { StructureInfoPanelConfig } from '../../../../core/structure/core/api/panel/info/structure.info-panel.config';
+import { StructureInfoPanelArchive } from '../../../../core/structure/structure-core/api/panel/info/structure.info-panel.archive';
+import { StructureInfoPanelConfig } from '../../../../core/structure/structure-core/api/panel/info/structure.info-panel.config';
 import { StructureDialogSchemaManagerService } from '../../../../feature/schema/manager/dialog/structure.dialog-schema-manager.service';
 import { TranslationFacade } from '../../../../core/l10n/api/translation.facade';
 import * as i0 from "@angular/core";
@@ -39,5 +39,5 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     openSchemaManager(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureInfoPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoPanelComponent, "div[gui-structure-info-panel]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoPanelComponent, "div[gui-structure-info-panel]", never, {}, {}, never, never, false>;
 }

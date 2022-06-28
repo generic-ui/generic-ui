@@ -1,5 +1,5 @@
 import { Publisher } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SearchConfig } from './config/search-config';
 export declare abstract class SearchPublisher implements Publisher {
     protected constructor();

@@ -1,10 +1,10 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SmartComponent } from '../../../feature/common/cdk/component/smart-component';
-import { CellTemplateWithContext } from '../../../core/composition/domain-read/definition/cell-template-with-context';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { CellTemplateWithContext } from '../../../core/composition/core-read/definition/cell-template-with-context';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import { FilterWarehouse } from '../../../core/structure/filter/api/filter.warehouse';
 import { CompositionWarehouse } from '../../../core/composition/api/composition.warehouse';
-import { StructureWarehouse } from '../../../core/structure/core/api/structure.warehouse';
+import { StructureWarehouse } from '../../../core/structure/structure-core/api/structure.warehouse';
 import { VerticalFormationWarehouse } from '../../../core/structure/vertical-formation/api/vertical-formation.warehouse';
 import { RowSelectionTypeArchive } from '../../../core/structure/formation/api/type/row-selection-type.archive';
 import { Group } from '../../../core/composition/api/group/group';
@@ -32,5 +32,5 @@ export declare class StructureHeaderComponent extends SmartComponent implements 
     ngAfterViewInit(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderComponent, "div[gui-structure-header]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderComponent, "div[gui-structure-header]", never, {}, {}, never, never, false>;
 }

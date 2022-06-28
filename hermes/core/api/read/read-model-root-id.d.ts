@@ -1,4 +1,7 @@
 import { AggregateId } from '../tactical/aggregate/aggregate-id';
+/**
+ * @deprecated
+ */
 export declare abstract class ReadModelRootId {
     private readonly uid;
     protected constructor(uid: string);

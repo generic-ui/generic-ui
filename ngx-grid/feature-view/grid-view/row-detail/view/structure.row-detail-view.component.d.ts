@@ -13,5 +13,5 @@ export declare class StructureRowDetailViewComponent extends DynamicallyCreatedC
     constructor(item: SelectedRow, template: any, sanitizer: DomSanitizer);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowDetailViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowDetailViewComponent, "div[gui-row-detail]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowDetailViewComponent, "div[gui-row-detail]", never, {}, {}, never, never, false>;
 }

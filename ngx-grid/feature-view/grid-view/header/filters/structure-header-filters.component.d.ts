@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FilterPublisher } from '../../../../core/structure/filter/api/filter.publisher';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
-import { CellTemplateWithContext } from '../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
+import { CellTemplateWithContext } from '../../../../core/composition/core-read/definition/cell-template-with-context';
 import { PureComponent } from '../../../../feature/common/cdk/component/pure-component';
 import * as i0 from "@angular/core";
 export declare class StructureHeaderFiltersComponent extends PureComponent implements OnInit {
@@ -23,5 +23,5 @@ export declare class StructureHeaderFiltersComponent extends PureComponent imple
     turnOffFilterMode(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderFiltersComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFiltersComponent, "div[gui-structure-header-filters][columns]", never, { "columns": "columns"; }, { "closed": "closed"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFiltersComponent, "div[gui-structure-header-filters][columns]", never, { "columns": "columns"; }, { "closed": "closed"; }, never, never, false>;
 }

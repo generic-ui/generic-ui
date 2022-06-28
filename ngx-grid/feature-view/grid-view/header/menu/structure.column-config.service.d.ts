@@ -1,6 +1,6 @@
 import { ElementRef, Injector } from '@angular/core';
 import { FabricInlineDialogService } from '@generic-ui/fabric';
-import { CellTemplateWithContext } from '../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../core/composition/core-read/definition/cell-template-with-context';
 import { StructureThemeConverter } from '../../schema/structure.theme.converter';
 import { SchemaWarehouse } from '../../../../core/schema/api/schema.warehouse';
 import { Reactive } from '@generic-ui/hermes';

@@ -2,7 +2,7 @@ import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { PagingModel } from '../../../../../core/structure/paging/api/model/paging.model';
 import { PagingPublisher } from '../../../../../core/structure/paging/api/paging.publisher';
 import { PureComponent } from '../../../../common/cdk/component/pure-component';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class AlternativePagingNavigatorComponent extends PureComponent implements OnChanges {
     private readonly structureId;
@@ -23,5 +23,5 @@ export declare class AlternativePagingNavigatorComponent extends PureComponent i
     private calculatePrev;
     private calculateNext;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlternativePagingNavigatorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingNavigatorComponent, "div[gui-paging-alternative-navigator][paging][sourceSize]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingNavigatorComponent, "div[gui-paging-alternative-navigator][paging][sourceSize]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, ["*"], false>;
 }

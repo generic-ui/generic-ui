@@ -701,9 +701,9 @@ class RandomStringGenerator {
     }
 }
 RandomStringGenerator.index = 0;
-RandomStringGenerator.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RandomStringGenerator, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-RandomStringGenerator.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RandomStringGenerator });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RandomStringGenerator, decorators: [{
+RandomStringGenerator.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+RandomStringGenerator.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator, decorators: [{
             type: Injectable
         }] });
 
@@ -1126,9 +1126,9 @@ class Reactive {
         return !this.hermesUnsubscribe$.isCompleted;
     }
 }
-Reactive.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: Reactive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-Reactive.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: Reactive });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: Reactive, decorators: [{
+Reactive.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+Reactive.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -1329,9 +1329,9 @@ class ConsoleCommandLogger extends CommandLogger {
         console.log(command.toString(), command);
     }
 }
-ConsoleCommandLogger.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ConsoleCommandLogger, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-ConsoleCommandLogger.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ConsoleCommandLogger });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ConsoleCommandLogger, decorators: [{
+ConsoleCommandLogger.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ConsoleCommandLogger.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -1453,9 +1453,9 @@ class HermesApi {
     init() {
     }
 }
-HermesApi.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesApi, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesApi.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesApi });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesApi, decorators: [{
+HermesApi.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
+HermesApi.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: Object, decorators: [{
                     type: Inject,
@@ -1487,9 +1487,9 @@ class HermesLoggersInitializer {
         }
     }
 }
-HermesLoggersInitializer.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesLoggersInitializer, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesLoggersInitializer.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesLoggersInitializer });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesLoggersInitializer, decorators: [{
+HermesLoggersInitializer.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
+HermesLoggersInitializer.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
@@ -1819,9 +1819,9 @@ class HermesBaseModule extends Reactive {
         this.hermesLoggersInitializer.stop();
     }
 }
-HermesBaseModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesBaseModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesBaseModule.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesBaseModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesBaseModule, decorators: [{
+HermesBaseModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.Injectable });
+HermesBaseModule.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: HermesLoggersInitializer }, { type: HermesApi }]; } });
 class HermesModule extends HermesBaseModule {
@@ -1885,12 +1885,10 @@ class HermesModule extends HermesBaseModule {
         });
     }
 }
-HermesModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.NgModule });
-HermesModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesModule, imports: [CommonModule] });
-HermesModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesModule, providers: providers, imports: [[
-            CommonModule
-        ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesModule, decorators: [{
+HermesModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.NgModule });
+HermesModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, imports: [CommonModule] });
+HermesModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, providers: providers, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -2038,9 +2036,9 @@ class ReactiveService extends Reactive {
         this.hermesUnsubscribe();
     }
 }
-ReactiveService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ReactiveService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-ReactiveService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ReactiveService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ReactiveService, decorators: [{
+ReactiveService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+ReactiveService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
@@ -2275,6 +2273,9 @@ class EventDrivenRepository extends AggregateArchive {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelEntity {
     constructor(gui) {
         this.entityId = gui;
@@ -2284,6 +2285,9 @@ class ReadModelEntity {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelEntityId {
     constructor(uid) {
         this.uid = uid;
@@ -2299,6 +2303,9 @@ class ReadModelEntityId {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelRoot {
     constructor(gui) {
         this.rootId = gui;
@@ -2308,6 +2315,9 @@ class ReadModelRoot {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelRootId {
     constructor(uid) {
         this.uid = uid;
@@ -2323,6 +2333,9 @@ class ReadModelRootId {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelRootRepository extends Reactive {
     constructor() {
         super();
@@ -2342,6 +2355,9 @@ class ReadModelRootRepository extends Reactive {
     }
 }
 
+/**
+ * @deprecated
+ */
 class ReadModelStore {
 }
 
@@ -2385,28 +2401,28 @@ class DomainModule {
     constructor() {
     }
 }
-DomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: DomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: DomainModule });
-DomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: DomainModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: DomainModule, decorators: [{
+DomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: DomainModule });
+DomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule, decorators: [{
             type: NgModule
         }], ctorParameters: function () { return []; } });
 
 class ApiModule {
 }
-ApiModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ApiModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ApiModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ApiModule });
-ApiModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ApiModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: ApiModule, decorators: [{
+ApiModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ApiModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: ApiModule });
+ApiModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule, decorators: [{
             type: NgModule
         }] });
 
 class FeatureModule {
 }
-FeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: FeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: FeatureModule });
-FeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: FeatureModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: FeatureModule, decorators: [{
+FeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule });
+FeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule, decorators: [{
             type: NgModule
         }] });
 
@@ -2723,10 +2739,10 @@ class HermesDomainModule {
     ngOnDestroy() {
     }
 }
-HermesDomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesDomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-HermesDomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesDomainModule });
-HermesDomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesDomainModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HermesDomainModule, decorators: [{
+HermesDomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+HermesDomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule });
+HermesDomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });
@@ -2794,6 +2810,20 @@ function onceDefaultValuesWarehouseTest(createStream, defaultValue, desc) {
         expect(nextFn).toHaveBeenCalledTimes(1);
         expect(errorFn).not.toHaveBeenCalled();
         expect(completeFn).toHaveBeenCalledTimes(1);
+    });
+}
+function onWarehouseEmpty(createStream, desc) {
+    it('should be empty ' + desc, () => {
+        expect.assertions(3);
+        // given
+        const nextFn = jest.fn(), errorFn = jest.fn(), completeFn = jest.fn();
+        // when
+        createStream()
+            .subscribe((value) => nextFn(value), (err) => errorFn(err), () => completeFn());
+        // then
+        expect(nextFn).not.toHaveBeenCalled();
+        expect(errorFn).not.toHaveBeenCalled();
+        expect(completeFn).not.toHaveBeenCalled();
     });
 }
 function findDefaultValuesWarehouseTest(createValue, defaultValue, desc) {
@@ -2914,5 +2944,5 @@ class DomainInitializer {
  * Generated bundle index. Do not edit.
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandDispatcher, CommandLogger, CommandType, CoreContainer, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventPublisher, DomainEventType, DomainInitializer, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesRunner, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomIdGenerator, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, createContainer, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, onDefaultValuesWarehouseTest, onceDefaultValuesWarehouseTest, provideEventHandlers, resetCoreContainer, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandDispatcher, CommandLogger, CommandType, CoreContainer, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventPublisher, DomainEventType, DomainInitializer, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesRunner, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomIdGenerator, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, createContainer, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, onDefaultValuesWarehouseTest, onWarehouseEmpty, onceDefaultValuesWarehouseTest, provideEventHandlers, resetCoreContainer, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable };
 //# sourceMappingURL=generic-ui-hermes.mjs.map

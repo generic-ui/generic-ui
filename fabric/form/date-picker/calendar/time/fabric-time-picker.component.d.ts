@@ -26,5 +26,5 @@ export declare class FabricTimePickerComponent extends FabricReactive implements
     private controlFormItemValue;
     private setTimeFromSelectedDate;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricTimePickerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTimePickerComponent, "gui-time-picker", never, { "selectedDate": "selectedDate"; "datePickerComposition": "datePickerComposition"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTimePickerComponent, "gui-time-picker", never, { "selectedDate": "selectedDate"; "datePickerComposition": "datePickerComposition"; }, {}, never, never, false>;
 }

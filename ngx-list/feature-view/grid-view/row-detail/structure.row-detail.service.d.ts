@@ -1,7 +1,7 @@
 import { ElementRef, Injector } from '@angular/core';
 import { FabricDrawerService } from '@generic-ui/fabric';
 import { FormationEventRepository } from '../../../core/structure/formation/api/formation.event-repository';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import { StructureRowDetailConfigArchive } from './structure.row-detail.config-archive';
 import { RowDetailConfig } from './row-detail.config';
 import { Reactive } from '@generic-ui/hermes';

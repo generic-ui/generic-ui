@@ -4,7 +4,7 @@ import { SchemaWarehouse } from '../../../core/schema/api/schema.warehouse';
 import { SchemaPublisher } from '../../../core/schema/api/schema.publisher';
 import { SchemaReadModelRootId } from '../../../core/schema/api/global/schema.read-model-root-id';
 import { SmartComponent } from '../../common/cdk/component/smart-component';
-import { StructureId } from '../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class StructureSchemaMangerComponent extends SmartComponent implements OnInit {
     private readonly changeDetectorRef;
@@ -28,5 +28,5 @@ export declare class StructureSchemaMangerComponent extends SmartComponent imple
     private toTheme;
     private toRowColoring;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSchemaMangerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSchemaMangerComponent, "div[gui-structure-schema-manager]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSchemaMangerComponent, "div[gui-structure-schema-manager]", never, {}, {}, never, never, false>;
 }

@@ -26,5 +26,5 @@ export declare class FabricSelectOptionsComponent extends FabricThemedComponent 
     getOptionValue(option: GuiSelectOption): number | string;
     initOpenAnimation(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectOptionsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never, false>;
 }

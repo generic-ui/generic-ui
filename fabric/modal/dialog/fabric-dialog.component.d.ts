@@ -25,5 +25,5 @@ export declare class FabricDialogComponent extends FabricThemedComponent impleme
     private isContainerClicked;
     private createNestedComponent;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDialogComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDialogComponent, "gui-fabric-dialog", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDialogComponent, "gui-fabric-dialog", never, {}, {}, never, never, false>;
 }

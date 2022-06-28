@@ -1,7 +1,7 @@
 import { HermesObservable, Warehouse } from '@generic-ui/hermes';
 import { CompositionId } from './global/composition.id';
-import { CellTemplateWithContext } from '../domain-read/definition/cell-template-with-context';
-import { CellTemplateWithAccessor } from '../domain-read/definition/cell-template-with-accessor';
+import { CellTemplateWithContext } from '../core-read/definition/cell-template-with-context';
+import { CellTemplateWithAccessor } from '../core-read/definition/cell-template-with-accessor';
 import { SortOrder } from '../domain/column/sort/sort-order';
 import { FieldId } from '../../structure/field/domain/field/field.id';
 import { GroupCollection } from './group/group.collection';

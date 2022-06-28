@@ -8,7 +8,7 @@ import { SourcePublisher } from '../../../../core/structure/source/api/source.pu
 import { FormationWarehouse } from '../../../../core/structure/formation/api/formation.warehouse';
 import { SearchPublisher } from '../../../../core/structure/search/api/search.publisher';
 import { SchemaPublisher } from '../../../../core/schema/api/schema.publisher';
-import { StructurePublisher } from '../../../../core/structure/core/api/structure.publisher';
+import { StructurePublisher } from '../../../../core/structure/structure-core/api/structure.publisher';
 import { PagingPublisher } from '../../../../core/structure/paging/api/paging.publisher';
 import { SummariesPublisher } from '../../../../core/structure/summaries/api/summaries.publisher';
 import { SortingPublisher } from '../../../../core/structure/sorting/api/sorting.publisher';
@@ -54,5 +54,5 @@ export declare class GuiGridComponent extends GuiGridGateway implements OnInit, 
     private exposeGridId;
     private initApi;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridComponent, "gui-grid", never, { "gridId": "gridId"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridComponent, "gui-grid", never, { "gridId": "gridId"; }, {}, never, never, false>;
 }

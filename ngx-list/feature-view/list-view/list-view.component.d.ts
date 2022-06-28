@@ -1,7 +1,7 @@
 import { ElementRef } from '@angular/core';
-import { StructureId } from '../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../core/structure/structure-core/api/global/structure.id';
 import { StructureIdGenerator } from '../grid-view/structure-id.generator';
-import { StructurePublisher } from '../../core/structure/core/api/structure.publisher';
+import { StructurePublisher } from '../../core/structure/structure-core/api/structure.publisher';
 import { ListViewReadModelRootId } from '../../core/list-view/api/global/list-view.read-model-root-id';
 import { ListViewPublisher } from '../../core/list-view/api/list-view.publisher';
 import { FilterContainerRef } from '../../core/structure/filter/api/config/filter-container-ref';
@@ -35,5 +35,5 @@ export declare class ListViewComponent extends LayoutComponent implements Filter
     getElementRef(): ElementRef;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewComponent, "gui-list-view", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewComponent, "gui-list-view", never, {}, {}, never, never, false>;
 }

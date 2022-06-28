@@ -5,5 +5,5 @@ export declare class StructureDialogSchemaManagerComponent extends PureComponent
     constructor(elRef: ElementRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureDialogSchemaManagerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureDialogSchemaManagerComponent, "div[gui-schema-manager-dialog]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureDialogSchemaManagerComponent, "div[gui-schema-manager-dialog]", never, {}, {}, never, never, false>;
 }

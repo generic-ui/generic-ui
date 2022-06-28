@@ -1,5 +1,5 @@
 import { AggregateEvent, AggregateEventType, AggregateRoot } from '@generic-ui/hermes';
-import { ListViewId } from './list-view.id';
+import { ListViewId } from '../core/list-view.id';
 import { ListViewMode } from './mode/list-view-mode';
 export declare class ListViewAggregate extends AggregateRoot<ListViewId> {
     private mode;

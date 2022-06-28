@@ -1,5 +1,5 @@
 import { HermesObservable, HermesSingle, Warehouse } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { PagingModel } from './model/paging.model';
 export declare abstract class PagingWarehouse implements Warehouse {
     protected constructor();

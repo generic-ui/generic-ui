@@ -1,5 +1,5 @@
 import { Publisher } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SortingConfig } from './config/sorting-config';
 import { FieldId } from '../../field/domain/field/field.id';
 import { CompositionId } from '../../../composition/api/global/composition.id';

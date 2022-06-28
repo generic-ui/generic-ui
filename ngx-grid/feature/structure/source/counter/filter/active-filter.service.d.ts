@@ -3,7 +3,7 @@ import { FabricDialogService } from '@generic-ui/fabric';
 import { SchemaWarehouse } from '../../../../../core/schema/api/schema.warehouse';
 import { StructureThemeConverter } from '../../../../../feature-view/grid-view/schema/structure.theme.converter';
 import { SchemaReadModelRootId } from '../../../../../core/schema/api/global/schema.read-model-root-id';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import { Reactive } from '@generic-ui/hermes';
 import * as i0 from "@angular/core";
 export declare class ActiveFilterService extends Reactive {

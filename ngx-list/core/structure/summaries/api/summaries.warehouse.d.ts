@@ -1,4 +1,4 @@
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { HermesObservable, Warehouse } from '@generic-ui/hermes';
 export declare abstract class SummariesWarehouse implements Warehouse {
     protected constructor();

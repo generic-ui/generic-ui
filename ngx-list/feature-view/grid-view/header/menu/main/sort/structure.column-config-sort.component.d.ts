@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { Placement } from '@generic-ui/fabric';
 import { SortOrder } from '../../../../../../core/composition/domain/column/sort/sort-order';
-import { CellTemplateWithContext } from '../../../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../../../core/composition/core-read/definition/cell-template-with-context';
 import { CompositionWarehouse } from '../../../../../../core/composition/api/composition.warehouse';
 import { SmartComponent } from '../../../../../../feature/common/cdk/component/smart-component';
 import { SortingPublisher } from '../../../../../../core/structure/sorting/api/sorting.publisher';
 import { CompositionId } from '../../../../../../core/composition/api/global/composition.id';
-import { StructureId } from '../../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../../core/structure/structure-core/api/global/structure.id';
 import { StructureArrowPosition } from '../../../../../../feature/common/icons/arrow/strucutre.arrow-position';
 import * as i0 from "@angular/core";
 export declare class StructureColumnConfigSortComponent extends SmartComponent implements OnInit {
@@ -29,5 +29,5 @@ export declare class StructureColumnConfigSortComponent extends SmartComponent i
     setSortOrder(sort: SortOrder): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigSortComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never, false>;
 }

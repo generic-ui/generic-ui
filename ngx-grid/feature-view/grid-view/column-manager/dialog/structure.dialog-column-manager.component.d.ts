@@ -5,5 +5,5 @@ export declare class StructureDialogColumnManagerComponent extends SmartComponen
     constructor(detector: ChangeDetectorRef, elementRef: ElementRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureDialogColumnManagerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureDialogColumnManagerComponent, "div[gui-structure-dialog-column-manager]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureDialogColumnManagerComponent, "div[gui-structure-dialog-column-manager]", never, {}, {}, never, never, false>;
 }

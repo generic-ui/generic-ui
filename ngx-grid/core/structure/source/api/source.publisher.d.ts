@@ -1,5 +1,5 @@
-import { StructureId } from '../../core/api/global/structure.id';
-import { StructureEditSourceItemParams } from '../domain/origin/edit/structure.edit-source-item.params';
+import { StructureId } from '../../structure-core/api/global/structure.id';
+import { StructureEditSourceItemParams } from '../core/origin/edit/structure.edit-source-item.params';
 import { SelectedRow } from '../../formation/api/row-selected/selected-row';
 import { OriginId } from '../domain/origin/origin-id';
 import { Publisher } from '@generic-ui/hermes';

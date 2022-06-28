@@ -21,5 +21,5 @@ export declare abstract class FabricModal<T> extends FabricReactive implements O
     isComponentCreated(): boolean;
     private getElement;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricModal<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricModal<any>, never, never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricModal<any>, never, never, {}, {}, never, never, false>;
 }

@@ -1,7 +1,7 @@
 import { CompositionWarehouse } from '../../../composition/api/composition.warehouse';
 import { CompositionId } from '../../../composition/api/global/composition.id';
 import { FilterWarehouse } from '../api/filter.warehouse';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { FilterPublisher } from '../api/filter.publisher';
 import { FilterForColumn } from './filter-integration.api';
 export declare class FilterIntegration {

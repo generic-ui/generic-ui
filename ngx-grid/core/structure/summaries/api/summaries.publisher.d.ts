@@ -1,5 +1,5 @@
 import { Publisher } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SummariesConfig } from './config/summaries-config';
 export declare abstract class SummariesPublisher implements Publisher {
     protected constructor();

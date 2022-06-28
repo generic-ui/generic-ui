@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import { FormationPublisher } from '../../../../../core/structure/formation/api/formation.publisher';
 import { SmartComponent } from '../../../../../feature/common/cdk/component/smart-component';
 import { FormationWarehouse } from '../../../../../core/structure/formation/api/formation.warehouse';
@@ -17,5 +17,5 @@ export declare class SelectAllComponent extends SmartComponent implements OnInit
     toggleSelectAll(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectAllComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectAllComponent, "div[gui-select-all]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectAllComponent, "div[gui-select-all]", never, {}, {}, never, never, false>;
 }

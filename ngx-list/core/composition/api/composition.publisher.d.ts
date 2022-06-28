@@ -1,6 +1,6 @@
 import { Publisher } from '@generic-ui/hermes';
 import { CompositionId } from './global/composition.id';
-import { ColumnParams } from '../domain/column/set-columns/column.params';
+import { ColumnParams } from '../core/column/set-columns/column.params';
 import { ColumnDefinitionId } from './column/column-definition-id';
 export declare abstract class CompositionPublisher implements Publisher {
     protected constructor();

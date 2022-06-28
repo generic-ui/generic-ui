@@ -23,5 +23,5 @@ export declare class FabricDrawerComponent extends FabricThemedComponent impleme
     private isContainerClicked;
     private createNestedComponent;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDrawerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDrawerComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDrawerComponent, "ng-component", never, {}, {}, never, never, false>;
 }

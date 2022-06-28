@@ -8,5 +8,5 @@ export declare class FabricTooltipComponent {
     constructor(elementRef: ElementRef);
     correctPosition(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricTooltipComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTooltipComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTooltipComponent, "ng-component", never, {}, {}, never, never, false>;
 }

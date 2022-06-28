@@ -8,9 +8,9 @@ import { StructureContainerComponent } from './content/structure-container.compo
 import { StructureDefinition } from './structure-definition';
 import { StructureModuleConfig } from './structure-module-config';
 import { StructureCellEditArchive } from './edit/structure.cell-edit.archive';
-import { StructurePublisher } from '../../core/structure/core/api/structure.publisher';
-import { StructureWarehouse } from '../../core/structure/core/api/structure.warehouse';
-import { StructureInitialValuesReadyArchive } from '../../core/structure/core/api/ready/structure.initial-values-ready.archive';
+import { StructurePublisher } from '../../core/structure/structure-core/api/structure.publisher';
+import { StructureWarehouse } from '../../core/structure/structure-core/api/structure.warehouse';
+import { StructureInitialValuesReadyArchive } from '../../core/structure/structure-core/api/ready/structure.initial-values-ready.archive';
 import * as i0 from "@angular/core";
 import * as i1 from "./structure.component";
 import * as i2 from "./header/structure-header.component";

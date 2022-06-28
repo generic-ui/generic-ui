@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SearchWarehouse } from '../../../../../core/structure/search/api/search.warehouse';
 import { SmartComponent } from '../../../../common/cdk/component/smart-component';
-import { StructureId } from '../../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../../core/structure/structure-core/api/global/structure.id';
 import { SearchPublisher } from '../../../../../core/structure/search/api/search.publisher';
 import * as i0 from "@angular/core";
 export declare class ActiveSearchComponent extends SmartComponent {
@@ -15,5 +15,5 @@ export declare class ActiveSearchComponent extends SmartComponent {
     clearSearch(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ActiveSearchComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveSearchComponent, "div[gui-active-search]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveSearchComponent, "div[gui-active-search]", never, {}, {}, never, never, false>;
 }

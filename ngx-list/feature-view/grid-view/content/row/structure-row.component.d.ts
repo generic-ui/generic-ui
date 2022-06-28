@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, ElementRef, OnChanges, OnInit } from '@angular/core';
-import { CellTemplateWithAccessor } from '../../../../core/composition/domain-read/definition/cell-template-with-accessor';
-import { ItemEntity } from '../../../../core/structure/source/domain/core/item/item.entity';
+import { CellTemplateWithAccessor } from '../../../../core/composition/core-read/definition/cell-template-with-accessor';
+import { ItemEntity } from '../../../../core/structure/source/domain/item/item.entity';
 import { FormationPublisher } from '../../../../core/structure/formation/api/formation.publisher';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { FormationWarehouse } from '../../../../core/structure/formation/api/formation.warehouse';
 import { SmartComponent } from '../../../../feature/common/cdk/component/smart-component';
 import { GuiRowClass, GuiRowStyle } from '../../../../gui/grid/core/api/gui.grid.public-api';
 import { CssClassModifier } from '../../../../feature/structure/common/css-class/css-class.modifier';
 import { NgChanges } from '../../../../feature/common/cdk/component/ng-changes';
-import { CellEditorManager } from '../../../../core/structure/core/domain/edit/cell-editor.manager';
+import { CellEditorManager } from '../../../../core/structure/structure-core/domain/edit/cell-editor.manager';
 import * as i0 from "@angular/core";
 export declare class StructureRowComponent extends SmartComponent implements OnChanges, OnInit {
     private readonly changeDetectorRef;
@@ -46,5 +46,5 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     private updateRowClass;
     private calculateRowClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; }, {}, never, never, false>;
 }

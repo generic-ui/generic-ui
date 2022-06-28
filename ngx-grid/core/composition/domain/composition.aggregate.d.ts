@@ -1,13 +1,13 @@
 import { AggregateEvent, AggregateEventType, AggregateRoot } from '@generic-ui/hermes';
 import { ColumnEntity } from './column/column.entity';
 import { ColumnConfig, MultiColumnConfig } from '../api/column/column.config';
-import { ColumnParams } from './column/set-columns/column.params';
+import { ColumnParams } from '../core/column/set-columns/column.params';
 import { ColumnEntityFactory } from './column/column-entity.factory';
 import { ChangeSortParams } from './column/sort/change-sort.params';
 import { ColumnId } from '../api/column/column.id';
 import { ActiveColumnEntity } from './column/active/active-column.entity';
 import { CompositionId } from '../api/global/composition.id';
-import { CompositionGroupFactory } from './group/composition.group.factory';
+import { CompositionGroupFactory } from '../core/group/composition.group.factory';
 export declare class CompositionAggregate extends AggregateRoot<CompositionId> {
     private allColumns;
     private readonly baseColumns;

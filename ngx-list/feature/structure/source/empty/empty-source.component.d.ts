@@ -8,5 +8,5 @@ export declare class EmptySourceComponent extends PureComponent implements OnCha
     ngOnChanges(changes: NgChanges<EmptySourceComponent>): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<EmptySourceComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<EmptySourceComponent, "div[gui-empty-source][items]", never, { "items": "items"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<EmptySourceComponent, "div[gui-empty-source][items]", never, { "items": "items"; }, {}, never, never, false>;
 }

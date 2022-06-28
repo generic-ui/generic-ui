@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, ElementRef, Injector } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../core/composition/domain-read/definition/cell-template-with-context';
+import { CellTemplateWithContext } from '../../../../core/composition/core-read/definition/cell-template-with-context';
 import { SmartComponent } from '../../../../feature/common/cdk/component/smart-component';
 import { SortingPublisher } from '../../../../core/structure/sorting/api/sorting.publisher';
 import { CompositionId } from '../../../../core/composition/api/global/composition.id';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { FormationPublisher } from '../../../../core/structure/formation/api/formation.publisher';
 import * as i0 from "@angular/core";
 export declare class StructureHeaderColumnsComponent extends SmartComponent {
@@ -22,5 +22,5 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent {
     isGlobalSortEnabled(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderColumnsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "checkboxSelection": "checkboxSelection"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "checkboxSelection": "checkboxSelection"; }, {}, never, never, false>;
 }

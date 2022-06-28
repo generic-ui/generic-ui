@@ -1,6 +1,6 @@
 import { Logger } from '../../../../feature/common/cdk/logger/logger';
 import { VerticalFormation } from './vertical-formation';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 export declare class VerticalFormationFactory {
     private readonly logger;
     constructor(logger: Logger);

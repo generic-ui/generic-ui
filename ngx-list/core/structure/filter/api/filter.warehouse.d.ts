@@ -1,5 +1,5 @@
 import { HermesObservable, HermesSingle, Optional, Warehouse } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { FilterTypeCollectionModel } from './type/filter-type-collection.model';
 import { ActiveFilterModel } from './active/active-filter.model';
 import { UniqueValueCollectionModel } from './unique/unique-value-collection.model';

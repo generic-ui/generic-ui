@@ -6,5 +6,5 @@ export declare class StructureTopPanelComponent extends SmartComponent {
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureTopPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureTopPanelComponent, "div[gui-structure-top-panel]", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureTopPanelComponent, "div[gui-structure-top-panel]", never, {}, {}, never, never, false>;
 }

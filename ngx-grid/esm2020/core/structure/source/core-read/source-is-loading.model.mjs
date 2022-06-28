@@ -1,0 +1,15 @@
+import { __decorate } from "tslib";
+import { ReadModelObject } from '@generic-ui/hermes';
+let SourceIsLoadingModel = class SourceIsLoadingModel {
+    constructor(loading) {
+        this.loading = loading;
+    }
+    isLoading() {
+        return this.loading;
+    }
+};
+SourceIsLoadingModel = __decorate([
+    ReadModelObject
+], SourceIsLoadingModel);
+export { SourceIsLoadingModel };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic291cmNlLWlzLWxvYWRpbmcubW9kZWwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL2NvcmUvc3RydWN0dXJlL3NvdXJjZS9jb3JlLXJlYWQvc291cmNlLWlzLWxvYWRpbmcubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQztBQUdyRCxJQUFhLG9CQUFvQixHQUFqQyxNQUFhLG9CQUFvQjtJQUVoQyxZQUE2QixPQUFnQjtRQUFoQixZQUFPLEdBQVAsT0FBTyxDQUFTO0lBQzdDLENBQUM7SUFFRCxTQUFTO1FBQ1IsT0FBTyxJQUFJLENBQUMsT0FBTyxDQUFDO0lBQ3JCLENBQUM7Q0FFRCxDQUFBO0FBVFksb0JBQW9CO0lBRGhDLGVBQWU7R0FDSCxvQkFBb0IsQ0FTaEM7U0FUWSxvQkFBb0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBSZWFkTW9kZWxPYmplY3QgfSBmcm9tICdAZ2VuZXJpYy11aS9oZXJtZXMnO1xuXG5AUmVhZE1vZGVsT2JqZWN0XG5leHBvcnQgY2xhc3MgU291cmNlSXNMb2FkaW5nTW9kZWwge1xuXG5cdGNvbnN0cnVjdG9yKHByaXZhdGUgcmVhZG9ubHkgbG9hZGluZzogYm9vbGVhbikge1xuXHR9XG5cblx0aXNMb2FkaW5nKCk6IGJvb2xlYW4ge1xuXHRcdHJldHVybiB0aGlzLmxvYWRpbmc7XG5cdH1cblxufVxuIl19

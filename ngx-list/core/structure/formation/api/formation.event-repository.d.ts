@@ -1,8 +1,8 @@
 import { DomainEventBus, EventRepository, HermesObservable } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { SourceWarehouse } from '../../source/api/source.warehouse';
 import { SelectedRow } from './row-selected/selected-row';
-import { StructureReadModelRootId } from '../../core/api/read/structure.read-model-root-id';
+import { StructureReadModelRootId } from '../../structure-core/api/read/structure.read-model-root-id';
 export declare class FormationEventRepository extends EventRepository<StructureReadModelRootId, StructureId> {
     private readonly sourceWarehouse;
     private readonly domainEventBusTOREMOVE;

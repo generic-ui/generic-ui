@@ -14,5 +14,5 @@ export declare class ListViewTemplateGate extends Gate implements OnChanges {
     constructor(containerTemplateArchive: ListViewTemplateArchive, listCardTemplateArchive: ListViewCardTemplateArchive);
     ngOnChanges(changes: NgChanges<ListViewTemplateGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewTemplateGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewTemplateGate, "gui-list-view[mode]", never, { "template": "template"; "cardTemplate": "cardTemplate"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewTemplateGate, "gui-list-view[mode]", never, { "template": "template"; "cardTemplate": "cardTemplate"; }, {}, never, never, false>;
 }

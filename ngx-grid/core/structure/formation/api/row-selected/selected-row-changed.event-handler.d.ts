@@ -1,7 +1,7 @@
 import { DomainEventHandler, DomainEventType } from '@generic-ui/hermes';
-import { SelectedRowChangedEvent } from '../../domain/selected-row-changed.event';
+import { SelectedRowChangedEvent } from '../../core/selected-row-changed.event';
 import { RowSelectedArchive } from './row-selected.archive';
-import { StructureId } from '../../../core/api/global/structure.id';
+import { StructureId } from '../../../structure-core/api/global/structure.id';
 export declare class SelectedRowChangedEventHandler implements DomainEventHandler<StructureId, SelectedRowChangedEvent> {
     private readonly rowSelectedArchive;
     constructor(rowSelectedArchive: RowSelectedArchive);

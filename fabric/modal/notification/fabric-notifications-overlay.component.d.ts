@@ -21,5 +21,5 @@ export declare class FabricNotificationsOverlayComponent extends FabricThemedCom
     checkNotificationsLength(): void;
     isContainerNotEmpty(container: Array<FabricNotification>): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricNotificationsOverlayComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationsOverlayComponent, "ng-component", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationsOverlayComponent, "ng-component", never, {}, {}, never, never, false>;
 }

@@ -1,15 +1,15 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../feature/common/cdk/component/smart-component';
-import { CellTemplateWithAccessor } from '../../../../core/composition/domain-read/definition/cell-template-with-accessor';
+import { CellTemplateWithAccessor } from '../../../../core/composition/core-read/definition/cell-template-with-accessor';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourcePublisher } from '../../../../core/structure/source/api/source.publisher';
-import { ChangedValueEmitter } from '../../../../core/composition/domain-read/edit/changed-value.emitter';
-import { ItemEntity } from '../../../../core/structure/source/domain/core/item/item.entity';
+import { ChangedValueEmitter } from '../../../../core/composition/core-read/edit/changed-value.emitter';
+import { ItemEntity } from '../../../../core/structure/source/domain/item/item.entity';
 import { StructureCellEditCloseAllService } from '../../edit/structure.cell-edit-close-all.service';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { CompositionWarehouse } from '../../../../core/composition/api/composition.warehouse';
 import { CompositionId } from '../../../../core/composition/api/global/composition.id';
-import { CellEditorManager } from '../../../../core/structure/core/domain/edit/cell-editor.manager';
+import { CellEditorManager } from '../../../../core/structure/structure-core/domain/edit/cell-editor.manager';
 import * as i0 from "@angular/core";
 export declare class StructureCellComponent extends SmartComponent implements AfterViewInit {
     private readonly changeDetectorRef;
@@ -48,5 +48,5 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     private publishEditCancel;
     private publishEditSubmit;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": "entity"; "cell": "cell"; "editMode": "editMode"; "cellEditorManager": "cellEditorManager"; "searchPhrase": "searchPhrase"; "rowIndex": "rowIndex"; "columnIndex": "columnIndex"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": "entity"; "cell": "cell"; "editMode": "editMode"; "cellEditorManager": "cellEditorManager"; "searchPhrase": "searchPhrase"; "rowIndex": "rowIndex"; "columnIndex": "columnIndex"; }, {}, never, never, false>;
 }

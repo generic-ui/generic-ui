@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { CellTemplateWithContext } from '../../../../core/composition/domain-read/definition/cell-template-with-context';
-import { StructureId } from '../../../../core/structure/core/api/global/structure.id';
+import { CellTemplateWithContext } from '../../../../core/composition/core-read/definition/cell-template-with-context';
+import { StructureId } from '../../../../core/structure/structure-core/api/global/structure.id';
 import { SummariesEventRepository } from '../../../../core/structure/summaries/api/summaries.event-repository';
 import { CompositionWarehouse } from '../../../../core/composition/api/composition.warehouse';
 import { SmartComponent } from '../../../common/cdk/component/smart-component';
@@ -30,5 +30,5 @@ export declare class StructureSummariesPanelComponent extends SmartComponent imp
     isSummariesTypePresent(summaries: number): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSummariesPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSummariesPanelComponent, "div[gui-structure-summaries-panel][enabled]", never, { "enabled": "enabled"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSummariesPanelComponent, "div[gui-structure-summaries-panel][enabled]", never, { "enabled": "enabled"; }, {}, never, never, false>;
 }

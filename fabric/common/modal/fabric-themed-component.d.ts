@@ -15,5 +15,5 @@ export declare abstract class FabricThemedComponent extends FabricReactive imple
     protected getElementRef(): ElementRef;
     protected getRenderer(): Renderer2;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricThemedComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricThemedComponent, never, never, {}, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FabricThemedComponent, never, never, {}, {}, never, never, false>;
 }

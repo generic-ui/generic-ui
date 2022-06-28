@@ -1,5 +1,5 @@
 import { HermesObservable, Optional, Warehouse } from '@generic-ui/hermes';
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 import { RowSelectedReadModel } from './row-selected/row-selected.read-model';
 import { RowSelectionMode } from './row-selected/row-selection';
 import { SelectedRow } from './row-selected/selected-row';

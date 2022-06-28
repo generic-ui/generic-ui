@@ -1,4 +1,4 @@
-import { StructureId } from '../../core/api/global/structure.id';
+import { StructureId } from '../../structure-core/api/global/structure.id';
 export declare abstract class VerticalFormationPublisher {
     protected constructor();
     abstract enableVirtualScroll(structureId: StructureId): void;
