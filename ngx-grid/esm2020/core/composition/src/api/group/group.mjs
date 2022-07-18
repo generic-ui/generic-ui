@@ -1,0 +1,8 @@
+export class Group {
+    constructor(id, header, width) {
+        this.id = id;
+        this.header = header;
+        this.width = width;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3JvdXAuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL2NvcmUvY29tcG9zaXRpb24vc3JjL2FwaS9ncm91cC9ncm91cC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQSxNQUFNLE9BQU8sS0FBSztJQUVqQixZQUE0QixFQUFXLEVBQ3BCLE1BQWMsRUFDZCxLQUFhO1FBRkosT0FBRSxHQUFGLEVBQUUsQ0FBUztRQUNwQixXQUFNLEdBQU4sTUFBTSxDQUFRO1FBQ2QsVUFBSyxHQUFMLEtBQUssQ0FBUTtJQUNoQyxDQUFDO0NBRUQiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBHcm91cElkIH0gZnJvbSAnLi9ncm91cC5pZCc7XG5cbmV4cG9ydCBjbGFzcyBHcm91cCB7XG5cblx0Y29uc3RydWN0b3IocHVibGljIHJlYWRvbmx5IGlkOiBHcm91cElkLFxuXHRcdFx0XHRwdWJsaWMgcmVhZG9ubHkgaGVhZGVyOiBzdHJpbmcsXG5cdFx0XHRcdHB1YmxpYyByZWFkb25seSB3aWR0aDogbnVtYmVyKSB7XG5cdH1cblxufVxuIl19

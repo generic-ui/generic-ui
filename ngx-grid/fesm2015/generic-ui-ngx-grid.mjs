@@ -1,16 +1,16 @@
 import * as i0 from '@angular/core';
-import { Injectable, TemplateRef, Component, ContentChild, Input, EventEmitter, Directive, ContentChildren, Output, InjectionToken, ChangeDetectionStrategy, ViewEncapsulation, Inject, Injector, Pipe, NgModule, ElementRef, ViewChild, PLATFORM_ID, Optional as Optional$1, Attribute, ComponentFactoryResolver } from '@angular/core';
+import { Injectable, TemplateRef, Component, ContentChild, Input, EventEmitter, Directive, ContentChildren, Output, InjectionToken, ChangeDetectionStrategy, ViewEncapsulation, Inject, Injector, Pipe, NgModule, Attribute, ViewChild, ComponentFactoryResolver, ElementRef, inject, ChangeDetectorRef, PLATFORM_ID, Optional as Optional$1 } from '@angular/core';
 import * as i4 from '@angular/common';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RandomIdGenerator, EntityId, hermesMap, hermesFilter, hermesTake, hermesSwitchMap, ReadModelRootId, AggregateId, Reactive, Archive, HermesSubject, hermesTakeUntil, Command, DomainEvent, CoreContainer, CommandDispatcher, DomainEventBus, EventRepository, AggregateArchive, singleFromObservable, AggregateEvent, DomainEventPublisher, ReadModelObject, DomainInitializer, HermesReplaySubject, FeatureModule, fromRxJsObservable, Entity, Optional, RandomStringGenerator, hermesDistinctUntilChanged, toRxJsObservable, AggregateRepository, InMemoryStore, InMemoryAggregateStore, EventDrivenRepository, CreateAggregateCommand, AggregateRoot, AggregateFactory, hermesEmpty, hermesTimer, hermesFromEvent, createContainer, DomainObject, ReadModelRoot, InMemoryReadModelStore, HermesId, ReadModelEntity, ReadModelEntityId, ReadModelRootRepository, KeyMap, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
+import { RandomIdGenerator, EntityId, hermesMap, hermesFilter, hermesTake, hermesSwitchMap, ReadModelRootId, AggregateId, Reactive, Archive, HermesSubject, hermesTakeUntil, Command, DomainEvent, CoreContainer, CommandDispatcher, DomainEventBus, EventRepository, AggregateArchive, singleFromObservable, AggregateEvent, DomainEventPublisher, ReadModelObject, DomainInitializer, HermesReplaySubject, FeatureModule, Entity, RandomStringGenerator, HermesId, InMemoryStore, InMemoryAggregateStore, AggregateRepository, ReadModelEntity, ReadModelEntityId, ReadModelRoot, InMemoryReadModelStore, ReadModelRootRepository, Optional, AggregateRoot, KeyMap, AggregateFactory, hermesFromEvent, fromRxJsObservable, hermesEmpty, hermesTimer, toRxJsObservable, hermesDistinctUntilChanged, createContainer, DomainObject, EventDrivenRepository, CreateAggregateCommand, hermesOf, HermesModule, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED } from '@generic-ui/hermes';
 import * as i1 from '@angular/platform-browser';
 import * as i1$1 from '@generic-ui/fabric';
-import { FabricModule, Theme, FabricModalThemeService, Placement, FabricPlacement, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
+import { FabricModule, Theme, Placement, FabricPlacement, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSelectModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, FabricModalThemeService, FabricDatePickerModule, FabricChipComponent, FabricCheckboxComponent, FabricButtonComponent, FabricInputComponent } from '@generic-ui/fabric';
 import { __decorate } from 'tslib';
 import * as i1$2 from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, throttleTime, flatMap } from 'rxjs/operators';
-import { zip, Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, zip } from 'rxjs';
 
 const enTranslation = {
     sourceEmpty: 'There are no items to show.',
@@ -148,12 +148,19 @@ var GuiRowSelectionType;
 (function (GuiRowSelectionType) {
     GuiRowSelectionType[GuiRowSelectionType["ROW"] = 0] = "ROW";
     GuiRowSelectionType[GuiRowSelectionType["CHECKBOX"] = 1] = "CHECKBOX";
+    GuiRowSelectionType[GuiRowSelectionType["RADIO"] = 2] = "RADIO";
 })(GuiRowSelectionType || (GuiRowSelectionType = {}));
 var GuiRowSelectionMode;
 (function (GuiRowSelectionMode) {
     GuiRowSelectionMode[GuiRowSelectionMode["SINGLE"] = 0] = "SINGLE";
     GuiRowSelectionMode[GuiRowSelectionMode["MULTIPLE"] = 1] = "MULTIPLE";
 })(GuiRowSelectionMode || (GuiRowSelectionMode = {}));
+var GuiRowCustomSelectionType;
+(function (GuiRowCustomSelectionType) {
+    GuiRowCustomSelectionType[GuiRowCustomSelectionType["SELECT_ALL"] = 0] = "SELECT_ALL";
+    GuiRowCustomSelectionType[GuiRowCustomSelectionType["UNSELECT_ALL"] = 1] = "UNSELECT_ALL";
+    GuiRowCustomSelectionType[GuiRowCustomSelectionType["INVERT"] = 2] = "INVERT";
+})(GuiRowCustomSelectionType || (GuiRowCustomSelectionType = {}));
 const GuiDefaultTranslation = defaultTranslation;
 
 var DataType;
@@ -737,6 +744,7 @@ var RowSelectionType;
 (function (RowSelectionType) {
     RowSelectionType[RowSelectionType["ROW"] = 0] = "ROW";
     RowSelectionType[RowSelectionType["CHECKBOX"] = 1] = "CHECKBOX";
+    RowSelectionType[RowSelectionType["RADIO"] = 2] = "RADIO";
 })(RowSelectionType || (RowSelectionType = {}));
 var RowSelectionMode;
 (function (RowSelectionMode) {
@@ -748,11 +756,20 @@ class RowSelection {
         if (config.enabled !== undefined) {
             this.enabled = config.enabled;
         }
+        if (config.selectedRowIndexes !== undefined) {
+            this.selectedRowIndexes = config.selectedRowIndexes;
+        }
+        if (config.selectedRowIds !== undefined) {
+            this.selectedRowIds = config.selectedRowIds;
+        }
         if (config.mode !== undefined) {
             this.mode = config.mode;
         }
         if (config.type !== undefined) {
             this.type = config.type;
+        }
+        if (config.matcher !== undefined) {
+            this.matcher = config.matcher;
         }
     }
     isModeDefined() {
@@ -761,17 +778,35 @@ class RowSelection {
     isTypeDefined() {
         return this.type !== undefined;
     }
+    isSelectedRowIndexesDefined() {
+        return this.selectedRowIndexes !== undefined;
+    }
+    isSelectedRowIdsDefined() {
+        return this.selectedRowIds !== undefined;
+    }
     isEnabledDefined() {
         return this.enabled !== undefined;
     }
+    isMatcherDefined() {
+        return this.matcher !== undefined;
+    }
     isEnabled() {
         return this.enabled;
+    }
+    getSelectedRowIndexes() {
+        return this.selectedRowIndexes;
+    }
+    getSelectedRowIds() {
+        return this.selectedRowIds;
     }
     getMode() {
         return this.mode;
     }
     getType() {
         return this.type;
+    }
+    getMatcher() {
+        return this.matcher;
     }
 }
 // eslint-disable-next-line @typescript-eslint/member-ordering
@@ -782,12 +817,23 @@ RowSelection.Builder = class RowSelectionBuilder extends GenericBuilder {
     buildObject() {
         return new RowSelection({
             enabled: this.enabled,
+            selectedRowIndexes: this.selectedRowIndexes,
+            selectedRowIds: this.selectedRowIds,
             type: this.type,
-            mode: this.mode
+            mode: this.mode,
+            matcher: this.matcher
         });
     }
     withEnabled(enabled) {
         this.enabled = enabled;
+        return this;
+    }
+    withSelectedRowIndexes(indexes) {
+        this.selectedRowIndexes = indexes;
+        return this;
+    }
+    withSelectedRowIds(ids) {
+        this.selectedRowIds = ids;
         return this;
     }
     withType(type) {
@@ -796,6 +842,10 @@ RowSelection.Builder = class RowSelectionBuilder extends GenericBuilder {
     }
     withMode(mode) {
         this.mode = mode;
+        return this;
+    }
+    withMatcher(matcher) {
+        this.matcher = matcher;
         return this;
     }
 };
@@ -810,6 +860,12 @@ class GuiGridRowSelectionConverter {
             if (selection.enabled !== undefined) {
                 builder.withEnabled(selection.enabled);
             }
+            if (selection.selectedRowIndexes !== undefined) {
+                builder.withSelectedRowIndexes(selection.selectedRowIndexes);
+            }
+            if (selection.selectedRowIds !== undefined) {
+                builder.withSelectedRowIds(selection.selectedRowIds);
+            }
             if (selection.mode !== undefined) {
                 const mode = this.convertMode(selection.mode);
                 builder.withMode(mode);
@@ -818,12 +874,16 @@ class GuiGridRowSelectionConverter {
                 const type = this.convertType(selection.type);
                 builder.withType(type);
             }
+            if (selection.matcher !== undefined) {
+                const matcher = this.convertMatcher(selection.matcher);
+                builder.withMatcher(matcher);
+            }
             return builder.build();
         }
     }
     convertMode(mode) {
         if (typeof mode === 'string') {
-            switch (mode) {
+            switch (mode.toLowerCase()) {
                 case 'single':
                     return RowSelectionMode.SINGLE;
                 case 'multiple':
@@ -845,11 +905,13 @@ class GuiGridRowSelectionConverter {
     }
     convertType(type) {
         if (typeof type === 'string') {
-            switch (type) {
+            switch (type.toLowerCase()) {
                 case 'row':
                     return RowSelectionType.ROW;
                 case 'checkbox':
                     return RowSelectionType.CHECKBOX;
+                case 'radio':
+                    return RowSelectionType.RADIO;
                 default:
                     return RowSelectionType.ROW;
             }
@@ -860,9 +922,19 @@ class GuiGridRowSelectionConverter {
                     return RowSelectionType.ROW;
                 case GuiRowSelectionType.CHECKBOX:
                     return RowSelectionType.CHECKBOX;
+                case GuiRowSelectionType.RADIO:
+                    return RowSelectionType.RADIO;
                 default:
                     return RowSelectionType.ROW;
             }
+        }
+    }
+    convertMatcher(matcher) {
+        if (typeof matcher === 'string') {
+            return (item) => item[matcher];
+        }
+        else {
+            return matcher;
         }
     }
 }
@@ -1018,7 +1090,7 @@ class GuiGridGateway {
         const guiRows = rows.map((row) => {
             return {
                 index: row.getIndex(),
-                source: row.getSource(),
+                source: row.getItem(),
                 itemId: row.getItemId()
             };
         });
@@ -1162,13 +1234,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
 const structureParentComponent = new InjectionToken('StructureParentComponent');
 
 class SelectedRow {
-    constructor(source, index, itemId) {
-        this.source = source;
+    constructor(item, index, itemId) {
+        this.item = item;
         this.index = index;
         this.itemId = itemId;
     }
-    getSource() {
-        return this.source;
+    getItem() {
+        return this.item;
     }
     getIndex() {
         return this.index;
@@ -1221,7 +1293,7 @@ class GuiGridApiProvider {
             getSelectedRows() {
                 const rows = fw.findSelectedRows(structureId).getValueOrNullOrThrowError();
                 return rows.map((r) => {
-                    return { source: r.getSource(), index: r.getIndex(), itemId: r.getItemId() };
+                    return { source: r.getItem(), index: r.getIndex(), itemId: r.getItemId() };
                 });
             },
             selectAll() {
@@ -1442,59 +1514,6 @@ ClassModifier.ClassModifier = (_a$1 = class {
     _a$1.CLASS = 'class',
     _a$1);
 
-var StyleName;
-(function (StyleName) {
-    StyleName["WIDTH"] = "width";
-    StyleName["HEIGHT"] = "height";
-    StyleName["PADDING_TOP"] = "padding-top";
-})(StyleName || (StyleName = {}));
-
-var _a;
-class StyleModifier extends Modifier {
-    constructor(htmlElement) {
-        super(htmlElement);
-        this.htmlElement = htmlElement;
-    }
-    createModifier(htmlElement) {
-        return new StyleModifier.StyleModifier(htmlElement);
-    }
-}
-// eslint-disable-next-line
-StyleModifier.StyleModifier = (_a = class {
-    constructor(htmlElement) {
-        this.htmlElement = htmlElement;
-    }
-    setStyleByName(name, value) {
-        this.set(name, value);
-    }
-    setWidth(value) {
-        this.set(StyleName.WIDTH, this.toPx(value));
-    }
-    setHeight(value) {
-        this.set(StyleName.HEIGHT, this.toPx(value));
-    }
-    setPaddingTop(value) {
-        this.set(StyleName.PADDING_TOP, this.toPx(value));
-    }
-    remove(styleName) {
-        this.htmlElement[StyleModifier.StyleModifier.STYLE][styleName] = '';
-    }
-    removeStyleByName(name) {
-        this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = '';
-    }
-    clear() {
-        this.htmlElement.removeAttribute(StyleModifier.StyleModifier.STYLE);
-    }
-    set(name, value) {
-        this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = value;
-    }
-    toPx(value) {
-        return value > 0 ? `${value}px` : `${value}`;
-    }
-},
-    _a.STYLE = 'style',
-    _a);
-
 class AttributeModifier extends Modifier {
     constructor(htmlElement) {
         super(htmlElement);
@@ -1626,20 +1645,6 @@ class GuiGridRegister {
 GuiGridRegister.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridRegister, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
 GuiGridRegister.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridRegister });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridRegister, decorators: [{
-            type: Injectable
-        }] });
-
-class GuiGridIdGenerator {
-    generateId() {
-        GuiGridIdGenerator.index++;
-        return GuiGridIdGenerator.PREFIX + GuiGridIdGenerator.index;
-    }
-}
-GuiGridIdGenerator.PREFIX = 'gui-grid-';
-GuiGridIdGenerator.index = 0;
-GuiGridIdGenerator.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-GuiGridIdGenerator.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator, decorators: [{
             type: Injectable
         }] });
 
@@ -2109,6 +2114,9 @@ class SmartComponent extends GuiComponent {
     isViewInDom() {
         return this.viewInDom;
     }
+    /**
+     * @deprecated instead use useReactiveContext
+     */
     subscribe(stream$, callback) {
         stream$
             .pipe(this.takeUntil())
@@ -2117,6 +2125,9 @@ class SmartComponent extends GuiComponent {
             this.reRender();
         });
     }
+    /**
+     * @deprecated instead use useReactiveContext
+     */
     subscribeWithoutRender(stream$, callback) {
         stream$
             .pipe(this.takeUntil())
@@ -2395,7 +2406,7 @@ class FormationEventRepository extends EventRepository {
             const selectedRows = event.getSelectedRows();
             const structureId = event.getAggregateId();
             return this.sourceWarehouse
-                .onPreparedEntities(structureId)
+                .onPreparedItems(structureId)
                 .pipe(hermesTake(1), hermesMap((items) => {
                 const selectedItems = [], length = items.length, itemsMap = new Map();
                 for (let i = 0; i < length; i += 1) {
@@ -2526,13 +2537,6 @@ class ColumnFieldFactory {
     }
 }
 
-class RowSelectionTypeArchive extends Archive {
-    constructor() {
-        super(RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE);
-    }
-}
-RowSelectionTypeArchive.DEFAULT_ROW_SELECTION_TYPE = RowSelectionType.ROW;
-
 class SearchEventRepository extends EventRepository {
     constructor() {
         super();
@@ -2575,7 +2579,7 @@ StructureInitialValuesReadyArchive.default = false;
 
 /** @internal */
 class StructureGateway extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandInvoker, searchCommandInvoker, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
+    constructor(changeDetectorRef, elementRef, columnAutoConfigurator, structureId, compositionId, schemaId, structureCommandInvoker, structurePagingCommandDispatcher, pagingEventRepository, sortingCommandInvoker, searchCommandInvoker, sourceCommandService, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.columnAutoConfigurator = columnAutoConfigurator;
@@ -2598,7 +2602,6 @@ class StructureGateway extends SmartComponent {
         this.structureInfoPanelConfigService = structureInfoPanelConfigService;
         this.structureCellEditStore = structureCellEditStore;
         this.columnFieldFactory = columnFieldFactory;
-        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.searchEventRepository = searchEventRepository;
         this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
@@ -2706,11 +2709,11 @@ class StructureGateway extends SmartComponent {
         this.changeAfterInit = true;
     }
 }
-StructureGateway.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureGateway, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ColumnAutoConfigurator }, { token: StructureId }, { token: CompositionId }, { token: SchemaReadModelRootId }, { token: StructurePublisher }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SortingPublisher }, { token: SearchPublisher }, { token: SourcePublisher }, { token: SourceEventService }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: RowSelectionTypeArchive }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }], target: i0.ɵɵFactoryTarget.Directive });
+StructureGateway.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureGateway, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ColumnAutoConfigurator }, { token: StructureId }, { token: CompositionId }, { token: SchemaReadModelRootId }, { token: StructurePublisher }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SortingPublisher }, { token: SearchPublisher }, { token: SourcePublisher }, { token: SourceEventService }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }], target: i0.ɵɵFactoryTarget.Directive });
 StructureGateway.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: StructureGateway, inputs: { maxHeight: "maxHeight", width: "width", rowHeight: "rowHeight", autoResizeWidth: "autoResizeWidth", source: "source", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", theme: "theme" }, outputs: { themeChanged: "themeChanged", columnsChanged: "columnsChanged", containerWidthChanged: "containerWidthChanged", sourceEdited: "sourceEdited", cellEditEntered: "cellEditEntered", cellEditCanceled: "cellEditCanceled", cellEditSubmitted: "cellEditSubmitted" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureGateway, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ColumnAutoConfigurator }, { type: StructureId }, { type: CompositionId }, { type: SchemaReadModelRootId }, { type: StructurePublisher }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SortingPublisher }, { type: SearchPublisher }, { type: SourcePublisher }, { type: SourceEventService }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: RowSelectionTypeArchive }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }]; }, propDecorators: { maxHeight: [{
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ColumnAutoConfigurator }, { type: StructureId }, { type: CompositionId }, { type: SchemaReadModelRootId }, { type: StructurePublisher }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SortingPublisher }, { type: SearchPublisher }, { type: SourcePublisher }, { type: SourceEventService }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }]; }, propDecorators: { maxHeight: [{
                 type: Input
             }], width: [{
                 type: Input
@@ -2827,12 +2830,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             type: Injectable
         }], ctorParameters: function () { return []; } });
 
-class RowSelectEnabledRepository extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-
 class StructureCellEditCloseAllService {
     constructor() {
         this.closeAll$ = new HermesSubject();
@@ -2890,14 +2887,6 @@ class DynamicallyCreatedComponent {
         // Works with Angular 12
         // return !this.isEmpty((this.constructor as any).ɵcmp.inputs);
     }
-    isEmpty(obj) {
-        for (const key in obj) {
-            if (obj.hasOwnProperty(key)) {
-                return false;
-            }
-        }
-        return true;
-    }
     throwError(reason) {
         throw new Error(`Component "${this.subClassConstructor.name}" is a DynamicallyCreatedComponent, ${reason}.`);
     }
@@ -2914,10 +2903,10 @@ class StructureRowDetailViewComponent extends DynamicallyCreatedComponent {
         this.item = item;
         this.template = template;
         this.sanitizer = sanitizer;
-        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.template(this.item.getSource(), this.item.getIndex()));
+        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.template(this.item.getItem(), this.item.getIndex()));
     }
     ngOnInit() {
-        this.selectedRowValue = this.item.getSource();
+        this.selectedRowValue = this.item.getItem();
     }
 }
 StructureRowDetailViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureRowDetailViewComponent, deps: [{ token: structureRowDetailViewItem }, { token: structureRowDetailViewTemplate }, { token: i1.DomSanitizer }], target: i0.ɵɵFactoryTarget.Component });
@@ -3371,7 +3360,6 @@ class PagingComponent extends SmartComponent {
     constructor(elRef, changeDetectorRef, cssClassModifier, structureId, pagingWarehouse, pagingCommandInvoker, sourceWarehouse, pagingDisplayModeArchive) {
         super(changeDetectorRef, elRef);
         this.elRef = elRef;
-        this.changeDetectorRef = changeDetectorRef;
         this.cssClassModifier = cssClassModifier;
         this.structureId = structureId;
         this.pagingWarehouse = pagingWarehouse;
@@ -3691,8 +3679,8 @@ class PrevPageCommand extends StructureCommand {
 }
 
 class PagingDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    constructor(commandDispatcher) {
+        this.commandDispatcher = commandDispatcher;
     }
     setPaging(paging, structureId) {
         this.commandDispatcher.dispatch(new SetPagingCommand(structureId, paging));
@@ -3707,6 +3695,7 @@ class PagingDispatcher {
         this.commandDispatcher.dispatch(new PrevPageCommand(structureId));
     }
 }
+PagingDispatcher.services = [CommandDispatcher];
 
 class PagingSetEvent extends StructureDomainEvent {
     constructor(aggregateId) {
@@ -4050,7 +4039,9 @@ class PagingApiModule {
         container.provide(PagingConverter);
     }
 }
-const pagingInitializer = new DomainInitializer(new PagingApiModule(), new PagingDomainModule());
+function initializePaging() {
+    new DomainInitializer(new PagingApiModule(), new PagingDomainModule()).init();
+}
 
 class Dictionary {
     constructor() {
@@ -4126,7 +4117,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                 }]
         }] });
 
-pagingInitializer.init();
+initializePaging();
 function providePagingCommandInvoker() {
     return CoreContainer.resolve(PagingPublisher);
 }
@@ -4216,19 +4207,717 @@ StructureFooterPanelConfigArchive.footerPanelConfig = {
     template: 'Footer Panel'
 };
 
-class ToggleSortCommand extends StructureCommand {
-    constructor(structureId, compositionId, fieldId) {
-        super(structureId, 'ToggleSortCommand');
-        this.compositionId = compositionId;
-        this.fieldId = fieldId;
+const filterContainerToken = 'Filter container token';
+
+var StyleName;
+(function (StyleName) {
+    StyleName["WIDTH"] = "width";
+    StyleName["HEIGHT"] = "height";
+    StyleName["PADDING_TOP"] = "padding-top";
+})(StyleName || (StyleName = {}));
+
+var _a;
+class StyleModifier extends Modifier {
+    constructor(htmlElement) {
+        super(htmlElement);
     }
-    getCompositionId() {
-        return this.compositionId;
+    createModifier(htmlElement) {
+        return new StyleModifier.StyleModifier(htmlElement);
+    }
+}
+// eslint-disable-next-line
+StyleModifier.StyleModifier = (_a = class {
+    constructor(htmlElement) {
+        this.htmlElement = htmlElement;
+    }
+    setStyleByName(name, value) {
+        this.set(name, value);
+    }
+    setWidth(value) {
+        this.set(StyleName.WIDTH, this.toPx(value));
+    }
+    setHeight(value) {
+        this.set(StyleName.HEIGHT, this.toPx(value));
+    }
+    setPaddingTop(value) {
+        this.set(StyleName.PADDING_TOP, this.toPx(value));
+    }
+    remove(styleName) {
+        this.htmlElement[StyleModifier.StyleModifier.STYLE][styleName] = '';
+    }
+    removeStyleByName(name) {
+        this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = '';
+    }
+    clear() {
+        this.htmlElement.removeAttribute(StyleModifier.StyleModifier.STYLE);
+    }
+    set(name, value) {
+        this.htmlElement[StyleModifier.StyleModifier.STYLE][name] = value;
+    }
+    toPx(value) {
+        return value > 0 ? `${value}px` : `${value}`;
+    }
+},
+    _a.STYLE = 'style',
+    _a);
+
+class FieldPublisher {
+    constructor() {
+    }
+}
+
+class StructureWarehouse {
+    constructor(structureRepository, structureCellEditArchive) {
+        this.structureRepository = structureRepository;
+        this.structureCellEditArchive = structureCellEditArchive;
+    }
+    on(structureId) {
+        return this.structureRepository.on(structureId);
+    }
+    onEditManager(structureId) {
+        return this.structureCellEditArchive
+            .on(structureId);
+    }
+}
+StructureWarehouse.services = [StructureReadModelRepository, StructureCellEditArchive];
+
+const prefix = 'Structure -';
+const STRUCTURE_CSS_CLASS_NAME = new InjectionToken(`${prefix} - css className`);
+
+class SummariesWarehouse {
+    constructor() {
+    }
+}
+
+class SearchWarehouse {
+    constructor() {
+    }
+}
+
+class SummariesTranslations {
+    constructor(distinctTooltip, averageTooltip, minTooltip, maxTooltip, medTooltip, countTooltip) {
+        this.distinctTooltip = distinctTooltip;
+        this.averageTooltip = averageTooltip;
+        this.minTooltip = minTooltip;
+        this.maxTooltip = maxTooltip;
+        this.medTooltip = medTooltip;
+        this.countTooltip = countTooltip;
+    }
+}
+
+class SummariesEventRepository extends EventRepository {
+    constructor() {
+        super();
+    }
+}
+
+var SortOrder;
+(function (SortOrder) {
+    SortOrder[SortOrder["ASC"] = 0] = "ASC";
+    SortOrder[SortOrder["DESC"] = 1] = "DESC";
+    SortOrder[SortOrder["NONE"] = 2] = "NONE";
+})(SortOrder || (SortOrder = {}));
+
+// Basically header template
+class CellTemplateWithContext {
+    constructor(
+    // public viewTemplate: TemplateRef<any> | null = null,
+    // 		public editTemplate: TemplateRef<any> | null = null,
+    // public editContext: any,
+    header, dataType, context, width, fieldId, columnDefinitionId, sortStatus, enabled, cssClasses, styles, sortable, align) {
+        this.header = header;
+        this.dataType = dataType;
+        this.context = context;
+        this.width = width;
+        this.fieldId = fieldId;
+        this.columnDefinitionId = columnDefinitionId;
+        this.sortStatus = sortStatus;
+        this.enabled = enabled;
+        this.cssClasses = cssClasses;
+        this.styles = styles;
+        this.sortable = sortable;
+        this.align = align;
+    }
+    getHeader() {
+        return this.header;
+    }
+    getDataType() {
+        return this.dataType;
+    }
+    getColumnDefinitionId() {
+        return this.columnDefinitionId;
     }
     getFieldId() {
         return this.fieldId;
     }
+    getSortStatus() {
+        return this.sortStatus;
+    }
+    getCssClasses() {
+        return this.cssClasses;
+    }
+    getStyles() {
+        return this.styles;
+    }
+    isSortEnabled() {
+        return this.sortable;
+    }
+    isAscSort() {
+        return this.sortStatus === SortOrder.ASC;
+    }
+    isDescSort() {
+        return this.sortStatus === SortOrder.DESC;
+    }
+    isNoSort() {
+        return this.sortStatus === SortOrder.NONE;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+    isAlignLeft() {
+        return this.align === ColumnAlign.LEFT;
+    }
+    isAlignCenter() {
+        return this.align === ColumnAlign.CENTER;
+    }
+    isAlignRight() {
+        return this.align === ColumnAlign.RIGHT;
+    }
+    getAlign() {
+        return this.align;
+    }
 }
+
+class CompositionTemplateModel extends CellTemplateWithContext {
+    constructor(viewTemplate = null, editTemplate = null, context) {
+        super(context.getHeader(), context.getDataType(), context.context, context.width, context.getFieldId(), context.getColumnDefinitionId(), context.getSortStatus(), context.isEnabled(), context.getCssClasses(), context.getStyles(), context.isSortEnabled(), context.getAlign());
+        this.viewTemplate = viewTemplate;
+        this.editTemplate = editTemplate;
+    }
+}
+
+var CellValueType;
+(function (CellValueType) {
+    CellValueType[CellValueType["TEXT"] = 0] = "TEXT";
+    CellValueType[CellValueType["HTML"] = 1] = "HTML";
+})(CellValueType || (CellValueType = {}));
+class CellValue {
+    constructor(value, type) {
+        this.value = value;
+        this.type = type;
+    }
+    static text(value) {
+        return new CellValue(value, CellValueType.TEXT);
+    }
+    static HTML(value) {
+        return new CellValue(value, CellValueType.HTML);
+    }
+}
+
+class CellTemplateWithAccessor {
+    constructor(columnConfig, columnDefinitionId, name, 
+    // public template: TemplateRef<any> | null = null,
+    // public editTemplate: TemplateRef<any> | null = null,
+    editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
+    view) {
+        this.columnConfig = columnConfig;
+        this.columnDefinitionId = columnDefinitionId;
+        this.name = name;
+        this.editable = editable;
+        this.templateFun = templateFun;
+        this.formatterFun = formatterFun;
+        this.accessor = accessor;
+        this.searchAccessor = searchAccessor;
+        this.width = width;
+        this.columnFieldId = columnFieldId;
+        this.align = align;
+        this.cellEditingEnabled = cellEditingEnabled;
+        this.type = type;
+        this.view = view;
+    }
+    getDataType() {
+        return this.type;
+    }
+    getCellView() {
+        return this.view.getCellView();
+    }
+    getColumnConfig() {
+        return this.columnConfig;
+    }
+    isCellEditingEnabled() {
+        return this.cellEditingEnabled;
+    }
+    isBooleanDataType() {
+        return this.type === DataType.BOOLEAN;
+    }
+    isAlignLeft() {
+        return this.align === ColumnAlign.LEFT;
+    }
+    isAlignCenter() {
+        return this.align === ColumnAlign.CENTER;
+    }
+    isAlignRight() {
+        return this.align === ColumnAlign.RIGHT;
+    }
+    getAlign() {
+        return this.align;
+    }
+    getType() {
+        return this.type;
+    }
+    getView() {
+        return this.view;
+    }
+    getName() {
+        return this.name;
+    }
+    // REFACTOR #1581
+    getValue(entity, searchPhrase) {
+        const cellValue = this.findValue(entity, searchPhrase);
+        cellValue.value = this.templateFun(cellValue.value, entity.getSourceItem());
+        if (this.formatterFun) {
+            cellValue.value = this.formatterFun(cellValue.value, entity.getSourceItem());
+        }
+        return cellValue;
+    }
+    getClasses() {
+        return 'gui-cell-highlighted';
+    }
+    findValue(entity, searchPhrase) {
+        const value = this.accessor(entity);
+        if (this.type !== DataType.STRING) {
+            return CellValue.text(value);
+        }
+        if (this.view && this.view.getCellView() === CellView.FUNCTION) {
+            return CellValue.text(value);
+        }
+        if (searchPhrase) {
+            let txt = '' + this.searchAccessor(entity);
+            const lowerCasedText = txt.toLocaleLowerCase(), loweredSearchPhrase = searchPhrase.toLocaleLowerCase();
+            const positions = [];
+            let index = 0;
+            while (index < loweredSearchPhrase.length) {
+                const found = lowerCasedText.indexOf(loweredSearchPhrase, index);
+                if (found >= 0) {
+                    positions.push(found);
+                    index = found + searchPhrase.length;
+                }
+                else {
+                    index = loweredSearchPhrase.length;
+                }
+            }
+            const arr = txt.split('');
+            positions.forEach((pos) => {
+                for (let i = 0; i < searchPhrase.length; i += 1) {
+                    let ph;
+                    if (i === 0) {
+                        ph = `<span class="gui-text-highlight">${arr[pos + i]}`;
+                    }
+                    else {
+                        ph = arr[pos + i];
+                    }
+                    if (i === searchPhrase.length - 1) {
+                        ph += '</span>';
+                    }
+                    arr[pos + i] = ph;
+                }
+            });
+            txt = arr.join('');
+            return CellValue.HTML(txt);
+        }
+        else {
+            return CellValue.text(value);
+        }
+    }
+}
+
+class CompositionAccessorModel extends CellTemplateWithAccessor {
+    constructor(template = null, editTemplate = null, context) {
+        super(context.getColumnConfig(), context.columnDefinitionId, context.getName(), context.editable, context.templateFun, context.formatterFun, context.accessor, context.searchAccessor, context.width, context.columnFieldId, context.getAlign(), context.isCellEditingEnabled(), context.getType(), context.getView());
+        this.template = template;
+        this.editTemplate = editTemplate;
+    }
+}
+
+const CompositionAggregateEvents = {
+    CompositionResizeWidthSetAggregateEvent: 'CompositionResizeWidthSetAggregateEvent',
+    ColumnsSetAggregateEvent: 'ColumnsSetAggregateEvent',
+    CompositionContainerWidthSetAggregateEvent: 'CompositionContainerWidthSetAggregateEvent',
+    CompositionWidthSetAggregateEvent: 'CompositionWidthSetAggregateEvent',
+    CompositionColumnSetEnabledAggregateEvent: 'CompositionColumnSetEnabledAggregateEvent',
+    CompositionColumnMovedLeftAggregateEvent: 'CompositionColumnMovedLeftAggregateEvent',
+    CompositionColumnMovedRightAggregateEvent: 'CompositionColumnMovedRightAggregateEvent',
+    GroupsSetAggregateEvent: 'GroupsSetAggregateEvent'
+};
+
+class CompositionDomainEvent extends DomainEvent {
+}
+
+class CompositionResizeWidthSetEvent extends CompositionDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'CompositionResizeWidthSetEvent');
+    }
+}
+
+class CompositionColumnsSetEvent extends CompositionDomainEvent {
+    constructor(compositionId) {
+        super(compositionId, null, 'CompositionColumnsSetEvent');
+    }
+}
+
+class CompositionContainerWidthSetEvent extends CompositionDomainEvent {
+    constructor(compositionId, payload) {
+        super(compositionId, payload, 'CompositionContainerWidthSetEvent');
+    }
+}
+
+class CompositionWidthSetEvent extends CompositionDomainEvent {
+    constructor(compositionId) {
+        super(compositionId, null, 'CompositionWidthSetEvent');
+    }
+}
+
+class CompositionColumnSetEnabledEvent extends CompositionDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'CompositionColumnSetEnabledEvent');
+    }
+}
+
+class CompositionColumnMovedLeftEvent extends CompositionDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'CompositionColumnMovedLeftEvent');
+    }
+}
+
+class CompositionColumnMovedRightEvent extends CompositionDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'CompositionColumnMovedRightEvent');
+    }
+}
+
+class CompositionGroupsSetEvent extends CompositionDomainEvent {
+    constructor(compositionId) {
+        super(compositionId, null, 'CompositionGroupsSetEvent');
+    }
+}
+
+class CompositionEventConverter {
+    convert(arg) {
+        if (Array.isArray(arg)) {
+            return this.convertEvents(arg);
+        }
+        else {
+            return this.convertEvent(arg);
+        }
+    }
+    convertEvents(aggregateEvents) {
+        return aggregateEvents.map((event) => {
+            return this.convertEvent(event);
+        });
+    }
+    convertEvent(aggregateEvent) {
+        switch (aggregateEvent.getType()) {
+            case CompositionAggregateEvents.CompositionResizeWidthSetAggregateEvent:
+                return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.ColumnsSetAggregateEvent:
+                return new CompositionColumnsSetEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.CompositionContainerWidthSetAggregateEvent:
+                const payload = aggregateEvent.containerWidth;
+                return new CompositionContainerWidthSetEvent(aggregateEvent.getAggregateId(), payload);
+            case CompositionAggregateEvents.CompositionWidthSetAggregateEvent:
+                return new CompositionWidthSetEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.CompositionColumnSetEnabledAggregateEvent:
+                return new CompositionColumnSetEnabledEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.CompositionColumnMovedLeftAggregateEvent:
+                return new CompositionColumnMovedLeftEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.CompositionColumnMovedRightAggregateEvent:
+                return new CompositionColumnMovedRightEvent(aggregateEvent.getAggregateId());
+            case CompositionAggregateEvents.GroupsSetAggregateEvent:
+                return new CompositionGroupsSetEvent(aggregateEvent.getAggregateId());
+            default:
+                return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
+        }
+    }
+}
+
+class CompositionCommand extends Command {
+}
+
+class SetColumnsCommand extends CompositionCommand {
+    constructor(compositionId, columns) {
+        super(compositionId, 'SetColumnsCommand');
+        this.compositionId = compositionId;
+        this.columns = columns;
+    }
+    getParams() {
+        return this.columns;
+    }
+}
+
+class SetColumnsCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetColumnsCommand;
+    }
+    handle(aggregate, command) {
+        const setColumnsParams = command.getParams();
+        aggregate.setColumns(setColumnsParams);
+    }
+    publish(aggregate, command) {
+        this.publishEvents(aggregate, command);
+    }
+    publishEvents(composition, command) {
+        const events = composition.getEvents();
+        const domainEvents = this.compositionEventConverter.convert(events);
+        this.domainEventPublisher.publish(domainEvents);
+    }
+}
+SetColumnsCommandHandler.services = [CompositionEventConverter];
+
+class SetCompositionWidthCommand extends CompositionCommand {
+    constructor(structureId, width) {
+        super(structureId, 'SetCompositionWidthCommand');
+        this.structureId = structureId;
+        this.width = width;
+    }
+    getWidth() {
+        return this.width;
+    }
+}
+
+class SetCompositionWidthCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetCompositionWidthCommand;
+    }
+    handle(composition, command) {
+        const width = command.getWidth();
+        composition.setWidth(width);
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publish(new CompositionWidthSetEvent(command.getAggregateId()));
+    }
+}
+
+class SetCompositionResizeWidthCommand extends CompositionCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'SetCompositionResizeWidthCommand');
+        this.structureId = structureId;
+        this.enabled = enabled;
+    }
+    getEnabled() {
+        return this.enabled;
+    }
+}
+
+class SetCompositionResizeWidthCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetCompositionResizeWidthCommand;
+    }
+    handle(composition, command) {
+        const enabled = command.getEnabled();
+        composition.setResizeWidth(enabled);
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publish(new CompositionResizeWidthSetEvent(command.getAggregateId()));
+    }
+}
+
+class SetCompositionContainerWidthCommand extends CompositionCommand {
+    constructor(structureId, width) {
+        super(structureId, 'SetCompositionContainerWidthCommand');
+        this.structureId = structureId;
+        this.width = width;
+    }
+    getWidth() {
+        return this.width;
+    }
+}
+
+class SetCompositionContainerWidthCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetCompositionContainerWidthCommand;
+    }
+    handle(composition, command) {
+        const width = command.getWidth();
+        composition.setContainerWidth(width);
+    }
+    publish(aggregate, command) {
+        this.publishAggregateEvents(aggregate.getEvents());
+    }
+    publishAggregateEvents(aggregateEvents) {
+        const domainEvents = this.compositionEventConverter.convert(aggregateEvents);
+        this.domainEventPublisher.publish(domainEvents);
+    }
+}
+SetCompositionContainerWidthCommandHandler.services = [CompositionEventConverter];
+
+class CompositionSetColumnEnabledCommand extends CompositionCommand {
+    constructor(compositionId, columnId, enabled) {
+        super(compositionId, 'CompositionSetColumnEnabledCommand');
+        this.compositionId = compositionId;
+        this.columnId = columnId;
+        this.enabled = enabled;
+    }
+    getColumnId() {
+        return this.columnId;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class CompositionSetColumnEnabledCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return CompositionSetColumnEnabledCommand;
+    }
+    handle(aggregate, command) {
+        const columnId = command.getColumnId(), enabled = command.isEnabled();
+        aggregate.enableColumn(columnId, enabled);
+    }
+    publish(aggregate, command) {
+        this.publishEvents(aggregate, command);
+    }
+    publishEvents(composition, command) {
+        const events = composition.getEvents();
+        const domainEvents = this.compositionEventConverter.convert(events);
+        if (domainEvents && domainEvents.length > 0) {
+            this.domainEventPublisher.publish(domainEvents);
+        }
+    }
+}
+CompositionSetColumnEnabledCommandHandler.services = [CompositionEventConverter];
+
+class CompositionChangeSortStatusCommand extends CompositionCommand {
+    constructor(compositionId, sortParams) {
+        super(compositionId, 'CompositionChangeSortStatusCommand');
+        this.compositionId = compositionId;
+        this.sortParams = sortParams;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    getSortParams() {
+        return this.sortParams;
+    }
+}
+
+class CompositionChangeSortStatusEvent extends CompositionDomainEvent {
+    constructor(aggregateId, activeColumns) {
+        super(aggregateId, activeColumns, 'CompositionChangeSortStatusEvent');
+        this.activeColumns = activeColumns;
+    }
+    getCompositionId() {
+        return this.getAggregateId();
+    }
+    getActiveColumns() {
+        return this.activeColumns;
+    }
+}
+
+class CompositionChangeSortStatusCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return CompositionChangeSortStatusCommand;
+    }
+    handle(composition, command) {
+        const sortParams = command.getSortParams();
+        composition.changeSort(sortParams);
+    }
+    publish(composition, command) {
+        const compositionId = command.getAggregateId(), columns = composition.getActiveColumns();
+        this.domainEventPublisher.publish(new CompositionChangeSortStatusEvent(compositionId, columns));
+    }
+}
+
+class CompositionMoveLeftColumnCommand extends CompositionCommand {
+    constructor(compositionId, columnId) {
+        super(compositionId, 'CompositionMoveLeftColumnCommand');
+        this.compositionId = compositionId;
+        this.columnId = columnId;
+    }
+    getColumnId() {
+        return this.columnId;
+    }
+}
+
+class CompositionMoveLeftColumnCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return CompositionMoveLeftColumnCommand;
+    }
+    handle(aggregate, command) {
+        const columnId = command.getColumnId();
+        aggregate.moveLeft(columnId);
+    }
+    publish(aggregate, command) {
+        this.publishEvents(aggregate, command);
+    }
+    publishEvents(composition, command) {
+        const events = composition.getEvents();
+        const domainEvents = this.compositionEventConverter.convert(events);
+        if (domainEvents && domainEvents.length > 0) {
+            this.domainEventPublisher.publish(domainEvents);
+        }
+    }
+}
+CompositionMoveLeftColumnCommandHandler.services = [CompositionEventConverter];
+
+class CompositionMoveRightColumnCommand extends CompositionCommand {
+    constructor(compositionId, columnId) {
+        super(compositionId, 'CompositionMoveRightColumnCommand');
+        this.columnId = columnId;
+    }
+    getColumnId() {
+        return this.columnId;
+    }
+}
+
+class CompositionMoveRightColumnCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return CompositionMoveRightColumnCommand;
+    }
+    handle(aggregate, command) {
+        const columnId = command.getColumnId();
+        aggregate.moveRight(columnId);
+    }
+    publish(aggregate, command) {
+        this.publishEvents(aggregate, command);
+    }
+    publishEvents(composition, command) {
+        const events = composition.getEvents();
+        const domainEvents = this.compositionEventConverter.convert(events);
+        if (domainEvents && domainEvents.length > 0) {
+            this.domainEventPublisher.publish(domainEvents);
+        }
+    }
+}
+CompositionMoveRightColumnCommandHandler.services = [CompositionEventConverter];
 
 class SortToggledEvent extends StructureDomainEvent {
     constructor(aggregateId, compositionId, directions) {
@@ -4244,78 +4933,64 @@ class SortToggledEvent extends StructureDomainEvent {
     }
 }
 
-class ToggleSortCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return ToggleSortCommand;
-    }
-    handle(structure, command) {
-        const aggregateId = command.getAggregateId(), compositionId = command.getCompositionId(), fieldId = command.getFieldId();
-        const sorters = structure.toggleSort(fieldId);
-        this.publishSortEvent(aggregateId, compositionId, fieldId, sorters);
-    }
-    publish(aggregate, command) {
-    }
-    publishSortEvent(aggregateId, compositionId, fieldId, sorters) {
-        const directions = sorters.map((sorter) => {
-            return {
-                direction: sorter.hasDirection(),
-                fieldId: sorter.getField().getId()
-            };
-        });
-        this.domainEventPublisher.publish(new SortToggledEvent(aggregateId, compositionId, directions));
-    }
-}
-
-class SetSortingCommand extends StructureCommand {
-    constructor(structureId, sortingConfig) {
-        super(structureId, 'SetSortingCommand');
-        this.sortingConfig = sortingConfig;
-    }
-    getSortingConfig() {
-        return this.sortingConfig;
-    }
-}
-
-class SortingSetEvent extends StructureDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'SortingSetEvent');
-    }
-}
-
-class SetSortingCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSortingCommand;
-    }
-    handle(aggregate, command) {
-        const sortingConfig = command.getSortingConfig();
-        aggregate.setSortingConfig(sortingConfig);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publish(new SortingSetEvent(command.getAggregateId()));
-    }
-}
-
-class SetSortOrderCommand extends StructureCommand {
-    constructor(structureId, compositionId, fieldId, sortOrder) {
-        super(structureId, 'SetSortOrderCommand');
+class CreateCompositionCommand extends CompositionCommand {
+    constructor(compositionId) {
+        super(compositionId, 'CreateCompositionCommand');
         this.compositionId = compositionId;
+    }
+}
+
+class SetGroupsCommand extends CompositionCommand {
+    constructor(compositionId, configs) {
+        super(compositionId, 'SetGroupsCommand');
+        this.compositionId = compositionId;
+        this.configs = configs;
+    }
+    getConfigs() {
+        return this.configs;
+    }
+}
+
+class CompositionDispatcher {
+    constructor() {
+        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    }
+    create(compositionId) {
+        this.commandDispatcher.dispatch(new CreateCompositionCommand(compositionId));
+    }
+    setColumns(compositionId, params) {
+        this.commandDispatcher.dispatch(new SetColumnsCommand(compositionId, params));
+    }
+    setGroups(compositionId, params) {
+        this.commandDispatcher.dispatch(new SetGroupsCommand(compositionId, params));
+    }
+    setWidth(compositionId, width) {
+        this.commandDispatcher.dispatch(new SetCompositionWidthCommand(compositionId, width));
+    }
+    setContainerWidth(compositionId, width) {
+        this.commandDispatcher.dispatch(new SetCompositionContainerWidthCommand(compositionId, width));
+    }
+    setResizeWidth(compositionId, enabled) {
+        this.commandDispatcher.dispatch(new SetCompositionResizeWidthCommand(compositionId, enabled));
+    }
+    changeSort(compositionId, params) {
+        this.commandDispatcher.dispatch(new CompositionChangeSortStatusCommand(compositionId, params));
+    }
+    setColumnEnabled(compositionId, columnId, enabled) {
+        this.commandDispatcher.dispatch(new CompositionSetColumnEnabledCommand(compositionId, columnId, enabled));
+    }
+    moveLeft(compositionId, columnId) {
+        this.commandDispatcher.dispatch(new CompositionMoveLeftColumnCommand(compositionId, columnId));
+    }
+    moveRight(compositionId, columnId) {
+        this.commandDispatcher.dispatch(new CompositionMoveRightColumnCommand(compositionId, columnId));
+    }
+}
+
+class ChangeSortParams {
+    constructor(fieldId, direction) {
         this.fieldId = fieldId;
-        this.sortOrder = sortOrder;
-    }
-    getCompositionId() {
-        return this.compositionId;
-    }
-    getFieldId() {
-        return this.fieldId;
-    }
-    getSortOrder() {
-        return this.sortOrder;
+        this.direction = direction;
     }
 }
 
@@ -4333,532 +5008,2786 @@ class SortOrderSetEvent extends StructureDomainEvent {
     }
 }
 
-class SetSortOrderCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+class CompositionChangeSortStatusEventHandler {
+    constructor(compositionDispatcher) {
+        this.compositionDispatcher = compositionDispatcher;
     }
-    forCommand() {
-        return SetSortOrderCommand;
-    }
-    handle(structure, command) {
-        const structureId = command.getAggregateId(), compositionId = command.getCompositionId(), fieldId = command.getFieldId(), sortOrder = command.getSortOrder();
-        const sorters = structure.setSortOrder(fieldId, sortOrder);
-        this.publishSortEvent(structureId, compositionId, fieldId, sorters);
-    }
-    publish(aggregate, command) {
-    }
-    publishSortEvent(aggregateId, compositionId, fieldId, sorters) {
-        const directions = sorters.map((sorter) => {
-            return {
-                direction: sorter.hasDirection(),
-                fieldId: sorter.getField().getId()
-            };
-        });
-        this.domainEventPublisher.publish(new SortOrderSetEvent(aggregateId, compositionId, directions));
-    }
-}
-
-class SortingDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    setSortingConfig(config, structureId) {
-        this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
-    }
-    toggleSort(fieldId, compositionId, structureId) {
-        this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
-    }
-    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
-        this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
-    }
-}
-
-class SortingDomainModule {
-    defineAggregate() {
-        return null;
-    }
-    registerKey() {
-        return structureKey;
-    }
-    registerProviders(container) {
-        container.provide(SortingDispatcher);
-    }
-    registerCommandHandlers() {
+    forEvents() {
         return [
-            ToggleSortCommandHandler,
-            SetSortingCommandHandler,
-            SetSortOrderCommandHandler
+            SortToggledEvent,
+            SortOrderSetEvent
         ];
     }
-    registerDomainEventHandler() {
-        return [];
+    handle(event) {
+        if (event.ofMessageType('SortToggledEvent')) {
+            const compositionId = event.getCompositionId(), dirs = event.getDirections();
+            const params = dirs.map((dir) => {
+                const columnFieldId = new ColumnFieldId(dir.fieldId.getId());
+                return new ChangeSortParams(columnFieldId, dir.direction);
+            });
+            this.compositionDispatcher.changeSort(compositionId, params);
+        }
+        if (event.ofMessageType('SortOrderSetEvent')) {
+            const compositionId = event.getCompositionId(), dirs = event.getDirections();
+            const params = dirs.map((dir) => {
+                const columnFieldId = new ColumnFieldId(dir.fieldId.getId());
+                return new ChangeSortParams(columnFieldId, dir.direction);
+            });
+            this.compositionDispatcher.changeSort(compositionId, params);
+        }
     }
-    registerMultiDomainEventHandler() {
-        return [];
+}
+CompositionChangeSortStatusEventHandler.services = [CompositionDispatcher];
+
+class ViewEntity {
+    constructor(cellView) {
+        this.templateFunction = (cellValue, item) => cellValue;
+        if (typeof cellView === 'function') {
+            this.view = CellView.FUNCTION;
+            this.templateFunction = cellView;
+        }
+        else {
+            this.view = cellView;
+        }
+    }
+    static fromDataType(dataType) {
+        if (dataType === DataType.DATE) {
+            return new ViewEntity(CellView.DATE);
+        }
+        else {
+            return new ViewEntity(CellView.TEXT);
+        }
+    }
+    getCellView() {
+        return this.view;
+    }
+    getTemplateFunction() {
+        return this.templateFunction;
     }
 }
 
-class SortingDomainPublisher extends SortingPublisher {
-    constructor(sortingDispatcher) {
-        super();
-        this.sortingDispatcher = sortingDispatcher;
+class AbstractColumnEntity extends Entity {
+    constructor(columnId, columnField, columnConfig, presentation, header, align, view, width) {
+        super(columnId);
+        this.columnField = columnField;
+        this.columnConfig = columnConfig;
+        this.presentation = presentation;
+        this.view = ViewEntity.fromDataType(columnField.getDataType());
+        if (header) {
+            this.header = header;
+        }
+        if (view) {
+            this.view = view;
+        }
+        if (width) {
+            this.width = width;
+        }
+        this.setInitialAlign(columnField, align);
     }
-    setSortingConfig(config, structureId) {
-        this.sortingDispatcher.setSortingConfig(config, structureId);
+    getPresentation() {
+        return this.presentation;
     }
-    toggleSort(fieldId, compositionId, structureId) {
-        this.sortingDispatcher.toggleSort(fieldId, compositionId, structureId);
+    getColumnConfig() {
+        return this.columnConfig;
     }
-    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
-        this.sortingDispatcher.setSortOrder(fieldId, sortOrder, compositionId, structureId);
+    getField() {
+        return this.columnField;
+    }
+    getHeader() {
+        return this.header;
+    }
+    getDataType() {
+        return this.columnField.getDataType();
+    }
+    getCellView() {
+        return this.view.getCellView();
+    }
+    getTemplateFunction() {
+        return this.view.getTemplateFunction();
+    }
+    getFormatterFunction() {
+        return this.columnConfig.formatter;
+    }
+    setView(view) {
+        this.view = view;
+    }
+    setHeader(header) {
+        this.header = header;
+    }
+    getView() {
+        return this.view;
+    }
+    getAlign() {
+        return this.align;
+    }
+    setWidth(width) {
+        this.width = width;
+    }
+    getWidth() {
+        return this.width;
+    }
+    isSortingEnabled() {
+        const config = this.columnConfig;
+        if (config.sorting !== undefined && config.sorting !== null) {
+            if (config.sorting.enabled === undefined || config.sorting.enabled === null) {
+                return true;
+            }
+            return config.sorting.enabled;
+        }
+        return true;
+    }
+    isCellEditingEnabled() {
+        const config = this.columnConfig;
+        if (config.cellEditing !== undefined && config.cellEditing !== null) {
+            if (config.cellEditing.enabled === undefined || config.cellEditing.enabled === null) {
+                return true;
+            }
+            return config.cellEditing.enabled;
+        }
+        return true;
+    }
+    setInitialAlign(columnField, align) {
+        if (align !== undefined && align !== null) {
+            this.align = align;
+        }
+        else if (columnField.getDataType() === DataType.NUMBER) {
+            this.align = ColumnAlign.RIGHT;
+        }
+        else {
+            this.align = ColumnAlign.LEFT;
+        }
     }
 }
-SortingDomainPublisher.services = [SortingDispatcher];
 
-class SortingApiModule {
-    registerProviders(container) {
-        container.provide(SortingPublisher, SortingDomainPublisher);
-    }
-}
-const sortingInitializer = new DomainInitializer(new SortingApiModule(), new SortingDomainModule());
-
-sortingInitializer.init();
-function provideSortingCommandInvoker() {
-    return CoreContainer.resolve(SortingPublisher);
-}
-class SortingFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [];
-    }
-}
-SortingFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-SortingFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, imports: [CommonModule] });
-SortingFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, providers: [
-        { provide: SortingPublisher, useFactory: provideSortingCommandInvoker }
-    ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    declarations: [],
-                    exports: [],
-                    providers: [
-                        { provide: SortingPublisher, useFactory: provideSortingCommandInvoker }
-                    ]
-                }]
-        }] });
-
-class SetConfigSearchingCommand extends StructureCommand {
-    constructor(structureId, searchConfig) {
-        super(structureId, 'SetConfigSearchingCommand');
-        this.searchConfig = searchConfig;
-    }
-    getConfig() {
-        return this.searchConfig;
-    }
-}
-
-class ConfigSearchingSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, enabled) {
-        super(aggregateId, enabled, 'ConfigSearchingSetEvent');
+class ColumnEntity extends AbstractColumnEntity {
+    constructor(columnId, columnField, columnConfig, enabled, presentation, header, align, view, width) {
+        super(columnId, columnField, columnConfig, presentation, header, align, view, width);
+        this.sortStatus = SortOrder.NONE;
+        this.enabled = true;
         this.enabled = enabled;
+        if (view === undefined) {
+            this.view = new ViewEntity(this.presentation.getDefaultView());
+        }
+        if (align === undefined) {
+            this.align = this.presentation.getDefaultAlign(this.view);
+        }
     }
     isEnabled() {
         return this.enabled;
     }
+    setEnabled(enabled) {
+        this.enabled = enabled;
+    }
+    getSortStatus() {
+        return this.sortStatus;
+    }
+    setSortStatus(status) {
+        this.sortStatus = status;
+    }
 }
 
-class SetConfigSearchingCommandHandler {
+class ColumnId extends EntityId {
+    constructor(id) {
+        super(id);
+    }
+    toString() {
+        return this.getId();
+    }
+}
+
+class ColumnPresentation {
+}
+
+class NumberColumnPresentation extends ColumnPresentation {
     constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+        super();
     }
-    forCommand() {
-        return SetConfigSearchingCommand;
-    }
-    handle(aggregate, command) {
-        const searchingConfig = command.getConfig();
-        aggregate.setSearchingConfig(searchingConfig);
-    }
-    publish(aggregate, command) {
-        const searchingConfig = command.getConfig();
-        this.domainEventPublisher.publish(new ConfigSearchingSetEvent(command.getAggregateId(), searchingConfig.enabled));
-    }
-}
-
-class SetSearchPhraseCommand extends StructureCommand {
-    constructor(structureId, phrase, initial) {
-        super(structureId, 'SetSearchPhraseCommand');
-        this.phrase = phrase;
-        this.initial = initial;
-    }
-    getPhrase() {
-        return this.phrase;
-    }
-    isInitial() {
-        return this.initial;
-    }
-}
-
-class SearchPhraseSetDomainEvent extends StructureDomainEvent {
-    constructor(aggregateId, phrase, initial) {
-        super(aggregateId, { phrase, initial }, 'SearchPhraseSetDomainEvent');
-        this.phrase = phrase;
-        this.initial = initial;
-    }
-    getPhrase() {
-        return this.phrase;
-    }
-    isInitial() {
-        return this.initial;
-    }
-}
-
-class OriginSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, origin) {
-        super(aggregateId, origin, 'OriginSetEvent');
-        this.origin = origin;
-    }
-    getOrigin() {
-        return this.origin;
-    }
-}
-
-class StructureSummariesChangedEvent extends StructureDomainEvent {
-    constructor(structureId, values) {
-        super(structureId, values, 'StructureSummariesChangedEvent');
-        this.values = values;
-    }
-    getSummaries() {
-        return this.values;
-    }
-}
-
-class StructurePreparedEntitiesSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, preparedItems) {
-        super(aggregateId, preparedItems, 'StructurePreparedEntitiesSetEvent');
-        this.preparedItems = preparedItems;
-    }
-    getPreparedItems() {
-        return this.preparedItems;
-    }
-}
-
-class SourceDomainEventPublisher {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    publish(events) {
-        events.forEach((event) => {
-            this.publishEvent(event);
-        });
-    }
-    publishEvent(event) {
-        if (event.getType() === 'StructureOriginChangedAggregateEvent') {
-            const structureOriginChangedAggregateEvent = event;
-            const domainEvent = new OriginSetEvent(structureOriginChangedAggregateEvent.getAggregateId(), structureOriginChangedAggregateEvent.getOrigin());
-            this.domainEventPublisher.publish(domainEvent);
+    static getInstance() {
+        if (!NumberColumnPresentation.instance) {
+            NumberColumnPresentation.instance = new NumberColumnPresentation();
         }
-        if (event.getType() === 'StructureSourceItemEditedAggregateEvent') {
-            const structureSourceItemEditedAggregateEvent = event;
-            const domainEvent = new StructureSourceItemEditedEvent(structureSourceItemEditedAggregateEvent.getAggregateId(), structureSourceItemEditedAggregateEvent.getBeforeItem(), structureSourceItemEditedAggregateEvent.getAfterItem());
-            this.domainEventPublisher.publish(domainEvent);
-        }
-        if (event.getType() === 'StructureSummariesChangedAggregateEvent') {
-            const structureSummariesChangedAggregateEvent = event;
-            const domainEvent = new StructureSummariesChangedEvent(structureSummariesChangedAggregateEvent.getAggregateId(), structureSummariesChangedAggregateEvent.getSummaries());
-            this.domainEventPublisher.publish(domainEvent);
-        }
-        if (event.getType() === 'StructurePreparedEntitiesSetAggregateEvent') {
-            const structurePreparedEntitiesSetAggregateEvent = event;
-            const domainEvent = new StructurePreparedEntitiesSetEvent(structurePreparedEntitiesSetAggregateEvent.getAggregateId(), structurePreparedEntitiesSetAggregateEvent.getPreparedItems());
-            this.domainEventPublisher.publish(domainEvent);
-        }
-        if (event.getType() === 'UniqueFilterCalculatedAggregateEvent') {
-            const uniqueFilterCalculatedAggregateEvent = event;
-            const domainEvent = uniqueFilterCalculatedAggregateEvent.toDomainEvent();
-            this.domainEventPublisher.publish(domainEvent);
-        }
+        return NumberColumnPresentation.instance;
     }
-}
-
-class StructureSetSearchPhraseCommandHandler {
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSearchPhraseCommand;
-    }
-    handle(aggregate, command) {
-        const phrase = command.getPhrase();
-        aggregate.addSearchPhrase(phrase);
-    }
-    publish(aggregate, command) {
-        const phrase = command.getPhrase(), initial = command.isInitial();
-        this.domainEventPublisher.publish(new SearchPhraseSetDomainEvent(command.getAggregateId(), phrase, initial));
-        this.structureSourceDomainEventPublisher.publish(aggregate.getEvents());
-    }
-}
-StructureSetSearchPhraseCommandHandler.services = [SourceDomainEventPublisher];
-
-class SearchManager {
-    constructor() {
-        this.searchFields = [];
-        this.enabledDataTypes = [
-            DataType.STRING
+    getPossibleViews() {
+        return [
+            CellView.TEXT,
+            CellView.BAR,
+            CellView.PERCENTAGE_BAR,
+            CellView.PERCENTAGE
         ];
     }
-    addSearchPhrase(fields, searchPhrase) {
-        if (!searchPhrase) {
-            this.searchFields = [];
-            return;
+    getDefaultView() {
+        return CellView.NUMBER;
+    }
+    getDefaultAlign(view) {
+        return ColumnAlign.RIGHT;
+    }
+}
+NumberColumnPresentation.instance = null;
+
+class BooleanColumnPresentation extends ColumnPresentation {
+    constructor() {
+        super();
+    }
+    static getInstance() {
+        if (!BooleanColumnPresentation.instance) {
+            BooleanColumnPresentation.instance = new BooleanColumnPresentation();
         }
-        const searchableFields = fields.filter((field) => {
-            return this.enabledDataTypes.some((dt) => dt === field.getDataType());
+        return BooleanColumnPresentation.instance;
+    }
+    getPossibleViews() {
+        return [
+            CellView.TEXT,
+            CellView.ITALIC,
+            CellView.CHIP,
+            CellView.BOLD,
+            CellView.CHECKBOX
+        ];
+    }
+    getDefaultView() {
+        return CellView.TEXT;
+    }
+    getDefaultAlign(view) {
+        if (view.getCellView() === CellView.CHECKBOX) {
+            return ColumnAlign.CENTER;
+        }
+        else {
+            return ColumnAlign.LEFT;
+        }
+    }
+}
+BooleanColumnPresentation.instance = null;
+
+class DateColumnPresentation extends ColumnPresentation {
+    constructor() {
+        super();
+    }
+    static getInstance() {
+        if (!DateColumnPresentation.instance) {
+            DateColumnPresentation.instance = new DateColumnPresentation();
+        }
+        return DateColumnPresentation.instance;
+    }
+    getPossibleViews() {
+        return [
+            CellView.DATE,
+            CellView.TEXT,
+            CellView.ITALIC,
+            CellView.BOLD,
+            CellView.CHIP
+        ];
+    }
+    getDefaultView() {
+        return CellView.DATE;
+    }
+    getDefaultAlign() {
+        return ColumnAlign.LEFT;
+    }
+}
+DateColumnPresentation.instance = null;
+
+class StringColumnPresentation extends ColumnPresentation {
+    constructor() {
+        super();
+    }
+    static getInstance() {
+        if (!StringColumnPresentation.instance) {
+            StringColumnPresentation.instance = new StringColumnPresentation();
+        }
+        return StringColumnPresentation.instance;
+    }
+    getPossibleViews() {
+        return [
+            CellView.TEXT,
+            CellView.ITALIC,
+            CellView.BOLD,
+            CellView.IMAGE,
+            CellView.LINK,
+            CellView.CHIP
+        ];
+    }
+    getDefaultView() {
+        return CellView.TEXT;
+    }
+    getDefaultAlign() {
+        return ColumnAlign.LEFT;
+    }
+}
+StringColumnPresentation.instance = null;
+
+class UnknownColumnPresentation extends ColumnPresentation {
+    constructor() {
+        super();
+    }
+    static getInstance() {
+        if (!UnknownColumnPresentation.instance) {
+            UnknownColumnPresentation.instance = new UnknownColumnPresentation();
+        }
+        return UnknownColumnPresentation.instance;
+    }
+    getPossibleViews() {
+        return [
+            CellView.TEXT
+        ];
+    }
+    getDefaultView() {
+        return CellView.TEXT;
+    }
+    getDefaultAlign() {
+        return ColumnAlign.LEFT;
+    }
+}
+UnknownColumnPresentation.instance = null;
+
+class ColumnPresentationConverter {
+    convert(dataType) {
+        if (dataType === DataType.NUMBER) {
+            return NumberColumnPresentation.getInstance();
+        }
+        else if (dataType === DataType.BOOLEAN) {
+            return BooleanColumnPresentation.getInstance();
+        }
+        else if (dataType === DataType.DATE) {
+            return DateColumnPresentation.getInstance();
+        }
+        else if (dataType === DataType.STRING) {
+            return StringColumnPresentation.getInstance();
+        }
+        else {
+            return UnknownColumnPresentation.getInstance();
+        }
+    }
+}
+
+class ColumnEntityFactory {
+    constructor(columnPresentationConverter) {
+        this.columnPresentationConverter = columnPresentationConverter;
+    }
+    create(source) {
+        if (Array.isArray(source)) {
+            return this.createColumns(source);
+        }
+        else {
+            return this.createColumn(source);
+        }
+    }
+    createColumn(params) {
+        const columnConfig = params.getColumn(), field = params.getField(), dataType = field.getDataType(), width = this.convertWidth(columnConfig.width) || undefined;
+        let view, enabled;
+        if (columnConfig.view !== undefined) {
+            view = new ViewEntity(columnConfig.view);
+        }
+        if (columnConfig.enabled !== undefined) {
+            enabled = columnConfig.enabled;
+        }
+        else {
+            enabled = true;
+        }
+        const presentation = this.getPresentation(dataType);
+        const columnEntity = new ColumnEntity(new ColumnId(RandomStringGenerator.generate()), field, columnConfig, enabled, presentation, undefined, columnConfig.align, view, width);
+        if (columnConfig.header !== undefined) {
+            columnEntity.setHeader(columnConfig.header);
+        }
+        return columnEntity;
+    }
+    createColumns(columns) {
+        const columnEntities = [];
+        columns.forEach((column) => {
+            columnEntities.push(this.createColumn(column));
         });
-        if (searchableFields.length === 0) {
-            return;
-        }
-        this.searchFields = searchableFields;
-        this.searchPhrase = searchPhrase;
+        return columnEntities;
     }
-    removeSearchFilters() {
-        this.searchFields = [];
+    convertWidth(width) {
+        return +width;
     }
-    search(entities) {
-        if (entities.length === 0 || this.searchFields.length === 0) {
-            return entities;
-        }
-        const searchedItems = new Set();
-        for (let i = 0; i < entities.length; i += 1) {
-            this.searchFields
-                .filter((field) => field.search(entities[i], this.searchPhrase))
-                .forEach(() => {
-                searchedItems.add(entities[i]);
-            });
-        }
-        return Array.from(searchedItems);
+    getPresentation(dataType) {
+        return this.columnPresentationConverter.convert(dataType);
+    }
+}
+ColumnEntityFactory.services = [ColumnPresentationConverter];
+
+class Group {
+    constructor(id, header, width) {
+        this.id = id;
+        this.header = header;
+        this.width = width;
     }
 }
 
-class SearchManagerFactory {
-    create() {
-        return new SearchManager();
+class GroupId extends HermesId {
+    constructor(id) {
+        super(id);
+    }
+    toString() {
+        return this.getId();
     }
 }
 
-class SearchHighlightArchive extends AggregateArchive {
-    constructor() {
-        super(SearchHighlightArchive.HIGHLIGHTING);
-    }
-}
-SearchHighlightArchive.HIGHLIGHTING = true;
-
-class SearchPlaceholderArchive extends AggregateArchive {
-    constructor() {
-        super(SearchPlaceholderArchive.PLACEHOLDER);
-    }
-}
-SearchPlaceholderArchive.PLACEHOLDER = 'Search...';
-
-class SearchDispatcher {
-    constructor(commandDispatcher, searchHighlightArchive, searchPlaceholderArchive) {
-        this.commandDispatcher = commandDispatcher;
-        this.searchHighlightArchive = searchHighlightArchive;
-        this.searchPlaceholderArchive = searchPlaceholderArchive;
-    }
-    setSearchingConfig(config, structureId) {
-        if (config.highlighting !== undefined && config.highlighting !== null) {
-            this.searchHighlightArchive.next(structureId, config.highlighting);
-        }
-        if (config.placeholder !== undefined && config.placeholder !== null) {
-            this.searchPlaceholderArchive.next(structureId, config.placeholder);
-        }
-        if (config.phrase !== undefined && config.phrase !== null) {
-            this.searchOnInit(config.phrase, structureId);
-        }
-        this.commandDispatcher.dispatch(new SetConfigSearchingCommand(structureId, config));
-    }
-    search(phrase, structureId) {
-        this.commandDispatcher.dispatch(new SetSearchPhraseCommand(structureId, phrase, false));
-    }
-    searchOnInit(phrase, structureId) {
-        this.commandDispatcher.dispatch(new SetSearchPhraseCommand(structureId, phrase, true));
-    }
-}
-SearchDispatcher.services = [CommandDispatcher, SearchHighlightArchive, SearchPlaceholderArchive];
-
-class SearchPhraseArchive extends AggregateArchive {
-    constructor() {
-        super(SearchPhraseArchive.SEARCH_PHRASE);
-    }
-}
-SearchPhraseArchive.SEARCH_PHRASE = '';
-
-class SearchPhraseSetEventHandler {
-    constructor(searchPhraseRepository) {
-        this.searchPhraseRepository = searchPhraseRepository;
-    }
-    forEvent() {
-        return SearchPhraseSetDomainEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('SearchPhraseSetDomainEvent')) {
-            this.searchPhraseRepository.next(event.getAggregateId(), event.getPhrase());
-        }
-    }
-}
-SearchPhraseSetEventHandler.services = [SearchPhraseArchive];
-
-class SearchingEnabledArchive extends AggregateArchive {
-    constructor() {
-        super(SearchingEnabledArchive.ENABLED);
-    }
-}
-SearchingEnabledArchive.ENABLED = false;
-
-class ConfigSearchingSetEventHandler {
-    constructor(searchingEnabledArchive) {
-        this.searchingEnabledArchive = searchingEnabledArchive;
-    }
-    forEvent() {
-        return ConfigSearchingSetEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('ConfigSearchingSetEvent')) {
-            this.searchingEnabledArchive.next(event.getAggregateId(), event.isEnabled());
-        }
-    }
-}
-ConfigSearchingSetEventHandler.services = [SearchingEnabledArchive];
-
-class FilterToggledEvent extends StructureDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'FilterToggledEvent');
+class CompositionGroupFactory {
+    create(config) {
+        return new Group(new GroupId(RandomStringGenerator.generate()), config.header, config.width);
     }
 }
 
-class RemoveSearchPhraseCommand extends StructureCommand {
-    constructor(structureId) {
-        super(structureId, 'RemoveSearchPhraseCommand');
-    }
-}
-
-class RemoveSearchPhraseCommandHandler {
-    constructor() {
+class SetGroupsCommandHandler {
+    constructor(compositionEventConverter) {
+        this.compositionEventConverter = compositionEventConverter;
         this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
     }
     forCommand() {
-        return RemoveSearchPhraseCommand;
+        return SetGroupsCommand;
     }
     handle(aggregate, command) {
-        aggregate.removeSearchPhrase();
+        const groupConfigs = command.getConfigs();
+        aggregate.setGroups(groupConfigs);
     }
     publish(aggregate, command) {
-        this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
+        this.publishEvents(aggregate, command);
+    }
+    publishEvents(composition, command) {
+        const events = composition.getEvents();
+        const domainEvents = this.compositionEventConverter.convert(events);
+        this.domainEventPublisher.publish(domainEvents);
+    }
+}
+SetGroupsCommandHandler.services = [CompositionEventConverter];
+
+class ColumnHighlightManager {
+    constructor() {
+        this.enabled = true;
+        this.highlightedColumns = new Set(); // should be set of ColumnId
+    }
+    isHighlighted(columnId) {
+        return this.highlightedColumns.has(columnId.toString());
+    }
+    toggle(columnId) {
+        if (this.highlightedColumns.has(columnId.toString())) {
+            this.highlightedColumns.delete(columnId.toString());
+        }
+        else {
+            this.highlightedColumns.add(columnId.toString());
+        }
+    }
+    remove(columnId) {
+        this.highlightedColumns.delete(columnId.toString());
     }
 }
 
-class SearchDomainModule {
+class ColumnHighlightArchive extends AggregateArchive {
+    constructor() {
+        super(new ColumnHighlightManager());
+    }
+    toggle(key, value) {
+        this.find(key)
+            .ifPresent((manager) => {
+            manager.toggle(value);
+            this.next(key, manager);
+        });
+    }
+    equals(a, b) {
+        return false;
+    }
+    createDefaultValue(defaultValue) {
+        return new ColumnHighlightManager();
+    }
+}
+
+class InMemoryCompositionStore extends InMemoryStore {
+}
+
+class InMemoryCompositionAggregateStore extends InMemoryAggregateStore {
+    constructor(inMemoryCompositionStore) {
+        super(inMemoryCompositionStore);
+    }
+}
+InMemoryCompositionAggregateStore.services = [InMemoryCompositionStore];
+
+class CompositionAggregateRepository extends AggregateRepository {
+}
+
+class InMemoryCompositionAggregateRepository extends CompositionAggregateRepository {
+    constructor(inMemoryCompositionAggregateStore) {
+        super();
+        this.inMemoryCompositionAggregateStore = inMemoryCompositionAggregateStore;
+    }
+    findById(aggregateId) {
+        return this.inMemoryCompositionAggregateStore.findById(aggregateId);
+    }
+    save(aggregate) {
+        this.inMemoryCompositionAggregateStore.save(aggregate);
+    }
+}
+InMemoryCompositionAggregateRepository.services = [InMemoryCompositionAggregateStore];
+
+class CellContext {
+    constructor(element) {
+        this.element = element;
+    }
+}
+
+class ColumnDefinition extends ReadModelEntity {
+    constructor(field, columnDefinitionId, // REFACTOR Id first argument
+    columnConfig, name, enabled, type, // REFACTOR
+    view, // REFACTOR
+    align, // REFACTOR
+    header, cellEditingEnabled, cssClasses, styles, sort = SortOrder.NONE, sortable = true) {
+        super(columnDefinitionId);
+        this.columnConfig = columnConfig;
+        this.name = name;
+        this.type = type;
+        this.view = view;
+        this.align = align;
+        this.cssClasses = cssClasses;
+        this.styles = styles;
+        this.sortable = true;
+        this.field = field;
+        this.columnDefinitionId = columnDefinitionId;
+        this.enabled = enabled;
+        this.header = header;
+        this.cellEditingEnabled = cellEditingEnabled;
+        this.sortStatus = sort;
+        this.sortable = sortable;
+    }
+    getName() {
+        return this.name;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+    setHeader(header) {
+        this.header = header;
+    }
+    setField(field) {
+        this.field = field;
+    }
+    setTemplateFunction(templateFun) {
+        this.templateFunction = templateFun;
+    }
+    setFormatterFunction(formatter) {
+        this.formatterFunction = formatter;
+    }
+    toHeaderCellTemplateWithContext(index) {
+        const header = this.header || '';
+        let headerCellContext;
+        if (typeof header === 'string') {
+            headerCellContext = new CellContext(CellValue.text(header));
+        }
+        else if (typeof header === 'function') {
+            headerCellContext = new CellContext(CellValue.text(header(index)));
+        }
+        const fieldId = new FieldId(this.field.getId().getId());
+        return new CellTemplateWithContext(header, this.type, headerCellContext, this.width, fieldId, this.columnDefinitionId, this.sortStatus, this.enabled, this.cssClasses, this.styles, this.sortable, this.align);
+    }
+    toContentCellTemplateWithAccessor() {
+        const accessor = (entity) => {
+            return this.field.getAccessor()(entity);
+        }, searchAccessor = (entity) => {
+            return this.field.getSearchAccessor()(entity);
+        };
+        return new CellTemplateWithAccessor(this.columnConfig, this.columnDefinitionId, this.name, 
+        // null,
+        // null,
+        true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
+    }
+}
+
+class ColumnDefinitionId extends ReadModelEntityId {
+    constructor(id) {
+        super(id);
+    }
+}
+
+class ColumnDefinitionFactory {
+    create(column) {
+        if (column instanceof ColumnEntity) {
+            return this.createFromColumnEntity(column);
+        }
+        else {
+            return this.createFromActiveColumnEntity(column);
+        }
+    }
+    createColumns(columns) {
+        return columns.map((column) => this.create(column));
+    }
+    createFromColumnEntity(column) {
+        const columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.getColumnConfig(), column.getColumnConfig().name, column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getColumnConfig().cssClasses, column.getColumnConfig().styles, column.getSortStatus(), column.isSortingEnabled());
+        columnDef.setTemplateFunction(column.getTemplateFunction());
+        columnDef.setFormatterFunction(column.getFormatterFunction());
+        columnDef.width = +column.getWidth();
+        return columnDef;
+    }
+    createFromActiveColumnEntity(activeColumn) {
+        const columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), activeColumn.getColumnConfig(), activeColumn.getColumnConfig().name, true, // remove,
+        activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getColumnConfig().cssClasses, activeColumn.getColumnConfig().styles, activeColumn.getSortStatus(), activeColumn.isSortingEnabled());
+        columnDef.setTemplateFunction(activeColumn.getTemplateFunction());
+        columnDef.setFormatterFunction(activeColumn.getFormatterFunction());
+        columnDef.width = +activeColumn.getWidth();
+        return columnDef;
+    }
+}
+
+class CompositionReadModeRoot extends ReadModelRoot {
+    constructor(uid, ready, allColumns, activeColumns, width, resizeWidth) {
+        super(uid);
+        this.ready = ready;
+        this.allColumns = allColumns;
+        this.activeColumns = activeColumns;
+        this.width = width;
+        this.resizeWidth = resizeWidth;
+    }
+    getActiveColumns() {
+        return this.activeColumns;
+    }
+    getAllColumns() {
+        return this.allColumns;
+    }
+    getActiveHeaderColumns() {
+        return this.getActiveColumns()
+            .map((column, index) => column.toHeaderCellTemplateWithContext(index));
+    }
+    getHeaderColumns() {
+        return this.getAllColumns()
+            .map((column, index) => column.toHeaderCellTemplateWithContext(index));
+    }
+    getTemplateColumns() {
+        return this.getActiveColumns()
+            .map((column) => column.toContentCellTemplateWithAccessor());
+    }
+    getWidth() {
+        return this.width;
+    }
+    getContainerWidth() {
+        return +this.width - 2;
+    }
+    isReady() {
+        return this.ready;
+    }
+    isResizeWidthEnabled() {
+        return this.resizeWidth;
+    }
+    equals(composition) {
+        return this.width === composition.width &&
+            this.resizeWidth === composition.resizeWidth &&
+            this.equalsByColumns(composition.allColumns);
+    }
+    equalsByColumns(columns) {
+        return this.allColumns.length === columns.length;
+    }
+}
+
+class CompositionReadModelRootConverter {
+    constructor(columnDefinitionFactory) {
+        this.columnDefinitionFactory = columnDefinitionFactory;
+    }
+    convert(aggregate) {
+        const ready = aggregate.isReady(), allColumns = aggregate.getColumns(), activeColumns = aggregate.getActiveColumns(), allColumnDefs = this.convertToColumnDef(allColumns), activeColumnDefs = this.convertActiveColumnsToColumnDef(activeColumns), width = aggregate.getWidth(), resizeWidth = aggregate.isResizeEnabled(), aggregateId = aggregate.getId();
+        return new CompositionReadModeRoot(aggregateId.toReadModelRootId(), ready, allColumnDefs, activeColumnDefs, width, resizeWidth);
+    }
+    convertToColumnDef(columns) {
+        const columnDefs = [];
+        columns.forEach((column) => {
+            const columnDef = this.columnDefinitionFactory.create(column);
+            columnDefs.push(columnDef);
+        });
+        return columnDefs;
+    }
+    convertActiveColumnsToColumnDef(activeColumns) {
+        const columnDefs = [];
+        activeColumns.forEach((column) => {
+            const columnDef = this.columnDefinitionFactory.create(column);
+            columnDefs.push(columnDef);
+        });
+        return columnDefs;
+    }
+}
+CompositionReadModelRootConverter.services = [ColumnDefinitionFactory];
+
+class InMemoryCompositionReadStore extends InMemoryReadModelStore {
+    constructor(inMemoryCompositionStore, compositionConverter) {
+        super(inMemoryCompositionStore);
+        this.inMemoryCompositionStore = inMemoryCompositionStore;
+        this.compositionConverter = compositionConverter;
+    }
+    toReadModel(aggregate) {
+        return this.compositionConverter.convert(aggregate);
+    }
+}
+InMemoryCompositionReadStore.services = [InMemoryCompositionStore, CompositionReadModelRootConverter];
+
+class CompositionReadModelRootRepository extends ReadModelRootRepository {
+    constructor() {
+        super();
+    }
+}
+
+class CompositionCreatedEvent extends CompositionDomainEvent {
+    constructor(compositionId) {
+        super(compositionId, null, 'CompositionCreatedEvent');
+    }
+}
+
+class InMemoryCompositionRepository extends CompositionReadModelRootRepository {
+    constructor(inMemoryCompositionReadStore) {
+        super();
+        this.inMemoryCompositionReadStore = inMemoryCompositionReadStore;
+        this.compositionIdToComposition = new Map();
+        this.composition$ = new HermesReplaySubject(1);
+    }
+    on(compositionId) {
+        return this.composition$
+            .toObservable()
+            .pipe(hermesFilter((compositionIdToComposition) => {
+            const key = compositionId.getId();
+            return compositionIdToComposition.has(key);
+        }), hermesMap((compositionIdToComposition) => compositionIdToComposition.get(compositionId.getId())));
+    }
+    find(compositionId) {
+        const key = compositionId.getId();
+        return Optional.of(this.compositionIdToComposition.get(key));
+    }
+    forEvents() {
+        return [
+            CompositionCreatedEvent,
+            CompositionResizeWidthSetEvent,
+            CompositionColumnsSetEvent,
+            CompositionContainerWidthSetEvent,
+            CompositionWidthSetEvent,
+            CompositionColumnSetEnabledEvent,
+            CompositionColumnMovedLeftEvent,
+            CompositionColumnMovedRightEvent,
+            CompositionChangeSortStatusEvent
+        ];
+    }
+    subscribe(event) {
+        const aggregateId = event.getAggregateId();
+        const optComposition = this.inMemoryCompositionReadStore.getById(aggregateId);
+        optComposition.ifPresent((composition) => {
+            const key = composition.getId().toString();
+            this.compositionIdToComposition.set(key, composition);
+            this.composition$.next(this.compositionIdToComposition);
+        });
+    }
+}
+InMemoryCompositionRepository.services = [InMemoryCompositionReadStore];
+
+class CreateCompositionCommandHandler {
+    forCommand() {
+        return CreateCompositionCommand;
+    }
+}
+
+class CompositionContainerWidthCalculator {
+    constructor(MIN_COLUMN_WIDTH) {
+        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
+    }
+    calculateMinWidth(columnWidths) {
+        const { staticColumns, fluidColumns } = this.segregateColumns(columnWidths);
+        // TODO reduce
+        let sum = 0;
+        staticColumns.forEach((c) => {
+            sum += c.getWidth();
+        });
+        sum += fluidColumns.length * this.MIN_COLUMN_WIDTH;
+        return sum;
+    }
+    segregateColumns(columns) {
+        const staticColumns = columns.filter((columnWidth) => columnWidth.isTypeNumber() && columnWidth.getWidth() > this.MIN_COLUMN_WIDTH), fluidColumns = columns.filter((columnWidth) => {
+            return columnWidth.isTypeAuto() ||
+                columnWidth.isTypePercentage() ||
+                (columnWidth.isTypeNumber() && columnWidth.getWidth() <= this.MIN_COLUMN_WIDTH);
+        });
+        return {
+            staticColumns: staticColumns,
+            fluidColumns: fluidColumns
+        };
+    }
+}
+
+class CompositionAggregateEvent extends AggregateEvent {
+}
+
+class CompositionWidthSetAggregateEvent extends CompositionAggregateEvent {
+    constructor(aggregateId) {
+        super(aggregateId, 'CompositionWidthSetAggregateEvent');
+    }
+    toDomainEvent() {
+        return new CompositionWidthSetEvent(this.getAggregateId());
+    }
+}
+
+class CompositionContainerWidthSetAggregateEvent extends CompositionAggregateEvent {
+    constructor(compositionId, containerWidth) {
+        super(compositionId, 'CompositionContainerWidthSetAggregateEvent');
+        this.containerWidth = containerWidth;
+    }
+    toDomainEvent() {
+        return new CompositionContainerWidthSetEvent(this.getAggregateId(), this.containerWidth);
+    }
+}
+
+class CompositionResizeWidthSetAggregateEvent extends CompositionAggregateEvent {
+    constructor(compositionId) {
+        super(compositionId, 'CompositionResizeWidthSetAggregateEvent');
+    }
+    toDomainEvent() {
+        return new CompositionResizeWidthSetEvent(this.getAggregateId());
+    }
+}
+
+class CompositionColumnSetEnabledAggregateEvent extends CompositionAggregateEvent {
+    constructor(aggregateId, activeColumns) {
+        super(aggregateId, 'CompositionColumnSetEnabledAggregateEvent');
+        this.activeColumns = activeColumns;
+    }
+    toDomainEvent() {
+        return new CompositionColumnSetEnabledEvent(this.getAggregateId());
+    }
+    getActiveColumns() {
+        return this.activeColumns;
+    }
+}
+
+var ColumnWidthType;
+(function (ColumnWidthType) {
+    ColumnWidthType[ColumnWidthType["PERCENTAGE"] = 0] = "PERCENTAGE";
+    ColumnWidthType[ColumnWidthType["NUMBER"] = 1] = "NUMBER";
+    ColumnWidthType[ColumnWidthType["AUTO"] = 2] = "AUTO";
+})(ColumnWidthType || (ColumnWidthType = {}));
+
+class ColumnWidth {
+    constructor(width) {
+        this.baseWidth = width;
+        this.setWidthAndType(width);
+    }
+    getWidth() {
+        return this.width;
+    }
+    getColumnType() {
+        return this.template;
+    }
+    isTypePercentage() {
+        return this.template === ColumnWidthType.PERCENTAGE;
+    }
+    isTypeAuto() {
+        return this.template === ColumnWidthType.AUTO;
+    }
+    isTypeNumber() {
+        return this.template === ColumnWidthType.NUMBER;
+    }
+    setWidth(width) {
+        this.width = width;
+    }
+    setWidthAndType(width) {
+        if (width === undefined || width === null || width === 'auto') {
+            this.template = ColumnWidthType.AUTO;
+            this.setWidth(null);
+        }
+        else if (this.isPercentage(width)) {
+            this.template = ColumnWidthType.PERCENTAGE;
+            this.setWidth(this.percentageToNumber('' + width));
+        }
+        else if (this.isStringNumber(width)) {
+            this.template = ColumnWidthType.NUMBER;
+            this.setWidth(+width);
+        }
+        else {
+            this.template = ColumnWidthType.NUMBER;
+            this.setWidth(+width);
+        }
+    }
+    clone() {
+        return new ColumnWidth(this.baseWidth);
+    }
+    isPercentage(width) {
+        return typeof width === 'string' && width[width.length - 1] === '%';
+    }
+    /**
+     * Width needs to be in format '89%'
+     * @param width
+     */
+    percentageToNumber(width) {
+        return +(width.slice(0, -1));
+    }
+    isStringNumber(width) {
+        const widthAsNumber = +width;
+        return Number.isNaN(widthAsNumber);
+    }
+}
+
+class CompositionWidthCalculator {
+    constructor(source, width, MIN_COLUMN_WIDTH) {
+        this.source = source;
+        this.width = width;
+        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
+        this.columns = this.source.map((c) => c.clone());
+    }
+    calculate() {
+        let width = this.width, columns = Array.from(this.columns);
+        // adjust min value
+        this.adjustMinimalWidth(columns);
+        // remove number columns
+        const newColumns = [];
+        columns.forEach((column, index) => {
+            if (column.isTypeNumber()) {
+                width -= column.getWidth();
+            }
+            else {
+                newColumns.push(column);
+            }
+        });
+        columns = newColumns;
+        // split even auto columns
+        if (columns.length !== 0) {
+            const evenWidth = width / columns.length;
+            columns.forEach((column, index) => {
+                column.setWidth(evenWidth);
+            });
+        }
+        // adjust number columns
+        // let numberColumns = this.columns.filter((columnWidth: ColumnWidth) => columnWidth.isTypeNumber());
+        //
+        // // sort by min values
+        // numberColumns.sort((columnOne: ColumnWidth, columnTwo: ColumnWidth) => {
+        // 	return columnOne.getWidth() - columnTwo.getWidth();
+        // });
+        //
+        // numberColumns.forEach(() => {
+        // });
+        // this.adjustMinimalWidth(ColumnWidthType.NUMBER);
+        //
+        // this.adjustPercentageWidth();
+        //
+        // this.adjustAutoWidth();
+        return this.columns;
+    }
+    adjustMinimalWidth(columns) {
+        columns.forEach((column) => {
+            if (column.isTypeNumber()) {
+                if (column.getWidth() < this.MIN_COLUMN_WIDTH) {
+                    column.setWidthAndType(this.MIN_COLUMN_WIDTH);
+                }
+            }
+        });
+    }
+    adjustPercentageWidth() {
+        const percentageColumns = this.columns.filter((columnWidth) => columnWidth.isTypePercentage());
+        for (const column of this.columns) {
+            if (column.getColumnType() === ColumnWidthType.PERCENTAGE) {
+                column.setWidth(this.width * column.getWidth() * 0.01);
+            }
+        }
+    }
+    adjustAutoWidth() {
+        let leftWidth = this.width;
+        const autoColumns = [];
+        for (let i = 0; i < this.columns.length; i += 1) {
+            const column = this.columns[i];
+            if (column.getColumnType() !== ColumnWidthType.AUTO) {
+                leftWidth -= column.getWidth();
+            }
+            else {
+                autoColumns.push(column);
+            }
+        }
+        if (autoColumns.length > 0) {
+            const splitWidth = leftWidth / autoColumns.length;
+            for (const column of autoColumns) {
+                column.setWidth(splitWidth);
+            }
+        }
+    }
+}
+
+class ColumnWidthCollection {
+    constructor(MIN_COLUMN_WIDTH, columns = [], width = 100) {
+        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
+        this.baseColumnWidths = columns.map((column) => new ColumnWidth(column.width));
+        this.columnWidths = columns.map((column) => new ColumnWidth(column.width));
+        this.setContainerWidth(width);
+        this.calculate();
+    }
+    getColumnWidths() {
+        return this.baseColumnWidths;
+    }
+    getColumnsWidth() {
+        return this.width;
+    }
+    getWidths() {
+        return this.columnWidths.map(c => c.getWidth());
+    }
+    getMinWidth() {
+        const calculator = new CompositionContainerWidthCalculator(this.MIN_COLUMN_WIDTH);
+        return calculator.calculateMinWidth(this.columnWidths);
+    }
+    setWidth(width) {
+        this.setContainerWidth(width);
+        this.calculate();
+    }
+    setColumns(columnConfigs) {
+        this.baseColumnWidths = columnConfigs.map((column) => new ColumnWidth(column.width));
+        this.columnWidths = columnConfigs.map((column) => new ColumnWidth(column.width));
+        this.calculate();
+    }
+    getMinColumnWidth() {
+        return this.MIN_COLUMN_WIDTH;
+    }
+    calculate() {
+        if (this.baseColumnWidths && this.width) {
+            const calculator = new CompositionWidthCalculator(this.baseColumnWidths, this.width, this.MIN_COLUMN_WIDTH);
+            this.columnWidths = calculator.calculate();
+        }
+    }
+    setContainerWidth(width) {
+        if (this.getMinWidth() > width) {
+            this.width = this.getMinWidth();
+        }
+        else {
+            this.width = width;
+        }
+        this.calculate();
+    }
+}
+
+class CompositionChangeSortStatusAggregateEvent extends CompositionAggregateEvent {
+    constructor(aggregateId, activeColumns) {
+        super(aggregateId, 'CompositionChangeSortStatusAggregateEvent');
+        this.activeColumns = activeColumns;
+    }
+    toDomainEvent() {
+        return new CompositionChangeSortStatusEvent(this.getAggregateId(), this.activeColumns);
+    }
+}
+
+class ActiveColumnContainer {
+    constructor(compositionId, columns = [], gridWidth, columnConfigs) {
+        this.compositionId = compositionId;
+        this.MIN_COLUMN_WIDTH = 50;
+        /**
+         * Columns taken from user config.
+         * This should not be modified and it should be used as a reference point.
+         */
+        this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH);
+        this.columns = columns;
+        if (gridWidth && columnConfigs) {
+            this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH, columnConfigs, gridWidth);
+        }
+    }
+    getColumnWidths() {
+        return this.columnWidthCollection.getColumnWidths();
+    }
+    // REMOVE
+    getColumns() {
+        return this.columns;
+    }
+    setWidth(width) {
+        this.columnWidthCollection.setWidth(width);
+    }
+    addColumn(column, index) {
+        this.columns.splice(index, 0, column);
+    }
+    removeColumn(index) {
+        this.columns.splice(index, 1);
+    }
+    setColumns(columns, columnConfigs) {
+        this.columns = columns;
+        this.columnWidthCollection.setColumns(columnConfigs);
+        const updatedWidths = this.columnWidthCollection.getWidths();
+        this.columns.forEach((column, index) => {
+            column.setWidth(updatedWidths[index]);
+        });
+        // TODO
+        // this.addEvent(new ColumnsSetAggregateEvent(this.getId(), columns));
+    }
+    changeSort(sortParams) {
+        this.columns.forEach((column) => {
+            column.setSortStatus(SortOrder.NONE);
+        });
+        for (const param of sortParams) {
+            const fieldId = param.fieldId, direction = param.direction, sortStatus = direction ? SortOrder.ASC : SortOrder.DESC;
+            const columns = this.columns.filter((column) => {
+                return column.getField().getId().getId() === fieldId.getId();
+            });
+            if (columns.length > 0) {
+                columns.forEach((column) => {
+                    column.setSortStatus(sortStatus);
+                });
+            }
+        }
+        return new CompositionChangeSortStatusAggregateEvent(this.getCompositionId(), this.columns);
+    }
+    moveLeft(columnId) {
+        const index = this.findColumnIndex(columnId);
+        this.move(index, index - 1);
+    }
+    moveRight(columnId) {
+        const index = this.findColumnIndex(columnId);
+        this.move(index, index + 1);
+    }
+    getMinColumnWidth() {
+        return this.MIN_COLUMN_WIDTH;
+    }
+    move(fromIndex, toIndex) {
+        if (!this.validateMoveIndex(fromIndex) || !this.validateMoveIndex(toIndex)) {
+            return;
+        }
+        const column = this.columns[fromIndex];
+        this.columns[fromIndex] = this.columns[toIndex];
+        this.columns[toIndex] = column;
+    }
+    validateMoveIndex(index) {
+        return index >= 0;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    findColumnIndex(columnId) {
+        return this.columns.findIndex(c => c.getId().equals(columnId));
+    }
+}
+
+class ActiveColumnEntity extends ColumnEntity {
+    constructor(columnId, columnField, header, align, view, config, presentation) {
+        super(columnId, columnField, config, true, presentation, header, align, view, undefined);
+    }
+    static fromEntity(entity) {
+        return new ActiveColumnEntity(entity.getId(), entity.getField(), entity.getHeader(), entity.getAlign(), entity.getView(), entity.getColumnConfig(), entity.getPresentation());
+    }
+}
+
+class ActiveColumnEntityConverter {
+    convertMany(entities) {
+        return entities.map(e => this.convert(e));
+    }
+    convert(entity) {
+        return ActiveColumnEntity.fromEntity(entity);
+    }
+}
+
+class CompositionColumnMovedLeftAggregateEvent extends CompositionAggregateEvent {
+    constructor(aggregateId) {
+        super(aggregateId, 'CompositionColumnMovedLeftAggregateEvent');
+    }
+    toDomainEvent() {
+        return new CompositionColumnMovedLeftEvent(this.getAggregateId());
+    }
+}
+
+class CompositionColumnMovedRightAggregateEvent extends CompositionAggregateEvent {
+    constructor(aggregateId) {
+        super(aggregateId, 'CompositionColumnMovedRightAggregateEvent');
+    }
+    toDomainEvent() {
+        return new CompositionColumnMovedRightEvent(this.getAggregateId());
+    }
+}
+
+class ColumnsSetAggregateEvent extends CompositionAggregateEvent {
+    constructor(compositionId) {
+        super(compositionId, 'ColumnsSetAggregateEvent');
+    }
+    toDomainEvent() {
+        return new CompositionColumnsSetEvent(this.getAggregateId());
+    }
+}
+
+class CompositionCreatedAggregateEvent extends CompositionAggregateEvent {
+    constructor(compositionId) {
+        super(compositionId, 'SchemaCreatedEvent');
+    }
+    toDomainEvent() {
+        return new CompositionCreatedEvent(this.getAggregateId());
+    }
+}
+
+const emptyGroup = new Group(new GroupId('-1'), '', 100);
+
+class CompositionAggregate extends AggregateRoot {
+    constructor(id, columnFactory, groupFactory, columnsParams = [], width, resizeWidth) {
+        super(id, 'CompositionAggregate');
+        this.allColumns = [];
+        this.resizeWidthEnabled = true;
+        this.activeColumnEntityConverter = new ActiveColumnEntityConverter();
+        this.groups = new KeyMap();
+        this.columnNameToGroupId = new Map();
+        const columnConfigs = columnsParams.map((param) => param.getColumn());
+        this.baseParams = columnsParams;
+        this.baseColumns = columnConfigs;
+        this.columnFactory = columnFactory;
+        this.groupFactory = groupFactory;
+        this.width = width;
+        this.allColumns = this.columnFactory.create(columnsParams);
+        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
+        this.activeColumnContainer = new ActiveColumnContainer(this.getId(), activeColumns, width, columnConfigs);
+        if (resizeWidth !== undefined && resizeWidth !== null) {
+            this.resizeWidthEnabled = resizeWidth;
+        }
+    }
+    createEvent() {
+        return CompositionCreatedAggregateEvent;
+    }
+    // REMOVE
+    getColumns() {
+        return this.allColumns;
+    }
+    // REMOVE
+    getActiveColumns() {
+        return this.activeColumnContainer.getColumns();
+    }
+    // make private
+    getWidth() {
+        if (this.resizeWidthEnabled) {
+            return this.containerInDOMWidth;
+        }
+        else {
+            return this.width;
+        }
+    }
+    // REMOVE
+    isResizeEnabled() {
+        return this.resizeWidthEnabled;
+    }
+    // REMOVE
+    isReady() {
+        return !!this.getWidth() && this.getActiveColumns().length > 0;
+    }
+    setGroups(configs) {
+        for (let i = 0; i < configs.length; i += 1) {
+            const config = configs[i];
+            if (config.columns !== undefined) {
+                const group = this.groupFactory.create(config);
+                this.groups.set(group.id, group);
+                config.columns.forEach((c, index) => {
+                    this.columnNameToGroupId.set(c.header, group.id);
+                });
+            }
+            else {
+                this.columnNameToGroupId.set(config.header, emptyGroup.id);
+            }
+        }
+    }
+    setColumns(params) {
+        this.allColumns = this.columnFactory.create(params);
+        const columnConfigs = params.map((param) => param.getColumn());
+        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
+        this.activeColumnContainer.setColumns(activeColumns, columnConfigs);
+        this.addEvent(new ColumnsSetAggregateEvent(this.getId()));
+    }
+    setContainerWidth(containerWidth) {
+        this.setContainerWidthWithEvent(containerWidth);
+        this.recalculateColumns();
+    }
+    setWidth(width) {
+        this.setWidthWithEvent(width);
+        this.setResizeWidthWithEvent(false);
+        this.recalculateColumns();
+    }
+    setResizeWidth(enabled) {
+        this.setResizeWidthWithEvent(enabled);
+    }
+    changeSort(sortParams) {
+        this.addEvent(this.activeColumnContainer.changeSort(sortParams));
+    }
+    // DELEGATE
+    enableColumn(columnId, enabled) {
+        let enabledIndex = -1;
+        this.allColumns.forEach((column, index) => {
+            if (column.getId().getId() === columnId.getId()) {
+                const prevState = column.isEnabled();
+                column.setEnabled(enabled);
+                if (prevState !== enabled) {
+                    enabledIndex = index;
+                }
+            }
+        });
+        if (enabledIndex > 0) {
+            if (enabled) {
+                // convert
+                const columnToAdd = this.activeColumnEntityConverter.convert(this.allColumns[enabledIndex]);
+                this.activeColumnContainer.addColumn(columnToAdd, enabledIndex);
+            }
+            else {
+                this.activeColumnContainer.removeColumn(enabledIndex);
+            }
+        }
+        this.recalculateColumns();
+        this.addEvent(new CompositionColumnSetEnabledAggregateEvent(this.getId(), this.getActiveColumns()));
+    }
+    moveLeft(columnId) {
+        const columnIndex = this.findColumnIndex(columnId);
+        let nextLeft, nextLeftIndex = -1;
+        for (let i = columnIndex - 1; i >= 0; i -= 1) {
+            const leftColumn = this.allColumns[i];
+            if (leftColumn.isEnabled()) {
+                nextLeft = leftColumn;
+                nextLeftIndex = i;
+                break;
+            }
+        }
+        if (nextLeft && nextLeftIndex >= 0 && columnIndex >= 0) {
+            const column = this.allColumns[columnIndex];
+            this.allColumns[columnIndex] = nextLeft;
+            this.allColumns[nextLeftIndex] = column;
+        }
+        this.activeColumnContainer.moveLeft(columnId);
+        this.addEvent(new CompositionColumnMovedLeftAggregateEvent(this.getId()));
+    }
+    moveRight(columnId) {
+        const columnIndex = this.findColumnIndex(columnId);
+        let nextRight, nextRightIndex = -1;
+        for (let i = columnIndex + 1; i < this.allColumns.length; i += 1) {
+            const rightColumn = this.allColumns[i];
+            if (rightColumn.isEnabled()) {
+                nextRight = rightColumn;
+                nextRightIndex = i;
+                break;
+            }
+        }
+        if (nextRight && nextRightIndex >= 0 && columnIndex >= 0) {
+            const column = this.allColumns[columnIndex];
+            this.allColumns[columnIndex] = nextRight;
+            this.allColumns[nextRightIndex] = column;
+        }
+        this.activeColumnContainer.moveRight(columnId);
+        this.addEvent(new CompositionColumnMovedRightAggregateEvent(this.getId()));
+    }
+    recalculateColumns() {
+        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
+        this.activeColumnContainer.setColumns(activeColumns, activeColumns.map(c => c.getColumnConfig()));
+    }
+    // TODO Refactor
+    setWidthWithEvent(width) {
+        const calculator = new CompositionContainerWidthCalculator(this.getMinColumnWidth());
+        const minWidth = calculator.calculateMinWidth(this.activeColumnContainer.getColumnWidths());
+        if (minWidth > width) {
+            this.width = minWidth;
+        }
+        else {
+            this.width = width;
+        }
+        this.activeColumnContainer.setWidth(this.getWidth());
+        this.addEvent(new CompositionWidthSetAggregateEvent(this.getId()));
+    }
+    // TODO Refactor
+    setContainerWidthWithEvent(containerWidth) {
+        const calculator = new CompositionContainerWidthCalculator(this.getMinColumnWidth());
+        const minWidth = calculator.calculateMinWidth(this.activeColumnContainer.getColumnWidths());
+        if (minWidth > containerWidth) {
+            this.containerInDOMWidth = minWidth;
+        }
+        else {
+            this.containerInDOMWidth = containerWidth;
+        }
+        this.activeColumnContainer.setWidth(this.getWidth());
+        this.addEvent(new CompositionContainerWidthSetAggregateEvent(this.getId(), containerWidth));
+    }
+    setResizeWidthWithEvent(enabled) {
+        this.resizeWidthEnabled = enabled;
+        this.activeColumnContainer.setWidth(this.getWidth());
+        this.addEvent(new CompositionResizeWidthSetAggregateEvent(this.getId()));
+    }
+    // REMOVE -> move to allColumnsContainer
+    getEnabledColumns() {
+        return this.allColumns.filter(c => c.isEnabled());
+    }
+    findColumnIndex(columnId) {
+        return this.allColumns.findIndex((column) => column.getId().equals(columnId));
+    }
+    getMinColumnWidth() {
+        return this.activeColumnContainer.getMinColumnWidth();
+    }
+}
+
+class CompositionAggregateFactory extends AggregateFactory {
+    constructor(columnFactory, groupFactory) {
+        super();
+        this.columnFactory = columnFactory;
+        this.groupFactory = groupFactory;
+    }
+    create(id) {
+        return new CompositionAggregate(id, this.columnFactory, this.groupFactory);
+    }
+}
+CompositionAggregateFactory.services = [
+    ColumnEntityFactory,
+    CompositionGroupFactory
+];
+
+const compositionKey = 'CompositionAggregate';
+class CompositionDomainModule {
     defineAggregate() {
-        return null;
+        return {
+            aggregateKey: compositionKey,
+            createCommandHandler: CreateCompositionCommandHandler,
+            factory: CompositionAggregateFactory,
+            repository: InMemoryCompositionAggregateRepository
+        };
     }
     registerKey() {
-        return structureKey;
+        return compositionKey;
     }
     registerProviders(container) {
-        container.provide(SearchManagerFactory);
-        container.provide(SearchDispatcher);
+        container.provide(InMemoryCompositionAggregateStore);
+        container.provide(CompositionAggregateRepository, InMemoryCompositionAggregateRepository);
+        container.provide(CompositionDispatcher);
+        container.provide(ColumnEntityFactory);
+        container.provide(ColumnPresentationConverter);
+        container.provide(CompositionEventConverter);
+        container.provide(ColumnFieldFactory);
+        container.provide(CompositionGroupFactory);
+        container.provide(ColumnHighlightArchive);
+        container.provide(InMemoryCompositionStore);
+        container.provide(InMemoryCompositionReadStore);
+        container.provide(CompositionReadModelRootRepository, InMemoryCompositionRepository);
     }
     registerCommandHandlers() {
         return [
-            SetConfigSearchingCommandHandler,
-            StructureSetSearchPhraseCommandHandler,
-            RemoveSearchPhraseCommandHandler
+            SetColumnsCommandHandler,
+            SetCompositionWidthCommandHandler,
+            SetCompositionResizeWidthCommandHandler,
+            SetCompositionContainerWidthCommandHandler,
+            CompositionSetColumnEnabledCommandHandler,
+            CompositionChangeSortStatusCommandHandler,
+            CompositionMoveLeftColumnCommandHandler,
+            CompositionMoveRightColumnCommandHandler,
+            SetGroupsCommandHandler
         ];
     }
     registerDomainEventHandler() {
-        return [
-            SearchPhraseSetEventHandler,
-            ConfigSearchingSetEventHandler
-        ];
-    }
-    registerMultiDomainEventHandler() {
         return [];
     }
+    registerMultiDomainEventHandler() {
+        return [
+            CompositionChangeSortStatusEventHandler
+        ];
+    }
 }
 
-class SearchWarehouse {
+class FunctionViewComponent extends PureComponent {
+    constructor(sanitizer, elRef) {
+        super(elRef);
+        this.sanitizer = sanitizer;
+        this.addClassToHost('gui-h-full');
+        this.addClassToHost('gui-w-full');
+    }
+    ngOnChanges() {
+        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
+    }
+    getSelectorName() {
+        return 'gui-function-view';
+    }
+}
+FunctionViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FunctionViewComponent, deps: [{ token: i1.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+FunctionViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FunctionViewComponent, selector: "gui-function-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+
+		<div class="gui-h-full gui-flex gui-items-center"
+			 [innerHTML]="safeHTML">
+		</div>
+
+	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FunctionViewComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-function-view',
+                    template: `
+
+		<div class="gui-h-full gui-flex gui-items-center"
+			 [innerHTML]="safeHTML">
+		</div>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
+                type: Input
+            }] } });
+
+class PercentageViewComponent extends PureComponent {
+    constructor(elementRef) {
+        super(elementRef);
+    }
+    getSelectorName() {
+        return 'gui-percentage-view';
+    }
+}
+PercentageViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PercentageViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+PercentageViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: { value: "value" }, usesInheritance: true, ngImport: i0, template: `
+		{{ value }} %
+	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PercentageViewComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-percentage-view[value]',
+                    template: `
+		{{ value }} %
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
+                type: Input
+            }] } });
+
+class BarViewComponent extends PureComponent {
+    constructor(elementRef) {
+        super(elementRef);
+        this.showPercentage = false;
+    }
+    ngOnChanges(changes) {
+        ifChanged(changes.value, () => {
+            this.width = this.value > 100 ? 100 : this.value;
+        });
+    }
+    getSelectorName() {
+        return 'gui-bar-view';
+    }
+}
+BarViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BarViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+BarViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: { value: "value", showPercentage: "showPercentage" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+		<div class="gui-percentage-bar">
+			<div class="gui-percentage" [style.width.%]="width">
+			</div>
+			<gui-percentage-view *ngIf="showPercentage"
+								 [value]="value">
+			</gui-percentage-view>
+		</div>
+	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BarViewComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-bar-view[value]',
+                    template: `
+		<div class="gui-percentage-bar">
+			<div class="gui-percentage" [style.width.%]="width">
+			</div>
+			<gui-percentage-view *ngIf="showPercentage"
+								 [value]="value">
+			</gui-percentage-view>
+		</div>
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
+                type: Input
+            }], showPercentage: [{
+                type: Input
+            }] } });
+
+class SafePipe {
+    constructor(sanitizer) {
+        this.sanitizer = sanitizer;
+    }
+    transform(value, type) {
+        switch (type) {
+            case 'html':
+                return this.sanitizer.bypassSecurityTrustHtml(value);
+            case 'style':
+                return this.sanitizer.bypassSecurityTrustStyle(value);
+            case 'script':
+                return this.sanitizer.bypassSecurityTrustScript(value);
+            case 'url':
+                return this.sanitizer.bypassSecurityTrustUrl(value);
+            case 'resourceUrl':
+                return this.sanitizer.bypassSecurityTrustResourceUrl(value);
+            default:
+                throw new Error(`Invalid safe type specified: ${type}`);
+        }
+    }
+}
+SafePipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, deps: [{ token: i1.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe });
+SafePipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, name: "guiSafe" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, decorators: [{
+            type: Pipe,
+            args: [{
+                    name: 'guiSafe'
+                }]
+        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }]; } });
+
+class TextViewComponent extends PureComponent {
+    constructor(isBold, isItalic, elementRef) {
+        super(elementRef);
+        this.isHtml = false;
+        if (isBold !== null) {
+            this.addClassToHost('gui-bold');
+        }
+        if (isItalic !== null) {
+            this.addClassToHost('gui-italic');
+        }
+    }
+    ngOnChanges() {
+        this.isHtml = this.value.type === CellValueType.HTML;
+    }
+    getSelectorName() {
+        return 'gui-text-view';
+    }
+}
+TextViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TextViewComponent, deps: [{ token: 'bold', attribute: true }, { token: 'italic', attribute: true }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+TextViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: TextViewComponent, selector: "gui-view-text[value]", inputs: { value: "value" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+
+		<ng-container *ngIf="isHtml; else text">
+			<span [innerHTML]="value.value | guiSafe: 'html'"></span>
+		</ng-container>
+
+		<ng-template #text>
+			<span>
+				{{value.value}}
+			</span>
+		</ng-template>
+	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TextViewComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-view-text[value]',
+                    template: `
+
+		<ng-container *ngIf="isHtml; else text">
+			<span [innerHTML]="value.value | guiSafe: 'html'"></span>
+		</ng-container>
+
+		<ng-template #text>
+			<span>
+				{{value.value}}
+			</span>
+		</ng-template>
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () {
+        return [{ type: undefined, decorators: [{
+                        type: Attribute,
+                        args: ['bold']
+                    }] }, { type: undefined, decorators: [{
+                        type: Attribute,
+                        args: ['italic']
+                    }] }, { type: i0.ElementRef }];
+    }, propDecorators: { value: [{
+                type: Input
+            }] } });
+
+class HtmlViewComponent extends PureComponent {
+    constructor(sanitizer, elRef) {
+        super(elRef);
+        this.sanitizer = sanitizer;
+        this.addClassToHost('gui-h-full');
+        this.addClassToHost('gui-w-full');
+    }
+    ngOnChanges() {
+        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
+    }
+    getSelectorName() {
+        return 'gui-html-view';
+    }
+}
+HtmlViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HtmlViewComponent, deps: [{ token: i1.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+HtmlViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: HtmlViewComponent, selector: "gui-html-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+
+		<div class="gui-h-full gui-flex gui-items-center"
+			 [innerHTML]="safeHTML">
+		</div>
+
+	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HtmlViewComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-html-view',
+                    template: `
+
+		<div class="gui-h-full gui-flex gui-items-center"
+			 [innerHTML]="safeHTML">
+		</div>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
+                type: Input
+            }] } });
+
+class ViewTemplatesComponent {
+    getTemplate(view) {
+        switch (view) {
+            case CellView.TEXT:
+                return this.textTemplate;
+            case CellView.NUMBER:
+                return this.numberTemplate;
+            case CellView.CHIP:
+                return this.chipTemplate;
+            case CellView.LINK:
+                return this.linkTemplate;
+            case CellView.IMAGE:
+                return this.imageTemplate;
+            case CellView.CHECKBOX:
+                return this.checkboxTemplate;
+            case CellView.BOLD:
+                return this.boldTemplate;
+            case CellView.ITALIC:
+                return this.italicTemplate;
+            case CellView.CUSTOM:
+                return this.customTemplate;
+            case CellView.FUNCTION:
+                return this.functionTemplate;
+            case CellView.HTML:
+                return this.htmlTemplate;
+            case CellView.DATE:
+                return this.dateTemplate;
+            case CellView.BAR:
+                return this.barTemplate;
+            case CellView.PERCENTAGE_BAR:
+                return this.percentageBarTemplate;
+            case CellView.PERCENTAGE:
+                return this.percentageTemplate;
+            default:
+                return this.textTemplate;
+        }
+    }
+}
+ViewTemplatesComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+ViewTemplatesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: ViewTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "textTemplate", first: true, predicate: ["text"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "chipTemplate", first: true, predicate: ["chip"], descendants: true, read: TemplateRef, static: true }, { propertyName: "linkTemplate", first: true, predicate: ["link"], descendants: true, read: TemplateRef, static: true }, { propertyName: "imageTemplate", first: true, predicate: ["image"], descendants: true, read: TemplateRef, static: true }, { propertyName: "checkboxTemplate", first: true, predicate: ["checkbox"], descendants: true, read: TemplateRef, static: true }, { propertyName: "boldTemplate", first: true, predicate: ["bold"], descendants: true, read: TemplateRef, static: true }, { propertyName: "italicTemplate", first: true, predicate: ["italic"], descendants: true, read: TemplateRef, static: true }, { propertyName: "customTemplate", first: true, predicate: ["custom"], descendants: true, read: TemplateRef, static: true }, { propertyName: "functionTemplate", first: true, predicate: ["function"], descendants: true, read: TemplateRef, static: true }, { propertyName: "htmlTemplate", first: true, predicate: ["html"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "barTemplate", first: true, predicate: ["bar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageBarTemplate", first: true, predicate: ["percentageBar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageTemplate", first: true, predicate: ["percentage"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
+
+		<ng-template #text let-element="element">
+			<gui-view-text [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #number let-element="element">
+			<span class="gui-cell-number">
+				{{ element.value }}
+			</span>
+		</ng-template>
+
+		<ng-template #chip let-element="element">
+			<gui-chip>
+				<gui-view-text [value]="element"></gui-view-text>
+			</gui-chip>
+		</ng-template>
+
+		<ng-template #link let-element="element">
+			<a gui-button link="true" href="{{ element.value }}">
+				<gui-view-text [value]="element"></gui-view-text>
+			</a>
+		</ng-template>
+
+		<ng-template #image let-element="element">
+			<img src="{{ element.value }}"/>
+		</ng-template>
+
+		<ng-template #checkbox let-element="element">
+			<span class="gui-cell-boolean">
+				<gui-checkbox [checked]="!!element.value" [disabled]="true"></gui-checkbox>
+			</span>
+		</ng-template>
+
+		<ng-template #bold let-element="element">
+			<gui-view-text bold [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #italic let-element="element">
+			<gui-view-text italic [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #custom let-element="element">
+			{{ element.value }}
+		</ng-template>
+
+		<ng-template #function let-element="element">
+			<gui-function-view [element]="element"></gui-function-view>
+		</ng-template>
+
+		<ng-template #html let-element="element">
+			<gui-html-view [element]="element"></gui-html-view>
+		</ng-template>
+
+		<ng-template #date let-element="element">
+			<span class="gui-view-text">{{ element.value | date: 'dd/MM/yyyy' }}</span>
+		</ng-template>
+
+		<ng-template #bar let-element="element">
+			<gui-bar-view [value]="element.value" [showPercentage]="false"></gui-bar-view>
+		</ng-template>
+
+		<ng-template #percentageBar let-element="element">
+			<gui-bar-view [value]="element.value" [showPercentage]="true"></gui-bar-view>
+		</ng-template>
+
+		<ng-template #percentage let-element="element">
+			<gui-percentage-view [value]="element.value"></gui-percentage-view>
+		</ng-template>
+
+	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricChipComponent, selector: "gui-chip" }, { kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1$1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FunctionViewComponent, selector: "gui-function-view", inputs: ["element"] }, { kind: "component", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: ["value", "showPercentage"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }, { kind: "component", type: TextViewComponent, selector: "gui-view-text[value]", inputs: ["value"] }, { kind: "component", type: HtmlViewComponent, selector: "gui-html-view", inputs: ["element"] }, { kind: "pipe", type: i4.DatePipe, name: "date" }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplatesComponent, decorators: [{
+            type: Component,
+            args: [{
+                    template: `
+
+		<ng-template #text let-element="element">
+			<gui-view-text [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #number let-element="element">
+			<span class="gui-cell-number">
+				{{ element.value }}
+			</span>
+		</ng-template>
+
+		<ng-template #chip let-element="element">
+			<gui-chip>
+				<gui-view-text [value]="element"></gui-view-text>
+			</gui-chip>
+		</ng-template>
+
+		<ng-template #link let-element="element">
+			<a gui-button link="true" href="{{ element.value }}">
+				<gui-view-text [value]="element"></gui-view-text>
+			</a>
+		</ng-template>
+
+		<ng-template #image let-element="element">
+			<img src="{{ element.value }}"/>
+		</ng-template>
+
+		<ng-template #checkbox let-element="element">
+			<span class="gui-cell-boolean">
+				<gui-checkbox [checked]="!!element.value" [disabled]="true"></gui-checkbox>
+			</span>
+		</ng-template>
+
+		<ng-template #bold let-element="element">
+			<gui-view-text bold [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #italic let-element="element">
+			<gui-view-text italic [value]="element"></gui-view-text>
+		</ng-template>
+
+		<ng-template #custom let-element="element">
+			{{ element.value }}
+		</ng-template>
+
+		<ng-template #function let-element="element">
+			<gui-function-view [element]="element"></gui-function-view>
+		</ng-template>
+
+		<ng-template #html let-element="element">
+			<gui-html-view [element]="element"></gui-html-view>
+		</ng-template>
+
+		<ng-template #date let-element="element">
+			<span class="gui-view-text">{{ element.value | date: 'dd/MM/yyyy' }}</span>
+		</ng-template>
+
+		<ng-template #bar let-element="element">
+			<gui-bar-view [value]="element.value" [showPercentage]="false"></gui-bar-view>
+		</ng-template>
+
+		<ng-template #percentageBar let-element="element">
+			<gui-bar-view [value]="element.value" [showPercentage]="true"></gui-bar-view>
+		</ng-template>
+
+		<ng-template #percentage let-element="element">
+			<gui-percentage-view [value]="element.value"></gui-percentage-view>
+		</ng-template>
+
+	`
+                }]
+        }], propDecorators: { textTemplate: [{
+                type: ViewChild,
+                args: ['text', { read: TemplateRef, static: true }]
+            }], numberTemplate: [{
+                type: ViewChild,
+                args: ['number', { read: TemplateRef, static: true }]
+            }], chipTemplate: [{
+                type: ViewChild,
+                args: ['chip', { read: TemplateRef, static: true }]
+            }], linkTemplate: [{
+                type: ViewChild,
+                args: ['link', { read: TemplateRef, static: true }]
+            }], imageTemplate: [{
+                type: ViewChild,
+                args: ['image', { read: TemplateRef, static: true }]
+            }], checkboxTemplate: [{
+                type: ViewChild,
+                args: ['checkbox', { read: TemplateRef, static: true }]
+            }], boldTemplate: [{
+                type: ViewChild,
+                args: ['bold', { read: TemplateRef, static: true }]
+            }], italicTemplate: [{
+                type: ViewChild,
+                args: ['italic', { read: TemplateRef, static: true }]
+            }], customTemplate: [{
+                type: ViewChild,
+                args: ['custom', { read: TemplateRef, static: true }]
+            }], functionTemplate: [{
+                type: ViewChild,
+                args: ['function', { read: TemplateRef, static: true }]
+            }], htmlTemplate: [{
+                type: ViewChild,
+                args: ['html', { read: TemplateRef, static: true }]
+            }], dateTemplate: [{
+                type: ViewChild,
+                args: ['date', { read: TemplateRef, static: true }]
+            }], barTemplate: [{
+                type: ViewChild,
+                args: ['bar', { read: TemplateRef, static: true }]
+            }], percentageBarTemplate: [{
+                type: ViewChild,
+                args: ['percentageBar', { read: TemplateRef, static: true }]
+            }], percentageTemplate: [{
+                type: ViewChild,
+                args: ['percentage', { read: TemplateRef, static: true }]
+            }] } });
+
+class TemplateFactory {
+    constructor(templatesComponentDefinition, componentFactoryResolver) {
+        this.templatesComponentDefinition = templatesComponentDefinition;
+        this.componentFactoryResolver = componentFactoryResolver;
+        this.templates = new Map();
+        this.templatesComponent = null;
+        this.createTemplatesComponent();
+    }
+    getTemplates() {
+        return this.templates;
+    }
+    destroy() {
+        if (this.templatesComponent) {
+            this.templatesComponent.destroy();
+            this.templatesComponent = null;
+        }
+    }
+    createTemplatesComponent() {
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.templatesComponentDefinition);
+        const injector = Injector.create({ providers: [] });
+        this.templatesComponent = componentFactory.create(injector);
+        this.generateMap();
+    }
+    generateMap() {
+        this.generateMapKeys()
+            .forEach((type) => {
+            this.findAndSetTemplate(type);
+        });
+    }
+    ;
+    findAndSetTemplate(dt) {
+        const template = this.templatesComponent.instance.getTemplate(dt);
+        this.templates.set(dt, template);
+    }
+}
+
+class ViewTemplateFactory extends TemplateFactory {
+    constructor(componentFactoryResolver) {
+        super(ViewTemplatesComponent, componentFactoryResolver);
+    }
+    generateMapKeys() {
+        return Object.keys(CellView)
+            .map(key => CellView[key]);
+    }
+}
+ViewTemplateFactory.services = [ComponentFactoryResolver];
+ViewTemplateFactory.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
+ViewTemplateFactory.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateFactory });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateFactory, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; } });
+
+class ViewTemplateRepository {
+    constructor(columnTemplateFactory) {
+        this.columnTemplateFactory = columnTemplateFactory;
+    }
+    findTemplate(view) {
+        const typeToTemplate = this.columnTemplateFactory.getTemplates();
+        return typeToTemplate.get(view);
+    }
+}
+ViewTemplateRepository.services = [ViewTemplateFactory];
+ViewTemplateRepository.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateRepository, deps: [{ token: ViewTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
+ViewTemplateRepository.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateRepository });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplateRepository, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: ViewTemplateFactory }]; } });
+
+var EditEventType;
+(function (EditEventType) {
+    EditEventType[EditEventType["SUBMIT"] = 0] = "SUBMIT";
+    EditEventType[EditEventType["BLUR"] = 1] = "BLUR";
+    EditEventType[EditEventType["CANCEL"] = 2] = "CANCEL";
+})(EditEventType || (EditEventType = {}));
+
+class EditCommunicationComponent extends SmartComponent {
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+        this.ENTER_KEY_CODE = 13;
+        this.ESC_KEY_CODE = 27;
+    }
+    submit() {
+        this.emitStatus(EditEventType.SUBMIT);
+    }
+    cancel() {
+        this.emitStatus(EditEventType.CANCEL);
+    }
+    emitStatus(status) {
+        if (this.status) {
+            this.status.emit(status);
+        }
+    }
+}
+EditCommunicationComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditCommunicationComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+EditCommunicationComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: EditCommunicationComponent, inputs: { value: "value", valueChanges: "valueChanges", status: "status", focus: "focus", parent: "parent" }, usesInheritance: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditCommunicationComponent, decorators: [{
+            type: Directive
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { value: [{
+                type: Input
+            }], valueChanges: [{
+                type: Input
+            }], status: [{
+                type: Input
+            }], focus: [{
+                type: Input
+            }], parent: [{
+                type: Input
+            }] } });
+
+class InputEditTemplateComponent extends EditCommunicationComponent {
+    constructor(changeDetectorRef, elementRef, formBuilder) {
+        super(changeDetectorRef, elementRef);
+        this.formBuilder = formBuilder;
+        this.filterFieldName = 'phrase';
+        this.filterForm = this.formBuilder.group({
+            [this.filterFieldName]: ['']
+        });
+    }
+    ngOnChanges(changes) {
+        if (changes.value !== undefined) {
+            this.filterForm.get(this.filterFieldName).setValue(this.value);
+        }
+    }
+    ngOnInit() {
+        this.observeChanges();
+    }
+    ngAfterViewInit() {
+        const inputElement = this.inputRef.nativeElement;
+        this.focusField(inputElement);
+        this.emitValueChange(inputElement.value);
+        hermesFromEvent(inputElement, 'blur')
+            .pipe(this.takeUntil())
+            .subscribe(() => {
+            this.unsubscribe();
+            this.submit();
+        });
+        const keyup$ = hermesFromEvent(inputElement, 'keyup');
+        keyup$
+            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.takeUntil())
+            .subscribe(() => {
+            this.unsubscribe();
+            this.submit();
+        });
+        keyup$
+            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.takeUntil())
+            .subscribe(() => {
+            this.unsubscribe();
+            this.cancel();
+        });
+    }
+    focusField(inputElement) {
+        if (this.focus) {
+            inputElement.focus();
+        }
+    }
+    observeChanges() {
+        fromRxJsObservable(this.filterForm
+            .controls[this.filterFieldName]
+            .valueChanges)
+            .pipe(this.takeUntil())
+            .subscribe((value) => {
+            this.emitValueChange(value);
+        });
+    }
+    emitValueChange(value) {
+        if (this.valueChanges) {
+            this.valueChanges.emit(value);
+        }
+    }
+}
+InputEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: InputEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Directive });
+InputEditTemplateComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: InputEditTemplateComponent, viewQueries: [{ propertyName: "inputRef", first: true, predicate: ["input"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: InputEditTemplateComponent, decorators: [{
+            type: Directive
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; }, propDecorators: { inputRef: [{
+                type: ViewChild,
+                args: ['input', { static: true }]
+            }] } });
+
+class StringEditTemplateComponent extends InputEditTemplateComponent {
+    constructor(changeDetectorRef, elementRef, fb) {
+        super(changeDetectorRef, elementRef, fb);
+    }
+    focusField(inputElement) {
+        if (this.focus) {
+            inputElement.focus();
+            inputElement.setSelectionRange(0, inputElement.value.length);
+        }
+    }
+    getSelectorName() {
+        return 'gui-string-edit';
+    }
+}
+StringEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StringEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
+StringEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StringEditTemplateComponent, selector: "gui-string-edit", usesInheritance: true, ngImport: i0, template: `
+
+		<form [formGroup]="filterForm">
+			<input #input [formControlName]="filterFieldName" type="type" class="gui-input"/>
+		</form>
+
+	`, isInline: true, dependencies: [{ kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StringEditTemplateComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-string-edit',
+                    template: `
+
+		<form [formGroup]="filterForm">
+			<input #input [formControlName]="filterFieldName" type="type" class="gui-input"/>
+		</form>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; } });
+
+class NumberEditTemplateComponent extends InputEditTemplateComponent {
+    constructor(changeDetectorRef, elementRef, fb) {
+        super(changeDetectorRef, elementRef, fb);
+    }
+    getSelectorName() {
+        return 'gui-number-edit';
+    }
+}
+NumberEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: NumberEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
+NumberEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: NumberEditTemplateComponent, selector: "gui-number-edit", usesInheritance: true, ngImport: i0, template: `
+
+		<form [formGroup]="filterForm">
+			<input #input [formControlName]="filterFieldName" type="number" class="gui-input"/>
+		</form>
+
+	`, isInline: true, dependencies: [{ kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NumberValueAccessor, selector: "input[type=number][formControlName],input[type=number][formControl],input[type=number][ngModel]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: NumberEditTemplateComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-number-edit',
+                    template: `
+
+		<form [formGroup]="filterForm">
+			<input #input [formControlName]="filterFieldName" type="number" class="gui-input"/>
+		</form>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; } });
+
+class BooleanEditTemplateComponent extends EditCommunicationComponent {
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+        this.changeDetectorRef = changeDetectorRef;
+        this.filterFieldName = 'booleanEdit';
+    }
+    toggle(changed) {
+        this.valueChanges.emit(changed);
+        this.submit();
+    }
+    getSelectorName() {
+        return 'gui-boolean-edit';
+    }
+}
+BooleanEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BooleanEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+BooleanEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit", viewQueries: [{ propertyName: "checkboxRef", first: true, predicate: ["checkbox"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
+
+		<span class="gui-cell-boolean">
+			<gui-checkbox #checkbox
+						  [checked]="value"
+						  [name]="filterFieldName"
+						  (changed)="toggle($event)">
+			</gui-checkbox>
+		</span>
+
+	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BooleanEditTemplateComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-boolean-edit',
+                    template: `
+
+		<span class="gui-cell-boolean">
+			<gui-checkbox #checkbox
+						  [checked]="value"
+						  [name]="filterFieldName"
+						  (changed)="toggle($event)">
+			</gui-checkbox>
+		</span>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { checkboxRef: [{
+                type: ViewChild,
+                args: ['checkbox', { read: ElementRef, static: true }]
+            }] } });
+
+class DateEditTemplateComponent extends EditCommunicationComponent {
+    constructor(changeDetectorRef, elementRef) {
+        super(changeDetectorRef, elementRef);
+        this.changeDetectorRef = changeDetectorRef;
+        this.filterFieldName = 'dateEdit';
+        this.opened = false;
+        this.localStreamCloser = new StreamCloser();
+    }
+    ngAfterViewInit() {
+        const inputElement = this.datePickerRef.nativeElement.querySelector('.gui-date-picker-input');
+        const keyup$ = hermesFromEvent(inputElement, 'keyup');
+        keyup$
+            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.localStreamCloser.takeUntil())
+            .subscribe(() => {
+            this.localStreamCloser.unsubscribe();
+            this.submit();
+        });
+        keyup$
+            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.localStreamCloser.takeUntil())
+            .subscribe(() => {
+            this.localStreamCloser.unsubscribe();
+            this.cancel();
+        });
+    }
+    ngOnDestroy() {
+        this.localStreamCloser.unsubscribe();
+        super.ngOnDestroy();
+    }
+    toggle(changed) {
+        this.valueChanges.emit(changed);
+    }
+    dialogOpened(opened) {
+        this.opened = opened;
+        if (!opened) {
+            this.localStreamCloser.unsubscribe();
+            this.submit();
+        }
+    }
+    getSelectorName() {
+        return 'gui-date-edit';
+    }
+}
+DateEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DateEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+DateEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: DateEditTemplateComponent, selector: "gui-date-edit", viewQueries: [{ propertyName: "datePickerRef", first: true, predicate: ["datepicker"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
+
+		<gui-date-picker #datepicker
+						 [selectDate]="value"
+						 [name]="filterFieldName"
+						 [openDialog]="true"
+						 [onlyDialog]="false"
+						 [parentElement]="parent"
+						 (dialogOpened)="dialogOpened($event)"
+						 (dateSelected)="toggle($event)">
+		</gui-date-picker>
+
+	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricDatePickerComponent, selector: "gui-date-picker", inputs: ["parentElement", "theme", "selectDate", "name", "openDialog", "onlyDialog", "datePipeOptions"], outputs: ["dateSelected", "dialogOpened"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DateEditTemplateComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'gui-date-edit',
+                    template: `
+
+		<gui-date-picker #datepicker
+						 [selectDate]="value"
+						 [name]="filterFieldName"
+						 [openDialog]="true"
+						 [onlyDialog]="false"
+						 [parentElement]="parent"
+						 (dialogOpened)="dialogOpened($event)"
+						 (dateSelected)="toggle($event)">
+		</gui-date-picker>
+
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { datePickerRef: [{
+                type: ViewChild,
+                args: ['datepicker', { read: ElementRef, static: true }]
+            }] } });
+
+class EditTemplatesComponent {
+    getTemplate(dataType) {
+        switch (dataType) {
+            case DataType.STRING:
+                return this.stringTemplate;
+            case DataType.NUMBER:
+                return this.numberTemplate;
+            case DataType.BOOLEAN:
+                return this.booleanTemplate;
+            case DataType.DATE:
+                return this.dateTemplate;
+            default:
+                return this.emptyTemplate;
+        }
+    }
+}
+EditTemplatesComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+EditTemplatesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: EditTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "stringTemplate", first: true, predicate: ["string"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "booleanTemplate", first: true, predicate: ["boolean"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "emptyTemplate", first: true, predicate: ["empty"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
+
+		<ng-template #string let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-string-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-string-edit>
+		</ng-template>
+
+		<ng-template #number let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-number-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-number-edit>
+		</ng-template>
+
+		<ng-template #boolean let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-boolean-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-boolean-edit>
+		</ng-template>
+
+		<ng-template #date let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus" let-parent="parent">
+			<gui-date-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus" [parent]="parent">
+			</gui-date-edit>
+		</ng-template>
+
+		<ng-template #empty>
+
+		</ng-template>
+
+	`, isInline: true, dependencies: [{ kind: "component", type: StringEditTemplateComponent, selector: "gui-string-edit" }, { kind: "component", type: NumberEditTemplateComponent, selector: "gui-number-edit" }, { kind: "component", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit" }, { kind: "component", type: DateEditTemplateComponent, selector: "gui-date-edit" }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplatesComponent, decorators: [{
+            type: Component,
+            args: [{
+                    template: `
+
+		<ng-template #string let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-string-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-string-edit>
+		</ng-template>
+
+		<ng-template #number let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-number-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-number-edit>
+		</ng-template>
+
+		<ng-template #boolean let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
+			<gui-boolean-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
+			</gui-boolean-edit>
+		</ng-template>
+
+		<ng-template #date let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus" let-parent="parent">
+			<gui-date-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus" [parent]="parent">
+			</gui-date-edit>
+		</ng-template>
+
+		<ng-template #empty>
+
+		</ng-template>
+
+	`
+                }]
+        }], propDecorators: { stringTemplate: [{
+                type: ViewChild,
+                args: ['string', { read: TemplateRef, static: true }]
+            }], numberTemplate: [{
+                type: ViewChild,
+                args: ['number', { read: TemplateRef, static: true }]
+            }], booleanTemplate: [{
+                type: ViewChild,
+                args: ['boolean', { read: TemplateRef, static: true }]
+            }], dateTemplate: [{
+                type: ViewChild,
+                args: ['date', { read: TemplateRef, static: true }]
+            }], emptyTemplate: [{
+                type: ViewChild,
+                args: ['empty', { read: TemplateRef, static: true }]
+            }] } });
+
+class EditTemplateFactory extends TemplateFactory {
+    constructor(componentFactoryResolver) {
+        super(EditTemplatesComponent, componentFactoryResolver);
+    }
+    generateMapKeys() {
+        return Object.keys(DataType)
+            .map(key => DataType[key]);
+    }
+}
+EditTemplateFactory.services = [ComponentFactoryResolver];
+EditTemplateFactory.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
+EditTemplateFactory.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateFactory });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateFactory, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; } });
+
+class EditTemplateRepository {
+    constructor(editTemplateFactory) {
+        this.editTemplateFactory = editTemplateFactory;
+    }
+    findTemplate(dataType) {
+        const typeToTemplate = this.editTemplateFactory.getTemplates();
+        return typeToTemplate.get(dataType);
+    }
+}
+EditTemplateRepository.services = [EditTemplateFactory];
+EditTemplateRepository.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateRepository, deps: [{ token: EditTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
+EditTemplateRepository.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateRepository });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplateRepository, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: EditTemplateFactory }]; } });
+
+class GroupCollection {
+    constructor(groups, showGroups) {
+        this.groups = groups;
+        this.showGroups = showGroups;
+    }
+    getGroups() {
+        return this.groups;
+    }
+    isVisible() {
+        return this.showGroups;
+    }
+}
+
+class CompositionGroupArchive extends AggregateArchive {
     constructor() {
+        super(CompositionGroupArchive.default);
     }
 }
+CompositionGroupArchive.default = new GroupCollection([], false);
 
-class SearchDomainWarehouse extends SearchWarehouse {
-    constructor(searchingEnabledArchive, searchPhraseArchive, searchHighlightArchive, searchPlaceholderArchive) {
+class CompositionDomainPublisher extends CompositionPublisher {
+    constructor(compositionDispatcher, compositionGroupRepository, columnHighlightArchive) {
         super();
-        this.searchingEnabledArchive = searchingEnabledArchive;
-        this.searchPhraseArchive = searchPhraseArchive;
-        this.searchHighlightArchive = searchHighlightArchive;
-        this.searchPlaceholderArchive = searchPlaceholderArchive;
+        this.compositionDispatcher = compositionDispatcher;
+        this.compositionGroupRepository = compositionGroupRepository;
+        this.columnHighlightArchive = columnHighlightArchive;
     }
-    onSearchEnabled(structureId) {
-        return this.searchingEnabledArchive.on(structureId);
+    create(compositionId) {
+        this.compositionDispatcher.create(compositionId);
     }
-    onPhrase(structureId) {
-        return this.searchPhraseArchive.on(structureId);
+    setColumns(params, compositionId) {
+        this.compositionDispatcher.setColumns(compositionId, params);
     }
-    onHighlight(structureId) {
-        return this.searchHighlightArchive.on(structureId);
+    setGroups(configs, compositionId) {
+        // this.compositionGroupRepository.next(compositionId, CompositionGroupRepository.default);
+        this.compositionDispatcher.setGroups(compositionId, configs);
     }
-    onPlaceholder(structureId) {
-        return this.searchPlaceholderArchive.on(structureId);
+    setWidth(width, compositionId) {
+        this.compositionDispatcher.setWidth(compositionId, width);
+    }
+    setContainerWidth(width, compositionId) {
+        this.compositionDispatcher.setContainerWidth(compositionId, width);
+    }
+    setResizeWidth(enabled, compositionId) {
+        this.compositionDispatcher.setResizeWidth(compositionId, enabled);
+    }
+    enableColumn(columnDefinitionId, compositionId) {
+        this.compositionDispatcher.setColumnEnabled(compositionId, this.toColumnId(columnDefinitionId), true);
+    }
+    disableColumn(columnDefinitionId, compositionId) {
+        this.compositionDispatcher.setColumnEnabled(compositionId, this.toColumnId(columnDefinitionId), false);
+    }
+    moveLeft(columnDefinitionId, compositionId) {
+        this.compositionDispatcher.moveLeft(compositionId, this.toColumnId(columnDefinitionId));
+    }
+    moveRight(columnDefinitionId, compositionId) {
+        this.compositionDispatcher.moveRight(compositionId, this.toColumnId(columnDefinitionId));
+    }
+    highlightColumn(columnDefinitionId, compositionId) {
+        this.columnHighlightArchive.toggle(compositionId, new ColumnId(columnDefinitionId.getId()));
+    }
+    toColumnId(defId) {
+        return new ColumnId(defId.getId());
     }
 }
-SearchDomainWarehouse.services = [
-    SearchingEnabledArchive,
-    SearchPhraseArchive,
-    SearchHighlightArchive,
-    SearchPlaceholderArchive
+CompositionDomainPublisher.services = [
+    CompositionDispatcher,
+    CompositionGroupArchive,
+    ColumnHighlightArchive
 ];
 
-class SearchDomainEventRepository extends SearchEventRepository {
+class CompositionDomainWarehouse extends CompositionWarehouse {
+    constructor(compositionRepository, compositionGroupArchive, columnHighlightArchive) {
+        super();
+        this.compositionRepository = compositionRepository;
+        this.compositionGroupArchive = compositionGroupArchive;
+        this.columnHighlightArchive = columnHighlightArchive;
+    }
+    onWidth(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getWidth()));
+    }
+    onContainerWidth(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getContainerWidth()));
+    }
+    onWidthForEachColumn(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getAllColumns().map(c => c.width)));
+    }
+    onHeaderColumns(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getActiveHeaderColumns()));
+    }
+    onAllColumns(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getHeaderColumns()));
+    }
+    onSortOrder(fieldId, compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getActiveHeaderColumns()), hermesMap((columns) => {
+            return columns.filter((c) => c.getFieldId().equals(fieldId));
+        }), hermesFilter((columns) => {
+            return columns.length > 0;
+        }), hermesMap(columns => columns[0].getSortStatus()));
+    }
+    onTemplateColumns(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.getTemplateColumns()));
+    }
+    onResizeWidth(compositionId) {
+        return this.compositionRepository
+            .on(compositionId)
+            .pipe(hermesMap((composition) => composition.isResizeWidthEnabled()));
+    }
+    onGroups(compositionId) {
+        return this.compositionGroupArchive.on(compositionId);
+    }
+    onHighlightedColumn(columnId, compositionId) {
+        return this.columnHighlightArchive
+            .on(compositionId)
+            .pipe(hermesMap((manager) => manager.isHighlighted(columnId)));
+    }
+    findColumnNames(compositionId) {
+        let names = [];
+        this.compositionRepository
+            .find(compositionId)
+            .ifPresent((value) => {
+            names = value.getAllColumns().map((cd) => cd.getName());
+        });
+        return names;
+    }
+}
+CompositionDomainWarehouse.services = [
+    CompositionReadModelRootRepository,
+    CompositionGroupArchive,
+    ColumnHighlightArchive
+];
+
+class CompositionDomainEventRepository extends CompositionEventRepository {
     constructor() {
         super();
     }
-    onSearchPhrase(structureId) {
-        return this.onEvent(structureId, SearchPhraseSetDomainEvent)
-            .pipe(hermesFilter((event) => event.isInitial() === false), hermesMap((event) => event.getPhrase()), hermesFilter((phrase) => phrase !== null));
+    onColumnsChanged(compositionId) {
+        return this.onEvent(compositionId, CompositionColumnsSetEvent);
+    }
+    onContainerWidthChanged(compositionId) {
+        return this.onEvent(compositionId, CompositionContainerWidthSetEvent)
+            .pipe(hermesMap((event) => {
+            return event.getPayload();
+        }), hermesFilter((width) => !!width));
     }
 }
 
-class SearchDomainPublisher extends SearchPublisher {
-    constructor(searchDispatcher) {
-        super();
-        this.searchDispatcher = searchDispatcher;
+class DomainColumnAutoConfigurator extends ColumnAutoConfigurator {
+    configure(source) {
+        if (source !== undefined && source !== null && Array.isArray(source) && source.length === 0) {
+            return [];
+        }
+        const rawItem = source[0];
+        return Object.keys(rawItem)
+            .map((key, index) => {
+            return this.toColumnConfig(key, rawItem);
+        });
     }
-    setSearchingConfig(config, structureId) {
-        this.searchDispatcher.setSearchingConfig(config, structureId);
+    toColumnConfig(key, rawItem) {
+        return {
+            field: this.getField(key),
+            header: this.getHeader(key),
+            type: this.getType(key, rawItem)
+        };
     }
-    search(phrase, structureId) {
-        this.searchDispatcher.search(phrase, structureId);
+    getField(key) {
+        return key;
+    }
+    getHeader(key) {
+        return key[0].toUpperCase() + key.slice(1);
+    }
+    getType(key, rawItem) {
+        if (typeof rawItem[key] === 'string') {
+            return DataType.STRING;
+        }
+        else if (typeof rawItem[key] === 'number') {
+            return DataType.NUMBER;
+        }
+        else if (rawItem[key] instanceof Date) {
+            return DataType.DATE;
+        }
+        else if (typeof rawItem[key] === 'boolean') {
+            return DataType.BOOLEAN;
+        }
+        else {
+            return DataType.UNKNOWN;
+        }
     }
 }
-SearchDomainPublisher.services = [SearchDispatcher];
 
-class SearchApiModule {
+class CompositionApiModule {
     registerProviders(container) {
-        container.provide(SearchPublisher, SearchDomainPublisher);
-        container.provide(SearchWarehouse, SearchDomainWarehouse);
-        container.provide(SearchEventRepository, SearchDomainEventRepository);
-        container.provide(SearchPhraseArchive);
-        container.provide(SearchHighlightArchive);
-        container.provide(SearchPlaceholderArchive);
-        container.provide(SearchingEnabledArchive);
+        container.provide(InMemoryCompositionReadStore);
+        container.provide(CompositionReadModelRootRepository, InMemoryCompositionRepository);
+        container.provide(ColumnDefinitionFactory);
+        container.provide(ViewTemplateRepository);
+        container.provide(ViewTemplateFactory);
+        container.provide(EditTemplateFactory);
+        container.provide(EditTemplateRepository);
+        container.provide(InMemoryCompositionStore);
+        container.provide(CompositionReadModelRootConverter);
+        container.provide(CompositionGroupArchive);
+        container.provide(CompositionPublisher, CompositionDomainPublisher);
+        container.provide(CompositionWarehouse, CompositionDomainWarehouse);
+        container.provide(CompositionEventRepository, CompositionDomainEventRepository);
+        container.provide(ColumnAutoConfigurator, DomainColumnAutoConfigurator);
     }
 }
-const searchInitializer = new DomainInitializer(new SearchApiModule(), new SearchDomainModule());
+function initializeComposition() {
+    new DomainInitializer(new CompositionApiModule(), new CompositionDomainModule()).init();
+}
+
+class CompositionTemplateWarehouse {
+    constructor(compositionWarehouse, viewTemplateRepository, editTemplateRepository) {
+        this.compositionWarehouse = compositionWarehouse;
+        this.viewTemplateRepository = viewTemplateRepository;
+        this.editTemplateRepository = editTemplateRepository;
+    }
+    onHeaderCols(compositionId) {
+        return this.compositionWarehouse
+            .onHeaderColumns(compositionId)
+            .pipe(hermesMap((arr) => {
+            return arr.map((context) => {
+                let headerTemplate;
+                if (typeof context.getHeader() === 'function') {
+                    headerTemplate = this.findViewTemplate(CellView.FUNCTION);
+                }
+                else {
+                    headerTemplate = this.findViewTemplate(CellView.HTML);
+                }
+                const editTemplate = this.findEditTemplate(context.getDataType());
+                return new CompositionTemplateModel(headerTemplate, editTemplate, context);
+            });
+        }));
+    }
+    onAll(compositionId) {
+        return this.compositionWarehouse
+            .onAllColumns(compositionId)
+            .pipe(hermesMap((arr) => {
+            return arr.map((context) => {
+                let headerTemplate;
+                if (typeof context.getHeader() === 'function') {
+                    headerTemplate = this.findViewTemplate(CellView.FUNCTION);
+                }
+                else {
+                    headerTemplate = this.findViewTemplate(CellView.HTML);
+                }
+                const editTemplate = this.findEditTemplate(context.getDataType());
+                return new CompositionTemplateModel(headerTemplate, editTemplate, context);
+            });
+        }));
+    }
+    // CellTemplateWithAccessor
+    onTemplateCols(compositionId) {
+        return this.compositionWarehouse
+            .onTemplateColumns(compositionId)
+            .pipe(hermesMap((arr) => {
+            return arr.map((context) => {
+                let cellTemplate;
+                if (context.getCellView() === CellView.NG_TEMPLATE) {
+                    cellTemplate = context.getColumnConfig().templateRef;
+                }
+                else {
+                    cellTemplate = this.findViewTemplate(context.getCellView());
+                }
+                const editTemplate = this.findEditTemplate(context.getDataType());
+                return new CompositionAccessorModel(cellTemplate, editTemplate, context);
+            });
+        }));
+    }
+    findViewTemplate(view) {
+        if (view === CellView.FUNCTION) {
+            return this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
+        }
+        else {
+            return this.viewTemplateRepository.findTemplate(view);
+        }
+    }
+    findEditTemplate(dataType) {
+        return this.editTemplateRepository.findTemplate(dataType);
+    }
+}
+CompositionTemplateWarehouse.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionTemplateWarehouse, deps: [{ token: CompositionWarehouse }, { token: ViewTemplateRepository }, { token: EditTemplateRepository }], target: i0.ɵɵFactoryTarget.Injectable });
+CompositionTemplateWarehouse.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionTemplateWarehouse });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionTemplateWarehouse, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: CompositionWarehouse }, { type: ViewTemplateRepository }, { type: EditTemplateRepository }]; } });
+
+class StructureSummariesPanelComponent extends SmartComponent {
+    constructor(changeDetectorRef, elementRef, structureId, compositionId, structureSummariesEventRepository, translationService, sourceWarehouse, formationWarehouse, compositionTemplateWarehouse) {
+        super(changeDetectorRef, elementRef);
+        this.structureId = structureId;
+        this.compositionId = compositionId;
+        this.structureSummariesEventRepository = structureSummariesEventRepository;
+        this.translationService = translationService;
+        this.sourceWarehouse = sourceWarehouse;
+        this.formationWarehouse = formationWarehouse;
+        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
+        this.sourceEmpty = false;
+        this.addClassToHost('gui-flex');
+        this.subscribe(this.structureSummariesEventRepository.onSummariesChanged(this.structureId.toReadModelRootId()), (event) => {
+            this.summaries = event.getSummaries();
+        });
+    }
+    ngOnInit() {
+        this.subscribe(this.formationWarehouse.onType(this.structureId), (type) => {
+            this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+        });
+        this.subscribe(this.sourceWarehouse.onItemsSize(this.structureId), (size) => {
+            this.sourceEmpty = size === 0;
+        });
+        this.subscribe(this.compositionTemplateWarehouse.onHeaderCols(this.compositionId), (columns) => {
+            this.headerColumns = columns;
+        });
+        this.subscribe(this.translationService.onTranslation(), (translation) => {
+            this.summariesTranslations = new SummariesTranslations(translation.summariesDistinctValuesTooltip, translation.summariesAverageTooltip, translation.summariesMinTooltip, translation.summariesMaxTooltip, translation.summariesMedTooltip, translation.summariesCountTooltip);
+        });
+    }
+    isSummariesTypePresent(summaries) {
+        return summaries !== undefined && summaries !== null;
+    }
+    getSelectorName() {
+        return 'gui-structure-summaries-panel';
+    }
+}
+StructureSummariesPanelComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSummariesPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: SummariesEventRepository }, { token: TranslationFacade }, { token: SourceWarehouse }, { token: FormationWarehouse }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+StructureSummariesPanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: { enabled: "enabled" }, usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSummariesPanelComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'div[gui-structure-summaries-panel][enabled]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n" }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: SummariesEventRepository }, { type: TranslationFacade }, { type: SourceWarehouse }, { type: FormationWarehouse }, { type: CompositionTemplateWarehouse }]; }, propDecorators: { enabled: [{
+                type: Input
+            }] } });
 
 class StaticComponent extends GuiComponent {
     constructor(elementRef, changeDetectorRef) {
@@ -4875,3447 +7804,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             type: Directive
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
 
-class IconComponent extends StaticComponent {
-    constructor(elementRef, changeDetectorRef) {
-        super(elementRef, changeDetectorRef);
-        this.addClassToHost('gui-icon');
-    }
-}
-IconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: IconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
-IconComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: IconComponent, usesInheritance: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: IconComponent, decorators: [{
-            type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
-
-class SearchIconComponent extends IconComponent {
-    constructor(elementRef, changeDetectorRef) {
-        super(elementRef, changeDetectorRef);
-    }
-    getSelectorName() {
-        return 'gui-search-icon';
-    }
-}
-SearchIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-SearchIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SearchIconComponent, selector: "div[gui-search-icon]", usesInheritance: true, ngImport: i0, template: `
-		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
-			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1.5"/>
-			<circle cx="4.02" cy="4.02" r="4.02" transform="translate(0.5 0.5)" stroke-width="1"
-					stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-		</svg>
-	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchIconComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'div[gui-search-icon]',
-                    template: `
-		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
-			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
-				  stroke-linejoin="round" stroke-width="1.5"/>
-			<circle cx="4.02" cy="4.02" r="4.02" transform="translate(0.5 0.5)" stroke-width="1"
-					stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-		</svg>
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
-
-class StructureWarehouse {
-    constructor(structureRepository, structureCellEditArchive) {
-        this.structureRepository = structureRepository;
-        this.structureCellEditArchive = structureCellEditArchive;
-    }
-    on(structureId) {
-        return this.structureRepository.on(structureId);
-    }
-    onEditManager(structureId) {
-        return this.structureCellEditArchive
-            .on(structureId);
-    }
-}
-StructureWarehouse.services = [StructureReadModelRepository, StructureCellEditArchive];
-
-class SearchComponent extends SmartComponent {
-    constructor(formBuilder, changeDetectorRef, elementRef, structureId, searchCommandDispatcher, structureWarehouse, searchWarehouse) {
-        super(changeDetectorRef, elementRef);
-        this.formBuilder = formBuilder;
-        this.changeDetectorRef = changeDetectorRef;
-        this.structureId = structureId;
-        this.searchCommandDispatcher = searchCommandDispatcher;
-        this.structureWarehouse = structureWarehouse;
-        this.searchWarehouse = searchWarehouse;
-        const controlsConfig = {};
-        controlsConfig[SearchComponent.FORM_SEARCH_NAME] = '';
-        this.searchForm = this.formBuilder.group(controlsConfig);
-    }
-    ngOnInit() {
-        this.observeChanges();
-        this.subscribe(this.searchWarehouse.onPlaceholder(this.structureId), (placeholder) => {
-            this.placeholder = placeholder;
-        });
-        this.subscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (searchingEnabled) => {
-            this.searchingEnabled = searchingEnabled;
-        });
-        this.subscribeWithoutRender(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
-            if (phrase === undefined) {
-                phrase = null;
-            }
-            const controlsConfig = {};
-            controlsConfig[SearchComponent.FORM_SEARCH_NAME] = phrase;
-            if (phrase !== this.searchForm.get([SearchComponent.FORM_SEARCH_NAME]).value) {
-                this.stopObserveChanges();
-                this.searchForm.setValue(controlsConfig);
-                this.observeChanges();
-            }
-        });
-    }
-    clear() {
-        this.searchForm.reset();
-    }
-    getSelectorName() {
-        return 'gui-search-bar';
-    }
-    observeChanges() {
-        this.searchInputSubscription =
-            fromRxJsObservable(this.searchForm
-                .controls[SearchComponent.FORM_SEARCH_NAME]
-                .valueChanges
-                .pipe(debounceTime(200)))
-                .pipe(this.takeUntil())
-                .subscribe((phrase) => {
-                this.searchCommandDispatcher.search(phrase, this.structureId);
-            });
-    }
-    stopObserveChanges() {
-        this.searchInputSubscription.unsubscribe();
-    }
-}
-SearchComponent.FORM_SEARCH_NAME = 'searchPhrase';
-SearchComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchComponent, deps: [{ token: i1$2.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SearchPublisher }, { token: StructureWarehouse }, { token: SearchWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-SearchComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SearchComponent, selector: "div[gui-search-bar]", viewQueries: [{ propertyName: "formRef", first: true, predicate: ["formRef"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"searchingEnabled\">\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "component", type: SearchIconComponent, selector: "div[gui-search-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'div[gui-search-bar]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"searchingEnabled\">\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"] }]
-        }], ctorParameters: function () { return [{ type: i1$2.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SearchPublisher }, { type: StructureWarehouse }, { type: SearchWarehouse }]; }, propDecorators: { formRef: [{
-                type: ViewChild,
-                args: ['formRef', { read: ElementRef, static: false }]
-            }] } });
-
-searchInitializer.init();
-function provideSearchCommandInvoker() {
-    return CoreContainer.resolve(SearchPublisher);
-}
-function provideSearchWarehouse() {
-    return CoreContainer.resolve(SearchWarehouse);
-}
-function provideSearchEventRepository() {
-    return CoreContainer.resolve(SearchEventRepository);
-}
-class SearchFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [];
-    }
-}
-SearchFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-SearchFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
-        SearchComponent], imports: [CommonModule,
-        FabricModule,
-        ReactiveFormsModule], exports: [SearchIconComponent,
-        SearchComponent] });
-SearchFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, providers: [
-        { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
-        { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
-        { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
-    ], imports: [CommonModule,
-        FabricModule,
-        ReactiveFormsModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule,
-                        FabricModule,
-                        ReactiveFormsModule
-                    ],
-                    declarations: [
-                        SearchIconComponent,
-                        SearchComponent
-                    ],
-                    exports: [
-                        SearchIconComponent,
-                        SearchComponent
-                    ],
-                    providers: [
-                        { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
-                        { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
-                        { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
-                    ]
-                }]
-        }] });
-
-class FieldArchive extends AggregateArchive {
-    constructor() {
-        super(FieldArchive.default);
-    }
-}
-FieldArchive.default = [];
-
-class FieldModel {
-    constructor(id, dataType, name) {
-        this.id = id;
-        this.dataType = dataType;
-        this.name = name;
-    }
-    getFieldId() {
-        return this.id;
-    }
-    getId() {
-        return this.id.getId();
-    }
-    getDataType() {
-        return this.dataType;
-    }
-    getName() {
-        return this.name;
-    }
-}
-
-class FieldConverter {
-    convert(fields) {
-        return fields.map((field) => {
-            return this.convertOne(field);
-        });
-    }
-    convertOne(field) {
-        return new FieldModel(field.getId(), field.getDataType(), field.getName());
-    }
-}
-
-class FieldCollection {
-    constructor(fieldFactory) {
-        this.fieldFactory = fieldFactory;
-        this.fields = new Map();
-    }
-    getField(fieldId) {
-        if (fieldId === null) {
-            return this.getAllFields()[0];
-        }
-        return this.fields.get(fieldId.getId());
-    }
-    getAllFieldIds() {
-        return Array.from(this.fields.keys());
-    }
-    getAllFields() {
-        return Array.from(this.fields.values());
-    }
-    getFieldsAsMap() {
-        return this.fields;
-    }
-    initFields(fieldConfigs) {
-        const fields = this.fieldFactory.create(fieldConfigs);
-        this.clear();
-        this.addFields(fields);
-    }
-    addFields(fields) {
-        for (const field of fields) {
-            this.addField(field);
-        }
-    }
-    addField(field) {
-        this.fields.set(field.getId().toString(), field);
-    }
-    clear() {
-        this.fields.clear();
-    }
-}
-
-class FieldEntity extends Entity {
-    constructor(id, field, name) {
-        super(id);
-        this.id = id;
-        this.field = field;
-        this.name = name;
-    }
-    static of(id, dataField, name) {
-        return new FieldEntity(id, dataField, name);
-    }
-    getId() {
-        return this.id;
-    }
-    getKey() {
-        return this.getId().toString();
-    }
-    getDataType() {
-        return this.field.getDataType();
-    }
-    getName() {
-        return this.name;
-    }
-    /**
-     * @deprecated
-     */
-    getField() {
-        return this.field;
-    }
-    /**
-     * Probably should not be used.
-     *
-     * @deprecated
-     */
-    getAccessor() {
-        return this.field.getAccessor();
-    }
-    /**
-     * Probably should not be used.
-     *
-     * @deprecated
-     */
-    getAccessorMethod() {
-        return this.field.getAccessorMethod();
-    }
-    /**
-     * Probably should not be used.
-     *
-     * @deprecated
-     */
-    getSearchAccessorMethod() {
-        return this.field.getSearchAccessorMethod();
-    }
-    getValue(entity) {
-        return this.field.getValue(entity);
-    }
-    getDisplayValue(value) {
-        return this.field.getDisplayValue(value);
-    }
-    /**
-     * Probably should not be used.
-     *
-     * @deprecated
-     */
-    isSummaries(type) {
-        return this.field.isSummaries(type);
-    }
-    /**
-     * Probably should not be used.
-     *
-     * @deprecated
-     */
-    isSummariesEnabled() {
-        return this.field.isSummariesEnabled();
-    }
-    search(item, searchPhrase) {
-        return this.field.search(item, searchPhrase);
-    }
-    filter(item, filterPhrase) {
-        const value = this.field.getValue(item);
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return this.field.filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.BOOLEAN) {
-            return this.field.filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.STRING) {
-            return this.field.filter(value, filterPhrase);
-        }
-        else if (this.field.getDataType() === DataType.DATE) {
-            return this.field.filter(value, filterPhrase);
-        }
-        else {
-            return true;
-        }
-    }
-    sort(entityOne, entityTwo, direction) {
-        const valueOne = direction ? this.field.getSortValue(entityOne) : this.field.getSortValue(entityTwo), valueTwo = direction ? this.field.getSortValue(entityTwo) : this.field.getSortValue(entityOne);
-        if (this.field.getDataType() === DataType.NUMBER) {
-            return this.field.sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.BOOLEAN) {
-            return this.field.sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.STRING) {
-            return this.field.sort(valueOne, valueTwo);
-        }
-        else if (this.field.getDataType() === DataType.DATE) {
-            return this.field.sort(valueOne, valueTwo);
-        }
-        else {
-            return 0;
-        }
-    }
-}
-
-class BaseDataField {
-    constructor(accessor, dataType, matchers) {
-        this.accessor = accessor;
-        this.dataType = dataType;
-        this.matchers = matchers;
-        if (typeof accessor === 'string') {
-            this.accessorMethod = (entity) => entity.getSourceItem()[accessor];
-        }
-        else if (typeof accessor === 'function') {
-            this.accessorMethod = (entity) => accessor(entity.getSourceItem());
-        }
-        else {
-            this.accessorMethod = (entity) => entity;
-        }
-    }
-    getDataType() {
-        return this.dataType;
-    }
-    getAccessor() {
-        return this.accessor;
-    }
-    getAccessorMethod() {
-        return this.accessorMethod;
-    }
-    getMatchers() {
-        return this.matchers;
-    }
-    getSearchAccessorMethod() {
-        let matcher;
-        this.matchers
-            .getSearchMatcher()
-            .ifPresent((m) => {
-            matcher = m;
-        });
-        if (matcher) {
-            return (entity) => {
-                const val = this.accessorMethod(entity);
-                return matcher(val);
-            };
-        }
-        else {
-            return (entity) => {
-                return this.accessorMethod(entity);
-            };
-        }
-    }
-    getValue(entity) {
-        return this.accessorMethod(entity);
-    }
-    getSortValue(entity) {
-        let value = this.accessorMethod(entity);
-        this.matchers
-            .getSortMatcher()
-            .ifPresent((matcher) => {
-            value = matcher(value);
-        });
-        return value;
-    }
-    getSearchValue(entity) {
-        let value = this.accessorMethod(entity);
-        this.matchers
-            .getSearchMatcher()
-            .ifPresent((matcher) => {
-            value = matcher(value);
-        });
-        return value;
-    }
-}
-
-class DataField extends BaseDataField {
-    constructor(accessor, dataType, matchers, summariesConfig) {
-        super(accessor, dataType, matchers);
-        this.summariesEnabled = true;
-        this.possibleSummaries = this.assignPossibleSummaries();
-        this.assignSummaries(summariesConfig);
-    }
-    isSummaries(type) {
-        if (!this.isSummariesEnabled()) {
-            return false;
-        }
-        return !!(this.summariesTypes & type);
-    }
-    isSummariesEnabled() {
-        return this.summariesEnabled;
-    }
-    setSummariesEnabled(enabled) {
-        this.summariesEnabled = enabled;
-    }
-    assignSummaries(summariesConfig) {
-        if (!!summariesConfig && Object.keys(summariesConfig).length !== 0) {
-            if (summariesConfig.enabled) {
-                this.summariesEnabled = !!summariesConfig.enabled;
-            }
-            if (summariesConfig.summariesTypes) {
-                this.summariesTypes = 0;
-                summariesConfig.summariesTypes.forEach((t) => {
-                    this.summariesTypes |= t;
-                });
-            }
-            else {
-                this.summariesTypes = this.assignDefaultSummaries();
-            }
-        }
-        else {
-            this.summariesTypes = this.assignDefaultSummaries();
-        }
-    }
-}
-
-class UnknownDataField extends DataField {
-    constructor(accessor, matchers, summariesConfig) {
-        super(accessor, DataType.UNKNOWN, matchers, summariesConfig);
-    }
-    assignDefaultSummaries() {
-        return 0;
-        // return SummariesType.COUNT |
-        // 	SummariesType.DISTINCT;
-    }
-    assignPossibleSummaries() {
-        return SummariesType.COUNT |
-            SummariesType.DISTINCT;
-    }
-    search(item, searchPhrase) {
-        return false;
-    }
-    sort(one, two) {
-        return 0;
-    }
-    filter(value, filterPhrase) {
-        return false;
-    }
-    equals(item, value) {
-        return false;
-    }
-    getDisplayValue(item) {
-        return item;
-    }
-}
-
-class NumberDataField extends DataField {
-    constructor(accessor, matchers, summariesConfig) {
-        super(accessor, DataType.NUMBER, matchers, summariesConfig);
-    }
-    getField() {
-        return this;
-    }
-    assignDefaultSummaries() {
-        return 0;
-        // return SummariesType.COUNT |
-        // 	SummariesType.DISTINCT |
-        // 	SummariesType.SUM |
-        // 	SummariesType.MIN |
-        // 	SummariesType.MAX |
-        // 	SummariesType.AVERAGE |
-        // 	SummariesType.MEDIAN;
-    }
-    assignPossibleSummaries() {
-        return SummariesType.COUNT |
-            SummariesType.DISTINCT |
-            SummariesType.SUM |
-            SummariesType.MIN |
-            SummariesType.MAX |
-            SummariesType.AVERAGE |
-            SummariesType.MEDIAN;
-    }
-    search(item, searchPhrase) {
-        return false;
-    }
-    sort(numOne, numTwo) {
-        const sureNumOne = +numOne, sureNumTwo = +numTwo;
-        return sureNumOne - sureNumTwo;
-    }
-    filter(value, filterPhrase) {
-        return value > filterPhrase;
-    }
-    equals(item, value) {
-        return this.getValue(item) === value;
-    }
-    getDisplayValue(item) {
-        return `${item}`;
-    }
-}
-
-class StringDataField extends DataField {
-    constructor(accessor, matchers, summariesConfig) {
-        super(accessor, DataType.STRING, matchers, summariesConfig);
-    }
-    assignDefaultSummaries() {
-        return 0;
-        // return SummariesType.COUNT |
-        // 	SummariesType.DISTINCT;
-    }
-    assignPossibleSummaries() {
-        return SummariesType.COUNT |
-            SummariesType.DISTINCT;
-    }
-    search(item, searchPhrase) {
-        const value = this.getSearchValue(item);
-        if (typeof value === 'string') {
-            return value.toLowerCase().indexOf(searchPhrase.toLowerCase()) > -1;
-        }
-        else {
-            return false;
-        }
-    }
-    sort(strOne, strTwo) {
-        const sureStrOne = '' + strOne, sureStrTwo = '' + strTwo;
-        return sureStrOne.localeCompare(sureStrTwo);
-    }
-    filter(value, filterPhrase) {
-        return value.toLowerCase().indexOf(filterPhrase.toLowerCase()) > -1;
-    }
-    equals(item, value) {
-        return this.getValue(item) === value;
-    }
-    getDisplayValue(item) {
-        return item;
-    }
-}
-
-class BooleanDataField extends DataField {
-    constructor(accessor, matchers, summariesConfig) {
-        super(accessor, DataType.BOOLEAN, matchers, summariesConfig);
-    }
-    assignDefaultSummaries() {
-        return 0;
-        // return SummariesType.COUNT |
-        // 	SummariesType.DISTINCT |
-        // 	SummariesType.TRUTHY |
-        // 	SummariesType.FALSY;
-    }
-    assignPossibleSummaries() {
-        return SummariesType.COUNT |
-            SummariesType.DISTINCT |
-            SummariesType.TRUTHY |
-            SummariesType.FALSY;
-    }
-    search(item, searchPhrase) {
-        return false;
-    }
-    sort(booleanOne, booleanTwo) {
-        const sureBoolOne = !!booleanOne, sureBoolTwo = !!booleanTwo;
-        return (sureBoolOne === sureBoolTwo) ? 0 : sureBoolTwo ? -1 : 1;
-    }
-    filter(value, filterPhrase) {
-        return value === filterPhrase;
-    }
-    equals(item, value) {
-        return this.getValue(item) === value;
-    }
-    getDisplayValue(item) {
-        return item ? 'True' : 'False';
-    }
-}
-
-class DateDataField extends DataField {
-    constructor(accessor, matchers, summariesConfig) {
-        super(accessor, DataType.DATE, matchers, summariesConfig);
-    }
-    assignDefaultSummaries() {
-        return 0;
-        // return SummariesType.COUNT |
-        // 	SummariesType.DISTINCT;
-    }
-    assignPossibleSummaries() {
-        return SummariesType.COUNT |
-            SummariesType.DISTINCT;
-    }
-    search(item, searchPhrase) {
-        return false;
-    }
-    sort(dateOne, dateTwo) {
-        return dateOne - dateTwo;
-    }
-    filter(value, filterPhrase) {
-        return false;
-    }
-    equals(item, value) {
-        return this.getValue(item).getTime() === value.getTime();
-    }
-    getDisplayValue(item) {
-        return item.toDateString();
-    }
-}
-
-class FieldMatchers {
-    constructor(matcher, sortMatcher, searchMatcher) {
-        this.matcher = matcher;
-        this.sortMatcher = sortMatcher;
-        this.searchMatcher = searchMatcher;
-    }
-    getMatcher() {
-        return Optional.of(this.matcher);
-    }
-    getSortMatcher() {
-        let matcher;
-        if (this.sortMatcher) {
-            matcher = this.sortMatcher;
-        }
-        if (this.matcher) {
-            matcher = this.matcher;
-        }
-        return Optional.of(matcher);
-    }
-    getSearchMatcher() {
-        let matcher;
-        if (this.searchMatcher) {
-            matcher = this.searchMatcher;
-        }
-        if (this.matcher) {
-            matcher = this.matcher;
-        }
-        return Optional.of(matcher);
-    }
-}
-
-class DataFieldFactory {
-    create(fieldConfig) {
-        const fieldMatchers = this.createMatchers(fieldConfig);
-        let columnType = fieldConfig.type;
-        if (columnType === undefined) {
-            columnType = DataType.STRING;
-        }
-        if (columnType === DataType.UNKNOWN) {
-            return new UnknownDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
-        }
-        if (columnType === DataType.NUMBER) {
-            return new NumberDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
-        }
-        if (columnType === DataType.STRING) {
-            return new StringDataField(fieldConfig.field, fieldMatchers);
-        }
-        if (columnType === DataType.BOOLEAN) {
-            return new BooleanDataField(fieldConfig.field, fieldMatchers);
-        }
-        if (columnType === DataType.DATE) {
-            return new DateDataField(fieldConfig.field, fieldMatchers);
-        }
-        return new UnknownDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
-    }
-    createMatchers(fieldConfig) {
-        const matcher = fieldConfig.matcher;
-        let sortMatcher;
-        if (fieldConfig.sorting) {
-            sortMatcher = fieldConfig.sorting.matcher;
-        }
-        return new FieldMatchers(matcher, sortMatcher);
-    }
-}
-
-class FieldEntityIdGenerator {
-    generateId() {
-        const id = RandomStringGenerator.generate();
-        return new FieldId(id);
-    }
-}
-
-class FieldEntityFactory {
-    constructor(fieldIdGenerator, dataFieldFactory) {
-        this.fieldIdGenerator = fieldIdGenerator;
-        this.dataFieldFactory = dataFieldFactory;
-    }
-    create(configs) {
-        if (!configs) {
-            return [];
-        }
-        return configs.map((fieldConfig, index) => {
-            const fieldId = this.fieldIdGenerator.generateId(), dataField = this.dataFieldFactory.create(fieldConfig);
-            return new FieldEntity(fieldId, dataField, this.getFieldName(fieldConfig, index));
-        });
-    }
-    getFieldName(fieldConfig, index) {
-        if (typeof fieldConfig.field === 'string') {
-            return fieldConfig.field.toLowerCase();
-        }
-        else {
-            return 'Field #' + index;
-        }
-    }
-}
-FieldEntityFactory.services = [
-    FieldEntityIdGenerator,
-    DataFieldFactory
-];
-
-class FieldCollectionFactory {
-    constructor(fieldFactory) {
-        this.fieldFactory = fieldFactory;
-    }
-    create() {
-        return new FieldCollection(this.fieldFactory);
-    }
-}
-FieldCollectionFactory.services = [FieldEntityFactory];
-
-class InitFieldsCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return InitFieldsCommand;
-    }
-    handle(structure, command) {
-        const fieldConfigs = command.getFieldConfigs();
-        structure.createFields(fieldConfigs);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class FieldsInitedEventHandler {
-    constructor(fieldArchive, fieldConverter) {
-        this.fieldArchive = fieldArchive;
-        this.fieldConverter = fieldConverter;
-    }
-    forEvent() {
-        return FieldsInitedEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('FieldsInitedEvent')) {
-            const fields = this.fieldConverter.convert(event.getFields());
-            this.fieldArchive.next(event.getAggregateId(), fields);
-        }
-    }
-}
-FieldsInitedEventHandler.services = [
-    FieldArchive,
-    FieldConverter
-];
-
-class FieldDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    initFields(fieldConfigs, structureId) {
-        this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
-    }
-}
-
-class FieldDomainModule {
-    defineAggregate() {
-        return null;
-    }
-    registerKey() {
-        return structureKey;
-    }
-    registerProviders(container) {
-        container.provide(FieldCollectionFactory);
-        container.provide(FieldEntityFactory);
-        container.provide(FieldEntityIdGenerator);
-        container.provide(DataFieldFactory);
-        container.provide(FieldDispatcher);
-    }
-    registerCommandHandlers() {
-        return [
-            InitFieldsCommandHandler
-        ];
-    }
-    registerDomainEventHandler() {
-        return [
-            FieldsInitedEventHandler
-        ];
-    }
-    registerMultiDomainEventHandler() {
-        return [];
-    }
-}
-
-class FieldPublisher {
-    constructor() {
-    }
-}
-
-class FieldWarehouse {
-    constructor() {
-    }
-}
-
-class FieldDomainWarehouse extends FieldWarehouse {
-    constructor(fieldReadModelArchive) {
-        super();
-        this.fieldReadModelArchive = fieldReadModelArchive;
-    }
-    onFields(structureId) {
-        return this.fieldReadModelArchive.on(structureId);
-    }
-    findFields(structureId) {
-        return this.fieldReadModelArchive.find(structureId);
-    }
-}
-FieldDomainWarehouse.services = [FieldArchive];
-
-class FieldDomainPublisher extends FieldPublisher {
-    constructor(fieldDispatcher) {
-        super();
-        this.fieldDispatcher = fieldDispatcher;
-    }
-    initFields(fieldConfigs, structureId) {
-        this.fieldDispatcher.initFields(fieldConfigs, structureId);
-    }
-}
-FieldDomainPublisher.services = [FieldDispatcher];
-
-class FieldApiModule {
-    registerProviders(container) {
-        container.provide(FieldPublisher, FieldDomainPublisher);
-        container.provide(FieldArchive);
-        container.provide(FieldConverter);
-        container.provide(FieldWarehouse, FieldDomainWarehouse);
-    }
-}
-const fieldInitializer = new DomainInitializer(new FieldApiModule(), new FieldDomainModule());
-
-fieldInitializer.init();
-function provideFieldCommandInvoker() {
-    return CoreContainer.resolve(FieldPublisher);
-}
-function provideFieldWarehouse() {
-    return CoreContainer.resolve(FieldWarehouse);
-}
-class FieldFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [];
-    }
-}
-FieldFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-FieldFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, imports: [CommonModule] });
-FieldFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, providers: [
-        { provide: FieldPublisher, useFactory: provideFieldCommandInvoker },
-        { provide: FieldWarehouse, useFactory: provideFieldWarehouse }
-    ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    declarations: [],
-                    exports: [],
-                    providers: [
-                        { provide: FieldPublisher, useFactory: provideFieldCommandInvoker },
-                        { provide: FieldWarehouse, useFactory: provideFieldWarehouse }
-                    ]
-                }]
-        }] });
-
-const filterContainerToken = 'Filter container token';
-
-let SourceIsLoadingModel = class SourceIsLoadingModel {
-    constructor(loading) {
-        this.loading = loading;
-    }
-    isLoading() {
-        return this.loading;
-    }
-};
-SourceIsLoadingModel = __decorate([
-    ReadModelObject
-], SourceIsLoadingModel);
-
-class SourceConverter {
-    convert(aggregate) {
-        return new SourceIsLoadingModel(aggregate.isLoading());
-    }
-}
-
-class SetSourceLoadingEvent extends StructureDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'SetSourceLoadingEvent');
-    }
-}
-
-class SourceSetLoadingCommand extends StructureCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'SourceSetLoadingCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SourceSetLoadingCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SourceSetLoadingCommand;
-    }
-    handle(aggregate, command) {
-        const enabled = command.isEnabled(), source = aggregate.getSource();
-        source.setLoading(enabled);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publish(new SetSourceLoadingEvent(command.getAggregateId()));
-    }
-}
-
-class SetOriginCommand extends StructureCommand {
-    constructor(structureId, items = []) {
-        super(structureId, 'SetOriginCommand');
-        this.items = items;
-    }
-    getItems() {
-        return this.items;
-    }
-}
-
-class SetOriginCommandHandler {
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-    }
-    forCommand() {
-        return SetOriginCommand;
-    }
-    handle(structure, command) {
-        const items = command.getItems();
-        structure.setOrigin(items);
-    }
-    publish(aggregate, command) {
-        const aggregateEvents = aggregate.getEvents();
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    }
-}
-SetOriginCommandHandler.services = [SourceDomainEventPublisher];
-
-class StructureEditSourceItemCommand extends StructureCommand {
-    constructor(structureId, params) {
-        super(structureId, 'StructureEditSourceItemCommand');
-        this.params = params;
-    }
-    getParams() {
-        return this.params;
-    }
-}
-
-class StructureEditSourceItemCommandHandler {
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-    }
-    forCommand() {
-        return StructureEditSourceItemCommand;
-    }
-    handle(structure, command) {
-        const params = command.getParams();
-        structure.editItem(params);
-    }
-    publish(aggregate, command) {
-        const aggregateEvents = aggregate.getEvents();
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    }
-}
-StructureEditSourceItemCommandHandler.services = [SourceDomainEventPublisher];
-
-class SourceDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    setLoading(structureId, enabled) {
-        this.commandDispatcher.dispatch(new SourceSetLoadingCommand(structureId, enabled));
-    }
-    setOrigin(structureId, items) {
-        this.commandDispatcher.dispatch(new SetOriginCommand(structureId, items));
-    }
-    editItem(structureId, params) {
-        this.commandDispatcher.dispatch(new StructureEditSourceItemCommand(structureId, params));
-    }
-}
-
-class OriginItemEntity extends Entity {
-    constructor(id, sourceItem, position, version = 0) {
-        super(id);
-        this.sourceItem = sourceItem;
-        this.position = position;
-        this.version = version;
-    }
-    getSourceItem() {
-        return this.sourceItem;
-    }
-    getVersion() {
-        return this.version;
-    }
-    getPosition() {
-        return this.position;
-    }
-    bumpVersion() {
-        this.version += 1;
-    }
-    setPosition(position) {
-        this.position = position;
-    }
-    clone() {
-        const rawData = Object.assign({}, this.sourceItem);
-        return new OriginItemEntity(this.getId(), rawData, this.version);
-    }
-}
-
-class StructureSourceItemEditedAggregateEvent extends StructureAggregateEvent {
-    constructor(aggregateId, beforeItem, afterItem) {
-        super(aggregateId, 'StructureSourceItemEditedAggregateEvent');
-        this.beforeItem = beforeItem;
-        this.afterItem = afterItem;
-    }
-    toDomainEvent() {
-        return new StructureSourceItemEditedEvent(this.getAggregateId(), this.beforeItem, this.afterItem);
-    }
-    getBeforeItem() {
-        return this.beforeItem;
-    }
-    getAfterItem() {
-        return this.afterItem;
-    }
-}
-
-class StructureOriginChangedAggregateEvent extends StructureAggregateEvent {
-    constructor(aggregateId, origin) {
-        super(aggregateId, 'StructureOriginChangedAggregateEvent');
-        this.origin = origin;
-    }
-    toDomainEvent() {
-        return new OriginSetEvent(this.getAggregateId(), this.origin);
-    }
-    getOrigin() {
-        return this.origin;
-    }
-}
-
-class OriginId extends EntityId {
-    constructor(id) {
-        super(id);
-    }
-    toString() {
-        return this.getId();
-    }
-}
-
-class SourceManager {
-    constructor(formationManager) {
-        this.loading = false;
-        this.fetched = false;
-        this.entities = [];
-        // Entities after filtering, searching
-        this.preparedEntities = [];
-        this.slicedEntities = [];
-        this.formationManager = formationManager;
-    }
-    isLoading() {
-        return this.loading;
-    }
-    isFetched() {
-        return this.fetched;
-    }
-    setLoading(enabled) {
-        this.loading = enabled;
-    }
-    setEntities(ent) {
-        this.entities = ent;
-        this.recalculatePositions();
-    }
-    getEntities() {
-        return this.entities;
-    }
-    setPreparedEntities() {
-        this.preparedEntities = Array.from(this.entities);
-    }
-    getPreparedEntities() {
-        return this.preparedEntities;
-    }
-    setSlicedEntities(ent) {
-        this.slicedEntities = ent;
-    }
-    getSlicedEntities() {
-        return this.slicedEntities;
-    }
-    setOrigin(items = [], structureId) {
-        this.origin = this.convertItems(items);
-        return this.createOriginChangedEvent(structureId);
-    }
-    setConvertedOrigin(items = [], structureId) {
-        this.origin = Array.from(items);
-        return this.createOriginChangedEvent(structureId);
-    }
-    getOrigin() {
-        return this.origin;
-    }
-    getOriginSize() {
-        return this.origin.length;
-    }
-    // editOriginItemByProperty(byField, value: any, field: Field, structureId: StructureId): AggregateEvent {
-    //
-    // }
-    editOriginItem(itemId, value, field, structureId) {
-        const item = this.findOriginItem(itemId), itemBeforeChange = item.clone();
-        if (item) {
-            item.sourceItem[field.getAccessor()] = value;
-            item.bumpVersion();
-        }
-        return [
-            new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
-            this.createOriginChangedEvent(structureId)
-        ];
-    }
-    deleteAllSelected(structureId) {
-        let events = [];
-        const rows = this.formationManager.getSelectedRows();
-        rows.forEach((r) => {
-            events = events.concat(this.deleteOriginItemByItemId(new OriginId(r), structureId));
-        });
-        return events;
-    }
-    deleteOriginItem(payload, structureId) {
-        if (payload instanceof OriginId) {
-            return this.deleteOriginItemByItemId(payload, structureId);
-        }
-        else if (Array.isArray(payload)) {
-            let events = [];
-            payload.forEach((item) => {
-                events = events.concat(this.deleteOneOriginItem(item, structureId));
-            });
-            return events;
-        }
-        else if (Number.isInteger(payload)) {
-            return this.deleteOriginItemByIndex(payload, structureId);
-        }
-        else {
-            return [];
-        }
-    }
-    addOriginItem(item, structureId) {
-        this.origin.push(item);
-        return [this.createOriginChangedEvent(structureId)];
-    }
-    selectAll() {
-        this.formationManager.selectAll(this.getEntities().map(e => e.getId().toString()));
-    }
-    unselectAll() {
-        this.formationManager.unselectAll();
-    }
-    toggleRow(itemId, type) {
-        this.formationManager.toggleRow(itemId, type, this.getEntities().map(e => e.getId().toString()));
-    }
-    getFormation() {
-        return this.formationManager;
-    }
-    convertItems(items) {
-        return items.map((item, index) => {
-            return new OriginItemEntity(new OriginId(RandomStringGenerator.generate()), item, index);
-        });
-    }
-    createOriginChangedEvent(structureId) {
-        return new StructureOriginChangedAggregateEvent(structureId, this.origin);
-    }
-    findOriginItem(itemId) {
-        return this.origin.find((item) => item.getId().toString() === itemId);
-    }
-    findOriginItemIndex(itemId) {
-        return this.origin.findIndex((item) => item.getId().toString() === itemId);
-    }
-    recalculatePositions() {
-        this.entities.forEach((ent, index) => {
-            ent.setPosition(index);
-        });
-    }
-    deleteOneOriginItem(item, structureId) {
-        if (item instanceof OriginId) {
-            return this.deleteOriginItemByItemId(item, structureId);
-        }
-        else if (Number.isInteger(item)) {
-            return this.deleteOriginItemByIndex(item, structureId);
-        }
-        else {
-            return [];
-        }
-    }
-    deleteOriginItemByItemId(itemId, structureId) {
-        const index = this.findOriginItemIndex(itemId.toString());
-        return this.deleteOriginItemByIndex(index, structureId);
-    }
-    deleteOriginItemByIndex(index, structureId) {
-        if (index > -1) {
-            const removedElements = this.origin.splice(index, 1);
-            if (removedElements.length > 0) {
-                for (const element of removedElements) {
-                    this.formationManager.unselectRow(element.getId().toString());
-                }
-                this.formationManager.calculateAllSelected(removedElements.map((f) => f.getId().toString()));
-                this.formationManager.calculateAllUnselected();
-            }
-            return [
-                this.createOriginChangedEvent(structureId)
-            ];
-        }
-        return [];
-    }
-    deleteManyOriginItemByIndex(indexes, structureId) {
-        let events = [];
-        indexes.forEach((index) => {
-            events = events.concat(this.deleteOriginItemByIndex(index, structureId));
-        });
-        return events;
-    }
-    deleteManyOriginItemByItemID(itemIds, structureId) {
-        let events = [];
-        itemIds.forEach((itemId) => {
-            events = events.concat(this.deleteOriginItemByItemId(itemId, structureId));
-        });
-        return events;
-    }
-}
-
-var RowSelectToggleType;
-(function (RowSelectToggleType) {
-    RowSelectToggleType[RowSelectToggleType["NONE"] = 0] = "NONE";
-    RowSelectToggleType[RowSelectToggleType["ADD"] = 1] = "ADD";
-    RowSelectToggleType[RowSelectToggleType["RANGE"] = 2] = "RANGE";
-})(RowSelectToggleType || (RowSelectToggleType = {}));
-
-class FormationManager {
-    constructor(selectedRows) {
-        this.enabled = true;
-        this.mode = RowSelectionMode.SINGLE;
-        this.selectedRows = selectedRows;
-    }
-    isAllSelected() {
-        return this.allSelected;
-    }
-    isAllUnselected() {
-        return this.allUnselected;
-    }
-    setSelection(enabled) {
-        this.enabled = enabled;
-    }
-    setMode(mode) {
-        this.mode = mode;
-    }
-    getSelectedRows() {
-        return Array.from(this.selectedRows);
-    }
-    selectAll(allItemIds) {
-        this.selectedRows = new Set(allItemIds);
-        this.allSelected = true;
-        this.allUnselected = false;
-    }
-    unselectAll() {
-        this.selectedRows.clear();
-        this.allSelected = false;
-        this.allUnselected = true;
-    }
-    toggleRow(itemId, type, allItemIds) {
-        if (!this.enabled) {
-            return;
-        }
-        if (type === RowSelectToggleType.ADD && this.mode === RowSelectionMode.SINGLE) {
-            type = RowSelectToggleType.NONE;
-        }
-        switch (type) {
-            case RowSelectToggleType.NONE:
-                if (this.selectedRows.has(itemId)) {
-                    this.selectedRows.delete(itemId);
-                }
-                else {
-                    this.selectedRows.clear();
-                    this.selectedRows.add(itemId);
-                }
-                break;
-            case RowSelectToggleType.ADD:
-                if (this.selectedRows.has(itemId)) {
-                    this.selectedRows.delete(itemId);
-                }
-                else {
-                    this.selectedRows.add(itemId);
-                }
-                break;
-            case RowSelectToggleType.RANGE:
-                break;
-            default:
-                break;
-        }
-        this.calculateAllSelected(allItemIds);
-        this.calculateAllUnselected();
-    }
-    calculateAllSelected(allItemIds) {
-        if (allItemIds.length !== this.selectedRows.size) {
-            this.allSelected = false;
-        }
-        else {
-            const rows = Array.from(this.selectedRows);
-            let equal = true;
-            rows.sort();
-            allItemIds.sort();
-            for (let i = 0; i < rows.length; i += 1) {
-                if (rows[i] !== allItemIds[i]) {
-                    equal = false;
-                    break;
-                }
-            }
-            this.allSelected = equal;
-        }
-    }
-    calculateAllUnselected() {
-        this.allUnselected = this.selectedRows.size === 0;
-    }
-    unselectRow(itemId) {
-        if (this.selectedRows.has(itemId)) {
-            this.selectedRows.delete(itemId);
-        }
-    }
-}
-
-class FormationManagerFactory {
-    create() {
-        return new FormationManager(new Set());
-    }
-}
-
-class SourceManagerFactory {
-    constructor(formationManagerFactory) {
-        this.formationManagerFactory = formationManagerFactory;
-    }
-    createDefault() {
-        const fm = this.formationManagerFactory.create();
-        return new SourceManager(fm);
-    }
-    create() {
-        const fm = this.formationManagerFactory.create();
-        return new SourceManager(fm);
-    }
-}
-SourceManagerFactory.services = [FormationManagerFactory];
-
-var DeleteCommandPayloadType;
-(function (DeleteCommandPayloadType) {
-    DeleteCommandPayloadType[DeleteCommandPayloadType["INDEX"] = 0] = "INDEX";
-    DeleteCommandPayloadType[DeleteCommandPayloadType["ITEM_ID"] = 1] = "ITEM_ID";
-    DeleteCommandPayloadType[DeleteCommandPayloadType["MANY_INDEX"] = 2] = "MANY_INDEX";
-    DeleteCommandPayloadType[DeleteCommandPayloadType["MANY_ITEM_ID"] = 3] = "MANY_ITEM_ID";
-})(DeleteCommandPayloadType || (DeleteCommandPayloadType = {}));
-class DeleteOriginItemCommand extends StructureCommand {
-    constructor(structureId, payload, type) {
-        super(structureId, 'DeleteOriginItemCommand');
-        this.payload = payload;
-        this.type = type;
-    }
-    static byIndex(structureId, index) {
-        return new DeleteOriginItemCommand(structureId, index, DeleteCommandPayloadType.INDEX);
-    }
-    static byManyIndex(structureId, indexes) {
-        return new DeleteOriginItemCommand(structureId, indexes, DeleteCommandPayloadType.MANY_INDEX);
-    }
-    static byItemId(structureId, itemId) {
-        return new DeleteOriginItemCommand(structureId, itemId, DeleteCommandPayloadType.ITEM_ID);
-    }
-    static byManyItemId(structureId, itemIds) {
-        return new DeleteOriginItemCommand(structureId, itemIds, DeleteCommandPayloadType.MANY_ITEM_ID);
-    }
-    getType() {
-        return this.type;
-    }
-    getPayload() {
-        return this.payload;
-    }
-}
-
-class DeleteOriginItemCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return DeleteOriginItemCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.deleteItem(command.getPayload());
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class StructureSourceOriginArchive extends AggregateArchive {
-    constructor() {
-        super(StructureSourceOriginArchive.default);
-    }
-}
-StructureSourceOriginArchive.default = [];
-
-class StructureOriginChangedEventHandler {
-    constructor(structureSourceOriginRepository) {
-        this.structureSourceOriginRepository = structureSourceOriginRepository;
-    }
-    forEvent() {
-        return OriginSetEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('OriginSetEvent')) {
-            const origin = event.getOrigin();
-            this.structureSourceOriginRepository.next(event.getAggregateId(), origin);
-        }
-    }
-}
-StructureOriginChangedEventHandler.services = [StructureSourceOriginArchive];
-
-class StructurePreparedItemsArchive extends AggregateArchive {
-    constructor() {
-        super(StructurePreparedItemsArchive.default);
-    }
-    /**
-     * @deprecated
-     */
-    getPreparedItems(structureId) {
-        return this.find(structureId).getValueOrNullOrThrowError();
-    }
-}
-StructurePreparedItemsArchive.default = [];
-
-class StructurePreparedItemsEventHandler {
-    constructor(structurePreparedItemsRepository) {
-        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
-    }
-    forEvent() {
-        return StructurePreparedEntitiesSetEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('StructurePreparedEntitiesSetEvent')) {
-            const preparedItems = event.getPreparedItems();
-            this.structurePreparedItemsRepository.next(event.getAggregateId(), preparedItems);
-        }
-    }
-}
-StructurePreparedItemsEventHandler.services = [StructurePreparedItemsArchive];
-
-class SourceDomainModule {
-    defineAggregate() {
-        return null;
-    }
-    registerKey() {
-        return structureKey;
-    }
-    registerProviders(container) {
-        container.provide(StructureSourceOriginArchive);
-        container.provide(SourceDispatcher);
-        container.provide(SourceManagerFactory);
-        container.provide(SourceDomainEventPublisher);
-    }
-    registerCommandHandlers() {
-        return [
-            SourceSetLoadingCommandHandler,
-            SetOriginCommandHandler,
-            StructureEditSourceItemCommandHandler,
-            DeleteOriginItemCommandHandler
-        ];
-    }
-    registerDomainEventHandler() {
-        return [
-            StructureOriginChangedEventHandler,
-            StructurePreparedItemsEventHandler
-        ];
-    }
-    registerMultiDomainEventHandler() {
-        return [];
-    }
-}
-
-class SourceDomainWarehouse extends SourceWarehouse {
-    constructor(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
-        super();
-        this.structureRepository = structureRepository;
-        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
-        this.structureSourceOriginRepository = structureSourceOriginRepository;
-    }
-    findEntities(structureId) {
-        return this.structureRepository.getStructure(structureId).getEntities();
-    }
-    onEntities(structureId) {
-        return this.structureRepository
-            .on(structureId)
-            .pipe(hermesMap((structure) => structure.getEntities()), hermesDistinctUntilChanged((ents1, ents2) => {
-            if (ents1.length !== ents2.length) {
-                return false;
-            }
-            let flag = true;
-            ents1.forEach((ent, index) => {
-                if (!ent.equals(ents2[index])) {
-                    flag = false;
-                    return;
-                }
-            });
-            return flag;
-        }));
-    }
-    onEntitiesSize(structureId) {
-        return this.onEntities(structureId)
-            .pipe(hermesMap((entities) => {
-            return entities.length;
-        }));
-    }
-    onceEntities(structureId) {
-        return singleFromObservable(this.onEntities(structureId));
-    }
-    onOriginSize(structureId) {
-        return this.structureSourceOriginRepository
-            .on(structureId)
-            .pipe(hermesMap(origin => origin.length));
-    }
-    onLoading(structureId) {
-        return this.structureRepository
-            .on(structureId)
-            .pipe(hermesMap((structure) => structure.getSource().isLoading()));
-    }
-    onPreparedEntities(structureId) {
-        return this.structurePreparedItemsRepository.on(structureId);
-    }
-    findPreparedEntities(structureId) {
-        return this.structurePreparedItemsRepository.getPreparedItems(structureId);
-    }
-}
-SourceDomainWarehouse.services = [StructureReadModelRepository, StructurePreparedItemsArchive, StructureSourceOriginArchive];
-
-class StructureEditSourceItemParams {
-    constructor(itemId, columnFieldId, // TODO Rethink
-    value) {
-        this.itemId = itemId;
-        this.columnFieldId = columnFieldId;
-        this.value = value;
-    }
-    getItemId() {
-        return this.itemId;
-    }
-    getColumnFieldId() {
-        return this.columnFieldId;
-    }
-    getValue() {
-        return this.value;
-    }
-}
-
-class SourceDomainPublisher extends SourcePublisher {
-    constructor(sourceDispatcher, fieldWarehouse, sourceReadModelService) {
-        super();
-        this.sourceDispatcher = sourceDispatcher;
-        this.fieldWarehouse = fieldWarehouse;
-        this.sourceReadModelService = sourceReadModelService;
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    setOrigin(items, structureId) {
-        this.sourceDispatcher.setOrigin(structureId, items);
-    }
-    setLoading(enabled, structureId) {
-        this.sourceDispatcher.setLoading(structureId, enabled);
-    }
-    editItem(params, structureId) {
-        this.sourceDispatcher.editItem(structureId, params);
-    }
-    editItemByIndex(itemIndex, fieldIndex, value, structureId) {
-        const itemId$ = toRxJsObservable(this.sourceReadModelService
-            .onceEntities(structureId)
-            .pipe(hermesMap((entities) => {
-            return entities[itemIndex].getId();
-        })));
-        const fieldId$ = toRxJsObservable(this.fieldWarehouse.onFields(structureId));
-        fromRxJsObservable(zip(itemId$, fieldId$))
-            .pipe(hermesTake(1))
-            .subscribe((array) => {
-            const itemId = array[0], fields = array[1];
-            this.editItem(new StructureEditSourceItemParams(itemId, fields[fieldIndex], value), structureId);
-        });
-    }
-    deleteRow(row, structureId) {
-        if (row.getItemId() !== undefined) {
-            this.deleteItemById(row.getItemId(), structureId);
-        }
-        else if (row.getIndex() !== undefined) {
-            this.deleteItemByIndex(row.getIndex(), structureId);
-        }
-    }
-    deleteRows(rows, structureId) {
-        if (rows.length > 0) {
-            if (rows[0].getItemId() !== undefined) {
-                this.deleteManyItemsByItemIds(rows.map(r => r.getItemId()), structureId);
-            }
-            else if (rows[0].getIndex() !== undefined) {
-                this.deleteManyItemsByIndex(rows.map(r => r.getIndex()), structureId);
-            }
-        }
-    }
-    deleteItemByIndex(index, structureId) {
-        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byIndex(structureId, index));
-    }
-    deleteItemById(itemId, structureId) {
-        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byItemId(structureId, itemId));
-    }
-    deleteManyItemsByIndex(indexes, structureId) {
-        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyIndex(structureId, indexes));
-    }
-    deleteManyItemsByItemIds(itemIds, structureId) {
-        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyItemId(structureId, itemIds));
-    }
-}
-SourceDomainPublisher.services = [SourceDispatcher, FieldWarehouse, SourceWarehouse];
-
-class SourceApiModule {
-    registerProviders(container) {
-        container.provide(SourcePublisher, SourceDomainPublisher);
-        container.provide(SourceWarehouse, SourceDomainWarehouse);
-        container.provide(SourceEventService);
-        container.provide(StructurePreparedItemsArchive);
-        container.provide(SourceConverter);
-    }
-}
-const sourceInitializer = new DomainInitializer(new SourceApiModule(), new SourceDomainModule());
-
-sourceInitializer.init();
-function provideSourceCommandInvoker() {
-    return CoreContainer.resolve(SourcePublisher);
-}
-function provideSourceWarehouse() {
-    return CoreContainer.resolve(SourceWarehouse);
-}
-function provideSourceEventRepository() {
-    return CoreContainer.resolve(SourceEventService);
-}
-class SourceFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [];
-    }
-}
-SourceFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-SourceFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, imports: [CommonModule] });
-SourceFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, providers: [
-        { provide: SourcePublisher, useFactory: provideSourceCommandInvoker },
-        { provide: SourceWarehouse, useFactory: provideSourceWarehouse },
-        { provide: SourceEventService, useFactory: provideSourceEventRepository }
-    ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    declarations: [],
-                    exports: [],
-                    providers: [
-                        { provide: SourcePublisher, useFactory: provideSourceCommandInvoker },
-                        { provide: SourceWarehouse, useFactory: provideSourceWarehouse },
-                        { provide: SourceEventService, useFactory: provideSourceEventRepository }
-                    ]
-                }]
-        }] });
-
-class SchemaAggregateRepository extends AggregateRepository {
-}
-
-class InMemorySchemaStore extends InMemoryStore {
-}
-
-class InMemorySchemaAggregateStore extends InMemoryAggregateStore {
-    constructor(inMemorySchemaStore) {
-        super(inMemorySchemaStore);
-    }
-}
-InMemorySchemaAggregateStore.services = [InMemorySchemaStore];
-
-class InMemorySchemaAggregateRepository extends SchemaAggregateRepository {
-    constructor(inMemorySchemaAggregateStore) {
-        super();
-        this.inMemorySchemaAggregateStore = inMemorySchemaAggregateStore;
-    }
-    findById(schemaId) {
-        return this.inMemorySchemaAggregateStore.findById(schemaId);
-    }
-    save(schemaAggregate) {
-        this.inMemorySchemaAggregateStore.save(schemaAggregate);
-    }
-}
-InMemorySchemaAggregateRepository.services = [InMemorySchemaAggregateStore];
-
-class SchemaCommand extends Command {
-}
-
-class SetSchemaThemeCommand extends SchemaCommand {
-    constructor(schemaId, theme) {
-        super(schemaId, 'SetSchemaThemeCommand');
-        this.theme = theme;
-    }
-    getTheme() {
-        return this.theme;
-    }
-}
-
-class SetSchemaThemeCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSchemaThemeCommand;
-    }
-    handle(schemaAggregate, command) {
-        const theme = command.getTheme();
-        schemaAggregate.changeTheme(theme);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class SetRowColoringCommand extends SchemaCommand {
-    constructor(schemaId, coloring) {
-        super(schemaId, 'SetRowColoringCommand');
-        this.coloring = coloring;
-    }
-    getColoring() {
-        return this.coloring;
-    }
-}
-
-class SetRowColoringCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetRowColoringCommand;
-    }
-    handle(schemaAggregate, command) {
-        const coloring = command.getColoring();
-        schemaAggregate.setRowColoring(coloring);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class SetSchemaHorizontalGridCommand extends SchemaCommand {
-    constructor(schemaId, enabled) {
-        super(schemaId, 'SetSchemaHorizontalGridCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetSchemaHorizontalGridCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSchemaHorizontalGridCommand;
-    }
-    handle(schemaAggregate, command) {
-        const enabled = command.isEnabled();
-        schemaAggregate.setHorizontalGrid(enabled);
-    }
-    publish(schemaAggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(schemaAggregate);
-    }
-}
-
-class SetSchemaVerticalGridCommand extends SchemaCommand {
-    constructor(schemaId, enabled) {
-        super(schemaId, 'SetSchemaVerticalGridCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetSchemaVerticalGridCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSchemaVerticalGridCommand;
-    }
-    handle(schemaAggregate, command) {
-        const enabled = command.isEnabled();
-        schemaAggregate.setVerticalGrid(enabled);
-    }
-    publish(schemaAggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(schemaAggregate);
-    }
-}
-
-class SchemaCssClassesRepository extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-
-class SchemaDomainEvent extends DomainEvent {
-}
-
-class SchemaThemeSetEvent extends SchemaDomainEvent {
-    constructor(schemaId, theme) {
-        super(schemaId, theme, 'SchemaThemeSetEvent');
-        this.theme = theme;
-    }
-    getTheme() {
-        return this.theme;
-    }
-}
-
-class RowColoringSetEvent extends SchemaDomainEvent {
-    constructor(schemaId, rowColoring) {
-        super(schemaId, rowColoring, 'RowColoringSetEvent');
-        this.rowColoring = rowColoring;
-    }
-    getRowColoring() {
-        return this.rowColoring;
-    }
-}
-
-class SchemaHorizontalGridSetEvent extends SchemaDomainEvent {
-    constructor(schemaId, horizontalGrid) {
-        super(schemaId, horizontalGrid, 'SchemaHorizontalGridSetEvent');
-        this.horizontalGrid = horizontalGrid;
-    }
-    getHorizontalGrid() {
-        return this.horizontalGrid;
-    }
-}
-
-class SchemaVerticalGridSetEvent extends SchemaDomainEvent {
-    constructor(schemaId, verticalGrid) {
-        super(schemaId, verticalGrid, 'SchemaVerticalGridSetEvent');
-        this.verticalGrid = verticalGrid;
-    }
-    getVerticalGrid() {
-        return this.verticalGrid;
-    }
-}
-
-class SchemaCssClass {
-    constructor(verticalGrid, horizontalGrid, theme, rowColoring) {
-        this.verticalGrid = verticalGrid;
-        this.horizontalGrid = horizontalGrid;
-        this.theme = theme;
-        this.rowColoring = rowColoring;
-    }
-    getRowColoring() {
-        return this.rowColoring;
-    }
-}
-
-class SchemaCssClassesEventHandler {
-    constructor(schemaCssClassesRepository) {
-        this.schemaCssClassesRepository = schemaCssClassesRepository;
-    }
-    forEvents() {
-        return [
-            SchemaThemeSetEvent,
-            RowColoringSetEvent,
-            SchemaHorizontalGridSetEvent,
-            SchemaVerticalGridSetEvent
-        ];
-    }
-    handle(event) {
-        if (event.ofMessageType('RowColoringSetEvent')) {
-            this.rowColoring = event.getRowColoring();
-        }
-        if (event.ofMessageType('SchemaHorizontalGridSetEvent')) {
-            this.horizontalGrid = event.getHorizontalGrid();
-        }
-        if (event.ofMessageType('SchemaVerticalGridSetEvent')) {
-            this.verticalGrid = event.getVerticalGrid();
-        }
-        if (event.ofMessageType('SchemaThemeSetEvent')) {
-            this.schemaTheme = event.getTheme();
-        }
-        this.publish(event.getAggregateId());
-    }
-    publish(aggregateId) {
-        if (this.rowColoring !== undefined && this.horizontalGrid !== undefined && this.verticalGrid !== undefined && this.schemaTheme !== undefined) {
-            this.schemaCssClassesRepository.next(aggregateId, new SchemaCssClass(this.verticalGrid, this.horizontalGrid, this.schemaTheme, this.rowColoring));
-        }
-    }
-}
-SchemaCssClassesEventHandler.services = [SchemaCssClassesRepository];
-
-const schemaKey = 'SchemaAggregate';
-
-class SchemaVerticalGridRepository extends EventDrivenRepository {
-    constructor() {
-        super();
-    }
-    forEvent() {
-        return SchemaVerticalGridSetEvent;
-    }
-}
-
-class SchemaThemeRepository extends EventDrivenRepository {
-    constructor() {
-        super();
-    }
-    forEvent() {
-        return SchemaThemeSetEvent;
-    }
-}
-
-class SchemaRowColoringRepository extends EventDrivenRepository {
-    constructor() {
-        super();
-    }
-    forEvent() {
-        return RowColoringSetEvent;
-    }
-}
-
-class SchemaHorizontalGridRepository extends EventDrivenRepository {
-    constructor() {
-        super();
-    }
-    forEvent() {
-        return SchemaHorizontalGridSetEvent;
-    }
-}
-
-class CreateSchemaCommand extends CreateAggregateCommand {
-    constructor(schemaId) {
-        super(schemaId, 'CreateSchemaCommand');
-    }
-}
-
-class CreateSchemaCommandHandler {
-    forCommand() {
-        return CreateSchemaCommand;
-    }
-}
-
-class SchemaAggregateEvent extends AggregateEvent {
-}
-
-class SchemaThemeSetAggregateEvent extends SchemaAggregateEvent {
-    constructor(schemaId, theme) {
-        super(schemaId, 'SchemaThemeSetAggregateEvent');
-        this.theme = theme;
-    }
-    toDomainEvent() {
-        return new SchemaThemeSetEvent(this.getAggregateId(), this.theme);
-    }
-}
-
-class RowColoringSetAggregateEvent extends SchemaAggregateEvent {
-    constructor(schemaId, rowColoring) {
-        super(schemaId, 'RowColoringSetEvent');
-        this.rowColoring = rowColoring;
-    }
-    toDomainEvent() {
-        return new RowColoringSetEvent(this.getAggregateId(), this.rowColoring);
-    }
-}
-
-class SchemaVerticalGridSetAggregateEvent extends SchemaAggregateEvent {
-    constructor(schemaId, verticalGrid) {
-        super(schemaId, 'SchemaHorizontalGridSetEvent');
-        this.verticalGrid = verticalGrid;
-    }
-    toDomainEvent() {
-        return new SchemaVerticalGridSetEvent(this.getAggregateId(), this.verticalGrid);
-    }
-}
-
-class SchemaHorizontalGridSetAggregateEvent extends SchemaAggregateEvent {
-    constructor(schemaId, horizontalGrid) {
-        super(schemaId, 'SchemaHorizontalGridSetEvent');
-        this.horizontalGrid = horizontalGrid;
-    }
-    toDomainEvent() {
-        return new SchemaHorizontalGridSetEvent(this.getAggregateId(), this.horizontalGrid);
-    }
-}
-
-class SchemaCreatedEvent extends SchemaDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'SchemaCreatedEvent');
-    }
-}
-
-class SchemaCreatedAggregateEvent extends SchemaAggregateEvent {
-    constructor(aggregateId) {
-        super(aggregateId, 'SchemaCreatedAggregateEvent');
-    }
-    toDomainEvent() {
-        return new SchemaCreatedEvent(this.getAggregateId());
-    }
-}
-
-class SchemaAggregate extends AggregateRoot {
-    constructor(id) {
-        super(id, 'SchemaAggregate');
-        this.setTheme(SchemaAggregate.DEFAULT_THEME);
-        this.setHorizontalGrid(SchemaAggregate.DEFAULT_HORIZONTAL_GRID);
-        this.setVerticalGrid(SchemaAggregate.DEFAULT_VERTICAL_GRID);
-        this.setRowColoring(SchemaAggregate.DEFAULT_ROW_COLORING);
-    }
-    createEvent() {
-        return SchemaCreatedAggregateEvent;
-    }
-    changeTheme(theme) {
-        this.setTheme(theme);
-        if (theme === SchemaTheme.MATERIAL) {
-            this.setRowColoring(SchemaRowColoring.NONE);
-            this.setVerticalGrid(false);
-        }
-        if (theme === SchemaTheme.LIGHT) {
-            this.setRowColoring(SchemaRowColoring.NONE);
-            this.setVerticalGrid(false);
-        }
-        if (theme === SchemaTheme.DARK) {
-            this.setRowColoring(SchemaRowColoring.NONE);
-            this.setVerticalGrid(false);
-        }
-        if (theme === SchemaTheme.GENERIC) {
-            this.setRowColoring(SchemaRowColoring.ODD);
-        }
-    }
-    setRowColoring(coloring) {
-        this.rowColoring = coloring;
-        this.addEvent(new RowColoringSetAggregateEvent(this.getId(), this.rowColoring));
-    }
-    setVerticalGrid(enabled) {
-        this.verticalGrid = enabled;
-        this.addEvent(new SchemaVerticalGridSetAggregateEvent(this.getId(), this.verticalGrid));
-    }
-    setHorizontalGrid(enabled) {
-        this.horizontalGrid = enabled;
-        this.addEvent(new SchemaHorizontalGridSetAggregateEvent(this.getId(), this.horizontalGrid));
-    }
-    setTheme(theme) {
-        this.theme = theme;
-        this.addEvent(new SchemaThemeSetAggregateEvent(this.getId(), this.theme));
-    }
-}
-SchemaAggregate.DEFAULT_THEME = SchemaTheme.GENERIC;
-SchemaAggregate.DEFAULT_ROW_COLORING = SchemaRowColoring.ODD;
-SchemaAggregate.DEFAULT_VERTICAL_GRID = true;
-SchemaAggregate.DEFAULT_HORIZONTAL_GRID = true;
-
-class SchemaAggregateFactory extends AggregateFactory {
-    constructor() {
-        super();
-    }
-    create(aggregateId) {
-        return new SchemaAggregate(aggregateId);
-    }
-}
-
-class SchemaRowClassArchive extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-
-class SchemaRowStyleArchive extends AggregateArchive {
-    constructor() {
-        super();
-    }
-}
-
-class SchemaDomainModule {
-    defineAggregate() {
-        return {
-            aggregateKey: schemaKey,
-            createCommandHandler: CreateSchemaCommandHandler,
-            factory: SchemaAggregateFactory,
-            repository: InMemorySchemaAggregateRepository
-        };
-    }
-    registerKey() {
-        return schemaKey;
-    }
-    registerProviders(container) {
-        container.provide(SchemaRowClassArchive);
-        container.provide(SchemaRowStyleArchive);
-    }
-    registerCommandHandlers() {
-        return [
-            SetSchemaThemeCommandHandler,
-            SetRowColoringCommandHandler,
-            SetSchemaHorizontalGridCommandHandler,
-            SetSchemaVerticalGridCommandHandler
-        ];
-    }
-    registerDomainEventHandler() {
-        return [
-            SchemaThemeRepository,
-            SchemaHorizontalGridRepository,
-            SchemaRowColoringRepository,
-            SchemaVerticalGridRepository
-        ];
-    }
-    registerMultiDomainEventHandler() {
-        return [
-            SchemaCssClassesEventHandler
-        ];
-    }
-}
-
-class SchemaDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    create(schemaId) {
-        this.commandDispatcher.dispatch(new CreateSchemaCommand(schemaId));
-    }
-    setTheme(theme, schemaId) {
-        this.commandDispatcher.dispatch(new SetSchemaThemeCommand(schemaId, theme));
-    }
-    setRowColoring(rowColoring, schemaId) {
-        this.commandDispatcher.dispatch(new SetRowColoringCommand(schemaId, rowColoring));
-    }
-    setVerticalGrid(verticalGrid, schemaId) {
-        this.commandDispatcher.dispatch(new SetSchemaVerticalGridCommand(schemaId, verticalGrid));
-    }
-    setHorizontalGrid(horizontalGrid, schemaId) {
-        this.commandDispatcher.dispatch(new SetSchemaHorizontalGridCommand(schemaId, horizontalGrid));
-    }
-}
-
-class SchemaDomainPublisher extends SchemaPublisher {
-    constructor(schemaDispatcher, structurePublisher, fabricModalThemeService, schemaRowClassArchive, schemaRowStyleArchive) {
-        super();
-        this.schemaDispatcher = schemaDispatcher;
-        this.structurePublisher = structurePublisher;
-        this.fabricModalThemeService = fabricModalThemeService;
-        this.schemaRowClassArchive = schemaRowClassArchive;
-        this.schemaRowStyleArchive = schemaRowStyleArchive;
-    }
-    create(schemaId) {
-        this.schemaDispatcher.create(schemaId.toAggregateId());
-    }
-    setTheme(theme, schemaId, structureId) {
-        this.schemaDispatcher.setTheme(theme, schemaId.toAggregateId());
-        this.fabricModalThemeService.changeTheme(this.toFabricTheme(theme)); // TODO github #2162
-        this.structurePublisher.setRowHeightBasedOnTheme(theme, structureId);
-    }
-    setRowColoring(rowColoring, schemaId) {
-        const schemaRowColoring = this.toSchemaRowColoring(rowColoring);
-        this.schemaDispatcher.setRowColoring(schemaRowColoring, schemaId.toAggregateId());
-    }
-    setVerticalGrid(verticalGrid, schemaId) {
-        this.schemaDispatcher.setVerticalGrid(verticalGrid, schemaId.toAggregateId());
-    }
-    setHorizontalGrid(horizontalGrid, schemaId) {
-        this.schemaDispatcher.setHorizontalGrid(horizontalGrid, schemaId.toAggregateId());
-    }
-    setRowClass(schemaRowClass, schemaId) {
-        return this.schemaRowClassArchive.next(schemaId.toAggregateId(), schemaRowClass);
-    }
-    setRowStyle(rowStyle, schemaId) {
-        return this.schemaRowStyleArchive.next(schemaId.toAggregateId(), rowStyle);
-    }
-    // move to function
-    toSchemaRowColoring(coloring) {
-        switch (coloring) {
-            case RowColoring.NONE:
-                return SchemaRowColoring.NONE;
-            case RowColoring.ODD:
-                return SchemaRowColoring.ODD;
-            case RowColoring.EVEN:
-                return SchemaRowColoring.EVEN;
-            default:
-                return SchemaRowColoring.NONE;
-        }
-    }
-    // move to function
-    toFabricTheme(schemaTheme) {
-        switch (schemaTheme) {
-            case SchemaTheme.DARK: {
-                return Theme.DARK;
-            }
-            case SchemaTheme.FABRIC: {
-                return Theme.FABRIC;
-            }
-            case SchemaTheme.GENERIC: {
-                return Theme.GENERIC;
-            }
-            case SchemaTheme.LIGHT: {
-                return Theme.LIGHT;
-            }
-            case SchemaTheme.MATERIAL: {
-                return Theme.MATERIAL;
-            }
-            default:
-                return Theme.FABRIC;
-        }
-    }
-}
-SchemaDomainPublisher.services = [
-    SchemaDispatcher,
-    StructurePublisher,
-    FabricModalThemeService,
-    SchemaRowClassArchive,
-    SchemaRowStyleArchive
-];
-
-class SchemaDomainWarehouse extends SchemaWarehouse {
-    constructor(schemaCssClassesRepository, schemaThemeRepository, schemaHorizontalGridRepository, schemaRowColoringRepository, schemaVerticalGridRepository, schemaRowClassArchive, schemaRowStyleArchive) {
-        super();
-        this.schemaCssClassesRepository = schemaCssClassesRepository;
-        this.schemaThemeRepository = schemaThemeRepository;
-        this.schemaHorizontalGridRepository = schemaHorizontalGridRepository;
-        this.schemaRowColoringRepository = schemaRowColoringRepository;
-        this.schemaVerticalGridRepository = schemaVerticalGridRepository;
-        this.schemaRowClassArchive = schemaRowClassArchive;
-        this.schemaRowStyleArchive = schemaRowStyleArchive;
-    }
-    onTheme(schemaId) {
-        return this.schemaThemeRepository
-            .on(schemaId.toAggregateId());
-    }
-    onceTheme(schemaId) {
-        return singleFromObservable(this.onTheme(schemaId));
-    }
-    onHorizontalGrid(schemaId) {
-        return this.schemaHorizontalGridRepository
-            .on(schemaId.toAggregateId());
-    }
-    onVerticalGrid(schemaId) {
-        return this.schemaVerticalGridRepository
-            .on(schemaId.toAggregateId());
-    }
-    onRowColoring(schemaId) {
-        return this.schemaRowColoringRepository
-            .on(schemaId.toAggregateId());
-    }
-    onCssClasses(schemaId) {
-        return this.schemaCssClassesRepository
-            .on(schemaId.toAggregateId());
-    }
-    onRowClass(schemaId) {
-        return this.schemaRowClassArchive.on(schemaId.toAggregateId());
-    }
-    onRowStyle(schemaId) {
-        return this.schemaRowStyleArchive.on(schemaId.toAggregateId());
-    }
-}
-SchemaDomainWarehouse.services = [
-    SchemaCssClassesRepository,
-    SchemaThemeRepository,
-    SchemaHorizontalGridRepository,
-    SchemaRowColoringRepository,
-    SchemaVerticalGridRepository,
-    SchemaRowClassArchive,
-    SchemaRowStyleArchive
-];
-
-class SchemaDomainEventRepository extends SchemaEventRepository {
-    constructor() {
-        super();
-    }
-    onThemeChanged(schemaId) {
-        return this.onEvent(schemaId, SchemaThemeSetEvent)
-            .pipe(hermesMap((event) => {
-            return event.getTheme();
-        }));
-    }
-    onHorizontalGridChanged(schemaId) {
-        return this.onEvent(schemaId, SchemaHorizontalGridSetEvent)
-            .pipe(hermesMap((event) => event.getHorizontalGrid()));
-    }
-    onVerticalGridChanged(schemaId) {
-        return this.onEvent(schemaId, SchemaVerticalGridSetEvent)
-            .pipe(hermesMap((event) => event.getVerticalGrid()));
-    }
-    onRowColoring(schemaId) {
-        return this.onEvent(schemaId, RowColoringSetEvent)
-            .pipe(hermesMap((event) => event.getRowColoring()));
-    }
-}
-
-class SchemaApiModule {
-    registerProviders(container) {
-        container.provide(SchemaDispatcher);
-        container.provide(SchemaAggregateRepository, InMemorySchemaAggregateRepository);
-        container.provide(InMemorySchemaAggregateStore);
-        container.provide(InMemorySchemaStore);
-        container.provide(SchemaPublisher, SchemaDomainPublisher);
-        container.provide(SchemaWarehouse, SchemaDomainWarehouse);
-        container.provide(SchemaEventRepository, SchemaDomainEventRepository);
-        container.provide(SchemaCssClassesRepository);
-    }
-}
-const schemaInitializer = new DomainInitializer(new SchemaApiModule(), new SchemaDomainModule());
-const initSchema = () => {
-    schemaInitializer.init();
-};
-
-function useFactorySchemaCommandInvoker() {
-    return CoreContainer.resolve(SchemaPublisher);
-}
-function useFactorySchemaWarehouse() {
-    return CoreContainer.resolve(SchemaWarehouse);
-}
-function useFactorySchemaEventRepository() {
-    return CoreContainer.resolve(SchemaEventRepository);
-}
-initSchema();
-class SchemaFeatureModule extends FeatureModule {
-    constructor() {
-        super();
-    }
-    static forComponent() {
-        return [];
-    }
-}
-SchemaFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-SchemaFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
-SchemaFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, providers: [
-        { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
-        { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
-        { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
-    ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    providers: [
-                        { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
-                        { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
-                        { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
-                    ],
-                    declarations: [],
-                    exports: []
-                }]
-        }], ctorParameters: function () { return []; } });
-
-class SummariesEventRepository extends EventRepository {
-    constructor() {
-        super();
-    }
-}
-
-class StructureSetSummariesEnabledCommand extends StructureCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'StructureSetSummariesEnabledCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-const StructureSummariesEnabledSetEventName = 'StructureSummariesEnabledSetEvent';
-class StructureSummariesEnabledSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, enabled) {
-        super(aggregateId, enabled, StructureSummariesEnabledSetEventName);
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class StructureSetSummariesEnabledCommandHandler {
-    constructor(structureSourceDomainEventPublisher) {
-        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return StructureSetSummariesEnabledCommand;
-    }
-    handle(structure, command) {
-        const enabled = command.isEnabled();
-        structure.setSummariesEnabled(enabled);
-    }
-    publish(aggregate, command) {
-        const enabled = command.isEnabled(), aggregateEvents = aggregate.getEvents();
-        this.domainEventPublisher.publish(new StructureSummariesEnabledSetEvent(command.getAggregateId(), enabled));
-        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
-    }
-}
-StructureSetSummariesEnabledCommandHandler.services = [SourceDomainEventPublisher];
-
-class StructureSummariesChangedAggregateEvent extends StructureAggregateEvent {
-    constructor(aggregateId, summarizedValues) {
-        super(aggregateId, 'StructureSummariesChangedAggregateEvent');
-        this.summarizedValues = summarizedValues;
-    }
-    toDomainEvent() {
-        return new StructureSummariesChangedEvent(this.getAggregateId(), this.summarizedValues);
-    }
-    getSummaries() {
-        return this.summarizedValues;
-    }
-}
-
-class SummariesManager {
-    constructor(structureId, calculators) {
-        this.calculators = calculators;
-        this.values = new Map();
-        this.structureId = structureId;
-        this.enabled = SummariesManager.DEFAULT_ENABLED;
-    }
-    calculate(fields, entities) {
-        if (!this.enabled) {
-            return [];
-        }
-        const calculations = new Map();
-        this.calculators.forEach((calc) => {
-            const aggregatedValues = calc.calculate(fields, entities);
-            if (aggregatedValues) {
-                Array.from(aggregatedValues.keys())
-                    .forEach((key) => {
-                    calculations.set(key, aggregatedValues.get(key));
-                });
-            }
-        });
-        if (calculations.size > 0) {
-            return [
-                new StructureSummariesChangedAggregateEvent(this.structureId, calculations)
-            ];
-        }
-        else {
-            return [];
-        }
-    }
-    setEnabled(enabled) {
-        this.enabled = enabled;
-    }
-    add() {
-    }
-    remove() {
-    }
-    update() {
-    }
-}
-SummariesManager.DEFAULT_ENABLED = false;
-
-class SummariesEnabledArchive extends AggregateArchive {
-    constructor() {
-        super(SummariesManager.DEFAULT_ENABLED);
-    }
-    init(structureId) {
-        this.next(structureId, SummariesManager.DEFAULT_ENABLED);
-    }
-}
-
-class StructureSummariesEnabledSetEventHandler {
-    constructor(summariesEnabledArchive) {
-        this.summariesEnabledArchive = summariesEnabledArchive;
-    }
-    forEvent() {
-        return StructureSummariesEnabledSetEvent;
-    }
-    handle(event) {
-        if (event.ofMessageType('StructureSummariesEnabledSetEvent')) {
-            this.summariesEnabledArchive.next(event.getAggregateId(), event.isEnabled());
-        }
-    }
-}
-StructureSummariesEnabledSetEventHandler.services = [SummariesEnabledArchive];
-
-class SummariesCalculator {
-    calculate(fields, items) {
-        const filteredFields = fields.filter((field) => this.forDataType(field.getDataType()));
-        if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
-            return null;
-        }
-        const count = new Map(), distinct = new Map();
-        // init
-        filteredFields.forEach((field) => {
-            const key = field.getKey();
-            count.set(key, 0);
-            distinct.set(key, new Set());
-            this.prepare(field);
-        });
-        // calculate
-        items.forEach((item) => {
-            filteredFields.forEach((field) => {
-                const key = field.getKey(), value = field.getValue(item);
-                if (value !== null || value !== undefined || value !== '') {
-                    if (field.isSummaries(SummariesType.COUNT)) {
-                        const countForField = count.get(key);
-                        count.set(key, countForField + 1);
-                    }
-                    if (field.isSummaries(SummariesType.DISTINCT)) {
-                        const distinctSet = distinct.get(key);
-                        distinctSet.add(value);
-                    }
-                }
-                this.aggregate(field, value);
-            });
-        });
-        filteredFields.forEach((field) => {
-            this.postCalculate(field, items);
-        });
-        const summaries = new Map();
-        filteredFields.forEach((field) => {
-            const key = field.getKey();
-            const aggregatedValues = this.generateAggregatedValues(field);
-            if (field.isSummaries(SummariesType.COUNT)) {
-                aggregatedValues.setCount(count.get(key));
-            }
-            if (field.isSummaries(SummariesType.DISTINCT)) {
-                aggregatedValues.setDistinct((distinct.get(key)).size);
-            }
-            summaries.set(key, aggregatedValues);
-        });
-        return summaries;
-    }
-}
-
-class SummariesValues {
-    setCount(value) {
-        this.count = value;
-    }
-    setDistinct(value) {
-        this.distinct = value;
-    }
-}
-
-class BooleanSummarizedValues extends SummariesValues {
-    constructor(truthy, falsy) {
-        super();
-        this.truthy = truthy;
-        this.falsy = falsy;
-    }
-}
-
-class BooleanSummariesCalculator extends SummariesCalculator {
-    constructor() {
-        super();
-        this.truthy = new Map();
-        this.falsy = new Map();
-    }
-    forDataType(dataType) {
-        return dataType === DataType.BOOLEAN;
-    }
-    prepare(field) {
-        const key = field.getKey();
-        if (field.isSummaries(SummariesType.TRUTHY)) {
-            this.truthy.set(key, 0);
-        }
-        if (field.isSummaries(SummariesType.FALSY)) {
-            this.falsy.set(key, 0);
-        }
-    }
-    postCalculate(field, items) {
-    }
-    aggregate(field, value) {
-        const booleanValue = value, // (value as any === 'true'),
-        key = field.getKey(), truthyForField = this.truthy.get(key), falsyForField = this.falsy.get(key);
-        if (booleanValue) {
-            if (field.isSummaries(SummariesType.TRUTHY)) {
-                this.truthy.set(key, truthyForField + 1);
-            }
-        }
-        else {
-            if (field.isSummaries(SummariesType.FALSY)) {
-                this.falsy.set(key, falsyForField + 1);
-            }
-        }
-    }
-    generateAggregatedValues(field) {
-        const key = field.getKey();
-        return new BooleanSummarizedValues(this.truthy.get(key), this.falsy.get(key));
-    }
-}
-
-class DateSummarizedValues extends SummariesValues {
-    constructor() {
-        super();
-    }
-}
-
-class DateSummariesCalculator extends SummariesCalculator {
-    constructor() {
-        super();
-    }
-    forDataType(dataType) {
-        return dataType === DataType.DATE;
-    }
-    prepare(field) {
-    }
-    postCalculate(field, items) {
-    }
-    aggregate(field, value) {
-    }
-    generateAggregatedValues(field) {
-        return new DateSummarizedValues();
-    }
-}
-
-class NumberSummarizedValues extends SummariesValues {
-    constructor(sum, min, max, average, median) {
-        super();
-        this.sum = this.setValueWithPrecision(sum);
-        this.min = this.setValueWithPrecision(min);
-        this.max = this.setValueWithPrecision(max);
-        this.average = this.setValueWithPrecision(average);
-        this.median = this.setValueWithPrecision(median);
-    }
-    setValueWithPrecision(value) {
-        if (!value && value !== 0) {
-            return null;
-        }
-        if (value === 0) {
-            return 0;
-        }
-        return +((value).toFixed(2));
-    }
-}
-
-class NumberSummariesCalculator extends SummariesCalculator {
-    constructor() {
-        super();
-        this.sum = new Map();
-        this.min = new Map();
-        this.max = new Map();
-        this.average = new Map();
-        this.median = new Map();
-    }
-    forDataType(dataType) {
-        return dataType === DataType.NUMBER;
-    }
-    prepare(field) {
-        const key = field.getKey();
-        this.sum.set(key, 0);
-        this.min.set(key, Number.MAX_SAFE_INTEGER);
-        this.max.set(key, 0);
-    }
-    postCalculate(field, items) {
-        const key = field.getKey();
-        if (field.isSummaries(SummariesType.AVERAGE)) {
-            this.average.set(key, this.sum.get(key) / items.length);
-        }
-        if (field.isSummaries(SummariesType.MEDIAN)) {
-            this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
-        }
-    }
-    aggregate(field, value) {
-        const numberValue = +value, key = field.getKey(), sumForField = this.sum.get(key), minForField = this.min.get(key), maxForField = this.max.get(key);
-        if (field.isSummaries(SummariesType.SUM) || field.isSummaries(SummariesType.AVERAGE)) {
-            this.sum.set(key, sumForField + numberValue);
-        }
-        if (field.isSummaries(SummariesType.MIN)) {
-            if (minForField > numberValue) {
-                this.min.set(key, numberValue);
-            }
-        }
-        if (field.isSummaries(SummariesType.MAX)) {
-            if (maxForField < numberValue) {
-                this.max.set(key, numberValue);
-            }
-        }
-    }
-    generateAggregatedValues(field) {
-        const key = field.getKey(), sum = field.isSummaries(SummariesType.SUM) ? this.sum.get(key) : undefined, min = field.isSummaries(SummariesType.MIN) ? this.min.get(key) : undefined, max = field.isSummaries(SummariesType.MAX) ? this.max.get(key) : undefined, average = field.isSummaries(SummariesType.AVERAGE) ? this.average.get(key) : undefined, median = field.isSummaries(SummariesType.MEDIAN) ? this.median.get(key) : undefined;
-        return new NumberSummarizedValues(sum, min, max, average, median);
-    }
-}
-
-class StringSummarizedValues extends SummariesValues {
-    constructor() {
-        super();
-    }
-}
-
-class StringSummariesCalculator extends SummariesCalculator {
-    constructor() {
-        super();
-    }
-    forDataType(dataType) {
-        return dataType === DataType.STRING;
-    }
-    prepare(field) {
-    }
-    postCalculate(field, items) {
-    }
-    aggregate(field, value) {
-    }
-    generateAggregatedValues(field) {
-        return new StringSummarizedValues();
-    }
-}
-
-class UnknownSummarizedValues extends SummariesValues {
-    constructor() {
-        super();
-    }
-}
-
-class UnknownSummariesCalculator extends SummariesCalculator {
-    constructor() {
-        super();
-    }
-    forDataType(dataType) {
-        return dataType === DataType.UNKNOWN;
-    }
-    prepare(field) {
-    }
-    postCalculate(field, items) {
-    }
-    aggregate(field, value) {
-    }
-    generateAggregatedValues(field) {
-        return new UnknownSummarizedValues();
-    }
-}
-
-const SUMMARIES_CALCULATORS = 'GUI - Summaries Calculators';
-
-class SummariesManagerFactory {
-    constructor(calculators) {
-        this.calculators = calculators;
-    }
-    create(structureId) {
-        return new SummariesManager(structureId, this.calculators);
-    }
-}
-SummariesManagerFactory.services = [{ inject: SUMMARIES_CALCULATORS, collection: true }];
-
-class SummariesDispatcher {
-    constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
-    }
-    setSummariesEnabled(enabled, structureId) {
-        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
-    }
-}
-
-class StructureSummariesPanelConfig {
-    constructor() {
-        this.top = StructureSummariesPanelConfig.defaultTop;
-        this.bottom = StructureSummariesPanelConfig.defaultBottom;
-    }
-    setTop(top) {
-        this.top = top;
-    }
-    setBottom(bottom) {
-        this.bottom = bottom;
-    }
-    isTopEnabled() {
-        return this.top;
-    }
-    isBottomEnabled() {
-        return this.bottom;
-    }
-}
-StructureSummariesPanelConfig.defaultTop = false;
-StructureSummariesPanelConfig.defaultBottom = true;
-
-class StructureSummariesConfigArchive extends AggregateArchive {
-    constructor() {
-        super(StructureSummariesConfigArchive.default);
-    }
-}
-StructureSummariesConfigArchive.default = new StructureSummariesPanelConfig();
-
-class StructureSummariesPanelConfigConverter {
-    convert(config) {
-        const panelConfig = new StructureSummariesPanelConfig();
-        if (config.top !== undefined && config.top !== null) {
-            panelConfig.setTop(config.top);
-        }
-        if (config.bottom !== undefined && config.bottom !== null) {
-            panelConfig.setBottom(config.bottom);
-        }
-        return panelConfig;
-    }
-}
-
-class SummariesDomainModule {
-    defineAggregate() {
-        return null;
-    }
-    registerKey() {
-        return structureKey;
-    }
-    registerProviders(container) {
-        container.provide(SummariesManagerFactory);
-        container.provide(SummariesDispatcher);
-        container.provide(StructureSummariesConfigArchive);
-        container.provide(StructureSummariesPanelConfigConverter);
-        container.provideCollection(SUMMARIES_CALCULATORS, BooleanSummariesCalculator);
-        container.provideCollection(SUMMARIES_CALCULATORS, DateSummariesCalculator);
-        container.provideCollection(SUMMARIES_CALCULATORS, NumberSummariesCalculator);
-        container.provideCollection(SUMMARIES_CALCULATORS, StringSummariesCalculator);
-        container.provideCollection(SUMMARIES_CALCULATORS, UnknownSummariesCalculator);
-    }
-    registerCommandHandlers() {
-        return [
-            StructureSetSummariesEnabledCommandHandler
-        ];
-    }
-    registerDomainEventHandler() {
-        return [
-            StructureSummariesEnabledSetEventHandler
-        ];
-    }
-    registerMultiDomainEventHandler() {
-        return [];
-    }
-}
-
-class SummariesWarehouse {
-    constructor() {
-    }
-}
-
-class SummariesDomainWarehouse extends SummariesWarehouse {
-    constructor(summariesEnabledArchive, structureSummariesArchive) {
-        super();
-        this.summariesEnabledArchive = summariesEnabledArchive;
-        this.structureSummariesArchive = structureSummariesArchive;
-    }
-    onEnabled(structureId) {
-        return this.summariesEnabledArchive.on(structureId);
-    }
-    onTopEnabled(structureId) {
-        return this.onEnabled(structureId)
-            .pipe(hermesSwitchMap((enabled) => {
-            return this.structureSummariesArchive
-                .on(structureId)
-                .pipe(hermesMap((config) => enabled && config.isTopEnabled()));
-        }));
-    }
-    onBottomEnabled(structureId) {
-        return this.onEnabled(structureId)
-            .pipe(hermesSwitchMap((enabled) => {
-            return this.structureSummariesArchive
-                .on(structureId)
-                .pipe(hermesMap((config) => enabled && config.isBottomEnabled()));
-        }));
-    }
-}
-SummariesDomainWarehouse.services = [SummariesEnabledArchive, StructureSummariesConfigArchive];
-
-class SummariesDomainPublisher extends SummariesPublisher {
-    constructor(summariesDispatcher, configConverter, structureSummariesConfigArchive) {
-        super();
-        this.summariesDispatcher = summariesDispatcher;
-        this.configConverter = configConverter;
-        this.structureSummariesConfigArchive = structureSummariesConfigArchive;
-    }
-    setSummariesEnabled(enabled, structureId) {
-        this.summariesDispatcher.setSummariesEnabled(enabled, structureId);
-    }
-    setConfig(config, structureId) {
-        const summariesPanelConfig = this.configConverter.convert(config);
-        this.setSummariesEnabled(config.enabled, structureId);
-        this.structureSummariesConfigArchive.next(structureId, summariesPanelConfig);
-    }
-}
-SummariesDomainPublisher.services = [SummariesDispatcher, StructureSummariesPanelConfigConverter, StructureSummariesConfigArchive];
-
-class SummariesDomainEventRepository extends SummariesEventRepository {
-    constructor() {
-        super();
-    }
-    onSummariesChanged(structureId) {
-        return this.onEvent(structureId, StructureSummariesChangedEvent);
-    }
-}
-
-class SummariesApiModule {
-    registerProviders(container) {
-        container.provide(SummariesPublisher, SummariesDomainPublisher);
-        container.provide(SummariesEventRepository, SummariesDomainEventRepository);
-        container.provide(SummariesWarehouse, SummariesDomainWarehouse);
-        container.provide(SummariesEnabledArchive);
-    }
-}
-const summariesInitializer = new DomainInitializer(new SummariesApiModule(), new SummariesDomainModule());
-
-class SummariesTranslations {
-    constructor(distinctTooltip, averageTooltip, minTooltip, maxTooltip, medTooltip, countTooltip) {
-        this.distinctTooltip = distinctTooltip;
-        this.averageTooltip = averageTooltip;
-        this.minTooltip = minTooltip;
-        this.maxTooltip = maxTooltip;
-        this.medTooltip = medTooltip;
-        this.countTooltip = countTooltip;
-    }
-}
-
-class StructureSummariesPanelComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, structureId, compositionId, structureSummariesEventRepository, translationService, sourceWarehouse, rowSelectionTypeArchive, compositionWarehouse) {
-        super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.structureId = structureId;
-        this.compositionId = compositionId;
-        this.structureSummariesEventRepository = structureSummariesEventRepository;
-        this.translationService = translationService;
-        this.sourceWarehouse = sourceWarehouse;
-        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
-        this.compositionWarehouse = compositionWarehouse;
-        this.sourceEmpty = false;
-        this.addClassToHost('gui-flex');
-        this.subscribe(this.structureSummariesEventRepository.onSummariesChanged(this.structureId.toReadModelRootId()), (event) => {
-            this.summaries = event.getSummaries();
-        });
-    }
-    ngOnInit() {
-        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
-            this.checkboxSelection = type === RowSelectionType.CHECKBOX;
-        });
-        this.subscribe(this.sourceWarehouse.onEntitiesSize(this.structureId), (size) => {
-            this.sourceEmpty = size === 0;
-        });
-        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
-            this.headerColumns = columns;
-        });
-        this.subscribe(this.translationService.onTranslation(), (translation) => {
-            this.summariesTranslations = new SummariesTranslations(translation.summariesDistinctValuesTooltip, translation.summariesAverageTooltip, translation.summariesMinTooltip, translation.summariesMaxTooltip, translation.summariesMedTooltip, translation.summariesCountTooltip);
-        });
-    }
-    isSummariesTypePresent(summaries) {
-        return summaries !== undefined && summaries !== null;
-    }
-    getSelectorName() {
-        return 'gui-structure-summaries-panel';
-    }
-}
-StructureSummariesPanelComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSummariesPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: SummariesEventRepository }, { token: TranslationFacade }, { token: SourceWarehouse }, { token: RowSelectionTypeArchive }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-StructureSummariesPanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: { enabled: "enabled" }, usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSummariesPanelComponent, decorators: [{
-            type: Component,
-            args: [{ selector: 'div[gui-structure-summaries-panel][enabled]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"enabled && summaries && !sourceEmpty\">\n\n\t<div *ngIf=\"checkboxSelection\"\n\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t</div>\n\n\t<div *ngFor=\"let column of headerColumns\"\n\t\t [style.width.px]=\"column.width\"\n\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t<ng-container *ngIf=\"summaries && !!summaries.get(column.getFieldId().getId())\">\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\" isSummariesTypePresent(summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t<span [gui-tooltip]=\"summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t</div>\n\n\t\t\t<div *ngIf=\"isSummariesTypePresent(summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t<span class=\"gui-summaries-value\">{{ summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t</div>\n\n\t\t</ng-container>\n\t</div>\n\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: SummariesEventRepository }, { type: TranslationFacade }, { type: SourceWarehouse }, { type: RowSelectionTypeArchive }, { type: CompositionWarehouse }]; }, propDecorators: { enabled: [{
-                type: Input
-            }] } });
-
-function provideSummariesCalculator(clazz) {
-    return {
-        provide: SUMMARIES_CALCULATORS,
-        useClass: clazz,
-        multi: true
-    };
-}
-
-summariesInitializer.init();
-function provideSummariesCommandInvoker() {
-    return CoreContainer.resolve(SummariesPublisher);
-}
-function provideSummariesWarehouse() {
-    return CoreContainer.resolve(SummariesWarehouse);
-}
-function provideSummariesEventRepository() {
-    return CoreContainer.resolve(SummariesEventRepository);
-}
-class SummariesFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [];
-    }
-}
-SummariesFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-SummariesFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, declarations: [StructureSummariesPanelComponent], imports: [CommonModule,
-        FabricModule,
-        TranslationFeatureModule], exports: [StructureSummariesPanelComponent] });
-SummariesFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, providers: [
-        { provide: SummariesPublisher, useFactory: provideSummariesCommandInvoker },
-        { provide: SummariesWarehouse, useFactory: provideSummariesWarehouse },
-        { provide: SummariesEventRepository, useFactory: provideSummariesEventRepository },
-        // provideClass(SummariesEnabledArchive),
-        provideSummariesCalculator(BooleanSummariesCalculator),
-        provideSummariesCalculator(DateSummariesCalculator),
-        provideSummariesCalculator(NumberSummariesCalculator),
-        provideSummariesCalculator(StringSummariesCalculator),
-        provideSummariesCalculator(UnknownSummariesCalculator)
-    ], imports: [CommonModule,
-        FabricModule,
-        TranslationFeatureModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule,
-                        FabricModule,
-                        TranslationFeatureModule
-                    ],
-                    declarations: [
-                        StructureSummariesPanelComponent
-                    ],
-                    exports: [
-                        StructureSummariesPanelComponent
-                    ],
-                    providers: [
-                        { provide: SummariesPublisher, useFactory: provideSummariesCommandInvoker },
-                        { provide: SummariesWarehouse, useFactory: provideSummariesWarehouse },
-                        { provide: SummariesEventRepository, useFactory: provideSummariesEventRepository },
-                        // provideClass(SummariesEnabledArchive),
-                        provideSummariesCalculator(BooleanSummariesCalculator),
-                        provideSummariesCalculator(DateSummariesCalculator),
-                        provideSummariesCalculator(NumberSummariesCalculator),
-                        provideSummariesCalculator(StringSummariesCalculator),
-                        provideSummariesCalculator(UnknownSummariesCalculator)
-                    ]
-                }]
-        }] });
-
-class RowSelectedReadModel {
-    constructor(itemIds, allSelected, allUnselected) {
-        this.itemIds = new Array();
-        this.itemIds = itemIds;
-        this.allSelected = allSelected;
-        this.allUnselected = allUnselected;
-    }
-    getAll() {
-        return this.itemIds;
-    }
-    isSelected(id) {
-        return this.itemIds.some((itemId) => itemId === id);
-    }
-    isAllSelected() {
-        return this.allSelected;
-    }
-    isAllUnselected() {
-        return this.allUnselected;
-    }
-    isIndeterminate() {
-        return !(this.isAllSelected() || this.isAllUnselected());
-    }
-}
-
-class RowSelectedArchive extends AggregateArchive {
-    constructor() {
-        super(RowSelectedArchive.default);
-    }
-}
-RowSelectedArchive.default = new RowSelectedReadModel([], false, false);
-
-class RowSelectionModeArchive extends AggregateArchive {
-    constructor() {
-        super(RowSelectionModeArchive.default);
-    }
-}
-RowSelectionModeArchive.default = RowSelectionMode.SINGLE;
-
-class SetEnabledSelectionCommand extends StructureCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'SetEnabledSelectionCommand');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetEnabledSelectionCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetEnabledSelectionCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.setSelection(command.isEnabled());
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class ToggleSelectedRowCommand extends StructureCommand {
-    constructor(structureId, selectedRow, type) {
-        super(structureId, 'ToggleSelectedRowCommand');
-        this.selectedRow = selectedRow;
-        this.type = type;
-    }
-    getSelectedRow() {
-        return this.selectedRow;
-    }
-    getType() {
-        return this.type;
-    }
-}
-
-class ToggleSelectedRowCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return ToggleSelectedRowCommand;
-    }
-    handle(aggregate, command) {
-        const selectedRow = command.getSelectedRow(), type = command.getType();
-        aggregate.toggleRow(selectedRow, type);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class SetSelectionModeCommand extends StructureCommand {
-    constructor(structureId, mode) {
-        super(structureId, 'SetSelectionModeCommand');
-        this.mode = mode;
-    }
-    getMode() {
-        return this.mode;
-    }
-}
-
-class SelectAllRowsCommand extends StructureCommand {
-    constructor(structureId) {
-        super(structureId, 'SelectAllRowsCommand');
-    }
-}
-
-class UnselectAllRowsCommand extends StructureCommand {
-    constructor(structureId) {
-        super(structureId, 'UnselectAllRowsCommand');
-    }
-}
-
-class FormationDispatcher {
-    constructor(commandDispatcher) {
-        this.commandDispatcher = commandDispatcher;
-    }
-    toggleSelectedRow(selectedRow, type, structureId) {
-        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
-    }
-    changeMode(mode, structureId) {
-        this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
-    }
-    setSelection(enabled, structureId) {
-        this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
-    }
-    selectAll(structureId) {
-        this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
-    }
-    unselectAll(structureId) {
-        this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
-    }
-}
-FormationDispatcher.services = [CommandDispatcher];
-
-class SelectedRowChangedEventHandler {
-    constructor(rowSelectedArchive) {
-        this.rowSelectedArchive = rowSelectedArchive;
-    }
-    forEvent() {
-        return SelectedRowChangedEvent;
-    }
-    handle(rowChangedEvent) {
-        if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
-            const rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
-            this.rowSelectedArchive.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
-        }
-    }
-}
-SelectedRowChangedEventHandler.services = [RowSelectedArchive];
-
-class SetSelectionModeCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetSelectionModeCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.setSelectionMode(command.getMode());
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class SelectAllRowsCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SelectAllRowsCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.selectAll();
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class UnselectAllRowsCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return UnselectAllRowsCommand;
-    }
-    handle(aggregate, command) {
-        aggregate.unselectAll();
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
-}
-
-class SelectionModeSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, mode) {
-        super(aggregateId, mode, 'SelectionModeSetEvent');
-        this.mode = mode;
-    }
-    getMode() {
-        return this.mode;
-    }
-}
-
-class SelectionModeSetEventHandler {
-    constructor(rowSelectionModeRepository) {
-        this.rowSelectionModeRepository = rowSelectionModeRepository;
-    }
-    forEvent() {
-        return SelectionModeSetEvent;
-    }
-    handle(modeSetEvent) {
-        if (modeSetEvent.ofMessageType('SelectionModeSetEvent')) {
-            this.rowSelectionModeRepository.next(modeSetEvent.getAggregateId(), modeSetEvent.getMode());
-        }
-    }
-}
-SelectionModeSetEventHandler.services = [RowSelectionModeArchive];
-
-class FormationDomainModule {
-    defineAggregate() {
-        return null;
-    }
-    registerKey() {
-        return structureKey;
-    }
-    registerProviders(container) {
-        container.provide(FormationDispatcher);
-        container.provide(FormationManagerFactory);
-    }
-    registerCommandHandlers() {
-        return [
-            SetEnabledSelectionCommandHandler,
-            SetSelectionModeCommandHandler,
-            SelectAllRowsCommandHandler,
-            UnselectAllRowsCommandHandler,
-            ToggleSelectedRowCommandHandler
-        ];
-    }
-    registerDomainEventHandler() {
-        return [
-            SelectedRowChangedEventHandler,
-            SelectionModeSetEventHandler
-        ];
-    }
-    registerMultiDomainEventHandler() {
-        return [];
-    }
-}
-
-class FormationDomainWarehouse extends FormationWarehouse {
-    constructor(rowSelectedRepository, rowSelectionModeRepository, sourceWarehouse) {
-        super();
-        this.rowSelectedRepository = rowSelectedRepository;
-        this.rowSelectionModeRepository = rowSelectionModeRepository;
-        this.sourceWarehouse = sourceWarehouse;
-    }
-    findSelectedRows(structureId) {
-        const items = this.sourceWarehouse.findPreparedEntities(structureId), selectedItemIds = this.findSelectedItemIds(structureId).getValueOrNullOrThrowError();
-        const selectedItems = [], length = items.length;
-        for (let i = 0; i < length; i += 1) {
-            const item = items[i];
-            if (selectedItemIds.some((itemId) => itemId === item.getId().toString())) {
-                selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
-            }
-        }
-        return Optional.of(selectedItems);
-    }
-    onRowSelectedReadModel(structureId) {
-        return this.rowSelectedRepository
-            .on(structureId);
-    }
-    findSelectedItemIds(structureId) {
-        return this.rowSelectedRepository
-            .find(structureId)
-            .map((r) => {
-            return r.getAll();
-        });
-    }
-    onSelectedRows(structureId) {
-        return this.rowSelectedRepository
-            .on(structureId)
-            .pipe(hermesMap((rm) => {
-            return rm.getAll();
-        }));
-    }
-    onMode(structureId) {
-        return this.rowSelectionModeRepository.on(structureId);
-    }
-}
-FormationDomainWarehouse.services = [
-    RowSelectedArchive,
-    RowSelectionModeArchive,
-    SourceWarehouse
-];
-
-class FormationDomainPublisher extends FormationPublisher {
-    constructor(formationDispatcher) {
-        super();
-        this.formationDispatcher = formationDispatcher;
-    }
-    toggleSelectedRow(selectedRow, type, structureId) {
-        this.formationDispatcher.toggleSelectedRow(selectedRow, type, structureId);
-    }
-    changeMode(mode, structureId) {
-        this.formationDispatcher.changeMode(mode, structureId);
-    }
-    setSelection(enabled, structureId) {
-        this.formationDispatcher.setSelection(enabled, structureId);
-    }
-    selectAll(structureId) {
-        this.formationDispatcher.selectAll(structureId);
-    }
-    unselectAll(structureId) {
-        this.formationDispatcher.unselectAll(structureId);
-    }
-}
-FormationDomainPublisher.services = [FormationDispatcher];
-
-class FormationApiModule {
-    registerProviders(container) {
-        container.provide(RowSelectedArchive);
-        container.provide(FormationEventRepository);
-        container.provide(FormationPublisher, FormationDomainPublisher);
-        container.provide(FormationWarehouse, FormationDomainWarehouse);
-        container.provide(RowSelectionModeArchive);
-    }
-}
-const formationInitializer = new DomainInitializer(new FormationApiModule(), new FormationDomainModule());
-
-formationInitializer.init();
-function provideFormationCommandInvoker() {
-    return CoreContainer.resolve(FormationPublisher);
-}
-function provideFormationWarehouse() {
-    return CoreContainer.resolve(FormationWarehouse);
-}
-function provideFormationEventRepository() {
-    return CoreContainer.resolve(FormationEventRepository);
-}
-class FormationFeatureModule extends FeatureModule {
-    static forComponent() {
-        return [
-            RowSelectionTypeArchive
-        ];
-    }
-}
-FormationFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-FormationFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, imports: [CommonModule] });
-FormationFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, providers: [
-        { provide: FormationPublisher, useFactory: provideFormationCommandInvoker },
-        { provide: FormationWarehouse, useFactory: provideFormationWarehouse },
-        { provide: FormationEventRepository, useFactory: provideFormationEventRepository }
-    ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    declarations: [],
-                    exports: [],
-                    providers: [
-                        { provide: FormationPublisher, useFactory: provideFormationCommandInvoker },
-                        { provide: FormationWarehouse, useFactory: provideFormationWarehouse },
-                        { provide: FormationEventRepository, useFactory: provideFormationEventRepository }
-                    ]
-                }]
-        }] });
-
-const prefix = 'Structure -';
-const STRUCTURE_CSS_CLASS_NAME = new InjectionToken(`${prefix} - css className`);
-
 class StructureInfoModalComponent extends StaticComponent {
     constructor(elementRef, changeDetectorRef) {
         super(elementRef, changeDetectorRef);
@@ -8325,23 +7813,23 @@ class StructureInfoModalComponent extends StaticComponent {
     }
 }
 StructureInfoModalComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureInfoModalComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-StructureInfoModalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureInfoModalComponent, selector: "div[gui-info-dialog]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.18.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+StructureInfoModalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureInfoModalComponent, selector: "div[gui-info-dialog]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.18.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureInfoModalComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'div[gui-info-dialog]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.18.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n" }]
+            args: [{ selector: 'div[gui-info-dialog]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.18.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n" }]
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
 
 class StructureColumnManagerComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionWarehouse) {
+    constructor(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionTemplateWarehouse) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.compositionId = compositionId;
         this.compositionCommandInvoker = compositionCommandInvoker;
-        this.compositionWarehouse = compositionWarehouse;
+        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
         this.addClassToHost('gui-block');
     }
     ngOnInit() {
-        this.subscribe(this.compositionWarehouse.onAllColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionTemplateWarehouse.onAll(this.compositionId), (columns) => {
             this.columns = columns;
             this.enabledColumnsCount = this.columns
                 .map((c) => +c.isEnabled())
@@ -8361,7 +7849,7 @@ class StructureColumnManagerComponent extends SmartComponent {
         return 'gui-structure-column-manager';
     }
 }
-StructureColumnManagerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: CompositionId }, { token: CompositionPublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+StructureColumnManagerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: CompositionId }, { token: CompositionPublisher }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
 StructureColumnManagerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]", usesInheritance: true, ngImport: i0, template: `
 
 		<ol class="gui-structure-ordered-list gui-p-0 gui-my-4 gui-list-none gui-overflow-auto">
@@ -8411,7 +7899,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: CompositionId }, { type: CompositionPublisher }, { type: CompositionWarehouse }]; } });
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: CompositionId }, { type: CompositionPublisher }, { type: CompositionTemplateWarehouse }]; } });
 
 class StructureDialogColumnManagerComponent extends SmartComponent {
     constructor(detector, elementRef) {
@@ -8486,7 +7974,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
 class StructureSchemaMangerComponent extends SmartComponent {
     constructor(changeDetectorRef, elRef, structureId, schemaReadModelRootId, schemaCommandInvoker, schemaWarehouse) {
         super(changeDetectorRef, elRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.schemaReadModelRootId = schemaReadModelRootId;
         this.schemaCommandInvoker = schemaCommandInvoker;
@@ -8631,6 +8118,18 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             type: Injectable
         }], ctorParameters: function () { return [{ type: i0.Injector }, { type: i1$1.FabricDialogService }]; } });
 
+class IconComponent extends StaticComponent {
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+        this.addClassToHost('gui-icon');
+    }
+}
+IconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: IconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
+IconComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: IconComponent, usesInheritance: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: IconComponent, decorators: [{
+            type: Directive
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+
 class StructureColumnManagerIconComponent extends IconComponent {
     constructor(elementRef, changeDetectorRef) {
         super(elementRef, changeDetectorRef);
@@ -8687,7 +8186,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
 class ActiveSearchComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, structureId, searchCommandDispatcher, searchWarehouse) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.searchCommandDispatcher = searchCommandDispatcher;
         this.searchWarehouse = searchWarehouse;
@@ -8874,7 +8372,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
 class StructureInfoPanelComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, injector, sourceWarehouse, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelArchive) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.injector = injector;
         this.sourceWarehouse = sourceWarehouse;
         this.dialog = dialog;
@@ -8894,7 +8391,7 @@ class StructureInfoPanelComponent extends SmartComponent {
         this.subscribe(this.sourceWarehouse.onOriginSize(this.structureId), (size) => {
             this.totalItemsSize = size;
         });
-        this.subscribe(this.sourceWarehouse.onPreparedEntities(this.structureId), (preparedItems) => {
+        this.subscribe(this.sourceWarehouse.onPreparedItems(this.structureId), (preparedItems) => {
             this.preparedItemsSize = preparedItems.length;
         });
         this.subscribe(this.translationService.onTranslation(), (translation) => {
@@ -8923,10 +8420,107 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             args: [{ selector: 'div[gui-structure-info-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div>\n\t<div *ngIf=\"infoPanelConfig.isSourceSizeEnabled()\">\n\n\t\t<ng-container *ngIf=\"preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t<ng-container *ngIf=\"preparedItemsSize === totalItemsSize\">\n\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</ng-container>\n\n\t\t\t<span *ngIf=\"preparedItemsSize !== totalItemsSize\"\n\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t<b>{{preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t</ng-container>\n\n\t</div>\n</div>\n\n<div>\n\t<div class=\"gui-right-section\">\n\n\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"themeManagerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openColumnManager()\"\n\t\t\t *ngIf=\"infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t<div [gui-tooltip]=\"columnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t</div>\n\n\t\t<div (click)=\"openInfo()\"\n\t\t\t *ngIf=\"infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t<div [gui-tooltip]=\"infoTooltipText\" gui-structure-info-icon></div>\n\t\t</div>\n\t</div>\n</div>\n" }]
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: SourceWarehouse }, { type: i1$1.FabricDialogService }, { type: CompositionId }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: StructureDialogColumnManagerService }, { type: TranslationFacade }, { type: StructureDialogSchemaManagerService }, { type: StructureInfoPanelArchive }]; } });
 
+class SearchIconComponent extends IconComponent {
+    constructor(elementRef, changeDetectorRef) {
+        super(elementRef, changeDetectorRef);
+    }
+    getSelectorName() {
+        return 'gui-search-icon';
+    }
+}
+SearchIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+SearchIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SearchIconComponent, selector: "div[gui-search-icon]", usesInheritance: true, ngImport: i0, template: `
+		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
+			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
+				  stroke-linejoin="round" stroke-width="1.5"/>
+			<circle cx="4.02" cy="4.02" r="4.02" transform="translate(0.5 0.5)" stroke-width="1"
+					stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+		</svg>
+	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchIconComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'div[gui-search-icon]',
+                    template: `
+		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
+			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
+				  stroke-linejoin="round" stroke-width="1.5"/>
+			<circle cx="4.02" cy="4.02" r="4.02" transform="translate(0.5 0.5)" stroke-width="1"
+					stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+		</svg>
+	`,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+
+class SearchComponent extends SmartComponent {
+    constructor(formBuilder, changeDetectorRef, elementRef, structureId, searchCommandDispatcher, searchWarehouse) {
+        super(changeDetectorRef, elementRef);
+        this.formBuilder = formBuilder;
+        this.structureId = structureId;
+        this.searchCommandDispatcher = searchCommandDispatcher;
+        this.searchWarehouse = searchWarehouse;
+        const controlsConfig = {};
+        controlsConfig[SearchComponent.FORM_SEARCH_NAME] = '';
+        this.searchForm = this.formBuilder.group(controlsConfig);
+    }
+    ngOnInit() {
+        this.observeChanges();
+        this.subscribe(this.searchWarehouse.onPlaceholder(this.structureId), (placeholder) => {
+            this.placeholder = placeholder;
+        });
+        this.subscribe(this.searchWarehouse.onSearchEnabled(this.structureId), (searchingEnabled) => {
+            this.searchingEnabled = searchingEnabled;
+        });
+        this.subscribeWithoutRender(this.searchWarehouse.onPhrase(this.structureId), (phrase) => {
+            if (phrase === undefined) {
+                phrase = null;
+            }
+            const controlsConfig = {};
+            controlsConfig[SearchComponent.FORM_SEARCH_NAME] = phrase;
+            if (phrase !== this.searchForm.get([SearchComponent.FORM_SEARCH_NAME]).value) {
+                this.stopObserveChanges();
+                this.searchForm.setValue(controlsConfig);
+                this.observeChanges();
+            }
+        });
+    }
+    clear() {
+        this.searchForm.reset();
+    }
+    getSelectorName() {
+        return 'gui-search-bar';
+    }
+    observeChanges() {
+        this.searchInputSubscription =
+            fromRxJsObservable(this.searchForm
+                .controls[SearchComponent.FORM_SEARCH_NAME]
+                .valueChanges
+                .pipe(debounceTime(200)))
+                .pipe(this.takeUntil())
+                .subscribe((phrase) => {
+                this.searchCommandDispatcher.search(phrase, this.structureId);
+            });
+    }
+    stopObserveChanges() {
+        this.searchInputSubscription.unsubscribe();
+    }
+}
+SearchComponent.FORM_SEARCH_NAME = 'searchPhrase';
+SearchComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchComponent, deps: [{ token: i1$2.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SearchPublisher }, { token: SearchWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+SearchComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SearchComponent, selector: "div[gui-search-bar]", viewQueries: [{ propertyName: "formRef", first: true, predicate: ["formRef"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"searchingEnabled\">\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "component", type: SearchIconComponent, selector: "div[gui-search-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'div[gui-search-bar]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"searchingEnabled\">\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"] }]
+        }], ctorParameters: function () { return [{ type: i1$2.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SearchPublisher }, { type: SearchWarehouse }]; }, propDecorators: { formRef: [{
+                type: ViewChild,
+                args: ['formRef', { read: ElementRef, static: false }]
+            }] } });
+
 class StructureTopPanelComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.addClassToHost('gui-p-6');
         this.addClassToHost('gui-border-b');
         this.addClassToHost('gui-border-b-solid');
@@ -9055,13 +8649,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FilterWarehouse }, { type: FilterPublisher }]; }, propDecorators: { fieldId: [{
                 type: Input
             }] } });
-
-var SortOrder;
-(function (SortOrder) {
-    SortOrder[SortOrder["ASC"] = 0] = "ASC";
-    SortOrder[SortOrder["DESC"] = 1] = "DESC";
-    SortOrder[SortOrder["NONE"] = 2] = "NONE";
-})(SortOrder || (SortOrder = {}));
 
 var StructureArrowPosition;
 (function (StructureArrowPosition) {
@@ -9240,65 +8827,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                 type: Output
             }] } });
 
-// Basically header template
-class CellTemplateWithContext {
-    constructor(viewTemplate, editTemplate, 
-    // public editContext: any,
-    context, width, fieldId, columnDefinitionId, sortStatus, enabled, cssClasses, styles, sortable, align) {
-        this.viewTemplate = viewTemplate;
-        this.editTemplate = editTemplate;
-        this.context = context;
-        this.width = width;
-        this.fieldId = fieldId;
-        this.columnDefinitionId = columnDefinitionId;
-        this.sortStatus = sortStatus;
-        this.enabled = enabled;
-        this.cssClasses = cssClasses;
-        this.styles = styles;
-        this.sortable = sortable;
-        this.align = align;
-    }
-    getColumnDefinitionId() {
-        return this.columnDefinitionId;
-    }
-    getFieldId() {
-        return this.fieldId;
-    }
-    getSortStatus() {
-        return this.sortStatus;
-    }
-    getCssClasses() {
-        return this.cssClasses;
-    }
-    getStyles() {
-        return this.styles;
-    }
-    isSortEnabled() {
-        return this.sortable;
-    }
-    isAscSort() {
-        return this.sortStatus === SortOrder.ASC;
-    }
-    isDescSort() {
-        return this.sortStatus === SortOrder.DESC;
-    }
-    isNoSort() {
-        return this.sortStatus === SortOrder.NONE;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-    isAlignLeft() {
-        return this.align === ColumnAlign.LEFT;
-    }
-    isAlignCenter() {
-        return this.align === ColumnAlign.CENTER;
-    }
-    isAlignRight() {
-        return this.align === ColumnAlign.RIGHT;
-    }
-}
-
 class StructureColumnConfigComponent extends SmartComponent {
     constructor(changeDetectorRef, elementRef, structureId, structureCommandService, compositionReadModelService, filterWarehouse, translationFacade, structureColumnMenuConfigArchive, compositionId, compositionCommandInvoker, injector, column) {
         super(changeDetectorRef, elementRef);
@@ -9414,6 +8942,152 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             type: Injectable
         }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1$1.FabricInlineDialogService }]; } });
 
+class Gate {
+    constructor() {
+        this.streamCloser = new StreamCloser();
+        this.hermesUnsubscribe$ = new HermesSubject();
+    }
+    ngOnDestroy() {
+        this.streamCloser.unsubscribe();
+        this.hermesUnsubscribe();
+    }
+    isDefined(propertyName, changes) {
+        return changes[propertyName] !== undefined && changes[propertyName].currentValue !== undefined;
+    }
+    subscribeAndEmit(stream$, emitter) {
+        stream$
+            .pipe(this.hermesTakeUntil())
+            .subscribe((value) => {
+            emitter.emit(value);
+        });
+    }
+    unsubscribe() {
+        this.streamCloser.unsubscribe();
+    }
+    hermesUnsubscribe() {
+        this.hermesUnsubscribe$.next();
+        this.hermesUnsubscribe$.complete();
+    }
+    hermesTakeUntil() {
+        return hermesTakeUntil(this.hermesUnsubscribe$);
+    }
+    takeUntil() {
+        return this.streamCloser.takeUntil();
+    }
+}
+Gate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Gate, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+Gate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: Gate, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Gate, decorators: [{
+            type: Directive
+        }], ctorParameters: function () { return []; } });
+
+function useReactiveContext(stream$) {
+    const changeDetector = inject(ChangeDetectorRef), unsub$ = new HermesSubject();
+    let innerStream$;
+    if (stream$) {
+        innerStream$ = stream$.pipe(hermesTakeUntil(unsub$));
+    }
+    changeDetector.onDestroy(() => {
+        unsub$.next();
+        unsub$.complete();
+    });
+    const context = {
+        connect: (stream$) => {
+            innerStream$ = stream$.pipe(hermesTakeUntil(unsub$));
+            return context;
+        },
+        subscribe(next, error, complete) {
+            return innerStream$.subscribe(next, error, complete);
+        },
+        subscribeAndRender(next, error, complete) {
+            return innerStream$.subscribe((v) => {
+                next(v);
+                changeDetector.detectChanges();
+            }, error, complete);
+        },
+        unsubscribe() {
+            unsub$.next();
+            unsub$.complete();
+        }
+    };
+    return context;
+}
+
+class SelectCustomModalComponent {
+    constructor(structureId, formationWarehouse) {
+        this.structureId = structureId;
+        this.formationWarehouse = formationWarehouse;
+        this.rc = useReactiveContext();
+    }
+    ngOnInit() {
+        this.rc
+            .connect(this.formationWarehouse.onCustomSelections(this.structureId))
+            .subscribeAndRender((selection) => {
+            this.selection = selection;
+        });
+    }
+}
+SelectCustomModalComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectCustomModalComponent, deps: [{ token: StructureId }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+SelectCustomModalComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SelectCustomModalComponent, selector: "ng-component", ngImport: i0, template: `
+
+		<ul>
+			<li *ngFor="let sel of selection.getSelections()"
+				(click)="sel.onClick()"
+				[attr.id]="sel.key"
+			>{{sel.text}}</li>
+		</ul>
+
+	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectCustomModalComponent, decorators: [{
+            type: Component,
+            args: [{
+                    template: `
+
+		<ul>
+			<li *ngFor="let sel of selection.getSelections()"
+				(click)="sel.onClick()"
+				[attr.id]="sel.key"
+			>{{sel.text}}</li>
+		</ul>
+
+	`
+                }]
+        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationWarehouse }]; } });
+
+class StructureSelectCustomService extends Reactive {
+    constructor(injector, schemaReadModelRootId, schemaWarehouse, structureThemeConverter, inlineDialogService) {
+        super();
+        this.injector = injector;
+        this.schemaReadModelRootId = schemaReadModelRootId;
+        this.schemaWarehouse = schemaWarehouse;
+        this.structureThemeConverter = structureThemeConverter;
+        this.inlineDialogService = inlineDialogService;
+    }
+    open(elementRef) {
+        this.close();
+        this.schemaWarehouse
+            .onceTheme(this.schemaReadModelRootId)
+            .pipe(this.hermesTakeUntil())
+            .subscribe((theme) => {
+            this.inlineDialogService.open(elementRef, SelectCustomModalComponent, {
+                injector: this.injector,
+                placement: FabricPlacement.BOTTOM,
+                offset: 0,
+                theme: this.structureThemeConverter.convertTheme(theme),
+                customClass: 'gui-inline-dialog-header-menu'
+            });
+        });
+    }
+    close() {
+        this.inlineDialogService.close();
+    }
+}
+StructureSelectCustomService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectCustomService, deps: [{ token: i0.Injector }, { token: SchemaReadModelRootId }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1$1.FabricInlineDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+StructureSelectCustomService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectCustomService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectCustomService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1$1.FabricInlineDialogService }]; } });
+
 class StructureColumnMenuIconComponent extends IconComponent {
     constructor(elementRef, changeDetectorRef) {
         super(elementRef, changeDetectorRef);
@@ -9493,12 +9167,17 @@ class SelectAllComponent extends SmartComponent {
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.formationWarehouse = formationWarehouse;
         this.modeMulti = false;
+        this.context = useReactiveContext();
     }
     ngOnInit() {
-        this.subscribe(this.formationWarehouse.onMode(this.structureId), (mode) => {
+        this.context
+            .connect(this.formationWarehouse.onMode(this.structureId))
+            .subscribeAndRender((mode) => {
             this.modeMulti = mode === RowSelectionMode.MULTIPLE;
         });
-        this.subscribe(this.formationWarehouse.onRowSelectedReadModel(this.structureId), (rowSelectedReadModel) => {
+        this.context
+            .connect(this.formationWarehouse.onRowSelectedReadModel(this.structureId))
+            .subscribeAndRender((rowSelectedReadModel) => {
             this.selectAllChecked = rowSelectedReadModel.isAllSelected();
             this.selectAllIndeterminate = rowSelectedReadModel.isIndeterminate();
         });
@@ -9528,42 +9207,48 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }]; } });
 
 class StructureHeaderColumnsComponent extends SmartComponent {
-    constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, formationCommandDispatcher, sortingCommandDispatcher) {
+    constructor(elementRef, injector, changeDetectorRef, compositionId, structureId, structureSelectCustomService, formationCommandDispatcher, sortingCommandDispatcher) {
         super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.injector = injector;
         this.changeDetectorRef = changeDetectorRef;
         this.compositionId = compositionId;
         this.structureId = structureId;
+        this.structureSelectCustomService = structureSelectCustomService;
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.sortingCommandDispatcher = sortingCommandDispatcher;
-        this.checkboxSelection = false;
-        this.globalSearching = false;
+        this.showSelection = false;
+        this.showCustom = true;
     }
     toggleSort(column) {
         if (column.isSortEnabled()) {
             this.sortingCommandDispatcher.toggleSort(column.getFieldId(), this.compositionId, this.structureId);
         }
     }
-    isGlobalSortEnabled() {
-        return this.globalSearching;
+    openConfigDialog() {
+        this.structureSelectCustomService.open(this.selectCustomContainer);
     }
     getSelectorName() {
         return 'gui-structure-header-columns';
     }
 }
-StructureHeaderColumnsComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderColumnsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
-StructureHeaderColumnsComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: { columns: "columns", checkboxSelection: "checkboxSelection" }, providers: [
-        StructureColumnConfigService
-    ], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: ["column"] }, { kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+StructureHeaderColumnsComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderColumnsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: StructureSelectCustomService }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+StructureHeaderColumnsComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: { columns: "columns", showSelection: "showSelection" }, providers: [
+        StructureColumnConfigService,
+        StructureSelectCustomService
+    ], viewQueries: [{ propertyName: "selectCustomContainer", first: true, predicate: ["selectCustomContainer"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"showSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<!--<div *ngIf=\"showCustom\"-->\n<!--\t class=\"gui-header-cell gui-row-checkbox-->\n<!--\t gui-flex gui-justify-between-->\n<!--\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border-->\n<!--\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">-->\n<!--\t<div #selectCustomContainer-->\n<!--\t\t (click)=\"openConfigDialog()\">-->\n<!--\t\t<div gui-structure-menu-icon></div>-->\n<!--\t</div>-->\n<!--</div>-->\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: ["column"] }, { kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderColumnsComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-header-columns][columns]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
-                        StructureColumnConfigService
-                    ], template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: FormationPublisher }, { type: SortingPublisher }]; }, propDecorators: { columns: [{
+                        StructureColumnConfigService,
+                        StructureSelectCustomService
+                    ], template: "<div *ngIf=\"showSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<!--<div *ngIf=\"showCustom\"-->\n<!--\t class=\"gui-header-cell gui-row-checkbox-->\n<!--\t gui-flex gui-justify-between-->\n<!--\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border-->\n<!--\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">-->\n<!--\t<div #selectCustomContainer-->\n<!--\t\t (click)=\"openConfigDialog()\">-->\n<!--\t\t<div gui-structure-menu-icon></div>-->\n<!--\t</div>-->\n<!--</div>-->\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: StructureSelectCustomService }, { type: FormationPublisher }, { type: SortingPublisher }]; }, propDecorators: { selectCustomContainer: [{
+                type: ViewChild,
+                args: ['selectCustomContainer', { read: ElementRef, static: false }]
+            }], columns: [{
                 type: Input
-            }], checkboxSelection: [{
+            }], showSelection: [{
                 type: Input
             }] } });
 
@@ -9750,15 +9435,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             }] } });
 
 class StructureHeaderComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, structureId, compositionId, filterWarehouse, structureWarehouse, rowSelectionTypeArchive, structureVerticalFormationWarehouse, compositionWarehouse) {
+    constructor(changeDetectorRef, elementRef, structureId, compositionId, filterWarehouse, structureWarehouse, formationWarehouse, structureVerticalFormationWarehouse, compositionTemplateWarehouse, compositionWarehouse) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
         this.structureId = structureId;
         this.compositionId = compositionId;
         this.filterWarehouse = filterWarehouse;
         this.structureWarehouse = structureWarehouse;
-        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+        this.formationWarehouse = formationWarehouse;
         this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
+        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
         this.compositionWarehouse = compositionWarehouse;
         this.headerColumns = [];
         this.filterRowEnabled = false;
@@ -9766,10 +9452,10 @@ class StructureHeaderComponent extends SmartComponent {
         this.styleModifier = new StyleModifier(elementRef.nativeElement);
     }
     ngOnInit() {
-        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
-            this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+        this.subscribe(this.formationWarehouse.onType(this.structureId), (type) => {
+            this.showSelection = type === RowSelectionType.CHECKBOX || type === RowSelectionType.RADIO;
         });
-        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionTemplateWarehouse.onHeaderCols(this.compositionId), (columns) => {
             this.headerColumns = columns;
         });
         this.subscribeWithoutRender(this.compositionWarehouse.onContainerWidth(this.compositionId), (width) => {
@@ -9796,12 +9482,12 @@ class StructureHeaderComponent extends SmartComponent {
         return 'gui-structure-header';
     }
 }
-StructureHeaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: FilterWarehouse }, { token: StructureWarehouse }, { token: RowSelectionTypeArchive }, { token: VerticalFormationWarehouse }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-StructureHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureHeaderComponent, selector: "div[gui-structure-header]", viewQueries: [{ propertyName: "containerRef", first: true, predicate: StructureHeaderColumnsComponent, descendants: true, read: ElementRef, static: true }, { propertyName: "filtersRef", first: true, predicate: StructureHeaderFiltersComponent, descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"checkboxSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [checkboxSelection]=\"checkboxSelection\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: ["columns", "checkboxSelection"] }, { kind: "component", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: ["groups", "showGroups", "checkboxSelection"] }, { kind: "component", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: ["columns"], outputs: ["closed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+StructureHeaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: FilterWarehouse }, { token: StructureWarehouse }, { token: FormationWarehouse }, { token: VerticalFormationWarehouse }, { token: CompositionTemplateWarehouse }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+StructureHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureHeaderComponent, selector: "div[gui-structure-header]", viewQueries: [{ propertyName: "containerRef", first: true, predicate: StructureHeaderColumnsComponent, descendants: true, read: ElementRef, static: true }, { propertyName: "filtersRef", first: true, predicate: StructureHeaderFiltersComponent, descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"showSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [columns]=\"headerColumns\"\n\t [showSelection]=\"showSelection\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: ["columns", "showSelection"] }, { kind: "component", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: ["groups", "showGroups", "checkboxSelection"] }, { kind: "component", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: ["columns"], outputs: ["closed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureHeaderComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'div[gui-structure-header]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"checkboxSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [checkboxSelection]=\"checkboxSelection\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: FilterWarehouse }, { type: StructureWarehouse }, { type: RowSelectionTypeArchive }, { type: VerticalFormationWarehouse }, { type: CompositionWarehouse }]; }, propDecorators: { containerRef: [{
+            args: [{ selector: 'div[gui-structure-header]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div *ngIf=\"showGroups\"\n\t [checkboxSelection]=\"showSelection\"\n\t [groups]=\"groups\"\n\t class=\"gui-header\"\n\t gui-structure-header-groups>\n</div>\n\n<div [columns]=\"headerColumns\"\n\t [showSelection]=\"showSelection\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<div *ngIf=\"filterRowEnabled\"\n\t [columns]=\"headerColumns\"\n\t class=\"gui-header\"\n\t gui-structure-header-filters>\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: FilterWarehouse }, { type: StructureWarehouse }, { type: FormationWarehouse }, { type: VerticalFormationWarehouse }, { type: CompositionTemplateWarehouse }, { type: CompositionWarehouse }]; }, propDecorators: { containerRef: [{
                 type: ViewChild,
                 args: [StructureHeaderColumnsComponent, { read: ElementRef, static: true }]
             }], filtersRef: [{
@@ -9842,6 +9528,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                     }] }];
     } });
 
+var RowSelectToggleType;
+(function (RowSelectToggleType) {
+    RowSelectToggleType[RowSelectToggleType["NONE"] = 0] = "NONE";
+    RowSelectToggleType[RowSelectToggleType["ADD"] = 1] = "ADD";
+    RowSelectToggleType[RowSelectToggleType["RANGE"] = 2] = "RANGE";
+})(RowSelectToggleType || (RowSelectToggleType = {}));
+
 class ChangedValueEmitter {
     constructor() {
         this.subject$ = new HermesReplaySubject(1);
@@ -9854,19 +9547,21 @@ class ChangedValueEmitter {
     }
 }
 
-var EditEventType;
-(function (EditEventType) {
-    EditEventType[EditEventType["SUBMIT"] = 0] = "SUBMIT";
-    EditEventType[EditEventType["BLUR"] = 1] = "BLUR";
-    EditEventType[EditEventType["CANCEL"] = 2] = "CANCEL";
-})(EditEventType || (EditEventType = {}));
-
-class ColumnId extends EntityId {
-    constructor(id) {
-        super(id);
+class StructureEditSourceItemParams {
+    constructor(itemId, columnFieldId, // TODO Rethink
+    value) {
+        this.itemId = itemId;
+        this.columnFieldId = columnFieldId;
+        this.value = value;
     }
-    toString() {
-        return this.getId();
+    getItemId() {
+        return this.itemId;
+    }
+    getColumnFieldId() {
+        return this.columnFieldId;
+    }
+    getValue() {
+        return this.value;
     }
 }
 
@@ -10106,6 +9801,7 @@ class StructureRowComponent extends SmartComponent {
         this.cssClassModifier = cssClassModifier;
         this.detailsEnabled = false;
         this.checkboxSelection = false;
+        this.radioSelection = false;
         this.selectedItem = false;
         this.styleModifier = new StyleModifier(this.elRef.nativeElement);
         this.classModifier = new ClassModifier(this.elRef.nativeElement);
@@ -10147,9 +9843,13 @@ class StructureRowComponent extends SmartComponent {
     trackByFn() {
         return 0;
     }
-    selectRow() {
+    selectCheckbox() {
         event.stopPropagation();
         this.formationCommandDispatcher.toggleSelectedRow(this.entity.getId(), RowSelectToggleType.ADD, this.structureId);
+    }
+    selectRadio() {
+        event.stopPropagation();
+        this.formationCommandDispatcher.toggleSelectedRow(this.entity.getId(), RowSelectToggleType.NONE, this.structureId);
     }
     checkSelectedItem() {
         if (this.row) {
@@ -10241,10 +9941,10 @@ class StructureRowComponent extends SmartComponent {
     }
 }
 StructureRowComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureRowComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: FormationWarehouse }, { token: FormationPublisher }, { token: CssClassModifier }], target: i0.ɵɵFactoryTarget.Component });
-StructureRowComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: { entity: "entity", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", searchPhrase: "searchPhrase", index: "index", rowStyle: "rowStyle", rowClass: "rowClass", detailsEnabled: "detailsEnabled", checkboxSelection: "checkboxSelection" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: ["entity", "cell", "editMode", "cellEditorManager", "searchPhrase", "rowIndex", "columnIndex"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+StructureRowComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: { entity: "entity", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", searchPhrase: "searchPhrase", index: "index", rowStyle: "rowStyle", rowClass: "rowClass", detailsEnabled: "detailsEnabled", checkboxSelection: "checkboxSelection", radioSelection: "radioSelection" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectCheckbox()\" [checked]=\"selectedItem\"></gui-checkbox>\n</div>\n\n<div *ngIf=\"radioSelection\"\n\t class=\"gui-cell gui-row-radio\">\n\t<gui-radio-button (changed)=\"selectRadio()\" [checked]=\"selectedItem\"></gui-radio-button>\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1$1.FabricRadioButtonComponent, selector: "gui-radio-button", inputs: ["name", "checked", "disabled"], outputs: ["changed"] }, { kind: "component", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: ["entity", "cell", "editMode", "cellEditorManager", "searchPhrase", "rowIndex", "columnIndex"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureRowComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'div[gui-structure-row]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectRow()\" [checked]=\"selectedItem\"></gui-checkbox>\n\t<!--\t<input type=\"checkbox\" [checked]=\"selectedItem\" />-->\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n" }]
+            args: [{ selector: 'div[gui-structure-row]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<!--<div class=\"gui-structure-cell-container\" >-->\n\n<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectCheckbox()\" [checked]=\"selectedItem\"></gui-checkbox>\n</div>\n\n<div *ngIf=\"radioSelection\"\n\t class=\"gui-cell gui-row-radio\">\n\t<gui-radio-button (changed)=\"selectRadio()\" [checked]=\"selectedItem\"></gui-radio-button>\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n\n<!--</div>-->\n\n<!--<div *ngIf=\"detailsEnabled\"-->\n<!--\t [ngStyle]=\"{'transform': 'translateY(32px)'}\"-->\n<!--\t class=\"gui-structure-row-details\">-->\n\n<!--\tDETAILS PANEL-->\n\n<!--</div>-->\n" }]
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FormationWarehouse }, { type: FormationPublisher }, { type: CssClassModifier }]; }, propDecorators: { entity: [{
                 type: Input
             }], columns: [{
@@ -10265,23 +9965,24 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                 type: Input
             }], checkboxSelection: [{
                 type: Input
+            }], radioSelection: [{
+                type: Input
             }] } });
 
 class StructureContentComponent extends SmartComponent {
-    constructor(elementRef, changeDetectorRef, formationCommandInvoker, structureEditModeArchive, formationWarehouse, structureWarehouse, verticalFormationWarehouse, structureId, // REfactor
+    constructor(elementRef, changeDetectorRef, formationPublisher, structureEditModeArchive, formationWarehouse, structureWarehouse, verticalFormationWarehouse, structureId, // REfactor
     schemaReadModelRootId, // REfactor
-    rowSelectionTypeArchive, searchWarehouse, schemaWarehouse) {
+    searchWarehouse, schemaWarehouse) {
         super(changeDetectorRef, elementRef);
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
-        this.formationCommandInvoker = formationCommandInvoker;
+        this.formationPublisher = formationPublisher;
         this.structureEditModeArchive = structureEditModeArchive;
         this.formationWarehouse = formationWarehouse;
         this.structureWarehouse = structureWarehouse;
         this.verticalFormationWarehouse = verticalFormationWarehouse;
         this.structureId = structureId;
         this.schemaReadModelRootId = schemaReadModelRootId;
-        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
         this.searchWarehouse = searchWarehouse;
         this.schemaWarehouse = schemaWarehouse;
         this.editMode = false;
@@ -10290,10 +9991,16 @@ class StructureContentComponent extends SmartComponent {
         this.phrase = true;
         this.rowDetailOpened = 4;
         this.checkboxSelection = false;
+        this.radioSelection = false;
+        this.selectionEnabled = true;
     }
     ngOnInit() {
-        this.subscribe(this.rowSelectionTypeArchive.on(), (type) => {
+        this.subscribe(this.formationWarehouse.onType(this.structureId), (type) => {
             this.checkboxSelection = type === RowSelectionType.CHECKBOX;
+            this.radioSelection = type === RowSelectionType.RADIO;
+        });
+        this.subscribe(this.formationWarehouse.onSelectionEnabled(this.structureId), (enabled) => {
+            this.selectionEnabled = enabled;
         });
         this.subscribe(this.structureEditModeArchive.on(), (enabled) => {
             this.editMode = enabled;
@@ -10327,27 +10034,30 @@ class StructureContentComponent extends SmartComponent {
         return `translateY(${height}px)`;
     }
     toggleSelectedRow(entity) {
-        if (!this.checkboxSelection) {
-            this.formationCommandInvoker.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
+        if (!this.selectionEnabled) {
+            return;
+        }
+        if (!this.checkboxSelection && !this.radioSelection) {
+            this.formationPublisher.toggleSelectedRow(entity.getId(), RowSelectToggleType.NONE, this.structureId);
         }
     }
     getSelectorName() {
         return 'gui-structure-content';
     }
 }
-StructureContentComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FormationPublisher }, { token: StructureEditModeArchive }, { token: FormationWarehouse }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: RowSelectionTypeArchive }, { token: SearchWarehouse }, { token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-StructureContentComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: { source: "source", columns: "columns" }, usesInheritance: true, ngImport: i0, template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "component", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: ["entity", "columns", "editMode", "cellEditing", "searchPhrase", "index", "rowStyle", "rowClass", "detailsEnabled", "checkboxSelection"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+StructureContentComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FormationPublisher }, { token: StructureEditModeArchive }, { token: FormationWarehouse }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: SearchWarehouse }, { token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+StructureContentComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: { source: "source", columns: "columns" }, usesInheritance: true, ngImport: i0, template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [radioSelection]=\"radioSelection\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "component", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: ["entity", "columns", "editMode", "cellEditing", "searchPhrase", "index", "rowStyle", "rowClass", "detailsEnabled", "checkboxSelection", "radioSelection"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContentComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'div[gui-structure-content]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: FormationPublisher }, { type: StructureEditModeArchive }, { type: FormationWarehouse }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: RowSelectionTypeArchive }, { type: SearchWarehouse }, { type: SchemaWarehouse }]; }, propDecorators: { source: [{
+            args: [{ selector: 'div[gui-structure-content]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity)\" *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"cellEditing\"\n\t\t [checkboxSelection]=\"checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [detailsEnabled]=\"rowDetailOpened === index\"\n\t\t [editMode]=\"editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index)}\"\n\t\t [radioSelection]=\"radioSelection\"\n\t\t [rowClass]=\"schemaRowClass\"\n\t\t [rowStyle]=\"schemaRowStyle\"\n\t\t [searchPhrase]=\"searchPhrase\"\n\t\t [style.height.px]=\"rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: FormationPublisher }, { type: StructureEditModeArchive }, { type: FormationWarehouse }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: SearchWarehouse }, { type: SchemaWarehouse }]; }, propDecorators: { source: [{
                 type: Input
             }], columns: [{
                 type: Input
             }] } });
 
 class StructureContainerComponent extends SmartComponent {
-    constructor(changeDetectorRef, elRef, ngZone, structureId, compositionId, structureCommandService, structureWarehouse, verticalFormationWarehouse, sourceWarehouse, compositionCommandInvoker, compositionWarehouse, formationWarehouse, resizeDetector, structureInitialValuesReadyArchive, structureParent) {
+    constructor(changeDetectorRef, elRef, ngZone, structureId, compositionId, structureCommandService, structureWarehouse, verticalFormationWarehouse, sourceWarehouse, compositionCommandInvoker, compositionWarehouse, compositionTemplateWarehouse, formationWarehouse, resizeDetector, structureInitialValuesReadyArchive, structureParent) {
         super(changeDetectorRef, elRef);
         this.elRef = elRef;
         this.ngZone = ngZone;
@@ -10359,6 +10069,7 @@ class StructureContainerComponent extends SmartComponent {
         this.sourceWarehouse = sourceWarehouse;
         this.compositionCommandInvoker = compositionCommandInvoker;
         this.compositionWarehouse = compositionWarehouse;
+        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
         this.formationWarehouse = formationWarehouse;
         this.resizeDetector = resizeDetector;
         this.structureInitialValuesReadyArchive = structureInitialValuesReadyArchive;
@@ -10375,7 +10086,7 @@ class StructureContainerComponent extends SmartComponent {
         });
         this.subscribe(fromRxJsObservable(toRxJsObservable(this.structureInitialValuesReadyArchive.once(this.structureId))
             .pipe(flatMap(() => {
-            return combineLatest(toRxJsObservable(this.sourceWarehouse.onEntities(this.structureId)), toRxJsObservable(this.compositionWarehouse.onTemplateColumns(this.compositionId)));
+            return combineLatest(toRxJsObservable(this.sourceWarehouse.onItems(this.structureId)), toRxJsObservable(this.compositionTemplateWarehouse.onTemplateCols(this.compositionId)));
         }))), (arr) => {
             this.source = arr[0];
             this.columns = arr[1];
@@ -10453,13 +10164,13 @@ class StructureContainerComponent extends SmartComponent {
         this.scrollObservation$.complete();
     }
 }
-StructureContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContainerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: StructureId }, { token: CompositionId }, { token: StructurePublisher }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: SourceWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: FormationWarehouse }, { token: ResizeDetector }, { token: StructureInitialValuesReadyArchive }, { token: structureParentComponent, optional: true }], target: i0.ɵɵFactoryTarget.Component });
+StructureContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContainerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: StructureId }, { token: CompositionId }, { token: StructurePublisher }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: SourceWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: CompositionTemplateWarehouse }, { token: FormationWarehouse }, { token: ResizeDetector }, { token: StructureInitialValuesReadyArchive }, { token: structureParentComponent, optional: true }], target: i0.ɵɵFactoryTarget.Component });
 StructureContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureContainerComponent, selector: "div[gui-structure-container]", viewQueries: [{ propertyName: "sourceCollectionRef", first: true, predicate: ["sourceCollection"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "component", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: ["source", "columns"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureContainerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-container]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n" }]
         }], ctorParameters: function () {
-        return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: StructureId }, { type: CompositionId }, { type: StructurePublisher }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: SourceWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: FormationWarehouse }, { type: ResizeDetector }, { type: StructureInitialValuesReadyArchive }, { type: undefined, decorators: [{
+        return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: StructureId }, { type: CompositionId }, { type: StructurePublisher }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: SourceWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: CompositionTemplateWarehouse }, { type: FormationWarehouse }, { type: ResizeDetector }, { type: StructureInitialValuesReadyArchive }, { type: undefined, decorators: [{
                         type: Optional$1
                     }, {
                         type: Inject,
@@ -10488,36 +10199,6 @@ StructureBannerPanel.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", v
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureBannerPanel, decorators: [{
             type: Directive
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
-
-class SafePipe {
-    constructor(sanitizer) {
-        this.sanitizer = sanitizer;
-    }
-    transform(value, type) {
-        switch (type) {
-            case 'html':
-                return this.sanitizer.bypassSecurityTrustHtml(value);
-            case 'style':
-                return this.sanitizer.bypassSecurityTrustStyle(value);
-            case 'script':
-                return this.sanitizer.bypassSecurityTrustScript(value);
-            case 'url':
-                return this.sanitizer.bypassSecurityTrustUrl(value);
-            case 'resourceUrl':
-                return this.sanitizer.bypassSecurityTrustResourceUrl(value);
-            default:
-                throw new Error(`Invalid safe type specified: ${type}`);
-        }
-    }
-}
-SafePipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, deps: [{ token: i1.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe });
-SafePipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, name: "guiSafe" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SafePipe, decorators: [{
-            type: Pipe,
-            args: [{
-                    name: 'guiSafe'
-                }]
-        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }]; } });
 
 class StructureTitlePanelComponent extends StructureBannerPanel {
     constructor(structureTitlePanelConfigArchive, changeDetectorRef, elementRef) {
@@ -10684,8 +10365,8 @@ function schemaIdFactoryForGrid(generator) {
 }
 /** @internal */
 class StructureComponent extends StructureGateway {
-    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, rowSelectEnabledArchive, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive, columnAutoConfigurator, elementRef, detectorRef, injector, structureDefinition, structureWarehouse, compositionWarehouse, schemaStylesManager, schemaReadModelRootId, structureDetailViewService) {
-        super(detectorRef, elementRef, columnAutoConfigurator, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, rowSelectionTypeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive);
+    constructor(structureId, compositionId, pagingCommandService, pagingEventRepository, sourceCommandDispatcher, sourceEventService, sortingCommandDispatcher, searchCommandDispatcher, fieldCommandDispatcher, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureCommandService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, structureColumnMenuConfigArchive, pagingDisplayModeArchive, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, structureDetailViewConfigArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive, columnAutoConfigurator, elementRef, detectorRef, injector, structureDefinition, structureWarehouse, compositionWarehouse, schemaStylesManager, schemaReadModelRootId, structureDetailViewService) {
+        super(detectorRef, elementRef, columnAutoConfigurator, structureId, compositionId, schemaReadModelRootId, structureCommandService, pagingCommandService, pagingEventRepository, sortingCommandDispatcher, searchCommandDispatcher, sourceCommandDispatcher, sourceEventService, schemaCommandInvoker, compositionCommandDispatcher, compositionEventRepository, formationEventService, structureEditModeArchive, structureCellEditArchive, structureInfoPanelConfigService, structureCellEditStore, columnFieldFactory, formationCommandDispatcher, searchEventRepository, structureHeaderBottomEnabledArchive, schemaEventRepository, translationService, structureInitialValuesReadyArchive);
         this.elementRef = elementRef;
         this.detectorRef = detectorRef;
         this.injector = injector;
@@ -10709,7 +10390,6 @@ class StructureComponent extends StructureGateway {
     ngOnInit() {
         super.ngOnInit();
         this.subscribe(this.structureWarehouse.on(this.structureId), (structureReadModelRoot) => {
-            this.structure = structureReadModelRoot;
             this.loaderEnabled = structureReadModelRoot.getSource().isLoading();
             this.circleLoaderEnabled = structureReadModelRoot.isLoaderVisible();
             if (this.loaderEnabled && !this.initialLoaderAnimation) {
@@ -10758,7 +10438,7 @@ class StructureComponent extends StructureGateway {
         return 'gui-structure';
     }
 }
-StructureComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureComponent, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SourcePublisher }, { token: SourceEventService }, { token: SortingPublisher }, { token: SearchPublisher }, { token: FieldPublisher }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructurePublisher }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: StructureColumnMenuConfigArchive }, { token: PagingDisplayModeArchive }, { token: RowSelectEnabledRepository }, { token: RowSelectionTypeArchive }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: StructureRowDetailConfigArchive }, { token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }, { token: ColumnAutoConfigurator }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i0.Injector }, { token: StructureDefinition }, { token: StructureWarehouse }, { token: CompositionWarehouse }, { token: SchemaCssClassManager }, { token: SchemaReadModelRootId }, { token: StructureRowDetailService }], target: i0.ɵɵFactoryTarget.Component });
+StructureComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureComponent, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SourcePublisher }, { token: SourceEventService }, { token: SortingPublisher }, { token: SearchPublisher }, { token: FieldPublisher }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructurePublisher }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: StructureColumnMenuConfigArchive }, { token: PagingDisplayModeArchive }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: StructureRowDetailConfigArchive }, { token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }, { token: ColumnAutoConfigurator }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i0.Injector }, { token: StructureDefinition }, { token: StructureWarehouse }, { token: CompositionWarehouse }, { token: SchemaCssClassManager }, { token: SchemaReadModelRootId }, { token: StructureRowDetailService }], target: i0.ɵɵFactoryTarget.Component });
 StructureComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureComponent, selector: "gui-structure", host: { properties: { "class.gui-structure-border": "isBorderEnabled()", "id": "structureId.toString()" } }, providers: [
         {
             provide: StructureId,
@@ -10789,15 +10469,7 @@ StructureComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", ver
         StructureInfoPanelConfigService,
         StructureColumnMenuConfigArchive,
         PagingFeatureModule.forComponent(),
-        SortingFeatureModule.forComponent(),
-        FieldFeatureModule.forComponent(),
-        FormationFeatureModule.forComponent(),
-        SearchFeatureModule.forComponent(),
-        SourceFeatureModule.forComponent(),
-        SchemaFeatureModule.forComponent(),
-        SummariesFeatureModule.forComponent(),
         TranslationFeatureModule.forComponent(),
-        RowSelectEnabledRepository,
         StructureHeaderTopEnabledArchive,
         StructureHeaderBottomEnabledArchive,
         StructureRowDetailConfigArchive,
@@ -10812,7 +10484,7 @@ StructureComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", ver
             provide: filterContainerToken,
             useExisting: StructureComponent
         }
-    ], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"], dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1$1.FabricSpinnerComponent, selector: "gui-spinner", inputs: ["color"] }, { kind: "component", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    ], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-radio{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-radio .gui-radio-button{height:24px;margin:0;padding:0;width:24px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"], dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1$1.FabricSpinnerComponent, selector: "gui-spinner", inputs: ["color"] }, { kind: "component", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-structure', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, host: {
@@ -10848,15 +10520,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                         StructureInfoPanelConfigService,
                         StructureColumnMenuConfigArchive,
                         PagingFeatureModule.forComponent(),
-                        SortingFeatureModule.forComponent(),
-                        FieldFeatureModule.forComponent(),
-                        FormationFeatureModule.forComponent(),
-                        SearchFeatureModule.forComponent(),
-                        SourceFeatureModule.forComponent(),
-                        SchemaFeatureModule.forComponent(),
-                        SummariesFeatureModule.forComponent(),
                         TranslationFeatureModule.forComponent(),
-                        RowSelectEnabledRepository,
                         StructureHeaderTopEnabledArchive,
                         StructureHeaderBottomEnabledArchive,
                         StructureRowDetailConfigArchive,
@@ -10871,47 +10535,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                             provide: filterContainerToken,
                             useExisting: StructureComponent
                         }
-                    ], template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"] }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SourcePublisher }, { type: SourceEventService }, { type: SortingPublisher }, { type: SearchPublisher }, { type: FieldPublisher }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructurePublisher }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: StructureColumnMenuConfigArchive }, { type: PagingDisplayModeArchive }, { type: RowSelectEnabledRepository }, { type: RowSelectionTypeArchive }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: StructureRowDetailConfigArchive }, { type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }, { type: ColumnAutoConfigurator }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.Injector }, { type: StructureDefinition }, { type: StructureWarehouse }, { type: CompositionWarehouse }, { type: SchemaCssClassManager }, { type: SchemaReadModelRootId }, { type: StructureRowDetailService }]; } });
-
-class Gate {
-    constructor() {
-        this.streamCloser = new StreamCloser();
-        this.hermesUnsubscribe$ = new HermesSubject();
-    }
-    ngOnDestroy() {
-        this.streamCloser.unsubscribe();
-        this.hermesUnsubscribe();
-    }
-    isDefined(propertyName, changes) {
-        return changes[propertyName] !== undefined && changes[propertyName].currentValue !== undefined;
-    }
-    subscribeAndEmit(stream$, emitter) {
-        stream$
-            .pipe(this.hermesTakeUntil())
-            .subscribe((value) => {
-            emitter.emit(value);
-        });
-    }
-    unsubscribe() {
-        this.streamCloser.unsubscribe();
-    }
-    hermesUnsubscribe() {
-        this.hermesUnsubscribe$.next();
-        this.hermesUnsubscribe$.complete();
-    }
-    hermesTakeUntil() {
-        return hermesTakeUntil(this.hermesUnsubscribe$);
-    }
-    takeUntil() {
-        return this.streamCloser.takeUntil();
-    }
-}
-Gate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Gate, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-Gate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: Gate, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Gate, decorators: [{
-            type: Directive
-        }], ctorParameters: function () { return []; } });
+                    ], template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@-webkit-keyframes fadeOut{0%{opacity:1}to{opacity:0}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;-webkit-animation-duration:.2s;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{-webkit-animation-name:fadeOut;animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{-webkit-animation-name:fadeIn;animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-radio{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-radio .gui-radio-button{height:24px;margin:0;padding:0;width:24px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"] }]
+        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SourcePublisher }, { type: SourceEventService }, { type: SortingPublisher }, { type: SearchPublisher }, { type: FieldPublisher }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructurePublisher }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: StructureColumnMenuConfigArchive }, { type: PagingDisplayModeArchive }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: StructureRowDetailConfigArchive }, { type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }, { type: ColumnAutoConfigurator }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.Injector }, { type: StructureDefinition }, { type: StructureWarehouse }, { type: CompositionWarehouse }, { type: SchemaCssClassManager }, { type: SchemaReadModelRootId }, { type: StructureRowDetailService }]; } });
 
 class StructureColumnHeaderGate extends Gate {
     constructor(structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive) {
@@ -11068,25 +10693,33 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
         }], ctorParameters: function () { return [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }]; } });
 
 class SelectionGate extends Gate {
-    constructor(structureId, formationEventRepository, formationCommandDispatcher, rowSelectionTypeArchive) {
+    constructor(structureId, formationEventRepository, formationPublisher) {
         super();
         this.structureId = structureId;
         this.formationEventRepository = formationEventRepository;
-        this.formationCommandDispatcher = formationCommandDispatcher;
-        this.rowSelectionTypeArchive = rowSelectionTypeArchive;
+        this.formationPublisher = formationPublisher;
         this.itemsSelected = new EventEmitter();
         this.selectedRows = new EventEmitter();
     }
     ngOnChanges(changes) {
         if (this.isDefined('rowSelection', changes)) {
             if (this.rowSelection.isEnabledDefined()) {
-                this.formationCommandDispatcher.setSelection(this.rowSelection.isEnabled(), this.structureId);
+                this.formationPublisher.setSelection(this.rowSelection.isEnabled(), this.structureId);
             }
             if (this.rowSelection.isTypeDefined()) {
-                this.rowSelectionTypeArchive.next(this.rowSelection.getType());
+                this.formationPublisher.changeType(this.rowSelection.getType(), this.structureId);
             }
             if (this.rowSelection.isModeDefined()) {
-                this.formationCommandDispatcher.changeMode(this.rowSelection.getMode(), this.structureId);
+                this.formationPublisher.changeMode(this.rowSelection.getMode(), this.structureId);
+            }
+            if (this.rowSelection.isMatcherDefined()) {
+                this.formationPublisher.setMatcher(this.rowSelection.getMatcher(), this.structureId);
+            }
+            if (this.rowSelection.isSelectedRowIndexesDefined()) {
+                this.formationPublisher.selectByIndex(this.rowSelection.getSelectedRowIndexes(), this.structureId);
+            }
+            if (this.rowSelection.isSelectedRowIdsDefined()) {
+                this.formationPublisher.selectByIds(this.rowSelection.getSelectedRowIds(), this.structureId);
             }
         }
     }
@@ -11095,7 +10728,7 @@ class SelectionGate extends Gate {
             .onItemSelected(this.structureId)
             .pipe(this.hermesTakeUntil())
             .subscribe((items) => {
-            this.itemsSelected.emit(items.map(i => i.getSource()));
+            this.itemsSelected.emit(items.map(i => i.getItem()));
             this.selectedRows.emit(items);
         });
     }
@@ -11103,11 +10736,11 @@ class SelectionGate extends Gate {
         super.ngOnDestroy();
     }
 }
-SelectionGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }, { token: RowSelectionTypeArchive }], target: i0.ɵɵFactoryTarget.Directive });
+SelectionGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
 SelectionGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: SelectionGate, inputs: { rowSelection: "rowSelection" }, outputs: { itemsSelected: "itemsSelected", selectedRows: "selectedRows" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectionGate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }, { type: RowSelectionTypeArchive }]; }, propDecorators: { rowSelection: [{
+        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }]; }, propDecorators: { rowSelection: [{
                 type: Input
             }], itemsSelected: [{
                 type: Output
@@ -11116,18 +10749,18 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             }] } });
 
 class StructureSelectionGate extends SelectionGate {
-    constructor(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive) {
-        super(structureId, formationEventService, formationCommandDispatcher, rowSelectionTypeArchive);
+    constructor(structureId, formationEventService, formationCommandDispatcher) {
+        super(structureId, formationEventService, formationCommandDispatcher);
     }
 }
-StructureSelectionGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }, { token: RowSelectionTypeArchive }], target: i0.ɵɵFactoryTarget.Directive });
+StructureSelectionGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
 StructureSelectionGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: StructureSelectionGate, selector: "gui-structure[rowSelection], gui-structure[selectionGate]", inputs: { selectionGate: "selectionGate" }, usesInheritance: true, ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSelectionGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowSelection], gui-structure[selectionGate]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }, { type: RowSelectionTypeArchive }]; }, propDecorators: { selectionGate: [{
+        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }]; }, propDecorators: { selectionGate: [{
                 type: Input
             }] } });
 
@@ -11546,7 +11179,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             }] } });
 
 class GuiGridComponent extends GuiGridGateway {
-    constructor(platformId, elementRef, changeDetectorRef, gridRegister, gridIdGenerator, structureIdGenerator, 
+    constructor(platformId, elementRef, changeDetectorRef, gridRegister, structureIdGenerator, 
     // delegate
     formationCommandDispatcher, formationWarehouse, compositionCommandInvoker, compositionWarehouse, filterIntegration, sourceCommandDispatcher, searchCommandInvoker, schemaCommandInvoker, structureCommandDispatcher, summariesCommandInvoker, sortingCommandInvoker, pagingCommandInvoker) {
         super();
@@ -11554,7 +11187,6 @@ class GuiGridComponent extends GuiGridGateway {
         this.elementRef = elementRef;
         this.changeDetectorRef = changeDetectorRef;
         this.gridRegister = gridRegister;
-        this.gridIdGenerator = gridIdGenerator;
         this.structureIdGenerator = structureIdGenerator;
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.formationWarehouse = formationWarehouse;
@@ -11570,12 +11202,10 @@ class GuiGridComponent extends GuiGridGateway {
         this.pagingCommandInvoker = pagingCommandInvoker;
         this.gridThemeCommandInvoker = new GuiGridThemeCommandInvoker(this.schemaCommandInvoker, this.gridThemeConverter, this.gridRowColoringConverter);
         this.classModifier = new ClassModifier(this.elementRef.nativeElement);
-        this.styleModifier = new StyleModifier(this.elementRef.nativeElement);
         this.attributeModifier = new AttributeModifier(this.elementRef.nativeElement);
     }
     ngOnInit() {
         this.classModifier.getHost().add('gui-grid');
-        // this.styleModifier.getHost().setHeight(this.maxHeight);
         this.initApi();
         let gridId = this.gridId;
         if (gridId === undefined) {
@@ -11604,9 +11234,6 @@ class GuiGridComponent extends GuiGridGateway {
     getElementRef() {
         return this.elementRef;
     }
-    getGridId() {
-        return '';
-    }
     detectChanges() {
         this.changeDetectorRef.detectChanges();
     }
@@ -11618,7 +11245,7 @@ class GuiGridComponent extends GuiGridGateway {
     }
 }
 GuiGridComponent.GUI_GRID_ID = 'gui-grid-id';
-GuiGridComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridComponent, deps: [{ token: PLATFORM_ID }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: GuiGridRegister }, { token: GuiGridIdGenerator }, { token: StructureIdGenerator }, { token: FormationPublisher }, { token: FormationWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: FilterIntegration }, { token: SourcePublisher }, { token: SearchPublisher }, { token: SchemaPublisher }, { token: StructurePublisher }, { token: SummariesPublisher }, { token: SortingPublisher }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+GuiGridComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridComponent, deps: [{ token: PLATFORM_ID }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: GuiGridRegister }, { token: StructureIdGenerator }, { token: FormationPublisher }, { token: FormationWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: FilterIntegration }, { token: SourcePublisher }, { token: SearchPublisher }, { token: SchemaPublisher }, { token: StructurePublisher }, { token: SummariesPublisher }, { token: SortingPublisher }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
 GuiGridComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: GuiGridComponent, selector: "gui-grid", inputs: { gridId: "gridId" }, providers: [
         {
             provide: StructureDefinition,
@@ -11645,7 +11272,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
         return [{ type: undefined, decorators: [{
                         type: Inject,
                         args: [PLATFORM_ID]
-                    }] }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: GuiGridRegister }, { type: GuiGridIdGenerator }, { type: StructureIdGenerator }, { type: FormationPublisher }, { type: FormationWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: FilterIntegration }, { type: SourcePublisher }, { type: SearchPublisher }, { type: SchemaPublisher }, { type: StructurePublisher }, { type: SummariesPublisher }, { type: SortingPublisher }, { type: PagingPublisher }];
+                    }] }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: GuiGridRegister }, { type: StructureIdGenerator }, { type: FormationPublisher }, { type: FormationWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: FilterIntegration }, { type: SourcePublisher }, { type: SearchPublisher }, { type: SchemaPublisher }, { type: StructurePublisher }, { type: SummariesPublisher }, { type: SortingPublisher }, { type: PagingPublisher }];
     }, propDecorators: { structureRef: [{
                 type: ViewChild,
                 args: ['structure', { static: true }]
@@ -11803,6 +11430,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                     encapsulation: ViewEncapsulation.None
                 }]
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+
+class FieldWarehouse {
+    constructor() {
+    }
+}
 
 class FilterTypeSelectorComponent extends PureComponent {
     constructor(elementRef) {
@@ -12029,14 +11661,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             }] } });
 
 class FilterMenuComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef, structureId, compositionId, fieldWarehouse, filterWarehouse, filterCommandInvoker, compositionWarehouse) {
+    constructor(changeDetectorRef, elementRef, structureId, compositionId, fieldWarehouse, filterWarehouse, filterCommandInvoker, compositionTemplateWarehouse) {
         super(changeDetectorRef, elementRef);
         this.structureId = structureId;
         this.compositionId = compositionId;
         this.fieldWarehouse = fieldWarehouse;
         this.filterWarehouse = filterWarehouse;
         this.filterCommandInvoker = filterCommandInvoker;
-        this.compositionWarehouse = compositionWarehouse;
+        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
         this.columns = [];
         this.fields = [];
         this.activeFilters = [];
@@ -12052,7 +11684,7 @@ class FilterMenuComponent extends SmartComponent {
         this.subscribe(this.fieldWarehouse.onFields(this.structureId), (fieldReadModels) => {
             this.fields = fieldReadModels;
         });
-        this.subscribe(this.compositionWarehouse.onHeaderColumns(this.compositionId), (columns) => {
+        this.subscribe(this.compositionTemplateWarehouse.onHeaderCols(this.compositionId), (columns) => {
             this.columns = columns;
         });
     }
@@ -12093,22 +11725,20 @@ class FilterMenuComponent extends SmartComponent {
         return 'gui-filter-menu';
     }
 }
-FilterMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: FieldWarehouse }, { token: FilterWarehouse }, { token: FilterPublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+FilterMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: FieldWarehouse }, { token: FilterWarehouse }, { token: FilterPublisher }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
 FilterMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FilterMenuComponent, selector: "div[gui-filter-menu]", usesInheritance: true, ngImport: i0, template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1$1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FilterTypeSelectorComponent, selector: "div[gui-filter-type-selector][filterTypes]", inputs: ["filterTypes"], outputs: ["filterTypeSelected"] }, { kind: "component", type: FilterValueComponent, selector: "div[gui-filter-value]", outputs: ["valueChanged"] }, { kind: "component", type: FieldSelectorComponent, selector: "div[gui-field-selector][fields]", inputs: ["fields"], outputs: ["fieldSelected"] }, { kind: "component", type: FilterMenuActiveFiltersComponent, selector: "div[gui-filter-menu-active-filters][activeFilters]", inputs: ["activeFilters"], outputs: ["removedFilter"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-menu]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: FieldWarehouse }, { type: FilterWarehouse }, { type: FilterPublisher }, { type: CompositionWarehouse }]; } });
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: FieldWarehouse }, { type: FilterWarehouse }, { type: FilterPublisher }, { type: CompositionTemplateWarehouse }]; } });
 
 class FilterMenuTriggerComponent extends SmartComponent {
-    constructor(detector, elementRef, injector, drawerService, fabricDialogService, structureId, filterWarehouse, filterContainerRef) {
+    constructor(detector, elementRef, injector, fabricDialogService, structureId, filterWarehouse) {
         super(detector, elementRef);
         this.injector = injector;
-        this.drawerService = drawerService;
         this.fabricDialogService = fabricDialogService;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
-        this.filterContainerRef = filterContainerRef;
         this.activeFiltersExist = false;
     }
     ngOnInit() {
@@ -12117,25 +11747,18 @@ class FilterMenuTriggerComponent extends SmartComponent {
         });
     }
     openDrawer() {
-        const elementRef = this.filterContainerRef.getElementRef();
         this.fabricDialogService.open({ component: FilterMenuComponent, injector: this.injector });
-        // this.drawerService.open(elementRef, FilterMenuComponent, { injector: this.injector });
     }
     getSelectorName() {
         return 'gui-filter-menu-trigger';
     }
 }
-FilterMenuTriggerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuTriggerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: i1$1.FabricDrawerService }, { token: i1$1.FabricDialogService }, { token: StructureId }, { token: FilterWarehouse }, { token: filterContainerToken }], target: i0.ɵɵFactoryTarget.Component });
+FilterMenuTriggerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuTriggerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: i1$1.FabricDialogService }, { token: StructureId }, { token: FilterWarehouse }], target: i0.ɵɵFactoryTarget.Component });
 FilterMenuTriggerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FilterMenuTriggerComponent, selector: "div[gui-filter-menu-trigger]", usesInheritance: true, ngImport: i0, template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\n\t<div gui-filter-icon></div>\n</div>\n", styles: [".gui-filter-icon-wrapper{height:19px;margin-right:24px;position:relative;width:19px}.gui-filter-active{border:2px solid #aaa!important;border-radius:50%;height:27px;left:-6px;position:absolute;top:-6px;width:27px}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "component", type: FilterIconComponent, selector: "div[gui-filter-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuTriggerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-menu-trigger]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\n\t<div gui-filter-icon></div>\n</div>\n", styles: [".gui-filter-icon-wrapper{height:19px;margin-right:24px;position:relative;width:19px}.gui-filter-active{border:2px solid #aaa!important;border-radius:50%;height:27px;left:-6px;position:absolute;top:-6px;width:27px}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"] }]
-        }], ctorParameters: function () {
-        return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: i1$1.FabricDrawerService }, { type: i1$1.FabricDialogService }, { type: StructureId }, { type: FilterWarehouse }, { type: undefined, decorators: [{
-                        type: Inject,
-                        args: [filterContainerToken]
-                    }] }];
-    } });
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: i1$1.FabricDialogService }, { type: StructureId }, { type: FilterWarehouse }]; } });
 
 class ColumnSelectorComponent extends PureComponent {
     constructor(elementRef) {
@@ -12211,6 +11834,12 @@ class ToggleFilterCommand extends StructureCommand {
     }
 }
 
+class FilterToggledEvent extends StructureDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'FilterToggledEvent');
+    }
+}
+
 class ToggleFilterCommandHandler {
     constructor() {
         this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
@@ -12246,18 +11875,12 @@ class AddFilterCommand extends StructureCommand {
 }
 
 class AddFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return AddFilterCommand;
     }
     handle(structure, command) {
         const fieldId = command.getFieldId(), filterTypeId = command.getFilterTypeId(), value = command.getValue();
         structure.addFilter(fieldId, filterTypeId, value);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -12268,17 +11891,11 @@ class RemoveAllFiltersCommand extends StructureCommand {
 }
 
 class RemoveAllFiltersCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return RemoveAllFiltersCommand;
     }
     handle(structure, command) {
         structure.removeAllFilters();
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -12293,18 +11910,12 @@ class RemoveFilterCommand extends StructureCommand {
 }
 
 class RemoveFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return RemoveFilterCommand;
     }
     handle(structure, command) {
         const filterId = command.getFilterId();
         structure.removeFilter(filterId);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -12934,18 +12545,12 @@ class UnselectAllUniqueFilterCommand extends StructureCommand {
 }
 
 class UnselectAllUniqueFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return UnselectAllUniqueFilterCommand;
     }
     handle(structure, command) {
         const fieldId = command.getFieldId();
         structure.unselectAllUniqueFilter(fieldId);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -12964,18 +12569,12 @@ class UnselectUniqueFilterCommand extends StructureCommand {
 }
 
 class UnselectUniqueFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return UnselectUniqueFilterCommand;
     }
     handle(structure, command) {
         const fieldId = command.getFieldId(), uniqueValueId = command.getUniqueValueId();
         structure.unselectUniqueFilter(fieldId, uniqueValueId);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -12990,18 +12589,12 @@ class SelectAllUniqueFilterCommand extends StructureCommand {
 }
 
 class SelectAllUniqueFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return SelectAllUniqueFilterCommand;
     }
     handle(structure, command) {
         const fieldId = command.getFieldId();
         structure.selectAllUniqueFilter(fieldId);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -13020,18 +12613,12 @@ class SelectUniqueFilterCommand extends StructureCommand {
 }
 
 class SelectUniqueFilterCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return SelectUniqueFilterCommand;
     }
     handle(structure, command) {
         const fieldId = command.getFieldId(), uniqueValueId = command.getUniqueValueId();
         structure.selectUniqueFilter(fieldId, uniqueValueId);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -13196,9 +12783,11 @@ class FilterApiModule {
         container.provide(FilterIntegration);
     }
 }
-const filterInitializer = new DomainInitializer(new FilterApiModule(), new FilterDomainModule());
+function initializeFilter() {
+    new DomainInitializer(new FilterApiModule(), new FilterDomainModule()).init();
+}
 
-filterInitializer.init();
+initializeFilter();
 function provideFilterCommandInvoker() {
     return CoreContainer.resolve(FilterPublisher);
 }
@@ -13489,7 +13078,10 @@ class ConsoleLogger extends Logger {
     }
 }
 
-CoreContainer.provide(Logger, ConsoleLogger);
+function initializeLogger() {
+    CoreContainer.provide(Logger, ConsoleLogger);
+}
+initializeLogger();
 function provideLogger() {
     return CoreContainer.resolve(Logger);
 }
@@ -13509,7 +13101,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                 }]
         }] });
 
-class ItemEntity {
+class Item {
     constructor(source, position, id, version = 0) {
         this.version = 0;
         this.source = source;
@@ -13554,27 +13146,508 @@ class ItemEntity {
     }
 }
 
-class ItemEntityFactory {
+class ItemEntity extends Entity {
+    constructor(id, sourceItem, position, version = 0) {
+        super(id);
+        this.sourceItem = sourceItem;
+        this.position = position;
+        this.version = version;
+    }
+    getSourceItem() {
+        return this.sourceItem;
+    }
+    getVersion() {
+        return this.version;
+    }
+    getPosition() {
+        return this.position;
+    }
+    bumpVersion() {
+        this.version += 1;
+    }
+    setPosition(position) {
+        this.position = position;
+    }
+    clone() {
+        const rawData = Object.assign({}, this.sourceItem);
+        return new ItemEntity(this.getId(), rawData, this.version);
+    }
+}
+
+class ItemFactory {
     create(source) {
         if (Array.isArray(source)) {
-            return this.createEntities(source);
+            return this.createItems(source);
         }
         else {
-            return this.createEntity(source);
+            return this.createItem(source);
         }
     }
-    createEntities(source) {
-        return source.map((source) => this.createEntity(source));
+    createItems(source) {
+        return source.map((source) => this.createItem(source));
     }
-    createEntity(originItem) {
-        if (originItem instanceof OriginItemEntity) {
-            return new ItemEntity(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
+    createItem(originItem) {
+        if (originItem instanceof ItemEntity) {
+            return new Item(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
         }
         else {
-            return new ItemEntity(originItem, 0);
+            return new Item(originItem, 0);
         }
     }
 }
+
+class SetConfigSearchingCommand extends StructureCommand {
+    constructor(structureId, searchConfig) {
+        super(structureId, 'SetConfigSearchingCommand');
+        this.searchConfig = searchConfig;
+    }
+    getConfig() {
+        return this.searchConfig;
+    }
+}
+
+class ConfigSearchingSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, enabled) {
+        super(aggregateId, enabled, 'ConfigSearchingSetEvent');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class SetConfigSearchingCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetConfigSearchingCommand;
+    }
+    handle(aggregate, command) {
+        const searchingConfig = command.getConfig();
+        aggregate.setSearchingConfig(searchingConfig);
+    }
+    publish(aggregate, command) {
+        const searchingConfig = command.getConfig();
+        this.domainEventPublisher.publish(new ConfigSearchingSetEvent(command.getAggregateId(), searchingConfig.enabled));
+    }
+}
+
+class SetSearchPhraseCommand extends StructureCommand {
+    constructor(structureId, phrase, initial) {
+        super(structureId, 'SetSearchPhraseCommand');
+        this.phrase = phrase;
+        this.initial = initial;
+    }
+    getPhrase() {
+        return this.phrase;
+    }
+    isInitial() {
+        return this.initial;
+    }
+}
+
+class SearchPhraseSetDomainEvent extends StructureDomainEvent {
+    constructor(aggregateId, phrase, initial) {
+        super(aggregateId, { phrase, initial }, 'SearchPhraseSetDomainEvent');
+        this.phrase = phrase;
+        this.initial = initial;
+    }
+    getPhrase() {
+        return this.phrase;
+    }
+    isInitial() {
+        return this.initial;
+    }
+}
+
+class OriginSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, origin) {
+        super(aggregateId, origin, 'OriginSetEvent');
+        this.origin = origin;
+    }
+    getOrigin() {
+        return this.origin;
+    }
+}
+
+class StructureSummariesChangedEvent extends StructureDomainEvent {
+    constructor(structureId, values) {
+        super(structureId, values, 'StructureSummariesChangedEvent');
+        this.values = values;
+    }
+    getSummaries() {
+        return this.values;
+    }
+}
+
+class StructurePreparedEntitiesSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, preparedItems) {
+        super(aggregateId, preparedItems, 'StructurePreparedEntitiesSetEvent');
+        this.preparedItems = preparedItems;
+    }
+    getPreparedItems() {
+        return this.preparedItems;
+    }
+}
+
+class SourceDomainEventPublisher {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    publish(events) {
+        events.forEach((event) => {
+            this.publishEvent(event);
+        });
+    }
+    publishEvent(event) {
+        if (event.getType() === 'StructureOriginChangedAggregateEvent') {
+            const structureOriginChangedAggregateEvent = event;
+            const domainEvent = new OriginSetEvent(structureOriginChangedAggregateEvent.getAggregateId(), structureOriginChangedAggregateEvent.getOrigin());
+            this.domainEventPublisher.publish(domainEvent);
+        }
+        if (event.getType() === 'StructureSourceItemEditedAggregateEvent') {
+            const structureSourceItemEditedAggregateEvent = event;
+            const domainEvent = new StructureSourceItemEditedEvent(structureSourceItemEditedAggregateEvent.getAggregateId(), structureSourceItemEditedAggregateEvent.getBeforeItem(), structureSourceItemEditedAggregateEvent.getAfterItem());
+            this.domainEventPublisher.publish(domainEvent);
+        }
+        if (event.getType() === 'StructureSummariesChangedAggregateEvent') {
+            const structureSummariesChangedAggregateEvent = event;
+            const domainEvent = new StructureSummariesChangedEvent(structureSummariesChangedAggregateEvent.getAggregateId(), structureSummariesChangedAggregateEvent.getSummaries());
+            this.domainEventPublisher.publish(domainEvent);
+        }
+        if (event.getType() === 'StructurePreparedEntitiesSetAggregateEvent') {
+            const structurePreparedEntitiesSetAggregateEvent = event;
+            const domainEvent = new StructurePreparedEntitiesSetEvent(structurePreparedEntitiesSetAggregateEvent.getAggregateId(), structurePreparedEntitiesSetAggregateEvent.getPreparedItems());
+            this.domainEventPublisher.publish(domainEvent);
+        }
+        if (event.getType() === 'UniqueFilterCalculatedAggregateEvent') {
+            const uniqueFilterCalculatedAggregateEvent = event;
+            const domainEvent = uniqueFilterCalculatedAggregateEvent.toDomainEvent();
+            this.domainEventPublisher.publish(domainEvent);
+        }
+    }
+}
+
+class StructureSetSearchPhraseCommandHandler {
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetSearchPhraseCommand;
+    }
+    handle(aggregate, command) {
+        const phrase = command.getPhrase();
+        aggregate.addSearchPhrase(phrase);
+    }
+    publish(aggregate, command) {
+        const phrase = command.getPhrase(), initial = command.isInitial();
+        this.domainEventPublisher.publish(new SearchPhraseSetDomainEvent(command.getAggregateId(), phrase, initial));
+        this.structureSourceDomainEventPublisher.publish(aggregate.getEvents());
+    }
+}
+StructureSetSearchPhraseCommandHandler.services = [SourceDomainEventPublisher];
+
+class SearchManager {
+    constructor() {
+        this.searchFields = [];
+        this.enabledDataTypes = [
+            DataType.STRING
+        ];
+    }
+    addSearchPhrase(fields, searchPhrase) {
+        if (!searchPhrase) {
+            this.searchFields = [];
+            return;
+        }
+        const searchableFields = fields.filter((field) => {
+            return this.enabledDataTypes.some((dt) => dt === field.getDataType());
+        });
+        if (searchableFields.length === 0) {
+            return;
+        }
+        this.searchFields = searchableFields;
+        this.searchPhrase = searchPhrase;
+    }
+    removeSearchFilters() {
+        this.searchFields = [];
+    }
+    search(entities) {
+        if (entities.length === 0 || this.searchFields.length === 0) {
+            return entities;
+        }
+        const searchedItems = new Set();
+        for (let i = 0; i < entities.length; i += 1) {
+            this.searchFields
+                .filter((field) => field.search(entities[i], this.searchPhrase))
+                .forEach(() => {
+                searchedItems.add(entities[i]);
+            });
+        }
+        return Array.from(searchedItems);
+    }
+}
+
+class SearchManagerFactory {
+    create() {
+        return new SearchManager();
+    }
+}
+
+class SearchHighlightArchive extends AggregateArchive {
+    constructor() {
+        super(SearchHighlightArchive.HIGHLIGHTING);
+    }
+}
+SearchHighlightArchive.HIGHLIGHTING = true;
+
+class SearchPlaceholderArchive extends AggregateArchive {
+    constructor() {
+        super(SearchPlaceholderArchive.PLACEHOLDER);
+    }
+}
+SearchPlaceholderArchive.PLACEHOLDER = 'Search...';
+
+class SearchDispatcher {
+    constructor(commandDispatcher, searchHighlightArchive, searchPlaceholderArchive) {
+        this.commandDispatcher = commandDispatcher;
+        this.searchHighlightArchive = searchHighlightArchive;
+        this.searchPlaceholderArchive = searchPlaceholderArchive;
+    }
+    setSearchingConfig(config, structureId) {
+        if (config.highlighting !== undefined && config.highlighting !== null) {
+            this.searchHighlightArchive.next(structureId, config.highlighting);
+        }
+        if (config.placeholder !== undefined && config.placeholder !== null) {
+            this.searchPlaceholderArchive.next(structureId, config.placeholder);
+        }
+        if (config.phrase !== undefined && config.phrase !== null) {
+            this.searchOnInit(config.phrase, structureId);
+        }
+        this.commandDispatcher.dispatch(new SetConfigSearchingCommand(structureId, config));
+    }
+    search(phrase, structureId) {
+        this.commandDispatcher.dispatch(new SetSearchPhraseCommand(structureId, phrase, false));
+    }
+    searchOnInit(phrase, structureId) {
+        this.commandDispatcher.dispatch(new SetSearchPhraseCommand(structureId, phrase, true));
+    }
+}
+SearchDispatcher.services = [CommandDispatcher, SearchHighlightArchive, SearchPlaceholderArchive];
+
+class SearchPhraseArchive extends AggregateArchive {
+    constructor() {
+        super(SearchPhraseArchive.SEARCH_PHRASE);
+    }
+}
+SearchPhraseArchive.SEARCH_PHRASE = '';
+
+class SearchPhraseSetEventHandler {
+    constructor(searchPhraseRepository) {
+        this.searchPhraseRepository = searchPhraseRepository;
+    }
+    forEvent() {
+        return SearchPhraseSetDomainEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('SearchPhraseSetDomainEvent')) {
+            this.searchPhraseRepository.next(event.getAggregateId(), event.getPhrase());
+        }
+    }
+}
+SearchPhraseSetEventHandler.services = [SearchPhraseArchive];
+
+class SearchingEnabledArchive extends AggregateArchive {
+    constructor() {
+        super(SearchingEnabledArchive.ENABLED);
+    }
+}
+SearchingEnabledArchive.ENABLED = false;
+
+class ConfigSearchingSetEventHandler {
+    constructor(searchingEnabledArchive) {
+        this.searchingEnabledArchive = searchingEnabledArchive;
+    }
+    forEvent() {
+        return ConfigSearchingSetEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('ConfigSearchingSetEvent')) {
+            this.searchingEnabledArchive.next(event.getAggregateId(), event.isEnabled());
+        }
+    }
+}
+ConfigSearchingSetEventHandler.services = [SearchingEnabledArchive];
+
+class RemoveSearchPhraseCommand extends StructureCommand {
+    constructor(structureId) {
+        super(structureId, 'RemoveSearchPhraseCommand');
+    }
+}
+
+class RemoveSearchPhraseCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return RemoveSearchPhraseCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.removeSearchPhrase();
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publish(new FilterToggledEvent(command.getAggregateId()));
+    }
+}
+
+class SearchDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(SearchManagerFactory);
+        container.provide(SearchDispatcher);
+    }
+    registerCommandHandlers() {
+        return [
+            SetConfigSearchingCommandHandler,
+            StructureSetSearchPhraseCommandHandler,
+            RemoveSearchPhraseCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [
+            SearchPhraseSetEventHandler,
+            ConfigSearchingSetEventHandler
+        ];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class SearchDomainWarehouse extends SearchWarehouse {
+    constructor(searchingEnabledArchive, searchPhraseArchive, searchHighlightArchive, searchPlaceholderArchive) {
+        super();
+        this.searchingEnabledArchive = searchingEnabledArchive;
+        this.searchPhraseArchive = searchPhraseArchive;
+        this.searchHighlightArchive = searchHighlightArchive;
+        this.searchPlaceholderArchive = searchPlaceholderArchive;
+    }
+    onSearchEnabled(structureId) {
+        return this.searchingEnabledArchive.on(structureId);
+    }
+    onPhrase(structureId) {
+        return this.searchPhraseArchive.on(structureId);
+    }
+    onHighlight(structureId) {
+        return this.searchHighlightArchive.on(structureId);
+    }
+    onPlaceholder(structureId) {
+        return this.searchPlaceholderArchive.on(structureId);
+    }
+}
+SearchDomainWarehouse.services = [
+    SearchingEnabledArchive,
+    SearchPhraseArchive,
+    SearchHighlightArchive,
+    SearchPlaceholderArchive
+];
+
+class SearchDomainEventRepository extends SearchEventRepository {
+    constructor() {
+        super();
+    }
+    onSearchPhrase(structureId) {
+        return this.onEvent(structureId, SearchPhraseSetDomainEvent)
+            .pipe(hermesFilter((event) => event.isInitial() === false), hermesMap((event) => event.getPhrase()), hermesFilter((phrase) => phrase !== null));
+    }
+}
+
+class SearchDomainPublisher extends SearchPublisher {
+    constructor(searchDispatcher) {
+        super();
+        this.searchDispatcher = searchDispatcher;
+    }
+    setSearchingConfig(config, structureId) {
+        this.searchDispatcher.setSearchingConfig(config, structureId);
+    }
+    search(phrase, structureId) {
+        this.searchDispatcher.search(phrase, structureId);
+    }
+}
+SearchDomainPublisher.services = [SearchDispatcher];
+
+class SearchApiModule {
+    registerProviders(container) {
+        container.provide(SearchPublisher, SearchDomainPublisher);
+        container.provide(SearchWarehouse, SearchDomainWarehouse);
+        container.provide(SearchEventRepository, SearchDomainEventRepository);
+        container.provide(SearchPhraseArchive);
+        container.provide(SearchHighlightArchive);
+        container.provide(SearchPlaceholderArchive);
+        container.provide(SearchingEnabledArchive);
+    }
+}
+function initializeSearch() {
+    new DomainInitializer(new SearchApiModule(), new SearchDomainModule()).init();
+}
+
+initializeSearch();
+function provideSearchCommandInvoker() {
+    return CoreContainer.resolve(SearchPublisher);
+}
+function provideSearchWarehouse() {
+    return CoreContainer.resolve(SearchWarehouse);
+}
+function provideSearchEventRepository() {
+    return CoreContainer.resolve(SearchEventRepository);
+}
+class SearchFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [];
+    }
+}
+SearchFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+SearchFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
+        SearchComponent], imports: [CommonModule,
+        FabricModule,
+        ReactiveFormsModule], exports: [SearchIconComponent,
+        SearchComponent] });
+SearchFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, providers: [
+        { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
+        { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
+        { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
+    ], imports: [CommonModule,
+        FabricModule,
+        ReactiveFormsModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule,
+                        FabricModule,
+                        ReactiveFormsModule
+                    ],
+                    declarations: [
+                        SearchIconComponent,
+                        SearchComponent
+                    ],
+                    exports: [
+                        SearchIconComponent,
+                        SearchComponent
+                    ],
+                    providers: [
+                        { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
+                        { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
+                        { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
+                    ]
+                }]
+        }] });
 
 class StructureTopPanelModule {
 }
@@ -13845,6 +13918,1536 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                     ],
                     exports: [
                         EmptySourceComponent
+                    ]
+                }]
+        }] });
+
+class ToggleSortCommand extends StructureCommand {
+    constructor(structureId, compositionId, fieldId) {
+        super(structureId, 'ToggleSortCommand');
+        this.compositionId = compositionId;
+        this.fieldId = fieldId;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    getFieldId() {
+        return this.fieldId;
+    }
+}
+
+class ToggleSortCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return ToggleSortCommand;
+    }
+    handle(structure, command) {
+        const aggregateId = command.getAggregateId(), compositionId = command.getCompositionId(), fieldId = command.getFieldId();
+        const sorters = structure.toggleSort(fieldId);
+        this.publishSortEvent(aggregateId, compositionId, fieldId, sorters);
+    }
+    publish(aggregate, command) {
+    }
+    publishSortEvent(aggregateId, compositionId, fieldId, sorters) {
+        const directions = sorters.map((sorter) => {
+            return {
+                direction: sorter.hasDirection(),
+                fieldId: sorter.getField().getId()
+            };
+        });
+        this.domainEventPublisher.publish(new SortToggledEvent(aggregateId, compositionId, directions));
+    }
+}
+
+class SetSortingCommand extends StructureCommand {
+    constructor(structureId, sortingConfig) {
+        super(structureId, 'SetSortingCommand');
+        this.sortingConfig = sortingConfig;
+    }
+    getSortingConfig() {
+        return this.sortingConfig;
+    }
+}
+
+class SortingSetEvent extends StructureDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'SortingSetEvent');
+    }
+}
+
+class SetSortingCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetSortingCommand;
+    }
+    handle(aggregate, command) {
+        const sortingConfig = command.getSortingConfig();
+        aggregate.setSortingConfig(sortingConfig);
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publish(new SortingSetEvent(command.getAggregateId()));
+    }
+}
+
+class SetSortOrderCommand extends StructureCommand {
+    constructor(structureId, compositionId, fieldId, sortOrder) {
+        super(structureId, 'SetSortOrderCommand');
+        this.compositionId = compositionId;
+        this.fieldId = fieldId;
+        this.sortOrder = sortOrder;
+    }
+    getCompositionId() {
+        return this.compositionId;
+    }
+    getFieldId() {
+        return this.fieldId;
+    }
+    getSortOrder() {
+        return this.sortOrder;
+    }
+}
+
+class SetSortOrderCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SetSortOrderCommand;
+    }
+    handle(structure, command) {
+        const structureId = command.getAggregateId(), compositionId = command.getCompositionId(), fieldId = command.getFieldId(), sortOrder = command.getSortOrder();
+        const sorters = structure.setSortOrder(fieldId, sortOrder);
+        this.publishSortEvent(structureId, compositionId, fieldId, sorters);
+    }
+    publish(aggregate, command) {
+    }
+    publishSortEvent(aggregateId, compositionId, fieldId, sorters) {
+        const directions = sorters.map((sorter) => {
+            return {
+                direction: sorter.hasDirection(),
+                fieldId: sorter.getField().getId()
+            };
+        });
+        this.domainEventPublisher.publish(new SortOrderSetEvent(aggregateId, compositionId, directions));
+    }
+}
+
+class SortingDispatcher {
+    constructor() {
+        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    }
+    setSortingConfig(config, structureId) {
+        this.commandDispatcher.dispatch(new SetSortingCommand(structureId, config));
+    }
+    toggleSort(fieldId, compositionId, structureId) {
+        this.commandDispatcher.dispatch(new ToggleSortCommand(structureId, compositionId, fieldId));
+    }
+    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
+        this.commandDispatcher.dispatch(new SetSortOrderCommand(structureId, compositionId, fieldId, sortOrder));
+    }
+}
+
+class SortingDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(SortingDispatcher);
+    }
+    registerCommandHandlers() {
+        return [
+            ToggleSortCommandHandler,
+            SetSortingCommandHandler,
+            SetSortOrderCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class SortingDomainPublisher extends SortingPublisher {
+    constructor(sortingDispatcher) {
+        super();
+        this.sortingDispatcher = sortingDispatcher;
+    }
+    setSortingConfig(config, structureId) {
+        this.sortingDispatcher.setSortingConfig(config, structureId);
+    }
+    toggleSort(fieldId, compositionId, structureId) {
+        this.sortingDispatcher.toggleSort(fieldId, compositionId, structureId);
+    }
+    setSortOrder(fieldId, sortOrder, compositionId, structureId) {
+        this.sortingDispatcher.setSortOrder(fieldId, sortOrder, compositionId, structureId);
+    }
+}
+SortingDomainPublisher.services = [SortingDispatcher];
+
+class SortingApiModule {
+    registerProviders(container) {
+        container.provide(SortingPublisher, SortingDomainPublisher);
+    }
+}
+function initializeSorting() {
+    new DomainInitializer(new SortingApiModule(), new SortingDomainModule()).init();
+}
+
+initializeSorting();
+function provideSortingCommandInvoker() {
+    return CoreContainer.resolve(SortingPublisher);
+}
+class SortingFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [];
+    }
+}
+SortingFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+SortingFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, imports: [CommonModule] });
+SortingFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, providers: [
+        { provide: SortingPublisher, useFactory: provideSortingCommandInvoker }
+    ], imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SortingFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [],
+                    exports: [],
+                    providers: [
+                        { provide: SortingPublisher, useFactory: provideSortingCommandInvoker }
+                    ]
+                }]
+        }] });
+
+class FieldArchive extends AggregateArchive {
+    constructor() {
+        super(FieldArchive.default);
+    }
+}
+FieldArchive.default = [];
+
+class FieldModel {
+    constructor(id, dataType, name) {
+        this.id = id;
+        this.dataType = dataType;
+        this.name = name;
+    }
+    getFieldId() {
+        return this.id;
+    }
+    getId() {
+        return this.id.getId();
+    }
+    getDataType() {
+        return this.dataType;
+    }
+    getName() {
+        return this.name;
+    }
+}
+
+class FieldConverter {
+    convert(fields) {
+        return fields.map((field) => {
+            return this.convertOne(field);
+        });
+    }
+    convertOne(field) {
+        return new FieldModel(field.getId(), field.getDataType(), field.getName());
+    }
+}
+
+class FieldCollection {
+    constructor(fieldFactory) {
+        this.fieldFactory = fieldFactory;
+        this.fields = new Map();
+    }
+    getField(fieldId) {
+        if (fieldId === null) {
+            return this.getAllFields()[0];
+        }
+        return this.fields.get(fieldId.getId());
+    }
+    getAllFieldIds() {
+        return Array.from(this.fields.keys());
+    }
+    getAllFields() {
+        return Array.from(this.fields.values());
+    }
+    getFieldsAsMap() {
+        return this.fields;
+    }
+    initFields(fieldConfigs) {
+        const fields = this.fieldFactory.create(fieldConfigs);
+        this.clear();
+        this.addFields(fields);
+    }
+    addFields(fields) {
+        for (const field of fields) {
+            this.addField(field);
+        }
+    }
+    addField(field) {
+        this.fields.set(field.getId().toString(), field);
+    }
+    clear() {
+        this.fields.clear();
+    }
+}
+
+class FieldEntity extends Entity {
+    constructor(id, field, name) {
+        super(id);
+        this.id = id;
+        this.field = field;
+        this.name = name;
+    }
+    static of(id, dataField, name) {
+        return new FieldEntity(id, dataField, name);
+    }
+    getId() {
+        return this.id;
+    }
+    getKey() {
+        return this.getId().toString();
+    }
+    getDataType() {
+        return this.field.getDataType();
+    }
+    getName() {
+        return this.name;
+    }
+    /**
+     * @deprecated
+     */
+    getField() {
+        return this.field;
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     */
+    getAccessor() {
+        return this.field.getAccessor();
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     */
+    getAccessorMethod() {
+        return this.field.getAccessorMethod();
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     */
+    getSearchAccessorMethod() {
+        return this.field.getSearchAccessorMethod();
+    }
+    getValue(entity) {
+        return this.field.getValue(entity);
+    }
+    getDisplayValue(value) {
+        return this.field.getDisplayValue(value);
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     */
+    isSummaries(type) {
+        return this.field.isSummaries(type);
+    }
+    /**
+     * Probably should not be used.
+     *
+     * @deprecated
+     */
+    isSummariesEnabled() {
+        return this.field.isSummariesEnabled();
+    }
+    search(item, searchPhrase) {
+        return this.field.search(item, searchPhrase);
+    }
+    filter(item, filterPhrase) {
+        const value = this.field.getValue(item);
+        if (this.field.getDataType() === DataType.NUMBER) {
+            return this.field.filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.BOOLEAN) {
+            return this.field.filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.STRING) {
+            return this.field.filter(value, filterPhrase);
+        }
+        else if (this.field.getDataType() === DataType.DATE) {
+            return this.field.filter(value, filterPhrase);
+        }
+        else {
+            return true;
+        }
+    }
+    sort(entityOne, entityTwo, direction) {
+        const valueOne = direction ? this.field.getSortValue(entityOne) : this.field.getSortValue(entityTwo), valueTwo = direction ? this.field.getSortValue(entityTwo) : this.field.getSortValue(entityOne);
+        if (this.field.getDataType() === DataType.NUMBER) {
+            return this.field.sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.BOOLEAN) {
+            return this.field.sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.STRING) {
+            return this.field.sort(valueOne, valueTwo);
+        }
+        else if (this.field.getDataType() === DataType.DATE) {
+            return this.field.sort(valueOne, valueTwo);
+        }
+        else {
+            return 0;
+        }
+    }
+}
+
+class BaseDataField {
+    constructor(accessor, dataType, matchers) {
+        this.accessor = accessor;
+        this.dataType = dataType;
+        this.matchers = matchers;
+        if (typeof accessor === 'string') {
+            this.accessorMethod = (entity) => entity.getSourceItem()[accessor];
+        }
+        else if (typeof accessor === 'function') {
+            this.accessorMethod = (entity) => accessor(entity.getSourceItem());
+        }
+        else {
+            this.accessorMethod = (entity) => entity;
+        }
+    }
+    getDataType() {
+        return this.dataType;
+    }
+    getAccessor() {
+        return this.accessor;
+    }
+    getAccessorMethod() {
+        return this.accessorMethod;
+    }
+    getMatchers() {
+        return this.matchers;
+    }
+    getSearchAccessorMethod() {
+        let matcher;
+        this.matchers
+            .getSearchMatcher()
+            .ifPresent((m) => {
+            matcher = m;
+        });
+        if (matcher) {
+            return (entity) => {
+                const val = this.accessorMethod(entity);
+                return matcher(val);
+            };
+        }
+        else {
+            return (entity) => {
+                return this.accessorMethod(entity);
+            };
+        }
+    }
+    getValue(entity) {
+        return this.accessorMethod(entity);
+    }
+    getSortValue(entity) {
+        let value = this.accessorMethod(entity);
+        this.matchers
+            .getSortMatcher()
+            .ifPresent((matcher) => {
+            value = matcher(value);
+        });
+        return value;
+    }
+    getSearchValue(entity) {
+        let value = this.accessorMethod(entity);
+        this.matchers
+            .getSearchMatcher()
+            .ifPresent((matcher) => {
+            value = matcher(value);
+        });
+        return value;
+    }
+}
+
+class DataField extends BaseDataField {
+    constructor(accessor, dataType, matchers, summariesConfig) {
+        super(accessor, dataType, matchers);
+        this.summariesEnabled = true;
+        this.possibleSummaries = this.assignPossibleSummaries();
+        this.assignSummaries(summariesConfig);
+    }
+    isSummaries(type) {
+        if (!this.isSummariesEnabled()) {
+            return false;
+        }
+        return !!(this.summariesTypes & type);
+    }
+    isSummariesEnabled() {
+        return this.summariesEnabled;
+    }
+    setSummariesEnabled(enabled) {
+        this.summariesEnabled = enabled;
+    }
+    assignSummaries(summariesConfig) {
+        if (!!summariesConfig && Object.keys(summariesConfig).length !== 0) {
+            if (summariesConfig.enabled) {
+                this.summariesEnabled = !!summariesConfig.enabled;
+            }
+            if (summariesConfig.summariesTypes) {
+                this.summariesTypes = 0;
+                summariesConfig.summariesTypes.forEach((t) => {
+                    this.summariesTypes |= t;
+                });
+            }
+            else {
+                this.summariesTypes = this.assignDefaultSummaries();
+            }
+        }
+        else {
+            this.summariesTypes = this.assignDefaultSummaries();
+        }
+    }
+}
+
+class UnknownDataField extends DataField {
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.UNKNOWN, matchers, summariesConfig);
+    }
+    assignDefaultSummaries() {
+        return 0;
+        // return SummariesType.COUNT |
+        // 	SummariesType.DISTINCT;
+    }
+    assignPossibleSummaries() {
+        return SummariesType.COUNT |
+            SummariesType.DISTINCT;
+    }
+    search(item, searchPhrase) {
+        return false;
+    }
+    sort(one, two) {
+        return 0;
+    }
+    filter(value, filterPhrase) {
+        return false;
+    }
+    equals(item, value) {
+        return false;
+    }
+    getDisplayValue(item) {
+        return item;
+    }
+}
+
+class NumberDataField extends DataField {
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.NUMBER, matchers, summariesConfig);
+    }
+    getField() {
+        return this;
+    }
+    assignDefaultSummaries() {
+        return 0;
+        // return SummariesType.COUNT |
+        // 	SummariesType.DISTINCT |
+        // 	SummariesType.SUM |
+        // 	SummariesType.MIN |
+        // 	SummariesType.MAX |
+        // 	SummariesType.AVERAGE |
+        // 	SummariesType.MEDIAN;
+    }
+    assignPossibleSummaries() {
+        return SummariesType.COUNT |
+            SummariesType.DISTINCT |
+            SummariesType.SUM |
+            SummariesType.MIN |
+            SummariesType.MAX |
+            SummariesType.AVERAGE |
+            SummariesType.MEDIAN;
+    }
+    search(item, searchPhrase) {
+        return false;
+    }
+    sort(numOne, numTwo) {
+        const sureNumOne = +numOne, sureNumTwo = +numTwo;
+        return sureNumOne - sureNumTwo;
+    }
+    filter(value, filterPhrase) {
+        return value > filterPhrase;
+    }
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    getDisplayValue(item) {
+        return `${item}`;
+    }
+}
+
+class StringDataField extends DataField {
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.STRING, matchers, summariesConfig);
+    }
+    assignDefaultSummaries() {
+        return 0;
+        // return SummariesType.COUNT |
+        // 	SummariesType.DISTINCT;
+    }
+    assignPossibleSummaries() {
+        return SummariesType.COUNT |
+            SummariesType.DISTINCT;
+    }
+    search(item, searchPhrase) {
+        const value = this.getSearchValue(item);
+        if (typeof value === 'string') {
+            return value.toLowerCase().indexOf(searchPhrase.toLowerCase()) > -1;
+        }
+        else {
+            return false;
+        }
+    }
+    sort(strOne, strTwo) {
+        const sureStrOne = '' + strOne, sureStrTwo = '' + strTwo;
+        return sureStrOne.localeCompare(sureStrTwo);
+    }
+    filter(value, filterPhrase) {
+        return value.toLowerCase().indexOf(filterPhrase.toLowerCase()) > -1;
+    }
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    getDisplayValue(item) {
+        return item;
+    }
+}
+
+class BooleanDataField extends DataField {
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.BOOLEAN, matchers, summariesConfig);
+    }
+    assignDefaultSummaries() {
+        return 0;
+        // return SummariesType.COUNT |
+        // 	SummariesType.DISTINCT |
+        // 	SummariesType.TRUTHY |
+        // 	SummariesType.FALSY;
+    }
+    assignPossibleSummaries() {
+        return SummariesType.COUNT |
+            SummariesType.DISTINCT |
+            SummariesType.TRUTHY |
+            SummariesType.FALSY;
+    }
+    search(item, searchPhrase) {
+        return false;
+    }
+    sort(booleanOne, booleanTwo) {
+        const sureBoolOne = !!booleanOne, sureBoolTwo = !!booleanTwo;
+        return (sureBoolOne === sureBoolTwo) ? 0 : sureBoolTwo ? -1 : 1;
+    }
+    filter(value, filterPhrase) {
+        return value === filterPhrase;
+    }
+    equals(item, value) {
+        return this.getValue(item) === value;
+    }
+    getDisplayValue(item) {
+        return item ? 'True' : 'False';
+    }
+}
+
+class DateDataField extends DataField {
+    constructor(accessor, matchers, summariesConfig) {
+        super(accessor, DataType.DATE, matchers, summariesConfig);
+    }
+    assignDefaultSummaries() {
+        return 0;
+        // return SummariesType.COUNT |
+        // 	SummariesType.DISTINCT;
+    }
+    assignPossibleSummaries() {
+        return SummariesType.COUNT |
+            SummariesType.DISTINCT;
+    }
+    search(item, searchPhrase) {
+        return false;
+    }
+    sort(dateOne, dateTwo) {
+        return dateOne - dateTwo;
+    }
+    filter(value, filterPhrase) {
+        return false;
+    }
+    equals(item, value) {
+        return this.getValue(item).getTime() === value.getTime();
+    }
+    getDisplayValue(item) {
+        return item.toDateString();
+    }
+}
+
+class FieldMatchers {
+    constructor(matcher, sortMatcher, searchMatcher) {
+        this.matcher = matcher;
+        this.sortMatcher = sortMatcher;
+        this.searchMatcher = searchMatcher;
+    }
+    getMatcher() {
+        return Optional.of(this.matcher);
+    }
+    getSortMatcher() {
+        let matcher;
+        if (this.sortMatcher) {
+            matcher = this.sortMatcher;
+        }
+        if (this.matcher) {
+            matcher = this.matcher;
+        }
+        return Optional.of(matcher);
+    }
+    getSearchMatcher() {
+        let matcher;
+        if (this.searchMatcher) {
+            matcher = this.searchMatcher;
+        }
+        if (this.matcher) {
+            matcher = this.matcher;
+        }
+        return Optional.of(matcher);
+    }
+}
+
+class DataFieldFactory {
+    create(fieldConfig) {
+        const fieldMatchers = this.createMatchers(fieldConfig);
+        let columnType = fieldConfig.type;
+        if (columnType === undefined) {
+            columnType = DataType.STRING;
+        }
+        if (columnType === DataType.UNKNOWN) {
+            return new UnknownDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
+        }
+        if (columnType === DataType.NUMBER) {
+            return new NumberDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
+        }
+        if (columnType === DataType.STRING) {
+            return new StringDataField(fieldConfig.field, fieldMatchers);
+        }
+        if (columnType === DataType.BOOLEAN) {
+            return new BooleanDataField(fieldConfig.field, fieldMatchers);
+        }
+        if (columnType === DataType.DATE) {
+            return new DateDataField(fieldConfig.field, fieldMatchers);
+        }
+        return new UnknownDataField(fieldConfig.field, fieldMatchers, fieldConfig.summaries);
+    }
+    createMatchers(fieldConfig) {
+        const matcher = fieldConfig.matcher;
+        let sortMatcher;
+        if (fieldConfig.sorting) {
+            sortMatcher = fieldConfig.sorting.matcher;
+        }
+        return new FieldMatchers(matcher, sortMatcher);
+    }
+}
+
+class FieldEntityIdGenerator {
+    generateId() {
+        const id = RandomStringGenerator.generate();
+        return new FieldId(id);
+    }
+}
+
+class FieldEntityFactory {
+    constructor(fieldIdGenerator, dataFieldFactory) {
+        this.fieldIdGenerator = fieldIdGenerator;
+        this.dataFieldFactory = dataFieldFactory;
+    }
+    create(configs) {
+        if (!configs) {
+            return [];
+        }
+        return configs.map((fieldConfig, index) => {
+            const fieldId = this.fieldIdGenerator.generateId(), dataField = this.dataFieldFactory.create(fieldConfig);
+            return new FieldEntity(fieldId, dataField, this.getFieldName(fieldConfig, index));
+        });
+    }
+    getFieldName(fieldConfig, index) {
+        if (typeof fieldConfig.field === 'string') {
+            return fieldConfig.field.toLowerCase();
+        }
+        else {
+            return 'Field #' + index;
+        }
+    }
+}
+FieldEntityFactory.services = [
+    FieldEntityIdGenerator,
+    DataFieldFactory
+];
+
+class FieldCollectionFactory {
+    constructor(fieldFactory) {
+        this.fieldFactory = fieldFactory;
+    }
+    create() {
+        return new FieldCollection(this.fieldFactory);
+    }
+}
+FieldCollectionFactory.services = [FieldEntityFactory];
+
+class InitFieldsCommandHandler {
+    forCommand() {
+        return InitFieldsCommand;
+    }
+    handle(structure, command) {
+        const fieldConfigs = command.getFieldConfigs();
+        structure.createFields(fieldConfigs);
+    }
+}
+
+class FieldsInitedEventHandler {
+    constructor(fieldArchive, fieldConverter) {
+        this.fieldArchive = fieldArchive;
+        this.fieldConverter = fieldConverter;
+    }
+    forEvent() {
+        return FieldsInitedEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('FieldsInitedEvent')) {
+            const fields = this.fieldConverter.convert(event.getFields());
+            this.fieldArchive.next(event.getAggregateId(), fields);
+        }
+    }
+}
+FieldsInitedEventHandler.services = [
+    FieldArchive,
+    FieldConverter
+];
+
+class FieldDispatcher {
+    constructor() {
+        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    }
+    initFields(fieldConfigs, structureId) {
+        this.commandDispatcher.dispatch(new InitFieldsCommand(structureId, fieldConfigs));
+    }
+}
+
+class FieldDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(FieldCollectionFactory);
+        container.provide(FieldEntityFactory);
+        container.provide(FieldEntityIdGenerator);
+        container.provide(DataFieldFactory);
+        container.provide(FieldDispatcher);
+    }
+    registerCommandHandlers() {
+        return [
+            InitFieldsCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [
+            FieldsInitedEventHandler
+        ];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class FieldDomainWarehouse extends FieldWarehouse {
+    constructor(fieldReadModelArchive) {
+        super();
+        this.fieldReadModelArchive = fieldReadModelArchive;
+    }
+    onFields(structureId) {
+        return this.fieldReadModelArchive.on(structureId);
+    }
+    findFields(structureId) {
+        return this.fieldReadModelArchive.find(structureId);
+    }
+}
+FieldDomainWarehouse.services = [FieldArchive];
+
+class FieldDomainPublisher extends FieldPublisher {
+    constructor(fieldDispatcher) {
+        super();
+        this.fieldDispatcher = fieldDispatcher;
+    }
+    initFields(fieldConfigs, structureId) {
+        this.fieldDispatcher.initFields(fieldConfigs, structureId);
+    }
+}
+FieldDomainPublisher.services = [FieldDispatcher];
+
+class FieldApiModule {
+    registerProviders(container) {
+        container.provide(FieldPublisher, FieldDomainPublisher);
+        container.provide(FieldArchive);
+        container.provide(FieldConverter);
+        container.provide(FieldWarehouse, FieldDomainWarehouse);
+    }
+}
+function initializeField() {
+    new DomainInitializer(new FieldApiModule(), new FieldDomainModule()).init();
+}
+
+initializeField();
+function provideFieldCommandInvoker() {
+    return CoreContainer.resolve(FieldPublisher);
+}
+function provideFieldWarehouse() {
+    return CoreContainer.resolve(FieldWarehouse);
+}
+class FieldFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [];
+    }
+}
+FieldFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+FieldFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, imports: [CommonModule] });
+FieldFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, providers: [
+        { provide: FieldPublisher, useFactory: provideFieldCommandInvoker },
+        { provide: FieldWarehouse, useFactory: provideFieldWarehouse }
+    ], imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FieldFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [],
+                    exports: [],
+                    providers: [
+                        { provide: FieldPublisher, useFactory: provideFieldCommandInvoker },
+                        { provide: FieldWarehouse, useFactory: provideFieldWarehouse }
+                    ]
+                }]
+        }] });
+
+class StructureSetSummariesEnabledCommand extends StructureCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'StructureSetSummariesEnabledCommand');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+const StructureSummariesEnabledSetEventName = 'StructureSummariesEnabledSetEvent';
+class StructureSummariesEnabledSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, enabled) {
+        super(aggregateId, enabled, StructureSummariesEnabledSetEventName);
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class StructureSetSummariesEnabledCommandHandler {
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return StructureSetSummariesEnabledCommand;
+    }
+    handle(structure, command) {
+        const enabled = command.isEnabled();
+        structure.setSummariesEnabled(enabled);
+    }
+    publish(aggregate, command) {
+        const enabled = command.isEnabled(), aggregateEvents = aggregate.getEvents();
+        this.domainEventPublisher.publish(new StructureSummariesEnabledSetEvent(command.getAggregateId(), enabled));
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    }
+}
+StructureSetSummariesEnabledCommandHandler.services = [SourceDomainEventPublisher];
+
+class StructureSummariesChangedAggregateEvent extends StructureAggregateEvent {
+    constructor(aggregateId, summarizedValues) {
+        super(aggregateId, 'StructureSummariesChangedAggregateEvent');
+        this.summarizedValues = summarizedValues;
+    }
+    toDomainEvent() {
+        return new StructureSummariesChangedEvent(this.getAggregateId(), this.summarizedValues);
+    }
+    getSummaries() {
+        return this.summarizedValues;
+    }
+}
+
+class SummariesManager {
+    constructor(structureId, calculators) {
+        this.calculators = calculators;
+        this.values = new Map();
+        this.structureId = structureId;
+        this.enabled = SummariesManager.DEFAULT_ENABLED;
+    }
+    calculate(fields, entities) {
+        if (!this.enabled) {
+            return [];
+        }
+        const calculations = new Map();
+        this.calculators.forEach((calc) => {
+            const aggregatedValues = calc.calculate(fields, entities);
+            if (aggregatedValues) {
+                Array.from(aggregatedValues.keys())
+                    .forEach((key) => {
+                    calculations.set(key, aggregatedValues.get(key));
+                });
+            }
+        });
+        if (calculations.size > 0) {
+            return [
+                new StructureSummariesChangedAggregateEvent(this.structureId, calculations)
+            ];
+        }
+        else {
+            return [];
+        }
+    }
+    setEnabled(enabled) {
+        this.enabled = enabled;
+    }
+    add() {
+    }
+    remove() {
+    }
+    update() {
+    }
+}
+SummariesManager.DEFAULT_ENABLED = false;
+
+class SummariesEnabledArchive extends AggregateArchive {
+    constructor() {
+        super(SummariesManager.DEFAULT_ENABLED);
+    }
+    init(structureId) {
+        this.next(structureId, SummariesManager.DEFAULT_ENABLED);
+    }
+}
+
+class StructureSummariesEnabledSetEventHandler {
+    constructor(summariesEnabledArchive) {
+        this.summariesEnabledArchive = summariesEnabledArchive;
+    }
+    forEvent() {
+        return StructureSummariesEnabledSetEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('StructureSummariesEnabledSetEvent')) {
+            this.summariesEnabledArchive.next(event.getAggregateId(), event.isEnabled());
+        }
+    }
+}
+StructureSummariesEnabledSetEventHandler.services = [SummariesEnabledArchive];
+
+class SummariesCalculator {
+    calculate(fields, items) {
+        const filteredFields = fields.filter((field) => this.forDataType(field.getDataType()));
+        if (!filteredFields || filteredFields.length === 0 || items.length === 0) {
+            return null;
+        }
+        const count = new Map(), distinct = new Map();
+        // init
+        filteredFields.forEach((field) => {
+            const key = field.getKey();
+            count.set(key, 0);
+            distinct.set(key, new Set());
+            this.prepare(field);
+        });
+        // calculate
+        items.forEach((item) => {
+            filteredFields.forEach((field) => {
+                const key = field.getKey(), value = field.getValue(item);
+                if (value !== null || value !== undefined || value !== '') {
+                    if (field.isSummaries(SummariesType.COUNT)) {
+                        const countForField = count.get(key);
+                        count.set(key, countForField + 1);
+                    }
+                    if (field.isSummaries(SummariesType.DISTINCT)) {
+                        const distinctSet = distinct.get(key);
+                        distinctSet.add(value);
+                    }
+                }
+                this.aggregate(field, value);
+            });
+        });
+        filteredFields.forEach((field) => {
+            this.postCalculate(field, items);
+        });
+        const summaries = new Map();
+        filteredFields.forEach((field) => {
+            const key = field.getKey();
+            const aggregatedValues = this.generateAggregatedValues(field);
+            if (field.isSummaries(SummariesType.COUNT)) {
+                aggregatedValues.setCount(count.get(key));
+            }
+            if (field.isSummaries(SummariesType.DISTINCT)) {
+                aggregatedValues.setDistinct((distinct.get(key)).size);
+            }
+            summaries.set(key, aggregatedValues);
+        });
+        return summaries;
+    }
+}
+
+class SummariesValues {
+    setCount(value) {
+        this.count = value;
+    }
+    setDistinct(value) {
+        this.distinct = value;
+    }
+}
+
+class BooleanSummarizedValues extends SummariesValues {
+    constructor(truthy, falsy) {
+        super();
+        this.truthy = truthy;
+        this.falsy = falsy;
+    }
+}
+
+class BooleanSummariesCalculator extends SummariesCalculator {
+    constructor() {
+        super();
+        this.truthy = new Map();
+        this.falsy = new Map();
+    }
+    forDataType(dataType) {
+        return dataType === DataType.BOOLEAN;
+    }
+    prepare(field) {
+        const key = field.getKey();
+        if (field.isSummaries(SummariesType.TRUTHY)) {
+            this.truthy.set(key, 0);
+        }
+        if (field.isSummaries(SummariesType.FALSY)) {
+            this.falsy.set(key, 0);
+        }
+    }
+    postCalculate(field, items) {
+    }
+    aggregate(field, value) {
+        const booleanValue = value, // (value as any === 'true'),
+        key = field.getKey(), truthyForField = this.truthy.get(key), falsyForField = this.falsy.get(key);
+        if (booleanValue) {
+            if (field.isSummaries(SummariesType.TRUTHY)) {
+                this.truthy.set(key, truthyForField + 1);
+            }
+        }
+        else {
+            if (field.isSummaries(SummariesType.FALSY)) {
+                this.falsy.set(key, falsyForField + 1);
+            }
+        }
+    }
+    generateAggregatedValues(field) {
+        const key = field.getKey();
+        return new BooleanSummarizedValues(this.truthy.get(key), this.falsy.get(key));
+    }
+}
+
+class DateSummarizedValues extends SummariesValues {
+    constructor() {
+        super();
+    }
+}
+
+class DateSummariesCalculator extends SummariesCalculator {
+    constructor() {
+        super();
+    }
+    forDataType(dataType) {
+        return dataType === DataType.DATE;
+    }
+    prepare(field) {
+    }
+    postCalculate(field, items) {
+    }
+    aggregate(field, value) {
+    }
+    generateAggregatedValues(field) {
+        return new DateSummarizedValues();
+    }
+}
+
+class NumberSummarizedValues extends SummariesValues {
+    constructor(sum, min, max, average, median) {
+        super();
+        this.sum = this.setValueWithPrecision(sum);
+        this.min = this.setValueWithPrecision(min);
+        this.max = this.setValueWithPrecision(max);
+        this.average = this.setValueWithPrecision(average);
+        this.median = this.setValueWithPrecision(median);
+    }
+    setValueWithPrecision(value) {
+        if (!value && value !== 0) {
+            return null;
+        }
+        if (value === 0) {
+            return 0;
+        }
+        return +((value).toFixed(2));
+    }
+}
+
+class NumberSummariesCalculator extends SummariesCalculator {
+    constructor() {
+        super();
+        this.sum = new Map();
+        this.min = new Map();
+        this.max = new Map();
+        this.average = new Map();
+        this.median = new Map();
+    }
+    forDataType(dataType) {
+        return dataType === DataType.NUMBER;
+    }
+    prepare(field) {
+        const key = field.getKey();
+        this.sum.set(key, 0);
+        this.min.set(key, Number.MAX_SAFE_INTEGER);
+        this.max.set(key, 0);
+    }
+    postCalculate(field, items) {
+        const key = field.getKey();
+        if (field.isSummaries(SummariesType.AVERAGE)) {
+            this.average.set(key, this.sum.get(key) / items.length);
+        }
+        if (field.isSummaries(SummariesType.MEDIAN)) {
+            this.median.set(key, field.getValue(items[Math.floor(items.length / 2)]));
+        }
+    }
+    aggregate(field, value) {
+        const numberValue = +value, key = field.getKey(), sumForField = this.sum.get(key), minForField = this.min.get(key), maxForField = this.max.get(key);
+        if (field.isSummaries(SummariesType.SUM) || field.isSummaries(SummariesType.AVERAGE)) {
+            this.sum.set(key, sumForField + numberValue);
+        }
+        if (field.isSummaries(SummariesType.MIN)) {
+            if (minForField > numberValue) {
+                this.min.set(key, numberValue);
+            }
+        }
+        if (field.isSummaries(SummariesType.MAX)) {
+            if (maxForField < numberValue) {
+                this.max.set(key, numberValue);
+            }
+        }
+    }
+    generateAggregatedValues(field) {
+        const key = field.getKey(), sum = field.isSummaries(SummariesType.SUM) ? this.sum.get(key) : undefined, min = field.isSummaries(SummariesType.MIN) ? this.min.get(key) : undefined, max = field.isSummaries(SummariesType.MAX) ? this.max.get(key) : undefined, average = field.isSummaries(SummariesType.AVERAGE) ? this.average.get(key) : undefined, median = field.isSummaries(SummariesType.MEDIAN) ? this.median.get(key) : undefined;
+        return new NumberSummarizedValues(sum, min, max, average, median);
+    }
+}
+
+class StringSummarizedValues extends SummariesValues {
+    constructor() {
+        super();
+    }
+}
+
+class StringSummariesCalculator extends SummariesCalculator {
+    constructor() {
+        super();
+    }
+    forDataType(dataType) {
+        return dataType === DataType.STRING;
+    }
+    prepare(field) {
+    }
+    postCalculate(field, items) {
+    }
+    aggregate(field, value) {
+    }
+    generateAggregatedValues(field) {
+        return new StringSummarizedValues();
+    }
+}
+
+class UnknownSummarizedValues extends SummariesValues {
+    constructor() {
+        super();
+    }
+}
+
+class UnknownSummariesCalculator extends SummariesCalculator {
+    constructor() {
+        super();
+    }
+    forDataType(dataType) {
+        return dataType === DataType.UNKNOWN;
+    }
+    prepare(field) {
+    }
+    postCalculate(field, items) {
+    }
+    aggregate(field, value) {
+    }
+    generateAggregatedValues(field) {
+        return new UnknownSummarizedValues();
+    }
+}
+
+const SUMMARIES_CALCULATORS = 'GUI - Summaries Calculators';
+
+class SummariesManagerFactory {
+    constructor(calculators) {
+        this.calculators = calculators;
+    }
+    create(structureId) {
+        return new SummariesManager(structureId, this.calculators);
+    }
+}
+SummariesManagerFactory.services = [{ inject: SUMMARIES_CALCULATORS, collection: true }];
+
+class SummariesDispatcher {
+    constructor() {
+        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    }
+    setSummariesEnabled(enabled, structureId) {
+        this.commandDispatcher.dispatch(new StructureSetSummariesEnabledCommand(structureId, enabled));
+    }
+}
+
+class StructureSummariesPanelConfig {
+    constructor() {
+        this.top = StructureSummariesPanelConfig.defaultTop;
+        this.bottom = StructureSummariesPanelConfig.defaultBottom;
+    }
+    setTop(top) {
+        this.top = top;
+    }
+    setBottom(bottom) {
+        this.bottom = bottom;
+    }
+    isTopEnabled() {
+        return this.top;
+    }
+    isBottomEnabled() {
+        return this.bottom;
+    }
+}
+StructureSummariesPanelConfig.defaultTop = false;
+StructureSummariesPanelConfig.defaultBottom = true;
+
+class StructureSummariesConfigArchive extends AggregateArchive {
+    constructor() {
+        super(StructureSummariesConfigArchive.default);
+    }
+}
+StructureSummariesConfigArchive.default = new StructureSummariesPanelConfig();
+
+class StructureSummariesPanelConfigConverter {
+    convert(config) {
+        const panelConfig = new StructureSummariesPanelConfig();
+        if (config.top !== undefined && config.top !== null) {
+            panelConfig.setTop(config.top);
+        }
+        if (config.bottom !== undefined && config.bottom !== null) {
+            panelConfig.setBottom(config.bottom);
+        }
+        return panelConfig;
+    }
+}
+
+class SummariesDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(SummariesManagerFactory);
+        container.provide(SummariesDispatcher);
+        container.provide(StructureSummariesConfigArchive);
+        container.provide(StructureSummariesPanelConfigConverter);
+        container.provideCollection(SUMMARIES_CALCULATORS, BooleanSummariesCalculator);
+        container.provideCollection(SUMMARIES_CALCULATORS, DateSummariesCalculator);
+        container.provideCollection(SUMMARIES_CALCULATORS, NumberSummariesCalculator);
+        container.provideCollection(SUMMARIES_CALCULATORS, StringSummariesCalculator);
+        container.provideCollection(SUMMARIES_CALCULATORS, UnknownSummariesCalculator);
+    }
+    registerCommandHandlers() {
+        return [
+            StructureSetSummariesEnabledCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [
+            StructureSummariesEnabledSetEventHandler
+        ];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class SummariesDomainWarehouse extends SummariesWarehouse {
+    constructor(summariesEnabledArchive, structureSummariesArchive) {
+        super();
+        this.summariesEnabledArchive = summariesEnabledArchive;
+        this.structureSummariesArchive = structureSummariesArchive;
+    }
+    onEnabled(structureId) {
+        return this.summariesEnabledArchive.on(structureId);
+    }
+    onTopEnabled(structureId) {
+        return this.onEnabled(structureId)
+            .pipe(hermesSwitchMap((enabled) => {
+            return this.structureSummariesArchive
+                .on(structureId)
+                .pipe(hermesMap((config) => enabled && config.isTopEnabled()));
+        }));
+    }
+    onBottomEnabled(structureId) {
+        return this.onEnabled(structureId)
+            .pipe(hermesSwitchMap((enabled) => {
+            return this.structureSummariesArchive
+                .on(structureId)
+                .pipe(hermesMap((config) => enabled && config.isBottomEnabled()));
+        }));
+    }
+}
+SummariesDomainWarehouse.services = [SummariesEnabledArchive, StructureSummariesConfigArchive];
+
+class SummariesDomainPublisher extends SummariesPublisher {
+    constructor(summariesDispatcher, configConverter, structureSummariesConfigArchive) {
+        super();
+        this.summariesDispatcher = summariesDispatcher;
+        this.configConverter = configConverter;
+        this.structureSummariesConfigArchive = structureSummariesConfigArchive;
+    }
+    setSummariesEnabled(enabled, structureId) {
+        this.summariesDispatcher.setSummariesEnabled(enabled, structureId);
+    }
+    setConfig(config, structureId) {
+        const summariesPanelConfig = this.configConverter.convert(config);
+        this.setSummariesEnabled(config.enabled, structureId);
+        this.structureSummariesConfigArchive.next(structureId, summariesPanelConfig);
+    }
+}
+SummariesDomainPublisher.services = [SummariesDispatcher, StructureSummariesPanelConfigConverter, StructureSummariesConfigArchive];
+
+class SummariesDomainEventRepository extends SummariesEventRepository {
+    constructor() {
+        super();
+    }
+    onSummariesChanged(structureId) {
+        return this.onEvent(structureId, StructureSummariesChangedEvent);
+    }
+}
+
+class SummariesApiModule {
+    registerProviders(container) {
+        container.provide(SummariesPublisher, SummariesDomainPublisher);
+        container.provide(SummariesEventRepository, SummariesDomainEventRepository);
+        container.provide(SummariesWarehouse, SummariesDomainWarehouse);
+        container.provide(SummariesEnabledArchive);
+    }
+}
+function initializeSummaries() {
+    new DomainInitializer(new SummariesApiModule(), new SummariesDomainModule()).init();
+}
+
+function provideSummariesCalculator(clazz) {
+    return {
+        provide: SUMMARIES_CALCULATORS,
+        useClass: clazz,
+        multi: true
+    };
+}
+
+initializeSummaries();
+function provideSummariesCommandInvoker() {
+    return CoreContainer.resolve(SummariesPublisher);
+}
+function provideSummariesWarehouse() {
+    return CoreContainer.resolve(SummariesWarehouse);
+}
+function provideSummariesEventRepository() {
+    return CoreContainer.resolve(SummariesEventRepository);
+}
+class SummariesFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [];
+    }
+}
+SummariesFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+SummariesFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, declarations: [StructureSummariesPanelComponent], imports: [CommonModule,
+        FabricModule,
+        TranslationFeatureModule], exports: [StructureSummariesPanelComponent] });
+SummariesFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, providers: [
+        { provide: SummariesPublisher, useFactory: provideSummariesCommandInvoker },
+        { provide: SummariesWarehouse, useFactory: provideSummariesWarehouse },
+        { provide: SummariesEventRepository, useFactory: provideSummariesEventRepository },
+        // provideClass(SummariesEnabledArchive),
+        provideSummariesCalculator(BooleanSummariesCalculator),
+        provideSummariesCalculator(DateSummariesCalculator),
+        provideSummariesCalculator(NumberSummariesCalculator),
+        provideSummariesCalculator(StringSummariesCalculator),
+        provideSummariesCalculator(UnknownSummariesCalculator)
+    ], imports: [CommonModule,
+        FabricModule,
+        TranslationFeatureModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SummariesFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule,
+                        FabricModule,
+                        TranslationFeatureModule
+                    ],
+                    declarations: [
+                        StructureSummariesPanelComponent
+                    ],
+                    exports: [
+                        StructureSummariesPanelComponent
+                    ],
+                    providers: [
+                        { provide: SummariesPublisher, useFactory: provideSummariesCommandInvoker },
+                        { provide: SummariesWarehouse, useFactory: provideSummariesWarehouse },
+                        { provide: SummariesEventRepository, useFactory: provideSummariesEventRepository },
+                        // provideClass(SummariesEnabledArchive),
+                        provideSummariesCalculator(BooleanSummariesCalculator),
+                        provideSummariesCalculator(DateSummariesCalculator),
+                        provideSummariesCalculator(NumberSummariesCalculator),
+                        provideSummariesCalculator(StringSummariesCalculator),
+                        provideSummariesCalculator(UnknownSummariesCalculator)
                     ]
                 }]
         }] });
@@ -14264,18 +15867,12 @@ class SetScrollBarPositionCommand extends StructureCommand {
 }
 
 class SetScrollBarPositionCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return SetScrollBarPositionCommand;
     }
     handle(structure, command) {
         const index = command.getPosition();
         structure.scrollToIndex(index);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -14369,6 +15966,24 @@ class StructureCreatedEvent extends StructureDomainEvent {
 class InMemoryStructureStore extends InMemoryStore {
 }
 
+let SourceIsLoadingModel = class SourceIsLoadingModel {
+    constructor(loading) {
+        this.loading = loading;
+    }
+    isLoading() {
+        return this.loading;
+    }
+};
+SourceIsLoadingModel = __decorate([
+    ReadModelObject
+], SourceIsLoadingModel);
+
+class SourceConverter {
+    convert(aggregate) {
+        return new SourceIsLoadingModel(aggregate.isLoading());
+    }
+}
+
 class StructureReadModelRoot extends ReadModelRoot {
     constructor(uid, paging, entities, source, verticalFormation) {
         super(uid);
@@ -14420,7 +16035,7 @@ class StructureReadModelRootConverter {
     }
     convertSource(source) {
         return source.map((originItem) => {
-            return new ItemEntity(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
+            return new Item(originItem.sourceItem, originItem.getPosition(), originItem.getId().toString(), originItem.getVersion());
         });
     }
 }
@@ -14437,6 +16052,19 @@ class InMemoryStructureReadStore extends InMemoryReadModelStore {
     }
 }
 InMemoryStructureReadStore.services = [InMemoryStructureStore, StructureReadModelRootConverter];
+
+class SchemaDomainEvent extends DomainEvent {
+}
+
+class SchemaThemeSetEvent extends SchemaDomainEvent {
+    constructor(schemaId, theme) {
+        super(schemaId, theme, 'SchemaThemeSetEvent');
+        this.theme = theme;
+    }
+    getTheme() {
+        return this.theme;
+    }
+}
 
 class UniqueFilterUnselectedEvent extends StructureDomainEvent {
     constructor(aggregateId) {
@@ -14596,9 +16224,11 @@ class VerticalFormationApiModule {
         container.provide(VerticalFormationScrollBarPositionArchive);
     }
 }
-const verticalFormationInitializer = new DomainInitializer(new VerticalFormationApiModule(), new VerticalFormationDomainModule());
+function initializeVerticalFormation() {
+    new DomainInitializer(new VerticalFormationApiModule(), new VerticalFormationDomainModule()).init();
+}
 
-verticalFormationInitializer.init();
+initializeVerticalFormation();
 function provideVerticalFormationCommandInvoker() {
     return CoreContainer.resolve(VerticalFormationPublisher);
 }
@@ -14631,3203 +16261,659 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                 }]
         }] });
 
-const CompositionAggregateEvents = {
-    CompositionResizeWidthSetAggregateEvent: 'CompositionResizeWidthSetAggregateEvent',
-    ColumnsSetAggregateEvent: 'ColumnsSetAggregateEvent',
-    CompositionContainerWidthSetAggregateEvent: 'CompositionContainerWidthSetAggregateEvent',
-    CompositionWidthSetAggregateEvent: 'CompositionWidthSetAggregateEvent',
-    CompositionColumnSetEnabledAggregateEvent: 'CompositionColumnSetEnabledAggregateEvent',
-    CompositionColumnMovedLeftAggregateEvent: 'CompositionColumnMovedLeftAggregateEvent',
-    CompositionColumnMovedRightAggregateEvent: 'CompositionColumnMovedRightAggregateEvent',
-    GroupsSetAggregateEvent: 'GroupsSetAggregateEvent'
-};
-
-class CompositionDomainEvent extends DomainEvent {
+class SchemaAggregateRepository extends AggregateRepository {
 }
 
-class CompositionResizeWidthSetEvent extends CompositionDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'CompositionResizeWidthSetEvent');
+class InMemorySchemaStore extends InMemoryStore {
+}
+
+class InMemorySchemaAggregateStore extends InMemoryAggregateStore {
+    constructor(inMemorySchemaStore) {
+        super(inMemorySchemaStore);
     }
 }
+InMemorySchemaAggregateStore.services = [InMemorySchemaStore];
 
-class CompositionColumnsSetEvent extends CompositionDomainEvent {
-    constructor(compositionId) {
-        super(compositionId, null, 'CompositionColumnsSetEvent');
+class InMemorySchemaAggregateRepository extends SchemaAggregateRepository {
+    constructor(inMemorySchemaAggregateStore) {
+        super();
+        this.inMemorySchemaAggregateStore = inMemorySchemaAggregateStore;
+    }
+    findById(schemaId) {
+        return this.inMemorySchemaAggregateStore.findById(schemaId);
+    }
+    save(schemaAggregate) {
+        this.inMemorySchemaAggregateStore.save(schemaAggregate);
     }
 }
+InMemorySchemaAggregateRepository.services = [InMemorySchemaAggregateStore];
 
-class CompositionContainerWidthSetEvent extends CompositionDomainEvent {
-    constructor(compositionId, payload) {
-        super(compositionId, payload, 'CompositionContainerWidthSetEvent');
-    }
+class SchemaCommand extends Command {
 }
 
-class CompositionWidthSetEvent extends CompositionDomainEvent {
-    constructor(compositionId) {
-        super(compositionId, null, 'CompositionWidthSetEvent');
+class SetSchemaThemeCommand extends SchemaCommand {
+    constructor(schemaId, theme) {
+        super(schemaId, 'SetSchemaThemeCommand');
+        this.theme = theme;
     }
-}
-
-class CompositionColumnSetEnabledEvent extends CompositionDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'CompositionColumnSetEnabledEvent');
+    getTheme() {
+        return this.theme;
     }
 }
 
-class CompositionColumnMovedLeftEvent extends CompositionDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'CompositionColumnMovedLeftEvent');
-    }
-}
-
-class CompositionColumnMovedRightEvent extends CompositionDomainEvent {
-    constructor(aggregateId) {
-        super(aggregateId, null, 'CompositionColumnMovedRightEvent');
-    }
-}
-
-class CompositionGroupsSetEvent extends CompositionDomainEvent {
-    constructor(compositionId) {
-        super(compositionId, null, 'CompositionGroupsSetEvent');
-    }
-}
-
-class CompositionEventConverter {
-    convert(arg) {
-        if (Array.isArray(arg)) {
-            return this.convertEvents(arg);
-        }
-        else {
-            return this.convertEvent(arg);
-        }
-    }
-    convertEvents(aggregateEvents) {
-        return aggregateEvents.map((event) => {
-            return this.convertEvent(event);
-        });
-    }
-    convertEvent(aggregateEvent) {
-        switch (aggregateEvent.getType()) {
-            case CompositionAggregateEvents.CompositionResizeWidthSetAggregateEvent:
-                return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.ColumnsSetAggregateEvent:
-                return new CompositionColumnsSetEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.CompositionContainerWidthSetAggregateEvent:
-                const payload = aggregateEvent.containerWidth;
-                return new CompositionContainerWidthSetEvent(aggregateEvent.getAggregateId(), payload);
-            case CompositionAggregateEvents.CompositionWidthSetAggregateEvent:
-                return new CompositionWidthSetEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.CompositionColumnSetEnabledAggregateEvent:
-                return new CompositionColumnSetEnabledEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.CompositionColumnMovedLeftAggregateEvent:
-                return new CompositionColumnMovedLeftEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.CompositionColumnMovedRightAggregateEvent:
-                return new CompositionColumnMovedRightEvent(aggregateEvent.getAggregateId());
-            case CompositionAggregateEvents.GroupsSetAggregateEvent:
-                return new CompositionGroupsSetEvent(aggregateEvent.getAggregateId());
-            default:
-                return new CompositionResizeWidthSetEvent(aggregateEvent.getAggregateId());
-        }
-    }
-}
-
-class CompositionCommand extends Command {
-}
-
-class SetColumnsCommand extends CompositionCommand {
-    constructor(compositionId, columns) {
-        super(compositionId, 'SetColumnsCommand');
-        this.compositionId = compositionId;
-        this.columns = columns;
-    }
-    getParams() {
-        return this.columns;
-    }
-}
-
-class SetColumnsCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
+class SetSchemaThemeCommandHandler {
     forCommand() {
-        return SetColumnsCommand;
+        return SetSchemaThemeCommand;
     }
-    handle(aggregate, command) {
-        const setColumnsParams = command.getParams();
-        aggregate.setColumns(setColumnsParams);
-    }
-    publish(aggregate, command) {
-        this.publishEvents(aggregate, command);
-    }
-    publishEvents(composition, command) {
-        const events = composition.getEvents();
-        const domainEvents = this.compositionEventConverter.convert(events);
-        this.domainEventPublisher.publish(domainEvents);
-    }
-}
-SetColumnsCommandHandler.services = [CompositionEventConverter];
-
-class SetCompositionWidthCommand extends CompositionCommand {
-    constructor(structureId, width) {
-        super(structureId, 'SetCompositionWidthCommand');
-        this.structureId = structureId;
-        this.width = width;
-    }
-    getWidth() {
-        return this.width;
+    handle(schemaAggregate, command) {
+        const theme = command.getTheme();
+        schemaAggregate.changeTheme(theme);
     }
 }
 
-class SetCompositionWidthCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+class SetRowColoringCommand extends SchemaCommand {
+    constructor(schemaId, coloring) {
+        super(schemaId, 'SetRowColoringCommand');
+        this.coloring = coloring;
     }
+    getColoring() {
+        return this.coloring;
+    }
+}
+
+class SetRowColoringCommandHandler {
     forCommand() {
-        return SetCompositionWidthCommand;
+        return SetRowColoringCommand;
     }
-    handle(composition, command) {
-        const width = command.getWidth();
-        composition.setWidth(width);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publish(new CompositionWidthSetEvent(command.getAggregateId()));
+    handle(schemaAggregate, command) {
+        const coloring = command.getColoring();
+        schemaAggregate.setRowColoring(coloring);
     }
 }
 
-class SetCompositionResizeWidthCommand extends CompositionCommand {
-    constructor(structureId, enabled) {
-        super(structureId, 'SetCompositionResizeWidthCommand');
-        this.structureId = structureId;
+class SetSchemaHorizontalGridCommand extends SchemaCommand {
+    constructor(schemaId, enabled) {
+        super(schemaId, 'SetSchemaHorizontalGridCommand');
         this.enabled = enabled;
-    }
-    getEnabled() {
-        return this.enabled;
-    }
-}
-
-class SetCompositionResizeWidthCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetCompositionResizeWidthCommand;
-    }
-    handle(composition, command) {
-        const enabled = command.getEnabled();
-        composition.setResizeWidth(enabled);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publish(new CompositionResizeWidthSetEvent(command.getAggregateId()));
-    }
-}
-
-class SetCompositionContainerWidthCommand extends CompositionCommand {
-    constructor(structureId, width) {
-        super(structureId, 'SetCompositionContainerWidthCommand');
-        this.structureId = structureId;
-        this.width = width;
-    }
-    getWidth() {
-        return this.width;
-    }
-}
-
-class SetCompositionContainerWidthCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return SetCompositionContainerWidthCommand;
-    }
-    handle(composition, command) {
-        const width = command.getWidth();
-        composition.setContainerWidth(width);
-    }
-    publish(aggregate, command) {
-        this.publishAggregateEvents(aggregate.getEvents());
-    }
-    publishAggregateEvents(aggregateEvents) {
-        const domainEvents = this.compositionEventConverter.convert(aggregateEvents);
-        this.domainEventPublisher.publish(domainEvents);
-    }
-}
-SetCompositionContainerWidthCommandHandler.services = [CompositionEventConverter];
-
-class CompositionSetColumnEnabledCommand extends CompositionCommand {
-    constructor(compositionId, columnId, enabled) {
-        super(compositionId, 'CompositionSetColumnEnabledCommand');
-        this.compositionId = compositionId;
-        this.columnId = columnId;
-        this.enabled = enabled;
-    }
-    getColumnId() {
-        return this.columnId;
     }
     isEnabled() {
         return this.enabled;
     }
 }
 
-class CompositionSetColumnEnabledCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return CompositionSetColumnEnabledCommand;
-    }
-    handle(aggregate, command) {
-        const columnId = command.getColumnId(), enabled = command.isEnabled();
-        aggregate.enableColumn(columnId, enabled);
-    }
-    publish(aggregate, command) {
-        this.publishEvents(aggregate, command);
-    }
-    publishEvents(composition, command) {
-        const events = composition.getEvents();
-        const domainEvents = this.compositionEventConverter.convert(events);
-        if (domainEvents && domainEvents.length > 0) {
-            this.domainEventPublisher.publish(domainEvents);
-        }
-    }
-}
-CompositionSetColumnEnabledCommandHandler.services = [CompositionEventConverter];
-
-class CompositionChangeSortStatusCommand extends CompositionCommand {
-    constructor(compositionId, sortParams) {
-        super(compositionId, 'CompositionChangeSortStatusCommand');
-        this.compositionId = compositionId;
-        this.sortParams = sortParams;
-    }
-    getCompositionId() {
-        return this.compositionId;
-    }
-    getSortParams() {
-        return this.sortParams;
-    }
-}
-
-class CompositionChangeSortStatusEvent extends CompositionDomainEvent {
-    constructor(aggregateId, activeColumns) {
-        super(aggregateId, activeColumns, 'CompositionChangeSortStatusEvent');
-        this.activeColumns = activeColumns;
-    }
-    getCompositionId() {
-        return this.getAggregateId();
-    }
-    getActiveColumns() {
-        return this.activeColumns;
-    }
-}
-
-class CompositionChangeSortStatusCommandHandler {
+class SetSchemaHorizontalGridCommandHandler {
     constructor() {
         this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
     }
     forCommand() {
-        return CompositionChangeSortStatusCommand;
+        return SetSchemaHorizontalGridCommand;
     }
-    handle(composition, command) {
-        const sortParams = command.getSortParams();
-        composition.changeSort(sortParams);
+    handle(schemaAggregate, command) {
+        const enabled = command.isEnabled();
+        schemaAggregate.setHorizontalGrid(enabled);
     }
-    publish(composition, command) {
-        const compositionId = command.getAggregateId(), columns = composition.getActiveColumns();
-        this.domainEventPublisher.publish(new CompositionChangeSortStatusEvent(compositionId, columns));
-    }
-}
-
-class CompositionMoveLeftColumnCommand extends CompositionCommand {
-    constructor(compositionId, columnId) {
-        super(compositionId, 'CompositionMoveLeftColumnCommand');
-        this.compositionId = compositionId;
-        this.columnId = columnId;
-    }
-    getColumnId() {
-        return this.columnId;
+    publish(schemaAggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(schemaAggregate);
     }
 }
 
-class CompositionMoveLeftColumnCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+class SetSchemaVerticalGridCommand extends SchemaCommand {
+    constructor(schemaId, enabled) {
+        super(schemaId, 'SetSchemaVerticalGridCommand');
+        this.enabled = enabled;
     }
-    forCommand() {
-        return CompositionMoveLeftColumnCommand;
-    }
-    handle(aggregate, command) {
-        const columnId = command.getColumnId();
-        aggregate.moveLeft(columnId);
-    }
-    publish(aggregate, command) {
-        this.publishEvents(aggregate, command);
-    }
-    publishEvents(composition, command) {
-        const events = composition.getEvents();
-        const domainEvents = this.compositionEventConverter.convert(events);
-        if (domainEvents && domainEvents.length > 0) {
-            this.domainEventPublisher.publish(domainEvents);
-        }
-    }
-}
-CompositionMoveLeftColumnCommandHandler.services = [CompositionEventConverter];
-
-class CompositionMoveRightColumnCommand extends CompositionCommand {
-    constructor(compositionId, columnId) {
-        super(compositionId, 'CompositionMoveRightColumnCommand');
-        this.columnId = columnId;
-    }
-    getColumnId() {
-        return this.columnId;
+    isEnabled() {
+        return this.enabled;
     }
 }
 
-class CompositionMoveRightColumnCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
-    forCommand() {
-        return CompositionMoveRightColumnCommand;
-    }
-    handle(aggregate, command) {
-        const columnId = command.getColumnId();
-        aggregate.moveRight(columnId);
-    }
-    publish(aggregate, command) {
-        this.publishEvents(aggregate, command);
-    }
-    publishEvents(composition, command) {
-        const events = composition.getEvents();
-        const domainEvents = this.compositionEventConverter.convert(events);
-        if (domainEvents && domainEvents.length > 0) {
-            this.domainEventPublisher.publish(domainEvents);
-        }
-    }
-}
-CompositionMoveRightColumnCommandHandler.services = [CompositionEventConverter];
-
-class CreateCompositionCommand extends CompositionCommand {
-    constructor(compositionId) {
-        super(compositionId, 'CreateCompositionCommand');
-        this.compositionId = compositionId;
-    }
-}
-
-class SetGroupsCommand extends CompositionCommand {
-    constructor(compositionId, configs) {
-        super(compositionId, 'SetGroupsCommand');
-        this.compositionId = compositionId;
-        this.configs = configs;
-    }
-    getConfigs() {
-        return this.configs;
-    }
-}
-
-class CompositionDispatcher {
+class SetSchemaVerticalGridCommandHandler {
     constructor() {
-        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
     }
-    create(compositionId) {
-        this.commandDispatcher.dispatch(new CreateCompositionCommand(compositionId));
+    forCommand() {
+        return SetSchemaVerticalGridCommand;
     }
-    setColumns(compositionId, params) {
-        this.commandDispatcher.dispatch(new SetColumnsCommand(compositionId, params));
+    handle(schemaAggregate, command) {
+        const enabled = command.isEnabled();
+        schemaAggregate.setVerticalGrid(enabled);
     }
-    setGroups(compositionId, params) {
-        this.commandDispatcher.dispatch(new SetGroupsCommand(compositionId, params));
-    }
-    setWidth(compositionId, width) {
-        this.commandDispatcher.dispatch(new SetCompositionWidthCommand(compositionId, width));
-    }
-    setContainerWidth(compositionId, width) {
-        this.commandDispatcher.dispatch(new SetCompositionContainerWidthCommand(compositionId, width));
-    }
-    setResizeWidth(compositionId, enabled) {
-        this.commandDispatcher.dispatch(new SetCompositionResizeWidthCommand(compositionId, enabled));
-    }
-    changeSort(compositionId, params) {
-        this.commandDispatcher.dispatch(new CompositionChangeSortStatusCommand(compositionId, params));
-    }
-    setColumnEnabled(compositionId, columnId, enabled) {
-        this.commandDispatcher.dispatch(new CompositionSetColumnEnabledCommand(compositionId, columnId, enabled));
-    }
-    moveLeft(compositionId, columnId) {
-        this.commandDispatcher.dispatch(new CompositionMoveLeftColumnCommand(compositionId, columnId));
-    }
-    moveRight(compositionId, columnId) {
-        this.commandDispatcher.dispatch(new CompositionMoveRightColumnCommand(compositionId, columnId));
+    publish(schemaAggregate, command) {
+        this.domainEventPublisher.publishFromAggregate(schemaAggregate);
     }
 }
 
-class ChangeSortParams {
-    constructor(fieldId, direction) {
-        this.fieldId = fieldId;
-        this.direction = direction;
+class SchemaCssClassesRepository extends AggregateArchive {
+    constructor() {
+        super();
     }
 }
 
-class CompositionChangeSortStatusEventHandler {
-    constructor(compositionDispatcher) {
-        this.compositionDispatcher = compositionDispatcher;
+class RowColoringSetEvent extends SchemaDomainEvent {
+    constructor(schemaId, rowColoring) {
+        super(schemaId, rowColoring, 'RowColoringSetEvent');
+        this.rowColoring = rowColoring;
+    }
+    getRowColoring() {
+        return this.rowColoring;
+    }
+}
+
+class SchemaHorizontalGridSetEvent extends SchemaDomainEvent {
+    constructor(schemaId, horizontalGrid) {
+        super(schemaId, horizontalGrid, 'SchemaHorizontalGridSetEvent');
+        this.horizontalGrid = horizontalGrid;
+    }
+    getHorizontalGrid() {
+        return this.horizontalGrid;
+    }
+}
+
+class SchemaVerticalGridSetEvent extends SchemaDomainEvent {
+    constructor(schemaId, verticalGrid) {
+        super(schemaId, verticalGrid, 'SchemaVerticalGridSetEvent');
+        this.verticalGrid = verticalGrid;
+    }
+    getVerticalGrid() {
+        return this.verticalGrid;
+    }
+}
+
+class SchemaCssClass {
+    constructor(verticalGrid, horizontalGrid, theme, rowColoring) {
+        this.verticalGrid = verticalGrid;
+        this.horizontalGrid = horizontalGrid;
+        this.theme = theme;
+        this.rowColoring = rowColoring;
+    }
+    getRowColoring() {
+        return this.rowColoring;
+    }
+}
+
+class SchemaCssClassesEventHandler {
+    constructor(schemaCssClassesRepository) {
+        this.schemaCssClassesRepository = schemaCssClassesRepository;
     }
     forEvents() {
         return [
-            SortToggledEvent,
-            SortOrderSetEvent
+            SchemaThemeSetEvent,
+            RowColoringSetEvent,
+            SchemaHorizontalGridSetEvent,
+            SchemaVerticalGridSetEvent
         ];
     }
     handle(event) {
-        if (event.ofMessageType('SortToggledEvent')) {
-            const compositionId = event.getCompositionId(), dirs = event.getDirections();
-            const params = dirs.map((dir) => {
-                const columnFieldId = new ColumnFieldId(dir.fieldId.getId());
-                return new ChangeSortParams(columnFieldId, dir.direction);
-            });
-            this.compositionDispatcher.changeSort(compositionId, params);
+        if (event.ofMessageType('RowColoringSetEvent')) {
+            this.rowColoring = event.getRowColoring();
         }
-        if (event.ofMessageType('SortOrderSetEvent')) {
-            const compositionId = event.getCompositionId(), dirs = event.getDirections();
-            const params = dirs.map((dir) => {
-                const columnFieldId = new ColumnFieldId(dir.fieldId.getId());
-                return new ChangeSortParams(columnFieldId, dir.direction);
-            });
-            this.compositionDispatcher.changeSort(compositionId, params);
+        if (event.ofMessageType('SchemaHorizontalGridSetEvent')) {
+            this.horizontalGrid = event.getHorizontalGrid();
         }
-    }
-}
-CompositionChangeSortStatusEventHandler.services = [CompositionDispatcher];
-
-class ViewEntity {
-    constructor(cellView) {
-        this.templateFunction = (cellValue, item) => cellValue;
-        if (typeof cellView === 'function') {
-            this.view = CellView.FUNCTION;
-            this.templateFunction = cellView;
+        if (event.ofMessageType('SchemaVerticalGridSetEvent')) {
+            this.verticalGrid = event.getVerticalGrid();
         }
-        else {
-            this.view = cellView;
+        if (event.ofMessageType('SchemaThemeSetEvent')) {
+            this.schemaTheme = event.getTheme();
         }
+        this.publish(event.getAggregateId());
     }
-    static fromDataType(dataType) {
-        if (dataType === DataType.DATE) {
-            return new ViewEntity(CellView.DATE);
-        }
-        else {
-            return new ViewEntity(CellView.TEXT);
-        }
-    }
-    getCellView() {
-        return this.view;
-    }
-    getTemplateFunction() {
-        return this.templateFunction;
-    }
-}
-
-class AbstractColumnEntity extends Entity {
-    constructor(columnId, columnField, columnConfig, presentation, header, align, view, width) {
-        super(columnId);
-        this.columnField = columnField;
-        this.columnConfig = columnConfig;
-        this.presentation = presentation;
-        this.view = ViewEntity.fromDataType(columnField.getDataType());
-        if (header) {
-            this.header = header;
-        }
-        if (view) {
-            this.view = view;
-        }
-        if (width) {
-            this.width = width;
-        }
-        this.setInitialAlign(columnField, align);
-    }
-    getPresentation() {
-        return this.presentation;
-    }
-    getColumnConfig() {
-        return this.columnConfig;
-    }
-    getField() {
-        return this.columnField;
-    }
-    getHeader() {
-        return this.header;
-    }
-    getDataType() {
-        return this.columnField.getDataType();
-    }
-    getCellView() {
-        return this.view.getCellView();
-    }
-    getTemplateFunction() {
-        return this.view.getTemplateFunction();
-    }
-    getFormatterFunction() {
-        return this.columnConfig.formatter;
-    }
-    setView(view) {
-        this.view = view;
-    }
-    setHeader(header) {
-        this.header = header;
-    }
-    getView() {
-        return this.view;
-    }
-    getAlign() {
-        return this.align;
-    }
-    setWidth(width) {
-        this.width = width;
-    }
-    getWidth() {
-        return this.width;
-    }
-    isSortingEnabled() {
-        const config = this.columnConfig;
-        if (config.sorting !== undefined && config.sorting !== null) {
-            if (config.sorting.enabled === undefined || config.sorting.enabled === null) {
-                return true;
-            }
-            return config.sorting.enabled;
-        }
-        return true;
-    }
-    isCellEditingEnabled() {
-        const config = this.columnConfig;
-        if (config.cellEditing !== undefined && config.cellEditing !== null) {
-            if (config.cellEditing.enabled === undefined || config.cellEditing.enabled === null) {
-                return true;
-            }
-            return config.cellEditing.enabled;
-        }
-        return true;
-    }
-    setInitialAlign(columnField, align) {
-        if (align !== undefined && align !== null) {
-            this.align = align;
-        }
-        else if (columnField.getDataType() === DataType.NUMBER) {
-            this.align = ColumnAlign.RIGHT;
-        }
-        else {
-            this.align = ColumnAlign.LEFT;
+    publish(aggregateId) {
+        if (this.rowColoring !== undefined && this.horizontalGrid !== undefined && this.verticalGrid !== undefined && this.schemaTheme !== undefined) {
+            this.schemaCssClassesRepository.next(aggregateId, new SchemaCssClass(this.verticalGrid, this.horizontalGrid, this.schemaTheme, this.rowColoring));
         }
     }
 }
+SchemaCssClassesEventHandler.services = [SchemaCssClassesRepository];
 
-class ColumnEntity extends AbstractColumnEntity {
-    constructor(columnId, columnField, columnConfig, enabled, presentation, header, align, view, width) {
-        super(columnId, columnField, columnConfig, presentation, header, align, view, width);
-        this.sortStatus = SortOrder.NONE;
-        this.enabled = true;
-        this.enabled = enabled;
-        if (view === undefined) {
-            this.view = new ViewEntity(this.presentation.getDefaultView());
-        }
-        if (align === undefined) {
-            this.align = this.presentation.getDefaultAlign(this.view);
-        }
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-    setEnabled(enabled) {
-        this.enabled = enabled;
-    }
-    getSortStatus() {
-        return this.sortStatus;
-    }
-    setSortStatus(status) {
-        this.sortStatus = status;
-    }
-}
+const schemaKey = 'SchemaAggregate';
 
-class ColumnPresentation {
-}
-
-class NumberColumnPresentation extends ColumnPresentation {
+class SchemaVerticalGridRepository extends EventDrivenRepository {
     constructor() {
         super();
     }
-    static getInstance() {
-        if (!NumberColumnPresentation.instance) {
-            NumberColumnPresentation.instance = new NumberColumnPresentation();
-        }
-        return NumberColumnPresentation.instance;
-    }
-    getPossibleViews() {
-        return [
-            CellView.TEXT,
-            CellView.BAR,
-            CellView.PERCENTAGE_BAR,
-            CellView.PERCENTAGE
-        ];
-    }
-    getDefaultView() {
-        return CellView.NUMBER;
-    }
-    getDefaultAlign(view) {
-        return ColumnAlign.RIGHT;
+    forEvent() {
+        return SchemaVerticalGridSetEvent;
     }
 }
-NumberColumnPresentation.instance = null;
 
-class BooleanColumnPresentation extends ColumnPresentation {
+class SchemaThemeRepository extends EventDrivenRepository {
     constructor() {
         super();
     }
-    static getInstance() {
-        if (!BooleanColumnPresentation.instance) {
-            BooleanColumnPresentation.instance = new BooleanColumnPresentation();
-        }
-        return BooleanColumnPresentation.instance;
-    }
-    getPossibleViews() {
-        return [
-            CellView.TEXT,
-            CellView.ITALIC,
-            CellView.CHIP,
-            CellView.BOLD,
-            CellView.CHECKBOX
-        ];
-    }
-    getDefaultView() {
-        return CellView.TEXT;
-    }
-    getDefaultAlign(view) {
-        if (view.getCellView() === CellView.CHECKBOX) {
-            return ColumnAlign.CENTER;
-        }
-        else {
-            return ColumnAlign.LEFT;
-        }
+    forEvent() {
+        return SchemaThemeSetEvent;
     }
 }
-BooleanColumnPresentation.instance = null;
 
-class DateColumnPresentation extends ColumnPresentation {
+class SchemaRowColoringRepository extends EventDrivenRepository {
     constructor() {
         super();
     }
-    static getInstance() {
-        if (!DateColumnPresentation.instance) {
-            DateColumnPresentation.instance = new DateColumnPresentation();
-        }
-        return DateColumnPresentation.instance;
-    }
-    getPossibleViews() {
-        return [
-            CellView.DATE,
-            CellView.TEXT,
-            CellView.ITALIC,
-            CellView.BOLD,
-            CellView.CHIP
-        ];
-    }
-    getDefaultView() {
-        return CellView.DATE;
-    }
-    getDefaultAlign() {
-        return ColumnAlign.LEFT;
+    forEvent() {
+        return RowColoringSetEvent;
     }
 }
-DateColumnPresentation.instance = null;
 
-class StringColumnPresentation extends ColumnPresentation {
+class SchemaHorizontalGridRepository extends EventDrivenRepository {
     constructor() {
         super();
     }
-    static getInstance() {
-        if (!StringColumnPresentation.instance) {
-            StringColumnPresentation.instance = new StringColumnPresentation();
-        }
-        return StringColumnPresentation.instance;
-    }
-    getPossibleViews() {
-        return [
-            CellView.TEXT,
-            CellView.ITALIC,
-            CellView.BOLD,
-            CellView.IMAGE,
-            CellView.LINK,
-            CellView.CHIP
-        ];
-    }
-    getDefaultView() {
-        return CellView.TEXT;
-    }
-    getDefaultAlign() {
-        return ColumnAlign.LEFT;
-    }
-}
-StringColumnPresentation.instance = null;
-
-class UnknownColumnPresentation extends ColumnPresentation {
-    constructor() {
-        super();
-    }
-    static getInstance() {
-        if (!UnknownColumnPresentation.instance) {
-            UnknownColumnPresentation.instance = new UnknownColumnPresentation();
-        }
-        return UnknownColumnPresentation.instance;
-    }
-    getPossibleViews() {
-        return [
-            CellView.TEXT
-        ];
-    }
-    getDefaultView() {
-        return CellView.TEXT;
-    }
-    getDefaultAlign() {
-        return ColumnAlign.LEFT;
-    }
-}
-UnknownColumnPresentation.instance = null;
-
-class ColumnPresentationConverter {
-    convert(dataType) {
-        if (dataType === DataType.NUMBER) {
-            return NumberColumnPresentation.getInstance();
-        }
-        else if (dataType === DataType.BOOLEAN) {
-            return BooleanColumnPresentation.getInstance();
-        }
-        else if (dataType === DataType.DATE) {
-            return DateColumnPresentation.getInstance();
-        }
-        else if (dataType === DataType.STRING) {
-            return StringColumnPresentation.getInstance();
-        }
-        else {
-            return UnknownColumnPresentation.getInstance();
-        }
+    forEvent() {
+        return SchemaHorizontalGridSetEvent;
     }
 }
 
-class ColumnEntityFactory {
-    constructor(columnPresentationConverter) {
-        this.columnPresentationConverter = columnPresentationConverter;
-    }
-    create(source) {
-        if (Array.isArray(source)) {
-            return this.createColumns(source);
-        }
-        else {
-            return this.createColumn(source);
-        }
-    }
-    createColumn(params) {
-        const columnConfig = params.getColumn(), field = params.getField(), dataType = field.getDataType(), width = this.convertWidth(columnConfig.width) || undefined;
-        let view, enabled;
-        if (columnConfig.view !== undefined) {
-            view = new ViewEntity(columnConfig.view);
-        }
-        if (columnConfig.enabled !== undefined) {
-            enabled = columnConfig.enabled;
-        }
-        else {
-            enabled = true;
-        }
-        const presentation = this.getPresentation(dataType);
-        const columnEntity = new ColumnEntity(new ColumnId(RandomStringGenerator.generate()), field, columnConfig, enabled, presentation, undefined, columnConfig.align, view, width);
-        if (columnConfig.header !== undefined) {
-            columnEntity.setHeader(columnConfig.header);
-        }
-        return columnEntity;
-    }
-    createColumns(columns) {
-        const columnEntities = [];
-        columns.forEach((column) => {
-            columnEntities.push(this.createColumn(column));
-        });
-        return columnEntities;
-    }
-    convertWidth(width) {
-        return +width;
-    }
-    getPresentation(dataType) {
-        return this.columnPresentationConverter.convert(dataType);
-    }
-}
-ColumnEntityFactory.services = [ColumnPresentationConverter];
-
-class Group {
-    constructor(id, header, width) {
-        this.id = id;
-        this.header = header;
-        this.width = width;
+class CreateSchemaCommand extends CreateAggregateCommand {
+    constructor(schemaId) {
+        super(schemaId, 'CreateSchemaCommand');
     }
 }
 
-class GroupId extends HermesId {
-    constructor(id) {
-        super(id);
-    }
-    toString() {
-        return this.getId();
-    }
-}
-
-class CompositionGroupFactory {
-    create(config) {
-        return new Group(new GroupId(RandomStringGenerator.generate()), config.header, config.width);
-    }
-}
-
-class SetGroupsCommandHandler {
-    constructor(compositionEventConverter) {
-        this.compositionEventConverter = compositionEventConverter;
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
+class CreateSchemaCommandHandler {
     forCommand() {
-        return SetGroupsCommand;
-    }
-    handle(aggregate, command) {
-        const groupConfigs = command.getConfigs();
-        aggregate.setGroups(groupConfigs);
-    }
-    publish(aggregate, command) {
-        this.publishEvents(aggregate, command);
-    }
-    publishEvents(composition, command) {
-        const events = composition.getEvents();
-        const domainEvents = this.compositionEventConverter.convert(events);
-        this.domainEventPublisher.publish(domainEvents);
-    }
-}
-SetGroupsCommandHandler.services = [CompositionEventConverter];
-
-class ColumnHighlightManager {
-    constructor() {
-        this.enabled = true;
-        this.highlightedColumns = new Set(); // should be set of ColumnId
-    }
-    isHighlighted(columnId) {
-        return this.highlightedColumns.has(columnId.toString());
-    }
-    toggle(columnId) {
-        if (this.highlightedColumns.has(columnId.toString())) {
-            this.highlightedColumns.delete(columnId.toString());
-        }
-        else {
-            this.highlightedColumns.add(columnId.toString());
-        }
-    }
-    remove(columnId) {
-        this.highlightedColumns.delete(columnId.toString());
+        return CreateSchemaCommand;
     }
 }
 
-class ColumnHighlightArchive extends AggregateArchive {
-    constructor() {
-        super(new ColumnHighlightManager());
+class SchemaAggregateEvent extends AggregateEvent {
+}
+
+class SchemaThemeSetAggregateEvent extends SchemaAggregateEvent {
+    constructor(schemaId, theme) {
+        super(schemaId, 'SchemaThemeSetAggregateEvent');
+        this.theme = theme;
     }
-    toggle(key, value) {
-        this.find(key)
-            .ifPresent((manager) => {
-            manager.toggle(value);
-            this.next(key, manager);
-        });
-    }
-    equals(a, b) {
-        return false;
-    }
-    createDefaultValue(defaultValue) {
-        return new ColumnHighlightManager();
+    toDomainEvent() {
+        return new SchemaThemeSetEvent(this.getAggregateId(), this.theme);
     }
 }
 
-class InMemoryCompositionStore extends InMemoryStore {
-}
-
-class InMemoryCompositionAggregateStore extends InMemoryAggregateStore {
-    constructor(inMemoryCompositionStore) {
-        super(inMemoryCompositionStore);
+class RowColoringSetAggregateEvent extends SchemaAggregateEvent {
+    constructor(schemaId, rowColoring) {
+        super(schemaId, 'RowColoringSetEvent');
+        this.rowColoring = rowColoring;
     }
-}
-InMemoryCompositionAggregateStore.services = [InMemoryCompositionStore];
-
-class CompositionAggregateRepository extends AggregateRepository {
-}
-
-class InMemoryCompositionAggregateRepository extends CompositionAggregateRepository {
-    constructor(inMemoryCompositionAggregateStore) {
-        super();
-        this.inMemoryCompositionAggregateStore = inMemoryCompositionAggregateStore;
-    }
-    findById(aggregateId) {
-        return this.inMemoryCompositionAggregateStore.findById(aggregateId);
-    }
-    save(aggregate) {
-        this.inMemoryCompositionAggregateStore.save(aggregate);
-    }
-}
-InMemoryCompositionAggregateRepository.services = [InMemoryCompositionAggregateStore];
-
-class FunctionViewComponent extends PureComponent {
-    constructor(sanitizer, elRef) {
-        super(elRef);
-        this.sanitizer = sanitizer;
-        this.elRef = elRef;
-        this.addClassToHost('gui-h-full');
-        this.addClassToHost('gui-w-full');
-    }
-    ngOnChanges() {
-        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
-    }
-    getSelectorName() {
-        return 'gui-function-view';
-    }
-}
-FunctionViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FunctionViewComponent, deps: [{ token: i1.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-FunctionViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FunctionViewComponent, selector: "gui-function-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
-
-		<div class="gui-h-full gui-flex gui-items-center"
-			 [innerHTML]="safeHTML">
-		</div>
-
-	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FunctionViewComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-function-view',
-                    template: `
-
-		<div class="gui-h-full gui-flex gui-items-center"
-			 [innerHTML]="safeHTML">
-		</div>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
-                type: Input
-            }] } });
-
-class PercentageViewComponent extends PureComponent {
-    constructor(elementRef) {
-        super(elementRef);
-    }
-    getSelectorName() {
-        return 'gui-percentage-view';
-    }
-}
-PercentageViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PercentageViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-PercentageViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: { value: "value" }, usesInheritance: true, ngImport: i0, template: `
-		{{ value }} %
-	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PercentageViewComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-percentage-view[value]',
-                    template: `
-		{{ value }} %
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
-                type: Input
-            }] } });
-
-class BarViewComponent extends PureComponent {
-    constructor(elementRef) {
-        super(elementRef);
-        this.showPercentage = false;
-    }
-    ngOnChanges(changes) {
-        ifChanged(changes.value, () => {
-            this.width = this.value > 100 ? 100 : this.value;
-        });
-    }
-    getSelectorName() {
-        return 'gui-bar-view';
-    }
-}
-BarViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BarViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-BarViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: { value: "value", showPercentage: "showPercentage" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
-		<div class="gui-percentage-bar">
-			<div class="gui-percentage" [style.width.%]="width">
-			</div>
-			<gui-percentage-view *ngIf="showPercentage"
-								 [value]="value">
-			</gui-percentage-view>
-		</div>
-	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BarViewComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-bar-view[value]',
-                    template: `
-		<div class="gui-percentage-bar">
-			<div class="gui-percentage" [style.width.%]="width">
-			</div>
-			<gui-percentage-view *ngIf="showPercentage"
-								 [value]="value">
-			</gui-percentage-view>
-		</div>
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
-                type: Input
-            }], showPercentage: [{
-                type: Input
-            }] } });
-
-var CellValueType;
-(function (CellValueType) {
-    CellValueType[CellValueType["TEXT"] = 0] = "TEXT";
-    CellValueType[CellValueType["HTML"] = 1] = "HTML";
-})(CellValueType || (CellValueType = {}));
-class CellValue {
-    constructor(value, type) {
-        this.value = value;
-        this.type = type;
-    }
-    static text(value) {
-        return new CellValue(value, CellValueType.TEXT);
-    }
-    static HTML(value) {
-        return new CellValue(value, CellValueType.HTML);
+    toDomainEvent() {
+        return new RowColoringSetEvent(this.getAggregateId(), this.rowColoring);
     }
 }
 
-class TextViewComponent extends PureComponent {
-    constructor(isBold, isItalic, elementRef, renderer) {
-        super(elementRef);
-        this.elementRef = elementRef;
-        this.renderer = renderer;
-        this.isHtml = false;
-        if (isBold !== null) {
-            this.addClassToHost('gui-bold');
-        }
-        if (isItalic !== null) {
-            this.addClassToHost('gui-italic');
-        }
+class SchemaVerticalGridSetAggregateEvent extends SchemaAggregateEvent {
+    constructor(schemaId, verticalGrid) {
+        super(schemaId, 'SchemaHorizontalGridSetEvent');
+        this.verticalGrid = verticalGrid;
     }
-    ngOnChanges() {
-        this.isHtml = this.value.type === CellValueType.HTML;
-    }
-    getSelectorName() {
-        return 'gui-text-view';
-    }
-}
-TextViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TextViewComponent, deps: [{ token: 'bold', attribute: true }, { token: 'italic', attribute: true }, { token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-TextViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: TextViewComponent, selector: "gui-view-text[value]", inputs: { value: "value" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
-
-		<ng-container *ngIf="isHtml; else text">
-			<span [innerHTML]="value.value | guiSafe: 'html'"></span>
-		</ng-container>
-
-		<ng-template #text>
-			<span>
-				{{value.value}}
-			</span>
-		</ng-template>
-	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TextViewComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-view-text[value]',
-                    template: `
-
-		<ng-container *ngIf="isHtml; else text">
-			<span [innerHTML]="value.value | guiSafe: 'html'"></span>
-		</ng-container>
-
-		<ng-template #text>
-			<span>
-				{{value.value}}
-			</span>
-		</ng-template>
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () {
-        return [{ type: undefined, decorators: [{
-                        type: Attribute,
-                        args: ['bold']
-                    }] }, { type: undefined, decorators: [{
-                        type: Attribute,
-                        args: ['italic']
-                    }] }, { type: i0.ElementRef }, { type: i0.Renderer2 }];
-    }, propDecorators: { value: [{
-                type: Input
-            }] } });
-
-class HtmlViewComponent extends PureComponent {
-    constructor(sanitizer, elRef) {
-        super(elRef);
-        this.sanitizer = sanitizer;
-        this.elRef = elRef;
-        this.addClassToHost('gui-h-full');
-        this.addClassToHost('gui-w-full');
-    }
-    ngOnChanges() {
-        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.element.value);
-    }
-    getSelectorName() {
-        return 'gui-html-view';
-    }
-}
-HtmlViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HtmlViewComponent, deps: [{ token: i1.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-HtmlViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: HtmlViewComponent, selector: "gui-html-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
-
-		<div class="gui-h-full gui-flex gui-items-center"
-			 [innerHTML]="safeHTML">
-		</div>
-
-	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HtmlViewComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-html-view',
-                    template: `
-
-		<div class="gui-h-full gui-flex gui-items-center"
-			 [innerHTML]="safeHTML">
-		</div>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i1.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
-                type: Input
-            }] } });
-
-class ViewTemplatesComponent {
-    getTemplate(view) {
-        switch (view) {
-            case CellView.TEXT:
-                return this.textTemplate;
-            case CellView.NUMBER:
-                return this.numberTemplate;
-            case CellView.CHIP:
-                return this.chipTemplate;
-            case CellView.LINK:
-                return this.linkTemplate;
-            case CellView.IMAGE:
-                return this.imageTemplate;
-            case CellView.CHECKBOX:
-                return this.checkboxTemplate;
-            case CellView.BOLD:
-                return this.boldTemplate;
-            case CellView.ITALIC:
-                return this.italicTemplate;
-            case CellView.CUSTOM:
-                return this.customTemplate;
-            case CellView.FUNCTION:
-                return this.functionTemplate;
-            case CellView.HTML:
-                return this.htmlTemplate;
-            case CellView.DATE:
-                return this.dateTemplate;
-            case CellView.BAR:
-                return this.barTemplate;
-            case CellView.PERCENTAGE_BAR:
-                return this.percentageBarTemplate;
-            case CellView.PERCENTAGE:
-                return this.percentageTemplate;
-            default:
-                return this.textTemplate;
-        }
-    }
-}
-ViewTemplatesComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ViewTemplatesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: ViewTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "textTemplate", first: true, predicate: ["text"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "chipTemplate", first: true, predicate: ["chip"], descendants: true, read: TemplateRef, static: true }, { propertyName: "linkTemplate", first: true, predicate: ["link"], descendants: true, read: TemplateRef, static: true }, { propertyName: "imageTemplate", first: true, predicate: ["image"], descendants: true, read: TemplateRef, static: true }, { propertyName: "checkboxTemplate", first: true, predicate: ["checkbox"], descendants: true, read: TemplateRef, static: true }, { propertyName: "boldTemplate", first: true, predicate: ["bold"], descendants: true, read: TemplateRef, static: true }, { propertyName: "italicTemplate", first: true, predicate: ["italic"], descendants: true, read: TemplateRef, static: true }, { propertyName: "customTemplate", first: true, predicate: ["custom"], descendants: true, read: TemplateRef, static: true }, { propertyName: "functionTemplate", first: true, predicate: ["function"], descendants: true, read: TemplateRef, static: true }, { propertyName: "htmlTemplate", first: true, predicate: ["html"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "barTemplate", first: true, predicate: ["bar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageBarTemplate", first: true, predicate: ["percentageBar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageTemplate", first: true, predicate: ["percentage"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
-
-		<ng-template #text let-element="element">
-			<gui-view-text [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #number let-element="element">
-			<span class="gui-cell-number">
-				{{ element.value }}
-			</span>
-		</ng-template>
-
-		<ng-template #chip let-element="element">
-			<gui-chip>
-				<gui-view-text [value]="element"></gui-view-text>
-			</gui-chip>
-		</ng-template>
-
-		<ng-template #link let-element="element">
-			<a gui-button link="true" href="{{ element.value }}">
-				<gui-view-text [value]="element"></gui-view-text>
-			</a>
-		</ng-template>
-
-		<ng-template #image let-element="element">
-			<img src="{{ element.value }}"/>
-		</ng-template>
-
-		<ng-template #checkbox let-element="element">
-			<span class="gui-cell-boolean">
-				<gui-checkbox [checked]="!!element.value" [disabled]="true"></gui-checkbox>
-			</span>
-		</ng-template>
-
-		<ng-template #bold let-element="element">
-			<gui-view-text bold [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #italic let-element="element">
-			<gui-view-text italic [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #custom let-element="element">
-			{{ element.value }}
-		</ng-template>
-
-		<ng-template #function let-element="element">
-			<gui-function-view [element]="element"></gui-function-view>
-		</ng-template>
-
-		<ng-template #html let-element="element">
-			<gui-html-view [element]="element"></gui-html-view>
-		</ng-template>
-
-		<ng-template #date let-element="element">
-			<span class="gui-view-text">{{ element.value | date: 'dd/MM/yyyy' }}</span>
-		</ng-template>
-
-		<ng-template #bar let-element="element">
-			<gui-bar-view [value]="element.value" [showPercentage]="false"></gui-bar-view>
-		</ng-template>
-
-		<ng-template #percentageBar let-element="element">
-			<gui-bar-view [value]="element.value" [showPercentage]="true"></gui-bar-view>
-		</ng-template>
-
-		<ng-template #percentage let-element="element">
-			<gui-percentage-view [value]="element.value"></gui-percentage-view>
-		</ng-template>
-
-	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricChipComponent, selector: "gui-chip" }, { kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1$1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FunctionViewComponent, selector: "gui-function-view", inputs: ["element"] }, { kind: "component", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: ["value", "showPercentage"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }, { kind: "component", type: TextViewComponent, selector: "gui-view-text[value]", inputs: ["value"] }, { kind: "component", type: HtmlViewComponent, selector: "gui-html-view", inputs: ["element"] }, { kind: "pipe", type: i4.DatePipe, name: "date" }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ViewTemplatesComponent, decorators: [{
-            type: Component,
-            args: [{
-                    template: `
-
-		<ng-template #text let-element="element">
-			<gui-view-text [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #number let-element="element">
-			<span class="gui-cell-number">
-				{{ element.value }}
-			</span>
-		</ng-template>
-
-		<ng-template #chip let-element="element">
-			<gui-chip>
-				<gui-view-text [value]="element"></gui-view-text>
-			</gui-chip>
-		</ng-template>
-
-		<ng-template #link let-element="element">
-			<a gui-button link="true" href="{{ element.value }}">
-				<gui-view-text [value]="element"></gui-view-text>
-			</a>
-		</ng-template>
-
-		<ng-template #image let-element="element">
-			<img src="{{ element.value }}"/>
-		</ng-template>
-
-		<ng-template #checkbox let-element="element">
-			<span class="gui-cell-boolean">
-				<gui-checkbox [checked]="!!element.value" [disabled]="true"></gui-checkbox>
-			</span>
-		</ng-template>
-
-		<ng-template #bold let-element="element">
-			<gui-view-text bold [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #italic let-element="element">
-			<gui-view-text italic [value]="element"></gui-view-text>
-		</ng-template>
-
-		<ng-template #custom let-element="element">
-			{{ element.value }}
-		</ng-template>
-
-		<ng-template #function let-element="element">
-			<gui-function-view [element]="element"></gui-function-view>
-		</ng-template>
-
-		<ng-template #html let-element="element">
-			<gui-html-view [element]="element"></gui-html-view>
-		</ng-template>
-
-		<ng-template #date let-element="element">
-			<span class="gui-view-text">{{ element.value | date: 'dd/MM/yyyy' }}</span>
-		</ng-template>
-
-		<ng-template #bar let-element="element">
-			<gui-bar-view [value]="element.value" [showPercentage]="false"></gui-bar-view>
-		</ng-template>
-
-		<ng-template #percentageBar let-element="element">
-			<gui-bar-view [value]="element.value" [showPercentage]="true"></gui-bar-view>
-		</ng-template>
-
-		<ng-template #percentage let-element="element">
-			<gui-percentage-view [value]="element.value"></gui-percentage-view>
-		</ng-template>
-
-	`
-                }]
-        }], propDecorators: { textTemplate: [{
-                type: ViewChild,
-                args: ['text', { read: TemplateRef, static: true }]
-            }], numberTemplate: [{
-                type: ViewChild,
-                args: ['number', { read: TemplateRef, static: true }]
-            }], chipTemplate: [{
-                type: ViewChild,
-                args: ['chip', { read: TemplateRef, static: true }]
-            }], linkTemplate: [{
-                type: ViewChild,
-                args: ['link', { read: TemplateRef, static: true }]
-            }], imageTemplate: [{
-                type: ViewChild,
-                args: ['image', { read: TemplateRef, static: true }]
-            }], checkboxTemplate: [{
-                type: ViewChild,
-                args: ['checkbox', { read: TemplateRef, static: true }]
-            }], boldTemplate: [{
-                type: ViewChild,
-                args: ['bold', { read: TemplateRef, static: true }]
-            }], italicTemplate: [{
-                type: ViewChild,
-                args: ['italic', { read: TemplateRef, static: true }]
-            }], customTemplate: [{
-                type: ViewChild,
-                args: ['custom', { read: TemplateRef, static: true }]
-            }], functionTemplate: [{
-                type: ViewChild,
-                args: ['function', { read: TemplateRef, static: true }]
-            }], htmlTemplate: [{
-                type: ViewChild,
-                args: ['html', { read: TemplateRef, static: true }]
-            }], dateTemplate: [{
-                type: ViewChild,
-                args: ['date', { read: TemplateRef, static: true }]
-            }], barTemplate: [{
-                type: ViewChild,
-                args: ['bar', { read: TemplateRef, static: true }]
-            }], percentageBarTemplate: [{
-                type: ViewChild,
-                args: ['percentageBar', { read: TemplateRef, static: true }]
-            }], percentageTemplate: [{
-                type: ViewChild,
-                args: ['percentage', { read: TemplateRef, static: true }]
-            }] } });
-
-class TemplateFactory {
-    constructor(templatesComponentDefinition, componentFactoryResolver) {
-        this.templatesComponentDefinition = templatesComponentDefinition;
-        this.componentFactoryResolver = componentFactoryResolver;
-        this.templates = new Map();
-        this.templatesComponent = null;
-        this.createTemplatesComponent();
-    }
-    getTemplates() {
-        return this.templates;
-    }
-    destroy() {
-        if (this.templatesComponent) {
-            this.templatesComponent.destroy();
-            this.templatesComponent = null;
-        }
-    }
-    createTemplatesComponent() {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.templatesComponentDefinition);
-        const injector = Injector.create({ providers: [] });
-        this.templatesComponent = componentFactory.create(injector);
-        this.generateMap();
-    }
-    generateMap() {
-        this.generateMapKeys()
-            .forEach((type) => {
-            this.findAndSetTemplate(type);
-        });
-    }
-    ;
-    findAndSetTemplate(dt) {
-        const template = this.templatesComponent.instance.getTemplate(dt);
-        this.templates.set(dt, template);
+    toDomainEvent() {
+        return new SchemaVerticalGridSetEvent(this.getAggregateId(), this.verticalGrid);
     }
 }
 
-class ViewTemplateFactory extends TemplateFactory {
-    constructor(componentFactoryResolver) {
-        super(ViewTemplatesComponent, componentFactoryResolver);
+class SchemaHorizontalGridSetAggregateEvent extends SchemaAggregateEvent {
+    constructor(schemaId, horizontalGrid) {
+        super(schemaId, 'SchemaHorizontalGridSetEvent');
+        this.horizontalGrid = horizontalGrid;
     }
-    generateMapKeys() {
-        return Object.keys(CellView)
-            .map(key => CellView[key]);
-    }
-}
-ViewTemplateFactory.services = [ComponentFactoryResolver];
-
-class ViewTemplateRepository {
-    constructor(columnTemplateFactory) {
-        this.columnTemplateFactory = columnTemplateFactory;
-    }
-    findTemplate(view) {
-        const typeToTemplate = this.columnTemplateFactory.getTemplates();
-        return typeToTemplate.get(view);
-    }
-}
-ViewTemplateRepository.services = [ViewTemplateFactory];
-
-class EditCommunicationComponent extends SmartComponent {
-    constructor(changeDetectorRef, elementRef) {
-        super(changeDetectorRef, elementRef);
-        this.ENTER_KEY_CODE = 13;
-        this.ESC_KEY_CODE = 27;
-    }
-    submit() {
-        this.emitStatus(EditEventType.SUBMIT);
-    }
-    cancel() {
-        this.emitStatus(EditEventType.CANCEL);
-    }
-    emitStatus(status) {
-        if (this.status) {
-            this.status.emit(status);
-        }
-    }
-}
-EditCommunicationComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditCommunicationComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-EditCommunicationComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: EditCommunicationComponent, inputs: { value: "value", valueChanges: "valueChanges", status: "status", focus: "focus", parent: "parent" }, usesInheritance: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditCommunicationComponent, decorators: [{
-            type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { value: [{
-                type: Input
-            }], valueChanges: [{
-                type: Input
-            }], status: [{
-                type: Input
-            }], focus: [{
-                type: Input
-            }], parent: [{
-                type: Input
-            }] } });
-
-class InputEditTemplateComponent extends EditCommunicationComponent {
-    constructor(changeDetectorRef, elementRef, formBuilder) {
-        super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.formBuilder = formBuilder;
-        this.filterFieldName = 'phrase';
-        this.filterForm = this.formBuilder.group({
-            [this.filterFieldName]: ['']
-        });
-    }
-    ngOnChanges(changes) {
-        if (changes.value !== undefined) {
-            this.filterForm.get(this.filterFieldName).setValue(this.value);
-        }
-    }
-    ngOnInit() {
-        this.observeChanges();
-    }
-    ngAfterViewInit() {
-        const inputElement = this.inputRef.nativeElement;
-        this.focusField(inputElement);
-        this.emitValueChange(inputElement.value);
-        hermesFromEvent(inputElement, 'blur')
-            .pipe(this.takeUntil())
-            .subscribe(() => {
-            this.unsubscribe();
-            this.submit();
-        });
-        const keyup$ = hermesFromEvent(inputElement, 'keyup');
-        keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.takeUntil())
-            .subscribe(() => {
-            this.unsubscribe();
-            this.submit();
-        });
-        keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.takeUntil())
-            .subscribe(() => {
-            this.unsubscribe();
-            this.cancel();
-        });
-    }
-    focusField(inputElement) {
-        if (this.focus) {
-            inputElement.focus();
-        }
-    }
-    observeChanges() {
-        fromRxJsObservable(this.filterForm
-            .controls[this.filterFieldName]
-            .valueChanges)
-            .pipe(this.takeUntil())
-            .subscribe((value) => {
-            this.emitValueChange(value);
-        });
-    }
-    emitValueChange(value) {
-        if (this.valueChanges) {
-            this.valueChanges.emit(value);
-        }
-    }
-}
-InputEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: InputEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Directive });
-InputEditTemplateComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: InputEditTemplateComponent, viewQueries: [{ propertyName: "inputRef", first: true, predicate: ["input"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: InputEditTemplateComponent, decorators: [{
-            type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; }, propDecorators: { inputRef: [{
-                type: ViewChild,
-                args: ['input', { static: true }]
-            }] } });
-
-class StringEditTemplateComponent extends InputEditTemplateComponent {
-    constructor(changeDetectorRef, elementRef, fb) {
-        super(changeDetectorRef, elementRef, fb);
-    }
-    focusField(inputElement) {
-        if (this.focus) {
-            inputElement.focus();
-            inputElement.setSelectionRange(0, inputElement.value.length);
-        }
-    }
-    getSelectorName() {
-        return 'gui-string-edit';
-    }
-}
-StringEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StringEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
-StringEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StringEditTemplateComponent, selector: "gui-string-edit", usesInheritance: true, ngImport: i0, template: `
-
-		<form [formGroup]="filterForm">
-			<input #input [formControlName]="filterFieldName" type="type" class="gui-input"/>
-		</form>
-
-	`, isInline: true, dependencies: [{ kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StringEditTemplateComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-string-edit',
-                    template: `
-
-		<form [formGroup]="filterForm">
-			<input #input [formControlName]="filterFieldName" type="type" class="gui-input"/>
-		</form>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; } });
-
-class NumberEditTemplateComponent extends InputEditTemplateComponent {
-    constructor(changeDetectorRef, elementRef, fb) {
-        super(changeDetectorRef, elementRef, fb);
-    }
-    getSelectorName() {
-        return 'gui-number-edit';
-    }
-}
-NumberEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: NumberEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$2.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
-NumberEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: NumberEditTemplateComponent, selector: "gui-number-edit", usesInheritance: true, ngImport: i0, template: `
-
-		<form [formGroup]="filterForm">
-			<input #input [formControlName]="filterFieldName" type="number" class="gui-input"/>
-		</form>
-
-	`, isInline: true, dependencies: [{ kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$2.NumberValueAccessor, selector: "input[type=number][formControlName],input[type=number][formControl],input[type=number][ngModel]" }, { kind: "directive", type: i1$2.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$2.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: NumberEditTemplateComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-number-edit',
-                    template: `
-
-		<form [formGroup]="filterForm">
-			<input #input [formControlName]="filterFieldName" type="number" class="gui-input"/>
-		</form>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$2.FormBuilder }]; } });
-
-class BooleanEditTemplateComponent extends EditCommunicationComponent {
-    constructor(changeDetectorRef, elementRef) {
-        super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.filterFieldName = 'booleanEdit';
-    }
-    toggle(changed) {
-        this.valueChanges.emit(changed);
-        this.submit();
-    }
-    getSelectorName() {
-        return 'gui-boolean-edit';
-    }
-}
-BooleanEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BooleanEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-BooleanEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit", viewQueries: [{ propertyName: "checkboxRef", first: true, predicate: ["checkbox"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
-
-		<span class="gui-cell-boolean">
-			<gui-checkbox #checkbox
-						  [checked]="value"
-						  [name]="filterFieldName"
-						  (changed)="toggle($event)">
-			</gui-checkbox>
-		</span>
-
-	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: BooleanEditTemplateComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-boolean-edit',
-                    template: `
-
-		<span class="gui-cell-boolean">
-			<gui-checkbox #checkbox
-						  [checked]="value"
-						  [name]="filterFieldName"
-						  (changed)="toggle($event)">
-			</gui-checkbox>
-		</span>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { checkboxRef: [{
-                type: ViewChild,
-                args: ['checkbox', { read: ElementRef, static: true }]
-            }] } });
-
-class DateEditTemplateComponent extends EditCommunicationComponent {
-    constructor(changeDetectorRef, elementRef) {
-        super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.filterFieldName = 'dateEdit';
-        this.opened = false;
-        this.localStreamCloser = new StreamCloser();
-    }
-    ngAfterViewInit() {
-        const inputElement = this.datePickerRef.nativeElement.querySelector('.gui-date-picker-input');
-        const keyup$ = hermesFromEvent(inputElement, 'keyup');
-        keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ENTER_KEY_CODE), this.localStreamCloser.takeUntil())
-            .subscribe(() => {
-            this.localStreamCloser.unsubscribe();
-            this.submit();
-        });
-        keyup$
-            .pipe(hermesFilter((e) => e.keyCode === this.ESC_KEY_CODE), this.localStreamCloser.takeUntil())
-            .subscribe(() => {
-            this.localStreamCloser.unsubscribe();
-            this.cancel();
-        });
-    }
-    ngOnDestroy() {
-        this.localStreamCloser.unsubscribe();
-        super.ngOnDestroy();
-    }
-    toggle(changed) {
-        this.valueChanges.emit(changed);
-    }
-    dialogOpened(opened) {
-        this.opened = opened;
-        if (!opened) {
-            this.localStreamCloser.unsubscribe();
-            this.submit();
-        }
-    }
-    getSelectorName() {
-        return 'gui-date-edit';
-    }
-}
-DateEditTemplateComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DateEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-DateEditTemplateComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: DateEditTemplateComponent, selector: "gui-date-edit", viewQueries: [{ propertyName: "datePickerRef", first: true, predicate: ["datepicker"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
-
-		<gui-date-picker #datepicker
-						 [selectDate]="value"
-						 [name]="filterFieldName"
-						 [openDialog]="true"
-						 [onlyDialog]="false"
-						 [parentElement]="parent"
-						 (dialogOpened)="dialogOpened($event)"
-						 (dateSelected)="toggle($event)">
-		</gui-date-picker>
-
-	`, isInline: true, dependencies: [{ kind: "component", type: i1$1.FabricDatePickerComponent, selector: "gui-date-picker", inputs: ["parentElement", "theme", "selectDate", "name", "openDialog", "onlyDialog", "datePipeOptions"], outputs: ["dateSelected", "dialogOpened"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DateEditTemplateComponent, decorators: [{
-            type: Component,
-            args: [{
-                    selector: 'gui-date-edit',
-                    template: `
-
-		<gui-date-picker #datepicker
-						 [selectDate]="value"
-						 [name]="filterFieldName"
-						 [openDialog]="true"
-						 [onlyDialog]="false"
-						 [parentElement]="parent"
-						 (dialogOpened)="dialogOpened($event)"
-						 (dateSelected)="toggle($event)">
-		</gui-date-picker>
-
-	`,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
-                }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { datePickerRef: [{
-                type: ViewChild,
-                args: ['datepicker', { read: ElementRef, static: true }]
-            }] } });
-
-class EditTemplatesComponent {
-    getTemplate(dataType) {
-        switch (dataType) {
-            case DataType.STRING:
-                return this.stringTemplate;
-            case DataType.NUMBER:
-                return this.numberTemplate;
-            case DataType.BOOLEAN:
-                return this.booleanTemplate;
-            case DataType.DATE:
-                return this.dateTemplate;
-            default:
-                return this.emptyTemplate;
-        }
-    }
-}
-EditTemplatesComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-EditTemplatesComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: EditTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "stringTemplate", first: true, predicate: ["string"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "booleanTemplate", first: true, predicate: ["boolean"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "emptyTemplate", first: true, predicate: ["empty"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
-
-		<ng-template #string let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-string-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-string-edit>
-		</ng-template>
-
-		<ng-template #number let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-number-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-number-edit>
-		</ng-template>
-
-		<ng-template #boolean let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-boolean-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-boolean-edit>
-		</ng-template>
-
-		<ng-template #date let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus" let-parent="parent">
-			<gui-date-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus" [parent]="parent">
-			</gui-date-edit>
-		</ng-template>
-
-		<ng-template #empty>
-
-		</ng-template>
-
-	`, isInline: true, dependencies: [{ kind: "component", type: StringEditTemplateComponent, selector: "gui-string-edit" }, { kind: "component", type: NumberEditTemplateComponent, selector: "gui-number-edit" }, { kind: "component", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit" }, { kind: "component", type: DateEditTemplateComponent, selector: "gui-date-edit" }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: EditTemplatesComponent, decorators: [{
-            type: Component,
-            args: [{
-                    template: `
-
-		<ng-template #string let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-string-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-string-edit>
-		</ng-template>
-
-		<ng-template #number let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-number-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-number-edit>
-		</ng-template>
-
-		<ng-template #boolean let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
-			<gui-boolean-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
-			</gui-boolean-edit>
-		</ng-template>
-
-		<ng-template #date let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus" let-parent="parent">
-			<gui-date-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus" [parent]="parent">
-			</gui-date-edit>
-		</ng-template>
-
-		<ng-template #empty>
-
-		</ng-template>
-
-	`
-                }]
-        }], propDecorators: { stringTemplate: [{
-                type: ViewChild,
-                args: ['string', { read: TemplateRef, static: true }]
-            }], numberTemplate: [{
-                type: ViewChild,
-                args: ['number', { read: TemplateRef, static: true }]
-            }], booleanTemplate: [{
-                type: ViewChild,
-                args: ['boolean', { read: TemplateRef, static: true }]
-            }], dateTemplate: [{
-                type: ViewChild,
-                args: ['date', { read: TemplateRef, static: true }]
-            }], emptyTemplate: [{
-                type: ViewChild,
-                args: ['empty', { read: TemplateRef, static: true }]
-            }] } });
-
-class EditTemplateFactory extends TemplateFactory {
-    constructor(componentFactoryResolver) {
-        super(EditTemplatesComponent, componentFactoryResolver);
-    }
-    generateMapKeys() {
-        return Object.keys(DataType)
-            .map(key => DataType[key]);
-    }
-}
-EditTemplateFactory.services = [ComponentFactoryResolver];
-
-class EditTemplateRepository {
-    constructor(editTemplateFactory) {
-        this.editTemplateFactory = editTemplateFactory;
-    }
-    findTemplate(dataType) {
-        const typeToTemplate = this.editTemplateFactory.getTemplates();
-        return typeToTemplate.get(dataType);
-    }
-}
-EditTemplateRepository.services = [EditTemplateFactory];
-
-class CellContext {
-    constructor(element) {
-        this.element = element;
+    toDomainEvent() {
+        return new SchemaHorizontalGridSetEvent(this.getAggregateId(), this.horizontalGrid);
     }
 }
 
-class CellTemplateWithAccessor {
-    constructor(columnDefinitionId, name, template, editTemplate, editable, templateFun, formatterFun, accessor, searchAccessor, width, columnFieldId, align, cellEditingEnabled, type, // REFACTOR
-    view) {
-        this.columnDefinitionId = columnDefinitionId;
-        this.name = name;
-        this.template = template;
-        this.editTemplate = editTemplate;
-        this.editable = editable;
-        this.templateFun = templateFun;
-        this.formatterFun = formatterFun;
-        this.accessor = accessor;
-        this.searchAccessor = searchAccessor;
-        this.width = width;
-        this.columnFieldId = columnFieldId;
-        this.align = align;
-        this.cellEditingEnabled = cellEditingEnabled;
-        this.type = type;
-        this.view = view;
-    }
-    isCellEditingEnabled() {
-        return this.cellEditingEnabled;
-    }
-    isBooleanDataType() {
-        return this.type === DataType.BOOLEAN;
-    }
-    isAlignLeft() {
-        return this.align === ColumnAlign.LEFT;
-    }
-    isAlignCenter() {
-        return this.align === ColumnAlign.CENTER;
-    }
-    isAlignRight() {
-        return this.align === ColumnAlign.RIGHT;
-    }
-    getName() {
-        return this.name;
-    }
-    // REFACTOR #1581
-    getValue(entity, searchPhrase) {
-        const cellValue = this.findValue(entity, searchPhrase);
-        cellValue.value = this.templateFun(cellValue.value, entity.getSourceItem());
-        if (this.formatterFun) {
-            cellValue.value = this.formatterFun(cellValue.value, entity.getSourceItem());
-        }
-        return cellValue;
-    }
-    getClasses() {
-        return 'gui-cell-highlighted';
-    }
-    findValue(entity, searchPhrase) {
-        const value = this.accessor(entity);
-        if (this.type !== DataType.STRING) {
-            return CellValue.text(value);
-        }
-        if (this.view && this.view.getCellView() === CellView.FUNCTION) {
-            return CellValue.text(value);
-        }
-        if (searchPhrase) {
-            let txt = '' + this.searchAccessor(entity);
-            const lowerCasedText = txt.toLocaleLowerCase(), loweredSearchPhrase = searchPhrase.toLocaleLowerCase();
-            const positions = [];
-            let index = 0;
-            while (index < loweredSearchPhrase.length) {
-                const found = lowerCasedText.indexOf(loweredSearchPhrase, index);
-                if (found >= 0) {
-                    positions.push(found);
-                    index = found + searchPhrase.length;
-                }
-                else {
-                    index = loweredSearchPhrase.length;
-                }
-            }
-            const arr = txt.split('');
-            positions.forEach((pos) => {
-                for (let i = 0; i < searchPhrase.length; i += 1) {
-                    let ph;
-                    if (i === 0) {
-                        ph = `<span class="gui-text-highlight">${arr[pos + i]}`;
-                    }
-                    else {
-                        ph = arr[pos + i];
-                    }
-                    if (i === searchPhrase.length - 1) {
-                        ph += '</span>';
-                    }
-                    arr[pos + i] = ph;
-                }
-            });
-            txt = arr.join('');
-            return CellValue.HTML(txt);
-        }
-        else {
-            return CellValue.text(value);
-        }
-    }
-}
-
-class ColumnDefinition extends ReadModelEntity {
-    constructor(field, columnDefinitionId, // REFACTOR Id first argument
-    name, enabled, type, // REFACTOR
-    view, // REFACTOR
-    align, // REFACTOR
-    header, cellEditingEnabled, cssClasses, styles, sort = SortOrder.NONE, sortable = true) {
-        super(columnDefinitionId);
-        this.name = name;
-        this.type = type;
-        this.view = view;
-        this.align = align;
-        this.cssClasses = cssClasses;
-        this.styles = styles;
-        this.sortable = true;
-        this.field = field;
-        this.columnDefinitionId = columnDefinitionId;
-        this.enabled = enabled;
-        this.header = header;
-        this.cellEditingEnabled = cellEditingEnabled;
-        this.sortStatus = sort;
-        this.sortable = sortable;
-    }
-    getName() {
-        return this.name;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-    setHeader(header) {
-        this.header = header;
-    }
-    setField(field) {
-        this.field = field;
-    }
-    setTemplateFunction(templateFun) {
-        this.templateFunction = templateFun;
-    }
-    setFormatterFunction(formatter) {
-        this.formatterFunction = formatter;
-    }
-    toHeaderCellTemplateWithContext(index) {
-        const header = this.header || '';
-        let headerCellContext;
-        if (typeof header === 'string') {
-            headerCellContext = new CellContext(CellValue.text(header));
-        }
-        else if (typeof header === 'function') {
-            headerCellContext = new CellContext(CellValue.text(header(index)));
-        }
-        const fieldId = new FieldId(this.field.getId().getId());
-        return new CellTemplateWithContext(this.headerTemplate, this.editTemplate, headerCellContext, this.width, fieldId, this.columnDefinitionId, this.sortStatus, this.enabled, this.cssClasses, this.styles, this.sortable, this.align);
-    }
-    toContentCellTemplateWithAccessor() {
-        const accessor = (entity) => {
-            return this.field.getAccessor()(entity);
-        }, searchAccessor = (entity) => {
-            return this.field.getSearchAccessor()(entity);
-        };
-        return new CellTemplateWithAccessor(this.columnDefinitionId, this.name, this.cellTemplate, this.editTemplate, true, this.templateFunction, this.formatterFunction, accessor, searchAccessor, this.width, this.field.getId(), this.align, this.cellEditingEnabled, this.type, this.view);
-    }
-}
-
-class ColumnDefinitionId extends ReadModelEntityId {
-    constructor(id) {
-        super(id);
-    }
-}
-
-class ColumnDefinitionFactory {
-    constructor(viewTemplateRepository, editTemplateRepository) {
-        this.viewTemplateRepository = viewTemplateRepository;
-        this.editTemplateRepository = editTemplateRepository;
-    }
-    create(column) {
-        if (column instanceof ColumnEntity) {
-            return this.createFromColumnEntity(column);
-        }
-        else {
-            return this.createFromActiveColumnEntity(column);
-        }
-    }
-    createColumns(columns) {
-        return columns.map((column) => this.create(column));
-    }
-    createFromColumnEntity(column) {
-        const columnDef = new ColumnDefinition(column.getField(), new ColumnDefinitionId(column.getId().toString()), column.getColumnConfig().name, column.isEnabled(), column.getDataType(), column.getView(), column.getAlign(), column.getHeader(), column.isCellEditingEnabled(), column.getColumnConfig().cssClasses, column.getColumnConfig().styles, column.getSortStatus(), column.isSortingEnabled());
-        if (column.getCellView() === CellView.NG_TEMPLATE) {
-            columnDef.cellTemplate = column.getColumnConfig().templateRef;
-        }
-        else {
-            columnDef.cellTemplate = this.findViewTemplate(column.getCellView());
-        }
-        if (typeof column.getHeader() === 'function') {
-            columnDef.headerTemplate = this.findViewTemplate(CellView.FUNCTION);
-        }
-        else {
-            columnDef.headerTemplate = this.findViewTemplate(CellView.HTML);
-        }
-        columnDef.setTemplateFunction(column.getTemplateFunction());
-        columnDef.setFormatterFunction(column.getFormatterFunction());
-        columnDef.editTemplate = this.findEditTemplate(column.getDataType());
-        columnDef.width = +column.getWidth();
-        return columnDef;
-    }
-    createFromActiveColumnEntity(activeColumn) {
-        const columnDef = new ColumnDefinition(activeColumn.getField(), new ColumnDefinitionId(activeColumn.getId().toString()), activeColumn.getColumnConfig().name, true, // remove,
-        activeColumn.getDataType(), activeColumn.getView(), activeColumn.getAlign(), activeColumn.getHeader(), activeColumn.isCellEditingEnabled(), activeColumn.getColumnConfig().cssClasses, activeColumn.getColumnConfig().styles, activeColumn.getSortStatus(), activeColumn.isSortingEnabled());
-        if (activeColumn.getCellView() === CellView.NG_TEMPLATE) {
-            columnDef.cellTemplate = activeColumn.getColumnConfig().templateRef;
-        }
-        else {
-            columnDef.cellTemplate = this.findViewTemplate(activeColumn.getCellView());
-        }
-        if (typeof activeColumn.getHeader() === 'function') {
-            columnDef.headerTemplate = this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
-        }
-        else {
-            columnDef.headerTemplate = this.findViewTemplate(CellView.TEXT);
-        }
-        columnDef.setTemplateFunction(activeColumn.getTemplateFunction());
-        columnDef.setFormatterFunction(activeColumn.getFormatterFunction());
-        columnDef.editTemplate = this.findEditTemplate(activeColumn.getDataType());
-        columnDef.width = +activeColumn.getWidth();
-        return columnDef;
-    }
-    findViewTemplate(view) {
-        if (view === CellView.FUNCTION) {
-            return this.viewTemplateRepository.findTemplate(CellView.FUNCTION);
-        }
-        else {
-            return this.viewTemplateRepository.findTemplate(view);
-        }
-    }
-    findEditTemplate(dataType) {
-        return this.editTemplateRepository.findTemplate(dataType);
-    }
-}
-ColumnDefinitionFactory.services = [ViewTemplateRepository, EditTemplateRepository];
-
-class CompositionReadModeRoot extends ReadModelRoot {
-    constructor(uid, ready, allColumns, activeColumns, width, resizeWidth) {
-        super(uid);
-        this.ready = ready;
-        this.allColumns = allColumns;
-        this.activeColumns = activeColumns;
-        this.width = width;
-        this.resizeWidth = resizeWidth;
-    }
-    getActiveColumns() {
-        return this.activeColumns;
-    }
-    getAllColumns() {
-        return this.allColumns;
-    }
-    getActiveHeaderColumns() {
-        return this.getActiveColumns()
-            .map((column, index) => column.toHeaderCellTemplateWithContext(index));
-    }
-    getHeaderColumns() {
-        return this.getAllColumns()
-            .map((column, index) => column.toHeaderCellTemplateWithContext(index));
-    }
-    getTemplateColumns() {
-        return this.getActiveColumns()
-            .map((column) => column.toContentCellTemplateWithAccessor());
-    }
-    getWidth() {
-        return this.width;
-    }
-    getContainerWidth() {
-        return +this.width - 2;
-    }
-    isReady() {
-        return this.ready;
-    }
-    isResizeWidthEnabled() {
-        return this.resizeWidth;
-    }
-    equals(composition) {
-        return this.width === composition.width &&
-            this.resizeWidth === composition.resizeWidth &&
-            this.equalsByColumns(composition.allColumns);
-    }
-    equalsByColumns(columns) {
-        return this.allColumns.length === columns.length;
-    }
-}
-
-class CompositionReadModelRootConverter {
-    constructor(columnDefinitionFactory) {
-        this.columnDefinitionFactory = columnDefinitionFactory;
-    }
-    convert(aggregate) {
-        const ready = aggregate.isReady(), allColumns = aggregate.getColumns(), activeColumns = aggregate.getActiveColumns(), allColumnDefs = this.convertToColumnDef(allColumns), activeColumnDefs = this.convertActiveColumnsToColumnDef(activeColumns), width = aggregate.getWidth(), resizeWidth = aggregate.isResizeEnabled(), aggregateId = aggregate.getId();
-        return new CompositionReadModeRoot(aggregateId.toReadModelRootId(), ready, allColumnDefs, activeColumnDefs, width, resizeWidth);
-    }
-    convertToColumnDef(columns) {
-        const columnDefs = [];
-        columns.forEach((column) => {
-            const columnDef = this.columnDefinitionFactory.create(column);
-            columnDefs.push(columnDef);
-        });
-        return columnDefs;
-    }
-    convertActiveColumnsToColumnDef(activeColumns) {
-        const columnDefs = [];
-        activeColumns.forEach((column) => {
-            const columnDef = this.columnDefinitionFactory.create(column);
-            columnDefs.push(columnDef);
-        });
-        return columnDefs;
-    }
-}
-CompositionReadModelRootConverter.services = [ColumnDefinitionFactory];
-
-class InMemoryCompositionReadStore extends InMemoryReadModelStore {
-    constructor(inMemoryCompositionStore, compositionConverter) {
-        super(inMemoryCompositionStore);
-        this.inMemoryCompositionStore = inMemoryCompositionStore;
-        this.compositionConverter = compositionConverter;
-    }
-    toReadModel(aggregate) {
-        return this.compositionConverter.convert(aggregate);
-    }
-}
-InMemoryCompositionReadStore.services = [InMemoryCompositionStore, CompositionReadModelRootConverter];
-
-class CompositionReadModelRootRepository extends ReadModelRootRepository {
-    constructor() {
-        super();
-    }
-}
-
-class CompositionCreatedEvent extends CompositionDomainEvent {
-    constructor(compositionId) {
-        super(compositionId, null, 'CompositionCreatedEvent');
-    }
-}
-
-class InMemoryCompositionRepository extends CompositionReadModelRootRepository {
-    constructor(inMemoryCompositionReadStore) {
-        super();
-        this.inMemoryCompositionReadStore = inMemoryCompositionReadStore;
-        this.compositionIdToComposition = new Map();
-        this.composition$ = new HermesReplaySubject(1);
-    }
-    on(compositionId) {
-        return this.composition$
-            .toObservable()
-            .pipe(hermesFilter((compositionIdToComposition) => {
-            const key = compositionId.getId();
-            return compositionIdToComposition.has(key);
-        }), hermesMap((compositionIdToComposition) => compositionIdToComposition.get(compositionId.getId())));
-    }
-    find(compositionId) {
-        const key = compositionId.getId();
-        return Optional.of(this.compositionIdToComposition.get(key));
-    }
-    forEvents() {
-        return [
-            CompositionCreatedEvent,
-            CompositionResizeWidthSetEvent,
-            CompositionColumnsSetEvent,
-            CompositionContainerWidthSetEvent,
-            CompositionWidthSetEvent,
-            CompositionColumnSetEnabledEvent,
-            CompositionColumnMovedLeftEvent,
-            CompositionColumnMovedRightEvent,
-            CompositionChangeSortStatusEvent
-        ];
-    }
-    subscribe(event) {
-        const aggregateId = event.getAggregateId();
-        const optComposition = this.inMemoryCompositionReadStore.getById(aggregateId);
-        optComposition.ifPresent((composition) => {
-            const key = composition.getId().toString();
-            this.compositionIdToComposition.set(key, composition);
-            this.composition$.next(this.compositionIdToComposition);
-        });
-    }
-}
-InMemoryCompositionRepository.services = [InMemoryCompositionReadStore];
-
-class CreateCompositionCommandHandler {
-    forCommand() {
-        return CreateCompositionCommand;
-    }
-}
-
-class CompositionContainerWidthCalculator {
-    constructor(MIN_COLUMN_WIDTH) {
-        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
-    }
-    calculateMinWidth(columnWidths) {
-        const { staticColumns, fluidColumns } = this.segregateColumns(columnWidths);
-        // TODO reduce
-        let sum = 0;
-        staticColumns.forEach((c) => {
-            sum += c.getWidth();
-        });
-        sum += fluidColumns.length * this.MIN_COLUMN_WIDTH;
-        return sum;
-    }
-    segregateColumns(columns) {
-        const staticColumns = columns.filter((columnWidth) => columnWidth.isTypeNumber() && columnWidth.getWidth() > this.MIN_COLUMN_WIDTH), fluidColumns = columns.filter((columnWidth) => {
-            return columnWidth.isTypeAuto() ||
-                columnWidth.isTypePercentage() ||
-                (columnWidth.isTypeNumber() && columnWidth.getWidth() <= this.MIN_COLUMN_WIDTH);
-        });
-        return {
-            staticColumns: staticColumns,
-            fluidColumns: fluidColumns
-        };
-    }
-}
-
-class CompositionAggregateEvent extends AggregateEvent {
-}
-
-class CompositionWidthSetAggregateEvent extends CompositionAggregateEvent {
+class SchemaCreatedEvent extends SchemaDomainEvent {
     constructor(aggregateId) {
-        super(aggregateId, 'CompositionWidthSetAggregateEvent');
+        super(aggregateId, null, 'SchemaCreatedEvent');
+    }
+}
+
+class SchemaCreatedAggregateEvent extends SchemaAggregateEvent {
+    constructor(aggregateId) {
+        super(aggregateId, 'SchemaCreatedAggregateEvent');
     }
     toDomainEvent() {
-        return new CompositionWidthSetEvent(this.getAggregateId());
+        return new SchemaCreatedEvent(this.getAggregateId());
     }
 }
 
-class CompositionContainerWidthSetAggregateEvent extends CompositionAggregateEvent {
-    constructor(compositionId, containerWidth) {
-        super(compositionId, 'CompositionContainerWidthSetAggregateEvent');
-        this.containerWidth = containerWidth;
-    }
-    toDomainEvent() {
-        return new CompositionContainerWidthSetEvent(this.getAggregateId(), this.containerWidth);
-    }
-}
-
-class CompositionResizeWidthSetAggregateEvent extends CompositionAggregateEvent {
-    constructor(compositionId) {
-        super(compositionId, 'CompositionResizeWidthSetAggregateEvent');
-    }
-    toDomainEvent() {
-        return new CompositionResizeWidthSetEvent(this.getAggregateId());
-    }
-}
-
-class CompositionColumnSetEnabledAggregateEvent extends CompositionAggregateEvent {
-    constructor(aggregateId, activeColumns) {
-        super(aggregateId, 'CompositionColumnSetEnabledAggregateEvent');
-        this.activeColumns = activeColumns;
-    }
-    toDomainEvent() {
-        return new CompositionColumnSetEnabledEvent(this.getAggregateId());
-    }
-    getActiveColumns() {
-        return this.activeColumns;
-    }
-}
-
-var ColumnWidthType;
-(function (ColumnWidthType) {
-    ColumnWidthType[ColumnWidthType["PERCENTAGE"] = 0] = "PERCENTAGE";
-    ColumnWidthType[ColumnWidthType["NUMBER"] = 1] = "NUMBER";
-    ColumnWidthType[ColumnWidthType["AUTO"] = 2] = "AUTO";
-})(ColumnWidthType || (ColumnWidthType = {}));
-
-class ColumnWidth {
-    constructor(width) {
-        this.baseWidth = width;
-        this.setWidthAndType(width);
-    }
-    getWidth() {
-        return this.width;
-    }
-    getColumnType() {
-        return this.template;
-    }
-    isTypePercentage() {
-        return this.template === ColumnWidthType.PERCENTAGE;
-    }
-    isTypeAuto() {
-        return this.template === ColumnWidthType.AUTO;
-    }
-    isTypeNumber() {
-        return this.template === ColumnWidthType.NUMBER;
-    }
-    setWidth(width) {
-        this.width = width;
-    }
-    setWidthAndType(width) {
-        if (width === undefined || width === null || width === 'auto') {
-            this.template = ColumnWidthType.AUTO;
-            this.setWidth(null);
-        }
-        else if (this.isPercentage(width)) {
-            this.template = ColumnWidthType.PERCENTAGE;
-            this.setWidth(this.percentageToNumber('' + width));
-        }
-        else if (this.isStringNumber(width)) {
-            this.template = ColumnWidthType.NUMBER;
-            this.setWidth(+width);
-        }
-        else {
-            this.template = ColumnWidthType.NUMBER;
-            this.setWidth(+width);
-        }
-    }
-    clone() {
-        return new ColumnWidth(this.baseWidth);
-    }
-    isPercentage(width) {
-        return typeof width === 'string' && width[width.length - 1] === '%';
-    }
-    /**
-     * Width needs to be in format '89%'
-     * @param width
-     */
-    percentageToNumber(width) {
-        return +(width.slice(0, -1));
-    }
-    isStringNumber(width) {
-        const widthAsNumber = +width;
-        return Number.isNaN(widthAsNumber);
-    }
-}
-
-class CompositionWidthCalculator {
-    constructor(source, width, MIN_COLUMN_WIDTH) {
-        this.source = source;
-        this.width = width;
-        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
-        this.columns = this.source.map((c) => c.clone());
-    }
-    calculate() {
-        let width = this.width, columns = Array.from(this.columns);
-        // adjust min value
-        this.adjustMinimalWidth(columns);
-        // remove number columns
-        const newColumns = [];
-        columns.forEach((column, index) => {
-            if (column.isTypeNumber()) {
-                width -= column.getWidth();
-            }
-            else {
-                newColumns.push(column);
-            }
-        });
-        columns = newColumns;
-        // split even auto columns
-        if (columns.length !== 0) {
-            const evenWidth = width / columns.length;
-            columns.forEach((column, index) => {
-                column.setWidth(evenWidth);
-            });
-        }
-        // adjust number columns
-        // let numberColumns = this.columns.filter((columnWidth: ColumnWidth) => columnWidth.isTypeNumber());
-        //
-        // // sort by min values
-        // numberColumns.sort((columnOne: ColumnWidth, columnTwo: ColumnWidth) => {
-        // 	return columnOne.getWidth() - columnTwo.getWidth();
-        // });
-        //
-        // numberColumns.forEach(() => {
-        // });
-        // this.adjustMinimalWidth(ColumnWidthType.NUMBER);
-        //
-        // this.adjustPercentageWidth();
-        //
-        // this.adjustAutoWidth();
-        return this.columns;
-    }
-    adjustMinimalWidth(columns) {
-        columns.forEach((column) => {
-            if (column.isTypeNumber()) {
-                if (column.getWidth() < this.MIN_COLUMN_WIDTH) {
-                    column.setWidthAndType(this.MIN_COLUMN_WIDTH);
-                }
-            }
-        });
-    }
-    adjustPercentageWidth() {
-        const percentageColumns = this.columns.filter((columnWidth) => columnWidth.isTypePercentage());
-        for (const column of this.columns) {
-            if (column.getColumnType() === ColumnWidthType.PERCENTAGE) {
-                column.setWidth(this.width * column.getWidth() * 0.01);
-            }
-        }
-    }
-    adjustAutoWidth() {
-        let leftWidth = this.width;
-        const autoColumns = [];
-        for (let i = 0; i < this.columns.length; i += 1) {
-            const column = this.columns[i];
-            if (column.getColumnType() !== ColumnWidthType.AUTO) {
-                leftWidth -= column.getWidth();
-            }
-            else {
-                autoColumns.push(column);
-            }
-        }
-        if (autoColumns.length > 0) {
-            const splitWidth = leftWidth / autoColumns.length;
-            for (const column of autoColumns) {
-                column.setWidth(splitWidth);
-            }
-        }
-    }
-}
-
-class ColumnWidthCollection {
-    constructor(MIN_COLUMN_WIDTH, columns = [], width = 100) {
-        this.MIN_COLUMN_WIDTH = MIN_COLUMN_WIDTH;
-        this.baseColumnWidths = columns.map((column) => new ColumnWidth(column.width));
-        this.columnWidths = columns.map((column) => new ColumnWidth(column.width));
-        this.setContainerWidth(width);
-        this.calculate();
-    }
-    getColumnWidths() {
-        return this.baseColumnWidths;
-    }
-    getColumnsWidth() {
-        return this.width;
-    }
-    getWidths() {
-        return this.columnWidths.map(c => c.getWidth());
-    }
-    getMinWidth() {
-        const calculator = new CompositionContainerWidthCalculator(this.MIN_COLUMN_WIDTH);
-        return calculator.calculateMinWidth(this.columnWidths);
-    }
-    setWidth(width) {
-        this.setContainerWidth(width);
-        this.calculate();
-    }
-    setColumns(columnConfigs) {
-        this.baseColumnWidths = columnConfigs.map((column) => new ColumnWidth(column.width));
-        this.columnWidths = columnConfigs.map((column) => new ColumnWidth(column.width));
-        this.calculate();
-    }
-    getMinColumnWidth() {
-        return this.MIN_COLUMN_WIDTH;
-    }
-    calculate() {
-        if (this.baseColumnWidths && this.width) {
-            const calculator = new CompositionWidthCalculator(this.baseColumnWidths, this.width, this.MIN_COLUMN_WIDTH);
-            this.columnWidths = calculator.calculate();
-        }
-    }
-    setContainerWidth(width) {
-        if (this.getMinWidth() > width) {
-            this.width = this.getMinWidth();
-        }
-        else {
-            this.width = width;
-        }
-        this.calculate();
-    }
-}
-
-class CompositionChangeSortStatusAggregateEvent extends CompositionAggregateEvent {
-    constructor(aggregateId, activeColumns) {
-        super(aggregateId, 'CompositionChangeSortStatusAggregateEvent');
-        this.activeColumns = activeColumns;
-    }
-    toDomainEvent() {
-        return new CompositionChangeSortStatusEvent(this.getAggregateId(), this.activeColumns);
-    }
-}
-
-class ActiveColumnContainer {
-    constructor(compositionId, columns = [], gridWidth, columnConfigs) {
-        this.compositionId = compositionId;
-        this.MIN_COLUMN_WIDTH = 50;
-        /**
-         * Columns taken from user config.
-         * This should not be modified and it should be used as a reference point.
-         */
-        this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH);
-        this.columns = columns;
-        if (gridWidth && columnConfigs) {
-            this.columnWidthCollection = new ColumnWidthCollection(this.MIN_COLUMN_WIDTH, columnConfigs, gridWidth);
-        }
-    }
-    getColumnWidths() {
-        return this.columnWidthCollection.getColumnWidths();
-    }
-    // REMOVE
-    getColumns() {
-        return this.columns;
-    }
-    setWidth(width) {
-        this.columnWidthCollection.setWidth(width);
-    }
-    addColumn(column, index) {
-        this.columns.splice(index, 0, column);
-    }
-    removeColumn(index) {
-        this.columns.splice(index, 1);
-    }
-    setColumns(columns, columnConfigs) {
-        this.columns = columns;
-        this.columnWidthCollection.setColumns(columnConfigs);
-        const updatedWidths = this.columnWidthCollection.getWidths();
-        this.columns.forEach((column, index) => {
-            column.setWidth(updatedWidths[index]);
-        });
-        // TODO
-        // this.addEvent(new ColumnsSetAggregateEvent(this.getId(), columns));
-    }
-    changeSort(sortParams) {
-        this.columns.forEach((column) => {
-            column.setSortStatus(SortOrder.NONE);
-        });
-        for (const param of sortParams) {
-            const fieldId = param.fieldId, direction = param.direction, sortStatus = direction ? SortOrder.ASC : SortOrder.DESC;
-            const columns = this.columns.filter((column) => {
-                return column.getField().getId().getId() === fieldId.getId();
-            });
-            if (columns.length > 0) {
-                columns.forEach((column) => {
-                    column.setSortStatus(sortStatus);
-                });
-            }
-        }
-        return new CompositionChangeSortStatusAggregateEvent(this.getCompositionId(), this.columns);
-    }
-    moveLeft(columnId) {
-        const index = this.findColumnIndex(columnId);
-        this.move(index, index - 1);
-    }
-    moveRight(columnId) {
-        const index = this.findColumnIndex(columnId);
-        this.move(index, index + 1);
-    }
-    getMinColumnWidth() {
-        return this.MIN_COLUMN_WIDTH;
-    }
-    move(fromIndex, toIndex) {
-        if (!this.validateMoveIndex(fromIndex) || !this.validateMoveIndex(toIndex)) {
-            return;
-        }
-        const column = this.columns[fromIndex];
-        this.columns[fromIndex] = this.columns[toIndex];
-        this.columns[toIndex] = column;
-    }
-    validateMoveIndex(index) {
-        return index >= 0;
-    }
-    getCompositionId() {
-        return this.compositionId;
-    }
-    findColumnIndex(columnId) {
-        return this.columns.findIndex(c => c.getId().equals(columnId));
-    }
-}
-
-class ActiveColumnEntity extends ColumnEntity {
-    constructor(columnId, columnField, header, align, view, config, presentation) {
-        super(columnId, columnField, config, true, presentation, header, align, view, undefined);
-    }
-    static fromEntity(entity) {
-        return new ActiveColumnEntity(entity.getId(), entity.getField(), entity.getHeader(), entity.getAlign(), entity.getView(), entity.getColumnConfig(), entity.getPresentation());
-    }
-}
-
-class ActiveColumnEntityConverter {
-    convertMany(entities) {
-        return entities.map(e => this.convert(e));
-    }
-    convert(entity) {
-        return ActiveColumnEntity.fromEntity(entity);
-    }
-}
-
-class CompositionColumnMovedLeftAggregateEvent extends CompositionAggregateEvent {
-    constructor(aggregateId, activeColumns) {
-        super(aggregateId, 'CompositionColumnMovedLeftAggregateEvent');
-        this.activeColumns = activeColumns;
-    }
-    // getActiveColumns(): Array<ActiveColumnEntity> {
-    // 	return this.activeColumns;
-    // }
-    toDomainEvent() {
-        return new CompositionColumnMovedLeftEvent(this.getAggregateId());
-    }
-}
-
-class CompositionColumnMovedRightAggregateEvent extends CompositionAggregateEvent {
-    constructor(aggregateId, activeColumns) {
-        super(aggregateId, 'CompositionColumnMovedRightAggregateEvent');
-        this.activeColumns = activeColumns;
-    }
-    // getActiveColumns(): Array<ActiveColumnEntity> {
-    // 	return this.activeColumns;
-    // }
-    toDomainEvent() {
-        return new CompositionColumnMovedRightEvent(this.getAggregateId());
-    }
-}
-
-class ColumnsSetAggregateEvent extends CompositionAggregateEvent {
-    constructor(compositionId) {
-        super(compositionId, 'ColumnsSetAggregateEvent');
-    }
-    toDomainEvent() {
-        return new CompositionColumnsSetEvent(this.getAggregateId());
-    }
-}
-
-class CompositionCreatedAggregateEvent extends CompositionAggregateEvent {
-    constructor(compositionId) {
-        super(compositionId, 'SchemaCreatedEvent');
-    }
-    toDomainEvent() {
-        return new CompositionCreatedEvent(this.getAggregateId());
-    }
-}
-
-const emptyGroup = new Group(new GroupId('-1'), '', 100);
-
-class CompositionAggregate extends AggregateRoot {
-    constructor(id, columnFactory, groupFactory, columnsParams = [], width, resizeWidth) {
-        super(id, 'CompositionAggregate');
-        this.allColumns = [];
-        this.resizeWidthEnabled = true;
-        this.activeColumnEntityConverter = new ActiveColumnEntityConverter();
-        this.groups = new KeyMap();
-        this.columnNameToGroupId = new Map();
-        const columnConfigs = columnsParams.map((param) => param.getColumn());
-        this.baseParams = columnsParams;
-        this.baseColumns = columnConfigs;
-        this.columnFactory = columnFactory;
-        this.groupFactory = groupFactory;
-        this.width = width;
-        this.allColumns = this.columnFactory.create(columnsParams);
-        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
-        this.activeColumnContainer = new ActiveColumnContainer(this.getId(), activeColumns, width, columnConfigs);
-        if (resizeWidth !== undefined && resizeWidth !== null) {
-            this.resizeWidthEnabled = resizeWidth;
-        }
+class SchemaAggregate extends AggregateRoot {
+    constructor(id) {
+        super(id, 'SchemaAggregate');
+        this.setTheme(SchemaAggregate.DEFAULT_THEME);
+        this.setHorizontalGrid(SchemaAggregate.DEFAULT_HORIZONTAL_GRID);
+        this.setVerticalGrid(SchemaAggregate.DEFAULT_VERTICAL_GRID);
+        this.setRowColoring(SchemaAggregate.DEFAULT_ROW_COLORING);
     }
     createEvent() {
-        return CompositionCreatedAggregateEvent;
+        return SchemaCreatedAggregateEvent;
     }
-    // REMOVE
-    getColumns() {
-        return this.allColumns;
-    }
-    // REMOVE
-    getActiveColumns() {
-        return this.activeColumnContainer.getColumns();
-    }
-    // make private
-    getWidth() {
-        if (this.resizeWidthEnabled) {
-            return this.containerInDOMWidth;
+    changeTheme(theme) {
+        this.setTheme(theme);
+        if (theme === SchemaTheme.MATERIAL) {
+            this.setRowColoring(SchemaRowColoring.NONE);
+            this.setVerticalGrid(false);
         }
-        else {
-            return this.width;
+        if (theme === SchemaTheme.LIGHT) {
+            this.setRowColoring(SchemaRowColoring.NONE);
+            this.setVerticalGrid(false);
         }
-    }
-    // REMOVE
-    isResizeEnabled() {
-        return this.resizeWidthEnabled;
-    }
-    // REMOVE
-    isReady() {
-        return !!this.getWidth() && this.getActiveColumns().length > 0;
-    }
-    setGroups(configs) {
-        for (let i = 0; i < configs.length; i += 1) {
-            const config = configs[i];
-            if (config.columns !== undefined) {
-                const group = this.groupFactory.create(config);
-                this.groups.set(group.id, group);
-                config.columns.forEach((c, index) => {
-                    this.columnNameToGroupId.set(c.header, group.id);
-                });
-            }
-            else {
-                this.columnNameToGroupId.set(config.header, emptyGroup.id);
-            }
+        if (theme === SchemaTheme.DARK) {
+            this.setRowColoring(SchemaRowColoring.NONE);
+            this.setVerticalGrid(false);
+        }
+        if (theme === SchemaTheme.GENERIC) {
+            this.setRowColoring(SchemaRowColoring.ODD);
         }
     }
-    setColumns(params) {
-        this.allColumns = this.columnFactory.create(params);
-        const columnConfigs = params.map((param) => param.getColumn());
-        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
-        this.activeColumnContainer.setColumns(activeColumns, columnConfigs);
-        this.addEvent(new ColumnsSetAggregateEvent(this.getId()));
+    setRowColoring(coloring) {
+        this.rowColoring = coloring;
+        this.addEvent(new RowColoringSetAggregateEvent(this.getId(), this.rowColoring));
     }
-    setContainerWidth(containerWidth) {
-        this.setContainerWidthWithEvent(containerWidth);
-        this.recalculateColumns();
+    setVerticalGrid(enabled) {
+        this.verticalGrid = enabled;
+        this.addEvent(new SchemaVerticalGridSetAggregateEvent(this.getId(), this.verticalGrid));
     }
-    setWidth(width) {
-        this.setWidthWithEvent(width);
-        this.setResizeWidthWithEvent(false);
-        this.recalculateColumns();
+    setHorizontalGrid(enabled) {
+        this.horizontalGrid = enabled;
+        this.addEvent(new SchemaHorizontalGridSetAggregateEvent(this.getId(), this.horizontalGrid));
     }
-    setResizeWidth(enabled) {
-        this.setResizeWidthWithEvent(enabled);
-    }
-    changeSort(sortParams) {
-        this.addEvent(this.activeColumnContainer.changeSort(sortParams));
-    }
-    // DELEGATE
-    enableColumn(columnId, enabled) {
-        let enabledIndex = -1;
-        this.allColumns.forEach((column, index) => {
-            if (column.getId().getId() === columnId.getId()) {
-                const prevState = column.isEnabled();
-                column.setEnabled(enabled);
-                if (prevState !== enabled) {
-                    enabledIndex = index;
-                }
-            }
-        });
-        if (enabledIndex > 0) {
-            if (enabled) {
-                // convert
-                const columnToAdd = this.activeColumnEntityConverter.convert(this.allColumns[enabledIndex]);
-                this.activeColumnContainer.addColumn(columnToAdd, enabledIndex);
-            }
-            else {
-                this.activeColumnContainer.removeColumn(enabledIndex);
-            }
-        }
-        this.recalculateColumns();
-        this.addEvent(new CompositionColumnSetEnabledAggregateEvent(this.getId(), this.getActiveColumns()));
-    }
-    moveLeft(columnId) {
-        const columnIndex = this.findColumnIndex(columnId);
-        let nextLeft, nextLeftIndex = -1;
-        for (let i = columnIndex - 1; i >= 0; i -= 1) {
-            const leftColumn = this.allColumns[i];
-            if (leftColumn.isEnabled()) {
-                nextLeft = leftColumn;
-                nextLeftIndex = i;
-                break;
-            }
-        }
-        if (nextLeft && nextLeftIndex >= 0 && columnIndex >= 0) {
-            const column = this.allColumns[columnIndex];
-            this.allColumns[columnIndex] = nextLeft;
-            this.allColumns[nextLeftIndex] = column;
-        }
-        this.activeColumnContainer.moveLeft(columnId);
-        this.addEvent(new CompositionColumnMovedLeftAggregateEvent(this.getId(), this.getActiveColumns()));
-    }
-    moveRight(columnId) {
-        const columnIndex = this.findColumnIndex(columnId);
-        let nextRight, nextRightIndex = -1;
-        for (let i = columnIndex + 1; i < this.allColumns.length; i += 1) {
-            const rightColumn = this.allColumns[i];
-            if (rightColumn.isEnabled()) {
-                nextRight = rightColumn;
-                nextRightIndex = i;
-                break;
-            }
-        }
-        if (nextRight && nextRightIndex >= 0 && columnIndex >= 0) {
-            const column = this.allColumns[columnIndex];
-            this.allColumns[columnIndex] = nextRight;
-            this.allColumns[nextRightIndex] = column;
-        }
-        this.activeColumnContainer.moveRight(columnId);
-        this.addEvent(new CompositionColumnMovedRightAggregateEvent(this.getId(), this.getActiveColumns()));
-    }
-    recalculateColumns() {
-        const activeColumns = this.activeColumnEntityConverter.convertMany(this.getEnabledColumns());
-        this.activeColumnContainer.setColumns(activeColumns, activeColumns.map(c => c.getColumnConfig()));
-    }
-    // TODO Refactor
-    setWidthWithEvent(width) {
-        const calculator = new CompositionContainerWidthCalculator(this.getMinColumnWidth());
-        const minWidth = calculator.calculateMinWidth(this.activeColumnContainer.getColumnWidths());
-        if (minWidth > width) {
-            this.width = minWidth;
-        }
-        else {
-            this.width = width;
-        }
-        this.activeColumnContainer.setWidth(this.getWidth());
-        this.addEvent(new CompositionWidthSetAggregateEvent(this.getId()));
-    }
-    // TODO Refactor
-    setContainerWidthWithEvent(containerWidth) {
-        const calculator = new CompositionContainerWidthCalculator(this.getMinColumnWidth());
-        const minWidth = calculator.calculateMinWidth(this.activeColumnContainer.getColumnWidths());
-        if (minWidth > containerWidth) {
-            this.containerInDOMWidth = minWidth;
-        }
-        else {
-            this.containerInDOMWidth = containerWidth;
-        }
-        this.activeColumnContainer.setWidth(this.getWidth());
-        this.addEvent(new CompositionContainerWidthSetAggregateEvent(this.getId(), containerWidth));
-    }
-    setResizeWidthWithEvent(enabled) {
-        this.resizeWidthEnabled = enabled;
-        this.activeColumnContainer.setWidth(this.getWidth());
-        this.addEvent(new CompositionResizeWidthSetAggregateEvent(this.getId()));
-    }
-    // REMOVE -> move to allColumnsContainer
-    getEnabledColumns() {
-        return this.allColumns.filter(c => c.isEnabled());
-    }
-    findColumnIndex(columnId) {
-        return this.allColumns.findIndex((column) => column.getId().equals(columnId));
-    }
-    getMinColumnWidth() {
-        return this.activeColumnContainer.getMinColumnWidth();
+    setTheme(theme) {
+        this.theme = theme;
+        this.addEvent(new SchemaThemeSetAggregateEvent(this.getId(), this.theme));
     }
 }
+SchemaAggregate.DEFAULT_THEME = SchemaTheme.GENERIC;
+SchemaAggregate.DEFAULT_ROW_COLORING = SchemaRowColoring.ODD;
+SchemaAggregate.DEFAULT_VERTICAL_GRID = true;
+SchemaAggregate.DEFAULT_HORIZONTAL_GRID = true;
 
-class CompositionAggregateFactory extends AggregateFactory {
-    constructor(columnFactory, groupFactory) {
+class SchemaAggregateFactory extends AggregateFactory {
+    constructor() {
         super();
-        this.columnFactory = columnFactory;
-        this.groupFactory = groupFactory;
     }
-    create(id) {
-        return new CompositionAggregate(id, this.columnFactory, this.groupFactory);
+    create(aggregateId) {
+        return new SchemaAggregate(aggregateId);
     }
 }
-CompositionAggregateFactory.services = [
-    ColumnEntityFactory,
-    CompositionGroupFactory
-];
 
-const compositionKey = 'CompositionAggregate';
-class CompositionDomainModule {
+class SchemaRowClassArchive extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+
+class SchemaRowStyleArchive extends AggregateArchive {
+    constructor() {
+        super();
+    }
+}
+
+class SchemaDomainModule {
     defineAggregate() {
         return {
-            aggregateKey: compositionKey,
-            createCommandHandler: CreateCompositionCommandHandler,
-            factory: CompositionAggregateFactory,
-            repository: InMemoryCompositionAggregateRepository
+            aggregateKey: schemaKey,
+            createCommandHandler: CreateSchemaCommandHandler,
+            factory: SchemaAggregateFactory,
+            repository: InMemorySchemaAggregateRepository
         };
     }
     registerKey() {
-        return compositionKey;
+        return schemaKey;
     }
     registerProviders(container) {
-        container.provide(InMemoryCompositionAggregateStore);
-        container.provide(CompositionAggregateRepository, InMemoryCompositionAggregateRepository);
-        container.provide(CompositionDispatcher);
-        container.provide(ColumnEntityFactory);
-        container.provide(ColumnPresentationConverter);
-        container.provide(CompositionEventConverter);
-        container.provide(ColumnFieldFactory);
-        container.provide(CompositionGroupFactory);
-        container.provide(ColumnHighlightArchive);
-        container.provide(InMemoryCompositionStore);
-        container.provide(InMemoryCompositionReadStore);
-        container.provide(CompositionReadModelRootRepository, InMemoryCompositionRepository);
+        container.provide(SchemaRowClassArchive);
+        container.provide(SchemaRowStyleArchive);
     }
     registerCommandHandlers() {
         return [
-            SetColumnsCommandHandler,
-            SetCompositionWidthCommandHandler,
-            SetCompositionResizeWidthCommandHandler,
-            SetCompositionContainerWidthCommandHandler,
-            CompositionSetColumnEnabledCommandHandler,
-            CompositionChangeSortStatusCommandHandler,
-            CompositionMoveLeftColumnCommandHandler,
-            CompositionMoveRightColumnCommandHandler,
-            SetGroupsCommandHandler
+            SetSchemaThemeCommandHandler,
+            SetRowColoringCommandHandler,
+            SetSchemaHorizontalGridCommandHandler,
+            SetSchemaVerticalGridCommandHandler
         ];
     }
     registerDomainEventHandler() {
-        return [];
+        return [
+            SchemaThemeRepository,
+            SchemaHorizontalGridRepository,
+            SchemaRowColoringRepository,
+            SchemaVerticalGridRepository
+        ];
     }
     registerMultiDomainEventHandler() {
         return [
-            CompositionChangeSortStatusEventHandler
+            SchemaCssClassesEventHandler
         ];
     }
 }
 
-class GroupCollection {
-    constructor(groups, showGroups) {
-        this.groups = groups;
-        this.showGroups = showGroups;
-    }
-    getGroups() {
-        return this.groups;
-    }
-    isVisible() {
-        return this.showGroups;
-    }
-}
-
-class CompositionGroupArchive extends AggregateArchive {
+class SchemaDispatcher {
     constructor() {
-        super(CompositionGroupArchive.default);
+        this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
+    }
+    create(schemaId) {
+        this.commandDispatcher.dispatch(new CreateSchemaCommand(schemaId));
+    }
+    setTheme(theme, schemaId) {
+        this.commandDispatcher.dispatch(new SetSchemaThemeCommand(schemaId, theme));
+    }
+    setRowColoring(rowColoring, schemaId) {
+        this.commandDispatcher.dispatch(new SetRowColoringCommand(schemaId, rowColoring));
+    }
+    setVerticalGrid(verticalGrid, schemaId) {
+        this.commandDispatcher.dispatch(new SetSchemaVerticalGridCommand(schemaId, verticalGrid));
+    }
+    setHorizontalGrid(horizontalGrid, schemaId) {
+        this.commandDispatcher.dispatch(new SetSchemaHorizontalGridCommand(schemaId, horizontalGrid));
     }
 }
-CompositionGroupArchive.default = new GroupCollection([], false);
 
-class CompositionDomainCommandPublisher extends CompositionPublisher {
-    constructor(compositionDispatcher, compositionGroupRepository, columnHighlightArchive) {
+class SchemaDomainPublisher extends SchemaPublisher {
+    constructor(schemaDispatcher, structurePublisher, fabricModalThemeService, schemaRowClassArchive, schemaRowStyleArchive) {
         super();
-        this.compositionDispatcher = compositionDispatcher;
-        this.compositionGroupRepository = compositionGroupRepository;
-        this.columnHighlightArchive = columnHighlightArchive;
+        this.schemaDispatcher = schemaDispatcher;
+        this.structurePublisher = structurePublisher;
+        this.fabricModalThemeService = fabricModalThemeService;
+        this.schemaRowClassArchive = schemaRowClassArchive;
+        this.schemaRowStyleArchive = schemaRowStyleArchive;
     }
-    create(compositionId) {
-        this.compositionDispatcher.create(compositionId);
+    create(schemaId) {
+        this.schemaDispatcher.create(schemaId.toAggregateId());
     }
-    setColumns(params, compositionId) {
-        this.compositionDispatcher.setColumns(compositionId, params);
+    setTheme(theme, schemaId, structureId) {
+        this.schemaDispatcher.setTheme(theme, schemaId.toAggregateId());
+        this.fabricModalThemeService.changeTheme(this.toFabricTheme(theme)); // TODO github #2162
+        this.structurePublisher.setRowHeightBasedOnTheme(theme, structureId);
     }
-    setGroups(configs, compositionId) {
-        // this.compositionGroupRepository.next(compositionId, CompositionGroupRepository.default);
-        this.compositionDispatcher.setGroups(compositionId, configs);
+    setRowColoring(rowColoring, schemaId) {
+        const schemaRowColoring = this.toSchemaRowColoring(rowColoring);
+        this.schemaDispatcher.setRowColoring(schemaRowColoring, schemaId.toAggregateId());
     }
-    setWidth(width, compositionId) {
-        this.compositionDispatcher.setWidth(compositionId, width);
+    setVerticalGrid(verticalGrid, schemaId) {
+        this.schemaDispatcher.setVerticalGrid(verticalGrid, schemaId.toAggregateId());
     }
-    setContainerWidth(width, compositionId) {
-        this.compositionDispatcher.setContainerWidth(compositionId, width);
+    setHorizontalGrid(horizontalGrid, schemaId) {
+        this.schemaDispatcher.setHorizontalGrid(horizontalGrid, schemaId.toAggregateId());
     }
-    setResizeWidth(enabled, compositionId) {
-        this.compositionDispatcher.setResizeWidth(compositionId, enabled);
+    setRowClass(schemaRowClass, schemaId) {
+        return this.schemaRowClassArchive.next(schemaId.toAggregateId(), schemaRowClass);
     }
-    enableColumn(columnDefinitionId, compositionId) {
-        this.compositionDispatcher.setColumnEnabled(compositionId, this.toColumnId(columnDefinitionId), true);
+    setRowStyle(rowStyle, schemaId) {
+        return this.schemaRowStyleArchive.next(schemaId.toAggregateId(), rowStyle);
     }
-    disableColumn(columnDefinitionId, compositionId) {
-        this.compositionDispatcher.setColumnEnabled(compositionId, this.toColumnId(columnDefinitionId), false);
+    // move to function
+    toSchemaRowColoring(coloring) {
+        switch (coloring) {
+            case RowColoring.NONE:
+                return SchemaRowColoring.NONE;
+            case RowColoring.ODD:
+                return SchemaRowColoring.ODD;
+            case RowColoring.EVEN:
+                return SchemaRowColoring.EVEN;
+            default:
+                return SchemaRowColoring.NONE;
+        }
     }
-    moveLeft(columnDefinitionId, compositionId) {
-        this.compositionDispatcher.moveLeft(compositionId, this.toColumnId(columnDefinitionId));
-    }
-    moveRight(columnDefinitionId, compositionId) {
-        this.compositionDispatcher.moveRight(compositionId, this.toColumnId(columnDefinitionId));
-    }
-    highlightColumn(columnDefinitionId, compositionId) {
-        this.columnHighlightArchive.toggle(compositionId, new ColumnId(columnDefinitionId.getId()));
-    }
-    toColumnId(defId) {
-        return new ColumnId(defId.getId());
+    // move to function
+    toFabricTheme(schemaTheme) {
+        switch (schemaTheme) {
+            case SchemaTheme.DARK: {
+                return Theme.DARK;
+            }
+            case SchemaTheme.FABRIC: {
+                return Theme.FABRIC;
+            }
+            case SchemaTheme.GENERIC: {
+                return Theme.GENERIC;
+            }
+            case SchemaTheme.LIGHT: {
+                return Theme.LIGHT;
+            }
+            case SchemaTheme.MATERIAL: {
+                return Theme.MATERIAL;
+            }
+            default:
+                return Theme.FABRIC;
+        }
     }
 }
-CompositionDomainCommandPublisher.services = [
-    CompositionDispatcher,
-    CompositionGroupArchive,
-    ColumnHighlightArchive
+SchemaDomainPublisher.services = [
+    SchemaDispatcher,
+    StructurePublisher,
+    FabricModalThemeService,
+    SchemaRowClassArchive,
+    SchemaRowStyleArchive
 ];
 
-class CompositionDomainWarehouse extends CompositionWarehouse {
-    constructor(compositionRepository, compositionGroupArchive, columnHighlightArchive) {
+class SchemaDomainWarehouse extends SchemaWarehouse {
+    constructor(schemaCssClassesRepository, schemaThemeRepository, schemaHorizontalGridRepository, schemaRowColoringRepository, schemaVerticalGridRepository, schemaRowClassArchive, schemaRowStyleArchive) {
         super();
-        this.compositionRepository = compositionRepository;
-        this.compositionGroupArchive = compositionGroupArchive;
-        this.columnHighlightArchive = columnHighlightArchive;
+        this.schemaCssClassesRepository = schemaCssClassesRepository;
+        this.schemaThemeRepository = schemaThemeRepository;
+        this.schemaHorizontalGridRepository = schemaHorizontalGridRepository;
+        this.schemaRowColoringRepository = schemaRowColoringRepository;
+        this.schemaVerticalGridRepository = schemaVerticalGridRepository;
+        this.schemaRowClassArchive = schemaRowClassArchive;
+        this.schemaRowStyleArchive = schemaRowStyleArchive;
     }
-    onWidth(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getWidth()));
+    onTheme(schemaId) {
+        return this.schemaThemeRepository
+            .on(schemaId.toAggregateId());
     }
-    onContainerWidth(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getContainerWidth()));
+    onceTheme(schemaId) {
+        return singleFromObservable(this.onTheme(schemaId));
     }
-    onWidthForEachColumn(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getAllColumns().map(c => c.width)));
+    onHorizontalGrid(schemaId) {
+        return this.schemaHorizontalGridRepository
+            .on(schemaId.toAggregateId());
     }
-    onHeaderColumns(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getActiveHeaderColumns()));
+    onVerticalGrid(schemaId) {
+        return this.schemaVerticalGridRepository
+            .on(schemaId.toAggregateId());
     }
-    onAllColumns(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getHeaderColumns()));
+    onRowColoring(schemaId) {
+        return this.schemaRowColoringRepository
+            .on(schemaId.toAggregateId());
     }
-    onSortOrder(fieldId, compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getActiveHeaderColumns()), hermesMap((columns) => {
-            return columns.filter((c) => c.getFieldId().equals(fieldId));
-        }), hermesFilter((columns) => {
-            return columns.length > 0;
-        }), hermesMap(columns => columns[0].getSortStatus()));
+    onCssClasses(schemaId) {
+        return this.schemaCssClassesRepository
+            .on(schemaId.toAggregateId());
     }
-    onTemplateColumns(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.getTemplateColumns()));
+    onRowClass(schemaId) {
+        return this.schemaRowClassArchive.on(schemaId.toAggregateId());
     }
-    onResizeWidth(compositionId) {
-        return this.compositionRepository
-            .on(compositionId)
-            .pipe(hermesMap((composition) => composition.isResizeWidthEnabled()));
-    }
-    onGroups(compositionId) {
-        return this.compositionGroupArchive.on(compositionId);
-    }
-    onHighlightedColumn(columnId, compositionId) {
-        return this.columnHighlightArchive
-            .on(compositionId)
-            .pipe(hermesMap((manager) => manager.isHighlighted(columnId)));
-    }
-    findColumnNames(compositionId) {
-        let names = [];
-        this.compositionRepository
-            .find(compositionId)
-            .ifPresent((value) => {
-            names = value.getAllColumns().map((cd) => cd.getName());
-        });
-        return names;
+    onRowStyle(schemaId) {
+        return this.schemaRowStyleArchive.on(schemaId.toAggregateId());
     }
 }
-CompositionDomainWarehouse.services = [
-    CompositionReadModelRootRepository,
-    CompositionGroupArchive,
-    ColumnHighlightArchive
+SchemaDomainWarehouse.services = [
+    SchemaCssClassesRepository,
+    SchemaThemeRepository,
+    SchemaHorizontalGridRepository,
+    SchemaRowColoringRepository,
+    SchemaVerticalGridRepository,
+    SchemaRowClassArchive,
+    SchemaRowStyleArchive
 ];
 
-class CompositionDomainEventRepository extends CompositionEventRepository {
+class SchemaDomainEventRepository extends SchemaEventRepository {
     constructor() {
         super();
     }
-    onColumnsChanged(compositionId) {
-        return this.onEvent(compositionId, CompositionColumnsSetEvent);
-    }
-    onContainerWidthChanged(compositionId) {
-        return this.onEvent(compositionId, CompositionContainerWidthSetEvent)
+    onThemeChanged(schemaId) {
+        return this.onEvent(schemaId, SchemaThemeSetEvent)
             .pipe(hermesMap((event) => {
-            return event.getPayload();
-        }), hermesFilter((width) => !!width));
+            return event.getTheme();
+        }));
+    }
+    onHorizontalGridChanged(schemaId) {
+        return this.onEvent(schemaId, SchemaHorizontalGridSetEvent)
+            .pipe(hermesMap((event) => event.getHorizontalGrid()));
+    }
+    onVerticalGridChanged(schemaId) {
+        return this.onEvent(schemaId, SchemaVerticalGridSetEvent)
+            .pipe(hermesMap((event) => event.getVerticalGrid()));
+    }
+    onRowColoring(schemaId) {
+        return this.onEvent(schemaId, RowColoringSetEvent)
+            .pipe(hermesMap((event) => event.getRowColoring()));
     }
 }
 
-class DomainColumnAutoConfigurator extends ColumnAutoConfigurator {
-    configure(source) {
-        if (source !== undefined && source !== null && Array.isArray(source) && source.length === 0) {
-            return [];
-        }
-        const rawItem = source[0];
-        return Object.keys(rawItem)
-            .map((key, index) => {
-            return this.toColumnConfig(key, rawItem);
-        });
-    }
-    toColumnConfig(key, rawItem) {
-        return {
-            field: this.getField(key),
-            header: this.getHeader(key),
-            type: this.getType(key, rawItem)
-        };
-    }
-    getField(key) {
-        return key;
-    }
-    getHeader(key) {
-        return key[0].toUpperCase() + key.slice(1);
-    }
-    getType(key, rawItem) {
-        if (typeof rawItem[key] === 'string') {
-            return DataType.STRING;
-        }
-        else if (typeof rawItem[key] === 'number') {
-            return DataType.NUMBER;
-        }
-        else if (rawItem[key] instanceof Date) {
-            return DataType.DATE;
-        }
-        else if (typeof rawItem[key] === 'boolean') {
-            return DataType.BOOLEAN;
-        }
-        else {
-            return DataType.UNKNOWN;
-        }
-    }
-}
-
-class CompositionApiModule {
+class SchemaApiModule {
     registerProviders(container) {
-        container.provide(InMemoryCompositionReadStore);
-        container.provide(CompositionReadModelRootRepository, InMemoryCompositionRepository);
-        container.provide(ColumnDefinitionFactory);
-        container.provide(ViewTemplateRepository);
-        container.provide(ViewTemplateFactory);
-        container.provide(EditTemplateFactory);
-        container.provide(EditTemplateRepository);
-        container.provide(InMemoryCompositionStore);
-        container.provide(CompositionReadModelRootConverter);
-        container.provide(CompositionGroupArchive);
-        container.provide(CompositionPublisher, CompositionDomainCommandPublisher);
-        container.provide(CompositionWarehouse, CompositionDomainWarehouse);
-        container.provide(CompositionEventRepository, CompositionDomainEventRepository);
-        container.provide(ColumnAutoConfigurator, DomainColumnAutoConfigurator);
+        container.provide(SchemaDispatcher);
+        container.provide(SchemaAggregateRepository, InMemorySchemaAggregateRepository);
+        container.provide(InMemorySchemaAggregateStore);
+        container.provide(InMemorySchemaStore);
+        container.provide(SchemaPublisher, SchemaDomainPublisher);
+        container.provide(SchemaWarehouse, SchemaDomainWarehouse);
+        container.provide(SchemaEventRepository, SchemaDomainEventRepository);
+        container.provide(SchemaCssClassesRepository);
     }
 }
-const compositionInitializer = new DomainInitializer(new CompositionApiModule(), new CompositionDomainModule());
+const initSchema = () => {
+    new DomainInitializer(new SchemaApiModule(), new SchemaDomainModule()).init();
+};
+
+function useFactorySchemaCommandInvoker() {
+    return CoreContainer.resolve(SchemaPublisher);
+}
+function useFactorySchemaWarehouse() {
+    return CoreContainer.resolve(SchemaWarehouse);
+}
+function useFactorySchemaEventRepository() {
+    return CoreContainer.resolve(SchemaEventRepository);
+}
+initSchema();
+class SchemaFeatureModule extends FeatureModule {
+    constructor() {
+        super();
+    }
+    static forComponent() {
+        return [];
+    }
+}
+SchemaFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+SchemaFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
+SchemaFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, providers: [
+        { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
+        { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
+        { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
+    ], imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    providers: [
+                        { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
+                        { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
+                        { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
+                    ],
+                    declarations: [],
+                    exports: []
+                }]
+        }], ctorParameters: function () { return []; } });
 
 class SanitizeModule {
 }
@@ -17893,7 +16979,7 @@ const exportDeclarations$2 = [
     PercentageViewComponent,
     HtmlViewComponent
 ];
-compositionInitializer.init();
+initializeComposition();
 function provideCompositionCommandPublisher() {
     return CoreContainer.resolve(CompositionPublisher);
 }
@@ -17952,6 +17038,11 @@ CompositionFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0"
         { provide: CompositionPublisher, useFactory: provideCompositionCommandPublisher },
         { provide: CompositionWarehouse, useFactory: provideCompositionWarehouse },
         { provide: CompositionEventRepository, useFactory: provideCompositionEventRepository },
+        CompositionTemplateWarehouse,
+        ViewTemplateRepository,
+        ViewTemplateFactory,
+        EditTemplateRepository,
+        EditTemplateFactory,
         { provide: ColumnAutoConfigurator, useFactory: provideColumnAutoConfigurator },
         { provide: ColumnFieldFactory, useFactory: provideColumnFieldFactory }
     ], imports: [CommonModule,
@@ -17996,6 +17087,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                         { provide: CompositionPublisher, useFactory: provideCompositionCommandPublisher },
                         { provide: CompositionWarehouse, useFactory: provideCompositionWarehouse },
                         { provide: CompositionEventRepository, useFactory: provideCompositionEventRepository },
+                        CompositionTemplateWarehouse,
+                        ViewTemplateRepository,
+                        ViewTemplateFactory,
+                        EditTemplateRepository,
+                        EditTemplateFactory,
                         { provide: ColumnAutoConfigurator, useFactory: provideColumnAutoConfigurator },
                         { provide: ColumnFieldFactory, useFactory: provideColumnFieldFactory }
                     ]
@@ -18024,6 +17120,891 @@ const structureGates = [
     StructureQuickFiltersGate,
     VerticalFormationGate
 ];
+
+class SetSourceLoadingEvent extends StructureDomainEvent {
+    constructor(aggregateId) {
+        super(aggregateId, null, 'SetSourceLoadingEvent');
+    }
+}
+
+class SourceSetLoadingCommand extends StructureCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'SourceSetLoadingCommand');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class SourceSetLoadingCommandHandler {
+    constructor() {
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+    }
+    forCommand() {
+        return SourceSetLoadingCommand;
+    }
+    handle(aggregate, command) {
+        const enabled = command.isEnabled(), source = aggregate.getSource();
+        source.setLoading(enabled);
+    }
+    publish(aggregate, command) {
+        this.domainEventPublisher.publish(new SetSourceLoadingEvent(command.getAggregateId()));
+    }
+}
+
+class SetOriginCommand extends StructureCommand {
+    constructor(structureId, items = []) {
+        super(structureId, 'SetOriginCommand');
+        this.items = items;
+    }
+    getItems() {
+        return this.items;
+    }
+}
+
+class SetOriginCommandHandler {
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+    }
+    forCommand() {
+        return SetOriginCommand;
+    }
+    handle(structure, command) {
+        const items = command.getItems();
+        structure.setOrigin(items);
+    }
+    publish(aggregate, command) {
+        const aggregateEvents = aggregate.getEvents();
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    }
+}
+SetOriginCommandHandler.services = [SourceDomainEventPublisher];
+
+class StructureEditSourceItemCommand extends StructureCommand {
+    constructor(structureId, params) {
+        super(structureId, 'StructureEditSourceItemCommand');
+        this.params = params;
+    }
+    getParams() {
+        return this.params;
+    }
+}
+
+class StructureEditSourceItemCommandHandler {
+    constructor(structureSourceDomainEventPublisher) {
+        this.structureSourceDomainEventPublisher = structureSourceDomainEventPublisher;
+    }
+    forCommand() {
+        return StructureEditSourceItemCommand;
+    }
+    handle(structure, command) {
+        const params = command.getParams();
+        structure.editItem(params);
+    }
+    publish(aggregate, command) {
+        const aggregateEvents = aggregate.getEvents();
+        this.structureSourceDomainEventPublisher.publish(aggregateEvents);
+    }
+}
+StructureEditSourceItemCommandHandler.services = [SourceDomainEventPublisher];
+
+class StructureSourceItemEditedAggregateEvent extends StructureAggregateEvent {
+    constructor(aggregateId, beforeItem, afterItem) {
+        super(aggregateId, 'StructureSourceItemEditedAggregateEvent');
+        this.beforeItem = beforeItem;
+        this.afterItem = afterItem;
+    }
+    toDomainEvent() {
+        return new StructureSourceItemEditedEvent(this.getAggregateId(), this.beforeItem, this.afterItem);
+    }
+    getBeforeItem() {
+        return this.beforeItem;
+    }
+    getAfterItem() {
+        return this.afterItem;
+    }
+}
+
+class StructureOriginChangedAggregateEvent extends StructureAggregateEvent {
+    constructor(aggregateId, origin) {
+        super(aggregateId, 'StructureOriginChangedAggregateEvent');
+        this.origin = origin;
+    }
+    toDomainEvent() {
+        return new OriginSetEvent(this.getAggregateId(), this.origin);
+    }
+    getOrigin() {
+        return this.origin;
+    }
+}
+
+class ItemEntityId extends EntityId {
+    constructor(id) {
+        super(id);
+    }
+    toString() {
+        return this.getId();
+    }
+}
+
+class SourceManager {
+    constructor(formationManager) {
+        this.events = [];
+        this.loading = false;
+        this.fetched = false;
+        this.entities = [];
+        // Entities after filtering, searching
+        this.preparedEntities = [];
+        this.slicedEntities = [];
+        this.formationManager = formationManager;
+        this.events.push(...this.formationManager.init(true, RowSelectionMode.SINGLE, RowSelectionType.ROW));
+    }
+    isLoading() {
+        return this.loading;
+    }
+    setLoading(enabled) {
+        this.loading = enabled;
+    }
+    setEntities(ent) {
+        this.entities = ent;
+        this.recalculatePositions();
+    }
+    getEntities() {
+        return this.entities;
+    }
+    setPreparedEntities() {
+        this.preparedEntities = Array.from(this.entities);
+    }
+    getPreparedEntities() {
+        return this.preparedEntities;
+    }
+    setSlicedEntities(ent) {
+        this.slicedEntities = ent;
+    }
+    getSlicedEntities() {
+        return this.slicedEntities;
+    }
+    setOrigin(items = [], structureId) {
+        this.origin = this.convertItems(items);
+        return this.createOriginChangedEvent(structureId);
+    }
+    setConvertedOrigin(items = [], structureId) {
+        this.origin = Array.from(items);
+        return this.createOriginChangedEvent(structureId);
+    }
+    getOrigin() {
+        return this.origin;
+    }
+    editOriginItem(itemId, value, field, structureId) {
+        const item = this.findOriginItem(itemId), itemBeforeChange = item.clone();
+        if (item) {
+            item.sourceItem[field.getAccessor()] = value;
+            item.bumpVersion();
+        }
+        return [
+            new StructureSourceItemEditedAggregateEvent(structureId, itemBeforeChange, item.clone()),
+            this.createOriginChangedEvent(structureId)
+        ];
+    }
+    deleteAllSelected(structureId) {
+        let events = [];
+        const itemEntityIds = this.formationManager.getSelectedItemIds();
+        itemEntityIds.forEach((itemEntityId) => {
+            events = events.concat(this.deleteOriginItemByItemId(itemEntityId, structureId));
+        });
+        return events;
+    }
+    deleteOriginItem(payload, structureId) {
+        if (payload instanceof ItemEntityId) {
+            return this.deleteOriginItemByItemId(payload, structureId);
+        }
+        else if (Array.isArray(payload)) {
+            let events = [];
+            payload.forEach((item) => {
+                events = events.concat(this.deleteOneOriginItem(item, structureId));
+            });
+            return events;
+        }
+        else if (Number.isInteger(payload)) {
+            return this.deleteOriginItemByIndex(payload, structureId);
+        }
+        else {
+            return [];
+        }
+    }
+    addOriginItem(item, structureId) {
+        this.origin.push(item);
+        return [this.createOriginChangedEvent(structureId)];
+    }
+    selectAll() {
+        this.formationManager.selectAll(this.getEntities().map(entity => entity.getId()));
+    }
+    unselectAll() {
+        this.formationManager.unselectAll();
+    }
+    selectByIndex(indexes) {
+        this.formationManager.selectByIndex(indexes, this.getEntities().map(e => e.getId()));
+    }
+    selectByIds(ids) {
+        this.formationManager.selectByIds(ids, this.getEntities());
+    }
+    reSelect() {
+        this.formationManager.reSelectByIds(this.getEntities());
+    }
+    setSelectedRows(selectedRows) {
+        this.formationManager.selectRows(selectedRows, this.getEntities().map(e => e.getId()));
+    }
+    toggleRow(itemId, type) {
+        this.formationManager.toggleRow(itemId, type, this.getEntities().map(e => e.getId()));
+    }
+    getFormation() {
+        return this.formationManager;
+    }
+    convertItems(items) {
+        return items.map((item, index) => {
+            return new ItemEntity(new ItemEntityId(RandomStringGenerator.generate()), item, index);
+        });
+    }
+    createOriginChangedEvent(structureId) {
+        return new StructureOriginChangedAggregateEvent(structureId, this.origin);
+    }
+    findOriginItem(itemId) {
+        return this.origin.find((item) => item.getId().toString() === itemId);
+    }
+    findOriginItemIndex(itemId) {
+        return this.origin.findIndex((item) => item.getId().toString() === itemId);
+    }
+    recalculatePositions() {
+        this.entities.forEach((ent, index) => {
+            ent.setPosition(index);
+        });
+    }
+    deleteOneOriginItem(item, structureId) {
+        if (item instanceof ItemEntityId) {
+            return this.deleteOriginItemByItemId(item, structureId);
+        }
+        else if (Number.isInteger(item)) {
+            return this.deleteOriginItemByIndex(item, structureId);
+        }
+        else {
+            return [];
+        }
+    }
+    deleteOriginItemByItemId(itemId, structureId) {
+        const index = this.findOriginItemIndex(itemId.toString());
+        return this.deleteOriginItemByIndex(index, structureId);
+    }
+    deleteOriginItemByIndex(index, structureId) {
+        if (index > -1) {
+            const removedItems = this.origin.splice(index, 1);
+            if (removedItems.length > 0) {
+                for (const element of removedItems) {
+                    this.formationManager.unselectRow(element.getId());
+                }
+                this.formationManager.calculateAllSelected(removedItems.map((f) => f.getId()));
+                this.formationManager.calculateAllUnselected();
+            }
+            return [
+                this.createOriginChangedEvent(structureId)
+            ];
+        }
+        return [];
+    }
+    deleteManyOriginItemByIndex(indexes, structureId) {
+        let events = [];
+        indexes.forEach((index) => {
+            events = events.concat(this.deleteOriginItemByIndex(index, structureId));
+        });
+        return events;
+    }
+    deleteManyOriginItemByItemID(itemIds, structureId) {
+        let events = [];
+        itemIds.forEach((itemId) => {
+            events = events.concat(this.deleteOriginItemByItemId(itemId, structureId));
+        });
+        return events;
+    }
+}
+
+class FormationSelection {
+    constructor(mode, type) {
+        this.mode = mode;
+        this.type = type;
+    }
+    setMode(mode) {
+        this.mode = mode;
+    }
+    getMode() {
+        if (this.type === RowSelectionType.RADIO) {
+            return RowSelectionMode.SINGLE;
+        }
+        else {
+            return this.mode;
+        }
+    }
+    isSingle() {
+        return this.getMode() === RowSelectionMode.SINGLE;
+    }
+    setType(type) {
+        this.type = type;
+    }
+    getType() {
+        return this.type;
+    }
+}
+
+class SelectionModeSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, mode) {
+        super(aggregateId, mode, 'SelectionModeSetEvent');
+        this.mode = mode;
+    }
+    getMode() {
+        return this.mode;
+    }
+}
+
+class SelectionModeSetAggregateEvent extends StructureAggregateEvent {
+    constructor(structureId, mode) {
+        super(structureId, 'SelectionModeSetAggregateEvent');
+        this.mode = mode;
+    }
+    toDomainEvent() {
+        return new SelectionModeSetEvent(this.getAggregateId(), this.mode);
+    }
+}
+
+class SelectionTypeSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, selectionType) {
+        super(aggregateId, selectionType, 'SelectionTypeSetEvent');
+        this.selectionType = selectionType;
+    }
+    getType() {
+        return this.selectionType;
+    }
+}
+
+class SelectionTypeSetAggregateEvent extends StructureAggregateEvent {
+    constructor(structureId, selectionType) {
+        super(structureId, 'SelectionTypeSetAggregateEvent');
+        this.selectionType = selectionType;
+    }
+    toDomainEvent() {
+        return new SelectionTypeSetEvent(this.getAggregateId(), this.selectionType);
+    }
+}
+
+class SelectionEnabledSetEvent extends StructureDomainEvent {
+    constructor(aggregateId, enabled) {
+        super(aggregateId, enabled, 'SelectionEnabledSetEvent');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class SelectionEnabledSetAggregateEvent extends StructureAggregateEvent {
+    constructor(structureId, enabled) {
+        super(structureId, 'SelectionEnabledSetAggregateEvent');
+        this.enabled = enabled;
+    }
+    toDomainEvent() {
+        return new SelectionEnabledSetEvent(this.getAggregateId(), this.enabled);
+    }
+}
+
+class FormationManager {
+    constructor(id, selectedItemIds) {
+        this.id = id;
+        this.selectedItemIds = selectedItemIds;
+        this.selection = new FormationSelection(RowSelectionMode.SINGLE, RowSelectionType.ROW);
+        this.matcher = (item) => item.id;
+    }
+    init(enabled, mode, type) {
+        this.enabled = enabled;
+        this.selection.setMode(mode);
+        this.selection.setType(type);
+        return [
+            new SelectionEnabledSetAggregateEvent(this.getId(), this.enabled),
+            new SelectionModeSetAggregateEvent(this.getId(), this.selection.getMode()),
+            new SelectionTypeSetAggregateEvent(this.getId(), this.selection.getType())
+        ];
+    }
+    setSelection(enabled) {
+        this.enabled = enabled;
+        return [
+            new SelectionEnabledSetAggregateEvent(this.getId(), this.enabled)
+        ];
+    }
+    setMode(mode) {
+        this.selection.setMode(mode);
+        return [
+            new SelectionModeSetAggregateEvent(this.getId(), this.selection.getMode()),
+            new SelectionTypeSetAggregateEvent(this.getId(), this.selection.getType())
+        ];
+    }
+    setType(type) {
+        this.selection.setType(type);
+        return [
+            new SelectionModeSetAggregateEvent(this.getId(), this.selection.getMode()),
+            new SelectionTypeSetAggregateEvent(this.getId(), this.selection.getType())
+        ];
+    }
+    setMatcher(matcher) {
+        this.matcher = matcher;
+    }
+    isAllSelected() {
+        return this.allSelected;
+    }
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+    getSelectedItemIds() {
+        return Array.from(this.selectedItemIds).map(id => new ItemEntityId(id));
+    }
+    selectAll(allEntityIds) {
+        this.selectedItemIds = new Set(allEntityIds.map(entity => entity.toString()));
+        this.allSelected = true;
+        this.allUnselected = false;
+    }
+    unselectAll() {
+        this.selectedItemIds.clear();
+        this.allSelected = false;
+        this.allUnselected = true;
+    }
+    reSelectByIds(itemEntities) {
+        this.selectByIds(this.getSelectedItemIds().map(i => i.getId()), itemEntities);
+    }
+    selectByIds(ids, itemEntities) {
+        if (!this.enabled) {
+            return;
+        }
+        const itemIds = [];
+        for (let i = 0; i < ids.length; i++) {
+            const items = itemEntities
+                .filter((item) => {
+                return this.matcher(item.getSourceItem()) === ids[i];
+            })
+                .map((item) => item.getId().toString());
+            itemIds.push(...items);
+        }
+        let type = RowSelectToggleType.ADD;
+        if (this.selection.isSingle()) {
+            type = RowSelectToggleType.NONE;
+        }
+        itemIds.forEach((id) => {
+            this.toggleRowByType(type, id);
+        });
+        this.calculateAllSelected(itemEntities.map(i => i.getId()));
+        this.calculateAllUnselected();
+    }
+    selectByIndex(indexes, allEntityIds) {
+        if (!this.enabled) {
+            return;
+        }
+        const itemIds = indexes.map((i) => {
+            if (!allEntityIds[i]) {
+                console.error('Item not found');
+            }
+            return allEntityIds[i].toString();
+        });
+        let type = RowSelectToggleType.ADD;
+        if (this.selection.isSingle()) {
+            type = RowSelectToggleType.NONE;
+        }
+        itemIds.forEach((id) => {
+            this.toggleRowByType(type, id);
+        });
+        this.calculateAllSelected(allEntityIds);
+        this.calculateAllUnselected();
+    }
+    selectRows(itemIds, itemEntityIds) {
+    }
+    toggleRow(itemId, type, itemEntityIds) {
+        if (!this.enabled) {
+            return;
+        }
+        if (type === RowSelectToggleType.ADD && this.selection.isSingle()) {
+            type = RowSelectToggleType.NONE;
+        }
+        this.toggleRowByType(type, itemId);
+        this.calculateAllSelected(itemEntityIds);
+        this.calculateAllUnselected();
+    }
+    calculateAllSelected(itemEntityIds) {
+        if (itemEntityIds.length !== this.selectedItemIds.size) {
+            this.allSelected = false;
+        }
+        else {
+            const rows = Array.from(this.selectedItemIds);
+            let equal = true;
+            rows.sort();
+            itemEntityIds.sort();
+            for (let i = 0; i < rows.length; i += 1) {
+                if (rows[i] !== itemEntityIds[i].toString()) {
+                    equal = false;
+                    break;
+                }
+            }
+            this.allSelected = equal;
+        }
+    }
+    calculateAllUnselected() {
+        this.allUnselected = this.selectedItemIds.size === 0;
+    }
+    unselectRow(itemEntityId) {
+        if (this.selectedItemIds.has(itemEntityId.toString())) {
+            this.selectedItemIds.delete(itemEntityId.toString());
+        }
+    }
+    getId() {
+        return this.id;
+    }
+    getType() {
+        return this.selection.getType();
+    }
+    toggleRowByType(type, itemId) {
+        switch (type) {
+            case RowSelectToggleType.NONE:
+                if (this.selectedItemIds.has(itemId)) {
+                    this.selectedItemIds.delete(itemId);
+                }
+                else {
+                    this.selectedItemIds.clear();
+                    this.selectedItemIds.add(itemId);
+                }
+                break;
+            case RowSelectToggleType.ADD:
+                if (this.selectedItemIds.has(itemId)) {
+                    this.selectedItemIds.delete(itemId);
+                }
+                else {
+                    this.selectedItemIds.add(itemId);
+                }
+                break;
+            case RowSelectToggleType.RANGE:
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+class FormationManagerFactory {
+    create(id) {
+        return new FormationManager(id, new Set());
+    }
+}
+
+class SourceManagerFactory {
+    constructor(formationManagerFactory) {
+        this.formationManagerFactory = formationManagerFactory;
+    }
+    createDefault(id) {
+        const fm = this.formationManagerFactory.create(id);
+        return new SourceManager(fm);
+    }
+    create(id) {
+        const fm = this.formationManagerFactory.create(id);
+        return new SourceManager(fm);
+    }
+}
+SourceManagerFactory.services = [FormationManagerFactory];
+
+var DeleteCommandPayloadType;
+(function (DeleteCommandPayloadType) {
+    DeleteCommandPayloadType[DeleteCommandPayloadType["INDEX"] = 0] = "INDEX";
+    DeleteCommandPayloadType[DeleteCommandPayloadType["ITEM_ID"] = 1] = "ITEM_ID";
+    DeleteCommandPayloadType[DeleteCommandPayloadType["MANY_INDEX"] = 2] = "MANY_INDEX";
+    DeleteCommandPayloadType[DeleteCommandPayloadType["MANY_ITEM_ID"] = 3] = "MANY_ITEM_ID";
+})(DeleteCommandPayloadType || (DeleteCommandPayloadType = {}));
+class DeleteOriginItemCommand extends StructureCommand {
+    constructor(structureId, payload, type) {
+        super(structureId, 'DeleteOriginItemCommand');
+        this.payload = payload;
+        this.type = type;
+    }
+    static byIndex(structureId, index) {
+        return new DeleteOriginItemCommand(structureId, index, DeleteCommandPayloadType.INDEX);
+    }
+    static byManyIndex(structureId, indexes) {
+        return new DeleteOriginItemCommand(structureId, indexes, DeleteCommandPayloadType.MANY_INDEX);
+    }
+    static byItemId(structureId, itemId) {
+        return new DeleteOriginItemCommand(structureId, itemId, DeleteCommandPayloadType.ITEM_ID);
+    }
+    static byManyItemId(structureId, itemIds) {
+        return new DeleteOriginItemCommand(structureId, itemIds, DeleteCommandPayloadType.MANY_ITEM_ID);
+    }
+    getType() {
+        return this.type;
+    }
+    getPayload() {
+        return this.payload;
+    }
+}
+
+class DeleteOriginItemCommandHandler {
+    forCommand() {
+        return DeleteOriginItemCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.deleteItem(command.getPayload());
+    }
+}
+
+class StructureSourceOriginArchive extends AggregateArchive {
+    constructor() {
+        super(StructureSourceOriginArchive.default);
+    }
+}
+StructureSourceOriginArchive.default = [];
+
+class StructureOriginChangedEventHandler {
+    constructor(structureSourceOriginRepository) {
+        this.structureSourceOriginRepository = structureSourceOriginRepository;
+    }
+    forEvent() {
+        return OriginSetEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('OriginSetEvent')) {
+            const origin = event.getOrigin();
+            this.structureSourceOriginRepository.next(event.getAggregateId(), origin);
+        }
+    }
+}
+StructureOriginChangedEventHandler.services = [StructureSourceOriginArchive];
+
+class StructurePreparedItemsArchive extends AggregateArchive {
+    constructor() {
+        super(StructurePreparedItemsArchive.default);
+    }
+    /**
+     * @deprecated
+     */
+    getPreparedItems(structureId) {
+        return this.find(structureId).getValueOrNullOrThrowError();
+    }
+}
+StructurePreparedItemsArchive.default = [];
+
+class StructurePreparedItemsEventHandler {
+    constructor(structurePreparedItemsRepository) {
+        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
+    }
+    forEvent() {
+        return StructurePreparedEntitiesSetEvent;
+    }
+    handle(event) {
+        if (event.ofMessageType('StructurePreparedEntitiesSetEvent')) {
+            const preparedItems = event.getPreparedItems();
+            this.structurePreparedItemsRepository.next(event.getAggregateId(), preparedItems);
+        }
+    }
+}
+StructurePreparedItemsEventHandler.services = [StructurePreparedItemsArchive];
+
+class SourceDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(StructureSourceOriginArchive);
+        container.provide(SourceManagerFactory);
+        container.provide(SourceDomainEventPublisher);
+    }
+    registerCommandHandlers() {
+        return [
+            SourceSetLoadingCommandHandler,
+            SetOriginCommandHandler,
+            StructureEditSourceItemCommandHandler,
+            DeleteOriginItemCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [
+            StructureOriginChangedEventHandler,
+            StructurePreparedItemsEventHandler
+        ];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class SourceDomainWarehouse extends SourceWarehouse {
+    constructor(structureRepository, structurePreparedItemsRepository, structureSourceOriginRepository) {
+        super();
+        this.structureRepository = structureRepository;
+        this.structurePreparedItemsRepository = structurePreparedItemsRepository;
+        this.structureSourceOriginRepository = structureSourceOriginRepository;
+    }
+    findItems(structureId) {
+        return this.structureRepository.getStructure(structureId).getEntities();
+    }
+    onItems(structureId) {
+        return this.structureRepository
+            .on(structureId)
+            .pipe(hermesMap((structure) => structure.getEntities()), hermesDistinctUntilChanged((ents1, ents2) => {
+            if (ents1.length !== ents2.length) {
+                return false;
+            }
+            let flag = true;
+            ents1.forEach((ent, index) => {
+                if (!ent.equals(ents2[index])) {
+                    flag = false;
+                    return;
+                }
+            });
+            return flag;
+        }));
+    }
+    onItemsSize(structureId) {
+        return this.onItems(structureId)
+            .pipe(hermesMap((entities) => {
+            return entities.length;
+        }));
+    }
+    onceItems(structureId) {
+        return singleFromObservable(this.onItems(structureId));
+    }
+    onOriginSize(structureId) {
+        return this.structureSourceOriginRepository
+            .on(structureId)
+            .pipe(hermesMap(origin => origin.length));
+    }
+    onLoading(structureId) {
+        return this.structureRepository
+            .on(structureId)
+            .pipe(hermesMap((structure) => structure.getSource().isLoading()));
+    }
+    onPreparedItems(structureId) {
+        return this.structurePreparedItemsRepository.on(structureId);
+    }
+    findPreparedItems(structureId) {
+        return this.structurePreparedItemsRepository.getPreparedItems(structureId);
+    }
+}
+SourceDomainWarehouse.services = [StructureReadModelRepository, StructurePreparedItemsArchive, StructureSourceOriginArchive];
+
+class SourceDomainPublisher extends SourcePublisher {
+    constructor(commandDispatcher, fieldWarehouse, sourceReadModelService) {
+        super();
+        this.commandDispatcher = commandDispatcher;
+        this.fieldWarehouse = fieldWarehouse;
+        this.sourceReadModelService = sourceReadModelService;
+    }
+    setOrigin(items, structureId) {
+        this.commandDispatcher.dispatch(new SetOriginCommand(structureId, items));
+    }
+    setLoading(enabled, structureId) {
+        this.commandDispatcher.dispatch(new SourceSetLoadingCommand(structureId, enabled));
+    }
+    editItem(params, structureId) {
+        this.commandDispatcher.dispatch(new StructureEditSourceItemCommand(structureId, params));
+    }
+    editItemByIndex(itemIndex, fieldIndex, value, structureId) {
+        const itemId$ = toRxJsObservable(this.sourceReadModelService
+            .onceItems(structureId)
+            .pipe(hermesMap((entities) => {
+            return entities[itemIndex].getId();
+        })));
+        const fieldId$ = toRxJsObservable(this.fieldWarehouse.onFields(structureId));
+        fromRxJsObservable(zip(itemId$, fieldId$))
+            .pipe(hermesTake(1))
+            .subscribe((array) => {
+            const itemId = array[0], fields = array[1];
+            this.editItem(new StructureEditSourceItemParams(itemId, fields[fieldIndex], value), structureId);
+        });
+    }
+    deleteRow(row, structureId) {
+        if (row.getItemId() !== undefined) {
+            this.deleteItemById(row.getItemId(), structureId);
+        }
+        else if (row.getIndex() !== undefined) {
+            this.deleteItemByIndex(row.getIndex(), structureId);
+        }
+    }
+    deleteRows(rows, structureId) {
+        if (rows.length > 0) {
+            if (rows[0].getItemId() !== undefined) {
+                this.deleteManyItemsByItemIds(rows.map(r => r.getItemId()), structureId);
+            }
+            else if (rows[0].getIndex() !== undefined) {
+                this.deleteManyItemsByIndex(rows.map(r => r.getIndex()), structureId);
+            }
+        }
+    }
+    deleteItemByIndex(index, structureId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byIndex(structureId, index));
+    }
+    deleteItemById(itemId, structureId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byItemId(structureId, itemId));
+    }
+    deleteManyItemsByIndex(indexes, structureId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyIndex(structureId, indexes));
+    }
+    deleteManyItemsByItemIds(itemIds, structureId) {
+        this.commandDispatcher.dispatch(DeleteOriginItemCommand.byManyItemId(structureId, itemIds));
+    }
+}
+SourceDomainPublisher.services = [CommandDispatcher, FieldWarehouse, SourceWarehouse];
+
+class SourceApiModule {
+    registerProviders(container) {
+        container.provide(SourcePublisher, SourceDomainPublisher);
+        container.provide(SourceWarehouse, SourceDomainWarehouse);
+        container.provide(SourceEventService);
+        container.provide(StructurePreparedItemsArchive);
+        container.provide(SourceConverter);
+    }
+}
+function initializeSource() {
+    new DomainInitializer(new SourceApiModule(), new SourceDomainModule()).init();
+}
+
+initializeSource();
+function provideSourceCommandInvoker() {
+    return CoreContainer.resolve(SourcePublisher);
+}
+function provideSourceWarehouse() {
+    return CoreContainer.resolve(SourceWarehouse);
+}
+function provideSourceEventRepository() {
+    return CoreContainer.resolve(SourceEventService);
+}
+class SourceFeatureModule extends FeatureModule {
+    static forComponent() {
+        return [];
+    }
+}
+SourceFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+SourceFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, imports: [CommonModule] });
+SourceFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, providers: [
+        { provide: SourcePublisher, useFactory: provideSourceCommandInvoker },
+        { provide: SourceWarehouse, useFactory: provideSourceWarehouse },
+        { provide: SourceEventService, useFactory: provideSourceEventRepository }
+    ], imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SourceFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [],
+                    exports: [],
+                    providers: [
+                        { provide: SourcePublisher, useFactory: provideSourceCommandInvoker },
+                        { provide: SourceWarehouse, useFactory: provideSourceWarehouse },
+                        { provide: SourceEventService, useFactory: provideSourceEventRepository }
+                    ]
+                }]
+        }] });
 
 CoreContainer.provide(CssClassModifier);
 function provideCssClassModifier() {
@@ -18071,6 +18052,492 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
             args: [{
                     providers: [
                         ResizeDetector
+                    ]
+                }]
+        }] });
+
+class RowSelectedReadModel {
+    constructor(itemIds, allSelected, allUnselected) {
+        this.itemIds = itemIds;
+        this.allSelected = allSelected;
+        this.allUnselected = allUnselected;
+    }
+    getAll() {
+        return this.itemIds;
+    }
+    isSelected(id) {
+        return this.itemIds.some((itemId) => itemId === id);
+    }
+    isAllSelected() {
+        return this.allSelected;
+    }
+    isAllUnselected() {
+        return this.allUnselected;
+    }
+    isIndeterminate() {
+        return !(this.isAllSelected() || this.isAllUnselected());
+    }
+}
+
+class RowSelectedArchive extends AggregateArchive {
+    constructor() {
+        super(RowSelectedArchive.default);
+    }
+}
+RowSelectedArchive.default = new RowSelectedReadModel([], false, false);
+
+class SetEnabledSelectionCommand extends StructureCommand {
+    constructor(structureId, enabled) {
+        super(structureId, 'SetEnabledSelectionCommand');
+        this.enabled = enabled;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+}
+
+class SetEnabledSelectionCommandHandler {
+    forCommand() {
+        return SetEnabledSelectionCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.setSelection(command.isEnabled());
+    }
+}
+
+class ToggleSelectedRowCommand extends StructureCommand {
+    constructor(structureId, selectedRow, type) {
+        super(structureId, 'ToggleSelectedRowCommand');
+        this.selectedRow = selectedRow;
+        this.type = type;
+    }
+    getSelectedRow() {
+        return this.selectedRow;
+    }
+    getType() {
+        return this.type;
+    }
+}
+
+class ToggleSelectedRowCommandHandler {
+    forCommand() {
+        return ToggleSelectedRowCommand;
+    }
+    handle(aggregate, command) {
+        const selectedRow = command.getSelectedRow(), type = command.getType();
+        aggregate.toggleRow(selectedRow, type);
+    }
+}
+
+class SelectedRowChangedEventHandler {
+    constructor(rowSelectedArchive) {
+        this.rowSelectedArchive = rowSelectedArchive;
+    }
+    forEvent() {
+        return SelectedRowChangedEvent;
+    }
+    handle(rowChangedEvent) {
+        if (rowChangedEvent.ofMessageType('SelectedRowChangedEvent')) {
+            const rowSelectedRead = new RowSelectedReadModel(rowChangedEvent.getSelectedRows(), rowChangedEvent.isAllSelected(), rowChangedEvent.isAllUnselected());
+            this.rowSelectedArchive.next(rowChangedEvent.getAggregateId(), rowSelectedRead);
+        }
+    }
+}
+SelectedRowChangedEventHandler.services = [RowSelectedArchive];
+
+class SetSelectionModeCommand extends StructureCommand {
+    constructor(structureId, mode) {
+        super(structureId, 'SetSelectionModeCommand');
+        this.mode = mode;
+    }
+    getMode() {
+        return this.mode;
+    }
+}
+
+class SetSelectionModeCommandHandler {
+    forCommand() {
+        return SetSelectionModeCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.setSelectionMode(command.getMode());
+    }
+}
+
+class SelectAllRowsCommand extends StructureCommand {
+    constructor(structureId) {
+        super(structureId, 'SelectAllRowsCommand');
+    }
+}
+
+class SelectAllRowsCommandHandler {
+    forCommand() {
+        return SelectAllRowsCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.selectAll();
+    }
+}
+
+class UnselectAllRowsCommand extends StructureCommand {
+    constructor(structureId) {
+        super(structureId, 'UnselectAllRowsCommand');
+    }
+}
+
+class UnselectAllRowsCommandHandler {
+    forCommand() {
+        return UnselectAllRowsCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.unselectAll();
+    }
+}
+
+class SetSelectionTypeCommand extends StructureCommand {
+    constructor(structureId, type) {
+        super(structureId, 'SetSelectionTypeCommand');
+        this.type = type;
+    }
+    getType() {
+        return this.type;
+    }
+}
+
+class SetSelectionTypeCommandHandler {
+    forCommand() {
+        return SetSelectionTypeCommand;
+    }
+    handle(aggregate, command) {
+        aggregate.setSelectionType(command.getType());
+    }
+}
+
+class FormationTypeRepository extends EventDrivenRepository {
+    constructor() {
+        super();
+    }
+    forEvent() {
+        return SelectionTypeSetEvent;
+    }
+}
+
+class FormationModeRepository extends EventDrivenRepository {
+    constructor() {
+        super();
+    }
+    forEvent() {
+        return SelectionModeSetEvent;
+    }
+}
+
+class FormationEnabledRepository extends EventDrivenRepository {
+    constructor() {
+        super();
+    }
+    forEvent() {
+        return SelectionEnabledSetEvent;
+    }
+}
+
+class SetSelectedRowCommand extends StructureCommand {
+    constructor(structureId, selectedRows) {
+        super(structureId, 'SetSelectedRowCommand');
+        this.selectedRows = selectedRows;
+    }
+    getSelectedRows() {
+        return this.selectedRows;
+    }
+}
+
+class SetSelectedRowCommandHandler {
+    forCommand() {
+        return SetSelectedRowCommand;
+    }
+    handle(aggregate, command) {
+        const selectedRows = command.getSelectedRows();
+        aggregate.setSelectedRows(selectedRows);
+    }
+}
+
+class SelectRowByIndexCommand extends StructureCommand {
+    constructor(structureId, indexes) {
+        super(structureId, 'SelectRowByIndexCommand');
+        this.indexes = indexes;
+    }
+    getIndexes() {
+        return this.indexes;
+    }
+}
+
+class SelectRowByIndexCommandHandler {
+    forCommand() {
+        return SelectRowByIndexCommand;
+    }
+    handle(aggregate, command) {
+        const selectedRowIndexes = command.getIndexes();
+        aggregate.selectByIndex(selectedRowIndexes);
+    }
+}
+
+class SelectRowByIdCommand extends StructureCommand {
+    constructor(structureId, ids) {
+        super(structureId, 'SelectRowByIdCommand');
+        this.ids = ids;
+    }
+    getIds() {
+        return this.ids;
+    }
+}
+
+class SelectRowByIdCommandHandler {
+    forCommand() {
+        return SelectRowByIdCommand;
+    }
+    handle(aggregate, command) {
+        const selectedRowIds = command.getIds();
+        aggregate.selectByIds(selectedRowIds);
+    }
+}
+
+class FormationSetMatcherCommand extends StructureCommand {
+    constructor(structureId, matcher) {
+        super(structureId, 'FormationSetMatcherCommand');
+        this.matcher = matcher;
+    }
+    getMatcher() {
+        return this.matcher;
+    }
+}
+
+class FormationSetMatcherCommandHandler {
+    forCommand() {
+        return FormationSetMatcherCommand;
+    }
+    handle(aggregate, command) {
+        const matcher = command.getMatcher();
+        aggregate.setFormationMatcher(matcher);
+    }
+}
+
+class FormationCustomSelectionChangeEvent extends StructureDomainEvent {
+    constructor(aggregateId, customSelection) {
+        super(aggregateId, customSelection, 'FormationCustomSelectionChangeEvent');
+        this.customSelection = customSelection;
+    }
+    getCustomSelection() {
+        return this.customSelection;
+    }
+}
+
+class FormationCustomRepository extends EventDrivenRepository {
+    constructor() {
+        super();
+    }
+    forEvent() {
+        return FormationCustomSelectionChangeEvent;
+    }
+}
+
+class FormationDomainModule {
+    defineAggregate() {
+        return null;
+    }
+    registerKey() {
+        return structureKey;
+    }
+    registerProviders(container) {
+        container.provide(FormationManagerFactory);
+    }
+    registerCommandHandlers() {
+        return [
+            SetEnabledSelectionCommandHandler,
+            SetSelectionModeCommandHandler,
+            SetSelectionTypeCommandHandler,
+            SelectAllRowsCommandHandler,
+            UnselectAllRowsCommandHandler,
+            ToggleSelectedRowCommandHandler,
+            SetSelectedRowCommandHandler,
+            SelectRowByIndexCommandHandler,
+            SelectRowByIdCommandHandler,
+            FormationSetMatcherCommandHandler
+        ];
+    }
+    registerDomainEventHandler() {
+        return [
+            SelectedRowChangedEventHandler,
+            FormationTypeRepository,
+            FormationModeRepository,
+            FormationEnabledRepository,
+            FormationCustomRepository
+        ];
+    }
+    registerMultiDomainEventHandler() {
+        return [];
+    }
+}
+
+class FormationCustomSelection {
+    constructor(enabled, selections) {
+        this.enabled = enabled;
+        this.selections = selections;
+    }
+    isEnabled() {
+        return this.enabled;
+    }
+    getSelections() {
+        return this.selections;
+    }
+}
+
+class FormationDomainWarehouse extends FormationWarehouse {
+    constructor(rowSelectedRepository, formationModeRepository, formationTypeRepository, formationEnabledRepository, formationCustomRepository, sourceWarehouse) {
+        super();
+        this.rowSelectedRepository = rowSelectedRepository;
+        this.formationModeRepository = formationModeRepository;
+        this.formationTypeRepository = formationTypeRepository;
+        this.formationEnabledRepository = formationEnabledRepository;
+        this.formationCustomRepository = formationCustomRepository;
+        this.sourceWarehouse = sourceWarehouse;
+    }
+    findSelectedRows(structureId) {
+        const items = this.sourceWarehouse.findPreparedItems(structureId), selectedItemIds = this.findSelectedItemIds(structureId).getValueOrNullOrThrowError();
+        const selectedItems = [], length = items.length;
+        for (let i = 0; i < length; i += 1) {
+            const item = items[i];
+            if (selectedItemIds.some((itemId) => itemId === item.getId().toString())) {
+                selectedItems.push(new SelectedRow(item.getSourceItem(), i, item.getId()));
+            }
+        }
+        return Optional.of(selectedItems);
+    }
+    onRowSelectedReadModel(structureId) {
+        return this.rowSelectedRepository
+            .on(structureId);
+    }
+    findSelectedItemIds(structureId) {
+        return this.rowSelectedRepository
+            .find(structureId)
+            .map((r) => {
+            return r.getAll();
+        });
+    }
+    onSelectedRows(structureId) {
+        return this.rowSelectedRepository
+            .on(structureId)
+            .pipe(hermesMap((rm) => {
+            return rm.getAll();
+        }));
+    }
+    onMode(structureId) {
+        return this.formationModeRepository.on(structureId);
+    }
+    onType(structureId) {
+        return this.formationTypeRepository.on(structureId);
+    }
+    onSelectionEnabled(structureId) {
+        return this.formationEnabledRepository.on(structureId);
+    }
+    onCustomSelections(structureId) {
+        return hermesOf(new FormationCustomSelection(true, [{
+                key: 'asdf',
+                text: 'Select all',
+                functionId: 'sadf'
+            }]));
+        // return this.formationCustomRepository.on(structureId);
+    }
+}
+FormationDomainWarehouse.services = [
+    RowSelectedArchive,
+    FormationModeRepository,
+    FormationTypeRepository,
+    FormationEnabledRepository,
+    FormationCustomRepository,
+    SourceWarehouse
+];
+
+class FormationDomainPublisher extends FormationPublisher {
+    constructor(commandDispatcher) {
+        super();
+        this.commandDispatcher = commandDispatcher;
+    }
+    setSelection(enabled, structureId) {
+        this.commandDispatcher.dispatch(new SetEnabledSelectionCommand(structureId, enabled));
+    }
+    selectRows(selectedRow, structureId) {
+        this.commandDispatcher.dispatch(new SetSelectedRowCommand(structureId, selectedRow));
+    }
+    selectByIndex(indexes, structureId) {
+        this.commandDispatcher.dispatch(new SelectRowByIndexCommand(structureId, indexes));
+    }
+    selectByIds(ids, structureId) {
+        this.commandDispatcher.dispatch(new SelectRowByIdCommand(structureId, ids));
+    }
+    toggleSelectedRow(selectedRow, type, structureId) {
+        this.commandDispatcher.dispatch(new ToggleSelectedRowCommand(structureId, selectedRow, type));
+    }
+    changeMode(mode, structureId) {
+        this.commandDispatcher.dispatch(new SetSelectionModeCommand(structureId, mode));
+    }
+    changeType(type, structureId) {
+        this.commandDispatcher.dispatch(new SetSelectionTypeCommand(structureId, type));
+    }
+    setMatcher(matcher, structureId) {
+        this.commandDispatcher.dispatch(new FormationSetMatcherCommand(structureId, matcher));
+    }
+    selectAll(structureId) {
+        this.commandDispatcher.dispatch(new SelectAllRowsCommand(structureId));
+    }
+    unselectAll(structureId) {
+        this.commandDispatcher.dispatch(new UnselectAllRowsCommand(structureId));
+    }
+}
+FormationDomainPublisher.services = [CommandDispatcher];
+
+class FormationApiModule {
+    registerProviders(container) {
+        container.provide(RowSelectedArchive);
+        container.provide(FormationEventRepository);
+        container.provide(FormationPublisher, FormationDomainPublisher);
+        container.provide(FormationWarehouse, FormationDomainWarehouse);
+    }
+}
+function initializeFormation() {
+    new DomainInitializer(new FormationApiModule(), new FormationDomainModule())
+        .init();
+}
+
+initializeFormation();
+function provideFormationCommandInvoker() {
+    return CoreContainer.resolve(FormationPublisher);
+}
+function provideFormationWarehouse() {
+    return CoreContainer.resolve(FormationWarehouse);
+}
+function provideFormationEventRepository() {
+    return CoreContainer.resolve(FormationEventRepository);
+}
+class FormationFeatureModule extends FeatureModule {
+}
+FormationFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+FormationFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, imports: [CommonModule] });
+FormationFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, providers: [
+        { provide: FormationPublisher, useFactory: provideFormationCommandInvoker },
+        { provide: FormationWarehouse, useFactory: provideFormationWarehouse },
+        { provide: FormationEventRepository, useFactory: provideFormationEventRepository }
+    ], imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FormationFeatureModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [
+                        CommonModule
+                    ],
+                    declarations: [],
+                    exports: [],
+                    providers: [
+                        { provide: FormationPublisher, useFactory: provideFormationCommandInvoker },
+                        { provide: FormationWarehouse, useFactory: provideFormationWarehouse },
+                        { provide: FormationEventRepository, useFactory: provideFormationEventRepository }
                     ]
                 }]
         }] });
@@ -18227,36 +18694,6 @@ class SelectedRowChangedAggregateEvent extends StructureAggregateEvent {
     }
 }
 
-class SelectionEnabledSetEvent extends StructureDomainEvent {
-    constructor(aggregateId, enabled) {
-        super(aggregateId, enabled, 'SelectionEnabledSetEvent');
-        this.enabled = enabled;
-    }
-    isEnabled() {
-        return this.enabled;
-    }
-}
-
-class SelectionEnabledSetAggregateEvent extends StructureAggregateEvent {
-    constructor(structureId, enabled) {
-        super(structureId, 'SelectionEnabledSetAggregateEvent');
-        this.enabled = enabled;
-    }
-    toDomainEvent() {
-        return new SelectionEnabledSetEvent(this.getAggregateId(), this.enabled);
-    }
-}
-
-class SelectionModeSetAggregateEvent extends StructureAggregateEvent {
-    constructor(structureId, mode) {
-        super(structureId, 'SelectionModeSetAggregateEvent');
-        this.mode = mode;
-    }
-    toDomainEvent() {
-        return new SelectionModeSetEvent(this.getAggregateId(), this.mode);
-    }
-}
-
 class StructureAggregate extends AggregateRoot {
     constructor(structureId, pagingAggregate, sourceManager, verticalFormation, summariesManager, sorterCollection, filterManager, uniqueFilterManager, searchManager, fieldCollection) {
         super(structureId, structureKey);
@@ -18269,6 +18706,8 @@ class StructureAggregate extends AggregateRoot {
         this.uniqueFilterManager = uniqueFilterManager;
         this.searchManager = searchManager;
         this.fieldCollection = fieldCollection;
+        this.addEvent(this.sourceManager.events);
+        this.sourceManager.events = [];
     }
     createEvent() {
         return StructureCreatedAggregateEvent;
@@ -18294,9 +18733,9 @@ class StructureAggregate extends AggregateRoot {
     }
     setOrigin(items) {
         this.addEvent(this.sourceManager.setOrigin(items, this.getId()));
-        if (false) {
-            this.calculateUniqueValues();
-        }
+        // if (false) {
+        // 	this.calculateUniqueValues();
+        // }
         this.calculateSource();
         return this.getEvents();
     }
@@ -18351,8 +18790,31 @@ class StructureAggregate extends AggregateRoot {
         this.addEvent(new SelectionEnabledSetAggregateEvent(this.getId(), enabled));
     }
     setSelectionMode(mode) {
-        this.sourceManager.getFormation().setMode(mode);
-        this.addEvent(new SelectionModeSetAggregateEvent(this.getId(), mode));
+        this.addEvent(this.sourceManager.getFormation().setMode(mode));
+    }
+    setSelectionType(type) {
+        this.addEvent(this.sourceManager.getFormation().setType(type));
+    }
+    setFormationMatcher(matcher) {
+        this.getFormation().setMatcher(matcher);
+        this.sourceManager.reSelect();
+        this.generateSelectedRowChangedEvent();
+    }
+    selectByIndex(indexes) {
+        this.sourceManager.selectByIndex(indexes);
+        this.generateSelectedRowChangedEvent();
+    }
+    selectByIds(ids) {
+        this.sourceManager.selectByIds(ids);
+        this.generateSelectedRowChangedEvent();
+    }
+    /**
+     *
+     * Doesnt' work
+     */
+    setSelectedRows(selectedRows) {
+        this.sourceManager.setSelectedRows(selectedRows);
+        this.generateSelectedRowChangedEvent();
     }
     toggleRow(selectedRow, type) {
         this.sourceManager.toggleRow(selectedRow, type);
@@ -18513,9 +18975,11 @@ class StructureAggregate extends AggregateRoot {
         const searchedEntities = this.searchManager.search(this.sourceManager.getEntities());
         this.sourceManager.setEntities(searchedEntities);
         // unique filtering
-        if (false) {
-            this.sourceManager.setEntities(this.uniqueFilterManager.filterAll(this.sourceManager.getEntities(), this.fieldCollection.getAllFields()));
-        }
+        // if (false) {
+        // 	this.sourceManager.setEntities(
+        // 		this.uniqueFilterManager.filterAll(this.sourceManager.getEntities(), this.fieldCollection.getAllFields())
+        // 	);
+        // }
         // sorting
         const ents = this.sorterManager.sort(this.sourceManager.getEntities());
         this.sourceManager.setEntities(ents);
@@ -18556,7 +19020,7 @@ class StructureAggregate extends AggregateRoot {
         this.addEvent(new UniqueFilterCalculatedAggregateEvent(this.getId(), this.uniqueFilterManager.getAll(this.fieldCollection.getAllFields())));
     }
     generateSelectedRowChangedEvent() {
-        this.addEvent(new SelectedRowChangedAggregateEvent(this.getId(), this.sourceManager.getFormation().getSelectedRows(), this.sourceManager.getFormation().isAllSelected(), this.sourceManager.getFormation().isAllUnselected()));
+        this.addEvent(new SelectedRowChangedAggregateEvent(this.getId(), this.sourceManager.getFormation().getSelectedItemIds().map(i => i.toString()), this.sourceManager.getFormation().isAllSelected(), this.sourceManager.getFormation().isAllUnselected()));
     }
 }
 
@@ -18906,7 +19370,7 @@ class StructureAggregateFactory extends AggregateFactory {
         this.fieldCollectionFactory = fieldCollectionFactory;
     }
     create(structureId) {
-        const paging = this.pagingAggregateFactory.createDefault(), source = this.sourceManagerFactory.createDefault(), verticalFormation = this.verticalFormationFactory.create(structureId);
+        const paging = this.pagingAggregateFactory.createDefault(), source = this.sourceManagerFactory.createDefault(structureId), verticalFormation = this.verticalFormationFactory.create(structureId);
         const sorterContainer = new SorterManager(), filterContainer = this.filterManagerFactory.create(false), fieldContainer = this.fieldCollectionFactory.create(), summariesManager = this.summariesManagerFactory.create(structureId), searchManager = this.searchManagerFactory.create();
         const structureAggregate = new StructureAggregate(structureId, paging, source, verticalFormation, summariesManager, sorterContainer, filterContainer, new UniqueFilterManager(), searchManager, fieldContainer);
         this.init(structureAggregate);
@@ -19061,10 +19525,10 @@ class InMemoryStructureRepository extends StructureReadModelRepository {
 InMemoryStructureRepository.services = [InMemoryStructureReadStore];
 
 class StructureDomainPublisher extends StructurePublisher {
-    constructor(filterCommandInvoker, sourceDispatcher, verticalFormationCommandInvoker, structureCellEditArchive) {
+    constructor(filterCommandInvoker, sourcePublisher, verticalFormationCommandInvoker, structureCellEditArchive) {
         super();
         this.filterCommandInvoker = filterCommandInvoker;
-        this.sourceDispatcher = sourceDispatcher;
+        this.sourcePublisher = sourcePublisher;
         this.verticalFormationCommandInvoker = verticalFormationCommandInvoker;
         this.structureCellEditArchive = structureCellEditArchive;
         this.commandDispatcher = CoreContainer.resolve(CommandDispatcher);
@@ -19096,9 +19560,6 @@ class StructureDomainPublisher extends StructurePublisher {
     setScrollPosition(position, structureId) {
         this.verticalFormationCommandInvoker.setScrollPosition(position, structureId);
     }
-    setOrigin(items, structureId) {
-        this.sourceDispatcher.setOrigin(structureId, items);
-    }
     setFilterConfig(config, structureId) {
         this.filterCommandInvoker.setConfig(config, structureId);
     }
@@ -19122,7 +19583,7 @@ class StructureDomainPublisher extends StructurePublisher {
 }
 StructureDomainPublisher.services = [
     FilterPublisher,
-    SourceDispatcher,
+    SourcePublisher,
     VerticalFormationPublisher,
     StructureCellEditArchive
 ];
@@ -19143,7 +19604,9 @@ class StructureApiModule {
         container.provide(StructureCellEditArchive);
     }
 }
-const structureInitializer = new DomainInitializer(new StructureApiModule(), new StructureDomainModule());
+function initializeStructure() {
+    new DomainInitializer(new StructureApiModule(), new StructureDomainModule()).init();
+}
 
 class CreateListViewCommand extends CreateAggregateCommand {
     constructor(listViewId) {
@@ -19292,9 +19755,6 @@ class InMemoryListViewAggregateStore extends InMemoryAggregateStore {
 InMemoryListViewAggregateStore.services = [InMemoryListViewStore];
 
 class SetListViewModeCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return SetListViewModeCommand;
     }
@@ -19302,24 +19762,15 @@ class SetListViewModeCommandHandler {
         const mode = command.getMode();
         listViewAggregate.setMode(mode);
     }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
-    }
 }
 
 class ToggleListViewSelectorCommandHandler {
-    constructor() {
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-    }
     forCommand() {
         return ToggleListViewSelectorCommand;
     }
     handle(listViewAggregate, command) {
         const enabled = command.isEnabled();
         listViewAggregate.toggleModeSelector(enabled);
-    }
-    publish(aggregate, command) {
-        this.domainEventPublisher.publishFromAggregate(aggregate);
     }
 }
 
@@ -19522,7 +19973,40 @@ class ListViewApiModule {
         container.provide(InMemoryListViewStore);
     }
 }
-const listViewInitializer = new DomainInitializer(new ListViewApiModule(), new ListViewDomainModule());
+function initializeListView() {
+    new DomainInitializer(new ListViewApiModule(), new ListViewDomainModule()).init();
+}
+
+class SelectCustomComponent extends SmartComponent {
+    constructor(changeDetectorRef, elementRef, structureSelectCustomService, structureId, formationCommandDispatcher, formationWarehouse) {
+        super(changeDetectorRef, elementRef);
+        this.changeDetectorRef = changeDetectorRef;
+        this.structureSelectCustomService = structureSelectCustomService;
+        this.structureId = structureId;
+        this.formationCommandDispatcher = formationCommandDispatcher;
+        this.formationWarehouse = formationWarehouse;
+        this.options = ['a', 'b'];
+        this.context = useReactiveContext();
+    }
+    ngOnInit() {
+    }
+    openConfigDialog() {
+        this.structureSelectCustomService.open(this.headerDialogContainer);
+    }
+    getSelectorName() {
+        return 'gui-select-custom';
+    }
+}
+SelectCustomComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectCustomComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureSelectCustomService }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+SelectCustomComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: SelectCustomComponent, selector: "gui-select-custom", providers: [
+        StructureSelectCustomService
+    ], usesInheritance: true, ngImport: i0, template: "<div #selectCustomContainer\n\t (click)=\"openConfigDialog()\"\n>\n\t<div gui-structure-menu-icon></div>\n</div>\n", dependencies: [{ kind: "component", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SelectCustomComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'gui-select-custom', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
+                        StructureSelectCustomService
+                    ], template: "<div #selectCustomContainer\n\t (click)=\"openConfigDialog()\"\n>\n\t<div gui-structure-menu-icon></div>\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureSelectCustomService }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }]; } });
 
 function provideStructureCommandInvoker() {
     return CoreContainer.resolve(StructurePublisher);
@@ -19585,6 +20069,8 @@ const declarations$1 = [
     StructureHeaderFiltersComponent,
     StructureHeaderFilterComponent,
     SelectAllComponent,
+    SelectCustomComponent,
+    SelectCustomModalComponent,
     StructureContentComponent,
     StructureRowComponent,
     StructureCellComponent,
@@ -19619,8 +20105,8 @@ function provideStructureCellEditArchive() {
 function provideFabricModalThemeService() {
     return CoreContainer.resolve(FabricModalThemeService);
 }
-listViewInitializer.init();
-structureInitializer.init();
+initializeListView();
+initializeStructure();
 class GridViewFeatureModule {
     constructor(platformId) {
         this.platformId = platformId;
@@ -19649,7 +20135,7 @@ class GridViewFeatureModule {
                     provide: StructureDefinition,
                     useFactory: createStructureDefinition
                 },
-                ItemEntityFactory,
+                ItemFactory,
                 StructureThemeConverter,
                 StructureIdGenerator,
                 { provide: StructureCellEditArchive, useFactory: provideStructureCellEditArchive },
@@ -19669,6 +20155,8 @@ GridViewFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", v
         StructureHeaderFiltersComponent,
         StructureHeaderFilterComponent,
         SelectAllComponent,
+        SelectCustomComponent,
+        SelectCustomModalComponent,
         StructureContentComponent,
         StructureRowComponent,
         StructureCellComponent,
@@ -19726,6 +20214,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImpor
                         args: [PLATFORM_ID]
                     }] }];
     } });
+
+class GuiGridIdGenerator {
+    generateId() {
+        GuiGridIdGenerator.index++;
+        return GuiGridIdGenerator.PREFIX + GuiGridIdGenerator.index;
+    }
+}
+GuiGridIdGenerator.PREFIX = 'gui-grid-';
+GuiGridIdGenerator.index = 0;
+GuiGridIdGenerator.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+GuiGridIdGenerator.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridIdGenerator, decorators: [{
+            type: Injectable
+        }] });
 
 const imports = [
     GridViewFeatureModule.withConfig({

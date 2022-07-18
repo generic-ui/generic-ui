@@ -7,6 +7,7 @@ export declare class CommandHandlerImpl<I extends AggregateId, A extends Aggrega
     private readonly commandHandler;
     private readonly aggregateType;
     private readonly aggregateRepositoryArchive;
+    private readonly domainEventPublisher;
     private readonly commandType;
     constructor(commandHandler: CommandHandler<A, C>, aggregateType: string);
     publishDomainEvents(aggregate: A, command: C): void;

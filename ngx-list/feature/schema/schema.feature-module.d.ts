@@ -1,8 +1,8 @@
 import { Provider } from '@angular/core';
 import { FeatureModule } from '@generic-ui/hermes';
-import { SchemaPublisher } from '../../core/schema/api/schema.publisher';
-import { SchemaWarehouse } from '../../core/schema/api/schema.warehouse';
-import { SchemaEventRepository } from '../../core/schema/api/schema.event-repository';
+import { SchemaPublisher } from '../../core/schema/src/api/schema.publisher';
+import { SchemaWarehouse } from '../../core/schema/src/api/schema.warehouse';
+import { SchemaEventRepository } from '../../core/schema/src/api/schema.event-repository';
 import * as i0 from "@angular/core";
 import * as i1 from "@angular/common";
 export declare function useFactorySchemaCommandInvoker(): SchemaPublisher;

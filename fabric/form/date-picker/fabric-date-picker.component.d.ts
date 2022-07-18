@@ -10,7 +10,6 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     private readonly fabricDatePickerInlineDialogService;
     private readonly datePickerService;
     private readonly datePickerCompositionService;
-    private readonly formBuilder;
     private readonly changeDetectorRef;
     readonly datePickerRef?: ElementRef;
     parentElement?: ElementRef;
@@ -33,9 +32,6 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     openDatePicker(): void;
     closeDatePicker(): void;
     private emitSelectedDate;
-    private observeDayChanges;
-    private parse;
-    private getDateValues;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerComponent, "gui-date-picker", never, { "parentElement": "parentElement"; "theme": "theme"; "selectDate": "selectDate"; "name": "name"; "openDialog": "openDialog"; "onlyDialog": "onlyDialog"; "datePipeOptions": "datePipeOptions"; }, { "dateSelected": "dateSelected"; "dialogOpened": "dialogOpened"; }, never, never, false>;
 }

@@ -1,0 +1,13 @@
+export class GuiGridColumnSortingConverter {
+    convert(sortingConfig) {
+        if (typeof sortingConfig === 'boolean') {
+            return {
+                enabled: sortingConfig
+            };
+        }
+        else {
+            return sortingConfig;
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ3VpLmdyaWQuY29sdW1uLXNvcnRpbmcuY29udmVydGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vYnVpbGQtY2xpL3Byb2plY3RzL25neC1ncmlkL3NyYy9ndWkvZ3JpZC9zcmMvZmVhdHVyZS9jb2x1bW4vc29ydGluZy9ndWkuZ3JpZC5jb2x1bW4tc29ydGluZy5jb252ZXJ0ZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBSUEsTUFBTSxPQUFPLDZCQUE2QjtJQUV6QyxPQUFPLENBQUMsYUFBeUM7UUFFaEQsSUFBSSxPQUFPLGFBQWEsS0FBSyxTQUFTLEVBQUU7WUFDdkMsT0FBTztnQkFDTixPQUFPLEVBQUUsYUFBYTthQUN0QixDQUFDO1NBQ0Y7YUFBTTtZQUNOLE9BQU8sYUFBb0IsQ0FBQztTQUM1QjtJQUNGLENBQUM7Q0FFRCIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbHVtblNvcnRpbmdDb25maWcgfSBmcm9tICcuLi8uLi8uLi8uLi8uLi8uLi9jb3JlL2NvbXBvc2l0aW9uL3NyYy9hcGkvc29ydC9jb2x1bW4tc29ydGluZy5jb25maWcnO1xuXG5pbXBvcnQgeyBHdWlDb2x1bW5Tb3J0aW5nIH0gZnJvbSAnLi4vLi4vLi4vLi4vLi4vLi4vZ3VpLmdyaWQuaW5kZXgnO1xuXG5leHBvcnQgY2xhc3MgR3VpR3JpZENvbHVtblNvcnRpbmdDb252ZXJ0ZXIge1xuXG5cdGNvbnZlcnQoc29ydGluZ0NvbmZpZzogYm9vbGVhbiB8IEd1aUNvbHVtblNvcnRpbmcpOiBDb2x1bW5Tb3J0aW5nQ29uZmlnIHtcblxuXHRcdGlmICh0eXBlb2Ygc29ydGluZ0NvbmZpZyA9PT0gJ2Jvb2xlYW4nKSB7XG5cdFx0XHRyZXR1cm4ge1xuXHRcdFx0XHRlbmFibGVkOiBzb3J0aW5nQ29uZmlnXG5cdFx0XHR9O1xuXHRcdH0gZWxzZSB7XG5cdFx0XHRyZXR1cm4gc29ydGluZ0NvbmZpZyBhcyBhbnk7XG5cdFx0fVxuXHR9XG5cbn1cbiJdfQ==

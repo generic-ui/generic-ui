@@ -1,0 +1,36 @@
+import { ComponentFactoryResolver, Provider } from '@angular/core';
+import { FeatureModule } from '@generic-ui/hermes';
+import { CompositionPublisher } from '../../../core/composition/src/api/composition.publisher';
+import { ColumnFieldFactory } from '../../../core/composition/src/domain/column/field/colum-field.factory';
+import { CompositionEventRepository } from '../../../core/composition/src/api/composition.event-repository';
+import { CompositionWarehouse } from '../../../core/composition/src/api/composition.warehouse';
+import { ColumnAutoConfigurator } from '../../../core/composition/src/api/column/auto/column-auto.configurator';
+import * as i0 from "@angular/core";
+import * as i1 from "./column/view/view-templates.component";
+import * as i2 from "./column/edit/edit-templates.component";
+import * as i3 from "./column/edit/template/string-edit-template.component";
+import * as i4 from "./column/edit/template/number-edit-template.component";
+import * as i5 from "./column/edit/template/boolean-edit-template.component";
+import * as i6 from "./column/edit/template/date-edit-template.component";
+import * as i7 from "./column/column-query.component";
+import * as i8 from "./column/view/function/function-view.component";
+import * as i9 from "./column/view/bar/bar-view.component";
+import * as i10 from "./column/view/percentage/percentage-view.component";
+import * as i11 from "./column/view/text/text-view.component";
+import * as i12 from "./column/view/html/html-view.component";
+import * as i13 from "@angular/common";
+import * as i14 from "@angular/forms";
+import * as i15 from "../../common/src/cdk/sanitize/sanitize.module";
+import * as i16 from "@generic-ui/fabric";
+export declare function provideCompositionCommandPublisher(): CompositionPublisher;
+export declare function provideCompositionWarehouse(): CompositionWarehouse;
+export declare function provideCompositionEventRepository(): CompositionEventRepository;
+export declare function provideColumnAutoConfigurator(): ColumnAutoConfigurator;
+export declare function provideColumnFieldFactory(): ColumnFieldFactory;
+export declare class CompositionFeatureModule extends FeatureModule {
+    constructor(cfr: ComponentFactoryResolver);
+    static forComponent(): Array<Provider>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CompositionFeatureModule, never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<CompositionFeatureModule, [typeof i1.ViewTemplatesComponent, typeof i2.EditTemplatesComponent, typeof i3.StringEditTemplateComponent, typeof i4.NumberEditTemplateComponent, typeof i5.BooleanEditTemplateComponent, typeof i6.DateEditTemplateComponent, typeof i7.ColumnQueryComponent, typeof i8.FunctionViewComponent, typeof i9.BarViewComponent, typeof i10.PercentageViewComponent, typeof i11.TextViewComponent, typeof i12.HtmlViewComponent], [typeof i13.CommonModule, typeof i14.ReactiveFormsModule, typeof i15.SanitizeModule, typeof i16.FabricChipModule, typeof i16.FabricCheckboxModule, typeof i16.FabricButtonModule, typeof i16.FabricInputModule, typeof i16.FabricDatePickerModule], [typeof i1.ViewTemplatesComponent, typeof i2.EditTemplatesComponent, typeof i7.ColumnQueryComponent, typeof i16.FabricChipModule, typeof i16.FabricCheckboxModule, typeof i16.FabricButtonModule, typeof i16.FabricInputModule, typeof i8.FunctionViewComponent, typeof i9.BarViewComponent, typeof i10.PercentageViewComponent, typeof i12.HtmlViewComponent]>;
+    static ɵinj: i0.ɵɵInjectorDeclaration<CompositionFeatureModule>;
+}

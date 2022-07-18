@@ -1,0 +1,6 @@
+export var PagingDisplayMode;
+(function (PagingDisplayMode) {
+    PagingDisplayMode[PagingDisplayMode["BASIC"] = 0] = "BASIC";
+    PagingDisplayMode[PagingDisplayMode["ADVANCED"] = 1] = "ADVANCED";
+})(PagingDisplayMode || (PagingDisplayMode = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGFnaW5nLWRpc3BsYXktbW9kZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvZmVhdHVyZS9zdHJ1Y3R1cmUvcGFnaW5nL3NyYy9tb2RlL3BhZ2luZy1kaXNwbGF5LW1vZGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksaUJBR1g7QUFIRCxXQUFZLGlCQUFpQjtJQUM1QiwyREFBSyxDQUFBO0lBQ0wsaUVBQVEsQ0FBQTtBQUNULENBQUMsRUFIVyxpQkFBaUIsS0FBakIsaUJBQWlCLFFBRzVCIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGVudW0gUGFnaW5nRGlzcGxheU1vZGUge1xuXHRCQVNJQyxcblx0QURWQU5DRURcbn1cbiJdfQ==

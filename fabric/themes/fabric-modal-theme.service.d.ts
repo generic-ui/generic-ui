@@ -1,5 +1,5 @@
-import { Theme } from './theme';
 import { Observable } from 'rxjs';
+import { Theme } from './theme';
 import * as i0 from "@angular/core";
 export declare class FabricModalThemeService {
     private readonly fabricTheme$;

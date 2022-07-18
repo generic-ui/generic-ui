@@ -1,13 +1,12 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { GuiSelectOption } from '@generic-ui/fabric';
-import { SchemaWarehouse } from '../../../core/schema/api/schema.warehouse';
-import { SchemaPublisher } from '../../../core/schema/api/schema.publisher';
-import { SchemaReadModelRootId } from '../../../core/schema/api/global/schema.read-model-root-id';
-import { SmartComponent } from '../../common/cdk/component/smart-component';
-import { StructureId } from '../../../core/structure/structure-core/api/global/structure.id';
+import { SchemaWarehouse } from '../../../core/schema/src/api/schema.warehouse';
+import { SchemaPublisher } from '../../../core/schema/src/api/schema.publisher';
+import { SchemaReadModelRootId } from '../../../core/schema/src/api/global/schema.read-model-root-id';
+import { SmartComponent } from '../../common/src/cdk/component/lib/src/smart-component';
+import { StructureId } from '../../../core/structure/structure-core/src/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class StructureSchemaMangerComponent extends SmartComponent implements OnInit {
-    private readonly changeDetectorRef;
     private readonly structureId;
     private readonly schemaReadModelRootId;
     private readonly schemaCommandInvoker;

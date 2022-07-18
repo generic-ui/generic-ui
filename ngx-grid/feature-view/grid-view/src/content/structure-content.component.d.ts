@@ -1,0 +1,54 @@
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { SmartComponent } from '../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { FormationPublisher } from '../../../../core/structure/formation/src/api/formation.publisher';
+import { StructureEditModeArchive } from '../edit/structure.edit-mode.archive';
+import { FormationWarehouse } from '../../../../core/structure/formation/src/api/formation.warehouse';
+import { Item } from '../../../../core/structure/source/src/api/item/item';
+import { StructureWarehouse } from '../../../../core/structure/structure-core/src/api/structure.warehouse';
+import { StructureId } from '../../../../core/structure/structure-core/src/api/global/structure.id';
+import { VerticalFormationWarehouse } from '../../../../core/structure/vertical-formation/src/api/vertical-formation.warehouse';
+import { SchemaRowClass } from '../../../../core/schema/src/api/styling/schema.row-class';
+import { SchemaRowStyle } from '../../../../core/schema/src/api/styling/schema.row-style';
+import { SearchWarehouse } from '../../../../core/structure/search/src/api/search.warehouse';
+import { CellEditorManager } from '../../../../core/structure/structure-core/src/domain/edit/cell-editor.manager';
+import { SchemaWarehouse } from '../../../../core/schema/src/api/schema.warehouse';
+import { SchemaReadModelRootId } from '../../../../core/schema/src/api/global/schema.read-model-root-id';
+import { CompositionAccessorModel } from '../../../../feature/composition/src/column/composition.accessor.model';
+import * as i0 from "@angular/core";
+export declare class StructureContentComponent extends SmartComponent implements OnInit {
+    private readonly elementRef;
+    private readonly changeDetectorRef;
+    private readonly formationPublisher;
+    private readonly structureEditModeArchive;
+    private readonly formationWarehouse;
+    private readonly structureWarehouse;
+    private readonly verticalFormationWarehouse;
+    private readonly structureId;
+    private readonly schemaReadModelRootId;
+    private readonly searchWarehouse;
+    private readonly schemaWarehouse;
+    source: Array<Item>;
+    columns: Array<CompositionAccessorModel>;
+    editMode: boolean;
+    cellEditing: CellEditorManager;
+    rowHeight: number;
+    searchPhrase: string;
+    highlighting: boolean;
+    phrase: boolean;
+    rowDetailOpened: number;
+    checkboxSelection: boolean;
+    radioSelection: boolean;
+    schemaRowClass: SchemaRowClass;
+    schemaRowStyle: SchemaRowStyle;
+    selectionEnabled: boolean;
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationPublisher: FormationPublisher, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, verticalFormationWarehouse: VerticalFormationWarehouse, structureId: StructureId, // REfactor
+    schemaReadModelRootId: SchemaReadModelRootId, // REfactor
+    searchWarehouse: SearchWarehouse, schemaWarehouse: SchemaWarehouse);
+    ngOnInit(): void;
+    trackByFn(): number;
+    translateY(index: number): string;
+    toggleSelectedRow(entity: Item): void;
+    protected getSelectorName(): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureContentComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never, false>;
+}

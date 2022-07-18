@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, OnDestroy, PipeTransform } from '@angular/core';
-import { TranslationFacade } from '../../core/l10n/api/translation.facade';
+import { TranslationFacade } from '../../core/l10n/src/api/translation.facade';
 import * as i0 from "@angular/core";
 export declare class TranslationPipe implements PipeTransform, OnDestroy {
     private readonly changeDetectorRef;

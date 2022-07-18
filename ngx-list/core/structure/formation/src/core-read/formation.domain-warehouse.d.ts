@@ -1,0 +1,31 @@
+import { HermesObservable, Optional } from '@generic-ui/hermes';
+import { StructureId } from '../../../structure-core/src/api/global/structure.id';
+import { SourceWarehouse } from '../../../source/src/api/source.warehouse';
+import { FormationWarehouse } from '../api/formation.warehouse';
+import { RowSelectedArchive } from './row-selected/row-selected.archive';
+import { SelectedRow } from '../api/row-selected/selected-row';
+import { RowSelectedReadModel } from '../api/row-selected/row-selected.read-model';
+import { RowSelectionMode, RowSelectionType } from '../api/row-selected/row-selection';
+import { FormationTypeRepository } from './type/formation.type.repository';
+import { FormationModeRepository } from './mode/formation.mode.repository';
+import { FormationEnabledRepository } from './enabled/formation.enabled.repository';
+import { FormationCustomSelection } from '../api/custom/formation.custom-selection';
+import { FormationCustomRepository } from './custom/formation.custom.repository';
+export declare class FormationDomainWarehouse extends FormationWarehouse {
+    private readonly rowSelectedRepository;
+    private readonly formationModeRepository;
+    private readonly formationTypeRepository;
+    private readonly formationEnabledRepository;
+    private readonly formationCustomRepository;
+    private readonly sourceWarehouse;
+    constructor(rowSelectedRepository: RowSelectedArchive, formationModeRepository: FormationModeRepository, formationTypeRepository: FormationTypeRepository, formationEnabledRepository: FormationEnabledRepository, formationCustomRepository: FormationCustomRepository, sourceWarehouse: SourceWarehouse);
+    static readonly services: readonly [typeof RowSelectedArchive, typeof FormationModeRepository, typeof FormationTypeRepository, typeof FormationEnabledRepository, typeof FormationCustomRepository, typeof SourceWarehouse];
+    findSelectedRows(structureId: StructureId): Optional<ReadonlyArray<SelectedRow>>;
+    onRowSelectedReadModel(structureId: StructureId): HermesObservable<RowSelectedReadModel>;
+    findSelectedItemIds(structureId: StructureId): Optional<ReadonlyArray<string>>;
+    onSelectedRows(structureId: StructureId): HermesObservable<ReadonlyArray<string>>;
+    onMode(structureId: StructureId): HermesObservable<RowSelectionMode>;
+    onType(structureId: StructureId): HermesObservable<RowSelectionType>;
+    onSelectionEnabled(structureId: StructureId): HermesObservable<boolean>;
+    onCustomSelections(structureId: StructureId): HermesObservable<FormationCustomSelection>;
+}

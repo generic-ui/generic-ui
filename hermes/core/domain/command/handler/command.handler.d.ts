@@ -11,5 +11,5 @@ export interface CommandHandler<A extends AggregateRoot<AggregateId>, C extends 
     /**
      * Publish domain events
      */
-    publish(aggregate: A, command: C): void;
+    publish?(aggregate: A, command: C): void;
 }

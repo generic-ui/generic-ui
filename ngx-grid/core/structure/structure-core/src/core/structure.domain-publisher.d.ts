@@ -1,0 +1,32 @@
+import { FilterPublisher } from '../../../filter/src/api/filter.publisher';
+import { FilterConfig } from '../../../filter/src/api/config/filter.config';
+import { QuickFiltersConfig } from '../../../filter/src/api/quick-filter/quick-filters.config';
+import { StructurePublisher } from '../api/structure.publisher';
+import { SchemaTheme } from '../../../../schema/src/api/theme/schema-theme';
+import { CellEditConfig } from '../api/edit/cell-edit.config';
+import { StructureCellEditArchive } from '../../../../../feature-view/grid-view/src/edit/structure.cell-edit.archive';
+import { VerticalFormationPublisher } from '../../../vertical-formation/src/api/vertical-formation.publisher';
+import { StructureId } from '../api/global/structure.id';
+import { SourcePublisher } from '../../../source/src/api/source.publisher';
+export declare class StructureDomainPublisher extends StructurePublisher {
+    private readonly filterCommandInvoker;
+    private readonly sourcePublisher;
+    private readonly verticalFormationCommandInvoker;
+    private readonly structureCellEditArchive;
+    private readonly commandDispatcher;
+    constructor(filterCommandInvoker: FilterPublisher, sourcePublisher: SourcePublisher, verticalFormationCommandInvoker: VerticalFormationPublisher, structureCellEditArchive: StructureCellEditArchive);
+    static readonly services: readonly [typeof FilterPublisher, typeof SourcePublisher, typeof VerticalFormationPublisher, typeof StructureCellEditArchive];
+    create(structureId: StructureId): void;
+    enableVirtualScroll(structureId: StructureId): void;
+    disableVirtualScroll(structureId: StructureId): void;
+    scrollToTop(structureId: StructureId): void;
+    scrollToBottom(structureId: StructureId): void;
+    scrollToIndex(index: number, structureId: StructureId): void;
+    setScrollPosition(position: number, structureId: StructureId): void;
+    setFilterConfig(config: FilterConfig, structureId: StructureId): void;
+    setQuickFiltersConfig(config: QuickFiltersConfig, structureId: StructureId): void;
+    setRowHeight(rowHeight: number, structureId: StructureId): void;
+    setContainerHeight(height: number, structureId: StructureId): void;
+    setRowHeightBasedOnTheme(theme: SchemaTheme, structureId: StructureId): void;
+    setCellEdit(cellEdit: CellEditConfig, structureId: StructureId): void;
+}

@@ -1,0 +1,31 @@
+import { ChangeDetectionStrategy, Component, Inject, ViewEncapsulation } from '@angular/core';
+import { structureRowDetailViewItem, structureRowDetailViewTemplate } from './structure.row-detail-view.tokens';
+import { DynamicallyCreatedComponent } from '../../../../../feature/common/src/cdk/component/lib/src/dynamically-created-component';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/platform-browser";
+import * as i2 from "../../../../../core/structure/formation/src/api/row-selected/selected-row";
+export class StructureRowDetailViewComponent extends DynamicallyCreatedComponent {
+    constructor(item, template, sanitizer) {
+        super();
+        this.item = item;
+        this.template = template;
+        this.sanitizer = sanitizer;
+        this.safeHTML = this.sanitizer.bypassSecurityTrustHtml(this.template(this.item.getItem(), this.item.getIndex()));
+    }
+    ngOnInit() {
+        this.selectedRowValue = this.item.getItem();
+    }
+}
+StructureRowDetailViewComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureRowDetailViewComponent, deps: [{ token: structureRowDetailViewItem }, { token: structureRowDetailViewTemplate }, { token: i1.DomSanitizer }], target: i0.ɵɵFactoryTarget.Component });
+StructureRowDetailViewComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureRowDetailViewComponent, selector: "div[gui-row-detail]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"safeHTML\"></div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureRowDetailViewComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'div[gui-row-detail]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div [innerHTML]=\"safeHTML\"></div>\n" }]
+        }], ctorParameters: function () { return [{ type: i2.SelectedRow, decorators: [{
+                    type: Inject,
+                    args: [structureRowDetailViewItem]
+                }] }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [structureRowDetailViewTemplate]
+                }] }, { type: i1.DomSanitizer }]; } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLnJvdy1kZXRhaWwtdmlldy5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2ZlYXR1cmUtdmlldy9ncmlkLXZpZXcvc3JjL3Jvdy1kZXRhaWwvdmlldy9zdHJ1Y3R1cmUucm93LWRldGFpbC12aWV3LmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtbGlzdC9zcmMvZmVhdHVyZS12aWV3L2dyaWQtdmlldy9zcmMvcm93LWRldGFpbC92aWV3L3N0cnVjdHVyZS5yb3ctZGV0YWlsLXZpZXcuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLHVCQUF1QixFQUFFLFNBQVMsRUFBRSxNQUFNLEVBQVUsaUJBQWlCLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFHdEcsT0FBTyxFQUFFLDBCQUEwQixFQUFFLDhCQUE4QixFQUFFLE1BQU0sb0NBQW9DLENBQUM7QUFFaEgsT0FBTyxFQUFFLDJCQUEyQixFQUFFLE1BQU0sdUZBQXVGLENBQUM7Ozs7QUFVcEksTUFBTSxPQUFPLCtCQUFnQyxTQUFRLDJCQUEyQjtJQU0vRSxZQUFpRSxJQUFpQixFQUN0QixRQUFhLEVBQ3JELFNBQXVCO1FBQzFDLEtBQUssRUFBRSxDQUFDO1FBSHdELFNBQUksR0FBSixJQUFJLENBQWE7UUFDdEIsYUFBUSxHQUFSLFFBQVEsQ0FBSztRQUNyRCxjQUFTLEdBQVQsU0FBUyxDQUFjO1FBRzFDLElBQUksQ0FBQyxRQUFRLEdBQUcsSUFBSSxDQUFDLFNBQVMsQ0FBQyx1QkFBdUIsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLEVBQUUsSUFBSSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDLENBQUM7SUFDbEgsQ0FBQztJQUVELFFBQVE7UUFDUCxJQUFJLENBQUMsZ0JBQWdCLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPLEVBQUUsQ0FBQztJQUM3QyxDQUFDOzs0SEFoQlcsK0JBQStCLGtCQU12QiwwQkFBMEIsYUFDbkMsOEJBQThCO2dIQVA3QiwrQkFBK0Isa0ZDZjVDLHdDQUNBOzJGRGNhLCtCQUErQjtrQkFOM0MsU0FBUzsrQkFDQyxxQkFBcUIsbUJBRWQsdUJBQXVCLENBQUMsTUFBTSxpQkFDaEMsaUJBQWlCLENBQUMsSUFBSTs7MEJBUXhCLE1BQU07MkJBQUMsMEJBQTBCOzswQkFDMUMsTUFBTTsyQkFBQyw4QkFBOEIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDaGFuZ2VEZXRlY3Rpb25TdHJhdGVneSwgQ29tcG9uZW50LCBJbmplY3QsIE9uSW5pdCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IERvbVNhbml0aXplciwgU2FmZUh0bWwgfSBmcm9tICdAYW5ndWxhci9wbGF0Zm9ybS1icm93c2VyJztcblxuaW1wb3J0IHsgc3RydWN0dXJlUm93RGV0YWlsVmlld0l0ZW0sIHN0cnVjdHVyZVJvd0RldGFpbFZpZXdUZW1wbGF0ZSB9IGZyb20gJy4vc3RydWN0dXJlLnJvdy1kZXRhaWwtdmlldy50b2tlbnMnO1xuaW1wb3J0IHsgU2VsZWN0ZWRSb3cgfSBmcm9tICcuLi8uLi8uLi8uLi8uLi9jb3JlL3N0cnVjdHVyZS9mb3JtYXRpb24vc3JjL2FwaS9yb3ctc2VsZWN0ZWQvc2VsZWN0ZWQtcm93JztcbmltcG9ydCB7IER5bmFtaWNhbGx5Q3JlYXRlZENvbXBvbmVudCB9IGZyb20gJy4uLy4uLy4uLy4uLy4uL2ZlYXR1cmUvY29tbW9uL3NyYy9jZGsvY29tcG9uZW50L2xpYi9zcmMvZHluYW1pY2FsbHktY3JlYXRlZC1jb21wb25lbnQnO1xuaW1wb3J0IHsgSXRlbUVudGl0eSB9IGZyb20gJy4uLy4uLy4uLy4uLy4uL2NvcmUvc3RydWN0dXJlL3NvdXJjZS9zcmMvZG9tYWluL2l0ZW0vaXRlbS5lbnRpdHknO1xuXG5cbkBDb21wb25lbnQoe1xuXHRzZWxlY3RvcjogJ2RpdltndWktcm93LWRldGFpbF0nLFxuXHR0ZW1wbGF0ZVVybDogJy4vc3RydWN0dXJlLnJvdy1kZXRhaWwtdmlldy5jb21wb25lbnQuaHRtbCcsXG5cdGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxuXHRlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lXG59KVxuZXhwb3J0IGNsYXNzIFN0cnVjdHVyZVJvd0RldGFpbFZpZXdDb21wb25lbnQgZXh0ZW5kcyBEeW5hbWljYWxseUNyZWF0ZWRDb21wb25lbnQgaW1wbGVtZW50cyBPbkluaXQge1xuXG5cdHNlbGVjdGVkUm93VmFsdWU6IEl0ZW1FbnRpdHk7XG5cblx0c2FmZUhUTUw6IFNhZmVIdG1sO1xuXG5cdGNvbnN0cnVjdG9yKEBJbmplY3Qoc3RydWN0dXJlUm93RGV0YWlsVmlld0l0ZW0pIHByaXZhdGUgcmVhZG9ubHkgaXRlbTogU2VsZWN0ZWRSb3csXG5cdFx0XHRcdEBJbmplY3Qoc3RydWN0dXJlUm93RGV0YWlsVmlld1RlbXBsYXRlKSBwcml2YXRlIHJlYWRvbmx5IHRlbXBsYXRlOiBhbnksXG5cdFx0XHRcdHByaXZhdGUgcmVhZG9ubHkgc2FuaXRpemVyOiBEb21TYW5pdGl6ZXIpIHtcblx0XHRzdXBlcigpO1xuXG5cdFx0dGhpcy5zYWZlSFRNTCA9IHRoaXMuc2FuaXRpemVyLmJ5cGFzc1NlY3VyaXR5VHJ1c3RIdG1sKHRoaXMudGVtcGxhdGUodGhpcy5pdGVtLmdldEl0ZW0oKSwgdGhpcy5pdGVtLmdldEluZGV4KCkpKTtcblx0fVxuXG5cdG5nT25Jbml0KCk6IHZvaWQge1xuXHRcdHRoaXMuc2VsZWN0ZWRSb3dWYWx1ZSA9IHRoaXMuaXRlbS5nZXRJdGVtKCk7XG5cdH1cblxufVxuIiwiPGRpdiBbaW5uZXJIVE1MXT1cInNhZmVIVE1MXCI+PC9kaXY+XG4iXX0=

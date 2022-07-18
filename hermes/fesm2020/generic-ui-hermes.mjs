@@ -1155,8 +1155,6 @@ class CommandHandlerInitializer extends Reactive {
                     handler.handleCommand(command);
                 });
             });
-            // console.log('Registered command handlers:' + filteredHandlers.length);
-            // console.log('Registered command handlers:', filteredHandlers);
         }
     }
     registerAggregateCommandHandlers(aggregateCommandHandlers) {
@@ -1177,8 +1175,6 @@ class CommandHandlerInitializer extends Reactive {
                     handler.handleCommand(command);
                 });
             });
-            // console.log('Registered create command handlers:' + filteredHandlers.length);
-            // console.log('Registered create command handlers:', filteredHandlers);
         }
     }
 }
@@ -1605,10 +1601,16 @@ class CommandHandlerImpl {
         this.commandHandler = commandHandler;
         this.aggregateType = aggregateType;
         this.aggregateRepositoryArchive = CoreContainer.resolve(AggregateRepositoryArchive);
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
         this.commandType = this.createCommandInstance().getMessageType();
     }
     publishDomainEvents(aggregate, command) {
-        this.commandHandler.publish(aggregate, command);
+        if (this.commandHandler.publish) {
+            this.commandHandler.publish(aggregate, command);
+        }
+        else {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        }
     }
     handleCommand(command) {
         const aggregateId = command.getAggregateId();

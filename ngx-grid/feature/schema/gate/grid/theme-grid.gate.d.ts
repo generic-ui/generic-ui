@@ -1,8 +1,8 @@
-import { Gate } from '../../../common/cdk/component/gate';
-import { SchemaPublisher } from '../../../../core/schema/api/schema.publisher';
-import { SchemaEventRepository } from '../../../../core/schema/api/schema.event-repository';
-import { SchemaReadModelRootId } from '../../../../core/schema/api/global/schema.read-model-root-id';
-import { NgChanges } from '../../../common/cdk/component/ng-changes';
+import { Gate } from '../../../common/src/cdk/component/lib/src/gate';
+import { SchemaPublisher } from '../../../../core/schema/src/api/schema.publisher';
+import { SchemaEventRepository } from '../../../../core/schema/src/api/schema.event-repository';
+import { SchemaReadModelRootId } from '../../../../core/schema/src/api/global/schema.read-model-root-id';
+import { NgChanges } from '../../../common/src/cdk/component/lib/src/ng-changes';
 import { EventEmitter, OnChanges } from '@angular/core';
 import * as i0 from "@angular/core";
 export declare class ThemeGridGate extends Gate implements OnChanges {

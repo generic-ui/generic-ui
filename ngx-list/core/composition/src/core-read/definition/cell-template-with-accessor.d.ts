@@ -1,0 +1,42 @@
+import { ColumnFieldId } from '../../domain/column/field/column-field.id';
+import { Item } from '../../../../structure/source/src/api/item/item';
+import { DataType } from '../../../../structure/field/src/domain/field/data/data-type';
+import { ViewEntity } from '../../domain/column/view.entity';
+import { CellView } from '../../domain/column/cell-view';
+import { ColumnAlign } from '../../domain/column/column-align';
+import { CellValue } from './cell-value';
+import { ColumnDefinitionId } from '../../api/column/column-definition-id';
+import { ColumnConfig } from '../../api/column/column.config';
+export declare class CellTemplateWithAccessor {
+    private readonly columnConfig;
+    columnDefinitionId: ColumnDefinitionId;
+    private readonly name;
+    editable: boolean;
+    templateFun: (value: any, item: any) => any;
+    formatterFun: (value: any, item: any) => any;
+    accessor: (element: any) => any;
+    searchAccessor: (element: any) => any;
+    width: number;
+    columnFieldId: ColumnFieldId;
+    private readonly align;
+    private readonly cellEditingEnabled;
+    private readonly type;
+    private readonly view;
+    constructor(columnConfig: ColumnConfig, columnDefinitionId: ColumnDefinitionId, name: string, editable: boolean, templateFun: (value: any, item: any) => any, formatterFun: (value: any, item: any) => any, accessor: (element: any) => any, searchAccessor: (element: any) => any, width: number, columnFieldId: ColumnFieldId, align: ColumnAlign, cellEditingEnabled: boolean, type: DataType, // REFACTOR
+    view: ViewEntity);
+    getDataType(): DataType;
+    getCellView(): CellView;
+    getColumnConfig(): ColumnConfig;
+    isCellEditingEnabled(): boolean;
+    isBooleanDataType(): boolean;
+    isAlignLeft(): boolean;
+    isAlignCenter(): boolean;
+    isAlignRight(): boolean;
+    getAlign(): ColumnAlign;
+    getType(): DataType;
+    getView(): ViewEntity;
+    getName(): string;
+    getValue(entity: Item, searchPhrase?: string): CellValue;
+    getClasses(): string;
+    private findValue;
+}

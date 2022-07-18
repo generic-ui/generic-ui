@@ -1,7 +1,0 @@
-export var StructureCellEditState;
-(function (StructureCellEditState) {
-    StructureCellEditState[StructureCellEditState["ENTER"] = 0] = "ENTER";
-    StructureCellEditState[StructureCellEditState["SUBMIT"] = 1] = "SUBMIT";
-    StructureCellEditState[StructureCellEditState["CANCEL"] = 2] = "CANCEL";
-})(StructureCellEditState || (StructureCellEditState = {}));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RydWN0dXJlLmNlbGwtZWRpdC5zdGF0ZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtbGlzdC9zcmMvZmVhdHVyZS12aWV3L2dyaWQtdmlldy9lZGl0L3N0cnVjdHVyZS5jZWxsLWVkaXQuc3RhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksc0JBSVg7QUFKRCxXQUFZLHNCQUFzQjtJQUNqQyxxRUFBSyxDQUFBO0lBQ0wsdUVBQU0sQ0FBQTtJQUNOLHVFQUFNLENBQUE7QUFDUCxDQUFDLEVBSlcsc0JBQXNCLEtBQXRCLHNCQUFzQixRQUlqQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBlbnVtIFN0cnVjdHVyZUNlbGxFZGl0U3RhdGUge1xuXHRFTlRFUixcblx0U1VCTUlULFxuXHRDQU5DRUxcbn1cbiJdfQ==

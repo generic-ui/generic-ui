@@ -1,8 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { SelectOptionsGeometry } from './select-geometry';
 export declare class SelectOptionsCords {
-    private readonly element;
-    private readonly selectContainerGeometry;
     private readonly window;
     private static readonly BORDER_WIDTH;
     private verticalPosition;

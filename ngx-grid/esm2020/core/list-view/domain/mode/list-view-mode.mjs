@@ -1,6 +1,0 @@
-export var ListViewMode;
-(function (ListViewMode) {
-    ListViewMode["LIST"] = "List";
-    ListViewMode["CARD"] = "Card";
-})(ListViewMode || (ListViewMode = {}));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGlzdC12aWV3LW1vZGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWdyaWQvc3JjL2NvcmUvbGlzdC12aWV3L2RvbWFpbi9tb2RlL2xpc3Qtdmlldy1tb2RlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sQ0FBTixJQUFZLFlBR1g7QUFIRCxXQUFZLFlBQVk7SUFDdkIsNkJBQWEsQ0FBQTtJQUNiLDZCQUFhLENBQUE7QUFDZCxDQUFDLEVBSFcsWUFBWSxLQUFaLFlBQVksUUFHdkIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBMaXN0Vmlld01vZGUge1xuXHRMSVNUID0gJ0xpc3QnLFxuXHRDQVJEID0gJ0NhcmQnXG59XG4iXX0=
