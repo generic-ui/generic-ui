@@ -4,10 +4,10 @@ import { FabricRadioGroupComponent } from './radio-group.component';
 import * as i0 from "@angular/core";
 export class FabricRadioGroupModule {
 }
-FabricRadioGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRadioGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricRadioGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricRadioGroupModule, declarations: [FabricRadioGroupComponent], imports: [CommonModule], exports: [FabricRadioGroupComponent] });
-FabricRadioGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRadioGroupModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRadioGroupModule, decorators: [{
+FabricRadioGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRadioGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricRadioGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricRadioGroupModule, declarations: [FabricRadioGroupComponent], imports: [CommonModule], exports: [FabricRadioGroupComponent] });
+FabricRadioGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRadioGroupModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRadioGroupModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

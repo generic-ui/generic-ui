@@ -13,5 +13,5 @@ export declare class FabricRatingComponent implements OnChanges, OnInit {
     changePreviewRating(star: number): void;
     createStarsArray(length: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricRatingComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricRatingComponent, "gui-rating", never, { "starsLength": "starsLength"; "rating": "rating"; }, { "onRatingChange": "onRatingChange"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricRatingComponent, "gui-rating", never, { "starsLength": "starsLength"; "rating": "rating"; }, { "onRatingChange": "onRatingChange"; }, never, never, false, never>;
 }

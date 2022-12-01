@@ -6,10 +6,10 @@ const icon = [
 ];
 export class StructureMenuIconModule {
 }
-StructureMenuIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureMenuIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-StructureMenuIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: StructureMenuIconModule, declarations: [StructureColumnMenuIconComponent], exports: [StructureColumnMenuIconComponent] });
-StructureMenuIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureMenuIconModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureMenuIconModule, decorators: [{
+StructureMenuIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureMenuIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+StructureMenuIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: StructureMenuIconModule, declarations: [StructureColumnMenuIconComponent], exports: [StructureColumnMenuIconComponent] });
+StructureMenuIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureMenuIconModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureMenuIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: icon,

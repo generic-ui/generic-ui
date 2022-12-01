@@ -32,5 +32,5 @@ export declare class FabricTabComponent extends FabricReactive implements AfterV
     private calculateMenuWidth;
     private showMenuArrows;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricTabComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTabComponent, "gui-tab", never, { "menu": "menu"; "active": "active"; "scrollActive": "scrollActive"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricTabComponent, "gui-tab", never, { "menu": "menu"; "active": "active"; "scrollActive": "scrollActive"; }, {}, never, ["*"], false, never>;
 }

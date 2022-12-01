@@ -5,6 +5,6 @@ export * from './src/gui-component';
 export * from './src/icon-component';
 export * from './src/ng-changes';
 export * from './src/pure-component';
-export * from './src/reactive-context';
+export * from './src/functional/reactive-context';
 export * from './src/smart-component';
 export * from './src/static-component';

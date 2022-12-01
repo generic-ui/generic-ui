@@ -7,15 +7,15 @@ import { FabricCloseIconModule } from '../../common/icons/close-icon/fabric-clos
 import * as i0 from "@angular/core";
 export class FabricDialogModule {
 }
-FabricDialogModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDialogModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricDialogModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricDialogModule, declarations: [FabricDialogComponent], imports: [CommonModule,
+FabricDialogModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDialogModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricDialogModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricDialogModule, declarations: [FabricDialogComponent], imports: [CommonModule,
         FabricCloseIconModule] });
-FabricDialogModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDialogModule, providers: [
+FabricDialogModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDialogModule, providers: [
         FabricDialogService,
         FabricDialogThemeService
     ], imports: [CommonModule,
         FabricCloseIconModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDialogModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDialogModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

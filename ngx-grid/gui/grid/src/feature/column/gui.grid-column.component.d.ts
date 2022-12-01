@@ -19,5 +19,5 @@ export declare class GuiGridColumnComponent implements GuiColumn {
     cssClasses?: string;
     styles?: string;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridColumnComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridColumnComponent, "gui-grid-column", never, { "name": "name"; "field": "field"; "type": "type"; "view": "view"; "header": "header"; "width": "width"; "enabled": "enabled"; "align": "align"; "summaries": "summaries"; "sorting": "sorting"; "cellEditing": "cellEditing"; "formatter": "formatter"; "matcher": "matcher"; "cssClasses": "cssClasses"; "styles": "styles"; }, {}, ["templateRef"], never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridColumnComponent, "gui-grid-column", never, { "name": "name"; "field": "field"; "type": "type"; "view": "view"; "header": "header"; "width": "width"; "enabled": "enabled"; "align": "align"; "summaries": "summaries"; "sorting": "sorting"; "cellEditing": "cellEditing"; "formatter": "formatter"; "matcher": "matcher"; "cssClasses": "cssClasses"; "styles": "styles"; }, {}, ["templateRef"], never, false, never>;
 }

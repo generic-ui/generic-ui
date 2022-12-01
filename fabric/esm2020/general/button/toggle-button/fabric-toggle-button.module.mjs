@@ -5,13 +5,13 @@ import { FabricButtonModule } from '../button/fabric-button.module';
 import * as i0 from "@angular/core";
 export class FabricToggleButtonModule {
 }
-FabricToggleButtonModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricToggleButtonModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonModule, declarations: [FabricToggleButtonComponent], imports: [CommonModule,
+FabricToggleButtonModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricToggleButtonModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonModule, declarations: [FabricToggleButtonComponent], imports: [CommonModule,
         FabricButtonModule], exports: [FabricToggleButtonComponent,
         FabricButtonModule] });
-FabricToggleButtonModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonModule, imports: [CommonModule,
+FabricToggleButtonModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonModule, imports: [CommonModule,
         FabricButtonModule, FabricButtonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

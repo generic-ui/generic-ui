@@ -12,5 +12,5 @@ export declare class StructureSortingGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, sortingCommandInvoker: SortingPublisher);
     ngOnChanges(changes: NgChanges<StructureSortingGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSortingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSortingGate, "gui-structure[sorting]", never, { "sorting": "sorting"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSortingGate, "gui-structure[sorting]", never, { "sorting": "sorting"; }, {}, never, never, false, never>;
 }

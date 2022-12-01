@@ -4,10 +4,10 @@ import { FabricBadgeComponent } from './badge.componet';
 import * as i0 from "@angular/core";
 export class FabricBadgeModule {
 }
-FabricBadgeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricBadgeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricBadgeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricBadgeModule, declarations: [FabricBadgeComponent], imports: [CommonModule], exports: [FabricBadgeComponent] });
-FabricBadgeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricBadgeModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricBadgeModule, decorators: [{
+FabricBadgeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricBadgeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricBadgeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricBadgeModule, declarations: [FabricBadgeComponent], imports: [CommonModule], exports: [FabricBadgeComponent] });
+FabricBadgeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricBadgeModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricBadgeModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -48,5 +48,5 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     private updateRowClass;
     private calculateRowClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; "radioSelection": "radioSelection"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; "radioSelection": "radioSelection"; }, {}, never, never, false, never>;
 }

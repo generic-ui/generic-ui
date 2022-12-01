@@ -16,9 +16,9 @@ export class ActiveFilterMenuTriggerDirective {
         // });
     }
 }
-ActiveFilterMenuTriggerDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ActiveFilterMenuTriggerDirective, deps: [{ token: i0.ElementRef }, { token: i1.StructureId }, { token: i2.ActiveFilterService }, { token: i3.SchemaReadModelRootId }], target: i0.ɵɵFactoryTarget.Directive });
-ActiveFilterMenuTriggerDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]", ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ActiveFilterMenuTriggerDirective, decorators: [{
+ActiveFilterMenuTriggerDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ActiveFilterMenuTriggerDirective, deps: [{ token: i0.ElementRef }, { token: i1.StructureId }, { token: i2.ActiveFilterService }, { token: i3.SchemaReadModelRootId }], target: i0.ɵɵFactoryTarget.Directive });
+ActiveFilterMenuTriggerDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.0.2", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]", ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ActiveFilterMenuTriggerDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[gui-active-filter-menu-trigger]'

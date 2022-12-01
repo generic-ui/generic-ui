@@ -4,10 +4,10 @@ import { FabricArrowIconComponent } from './fabric-arrow-icon.component';
 import * as i0 from "@angular/core";
 export class FabricArrowIconModule {
 }
-FabricArrowIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricArrowIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricArrowIconModule, declarations: [FabricArrowIconComponent], imports: [CommonModule], exports: [FabricArrowIconComponent] });
-FabricArrowIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricArrowIconModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricArrowIconModule, decorators: [{
+FabricArrowIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricArrowIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricArrowIconModule, declarations: [FabricArrowIconComponent], imports: [CommonModule], exports: [FabricArrowIconComponent] });
+FabricArrowIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricArrowIconModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricArrowIconModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

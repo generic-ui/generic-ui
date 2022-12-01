@@ -6,10 +6,10 @@ const icon = [
 ];
 export class StructureArrowIconModule {
 }
-StructureArrowIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-StructureArrowIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: StructureArrowIconModule, declarations: [StructureArrowIconComponent], exports: [StructureArrowIconComponent] });
-StructureArrowIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureArrowIconModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureArrowIconModule, decorators: [{
+StructureArrowIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+StructureArrowIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: StructureArrowIconModule, declarations: [StructureArrowIconComponent], exports: [StructureArrowIconComponent] });
+StructureArrowIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureArrowIconModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureArrowIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: icon,

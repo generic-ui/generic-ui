@@ -13,5 +13,5 @@ export declare class PagingStatsComponent extends PureComponent implements OnCha
     isSourceNotEmpty(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingStatsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingStatsComponent, "div[gui-paging-stats][paging]", never, { "paging": "paging"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingStatsComponent, "div[gui-paging-stats][paging]", never, { "paging": "paging"; }, {}, never, never, false, never>;
 }

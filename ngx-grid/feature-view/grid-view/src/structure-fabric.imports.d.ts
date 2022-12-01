@@ -1,2 +1,2 @@
-import { FabricBadgeModule } from '@generic-ui/fabric';
-export declare const fabricImports: (typeof FabricBadgeModule)[];
+import { FabricButtonModule } from '@generic-ui/fabric';
+export declare const fabricImports: (typeof FabricButtonModule)[];

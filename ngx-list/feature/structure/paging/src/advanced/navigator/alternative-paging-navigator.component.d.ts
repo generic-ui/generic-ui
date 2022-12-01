@@ -23,5 +23,5 @@ export declare class AlternativePagingNavigatorComponent extends PureComponent i
     private calculatePrev;
     private calculateNext;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlternativePagingNavigatorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingNavigatorComponent, "div[gui-paging-alternative-navigator][paging][sourceSize]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingNavigatorComponent, "div[gui-paging-alternative-navigator][paging][sourceSize]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, ["*"], false, never>;
 }

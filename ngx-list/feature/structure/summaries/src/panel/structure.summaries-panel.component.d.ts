@@ -29,5 +29,5 @@ export declare class StructureSummariesPanelComponent extends SmartComponent imp
     isSummariesTypePresent(summaries: number): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSummariesPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSummariesPanelComponent, "div[gui-structure-summaries-panel][enabled]", never, { "enabled": "enabled"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSummariesPanelComponent, "div[gui-structure-summaries-panel][enabled]", never, { "enabled": "enabled"; }, {}, never, never, false, never>;
 }

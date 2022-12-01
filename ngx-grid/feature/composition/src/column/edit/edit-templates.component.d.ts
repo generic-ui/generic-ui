@@ -10,5 +10,5 @@ export declare class EditTemplatesComponent implements TemplatesComponent {
     emptyTemplate: TemplateRef<any>;
     getTemplate(dataType: DataType): TemplateRef<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<EditTemplatesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<EditTemplatesComponent, "ng-component", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<EditTemplatesComponent, "ng-component", never, {}, {}, never, never, false, never>;
 }

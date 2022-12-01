@@ -1,4 +1,4 @@
-import { OnInit } from '@angular/core';
+import { ElementRef, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SelectedRow } from '../../../../../core/structure/formation/src/api/row-selected/selected-row';
 import { DynamicallyCreatedComponent } from '../../../../../feature/common/src/cdk/component/lib/src/dynamically-created-component';
@@ -10,8 +10,9 @@ export declare class StructureRowDetailViewComponent extends DynamicallyCreatedC
     private readonly sanitizer;
     selectedRowValue: ItemEntity;
     safeHTML: SafeHtml;
-    constructor(item: SelectedRow, template: any, sanitizer: DomSanitizer);
+    constructor(elRef: ElementRef, item: SelectedRow, template: any, sanitizer: DomSanitizer);
     ngOnInit(): void;
+    protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowDetailViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowDetailViewComponent, "div[gui-row-detail]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowDetailViewComponent, "div[gui-row-detail]", never, {}, {}, never, never, false, never>;
 }

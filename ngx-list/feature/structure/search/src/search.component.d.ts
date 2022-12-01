@@ -8,6 +8,7 @@ import { HermesSubscription } from '@generic-ui/hermes';
 import * as i0 from "@angular/core";
 export declare class SearchComponent extends SmartComponent implements OnInit {
     private readonly formBuilder;
+    private readonly changeDetectorRef;
     private readonly structureId;
     private readonly searchCommandDispatcher;
     private readonly searchWarehouse;
@@ -24,5 +25,5 @@ export declare class SearchComponent extends SmartComponent implements OnInit {
     private observeChanges;
     private stopObserveChanges;
     static ɵfac: i0.ɵɵFactoryDeclaration<SearchComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SearchComponent, "div[gui-search-bar]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SearchComponent, "div[gui-search-bar]", never, {}, {}, never, never, false, never>;
 }

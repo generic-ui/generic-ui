@@ -19,8 +19,8 @@ export class FilterMenuFeatureModule extends FeatureModule {
         return [];
     }
 }
-FilterMenuFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-FilterMenuFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuFeatureModule, declarations: [FilterIconComponent,
+FilterMenuFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FilterMenuFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+FilterMenuFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FilterMenuFeatureModule, declarations: [FilterIconComponent,
         FilterMenuComponent,
         FilterMenuTriggerComponent,
         ColumnSelectorComponent,
@@ -32,12 +32,12 @@ FilterMenuFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0",
         ReactiveFormsModule,
         FilterFeatureModule,
         ActiveFilterListModule], exports: [FilterMenuTriggerComponent] });
-FilterMenuFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuFeatureModule, imports: [CommonModule,
+FilterMenuFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FilterMenuFeatureModule, imports: [CommonModule,
         FabricModule,
         ReactiveFormsModule,
         FilterFeatureModule,
         ActiveFilterListModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterMenuFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FilterMenuFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

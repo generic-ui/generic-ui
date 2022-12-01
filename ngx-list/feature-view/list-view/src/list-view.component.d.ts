@@ -35,5 +35,5 @@ export declare class ListViewComponent extends LayoutComponent implements Filter
     getElementRef(): ElementRef;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewComponent, "gui-list-view", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewComponent, "gui-list-view", never, {}, {}, never, never, false, never>;
 }

@@ -2,13 +2,13 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 import * as i0 from "@angular/core";
 export class StructureQuickFiltersComponent {
 }
-StructureQuickFiltersComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureQuickFiltersComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-StructureQuickFiltersComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureQuickFiltersComponent, selector: "div[gui-structure-quick-filters]", ngImport: i0, template: `
+StructureQuickFiltersComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureQuickFiltersComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+StructureQuickFiltersComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: StructureQuickFiltersComponent, selector: "div[gui-structure-quick-filters]", ngImport: i0, template: `
 
 		QuickFilters
 
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureQuickFiltersComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureQuickFiltersComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-quick-filters]',

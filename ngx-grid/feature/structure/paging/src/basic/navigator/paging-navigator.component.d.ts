@@ -17,5 +17,5 @@ export declare class PagingNavigatorComponent extends PureComponent implements O
     private calculatePrev;
     private calculateNext;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingNavigatorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingNavigatorComponent, "div[gui-paging-navigator][paging]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingNavigatorComponent, "div[gui-paging-navigator][paging]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, { "nextPageChanged": "nextPageChanged"; "prevPageChanged": "prevPageChanged"; }, never, never, false, never>;
 }

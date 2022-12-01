@@ -7,5 +7,5 @@ export declare class StringEditTemplateComponent extends InputEditTemplateCompon
     focusField(inputElement: any): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StringEditTemplateComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StringEditTemplateComponent, "gui-string-edit", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StringEditTemplateComponent, "gui-string-edit", never, {}, {}, never, never, false, never>;
 }

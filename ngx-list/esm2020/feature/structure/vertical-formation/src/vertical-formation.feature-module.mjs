@@ -17,13 +17,13 @@ export class VerticalFormationFeatureModule extends FeatureModule {
         return [];
     }
 }
-VerticalFormationFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: VerticalFormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-VerticalFormationFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: VerticalFormationFeatureModule, imports: [CommonModule] });
-VerticalFormationFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: VerticalFormationFeatureModule, providers: [
+VerticalFormationFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: VerticalFormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+VerticalFormationFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: VerticalFormationFeatureModule, imports: [CommonModule] });
+VerticalFormationFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: VerticalFormationFeatureModule, providers: [
         { provide: VerticalFormationPublisher, useFactory: provideVerticalFormationCommandInvoker },
         { provide: VerticalFormationWarehouse, useFactory: provideVerticalFormationWarehouse }
     ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: VerticalFormationFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: VerticalFormationFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

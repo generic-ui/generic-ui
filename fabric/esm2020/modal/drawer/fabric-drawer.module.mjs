@@ -6,14 +6,14 @@ import { FabricCloseIconModule } from '../../common/icons/close-icon/fabric-clos
 import * as i0 from "@angular/core";
 export class FabricDrawerModule {
 }
-FabricDrawerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDrawerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricDrawerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricDrawerModule, declarations: [FabricDrawerComponent], imports: [CommonModule,
+FabricDrawerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDrawerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricDrawerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricDrawerModule, declarations: [FabricDrawerComponent], imports: [CommonModule,
         FabricCloseIconModule] });
-FabricDrawerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDrawerModule, providers: [
+FabricDrawerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDrawerModule, providers: [
         FabricDrawerService
     ], imports: [CommonModule,
         FabricCloseIconModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDrawerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDrawerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -15,5 +15,5 @@ export declare class ActiveFilterListComponent extends SmartComponent implements
     removeFilter(filter: ActiveFilterModel): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ActiveFilterListComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveFilterListComponent, "div[gui-active-filter-list]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveFilterListComponent, "div[gui-active-filter-list]", never, {}, {}, never, never, false, never>;
 }

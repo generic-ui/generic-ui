@@ -9,5 +9,5 @@ export declare class TextViewComponent extends PureComponent {
     ngOnChanges(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextViewComponent, [{ attribute: "bold"; }, { attribute: "italic"; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextViewComponent, "gui-view-text[value]", never, { "value": "value"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextViewComponent, "gui-view-text[value]", never, { "value": "value"; }, {}, never, never, false, never>;
 }

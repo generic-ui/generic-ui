@@ -56,5 +56,5 @@ export declare class StructureBlueprintComponent extends SmartComponent implemen
     isSourceEmpty(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureBlueprintComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureBlueprintComponent, "div[gui-structure-blueprint]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureBlueprintComponent, "div[gui-structure-blueprint]", never, {}, {}, never, never, false, never>;
 }

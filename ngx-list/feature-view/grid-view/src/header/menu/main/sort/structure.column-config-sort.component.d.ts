@@ -29,5 +29,5 @@ export declare class StructureColumnConfigSortComponent extends SmartComponent i
     setSortOrder(sort: SortOrder): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigSortComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never, false, never>;
 }

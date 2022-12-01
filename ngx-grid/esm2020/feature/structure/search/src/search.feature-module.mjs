@@ -25,20 +25,20 @@ export class SearchFeatureModule extends FeatureModule {
         return [];
     }
 }
-SearchFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-SearchFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
+SearchFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+SearchFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
         SearchComponent], imports: [CommonModule,
         FabricModule,
         ReactiveFormsModule], exports: [SearchIconComponent,
         SearchComponent] });
-SearchFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, providers: [
+SearchFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SearchFeatureModule, providers: [
         { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
         { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
         { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
     ], imports: [CommonModule,
         FabricModule,
         ReactiveFormsModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SearchFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SearchFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

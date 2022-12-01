@@ -72,5 +72,5 @@ export declare class StructureComponent extends StructureGateway implements OnCh
     getElementRef(): ElementRef;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureComponent, "gui-structure", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureComponent, "gui-structure", never, {}, {}, never, never, false, never>;
 }

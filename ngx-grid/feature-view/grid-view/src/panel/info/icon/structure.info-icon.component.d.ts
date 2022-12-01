@@ -5,5 +5,5 @@ export declare class StructureInfoIconComponent extends IconComponent {
     constructor(elRef: ElementRef, cdr: ChangeDetectorRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureInfoIconComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoIconComponent, "div[gui-structure-info-icon]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoIconComponent, "div[gui-structure-info-icon]", never, {}, {}, never, never, false, never>;
 }

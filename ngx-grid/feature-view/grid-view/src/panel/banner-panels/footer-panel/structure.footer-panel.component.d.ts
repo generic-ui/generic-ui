@@ -11,5 +11,5 @@ export declare class StructureFooterPanelComponent extends StructureBannerPanel 
     getSelectorName(): string;
     getPanelTitle(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureFooterPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureFooterPanelComponent, "div[gui-structure-footer-panel]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureFooterPanelComponent, "div[gui-structure-footer-panel]", never, {}, {}, never, never, false, never>;
 }

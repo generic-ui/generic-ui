@@ -2,6 +2,8 @@ import { Publisher } from '@generic-ui/hermes';
 import { StructureId } from '../../../structure-core/src/api/global/structure.id';
 import { RowSelectionMode, RowSelectionType } from './row-selected/row-selection';
 import { RowSelectToggleType } from '../domain/row-select-toggle-type';
+import { FormationCustomSelectId } from './custom/formation.custom-select.id';
+import { FormationCustomSelectionConfig } from './custom/formation.custom-selection.config';
 export declare abstract class FormationPublisher implements Publisher {
     protected constructor();
     abstract setSelection(enabled: boolean, structureId: StructureId): void;
@@ -14,4 +16,6 @@ export declare abstract class FormationPublisher implements Publisher {
     abstract setMatcher(matcher: (item: any) => any, structureId: StructureId): void;
     abstract selectAll(structureId: StructureId): void;
     abstract unselectAll(structureId: StructureId): void;
+    abstract selectCustom(id: FormationCustomSelectId, structureId: StructureId): void;
+    abstract setCustomSelection(config: FormationCustomSelectionConfig, structureId: StructureId): void;
 }

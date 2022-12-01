@@ -11,5 +11,5 @@ export declare class VerticalFormationGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, structureCommandInvoker: StructurePublisher);
     ngOnChanges(changes: NgChanges<VerticalFormationGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<VerticalFormationGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<VerticalFormationGate, "gui-structure[virtualScroll]", never, { "virtualScroll": "virtualScroll"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<VerticalFormationGate, "gui-structure[virtualScroll]", never, { "virtualScroll": "virtualScroll"; }, {}, never, never, false, never>;
 }

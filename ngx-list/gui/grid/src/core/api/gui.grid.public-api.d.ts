@@ -180,14 +180,14 @@ export declare enum GuiRowSelectionMode {
 }
 export declare type GuiRowSelectionIdMatcher = (item: any) => any;
 export interface GuiRowCustomSelectionFunction {
-    key: string;
+    key?: string;
     text: string;
     select: (ids: Array<any>) => Array<any>;
 }
 export declare enum GuiRowCustomSelectionType {
-    SELECT_ALL = 0,
-    UNSELECT_ALL = 1,
-    INVERT = 2
+    SELECT_ALL = "SELECT_ALL",
+    UNSELECT_ALL = "UNSELECT_ALL",
+    INVERT = "INVERT"
 }
 export interface GuiRowCustomSelection {
     enabled?: boolean;

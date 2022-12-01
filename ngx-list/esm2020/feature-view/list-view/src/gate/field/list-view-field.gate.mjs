@@ -15,9 +15,9 @@ export class ListViewFieldGate extends Gate {
         }
     }
 }
-ListViewFieldGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewFieldGate, deps: [{ token: i1.StructureId }, { token: i2.FieldPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-ListViewFieldGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: { fields: "fields" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewFieldGate, decorators: [{
+ListViewFieldGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewFieldGate, deps: [{ token: i1.StructureId }, { token: i2.FieldPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+ListViewFieldGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.0.2", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: { fields: "fields" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewFieldGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[fields]'

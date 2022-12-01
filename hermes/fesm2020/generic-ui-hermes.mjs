@@ -1,20 +1,5 @@
-import * as i0 from '@angular/core';
-import { Injectable, PLATFORM_ID, Inject, NgModule } from '@angular/core';
 import { Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
-
-const DOMAIN_EVENT_HANDLERS = 'HERMES - DOMAIN_EVENT_HANDLERS_TOKEN';
-
-function provideEventHandlers(handlers) {
-    return handlers.map((handler) => {
-        return {
-            provide: DOMAIN_EVENT_HANDLERS,
-            useClass: handler,
-            multi: true
-        };
-    });
-}
 
 class Key {
     constructor(token) {
@@ -701,11 +686,6 @@ class RandomStringGenerator {
     }
 }
 RandomStringGenerator.index = 0;
-RandomStringGenerator.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-RandomStringGenerator.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: RandomStringGenerator, decorators: [{
-            type: Injectable
-        }] });
 
 class Message {
     constructor(aggregateId, messageType, messageId = RandomStringGenerator.generate()) {
@@ -1109,7 +1089,7 @@ class Reactive {
     constructor() {
         this.hermesUnsubscribe$ = new HermesSubject();
     }
-    ngOnDestroy() {
+    onDestroy() {
         this.hermesUnsubscribe();
     }
     takeUntil() {
@@ -1126,11 +1106,6 @@ class Reactive {
         return !this.hermesUnsubscribe$.isCompleted;
     }
 }
-Reactive.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-Reactive.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: Reactive, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return []; } });
 
 class CommandHandlerInitializer extends Reactive {
     constructor() {
@@ -1310,7 +1285,7 @@ class ConsoleCommandLogger extends CommandLogger {
             this.log(command);
         });
     }
-    ngOnDestroy() {
+    onDestroy() {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
     }
@@ -1325,11 +1300,6 @@ class ConsoleCommandLogger extends CommandLogger {
         console.log(command.toString(), command);
     }
 }
-ConsoleCommandLogger.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-ConsoleCommandLogger.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ConsoleCommandLogger, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return []; } });
 
 class NoopCommandLogger extends CommandLogger {
     start() {
@@ -1415,303 +1385,16 @@ class ConsoleEventLogger extends DomainEventLogger {
     }
 }
 
-const hermesApi = 'hermesApi';
-class HermesApi {
-    constructor(platformId) {
-        this.platformId = platformId;
-        this.commandLogger = CoreContainer.resolve(CommandLogger);
-        this.eventLogger = CoreContainer.resolve(DomainEventLogger);
-        if (isPlatformBrowser(this.platformId)) {
-            const api = (api) => {
-                return {
-                    set loggers(enabled) {
-                        if (enabled) {
-                            // api.commandLogger.start(); TO FIX
-                            // api.eventLogger.start();
-                        }
-                        else {
-                            // api.commandLogger.stop(); // TO FIX
-                            // api.eventLogger.stop();
-                        }
-                    },
-                    set domain(domainName) {
-                        if (domainName) {
-                            api.commandLogger.setDomain(domainName);
-                            api.eventLogger.setDomain(domainName);
-                        }
-                    }
-                };
-            };
-            window[hermesApi] = api(this);
-            window[hermesApi].loggers = false;
-        }
-    }
-    init() {
-    }
-}
-HermesApi.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesApi.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesApi, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return [{ type: Object, decorators: [{
-                    type: Inject,
-                    args: [PLATFORM_ID]
-                }] }]; } });
+const aggregateDefinitionToken = 'Hermes - aggregateDefinitionToken';
 
-class HermesLoggersInitializer {
-    // private readonly commandLogger: CommandLogger = CoreContainer.resolve(CommandLogger);
-    // private readonly eventLogger: DomainEventLogger = CoreContainer.resolve(DomainEventLogger);
-    constructor(platformId) {
-        this.platformId = platformId;
-    }
-    start() {
-        this.loggersStart();
-    }
-    stop() {
-        this.loggersStop();
-    }
-    loggersStart() {
-        if (isPlatformBrowser(this.platformId)) {
-            // this.commandLogger.start();
-            // this.eventLogger.start();
-        }
-    }
-    loggersStop() {
-        if (isPlatformBrowser(this.platformId)) {
-            // this.commandLogger.stop(); // TO FIX
-            // this.eventLogger.stop();
-        }
-    }
-}
-HermesLoggersInitializer.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesLoggersInitializer.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesLoggersInitializer, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [PLATFORM_ID]
-                }] }]; } });
-
-class DomainEventPublisher {
-    constructor(eventStream) {
-        this.eventStream = eventStream;
-    }
-    publish(args) {
-        if (Array.isArray(args)) {
-            for (const arg of args) {
-                this.publishEvent(arg);
-            }
-        }
-        else {
-            this.publishEvent(args);
-        }
-    }
-    publishFromAggregate(aggregate) {
-        const events = [...aggregate.getEvents()];
-        events.forEach((aggregateEvent) => {
-            this.publish(aggregateEvent.toDomainEvent());
-        });
-    }
-    publishEvent(event) {
-        if (!event) {
-            // eslint-disable-next-line no-console
-            console.error(`${event} is not defined`);
-        }
-        if (!(event instanceof DomainEvent)) {
-            // throw new Error(`${event} is not a DomainEvent`);
-            // eslint-disable-next-line no-console
-            console.error(`${event} is not a DomainEvent`);
-        }
-        this.eventStream.next(event);
-    }
-}
-DomainEventPublisher.services = [DomainEventStream];
-
-function createAggregateCommandHandlerFactory(createAggregateCommandHandler, aggregateName) {
-    return new CreateAggregateCommandHandlerImpl(createAggregateCommandHandler, aggregateName);
-}
-class CreateAggregateCommandHandlerImpl {
-    constructor(createAggregateCommandHandler, aggregateType) {
-        this.createAggregateCommandHandler = createAggregateCommandHandler;
-        this.aggregateType = aggregateType;
-        this.aggregateFactoryArchive = CoreContainer.resolve(AggregateFactoryArchive);
-        this.aggregateRepositoryArchive = CoreContainer.resolve(AggregateRepositoryArchive);
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-        this.commandType = this.createCommandInstance().getMessageType();
-    }
-    handleCommand(command) {
-        const aggregateId = command.getAggregateId();
-        const optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
-        optFactory.ifPresent((factory) => {
-            const aggregate = factory.create(aggregateId);
-            const type = aggregate.getType(), createCommandConstructor = aggregate.createEvent();
-            const createCommand = new createCommandConstructor(aggregateId, type);
-            aggregate.addEvent(createCommand);
-            const optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
-            optRepository.ifPresent((repo) => {
-                repo.save(aggregate);
-                this.domainEventPublisher.publishFromAggregate(aggregate);
-            });
-        });
-    }
-    forCommand(command) {
-        return this.commandType === command.getMessageType();
-    }
-    createCommandInstance() {
-        const args = [], argumentLength = this.createAggregateCommandHandler.forCommand().constructor.length;
-        args.fill(undefined, 0, argumentLength);
-        if (args.length === 0) {
-            return (new (this.createAggregateCommandHandler.forCommand())());
-        }
-        else if (args.length === 1) {
-            return (new (this.createAggregateCommandHandler.forCommand())(args[0]));
-        }
-        else if (args.length === 2) {
-            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1]));
-        }
-        else if (args.length === 3) {
-            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2]));
-        }
-        else if (args.length === 4) {
-            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3]));
-        }
-        else if (args.length === 5) {
-            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
-        }
-        else {
-            throw new Error('CreateAggregateCommandHandlerImpl constructor out of arguments');
-        }
-    }
-}
+const DOMAIN_EVENT_HANDLERS = 'HERMES - DOMAIN_EVENT_HANDLERS_TOKEN';
 
 /**
  * ngc for grid package for some reasons doesn't allow to use injection token
  */
 const CREATE_AGGREGATE_COMMAND_HANDLERS = 'HERMES - CREATE_AGGREGATE_COMMAND_HANDLERS';
 
-const aggregateDefinitionToken = 'Hermes - aggregateDefinitionToken';
-
 const COMMAND_HANDLERS = 'HERMES - COMMAND_HANDLERS_TOKEN';
-
-function commandHandlerFactory(commandHandler, aggregateName) {
-    return new CommandHandlerImpl(commandHandler, aggregateName);
-}
-class CommandHandlerImpl {
-    constructor(commandHandler, aggregateType) {
-        this.commandHandler = commandHandler;
-        this.aggregateType = aggregateType;
-        this.aggregateRepositoryArchive = CoreContainer.resolve(AggregateRepositoryArchive);
-        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
-        this.commandType = this.createCommandInstance().getMessageType();
-    }
-    publishDomainEvents(aggregate, command) {
-        if (this.commandHandler.publish) {
-            this.commandHandler.publish(aggregate, command);
-        }
-        else {
-            this.domainEventPublisher.publishFromAggregate(aggregate);
-        }
-    }
-    handleCommand(command) {
-        const aggregateId = command.getAggregateId();
-        const optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
-        optRepository.ifPresent((repo) => {
-            const optAggregate = repo.findById(aggregateId);
-            optAggregate.ifPresent((aggregate) => {
-                this.commandHandler.handle(aggregate, command);
-                this.publishDomainEvents(aggregate, command);
-            });
-        });
-    }
-    forCommand(command) {
-        return this.commandType === command.getMessageType();
-    }
-    createCommandInstance() {
-        const args = [], argumentLength = this.commandHandler.forCommand().constructor.length;
-        args.fill(undefined, 0, argumentLength);
-        if (args.length === 0) {
-            return (new (this.commandHandler.forCommand())());
-        }
-        else if (args.length === 1) {
-            return (new (this.commandHandler.forCommand())(args[0]));
-        }
-        else if (args.length === 2) {
-            return (new (this.commandHandler.forCommand())(args[0], args[1]));
-        }
-        else if (args.length === 3) {
-            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2]));
-        }
-        else if (args.length === 4) {
-            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3]));
-        }
-        else if (args.length === 5) {
-            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
-        }
-        else {
-            throw new Error('CommandHandlerImpl constructor out of arguments');
-        }
-    }
-}
-
-function domainEventHandlerFactoryAsFactory(domainEventHandlerType) {
-    return CoreContainer.resolve(domainEventHandlerType);
-}
-function domainEventHandlerFactory(domainEventHandler) {
-    return new DomainEventHandlerImpl(domainEventHandler, [domainEventHandler.forEvent()]);
-}
-function multiDomainEventHandlerFactory(domainEventHandler) {
-    return new DomainEventHandlerImpl(domainEventHandler, domainEventHandler.forEvents());
-}
-class DomainEventHandlerImpl {
-    constructor(domainEventHandler, events) {
-        this.domainEventHandler = domainEventHandler;
-        this.events = events;
-        this.eventTypes = this.createDomainEventTypes();
-    }
-    handleEvent(event) {
-        this.domainEventHandler.handle(event);
-    }
-    forEvents(events) {
-        return events.some((event) => {
-            return this.eventTypes.some((type) => {
-                return type === event.getMessageType();
-            });
-        });
-    }
-    createDomainEventTypes() {
-        const types = [];
-        for (const event of this.events) {
-            const instance = this.createDomainEventInstance(event);
-            types.push(instance.getMessageType());
-        }
-        return types;
-    }
-    createDomainEventInstance(eventType) {
-        const args = [], argumentLength = eventType.constructor.length;
-        args.fill(undefined, 0, argumentLength);
-        if (args.length === 0) {
-            return (new eventType());
-        }
-        else if (args.length === 1) {
-            return (new eventType(args[0]));
-        }
-        else if (args.length === 2) {
-            return (new eventType(args[0], args[1]));
-        }
-        else if (args.length === 3) {
-            return (new eventType(args[0], args[1], args[2]));
-        }
-        else if (args.length === 4) {
-            return (new eventType(args[0], args[1], args[2], args[3]));
-        }
-        else if (args.length === 5) {
-            return (new eventType(args[0], args[1], args[2], args[3], args[4]));
-        }
-        else {
-            throw new Error('DomainEventHandler constructor out of arguments');
-        }
-    }
-}
 
 class HermesRunner extends Reactive {
     constructor(aggregateDefinitionInitializer, commandHandlerInitializer, domainEventHandlerInitializer, commandBus, definedAggregate, eventHandlers, aggregateCommandHandlers, commandHandlers) {
@@ -1749,8 +1432,8 @@ class HermesRunner extends Reactive {
         this.started = true;
     }
     destroy() {
-        this.commandHandlerInitializer.ngOnDestroy();
-        this.domainEventHandlerInitializer.ngOnDestroy();
+        this.commandHandlerInitializer.onDestroy();
+        this.domainEventHandlerInitializer.onDestroy();
     }
     checkNullCommand(commandHandlers, aggregateCommandHandlers) {
         this.commandBus
@@ -1785,11 +1468,6 @@ HermesRunner.services = [
     { inject: COMMAND_HANDLERS, collection: true, optional: true }
 ];
 
-const providers = [
-    HermesLoggersInitializer,
-    RandomStringGenerator,
-    HermesApi
-];
 function commandLoggerFactory(enabled, consoleCommandLogger, noopCommandLogger) {
     if (enabled) {
         return consoleCommandLogger;
@@ -1806,99 +1484,9 @@ function eventLoggerFactory(enabled, consoleEventLogger, noopEventLogger) {
         return noopEventLogger;
     }
 }
-class HermesBaseModule extends Reactive {
-    constructor(hermesLoggersInitializer, hermesApi) {
-        super();
-        this.hermesLoggersInitializer = hermesLoggersInitializer;
-        this.hermesApi = hermesApi;
-        this.hermesRunner = CoreContainer.resolve(HermesRunner);
-        this.hermesApi.init();
-        this.hermesLoggersInitializer.start();
-        this.hermesRunner.run();
-    }
-    ngOnDestroy() {
-        super.ngOnDestroy();
-        this.hermesLoggersInitializer.stop();
-    }
+function runHermes() {
+    CoreContainer.resolve(HermesRunner).run();
 }
-HermesBaseModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.Injectable });
-HermesBaseModule.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesBaseModule, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return [{ type: HermesLoggersInitializer }, { type: HermesApi }]; } });
-class HermesModule extends HermesBaseModule {
-    // static readonly container = CoreContainer;
-    constructor(hermesLoggersInitializer, hermesApi) {
-        super(hermesLoggersInitializer, hermesApi);
-    }
-    static defineAggregate(aggregateKey, createCommandHandler, factory, repository) {
-        CoreContainer.provide(factory);
-        CoreContainer.provide(repository);
-        CoreContainer.provideValue(aggregateKey, aggregateKey);
-        CoreContainer.provideValueCollection(aggregateDefinitionToken, {
-            key: aggregateKey,
-            factory: factory,
-            repository: repository
-        });
-        HermesModule.registerCreateCommandHandler(createCommandHandler, aggregateKey);
-    }
-    static withConfig() {
-        return {
-            ngModule: HermesModule,
-            providers: providers
-        };
-    }
-    static registerCommandHandler(commandHandlerType, aggregateName) {
-        CoreContainer.provide(commandHandlerType);
-        CoreContainer.provideFactoryCollection(COMMAND_HANDLERS, {
-            create: commandHandlerFactory,
-            deps: [
-                commandHandlerType,
-                aggregateName
-            ]
-        });
-    }
-    static registerDomainEventHandler(domainEventHandlerType) {
-        CoreContainer.provide(domainEventHandlerType);
-        CoreContainer.provideFactoryCollection(DOMAIN_EVENT_HANDLERS, {
-            create: domainEventHandlerFactory,
-            deps: [
-                domainEventHandlerType
-            ]
-        });
-    }
-    static registerMultiDomainEventHandler(domainEventHandlerType) {
-        CoreContainer.provide(domainEventHandlerType);
-        CoreContainer.provideFactoryCollection(DOMAIN_EVENT_HANDLERS, {
-            create: multiDomainEventHandlerFactory,
-            deps: [
-                domainEventHandlerType
-            ]
-        });
-    }
-    static registerCreateCommandHandler(createCommandHandlerType, aggregateName) {
-        CoreContainer.provide(createCommandHandlerType);
-        CoreContainer.provideFactoryCollection(CREATE_AGGREGATE_COMMAND_HANDLERS, {
-            create: createAggregateCommandHandlerFactory,
-            deps: [
-                createCommandHandlerType,
-                aggregateName
-            ]
-        });
-    }
-}
-HermesModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, deps: [{ token: HermesLoggersInitializer }, { token: HermesApi }], target: i0.ɵɵFactoryTarget.NgModule });
-HermesModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, imports: [CommonModule] });
-HermesModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, providers: providers, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [
-                        CommonModule
-                    ],
-                    providers: providers
-                }]
-        }], ctorParameters: function () { return [{ type: HermesLoggersInitializer }, { type: HermesApi }]; } });
 
 class CommandDispatcher {
     constructor() {
@@ -1908,6 +1496,41 @@ class CommandDispatcher {
         this.commandStream.next(command);
     }
 }
+
+class DomainEventPublisher {
+    constructor(eventStream) {
+        this.eventStream = eventStream;
+    }
+    publish(args) {
+        if (Array.isArray(args)) {
+            for (const arg of args) {
+                this.publishEvent(arg);
+            }
+        }
+        else {
+            this.publishEvent(args);
+        }
+    }
+    publishFromAggregate(aggregate) {
+        const events = [...aggregate.getEvents()];
+        events.forEach((aggregateEvent) => {
+            this.publish(aggregateEvent.toDomainEvent());
+        });
+    }
+    publishEvent(event) {
+        if (!event) {
+            // eslint-disable-next-line no-console
+            console.error(`${event} is not defined`);
+        }
+        if (!(event instanceof DomainEvent)) {
+            // throw new Error(`${event} is not a DomainEvent`);
+            // eslint-disable-next-line no-console
+            console.error(`${event} is not a DomainEvent`);
+        }
+        this.eventStream.next(event);
+    }
+}
+DomainEventPublisher.services = [DomainEventStream];
 
 const CoreContainer = createContainer();
 CoreContainer.provideValue(EVENT_LOGGER_ENABLED, true);
@@ -2034,15 +1657,10 @@ class ReactiveService extends Reactive {
     constructor() {
         super();
     }
-    ngOnDestroy() {
+    onDestroy() {
         this.hermesUnsubscribe();
     }
 }
-ReactiveService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-ReactiveService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ReactiveService, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () { return []; } });
 
 class KeyMap {
     constructor() {
@@ -2399,34 +2017,8 @@ function DomainObject(_target) {
 function ReadModelObject(_target) {
 }
 
-class DomainModule {
-    constructor() {
-    }
-}
-DomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: DomainModule });
-DomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DomainModule, decorators: [{
-            type: NgModule
-        }], ctorParameters: function () { return []; } });
-
-class ApiModule {
-}
-ApiModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ApiModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: ApiModule });
-ApiModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ApiModule, decorators: [{
-            type: NgModule
-        }] });
-
 class FeatureModule {
 }
-FeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule });
-FeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FeatureModule, decorators: [{
-            type: NgModule
-        }] });
 
 function hermesNever() {
     return new HermesObservable(() => {
@@ -2737,18 +2329,6 @@ class InMemoryStore {
     }
 }
 
-class HermesDomainModule {
-    ngOnDestroy() {
-    }
-}
-HermesDomainModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-HermesDomainModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule });
-HermesDomainModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: HermesDomainModule, decorators: [{
-            type: NgModule,
-            args: [{}]
-        }] });
-
 function assertDomainEvents(actualEvents, expectedEvents) {
     expect(actualEvents.length).toEqual(expectedEvents.length);
     for (const actualEvent of actualEvents) {
@@ -2871,6 +2451,33 @@ class CreateAggregateCommand extends Command {
     }
 }
 
+const hermesApi = 'hermesApi';
+function initHermesApi() {
+    const cl = CoreContainer.resolve(CommandLogger), del = CoreContainer.resolve(DomainEventLogger);
+    const api = () => {
+        return {
+            set loggers(enabled) {
+                if (enabled) {
+                    // api.commandLogger.start(); TO FIX
+                    // api.eventLogger.start();
+                }
+                else {
+                    // api.commandLogger.stop(); // TO FIX
+                    // api.eventLogger.stop();
+                }
+            },
+            set domain(domainName) {
+                if (domainName) {
+                    cl.setDomain(domainName);
+                    del.setDomain(domainName);
+                }
+            }
+        };
+    };
+    window[hermesApi] = api();
+    window[hermesApi].loggers = false;
+}
+
 function enableHermesLoggers(domainName, windowObject) {
     const winRef = windowObject ? windowObject : window;
     if (domainName) {
@@ -2882,6 +2489,183 @@ function disableHermesLoggers(windowObject) {
     const winRef = windowObject ? windowObject : window;
     delete winRef[hermesApi].domain;
     winRef[hermesApi].loggers = false;
+}
+
+function createAggregateCommandHandlerFactory(createAggregateCommandHandler, aggregateName) {
+    return new CreateAggregateCommandHandlerImpl(createAggregateCommandHandler, aggregateName);
+}
+class CreateAggregateCommandHandlerImpl {
+    constructor(createAggregateCommandHandler, aggregateType) {
+        this.createAggregateCommandHandler = createAggregateCommandHandler;
+        this.aggregateType = aggregateType;
+        this.aggregateFactoryArchive = CoreContainer.resolve(AggregateFactoryArchive);
+        this.aggregateRepositoryArchive = CoreContainer.resolve(AggregateRepositoryArchive);
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+        this.commandType = this.createCommandInstance().getMessageType();
+    }
+    handleCommand(command) {
+        const aggregateId = command.getAggregateId();
+        const optFactory = this.aggregateFactoryArchive.get(this.aggregateType);
+        optFactory.ifPresent((factory) => {
+            const aggregate = factory.create(aggregateId);
+            const type = aggregate.getType(), createCommandConstructor = aggregate.createEvent();
+            const createCommand = new createCommandConstructor(aggregateId, type);
+            aggregate.addEvent(createCommand);
+            const optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
+            optRepository.ifPresent((repo) => {
+                repo.save(aggregate);
+                this.domainEventPublisher.publishFromAggregate(aggregate);
+            });
+        });
+    }
+    forCommand(command) {
+        return this.commandType === command.getMessageType();
+    }
+    createCommandInstance() {
+        const args = [], argumentLength = this.createAggregateCommandHandler.forCommand().constructor.length;
+        args.fill(undefined, 0, argumentLength);
+        if (args.length === 0) {
+            return (new (this.createAggregateCommandHandler.forCommand())());
+        }
+        else if (args.length === 1) {
+            return (new (this.createAggregateCommandHandler.forCommand())(args[0]));
+        }
+        else if (args.length === 2) {
+            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1]));
+        }
+        else if (args.length === 3) {
+            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2]));
+        }
+        else if (args.length === 4) {
+            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3]));
+        }
+        else if (args.length === 5) {
+            return (new (this.createAggregateCommandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
+        }
+        else {
+            throw new Error('CreateAggregateCommandHandlerImpl constructor out of arguments');
+        }
+    }
+}
+
+function commandHandlerFactory(commandHandler, aggregateName) {
+    return new CommandHandlerImpl(commandHandler, aggregateName);
+}
+class CommandHandlerImpl {
+    constructor(commandHandler, aggregateType) {
+        this.commandHandler = commandHandler;
+        this.aggregateType = aggregateType;
+        this.aggregateRepositoryArchive = CoreContainer.resolve(AggregateRepositoryArchive);
+        this.domainEventPublisher = CoreContainer.resolve(DomainEventPublisher);
+        this.commandType = this.createCommandInstance().getMessageType();
+    }
+    publishDomainEvents(aggregate, command) {
+        if (this.commandHandler.publish) {
+            this.commandHandler.publish(aggregate, command);
+        }
+        else {
+            this.domainEventPublisher.publishFromAggregate(aggregate);
+        }
+    }
+    handleCommand(command) {
+        const aggregateId = command.getAggregateId();
+        const optRepository = this.aggregateRepositoryArchive.get(this.aggregateType);
+        optRepository.ifPresent((repo) => {
+            const optAggregate = repo.findById(aggregateId);
+            optAggregate.ifPresent((aggregate) => {
+                this.commandHandler.handle(aggregate, command);
+                this.publishDomainEvents(aggregate, command);
+            });
+        });
+    }
+    forCommand(command) {
+        return this.commandType === command.getMessageType();
+    }
+    createCommandInstance() {
+        const args = [], argumentLength = this.commandHandler.forCommand().constructor.length;
+        args.fill(undefined, 0, argumentLength);
+        if (args.length === 0) {
+            return (new (this.commandHandler.forCommand())());
+        }
+        else if (args.length === 1) {
+            return (new (this.commandHandler.forCommand())(args[0]));
+        }
+        else if (args.length === 2) {
+            return (new (this.commandHandler.forCommand())(args[0], args[1]));
+        }
+        else if (args.length === 3) {
+            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2]));
+        }
+        else if (args.length === 4) {
+            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3]));
+        }
+        else if (args.length === 5) {
+            return (new (this.commandHandler.forCommand())(args[0], args[1], args[2], args[3], args[4]));
+        }
+        else {
+            throw new Error('CommandHandlerImpl constructor out of arguments');
+        }
+    }
+}
+
+function domainEventHandlerFactoryAsFactory(domainEventHandlerType) {
+    return CoreContainer.resolve(domainEventHandlerType);
+}
+function domainEventHandlerFactory(domainEventHandler) {
+    return new DomainEventHandlerImpl(domainEventHandler, [domainEventHandler.forEvent()]);
+}
+function multiDomainEventHandlerFactory(domainEventHandler) {
+    return new DomainEventHandlerImpl(domainEventHandler, domainEventHandler.forEvents());
+}
+class DomainEventHandlerImpl {
+    constructor(domainEventHandler, events) {
+        this.domainEventHandler = domainEventHandler;
+        this.events = events;
+        this.eventTypes = this.createDomainEventTypes();
+    }
+    handleEvent(event) {
+        this.domainEventHandler.handle(event);
+    }
+    forEvents(events) {
+        return events.some((event) => {
+            return this.eventTypes.some((type) => {
+                return type === event.getMessageType();
+            });
+        });
+    }
+    createDomainEventTypes() {
+        const types = [];
+        for (const event of this.events) {
+            const instance = this.createDomainEventInstance(event);
+            types.push(instance.getMessageType());
+        }
+        return types;
+    }
+    createDomainEventInstance(eventType) {
+        const args = [], argumentLength = eventType.constructor.length;
+        args.fill(undefined, 0, argumentLength);
+        if (args.length === 0) {
+            return (new eventType());
+        }
+        else if (args.length === 1) {
+            return (new eventType(args[0]));
+        }
+        else if (args.length === 2) {
+            return (new eventType(args[0], args[1]));
+        }
+        else if (args.length === 3) {
+            return (new eventType(args[0], args[1], args[2]));
+        }
+        else if (args.length === 4) {
+            return (new eventType(args[0], args[1], args[2], args[3]));
+        }
+        else if (args.length === 5) {
+            return (new eventType(args[0], args[1], args[2], args[3], args[4]));
+        }
+        else {
+            throw new Error('DomainEventHandler constructor out of arguments');
+        }
+    }
 }
 
 class DomainInitializer {
@@ -2906,7 +2690,22 @@ class DomainInitializer {
     defineAggregate() {
         const definition = this.domain.defineAggregate();
         if (definition) {
-            HermesModule.defineAggregate(definition.aggregateKey, definition.createCommandHandler, definition.factory, definition.repository);
+            this.container.provide(definition.factory);
+            this.container.provide(definition.repository);
+            this.container.provideValue(definition.aggregateKey, definition.aggregateKey);
+            this.container.provideValueCollection(aggregateDefinitionToken, {
+                key: definition.aggregateKey,
+                factory: definition.factory,
+                repository: definition.repository
+            });
+            this.container.provide(definition.createCommandHandler);
+            this.container.provideFactoryCollection(CREATE_AGGREGATE_COMMAND_HANDLERS, {
+                create: createAggregateCommandHandlerFactory,
+                deps: [
+                    definition.createCommandHandler,
+                    definition.aggregateKey
+                ]
+            });
         }
     }
     registerApiProviders() {
@@ -2919,32 +2718,48 @@ class DomainInitializer {
         this.domain
             .registerCommandHandlers()
             .forEach((ch) => {
-            HermesModule.registerCommandHandler(ch, this.domain.registerKey(this.container));
+            this.container.provide(ch);
+            this.container.provideFactoryCollection(COMMAND_HANDLERS, {
+                create: commandHandlerFactory,
+                deps: [
+                    ch,
+                    this.domain.registerKey(this.container)
+                ]
+            });
         });
     }
     registerEventHandlers() {
         this.domain
             .registerDomainEventHandler()
-            .forEach((dh) => {
-            HermesModule.registerDomainEventHandler(dh);
+            .forEach((eh) => {
+            this.container.provide(eh);
+            this.container.provideFactoryCollection(DOMAIN_EVENT_HANDLERS, {
+                create: domainEventHandlerFactory,
+                deps: [
+                    eh
+                ]
+            });
         });
     }
     registerMultiEventHandlers() {
         this.domain
             .registerMultiDomainEventHandler()
-            .forEach((dh) => {
-            HermesModule.registerMultiDomainEventHandler(dh);
+            .forEach((eh) => {
+            this.container.provide(eh);
+            this.container.provideFactoryCollection(DOMAIN_EVENT_HANDLERS, {
+                create: multiDomainEventHandlerFactory,
+                deps: [
+                    eh
+                ]
+            });
         });
     }
 }
 
 /**
- * API
- */
-
-/**
  * Generated bundle index. Do not edit.
  */
 
-export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, ApiModule, Archive, COMMAND_LOGGER_ENABLED, Command, CommandDispatcher, CommandLogger, CommandType, CoreContainer, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventPublisher, DomainEventType, DomainInitializer, DomainModule, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesApi, HermesArchiveSubject, HermesBehaviorSubject, HermesDomainModule, HermesId, HermesModule, HermesObservable, HermesReplaySubject, HermesRunner, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomIdGenerator, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, createContainer, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, onDefaultValuesWarehouseTest, onWarehouseEmpty, onceDefaultValuesWarehouseTest, provideEventHandlers, resetCoreContainer, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable };
+export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, Archive, COMMAND_LOGGER_ENABLED, Command, CommandDispatcher, CommandLogger, CommandType, CoreContainer, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventPublisher, DomainEventType, DomainInitializer, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesArchiveSubject, HermesBehaviorSubject, HermesId, HermesObservable, HermesReplaySubject, HermesRunner, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomIdGenerator, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, createContainer, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, initHermesApi, onDefaultValuesWarehouseTest, onWarehouseEmpty, onceDefaultValuesWarehouseTest, resetCoreContainer, runHermes, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable };
+//# sourceMappingURL=generic-ui-hermes.mjs.map
 //# sourceMappingURL=generic-ui-hermes.mjs.map

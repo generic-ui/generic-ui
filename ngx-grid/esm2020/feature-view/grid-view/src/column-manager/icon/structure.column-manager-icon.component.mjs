@@ -9,8 +9,8 @@ export class StructureColumnManagerIconComponent extends IconComponent {
         return 'gui-structure-column-manager-icon';
     }
 }
-StructureColumnManagerIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-StructureColumnManagerIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]", usesInheritance: true, ngImport: i0, template: `
+StructureColumnManagerIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+StructureColumnManagerIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 10.31">
 			<line class="cls-1" x1="9.57" y1="3.65" x2="0.75" y2="3.65"/>
 			<line class="cls-2" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
@@ -20,7 +20,7 @@ StructureColumnManagerIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersi
 			<line class="cls-2" x1="9.57" y1="9.56" x2="9.57" y2="0.88"/>
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnManagerIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnManagerIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-column-manager-icon]',

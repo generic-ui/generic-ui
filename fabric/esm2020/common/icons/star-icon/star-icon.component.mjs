@@ -2,15 +2,15 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import * as i0 from "@angular/core";
 export class StarIconComponent {
 }
-StarIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StarIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-StarIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StarIconComponent, selector: "gui-star-icon", host: { properties: { "class.gui-star-icon": "true" } }, ngImport: i0, template: `
+StarIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StarIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+StarIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: StarIconComponent, selector: "gui-star-icon", host: { properties: { "class.gui-star-icon": "true" } }, ngImport: i0, template: `
 		<svg xmlns="http://www.w3.org/2000/svg" width="34.542" height="32.852" viewBox="0 0 34.542 32.852">
 			<path data-name="Path 572"
 				  d="M-121.168-469.432l5.337,10.814,11.934,1.734-8.636,8.418,2.039,11.886-10.674-5.612-10.674,5.612,2.039-11.886-8.636-8.418,11.934-1.734Z"
 				  transform="translate(138.44 469.432)" fill="#ffe623" fill-rule="evenodd"/>
 		</svg>
 	`, isInline: true, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StarIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StarIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-star-icon',

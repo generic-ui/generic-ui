@@ -20,5 +20,5 @@ export declare abstract class PagingGate extends Gate implements OnChanges, OnIn
     ngOnInit(): void;
     onPageChange(page: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<PagingGate, never, never, { "paging": "paging"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; }, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<PagingGate, never, never, { "paging": "paging"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; }, never, never, false, never>;
 }

@@ -5,12 +5,12 @@ import { StarIconModule } from '../../common/icons/star-icon/star-icon.module';
 import * as i0 from "@angular/core";
 export class FabricRatingModule {
 }
-FabricRatingModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRatingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricRatingModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricRatingModule, declarations: [FabricRatingComponent], imports: [CommonModule,
+FabricRatingModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRatingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricRatingModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricRatingModule, declarations: [FabricRatingComponent], imports: [CommonModule,
         StarIconModule], exports: [FabricRatingComponent] });
-FabricRatingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRatingModule, imports: [CommonModule,
+FabricRatingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRatingModule, imports: [CommonModule,
         StarIconModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricRatingModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricRatingModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -13,5 +13,5 @@ export declare class FieldSelectorComponent extends PureComponent implements OnC
     onFieldSelected(fieldId: GuiSelectOption): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FieldSelectorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FieldSelectorComponent, "div[gui-field-selector][fields]", never, { "fields": "fields"; }, { "fieldSelected": "fieldSelected"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FieldSelectorComponent, "div[gui-field-selector][fields]", never, { "fields": "fields"; }, { "fieldSelected": "fieldSelected"; }, never, never, false, never>;
 }

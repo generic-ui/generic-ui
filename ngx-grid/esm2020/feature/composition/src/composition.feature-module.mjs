@@ -80,8 +80,8 @@ export class CompositionFeatureModule extends FeatureModule {
         return [];
     }
 }
-CompositionFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionFeatureModule, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.NgModule });
-CompositionFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: CompositionFeatureModule, declarations: [ViewTemplatesComponent,
+CompositionFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: CompositionFeatureModule, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.NgModule });
+CompositionFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: CompositionFeatureModule, declarations: [ViewTemplatesComponent,
         EditTemplatesComponent,
         StringEditTemplateComponent,
         NumberEditTemplateComponent,
@@ -110,7 +110,7 @@ CompositionFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0"
         BarViewComponent,
         PercentageViewComponent,
         HtmlViewComponent] });
-CompositionFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionFeatureModule, providers: [
+CompositionFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: CompositionFeatureModule, providers: [
         { provide: CompositionPublisher, useFactory: provideCompositionCommandPublisher },
         { provide: CompositionWarehouse, useFactory: provideCompositionWarehouse },
         { provide: CompositionEventRepository, useFactory: provideCompositionEventRepository },
@@ -132,7 +132,7 @@ CompositionFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0"
         FabricCheckboxModule,
         FabricButtonModule,
         FabricInputModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: CompositionFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: CompositionFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

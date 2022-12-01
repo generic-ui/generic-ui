@@ -5,5 +5,5 @@ export declare class FilterIconComponent extends IconComponent {
     constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterIconComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterIconComponent, "div[gui-filter-icon]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterIconComponent, "div[gui-filter-icon]", never, {}, {}, never, never, false, never>;
 }

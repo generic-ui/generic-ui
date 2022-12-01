@@ -1,3 +1,4 @@
+import { FormationCustomSelectionConfig } from '../custom/formation.custom-selection.config';
 export declare enum RowSelectionType {
     ROW = 0,
     CHECKBOX = 1,
@@ -14,6 +15,7 @@ export declare class RowSelection {
     private readonly type;
     private readonly mode;
     private readonly matcher;
+    private readonly customConfig?;
     private constructor();
     isModeDefined(): boolean;
     isTypeDefined(): boolean;
@@ -22,11 +24,13 @@ export declare class RowSelection {
     isEnabledDefined(): boolean;
     isMatcherDefined(): boolean;
     isEnabled(): boolean;
+    isCustomSelectConfig(): boolean;
     getSelectedRowIndexes(): Array<number>;
     getSelectedRowIds(): Array<string>;
     getMode(): RowSelectionMode;
     getType(): RowSelectionType;
     getMatcher(): (item: any) => any;
+    getCustomSelectConfig(): FormationCustomSelectionConfig;
     static Builder: {
         new (): {
             enabled: boolean;
@@ -34,6 +38,7 @@ export declare class RowSelection {
             selectedRowIds: Array<string>;
             type: RowSelectionType;
             mode: RowSelectionMode;
+            config: FormationCustomSelectionConfig;
             matcher: (item: any) => any;
             buildObject(): RowSelection;
             withEnabled(enabled: boolean): any;
@@ -42,6 +47,7 @@ export declare class RowSelection {
             withType(type: RowSelectionType): any;
             withMode(mode: RowSelectionMode): any;
             withMatcher(matcher: (item: any) => any): any;
+            witCustomSelection(config: FormationCustomSelectionConfig): any;
             build(): RowSelection;
         };
     };

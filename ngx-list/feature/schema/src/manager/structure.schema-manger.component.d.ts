@@ -1,0 +1,31 @@
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { GuiSelectOption } from '@generic-ui/fabric';
+import { SchemaWarehouse } from '../../../../core/schema/src/api/schema.warehouse';
+import { SchemaPublisher } from '../../../../core/schema/src/api/schema.publisher';
+import { SchemaReadModelRootId } from '../../../../core/schema/src/api/global/schema.read-model-root-id';
+import { SmartComponent } from '../../../common/src/cdk/component/lib/src/smart-component';
+import { StructureId } from '../../../../core/structure/structure-core/src/api/global/structure.id';
+import * as i0 from "@angular/core";
+export declare class StructureSchemaMangerComponent extends SmartComponent implements OnInit {
+    private readonly structureId;
+    private readonly schemaReadModelRootId;
+    private readonly schemaCommandInvoker;
+    private readonly schemaWarehouse;
+    coloring: Array<GuiSelectOption>;
+    themes: Array<GuiSelectOption>;
+    selectedRowColoring: GuiSelectOption;
+    selectedTheme: GuiSelectOption;
+    verticalGrid: boolean;
+    horizontalGrid: boolean;
+    constructor(changeDetectorRef: ChangeDetectorRef, elRef: ElementRef, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, schemaCommandInvoker: SchemaPublisher, schemaWarehouse: SchemaWarehouse);
+    ngOnInit(): void;
+    toggleTheme(theme: GuiSelectOption): void;
+    toggleRowColoring(schemaRowColoring: GuiSelectOption): void;
+    toggleVerticalGrid(): void;
+    toggleHorizontalGrid(): void;
+    protected getSelectorName(): string;
+    private toTheme;
+    private toRowColoring;
+    static ɵfac: i0.ɵɵFactoryDeclaration<StructureSchemaMangerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureSchemaMangerComponent, "div[gui-structure-schema-manager]", never, {}, {}, never, never, false, never>;
+}

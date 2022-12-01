@@ -36,12 +36,12 @@ export class GuiGridModule {
 GuiGridModule.entryComponents = Array.from(entryComponents);
 GuiGridModule.exportDeclarations = Array.from(exportDeclarations);
 GuiGridModule.elementComponents = Array.from(elementComponents);
-GuiGridModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-GuiGridModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: GuiGridModule, declarations: [GuiGridComponent,
+GuiGridModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiGridModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+GuiGridModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: GuiGridModule, declarations: [GuiGridComponent,
         GuiGridColumnComponent], imports: [i1.GridViewFeatureModule], exports: [GuiGridComponent,
         GuiGridColumnComponent] });
-GuiGridModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridModule, providers: providers, imports: [imports] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridModule, decorators: [{
+GuiGridModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiGridModule, providers: providers, imports: [imports] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiGridModule, decorators: [{
             type: NgModule,
             args: [{
                     imports,

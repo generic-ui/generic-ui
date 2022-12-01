@@ -26,5 +26,5 @@ export declare class StructureHeaderGroupsComponent extends PureComponent {
     isGlobalSortEnabled(): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderGroupsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderGroupsComponent, "div[gui-structure-header-groups][groups][checkboxSelection]", never, { "groups": "groups"; "showGroups": "showGroups"; "checkboxSelection": "checkboxSelection"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderGroupsComponent, "div[gui-structure-header-groups][groups][checkboxSelection]", never, { "groups": "groups"; "showGroups": "showGroups"; "checkboxSelection": "checkboxSelection"; }, {}, never, never, false, never>;
 }

@@ -2,9 +2,9 @@ import { Component, ContentChild, Input, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
 export class GuiGridColumnComponent {
 }
-GuiGridColumnComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridColumnComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-GuiGridColumnComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: GuiGridColumnComponent, selector: "gui-grid-column", inputs: { name: "name", field: "field", type: "type", view: "view", header: "header", width: "width", enabled: "enabled", align: "align", summaries: "summaries", sorting: "sorting", cellEditing: "cellEditing", formatter: "formatter", matcher: "matcher", cssClasses: "cssClasses", styles: "styles" }, queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiGridColumnComponent, decorators: [{
+GuiGridColumnComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiGridColumnComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+GuiGridColumnComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: GuiGridColumnComponent, selector: "gui-grid-column", inputs: { name: "name", field: "field", type: "type", view: "view", header: "header", width: "width", enabled: "enabled", align: "align", summaries: "summaries", sorting: "sorting", cellEditing: "cellEditing", formatter: "formatter", matcher: "matcher", cssClasses: "cssClasses", styles: "styles" }, queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiGridColumnComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-grid-column',

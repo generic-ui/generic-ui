@@ -5,11 +5,11 @@ import { FieldId } from '../../../field/src/domain/field/field.id';
 import { FilterTypeId } from '../domain/type/filter-type.id';
 import { FilterId } from '../api/id/filter.id';
 import { UniqueValueId } from '../domain/unique/unique-value-id';
-import { FilterDispatcher } from './filter.dispatcher';
+import { CommandDispatcher } from '@generic-ui/hermes';
 export declare class FilterDomainPublisher extends FilterPublisher {
-    private readonly filterDispatcher;
-    constructor(filterDispatcher: FilterDispatcher);
-    static readonly services: (typeof FilterDispatcher)[];
+    private readonly commandDispatcher;
+    constructor(commandDispatcher: CommandDispatcher);
+    static readonly services: (typeof CommandDispatcher)[];
     setConfig(config: FilterConfig, structureId: StructureId): void;
     add(fieldId: FieldId, filterTypeId: FilterTypeId, value: any, structureId: StructureId): void;
     removeAll(structureId: StructureId): void;

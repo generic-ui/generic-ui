@@ -15,5 +15,5 @@ export declare class FilterTypeSelectorComponent extends PureComponent implement
     onSelectChange(option: GuiSelectOption): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterTypeSelectorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterTypeSelectorComponent, "div[gui-filter-type-selector][filterTypes]", never, { "filterTypes": "filterTypes"; }, { "filterTypeSelected": "filterTypeSelected"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterTypeSelectorComponent, "div[gui-filter-type-selector][filterTypes]", never, { "filterTypes": "filterTypes"; }, { "filterTypeSelected": "filterTypeSelected"; }, never, never, false, never>;
 }

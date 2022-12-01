@@ -4,10 +4,10 @@ import { FabricButtonGroupComponent } from './button-group.component';
 import * as i0 from "@angular/core";
 export class FabricButtonGroupModule {
 }
-FabricButtonGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricButtonGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricButtonGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricButtonGroupModule, declarations: [FabricButtonGroupComponent], imports: [CommonModule], exports: [FabricButtonGroupComponent] });
-FabricButtonGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricButtonGroupModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricButtonGroupModule, decorators: [{
+FabricButtonGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricButtonGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricButtonGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricButtonGroupModule, declarations: [FabricButtonGroupComponent], imports: [CommonModule], exports: [FabricButtonGroupComponent] });
+FabricButtonGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricButtonGroupModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricButtonGroupModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

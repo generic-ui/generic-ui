@@ -11,5 +11,5 @@ export declare class FunctionViewComponent extends PureComponent {
     ngOnChanges(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FunctionViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FunctionViewComponent, "gui-function-view", never, { "element": "element"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FunctionViewComponent, "gui-function-view", never, { "element": "element"; }, {}, never, never, false, never>;
 }

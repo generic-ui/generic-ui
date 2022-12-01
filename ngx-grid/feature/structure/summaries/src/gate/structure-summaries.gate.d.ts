@@ -12,5 +12,5 @@ export declare class StructureSummariesGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, summariesCommandInvoker: SummariesPublisher);
     ngOnChanges(changes: NgChanges<StructureSummariesGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSummariesGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSummariesGate, "gui-structure[summaries]", never, { "summaries": "summaries"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSummariesGate, "gui-structure[summaries]", never, { "summaries": "summaries"; }, {}, never, never, false, never>;
 }

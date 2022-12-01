@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { GuiSelectOption } from '../select-option';
 import { SelectOptionsGeometryService } from './select-options-geometry.service';
-import { FabricSelectedOptionsRepository } from '../selected-option.repository';
+import { FabricSelectedOptionsRepository } from '../fabric.selected-option.repository';
 import { FabricThemedComponent } from '../../../common/modal/fabric-themed-component';
 import { FabricModalThemeService } from '../../../themes/fabric-modal-theme.service';
 import * as i0 from "@angular/core";
@@ -26,5 +26,5 @@ export declare class FabricSelectOptionsComponent extends FabricThemedComponent 
     getOptionValue(option: GuiSelectOption): number | string;
     initOpenAnimation(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectOptionsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectOptionsComponent, "ng-component", never, {}, {}, never, never, false, never>;
 }

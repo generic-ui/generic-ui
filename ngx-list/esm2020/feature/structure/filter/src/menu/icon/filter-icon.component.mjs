@@ -9,15 +9,15 @@ export class FilterIconComponent extends IconComponent {
         return 'gui-filter-icon';
     }
 }
-FilterIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-FilterIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FilterIconComponent, selector: "div[gui-filter-icon]", usesInheritance: true, ngImport: i0, template: `
+FilterIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FilterIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+FilterIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: FilterIconComponent, selector: "div[gui-filter-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.23">
 			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
 			<line class="cls-1" x1="8.14" y1="3.62" x2="2.18" y2="3.62"/>
 			<line class="cls-1" x1="6.71" y1="6.48" x2="3.62" y2="6.48"/>
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FilterIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FilterIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-filter-icon]',

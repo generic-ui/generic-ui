@@ -9,15 +9,15 @@ export class StructureColumnMenuIconComponent extends IconComponent {
         return 'gui-structure-column-menu-icon';
     }
 }
-StructureColumnMenuIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-StructureColumnMenuIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]", usesInheritance: true, ngImport: i0, template: `
+StructureColumnMenuIconComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+StructureColumnMenuIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.46">
 			<line class="cls-1" x1="9.57" y1="3.73" x2="0.75" y2="3.73"/>
 			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
 			<line class="cls-1" x1="9.57" y1="6.71" x2="0.75" y2="6.71"/>
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-menu-icon]',

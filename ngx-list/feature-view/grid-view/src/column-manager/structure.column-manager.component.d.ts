@@ -18,5 +18,5 @@ export declare class StructureColumnManagerComponent extends SmartComponent impl
     toggleColumn(column: CellTemplateWithContext): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnManagerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnManagerComponent, "div[gui-structure-column-manager]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnManagerComponent, "div[gui-structure-column-manager]", never, {}, {}, never, never, false, never>;
 }

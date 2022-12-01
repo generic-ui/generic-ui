@@ -39,5 +39,5 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     protected getSelectorName(): string;
     private setTabTitles;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never, false, never>;
 }

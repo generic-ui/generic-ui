@@ -13,5 +13,5 @@ export declare class StructureColumnConfigColumnMoveComponent extends PureCompon
     moveRight(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigColumnMoveComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigColumnMoveComponent, "div[gui-structure-column-config-column-move][column]", never, { "column": "column"; }, { "movedLeft": "movedLeft"; "movedRight": "movedRight"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigColumnMoveComponent, "div[gui-structure-column-config-column-move][column]", never, { "column": "column"; }, { "movedLeft": "movedLeft"; "movedRight": "movedRight"; }, never, never, false, never>;
 }

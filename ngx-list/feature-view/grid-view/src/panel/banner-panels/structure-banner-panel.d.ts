@@ -11,5 +11,5 @@ export declare abstract class StructureBannerPanel extends SmartComponent implem
     abstract getPanelTitle(): string;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureBannerPanel, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureBannerPanel, never, never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureBannerPanel, never, never, {}, {}, never, never, false, never>;
 }

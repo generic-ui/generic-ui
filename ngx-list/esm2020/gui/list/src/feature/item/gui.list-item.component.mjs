@@ -2,9 +2,9 @@ import { Component, ContentChild, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
 export class GuiListItemComponent {
 }
-GuiListItemComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiListItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-GuiListItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: GuiListItemComponent, selector: "gui-list-item", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiListItemComponent, decorators: [{
+GuiListItemComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiListItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+GuiListItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: GuiListItemComponent, selector: "gui-list-item", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiListItemComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-list-item',

@@ -14,5 +14,5 @@ export declare class StructureArrowIconComponent extends IconComponent implement
     private getTransformValue;
     private getRotationDeg;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureArrowIconComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureArrowIconComponent, "div[gui-structure-arrow-icon]", never, { "position": "position"; "sort": "sort"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureArrowIconComponent, "div[gui-structure-arrow-icon]", never, { "position": "position"; "sort": "sort"; }, {}, never, never, false, never>;
 }

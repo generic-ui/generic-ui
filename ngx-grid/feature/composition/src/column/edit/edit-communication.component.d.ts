@@ -16,5 +16,5 @@ export declare abstract class EditCommunicationComponent<T> extends SmartCompone
     cancel(): void;
     private emitStatus;
     static ɵfac: i0.ɵɵFactoryDeclaration<EditCommunicationComponent<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<EditCommunicationComponent<any>, never, never, { "value": "value"; "valueChanges": "valueChanges"; "status": "status"; "focus": "focus"; "parent": "parent"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<EditCommunicationComponent<any>, never, never, { "value": "value"; "valueChanges": "valueChanges"; "status": "status"; "focus": "focus"; "parent": "parent"; }, {}, never, never, false, never>;
 }

@@ -24,14 +24,14 @@ export class SchemaFeatureModule extends FeatureModule {
         return [];
     }
 }
-SchemaFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-SchemaFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
-SchemaFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, providers: [
+SchemaFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+SchemaFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
+SchemaFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SchemaFeatureModule, providers: [
         { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
         { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
         { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
     ], imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: SchemaFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: SchemaFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -10,5 +10,5 @@ export declare class ListViewL10nGate extends Gate implements OnChanges {
     constructor(translationService: TranslationFacade);
     ngOnChanges(changes: NgChanges<ListViewL10nGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewL10nGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewL10nGate, "gui-list-view[localization]", never, { "localization": "localization"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewL10nGate, "gui-list-view[localization]", never, { "localization": "localization"; }, {}, never, never, false, never>;
 }

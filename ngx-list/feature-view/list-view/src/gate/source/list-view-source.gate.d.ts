@@ -8,5 +8,5 @@ export declare class ListViewSourceGate extends SourceGate {
     protected readonly sourceEventService: SourceEventService;
     constructor(structureId: StructureId, sourceCommandService: SourcePublisher, sourceEventService: SourceEventService);
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewSourceGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewSourceGate, "gui-list-view[items]", never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewSourceGate, "gui-list-view[items]", never, {}, {}, never, never, false, never>;
 }

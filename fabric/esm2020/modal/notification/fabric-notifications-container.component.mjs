@@ -16,14 +16,14 @@ export class FabricNotificationsContainerComponent {
         return this.position === fabricNotificationPosition;
     }
 }
-FabricNotificationsContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationsContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-FabricNotificationsContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FabricNotificationsContainerComponent, selector: "gui-notifications-container", inputs: { notifications: "notifications", position: "position" }, outputs: { onNotificationClose: "onNotificationClose" }, host: { properties: { "class.gui-notifications-top-right": "isPosition(FabricNotificationPosition.TOP_RIGHT)", "class.gui-notifications-top-left": "isPosition(FabricNotificationPosition.TOP_LEFT)", "class.gui-notifications-bottom-right": "isPosition(FabricNotificationPosition.BOTTOM_RIGHT)", "class.gui-notifications-bottom-left": "isPosition(FabricNotificationPosition.BOTTOM_LEFT)" } }, ngImport: i0, template: `
+FabricNotificationsContainerComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationsContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+FabricNotificationsContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: FabricNotificationsContainerComponent, selector: "gui-notifications-container", inputs: { notifications: "notifications", position: "position" }, outputs: { onNotificationClose: "onNotificationClose" }, host: { properties: { "class.gui-notifications-top-right": "isPosition(FabricNotificationPosition.TOP_RIGHT)", "class.gui-notifications-top-left": "isPosition(FabricNotificationPosition.TOP_LEFT)", "class.gui-notifications-bottom-right": "isPosition(FabricNotificationPosition.BOTTOM_RIGHT)", "class.gui-notifications-bottom-left": "isPosition(FabricNotificationPosition.BOTTOM_LEFT)" } }, ngImport: i0, template: `
 		<gui-notification *ngFor="let notification of notifications"
 						  [notification]="notification"
 						  (onNotificationClose)="emitClosedNotification($event)">
 		</gui-notification>
 	`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: i2.FabricNotificationComponent, selector: "gui-notification", inputs: ["notification"], outputs: ["onNotificationClose"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationsContainerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationsContainerComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-notifications-container',

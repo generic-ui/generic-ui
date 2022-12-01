@@ -4,10 +4,10 @@ import { FabricChipComponent } from './chip.component';
 import * as i0 from "@angular/core";
 export class FabricChipModule {
 }
-FabricChipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricChipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricChipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricChipModule, declarations: [FabricChipComponent], imports: [CommonModule], exports: [FabricChipComponent] });
-FabricChipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricChipModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricChipModule, decorators: [{
+FabricChipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricChipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricChipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricChipModule, declarations: [FabricChipComponent], imports: [CommonModule], exports: [FabricChipComponent] });
+FabricChipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricChipModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricChipModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

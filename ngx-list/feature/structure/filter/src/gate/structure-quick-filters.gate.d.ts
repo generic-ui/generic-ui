@@ -12,5 +12,5 @@ export declare class StructureQuickFiltersGate extends Gate implements OnChanges
     constructor(structureId: StructureId, structureCommandInvoker: StructurePublisher);
     ngOnChanges(changes: NgChanges<StructureQuickFiltersGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureQuickFiltersGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureQuickFiltersGate, "gui-structure[quickFilters]", never, { "quickFilters": "quickFilters"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureQuickFiltersGate, "gui-structure[quickFilters]", never, { "quickFilters": "quickFilters"; }, {}, never, never, false, never>;
 }

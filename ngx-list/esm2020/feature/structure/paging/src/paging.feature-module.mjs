@@ -32,8 +32,8 @@ export class PagingFeatureModule extends FeatureModule {
         ];
     }
 }
-PagingFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PagingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-PagingFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: PagingFeatureModule, declarations: [PagingComponent,
+PagingFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: PagingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+PagingFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: PagingFeatureModule, declarations: [PagingComponent,
         PagingNavigatorComponent,
         PagingSelectComponent,
         PagingStatsComponent,
@@ -46,14 +46,14 @@ PagingFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", ver
         PagingStatsComponent,
         AlternativePagingNavigatorComponent,
         AlternativePagingPagesComponent] });
-PagingFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PagingFeatureModule, providers: [
+PagingFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: PagingFeatureModule, providers: [
         { provide: PagingPublisher, useFactory: providePagingCommandInvoker },
         { provide: PagingWarehouse, useFactory: providePagingWarehouse },
         { provide: PagingEventRepository, useFactory: providePagingEventRepository }
     ], imports: [CommonModule,
         FabricModule,
         TranslationFeatureModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: PagingFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: PagingFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

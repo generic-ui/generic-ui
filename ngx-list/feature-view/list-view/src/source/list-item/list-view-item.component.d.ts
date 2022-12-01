@@ -11,5 +11,5 @@ export declare class ListViewItemComponent extends PureComponent {
     ngOnChanges(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewItemComponent, "div[gui-list-view-item][item][template]", never, { "item": "item"; "template": "template"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewItemComponent, "div[gui-list-view-item][item][template]", never, { "item": "item"; "template": "template"; }, {}, never, never, false, never>;
 }

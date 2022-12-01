@@ -6,5 +6,5 @@ import * as i0 from "@angular/core";
 export declare class StructureSearchingGate extends SearchingGate {
     constructor(structureId: StructureId, searchEventRepository: SearchEventRepository, searchCommandInvoker: SearchPublisher);
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSearchingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSearchingGate, "gui-structure[searching]", never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSearchingGate, "gui-structure[searching]", never, {}, {}, never, never, false, never>;
 }

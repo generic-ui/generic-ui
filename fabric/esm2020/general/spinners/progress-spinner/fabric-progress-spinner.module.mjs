@@ -4,10 +4,10 @@ import { FabricProgressSpinnerComponent } from './progress-spinner.component';
 import * as i0 from "@angular/core";
 export class FabricProgressSpinnerModule {
 }
-FabricProgressSpinnerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricProgressSpinnerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricProgressSpinnerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricProgressSpinnerModule, declarations: [FabricProgressSpinnerComponent], imports: [CommonModule], exports: [FabricProgressSpinnerComponent] });
-FabricProgressSpinnerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricProgressSpinnerModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricProgressSpinnerModule, decorators: [{
+FabricProgressSpinnerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricProgressSpinnerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricProgressSpinnerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricProgressSpinnerModule, declarations: [FabricProgressSpinnerComponent], imports: [CommonModule], exports: [FabricProgressSpinnerComponent] });
+FabricProgressSpinnerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricProgressSpinnerModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricProgressSpinnerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

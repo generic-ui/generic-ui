@@ -14,5 +14,5 @@ export declare class DateEditTemplateComponent extends EditCommunicationComponen
     dialogOpened(opened: boolean): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<DateEditTemplateComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DateEditTemplateComponent, "gui-date-edit", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DateEditTemplateComponent, "gui-date-edit", never, {}, {}, never, never, false, never>;
 }

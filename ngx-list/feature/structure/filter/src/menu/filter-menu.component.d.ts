@@ -42,5 +42,5 @@ export declare class FilterMenuComponent extends SmartComponent implements OnIni
     clearAddFilterForm(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuComponent, "div[gui-filter-menu]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FilterMenuComponent, "div[gui-filter-menu]", never, {}, {}, never, never, false, never>;
 }

@@ -16,5 +16,5 @@ export declare class ListViewSourceComponent extends SmartComponent implements O
     ngOnInit(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewSourceComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewSourceComponent, "div[gui-list-view-source]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewSourceComponent, "div[gui-list-view-source]", never, {}, {}, never, never, false, never>;
 }

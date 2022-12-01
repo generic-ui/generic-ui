@@ -6,5 +6,5 @@ export declare class GuiListComponent extends GuiListGateway {
     onPageSizeChange(pageSize: number): void;
     onSearchPhraseChange(phrase: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiListComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GuiListComponent, "gui-list", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiListComponent, "gui-list", never, {}, {}, never, never, false, never>;
 }

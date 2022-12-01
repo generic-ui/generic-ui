@@ -16,5 +16,5 @@ export declare class ListViewContainerCardComponent extends SmartComponent imple
     ngOnInit(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewContainerCardComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewContainerCardComponent, "div[gui-list-container-card]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewContainerCardComponent, "div[gui-list-container-card]", never, {}, {}, never, never, false, never>;
 }

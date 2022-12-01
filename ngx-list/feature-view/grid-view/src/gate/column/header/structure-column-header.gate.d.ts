@@ -12,5 +12,5 @@ export declare class StructureColumnHeaderGate extends Gate implements OnChanges
     constructor(structureHeaderTopEnabledArchive: StructureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive: StructureHeaderBottomEnabledArchive);
     ngOnChanges(changes: NgChanges<StructureColumnHeaderGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnHeaderGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureColumnHeaderGate, "gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]", never, { "columnHeaderTop": "columnHeaderTop"; "columnHeaderBottom": "columnHeaderBottom"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureColumnHeaderGate, "gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]", never, { "columnHeaderTop": "columnHeaderTop"; "columnHeaderBottom": "columnHeaderBottom"; }, {}, never, never, false, never>;
 }

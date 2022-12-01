@@ -11,11 +11,11 @@ export class FabricSvgTemplate {
         }
     }
 }
-FabricSvgTemplate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSvgTemplate, deps: [], target: i0.ɵɵFactoryTarget.Component });
-FabricSvgTemplate.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FabricSvgTemplate, selector: "gui-svg-template", inputs: { svg: "svg" }, viewQueries: [{ propertyName: "svgRef", first: true, predicate: ["svgEl"], descendants: true, read: ElementRef }], ngImport: i0, template: `
+FabricSvgTemplate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSvgTemplate, deps: [], target: i0.ɵɵFactoryTarget.Component });
+FabricSvgTemplate.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: FabricSvgTemplate, selector: "gui-svg-template", inputs: { svg: "svg" }, viewQueries: [{ propertyName: "svgRef", first: true, predicate: ["svgEl"], descendants: true, read: ElementRef }], ngImport: i0, template: `
 		<div #svgEl></div>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSvgTemplate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSvgTemplate, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-svg-template',

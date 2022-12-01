@@ -30,8 +30,8 @@ import { FabricModalThemeService } from './themes/fabric-modal-theme.service';
 import * as i0 from "@angular/core";
 export class FabricModule {
 }
-FabricModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricModule, imports: [CommonModule,
+FabricModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricModule, imports: [CommonModule,
         FabricBadgeModule,
         FabricButtonModule,
         FabricButtonGroupModule,
@@ -83,7 +83,7 @@ FabricModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "
         FabricToggleButtonModule,
         FabricToggleButtonGroupModule,
         FabricInputModule] });
-FabricModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricModule, providers: [
+FabricModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricModule, providers: [
         FabricModalThemeService
     ], imports: [CommonModule,
         FabricBadgeModule,
@@ -137,7 +137,7 @@ FabricModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "
         FabricToggleButtonModule,
         FabricToggleButtonGroupModule,
         FabricInputModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

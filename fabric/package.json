@@ -1,6 +1,6 @@
 {
   "name": "@generic-ui/fabric",
-  "version": "0.18.1",
+  "version": "0.19.0",
   "description": "Components library",
   "license": "MIT",
   "author": "Team Generic Ui",
@@ -14,8 +14,8 @@
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
   },
   "module": "fesm2015/generic-ui-fabric.mjs",
   "es2020": "fesm2020/generic-ui-fabric.mjs",

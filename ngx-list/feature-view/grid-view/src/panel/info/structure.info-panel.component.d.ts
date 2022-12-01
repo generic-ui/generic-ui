@@ -9,10 +9,11 @@ import { StructureId } from '../../../../../core/structure/structure-core/src/ap
 import { SchemaReadModelRootId } from '../../../../../core/schema/src/api/global/schema.read-model-root-id';
 import { StructureInfoPanelArchive } from '../../../../../core/structure/structure-core/src/api/panel/info/structure.info-panel.archive';
 import { StructureInfoPanelConfig } from '../../../../../core/structure/structure-core/src/api/panel/info/structure.info-panel.config';
-import { StructureDialogSchemaManagerService } from '../../../../../feature/schema/manager/dialog/structure.dialog-schema-manager.service';
+import { StructureDialogSchemaManagerService } from '../../../../../feature/schema/src/manager/dialog/structure.dialog-schema-manager.service';
 import { TranslationFacade } from '../../../../../core/l10n/src/api/translation.facade';
 import * as i0 from "@angular/core";
 export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
+    private readonly changeDetectorRef;
     private readonly injector;
     private readonly sourceWarehouse;
     private readonly dialog;
@@ -31,6 +32,7 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     themeManagerTooltipText: string;
     columnManagerTooltipText: string;
     infoTooltipText: string;
+    context: import("../../../../../feature/common/src/cdk/component/lib").ReactiveContext<unknown>;
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, sourceWarehouse: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationFacade, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelArchive: StructureInfoPanelArchive);
     ngOnInit(): void;
     openInfo(): void;
@@ -38,5 +40,5 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     openSchemaManager(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureInfoPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoPanelComponent, "div[gui-structure-info-panel]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureInfoPanelComponent, "div[gui-structure-info-panel]", never, {}, {}, never, never, false, never>;
 }

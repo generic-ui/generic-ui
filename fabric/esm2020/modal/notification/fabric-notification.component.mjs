@@ -38,8 +38,8 @@ export class FabricNotificationComponent {
             || this.notification?.position === FabricNotificationPosition.BOTTOM_RIGHT;
     }
 }
-FabricNotificationComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationComponent, deps: [{ token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
-FabricNotificationComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FabricNotificationComponent, selector: "gui-notification", inputs: { notification: "notification" }, outputs: { onNotificationClose: "onNotificationClose" }, viewQueries: [{ propertyName: "notificationRef", first: true, predicate: ["guiNotification"], descendants: true, read: ElementRef }], ngImport: i0, template: `
+FabricNotificationComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationComponent, deps: [{ token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component });
+FabricNotificationComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: FabricNotificationComponent, selector: "gui-notification", inputs: { notification: "notification" }, outputs: { onNotificationClose: "onNotificationClose" }, viewQueries: [{ propertyName: "notificationRef", first: true, predicate: ["guiNotification"], descendants: true, read: ElementRef }], ngImport: i0, template: `
 		<div #guiNotification
 			 [class.gui-notification-right-side]="isRightSide()"
 			 [class.gui-notification-left-side]="!isRightSide()"
@@ -48,7 +48,7 @@ FabricNotificationComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.
 			{{notification.description}}
 		</div>
 	`, isInline: true, dependencies: [{ kind: "component", type: i1.FabricCloseIconComponent, selector: "gui-close-icon" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-notification',

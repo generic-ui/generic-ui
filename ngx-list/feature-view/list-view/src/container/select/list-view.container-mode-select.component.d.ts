@@ -19,5 +19,5 @@ export declare class ListViewContainerModeSelectComponent extends SmartComponent
     private toGuiSelectOption;
     private toListViewMode;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewContainerModeSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewContainerModeSelectComponent, "div[gui-list-mode-select]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewContainerModeSelectComponent, "div[gui-list-mode-select]", never, {}, {}, never, never, false, never>;
 }

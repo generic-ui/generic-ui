@@ -18,9 +18,9 @@ export class ListViewModeGate extends Gate {
         }
     }
 }
-ListViewModeGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewModeGate, deps: [{ token: i1.ListViewReadModelRootId }, { token: i2.ListViewPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-ListViewModeGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.0.3", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: { mode: "mode", modeSelector: "modeSelector" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewModeGate, decorators: [{
+ListViewModeGate.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewModeGate, deps: [{ token: i1.ListViewReadModelRootId }, { token: i2.ListViewPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+ListViewModeGate.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.0.2", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: { mode: "mode", modeSelector: "modeSelector" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewModeGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[mode]'

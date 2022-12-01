@@ -9,5 +9,5 @@ export declare class StructureColumnConfigColumnHideComponent extends PureCompon
     hideColumn(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigColumnHideComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigColumnHideComponent, "div[gui-structure-column-config-column-hide]", never, { "column": "column"; }, { "columnHidden": "columnHidden"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigColumnHideComponent, "div[gui-structure-column-config-column-hide]", never, { "column": "column"; }, { "columnHidden": "columnHidden"; }, never, never, false, never>;
 }

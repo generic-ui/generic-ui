@@ -7,5 +7,5 @@ import * as i0 from "@angular/core";
 export declare class ListViewPagingGate extends PagingGate {
     constructor(structureId: StructureId, compositionId: CompositionId, structurePagingCommandDispatcher: PagingPublisher, pagingEventRepository: PagingEventRepository);
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewPagingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewPagingGate, "gui-list-view[paging]", never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewPagingGate, "gui-list-view[paging]", never, {}, {}, never, never, false, never>;
 }

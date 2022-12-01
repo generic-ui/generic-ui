@@ -30,9 +30,9 @@ export class TranslationPipe {
         return this.actualTranslationValue;
     }
 }
-TranslationPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TranslationPipe, deps: [{ token: i0.ChangeDetectorRef }, { token: i1.TranslationFacade }], target: i0.ɵɵFactoryTarget.Pipe });
-TranslationPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: TranslationPipe, name: "guiTranslate", pure: false });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: TranslationPipe, decorators: [{
+TranslationPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: TranslationPipe, deps: [{ token: i0.ChangeDetectorRef }, { token: i1.TranslationFacade }], target: i0.ɵɵFactoryTarget.Pipe });
+TranslationPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: TranslationPipe, name: "guiTranslate", pure: false });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: TranslationPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'guiTranslate',

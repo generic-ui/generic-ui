@@ -5,4 +5,5 @@ export declare class GuiGridRowSelectionConverter {
     private convertMode;
     private convertType;
     private convertMatcher;
+    private convertCustomSelection;
 }

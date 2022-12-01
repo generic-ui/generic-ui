@@ -4,10 +4,10 @@ import { FabricSpinnerComponent } from './spinner.component';
 import * as i0 from "@angular/core";
 export class FabricSpinnerModule {
 }
-FabricSpinnerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSpinnerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricSpinnerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricSpinnerModule, declarations: [FabricSpinnerComponent], imports: [CommonModule], exports: [FabricSpinnerComponent] });
-FabricSpinnerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSpinnerModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSpinnerModule, decorators: [{
+FabricSpinnerModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSpinnerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricSpinnerModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricSpinnerModule, declarations: [FabricSpinnerComponent], imports: [CommonModule], exports: [FabricSpinnerComponent] });
+FabricSpinnerModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSpinnerModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSpinnerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

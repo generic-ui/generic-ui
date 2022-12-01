@@ -14,5 +14,5 @@ export declare class ActiveSearchComponent extends SmartComponent {
     clearSearch(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ActiveSearchComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveSearchComponent, "div[gui-active-search]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ActiveSearchComponent, "div[gui-active-search]", never, {}, {}, never, never, false, never>;
 }

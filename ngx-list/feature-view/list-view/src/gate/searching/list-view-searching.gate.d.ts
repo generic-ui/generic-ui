@@ -6,5 +6,5 @@ import * as i0 from "@angular/core";
 export declare class ListViewSearchingGate extends SearchingGate {
     constructor(structureId: StructureId, searchEventRepository: SearchEventRepository, searchCommandInvoker: SearchPublisher);
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewSearchingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewSearchingGate, "gui-list-view[searching]", never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewSearchingGate, "gui-list-view[searching]", never, {}, {}, never, never, false, never>;
 }

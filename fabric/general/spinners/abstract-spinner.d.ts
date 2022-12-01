@@ -22,5 +22,5 @@ export declare abstract class AbstractSpinner implements OnChanges, OnInit {
     protected addClass(className: string): void;
     protected removeClass(className: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AbstractSpinner, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<AbstractSpinner, never, never, { "width": "width"; "diameter": "diameter"; "primary": "primary"; "secondary": "secondary"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<AbstractSpinner, never, never, { "width": "width"; "diameter": "diameter"; "primary": "primary"; "secondary": "secondary"; }, {}, never, never, false, never>;
 }

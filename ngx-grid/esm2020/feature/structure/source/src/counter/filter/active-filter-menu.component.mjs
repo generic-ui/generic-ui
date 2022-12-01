@@ -4,8 +4,8 @@ import * as i1 from "../../../../filter/src/active-filters/active-filter-list.co
 import * as i2 from "@generic-ui/fabric";
 export class ActiveFilterMenuComponent {
 }
-ActiveFilterMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ActiveFilterMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-ActiveFilterMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: ActiveFilterMenuComponent, selector: "ng-component", ngImport: i0, template: `
+ActiveFilterMenuComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ActiveFilterMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+ActiveFilterMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: ActiveFilterMenuComponent, selector: "ng-component", ngImport: i0, template: `
 
 		<h3>Active filters</h3>
 
@@ -25,7 +25,7 @@ ActiveFilterMenuComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.
 			</button>
 		</div>
 	`, isInline: true, dependencies: [{ kind: "component", type: i1.ActiveFilterListComponent, selector: "div[gui-active-filter-list]" }, { kind: "component", type: i2.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ActiveFilterMenuComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ActiveFilterMenuComponent, decorators: [{
             type: Component,
             args: [{
                     template: `

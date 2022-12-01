@@ -9,5 +9,5 @@ export declare class BooleanEditTemplateComponent extends EditCommunicationCompo
     toggle(changed: boolean): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<BooleanEditTemplateComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BooleanEditTemplateComponent, "gui-boolean-edit", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BooleanEditTemplateComponent, "gui-boolean-edit", never, {}, {}, never, never, false, never>;
 }

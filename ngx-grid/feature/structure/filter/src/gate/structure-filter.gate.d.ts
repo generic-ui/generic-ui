@@ -12,5 +12,5 @@ export declare class StructureFilterGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, structureCommandInvoker: StructurePublisher);
     ngOnChanges(changes: NgChanges<StructureFilterGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureFilterGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureFilterGate, "gui-structure[filtering]", never, { "filtering": "filtering"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureFilterGate, "gui-structure[filtering]", never, { "filtering": "filtering"; }, {}, never, never, false, never>;
 }

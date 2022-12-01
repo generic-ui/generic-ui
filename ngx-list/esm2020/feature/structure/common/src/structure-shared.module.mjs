@@ -3,10 +3,10 @@ import { CssClassModule } from './css-class/css-class.module';
 import * as i0 from "@angular/core";
 export class StructureSharedModule {
 }
-StructureSharedModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSharedModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-StructureSharedModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
-StructureSharedModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureSharedModule, decorators: [{
+StructureSharedModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureSharedModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+StructureSharedModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
+StructureSharedModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureSharedModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -1,7 +1,6 @@
 /**
  * API
  */
-export { provideEventHandlers } from './core/domain/provider.helpers';
 export { Publisher } from './core/api/publisher';
 export { Warehouse } from './core/api/warehouse';
 export { createContainer } from './common/di/lib/container/create-container';
@@ -44,8 +43,6 @@ export { HermesId } from './core/api/tactical/hermes.id';
 export { ValueObject } from './core/api/decorators';
 export { DomainObject } from './core/api/decorators';
 export { ReadModelObject } from './core/api/decorators';
-export { DomainModule } from './core/api/module/domain-module';
-export { ApiModule } from './core/api/api-module';
 export { FeatureModule } from './core/api/module/feature-module';
 /**
  * COMMON
@@ -96,8 +93,7 @@ export { PersistAggregateStore } from './core/infrastructure/persist/command/per
 export { InMemoryAggregateStore } from './core/infrastructure/in-memory/command/in-memory.aggregate.store';
 export { InMemoryReadModelStore } from './core/infrastructure/in-memory/read/in-memory.read-model.store';
 export { InMemoryStore } from './core/infrastructure/in-memory/in-memory.store';
-export { HermesModule } from './core/api/hermes.module';
-export { HermesDomainModule } from './core/api/hermes.domain.module';
+export { runHermes } from './core/api/hermes.module';
 export { HermesModuleConfig } from './core/api/hermes-module-config';
 export { COMMAND_LOGGER_ENABLED } from './core/api/hermes-tokens';
 export { EVENT_LOGGER_ENABLED } from './core/api/hermes-tokens';
@@ -107,7 +103,7 @@ export { EVENT_LOGGER_ENABLED } from './core/api/hermes-tokens';
 export { assertDomainEvents, assertAggregateEvents, testEventRepositoryIsEmptyOnStart, findDefaultValuesWarehouseTest, onDefaultValuesWarehouseTest, onceDefaultValuesWarehouseTest, onWarehouseEmpty, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest } from './testing/helpers';
 export { CreateAggregateCommand } from './core/domain/command/create-aggregate/create-aggregate.command';
 export { CreateAggregateCommandHandler } from './core/domain/command/create-aggregate/create-aggregate.command-handler';
-export { HermesApi } from './core/api/hermes-api';
+export { initHermesApi } from './core/api/hermes-api';
 export { enableHermesLoggers, disableHermesLoggers } from './core/api/hermes-api.helpers';
 export { HermesRunner } from './core/api/runner/hermes.runner';
 export { Type } from './core/api/hermes.domain-initializer';

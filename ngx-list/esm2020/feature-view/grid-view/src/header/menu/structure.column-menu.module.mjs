@@ -26,8 +26,8 @@ const icons = [
 ];
 export class StructureColumnMenuModule {
 }
-StructureColumnMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-StructureColumnMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuModule, declarations: [StructureColumnConfigComponent,
+StructureColumnMenuModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+StructureColumnMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuModule, declarations: [StructureColumnConfigComponent,
         StructureColumnConfigTriggerComponent,
         StructureColumnConfigSortComponent,
         StructureColumnConfigColumnHideComponent,
@@ -39,13 +39,13 @@ StructureColumnMenuModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0
         StructureColumnConfigSortComponent,
         StructureColumnConfigColumnHideComponent,
         StructureColumnConfigColumnMoveComponent] });
-StructureColumnMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuModule, imports: [CommonModule,
+StructureColumnMenuModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuModule, imports: [CommonModule,
         fabricImports,
         StructureColumnManagerModule,
         UniqueValueListModule,
         TranslationFeatureModule,
         icons] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: StructureColumnMenuModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: StructureColumnMenuModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

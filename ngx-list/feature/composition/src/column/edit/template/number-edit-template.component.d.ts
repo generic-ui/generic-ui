@@ -6,5 +6,5 @@ export declare class NumberEditTemplateComponent extends InputEditTemplateCompon
     constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, fb: FormBuilder);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberEditTemplateComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NumberEditTemplateComponent, "gui-number-edit", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NumberEditTemplateComponent, "gui-number-edit", never, {}, {}, never, never, false, never>;
 }

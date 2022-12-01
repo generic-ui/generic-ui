@@ -43,15 +43,15 @@ export class GuiListModule {
         };
     }
 }
-GuiListModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiListModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-GuiListModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: GuiListModule, declarations: [GuiListComponent,
+GuiListModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiListModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+GuiListModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: GuiListModule, declarations: [GuiListComponent,
         GuiListItemComponent,
         GuiListCardComponent], imports: [CommonModule,
         ListViewFeatureModule, i1.GridViewFeatureModule], exports: [GuiListComponent,
         GuiListItemComponent,
         GuiListCardComponent] });
-GuiListModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiListModule, imports: [imports] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: GuiListModule, decorators: [{
+GuiListModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiListModule, imports: [imports] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: GuiListModule, decorators: [{
             type: NgModule,
             args: [{
                     imports,

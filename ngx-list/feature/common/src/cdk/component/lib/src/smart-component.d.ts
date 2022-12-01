@@ -23,5 +23,5 @@ export declare abstract class SmartComponent extends GuiComponent {
     protected unsubscribe(): void;
     protected takeUntil(): any;
     static ɵfac: i0.ɵɵFactoryDeclaration<SmartComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SmartComponent, never, never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SmartComponent, never, never, {}, {}, never, never, false, never>;
 }

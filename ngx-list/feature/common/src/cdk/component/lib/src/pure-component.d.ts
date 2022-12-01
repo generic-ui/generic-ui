@@ -9,5 +9,5 @@ export declare abstract class PureComponent extends GuiComponent {
     private isElementRef;
     private throwError;
     static ɵfac: i0.ɵɵFactoryDeclaration<PureComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<PureComponent, never, never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<PureComponent, never, never, {}, {}, never, never, false, never>;
 }

@@ -15,5 +15,5 @@ export declare class FabricDatePickerMonthsViewComponent {
     isMonth(date: Date, month: number): boolean;
     selectMonth(month: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerMonthsViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerMonthsViewComponent, "gui-date-picker-months-view", never, { "selectedDate": "selectedDate"; "activeYear": "activeYear"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerMonthsViewComponent, "gui-date-picker-months-view", never, { "selectedDate": "selectedDate"; "activeYear": "activeYear"; }, {}, never, never, false, never>;
 }

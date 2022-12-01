@@ -9,5 +9,5 @@ export declare class FabricMessageComponent {
     detectChanges(): void;
     close(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricMessageComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricMessageComponent, "gui-message", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricMessageComponent, "gui-message", never, {}, {}, never, never, false, never>;
 }

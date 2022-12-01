@@ -5,7 +5,7 @@ import { SortingPublisher } from '../../../../../core/structure/sorting/src/api/
 import { CompositionId } from '../../../../../core/composition/src/api/global/composition.id';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { FormationPublisher } from '../../../../../core/structure/formation/src/api/formation.publisher';
-import { StructureSelectCustomService } from './select-custom/structure.select-custom.service';
+import { StructureSelectCustomService } from '../../../../../feature/structure/formation/src/select-custom/structure.select-custom.service';
 import * as i0 from "@angular/core";
 export declare class StructureHeaderColumnsComponent extends SmartComponent {
     private readonly elementRef;
@@ -25,5 +25,5 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent {
     openConfigDialog(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderColumnsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "showSelection": "showSelection"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "showSelection": "showSelection"; }, {}, never, never, false, never>;
 }

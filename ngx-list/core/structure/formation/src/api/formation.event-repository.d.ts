@@ -3,7 +3,7 @@ import { StructureId } from '../../../structure-core/src/api/global/structure.id
 import { SourceWarehouse } from '../../../source/src/api/source.warehouse';
 import { SelectedRow } from './row-selected/selected-row';
 import { StructureReadModelRootId } from '../../../structure-core/src/api/read/structure.read-model-root-id';
-export declare class FormationEventRepository extends EventRepository<StructureReadModelRootId, StructureId> {
+export declare class FormationEventRepository extends EventRepository<StructureReadModelRootId> {
     private readonly sourceWarehouse;
     private readonly domainEventBusTOREMOVE;
     private readonly map;

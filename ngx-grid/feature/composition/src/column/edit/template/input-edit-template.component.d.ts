@@ -16,5 +16,5 @@ export declare abstract class InputEditTemplateComponent<T> extends EditCommunic
     private observeChanges;
     private emitValueChange;
     static ɵfac: i0.ɵɵFactoryDeclaration<InputEditTemplateComponent<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<InputEditTemplateComponent<any>, never, never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<InputEditTemplateComponent<any>, never, never, {}, {}, never, never, false, never>;
 }

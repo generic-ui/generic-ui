@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { GuiSelectOption } from './select-option';
 import { SelectOptionsGeometryService } from './options/select-options-geometry.service';
-import { FabricSelectedOptionsRepository } from './selected-option.repository';
+import { FabricSelectedOptionsRepository } from './fabric.selected-option.repository';
 import { SelectOptionModalService } from './select-option-modal.service';
 import { FabricReactive } from '../../common/fabric-reactive';
 import * as i0 from "@angular/core";
@@ -46,5 +46,5 @@ export declare class FabricSelectComponent extends FabricReactive implements OnI
     private addClass;
     private removeClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectComponent, "gui-select", never, { "options": "options"; "placeholder": "placeholder"; "selected": "selected"; "width": "width"; "disabled": "disabled"; }, { "optionChanged": "optionChanged"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectComponent, "gui-select", never, { "options": "options"; "placeholder": "placeholder"; "selected": "selected"; "width": "width"; "disabled": "disabled"; }, { "optionChanged": "optionChanged"; }, never, never, false, never>;
 }

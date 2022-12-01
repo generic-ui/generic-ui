@@ -11,5 +11,5 @@ export declare class ActiveFilterMenuTriggerDirective {
     constructor(el: ElementRef, structureId: StructureId, activeFilterService: ActiveFilterService, schemaReadModelRootId: SchemaReadModelRootId);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ActiveFilterMenuTriggerDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ActiveFilterMenuTriggerDirective, "[gui-active-filter-menu-trigger]", never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ActiveFilterMenuTriggerDirective, "[gui-active-filter-menu-trigger]", never, {}, {}, never, never, false, never>;
 }

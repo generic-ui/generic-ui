@@ -35,5 +35,5 @@ export declare class PagingComponent extends SmartComponent implements OnInit {
     protected getSelectorName(): string;
     private calculatePagingVisibility;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never, false, never>;
 }

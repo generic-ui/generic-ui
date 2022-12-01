@@ -5,7 +5,7 @@ import * as i3 from "./calendar/view/days/fabric-date-picker-days-view.component
 import * as i4 from "./calendar/view/months/fabric-date-picker-months-view.component";
 import * as i5 from "./calendar/view/years/fabric-date-picker-years.component";
 import * as i6 from "./calendar/view/fabric-date-picker-view-panel.component";
-import * as i7 from "./calendar/time/fabric-time-picker.component";
+import * as i7 from "./calendar/time/fabric.time-picker.component";
 import * as i8 from "@angular/common";
 import * as i9 from "../../modal/inline-dialog/fabric-inline-dialog.module";
 import * as i10 from "@angular/forms";

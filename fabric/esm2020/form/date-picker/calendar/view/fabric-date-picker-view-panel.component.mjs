@@ -80,8 +80,8 @@ export class FabricDatePickerViewPanelComponent {
         }
     }
 }
-FabricDatePickerViewPanelComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDatePickerViewPanelComponent, deps: [{ token: i1.FabricDatePickerCalendarViewService }, { token: i2.FabricDatePickerCalendarService }, { token: i3.FabricDatePickerYearsService }, { token: i4.FabricDatePickerYears }], target: i0.ɵɵFactoryTarget.Component });
-FabricDatePickerViewPanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.0.3", type: FabricDatePickerViewPanelComponent, selector: "gui-date-picker-view-panel", inputs: { fabricCalendarView: "fabricCalendarView", selectedDate: "selectedDate", activeMonth: "activeMonth", activeYear: "activeYear", years: "years" }, ngImport: i0, template: `
+FabricDatePickerViewPanelComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDatePickerViewPanelComponent, deps: [{ token: i1.FabricDatePickerCalendarViewService }, { token: i2.FabricDatePickerCalendarService }, { token: i3.FabricDatePickerYearsService }, { token: i4.FabricDatePickerYears }], target: i0.ɵɵFactoryTarget.Component });
+FabricDatePickerViewPanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.2", type: FabricDatePickerViewPanelComponent, selector: "gui-date-picker-view-panel", inputs: { fabricCalendarView: "fabricCalendarView", selectedDate: "selectedDate", activeMonth: "activeMonth", activeYear: "activeYear", years: "years" }, ngImport: i0, template: `
 		<div class="gui-date-picker-view-panel">
 
 			<div (click)="switchCalendarView()"
@@ -103,7 +103,7 @@ FabricDatePickerViewPanelComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersio
 
 		</div>
 	`, isInline: true, dependencies: [{ kind: "component", type: i5.FabricArrowIconComponent, selector: "gui-arrow-icon", inputs: ["direction"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricDatePickerViewPanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricDatePickerViewPanelComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-date-picker-view-panel',

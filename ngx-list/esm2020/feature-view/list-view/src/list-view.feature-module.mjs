@@ -46,8 +46,8 @@ export function provideListViewModeArchive() {
 export class ListViewFeatureModule {
 }
 ListViewFeatureModule.exportDeclarations = Array.from(exportDeclarations);
-ListViewFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ListViewFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: ListViewFeatureModule, declarations: [ListViewComponent,
+ListViewFeatureModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ListViewFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: ListViewFeatureModule, declarations: [ListViewComponent,
         ListViewItemComponent,
         ListViewLayoutComponent,
         ListViewSourceComponent,
@@ -60,7 +60,7 @@ ListViewFeatureModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", v
         EmptySourceFeatureModule,
         SortingSelectorFeatureModule,
         FilterMenuFeatureModule], exports: [ListViewComponent, i1.ListViewPagingGate, i2.ListViewModeGate, i3.ListViewTemplateGate, i4.ListViewFieldGate, i5.ListViewSearchingGate, i6.ListViewL10nGate, i7.ListViewSourceGate] });
-ListViewFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewFeatureModule, providers: [
+ListViewFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewFeatureModule, providers: [
         { provide: ListViewPublisher, useFactory: provideListViewCommandInvoker },
         { provide: ListViewWarehouse, useFactory: provideListViewWarehouse },
         { provide: ListViewEventRepository, useFactory: provideListViewEventRepository },
@@ -72,7 +72,7 @@ ListViewFeatureModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", v
         EmptySourceFeatureModule,
         SortingSelectorFeatureModule,
         FilterMenuFeatureModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: ListViewFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: ListViewFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

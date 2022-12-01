@@ -5,5 +5,5 @@ export declare class ColumnQueryComponent {
     header: string;
     headerTemplate: TemplateRef<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ColumnQueryComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ColumnQueryComponent, "gui-column[header]", never, { "header": "header"; }, {}, ["cellTemplate"], never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ColumnQueryComponent, "gui-column[header]", never, { "header": "header"; }, {}, ["cellTemplate"], never, false, never>;
 }

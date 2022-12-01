@@ -12,5 +12,5 @@ export declare class StructureRowStyleGate extends Gate implements OnChanges {
     constructor(schemaReadModelRootId: SchemaReadModelRootId, schemaPublisher: SchemaPublisher);
     ngOnChanges(changes: NgChanges<StructureRowStyleGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowStyleGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowStyleGate, "gui-structure[rowStyle]", never, { "rowStyle": "rowStyle"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowStyleGate, "gui-structure[rowStyle]", never, { "rowStyle": "rowStyle"; }, {}, never, never, false, never>;
 }

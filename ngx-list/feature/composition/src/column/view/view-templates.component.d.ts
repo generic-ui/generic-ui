@@ -20,5 +20,5 @@ export declare class ViewTemplatesComponent implements TemplatesComponent {
     percentageTemplate: TemplateRef<any>;
     getTemplate(view: CellView): TemplateRef<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ViewTemplatesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ViewTemplatesComponent, "ng-component", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ViewTemplatesComponent, "ng-component", never, {}, {}, never, never, false, never>;
 }

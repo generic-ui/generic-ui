@@ -4,10 +4,10 @@ import { DatePickerIconComponent } from './date-picker-icon.component';
 import * as i0 from "@angular/core";
 export class DatePickerIconModule {
 }
-DatePickerIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DatePickerIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DatePickerIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: DatePickerIconModule, declarations: [DatePickerIconComponent], imports: [CommonModule], exports: [DatePickerIconComponent] });
-DatePickerIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DatePickerIconModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: DatePickerIconModule, decorators: [{
+DatePickerIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: DatePickerIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DatePickerIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: DatePickerIconModule, declarations: [DatePickerIconComponent], imports: [CommonModule], exports: [DatePickerIconComponent] });
+DatePickerIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: DatePickerIconModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: DatePickerIconModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

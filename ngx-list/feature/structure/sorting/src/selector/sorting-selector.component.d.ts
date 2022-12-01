@@ -8,5 +8,5 @@ export declare class SortingSelectorComponent extends SmartComponent {
     changeSorting(sorting: string): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<SortingSelectorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SortingSelectorComponent, "div[gui-sorting-selector]", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SortingSelectorComponent, "div[gui-sorting-selector]", never, {}, {}, never, never, false, never>;
 }

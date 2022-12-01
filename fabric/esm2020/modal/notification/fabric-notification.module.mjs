@@ -8,16 +8,16 @@ import { FabricCloseIconModule } from '../../common/icons/close-icon/fabric-clos
 import * as i0 from "@angular/core";
 export class FabricNotificationModule {
 }
-FabricNotificationModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricNotificationModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationModule, declarations: [FabricNotificationsOverlayComponent,
+FabricNotificationModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricNotificationModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationModule, declarations: [FabricNotificationsOverlayComponent,
         FabricNotificationsContainerComponent,
         FabricNotificationComponent], imports: [CommonModule,
         FabricCloseIconModule] });
-FabricNotificationModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationModule, providers: [
+FabricNotificationModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationModule, providers: [
         FabricNotificationService
     ], imports: [CommonModule,
         FabricCloseIconModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricNotificationModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricNotificationModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

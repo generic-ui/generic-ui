@@ -5,5 +5,5 @@ export declare class FabricSliderComponent {
     readonly changed: EventEmitter<any>;
     toggle(event: Event): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSliderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSliderComponent, "gui-slider", never, { "toggled": "toggled"; }, { "changed": "changed"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSliderComponent, "gui-slider", never, { "toggled": "toggled"; }, { "changed": "changed"; }, never, never, false, never>;
 }

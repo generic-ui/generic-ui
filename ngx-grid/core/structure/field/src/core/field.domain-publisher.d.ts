@@ -1,10 +1,10 @@
+import { CommandDispatcher } from '@generic-ui/hermes';
 import { StructureId } from '../../../structure-core/src/api/global/structure.id';
 import { FieldPublisher } from '../api/field.publisher';
 import { FieldConfig } from '../api/config/field.config';
-import { FieldDispatcher } from './field.dispatcher';
 export declare class FieldDomainPublisher extends FieldPublisher {
-    private readonly fieldDispatcher;
-    constructor(fieldDispatcher: FieldDispatcher);
-    static readonly services: readonly [typeof FieldDispatcher];
+    private readonly commandDispatcher;
+    constructor(commandDispatcher: CommandDispatcher);
+    static readonly services: readonly [typeof CommandDispatcher];
     initFields(fieldConfigs: Array<FieldConfig>, structureId: StructureId): void;
 }

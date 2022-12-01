@@ -28,6 +28,8 @@ import { UniqueValueId } from '../../../filter/src/domain/unique/unique-value-id
 import { RowSelectToggleType } from '../../../formation/src/domain/row-select-toggle-type';
 import { RowSelectionMode, RowSelectionType } from '../../../formation/src/api/row-selected/row-selection';
 import { ItemEntityId } from '../../../source/src/domain/item/item.entity-id';
+import { FormationCustomSelectId } from '../../../formation/src/api/custom/formation.custom-select.id';
+import { FormationCustomSelectionConfig } from '../../../formation/src/api/custom/formation.custom-selection.config';
 export declare class StructureAggregate extends AggregateRoot<StructureId> {
     private pagingManager;
     private readonly sourceManager;
@@ -64,7 +66,9 @@ export declare class StructureAggregate extends AggregateRoot<StructureId> {
      * Doesnt' work
      */
     setSelectedRows(selectedRows: Array<string>): void;
+    setSelectionCustomConfig(config: FormationCustomSelectionConfig): void;
     toggleRow(selectedRow: string, type: RowSelectToggleType): void;
+    selectCustom(id: FormationCustomSelectId): void;
     selectAll(): void;
     unselectAll(): void;
     getFormation(): FormationManager;

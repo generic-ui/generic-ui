@@ -4,10 +4,10 @@ import { FabricSliderComponent } from './fabric-slider.component';
 import * as i0 from "@angular/core";
 export class FabricSliderModule {
 }
-FabricSliderModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSliderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricSliderModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricSliderModule, declarations: [FabricSliderComponent], imports: [CommonModule], exports: [FabricSliderComponent] });
-FabricSliderModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSliderModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricSliderModule, decorators: [{
+FabricSliderModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSliderModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricSliderModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricSliderModule, declarations: [FabricSliderComponent], imports: [CommonModule], exports: [FabricSliderComponent] });
+FabricSliderModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSliderModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricSliderModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

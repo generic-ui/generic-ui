@@ -3,6 +3,8 @@ import { RowSelectToggleType } from '../domain/row-select-toggle-type';
 import { FormationPublisher } from '../api/formation.publisher';
 import { RowSelectionMode, RowSelectionType } from '../api/row-selected/row-selection';
 import { CommandDispatcher } from '@generic-ui/hermes';
+import { FormationCustomSelectId } from '../api/custom/formation.custom-select.id';
+import { FormationCustomSelectionConfig } from '../api/custom/formation.custom-selection.config';
 export declare class FormationDomainPublisher extends FormationPublisher {
     private readonly commandDispatcher;
     constructor(commandDispatcher: CommandDispatcher);
@@ -17,4 +19,6 @@ export declare class FormationDomainPublisher extends FormationPublisher {
     setMatcher(matcher: (item: any) => any, structureId: StructureId): void;
     selectAll(structureId: StructureId): void;
     unselectAll(structureId: StructureId): void;
+    selectCustom(id: FormationCustomSelectId, structureId: StructureId): void;
+    setCustomSelection(config: FormationCustomSelectionConfig, structureId: StructureId): void;
 }

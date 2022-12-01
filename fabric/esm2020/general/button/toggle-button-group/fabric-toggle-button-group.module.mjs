@@ -4,10 +4,10 @@ import { FabricToggleButtonGroupComponent } from './toggle-button-group.componen
 import * as i0 from "@angular/core";
 export class FabricToggleButtonGroupModule {
 }
-FabricToggleButtonGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricToggleButtonGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonGroupModule, declarations: [FabricToggleButtonGroupComponent], imports: [CommonModule], exports: [FabricToggleButtonGroupComponent] });
-FabricToggleButtonGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonGroupModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricToggleButtonGroupModule, decorators: [{
+FabricToggleButtonGroupModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonGroupModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricToggleButtonGroupModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonGroupModule, declarations: [FabricToggleButtonGroupComponent], imports: [CommonModule], exports: [FabricToggleButtonGroupComponent] });
+FabricToggleButtonGroupModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonGroupModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricToggleButtonGroupModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

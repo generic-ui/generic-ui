@@ -14,5 +14,5 @@ export declare abstract class Gate<T = any> implements OnDestroy {
     protected hermesTakeUntil(): any;
     protected takeUntil(): import("@generic-ui/hermes/common/stream/core/observable/hermes.observable").HermesOperatorFunction<unknown, unknown>;
     static ɵfac: i0.ɵɵFactoryDeclaration<Gate<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<Gate<any>, never, never, {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<Gate<any>, never, never, {}, {}, never, never, false, never>;
 }

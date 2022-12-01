@@ -5,6 +5,9 @@ import { FieldEntity } from '../../../field/src/domain/field/field.entity';
 import { ItemEntityId } from './item/item.entity-id';
 import { FormationManager } from '../../../formation/src/domain/formation.manager';
 import { RowSelectToggleType } from '../../../formation/src/domain/row-select-toggle-type';
+import { FormationCustomSelectId } from '../../../formation/src/api/custom/formation.custom-select.id';
+import { FormationCustomSelectionConfig } from '../../../formation/src/api/custom/formation.custom-selection.config';
+import { StructureAggregateEvent } from '../../../structure-core/src/core/structure.aggregate-event';
 export declare class SourceManager {
     events: Array<any>;
     private loading;
@@ -29,7 +32,9 @@ export declare class SourceManager {
     editOriginItem(itemId: string, value: any, field: FieldEntity, structureId: StructureId): ReadonlyArray<AggregateEvent<StructureId>>;
     deleteAllSelected(structureId: StructureId): Array<AggregateEvent<StructureId>>;
     deleteOriginItem(payload: number | ItemEntityId | Array<number> | Array<ItemEntityId>, structureId: StructureId): Array<AggregateEvent<StructureId>>;
-    addOriginItem(item: any, structureId: StructureId): ReadonlyArray<AggregateEvent<StructureId>>;
+    addOriginItem(item: any, structureId: StructureId): ReadonlyArray<StructureAggregateEvent>;
+    setCustomConfig(config: FormationCustomSelectionConfig): Array<StructureAggregateEvent>;
+    selectCustom(id: FormationCustomSelectId): void;
     selectAll(): void;
     unselectAll(): void;
     selectByIndex(indexes: Array<number>): void;

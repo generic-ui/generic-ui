@@ -4,12 +4,12 @@ import { FabricTooltipComponent } from './fabric-tooltip.component';
 import * as i0 from "@angular/core";
 export class FabricTooltipModule {
 }
-FabricTooltipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricTooltipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FabricTooltipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.3", ngImport: i0, type: FabricTooltipModule, declarations: [FabricTooltipDirective,
+FabricTooltipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricTooltipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FabricTooltipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.2", ngImport: i0, type: FabricTooltipModule, declarations: [FabricTooltipDirective,
         FabricTooltipComponent], exports: [FabricTooltipDirective,
         FabricTooltipComponent] });
-FabricTooltipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricTooltipModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.3", ngImport: i0, type: FabricTooltipModule, decorators: [{
+FabricTooltipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricTooltipModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.2", ngImport: i0, type: FabricTooltipModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [],

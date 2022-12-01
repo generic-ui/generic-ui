@@ -21,5 +21,5 @@ export declare class UniqueValueListComponent extends SmartComponent implements 
     clearFilters(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<UniqueValueListComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": "fieldId"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": "fieldId"; }, {}, never, never, false, never>;
 }
