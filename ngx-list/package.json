@@ -10,7 +10,7 @@
     "@angular/platform-browser": "^15.0.0",
     "@generic-ui/fabric": "0.19.0",
     "@generic-ui/hermes": "0.19.0",
-    "rxjs": "6.6.7"
+    "rxjs": "7.8.0"
   },
   "keywords": [
     "list",

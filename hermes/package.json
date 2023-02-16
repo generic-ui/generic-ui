@@ -19,7 +19,7 @@
   "peerDependencies": {
     "@angular/common": "^15.0.0",
     "@angular/core": "^15.0.0",
-    "rxjs": "6.6.7"
+    "rxjs": "7.8.0"
   },
   "module": "fesm2015/generic-ui-hermes.mjs",
   "es2020": "fesm2020/generic-ui-hermes.mjs",
