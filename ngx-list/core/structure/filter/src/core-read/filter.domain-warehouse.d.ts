@@ -21,6 +21,7 @@ export declare class FilterDomainWarehouse extends FilterWarehouse {
     onFilteringEnabled(structureId: StructureId): HermesObservable<boolean>;
     onQuickFiltersEnabled(structureId: StructureId): HermesObservable<boolean>;
     onFilterTypes(structureId: StructureId): HermesObservable<FilterTypeCollectionModel>;
+    findFilterTypes(structureId: StructureId): Optional<FilterTypeCollectionModel>;
     onFilterTypesForFieldId(fieldId: FieldId, structureId: StructureId): HermesObservable<ReadonlyArray<FilterTypeModel>>;
     onActiveFilters(structureId: StructureId): HermesObservable<ReadonlyArray<ActiveFilterModel>>;
     findFilters(structureId: StructureId): Optional<ReadonlyArray<ActiveFilterModel>>;

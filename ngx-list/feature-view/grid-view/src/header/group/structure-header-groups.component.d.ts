@@ -5,7 +5,7 @@ import { CompositionId } from '../../../../../core/composition/src/api/global/co
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { FormationPublisher } from '../../../../../core/structure/formation/src/api/formation.publisher';
 import { Group } from '../../../../../core/composition/src/api/group/group';
-import { PureComponent } from '../../../../../feature/common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../feature/common/component/src/pure-component';
 import * as i0 from "@angular/core";
 export declare class StructureHeaderGroupsComponent extends PureComponent {
     private readonly elementRef;

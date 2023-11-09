@@ -1,5 +1,5 @@
 import { ElementRef } from '@angular/core';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import * as i0 from "@angular/core";
 export declare class PercentageViewComponent extends PureComponent {
     value: number;

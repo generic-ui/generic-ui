@@ -8,8 +8,7 @@ export declare class StructureTitlePanelComponent extends StructureBannerPanel {
     private readonly structureTitlePanelConfigArchive;
     constructor(structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef);
     onBannerPanelConfig(): HermesObservable<StructureBannerPanelConfig>;
-    getSelectorName(): string;
-    getPanelTitle(): string;
+    protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureTitlePanelComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<StructureTitlePanelComponent, "div[gui-structure-title-panel]", never, {}, {}, never, never, false, never>;
 }

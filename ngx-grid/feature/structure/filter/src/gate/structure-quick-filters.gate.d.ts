@@ -1,6 +1,6 @@
 import { OnChanges } from '@angular/core';
-import { Gate } from '../../../../common/src/cdk/component/lib/src/gate';
-import { NgChanges } from '../../../../common/src/cdk/component/lib/src/ng-changes';
+import { Gate } from '../../../../common/component/src/gate';
+import { NgChanges } from '../../../../common/component/src/ng-changes';
 import { StructurePublisher } from '../../../../../core/structure/structure-core/src/api/structure.publisher';
 import { QuickFiltersConfig } from '../../../../../core/structure/filter/src/api/quick-filter/quick-filters.config';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';

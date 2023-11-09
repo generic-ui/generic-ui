@@ -1,22 +1,23 @@
-import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
-import { StructurePublisher } from '../../../../../../core/structure/structure-core/src/api/structure.publisher';
+import { ChangeDetectorRef, ElementRef, Injector } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../../core/composition/src/core-read/definition/cell-template-with-context';
-import { SmartComponent } from '../../../../../../feature/common/src/cdk/component/lib/src/smart-component';
-import { CompositionWarehouse } from '../../../../../../core/composition/src/api/composition.warehouse';
+import { SmartComponent } from '../../../../../../feature/common/component/src/smart-component';
 import { StructureColumnMenuConfigArchive } from './structure.column-menu-config.archive';
 import { StructureColumnMenuConfig } from './structure.column-menu-config';
-import { FilterWarehouse } from '../../../../../../core/structure/filter/src/api/filter.warehouse';
-import { StructureId } from '../../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { TranslationFacade } from '../../../../../../core/l10n/src/api/translation.facade';
+import { HermesObservable } from '@generic-ui/hermes';
 import { CompositionId } from '../../../../../../core/composition/src/api/global/composition.id';
 import { CompositionPublisher } from '../../../../../../core/composition/src/api/composition.publisher';
+import { Translation } from '../../../../../../core/l10n/src/api/translation';
+import { GuiState } from '../../../../../../feature/gui-angular/state/gui.state';
 import * as i0 from "@angular/core";
-export declare class StructureColumnConfigComponent extends SmartComponent implements OnInit {
+export interface StructureColumnConfigComponentState {
+    isEnabled: boolean;
+    config: StructureColumnMenuConfig;
+    translations: Translation;
+}
+export declare class StructureColumnConfigComponent extends SmartComponent {
     private readonly changeDetectorRef;
-    private readonly structureId;
-    private readonly structureCommandService;
-    private readonly compositionReadModelService;
-    private readonly filterWarehouse;
+    private readonly state;
     private readonly translationFacade;
     private readonly structureColumnMenuConfigArchive;
     private readonly compositionId;
@@ -24,20 +25,16 @@ export declare class StructureColumnConfigComponent extends SmartComponent imple
     private readonly injector;
     readonly column: CellTemplateWithContext;
     readonly headerSortMenu?: ElementRef;
-    config: StructureColumnMenuConfig;
-    uniqueValues: Array<any>;
-    hideColumnTitle: string;
-    dropdownTextTranslation: string;
+    readonly state$: HermesObservable<StructureColumnConfigComponentState>;
     private readonly structureColumnConfigService;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, structureCommandService: StructurePublisher, compositionReadModelService: CompositionWarehouse, filterWarehouse: FilterWarehouse, translationFacade: TranslationFacade, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, compositionId: CompositionId, compositionCommandInvoker: CompositionPublisher, injector: Injector, column: CellTemplateWithContext);
-    ngOnInit(): void;
-    isEnabled(): boolean;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, state: GuiState<StructureColumnConfigComponentState>, translationFacade: TranslationFacade, structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive, compositionId: CompositionId, compositionCommandInvoker: CompositionPublisher, injector: Injector, column: CellTemplateWithContext);
+    isEnabled(config: StructureColumnMenuConfig): boolean;
     hideColumn(): void;
     moveLeft(): void;
     moveRight(): void;
     highlightColumn(): void;
     protected getSelectorName(): string;
-    private setTabTitles;
+    private selectIsEnabled;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigComponent, "div[gui-column-config]", never, {}, {}, never, never, false, never>;
 }

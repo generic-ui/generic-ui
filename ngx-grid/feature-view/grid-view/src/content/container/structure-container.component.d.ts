@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { SchemaRowColoring } from '../../../../../core/schema/src/api/row-coloring/schema-row-coloring';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { StructurePublisher } from '../../../../../core/structure/structure-core/src/api/structure.publisher';
@@ -11,7 +11,7 @@ import { FormationWarehouse } from '../../../../../core/structure/formation/src/
 import { Item } from '../../../../../core/structure/source/src/api/item/item';
 import { VerticalFormationWarehouse } from '../../../../../core/structure/vertical-formation/src/api/vertical-formation.warehouse';
 import { StructureInitialValuesReadyArchive } from '../../../../../core/structure/structure-core/src/api/ready/structure.initial-values-ready.archive';
-import { ResizeDetector } from '../../../../../feature/common/src/cdk/resize-detector/resize.detector';
+import { ResizeDetector } from '../../../../../feature/common/cdk/src/resize-detector/resize.detector';
 import { CompositionId } from '../../../../../core/composition/src/api/global/composition.id';
 import { CompositionAccessorModel } from '../../../../../feature/composition/src/column/composition.accessor.model';
 import { CompositionTemplateWarehouse } from '../../../../../feature/composition/src/column/composition.template-warehouse';

@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, ElementRef, OnChanges } from '@angular/core';
 import { ChangedValueEmitter } from '../../../../../../feature/composition/src/column/edit/changed-value.emitter';
 import { Item } from '../../../../../../core/structure/source/src/api/item/item';
-import { SmartComponent } from '../../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../../feature/common/component/src/smart-component';
 import { SourcePublisher } from '../../../../../../core/structure/source/src/api/source.publisher';
-import { NgChanges } from '../../../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../../../feature/common/component/src/ng-changes';
 import { StructureId } from '../../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { CompositionAccessorModel } from '../../../../../../feature/composition/src/column/composition.accessor.model';
 import * as i0 from "@angular/core";

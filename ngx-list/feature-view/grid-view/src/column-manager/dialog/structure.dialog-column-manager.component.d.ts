@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import * as i0 from "@angular/core";
 export declare class StructureDialogColumnManagerComponent extends SmartComponent {
     constructor(detector: ChangeDetectorRef, elementRef: ElementRef);

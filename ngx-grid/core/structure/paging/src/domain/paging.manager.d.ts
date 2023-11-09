@@ -1,5 +1,5 @@
 import { AggregateEvent } from '@generic-ui/hermes';
-import { Logger } from '../../../../../feature/common/src/cdk/logger/logger';
+import { Logger } from '../../../../../feature/common/cdk/src/logger/logger';
 import { PagingConfigWithId } from './paging-config-with-id';
 import { PagingConfig } from '../api/config/paging-config';
 import { StructureId } from '../../../structure-core/src/api/global/structure.id';

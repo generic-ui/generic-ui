@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, ElementRef, Injector, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, Injector } from '@angular/core';
 import { FabricDialogService } from '@generic-ui/fabric';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { StructureInfoModalComponent } from './info-modal/structure-info-modal.component';
 import { SourceWarehouse } from '../../../../../core/structure/source/src/api/source.warehouse';
 import { StructureDialogColumnManagerService } from '../../column-manager/dialog/structure.dialog-column-manager.service';
@@ -11,10 +11,18 @@ import { StructureInfoPanelArchive } from '../../../../../core/structure/structu
 import { StructureInfoPanelConfig } from '../../../../../core/structure/structure-core/src/api/panel/info/structure.info-panel.config';
 import { StructureDialogSchemaManagerService } from '../../../../../feature/schema/src/manager/dialog/structure.dialog-schema-manager.service';
 import { TranslationFacade } from '../../../../../core/l10n/src/api/translation.facade';
+import { Translation } from '../../../../../core/l10n/src/api/translation';
+import { GuiState } from '../../../../../feature/gui-angular/state/gui.state';
 import * as i0 from "@angular/core";
-export declare class StructureInfoPanelComponent extends SmartComponent implements OnInit {
+export interface StructureInfoPanelComponentState {
+    translations: Translation;
+    infoPanelConfig: StructureInfoPanelConfig;
+    preparedItemsSize: number;
+}
+export declare class StructureInfoPanelComponent extends SmartComponent {
     private readonly changeDetectorRef;
     private readonly injector;
+    private readonly state;
     private readonly sourceWarehouse;
     private readonly dialog;
     private readonly compositionId;
@@ -24,17 +32,10 @@ export declare class StructureInfoPanelComponent extends SmartComponent implemen
     private readonly translationService;
     private readonly schemaManagerService;
     private readonly structureInfoPanelArchive;
-    totalItemsSize: number;
-    preparedItemsSize: number;
-    rowHeight: number;
+    state$: import("@generic-ui/hermes").HermesObservable<StructureInfoPanelComponentState>;
+    totalItemsSize$: import("@generic-ui/hermes").HermesObservable<number>;
     infoModal: typeof StructureInfoModalComponent;
-    infoPanelConfig: StructureInfoPanelConfig;
-    themeManagerTooltipText: string;
-    columnManagerTooltipText: string;
-    infoTooltipText: string;
-    context: import("../../../../../feature/common/src/cdk/component/lib").ReactiveContext<unknown>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, sourceWarehouse: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationFacade, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelArchive: StructureInfoPanelArchive);
-    ngOnInit(): void;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, injector: Injector, state: GuiState<StructureInfoPanelComponentState>, sourceWarehouse: SourceWarehouse, dialog: FabricDialogService, compositionId: CompositionId, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, menuColumnManagerService: StructureDialogColumnManagerService, translationService: TranslationFacade, schemaManagerService: StructureDialogSchemaManagerService, structureInfoPanelArchive: StructureInfoPanelArchive);
     openInfo(): void;
     openColumnManager(): void;
     openSchemaManager(): void;

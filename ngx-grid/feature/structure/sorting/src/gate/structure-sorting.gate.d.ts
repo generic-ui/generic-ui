@@ -1,8 +1,8 @@
 import { OnChanges } from '@angular/core';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
-import { Gate } from '../../../../common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../common/component/src/gate';
 import { SortingConfig } from '../../../../../core/structure/sorting/src/api/config/sorting-config';
-import { NgChanges } from '../../../../common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../common/component/src/ng-changes';
 import { SortingPublisher } from '../../../../../core/structure/sorting/src/api/sorting.publisher';
 import * as i0 from "@angular/core";
 export declare class StructureSortingGate extends Gate implements OnChanges {

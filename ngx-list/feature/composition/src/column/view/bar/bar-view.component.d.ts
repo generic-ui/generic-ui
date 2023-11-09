@@ -1,6 +1,6 @@
 import { ElementRef, OnChanges } from '@angular/core';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
-import { NgChanges } from '../../../../../common/src/cdk/component/lib/src/ng-changes';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
+import { NgChanges } from '../../../../../common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare class BarViewComponent extends PureComponent implements OnChanges {
     value: number;

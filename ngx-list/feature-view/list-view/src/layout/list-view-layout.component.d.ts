@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { SmartComponent } from '../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../feature/common/component/src/smart-component';
 import { ListViewReadModelRootId } from '../../../../core/list-view/src/api/global/list-view.read-model-root-id';
 import { ListViewWarehouse } from '../../../../core/list-view/src/api/list-view.warehouse';
 import * as i0 from "@angular/core";

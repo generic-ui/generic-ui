@@ -1,10 +1,10 @@
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
-import { Gate } from '../../../../common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../common/component/src/gate';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { SearchConfig } from '../../../../../core/structure/search/src/api/config/search-config';
 import { SearchEventRepository } from '../../../../../core/structure/search/src/api/search.event-repository';
 import { SearchPublisher } from '../../../../../core/structure/search/src/api/search.publisher';
-import { NgChanges } from '../../../../common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare abstract class SearchingGate extends Gate implements OnChanges, OnInit {
     protected readonly structureId: StructureId;

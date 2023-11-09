@@ -1,5 +1,5 @@
 import { VerticalRange } from './vertical-range';
-import { Logger } from '../../../../../feature/common/src/cdk/logger/logger';
+import { Logger } from '../../../../../feature/common/cdk/src/logger/logger';
 import { StructureAggregateEvent } from '../../../structure-core/src/core/structure.aggregate-event';
 import { StructureId } from '../../../structure-core/src/api/global/structure.id';
 export declare class VerticalFormation {

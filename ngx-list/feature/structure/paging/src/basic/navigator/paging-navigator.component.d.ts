@@ -1,6 +1,6 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { PagingModel } from '../../../../../../core/structure/paging/src/api/model/paging.model';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import * as i0 from "@angular/core";
 export declare class PagingNavigatorComponent extends PureComponent implements OnChanges {
     paging: PagingModel;

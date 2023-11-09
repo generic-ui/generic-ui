@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { CellTemplateWithContext } from '../../../../../core/composition/src/core-read/definition/cell-template-with-context';
 import { ChangedValueEmitter } from '../../../../../feature/composition/src/column/edit/changed-value.emitter';
 import { FilterPublisher } from '../../../../../core/structure/filter/src/api/filter.publisher';

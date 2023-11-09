@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { SourceWarehouse } from '../../../../core/structure/source/src/api/source.warehouse';
-import { SmartComponent } from '../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../feature/common/component/src/smart-component';
 import { StructureId } from '../../../../core/structure/structure-core/src/api/global/structure.id';
 import { ListViewCardTemplate } from './template/list-view.card-template';
 import { ListViewCardTemplateArchive } from './template/list-view.card-template.archive';

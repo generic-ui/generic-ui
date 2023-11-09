@@ -1,4 +1,4 @@
-import { GenericBuilder } from '../../../../common/src/cdk/generic-builder';
+import { GenericBuilder } from '../../../../core/common/src/cdk/generic-builder';
 export declare class StructurePagingDefinitionBuilder extends GenericBuilder<PagingDefinition> {
     private enabled;
     constructor(enabled: boolean);

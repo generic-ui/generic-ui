@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
 import { GuiSelectOption } from '@generic-ui/fabric';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { ListViewModeArchive } from '../../../../../core/list-view/src/api/mode/list-view.mode.archive';
 import { ListViewReadModelRootId } from '../../../../../core/list-view/src/api/global/list-view.read-model-root-id';
 import { ListViewWarehouse } from '../../../../../core/list-view/src/api/list-view.warehouse';

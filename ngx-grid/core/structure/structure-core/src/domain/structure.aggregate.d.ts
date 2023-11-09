@@ -48,7 +48,6 @@ export declare class StructureAggregate extends AggregateRoot<StructureId> {
     getVerticalFormation(): VerticalFormation;
     setSummariesEnabled(enabled: boolean): ReadonlyArray<AggregateEvent<StructureId>>;
     setOrigin(items: Array<any>): ReadonlyArray<AggregateEvent<StructureId>>;
-    deleteAllSelected(): void;
     deleteItem(payload: number | ItemEntityId | Array<number> | Array<ItemEntityId>): void;
     editItem(editParams: StructureEditSourceItemParams): ReadonlyArray<AggregateEvent<StructureId>>;
     setHeight(height: number): void;

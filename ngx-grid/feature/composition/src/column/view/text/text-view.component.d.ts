@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { CellValue } from '../../../../../../core/composition/src/core-read/definition/cell-value';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import * as i0 from "@angular/core";
 export declare class TextViewComponent extends PureComponent {
     value: CellValue;

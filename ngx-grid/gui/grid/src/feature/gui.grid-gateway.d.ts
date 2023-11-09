@@ -12,7 +12,7 @@ import { RowColoring } from '../../../../core/schema/src/api/row-coloring/row-co
 import { GuiGridRowSelectionConverter } from './row-selection/gui.grid.row-selection.converter';
 import { RowSelection } from '../../../../core/structure/formation/src/api/row-selected/row-selection';
 import { SelectedRow } from '../../../../core/structure/formation/src/api/row-selected/selected-row';
-import { NgChanges } from '../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../feature/common/component/src/ng-changes';
 import { GuiGridColumnComponent } from './column/gui.grid-column.component';
 import { GuiGridCellEditConverter } from './column/cell-editing/gui.grid.cell-edit.converter';
 import { CellEditConfig } from '../../../../core/structure/structure-core/src/api/edit/cell-edit.config';

@@ -1,5 +1,5 @@
 import { ElementRef } from '@angular/core';
-import { PureComponent } from '../../../../../feature/common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../feature/common/component/src/pure-component';
 import * as i0 from "@angular/core";
 export declare class StructureMenuColumnManagerComponent extends PureComponent {
     constructor(elementRef: ElementRef);

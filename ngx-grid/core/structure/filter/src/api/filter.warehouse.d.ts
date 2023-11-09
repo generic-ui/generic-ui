@@ -11,6 +11,7 @@ export declare abstract class FilterWarehouse implements Warehouse {
     abstract onFilteringEnabled(structureId: StructureId): HermesObservable<boolean>;
     abstract onQuickFiltersEnabled(structureId: StructureId): HermesObservable<boolean>;
     abstract onFilterTypes(structureId: StructureId): HermesObservable<FilterTypeCollectionModel>;
+    abstract findFilterTypes(structureId: StructureId): Optional<FilterTypeCollectionModel>;
     abstract onFilterTypesForFieldId(fieldId: FieldId, structureId: StructureId): HermesObservable<ReadonlyArray<FilterTypeModel>>;
     abstract onActiveFilters(structureId: StructureId): HermesObservable<ReadonlyArray<ActiveFilterModel>>;
     abstract findFilters(structureId: StructureId): Optional<ReadonlyArray<ActiveFilterModel>>;

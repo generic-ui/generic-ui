@@ -1,9 +1,9 @@
 import { OnChanges } from '@angular/core';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
-import { Gate } from '../../../../../feature/common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../../feature/common/component/src/gate';
 import { FieldConfig } from '../../../../../core/structure/field/src/api/config/field.config';
 import { FieldPublisher } from '../../../../../core/structure/field/src/api/field.publisher';
-import { NgChanges } from '../../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../../feature/common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare class ListViewFieldGate extends Gate implements OnChanges {
     private readonly structureId;

@@ -9,7 +9,7 @@ import { ListViewTemplate } from '../../../../feature-view/list-view/src/source/
 import { ListViewMode } from '../../../../core/list-view/src/domain/mode/list-view-mode';
 import { FieldConfig } from '../../../../core/structure/field/src/api/config/field.config';
 import { SearchConfig } from '../../../../core/structure/search/src/api/config/search-config';
-import { NgChanges } from '../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../feature/common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare abstract class GuiListGateway implements OnChanges {
     listItem: GuiListItemComponent;

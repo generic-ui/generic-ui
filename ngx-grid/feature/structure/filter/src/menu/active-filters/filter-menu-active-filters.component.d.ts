@@ -1,5 +1,5 @@
 import { ElementRef, EventEmitter } from '@angular/core';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import { ActiveFilterModel } from '../../../../../../core/structure/filter/src/api/active/active-filter.model';
 import { FilterId } from '../../../../../../core/structure/filter/src/api/id/filter.id';
 import * as i0 from "@angular/core";

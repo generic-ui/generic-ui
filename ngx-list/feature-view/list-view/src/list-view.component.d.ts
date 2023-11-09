@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { StructureId } from '../../../core/structure/structure-core/src/api/global/structure.id';
-import { StructureIdGenerator } from '../../grid-view/src/structure-id.generator';
+import { StructureIdGenerator } from '../../grid-view/src/structure/structure-id.generator';
 import { StructurePublisher } from '../../../core/structure/structure-core/src/api/structure.publisher';
 import { ListViewReadModelRootId } from '../../../core/list-view/src/api/global/list-view.read-model-root-id';
 import { ListViewPublisher } from '../../../core/list-view/src/api/list-view.publisher';
@@ -8,7 +8,7 @@ import { FilterContainerRef } from '../../../feature/structure/filter/src/filter
 import { TranslationFacade } from '../../../core/l10n/src/api/translation.facade';
 import { CompositionId } from '../../../core/composition/src/api/global/composition.id';
 import { SchemaReadModelRootId } from '../../../core/schema/src/api/global/schema.read-model-root-id';
-import { LayoutComponent } from '../../../feature/common/src/cdk/component/lib/src/layout-component';
+import { LayoutComponent } from '../../../feature/common/component/src/layout-component';
 import * as i0 from "@angular/core";
 /** @internal */
 export declare function listViewIdFactoryForList(generator: StructureIdGenerator): ListViewReadModelRootId;

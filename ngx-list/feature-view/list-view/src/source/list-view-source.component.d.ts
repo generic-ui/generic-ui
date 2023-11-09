@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { SourceWarehouse } from '../../../../core/structure/source/src/api/source.warehouse';
-import { SmartComponent } from '../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../feature/common/component/src/smart-component';
 import { StructureId } from '../../../../core/structure/structure-core/src/api/global/structure.id';
 import { ListViewTemplate } from './template/list-view-template';
 import { ListViewTemplateArchive } from './template/list-view-template.archive';

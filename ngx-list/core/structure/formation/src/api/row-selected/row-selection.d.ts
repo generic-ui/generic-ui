@@ -1,12 +1,12 @@
 import { FormationCustomSelectionConfig } from '../custom/formation.custom-selection.config';
 export declare enum RowSelectionType {
-    ROW = 0,
-    CHECKBOX = 1,
-    RADIO = 2
+    ROW = "ROW",
+    CHECKBOX = "CHECKBOX",
+    RADIO = "RADIO"
 }
 export declare enum RowSelectionMode {
-    SINGLE = 0,
-    MULTIPLE = 1
+    SINGLE = "SINGLE",
+    MULTIPLE = "MULTIPLE"
 }
 export declare class RowSelection {
     private readonly enabled;

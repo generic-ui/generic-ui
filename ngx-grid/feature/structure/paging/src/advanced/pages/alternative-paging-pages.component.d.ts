@@ -1,8 +1,8 @@
 import { ElementRef, OnChanges } from '@angular/core';
 import { PagingModel } from '../../../../../../core/structure/paging/src/api/model/paging.model';
 import { PagingPublisher } from '../../../../../../core/structure/paging/src/api/paging.publisher';
-import { NgChanges } from '../../../../../common/src/cdk/component/lib/src/ng-changes';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { NgChanges } from '../../../../../common/component/src/ng-changes';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import { StructureId } from '../../../../../../core/structure/structure-core/src/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class AlternativePagingPagesComponent extends PureComponent implements OnChanges {

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EditCommunicationComponent } from '../edit-communication.component';
-import { NgChanges } from '../../../../../common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../../common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare abstract class InputEditTemplateComponent<T> extends EditCommunicationComponent<T> {
     private readonly formBuilder;

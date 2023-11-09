@@ -1,7 +1,8 @@
+import { HermesSubscriber } from '../observable/subscriber/hermes.subscriber';
 export declare class HermesSubscription {
+    private readonly subscriber;
     private closed;
-    private readonly finalize;
-    constructor(finalize?: () => void, isClosed?: boolean);
+    constructor(subscriber: HermesSubscriber<any>, isClosed?: boolean);
     unsubscribe(): void;
     getFinalize(): () => void;
 }

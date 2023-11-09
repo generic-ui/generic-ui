@@ -1,10 +1,10 @@
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
-import { Gate } from '../../../../common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../common/component/src/gate';
 import { PagingConfig } from '../../../../../core/structure/paging/src/api/config/paging-config';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { PagingPublisher } from '../../../../../core/structure/paging/src/api/paging.publisher';
 import { PagingEventRepository } from '../../../../../core/structure/paging/src/api/paging.event-repository';
-import { NgChanges } from '../../../../common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../common/component/src/ng-changes';
 import { CompositionId } from '../../../../../core/composition/src/api/global/composition.id';
 import * as i0 from "@angular/core";
 export declare abstract class PagingGate extends Gate implements OnChanges, OnInit {

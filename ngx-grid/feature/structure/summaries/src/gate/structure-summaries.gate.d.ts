@@ -1,7 +1,7 @@
 import { OnChanges } from '@angular/core';
-import { Gate } from '../../../../common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../common/component/src/gate';
 import { SummariesConfig } from '../../../../../core/structure/summaries/src/api/config/summaries-config';
-import { NgChanges } from '../../../../common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../common/component/src/ng-changes';
 import { SummariesPublisher } from '../../../../../core/structure/summaries/src/api/summaries.publisher';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import * as i0 from "@angular/core";

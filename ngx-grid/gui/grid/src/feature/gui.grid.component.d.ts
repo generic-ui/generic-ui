@@ -14,7 +14,7 @@ import { SortingPublisher } from '../../../../core/structure/sorting/src/api/sor
 import { CompositionPublisher } from '../../../../core/composition/src/api/composition.publisher';
 import { CompositionWarehouse } from '../../../../core/composition/src/api/composition.warehouse';
 import { FilterIntegration } from '../../../../core/structure/filter/src/api-integration/filter.integration';
-import { StructureIdGenerator } from '../../../../feature-view/grid-view/src/structure-id.generator';
+import { StructureIdGenerator } from '../../../../feature-view/grid-view/src/structure/structure-id.generator';
 import * as i0 from "@angular/core";
 export declare class GuiGridComponent extends GuiGridGateway implements OnInit, OnDestroy {
     private readonly platformId;

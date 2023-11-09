@@ -1,7 +1,7 @@
 import { ElementRef, EventEmitter } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../../../core/composition/src/core-read/definition/cell-template-with-context';
-import { PureComponent } from '../../../../../../../feature/common/src/cdk/component/lib/src/pure-component';
-import { StructureArrowPosition } from '../../../../../../../feature/common/src/icons/arrow/strucutre.arrow-position';
+import { PureComponent } from '../../../../../../../feature/common/component/src/pure-component';
+import { StructureArrowPosition } from '../../../../../../../feature/common/icons/arrow/strucutre.arrow-position';
 import * as i0 from "@angular/core";
 export declare class StructureColumnConfigColumnMoveComponent extends PureComponent {
     column: CellTemplateWithContext;

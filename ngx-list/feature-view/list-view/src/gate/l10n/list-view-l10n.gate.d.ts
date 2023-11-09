@@ -1,8 +1,8 @@
 import { OnChanges } from '@angular/core';
-import { Gate } from '../../../../../feature/common/src/cdk/component/lib/src/gate';
+import { Gate } from '../../../../../feature/common/component/src/gate';
 import { GuiListLocalization } from '../../../../../gui/list/src/core/api/gui.list.public-api';
 import { TranslationFacade } from '../../../../../core/l10n/src/api/translation.facade';
-import { NgChanges } from '../../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../../feature/common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare class ListViewL10nGate extends Gate implements OnChanges {
     private readonly translationService;

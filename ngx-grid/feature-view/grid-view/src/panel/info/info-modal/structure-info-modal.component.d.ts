@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { StaticComponent } from '../../../../../../feature/common/src/cdk/component/lib/src/static-component';
+import { StaticComponent } from '../../../../../../feature/common/component/src/static-component';
 import * as i0 from "@angular/core";
 export declare class StructureInfoModalComponent extends StaticComponent {
     constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef);

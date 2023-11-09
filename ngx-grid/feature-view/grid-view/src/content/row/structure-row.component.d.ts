@@ -3,10 +3,10 @@ import { Item } from '../../../../../core/structure/source/src/api/item/item';
 import { FormationPublisher } from '../../../../../core/structure/formation/src/api/formation.publisher';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { FormationWarehouse } from '../../../../../core/structure/formation/src/api/formation.warehouse';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { GuiRowClass, GuiRowStyle } from '../../../../../gui/grid/src/core/api/gui.grid.public-api';
 import { CssClassModifier } from '../../../../../feature/structure/common/src/css-class/css-class.modifier';
-import { NgChanges } from '../../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { NgChanges } from '../../../../../feature/common/component/src/ng-changes';
 import { CellEditorManager } from '../../../../../core/structure/structure-core/src/domain/edit/cell-editor.manager';
 import { CompositionAccessorModel } from '../../../../../feature/composition/src/column/composition.accessor.model';
 import * as i0 from "@angular/core";
@@ -25,7 +25,6 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     index: number;
     rowStyle: GuiRowStyle;
     rowClass: GuiRowClass;
-    detailsEnabled: boolean;
     checkboxSelection: boolean;
     radioSelection: boolean;
     selectedItem: boolean;
@@ -48,5 +47,5 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     private updateRowClass;
     private calculateRowClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "detailsEnabled": "detailsEnabled"; "checkboxSelection": "checkboxSelection"; "radioSelection": "radioSelection"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "checkboxSelection": "checkboxSelection"; "radioSelection": "radioSelection"; }, {}, never, never, false, never>;
 }

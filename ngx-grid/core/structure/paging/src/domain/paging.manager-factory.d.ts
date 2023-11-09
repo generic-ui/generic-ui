@@ -1,4 +1,4 @@
-import { Logger } from '../../../../../feature/common/src/cdk/logger/logger';
+import { Logger } from '../../../../../feature/common/cdk/src/logger/logger';
 import { PagingManager } from './paging.manager';
 import { PagingConfigWithId } from './paging-config-with-id';
 export declare class PagingManagerFactory {

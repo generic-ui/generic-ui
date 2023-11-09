@@ -9,12 +9,13 @@ import * as i2 from "./search.component";
 import * as i3 from "@angular/common";
 import * as i4 from "@generic-ui/fabric";
 import * as i5 from "@angular/forms";
+import * as i6 from "../../../gui-angular/template/gui.template.module";
 export declare function provideSearchCommandInvoker(): SearchPublisher;
 export declare function provideSearchWarehouse(): SearchWarehouse;
 export declare function provideSearchEventRepository(): SearchEventRepository;
 export declare class SearchFeatureModule extends FeatureModule {
     static forComponent(): Array<Provider>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SearchFeatureModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<SearchFeatureModule, [typeof i1.SearchIconComponent, typeof i2.SearchComponent], [typeof i3.CommonModule, typeof i4.FabricModule, typeof i5.ReactiveFormsModule], [typeof i1.SearchIconComponent, typeof i2.SearchComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<SearchFeatureModule, [typeof i1.SearchIconComponent, typeof i2.SearchComponent], [typeof i3.CommonModule, typeof i4.FabricModule, typeof i5.ReactiveFormsModule, typeof i6.GuiTemplateModule], [typeof i1.SearchIconComponent, typeof i2.SearchComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<SearchFeatureModule>;
 }

@@ -1,7 +1,7 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { FieldModel } from '../../../../../../core/structure/field/src/api/model/field.model';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
-import { NgChanges } from '../../../../../common/src/cdk/component/lib/src/ng-changes';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
+import { NgChanges } from '../../../../../common/component/src/ng-changes';
 import { GuiSelectOption } from '@generic-ui/fabric';
 import * as i0 from "@angular/core";
 export declare class FieldSelectorComponent extends PureComponent implements OnChanges {

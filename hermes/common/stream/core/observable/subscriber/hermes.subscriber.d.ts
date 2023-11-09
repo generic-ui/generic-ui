@@ -10,6 +10,7 @@ export declare class HermesSubscriber<T> {
     complete(): void;
     unsubscribe(): void;
     setFinalize(finalize: () => void): void;
+    getFinalize(): () => void;
     protected isCompleted(): boolean;
     protected isClosed(): boolean;
     protected getObserver(): Partial<HermesObserver<T>>;

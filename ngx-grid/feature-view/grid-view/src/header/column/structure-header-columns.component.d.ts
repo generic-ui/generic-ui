@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, ElementRef, Injector } from '@angular/core';
 import { CellTemplateWithContext } from '../../../../../core/composition/src/core-read/definition/cell-template-with-context';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { SortingPublisher } from '../../../../../core/structure/sorting/src/api/sorting.publisher';
 import { CompositionId } from '../../../../../core/composition/src/api/global/composition.id';
 import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';

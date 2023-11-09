@@ -3,8 +3,8 @@ import { ListViewTemplateArchive } from '../../source/template/list-view-templat
 import { ListViewCardTemplateArchive } from '../../card/template/list-view.card-template.archive';
 import { ListViewTemplate } from '../../source/template/list-view-template';
 import { ListViewCardTemplate } from '../../card/template/list-view.card-template';
-import { Gate } from '../../../../../feature/common/src/cdk/component/lib/src/gate';
-import { NgChanges } from '../../../../../feature/common/src/cdk/component/lib/src/ng-changes';
+import { Gate } from '../../../../../feature/common/component/src/gate';
+import { NgChanges } from '../../../../../feature/common/component/src/ng-changes';
 import * as i0 from "@angular/core";
 export declare class ListViewTemplateGate extends Gate implements OnChanges {
     private readonly containerTemplateArchive;

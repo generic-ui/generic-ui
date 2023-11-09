@@ -445,14 +445,9 @@ function createContainer() {
 }
 
 class HermesSubscription {
-    constructor(finalize, isClosed) {
+    constructor(subscriber, isClosed) {
+        this.subscriber = subscriber;
         this.closed = false;
-        // tslint-disable-next-line
-        this.finalize = () => { };
-        if (finalize !== undefined && finalize !== null &&
-            typeof finalize === 'function') {
-            this.finalize = finalize;
-        }
         if (isClosed !== undefined && isClosed !== null) {
             this.closed = isClosed;
         }
@@ -462,10 +457,10 @@ class HermesSubscription {
             return;
         }
         this.closed = true;
-        this.finalize();
+        this.subscriber.unsubscribe();
     }
     getFinalize() {
-        return this.finalize;
+        return this.subscriber.getFinalize();
     }
 }
 
@@ -520,6 +515,9 @@ class HermesSubscriber {
         else {
         }
     }
+    getFinalize() {
+        return this.finalize;
+    }
     isCompleted() {
         return this.completed;
     }
@@ -558,7 +556,7 @@ class HermesObservable {
             this.generatorFinalize = this.generatorFn(subscriber);
             subscriber.setFinalize(this.generatorFinalize);
         }
-        return this.getSubscription();
+        return this.getSubscription(subscriber);
     }
     createSubscriber(next, error, complete) {
         return new HermesSubscriber({
@@ -567,8 +565,8 @@ class HermesObservable {
             complete
         });
     }
-    getSubscription() {
-        return new HermesSubscription(this.generatorFinalize);
+    getSubscription(subscriber) {
+        return new HermesSubscription(subscriber);
     }
     innerPipe(operation, stream$) {
         return ((input) => {
@@ -581,8 +579,7 @@ class HermesObservable {
 }
 
 function hermesEmptySubscription() {
-    return new HermesSubscription(() => {
-    }, true);
+    return new HermesSubscription(new HermesSubscriber({}), true);
 }
 
 class HermesSubject extends HermesObservable {
@@ -652,7 +649,7 @@ class HermesSubject extends HermesObservable {
         }
         else {
             this.subscribers.push(subscriber);
-            return this.getSubscription();
+            return this.getSubscription(subscriber);
         }
     }
     unsubscribe() {
@@ -1760,6 +1757,9 @@ class HermesReplaySubject extends HermesSubject {
         this.bufferSize = bufferSize;
         this.values = [];
     }
+    pipe(...operations) {
+        return super.pipe(...operations);
+    }
     next(value) {
         this.values.push(value);
         if (this.bufferSize < this.values.length) {
@@ -2761,5 +2761,4 @@ class DomainInitializer {
  */
 
 export { AggregateArchive, AggregateEvent, AggregateEventType, AggregateFactory, AggregateId, AggregateRepository, AggregateRoot, AggregateStore, AggregateStoreRegister, Archive, COMMAND_LOGGER_ENABLED, Command, CommandDispatcher, CommandLogger, CommandType, CoreContainer, CreateAggregateCommand, DomainEvent, DomainEventBus, DomainEventPublisher, DomainEventType, DomainInitializer, DomainObject, EVENT_LOGGER_ENABLED, Entity, EntityId, EventDrivenRepository, EventRepository, FeatureModule, HermesArchiveSubject, HermesBehaviorSubject, HermesId, HermesObservable, HermesReplaySubject, HermesRunner, HermesSingle, HermesSubject, HermesSubscription, InMemoryAggregateStore, InMemoryReadModelStore, InMemoryStore, KeyMap, Optional, PersistAggregateStore, PersistAnemia, PersistReadModelStore, PersistStateStore, RandomIdGenerator, RandomStringGenerator, Reactive, ReactiveService, ReadModelEntity, ReadModelEntityId, ReadModelObject, ReadModelRoot, ReadModelRootId, ReadModelRootRepository, ReadModelStore, ValueObject, assertAggregateEvents, assertDomainEvents, commandInterceptedByHandlerTest, commandPublishEventTest, commandTriggersHandlerAndPublishEventTest, createContainer, disableHermesLoggers, enableHermesLoggers, findDefaultValuesWarehouseTest, fromRxJsObservable, hermesDistinctUntilChanged, hermesEmpty, hermesFilter, hermesFromEvent, hermesInterval, hermesMap, hermesNever, hermesOf, hermesSkip, hermesSwitchMap, hermesTake, hermesTakeUntil, hermesTap, hermesThrowError, hermesTimer, hermesToArray, initHermesApi, onDefaultValuesWarehouseTest, onWarehouseEmpty, onceDefaultValuesWarehouseTest, resetCoreContainer, runHermes, singleFromObservable, testEventRepositoryIsEmptyOnStart, toRxJsObservable };
-//# sourceMappingURL=generic-ui-hermes.mjs.map
 //# sourceMappingURL=generic-ui-hermes.mjs.map

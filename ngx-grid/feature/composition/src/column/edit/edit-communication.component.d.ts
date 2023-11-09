@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { SmartComponent } from '../../../../common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../common/component/src/smart-component';
 import { ChangedValueEmitter } from './changed-value.emitter';
 import { EditEventType } from './state/edit.event-type';
 import * as i0 from "@angular/core";

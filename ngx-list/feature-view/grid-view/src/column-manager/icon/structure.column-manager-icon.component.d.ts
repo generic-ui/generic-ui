@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { IconComponent } from '../../../../../feature/common/src/cdk/component/lib/src/icon-component';
+import { IconComponent } from '../../../../../feature/common/component/src/icon-component';
 import * as i0 from "@angular/core";
 export declare class StructureColumnManagerIconComponent extends IconComponent {
     constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef);

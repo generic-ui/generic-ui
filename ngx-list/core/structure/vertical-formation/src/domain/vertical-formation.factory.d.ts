@@ -1,4 +1,4 @@
-import { Logger } from '../../../../../feature/common/src/cdk/logger/logger';
+import { Logger } from '../../../../../feature/common/cdk/src/logger/logger';
 import { VerticalFormation } from './vertical-formation';
 import { StructureId } from '../../../structure-core/src/api/global/structure.id';
 export declare class VerticalFormationFactory {

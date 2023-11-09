@@ -12,13 +12,14 @@ import * as i5 from "./advanced/navigator/alternative-paging-navigator.component
 import * as i6 from "./advanced/pages/alternative-paging-pages.component";
 import * as i7 from "@angular/common";
 import * as i8 from "@generic-ui/fabric";
-import * as i9 from "../../../l10n/translation.feature-module";
+import * as i9 from "../../../l10n/src/translation.feature-module";
+import * as i10 from "../../../gui-angular/template/gui.template.module";
 export declare function providePagingCommandInvoker(): PagingPublisher;
 export declare function providePagingWarehouse(): PagingWarehouse;
 export declare function providePagingEventRepository(): PagingEventRepository;
 export declare class PagingFeatureModule extends FeatureModule {
     static forComponent(): Array<Provider>;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingFeatureModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<PagingFeatureModule, [typeof i1.PagingComponent, typeof i2.PagingNavigatorComponent, typeof i3.PagingSelectComponent, typeof i4.PagingStatsComponent, typeof i5.AlternativePagingNavigatorComponent, typeof i6.AlternativePagingPagesComponent], [typeof i7.CommonModule, typeof i8.FabricModule, typeof i9.TranslationFeatureModule], [typeof i1.PagingComponent, typeof i2.PagingNavigatorComponent, typeof i3.PagingSelectComponent, typeof i4.PagingStatsComponent, typeof i5.AlternativePagingNavigatorComponent, typeof i6.AlternativePagingPagesComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<PagingFeatureModule, [typeof i1.PagingComponent, typeof i2.PagingNavigatorComponent, typeof i3.PagingSelectComponent, typeof i4.PagingStatsComponent, typeof i5.AlternativePagingNavigatorComponent, typeof i6.AlternativePagingPagesComponent], [typeof i7.CommonModule, typeof i8.FabricModule, typeof i9.TranslationFeatureModule, typeof i10.GuiTemplateModule], [typeof i1.PagingComponent, typeof i2.PagingNavigatorComponent, typeof i3.PagingSelectComponent, typeof i4.PagingStatsComponent, typeof i5.AlternativePagingNavigatorComponent, typeof i6.AlternativePagingPagesComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<PagingFeatureModule>;
 }

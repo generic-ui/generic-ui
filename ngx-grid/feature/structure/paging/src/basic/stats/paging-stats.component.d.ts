@@ -1,5 +1,5 @@
 import { ElementRef, OnChanges } from '@angular/core';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import { PagingModel } from '../../../../../../core/structure/paging/src/api/model/paging.model';
 import * as i0 from "@angular/core";
 export declare class PagingStatsComponent extends PureComponent implements OnChanges {

@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
-import { SmartComponent } from '../../../../common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../common/component/src/smart-component';
 import * as i0 from "@angular/core";
 export declare class SortingSelectorComponent extends SmartComponent {
     sortingOptions: readonly ["Name: A-Z", "Name: Z-A", "Price: Low to High", "Price: High to Low", "None"];

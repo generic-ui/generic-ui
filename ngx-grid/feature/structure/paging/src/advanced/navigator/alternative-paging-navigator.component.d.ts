@@ -1,7 +1,7 @@
 import { ElementRef, EventEmitter, OnChanges } from '@angular/core';
 import { PagingModel } from '../../../../../../core/structure/paging/src/api/model/paging.model';
 import { PagingPublisher } from '../../../../../../core/structure/paging/src/api/paging.publisher';
-import { PureComponent } from '../../../../../common/src/cdk/component/lib/src/pure-component';
+import { PureComponent } from '../../../../../common/component/src/pure-component';
 import { StructureId } from '../../../../../../core/structure/structure-core/src/api/global/structure.id';
 import * as i0 from "@angular/core";
 export declare class AlternativePagingNavigatorComponent extends PureComponent implements OnChanges {

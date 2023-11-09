@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef } from '@angular/core';
-import { SmartComponent } from '../../../../../feature/common/src/cdk/component/lib/src/smart-component';
+import { SmartComponent } from '../../../../../feature/common/component/src/smart-component';
 import { StructureCellEditStore } from '../../edit/structure.cell-edit.store';
 import { SourcePublisher } from '../../../../../core/structure/source/src/api/source.publisher';
 import { ChangedValueEmitter } from '../../../../../feature/composition/src/column/edit/changed-value.emitter';

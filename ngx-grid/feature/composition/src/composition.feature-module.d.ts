@@ -20,7 +20,7 @@ import * as i11 from "./column/view/text/text-view.component";
 import * as i12 from "./column/view/html/html-view.component";
 import * as i13 from "@angular/common";
 import * as i14 from "@angular/forms";
-import * as i15 from "../../common/src/cdk/sanitize/sanitize.module";
+import * as i15 from "../../common/cdk/src/sanitize/sanitize.module";
 import * as i16 from "@generic-ui/fabric";
 export declare function provideCompositionCommandPublisher(): CompositionPublisher;
 export declare function provideCompositionWarehouse(): CompositionWarehouse;

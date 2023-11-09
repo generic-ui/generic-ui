@@ -14,7 +14,7 @@ export declare class HermesObservable<T> {
     subscribe(subscriber: HermesSubscriber<T>): HermesSubscription;
     subscribe(observer: Partial<HermesObserver<T>>): HermesSubscription;
     protected createSubscriber(next?: (value: T) => void, error?: (error: any) => void, complete?: () => void): HermesSubscriber<T>;
-    protected getSubscription(): HermesSubscription;
+    protected getSubscription(subscriber: HermesSubscriber<T>): HermesSubscription;
     private innerPipe;
     private isObserver;
 }
