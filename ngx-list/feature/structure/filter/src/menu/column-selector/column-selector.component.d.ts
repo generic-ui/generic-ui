@@ -9,5 +9,5 @@ export declare class ColumnSelectorComponent extends PureComponent {
     onSelectChange(column: CellTemplateWithContext): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ColumnSelectorComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ColumnSelectorComponent, "div[gui-column-selector][columns]", never, { "columns": "columns"; }, { "columnSelected": "columnSelected"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ColumnSelectorComponent, "div[gui-column-selector][columns]", never, { "columns": { "alias": "columns"; "required": false; }; }, { "columnSelected": "columnSelected"; }, never, never, false, never>;
 }

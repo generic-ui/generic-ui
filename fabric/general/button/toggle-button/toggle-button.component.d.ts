@@ -20,5 +20,5 @@ export declare class FabricToggleButtonComponent extends Indicator {
     private generateButtonId;
     private toggleDisabledCssClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricToggleButtonComponent, [null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricToggleButtonComponent, "gui-button-toggle", never, { "checked": "checked"; "disabled": "disabled"; }, { "changed": "changed"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricToggleButtonComponent, "gui-button-toggle", never, { "checked": { "alias": "checked"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "changed": "changed"; }, never, ["*"], false, never>;
 }

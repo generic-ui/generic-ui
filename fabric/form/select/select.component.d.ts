@@ -46,5 +46,5 @@ export declare class FabricSelectComponent extends FabricReactive implements OnI
     private addClass;
     private removeClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricSelectComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectComponent, "gui-select", never, { "options": "options"; "placeholder": "placeholder"; "selected": "selected"; "width": "width"; "disabled": "disabled"; }, { "optionChanged": "optionChanged"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricSelectComponent, "gui-select", never, { "options": { "alias": "options"; "required": false; }; "placeholder": { "alias": "placeholder"; "required": false; }; "selected": { "alias": "selected"; "required": false; }; "width": { "alias": "width"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "optionChanged": "optionChanged"; }, never, never, false, never>;
 }

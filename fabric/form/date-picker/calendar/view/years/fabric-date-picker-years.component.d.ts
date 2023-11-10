@@ -11,5 +11,5 @@ export declare class FabricDatePickerYearsComponent {
     selectYear(year: number): void;
     isYear(date: Date, year: number): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerYearsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerYearsComponent, "gui-date-picker-years-view", never, { "selectedDate": "selectedDate"; "years": "years"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerYearsComponent, "gui-date-picker-years-view", never, { "selectedDate": { "alias": "selectedDate"; "required": false; }; "years": { "alias": "years"; "required": false; }; }, {}, never, never, false, never>;
 }

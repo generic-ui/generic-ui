@@ -13,5 +13,5 @@ export declare class GuiLetDirective implements OnChanges, OnDestroy {
     ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiLetDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiLetDirective, "[guiLet]", never, { "guiLet": "guiLet"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiLetDirective, "[guiLet]", never, { "guiLet": { "alias": "guiLet"; "required": false; }; }, {}, never, never, false, never>;
 }

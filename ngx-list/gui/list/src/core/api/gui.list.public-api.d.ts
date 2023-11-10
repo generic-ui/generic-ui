@@ -36,5 +36,5 @@ export interface GuiListLocalization {
     translation?: GuiListTranslation;
     translationResolver?: (key: string, value: string) => string;
 }
-export declare type GuiListTranslation = TranslationChange;
+export type GuiListTranslation = TranslationChange;
 export declare const GuiListDefaultTranslation: import("../../../../../core/l10n/src/api/translation").Translation;

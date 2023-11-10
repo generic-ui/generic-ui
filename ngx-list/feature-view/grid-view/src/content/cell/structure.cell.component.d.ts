@@ -48,5 +48,5 @@ export declare class StructureCellComponent extends SmartComponent implements Af
     private publishEditCancel;
     private publishEditSubmit;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": "entity"; "cell": "cell"; "editMode": "editMode"; "cellEditorManager": "cellEditorManager"; "searchPhrase": "searchPhrase"; "rowIndex": "rowIndex"; "columnIndex": "columnIndex"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellComponent, "div[gui-structure-cell][entity][cell]", never, { "entity": { "alias": "entity"; "required": false; }; "cell": { "alias": "cell"; "required": false; }; "editMode": { "alias": "editMode"; "required": false; }; "cellEditorManager": { "alias": "cellEditorManager"; "required": false; }; "searchPhrase": { "alias": "searchPhrase"; "required": false; }; "rowIndex": { "alias": "rowIndex"; "required": false; }; "columnIndex": { "alias": "columnIndex"; "required": false; }; }, {}, never, never, false, never>;
 }

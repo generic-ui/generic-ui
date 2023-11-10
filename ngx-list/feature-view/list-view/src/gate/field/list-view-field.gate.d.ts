@@ -12,5 +12,5 @@ export declare class ListViewFieldGate extends Gate implements OnChanges {
     constructor(structureId: StructureId, fieldCommandDispatcher: FieldPublisher);
     ngOnChanges(changes: NgChanges<ListViewFieldGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewFieldGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewFieldGate, "gui-list-view[fields]", never, { "fields": "fields"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewFieldGate, "gui-list-view[fields]", never, { "fields": { "alias": "fields"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -15,5 +15,5 @@ export declare class GuiStyleDirective implements OnChanges, OnDestroy {
     private setStyleByName;
     private set;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiStyleDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiStyleDirective, "[guiStyle]", never, { "guiStyle": "guiStyle"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiStyleDirective, "[guiStyle]", never, { "guiStyle": { "alias": "guiStyle"; "required": false; }; }, {}, never, never, false, never>;
 }

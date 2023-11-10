@@ -7,7 +7,7 @@ import { SchemaHorizontalGridSetEvent } from '../../core/grid/horizontal/schema-
 import { SchemaVerticalGridSetEvent } from '../../core/grid/vertical/schema-vertical-grid-set.event';
 import { SchemaRowColoring } from '../../api/row-coloring/schema-row-coloring';
 import { SchemaTheme } from '../../api/theme/schema-theme';
-export declare type SchemaCssClassesEventType = SchemaThemeSetEvent | RowColoringSetEvent | SchemaHorizontalGridSetEvent | SchemaVerticalGridSetEvent;
+export type SchemaCssClassesEventType = SchemaThemeSetEvent | RowColoringSetEvent | SchemaHorizontalGridSetEvent | SchemaVerticalGridSetEvent;
 export declare class SchemaCssClassesEventHandler implements MultiDomainEventHandler<SchemaId, SchemaCssClassesEventType> {
     private readonly schemaCssClassesRepository;
     rowColoring: SchemaRowColoring;

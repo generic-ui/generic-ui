@@ -7,7 +7,7 @@ export declare enum DeleteCommandPayloadType {
     MANY_INDEX = 2,
     MANY_ITEM_ID = 3
 }
-export declare type DeleteOriginItemPayload = {
+export type DeleteOriginItemPayload = {
     index?: number;
     itemId?: ItemEntityId;
 };

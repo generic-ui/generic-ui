@@ -1,4 +1,4 @@
-export declare type Translation = {
+export type Translation = {
     sourceEmpty: string;
     pagingItemsPerPage: string;
     pagingOf: string;

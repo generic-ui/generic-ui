@@ -1,0 +1,9 @@
+export class EditedItemModel {
+    after;
+    before;
+    constructor(after, before) {
+        this.after = after;
+        this.before = before;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWRpdGVkLWl0ZW0ubW9kZWwuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2NvcmUvc3RydWN0dXJlL3NvdXJjZS9zcmMvYXBpL2VkaXQvZWRpdGVkLWl0ZW0ubW9kZWwudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxPQUFPLGVBQWU7SUFFQztJQUNUO0lBRG5CLFlBQTRCLEtBQVUsRUFDbkIsTUFBVztRQURGLFVBQUssR0FBTCxLQUFLLENBQUs7UUFDbkIsV0FBTSxHQUFOLE1BQU0sQ0FBSztJQUM5QixDQUFDO0NBRUQiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgRWRpdGVkSXRlbU1vZGVsIHtcblxuXHRjb25zdHJ1Y3RvcihwdWJsaWMgcmVhZG9ubHkgYWZ0ZXI6IGFueSxcblx0XHRcdFx0cHVibGljIHJlYWRvbmx5IGJlZm9yZTogYW55KSB7XG5cdH1cblxufVxuIl19

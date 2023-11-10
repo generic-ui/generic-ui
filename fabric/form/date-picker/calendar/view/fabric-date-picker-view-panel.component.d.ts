@@ -25,5 +25,5 @@ export declare class FabricDatePickerViewPanelComponent {
     getDisplayedYearRange(): string;
     private handleMonthChange;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerViewPanelComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerViewPanelComponent, "gui-date-picker-view-panel", never, { "fabricCalendarView": "fabricCalendarView"; "selectedDate": "selectedDate"; "activeMonth": "activeMonth"; "activeYear": "activeYear"; "years": "years"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerViewPanelComponent, "gui-date-picker-view-panel", never, { "fabricCalendarView": { "alias": "fabricCalendarView"; "required": false; }; "selectedDate": { "alias": "selectedDate"; "required": false; }; "activeMonth": { "alias": "activeMonth"; "required": false; }; "activeYear": { "alias": "activeYear"; "required": false; }; "years": { "alias": "years"; "required": false; }; }, {}, never, never, false, never>;
 }

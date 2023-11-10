@@ -53,5 +53,5 @@ export declare class StructureContentComponent extends SmartComponent {
     private selectRadioSelection;
     private selectSearchPhrase;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": "source"; "columns": "columns"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureContentComponent, "div[gui-structure-content]", never, { "source": { "alias": "source"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; }, {}, never, never, false, never>;
 }

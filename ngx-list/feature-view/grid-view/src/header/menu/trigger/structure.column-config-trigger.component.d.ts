@@ -18,5 +18,5 @@ export declare class StructureColumnConfigTriggerComponent extends SmartComponen
     protected getSelectorName(): string;
     private selectIsEnabled;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigTriggerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigTriggerComponent, "div[gui-structure-column-config-trigger]", never, { "column": "column"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigTriggerComponent, "div[gui-structure-column-config-trigger]", never, { "column": { "alias": "column"; "required": false; }; }, {}, never, never, false, never>;
 }

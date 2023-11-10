@@ -1,6 +1,6 @@
 import { TranslationChange } from '../../../../../core/l10n/src/api/translation-change';
-export declare type FieldAccessor = (element?: any) => any;
-export declare type ViewTemplateFunction = (cellValue?: any, item?: any, index?: number) => string;
+export type FieldAccessor = (element?: any) => any;
+export type ViewTemplateFunction = (cellValue?: any, item?: any, index?: number) => string;
 export interface GuiMultiColumn {
     header?: string | ViewTemplateFunction;
     columns?: Array<GuiColumn>;
@@ -178,7 +178,7 @@ export declare enum GuiRowSelectionMode {
     SINGLE = 0,
     MULTIPLE = 1
 }
-export declare type GuiRowSelectionIdMatcher = (item: any) => any;
+export type GuiRowSelectionIdMatcher = (item: any) => any;
 export interface GuiRowCustomSelectionFunction {
     key?: string;
     text: string;
@@ -216,5 +216,5 @@ export interface GuiCellEdit {
     rowEdit?: (value: any, item: any, index: number) => boolean;
     cellEdit?: (value: any, item: any, index: number) => boolean;
 }
-export declare type GuiTranslation = TranslationChange;
+export type GuiTranslation = TranslationChange;
 export declare const GuiDefaultTranslation: import("../../../../../core/l10n/src/api/translation").Translation;

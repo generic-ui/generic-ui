@@ -22,5 +22,5 @@ export declare class AlternativePagingPagesComponent extends PureComponent imple
     activePage(page: number): boolean;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlternativePagingPagesComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingPagesComponent, "div[gui-paging-alternative-pages][paging]", never, { "paging": "paging"; "sourceSize": "sourceSize"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AlternativePagingPagesComponent, "div[gui-paging-alternative-pages][paging]", never, { "paging": { "alias": "paging"; "required": false; }; "sourceSize": { "alias": "sourceSize"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -1,16 +1,16 @@
 {
   "name": "@generic-ui/ngx-grid",
   "description": "Generic UI - Angular Grid library",
-  "version": "0.19.1",
+  "version": "0.20.0",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0",
-    "@angular/forms": "^15.0.0",
-    "@angular/platform-browser": "^15.0.0",
-    "@generic-ui/fabric": "0.19.1",
-    "@generic-ui/hermes": "0.19.1",
-    "rxjs": "~6.6.7"
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@angular/forms": "^16.0.0",
+    "@angular/platform-browser": "^16.0.0",
+    "@generic-ui/fabric": "0.20.0",
+    "@generic-ui/hermes": "0.20.0",
+    "rxjs": "~7.8.0"
   },
   "keywords": [
     "grid",
@@ -22,17 +22,13 @@
   "homepage": "https://generic-ui.com",
   "bugs": "https://github.com/generic-ui/generic-ui/issues",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.3.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/generic-ui/generic-ui.git"
   },
-  "module": "fesm2015/generic-ui-ngx-grid.mjs",
-  "es2020": "fesm2020/generic-ui-ngx-grid.mjs",
-  "esm2020": "esm2020/generic-ui-ngx-grid.mjs",
-  "fesm2020": "fesm2020/generic-ui-ngx-grid.mjs",
-  "fesm2015": "fesm2015/generic-ui-ngx-grid.mjs",
+  "module": "fesm2022/generic-ui-ngx-grid.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -40,11 +36,9 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/generic-ui-ngx-grid.mjs",
-      "es2020": "./fesm2020/generic-ui-ngx-grid.mjs",
-      "es2015": "./fesm2015/generic-ui-ngx-grid.mjs",
-      "node": "./fesm2015/generic-ui-ngx-grid.mjs",
-      "default": "./fesm2020/generic-ui-ngx-grid.mjs"
+      "esm2022": "./esm2022/generic-ui-ngx-grid.mjs",
+      "esm": "./esm2022/generic-ui-ngx-grid.mjs",
+      "default": "./fesm2022/generic-ui-ngx-grid.mjs"
     }
   },
   "sideEffects": false

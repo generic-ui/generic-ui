@@ -50,5 +50,5 @@ export declare class GuiGridComponent extends GuiGridGateway implements OnInit, 
     private exposeGridId;
     private initApi;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiGridComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridComponent, "gui-grid", never, { "gridId": "gridId"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GuiGridComponent, "gui-grid", never, { "gridId": { "alias": "gridId"; "required": false; }; }, {}, never, never, false, never>;
 }

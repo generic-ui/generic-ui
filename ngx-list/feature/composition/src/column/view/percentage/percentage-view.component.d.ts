@@ -6,5 +6,5 @@ export declare class PercentageViewComponent extends PureComponent {
     constructor(elementRef: ElementRef);
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<PercentageViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PercentageViewComponent, "gui-percentage-view[value]", never, { "value": "value"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PercentageViewComponent, "gui-percentage-view[value]", never, { "value": { "alias": "value"; "required": false; }; }, {}, never, never, false, never>;
 }

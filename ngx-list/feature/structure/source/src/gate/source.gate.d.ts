@@ -17,5 +17,5 @@ export declare abstract class SourceGate extends Gate implements OnChanges, OnIn
     ngOnChanges(changes: NgChanges<SourceGate>): void;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SourceGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SourceGate, never, never, { "source": "source"; "items": "items"; }, { "sourceEdited": "sourceEdited"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SourceGate, never, never, { "source": { "alias": "source"; "required": false; }; "items": { "alias": "items"; "required": false; }; }, { "sourceEdited": "sourceEdited"; }, never, never, false, never>;
 }

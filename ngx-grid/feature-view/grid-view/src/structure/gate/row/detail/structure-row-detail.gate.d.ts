@@ -10,5 +10,5 @@ export declare class StructureRowDetailGate extends Gate implements OnChanges {
     constructor(structureDetailViewConfigArchive: StructureRowDetailConfigArchive);
     ngOnChanges(changes: NgChanges<StructureRowDetailGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowDetailGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowDetailGate, "gui-structure[rowDetail]", never, { "rowDetail": "rowDetail"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureRowDetailGate, "gui-structure[rowDetail]", never, { "rowDetail": { "alias": "rowDetail"; "required": false; }; }, {}, never, never, false, never>;
 }

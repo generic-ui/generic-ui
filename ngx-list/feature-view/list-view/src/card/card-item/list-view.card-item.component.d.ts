@@ -11,5 +11,5 @@ export declare class ListViewCardItemComponent extends PureComponent {
     ngOnChanges(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewCardItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewCardItemComponent, "div[gui-list-card-item][item][template]", never, { "item": "item"; "template": "template"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ListViewCardItemComponent, "div[gui-list-card-item][item][template]", never, { "item": { "alias": "item"; "required": false; }; "template": { "alias": "template"; "required": false; }; }, {}, never, never, false, never>;
 }

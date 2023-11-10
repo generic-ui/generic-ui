@@ -13,5 +13,5 @@ export declare class StructurePanelGate extends Gate implements OnChanges {
     constructor(structureTitlePanelConfigArchive: StructureTitlePanelConfigArchive, structureFooterPanelConfigArchive: StructureFooterPanelConfigArchive);
     ngOnChanges(changes: NgChanges<StructurePanelGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructurePanelGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructurePanelGate, "gui-structure[titlePanel][footerPanel]", never, { "titlePanel": "titlePanel"; "footerPanel": "footerPanel"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructurePanelGate, "gui-structure[titlePanel][footerPanel]", never, { "titlePanel": { "alias": "titlePanel"; "required": false; }; "footerPanel": { "alias": "footerPanel"; "required": false; }; }, {}, never, never, false, never>;
 }

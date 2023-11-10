@@ -10,5 +10,5 @@ export declare class StructureColumnMenuGate extends Gate implements OnChanges {
     constructor(structureColumnMenuConfigArchive: StructureColumnMenuConfigArchive);
     ngOnChanges(changes: NgChanges<StructureColumnMenuGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnMenuGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureColumnMenuGate, "gui-structure[columnMenu]", never, { "columnMenu": "columnMenu"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureColumnMenuGate, "gui-structure[columnMenu]", never, { "columnMenu": { "alias": "columnMenu"; "required": false; }; }, {}, never, never, false, never>;
 }

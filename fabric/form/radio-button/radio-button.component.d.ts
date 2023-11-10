@@ -11,5 +11,5 @@ export declare class FabricRadioButtonComponent implements OnChanges {
     ngOnChanges(): void;
     check(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricRadioButtonComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricRadioButtonComponent, "gui-radio-button", never, { "name": "name"; "checked": "checked"; "disabled": "disabled"; }, { "changed": "changed"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricRadioButtonComponent, "gui-radio-button", never, { "name": { "alias": "name"; "required": false; }; "checked": { "alias": "checked"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "changed": "changed"; }, never, ["*"], false, never>;
 }

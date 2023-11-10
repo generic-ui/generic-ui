@@ -37,5 +37,5 @@ export declare class StructureColumnConfigSortComponent extends SmartComponent {
     protected getSelectorName(): string;
     private selectSortOrder;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureColumnConfigSortComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", never, { "column": "column"; "dropdownTextTranslation": "dropdownTextTranslation"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureColumnConfigSortComponent, "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", never, { "column": { "alias": "column"; "required": false; }; "dropdownTextTranslation": { "alias": "dropdownTextTranslation"; "required": false; }; }, {}, never, never, false, never>;
 }

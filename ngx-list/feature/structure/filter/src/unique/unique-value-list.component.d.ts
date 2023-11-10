@@ -30,5 +30,5 @@ export declare class UniqueValueListComponent extends SmartComponent {
     private isSelectAllChecked;
     private isSelectAllIndeterminate;
     static ɵfac: i0.ɵɵFactoryDeclaration<UniqueValueListComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": "fieldId"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UniqueValueListComponent, "div[gui-unique-value-list][fieldId]", never, { "fieldId": { "alias": "fieldId"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -1,1 +1,1 @@
-export declare type ValueProvider = any;
+export type ValueProvider = any;

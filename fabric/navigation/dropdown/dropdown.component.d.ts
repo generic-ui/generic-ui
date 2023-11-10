@@ -51,5 +51,5 @@ export declare class FabricDropdownComponent extends FabricReactive implements O
     private addClass;
     private removeClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDropdownComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDropdownComponent, "gui-dropdown", never, { "disabled": "disabled"; "dropdownText": "dropdownText"; "isArrowEnabled": "isArrowEnabled"; "placement": "placement"; "width": "width"; "showOnHover": "showOnHover"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDropdownComponent, "gui-dropdown", never, { "disabled": { "alias": "disabled"; "required": false; }; "dropdownText": { "alias": "dropdownText"; "required": false; }; "isArrowEnabled": { "alias": "isArrowEnabled"; "required": false; }; "placement": { "alias": "placement"; "required": false; }; "width": { "alias": "width"; "required": false; }; "showOnHover": { "alias": "showOnHover"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

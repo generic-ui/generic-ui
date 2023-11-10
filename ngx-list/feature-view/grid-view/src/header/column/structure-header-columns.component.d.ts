@@ -25,5 +25,5 @@ export declare class StructureHeaderColumnsComponent extends SmartComponent {
     openConfigDialog(): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderColumnsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": "columns"; "showSelection": "showSelection"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderColumnsComponent, "div[gui-structure-header-columns][columns]", never, { "columns": { "alias": "columns"; "required": false; }; "showSelection": { "alias": "showSelection"; "required": false; }; }, {}, never, never, false, never>;
 }

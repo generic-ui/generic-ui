@@ -30,5 +30,5 @@ export declare class StructureCellEditComponent extends SmartComponent implement
     private publishEditCancel;
     private publishEditSubmit;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellEditComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditComponent, "div[gui-structure-cell-edit][entity][cell]", never, { "entity": "entity"; "cell": "cell"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditComponent, "div[gui-structure-cell-edit][entity][cell]", never, { "entity": { "alias": "entity"; "required": false; }; "cell": { "alias": "cell"; "required": false; }; }, {}, never, never, false, never>;
 }

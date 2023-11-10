@@ -17,5 +17,5 @@ export declare class StructureHeaderFilterComponent extends SmartComponent imple
     filter(phrase: string): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFilterComponent, "gui-structure-header-filter", never, { "column": "column"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFilterComponent, "gui-structure-header-filter", never, { "column": { "alias": "column"; "required": false; }; }, {}, never, never, false, never>;
 }

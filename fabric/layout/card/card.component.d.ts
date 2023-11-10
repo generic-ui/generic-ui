@@ -8,5 +8,5 @@ export declare class FabricCardComponent {
     isImgEnabled(): boolean;
     isContentBlockEnabled(): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricCardComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricCardComponent, "gui-card", never, { "title": "title"; "image": "image"; "alt": "alt"; "contentBlock": "contentBlock"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricCardComponent, "gui-card", never, { "title": { "alias": "title"; "required": false; }; "image": { "alias": "image"; "required": false; }; "alt": { "alias": "alt"; "required": false; }; "contentBlock": { "alias": "contentBlock"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

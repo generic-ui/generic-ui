@@ -26,5 +26,5 @@ export declare class StructureHeaderFiltersComponent extends PureComponent imple
     protected getSelectorName(): string;
     private selectFilterFormChanges;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureHeaderFiltersComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFiltersComponent, "div[gui-structure-header-filters][columns]", never, { "columns": "columns"; }, { "closed": "closed"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureHeaderFiltersComponent, "div[gui-structure-header-filters][columns]", never, { "columns": { "alias": "columns"; "required": false; }; }, { "closed": "closed"; }, never, never, false, never>;
 }

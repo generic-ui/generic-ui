@@ -10,5 +10,5 @@ export declare class FabricNotificationsContainerComponent {
     emitClosedNotification(selectedNotification: FabricNotification): void;
     isPosition(fabricNotificationPosition: FabricNotificationPosition): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricNotificationsContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationsContainerComponent, "gui-notifications-container", never, { "notifications": "notifications"; "position": "position"; }, { "onNotificationClose": "onNotificationClose"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationsContainerComponent, "gui-notifications-container", never, { "notifications": { "alias": "notifications"; "required": false; }; "position": { "alias": "position"; "required": false; }; }, { "onNotificationClose": "onNotificationClose"; }, never, never, false, never>;
 }

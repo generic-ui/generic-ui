@@ -7,5 +7,5 @@ export declare class StructureSelectionGate extends SelectionGate {
     selectionGate: void;
     constructor(structureId: StructureId, formationEventService: FormationEventRepository, formationCommandDispatcher: FormationPublisher);
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureSelectionGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSelectionGate, "gui-structure[rowSelection], gui-structure[selectionGate]", never, { "selectionGate": "selectionGate"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureSelectionGate, "gui-structure[rowSelection], gui-structure[selectionGate]", never, { "selectionGate": { "alias": "selectionGate"; "required": false; }; }, {}, never, never, false, never>;
 }

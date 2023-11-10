@@ -14,5 +14,5 @@ export declare abstract class Indicator {
     protected addClass(className: string): void;
     protected removeClass(className: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<Indicator, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<Indicator, never, never, { "primary": "primary"; "secondary": "secondary"; "outline": "outline"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<Indicator, never, never, { "primary": { "alias": "primary"; "required": false; }; "secondary": { "alias": "secondary"; "required": false; }; "outline": { "alias": "outline"; "required": false; }; }, {}, never, never, false, never>;
 }

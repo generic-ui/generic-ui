@@ -1,1 +1,1 @@
-export declare type FieldMatcherType = (item: any) => any;
+export type FieldMatcherType = (item: any) => any;

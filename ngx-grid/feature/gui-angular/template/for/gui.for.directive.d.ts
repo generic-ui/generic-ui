@@ -11,5 +11,5 @@ export declare class GuiForDirective implements OnChanges, OnDestroy {
     ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiForDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiForDirective, "[guiFor]", never, { "guiForOf": "guiForOf"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiForDirective, "[guiFor]", never, { "guiForOf": { "alias": "guiForOf"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -14,5 +14,5 @@ export declare class FabricNotificationComponent implements OnInit, OnDestroy {
     addCloseAnimation(): void;
     isRightSide(): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricNotificationComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationComponent, "gui-notification", never, { "notification": "notification"; }, { "onNotificationClose": "onNotificationClose"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricNotificationComponent, "gui-notification", never, { "notification": { "alias": "notification"; "required": false; }; }, { "onNotificationClose": "onNotificationClose"; }, never, never, false, never>;
 }

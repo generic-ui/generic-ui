@@ -16,5 +16,5 @@ export declare class FabricProgressBarComponent {
     private addClass;
     private removeClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricProgressBarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricProgressBarComponent, "gui-progress-bar", never, { "progress": "progress"; "color": "color"; "height": "height"; "width": "width"; "textTop": "textTop"; "textAlign": "textAlign"; "primary": "primary"; "secondary": "secondary"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricProgressBarComponent, "gui-progress-bar", never, { "progress": { "alias": "progress"; "required": false; }; "color": { "alias": "color"; "required": false; }; "height": { "alias": "height"; "required": false; }; "width": { "alias": "width"; "required": false; }; "textTop": { "alias": "textTop"; "required": false; }; "textAlign": { "alias": "textAlign"; "required": false; }; "primary": { "alias": "primary"; "required": false; }; "secondary": { "alias": "secondary"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

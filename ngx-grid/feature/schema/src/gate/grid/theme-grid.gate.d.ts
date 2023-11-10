@@ -16,5 +16,5 @@ export declare class ThemeGridGate extends Gate implements OnChanges {
     constructor(schemaId: SchemaReadModelRootId, schemaCommandInvoker: SchemaPublisher, schemaEventRepository: SchemaEventRepository);
     ngOnChanges(changes: NgChanges<ThemeGridGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ThemeGridGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ThemeGridGate, "gui-structure[verticalGrid][horizontalGrid]", never, { "verticalGrid": "verticalGrid"; "horizontalGrid": "horizontalGrid"; }, { "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ThemeGridGate, "gui-structure[verticalGrid][horizontalGrid]", never, { "verticalGrid": { "alias": "verticalGrid"; "required": false; }; "horizontalGrid": { "alias": "horizontalGrid"; "required": false; }; }, { "horizontalGridChanged": "horizontalGridChanged"; "verticalGridChanged": "verticalGridChanged"; }, never, never, false, never>;
 }

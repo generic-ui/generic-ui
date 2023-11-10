@@ -40,5 +40,5 @@ export declare class PagingComponent extends GuiComponent {
     private mapIsPagingVisible;
     private selectIsAdvancedPagingEnabled;
     static ɵfac: i0.ɵɵFactoryDeclaration<PagingComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": "position"; "minimal": "minimal"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PagingComponent, "div[gui-paging][position]", never, { "position": { "alias": "position"; "required": false; }; "minimal": { "alias": "minimal"; "required": false; }; }, {}, never, never, false, never>;
 }

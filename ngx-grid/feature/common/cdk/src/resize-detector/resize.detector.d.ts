@@ -1,6 +1,6 @@
 import { HermesObservable } from '@generic-ui/hermes';
 import * as i0 from "@angular/core";
-export declare type ObservedSize = {
+export type ObservedSize = {
     bottom: number;
     height: number;
     left: number;

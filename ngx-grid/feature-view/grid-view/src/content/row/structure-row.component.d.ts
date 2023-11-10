@@ -47,5 +47,5 @@ export declare class StructureRowComponent extends SmartComponent implements OnC
     private updateRowClass;
     private calculateRowClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureRowComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": "entity"; "columns": "columns"; "editMode": "editMode"; "cellEditing": "cellEditing"; "searchPhrase": "searchPhrase"; "index": "index"; "rowStyle": "rowStyle"; "rowClass": "rowClass"; "checkboxSelection": "checkboxSelection"; "radioSelection": "radioSelection"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureRowComponent, "div[gui-structure-row]", never, { "entity": { "alias": "entity"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "editMode": { "alias": "editMode"; "required": false; }; "cellEditing": { "alias": "cellEditing"; "required": false; }; "searchPhrase": { "alias": "searchPhrase"; "required": false; }; "index": { "alias": "index"; "required": false; }; "rowStyle": { "alias": "rowStyle"; "required": false; }; "rowClass": { "alias": "rowClass"; "required": false; }; "checkboxSelection": { "alias": "checkboxSelection"; "required": false; }; "radioSelection": { "alias": "radioSelection"; "required": false; }; }, {}, never, never, false, never>;
 }

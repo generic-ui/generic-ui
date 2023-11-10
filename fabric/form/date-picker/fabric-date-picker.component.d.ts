@@ -33,5 +33,5 @@ export declare class FabricDatePickerComponent extends FabricReactive implements
     closeDatePicker(): void;
     private emitSelectedDate;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerComponent, "gui-date-picker", never, { "parentElement": "parentElement"; "theme": "theme"; "selectDate": "selectDate"; "name": "name"; "openDialog": "openDialog"; "onlyDialog": "onlyDialog"; "datePipeOptions": "datePipeOptions"; }, { "dateSelected": "dateSelected"; "dialogOpened": "dialogOpened"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerComponent, "gui-date-picker", never, { "parentElement": { "alias": "parentElement"; "required": false; }; "theme": { "alias": "theme"; "required": false; }; "selectDate": { "alias": "selectDate"; "required": false; }; "name": { "alias": "name"; "required": false; }; "openDialog": { "alias": "openDialog"; "required": false; }; "onlyDialog": { "alias": "onlyDialog"; "required": false; }; "datePipeOptions": { "alias": "datePipeOptions"; "required": false; }; }, { "dateSelected": "dateSelected"; "dialogOpened": "dialogOpened"; }, never, never, false, never>;
 }

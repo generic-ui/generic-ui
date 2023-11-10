@@ -1,4 +1,4 @@
-export declare type HermesObserver<T> = {
+export type HermesObserver<T> = {
     next: (value: T) => void;
     error: (error: any) => void;
     complete: () => void;

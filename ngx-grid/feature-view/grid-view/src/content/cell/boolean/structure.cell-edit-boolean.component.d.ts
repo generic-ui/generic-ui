@@ -26,5 +26,5 @@ export declare class StructureCellEditBooleanComponent extends SmartComponent im
     private initEditContext;
     private observeValueChanges;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureCellEditBooleanComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditBooleanComponent, "div[gui-structure-cell-edit-boolean][entity][cell]", never, { "entity": "entity"; "cell": "cell"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StructureCellEditBooleanComponent, "div[gui-structure-cell-edit-boolean][entity][cell]", never, { "entity": { "alias": "entity"; "required": false; }; "cell": { "alias": "cell"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -12,5 +12,5 @@ export declare class SourceLoadingGate extends Gate implements OnChanges, OnInit
     ngOnChanges(changes: NgChanges<SourceLoadingGate>): void;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SourceLoadingGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SourceLoadingGate, "gui-structure[loading]", never, { "loading": "loading"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SourceLoadingGate, "gui-structure[loading]", never, { "loading": { "alias": "loading"; "required": false; }; }, {}, never, never, false, never>;
 }

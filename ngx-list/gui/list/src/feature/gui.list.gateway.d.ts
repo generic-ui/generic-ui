@@ -35,5 +35,5 @@ export declare abstract class GuiListGateway implements OnChanges {
     searchConfig: SearchConfig;
     ngOnChanges(changes: NgChanges<GuiListGateway>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiListGateway, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiListGateway, never, never, { "source": "source"; "template": "template"; "cardTemplate": "cardTemplate"; "paging": "paging"; "view": "view"; "fields": "fields"; "searching": "searching"; "localization": "localization"; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "searchPhraseChanged": "searchPhraseChanged"; }, ["listItem", "listCard"], never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiListGateway, never, never, { "source": { "alias": "source"; "required": false; }; "template": { "alias": "template"; "required": false; }; "cardTemplate": { "alias": "cardTemplate"; "required": false; }; "paging": { "alias": "paging"; "required": false; }; "view": { "alias": "view"; "required": false; }; "fields": { "alias": "fields"; "required": false; }; "searching": { "alias": "searching"; "required": false; }; "localization": { "alias": "localization"; "required": false; }; }, { "pageChanged": "pageChanged"; "pageSizeChanged": "pageSizeChanged"; "searchPhraseChanged": "searchPhraseChanged"; }, ["listItem", "listCard"], never, false, never>;
 }

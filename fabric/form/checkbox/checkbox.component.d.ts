@@ -16,5 +16,5 @@ export declare class FabricCheckboxComponent implements OnChanges, AfterViewInit
     ngAfterViewInit(): void;
     check(event: Event): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricCheckboxComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricCheckboxComponent, "gui-checkbox", never, { "name": "name"; "inputChecked": "checked"; "disabled": "disabled"; "readonly": "readonly"; "indeterminate": "indeterminate"; }, { "changed": "changed"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricCheckboxComponent, "gui-checkbox", never, { "name": { "alias": "name"; "required": false; }; "inputChecked": { "alias": "checked"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "readonly": { "alias": "readonly"; "required": false; }; "indeterminate": { "alias": "indeterminate"; "required": false; }; }, { "changed": "changed"; }, never, ["*"], false, never>;
 }

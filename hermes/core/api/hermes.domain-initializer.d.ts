@@ -9,7 +9,7 @@ export interface Type<T> extends Function {
 export interface ApiProviders {
     registerProviders(container: Container): void;
 }
-export declare type AggregateDefinition<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>> = {
+export type AggregateDefinition<I extends AggregateId, A extends AggregateRoot<I>, C extends Command<I>> = {
     aggregateKey: string;
     createCommandHandler: Type<CreateAggregateCommandHandler<C>>;
     factory: Type<AggregateFactory<I, A>>;

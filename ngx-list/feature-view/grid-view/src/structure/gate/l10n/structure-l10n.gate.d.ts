@@ -10,5 +10,5 @@ export declare class StructureL10nGate extends Gate implements OnChanges {
     constructor(translationService: TranslationFacade);
     ngOnChanges(changes: NgChanges<StructureL10nGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StructureL10nGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureL10nGate, "gui-structure[localization]", never, { "localization": "localization"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<StructureL10nGate, "gui-structure[localization]", never, { "localization": { "alias": "localization"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -3,7 +3,7 @@ import { SortToggledEvent } from '../../../../../structure/sorting/src/core/togg
 import { CompositionDispatcher } from '../../composition.dispatcher';
 import { SortOrderSetEvent } from '../../../../../structure/sorting/src/core/order/sort-order-set.event';
 import { CompositionId } from '../../../api/global/composition.id';
-export declare type CompositionChangeSortStatusEventType = SortToggledEvent | SortOrderSetEvent;
+export type CompositionChangeSortStatusEventType = SortToggledEvent | SortOrderSetEvent;
 export declare class CompositionChangeSortStatusEventHandler implements MultiDomainEventHandler<CompositionId, CompositionChangeSortStatusEventType> {
     private readonly compositionDispatcher;
     constructor(compositionDispatcher: CompositionDispatcher);

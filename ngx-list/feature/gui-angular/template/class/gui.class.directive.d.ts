@@ -11,5 +11,5 @@ export declare class GuiClassDirective implements OnChanges, OnDestroy {
     ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiClassDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiClassDirective, "[guiClass]", never, { "guiClass": "guiClass"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiClassDirective, "[guiClass]", never, { "guiClass": { "alias": "guiClass"; "required": false; }; }, {}, never, never, false, never>;
 }

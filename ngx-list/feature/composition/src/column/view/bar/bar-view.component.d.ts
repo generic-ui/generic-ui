@@ -10,5 +10,5 @@ export declare class BarViewComponent extends PureComponent implements OnChanges
     ngOnChanges(changes: NgChanges<BarViewComponent>): void;
     protected getSelectorName(): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<BarViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<BarViewComponent, "gui-bar-view[value]", never, { "value": "value"; "showPercentage": "showPercentage"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<BarViewComponent, "gui-bar-view[value]", never, { "value": { "alias": "value"; "required": false; }; "showPercentage": { "alias": "showPercentage"; "required": false; }; }, {}, never, never, false, never>;
 }

@@ -13,5 +13,5 @@ export declare class ListViewModeGate extends Gate implements OnChanges {
     constructor(listViewReadModelRootId: ListViewReadModelRootId, listViewCommandDispatcher: ListViewPublisher);
     ngOnChanges(changes: NgChanges<ListViewModeGate>): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ListViewModeGate, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewModeGate, "gui-list-view[mode]", never, { "mode": "mode"; "modeSelector": "modeSelector"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ListViewModeGate, "gui-list-view[mode]", never, { "mode": { "alias": "mode"; "required": false; }; "modeSelector": { "alias": "modeSelector"; "required": false; }; }, {}, never, never, false, never>;
 }

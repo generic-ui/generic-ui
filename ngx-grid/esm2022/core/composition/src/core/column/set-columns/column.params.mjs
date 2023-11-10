@@ -1,0 +1,15 @@
+export class ColumnParams {
+    column;
+    field;
+    constructor(column, field) {
+        this.column = column;
+        this.field = field;
+    }
+    getColumn() {
+        return this.column;
+    }
+    getField() {
+        return this.field;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29sdW1uLnBhcmFtcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uLy4uL2J1aWxkLWNsaS9wcm9qZWN0cy9uZ3gtZ3JpZC9zcmMvY29yZS9jb21wb3NpdGlvbi9zcmMvY29yZS9jb2x1bW4vc2V0LWNvbHVtbnMvY29sdW1uLnBhcmFtcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFHQSxNQUFNLE9BQU8sWUFBWTtJQUVLO0lBQ1Q7SUFEcEIsWUFBNkIsTUFBb0IsRUFDN0IsS0FBa0I7UUFEVCxXQUFNLEdBQU4sTUFBTSxDQUFjO1FBQzdCLFVBQUssR0FBTCxLQUFLLENBQWE7SUFDdEMsQ0FBQztJQUVELFNBQVM7UUFDUixPQUFPLElBQUksQ0FBQyxNQUFNLENBQUM7SUFDcEIsQ0FBQztJQUVELFFBQVE7UUFDUCxPQUFPLElBQUksQ0FBQyxLQUFLLENBQUM7SUFDbkIsQ0FBQztDQUVEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29sdW1uQ29uZmlnIH0gZnJvbSAnLi4vLi4vLi4vYXBpL2NvbHVtbi9jb2x1bW4uY29uZmlnJztcbmltcG9ydCB7IENvbHVtbkZpZWxkIH0gZnJvbSAnLi4vLi4vLi4vZG9tYWluL2NvbHVtbi9maWVsZC9jb2x1bW4tZmllbGQnO1xuXG5leHBvcnQgY2xhc3MgQ29sdW1uUGFyYW1zIHtcblxuXHRjb25zdHJ1Y3Rvcihwcml2YXRlIHJlYWRvbmx5IGNvbHVtbjogQ29sdW1uQ29uZmlnLFxuXHRcdFx0XHRwcml2YXRlIHJlYWRvbmx5IGZpZWxkOiBDb2x1bW5GaWVsZCkge1xuXHR9XG5cblx0Z2V0Q29sdW1uKCk6IENvbHVtbkNvbmZpZyB7XG5cdFx0cmV0dXJuIHRoaXMuY29sdW1uO1xuXHR9XG5cblx0Z2V0RmllbGQoKTogQ29sdW1uRmllbGQge1xuXHRcdHJldHVybiB0aGlzLmZpZWxkO1xuXHR9XG5cbn1cbiJdfQ==

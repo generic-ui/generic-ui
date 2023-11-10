@@ -12,5 +12,5 @@ export declare class FabricDatePickerDaysViewComponent {
     isDate(comparedDate: Date, date: Date): boolean;
     displayMonthDays(month: number): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<FabricDatePickerDaysViewComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerDaysViewComponent, "gui-date-picker-days-view", never, { "selectedDate": "selectedDate"; "activeMonth": "activeMonth"; "weeks": "weeks"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FabricDatePickerDaysViewComponent, "gui-date-picker-days-view", never, { "selectedDate": { "alias": "selectedDate"; "required": false; }; "activeMonth": { "alias": "activeMonth"; "required": false; }; "weeks": { "alias": "weeks"; "required": false; }; }, {}, never, never, false, never>;
 }
