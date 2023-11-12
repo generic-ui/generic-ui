@@ -9,7 +9,6 @@ import { CompositionId } from '../../../../../../../core/composition/src/api/glo
 import { StructureId } from '../../../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { StructureArrowPosition } from '../../../../../../../feature/common/icons/arrow/strucutre.arrow-position';
 import { FieldId } from '../../../../../../../core/structure/field/src/domain/field/field.id';
-import { GuiState } from '../../../../../../../feature/gui-angular/state/gui.state';
 import { HermesObservable } from '@generic-ui/hermes';
 import * as i0 from "@angular/core";
 export interface StructureColumnConfigSortComponentState {
@@ -18,18 +17,18 @@ export interface StructureColumnConfigSortComponentState {
 }
 export declare class StructureColumnConfigSortComponent extends SmartComponent {
     private readonly changeDetectorRef;
-    private readonly state;
     private readonly compositionId;
     private readonly structureId;
     private readonly sortingCommandDispatcher;
     private readonly compositionReadModelService;
     set column(column: CellTemplateWithContext);
     dropdownTextTranslation: string;
+    private readonly state;
     readonly placement = Placement.Right;
     readonly status: typeof SortOrder;
     readonly StructureArrowPosition: typeof StructureArrowPosition;
-    readonly sortOrder$: HermesObservable<SortOrder>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, state: GuiState<StructureColumnConfigSortComponentState>, compositionId: CompositionId, structureId: StructureId, sortingCommandDispatcher: SortingPublisher, compositionReadModelService: CompositionWarehouse);
+    readonly sortOrder$: HermesObservable<any>;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, compositionId: CompositionId, structureId: StructureId, sortingCommandDispatcher: SortingPublisher, compositionReadModelService: CompositionWarehouse);
     isAscSort(): boolean;
     isDescSort(): boolean;
     isNoneSort(): boolean;

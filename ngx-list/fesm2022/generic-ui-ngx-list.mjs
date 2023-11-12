@@ -1,8 +1,8 @@
 import * as i0 from '@angular/core';
-import { TemplateRef, Component, ContentChild, EventEmitter, Directive, Input, Output, Injectable, inject, ChangeDetectorRef, Pipe, ChangeDetectionStrategy, ViewEncapsulation, NgModule, ElementRef, ViewChild, Attribute, Injector, ComponentFactoryResolver, InjectionToken, Inject, PLATFORM_ID, Optional as Optional$1 } from '@angular/core';
-import * as i5 from '@angular/common';
+import { TemplateRef, Component, ContentChild, EventEmitter, Directive, Input, Output, Injectable, ChangeDetectorRef, inject, Pipe, ChangeDetectionStrategy, ViewEncapsulation, NgModule, ElementRef, ViewChild, Attribute, Injector, ComponentFactoryResolver, InjectionToken, Inject, PLATFORM_ID, Optional as Optional$1 } from '@angular/core';
+import * as i4 from '@angular/common';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { ReadModelRootId, AggregateId, RandomIdGenerator, Archive, HermesReplaySubject, hermesMap, hermesDistinctUntilChanged, hermesTakeUntil, HermesSubject, EventRepository, DomainEvent, AggregateEvent, Command, CommandDispatcher, CoreContainer, DomainEventPublisher, ReadModelObject, Reactive, DomainEventBus, hermesFilter, singleFromObservable, hermesSwitchMap, DomainInitializer, FeatureModule, CreateAggregateCommand, AggregateArchive, fromRxJsObservable, EntityId, hermesTake, Entity, createContainer, Optional, RandomStringGenerator, HermesId, InMemoryStore, InMemoryAggregateStore, AggregateRepository, ReadModelEntity, ReadModelEntityId, ReadModelRoot, InMemoryReadModelStore, ReadModelRootRepository, AggregateRoot, KeyMap, AggregateFactory, hermesFromEvent, hermesEmpty, hermesTimer, toRxJsObservable, DomainObject, EventDrivenRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED, runHermes, initHermesApi } from '@generic-ui/hermes';
+import { ReadModelRootId, AggregateId, RandomIdGenerator, Archive, HermesReplaySubject, hermesMap, hermesDistinctUntilChanged, hermesTakeUntil, HermesSubject, EventRepository, DomainEvent, AggregateEvent, Command, CommandDispatcher, DomainEventPublisher, CoreContainer, ReadModelObject, Reactive, DomainEventBus, hermesFilter, singleFromObservable, hermesSwitchMap, DomainInitializer, FeatureModule, CreateAggregateCommand, AggregateArchive, fromRxJsObservable, EntityId, hermesTake, Entity, createContainer, Optional, RandomStringGenerator, HermesId, InMemoryStore, InMemoryAggregateStore, AggregateRepository, ReadModelEntity, ReadModelEntityId, ReadModelRoot, InMemoryReadModelStore, ReadModelRootRepository, AggregateRoot, KeyMap, AggregateFactory, hermesFromEvent, hermesEmpty, hermesTimer, toRxJsObservable, DomainObject, EventDrivenRepository, COMMAND_LOGGER_ENABLED, EVENT_LOGGER_ENABLED, runHermes, initHermesApi } from '@generic-ui/hermes';
 import * as i1 from '@generic-ui/fabric';
 import { FabricModule, FabricSelectModule, FabricBadgeModule, FabricButtonModule, FabricButtonGroupModule, FabricCheckboxModule, FabricChipModule, FabricDrawerModule, FabricDropdownModule, FabricRadioButtonModule, FabricRadioGroupModule, FabricProgressBarModule, FabricProgressSpinnerModule, FabricSpinnerModule, FabricTabModule, FabricTooltipModule, FabricToggleButtonModule, FabricInputModule, FabricDialogModule, FabricInlineDialogModule, Theme, Placement, FabricPlacement, FabricModalThemeService, FabricDatePickerModule } from '@generic-ui/fabric';
 import { __decorate } from 'tslib';
@@ -14,10 +14,10 @@ import { Observable, combineLatest, zip } from 'rxjs';
 
 class GuiListItemComponent {
     templateRef;
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: GuiListItemComponent, selector: "gui-list-item", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: GuiListItemComponent, selector: "gui-list-item", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListItemComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-list-item',
@@ -65,10 +65,10 @@ class GuiListPagingConverter {
 
 class GuiListCardComponent {
     templateRef;
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListCardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: GuiListCardComponent, selector: "gui-list-card", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListCardComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: GuiListCardComponent, selector: "gui-list-card", queries: [{ propertyName: "templateRef", first: true, predicate: TemplateRef, descendants: true, static: true }], ngImport: i0, template: '', isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListCardComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListCardComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-list-card',
@@ -270,10 +270,10 @@ class GuiListGateway {
             this.searchConfig = this.searching;
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListGateway, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiListGateway, inputs: { source: "source", template: "template", cardTemplate: "cardTemplate", paging: "paging", view: "view", fields: "fields", searching: "searching", localization: "localization" }, outputs: { pageChanged: "pageChanged", pageSizeChanged: "pageSizeChanged", searchPhraseChanged: "searchPhraseChanged" }, queries: [{ propertyName: "listItem", first: true, predicate: GuiListItemComponent, descendants: true, static: true }, { propertyName: "listCard", first: true, predicate: GuiListCardComponent, descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListGateway, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiListGateway, inputs: { source: "source", template: "template", cardTemplate: "cardTemplate", paging: "paging", view: "view", fields: "fields", searching: "searching", localization: "localization" }, outputs: { pageChanged: "pageChanged", pageSizeChanged: "pageSizeChanged", searchPhraseChanged: "searchPhraseChanged" }, queries: [{ propertyName: "listItem", first: true, predicate: GuiListItemComponent, descendants: true, static: true }, { propertyName: "listCard", first: true, predicate: GuiListCardComponent, descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListGateway, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListGateway, decorators: [{
             type: Directive
         }], propDecorators: { listItem: [{
                 type: ContentChild,
@@ -336,23 +336,23 @@ class ListViewTemplateArchive extends Archive {
     constructor() {
         super();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewTemplateArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewTemplateArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewTemplateArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewTemplateArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewTemplateArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewTemplateArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class ListViewCardTemplateArchive extends Archive {
     constructor() {
         super();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewCardTemplateArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewCardTemplateArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewCardTemplateArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewCardTemplateArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewCardTemplateArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewCardTemplateArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 const listViewProviders = [
     ListViewTemplateArchive,
@@ -423,10 +423,10 @@ class GuiState {
         this.state = Object.assign({}, this.state, newState);
         this.state$.next(this.state);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiState, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiState });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiState, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiState });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiState, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiState, decorators: [{
             type: Injectable
         }] });
 
@@ -485,10 +485,10 @@ class ClassModifier extends Modifier {
 
 class GuiComponent {
     innerElementRef;
-    // @ts-ignore
-    innerClassModifier = new ClassModifier(this.innerElementRef.nativeElement);
+    innerClassModifier;
     constructor(innerElementRef) {
         this.innerElementRef = innerElementRef;
+        this.initClassModifier();
         this.addHostClass();
     }
     addClassToHost(className) {
@@ -505,15 +505,18 @@ class GuiComponent {
             callback();
         }
     }
+    initClassModifier() {
+        this.innerClassModifier = new ClassModifier(this.innerElementRef.nativeElement);
+    }
     addHostClass() {
         this.innerClassModifier.getHost().add(this.getSelectorName());
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiComponent, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiComponent, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 class DynamicallyCreatedComponent extends GuiComponent {
     subClassConstructor;
@@ -537,12 +540,12 @@ class DynamicallyCreatedComponent extends GuiComponent {
         }
         return true;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DynamicallyCreatedComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: DynamicallyCreatedComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DynamicallyCreatedComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: DynamicallyCreatedComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DynamicallyCreatedComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DynamicallyCreatedComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 class StreamCloser {
     unsubscribe$ = new HermesSubject();
@@ -592,12 +595,12 @@ class Gate {
     takeUntil() {
         return this.streamCloser.takeUntil();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: Gate, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: Gate, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: Gate, deps: [], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: Gate, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: Gate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: Gate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class StaticComponent extends GuiComponent {
     changeDetectorRef;
@@ -608,24 +611,24 @@ class StaticComponent extends GuiComponent {
     ngOnInit() {
         this.changeDetectorRef.detach();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StaticComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StaticComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StaticComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StaticComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StaticComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StaticComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class IconComponent extends StaticComponent {
     constructor(elementRef, changeDetectorRef) {
         super(elementRef, changeDetectorRef);
         this.addClassToHost('gui-icon');
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: IconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: IconComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: IconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: IconComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: IconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: IconComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 /**
  * https://netbasal.com/create-a-typed-version-of-simplechanges-in-angular-451f86593003
@@ -660,12 +663,12 @@ class PureComponent extends GuiComponent {
     throwError(reason) {
         throw new Error(`Component "${this.subClassConstructor.name}" is a PureComponent, ${reason}.`);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PureComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: PureComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PureComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: PureComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PureComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PureComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 function useReactiveContext(stream$, cd) {
     const unsub$ = new HermesSubject();
@@ -764,12 +767,12 @@ class SmartComponent extends GuiComponent {
     takeUntil() {
         return hermesTakeUntil(this.unsubscribe$);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SmartComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SmartComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SmartComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: SmartComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SmartComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SmartComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class CssClassModifier {
     classModifier = new ClassModifier();
@@ -808,12 +811,12 @@ class PagingDisplayModeArchive extends Archive {
     constructor() {
         super(PagingDisplayMode.BASIC);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingDisplayModeArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingDisplayModeArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingDisplayModeArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingDisplayModeArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingDisplayModeArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingDisplayModeArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class GuiSubscriber {
     destroy$ = new HermesReplaySubject(1);
@@ -859,13 +862,13 @@ class GuiLetDirective {
     vcr;
     template;
     guiLet;
-    // @ts-ignore
-    guiLetViewChanger = new GuiLetViewChanger(this.cd, this.vcr, this.template);
+    guiLetViewChanger;
     constructor(subscriber, cd, vcr, template) {
         this.subscriber = subscriber;
         this.cd = cd;
         this.vcr = vcr;
         this.template = template;
+        this.guiLetViewChanger = new GuiLetViewChanger(this.cd, this.vcr, this.template);
     }
     ngOnChanges(changes) {
         if (changes['guiLet'] !== undefined) {
@@ -878,12 +881,12 @@ class GuiLetDirective {
     ngOnDestroy() {
         this.subscriber.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiLetDirective, deps: [{ token: GuiSubscriber }, { token: i0.ChangeDetectorRef }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiLetDirective, selector: "[guiLet]", inputs: { guiLet: "guiLet" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiLetDirective, deps: [{ token: GuiSubscriber }, { token: i0.ChangeDetectorRef }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiLetDirective, selector: "[guiLet]", inputs: { guiLet: "guiLet" }, providers: [
             GuiSubscriber
         ], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiLetDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiLetDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[guiLet]',
@@ -891,7 +894,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         GuiSubscriber
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: GuiSubscriber }, { type: i0.ChangeDetectorRef }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }]; }, propDecorators: { guiLet: [{
+        }], ctorParameters: () => [{ type: GuiSubscriber }, { type: i0.ChangeDetectorRef }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }], propDecorators: { guiLet: [{
                 type: Input
             }] } });
 
@@ -929,16 +932,16 @@ class TranslationPipe {
             });
         return this.actualTranslationValue;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TranslationPipe, deps: [{ token: i0.ChangeDetectorRef }, { token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: TranslationPipe, name: "guiTranslate", pure: false });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TranslationPipe, deps: [{ token: i0.ChangeDetectorRef }, { token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: TranslationPipe, name: "guiTranslate", pure: false });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TranslationPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TranslationPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'guiTranslate',
                     pure: false
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: TranslationFacade }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: TranslationFacade }] });
 
 class PagingNavigatorComponent extends PureComponent {
     paging;
@@ -975,13 +978,13 @@ class PagingNavigatorComponent extends PureComponent {
         }
         this.nextDisabled = this.paging.isNextPageDisabled();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingNavigatorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: PagingNavigatorComponent, selector: "div[gui-paging-navigator][paging]", inputs: { paging: "paging", sourceSize: "sourceSize" }, outputs: { nextPageChanged: "nextPageChanged", prevPageChanged: "prevPageChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev gui-mr-5\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | guiTranslate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next gui-mr-0\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | guiTranslate }}\n\t</button>\n</gui-button-group>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricButtonGroupComponent, selector: "gui-button-group" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingNavigatorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: PagingNavigatorComponent, selector: "div[gui-paging-navigator][paging]", inputs: { paging: "paging", sourceSize: "sourceSize" }, outputs: { nextPageChanged: "nextPageChanged", prevPageChanged: "prevPageChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev gui-mr-5\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | guiTranslate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next gui-mr-0\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | guiTranslate }}\n\t</button>\n</gui-button-group>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricButtonGroupComponent, selector: "gui-button-group" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingNavigatorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingNavigatorComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging-navigator][paging]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<gui-button-group>\n\t<button (click)=\"prevPage()\"\n\t\t\t[disabled]=\"prevDisabled\"\n\t\t\tclass=\"gui-paging-navigator-prev gui-mr-5\"\n\t\t\tgui-button>\n\t\t{{ 'pagingPrevPage' | guiTranslate }}\n\t</button>\n\n\t<button (click)=\"nextPage()\"\n\t\t\t[disabled]=\"nextDisabled\"\n\t\t\tclass=\"gui-paging-navigator-next gui-mr-0\"\n\t\t\tgui-button>\n\t\t{{ 'pagingNextPage' | guiTranslate }}\n\t</button>\n</gui-button-group>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { paging: [{
                 type: Input
             }], sourceSize: [{
                 type: Input
@@ -1024,13 +1027,13 @@ class PagingSelectComponent extends PureComponent {
     getSelectPageSize(pageSize) {
         return { name: pageSize.toString(), value: pageSize.toString() };
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingSelectComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: PagingSelectComponent, selector: "div[gui-paging-select][paging]", inputs: { paging: "paging" }, outputs: { pageSizeChanged: "pageSizeChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span class=\"gui-inline-block gui-mr-5\">\n\t{{ 'pagingItemsPerPage' | guiTranslate }}\n</span>\n\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"selectPageSizes\"\n\t\t\t[selected]=\"selectPageSize\"\n\t\t\t[width]=\"25\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingSelectComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: PagingSelectComponent, selector: "div[gui-paging-select][paging]", inputs: { paging: "paging" }, outputs: { pageSizeChanged: "pageSizeChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span class=\"gui-inline-block gui-mr-5\">\n\t{{ 'pagingItemsPerPage' | guiTranslate }}\n</span>\n\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"selectPageSizes\"\n\t\t\t[selected]=\"selectPageSize\"\n\t\t\t[width]=\"25\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingSelectComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingSelectComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging-select][paging]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<span class=\"gui-inline-block gui-mr-5\">\n\t{{ 'pagingItemsPerPage' | guiTranslate }}\n</span>\n\n<gui-select (optionChanged)=\"changePageSize($event)\"\n\t\t\t[options]=\"selectPageSizes\"\n\t\t\t[selected]=\"selectPageSize\"\n\t\t\t[width]=\"25\">\n</gui-select>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { paging: [{
                 type: Input
             }], pageSizeChanged: [{
                 type: Output
@@ -1061,13 +1064,13 @@ class PagingStatsComponent extends PureComponent {
     getSelectorName() {
         return 'gui-paging-stats';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingStatsComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: PagingStatsComponent, selector: "div[gui-paging-stats][paging]", inputs: { paging: "paging" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | guiTranslate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingStatsComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: PagingStatsComponent, selector: "div[gui-paging-stats][paging]", inputs: { paging: "paging" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | guiTranslate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingStatsComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingStatsComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging-stats][paging]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\t<span class=\"gui-paging-source-stats\">\n\t\t<span>{{firstItemIndex}}</span>\n\t\t-\n\t\t<span>{{lastItemIndex}}</span>\n\t</span>\n\t<span>\n\t\t{{ 'pagingOf' | guiTranslate }}\n\t</span>\n\t<span class=\"gui-paging-source-size\">\n\t\t{{sourceSize}}\n\t</span>\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { paging: [{
                 type: Input
             }] } });
 
@@ -1117,13 +1120,13 @@ class AlternativePagingNavigatorComponent extends PureComponent {
         }
         this.nextDisabled = this.paging.isNextPageDisabled();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AlternativePagingNavigatorComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AlternativePagingNavigatorComponent, selector: "div[gui-paging-alternative-navigator][paging][sourceSize]", inputs: { paging: "paging", sourceSize: "sourceSize" }, outputs: { nextPageChanged: "nextPageChanged", prevPageChanged: "prevPageChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(-522.98 669.601) rotate(180)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(5.77 10.351) rotate(180)\"/>\n\t</svg>\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-paging-navigator-next\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(0.311 0.311)\"/>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(534.061 -658.939)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlternativePagingNavigatorComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: AlternativePagingNavigatorComponent, selector: "div[gui-paging-alternative-navigator][paging][sourceSize]", inputs: { paging: "paging", sourceSize: "sourceSize" }, outputs: { nextPageChanged: "nextPageChanged", prevPageChanged: "prevPageChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(-522.98 669.601) rotate(180)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(5.77 10.351) rotate(180)\"/>\n\t</svg>\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-paging-navigator-next\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(0.311 0.311)\"/>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(534.061 -658.939)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AlternativePagingNavigatorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlternativePagingNavigatorComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging-alternative-navigator][paging][sourceSize]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<button (click)=\"firstPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(-522.98 669.601) rotate(180)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n\n<button (click)=\"prevPage()\"\n\t\t[disabled]=\"prevDisabled\"\n\t\tclass=\"gui-paging-navigator-prev\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(5.77 10.351) rotate(180)\"/>\n\t</svg>\n</button>\n\n<ng-content></ng-content>\n\n<button (click)=\"nextPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tclass=\"gui-paging-navigator-next\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 6.081 10.661\" width=\"6.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t  stroke-width=\"1.5\" transform=\"translate(0.311 0.311)\"/>\n\t</svg>\n</button>\n\n<button (click)=\"lastPage()\"\n\t\t[disabled]=\"nextDisabled\"\n\t\tgui-button>\n\t<svg height=\"10.661\" viewBox=\"0 0 11.081 10.661\" width=\"11.081\" xmlns=\"http://www.w3.org/2000/svg\">\n\t\t<g transform=\"translate(534.061 -658.939)\">\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n\t\t\t\t  stroke-width=\"1.5\" transform=\"translate(-533.75 659.25)\"/>\n\t\t\t<path d=\"M.75.75,5.02,5.02.75,9.29\" fill=\"none\" stroke-linecap=\"round\"\n\t\t\t\t  stroke-linejoin=\"round\" stroke-width=\"1.5\" transform=\"translate(-528.75 659.25)\"/>\n\t\t</g>\n\t</svg>\n</button>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: StructureId }, { type: PagingPublisher }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: StructureId }, { type: PagingPublisher }], propDecorators: { paging: [{
                 type: Input
             }], sourceSize: [{
                 type: Input
@@ -1177,13 +1180,13 @@ class AlternativePagingPagesComponent extends PureComponent {
     getSelectorName() {
         return 'gui-paging-alternative-pages';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AlternativePagingPagesComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AlternativePagingPagesComponent, selector: "div[gui-paging-alternative-pages][paging]", inputs: { paging: "paging", sourceSize: "sourceSize" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\"\n\t\t\t class=\"relative\">\n\t\t\t<div (click)=\"goToPage(page)\"\n\t\t\t\t class=\"gui-paging-page gui-select-none gui-cursor-pointer gui-py-0 gui-px-6 gui-font-base\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlternativePagingPagesComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: PagingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: AlternativePagingPagesComponent, selector: "div[gui-paging-alternative-pages][paging]", inputs: { paging: "paging", sourceSize: "sourceSize" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\"\n\t\t\t class=\"relative\">\n\t\t\t<div (click)=\"goToPage(page)\"\n\t\t\t\t class=\"gui-paging-page gui-select-none gui-cursor-pointer gui-py-0 gui-px-6 gui-font-base\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AlternativePagingPagesComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlternativePagingPagesComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging-alternative-pages][paging]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"isSourceNotEmpty(); else noSource;\">\n\n\t<div *ngFor=\"let page of pages\">\n\t\t<div [class.gui-paging-active-page]=\"activePage(page)\"\n\t\t\t [class.gui-paging-visible-page]=\"calculateVisiblePages(page)\"\n\t\t\t class=\"relative\">\n\t\t\t<div (click)=\"goToPage(page)\"\n\t\t\t\t class=\"gui-paging-page gui-select-none gui-cursor-pointer gui-py-0 gui-px-6 gui-font-base\">\n\t\t\t\t{{page}}\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n\n<ng-template #noSource>\n\t<span class=\"gui-paging-source-stats gui-paging-no-items\">\n\t\t{{'pagingNoItems' | guiTranslate}}\n\t</span>\n</ng-template>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: StructureId }, { type: PagingPublisher }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: StructureId }, { type: PagingPublisher }], propDecorators: { paging: [{
                 type: Input
             }], sourceSize: [{
                 type: Input
@@ -1191,7 +1194,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
 
 class PagingComponent extends GuiComponent {
     elRef;
-    state;
     cssClassModifier;
     structureId;
     pagingWarehouse;
@@ -1200,12 +1202,11 @@ class PagingComponent extends GuiComponent {
     pagingDisplayModeArchive;
     position;
     minimal;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
-    constructor(elRef, state, cssClassModifier, structureId, pagingWarehouse, pagingCommandInvoker, sourceWarehouse, pagingDisplayModeArchive) {
+    constructor(elRef, cssClassModifier, structureId, pagingWarehouse, pagingCommandInvoker, sourceWarehouse, pagingDisplayModeArchive) {
         super(elRef);
         this.elRef = elRef;
-        this.state = state;
         this.cssClassModifier = cssClassModifier;
         this.structureId = structureId;
         this.pagingWarehouse = pagingWarehouse;
@@ -1271,17 +1272,17 @@ class PagingComponent extends GuiComponent {
             return mode === PagingDisplayMode.ADVANCED;
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingComponent, deps: [{ token: i0.ElementRef }, { token: GuiState }, { token: CssClassModifier }, { token: StructureId }, { token: PagingWarehouse }, { token: PagingPublisher }, { token: SourceWarehouse }, { token: PagingDisplayModeArchive }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: PagingComponent, selector: "div[gui-paging][position]", inputs: { position: "position", minimal: "minimal" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingComponent, deps: [{ token: i0.ElementRef }, { token: CssClassModifier }, { token: StructureId }, { token: PagingWarehouse }, { token: PagingPublisher }, { token: SourceWarehouse }, { token: PagingDisplayModeArchive }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: PagingComponent, selector: "div[gui-paging][position]", inputs: { position: "position", minimal: "minimal" }, providers: [
             GuiState
-        ], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && !localState.alternativeDisplay\">\n\n\t\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-select>\n\t\t\t</div>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t\t<ng-template #minimalTemplate>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-template>\n\n\t</ng-container>\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && localState.alternativeDisplay\">\n\n\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t gui-paging-select>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t class=\"gui-flex gui-p-0\"\n\t\t\t gui-paging-alternative-navigator>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t class=\"gui-flex gui-justify-center\"\n\t\t\t\t gui-paging-alternative-pages>\n\t\t\t</div>\n\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n", styles: [".gui-paging-alternative-navigator .gui-button{-ms-flex-line-pack:center;align-content:center;background:transparent;display:-ms-flexbox;display:flex;font-size:14px;line-height:21px;margin:0 2px;padding:0}.gui-paging-alternative-navigator .gui-button svg{-ms-flex-item-align:center;align-self:center;height:12px;margin:-1px 2px 0;width:auto}.gui-paging-alternative-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-paging-alternative-navigator .gui-button:hover svg path{stroke:#333}.gui-paging-alternative-navigator .gui-button:disabled svg{opacity:.4}.gui-paging-alternative-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging-alternative-pages{line-height:21px}.gui-paging-alternative-pages .gui-paging-page{display:none}.gui-paging-alternative-pages .gui-paging-visible-page .gui-paging-page{display:block;font-family:Arial,serif}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging-bottom{border-top:1px solid;border-top-color:inherit}.gui-paging-top{border-bottom:1px solid;border-bottom-color:inherit}\n", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:#2224261a;font-size:14px}\n"], dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: PagingNavigatorComponent, selector: "div[gui-paging-navigator][paging]", inputs: ["paging", "sourceSize"], outputs: ["nextPageChanged", "prevPageChanged"] }, { kind: "component", type: PagingSelectComponent, selector: "div[gui-paging-select][paging]", inputs: ["paging"], outputs: ["pageSizeChanged"] }, { kind: "component", type: PagingStatsComponent, selector: "div[gui-paging-stats][paging]", inputs: ["paging"] }, { kind: "component", type: AlternativePagingNavigatorComponent, selector: "div[gui-paging-alternative-navigator][paging][sourceSize]", inputs: ["paging", "sourceSize"], outputs: ["nextPageChanged", "prevPageChanged"] }, { kind: "component", type: AlternativePagingPagesComponent, selector: "div[gui-paging-alternative-pages][paging]", inputs: ["paging", "sourceSize"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && !localState.alternativeDisplay\">\n\n\t\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-select>\n\t\t\t</div>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t\t<ng-template #minimalTemplate>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-template>\n\n\t</ng-container>\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && localState.alternativeDisplay\">\n\n\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t gui-paging-select>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t class=\"gui-flex gui-p-0\"\n\t\t\t gui-paging-alternative-navigator>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t class=\"gui-flex gui-justify-center\"\n\t\t\t\t gui-paging-alternative-pages>\n\t\t\t</div>\n\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n", styles: [".gui-paging-alternative-navigator .gui-button{-ms-flex-line-pack:center;align-content:center;background:transparent;display:-ms-flexbox;display:flex;font-size:14px;line-height:21px;margin:0 2px;padding:0}.gui-paging-alternative-navigator .gui-button svg{-ms-flex-item-align:center;align-self:center;height:12px;margin:-1px 2px 0;width:auto}.gui-paging-alternative-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-paging-alternative-navigator .gui-button:hover svg path{stroke:#333}.gui-paging-alternative-navigator .gui-button:disabled svg{opacity:.4}.gui-paging-alternative-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging-alternative-pages{line-height:21px}.gui-paging-alternative-pages .gui-paging-page{display:none}.gui-paging-alternative-pages .gui-paging-visible-page .gui-paging-page{display:block;font-family:Arial,serif}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging-bottom{border-top:1px solid;border-top-color:inherit}.gui-paging-top{border-bottom:1px solid;border-bottom-color:inherit}\n", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:#2224261a;font-size:14px}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: PagingNavigatorComponent, selector: "div[gui-paging-navigator][paging]", inputs: ["paging", "sourceSize"], outputs: ["nextPageChanged", "prevPageChanged"] }, { kind: "component", type: PagingSelectComponent, selector: "div[gui-paging-select][paging]", inputs: ["paging"], outputs: ["pageSizeChanged"] }, { kind: "component", type: PagingStatsComponent, selector: "div[gui-paging-stats][paging]", inputs: ["paging"] }, { kind: "component", type: AlternativePagingNavigatorComponent, selector: "div[gui-paging-alternative-navigator][paging][sourceSize]", inputs: ["paging", "sourceSize"], outputs: ["nextPageChanged", "prevPageChanged"] }, { kind: "component", type: AlternativePagingPagesComponent, selector: "div[gui-paging-alternative-pages][paging]", inputs: ["paging", "sourceSize"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-paging][position]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && !localState.alternativeDisplay\">\n\n\t\t<ng-container *ngIf=\"!minimal; else minimalTemplate\">\n\n\t\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-select>\n\t\t\t</div>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-container>\n\n\t\t<ng-template #minimalTemplate>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t gui-paging-stats>\n\t\t\t</div>\n\n\t\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t\t [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t gui-paging-navigator>\n\t\t\t</div>\n\n\t\t</ng-template>\n\n\t</ng-container>\n\n\t<ng-container *ngIf=\"localState.isPagingVisible && localState.alternativeDisplay\">\n\n\t\t<div (pageSizeChanged)=\"changePageSize($event)\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t gui-paging-select>\n\t\t</div>\n\n\t\t<div (nextPageChanged)=\"nextPage(localState.sourceSize)\"\n\t\t\t (prevPageChanged)=\"prevPage()\"\n\t\t\t [paging]=\"localState.paging\"\n\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t class=\"gui-flex gui-p-0\"\n\t\t\t gui-paging-alternative-navigator>\n\n\t\t\t<div [paging]=\"localState.paging\"\n\t\t\t\t [sourceSize]=\"localState.sourceSize\"\n\t\t\t\t class=\"gui-flex gui-justify-center\"\n\t\t\t\t gui-paging-alternative-pages>\n\t\t\t</div>\n\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n", styles: [".gui-paging-alternative-navigator .gui-button{-ms-flex-line-pack:center;align-content:center;background:transparent;display:-ms-flexbox;display:flex;font-size:14px;line-height:21px;margin:0 2px;padding:0}.gui-paging-alternative-navigator .gui-button svg{-ms-flex-item-align:center;align-self:center;height:12px;margin:-1px 2px 0;width:auto}.gui-paging-alternative-navigator .gui-button svg path{stroke:#ccc;transition:stroke .3s ease-in-out}.gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-paging-alternative-navigator .gui-button:hover svg path{stroke:#333}.gui-paging-alternative-navigator .gui-button:disabled svg{opacity:.4}.gui-paging-alternative-navigator .gui-material .gui-button{padding:2px 16px}.gui-paging-alternative-pages{line-height:21px}.gui-paging-alternative-pages .gui-paging-page{display:none}.gui-paging-alternative-pages .gui-paging-visible-page .gui-paging-page{display:block;font-family:Arial,serif}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page{color:#333}.gui-paging-alternative-pages .gui-paging-visible-page.gui-paging-active-page .gui-paging-page{font-weight:700}.gui-paging-bottom{border-top:1px solid;border-top-color:inherit}.gui-paging-top{border-bottom:1px solid;border-bottom-color:inherit}\n", ".gui-generic .gui-paging,.gui-generic .gui-paging *{border-color:#2224261a;font-size:14px}\n"] }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: GuiState }, { type: CssClassModifier }, { type: StructureId }, { type: PagingWarehouse }, { type: PagingPublisher }, { type: SourceWarehouse }, { type: PagingDisplayModeArchive }]; }, propDecorators: { position: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: CssClassModifier }, { type: StructureId }, { type: PagingWarehouse }, { type: PagingPublisher }, { type: SourceWarehouse }, { type: PagingDisplayModeArchive }], propDecorators: { position: [{
                 type: Input
             }], minimal: [{
                 type: Input
@@ -1977,11 +1978,11 @@ class TranslationFeatureModule extends FeatureModule {
     static forComponent() {
         return [{ provide: TranslationFacade, useClass: TranslationDomainFacade }];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TranslationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: TranslationFeatureModule, declarations: [TranslationPipe], imports: [CommonModule], exports: [TranslationPipe] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TranslationFeatureModule, imports: [CommonModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TranslationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: TranslationFeatureModule, declarations: [TranslationPipe], imports: [CommonModule], exports: [TranslationPipe] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TranslationFeatureModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TranslationFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TranslationFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -2038,10 +2039,10 @@ class GuiPushPipe {
     ngOnDestroy() {
         this.subscriber.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiPushPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: GuiPushPipe, name: "guiPush", pure: false });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiPushPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: GuiPushPipe, name: "guiPush", pure: false });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiPushPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiPushPipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'guiPush',
@@ -2075,12 +2076,12 @@ class GuiIfDirective {
     ngOnDestroy() {
         this.subscriber.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiIfDirective, deps: [{ token: GuiSubscriber }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiIfDirective, selector: "[guiIf]", inputs: { guiIf: "guiIf" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiIfDirective, deps: [{ token: GuiSubscriber }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiIfDirective, selector: "[guiIf]", inputs: { guiIf: "guiIf" }, providers: [
             GuiSubscriber
         ], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiIfDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiIfDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[guiIf]',
@@ -2088,7 +2089,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         GuiSubscriber
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: GuiSubscriber }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }]; }, propDecorators: { guiIf: [{
+        }], ctorParameters: () => [{ type: GuiSubscriber }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }], propDecorators: { guiIf: [{
                 type: Input
             }] } });
 
@@ -2123,12 +2124,12 @@ class GuiForDirective {
     ngOnDestroy() {
         this.subscriber.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiForDirective, deps: [{ token: GuiSubscriber }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiForDirective, selector: "[guiFor]", inputs: { guiForOf: "guiForOf" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiForDirective, deps: [{ token: GuiSubscriber }, { token: i0.ViewContainerRef }, { token: i0.TemplateRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiForDirective, selector: "[guiFor]", inputs: { guiForOf: "guiForOf" }, providers: [
             GuiSubscriber
         ], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiForDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiForDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[guiFor]',
@@ -2136,7 +2137,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         GuiSubscriber
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: GuiSubscriber }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }]; }, propDecorators: { guiForOf: [{
+        }], ctorParameters: () => [{ type: GuiSubscriber }, { type: i0.ViewContainerRef }, { type: i0.TemplateRef }], propDecorators: { guiForOf: [{
                 type: Input
             }] } });
 
@@ -2169,12 +2170,12 @@ class GuiStyleDirective {
     set(name, value) {
         this.elementRef.nativeElement[GuiStyleDirective.STYLE][name] = value;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiStyleDirective, deps: [{ token: GuiSubscriber }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiStyleDirective, selector: "[guiStyle]", inputs: { guiStyle: "guiStyle" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiStyleDirective, deps: [{ token: GuiSubscriber }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiStyleDirective, selector: "[guiStyle]", inputs: { guiStyle: "guiStyle" }, providers: [
             GuiSubscriber
         ], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiStyleDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiStyleDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[guiStyle]',
@@ -2182,7 +2183,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         GuiSubscriber
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: GuiSubscriber }, { type: i0.ElementRef }]; }, propDecorators: { guiStyle: [{
+        }], ctorParameters: () => [{ type: GuiSubscriber }, { type: i0.ElementRef }], propDecorators: { guiStyle: [{
                 type: Input
             }] } });
 
@@ -2232,29 +2233,29 @@ class GuiClassDirective {
     subscriber;
     elementRef;
     guiClass;
-    // @ts-ignore
-    manager = new GuiClassManager(this.elementRef.nativeElement);
+    classManager;
     constructor(subscriber, elementRef) {
         this.subscriber = subscriber;
         this.elementRef = elementRef;
+        this.classManager = new GuiClassManager(this.elementRef.nativeElement);
     }
     ngOnChanges(changes) {
         if (changes['guiClass'] !== undefined) {
             this.subscriber
                 .subscribe(this.guiClass, (newClasses) => {
-                this.manager.update(newClasses);
+                this.classManager.update(newClasses);
             });
         }
     }
     ngOnDestroy() {
         this.subscriber.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiClassDirective, deps: [{ token: GuiSubscriber }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: GuiClassDirective, selector: "[guiClass]", inputs: { guiClass: "guiClass" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiClassDirective, deps: [{ token: GuiSubscriber }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: GuiClassDirective, selector: "[guiClass]", inputs: { guiClass: "guiClass" }, providers: [
             GuiSubscriber
         ], usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiClassDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiClassDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[guiClass]',
@@ -2262,13 +2263,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         GuiSubscriber
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: GuiSubscriber }, { type: i0.ElementRef }]; }, propDecorators: { guiClass: [{
-                type: Input
+        }], ctorParameters: () => [{ type: GuiSubscriber }, { type: i0.ElementRef }], propDecorators: { guiClass: [{
+                type: Input,
+                args: [{ required: true }]
             }] } });
 
 class GuiTemplateModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiTemplateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: GuiTemplateModule, declarations: [GuiPushPipe,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiTemplateModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: GuiTemplateModule, declarations: [GuiPushPipe,
             GuiLetDirective,
             GuiIfDirective,
             GuiForDirective,
@@ -2279,9 +2281,9 @@ class GuiTemplateModule {
             GuiForDirective,
             GuiStyleDirective,
             GuiClassDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiTemplateModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiTemplateModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiTemplateModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiTemplateModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -2322,8 +2324,8 @@ class PagingFeatureModule extends FeatureModule {
             PagingDisplayModeArchive
         ];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: PagingFeatureModule, declarations: [PagingComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: PagingFeatureModule, declarations: [PagingComponent,
             PagingNavigatorComponent,
             PagingSelectComponent,
             PagingStatsComponent,
@@ -2337,7 +2339,7 @@ class PagingFeatureModule extends FeatureModule {
             PagingStatsComponent,
             AlternativePagingNavigatorComponent,
             AlternativePagingPagesComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingFeatureModule, providers: [
             { provide: PagingPublisher, useFactory: providePagingCommandInvoker },
             { provide: PagingWarehouse, useFactory: providePagingWarehouse },
             { provide: PagingEventRepository, useFactory: providePagingEventRepository }
@@ -2346,7 +2348,7 @@ class PagingFeatureModule extends FeatureModule {
             TranslationFeatureModule,
             GuiTemplateModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -2439,12 +2441,12 @@ class LayoutComponent extends GuiComponent {
     constructor(elRef) {
         super(elRef);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: LayoutComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: LayoutComponent, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: LayoutComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: LayoutComponent, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: LayoutComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: LayoutComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 class StructurePublisher {
     constructor() {
@@ -2544,6 +2546,11 @@ class ListViewWarehouse {
     }
 }
 
+class SearchWarehouse {
+    constructor() {
+    }
+}
+
 class GuiEffects {
     destroy$ = new HermesReplaySubject(1);
     register(effect$, next, complete) {
@@ -2557,19 +2564,14 @@ class GuiEffects {
     ngOnDestroy() {
         this.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiEffects, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiEffects });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiEffects, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiEffects });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiEffects, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiEffects, decorators: [{
             type: Injectable
         }] });
 
 class SearchPublisher {
-    constructor() {
-    }
-}
-
-class SearchWarehouse {
     constructor() {
     }
 }
@@ -2581,8 +2583,8 @@ class SearchIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-search-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SearchIconComponent, selector: "div[gui-search-icon]", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SearchIconComponent, selector: "div[gui-search-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg class="gui-search-icon-svg" xmlns="http://www.w3.org/2000/svg" width="10.231" height="10.601" viewBox="0 0 10.231 10.601">
 			<line x2="1.77" y2="1.77" transform="translate(7.4 7.77)" fill="none" stroke-linecap="round"
 				  stroke-linejoin="round" stroke-width="1.5"/>
@@ -2591,7 +2593,7 @@ class SearchIconComponent extends IconComponent {
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-search-icon]',
@@ -2606,31 +2608,25 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class SearchComponent extends SmartComponent {
     formBuilder;
-    changeDetectorRef;
     effects;
-    structureId;
     searchCommandDispatcher;
-    searchWarehouse;
     static FORM_SEARCH_NAME = 'searchPhrase';
     formRef;
+    structureId = inject(StructureId);
+    searchWarehouse = inject(SearchWarehouse);
     searchForm;
-    // @ts-ignore
     placeholder$ = this.searchWarehouse.onPlaceholder(this.structureId);
-    // @ts-ignore
     searchingEnabled$ = this.searchWarehouse.onSearchEnabled(this.structureId);
     searchInputSubscription;
-    constructor(formBuilder, changeDetectorRef, elementRef, effects, structureId, searchCommandDispatcher, searchWarehouse) {
+    constructor(formBuilder, changeDetectorRef, elementRef, effects, searchCommandDispatcher) {
         super(changeDetectorRef, elementRef);
         this.formBuilder = formBuilder;
-        this.changeDetectorRef = changeDetectorRef;
         this.effects = effects;
-        this.structureId = structureId;
         this.searchCommandDispatcher = searchCommandDispatcher;
-        this.searchWarehouse = searchWarehouse;
         const controlsConfig = {};
         controlsConfig[SearchComponent.FORM_SEARCH_NAME] = '';
         this.searchForm = this.formBuilder.group(controlsConfig);
@@ -2676,17 +2672,17 @@ class SearchComponent extends SmartComponent {
     unregisterObserveChangesEffect() {
         this.searchInputSubscription.unsubscribe();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchComponent, deps: [{ token: i1$1.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiEffects }, { token: StructureId }, { token: SearchPublisher }, { token: SearchWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SearchComponent, selector: "div[gui-search-bar]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchComponent, deps: [{ token: i1$1.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiEffects }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SearchComponent, selector: "div[gui-search-bar]", providers: [
             GuiEffects
-        ], viewQueries: [{ propertyName: "formRef", first: true, predicate: ["formRef"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *guiIf=\"searchingEnabled$\">\n\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder$ | guiPush\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"], dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: SearchIconComponent, selector: "div[gui-search-icon]" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], viewQueries: [{ propertyName: "formRef", first: true, predicate: ["formRef"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *guiIf=\"searchingEnabled$\">\n\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder$ | guiPush\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: SearchIconComponent, selector: "div[gui-search-icon]" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-search-bar]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiEffects
                     ], template: "<ng-container *guiIf=\"searchingEnabled$\">\n\n\t<form #formRef\n\t\t  [formGroup]=\"searchForm\"\n\t\t  class=\"gui-flex gui-relative gui-w-full\">\n\n\t\t<div gui-search-icon></div>\n\n\t\t<input [placeholder]=\"placeholder$ | guiPush\"\n\t\t\t   class=\"gui-border-0 gui-w-full gui-h-full gui-py-5 gui-pr-5 gui-pl-21\"\n\t\t\t   formControlName=\"searchPhrase\">\n\n\t\t<span (click)=\"clear()\"\n\t\t\t  *ngIf=\"searchForm.controls['searchPhrase'].value\"\n\t\t\t  class=\"gui-clear-search-icon\">\n\t\t\t\t</span>\n\t</form>\n</ng-container>\n", styles: [".gui-search-bar form{background:#fff}.gui-search-bar form:hover .gui-search-icon-svg line,.gui-search-bar form:hover .gui-search-icon-svg circle{stroke:#333}.gui-search-bar .gui-search-icon-svg{height:17px;left:10px;position:absolute;top:6px;width:17px}.gui-search-bar .gui-search-icon-svg line,.gui-search-bar .gui-search-icon-svg circle{stroke:#ccc;transition:stroke .3s ease-in-out}\n"] }]
-        }], ctorParameters: function () { return [{ type: i1$1.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiEffects }, { type: StructureId }, { type: SearchPublisher }, { type: SearchWarehouse }]; }, propDecorators: { formRef: [{
+        }], ctorParameters: () => [{ type: i1$1.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiEffects }, { type: SearchPublisher }], propDecorators: { formRef: [{
                 type: ViewChild,
                 args: ['formRef', { read: ElementRef, static: false }]
             }] } });
@@ -2713,13 +2709,13 @@ class EmptySourceComponent extends PureComponent {
     getSelectorName() {
         return 'gui-empty-source';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: { items: "items" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | guiTranslate}}\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: { items: "items" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | guiTranslate}}\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-empty-source][items]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"items.length === 0\">\n\t{{'sourceEmpty' | guiTranslate}}\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { items: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { items: [{
                 type: Input
             }] } });
 
@@ -2746,13 +2742,13 @@ class ListViewItemComponent extends PureComponent {
     getSelectorName() {
         return 'gui-list-item';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewItemComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewItemComponent, selector: "div[gui-list-view-item][item][template]", inputs: { item: "item", template: "template" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-item-container gui-py-8\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-item-container gui-py-8\"></div>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewItemComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewItemComponent, selector: "div[gui-list-view-item][item][template]", inputs: { item: "item", template: "template" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-item-container gui-py-8\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-item-container gui-py-8\"></div>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewItemComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-view-item][item][template]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-item-container gui-py-8\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-item-container gui-py-8\"></div>\n</ng-template>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { item: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { item: [{
                 type: Input
             }], template: [{
                 type: Input
@@ -2784,13 +2780,13 @@ class ListViewSourceComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-list-view-source';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSourceComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourceWarehouse }, { token: ListViewTemplateArchive }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewSourceComponent, selector: "div[gui-list-view-source]", usesInheritance: true, ngImport: i0, template: "<div *ngFor=\"let element of source\"\n\t [item]=\"element\"\n\t [template]=\"template\"\n\t gui-list-view-item>\n</div>\n\n<div [items]=\"source\" gui-empty-source>\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: ListViewItemComponent, selector: "div[gui-list-view-item][item][template]", inputs: ["item", "template"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSourceComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourceWarehouse }, { token: ListViewTemplateArchive }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewSourceComponent, selector: "div[gui-list-view-source]", usesInheritance: true, ngImport: i0, template: "<div *ngFor=\"let element of source\"\n\t [item]=\"element\"\n\t [template]=\"template\"\n\t gui-list-view-item>\n</div>\n\n<div [items]=\"source\" gui-empty-source>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: ListViewItemComponent, selector: "div[gui-list-view-item][item][template]", inputs: ["item", "template"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSourceComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSourceComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-view-source]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div *ngFor=\"let element of source\"\n\t [item]=\"element\"\n\t [template]=\"template\"\n\t gui-list-view-item>\n</div>\n\n<div [items]=\"source\" gui-empty-source>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourceWarehouse }, { type: ListViewTemplateArchive }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourceWarehouse }, { type: ListViewTemplateArchive }] });
 
 class ListViewCardItemComponent extends PureComponent {
     item;
@@ -2816,13 +2812,13 @@ class ListViewCardItemComponent extends PureComponent {
     getSelectorName() {
         return 'gui-list-card';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewCardItemComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewCardItemComponent, selector: "div[gui-list-card-item][item][template]", inputs: { item: "item", template: "template" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\"></div>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewCardItemComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewCardItemComponent, selector: "div[gui-list-card-item][item][template]", inputs: { item: "item", template: "template" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\"></div>\n</ng-template>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewCardItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewCardItemComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-card-item][item][template]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<ng-container *ngIf=\"hasTemplateRef; else templateMethod\">\n\t<div class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\">\n\t\t<ng-template *ngTemplateOutlet=\"template.getTemplateRef(); context: {item: item}\"></ng-template>\n\t</div>\n</ng-container>\n\n<ng-template #templateMethod>\n\t<div [innerHTML]=\"context\"\n\t\t class=\"gui-list-card-wrapper gui-h-full gui-m-0 gui-py-0 gui-px-8 gui-relative\"></div>\n</ng-template>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { item: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { item: [{
                 type: Input
             }], template: [{
                 type: Input
@@ -2859,13 +2855,13 @@ class ListViewContainerCardComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-list-container-card';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewContainerCardComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourceWarehouse }, { token: ListViewCardTemplateArchive }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewContainerCardComponent, selector: "div[gui-list-container-card]", usesInheritance: true, ngImport: i0, template: "<div *ngFor=\"let element of items\" [item]=\"element\"\n\t [template]=\"cardTemplate\"\n\t gui-list-card-item>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: ListViewCardItemComponent, selector: "div[gui-list-card-item][item][template]", inputs: ["item", "template"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewContainerCardComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourceWarehouse }, { token: ListViewCardTemplateArchive }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewContainerCardComponent, selector: "div[gui-list-container-card]", usesInheritance: true, ngImport: i0, template: "<div *ngFor=\"let element of items\" [item]=\"element\"\n\t [template]=\"cardTemplate\"\n\t gui-list-card-item>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: ListViewCardItemComponent, selector: "div[gui-list-card-item][item][template]", inputs: ["item", "template"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewContainerCardComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewContainerCardComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-container-card]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div *ngFor=\"let element of items\" [item]=\"element\"\n\t [template]=\"cardTemplate\"\n\t gui-list-card-item>\n</div>\n\n<div [items]=\"items\" gui-empty-source>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourceWarehouse }, { type: ListViewCardTemplateArchive }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourceWarehouse }, { type: ListViewCardTemplateArchive }] });
 
 class ListViewContainerModeSelectComponent extends SmartComponent {
     changeDetectorRef;
@@ -2911,13 +2907,13 @@ class ListViewContainerModeSelectComponent extends SmartComponent {
                 return ListViewMode.LIST;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewContainerModeSelectComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ListViewReadModelRootId }, { token: ListViewWarehouse }, { token: ListViewModeArchive }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewContainerModeSelectComponent, selector: "div[gui-list-mode-select]", usesInheritance: true, ngImport: i0, template: "<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t[options]=\"options\"\n\t\t\t[selected]=\"listContainerMode\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewContainerModeSelectComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ListViewReadModelRootId }, { token: ListViewWarehouse }, { token: ListViewModeArchive }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewContainerModeSelectComponent, selector: "div[gui-list-mode-select]", usesInheritance: true, ngImport: i0, template: "<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t[options]=\"options\"\n\t\t\t[selected]=\"listContainerMode\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewContainerModeSelectComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewContainerModeSelectComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-mode-select]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<gui-select (optionChanged)=\"changeContainerMode($event)\"\n\t\t\t[options]=\"options\"\n\t\t\t[selected]=\"listContainerMode\">\n</gui-select>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ListViewReadModelRootId }, { type: ListViewWarehouse }, { type: ListViewModeArchive }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ListViewReadModelRootId }, { type: ListViewWarehouse }, { type: ListViewModeArchive }] });
 
 class ListViewLayoutComponent extends SmartComponent {
     changeDetectorRef;
@@ -2945,13 +2941,13 @@ class ListViewLayoutComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-list-view-layout';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewLayoutComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ListViewReadModelRootId }, { token: ListViewWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewLayoutComponent, selector: "div[gui-list-view-layout]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-flex\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PagingComponent, selector: "div[gui-paging][position]", inputs: ["position", "minimal"] }, { kind: "component", type: SearchComponent, selector: "div[gui-search-bar]" }, { kind: "component", type: ListViewSourceComponent, selector: "div[gui-list-view-source]" }, { kind: "component", type: ListViewContainerCardComponent, selector: "div[gui-list-container-card]" }, { kind: "component", type: ListViewContainerModeSelectComponent, selector: "div[gui-list-mode-select]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewLayoutComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ListViewReadModelRootId }, { token: ListViewWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewLayoutComponent, selector: "div[gui-list-view-layout]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-flex\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PagingComponent, selector: "div[gui-paging][position]", inputs: ["position", "minimal"] }, { kind: "component", type: SearchComponent, selector: "div[gui-search-bar]" }, { kind: "component", type: ListViewSourceComponent, selector: "div[gui-list-view-source]" }, { kind: "component", type: ListViewContainerCardComponent, selector: "div[gui-list-container-card]" }, { kind: "component", type: ListViewContainerModeSelectComponent, selector: "div[gui-list-mode-select]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewLayoutComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewLayoutComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-list-view-layout]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div class=\"gui-flex\">\n\n\t<div *ngIf=\"searchBarEnabled\" class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\" gui-search-bar></div>\n\n\t<!--\t\t\t<div gui-sorting-selector></div>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\t<!--\t\t\t<gui-filter-menu-trigger></gui-filter-menu-trigger>-->\n\n</div>\n<div class=\"gui-list-panel-top gui-items-center gui-flex gui-px-6\">\n\t<div *ngIf=\"selectorEnabled\" gui-list-mode-select></div>\n\n\t<div [minimal]=\"true\" [position]=\"0\" class=\"gui-ml-auto\" gui-paging></div>\n</div>\n\n<div *ngIf=\"listModeEnabled\" gui-list-view-source></div>\n\n<div *ngIf=\"cardModeEnabled\" gui-list-container-card></div>\n\n<div [position]=\"1\" class=\"gui-ml-auto\" gui-paging></div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ListViewReadModelRootId }, { type: ListViewWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ListViewReadModelRootId }, { type: ListViewWarehouse }] });
 
 /** @internal */
 function listViewIdFactoryForList(generator) {
@@ -3022,8 +3018,8 @@ class ListViewComponent extends LayoutComponent {
     getSelectorName() {
         return 'gui-list-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewComponent, deps: [{ token: StructureId }, { token: ListViewReadModelRootId }, { token: i0.ElementRef }, { token: StructurePublisher }, { token: ListViewPublisher }, { token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ListViewComponent, selector: "gui-list-view", host: { properties: { "id": "structureId.toString()" } }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewComponent, deps: [{ token: StructureId }, { token: ListViewReadModelRootId }, { token: i0.ElementRef }, { token: StructurePublisher }, { token: ListViewPublisher }, { token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ListViewComponent, selector: "gui-list-view", host: { properties: { "id": "structureId.toString()" } }, providers: [
             {
                 provide: StructureId,
                 useFactory: structureIdFactoryForList,
@@ -3061,7 +3057,7 @@ class ListViewComponent extends LayoutComponent {
             }
         ], usesInheritance: true, ngImport: i0, template: "<div gui-list-view-layout></div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-list-view{border-color:#d6d6d6}.gui-list-view *,.gui-list-view *:after,.gui-list-view *:before{box-sizing:border-box}.gui-list-view input{font-size:13px;outline:0}.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon-svg{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;transition:.2s all}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px #00000026}.gui-list-container-card{border-top:1px solid #d6d6d6}\n", ".gui-list-item{border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px #00000026}@media (min-width: 480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width: 768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width: 992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width: 1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}\n", ".gui-list-view.gui-generic .gui-paging{border:0}\n"], dependencies: [{ kind: "component", type: ListViewLayoutComponent, selector: "div[gui-list-view-layout]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-list-view', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, providers: [
                         {
@@ -3102,7 +3098,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     ], host: {
                         '[id]': 'structureId.toString()'
                     }, template: "<div gui-list-view-layout></div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-italic{font-style:italic}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-list-view{border-color:#d6d6d6}.gui-list-view *,.gui-list-view *:after,.gui-list-view *:before{box-sizing:border-box}.gui-list-view input{font-size:13px;outline:0}.gui-list-view *{border-color:#d6d6d6}.gui-list-view .gui-search-bar form .gui-search-icon-svg{top:10px}.gui-list-view .gui-search-bar form input{font-size:14px;padding:10px 6px 10px 38px}.gui-list-card-wrapper{border:1px solid transparent;min-height:100px;transition:.2s all}.gui-list-card-wrapper:hover{border:1px solid #d6d6d6;box-shadow:0 2px 6px #00000026}.gui-list-container-card{border-top:1px solid #d6d6d6}\n", ".gui-list-item{border:1px solid rgba(0,0,0,.1);box-shadow:0 2px 6px #00000026}@media (min-width: 480px){.gui-list-card{width:100%}.gui-list-item-container{padding-left:8px;padding-right:8px}}@media (min-width: 768px){.gui-list-card{width:50%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width: 992px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:12px;padding-right:12px}}@media (min-width: 1200px){.gui-list-card{width:33.3333%}.gui-list-item-container{padding-left:16px;padding-right:16px}}\n", ".gui-list-view.gui-generic .gui-paging{border:0}\n"] }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: ListViewReadModelRootId }, { type: i0.ElementRef }, { type: StructurePublisher }, { type: ListViewPublisher }, { type: TranslationFacade }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: ListViewReadModelRootId }, { type: i0.ElementRef }, { type: StructurePublisher }, { type: ListViewPublisher }, { type: TranslationFacade }] });
 
 class PagingGate extends Gate {
     structureId;
@@ -3140,12 +3136,12 @@ class PagingGate extends Gate {
     onPageChange(page) {
         this.pageChanged.emit(page);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: PagingGate, inputs: { paging: "paging" }, outputs: { pageChanged: "pageChanged", pageSizeChanged: "pageSizeChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: PagingGate, inputs: { paging: "paging" }, outputs: { pageChanged: "pageChanged", pageSizeChanged: "pageSizeChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PagingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PagingGate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }]; }, propDecorators: { paging: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }], propDecorators: { paging: [{
                 type: Input
             }], pageChanged: [{
                 type: Output
@@ -3157,15 +3153,15 @@ class ListViewPagingGate extends PagingGate {
     constructor(structureId, compositionId, structurePagingCommandDispatcher, pagingEventRepository) {
         super(structureId, compositionId, structurePagingCommandDispatcher, pagingEventRepository);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewPagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewPagingGate, selector: "gui-list-view[paging]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewPagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewPagingGate, selector: "gui-list-view[paging]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewPagingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewPagingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[paging]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }] });
 
 class ListViewModeGate extends Gate {
     listViewReadModelRootId;
@@ -3185,15 +3181,15 @@ class ListViewModeGate extends Gate {
             this.listViewCommandDispatcher.toggleSelector(this.modeSelector, this.listViewReadModelRootId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewModeGate, deps: [{ token: ListViewReadModelRootId }, { token: ListViewPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: { mode: "mode", modeSelector: "modeSelector" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewModeGate, deps: [{ token: ListViewReadModelRootId }, { token: ListViewPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: { mode: "mode", modeSelector: "modeSelector" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewModeGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewModeGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[mode]'
                 }]
-        }], ctorParameters: function () { return [{ type: ListViewReadModelRootId }, { type: ListViewPublisher }]; }, propDecorators: { mode: [{
+        }], ctorParameters: () => [{ type: ListViewReadModelRootId }, { type: ListViewPublisher }], propDecorators: { mode: [{
                 type: Input
             }], modeSelector: [{
                 type: Input
@@ -3217,15 +3213,15 @@ class ListViewTemplateGate extends Gate {
             this.listCardTemplateArchive.next(this.cardTemplate);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewTemplateGate, deps: [{ token: ListViewTemplateArchive }, { token: ListViewCardTemplateArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewTemplateGate, selector: "gui-list-view[mode]", inputs: { template: "template", cardTemplate: "cardTemplate" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewTemplateGate, deps: [{ token: ListViewTemplateArchive }, { token: ListViewCardTemplateArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewTemplateGate, selector: "gui-list-view[mode]", inputs: { template: "template", cardTemplate: "cardTemplate" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewTemplateGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewTemplateGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[mode]'
                 }]
-        }], ctorParameters: function () { return [{ type: ListViewTemplateArchive }, { type: ListViewCardTemplateArchive }]; }, propDecorators: { template: [{
+        }], ctorParameters: () => [{ type: ListViewTemplateArchive }, { type: ListViewCardTemplateArchive }], propDecorators: { template: [{
                 type: Input
             }], cardTemplate: [{
                 type: Input
@@ -3250,15 +3246,15 @@ class ListViewFieldGate extends Gate {
             this.fieldCommandDispatcher.initFields(this.fields, this.structureId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewFieldGate, deps: [{ token: StructureId }, { token: FieldPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: { fields: "fields" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewFieldGate, deps: [{ token: StructureId }, { token: FieldPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: { fields: "fields" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewFieldGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewFieldGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[fields]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: FieldPublisher }]; }, propDecorators: { fields: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: FieldPublisher }], propDecorators: { fields: [{
                 type: Input
             }] } });
 
@@ -3297,12 +3293,12 @@ class SearchingGate extends Gate {
     ngOnInit() {
         this.subscribeAndEmit(this.searchEventRepository.onSearchPhrase(this.structureId.toReadModelRootId()), this.searchPhraseChanged);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SearchingGate, inputs: { searching: "searching" }, outputs: { searchPhraseChanged: "searchPhraseChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: SearchingGate, inputs: { searching: "searching" }, outputs: { searchPhraseChanged: "searchPhraseChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchingGate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }]; }, propDecorators: { searching: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }], propDecorators: { searching: [{
                 type: Input
             }], searchPhraseChanged: [{
                 type: Output
@@ -3312,15 +3308,15 @@ class ListViewSearchingGate extends SearchingGate {
     constructor(structureId, searchEventRepository, searchCommandInvoker) {
         super(structureId, searchEventRepository, searchCommandInvoker);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewSearchingGate, selector: "gui-list-view[searching]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewSearchingGate, selector: "gui-list-view[searching]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSearchingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSearchingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[searching]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }] });
 
 class ListViewL10nGate extends Gate {
     translationService;
@@ -3339,15 +3335,15 @@ class ListViewL10nGate extends Gate {
             }
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewL10nGate, deps: [{ token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewL10nGate, selector: "gui-list-view[localization]", inputs: { localization: "localization" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewL10nGate, deps: [{ token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewL10nGate, selector: "gui-list-view[localization]", inputs: { localization: "localization" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewL10nGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewL10nGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[localization]'
                 }]
-        }], ctorParameters: function () { return [{ type: TranslationFacade }]; }, propDecorators: { localization: [{
+        }], ctorParameters: () => [{ type: TranslationFacade }], propDecorators: { localization: [{
                 type: Input
             }] } });
 
@@ -3422,12 +3418,12 @@ class SourceGate extends Gate {
     ngOnInit() {
         this.subscribeAndEmit(this.sourceEventService.onSourceEdited(this.structureId), this.sourceEdited);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceGate, deps: [{ token: StructureId }, { token: SourcePublisher }, { token: SourceEventService }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SourceGate, inputs: { source: "source", items: "items" }, outputs: { sourceEdited: "sourceEdited" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceGate, deps: [{ token: StructureId }, { token: SourcePublisher }, { token: SourceEventService }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: SourceGate, inputs: { source: "source", items: "items" }, outputs: { sourceEdited: "sourceEdited" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceGate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SourcePublisher }, { type: SourceEventService }]; }, propDecorators: { source: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: SourcePublisher }, { type: SourceEventService }], propDecorators: { source: [{
                 type: Input
             }], items: [{
                 type: Input
@@ -3443,15 +3439,15 @@ class ListViewSourceGate extends SourceGate {
         this.sourceCommandService = sourceCommandService;
         this.sourceEventService = sourceEventService;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSourceGate, deps: [{ token: StructureId }, { token: SourcePublisher }, { token: SourceEventService }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ListViewSourceGate, selector: "gui-list-view[items]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSourceGate, deps: [{ token: StructureId }, { token: SourcePublisher }, { token: SourceEventService }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ListViewSourceGate, selector: "gui-list-view[items]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewSourceGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewSourceGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-list-view[items]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SourcePublisher }, { type: SourceEventService }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: SourcePublisher }, { type: SourceEventService }] });
 
 class GuiListComponent extends GuiListGateway {
     constructor() {
@@ -3466,27 +3462,27 @@ class GuiListComponent extends GuiListGateway {
     onSearchPhraseChange(phrase) {
         this.searchPhraseChanged.emit(phrase);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: GuiListComponent, selector: "gui-list", host: { properties: { "class.gui-list": "\"true\"" } }, providers: guiListProviders, usesInheritance: true, ngImport: i0, template: "<gui-list-view\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t[cardTemplate]=\"listCardTemplate\"\n\t[fields]=\"listFields\"\n\t[items]=\"source\"\n\t[localization]=\"localization\"\n\t[modeSelector]=\"listViewModeSelector\"\n\t[mode]=\"listViewMode\"\n\t[paging]=\"paging\"\n\t[searching]=\"searchConfig\"\n\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n", styles: [""], dependencies: [{ kind: "component", type: ListViewComponent, selector: "gui-list-view" }, { kind: "directive", type: ListViewPagingGate, selector: "gui-list-view[paging]" }, { kind: "directive", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: ["mode", "modeSelector"] }, { kind: "directive", type: ListViewTemplateGate, selector: "gui-list-view[mode]", inputs: ["template", "cardTemplate"] }, { kind: "directive", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: ["fields"] }, { kind: "directive", type: ListViewSearchingGate, selector: "gui-list-view[searching]" }, { kind: "directive", type: ListViewL10nGate, selector: "gui-list-view[localization]", inputs: ["localization"] }, { kind: "directive", type: ListViewSourceGate, selector: "gui-list-view[items]" }], encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: GuiListComponent, selector: "gui-list", host: { properties: { "class.gui-list": "\"true\"" } }, providers: guiListProviders, usesInheritance: true, ngImport: i0, template: "<gui-list-view\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t[cardTemplate]=\"listCardTemplate\"\n\t[fields]=\"listFields\"\n\t[items]=\"source\"\n\t[localization]=\"localization\"\n\t[modeSelector]=\"listViewModeSelector\"\n\t[mode]=\"listViewMode\"\n\t[paging]=\"paging\"\n\t[searching]=\"searchConfig\"\n\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n", styles: [""], dependencies: [{ kind: "component", type: ListViewComponent, selector: "gui-list-view" }, { kind: "directive", type: ListViewPagingGate, selector: "gui-list-view[paging]" }, { kind: "directive", type: ListViewModeGate, selector: "gui-list-view[mode]", inputs: ["mode", "modeSelector"] }, { kind: "directive", type: ListViewTemplateGate, selector: "gui-list-view[mode]", inputs: ["template", "cardTemplate"] }, { kind: "directive", type: ListViewFieldGate, selector: "gui-list-view[fields]", inputs: ["fields"] }, { kind: "directive", type: ListViewSearchingGate, selector: "gui-list-view[searching]" }, { kind: "directive", type: ListViewL10nGate, selector: "gui-list-view[localization]", inputs: ["localization"] }, { kind: "directive", type: ListViewSourceGate, selector: "gui-list-view[items]" }], encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-list', providers: guiListProviders, host: {
                         '[class.gui-list]': '"true"'
                     }, encapsulation: ViewEncapsulation.None, template: "<gui-list-view\n\t(pageChanged)=\"onPageChange($event)\"\n\t(pageSizeChanged)=\"onPageSizeChange($event)\"\n\t(searchPhraseChanged)=\"onSearchPhraseChange($event)\"\n\t[cardTemplate]=\"listCardTemplate\"\n\t[fields]=\"listFields\"\n\t[items]=\"source\"\n\t[localization]=\"localization\"\n\t[modeSelector]=\"listViewModeSelector\"\n\t[mode]=\"listViewMode\"\n\t[paging]=\"paging\"\n\t[searching]=\"searchConfig\"\n\t[template]=\"containerTemplate\"\n>\n</gui-list-view>\n" }]
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class EmptySourceFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceFeatureModule, declarations: [EmptySourceComponent], imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceFeatureModule, declarations: [EmptySourceComponent], imports: [CommonModule,
             TranslationFeatureModule], exports: [EmptySourceComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceFeatureModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceFeatureModule, imports: [CommonModule,
             TranslationFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EmptySourceFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EmptySourceFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -3956,14 +3952,14 @@ class SearchFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SearchFeatureModule, declarations: [SearchIconComponent,
             SearchComponent], imports: [CommonModule,
             FabricModule,
             ReactiveFormsModule,
             GuiTemplateModule], exports: [SearchIconComponent,
             SearchComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchFeatureModule, providers: [
             { provide: SearchPublisher, useFactory: provideSearchCommandInvoker },
             { provide: SearchWarehouse, useFactory: provideSearchWarehouse },
             { provide: SearchEventRepository, useFactory: provideSearchEventRepository }
@@ -3972,7 +3968,7 @@ class SearchFeatureModule extends FeatureModule {
             ReactiveFormsModule,
             GuiTemplateModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SearchFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SearchFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -4014,22 +4010,22 @@ class SortingSelectorComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-sorting-selector';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SortingSelectorComponent, selector: "div[gui-sorting-selector]", usesInheritance: true, ngImport: i0, template: "<gui-select (optionChanged)=\"changeSorting($event)\"\n\t\t\t[options]=\"sortingOptions\"\n\t\t\t[selected]=\"selectedSorting\"\n\t\t\t[width]=\"200\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SortingSelectorComponent, selector: "div[gui-sorting-selector]", usesInheritance: true, ngImport: i0, template: "<gui-select (optionChanged)=\"changeSorting($event)\"\n\t\t\t[options]=\"sortingOptions\"\n\t\t\t[selected]=\"selectedSorting\"\n\t\t\t[width]=\"200\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-sorting-selector]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<gui-select (optionChanged)=\"changeSorting($event)\"\n\t\t\t[options]=\"sortingOptions\"\n\t\t\t[selected]=\"selectedSorting\"\n\t\t\t[width]=\"200\">\n</gui-select>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class SortingSelectorFeatureModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorFeatureModule, declarations: [SortingSelectorComponent], imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorFeatureModule, declarations: [SortingSelectorComponent], imports: [CommonModule,
             FabricSelectModule], exports: [SortingSelectorComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorFeatureModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorFeatureModule, imports: [CommonModule,
             FabricSelectModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingSelectorFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingSelectorFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -4052,8 +4048,8 @@ class FilterIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-filter-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterIconComponent, selector: "div[gui-filter-icon]", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterIconComponent, selector: "div[gui-filter-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.23">
 			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
 			<line class="cls-1" x1="8.14" y1="3.62" x2="2.18" y2="3.62"/>
@@ -4061,7 +4057,7 @@ class FilterIconComponent extends IconComponent {
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-filter-icon]',
@@ -4075,7 +4071,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class FieldWarehouse {
     constructor() {
@@ -4120,13 +4116,13 @@ class FilterTypeSelectorComponent extends PureComponent {
     getSelectorName() {
         return 'gui-filter-type-selector';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterTypeSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterTypeSelectorComponent, selector: "div[gui-filter-type-selector][filterTypes]", inputs: { filterTypes: "filterTypes" }, outputs: { filterTypeSelected: "filterTypeSelected" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterTypeSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterTypeSelectorComponent, selector: "div[gui-filter-type-selector][filterTypes]", inputs: { filterTypes: "filterTypes" }, outputs: { filterTypeSelected: "filterTypeSelected" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n", dependencies: [{ kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterTypeSelectorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterTypeSelectorComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-type-selector][filterTypes]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<gui-select (optionChanged)=\"onSelectChange($event)\"\n\t\t\t[disabled]=\"disabled\"\n\t\t\t[options]=\"filterTypesAsOptions\"\n\t\t\t[placeholder]=\"'Select filter type'\">\n</gui-select>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { filterTypes: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { filterTypes: [{
                 type: Input
             }], filterTypeSelected: [{
                 type: Output
@@ -4162,17 +4158,17 @@ class FilterValueComponent extends SmartComponent {
             .valueChanges;
         return fromRxJsObservable(value$);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterValueComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiEffects }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterValueComponent, selector: "div[gui-filter-value]", outputs: { valueChanged: "valueChanged" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterValueComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiEffects }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterValueComponent, selector: "div[gui-filter-value]", outputs: { valueChanged: "valueChanged" }, providers: [
             GuiEffects
         ], viewQueries: [{ propertyName: "formRef", first: true, predicate: ["formRef"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<form #formRef\n\t  [formGroup]=\"filterForm\">\n\n\t<input formControlName=\"filterValue\"/>\n</form>\n", dependencies: [{ kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterValueComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterValueComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-value]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiEffects
                     ], template: "<form #formRef\n\t  [formGroup]=\"filterForm\">\n\n\t<input formControlName=\"filterValue\"/>\n</form>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiEffects }, { type: i1$1.FormBuilder }]; }, propDecorators: { formRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiEffects }, { type: i1$1.FormBuilder }], propDecorators: { formRef: [{
                 type: ViewChild,
                 args: ['formRef', { read: ElementRef, static: false }]
             }], valueChanged: [{
@@ -4203,10 +4199,10 @@ class FieldSelectorComponent extends PureComponent {
     getSelectorName() {
         return 'gui-field-selector';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FieldSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FieldSelectorComponent, selector: "div[gui-field-selector][fields]", inputs: { fields: "fields" }, outputs: { fieldSelected: "fieldSelected" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `./field-selector.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FieldSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FieldSelectorComponent, selector: "div[gui-field-selector][fields]", inputs: { fields: "fields" }, outputs: { fieldSelected: "fieldSelected" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `./field-selector.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FieldSelectorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FieldSelectorComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-field-selector][fields]',
@@ -4214,7 +4210,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { fields: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { fields: [{
                 type: Input
             }], fieldSelected: [{
                 type: Output
@@ -4233,10 +4229,10 @@ class FilterMenuActiveFiltersComponent extends PureComponent {
     getSelectorName() {
         return 'gui-filter-menu-active-filters';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuActiveFiltersComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterMenuActiveFiltersComponent, selector: "div[gui-filter-menu-active-filters][activeFilters]", inputs: { activeFilters: "activeFilters" }, outputs: { removedFilter: "removedFilter" }, usesInheritance: true, ngImport: i0, template: `./filter-menu-active-filters.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuActiveFiltersComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterMenuActiveFiltersComponent, selector: "div[gui-filter-menu-active-filters][activeFilters]", inputs: { activeFilters: "activeFilters" }, outputs: { removedFilter: "removedFilter" }, usesInheritance: true, ngImport: i0, template: `./filter-menu-active-filters.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuActiveFiltersComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuActiveFiltersComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-filter-menu-active-filters][activeFilters]',
@@ -4244,33 +4240,26 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { activeFilters: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { activeFilters: [{
                 type: Input
             }], removedFilter: [{
                 type: Output
             }] } });
 
 class FilterMenuComponent extends SmartComponent {
-    structureId;
-    compositionId;
-    fieldWarehouse;
-    filterWarehouse;
     filterCommandInvoker;
+    structureId = inject(StructureId);
+    fieldWarehouse = inject(FieldWarehouse);
+    filterWarehouse = inject(FilterWarehouse);
     selectedColumn;
     selectedField;
     filterTypes;
     selectedFilterTypeId;
     selectedValue;
-    // @ts-ignore
     fields$ = this.fieldWarehouse.onFields(this.structureId);
-    // @ts-ignore
     activeFilters$ = this.filterWarehouse.onActiveFilters(this.structureId);
-    constructor(changeDetectorRef, elementRef, structureId, compositionId, fieldWarehouse, filterWarehouse, filterCommandInvoker) {
+    constructor(changeDetectorRef, elementRef, filterCommandInvoker) {
         super(changeDetectorRef, elementRef);
-        this.structureId = structureId;
-        this.compositionId = compositionId;
-        this.fieldWarehouse = fieldWarehouse;
-        this.filterWarehouse = filterWarehouse;
         this.filterCommandInvoker = filterCommandInvoker;
         this.addClassToHost('gui-block');
     }
@@ -4313,13 +4302,13 @@ class FilterMenuComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-filter-menu';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: FieldWarehouse }, { token: FilterWarehouse }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterMenuComponent, selector: "div[gui-filter-menu]", usesInheritance: true, ngImport: i0, template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters$ | guiPush\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields$ | guiPush\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FilterTypeSelectorComponent, selector: "div[gui-filter-type-selector][filterTypes]", inputs: ["filterTypes"], outputs: ["filterTypeSelected"] }, { kind: "component", type: FilterValueComponent, selector: "div[gui-filter-value]", outputs: ["valueChanged"] }, { kind: "component", type: FieldSelectorComponent, selector: "div[gui-field-selector][fields]", inputs: ["fields"], outputs: ["fieldSelected"] }, { kind: "component", type: FilterMenuActiveFiltersComponent, selector: "div[gui-filter-menu-active-filters][activeFilters]", inputs: ["activeFilters"], outputs: ["removedFilter"] }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterMenuComponent, selector: "div[gui-filter-menu]", usesInheritance: true, ngImport: i0, template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters$ | guiPush\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields$ | guiPush\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FilterTypeSelectorComponent, selector: "div[gui-filter-type-selector][filterTypes]", inputs: ["filterTypes"], outputs: ["filterTypeSelected"] }, { kind: "component", type: FilterValueComponent, selector: "div[gui-filter-value]", outputs: ["valueChanged"] }, { kind: "component", type: FieldSelectorComponent, selector: "div[gui-field-selector][fields]", inputs: ["fields"], outputs: ["fieldSelected"] }, { kind: "component", type: FilterMenuActiveFiltersComponent, selector: "div[gui-filter-menu-active-filters][activeFilters]", inputs: ["activeFilters"], outputs: ["removedFilter"] }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-menu]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<!--<div>-->\n<!--\t<div gui-active-filter-list></div>-->\n<!--</div>-->\n\n<!--\t\t<div>--><!--\t\t\t<div gui-column-selector--><!--\t\t\t\t\t[columns]=\"columns\"--><!--\t\t\t\t\t(columnSelected)\n=\"onColumnSelect($event)\">--><!--\t\t\t</div>-->\n\n<!--\t\t\t<ng-container *ngIf=\"selectedColumn\">--><!--\t\t\t\t{{selectedColumn.getFieldId()}}--><!--\t\t\t</ng-container>--><!--\t\t</div>-->\n\n<!--<div>-->\n<!--\t<div (fieldSelected)=\"onFieldSelect($event)\"-->\n<!--\t\t [fields]=\"fields\" gui-field-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedColumn\">-->\n<!--\t\t{{selectedColumn.getFieldId()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n<!--\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"-->\n<!--\t\t [filterTypes]=\"filterTypes\" gui-filter-type-selector></div>-->\n\n<!--\t<ng-container *ngIf=\"selectedFilterTypeId\">-->\n<!--\t\t{{selectedFilterTypeId.toString()}}-->\n<!--\t</ng-container>-->\n<!--</div>-->\n\n<!--<div>-->\n\n<!--\t<div (valueChanged)=\"onValueChanged($event)\" *ngIf=\"selectedFilterTypeId\" gui-filter-value></div>-->\n\n<!--</div>-->\n\n<h1>Filter menu</h1>\n\n\n<div (removedFilter)=\"onRemovedFilter($event)\"\n\t [activeFilters]=\"activeFilters$ | guiPush\"\n\t gui-filter-menu-active-filters>\n</div>\n\n<div class=\"gui-flex gui-flex-row gui-pb-12\">\n\n\t<div (fieldSelected)=\"onFieldSelect($event)\"\n\t\t [fields]=\"fields$ | guiPush\"\n\t\t gui-field-selector>\n\t</div>\n\n\t<div (filterTypeSelected)=\"onFilterTypeSelect($event)\"\n\t\t [filterTypes]=\"filterTypes\"\n\t\t gui-filter-type-selector>\n\t</div>\n\n\t<div (valueChanged)=\"onValueChanged($event)\"\n\t\t *ngIf=\"selectedFilterTypeId\"\n\t\t gui-filter-value>\n\t</div>\n\n\t<button (click)=\"addFilter()\">Filter</button>\n\t<button (click)=\"removeFilter()\">Remove</button>\n\n</div>\n\n<br/>\n<br/>\n<br/>\n\n<button\n\t[primary]=\"true\" gui-button>\n\tAdd filter\n</button>\n\n<br/>\n<br/>\n<br/>\n\n<div class=\"gui-flex gui-flex-row gui-justify-between gui-pt-12\">\n\n\t<button (click)=\"removeAllFilters()\"\n\t\t\t[outline]=\"false\"\n\t\t\tgui-button>\n\t\tClear filters\n\t</button>\n\n\t<!--\t<div>-->\n\t<!--\t\t<button (click)=\"close()\"-->\n\t<!--\t\t\t\t[outline]=\"false\" gui-button>-->\n\t<!--\t\t\tCancel-->\n\t<!--\t\t</button>-->\n\t<!--\t</div>-->\n</div>\n\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: FieldWarehouse }, { type: FilterWarehouse }, { type: FilterPublisher }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: FilterPublisher }] });
 
 class FilterMenuTriggerComponent extends SmartComponent {
     injector;
@@ -4347,13 +4336,13 @@ class FilterMenuTriggerComponent extends SmartComponent {
             return activeFilters.length > 0;
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuTriggerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: i1.FabricDialogService }, { token: StructureId }, { token: FilterWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FilterMenuTriggerComponent, selector: "div[gui-filter-menu-trigger]", usesInheritance: true, ngImport: i0, template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<ng-container *guiLet=\"activeFiltersExist$; let activeFiltersExist\">\n\t\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\t</ng-container>\n\n\t<div gui-filter-icon></div>\n</div>\n", styles: [".gui-filter-icon-wrapper{height:19px;margin-right:24px;position:relative;width:19px}.gui-filter-active{border:2px solid #aaa!important;border-radius:50%;height:27px;left:-6px;position:absolute;top:-6px;width:27px}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"], dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: FilterIconComponent, selector: "div[gui-filter-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuTriggerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: i1.FabricDialogService }, { token: StructureId }, { token: FilterWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FilterMenuTriggerComponent, selector: "div[gui-filter-menu-trigger]", usesInheritance: true, ngImport: i0, template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<ng-container *guiLet=\"activeFiltersExist$; let activeFiltersExist\">\n\t\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\t</ng-container>\n\n\t<div gui-filter-icon></div>\n</div>\n", styles: [".gui-filter-icon-wrapper{height:19px;margin-right:24px;position:relative;width:19px}.gui-filter-active{border:2px solid #aaa!important;border-radius:50%;height:27px;left:-6px;position:absolute;top:-6px;width:27px}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"], dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: FilterIconComponent, selector: "div[gui-filter-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuTriggerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuTriggerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-filter-menu-trigger]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div (click)=\"openDrawer()\"\n\t [gui-tooltip]=\"'Filters'\"\n\t class=\"gui-filter-icon-wrapper\">\n\n\t<ng-container *guiLet=\"activeFiltersExist$; let activeFiltersExist\">\n\t\t<div *ngIf=\"activeFiltersExist\" class=\"gui-filter-active\"></div>\n\t</ng-container>\n\n\t<div gui-filter-icon></div>\n</div>\n", styles: [".gui-filter-icon-wrapper{height:19px;margin-right:24px;position:relative;width:19px}.gui-filter-active{border:2px solid #aaa!important;border-radius:50%;height:27px;left:-6px;position:absolute;top:-6px;width:27px}.gui-filter-menu{width:600px}.gui-filter-icon svg{height:16px;width:16px}.gui-filter-icon svg .cls-1{fill:none;stroke:#aaa;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;transition:stroke .3s ease-in-out}.gui-filter-icon:hover .cls-1{stroke:#464646}\n"] }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: i1.FabricDialogService }, { type: StructureId }, { type: FilterWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: i1.FabricDialogService }, { type: StructureId }, { type: FilterWarehouse }] });
 
 class ColumnSelectorComponent extends PureComponent {
     columns;
@@ -4367,10 +4356,10 @@ class ColumnSelectorComponent extends PureComponent {
     getSelectorName() {
         return 'gui-column-selector';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ColumnSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ColumnSelectorComponent, selector: "div[gui-column-selector][columns]", inputs: { columns: "columns" }, outputs: { columnSelected: "columnSelected" }, usesInheritance: true, ngImport: i0, template: `./column-selector.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColumnSelectorComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ColumnSelectorComponent, selector: "div[gui-column-selector][columns]", inputs: { columns: "columns" }, outputs: { columnSelected: "columnSelected" }, usesInheritance: true, ngImport: i0, template: `./column-selector.component.html`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ColumnSelectorComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColumnSelectorComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-column-selector][columns]',
@@ -4378,7 +4367,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { columns: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { columns: [{
                 type: Input
             }], columnSelected: [{
                 type: Output
@@ -4408,16 +4397,12 @@ const fabricImports = [
 ];
 
 class ActiveSearchComponent extends SmartComponent {
-    structureId;
-    searchCommandDispatcher;
-    searchWarehouse;
-    // @ts-ignore
+    structureId = inject(StructureId);
+    searchCommandDispatcher = inject(SearchPublisher);
+    searchWarehouse = inject(SearchWarehouse);
     phrase$ = this.searchWarehouse.onPhrase(this.structureId);
-    constructor(changeDetectorRef, elementRef, structureId, searchCommandDispatcher, searchWarehouse) {
+    constructor(changeDetectorRef, elementRef) {
         super(changeDetectorRef, elementRef);
-        this.structureId = structureId;
-        this.searchCommandDispatcher = searchCommandDispatcher;
-        this.searchWarehouse = searchWarehouse;
     }
     clearSearch() {
         event.stopPropagation();
@@ -4426,24 +4411,21 @@ class ActiveSearchComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-active-search';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveSearchComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SearchPublisher }, { token: SearchWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ActiveSearchComponent, selector: "div[gui-active-search]", usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"phrase$; let phrase\">\n\t<div>\n\t\tActive search by:\n\t</div>\n\n\t<div>\n\t\t<gui-chip>{{phrase}}</gui-chip>\n\t</div>\n\n\t<div>\n\t\t<button (click)=\"clearSearch()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tgui-button>\n\t\t\tClear search\n\t\t</button>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricChipComponent, selector: "gui-chip" }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveSearchComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ActiveSearchComponent, selector: "div[gui-active-search]", usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"phrase$; let phrase\">\n\t<div>\n\t\tActive search by:\n\t</div>\n\n\t<div>\n\t\t<gui-chip>{{phrase}}</gui-chip>\n\t</div>\n\n\t<div>\n\t\t<button (click)=\"clearSearch()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tgui-button>\n\t\t\tClear search\n\t\t</button>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricChipComponent, selector: "gui-chip" }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveSearchComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveSearchComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-active-search]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *guiLet=\"phrase$; let phrase\">\n\t<div>\n\t\tActive search by:\n\t</div>\n\n\t<div>\n\t\t<gui-chip>{{phrase}}</gui-chip>\n\t</div>\n\n\t<div>\n\t\t<button (click)=\"clearSearch()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tgui-button>\n\t\t\tClear search\n\t\t</button>\n\t</div>\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SearchPublisher }, { type: SearchWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class ActiveFilterListComponent extends SmartComponent {
-    structureId;
-    filterWarehouse;
     filterCommandDispatcher;
-    // @ts-ignore
+    structureId = inject(StructureId);
+    filterWarehouse = inject(FilterWarehouse);
     activeFilters$ = this.filterWarehouse.onActiveFilters(this.structureId);
-    constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandDispatcher) {
+    constructor(changeDetectorRef, elementRef, filterCommandDispatcher) {
         super(changeDetectorRef, elementRef);
-        this.structureId = structureId;
-        this.filterWarehouse = filterWarehouse;
         this.filterCommandDispatcher = filterCommandDispatcher;
     }
     removeFilter(filter) {
@@ -4452,13 +4434,13 @@ class ActiveFilterListComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-active-filter-list';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: FilterWarehouse }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ActiveFilterListComponent, selector: "div[gui-active-filter-list]", usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"activeFilters$; let activeFilters\">\n\t<div *ngFor=\"let filter of activeFilters\">\n\t\t{{filter.getText()}}\n\t\t<span (click)=\"removeFilter(filter)\">X</span>\n\t</div>\n</ng-container>\n\n<div gui-active-search></div>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: ActiveSearchComponent, selector: "div[gui-active-search]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ActiveFilterListComponent, selector: "div[gui-active-filter-list]", usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"activeFilters$; let activeFilters\">\n\t<div *ngFor=\"let filter of activeFilters\">\n\t\t{{filter.getText()}}\n\t\t<span (click)=\"removeFilter(filter)\">X</span>\n\t</div>\n</ng-container>\n\n<div gui-active-search></div>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: ActiveSearchComponent, selector: "div[gui-active-search]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-active-filter-list]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *guiLet=\"activeFilters$; let activeFilters\">\n\t<div *ngFor=\"let filter of activeFilters\">\n\t\t{{filter.getText()}}\n\t\t<span (click)=\"removeFilter(filter)\">X</span>\n\t</div>\n</ng-container>\n\n<div gui-active-search></div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FilterWarehouse }, { type: FilterPublisher }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: FilterPublisher }] });
 
 class CompositionWarehouse {
     constructor() {
@@ -5554,15 +5536,15 @@ function provideFilterIntegration() {
     return CoreContainer.resolve(FilterIntegration);
 }
 class FilterFeatureModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: FilterFeatureModule });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FilterFeatureModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterFeatureModule, providers: [
             { provide: FilterPublisher, useFactory: provideFilterCommandInvoker },
             { provide: FilterWarehouse, useFactory: provideFilterWarehouse },
             { provide: FilterIntegration, useFactory: provideFilterIntegration }
         ] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     providers: [
@@ -5577,16 +5559,16 @@ class ActiveFilterListModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListModule, declarations: [ActiveFilterListComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListModule, declarations: [ActiveFilterListComponent,
             ActiveSearchComponent], imports: [CommonModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, GuiTemplateModule,
             FilterFeatureModule], exports: [ActiveFilterListComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListModule, imports: [CommonModule,
             fabricImports,
             GuiTemplateModule,
             FilterFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterListModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterListModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -5609,8 +5591,8 @@ class FilterMenuFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuFeatureModule, declarations: [FilterIconComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuFeatureModule, declarations: [FilterIconComponent,
             FilterMenuComponent,
             FilterMenuTriggerComponent,
             ColumnSelectorComponent,
@@ -5623,14 +5605,14 @@ class FilterMenuFeatureModule extends FeatureModule {
             GuiTemplateModule,
             FilterFeatureModule,
             ActiveFilterListModule], exports: [FilterMenuTriggerComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuFeatureModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuFeatureModule, imports: [CommonModule,
             FabricModule,
             ReactiveFormsModule,
             GuiTemplateModule,
             FilterFeatureModule,
             ActiveFilterListModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FilterMenuFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterMenuFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -5698,8 +5680,8 @@ function provideListViewModeArchive() {
 }
 class ListViewFeatureModule {
     static exportDeclarations = Array.from(exportDeclarations$3);
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ListViewFeatureModule, declarations: [ListViewComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ListViewFeatureModule, declarations: [ListViewComponent,
             ListViewItemComponent,
             ListViewLayoutComponent,
             ListViewSourceComponent,
@@ -5712,7 +5694,7 @@ class ListViewFeatureModule {
             EmptySourceFeatureModule,
             SortingSelectorFeatureModule,
             FilterMenuFeatureModule], exports: [ListViewComponent, ListViewPagingGate, ListViewModeGate, ListViewTemplateGate, ListViewFieldGate, ListViewSearchingGate, ListViewL10nGate, ListViewSourceGate] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewFeatureModule, providers: [
             { provide: ListViewPublisher, useFactory: provideListViewCommandInvoker },
             { provide: ListViewWarehouse, useFactory: provideListViewWarehouse },
             { provide: ListViewEventRepository, useFactory: provideListViewEventRepository },
@@ -5725,7 +5707,7 @@ class ListViewFeatureModule {
             SortingSelectorFeatureModule,
             FilterMenuFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ListViewFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ListViewFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -5761,20 +5743,20 @@ class NumberFormatterPipe {
     transform(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterPipe, name: "numberFormatter" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterPipe, name: "numberFormatter" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'numberFormatter' }]
         }] });
 
 class NumberFormatterModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, declarations: [NumberFormatterPipe], exports: [NumberFormatterPipe] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, declarations: [NumberFormatterPipe], exports: [NumberFormatterPipe] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -5793,13 +5775,13 @@ class StructureInfoModalComponent extends StaticComponent {
     getSelectorName() {
         return 'gui-info-dialog';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoModalComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureInfoModalComponent, selector: "div[gui-info-dialog]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.19.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoModalComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureInfoModalComponent, selector: "div[gui-info-dialog]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.21.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoModalComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoModalComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'div[gui-info-dialog]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.19.1\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+            args: [{ selector: 'div[gui-info-dialog]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-structure-info-modal gui-flex gui-flex-col gui-p-0 gui-text-lg gui-w-full\">\n\n\t<p class=\"gui-text-3xl gui-mb-8 gui-font-bold\">\n\t\tGeneric UI Grid\n\t</p>\n\n\n\t<p class=\"gui-text-xl gui-mb-18 gui-font-bold\">\n\t\tver. 0.21.0\n\t</p>\n\n\t<p class=\"gui-quote gui-text-2xl gui-italic gui-font-light\">\n\t\t\"The best way to success is to help others succeed.\"\n\t</p>\n\n\t<br/>\n\n\t<section class=\"gui-m-0 gui-px-0 gui-pt-10 gui-pb-6\">\n\t\t<p class=\"gui-font-bold\">Links:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/\">Website</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://generic-ui.com/guide/\">Documentation</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/tree/master/ngx-grid\">Github</a>\n\t\t\t</li>\n\t\t</ul>\n\n\t\t<br/>\n\n\t\t<p class=\"gui-font-bold\">Feedback:</p>\n\t\t<ul class=\"gui-m-0 gui-pl-9 gui-list-none\">\n\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Report a bug</a>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<a class=\"gui-mb-6 gui-no-underline gui-leading-6\" href=\"https://github.com/generic-ui/generic-ui/issues\">Suggest an idea</a>\n\t\t\t</li>\n\n\t\t</ul>\n\t</section>\n</div>\n" }]
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class CompositionPublisher {
     constructor() {
@@ -8173,8 +8155,8 @@ class FunctionViewComponent extends PureComponent {
     getSelectorName() {
         return 'gui-function-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FunctionViewComponent, deps: [{ token: i1$2.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: FunctionViewComponent, selector: "gui-function-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FunctionViewComponent, deps: [{ token: i1$2.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: FunctionViewComponent, selector: "gui-function-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
 
 		<div class="gui-h-full gui-flex gui-items-center"
 			 [innerHTML]="safeHTML">
@@ -8182,7 +8164,7 @@ class FunctionViewComponent extends PureComponent {
 
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FunctionViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FunctionViewComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-function-view',
@@ -8196,7 +8178,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i1$2.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
+        }], ctorParameters: () => [{ type: i1$2.DomSanitizer }, { type: i0.ElementRef }], propDecorators: { element: [{
                 type: Input
             }] } });
 
@@ -8208,12 +8190,12 @@ class PercentageViewComponent extends PureComponent {
     getSelectorName() {
         return 'gui-percentage-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PercentageViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: { value: "value" }, usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PercentageViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: { value: "value" }, usesInheritance: true, ngImport: i0, template: `
 		{{ value }} %
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PercentageViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: PercentageViewComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-percentage-view[value]',
@@ -8223,7 +8205,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { value: [{
                 type: Input
             }] } });
 
@@ -8242,8 +8224,8 @@ class BarViewComponent extends PureComponent {
     getSelectorName() {
         return 'gui-bar-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BarViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: { value: "value", showPercentage: "showPercentage" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BarViewComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: { value: "value", showPercentage: "showPercentage" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
 		<div class="gui-percentage-bar">
 			<div class="gui-percentage" [style.width.%]="width">
 			</div>
@@ -8251,9 +8233,9 @@ class BarViewComponent extends PureComponent {
 								 [value]="value">
 			</gui-percentage-view>
 		</div>
-	`, isInline: true, dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BarViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BarViewComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-bar-view[value]',
@@ -8269,7 +8251,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { value: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { value: [{
                 type: Input
             }], showPercentage: [{
                 type: Input
@@ -8296,15 +8278,15 @@ class SafePipe {
                 throw new Error(`Invalid safe type specified: ${type}`);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SafePipe, deps: [{ token: i1$2.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe });
-    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SafePipe, name: "guiSafe" });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SafePipe, deps: [{ token: i1$2.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe });
+    static ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SafePipe, name: "guiSafe" });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SafePipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SafePipe, decorators: [{
             type: Pipe,
             args: [{
                     name: 'guiSafe'
                 }]
-        }], ctorParameters: function () { return [{ type: i1$2.DomSanitizer }]; } });
+        }], ctorParameters: () => [{ type: i1$2.DomSanitizer }] });
 
 class TextViewComponent extends PureComponent {
     value;
@@ -8324,8 +8306,8 @@ class TextViewComponent extends PureComponent {
     getSelectorName() {
         return 'gui-text-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TextViewComponent, deps: [{ token: 'bold', attribute: true }, { token: 'italic', attribute: true }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TextViewComponent, selector: "gui-view-text[value]", inputs: { value: "value" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TextViewComponent, deps: [{ token: 'bold', attribute: true }, { token: 'italic', attribute: true }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: TextViewComponent, selector: "gui-view-text[value]", inputs: { value: "value" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
 
 		<ng-container *ngIf="isHtml; else text">
 			<span [innerHTML]="value.value | guiSafe: 'html'"></span>
@@ -8336,9 +8318,9 @@ class TextViewComponent extends PureComponent {
 				{{value.value}}
 			</span>
 		</ng-template>
-	`, isInline: true, dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+	`, isInline: true, dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TextViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TextViewComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-view-text[value]',
@@ -8357,13 +8339,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+        }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Attribute,
                     args: ['bold']
                 }] }, { type: undefined, decorators: [{
                     type: Attribute,
                     args: ['italic']
-                }] }, { type: i0.ElementRef }]; }, propDecorators: { value: [{
+                }] }, { type: i0.ElementRef }], propDecorators: { value: [{
                 type: Input
             }] } });
 
@@ -8383,8 +8365,8 @@ class HtmlViewComponent extends PureComponent {
     getSelectorName() {
         return 'gui-html-view';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: HtmlViewComponent, deps: [{ token: i1$2.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: HtmlViewComponent, selector: "gui-html-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: HtmlViewComponent, deps: [{ token: i1$2.DomSanitizer }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: HtmlViewComponent, selector: "gui-html-view", inputs: { element: "element" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
 
 		<div class="gui-h-full gui-flex gui-items-center"
 			 [innerHTML]="safeHTML">
@@ -8392,7 +8374,7 @@ class HtmlViewComponent extends PureComponent {
 
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: HtmlViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: HtmlViewComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-html-view',
@@ -8406,7 +8388,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i1$2.DomSanitizer }, { type: i0.ElementRef }]; }, propDecorators: { element: [{
+        }], ctorParameters: () => [{ type: i1$2.DomSanitizer }, { type: i0.ElementRef }], propDecorators: { element: [{
                 type: Input
             }] } });
 
@@ -8462,8 +8444,8 @@ class ViewTemplatesComponent {
                 return this.textTemplate;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ViewTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "textTemplate", first: true, predicate: ["text"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "chipTemplate", first: true, predicate: ["chip"], descendants: true, read: TemplateRef, static: true }, { propertyName: "linkTemplate", first: true, predicate: ["link"], descendants: true, read: TemplateRef, static: true }, { propertyName: "imageTemplate", first: true, predicate: ["image"], descendants: true, read: TemplateRef, static: true }, { propertyName: "checkboxTemplate", first: true, predicate: ["checkbox"], descendants: true, read: TemplateRef, static: true }, { propertyName: "boldTemplate", first: true, predicate: ["bold"], descendants: true, read: TemplateRef, static: true }, { propertyName: "italicTemplate", first: true, predicate: ["italic"], descendants: true, read: TemplateRef, static: true }, { propertyName: "customTemplate", first: true, predicate: ["custom"], descendants: true, read: TemplateRef, static: true }, { propertyName: "functionTemplate", first: true, predicate: ["function"], descendants: true, read: TemplateRef, static: true }, { propertyName: "htmlTemplate", first: true, predicate: ["html"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "barTemplate", first: true, predicate: ["bar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageBarTemplate", first: true, predicate: ["percentageBar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageTemplate", first: true, predicate: ["percentage"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ViewTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "textTemplate", first: true, predicate: ["text"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "chipTemplate", first: true, predicate: ["chip"], descendants: true, read: TemplateRef, static: true }, { propertyName: "linkTemplate", first: true, predicate: ["link"], descendants: true, read: TemplateRef, static: true }, { propertyName: "imageTemplate", first: true, predicate: ["image"], descendants: true, read: TemplateRef, static: true }, { propertyName: "checkboxTemplate", first: true, predicate: ["checkbox"], descendants: true, read: TemplateRef, static: true }, { propertyName: "boldTemplate", first: true, predicate: ["bold"], descendants: true, read: TemplateRef, static: true }, { propertyName: "italicTemplate", first: true, predicate: ["italic"], descendants: true, read: TemplateRef, static: true }, { propertyName: "customTemplate", first: true, predicate: ["custom"], descendants: true, read: TemplateRef, static: true }, { propertyName: "functionTemplate", first: true, predicate: ["function"], descendants: true, read: TemplateRef, static: true }, { propertyName: "htmlTemplate", first: true, predicate: ["html"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "barTemplate", first: true, predicate: ["bar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageBarTemplate", first: true, predicate: ["percentageBar"], descendants: true, read: TemplateRef, static: true }, { propertyName: "percentageTemplate", first: true, predicate: ["percentage"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
 
 		<ng-template #text let-element="element">
 			<gui-view-text [value]="element"></gui-view-text>
@@ -8533,9 +8515,9 @@ class ViewTemplatesComponent {
 			<gui-percentage-view [value]="element.value"></gui-percentage-view>
 		</ng-template>
 
-	`, isInline: true, dependencies: [{ kind: "component", type: i1.FabricChipComponent, selector: "gui-chip" }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FunctionViewComponent, selector: "gui-function-view", inputs: ["element"] }, { kind: "component", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: ["value", "showPercentage"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }, { kind: "component", type: TextViewComponent, selector: "gui-view-text[value]", inputs: ["value"] }, { kind: "component", type: HtmlViewComponent, selector: "gui-html-view", inputs: ["element"] }, { kind: "pipe", type: i5.DatePipe, name: "date" }] });
+	`, isInline: true, dependencies: [{ kind: "component", type: i1.FabricChipComponent, selector: "gui-chip" }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: FunctionViewComponent, selector: "gui-function-view", inputs: ["element"] }, { kind: "component", type: BarViewComponent, selector: "gui-bar-view[value]", inputs: ["value", "showPercentage"] }, { kind: "component", type: PercentageViewComponent, selector: "gui-percentage-view[value]", inputs: ["value"] }, { kind: "component", type: TextViewComponent, selector: "gui-view-text[value]", inputs: ["value"] }, { kind: "component", type: HtmlViewComponent, selector: "gui-html-view", inputs: ["element"] }, { kind: "pipe", type: i4.DatePipe, name: "date" }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplatesComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplatesComponent, decorators: [{
             type: Component,
             args: [{
                     template: `
@@ -8704,12 +8686,12 @@ class ViewTemplateFactory extends TemplateFactory {
         return Object.keys(CellView)
             .map(key => CellView[key]);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateFactory });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateFactory });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateFactory, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateFactory, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; } });
+        }], ctorParameters: () => [{ type: i0.ComponentFactoryResolver }] });
 
 class ViewTemplateRepository {
     columnTemplateFactory;
@@ -8721,12 +8703,12 @@ class ViewTemplateRepository {
         const typeToTemplate = this.columnTemplateFactory.getTemplates();
         return typeToTemplate.get(view);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateRepository, deps: [{ token: ViewTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateRepository });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateRepository, deps: [{ token: ViewTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateRepository });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ViewTemplateRepository, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ViewTemplateRepository, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: ViewTemplateFactory }]; } });
+        }], ctorParameters: () => [{ type: ViewTemplateFactory }] });
 
 var EditEventType;
 (function (EditEventType) {
@@ -8757,12 +8739,12 @@ class EditCommunicationComponent extends SmartComponent {
             this.status.emit(status);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditCommunicationComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: EditCommunicationComponent, inputs: { value: "value", valueChanges: "valueChanges", status: "status", focus: "focus", parent: "parent" }, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditCommunicationComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: EditCommunicationComponent, inputs: { value: "value", valueChanges: "valueChanges", status: "status", focus: "focus", parent: "parent" }, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditCommunicationComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditCommunicationComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { value: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }], propDecorators: { value: [{
                 type: Input
             }], valueChanges: [{
                 type: Input
@@ -8839,12 +8821,12 @@ class InputEditTemplateComponent extends EditCommunicationComponent {
             this.valueChanges.emit(value);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: InputEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: InputEditTemplateComponent, viewQueries: [{ propertyName: "inputRef", first: true, predicate: ["input"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: InputEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: InputEditTemplateComponent, viewQueries: [{ propertyName: "inputRef", first: true, predicate: ["input"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: InputEditTemplateComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: InputEditTemplateComponent, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }]; }, propDecorators: { inputRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }], propDecorators: { inputRef: [{
                 type: ViewChild,
                 args: ['input', { static: true }]
             }] } });
@@ -8862,8 +8844,8 @@ class StringEditTemplateComponent extends InputEditTemplateComponent {
     getSelectorName() {
         return 'gui-string-edit';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StringEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StringEditTemplateComponent, selector: "gui-string-edit", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StringEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StringEditTemplateComponent, selector: "gui-string-edit", usesInheritance: true, ngImport: i0, template: `
 
 		<form [formGroup]="filterForm">
 			<input #input [formControlName]="filterFieldName" type="type" class="gui-input"/>
@@ -8871,7 +8853,7 @@ class StringEditTemplateComponent extends InputEditTemplateComponent {
 
 	`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StringEditTemplateComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StringEditTemplateComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-string-edit',
@@ -8885,7 +8867,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }] });
 
 class NumberEditTemplateComponent extends InputEditTemplateComponent {
     constructor(changeDetectorRef, elementRef, fb) {
@@ -8894,8 +8876,8 @@ class NumberEditTemplateComponent extends InputEditTemplateComponent {
     getSelectorName() {
         return 'gui-number-edit';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: NumberEditTemplateComponent, selector: "gui-number-edit", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i1$1.FormBuilder }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: NumberEditTemplateComponent, selector: "gui-number-edit", usesInheritance: true, ngImport: i0, template: `
 
 		<form [formGroup]="filterForm">
 			<input #input [formControlName]="filterFieldName" type="number" class="gui-input"/>
@@ -8903,7 +8885,7 @@ class NumberEditTemplateComponent extends InputEditTemplateComponent {
 
 	`, isInline: true, dependencies: [{ kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NumberValueAccessor, selector: "input[type=number][formControlName],input[type=number][formControl],input[type=number][ngModel]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberEditTemplateComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberEditTemplateComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-number-edit',
@@ -8917,7 +8899,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i1$1.FormBuilder }] });
 
 class BooleanEditTemplateComponent extends EditCommunicationComponent {
     changeDetectorRef;
@@ -8934,8 +8916,8 @@ class BooleanEditTemplateComponent extends EditCommunicationComponent {
     getSelectorName() {
         return 'gui-boolean-edit';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BooleanEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit", viewQueries: [{ propertyName: "checkboxRef", first: true, predicate: ["checkbox"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BooleanEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit", viewQueries: [{ propertyName: "checkboxRef", first: true, predicate: ["checkbox"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
 
 		<span class="gui-cell-boolean">
 			<gui-checkbox #checkbox
@@ -8947,7 +8929,7 @@ class BooleanEditTemplateComponent extends EditCommunicationComponent {
 
 	`, isInline: true, dependencies: [{ kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BooleanEditTemplateComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BooleanEditTemplateComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-boolean-edit',
@@ -8965,7 +8947,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { checkboxRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }], propDecorators: { checkboxRef: [{
                 type: ViewChild,
                 args: ['checkbox', { read: ElementRef, static: true }]
             }] } });
@@ -9013,8 +8995,8 @@ class DateEditTemplateComponent extends EditCommunicationComponent {
     getSelectorName() {
         return 'gui-date-edit';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DateEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: DateEditTemplateComponent, selector: "gui-date-edit", viewQueries: [{ propertyName: "datePickerRef", first: true, predicate: ["datepicker"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DateEditTemplateComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: DateEditTemplateComponent, selector: "gui-date-edit", viewQueries: [{ propertyName: "datePickerRef", first: true, predicate: ["datepicker"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, ngImport: i0, template: `
 
 		<gui-date-picker #datepicker
 						 [selectDate]="value"
@@ -9028,7 +9010,7 @@ class DateEditTemplateComponent extends EditCommunicationComponent {
 
 	`, isInline: true, dependencies: [{ kind: "component", type: i1.FabricDatePickerComponent, selector: "gui-date-picker", inputs: ["parentElement", "theme", "selectDate", "name", "openDialog", "onlyDialog", "datePipeOptions"], outputs: ["dateSelected", "dialogOpened"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DateEditTemplateComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DateEditTemplateComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-date-edit',
@@ -9048,7 +9030,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { datePickerRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }], propDecorators: { datePickerRef: [{
                 type: ViewChild,
                 args: ['datepicker', { read: ElementRef, static: true }]
             }] } });
@@ -9073,8 +9055,8 @@ class EditTemplatesComponent {
                 return this.emptyTemplate;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: EditTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "stringTemplate", first: true, predicate: ["string"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "booleanTemplate", first: true, predicate: ["boolean"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "emptyTemplate", first: true, predicate: ["empty"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplatesComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: EditTemplatesComponent, selector: "ng-component", viewQueries: [{ propertyName: "stringTemplate", first: true, predicate: ["string"], descendants: true, read: TemplateRef, static: true }, { propertyName: "numberTemplate", first: true, predicate: ["number"], descendants: true, read: TemplateRef, static: true }, { propertyName: "booleanTemplate", first: true, predicate: ["boolean"], descendants: true, read: TemplateRef, static: true }, { propertyName: "dateTemplate", first: true, predicate: ["date"], descendants: true, read: TemplateRef, static: true }, { propertyName: "emptyTemplate", first: true, predicate: ["empty"], descendants: true, read: TemplateRef, static: true }], ngImport: i0, template: `
 
 		<ng-template #string let-valueChanges="valueChanges" let-value="value" let-status="status" let-focus="focus">
 			<gui-string-edit [valueChanges]="valueChanges" [value]="value" [status]="status" [focus]="focus">
@@ -9102,7 +9084,7 @@ class EditTemplatesComponent {
 
 	`, isInline: true, dependencies: [{ kind: "component", type: StringEditTemplateComponent, selector: "gui-string-edit" }, { kind: "component", type: NumberEditTemplateComponent, selector: "gui-number-edit" }, { kind: "component", type: BooleanEditTemplateComponent, selector: "gui-boolean-edit" }, { kind: "component", type: DateEditTemplateComponent, selector: "gui-date-edit" }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplatesComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplatesComponent, decorators: [{
             type: Component,
             args: [{
                     template: `
@@ -9159,12 +9141,12 @@ class EditTemplateFactory extends TemplateFactory {
         return Object.keys(DataType)
             .map(key => DataType[key]);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateFactory });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateFactory, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateFactory });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateFactory, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateFactory, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; } });
+        }], ctorParameters: () => [{ type: i0.ComponentFactoryResolver }] });
 
 class EditTemplateRepository {
     editTemplateFactory;
@@ -9176,12 +9158,12 @@ class EditTemplateRepository {
         const typeToTemplate = this.editTemplateFactory.getTemplates();
         return typeToTemplate.get(dataType);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateRepository, deps: [{ token: EditTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateRepository });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateRepository, deps: [{ token: EditTemplateFactory }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateRepository });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: EditTemplateRepository, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: EditTemplateRepository, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: EditTemplateFactory }]; } });
+        }], ctorParameters: () => [{ type: EditTemplateFactory }] });
 
 class CompositionEventRepository extends EventRepository {
 }
@@ -9495,25 +9477,21 @@ class CompositionTemplateWarehouse {
     findEditTemplate(dataType) {
         return this.editTemplateRepository.findTemplate(dataType);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionTemplateWarehouse, deps: [{ token: CompositionWarehouse }, { token: ViewTemplateRepository }, { token: EditTemplateRepository }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionTemplateWarehouse });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionTemplateWarehouse, deps: [{ token: CompositionWarehouse }, { token: ViewTemplateRepository }, { token: EditTemplateRepository }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionTemplateWarehouse });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionTemplateWarehouse, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionTemplateWarehouse, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: CompositionWarehouse }, { type: ViewTemplateRepository }, { type: EditTemplateRepository }]; } });
+        }], ctorParameters: () => [{ type: CompositionWarehouse }, { type: ViewTemplateRepository }, { type: EditTemplateRepository }] });
 
 class StructureColumnManagerComponent extends SmartComponent {
-    changeDetectorRef;
-    state;
     compositionId;
     compositionCommandInvoker;
     compositionTemplateWarehouse;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
-    constructor(changeDetectorRef, elementRef, state, compositionId, compositionCommandInvoker, compositionTemplateWarehouse) {
+    constructor(changeDetectorRef, elementRef, compositionId, compositionCommandInvoker, compositionTemplateWarehouse) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.state = state;
         this.compositionId = compositionId;
         this.compositionCommandInvoker = compositionCommandInvoker;
         this.compositionTemplateWarehouse = compositionTemplateWarehouse;
@@ -9544,17 +9522,17 @@ class StructureColumnManagerComponent extends SmartComponent {
                 .reduce((accumulator, currentValue) => accumulator + currentValue);
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiState }, { token: CompositionId }, { token: CompositionPublisher }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: CompositionId }, { token: CompositionPublisher }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]", providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ol *guiLet=\"state$; let localState\"\n\tclass=\"gui-structure-ordered-list gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\t<li (click)=\"toggleColumn(column)\"\n\t\t*ngFor=\"let column of localState.columns\"\n\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t  [disabled]=\"localState.enabledColumnsCount === 1 && column.isEnabled()\">\n\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t</ng-container>\n\n\t\t</gui-checkbox>\n\n\t</li>\n</ol>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ol *guiLet=\"state$; let localState\"\n\tclass=\"gui-structure-ordered-list gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\t<li (click)=\"toggleColumn(column)\"\n\t\t*ngFor=\"let column of localState.columns\"\n\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t  [disabled]=\"localState.enabledColumnsCount === 1 && column.isEnabled()\">\n\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t</ng-container>\n\n\t\t</gui-checkbox>\n\n\t</li>\n</ol>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-column-manager]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ol *guiLet=\"state$; let localState\"\n\tclass=\"gui-structure-ordered-list gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\t<li (click)=\"toggleColumn(column)\"\n\t\t*ngFor=\"let column of localState.columns\"\n\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t<gui-checkbox [checked]=\"column.isEnabled()\"\n\t\t\t\t\t  [disabled]=\"localState.enabledColumnsCount === 1 && column.isEnabled()\">\n\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t\t\t\tcontext: column.context\">\n\t\t\t</ng-container>\n\n\t\t</gui-checkbox>\n\n\t</li>\n</ol>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiState }, { type: CompositionId }, { type: CompositionPublisher }, { type: CompositionTemplateWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: CompositionId }, { type: CompositionPublisher }, { type: CompositionTemplateWarehouse }] });
 
 class StructureDialogColumnManagerComponent extends SmartComponent {
     constructor(detector, elementRef) {
@@ -9563,13 +9541,13 @@ class StructureDialogColumnManagerComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-structure-dialog-column-manager';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureDialogColumnManagerComponent, selector: "div[gui-structure-dialog-column-manager]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-dialog-title\">{{'columnManagerModalTitle' | guiTranslate}}</div>\n\n<div class=\"-gui-mx-10\" gui-structure-column-manager>\n</div>\n", dependencies: [{ kind: "component", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogColumnManagerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureDialogColumnManagerComponent, selector: "div[gui-structure-dialog-column-manager]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-dialog-title\">{{'columnManagerModalTitle' | guiTranslate}}</div>\n\n<div class=\"-gui-mx-10\" gui-structure-column-manager>\n</div>\n", dependencies: [{ kind: "component", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogColumnManagerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogColumnManagerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-dialog-column-manager]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-dialog-title\">{{'columnManagerModalTitle' | guiTranslate}}</div>\n\n<div class=\"-gui-mx-10\" gui-structure-column-manager>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class SchemaWarehouse {
 }
@@ -9600,10 +9578,10 @@ class StructureThemeConverter {
                 return Theme.FABRIC;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureThemeConverter, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureThemeConverter });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureThemeConverter, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureThemeConverter });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureThemeConverter, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureThemeConverter, decorators: [{
             type: Injectable
         }] });
 
@@ -9634,12 +9612,12 @@ class StructureDialogColumnManagerService extends Reactive {
             });
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogColumnManagerService, deps: [{ token: i0.Injector }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogColumnManagerService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogColumnManagerService, deps: [{ token: i0.Injector }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogColumnManagerService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogColumnManagerService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogColumnManagerService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricDialogService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricDialogService }] });
 
 var SchemaRowColoring;
 (function (SchemaRowColoring) {
@@ -9662,23 +9640,19 @@ class SchemaPublisher {
 
 class StructureSchemaMangerComponent extends SmartComponent {
     structureId;
-    schemaReadModelRootId;
     schemaPublisher;
-    schemaWarehouse;
+    schemaWarehouse = inject(SchemaWarehouse);
+    schemaReadModelRootId = inject(SchemaReadModelRootId);
     coloring = this.createColoringOptions();
     themes = this.createThemeOptions();
     rowColoring$ = this.selectRowColoring();
     theme$ = this.selectTheme();
-    // @ts-ignore
     verticalGrid$ = this.schemaWarehouse.onVerticalGrid(this.schemaReadModelRootId);
-    // @ts-ignore
     horizontalGrid$ = this.schemaWarehouse.onHorizontalGrid(this.schemaReadModelRootId);
-    constructor(changeDetectorRef, elRef, structureId, schemaReadModelRootId, schemaPublisher, schemaWarehouse) {
+    constructor(changeDetectorRef, elRef, structureId, schemaPublisher) {
         super(changeDetectorRef, elRef);
         this.structureId = structureId;
-        this.schemaReadModelRootId = schemaReadModelRootId;
         this.schemaPublisher = schemaPublisher;
-        this.schemaWarehouse = schemaWarehouse;
     }
     toggleTheme(theme) {
         this.schemaPublisher.setTheme(this.toTheme(theme.value), this.schemaReadModelRootId, this.structureId);
@@ -9767,13 +9741,13 @@ class StructureSchemaMangerComponent extends SmartComponent {
                 return RowColoring.NONE;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSchemaMangerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: SchemaPublisher }, { token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureSchemaMangerComponent, selector: "div[gui-structure-schema-manager]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-schema-manager gui-flex gui-flex-col\">\n\n\t<div class=\"gui-dialog-title gui-mb-8\">{{'themeManagerModalTitle' | guiTranslate}}</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col\">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">{{'themeManagerModalTheme' | guiTranslate}}</span>\n\n\t\t<gui-select (optionChanged)=\"toggleTheme($event)\"\n\t\t\t\t\t[options]=\"themes\"\n\t\t\t\t\t[selected]=\"theme$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col \">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">\n\t\t\t{{'themeManagerModalRowColoring' | guiTranslate}}\n\t\t</span>\n\n\t\t<gui-select (optionChanged)=\"toggleRowColoring($event)\"\n\t\t\t\t\t[options]=\"coloring\"\n\t\t\t\t\t[selected]=\"rowColoring$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<ol class=\"gui-structure-ordered-list gui-mx-10 gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\n\t\t<li (click)=\"toggleVerticalGrid(verticalGrid)\"\n\t\t\t*guiLet=\"verticalGrid$; let verticalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"verticalGrid\">\n\t\t\t\t{{'themeManagerModalVerticalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\n\t\t<li (click)=\"toggleHorizontalGrid(horizontalGrid)\"\n\t\t\t*guiLet=\"horizontalGrid$; let horizontalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"horizontalGrid\">\n\t\t\t\t{{'themeManagerModalHorizontalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\t</ol>\n</div>\n", dependencies: [{ kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSchemaMangerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SchemaPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureSchemaMangerComponent, selector: "div[gui-structure-schema-manager]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-schema-manager gui-flex gui-flex-col\">\n\n\t<div class=\"gui-dialog-title gui-mb-8\">{{'themeManagerModalTitle' | guiTranslate}}</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col\">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">{{'themeManagerModalTheme' | guiTranslate}}</span>\n\n\t\t<gui-select (optionChanged)=\"toggleTheme($event)\"\n\t\t\t\t\t[options]=\"themes\"\n\t\t\t\t\t[selected]=\"theme$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col \">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">\n\t\t\t{{'themeManagerModalRowColoring' | guiTranslate}}\n\t\t</span>\n\n\t\t<gui-select (optionChanged)=\"toggleRowColoring($event)\"\n\t\t\t\t\t[options]=\"coloring\"\n\t\t\t\t\t[selected]=\"rowColoring$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<ol class=\"gui-structure-ordered-list gui-mx-10 gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\n\t\t<li (click)=\"toggleVerticalGrid(verticalGrid)\"\n\t\t\t*guiLet=\"verticalGrid$; let verticalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"verticalGrid\">\n\t\t\t\t{{'themeManagerModalVerticalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\n\t\t<li (click)=\"toggleHorizontalGrid(horizontalGrid)\"\n\t\t\t*guiLet=\"horizontalGrid$; let horizontalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"horizontalGrid\">\n\t\t\t\t{{'themeManagerModalHorizontalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\t</ol>\n</div>\n", dependencies: [{ kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSchemaMangerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSchemaMangerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-schema-manager]', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush, template: "<div class=\"gui-schema-manager gui-flex gui-flex-col\">\n\n\t<div class=\"gui-dialog-title gui-mb-8\">{{'themeManagerModalTitle' | guiTranslate}}</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col\">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">{{'themeManagerModalTheme' | guiTranslate}}</span>\n\n\t\t<gui-select (optionChanged)=\"toggleTheme($event)\"\n\t\t\t\t\t[options]=\"themes\"\n\t\t\t\t\t[selected]=\"theme$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<div class=\"gui-structure-schema-manager-select gui-flex gui-flex-col \">\n\n\t\t<span class=\"gui-mb-4 gui-text-xs\">\n\t\t\t{{'themeManagerModalRowColoring' | guiTranslate}}\n\t\t</span>\n\n\t\t<gui-select (optionChanged)=\"toggleRowColoring($event)\"\n\t\t\t\t\t[options]=\"coloring\"\n\t\t\t\t\t[selected]=\"rowColoring$ | guiPush\"\n\t\t\t\t\t[width]=\"180\">\n\t\t</gui-select>\n\t</div>\n\n\t<ol class=\"gui-structure-ordered-list gui-mx-10 gui-p-0 gui-my-4 gui-list-none gui-overflow-auto\">\n\n\t\t<li (click)=\"toggleVerticalGrid(verticalGrid)\"\n\t\t\t*guiLet=\"verticalGrid$; let verticalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"verticalGrid\">\n\t\t\t\t{{'themeManagerModalVerticalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\n\t\t<li (click)=\"toggleHorizontalGrid(horizontalGrid)\"\n\t\t\t*guiLet=\"horizontalGrid$; let horizontalGrid\"\n\t\t\tclass=\"gui-px-13 gui-py-6 gui-cursor-pointer\">\n\n\t\t\t<gui-checkbox [checked]=\"horizontalGrid\">\n\t\t\t\t{{'themeManagerModalHorizontalGrid' | guiTranslate}}\n\t\t\t</gui-checkbox>\n\n\t\t</li>\n\t</ol>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: SchemaPublisher }, { type: SchemaWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SchemaPublisher }] });
 
 class StructureDialogSchemaManagerComponent extends PureComponent {
     constructor(elRef) {
@@ -9782,12 +9756,12 @@ class StructureDialogSchemaManagerComponent extends PureComponent {
     getSelectorName() {
         return 'gui-schema-manager-dialog';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogSchemaManagerComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureDialogSchemaManagerComponent, selector: "div[gui-schema-manager-dialog]", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogSchemaManagerComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureDialogSchemaManagerComponent, selector: "div[gui-schema-manager-dialog]", usesInheritance: true, ngImport: i0, template: `
 		<div gui-structure-schema-manager></div>
 	`, isInline: true, dependencies: [{ kind: "component", type: StructureSchemaMangerComponent, selector: "div[gui-structure-schema-manager]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogSchemaManagerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogSchemaManagerComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-schema-manager-dialog]',
@@ -9797,7 +9771,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 class StructureDialogSchemaManagerService extends Reactive {
     injector;
@@ -9820,12 +9794,12 @@ class StructureDialogSchemaManagerService extends Reactive {
             component: StructureDialogSchemaManagerComponent
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogSchemaManagerService, deps: [{ token: i0.Injector }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogSchemaManagerService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogSchemaManagerService, deps: [{ token: i0.Injector }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogSchemaManagerService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureDialogSchemaManagerService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureDialogSchemaManagerService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: i1.FabricDialogService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: i1.FabricDialogService }] });
 
 class StructureInfoPanelConfig {
     enabled = false;
@@ -9883,8 +9857,8 @@ class StructureColumnManagerIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-structure-column-manager-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 10.31">
 			<line class="cls-1" x1="9.57" y1="3.65" x2="0.75" y2="3.65"/>
 			<line class="cls-2" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
@@ -9895,7 +9869,7 @@ class StructureColumnManagerIconComponent extends IconComponent {
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-column-manager-icon]',
@@ -9912,7 +9886,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class StructureSchemaManagerIconComponent extends IconComponent {
     constructor(elRef, cdr) {
@@ -9921,17 +9895,17 @@ class StructureSchemaManagerIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-structure-schema-manager-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSchemaManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureSchemaManagerIconComponent, selector: "div[gui-structure-schema-manager-icon]", usesInheritance: true, ngImport: i0, template: "<svg height=\"24\" viewBox=\"0 0 32 24\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<g transform=\"translate(0 -4)\">\n\t\t<path d=\"M23.337,4H32v6H23.337Z\" data-name=\"Path 303\" id=\"Path_303\"/>\n\t\t<path d=\"M11.662,4h8.662v6H11.662Z\" data-name=\"Path 304\" id=\"Path_304\"/>\n\t\t<path d=\"M0,4H8.662v6H0Z\" data-name=\"Path 305\" id=\"Path_305\"/>\n\t\t<path d=\"M23.337,22H32v6H23.337Z\" data-name=\"Path 306\" id=\"Path_306\"/>\n\t\t<path d=\"M0,22H8.662v6H0Z\" data-name=\"Path 307\" id=\"Path_307\"/>\n\t\t<path d=\"M11.662,22h8.662v6H11.662Z\" data-name=\"Path 308\" id=\"Path_308\"/>\n\t\t<path d=\"M23.337,13H32v6H23.337Z\" data-name=\"Path 309\" id=\"Path_309\"/>\n\t\t<path d=\"M11.662,13h8.662v6H11.662Z\" data-name=\"Path 310\" id=\"Path_310\"/>\n\t\t<path d=\"M0,13H8.662v6H0Z\" data-name=\"Path 311\" id=\"Path_311\"/>\n\t</g>\n</svg>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSchemaManagerIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureSchemaManagerIconComponent, selector: "div[gui-structure-schema-manager-icon]", usesInheritance: true, ngImport: i0, template: "<svg height=\"24\" viewBox=\"0 0 32 24\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<g transform=\"translate(0 -4)\">\n\t\t<path d=\"M23.337,4H32v6H23.337Z\" data-name=\"Path 303\" id=\"Path_303\"/>\n\t\t<path d=\"M11.662,4h8.662v6H11.662Z\" data-name=\"Path 304\" id=\"Path_304\"/>\n\t\t<path d=\"M0,4H8.662v6H0Z\" data-name=\"Path 305\" id=\"Path_305\"/>\n\t\t<path d=\"M23.337,22H32v6H23.337Z\" data-name=\"Path 306\" id=\"Path_306\"/>\n\t\t<path d=\"M0,22H8.662v6H0Z\" data-name=\"Path 307\" id=\"Path_307\"/>\n\t\t<path d=\"M11.662,22h8.662v6H11.662Z\" data-name=\"Path 308\" id=\"Path_308\"/>\n\t\t<path d=\"M23.337,13H32v6H23.337Z\" data-name=\"Path 309\" id=\"Path_309\"/>\n\t\t<path d=\"M11.662,13h8.662v6H11.662Z\" data-name=\"Path 310\" id=\"Path_310\"/>\n\t\t<path d=\"M0,13H8.662v6H0Z\" data-name=\"Path 311\" id=\"Path_311\"/>\n\t</g>\n</svg>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSchemaManagerIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSchemaManagerIconComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-schema-manager-icon]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<svg height=\"24\" viewBox=\"0 0 32 24\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<g transform=\"translate(0 -4)\">\n\t\t<path d=\"M23.337,4H32v6H23.337Z\" data-name=\"Path 303\" id=\"Path_303\"/>\n\t\t<path d=\"M11.662,4h8.662v6H11.662Z\" data-name=\"Path 304\" id=\"Path_304\"/>\n\t\t<path d=\"M0,4H8.662v6H0Z\" data-name=\"Path 305\" id=\"Path_305\"/>\n\t\t<path d=\"M23.337,22H32v6H23.337Z\" data-name=\"Path 306\" id=\"Path_306\"/>\n\t\t<path d=\"M0,22H8.662v6H0Z\" data-name=\"Path 307\" id=\"Path_307\"/>\n\t\t<path d=\"M11.662,22h8.662v6H11.662Z\" data-name=\"Path 308\" id=\"Path_308\"/>\n\t\t<path d=\"M23.337,13H32v6H23.337Z\" data-name=\"Path 309\" id=\"Path_309\"/>\n\t\t<path d=\"M11.662,13h8.662v6H11.662Z\" data-name=\"Path 310\" id=\"Path_310\"/>\n\t\t<path d=\"M0,13H8.662v6H0Z\" data-name=\"Path 311\" id=\"Path_311\"/>\n\t</g>\n</svg>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class ActiveFilterMenuComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ActiveFilterMenuComponent, selector: "ng-component", ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ActiveFilterMenuComponent, selector: "ng-component", ngImport: i0, template: `
 
 		<h3>Active filters</h3>
 
@@ -9952,7 +9926,7 @@ class ActiveFilterMenuComponent {
 		</div>
 	`, isInline: true, dependencies: [{ kind: "component", type: ActiveFilterListComponent, selector: "div[gui-active-filter-list]" }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterMenuComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterMenuComponent, decorators: [{
             type: Component,
             args: [{
                     template: `
@@ -10008,12 +9982,12 @@ class ActiveFilterService extends Reactive {
             });
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterService, deps: [{ token: i0.Injector }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterService, deps: [{ token: i0.Injector }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricDialogService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricDialogService }] });
 
 class ActiveFilterMenuTriggerDirective {
     el;
@@ -10031,15 +10005,15 @@ class ActiveFilterMenuTriggerDirective {
         // 	this.activeFilterService.open(this.schemaReadModelRootId, this.structureId);
         // });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterMenuTriggerDirective, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: ActiveFilterService }, { token: SchemaReadModelRootId }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]", ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterMenuTriggerDirective, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: ActiveFilterService }, { token: SchemaReadModelRootId }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]", ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ActiveFilterMenuTriggerDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ActiveFilterMenuTriggerDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[gui-active-filter-menu-trigger]'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: StructureId }, { type: ActiveFilterService }, { type: SchemaReadModelRootId }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: StructureId }, { type: ActiveFilterService }, { type: SchemaReadModelRootId }] });
 
 class StructureInfoIconComponent extends IconComponent {
     constructor(elRef, cdr) {
@@ -10048,41 +10022,34 @@ class StructureInfoIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-structure-info-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureInfoIconComponent, selector: "div[gui-structure-info-icon]", usesInheritance: true, ngImport: i0, template: "<svg data-name=\"Layer 1\" viewBox=\"0 0 10.08 10.08\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<path class=\"cls-1\"\n\t\t  d=\"M401.64,307.76c0-.28.23-.45.54-.45s.55.17.55.45v0a.49.49,0,0,1-.55.46.48.48,0,0,1-.54-.46Zm.05,1.27a.49.49,0,0,1,1,0v2.54a.49.49,0,0,1-1,0Z\"\n\t\t  transform=\"translate(-397.14 -304.64)\"/>\n\t<circle class=\"cls-2\" cx=\"5.04\" cy=\"5.04\" r=\"4.54\"/>\n</svg>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureInfoIconComponent, selector: "div[gui-structure-info-icon]", usesInheritance: true, ngImport: i0, template: "<svg data-name=\"Layer 1\" viewBox=\"0 0 10.08 10.08\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<path class=\"cls-1\"\n\t\t  d=\"M401.64,307.76c0-.28.23-.45.54-.45s.55.17.55.45v0a.49.49,0,0,1-.55.46.48.48,0,0,1-.54-.46Zm.05,1.27a.49.49,0,0,1,1,0v2.54a.49.49,0,0,1-1,0Z\"\n\t\t  transform=\"translate(-397.14 -304.64)\"/>\n\t<circle class=\"cls-2\" cx=\"5.04\" cy=\"5.04\" r=\"4.54\"/>\n</svg>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoIconComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-info-icon]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<svg data-name=\"Layer 1\" viewBox=\"0 0 10.08 10.08\" xmlns=\"http://www.w3.org/2000/svg\">\n\t<path class=\"cls-1\"\n\t\t  d=\"M401.64,307.76c0-.28.23-.45.54-.45s.55.17.55.45v0a.49.49,0,0,1-.55.46.48.48,0,0,1-.54-.46Zm.05,1.27a.49.49,0,0,1,1,0v2.54a.49.49,0,0,1-1,0Z\"\n\t\t  transform=\"translate(-397.14 -304.64)\"/>\n\t<circle class=\"cls-2\" cx=\"5.04\" cy=\"5.04\" r=\"4.54\"/>\n</svg>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class StructureInfoPanelComponent extends SmartComponent {
-    changeDetectorRef;
     injector;
-    state;
-    sourceWarehouse;
     dialog;
     compositionId;
-    structureId;
     schemaReadModelRootId;
     menuColumnManagerService;
     translationService;
     schemaManagerService;
     structureInfoPanelArchive;
-    // @ts-ignore
+    state = inject((GuiState));
+    sourceWarehouse = inject(SourceWarehouse);
+    structureId = inject(StructureId);
     state$ = this.state.select();
-    // @ts-ignore
     totalItemsSize$ = this.sourceWarehouse.onOriginSize(this.structureId);
     infoModal = StructureInfoModalComponent;
-    constructor(changeDetectorRef, elementRef, injector, state, sourceWarehouse, dialog, compositionId, structureId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelArchive) {
+    constructor(changeDetectorRef, elementRef, injector, dialog, compositionId, schemaReadModelRootId, menuColumnManagerService, translationService, schemaManagerService, structureInfoPanelArchive) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.injector = injector;
-        this.state = state;
-        this.sourceWarehouse = sourceWarehouse;
         this.dialog = dialog;
         this.compositionId = compositionId;
-        this.structureId = structureId;
         this.schemaReadModelRootId = schemaReadModelRootId;
         this.menuColumnManagerService = menuColumnManagerService;
         this.translationService = translationService;
@@ -10106,17 +10073,17 @@ class StructureInfoPanelComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-structure-info-panel';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: GuiState }, { token: SourceWarehouse }, { token: i1.FabricDialogService }, { token: CompositionId }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: StructureDialogColumnManagerService }, { token: TranslationFacade }, { token: StructureDialogSchemaManagerService }, { token: StructureInfoPanelArchive }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureInfoPanelComponent, selector: "div[gui-structure-info-panel]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Injector }, { token: i1.FabricDialogService }, { token: CompositionId }, { token: SchemaReadModelRootId }, { token: StructureDialogColumnManagerService }, { token: TranslationFacade }, { token: StructureDialogSchemaManagerService }, { token: StructureInfoPanelArchive }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureInfoPanelComponent, selector: "div[gui-structure-info-panel]", providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *guiLet=\"totalItemsSize$; let totalItemsSize\">\n\t\t<div *ngIf=\"localState.infoPanelConfig.isSourceSizeEnabled()\">\n\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize === totalItemsSize\">\n\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t\t</ng-container>\n\n\t\t\t\t<span *ngIf=\"localState.preparedItemsSize !== totalItemsSize\"\n\t\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{localState.preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t\t</ng-container>\n\n\t\t</div>\n\t</div>\n\n\t<div>\n\t\t<div class=\"gui-right-section\">\n\n\t\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelThemeMangerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openColumnManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelColumnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openInfo()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelInfoTooltipText\" gui-structure-info-icon></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "component", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]" }, { kind: "component", type: StructureSchemaManagerIconComponent, selector: "div[gui-structure-schema-manager-icon]" }, { kind: "directive", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]" }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureInfoIconComponent, selector: "div[gui-structure-info-icon]" }, { kind: "pipe", type: NumberFormatterPipe, name: "numberFormatter" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *guiLet=\"totalItemsSize$; let totalItemsSize\">\n\t\t<div *ngIf=\"localState.infoPanelConfig.isSourceSizeEnabled()\">\n\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize === totalItemsSize\">\n\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t\t</ng-container>\n\n\t\t\t\t<span *ngIf=\"localState.preparedItemsSize !== totalItemsSize\"\n\t\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{localState.preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t\t</ng-container>\n\n\t\t</div>\n\t</div>\n\n\t<div>\n\t\t<div class=\"gui-right-section\">\n\n\t\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelThemeMangerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openColumnManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelColumnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openInfo()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelInfoTooltipText\" gui-structure-info-icon></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "component", type: StructureColumnManagerIconComponent, selector: "div[gui-structure-column-manager-icon]" }, { kind: "component", type: StructureSchemaManagerIconComponent, selector: "div[gui-structure-schema-manager-icon]" }, { kind: "directive", type: ActiveFilterMenuTriggerDirective, selector: "[gui-active-filter-menu-trigger]" }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureInfoIconComponent, selector: "div[gui-structure-info-icon]" }, { kind: "pipe", type: NumberFormatterPipe, name: "numberFormatter" }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-info-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *guiLet=\"totalItemsSize$; let totalItemsSize\">\n\t\t<div *ngIf=\"localState.infoPanelConfig.isSourceSizeEnabled()\">\n\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize !== undefined && totalItemsSize !== undefined\">\n\n\t\t\t\t<ng-container *ngIf=\"localState.preparedItemsSize === totalItemsSize\">\n\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t\t</ng-container>\n\n\t\t\t\t<span *ngIf=\"localState.preparedItemsSize !== totalItemsSize\"\n\t\t\t\t\t  gui-active-filter-menu-trigger>\n\t\t\t\t\t\t{{'infoPanelShowing' | guiTranslate}}\n\t\t\t\t\t<b>{{localState.preparedItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelOutOf' | guiTranslate}}\n\t\t\t\t\t<b>{{totalItemsSize | numberFormatter}}</b>\n\t\t\t\t\t{{'infoPanelItems' | guiTranslate}}\n\t\t\t</span>\n\n\t\t\t</ng-container>\n\n\t\t</div>\n\t</div>\n\n\t<div>\n\t\t<div class=\"gui-right-section\">\n\n\t\t\t<div (click)=\"openSchemaManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isSchemaManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelThemeMangerTooltipText\" gui-structure-schema-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openColumnManager()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isColumnsManagerEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelColumnManagerTooltipText\" gui-structure-column-manager-icon></div>\n\t\t\t</div>\n\n\t\t\t<div (click)=\"openInfo()\"\n\t\t\t\t *ngIf=\"localState.infoPanelConfig.isInfoDialogEnabled()\">\n\t\t\t\t<div [gui-tooltip]=\"localState.translations.infoPanelInfoTooltipText\" gui-structure-info-icon></div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: GuiState }, { type: SourceWarehouse }, { type: i1.FabricDialogService }, { type: CompositionId }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: StructureDialogColumnManagerService }, { type: TranslationFacade }, { type: StructureDialogSchemaManagerService }, { type: StructureInfoPanelArchive }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.Injector }, { type: i1.FabricDialogService }, { type: CompositionId }, { type: SchemaReadModelRootId }, { type: StructureDialogColumnManagerService }, { type: TranslationFacade }, { type: StructureDialogSchemaManagerService }, { type: StructureInfoPanelArchive }] });
 
 class StructureMenuColumnManagerComponent extends PureComponent {
     constructor(elementRef) {
@@ -10125,13 +10092,13 @@ class StructureMenuColumnManagerComponent extends PureComponent {
     getSelectorName() {
         return 'gui-structure-menu-column-manager';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuColumnManagerComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureMenuColumnManagerComponent, selector: "div[gui-structure-menu-column-manager]", usesInheritance: true, ngImport: i0, template: "<div gui-structure-column-manager></div>\n", dependencies: [{ kind: "component", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuColumnManagerComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureMenuColumnManagerComponent, selector: "div[gui-structure-menu-column-manager]", usesInheritance: true, ngImport: i0, template: "<div gui-structure-column-manager></div>\n", dependencies: [{ kind: "component", type: StructureColumnManagerComponent, selector: "div[gui-structure-column-manager]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuColumnManagerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuColumnManagerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-menu-column-manager]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div gui-structure-column-manager></div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 const declarations$3 = [
     StructureColumnManagerComponent,
@@ -10140,8 +10107,8 @@ const declarations$3 = [
     StructureColumnManagerIconComponent
 ];
 class StructureColumnManagerModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerModule, declarations: [StructureColumnManagerComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerModule, declarations: [StructureColumnManagerComponent,
             StructureDialogColumnManagerComponent,
             StructureMenuColumnManagerComponent,
             StructureColumnManagerIconComponent], imports: [CommonModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, GuiTemplateModule,
@@ -10149,14 +10116,14 @@ class StructureColumnManagerModule {
             StructureDialogColumnManagerComponent,
             StructureMenuColumnManagerComponent,
             StructureColumnManagerIconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerModule, providers: [
             StructureDialogColumnManagerService
         ], imports: [CommonModule,
             fabricImports,
             GuiTemplateModule,
             TranslationFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnManagerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnManagerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -10193,19 +10160,19 @@ class StructureInfoPanelConfigConverter {
 }
 
 class SchemaManagerModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaManagerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SchemaManagerModule, declarations: [StructureSchemaMangerComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaManagerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SchemaManagerModule, declarations: [StructureSchemaMangerComponent,
             StructureDialogSchemaManagerComponent,
             StructureSchemaManagerIconComponent], imports: [CommonModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, TranslationFeatureModule,
             GuiTemplateModule], exports: [StructureSchemaManagerIconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaManagerModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaManagerModule, providers: [
             StructureDialogSchemaManagerService
         ], imports: [CommonModule,
             fabricImports,
             TranslationFeatureModule,
             GuiTemplateModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaManagerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaManagerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -10232,20 +10199,20 @@ class SourceCounterFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceCounterFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SourceCounterFeatureModule, declarations: [ActiveFilterMenuTriggerDirective,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceCounterFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SourceCounterFeatureModule, declarations: [ActiveFilterMenuTriggerDirective,
             ActiveFilterMenuComponent], imports: [CommonModule,
             FilterMenuFeatureModule,
             ActiveFilterListModule,
             FabricButtonModule], exports: [ActiveFilterMenuTriggerDirective] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceCounterFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceCounterFeatureModule, providers: [
             ActiveFilterService
         ], imports: [CommonModule,
             FilterMenuFeatureModule,
             ActiveFilterListModule,
             FabricButtonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceCounterFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceCounterFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -10268,8 +10235,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }] });
 
 class StructureInfoPanelModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelModule, declarations: [StructureInfoPanelComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelModule, declarations: [StructureInfoPanelComponent,
             StructureInfoModalComponent,
             StructureInfoIconComponent], imports: [CommonModule,
             NumberFormatterModule,
@@ -10280,7 +10247,7 @@ class StructureInfoPanelModule {
             TranslationFeatureModule,
             GuiTemplateModule], exports: [StructureInfoModalComponent,
             StructureInfoPanelComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelModule, providers: [
             StructureInfoPanelConfigConverter
         ], imports: [CommonModule,
             NumberFormatterModule,
@@ -10291,7 +10258,7 @@ class StructureInfoPanelModule {
             TranslationFeatureModule,
             GuiTemplateModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -10450,34 +10417,34 @@ class SchemaCssClassManager extends Reactive {
             this.classModifier.getElement(this.cssHostRef.nativeElement).remove(cssClassName);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaCssClassManager, deps: [{ token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaCssClassManager });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaCssClassManager, deps: [{ token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaCssClassManager });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaCssClassManager, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaCssClassManager, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: SchemaWarehouse }]; } });
+        }], ctorParameters: () => [{ type: SchemaWarehouse }] });
 
 class StructureCellEditStore extends Archive {
     constructor() {
         super();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditStore, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditStore });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditStore, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditStore });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditStore, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditStore, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class StructureEditModeArchive extends Archive {
     constructor() {
         super();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureEditModeArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureEditModeArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureEditModeArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureEditModeArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureEditModeArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureEditModeArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 const structureComponentToken = new InjectionToken('StructureComponentToken');
 
@@ -10731,12 +10698,12 @@ class StructureCellEditArchive extends AggregateArchive {
     constructor() {
         super(StructureCellEditArchive.default);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class StructureInfoPanelConfigService {
     structureInfoPanelConfigConverter;
@@ -10750,12 +10717,12 @@ class StructureInfoPanelConfigService {
         const infoPanelConfig = this.structureInfoPanelConfigConverter.convert(config);
         this.structureInfoPanelArchive.next(infoPanelConfig);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelConfigService, deps: [{ token: StructureInfoPanelConfigConverter }, { token: StructureInfoPanelArchive }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelConfigService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelConfigService, deps: [{ token: StructureInfoPanelConfigConverter }, { token: StructureInfoPanelArchive }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelConfigService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelConfigService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelConfigService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: StructureInfoPanelConfigConverter }, { type: StructureInfoPanelArchive }]; } });
+        }], ctorParameters: () => [{ type: StructureInfoPanelConfigConverter }, { type: StructureInfoPanelArchive }] });
 
 class FormationPublisher {
     constructor() {
@@ -10766,12 +10733,12 @@ class StructureHeaderBottomEnabledArchive extends Archive {
     constructor() {
         super(false);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderBottomEnabledArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderBottomEnabledArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderBottomEnabledArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderBottomEnabledArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderBottomEnabledArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderBottomEnabledArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class SchemaEventRepository extends EventRepository {
     constructor() {
@@ -10968,12 +10935,12 @@ class StructureGateway extends SmartComponent {
     componentInitialized() {
         this.changeAfterInit = true;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureGateway, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ColumnAutoConfigurator }, { token: StructureId }, { token: CompositionId }, { token: SchemaReadModelRootId }, { token: StructurePublisher }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SortingPublisher }, { token: SearchPublisher }, { token: SourcePublisher }, { token: SourceEventService }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureGateway, inputs: { maxHeight: "maxHeight", width: "width", rowHeight: "rowHeight", autoResizeWidth: "autoResizeWidth", source: "source", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", theme: "theme" }, outputs: { themeChanged: "themeChanged", columnsChanged: "columnsChanged", containerWidthChanged: "containerWidthChanged", sourceEdited: "sourceEdited", cellEditEntered: "cellEditEntered", cellEditCanceled: "cellEditCanceled", cellEditSubmitted: "cellEditSubmitted" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureGateway, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: ColumnAutoConfigurator }, { token: StructureId }, { token: CompositionId }, { token: SchemaReadModelRootId }, { token: StructurePublisher }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SortingPublisher }, { token: SearchPublisher }, { token: SourcePublisher }, { token: SourceEventService }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureGateway, inputs: { maxHeight: "maxHeight", width: "width", rowHeight: "rowHeight", autoResizeWidth: "autoResizeWidth", source: "source", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", theme: "theme" }, outputs: { themeChanged: "themeChanged", columnsChanged: "columnsChanged", containerWidthChanged: "containerWidthChanged", sourceEdited: "sourceEdited", cellEditEntered: "cellEditEntered", cellEditCanceled: "cellEditCanceled", cellEditSubmitted: "cellEditSubmitted" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureGateway, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureGateway, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ColumnAutoConfigurator }, { type: StructureId }, { type: CompositionId }, { type: SchemaReadModelRootId }, { type: StructurePublisher }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SortingPublisher }, { type: SearchPublisher }, { type: SourcePublisher }, { type: SourceEventService }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }]; }, propDecorators: { maxHeight: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: ColumnAutoConfigurator }, { type: StructureId }, { type: CompositionId }, { type: SchemaReadModelRootId }, { type: StructurePublisher }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SortingPublisher }, { type: SearchPublisher }, { type: SourcePublisher }, { type: SourceEventService }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }], propDecorators: { maxHeight: [{
                 type: Input
             }], width: [{
                 type: Input
@@ -11087,12 +11054,12 @@ class StructureColumnMenuConfigArchive extends Archive {
         const menuConfig = StructureColumnMenuConfig.fromConfig(config);
         this.next(menuConfig);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuConfigArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuConfigArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuConfigArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuConfigArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuConfigArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuConfigArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class StructureCellEditCloseAllService {
     closeAll$ = new HermesSubject();
@@ -11102,10 +11069,10 @@ class StructureCellEditCloseAllService {
     onCloseAll() {
         return this.closeAll$.toObservable();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditCloseAllService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditCloseAllService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditCloseAllService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditCloseAllService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditCloseAllService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditCloseAllService, decorators: [{
             type: Injectable
         }] });
 
@@ -11113,12 +11080,12 @@ class StructureHeaderTopEnabledArchive extends Archive {
     constructor() {
         super(true);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderTopEnabledArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderTopEnabledArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderTopEnabledArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderTopEnabledArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderTopEnabledArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderTopEnabledArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class StructureRowDetailConfigArchive extends Archive {
     constructor() {
@@ -11127,12 +11094,12 @@ class StructureRowDetailConfigArchive extends Archive {
             template: (item => 'Detail View')
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailConfigArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailConfigArchive });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailConfigArchive, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailConfigArchive });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailConfigArchive, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailConfigArchive, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 const structureRowDetailViewItem = new InjectionToken('structureRowDetailViewItem');
 const structureRowDetailViewTemplate = new InjectionToken('structureRowDetailViewTemplate');
@@ -11154,19 +11121,19 @@ class StructureRowDetailViewComponent extends DynamicallyCreatedComponent {
     getSelectorName() {
         return 'gui-row-detail';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailViewComponent, deps: [{ token: i0.ElementRef }, { token: structureRowDetailViewItem }, { token: structureRowDetailViewTemplate }, { token: i1$2.DomSanitizer }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowDetailViewComponent, selector: "div[gui-row-detail]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"safeHTML\"></div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailViewComponent, deps: [{ token: i0.ElementRef }, { token: structureRowDetailViewItem }, { token: structureRowDetailViewTemplate }, { token: i1$2.DomSanitizer }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowDetailViewComponent, selector: "div[gui-row-detail]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"safeHTML\"></div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailViewComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailViewComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-row-detail]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div [innerHTML]=\"safeHTML\"></div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: SelectedRow, decorators: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: SelectedRow, decorators: [{
                     type: Inject,
                     args: [structureRowDetailViewItem]
                 }] }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [structureRowDetailViewTemplate]
-                }] }, { type: i1$2.DomSanitizer }]; } });
+                }] }, { type: i1$2.DomSanitizer }] });
 
 class StructureRowDetailService extends Reactive {
     injector;
@@ -11231,12 +11198,12 @@ class StructureRowDetailService extends Reactive {
     turnOff() {
         this.enabled = false;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailService, deps: [{ token: i0.Injector }, { token: StructureId }, { token: StructureRowDetailConfigArchive }, { token: FormationEventRepository }, { token: i1.FabricDrawerService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailService, deps: [{ token: i0.Injector }, { token: StructureId }, { token: StructureRowDetailConfigArchive }, { token: FormationEventRepository }, { token: i1.FabricDrawerService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: StructureId }, { type: StructureRowDetailConfigArchive }, { type: FormationEventRepository }, { type: i1.FabricDrawerService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: StructureId }, { type: StructureRowDetailConfigArchive }, { type: FormationEventRepository }, { type: i1.FabricDrawerService }] });
 
 class StructureTitlePanelConfigArchive extends Archive {
     static titlePanelConfig = {
@@ -11593,46 +11560,39 @@ class RowSelection {
     };
 }
 
+class FormationWarehouse {
+    constructor() {
+    }
+}
+
 class SummariesEventRepository extends EventRepository {
     constructor() {
         super();
     }
 }
 
-class FormationWarehouse {
-    constructor() {
-    }
-}
-
 class StructureSummariesPanelComponent extends SmartComponent {
-    guiState;
-    structureId;
-    compositionId;
     structureSummariesEventRepository;
     translationService;
     sourceWarehouse;
-    formationWarehouse;
-    compositionTemplateWarehouse;
     enabled;
-    // @ts-ignore
+    state = inject((GuiState));
+    compositionId = inject(CompositionId);
+    structureId = inject(StructureId);
+    formationWarehouse = inject(FormationWarehouse);
+    compositionTemplateWarehouse = inject(CompositionTemplateWarehouse);
     headerColumns$ = this.compositionTemplateWarehouse.onHeaderCols(this.compositionId);
-    // @ts-ignore
-    state$ = this.guiState.select();
+    state$ = this.state.select();
     checkboxSelection$ = this.selectCheckboxSelection();
-    constructor(changeDetectorRef, elementRef, guiState, structureId, compositionId, structureSummariesEventRepository, translationService, sourceWarehouse, formationWarehouse, compositionTemplateWarehouse) {
+    constructor(changeDetectorRef, elementRef, structureSummariesEventRepository, translationService, sourceWarehouse) {
         super(changeDetectorRef, elementRef);
-        this.guiState = guiState;
-        this.structureId = structureId;
-        this.compositionId = compositionId;
         this.structureSummariesEventRepository = structureSummariesEventRepository;
         this.translationService = translationService;
         this.sourceWarehouse = sourceWarehouse;
-        this.formationWarehouse = formationWarehouse;
-        this.compositionTemplateWarehouse = compositionTemplateWarehouse;
         this.addClassToHost('gui-flex');
-        this.guiState.connect('summariesTranslations', this.selectSummariesTranslations());
-        this.guiState.connect('sourceEmpty', this.selectSourceEmpty());
-        this.guiState.connect('summaries', this.selectSummaries());
+        this.state.connect('summariesTranslations', this.selectSummariesTranslations());
+        this.state.connect('sourceEmpty', this.selectSourceEmpty());
+        this.state.connect('summaries', this.selectSummaries());
     }
     isSummariesTypePresent(summaries) {
         return summaries !== undefined && summaries !== null;
@@ -11668,18 +11628,19 @@ class StructureSummariesPanelComponent extends SmartComponent {
             return event.getSummaries();
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSummariesPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiState }, { token: StructureId }, { token: CompositionId }, { token: SummariesEventRepository }, { token: TranslationFacade }, { token: SourceWarehouse }, { token: FormationWarehouse }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: { enabled: "enabled" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSummariesPanelComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: SummariesEventRepository }, { token: TranslationFacade }, { token: SourceWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: { enabled: "enabled" }, providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<ng-container *ngIf=\"enabled && localState.summaries && !localState.sourceEmpty\">\n\n\t\t<div *ngIf=\"checkboxSelection$ | guiPush\"\n\t\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t\t</div>\n\n\t\t<div *ngFor=\"let column of headerColumns$ | guiPush\"\n\t\t\t [style.width.px]=\"column.width\"\n\t\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t\t<ng-container *ngIf=\"localState.summaries && !!localState.summaries.get(column.getFieldId().getId())\">\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t</div>\n\n\t\t\t</ng-container>\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<ng-container *ngIf=\"enabled && localState.summaries && !localState.sourceEmpty\">\n\n\t\t<div *ngIf=\"checkboxSelection$ | guiPush\"\n\t\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t\t</div>\n\n\t\t<div *ngFor=\"let column of headerColumns$ | guiPush\"\n\t\t\t [style.width.px]=\"column.width\"\n\t\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t\t<ng-container *ngIf=\"localState.summaries && !!localState.summaries.get(column.getFieldId().getId())\">\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t</div>\n\n\t\t\t</ng-container>\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSummariesPanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSummariesPanelComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-summaries-panel][enabled]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\t<ng-container *ngIf=\"enabled && localState.summaries && !localState.sourceEmpty\">\n\n\t\t<div *ngIf=\"checkboxSelection$ | guiPush\"\n\t\t\t class=\"gui-structure-summaries-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t\t</div>\n\n\t\t<div *ngFor=\"let column of headerColumns$ | guiPush\"\n\t\t\t [style.width.px]=\"column.width\"\n\t\t\t class=\"gui-structure-summaries-cell\">\n\n\t\t\t<ng-container *ngIf=\"localState.summaries && !!localState.summaries.get(column.getFieldId().getId())\">\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).count)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.countTooltip\">{{'summariesCount' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).count }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).distinct)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.distinctTooltip\">{{'summariesDist' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).distinct }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).sum)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t\t<span>\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t<span [gui-tooltip]=\"'Sum'\" -->\n\t\t\t\t\t\t\t<!--\t\t\t\t\t\t\t\t  class=\"gui-math-symbol\">&sum;</span>-->\n\t\t\t\t\t\t\t{{'summariesSum' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).sum }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).average)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Average'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-mean\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>_</span><span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.averageTooltip\">{{'summariesAvg' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).average }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).min)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Min'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&and;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.minTooltip\">\n\t\t\t\t\t\t\t{{'summariesMin' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).min }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\" isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).max)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Max'\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span class=\"gui-math-symbol\">&or;</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.maxTooltip\">\n\t\t\t\t\t\t\t{{'summariesMax' | guiTranslate}}\n\t\t\t\t\t\t</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).max }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).median)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div [gui-tooltip]=\"'Median'\"-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t class=\"gui-median\">-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>~</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t\t<span>X</span>-->\n\t\t\t\t\t<!--\t\t\t\t\t\t</div>-->\n\n\t\t\t\t\t<span [gui-tooltip]=\"localState.summariesTranslations.medTooltip\">{{'summariesMed' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).median }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).truthy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesTruthy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).truthy }}</span>\n\t\t\t\t</div>\n\n\t\t\t\t<div *ngIf=\"isSummariesTypePresent(localState.summaries.get(column.getFieldId().getId()).falsy)\"\n\t\t\t\t\t class=\"gui-structure-summaries-value\">\n\t\t\t\t\t<span>{{'summariesFalsy' | guiTranslate}}</span>\n\t\t\t\t\t<span class=\"gui-summaries-value\">{{ localState.summaries.get(column.getFieldId().getId()).falsy }}</span>\n\t\t\t\t</div>\n\n\t\t\t</ng-container>\n\t\t</div>\n\n\t</ng-container>\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiState }, { type: StructureId }, { type: CompositionId }, { type: SummariesEventRepository }, { type: TranslationFacade }, { type: SourceWarehouse }, { type: FormationWarehouse }, { type: CompositionTemplateWarehouse }]; }, propDecorators: { enabled: [{
-                type: Input
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: SummariesEventRepository }, { type: TranslationFacade }, { type: SourceWarehouse }], propDecorators: { enabled: [{
+                type: Input,
+                args: [{ required: true }]
             }] } });
 
 class StructureTopPanelComponent extends PureComponent {
@@ -11692,13 +11653,13 @@ class StructureTopPanelComponent extends PureComponent {
     getSelectorName() {
         return 'gui-structure-top-panel';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureTopPanelComponent, selector: "div[gui-structure-top-panel]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"\n\t gui-search-bar></div>\n\n<!--\t\t<div gui-filter-menu-trigger></div>-->\n", dependencies: [{ kind: "component", type: SearchComponent, selector: "div[gui-search-bar]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureTopPanelComponent, selector: "div[gui-structure-top-panel]", usesInheritance: true, ngImport: i0, template: "<div class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"\n\t gui-search-bar></div>\n\n<!--\t\t<div gui-filter-menu-trigger></div>-->\n", dependencies: [{ kind: "component", type: SearchComponent, selector: "div[gui-search-bar]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-top-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-flex gui-items-center gui-h-full gui-w-3/5 gui-mr-auto\"\n\t gui-search-bar></div>\n\n<!--\t\t<div gui-filter-menu-trigger></div>-->\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }] });
 
 class VerticalFormationWarehouse {
     constructor() {
@@ -11706,7 +11667,6 @@ class VerticalFormationWarehouse {
 }
 
 class UniqueValueListComponent extends SmartComponent {
-    state;
     structureId;
     filterWarehouse;
     filterCommandInvoker;
@@ -11716,11 +11676,10 @@ class UniqueValueListComponent extends SmartComponent {
         });
     }
     ;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
-    constructor(changeDetectorRef, elementRef, state, structureId, filterWarehouse, filterCommandInvoker) {
+    constructor(changeDetectorRef, elementRef, structureId, filterWarehouse, filterCommandInvoker) {
         super(changeDetectorRef, elementRef);
-        this.state = state;
         this.structureId = structureId;
         this.filterWarehouse = filterWarehouse;
         this.filterCommandInvoker = filterCommandInvoker;
@@ -11788,17 +11747,17 @@ class UniqueValueListComponent extends SmartComponent {
             }));
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiState }, { token: StructureId }, { token: FilterWarehouse }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: UniqueValueListComponent, selector: "div[gui-unique-value-list][fieldId]", inputs: { fieldId: "fieldId" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: FilterWarehouse }, { token: FilterPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: UniqueValueListComponent, selector: "div[gui-unique-value-list][fieldId]", inputs: { fieldId: "fieldId" }, providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let state\">\n\t<gui-checkbox (changed)=\"toggleAllSelect()\"\n\t\t\t\t  [checked]=\"state.selectAllChecked\"\n\t\t\t\t  [indeterminate]=\"state.selectAllIndeterminate\">\n\t\tSelect all\n\t</gui-checkbox>\n\n\t<div class=\"gui-unique-value-list-container gui-overflow-y-auto gui-overflow-x-hidden\">\n\t\t<div *ngFor=\"let value of state.uniqueValues\">\n\t\t\t<gui-checkbox (changed)=\"toggleSelect(value)\"\n\t\t\t\t\t\t  [checked]=\"value.isEnabled()\">\n\t\t\t\t{{value.getValue()}}\n\t\t\t</gui-checkbox>\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-unique-value-list-actions gui-px-4 gui-pb-4 gui-pt-2 gui-flex gui-justify-end\">\n\t\t<button (click)=\"clearFilters()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tclass=\"gui-clear-unique-filters gui-px-4 gui-py-2\"\n\t\t\t\tgui-button>\n\t\t\tClear\n\t\t</button>\n\t</div>\n</ng-container>\n", styles: [".gui-unique-value-list-container{max-height:300px}\n"], dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let state\">\n\t<gui-checkbox (changed)=\"toggleAllSelect()\"\n\t\t\t\t  [checked]=\"state.selectAllChecked\"\n\t\t\t\t  [indeterminate]=\"state.selectAllIndeterminate\">\n\t\tSelect all\n\t</gui-checkbox>\n\n\t<div class=\"gui-unique-value-list-container gui-overflow-y-auto gui-overflow-x-hidden\">\n\t\t<div *ngFor=\"let value of state.uniqueValues\">\n\t\t\t<gui-checkbox (changed)=\"toggleSelect(value)\"\n\t\t\t\t\t\t  [checked]=\"value.isEnabled()\">\n\t\t\t\t{{value.getValue()}}\n\t\t\t</gui-checkbox>\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-unique-value-list-actions gui-px-4 gui-pb-4 gui-pt-2 gui-flex gui-justify-end\">\n\t\t<button (click)=\"clearFilters()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tclass=\"gui-clear-unique-filters gui-px-4 gui-py-2\"\n\t\t\t\tgui-button>\n\t\t\tClear\n\t\t</button>\n\t</div>\n</ng-container>\n", styles: [".gui-unique-value-list-container{max-height:300px}\n"], dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-unique-value-list][fieldId]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let state\">\n\t<gui-checkbox (changed)=\"toggleAllSelect()\"\n\t\t\t\t  [checked]=\"state.selectAllChecked\"\n\t\t\t\t  [indeterminate]=\"state.selectAllIndeterminate\">\n\t\tSelect all\n\t</gui-checkbox>\n\n\t<div class=\"gui-unique-value-list-container gui-overflow-y-auto gui-overflow-x-hidden\">\n\t\t<div *ngFor=\"let value of state.uniqueValues\">\n\t\t\t<gui-checkbox (changed)=\"toggleSelect(value)\"\n\t\t\t\t\t\t  [checked]=\"value.isEnabled()\">\n\t\t\t\t{{value.getValue()}}\n\t\t\t</gui-checkbox>\n\t\t</div>\n\t</div>\n\n\t<div class=\"gui-unique-value-list-actions gui-px-4 gui-pb-4 gui-pt-2 gui-flex gui-justify-end\">\n\t\t<button (click)=\"clearFilters()\"\n\t\t\t\t[outline]=\"true\"\n\t\t\t\t[primary]=\"true\"\n\t\t\t\tclass=\"gui-clear-unique-filters gui-px-4 gui-py-2\"\n\t\t\t\tgui-button>\n\t\t\tClear\n\t\t</button>\n\t</div>\n</ng-container>\n", styles: [".gui-unique-value-list-container{max-height:300px}\n"] }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiState }, { type: StructureId }, { type: FilterWarehouse }, { type: FilterPublisher }]; }, propDecorators: { fieldId: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FilterWarehouse }, { type: FilterPublisher }], propDecorators: { fieldId: [{
                 type: Input
             }] } });
 
@@ -11853,8 +11812,8 @@ class StructureArrowIconComponent extends IconComponent {
             }
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: { position: "position", sort: "sort" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: { position: "position", sort: "sort" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: `
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.04 11.72">
 			<line class="cls-1" x1="5.02" y1="2.15" x2="5.02" y2="10.97"/>
 			<line class="cls-1" x1="5.02" y1="0.75" x2="9.29" y2="5.02"/>
@@ -11862,7 +11821,7 @@ class StructureArrowIconComponent extends IconComponent {
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-arrow-icon]',
@@ -11876,7 +11835,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { position: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }], propDecorators: { position: [{
                 type: Input
             }], sort: [{
                 type: Input
@@ -11884,7 +11843,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
 
 class StructureColumnConfigSortComponent extends SmartComponent {
     changeDetectorRef;
-    state;
     compositionId;
     structureId;
     sortingCommandDispatcher;
@@ -11895,16 +11853,14 @@ class StructureColumnConfigSortComponent extends SmartComponent {
         });
     }
     dropdownTextTranslation;
+    state = inject((GuiState));
     placement = Placement.Right;
     status = SortOrder;
     StructureArrowPosition = StructureArrowPosition;
-    // @ts-ignore
-    sortOrder$ = this.state
-        .select('sortOrder');
-    constructor(changeDetectorRef, elementRef, state, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
+    sortOrder$ = this.state.select('sortOrder');
+    constructor(changeDetectorRef, elementRef, compositionId, structureId, sortingCommandDispatcher, compositionReadModelService) {
         super(changeDetectorRef, elementRef);
         this.changeDetectorRef = changeDetectorRef;
-        this.state = state;
         this.compositionId = compositionId;
         this.structureId = structureId;
         this.sortingCommandDispatcher = sortingCommandDispatcher;
@@ -11937,17 +11893,17 @@ class StructureColumnConfigSortComponent extends SmartComponent {
                 .onSortOrder(fieldId, this.compositionId);
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigSortComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiState }, { token: CompositionId }, { token: StructureId }, { token: SortingPublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnConfigSortComponent, selector: "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", inputs: { column: "column", dropdownTextTranslation: "dropdownTextTranslation" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigSortComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: CompositionId }, { token: StructureId }, { token: SortingPublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnConfigSortComponent, selector: "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", inputs: { column: "column", dropdownTextTranslation: "dropdownTextTranslation" }, providers: [
             GuiState
         ], usesInheritance: true, ngImport: i0, template: "<gui-dropdown *guiLet=\"sortOrder$; let sortOrder\"\n\t\t\t  [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t  [placement]=\"placement\"\n\t\t\t  [showOnHover]=\"true\"\n\t\t\t  [width]=\"225\"\n\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}\n\t\t\t<div [sort]=\"true\" gui-structure-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}\n\t\t\t<div [position]=\"StructureArrowPosition.DOWN\" [sort]=\"true\" gui-structure-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t{{'headerMenuMainTabColumnSortNone' | guiTranslate}}\n\t</gui-dropdown-item>\n\n</gui-dropdown>\n", dependencies: [{ kind: "component", type: i1.FabricDropdownComponent, selector: "gui-dropdown", inputs: ["disabled", "dropdownText", "isArrowEnabled", "placement", "width", "showOnHover"] }, { kind: "component", type: i1.FabricDropdownItemComponent, selector: "gui-dropdown-item" }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigSortComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigSortComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-column-config-sort][column][dropdownTextTranslation]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<gui-dropdown *guiLet=\"sortOrder$; let sortOrder\"\n\t\t\t  [dropdownText]=\"dropdownTextTranslation\"\n\t\t\t  [placement]=\"placement\"\n\t\t\t  [showOnHover]=\"true\"\n\t\t\t  [width]=\"225\"\n\t\t\t  class=\"gui-header-menu-dropdown\">\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.ASC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isAscSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortAscending' | guiTranslate}}\n\t\t\t<div [sort]=\"true\" gui-structure-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.DESC)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isDescSort()\">\n\t\t<div class=\"gui-sort-title\">\n\t\t\t{{'headerMenuMainTabColumnSortDescending' | guiTranslate}}\n\t\t\t<div [position]=\"StructureArrowPosition.DOWN\" [sort]=\"true\" gui-structure-arrow-icon>\n\t\t\t</div>\n\t\t</div>\n\t</gui-dropdown-item>\n\n\t<gui-dropdown-item (click)=\"setSortOrder(status.NONE)\"\n\t\t\t\t\t   [class.gui-header-item-active]=\"isNoneSort()\">\n\t\t{{'headerMenuMainTabColumnSortNone' | guiTranslate}}\n\t</gui-dropdown-item>\n\n</gui-dropdown>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiState }, { type: CompositionId }, { type: StructureId }, { type: SortingPublisher }, { type: CompositionWarehouse }]; }, propDecorators: { column: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: CompositionId }, { type: StructureId }, { type: SortingPublisher }, { type: CompositionWarehouse }], propDecorators: { column: [{
                 type: Input
             }], dropdownTextTranslation: [{
                 type: Input
@@ -11965,13 +11921,13 @@ class StructureColumnConfigColumnHideComponent extends PureComponent {
     getSelectorName() {
         return 'gui-structure-column-config-column-hide';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigColumnHideComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnConfigColumnHideComponent, selector: "div[gui-structure-column-config-column-hide]", inputs: { column: "column" }, outputs: { columnHidden: "columnHidden" }, usesInheritance: true, ngImport: i0, template: "<div (click)=\"hideColumn()\"\n\t class=\"gui-header-menu-item\">\n\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n</div>\n", dependencies: [{ kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigColumnHideComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnConfigColumnHideComponent, selector: "div[gui-structure-column-config-column-hide]", inputs: { column: "column" }, outputs: { columnHidden: "columnHidden" }, usesInheritance: true, ngImport: i0, template: "<div (click)=\"hideColumn()\"\n\t class=\"gui-header-menu-item\">\n\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n</div>\n", dependencies: [{ kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigColumnHideComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigColumnHideComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-column-config-column-hide]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div (click)=\"hideColumn()\"\n\t class=\"gui-header-menu-item\">\n\t{{'headerMenuMainTabHideColumn' | guiTranslate}}\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { column: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { column: [{
                 type: Input
             }], columnHidden: [{
                 type: Output
@@ -11994,13 +11950,13 @@ class StructureColumnConfigColumnMoveComponent extends PureComponent {
     getSelectorName() {
         return 'gui-structure-column-config-column-move';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigColumnMoveComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnConfigColumnMoveComponent, selector: "div[gui-structure-column-config-column-move][column]", inputs: { column: "column" }, outputs: { movedLeft: "movedLeft", movedRight: "movedRight" }, usesInheritance: true, ngImport: i0, template: "<div class=\"gui-header-menu-column-move\">\n\t<div (click)=\"moveLeft()\"\n\t\t class=\"gui-header-menu-column-move-item left\">\n\t\t<div [position]=\"StructureArrowPosition.LEFT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t</div>\n\n\t<div (click)=\"moveRight()\"\n\t\t class=\"gui-header-menu-column-move-item right\">\n\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t<div [position]=\"StructureArrowPosition.RIGHT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t</div>\n</div>\n", dependencies: [{ kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigColumnMoveComponent, deps: [{ token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnConfigColumnMoveComponent, selector: "div[gui-structure-column-config-column-move][column]", inputs: { column: "column" }, outputs: { movedLeft: "movedLeft", movedRight: "movedRight" }, usesInheritance: true, ngImport: i0, template: "<div class=\"gui-header-menu-column-move\">\n\t<div (click)=\"moveLeft()\"\n\t\t class=\"gui-header-menu-column-move-item left\">\n\t\t<div [position]=\"StructureArrowPosition.LEFT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t</div>\n\n\t<div (click)=\"moveRight()\"\n\t\t class=\"gui-header-menu-column-move-item right\">\n\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t<div [position]=\"StructureArrowPosition.RIGHT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t</div>\n</div>\n", dependencies: [{ kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigColumnMoveComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigColumnMoveComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-column-config-column-move][column]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div class=\"gui-header-menu-column-move\">\n\t<div (click)=\"moveLeft()\"\n\t\t class=\"gui-header-menu-column-move-item left\">\n\t\t<div [position]=\"StructureArrowPosition.LEFT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t\t{{'headerMenuMainTabMoveLeft' | guiTranslate}}\n\t</div>\n\n\t<div (click)=\"moveRight()\"\n\t\t class=\"gui-header-menu-column-move-item right\">\n\t\t{{'headerMenuMainTabMoveRight' | guiTranslate}}\n\t\t<div [position]=\"StructureArrowPosition.RIGHT\"\n\t\t\t gui-structure-arrow-icon></div>\n\t</div>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }]; }, propDecorators: { column: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }], propDecorators: { column: [{
                 type: Input
             }], movedLeft: [{
                 type: Output
@@ -12009,8 +11965,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             }] } });
 
 class StructureColumnConfigComponent extends SmartComponent {
-    changeDetectorRef;
-    state;
     translationFacade;
     structureColumnMenuConfigArchive;
     compositionId;
@@ -12018,13 +11972,11 @@ class StructureColumnConfigComponent extends SmartComponent {
     injector;
     column;
     headerSortMenu;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
     structureColumnConfigService;
-    constructor(changeDetectorRef, elementRef, state, translationFacade, structureColumnMenuConfigArchive, compositionId, compositionCommandInvoker, injector, column) {
+    constructor(changeDetectorRef, elementRef, translationFacade, structureColumnMenuConfigArchive, compositionId, compositionCommandInvoker, injector, column) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
-        this.state = state;
         this.translationFacade = translationFacade;
         this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
         this.compositionId = compositionId;
@@ -12063,20 +12015,20 @@ class StructureColumnConfigComponent extends SmartComponent {
             .on()
             .pipe(hermesMap((config) => config.isEnabled()));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: GuiState }, { token: TranslationFacade }, { token: StructureColumnMenuConfigArchive }, { token: CompositionId }, { token: CompositionPublisher }, { token: i0.Injector }, { token: 'column' }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnConfigComponent, selector: "div[gui-column-config]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: TranslationFacade }, { token: StructureColumnMenuConfigArchive }, { token: CompositionId }, { token: CompositionPublisher }, { token: i0.Injector }, { token: 'column' }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnConfigComponent, selector: "div[gui-column-config]", providers: [
             GuiState
-        ], viewQueries: [{ propertyName: "headerSortMenu", first: true, predicate: ["headerSortMenu"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *ngIf=\"localState.isEnabled\"\n\t\t class=\"gui-header-menu-tab\">\n\n\t\t<gui-tab [active]=\"localState.config.getActiveMenu()\"\n\t\t\t\t [menu]=\"localState.config.getMenus()\">\n\n\t\t\t<ng-container *ngIf=\"localState.config.isMainEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuMainTab\"\n\t\t\t\t\t\t\t  class=\"gui-tab-item-dropdown\">\n\n\t\t\t\t\t<div *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t [dropdownTextTranslation]=\"localState.translations.headerMenuMainTabColumnSort\"\n\t\t\t\t\t\t gui-structure-column-config-sort>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (columnHidden)=\"hideColumn()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-hide>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (click)=\"highlightColumn()\"\n\t\t\t\t\t\t class=\"gui-header-menu-item\">\n\t\t\t\t\t\t{{'headerMenuMainTabHighlightColumn' | guiTranslate}}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (movedLeft)=\"moveLeft()\"\n\t\t\t\t\t\t (movedRight)=\"moveRight()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-move>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isFilteringEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuFilterTab\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t\t<div [fieldId]=\"column.getFieldId()\"\n\t\t\t\t\t\t gui-unique-value-list>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isColumnManagerEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuColumnsTab\">\n\n\t\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t</gui-tab>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricTabComponent, selector: "gui-tab", inputs: ["menu", "active", "scrollActive"] }, { kind: "component", type: i1.FabricTabItemComponent, selector: "gui-tab-item", inputs: ["tab"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureMenuColumnManagerComponent, selector: "div[gui-structure-menu-column-manager]" }, { kind: "component", type: UniqueValueListComponent, selector: "div[gui-unique-value-list][fieldId]", inputs: ["fieldId"] }, { kind: "component", type: StructureColumnConfigSortComponent, selector: "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", inputs: ["column", "dropdownTextTranslation"] }, { kind: "component", type: StructureColumnConfigColumnHideComponent, selector: "div[gui-structure-column-config-column-hide]", inputs: ["column"], outputs: ["columnHidden"] }, { kind: "component", type: StructureColumnConfigColumnMoveComponent, selector: "div[gui-structure-column-config-column-move][column]", inputs: ["column"], outputs: ["movedLeft", "movedRight"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], viewQueries: [{ propertyName: "headerSortMenu", first: true, predicate: ["headerSortMenu"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *ngIf=\"localState.isEnabled\"\n\t\t class=\"gui-header-menu-tab\">\n\n\t\t<gui-tab [active]=\"localState.config.getActiveMenu()\"\n\t\t\t\t [menu]=\"localState.config.getMenus()\">\n\n\t\t\t<ng-container *ngIf=\"localState.config.isMainEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuMainTab\"\n\t\t\t\t\t\t\t  class=\"gui-tab-item-dropdown\">\n\n\t\t\t\t\t<div *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t [dropdownTextTranslation]=\"localState.translations.headerMenuMainTabColumnSort\"\n\t\t\t\t\t\t gui-structure-column-config-sort>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (columnHidden)=\"hideColumn()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-hide>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (click)=\"highlightColumn()\"\n\t\t\t\t\t\t class=\"gui-header-menu-item\">\n\t\t\t\t\t\t{{'headerMenuMainTabHighlightColumn' | guiTranslate}}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (movedLeft)=\"moveLeft()\"\n\t\t\t\t\t\t (movedRight)=\"moveRight()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-move>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isFilteringEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuFilterTab\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t\t<div [fieldId]=\"column.getFieldId()\"\n\t\t\t\t\t\t gui-unique-value-list>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isColumnManagerEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuColumnsTab\">\n\n\t\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t</gui-tab>\n\t</div>\n\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricTabComponent, selector: "gui-tab", inputs: ["menu", "active", "scrollActive"] }, { kind: "component", type: i1.FabricTabItemComponent, selector: "gui-tab-item", inputs: ["tab"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureMenuColumnManagerComponent, selector: "div[gui-structure-menu-column-manager]" }, { kind: "component", type: UniqueValueListComponent, selector: "div[gui-unique-value-list][fieldId]", inputs: ["fieldId"] }, { kind: "component", type: StructureColumnConfigSortComponent, selector: "div[gui-structure-column-config-sort][column][dropdownTextTranslation]", inputs: ["column", "dropdownTextTranslation"] }, { kind: "component", type: StructureColumnConfigColumnHideComponent, selector: "div[gui-structure-column-config-column-hide]", inputs: ["column"], outputs: ["columnHidden"] }, { kind: "component", type: StructureColumnConfigColumnMoveComponent, selector: "div[gui-structure-column-config-column-move][column]", inputs: ["column"], outputs: ["movedLeft", "movedRight"] }, { kind: "pipe", type: TranslationPipe, name: "guiTranslate" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-column-config]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\n\t<div *ngIf=\"localState.isEnabled\"\n\t\t class=\"gui-header-menu-tab\">\n\n\t\t<gui-tab [active]=\"localState.config.getActiveMenu()\"\n\t\t\t\t [menu]=\"localState.config.getMenus()\">\n\n\t\t\t<ng-container *ngIf=\"localState.config.isMainEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuMainTab\"\n\t\t\t\t\t\t\t  class=\"gui-tab-item-dropdown\">\n\n\t\t\t\t\t<div *ngIf=\"column.isSortEnabled()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t [dropdownTextTranslation]=\"localState.translations.headerMenuMainTabColumnSort\"\n\t\t\t\t\t\t gui-structure-column-config-sort>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (columnHidden)=\"hideColumn()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-hide>\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (click)=\"highlightColumn()\"\n\t\t\t\t\t\t class=\"gui-header-menu-item\">\n\t\t\t\t\t\t{{'headerMenuMainTabHighlightColumn' | guiTranslate}}\n\t\t\t\t\t</div>\n\n\t\t\t\t\t<div (movedLeft)=\"moveLeft()\"\n\t\t\t\t\t\t (movedRight)=\"moveRight()\"\n\t\t\t\t\t\t [column]=\"column\"\n\t\t\t\t\t\t gui-structure-column-config-column-move>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isFilteringEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuFilterTab\">\n\n\t\t\t\t\t<!--\t\t\t\t\t\t<div class=\"gui-header-menu-item\">{{config.getFilterMenu()}}</div>-->\n\n\t\t\t\t\t<div [fieldId]=\"column.getFieldId()\"\n\t\t\t\t\t\t gui-unique-value-list>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t\t<ng-container *ngIf=\"localState.config.isColumnManagerEnabled()\">\n\n\t\t\t\t<gui-tab-item [tab]=\"localState.translations.headerMenuColumnsTab\">\n\n\t\t\t\t\t<div gui-structure-menu-column-manager>\n\t\t\t\t\t</div>\n\n\t\t\t\t</gui-tab-item>\n\n\t\t\t</ng-container>\n\n\t\t</gui-tab>\n\t</div>\n\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: GuiState }, { type: TranslationFacade }, { type: StructureColumnMenuConfigArchive }, { type: CompositionId }, { type: CompositionPublisher }, { type: i0.Injector }, { type: CellTemplateWithContext, decorators: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: TranslationFacade }, { type: StructureColumnMenuConfigArchive }, { type: CompositionId }, { type: CompositionPublisher }, { type: i0.Injector }, { type: CellTemplateWithContext, decorators: [{
                     type: Inject,
                     args: ['column']
-                }] }]; }, propDecorators: { headerSortMenu: [{
+                }] }], propDecorators: { headerSortMenu: [{
                 type: ViewChild,
                 args: ['headerSortMenu', { read: ElementRef, static: false }]
             }] } });
@@ -12120,24 +12072,21 @@ class StructureColumnConfigService extends Reactive {
     close() {
         this.inlineDialogService.close();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigService, deps: [{ token: i0.Injector }, { token: SchemaReadModelRootId }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricInlineDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigService, deps: [{ token: i0.Injector }, { token: SchemaReadModelRootId }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricInlineDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricInlineDialogService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricInlineDialogService }] });
 
 class SelectCustomModalComponent extends DynamicallyCreatedComponent {
-    structureId;
     formationPublisher;
-    formationWarehouse;
-    // @ts-ignore
+    structureId = inject(StructureId);
+    formationWarehouse = inject(FormationWarehouse);
     selection$ = this.formationWarehouse.onCustomSelections(this.structureId);
-    constructor(elRef, structureId, formationPublisher, formationWarehouse) {
+    constructor(elRef, formationPublisher) {
         super(elRef);
-        this.structureId = structureId;
         this.formationPublisher = formationPublisher;
-        this.formationWarehouse = formationWarehouse;
     }
     selectCustom(id) {
         this.formationPublisher.selectCustom(id, this.structureId);
@@ -12145,13 +12094,13 @@ class SelectCustomModalComponent extends DynamicallyCreatedComponent {
     getSelectorName() {
         return 'gui-select-custom-modal';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectCustomModalComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SelectCustomModalComponent, selector: "div[gui-select-custom-modal]", usesInheritance: true, ngImport: i0, template: "<ul *guiLet=\"selection$; let selection\">\n\t<li (click)=\"selectCustom(sel.getCustomSelectId())\"\n\t\t*ngFor=\"let sel of selection.getSelections()\"\n\t\t[attr.id]=\"sel.key\">\n\t\t{{sel.text}}\n\t</li>\n</ul>\n", styles: [".gui-select-custom-modal{background:#fff;border:1px solid #d6d6d6;border-radius:0 0 4px 4px}.gui-select-custom-modal ul{list-style:none;margin:0;padding:0}.gui-select-custom-modal ul li{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;cursor:pointer;display:block;font:14px Arial;padding:8px 12px}\n"], dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectCustomModalComponent, deps: [{ token: i0.ElementRef }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SelectCustomModalComponent, selector: "div[gui-select-custom-modal]", usesInheritance: true, ngImport: i0, template: "<ul *guiLet=\"selection$; let selection\">\n\t<li (click)=\"selectCustom(sel.getCustomSelectId())\"\n\t\t*ngFor=\"let sel of selection.getSelections()\"\n\t\t[attr.id]=\"sel.key\">\n\t\t{{sel.text}}\n\t</li>\n</ul>\n", styles: [".gui-select-custom-modal{background:#fff;border:1px solid #d6d6d6;border-radius:0 0 4px 4px}.gui-select-custom-modal ul{list-style:none;margin:0;padding:0}.gui-select-custom-modal ul li{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;cursor:pointer;display:block;font:14px Arial;padding:8px 12px}\n"], dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectCustomModalComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectCustomModalComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-select-custom-modal]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ul *guiLet=\"selection$; let selection\">\n\t<li (click)=\"selectCustom(sel.getCustomSelectId())\"\n\t\t*ngFor=\"let sel of selection.getSelections()\"\n\t\t[attr.id]=\"sel.key\">\n\t\t{{sel.text}}\n\t</li>\n</ul>\n", styles: [".gui-select-custom-modal{background:#fff;border:1px solid #d6d6d6;border-radius:0 0 4px 4px}.gui-select-custom-modal ul{list-style:none;margin:0;padding:0}.gui-select-custom-modal ul li{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;cursor:pointer;display:block;font:14px Arial;padding:8px 12px}\n"] }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: FormationPublisher }] });
 
 class StructureSelectCustomService extends Reactive {
     injector;
@@ -12184,25 +12133,21 @@ class StructureSelectCustomService extends Reactive {
     close() {
         this.inlineDialogService.close();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSelectCustomService, deps: [{ token: i0.Injector }, { token: SchemaReadModelRootId }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricInlineDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSelectCustomService });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSelectCustomService, deps: [{ token: i0.Injector }, { token: SchemaReadModelRootId }, { token: SchemaWarehouse }, { token: StructureThemeConverter }, { token: i1.FabricInlineDialogService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSelectCustomService });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSelectCustomService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSelectCustomService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricInlineDialogService }]; } });
+        }], ctorParameters: () => [{ type: i0.Injector }, { type: SchemaReadModelRootId }, { type: SchemaWarehouse }, { type: StructureThemeConverter }, { type: i1.FabricInlineDialogService }] });
 
 class SelectAllComponent extends GuiComponent {
-    state;
     structureId;
     formationCommandDispatcher;
     formationWarehouse;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
-    constructor(elementRef, 
-    // @ts-ignore
-    state, structureId, formationCommandDispatcher, formationWarehouse) {
+    constructor(elementRef, structureId, formationCommandDispatcher, formationWarehouse) {
         super(elementRef);
-        this.state = state;
         this.structureId = structureId;
         this.formationCommandDispatcher = formationCommandDispatcher;
         this.formationWarehouse = formationWarehouse;
@@ -12250,17 +12195,17 @@ class SelectAllComponent extends GuiComponent {
             return rowSelectedReadModel.isIndeterminate();
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectAllComponent, deps: [{ token: i0.ElementRef }, { token: GuiState }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SelectAllComponent, selector: "div[gui-select-all]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectAllComponent, deps: [{ token: i0.ElementRef }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SelectAllComponent, selector: "div[gui-select-all]", providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<gui-checkbox (changed)=\"toggleSelectAll(localState.isAllIndeterminate, localState.isAllChecked)\"\n\t\t\t\t  *ngIf=\"localState.modeMulti\"\n\t\t\t\t  [checked]=\"localState.isAllChecked\"\n\t\t\t\t  [gui-tooltip]=\"'Select'\"\n\t\t\t\t  [indeterminate]=\"localState.isAllIndeterminate\">\n\t</gui-checkbox>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<gui-checkbox (changed)=\"toggleSelectAll(localState.isAllIndeterminate, localState.isAllChecked)\"\n\t\t\t\t  *ngIf=\"localState.modeMulti\"\n\t\t\t\t  [checked]=\"localState.isAllChecked\"\n\t\t\t\t  [gui-tooltip]=\"'Select'\"\n\t\t\t\t  [indeterminate]=\"localState.isAllIndeterminate\">\n\t</gui-checkbox>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "directive", type: i1.FabricTooltipDirective, selector: "[gui-tooltip]", inputs: ["gui-tooltip"], exportAs: ["guiTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectAllComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectAllComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-select-all]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\t<gui-checkbox (changed)=\"toggleSelectAll(localState.isAllIndeterminate, localState.isAllChecked)\"\n\t\t\t\t  *ngIf=\"localState.modeMulti\"\n\t\t\t\t  [checked]=\"localState.isAllChecked\"\n\t\t\t\t  [gui-tooltip]=\"'Select'\"\n\t\t\t\t  [indeterminate]=\"localState.isAllIndeterminate\">\n\t</gui-checkbox>\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: GuiState }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }] });
 
 class StructureColumnMenuIconComponent extends IconComponent {
     constructor(elementRef, changeDetectorRef) {
@@ -12269,8 +12214,8 @@ class StructureColumnMenuIconComponent extends IconComponent {
     getSelectorName() {
         return 'gui-structure-column-menu-icon';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]", usesInheritance: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuIconComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]", usesInheritance: true, ngImport: i0, template: `
 		<svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.32 7.46">
 			<line class="cls-1" x1="9.57" y1="3.73" x2="0.75" y2="3.73"/>
 			<line class="cls-1" x1="9.57" y1="0.75" x2="0.75" y2="0.75"/>
@@ -12278,7 +12223,7 @@ class StructureColumnMenuIconComponent extends IconComponent {
 		</svg>
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuIconComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuIconComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-menu-icon]',
@@ -12292,29 +12237,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }] });
 
 class StructureColumnConfigTriggerComponent extends SmartComponent {
-    elementRef;
-    changeDetectorRef;
-    structureColumnMenuConfigArchive;
     structureColumnConfigService;
     headerDialogContainer;
     column;
+    structureColumnMenuConfigArchive = inject(StructureColumnMenuConfigArchive);
     isEnabled$ = this.selectIsEnabled();
-    constructor(elementRef, changeDetectorRef, structureColumnMenuConfigArchive, structureColumnConfigService) {
+    constructor(elementRef, changeDetectorRef, structureColumnConfigService) {
         super(changeDetectorRef, elementRef);
-        this.elementRef = elementRef;
-        this.changeDetectorRef = changeDetectorRef;
-        this.structureColumnMenuConfigArchive = structureColumnMenuConfigArchive;
         this.structureColumnConfigService = structureColumnConfigService;
     }
     openConfigDialog() {
         this.structureColumnConfigService.open(this.headerDialogContainer, this.column);
     }
-    // closeConfigDialog(): void {
-    // 	this.structureColumnConfigService.close();
-    // }
     getSelectorName() {
         return 'gui-structure-column-config-trigger';
     }
@@ -12325,13 +12262,13 @@ class StructureColumnConfigTriggerComponent extends SmartComponent {
             return config.isEnabled();
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigTriggerComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: StructureColumnMenuConfigArchive }, { token: StructureColumnConfigService }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: { column: "column" }, viewQueries: [{ propertyName: "headerDialogContainer", first: true, predicate: ["headerDialogContainer"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div #headerDialogContainer\n\t (click)=\"openConfigDialog()\"\n\t *guiIf=\"isEnabled$\"\n\t class=\"gui-header-menu-icon-wrapper\">\n\n\t<div [ngClass]=\"'gui-header-menu-icon'\" gui-structure-menu-icon></div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigTriggerComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: StructureColumnConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: { column: "column" }, viewQueries: [{ propertyName: "headerDialogContainer", first: true, predicate: ["headerDialogContainer"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div #headerDialogContainer\n\t (click)=\"openConfigDialog()\"\n\t *guiIf=\"isEnabled$\"\n\t class=\"gui-header-menu-icon-wrapper\">\n\n\t<div [ngClass]=\"'gui-header-menu-icon'\" gui-structure-menu-icon></div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: StructureColumnMenuIconComponent, selector: "div[gui-structure-menu-icon]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnConfigTriggerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnConfigTriggerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-column-config-trigger]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div #headerDialogContainer\n\t (click)=\"openConfigDialog()\"\n\t *guiIf=\"isEnabled$\"\n\t class=\"gui-header-menu-icon-wrapper\">\n\n\t<div [ngClass]=\"'gui-header-menu-icon'\" gui-structure-menu-icon></div>\n\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: StructureColumnMenuConfigArchive }, { type: StructureColumnConfigService }]; }, propDecorators: { headerDialogContainer: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: StructureColumnConfigService }], propDecorators: { headerDialogContainer: [{
                 type: ViewChild,
                 args: ['headerDialogContainer', { read: ElementRef, static: false }]
             }], column: [{
@@ -12373,19 +12310,19 @@ class StructureHeaderColumnsComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-structure-header-columns';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderColumnsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: StructureSelectCustomService }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: { columns: "columns", showSelection: "showSelection" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderColumnsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: StructureSelectCustomService }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: { columns: "columns", showSelection: "showSelection" }, providers: [
             StructureColumnConfigService,
             StructureSelectCustomService
-        ], viewQueries: [{ propertyName: "selectCustomContainer", first: true, predicate: ["selectCustomContainer"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"showSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<!--<div *ngIf=\"showCustom\"-->\n<!--\t class=\"gui-header-cell gui-row-checkbox-->\n<!--\t gui-flex gui-justify-between-->\n<!--\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border-->\n<!--\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">-->\n<!--\t<div #selectCustomContainer-->\n<!--\t\t (click)=\"openConfigDialog()\">-->\n<!--\t\t<div gui-structure-menu-icon></div>-->\n<!--\t</div>-->\n<!--</div>-->\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }, { kind: "component", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: ["column"] }, { kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], viewQueries: [{ propertyName: "selectCustomContainer", first: true, predicate: ["selectCustomContainer"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"showSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<!--<div *ngIf=\"showCustom\"-->\n<!--\t class=\"gui-header-cell gui-row-checkbox-->\n<!--\t gui-flex gui-justify-between-->\n<!--\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border-->\n<!--\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">-->\n<!--\t<div #selectCustomContainer-->\n<!--\t\t (click)=\"openConfigDialog()\">-->\n<!--\t\t<div gui-structure-menu-icon></div>-->\n<!--\t</div>-->\n<!--</div>-->\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }, { kind: "component", type: StructureColumnConfigTriggerComponent, selector: "div[gui-structure-column-config-trigger]", inputs: ["column"] }, { kind: "component", type: StructureArrowIconComponent, selector: "div[gui-structure-arrow-icon]", inputs: ["position", "sort"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderColumnsComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderColumnsComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-header-columns][columns]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         StructureColumnConfigService,
                         StructureSelectCustomService
                     ], template: "<div *ngIf=\"showSelection\"\n\t class=\"gui-header-cell gui-row-checkbox\n\t gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<!--<div *ngIf=\"showCustom\"-->\n<!--\t class=\"gui-header-cell gui-row-checkbox-->\n<!--\t gui-flex gui-justify-between-->\n<!--\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border-->\n<!--\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">-->\n<!--\t<div #selectCustomContainer-->\n<!--\t\t (click)=\"openConfigDialog()\">-->\n<!--\t\t<div gui-structure-menu-icon></div>-->\n<!--\t</div>-->\n<!--</div>-->\n\n<div (click)=\"toggleSort(column)\"\n\t *ngFor=\"let column of columns\"\n\t [class]=\"column.getCssClasses()\"\n\t [ngClass]=\"{'gui-header-sortable': column.isSortEnabled()}\"\n\t [style.width.px]=\"column.width\"\n\t [style]=\"column.getStyles()\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"column.viewTemplate;\n\t\t\t\t\t\t\t\t   context: column.context\">\n\t\t</ng-container>\n\n\t\t<div *ngIf=\"!column.isNoSort()\"\n\t\t\t [position]=\"column.getSortStatus()\"\n\t\t\t [sort]=\"true\"\n\t\t\t class=\"gui-ml-6\"\n\t\t\t gui-structure-arrow-icon>\n\t\t</div>\n\n\t</div>\n\n\t<div class=\"gui-header-menu\">\n\t\t<div [column]=\"column\"\n\t\t\t gui-structure-column-config-trigger>\n\t\t</div>\n\t</div>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: StructureSelectCustomService }, { type: FormationPublisher }, { type: SortingPublisher }]; }, propDecorators: { selectCustomContainer: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: StructureSelectCustomService }, { type: FormationPublisher }, { type: SortingPublisher }], propDecorators: { selectCustomContainer: [{
                 type: ViewChild,
                 args: ['selectCustomContainer', { read: ElementRef, static: false }]
             }], columns: [{
@@ -12433,17 +12370,17 @@ class StructureHeaderGroupsComponent extends PureComponent {
     getSelectorName() {
         return 'gui-structure-header-groups';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderGroupsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: { groups: "groups", showGroups: "showGroups", checkboxSelection: "checkboxSelection" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderGroupsComponent, deps: [{ token: i0.ElementRef }, { token: i0.Injector }, { token: i0.ChangeDetectorRef }, { token: CompositionId }, { token: StructureId }, { token: FormationPublisher }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: { groups: "groups", showGroups: "showGroups", checkboxSelection: "checkboxSelection" }, providers: [
             StructureColumnConfigService
-        ], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: SelectAllComponent, selector: "div[gui-select-all]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderGroupsComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderGroupsComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-header-groups][groups][checkboxSelection]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         StructureColumnConfigService
                     ], template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-header-cell gui-row-checkbox gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\t<div gui-select-all></div>\n</div>\n\n<div *ngFor=\"let group of groups\"\n\t [style.width.px]=\"group.width\"\n\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t<div class=\"gui-header-title\">\n\t\t{{group.header}}\n\t</div>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: FormationPublisher }, { type: SortingPublisher }]; }, propDecorators: { groups: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Injector }, { type: i0.ChangeDetectorRef }, { type: CompositionId }, { type: StructureId }, { type: FormationPublisher }, { type: SortingPublisher }], propDecorators: { groups: [{
                 type: Input
             }], showGroups: [{
                 type: Input
@@ -12502,60 +12439,50 @@ class StructureHeaderFiltersComponent extends PureComponent {
     selectFilterFormChanges() {
         return fromRxJsObservable(this.filterForm.valueChanges);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderFiltersComponent, deps: [{ token: FilterPublisher }, { token: i1$1.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: GuiEffects }, { token: i0.ElementRef }, { token: StructureId }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: { columns: "columns" }, outputs: { closed: "closed" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderFiltersComponent, deps: [{ token: FilterPublisher }, { token: i1$1.FormBuilder }, { token: i0.ChangeDetectorRef }, { token: GuiEffects }, { token: i0.ElementRef }, { token: StructureId }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: { columns: "columns" }, outputs: { closed: "closed" }, providers: [
             GuiEffects
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"!filterMode\">\n\n\t<div *ngFor=\"let cell of columns\"\n\t\t [style.width.px]=\"cell.width\"\n\t\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t\t<!--\t\t\t\t<gui-structure-header-filter [column]=\"cell\">-->\n\t\t<!--\t\t\t\t</gui-structure-header-filter>-->\n\n\t\t<button (click)=\"turnOnFilterMode()\">Add Filter</button>\n\n\t</div>\n\n</ng-container>\n\n<ng-container *ngIf=\"filterMode\">\n\n\t<gui-select [options]=\"['has value', 'is the same as', 'starts with', 'ends with']\" [selected]=\"'has value'\">\n\n\t</gui-select>\n\n\t<form [formGroup]=\"filterForm\">\n\t\t<input type=\"text\" [formControlName]=\"filterFieldName\" gui-input/>\n\t</form>\n\n\t<button gui-button (click)=\"clearFilters()\">Clear All</button>\n\t<button gui-button (click)=\"turnOffFilterMode()\">Close</button>\n\n</ng-container>\n\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "component", type: i1.FabricInputComponent, selector: "input[gui-input]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"!filterMode\">\n\n\t<div *ngFor=\"let cell of columns\"\n\t\t [style.width.px]=\"cell.width\"\n\t\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t\t<!--\t\t\t\t<gui-structure-header-filter [column]=\"cell\">-->\n\t\t<!--\t\t\t\t</gui-structure-header-filter>-->\n\n\t\t<button (click)=\"turnOnFilterMode()\">Add Filter</button>\n\n\t</div>\n\n</ng-container>\n\n<ng-container *ngIf=\"filterMode\">\n\n\t<gui-select [options]=\"['has value', 'is the same as', 'starts with', 'ends with']\" [selected]=\"'has value'\">\n\n\t</gui-select>\n\n\t<form [formGroup]=\"filterForm\">\n\t\t<input type=\"text\" [formControlName]=\"filterFieldName\" gui-input/>\n\t</form>\n\n\t<button gui-button (click)=\"clearFilters()\">Clear All</button>\n\t<button gui-button (click)=\"turnOffFilterMode()\">Close</button>\n\n</ng-container>\n\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i1$1.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$1.FormGroupDirective, selector: "[formGroup]", inputs: ["formGroup"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "directive", type: i1$1.FormControlName, selector: "[formControlName]", inputs: ["formControlName", "disabled", "ngModel"], outputs: ["ngModelChange"] }, { kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }, { kind: "component", type: i1.FabricSelectComponent, selector: "gui-select", inputs: ["options", "placeholder", "selected", "width", "disabled"], outputs: ["optionChanged"] }, { kind: "component", type: i1.FabricInputComponent, selector: "input[gui-input]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderFiltersComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderFiltersComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-header-filters][columns]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiEffects
                     ], template: "<ng-container *ngIf=\"!filterMode\">\n\n\t<div *ngFor=\"let cell of columns\"\n\t\t [style.width.px]=\"cell.width\"\n\t\t class=\"gui-header-cell gui-flex gui-justify-between\n\t gui-overflow-hidden gui-relative gui-py-0 gui-px-6 gui-box-border\n\t gui-leading-4 gui-whitespace-nowrap gui-overflow-ellipsis\">\n\n\t\t<!--\t\t\t\t<gui-structure-header-filter [column]=\"cell\">-->\n\t\t<!--\t\t\t\t</gui-structure-header-filter>-->\n\n\t\t<button (click)=\"turnOnFilterMode()\">Add Filter</button>\n\n\t</div>\n\n</ng-container>\n\n<ng-container *ngIf=\"filterMode\">\n\n\t<gui-select [options]=\"['has value', 'is the same as', 'starts with', 'ends with']\" [selected]=\"'has value'\">\n\n\t</gui-select>\n\n\t<form [formGroup]=\"filterForm\">\n\t\t<input type=\"text\" [formControlName]=\"filterFieldName\" gui-input/>\n\t</form>\n\n\t<button gui-button (click)=\"clearFilters()\">Clear All</button>\n\t<button gui-button (click)=\"turnOffFilterMode()\">Close</button>\n\n</ng-container>\n\n" }]
-        }], ctorParameters: function () { return [{ type: FilterPublisher }, { type: i1$1.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: GuiEffects }, { type: i0.ElementRef }, { type: StructureId }]; }, propDecorators: { columns: [{
+        }], ctorParameters: () => [{ type: FilterPublisher }, { type: i1$1.FormBuilder }, { type: i0.ChangeDetectorRef }, { type: GuiEffects }, { type: i0.ElementRef }, { type: StructureId }], propDecorators: { columns: [{
                 type: Input
             }], closed: [{
                 type: Output
             }] } });
 
 class StructureHeaderComponent extends GuiComponent {
-    elementRef;
-    state;
-    structureId;
-    compositionId;
     filterWarehouse;
     formationWarehouse;
-    structureVerticalFormationWarehouse;
     compositionTemplateWarehouse;
-    compositionWarehouse;
-    // @ts-ignore
+    state = inject((GuiState));
+    compositionWarehouse = inject(CompositionWarehouse);
+    structureId = inject(StructureId);
+    compositionId = inject(CompositionId);
+    verticalFormationWarehouse = inject(VerticalFormationWarehouse);
     state$ = this.state.select();
-    // @ts-ignore
     width$ = this.compositionWarehouse.onContainerWidth(this.compositionId)
         .pipe(hermesMap(width => {
         return {
             width
         };
     }));
-    // @ts-ignore
-    filterHeaderHeight$ = this.structureVerticalFormationWarehouse.onRowHeight(this.structureId)
+    filterHeaderHeight$ = this.verticalFormationWarehouse.onRowHeight(this.structureId)
         .pipe(hermesMap((rowHeight) => {
         const headerHeight = +(rowHeight) + 2;
         return {
             height: headerHeight
         };
     }));
-    constructor(elementRef, state, structureId, compositionId, filterWarehouse, formationWarehouse, structureVerticalFormationWarehouse, compositionTemplateWarehouse, compositionWarehouse) {
+    constructor(elementRef, filterWarehouse, formationWarehouse, compositionTemplateWarehouse) {
         super(elementRef);
-        this.elementRef = elementRef;
-        this.state = state;
-        this.structureId = structureId;
-        this.compositionId = compositionId;
         this.filterWarehouse = filterWarehouse;
         this.formationWarehouse = formationWarehouse;
-        this.structureVerticalFormationWarehouse = structureVerticalFormationWarehouse;
         this.compositionTemplateWarehouse = compositionTemplateWarehouse;
-        this.compositionWarehouse = compositionWarehouse;
         this.state.setValue({
             headerColumns: [],
             filterRowEnabled: false,
@@ -12587,17 +12514,17 @@ class StructureHeaderComponent extends GuiComponent {
             return type === RowSelectionType.CHECKBOX || type === RowSelectionType.RADIO;
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderComponent, deps: [{ token: i0.ElementRef }, { token: GuiState }, { token: StructureId }, { token: CompositionId }, { token: FilterWarehouse }, { token: FormationWarehouse }, { token: VerticalFormationWarehouse }, { token: CompositionTemplateWarehouse }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureHeaderComponent, selector: "div[gui-structure-header]", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderComponent, deps: [{ token: i0.ElementRef }, { token: FilterWarehouse }, { token: FormationWarehouse }, { token: CompositionTemplateWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureHeaderComponent, selector: "div[gui-structure-header]", providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.showGroups\"\n\t\t [checkboxSelection]=\"localState.showSelection\"\n\t\t [groups]=\"localState.groups\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-groups>\n\t</div>\n</ng-container>\n\n<div *guiLet=\"state$; let localState\"\n\t [columns]=\"localState.headerColumns\"\n\t [guiStyle]=\"width$\"\n\t [showSelection]=\"localState.showSelection\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.filterRowEnabled\"\n\t\t [columns]=\"localState.headerColumns\"\n\t\t [guiStyle]=\"filterHeaderHeight$\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-filters>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "directive", type: GuiStyleDirective, selector: "[guiStyle]", inputs: ["guiStyle"] }, { kind: "component", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: ["columns", "showSelection"] }, { kind: "component", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: ["groups", "showGroups", "checkboxSelection"] }, { kind: "component", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: ["columns"], outputs: ["closed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.showGroups\"\n\t\t [checkboxSelection]=\"localState.showSelection\"\n\t\t [groups]=\"localState.groups\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-groups>\n\t</div>\n</ng-container>\n\n<div *guiLet=\"state$; let localState\"\n\t [columns]=\"localState.headerColumns\"\n\t [guiStyle]=\"width$\"\n\t [showSelection]=\"localState.showSelection\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.filterRowEnabled\"\n\t\t [columns]=\"localState.headerColumns\"\n\t\t [guiStyle]=\"filterHeaderHeight$\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-filters>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "directive", type: GuiStyleDirective, selector: "[guiStyle]", inputs: ["guiStyle"] }, { kind: "component", type: StructureHeaderColumnsComponent, selector: "div[gui-structure-header-columns][columns]", inputs: ["columns", "showSelection"] }, { kind: "component", type: StructureHeaderGroupsComponent, selector: "div[gui-structure-header-groups][groups][checkboxSelection]", inputs: ["groups", "showGroups", "checkboxSelection"] }, { kind: "component", type: StructureHeaderFiltersComponent, selector: "div[gui-structure-header-filters][columns]", inputs: ["columns"], outputs: ["closed"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-header]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.showGroups\"\n\t\t [checkboxSelection]=\"localState.showSelection\"\n\t\t [groups]=\"localState.groups\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-groups>\n\t</div>\n</ng-container>\n\n<div *guiLet=\"state$; let localState\"\n\t [columns]=\"localState.headerColumns\"\n\t [guiStyle]=\"width$\"\n\t [showSelection]=\"localState.showSelection\"\n\t class=\"gui-header\"\n\t gui-structure-header-columns>\n</div>\n\n<ng-container *guiLet=\"state$; let localState\">\n\t<div *ngIf=\"localState.filterRowEnabled\"\n\t\t [columns]=\"localState.headerColumns\"\n\t\t [guiStyle]=\"filterHeaderHeight$\"\n\t\t class=\"gui-header\"\n\t\t gui-structure-header-filters>\n\t</div>\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: GuiState }, { type: StructureId }, { type: CompositionId }, { type: FilterWarehouse }, { type: FormationWarehouse }, { type: VerticalFormationWarehouse }, { type: CompositionTemplateWarehouse }, { type: CompositionWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: FilterWarehouse }, { type: FormationWarehouse }, { type: CompositionTemplateWarehouse }] });
 
 const structureParentComponent = new InjectionToken('StructureParentComponent');
 
@@ -12623,15 +12550,15 @@ class ResizeDetector {
     }
     destroy(element) {
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetector, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetector });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetector, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetector });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetector, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetector, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+        }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [PLATFORM_ID]
-                }] }]; } });
+                }] }] });
 
 var RowSelectToggleType;
 (function (RowSelectToggleType) {
@@ -12740,13 +12667,13 @@ class StructureCellEditBooleanComponent extends SmartComponent {
             this.actualValue = value;
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditBooleanComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureCellEditBooleanComponent, selector: "div[gui-structure-cell-edit-boolean][entity][cell]", inputs: { entity: "entity", cell: "cell" }, viewQueries: [{ propertyName: "cellContainerRef", first: true, predicate: ["cellContainer"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n", dependencies: [{ kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditBooleanComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureCellEditBooleanComponent, selector: "div[gui-structure-cell-edit-boolean][entity][cell]", inputs: { entity: "entity", cell: "cell" }, viewQueries: [{ propertyName: "cellContainerRef", first: true, predicate: ["cellContainer"], descendants: true, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n", dependencies: [{ kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditBooleanComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditBooleanComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-cell-edit-boolean][entity][cell]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<span #cellContainer>\n\t\t\t<ng-container\n\t\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\t\t\tcontext: editContext\">\n\t\t\t</ng-container>\n\t\t</span>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourcePublisher }]; }, propDecorators: { cellContainerRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourcePublisher }], propDecorators: { cellContainerRef: [{
                 type: ViewChild,
                 args: ['cellContainer', { static: true }]
             }], entity: [{
@@ -12883,13 +12810,13 @@ class StructureCellComponent extends SmartComponent {
     publishEditSubmit() {
         this.publishEditState(StructureCellEditState.SUBMIT);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: StructureCellEditStore }, { token: StructureCellEditCloseAllService }, { token: SourcePublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: { entity: "entity", cell: "cell", editMode: "editMode", cellEditorManager: "cellEditorManager", searchPhrase: "searchPhrase", rowIndex: "rowIndex", columnIndex: "columnIndex" }, usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight(),'gui-column-highlighted': isHighlighted}\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: {\n\t\t\t\telement: cell.getValue(entity, searchPhrase),\n\t\t\t\t index: entity.getPosition(),\n\t\t\t\t value: cell.getValue(entity, searchPhrase).value,\n\t\t\t\t item: entity.getSourceItem()\n\t\t\t  }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: StructureCellEditBooleanComponent, selector: "div[gui-structure-cell-edit-boolean][entity][cell]", inputs: ["entity", "cell"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: CompositionId }, { token: StructureCellEditStore }, { token: StructureCellEditCloseAllService }, { token: SourcePublisher }, { token: CompositionWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: { entity: "entity", cell: "cell", editMode: "editMode", cellEditorManager: "cellEditorManager", searchPhrase: "searchPhrase", rowIndex: "rowIndex", columnIndex: "columnIndex" }, usesInheritance: true, ngImport: i0, template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight(),'gui-column-highlighted': isHighlighted}\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: {\n\t\t\t\telement: cell.getValue(entity, searchPhrase),\n\t\t\t\t index: entity.getPosition(),\n\t\t\t\t value: cell.getValue(entity, searchPhrase).value,\n\t\t\t\t item: entity.getSourceItem()\n\t\t\t  }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: StructureCellEditBooleanComponent, selector: "div[gui-structure-cell-edit-boolean][entity][cell]", inputs: ["entity", "cell"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-cell][entity][cell]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-container *ngIf=\"!cell.isBooleanDataType() || (cell.isBooleanDataType() && !this.isCellEditingEnabled())\">\n\n\t<span (click)=\"enterEditMode()\"\n\t\t  *ngIf=\"!inEditMode\"\n\t\t  [ngClass]=\"{'gui-cell-view': true,'gui-align-left': cell.isAlignLeft(),'gui-align-center': cell.isAlignCenter(),'gui-align-right': cell.isAlignRight(),'gui-column-highlighted': isHighlighted}\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.template;\n\t\t\t\tcontext: {\n\t\t\t\telement: cell.getValue(entity, searchPhrase),\n\t\t\t\t index: entity.getPosition(),\n\t\t\t\t value: cell.getValue(entity, searchPhrase).value,\n\t\t\t\t item: entity.getSourceItem()\n\t\t\t  }\">\n\t\t</ng-container>\n\t</span>\n\n\t<span *ngIf=\"inEditMode\"\n\t\t  class=\"gui-cell-edit-mode\">\n\t\t<ng-container\n\t\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\tcontext: editContext\">\n\t\t</ng-container>\n\t</span>\n\n\n\t<!--\t<span *ngIf=\"inEditMode\"-->\n\t<!--\t\t  class=\"gui-cell-edit-mode\">-->\n\n\t<!--\t\t<gui-structure-cell-edit [cell]=\"cell\"-->\n\t<!--\t\t\t\t\t\t\t\t [entity]=\"entity\">-->\n\t<!--\t\t</gui-structure-cell-edit>-->\n\t<!--\t</span>-->\n\n\n</ng-container>\n\n<ng-container *ngIf=\"cell.isBooleanDataType() && this.isCellEditingEnabled()\">\n\t<div [cell]=\"cell\" [entity]=\"entity\"\n\t\t gui-structure-cell-edit-boolean>\n\t</div>\n</ng-container>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: StructureCellEditStore }, { type: StructureCellEditCloseAllService }, { type: SourcePublisher }, { type: CompositionWarehouse }]; }, propDecorators: { entity: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: CompositionId }, { type: StructureCellEditStore }, { type: StructureCellEditCloseAllService }, { type: SourcePublisher }, { type: CompositionWarehouse }], propDecorators: { entity: [{
                 type: Input
             }], cell: [{
                 type: Input
@@ -13070,13 +12997,13 @@ class StructureRowComponent extends SmartComponent {
         }
         return clazz;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: FormationWarehouse }, { token: FormationPublisher }, { token: CssClassModifier }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: { entity: "entity", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", searchPhrase: "searchPhrase", index: "index", rowStyle: "rowStyle", rowClass: "rowClass", checkboxSelection: "checkboxSelection", radioSelection: "radioSelection" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectCheckbox()\" [checked]=\"selectedItem\"></gui-checkbox>\n</div>\n\n<div *ngIf=\"radioSelection\"\n\t class=\"gui-cell gui-row-radio\">\n\t<gui-radio-button (changed)=\"selectRadio()\" [checked]=\"selectedItem\"></gui-radio-button>\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricRadioButtonComponent, selector: "gui-radio-button", inputs: ["name", "checked", "disabled"], outputs: ["changed"] }, { kind: "component", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: ["entity", "cell", "editMode", "cellEditorManager", "searchPhrase", "rowIndex", "columnIndex"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: FormationWarehouse }, { token: FormationPublisher }, { token: CssClassModifier }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: { entity: "entity", columns: "columns", editMode: "editMode", cellEditing: "cellEditing", searchPhrase: "searchPhrase", index: "index", rowStyle: "rowStyle", rowClass: "rowClass", checkboxSelection: "checkboxSelection", radioSelection: "radioSelection" }, usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectCheckbox()\" [checked]=\"selectedItem\"></gui-checkbox>\n</div>\n\n<div *ngIf=\"radioSelection\"\n\t class=\"gui-cell gui-row-radio\">\n\t<gui-radio-button (changed)=\"selectRadio()\" [checked]=\"selectedItem\"></gui-radio-button>\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricCheckboxComponent, selector: "gui-checkbox", inputs: ["name", "checked", "disabled", "readonly", "indeterminate"], outputs: ["changed"] }, { kind: "component", type: i1.FabricRadioButtonComponent, selector: "gui-radio-button", inputs: ["name", "checked", "disabled"], outputs: ["changed"] }, { kind: "component", type: StructureCellComponent, selector: "div[gui-structure-cell][entity][cell]", inputs: ["entity", "cell", "editMode", "cellEditorManager", "searchPhrase", "rowIndex", "columnIndex"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-row]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div *ngIf=\"checkboxSelection\"\n\t class=\"gui-cell gui-row-checkbox\">\n\t<gui-checkbox (changed)=\"selectCheckbox()\" [checked]=\"selectedItem\"></gui-checkbox>\n</div>\n\n<div *ngIf=\"radioSelection\"\n\t class=\"gui-cell gui-row-radio\">\n\t<gui-radio-button (changed)=\"selectRadio()\" [checked]=\"selectedItem\"></gui-radio-button>\n</div>\n\n<div *ngFor=\"let column of columns; trackBy: trackByFn; let i = index\" [cellEditorManager]=\"cellEditing\"\n\t [cell]=\"column\"\n\t [columnIndex]=\"i\"\n\t [editMode]=\"editMode\"\n\t [entity]=\"entity\"\n\t [rowIndex]=\"index\"\n\t [searchPhrase]=\"searchPhrase\"\n\t [style.width.px]=\"column.width\"\n\t class=\"gui-cell\"\n\t gui-structure-cell>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FormationWarehouse }, { type: FormationPublisher }, { type: CssClassModifier }]; }, propDecorators: { entity: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: FormationWarehouse }, { type: FormationPublisher }, { type: CssClassModifier }], propDecorators: { entity: [{
                 type: Input
             }], columns: [{
                 type: Input
@@ -13099,9 +13026,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             }] } });
 
 class StructureContentComponent extends SmartComponent {
-    elementRef;
-    changeDetectorRef;
-    state;
     formationPublisher;
     structureEditModeArchive;
     formationWarehouse;
@@ -13113,13 +13037,10 @@ class StructureContentComponent extends SmartComponent {
     schemaWarehouse;
     source;
     columns;
-    // @ts-ignore
+    state = inject((GuiState));
     state$ = this.state.select();
-    constructor(elementRef, changeDetectorRef, state, formationPublisher, structureEditModeArchive, formationWarehouse, structureWarehouse, verticalFormationWarehouse, structureId, schemaReadModelRootId, searchWarehouse, schemaWarehouse) {
+    constructor(elementRef, changeDetectorRef, formationPublisher, structureEditModeArchive, formationWarehouse, structureWarehouse, verticalFormationWarehouse, structureId, schemaReadModelRootId, searchWarehouse, schemaWarehouse) {
         super(changeDetectorRef, elementRef);
-        this.elementRef = elementRef;
-        this.changeDetectorRef = changeDetectorRef;
-        this.state = state;
         this.formationPublisher = formationPublisher;
         this.structureEditModeArchive = structureEditModeArchive;
         this.formationWarehouse = formationWarehouse;
@@ -13187,17 +13108,17 @@ class StructureContentComponent extends SmartComponent {
             }
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: GuiState }, { token: FormationPublisher }, { token: StructureEditModeArchive }, { token: FormationWarehouse }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: SearchWarehouse }, { token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: { source: "source", columns: "columns" }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FormationPublisher }, { token: StructureEditModeArchive }, { token: FormationWarehouse }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: StructureId }, { token: SchemaReadModelRootId }, { token: SearchWarehouse }, { token: SchemaWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: { source: "source", columns: "columns" }, providers: [
             GuiState
-        ], usesInheritance: true, ngImport: i0, template: "<div *guiLet=\"state$; let localState\"\n\t class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity, localState.selectionEnabled, localState.checkboxSelection, localState.radioSelection)\"\n\t\t *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"localState.cellEditing\"\n\t\t [checkboxSelection]=\"localState.checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [editMode]=\"localState.editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index, localState.rowHeight)}\"\n\t\t [radioSelection]=\"localState.radioSelection\"\n\t\t [rowClass]=\"localState.schemaRowClass\"\n\t\t [rowStyle]=\"localState.schemaRowStyle\"\n\t\t [searchPhrase]=\"localState.searchPhrase\"\n\t\t [style.height.px]=\"localState.rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i5.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: ["entity", "columns", "editMode", "cellEditing", "searchPhrase", "index", "rowStyle", "rowClass", "checkboxSelection", "radioSelection"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<div *guiLet=\"state$; let localState\"\n\t class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity, localState.selectionEnabled, localState.checkboxSelection, localState.radioSelection)\"\n\t\t *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"localState.cellEditing\"\n\t\t [checkboxSelection]=\"localState.checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [editMode]=\"localState.editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index, localState.rowHeight)}\"\n\t\t [radioSelection]=\"localState.radioSelection\"\n\t\t [rowClass]=\"localState.schemaRowClass\"\n\t\t [rowStyle]=\"localState.schemaRowStyle\"\n\t\t [searchPhrase]=\"localState.searchPhrase\"\n\t\t [style.height.px]=\"localState.rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "component", type: StructureRowComponent, selector: "div[gui-structure-row]", inputs: ["entity", "columns", "editMode", "cellEditing", "searchPhrase", "index", "rowStyle", "rowClass", "checkboxSelection", "radioSelection"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureContentComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureContentComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-content]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         GuiState
                     ], template: "<div *guiLet=\"state$; let localState\"\n\t class=\"gui-content\">\n\n\t<div (click)=\"toggleSelectedRow(entity, localState.selectionEnabled, localState.checkboxSelection, localState.radioSelection)\"\n\t\t *ngFor=\"let entity of source; let index = index; trackBy: trackByFn\"\n\t\t [cellEditing]=\"localState.cellEditing\"\n\t\t [checkboxSelection]=\"localState.checkboxSelection\"\n\t\t [columns]=\"columns\"\n\t\t [editMode]=\"localState.editMode\"\n\t\t [entity]=\"entity\"\n\t\t [id]=\"entity.getUiId()\"\n\t\t [index]=\"entity.getPosition()\"\n\t\t [ngClass]=\"{'even': entity.isEven(), 'odd': entity.isOdd()}\"\n\t\t [ngStyle]=\"{'transform': translateY(index, localState.rowHeight)}\"\n\t\t [radioSelection]=\"localState.radioSelection\"\n\t\t [rowClass]=\"localState.schemaRowClass\"\n\t\t [rowStyle]=\"localState.schemaRowStyle\"\n\t\t [searchPhrase]=\"localState.searchPhrase\"\n\t\t [style.height.px]=\"localState.rowHeight\"\n\t\t class=\"gui-row\"\n\t\t gui-structure-row>\n\t</div>\n\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: GuiState }, { type: FormationPublisher }, { type: StructureEditModeArchive }, { type: FormationWarehouse }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: SearchWarehouse }, { type: SchemaWarehouse }]; }, propDecorators: { source: [{
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: FormationPublisher }, { type: StructureEditModeArchive }, { type: FormationWarehouse }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: StructureId }, { type: SchemaReadModelRootId }, { type: SearchWarehouse }, { type: SchemaWarehouse }], propDecorators: { source: [{
                 type: Input
             }], columns: [{
                 type: Input
@@ -13329,18 +13250,18 @@ class StructureContainerComponent extends SmartComponent {
         this.scrollObservation$.next();
         this.scrollObservation$.complete();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureContainerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: StructureId }, { token: CompositionId }, { token: StructurePublisher }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: SourceWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: CompositionTemplateWarehouse }, { token: FormationWarehouse }, { token: ResizeDetector }, { token: StructureInitialValuesReadyArchive }, { token: structureParentComponent, optional: true }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureContainerComponent, selector: "div[gui-structure-container]", viewQueries: [{ propertyName: "sourceCollectionRef", first: true, predicate: ["sourceCollection"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "component", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: ["source", "columns"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureContainerComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: StructureId }, { token: CompositionId }, { token: StructurePublisher }, { token: StructureWarehouse }, { token: VerticalFormationWarehouse }, { token: SourceWarehouse }, { token: CompositionPublisher }, { token: CompositionWarehouse }, { token: CompositionTemplateWarehouse }, { token: FormationWarehouse }, { token: ResizeDetector }, { token: StructureInitialValuesReadyArchive }, { token: structureParentComponent, optional: true }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureContainerComponent, selector: "div[gui-structure-container]", viewQueries: [{ propertyName: "sourceCollectionRef", first: true, predicate: ["sourceCollection"], descendants: true, read: ElementRef }], usesInheritance: true, ngImport: i0, template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n", dependencies: [{ kind: "component", type: StructureContentComponent, selector: "div[gui-structure-content]", inputs: ["source", "columns"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureContainerComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureContainerComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-container]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div #sourceCollection\n\t class=\"gui-h-full gui-w-full gui-absolute gui-structure-container-element\">\n\n\t<div [columns]=\"columns\" [source]=\"source\"\n\t\t gui-structure-content>\n\t</div>\n\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: StructureId }, { type: CompositionId }, { type: StructurePublisher }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: SourceWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: CompositionTemplateWarehouse }, { type: FormationWarehouse }, { type: ResizeDetector }, { type: StructureInitialValuesReadyArchive }, { type: undefined, decorators: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: StructureId }, { type: CompositionId }, { type: StructurePublisher }, { type: StructureWarehouse }, { type: VerticalFormationWarehouse }, { type: SourceWarehouse }, { type: CompositionPublisher }, { type: CompositionWarehouse }, { type: CompositionTemplateWarehouse }, { type: FormationWarehouse }, { type: ResizeDetector }, { type: StructureInitialValuesReadyArchive }, { type: undefined, decorators: [{
                     type: Optional$1
                 }, {
                     type: Inject,
                     args: [structureParentComponent]
-                }] }]; }, propDecorators: { sourceCollectionRef: [{
+                }] }], propDecorators: { sourceCollectionRef: [{
                 type: ViewChild,
                 args: ['sourceCollection', { read: ElementRef, static: false }]
             }] } });
@@ -13362,12 +13283,12 @@ class StructureBannerPanel extends SmartComponent {
             return config.template;
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureBannerPanel, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureBannerPanel, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureBannerPanel, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureBannerPanel, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureBannerPanel, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureBannerPanel, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class StructureTitlePanelComponent extends StructureBannerPanel {
     structureTitlePanelConfigArchive;
@@ -13382,13 +13303,13 @@ class StructureTitlePanelComponent extends StructureBannerPanel {
     getSelectorName() {
         return 'gui-structure-title-panel';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTitlePanelComponent, deps: [{ token: StructureTitlePanelConfigArchive }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureTitlePanelComponent, selector: "div[gui-structure-title-panel]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n", dependencies: [{ kind: "pipe", type: GuiPushPipe, name: "guiPush" }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTitlePanelComponent, deps: [{ token: StructureTitlePanelConfigArchive }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureTitlePanelComponent, selector: "div[gui-structure-title-panel]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n", dependencies: [{ kind: "pipe", type: GuiPushPipe, name: "guiPush" }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTitlePanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTitlePanelComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-title-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-title-panel gui-p-6 gui-border-b gui-border-b-solid\">\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: StructureTitlePanelConfigArchive }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: StructureTitlePanelConfigArchive }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class StructureFooterPanelComponent extends StructureBannerPanel {
     structureFooterPanelConfigArchive;
@@ -13404,64 +13325,44 @@ class StructureFooterPanelComponent extends StructureBannerPanel {
     getSelectorName() {
         return 'gui-structure-footer-panel';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureFooterPanelComponent, deps: [{ token: StructureFooterPanelConfigArchive }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureFooterPanelComponent, selector: "div[gui-structure-footer-panel]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n</div>\n", dependencies: [{ kind: "pipe", type: GuiPushPipe, name: "guiPush" }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureFooterPanelComponent, deps: [{ token: StructureFooterPanelConfigArchive }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureFooterPanelComponent, selector: "div[gui-structure-footer-panel]", usesInheritance: true, ngImport: i0, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n</div>\n", dependencies: [{ kind: "pipe", type: GuiPushPipe, name: "guiPush" }, { kind: "pipe", type: SafePipe, name: "guiSafe" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureFooterPanelComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureFooterPanelComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-footer-panel]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<div [innerHTML]=\"bannerPanel$ | guiPush | guiSafe: 'html'\"\n\t class=\"gui-footer-panel gui-p-6 gui-border-t gui-border-t-solid\">\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: StructureFooterPanelConfigArchive }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; } });
+        }], ctorParameters: () => [{ type: StructureFooterPanelConfigArchive }, { type: i0.ChangeDetectorRef }, { type: i0.ElementRef }] });
 
 class StructureBlueprintComponent extends SmartComponent {
-    changeDetectorRef;
     structureDefinition;
-    structureId;
-    structureWarehouse;
-    structureInfoPanelArchive;
-    pagingWarehouse;
-    summariesWarehouse;
-    filterWarehouse;
-    searchWarehouse;
-    structureHeaderTopEnabledArchive;
-    structureHeaderBottomEnabledArchive;
-    structureTitlePanelConfigArchive;
-    structureFooterPanelConfigArchive;
     className;
-    // @ts-ignore
+    structureId = inject(StructureId);
+    summariesWarehouse = inject(SummariesWarehouse);
+    structureHeaderTopEnabledArchive = inject(StructureHeaderTopEnabledArchive);
+    structureHeaderBottomEnabledArchive = inject(StructureHeaderBottomEnabledArchive);
+    searchWarehouse = inject(SearchWarehouse);
+    pagingWarehouse = inject(PagingWarehouse);
+    structureWarehouse = inject(StructureWarehouse);
+    structureInfoPanelArchive = inject(StructureInfoPanelArchive);
+    structureTitlePanelConfigArchive = inject(StructureTitlePanelConfigArchive);
+    structureFooterPanelConfigArchive = inject(StructureFooterPanelConfigArchive);
     bottomSummariesPanelEnabled$ = this.summariesWarehouse.onBottomEnabled(this.structureId);
     contentCssClass;
     headerCssClass;
     headerTopClasses;
     headerBottomClasses;
-    // @ts-ignore
     topHeaderEnabled$ = this.structureHeaderTopEnabledArchive.on();
-    // @ts-ignore
     bottomHeaderEnabled$ = this.structureHeaderBottomEnabledArchive.on();
     footerPanelEnabled$ = this.selectFooterPanelEnabled();
     items$ = this.selectItems();
-    // @ts-ignore
     topSummariesPanelEnabled$ = this.summariesWarehouse.onTopEnabled(this.structureId);
-    // @ts-ignore
     searchEnabled$ = this.searchWarehouse.onSearchEnabled(this.structureId);
     titlePanelEnabled$ = this.selectTitlePanelEnabled();
     infoPanelEnabled$ = this.selectInfoPanelEnabled();
-    // @ts-ignore
     pagingModel$ = this.pagingWarehouse.onPaging(this.structureId);
-    constructor(changeDetectorRef, elementRef, structureDefinition, structureId, structureWarehouse, structureInfoPanelArchive, pagingWarehouse, summariesWarehouse, filterWarehouse, searchWarehouse, structureHeaderTopEnabledArchive, structureHeaderBottomEnabledArchive, structureTitlePanelConfigArchive, structureFooterPanelConfigArchive, className) {
+    constructor(changeDetectorRef, elementRef, structureDefinition, className) {
         super(changeDetectorRef, elementRef);
-        this.changeDetectorRef = changeDetectorRef;
         this.structureDefinition = structureDefinition;
-        this.structureId = structureId;
-        this.structureWarehouse = structureWarehouse;
-        this.structureInfoPanelArchive = structureInfoPanelArchive;
-        this.pagingWarehouse = pagingWarehouse;
-        this.summariesWarehouse = summariesWarehouse;
-        this.filterWarehouse = filterWarehouse;
-        this.searchWarehouse = searchWarehouse;
-        this.structureHeaderTopEnabledArchive = structureHeaderTopEnabledArchive;
-        this.structureHeaderBottomEnabledArchive = structureHeaderBottomEnabledArchive;
-        this.structureTitlePanelConfigArchive = structureTitlePanelConfigArchive;
-        this.structureFooterPanelConfigArchive = structureFooterPanelConfigArchive;
         this.className = className;
         this.headerCssClass = `gui-${this.className}-header`;
         this.contentCssClass = `gui-${this.className}-content`;
@@ -13510,16 +13411,16 @@ class StructureBlueprintComponent extends SmartComponent {
             return structure.getEntities();
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureBlueprintComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureDefinition }, { token: StructureId }, { token: StructureWarehouse }, { token: StructureInfoPanelArchive }, { token: PagingWarehouse }, { token: SummariesWarehouse }, { token: FilterWarehouse }, { token: SearchWarehouse }, { token: StructureHeaderTopEnabledArchive }, { token: StructureHeaderBottomEnabledArchive }, { token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }, { token: STRUCTURE_CSS_CLASS_NAME }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]", usesInheritance: true, ngImport: i0, template: "<!---------- TOP ---------->\n<div *guiIf=\"titlePanelEnabled$\" gui-structure-title-panel></div>\n\n<div *guiIf=\"searchEnabled$\" gui-structure-top-panel></div>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingTopEnabled(pagingModel)\" [position]=\"0\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"topSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-top\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"topHeaderEnabled$; let topHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderTopEnabled(topHeaderEnabled)\" [ngClass]=\"headerTopClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n\n<!---------- MAIN ---------->\n<div [ngClass]=\"contentCssClass\" gui-structure-container>\n</div>\n\n<div [items]=\"items$ | guiPush\" gui-empty-source>\n</div>\n\n\n<!---------- BOTTOM ---------->\n<ng-container *guiLet=\"bottomHeaderEnabled$; let bottomHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderBottomEnabled(bottomHeaderEnabled)\" [ngClass]=\"headerBottomClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"bottomSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-bottom\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"footerPanelEnabled$; let footerPanelEnabled\">\n\t<div *ngIf=\"footerPanelEnabled\" gui-structure-footer-panel></div>\n</ng-container>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingBottomEnabled(pagingModel)\" [position]=\"1\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div *guiIf=\"infoPanelEnabled$\" gui-structure-info-panel></div>\n", dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: PagingComponent, selector: "div[gui-paging][position]", inputs: ["position", "minimal"] }, { kind: "component", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: ["enabled"] }, { kind: "component", type: StructureInfoPanelComponent, selector: "div[gui-structure-info-panel]" }, { kind: "component", type: StructureTopPanelComponent, selector: "div[gui-structure-top-panel]" }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: StructureHeaderComponent, selector: "div[gui-structure-header]" }, { kind: "component", type: StructureContainerComponent, selector: "div[gui-structure-container]" }, { kind: "component", type: StructureTitlePanelComponent, selector: "div[gui-structure-title-panel]" }, { kind: "component", type: StructureFooterPanelComponent, selector: "div[gui-structure-footer-panel]" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureBlueprintComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureDefinition }, { token: STRUCTURE_CSS_CLASS_NAME }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]", usesInheritance: true, ngImport: i0, template: "<!---------- TOP ---------->\n<div *guiIf=\"titlePanelEnabled$\" gui-structure-title-panel></div>\n\n<div *guiIf=\"searchEnabled$\" gui-structure-top-panel></div>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingTopEnabled(pagingModel)\" [position]=\"0\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"topSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-top\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"topHeaderEnabled$; let topHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderTopEnabled(topHeaderEnabled)\" [ngClass]=\"headerTopClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n\n<!---------- MAIN ---------->\n<div [ngClass]=\"contentCssClass\" gui-structure-container>\n</div>\n\n<div [items]=\"items$ | guiPush\" gui-empty-source>\n</div>\n\n\n<!---------- BOTTOM ---------->\n<ng-container *guiLet=\"bottomHeaderEnabled$; let bottomHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderBottomEnabled(bottomHeaderEnabled)\" [ngClass]=\"headerBottomClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"bottomSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-bottom\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"footerPanelEnabled$; let footerPanelEnabled\">\n\t<div *ngIf=\"footerPanelEnabled\" gui-structure-footer-panel></div>\n</ng-container>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingBottomEnabled(pagingModel)\" [position]=\"1\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div *guiIf=\"infoPanelEnabled$\" gui-structure-info-panel></div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: GuiLetDirective, selector: "[guiLet]", inputs: ["guiLet"] }, { kind: "directive", type: GuiIfDirective, selector: "[guiIf]", inputs: ["guiIf"] }, { kind: "component", type: PagingComponent, selector: "div[gui-paging][position]", inputs: ["position", "minimal"] }, { kind: "component", type: StructureSummariesPanelComponent, selector: "div[gui-structure-summaries-panel][enabled]", inputs: ["enabled"] }, { kind: "component", type: StructureInfoPanelComponent, selector: "div[gui-structure-info-panel]" }, { kind: "component", type: StructureTopPanelComponent, selector: "div[gui-structure-top-panel]" }, { kind: "component", type: EmptySourceComponent, selector: "div[gui-empty-source][items]", inputs: ["items"] }, { kind: "component", type: StructureHeaderComponent, selector: "div[gui-structure-header]" }, { kind: "component", type: StructureContainerComponent, selector: "div[gui-structure-container]" }, { kind: "component", type: StructureTitlePanelComponent, selector: "div[gui-structure-title-panel]" }, { kind: "component", type: StructureFooterPanelComponent, selector: "div[gui-structure-footer-panel]" }, { kind: "pipe", type: GuiPushPipe, name: "guiPush" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureBlueprintComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureBlueprintComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-blueprint]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<!---------- TOP ---------->\n<div *guiIf=\"titlePanelEnabled$\" gui-structure-title-panel></div>\n\n<div *guiIf=\"searchEnabled$\" gui-structure-top-panel></div>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingTopEnabled(pagingModel)\" [position]=\"0\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"topSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-top\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"topHeaderEnabled$; let topHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderTopEnabled(topHeaderEnabled)\" [ngClass]=\"headerTopClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n\n<!---------- MAIN ---------->\n<div [ngClass]=\"contentCssClass\" gui-structure-container>\n</div>\n\n<div [items]=\"items$ | guiPush\" gui-empty-source>\n</div>\n\n\n<!---------- BOTTOM ---------->\n<ng-container *guiLet=\"bottomHeaderEnabled$; let bottomHeaderEnabled\">\n\t<div *ngIf=\"isColumnHeaderBottomEnabled(bottomHeaderEnabled)\" [ngClass]=\"headerBottomClasses\"\n\t\t gui-structure-header>\n\t</div>\n</ng-container>\n\n<div [enabled]=\"bottomSummariesPanelEnabled$ | guiPush\" class=\"gui-structure-summaries-panel-bottom\"\n\t gui-structure-summaries-panel>\n</div>\n\n<ng-container *guiLet=\"footerPanelEnabled$; let footerPanelEnabled\">\n\t<div *ngIf=\"footerPanelEnabled\" gui-structure-footer-panel></div>\n</ng-container>\n\n<ng-container *guiLet=\"pagingModel$; let pagingModel\">\n\t<div *ngIf=\"isPagingBottomEnabled(pagingModel)\" [position]=\"1\"\n\t\t gui-paging>\n\t</div>\n</ng-container>\n\n<div *guiIf=\"infoPanelEnabled$\" gui-structure-info-panel></div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureDefinition }, { type: StructureId }, { type: StructureWarehouse }, { type: StructureInfoPanelArchive }, { type: PagingWarehouse }, { type: SummariesWarehouse }, { type: FilterWarehouse }, { type: SearchWarehouse }, { type: StructureHeaderTopEnabledArchive }, { type: StructureHeaderBottomEnabledArchive }, { type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }, { type: undefined, decorators: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureDefinition }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [STRUCTURE_CSS_CLASS_NAME]
-                }] }]; } });
+                }] }] });
 
 /** @internal */
 function structureIdFactoryForGrid(generator) {
@@ -13614,8 +13515,8 @@ class StructureComponent extends StructureGateway {
     getSelectorName() {
         return 'gui-structure';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureComponent, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SourcePublisher }, { token: SourceEventService }, { token: SortingPublisher }, { token: SearchPublisher }, { token: FieldPublisher }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructurePublisher }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: StructureColumnMenuConfigArchive }, { token: PagingDisplayModeArchive }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: StructureRowDetailConfigArchive }, { token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }, { token: ColumnAutoConfigurator }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i0.Injector }, { token: StructureDefinition }, { token: StructureWarehouse }, { token: CompositionWarehouse }, { token: SchemaCssClassManager }, { token: SchemaReadModelRootId }, { token: StructureRowDetailService }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureComponent, selector: "gui-structure", host: { properties: { "class.gui-structure-border": "isBorderEnabled()", "id": "structureId.toString()" } }, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureComponent, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: SourcePublisher }, { token: SourceEventService }, { token: SortingPublisher }, { token: SearchPublisher }, { token: FieldPublisher }, { token: SchemaPublisher }, { token: CompositionPublisher }, { token: CompositionEventRepository }, { token: FormationEventRepository }, { token: StructurePublisher }, { token: StructureEditModeArchive }, { token: StructureCellEditArchive }, { token: StructureInfoPanelArchive }, { token: StructureInfoPanelConfigService }, { token: StructureCellEditStore }, { token: ColumnFieldFactory }, { token: StructureColumnMenuConfigArchive }, { token: PagingDisplayModeArchive }, { token: FormationPublisher }, { token: SearchEventRepository }, { token: StructureHeaderBottomEnabledArchive }, { token: StructureRowDetailConfigArchive }, { token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }, { token: SchemaEventRepository }, { token: TranslationFacade }, { token: StructureInitialValuesReadyArchive }, { token: ColumnAutoConfigurator }, { token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i0.Injector }, { token: StructureDefinition }, { token: StructureWarehouse }, { token: CompositionWarehouse }, { token: SchemaCssClassManager }, { token: SchemaReadModelRootId }, { token: StructureRowDetailService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureComponent, selector: "gui-structure", host: { properties: { "class.gui-structure-border": "isBorderEnabled()", "id": "structureId.toString()" } }, providers: [
             {
                 provide: StructureId,
                 useFactory: structureIdFactoryForGrid,
@@ -13660,9 +13561,9 @@ class StructureComponent extends StructureGateway {
                 provide: filterContainerToken,
                 useExisting: StructureComponent
             }
-        ], usesInheritance: true, ngImport: i0, template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-radio{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-radio .gui-radio-button{height:24px;margin:0;padding:0;width:24px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"], dependencies: [{ kind: "directive", type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricSpinnerComponent, selector: "gui-spinner", inputs: ["color"] }, { kind: "component", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], usesInheritance: true, ngImport: i0, template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-radio{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-radio .gui-radio-button{height:24px;margin:0;padding:0;width:24px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"], dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i1.FabricSpinnerComponent, selector: "gui-spinner", inputs: ["color"] }, { kind: "component", type: StructureBlueprintComponent, selector: "div[gui-structure-blueprint]" }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-structure', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, host: {
                         '[class.gui-structure-border]': 'isBorderEnabled()',
@@ -13713,7 +13614,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                             useExisting: StructureComponent
                         }
                     ], template: "<div gui-structure-blueprint></div>\n\n<!---------- LOADING ---------->\n<div [ngClass]=\"{'gui-loader-visible': loaderEnabled, 'gui-loader-hidden': !loaderEnabled && initialLoaderAnimation}\"\n\t class=\"gui-loading\">\n\t<gui-spinner *ngIf=\"circleLoaderEnabled\"\n\t\t\t\t [diameter]=\"120\"\n\t\t\t\t [primary]=\"true\">\n\t</gui-spinner>\n</div>\n", styles: [".gui-box-border{box-sizing:border-box}.gui-bg-transparent{background-color:transparent}.gui-border{border-width:1px}.gui-border-0{border-width:0}.gui-border-b{border-bottom-width:1px}.gui-border-t{border-top-width:1px}.gui-border-solid{border-style:solid}.gui-border-b-solid{border-bottom-style:solid}.gui-border-t-solid{border-top-style:solid}.gui-border-none{border-style:none}.gui-rounded{border-radius:4px}.gui-cursor-pointer{cursor:pointer}.gui-block{display:block}.gui-inline-block{display:inline-block}.gui-inline{display:inline}.gui-flex{display:-ms-flexbox;display:flex}.gui-hidden{display:none}.gui-display-grid{display:grid}.gui-flex-row{-ms-flex-direction:row;flex-direction:row}.gui-flex-row-reverse{-ms-flex-direction:row-reverse;flex-direction:row-reverse}.gui-flex-col{-ms-flex-direction:column;flex-direction:column}.gui-flex-col-reverse{-ms-flex-direction:column-reverse;flex-direction:column-reverse}.gui-justify-start{-ms-flex-pack:start;justify-content:flex-start}.gui-justify-end{-ms-flex-pack:end;justify-content:flex-end}.gui-justify-center{-ms-flex-pack:center;justify-content:center}.gui-justify-between{-ms-flex-pack:justify;justify-content:space-between}.gui-justify-around{-ms-flex-pack:distribute;justify-content:space-around}.gui-justify-evenly{-ms-flex-pack:space-evenly;justify-content:space-evenly}.gui-items-start{-ms-flex-align:start;align-items:flex-start}.gui-items-end{-ms-flex-align:end;align-items:flex-end}.gui-items-center{-ms-flex-align:center;align-items:center}.gui-items-between{-ms-flex-align:space-between;align-items:space-between}.gui-items-around{-ms-flex-align:space-around;align-items:space-around}.gui-items-evenly{-ms-flex-align:space-evenly;align-items:space-evenly}.gui-flex-wrap{-ms-flex-wrap:wrap;flex-wrap:wrap}.gui-flex-wrap-reverse{-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse}.gui-flex-nowrap{-ms-flex-wrap:nowrap;flex-wrap:nowrap}.gui-grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.gui-grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.gui-grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.gui-grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.gui-grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.gui-grid-cols-6{grid-template-columns:repeat(6,minmax(0,1fr))}.gui-grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}.gui-grid-cols-8{grid-template-columns:repeat(8,minmax(0,1fr))}.gui-grid-cols-9{grid-template-columns:repeat(9,minmax(0,1fr))}.gui-grid-rows-1{grid-template-rows:repeat(1,minmax(0,1fr))}.gui-grid-rows-2{grid-template-rows:repeat(2,minmax(0,1fr))}.gui-grid-rows-3{grid-template-rows:repeat(3,minmax(0,1fr))}.gui-grid-rows-4{grid-template-rows:repeat(4,minmax(0,1fr))}.gui-grid-rows-5{grid-template-rows:repeat(5,minmax(0,1fr))}.gui-grid-rows-6{grid-template-rows:repeat(6,minmax(0,1fr))}.gui-grid-rows-7{grid-template-rows:repeat(7,minmax(0,1fr))}.gui-grid-rows-8{grid-template-rows:repeat(8,minmax(0,1fr))}.gui-grid-rows-9{grid-template-rows:repeat(9,minmax(0,1fr))}.gui-grid-rows-gap-0{grid-row-gap:0}.gui-grid-rows-gap-1{grid-row-gap:1px}.gui-grid-rows-gap-2{grid-row-gap:2px}.gui-grid-rows-gap-3{grid-row-gap:3px}.gui-grid-rows-gap-4{grid-row-gap:4px}.gui-grid-rows-gap-5{grid-row-gap:6px}.gui-grid-rows-gap-6{grid-row-gap:8px}.gui-grid-rows-gap-7{grid-row-gap:10px}.gui-grid-rows-gap-8{grid-row-gap:12px}.gui-grid-rows-gap-10{grid-row-gap:16px}.gui-grid-rows-gap-13{grid-row-gap:22px}.gui-grid-rows-gap-23{grid-row-gap:42px}.gui-grid-cols-gap-0{grid-column-gap:0}.gui-grid-cols-gap-1{grid-column-gap:1px}.gui-grid-cols-gap-2{grid-column-gap:2px}.gui-grid-cols-gap-3{grid-column-gap:3px}.gui-grid-cols-gap-4{grid-column-gap:4px}.gui-grid-cols-gap-5{grid-column-gap:6px}.gui-grid-cols-gap-6{grid-column-gap:8px}.gui-grid-cols-gap-7{grid-column-gap:10px}.gui-grid-cols-gap-8{grid-column-gap:12px}.gui-grid-cols-gap-10{grid-column-gap:16px}.gui-grid-cols-gap-13{grid-column-gap:22px}.gui-grid-cols-gap-23{grid-column-gap:42px}.gui-h-full{height:100%}.gui-list-none{list-style-type:none}.gui-m-0{margin:0}.gui-mx-0{margin-left:0;margin-right:0}.gui-my-0{margin-bottom:0;margin-top:0}.-gui-m-0{margin:0}.-gui-mx-0{margin-left:0;margin-right:0}.-gui-my-0{margin-bottom:0;margin-top:0}.gui-m-1{margin:1px}.gui-mx-1{margin-left:1px;margin-right:1px}.gui-my-1{margin-bottom:1px;margin-top:1px}.-gui-m-1{margin:-1px}.-gui-mx-1{margin-left:-1px;margin-right:-1px}.-gui-my-1{margin-bottom:-1px;margin-top:-1px}.gui-m-2{margin:2px}.gui-mx-2{margin-left:2px;margin-right:2px}.gui-my-2{margin-bottom:2px;margin-top:2px}.-gui-m-2{margin:-2px}.-gui-mx-2{margin-left:-2px;margin-right:-2px}.-gui-my-2{margin-bottom:-2px;margin-top:-2px}.gui-m-3{margin:3px}.gui-mx-3{margin-left:3px;margin-right:3px}.gui-my-3{margin-bottom:3px;margin-top:3px}.-gui-m-3{margin:-3px}.-gui-mx-3{margin-left:-3px;margin-right:-3px}.-gui-my-3{margin-bottom:-3px;margin-top:-3px}.gui-m-4{margin:4px}.gui-mx-4{margin-left:4px;margin-right:4px}.gui-my-4{margin-bottom:4px;margin-top:4px}.-gui-m-4{margin:-4px}.-gui-mx-4{margin-left:-4px;margin-right:-4px}.-gui-my-4{margin-bottom:-4px;margin-top:-4px}.gui-m-5{margin:6px}.gui-mx-5{margin-left:6px;margin-right:6px}.gui-my-5{margin-bottom:6px;margin-top:6px}.-gui-m-5{margin:-6px}.-gui-mx-5{margin-left:-6px;margin-right:-6px}.-gui-my-5{margin-bottom:-6px;margin-top:-6px}.gui-m-6{margin:8px}.gui-mx-6{margin-left:8px;margin-right:8px}.gui-my-6{margin-bottom:8px;margin-top:8px}.-gui-m-6{margin:-8px}.-gui-mx-6{margin-left:-8px;margin-right:-8px}.-gui-my-6{margin-bottom:-8px;margin-top:-8px}.gui-m-7{margin:10px}.gui-mx-7{margin-left:10px;margin-right:10px}.gui-my-7{margin-bottom:10px;margin-top:10px}.-gui-m-7{margin:-10px}.-gui-mx-7{margin-left:-10px;margin-right:-10px}.-gui-my-7{margin-bottom:-10px;margin-top:-10px}.gui-m-8{margin:12px}.gui-mx-8{margin-left:12px;margin-right:12px}.gui-my-8{margin-bottom:12px;margin-top:12px}.-gui-m-8{margin:-12px}.-gui-mx-8{margin-left:-12px;margin-right:-12px}.-gui-my-8{margin-bottom:-12px;margin-top:-12px}.gui-m-10{margin:16px}.gui-mx-10{margin-left:16px;margin-right:16px}.gui-my-10{margin-bottom:16px;margin-top:16px}.-gui-m-10{margin:-16px}.-gui-mx-10{margin-left:-16px;margin-right:-16px}.-gui-my-10{margin-bottom:-16px;margin-top:-16px}.gui-m-13{margin:22px}.gui-mx-13{margin-left:22px;margin-right:22px}.gui-my-13{margin-bottom:22px;margin-top:22px}.-gui-m-13{margin:-22px}.-gui-mx-13{margin-left:-22px;margin-right:-22px}.-gui-my-13{margin-bottom:-22px;margin-top:-22px}.gui-m-23{margin:42px}.gui-mx-23{margin-left:42px;margin-right:42px}.gui-my-23{margin-bottom:42px;margin-top:42px}.-gui-m-23{margin:-42px}.-gui-mx-23{margin-left:-42px;margin-right:-42px}.-gui-my-23{margin-bottom:-42px;margin-top:-42px}.gui-mb-4{margin-bottom:4px}.gui-mb-6{margin-bottom:8px}.gui-mb-8{margin-bottom:12px}.gui-mb-10{margin-bottom:16px}.gui-mb-18{margin-bottom:32px}.gui-mr-0{margin-right:0}.gui-mr-5{margin-right:6px}.gui-mr-auto{margin-right:auto}.gui-ml-auto{margin-left:auto}.gui-ml-6{margin-left:8px}.gui-mt-0{margin-top:0}.gui-mt-4{margin-top:4px}.gui-mt-6{margin-top:8px}.gui-mt-10{margin-top:16px}.gui-mt-14{margin-top:24px}.gui-overflow-hidden{overflow:hidden}.gui-overflow-y-scroll{overflow-y:scroll}.gui-overflow-x-hidden{overflow-x:hidden}.gui-overflow-auto{overflow:auto}.gui-p-0{padding:0}.gui-px-0{padding-left:0;padding-right:0}.gui-py-0{padding-bottom:0;padding-top:0}.gui-p-1{padding:1px}.gui-px-1{padding-left:1px;padding-right:1px}.gui-py-1{padding-bottom:1px;padding-top:1px}.gui-p-2{padding:2px}.gui-px-2{padding-left:2px;padding-right:2px}.gui-py-2{padding-bottom:2px;padding-top:2px}.gui-p-3{padding:3px}.gui-px-3{padding-left:3px;padding-right:3px}.gui-py-3{padding-bottom:3px;padding-top:3px}.gui-p-4{padding:4px}.gui-px-4{padding-left:4px;padding-right:4px}.gui-py-4{padding-bottom:4px;padding-top:4px}.gui-p-5{padding:6px}.gui-px-5{padding-left:6px;padding-right:6px}.gui-py-5{padding-bottom:6px;padding-top:6px}.gui-p-6{padding:8px}.gui-px-6{padding-left:8px;padding-right:8px}.gui-py-6{padding-bottom:8px;padding-top:8px}.gui-p-7{padding:10px}.gui-px-7{padding-left:10px;padding-right:10px}.gui-py-7{padding-bottom:10px;padding-top:10px}.gui-p-8{padding:12px}.gui-px-8{padding-left:12px;padding-right:12px}.gui-py-8{padding-bottom:12px;padding-top:12px}.gui-p-10{padding:16px}.gui-px-10{padding-left:16px;padding-right:16px}.gui-py-10{padding-bottom:16px;padding-top:16px}.gui-p-13{padding:22px}.gui-px-13{padding-left:22px;padding-right:22px}.gui-py-13{padding-bottom:22px;padding-top:22px}.gui-p-23{padding:42px}.gui-px-23{padding-left:42px;padding-right:42px}.gui-py-23{padding-bottom:42px;padding-top:42px}.gui-pr-10{padding-right:16px}.gui-pl-9{padding-right:10px}.gui-pb-6{padding-bottom:8px}.gui-pb-12{padding-bottom:20px}.gui-pl-21{padding-left:38px}.gui-pt-4{padding-top:4px}.gui-pt-6{padding-top:8px}.gui-pt-10{padding-top:16px}.gui-pt-12{padding-top:20px}.gui-pt-14{padding-top:24px}.gui-static{position:static}.gui-fixed{position:fixed}.gui-relative{position:relative}.gui-absolute{position:absolute}.gui-text-xxs{font-size:11px}.gui-text-xs{font-size:12px}.gui-text-sm{font-size:13px}.gui-text-base{font-size:14px}.gui-text-lg{font-size:16px}.gui-text-xl{font-size:18px}.gui-text-2xl{font-size:20px}.gui-text-3xl{font-size:22px}.gui-leading-4{line-height:16px}.gui-leading-6{line-height:24px}.gui-font-thin{font-weight:100}.gui-font-extralight{font-weight:200}.gui-font-light{font-weight:300}.gui-font-normal{font-weight:400}.gui-font-medium{font-weight:500}.gui-font-semibold{font-weight:600}.gui-font-bold{font-weight:700}.gui-font-extrabold{font-weight:800}.gui-font-black{font-weight:900}.gui-not-italic{font-style:normal}.gui-whitespace-nowrap{white-space:nowrap}.gui-overflow-ellipsis{text-overflow:ellipsis}.gui-no-underline{text-decoration:none}.gui-text-center{text-align:center}.gui-w-full{width:100%}.gui-w-96{width:384px}.gui-w-3\\/5{width:60%}.gui-structure *,.gui-structure *:after,.gui-structure *:before{box-sizing:border-box}.gui-structure input{font-size:13px;outline:0}.gui-bold{font-weight:700}.gui-italic{font-style:italic}.gui-bar-view{width:100%}.gui-align-right{display:-ms-flexbox;display:flex;-ms-flex-pack:end;justify-content:flex-end;text-align:right;width:100%}.gui-align-left{text-align:left;width:100%}.gui-align-center{-ms-flex-pack:center;justify-content:center;text-align:center;width:100%}.gui-icon{cursor:pointer}.gui-icon svg{fill:#aaa;stroke:#aaa;transition:stroke .3s ease-in-out}.gui-icon svg:hover{fill:#464646!important;stroke:#464646!important}.gui-view-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.gui-percentage-bar{background:#deebff;border-radius:4px;box-shadow:inset 1px 1px 2px #ccc;color:#0747a6;height:22px;padding:4px;position:relative;text-align:center;width:100%}.gui-percentage-bar .gui-percentage{background:#8abcfc;border-radius:4px;height:22px;left:0;position:absolute;top:0}.gui-percentage-bar .gui-percentage-view{color:#031d44;position:relative;width:100%}.gui-clear-search-icon{cursor:pointer;height:16px;position:absolute;right:8px;top:50%;-ms-transform:translateY(-50%);transform:translateY(-50%);width:16px}.gui-clear-search-icon:before,.gui-clear-search-icon:after{background-color:#aaa;border-radius:8px;content:\" \";height:16px;left:7px;position:absolute;width:2px}.gui-clear-search-icon:before{-ms-transform:rotate(45deg);transform:rotate(45deg)}.gui-clear-search-icon:after{-ms-transform:rotate(-45deg);transform:rotate(-45deg)}.gui-clear-search-icon:hover:before,.gui-clear-search-icon:hover:after{background-color:#464646}\n", ".gui-structure,.gui-structure *{border-color:#d6d6d6;font-size:14px}.gui-structure input{color:#333;font-family:Arial}.gui-header{background:#f2f3f4;border-bottom:1px solid;border-color:inherit;height:36px}.gui-header .gui-header-cell.gui-header-sortable{cursor:pointer}.gui-header .gui-header-cell.gui-header-sortable:hover{background:#e6e7e8}.gui-header .gui-header-cell .gui-header-menu-icon{display:none}.gui-header .gui-header-cell:hover .gui-header-menu{cursor:pointer}.gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:block}.gui-header .gui-header-cell:last-of-type{border-right:0}.gui-header .gui-header-cell .gui-header-title{display:-ms-flexbox;display:flex;line-height:1.4em}.gui-header .gui-header-cell .gui-header-menu{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:16px;padding:16px;position:relative;right:0;width:16px}.gui-header .gui-header-cell .gui-header-menu .gui-header-menu-icon-wrapper .gui-header-menu-icon{display:none;height:16px;width:16px}.gui-header-bottom .gui-header{border-bottom:0;border-color:inherit;border-top:1px solid}.gui-structure{background:#fff;border-color:#d6d6d6;box-sizing:border-box;color:#333;display:block;font-family:Arial;font-size:14px;position:relative}.gui-structure *{box-sizing:border-box}.gui-structure .gui-structure-header{display:block;height:100%;width:100%}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header{height:32px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell{padding:4px}.gui-structure .gui-structure-header .gui-structure-header-filters.gui-header .gui-header-cell input{box-sizing:border-box;height:100%;padding:2px;position:relative;width:100%;border-color:#d6d6d6;border-style:solid;border-width:1px;font-size:13px}.gui-structure-container{display:block;height:100%;overflow:auto;overflow-x:hidden;position:relative;width:100%}.gui-structure-container .gui-structure-container-element{height:100%;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content{height:100%;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid transparent;position:absolute;width:100%}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:last-child{border-bottom:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#ecedee}.gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#d0e8fb}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell{border-right:1px solid transparent;box-sizing:border-box;line-height:1em;overflow:hidden;padding:0;white-space:nowrap}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-view span{line-height:1.4em}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-button{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-cell-boolean{-ms-flex-pack:center;justify-content:center}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox{line-height:24px;position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-checkbox input{position:relative}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-chip{line-height:1em;margin:0;padding:4px 8px}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-badge{padding:0}.gui-structure-container .gui-structure-container-element .gui-content .gui-row .gui-cell .gui-input{background:transparent;font-size:14px;padding:0;border-radius:0;border-style:none}.gui-structure-container .gui-cell{display:inline-block}.gui-structure-container .gui-cell:last-child .gui-cell-view{padding-right:20px}.gui-structure-container .gui-cell>span{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;padding:0 8px;width:100%}.gui-structure-container .gui-cell .gui-cell-edit-mode{border:2px solid #2185d0;height:100%;padding:6px}.gui-structure-container .gui-cell .gui-cell-edit-mode .gui-boolean-edit{margin-left:calc(50% - 11px)}.gui-structure-container .gui-cell .gui-cell-edit-mode input:focus{box-shadow:none;outline:none}.gui-vertical-grid .gui-structure-summaries-cell,.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell{border-right:1px solid;border-right-color:inherit}.gui-vertical-grid .gui-structure-container-element .gui-content .gui-row .gui-cell:last-of-type,.gui-vertical-grid .gui-structure-header .gui-header .gui-header-cell:last-of-type{border-right:0}.gui-vertical-grid .gui-row-checkbox{border-right:1px solid!important;border-right-color:inherit!important}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row{border-bottom:1px solid;border-bottom-color:inherit}.gui-horizontal-grid .gui-structure-container-element .gui-content .gui-row:last-of-type{border-bottom:0}.gui-rows-even .gui-row.even,.gui-rows-odd .gui-row.odd{background:#f7f8f9}.gui-structure-info-panel{-ms-flex-align:center;align-items:center;background:#f2f3f4;box-sizing:border-box;display:-ms-flexbox;display:flex;height:36px;-ms-flex-pack:justify;justify-content:space-between;padding:0 6px;width:100%;border-top-color:inherit;border-top-style:solid;border-top-width:1px}.gui-structure-info-panel p{margin:0}.gui-structure-info-panel p b{font-weight:700}.gui-structure-info-panel div button{background:#ccc;color:#fff;cursor:pointer;font-family:Arial;font-weight:700;height:16px;line-height:14px;padding:0;width:16px;border-color:transparent;border-radius:50%;border-style:solid;border-width:1px}.gui-structure-info-panel div button:focus{box-shadow:0 0 4px #ccc;outline:none}.gui-structure-border{border:1px solid;border-color:#d6d6d6}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeOut{0%{opacity:1}to{opacity:0}}.gui-loading{-ms-flex-line-pack:center;align-content:center;animation-duration:.2s;background:rgba(255,255,255,.8);border:1px solid;border-color:inherit;display:-ms-flexbox;display:flex;height:100%;-ms-flex-pack:center;justify-content:center;left:0;opacity:0;position:absolute;top:0;visibility:hidden;width:100%}.gui-loading .gui-spinner{-ms-flex-item-align:center;align-self:center}.gui-loading.gui-loader-hidden{animation-name:fadeOut;opacity:0;visibility:visible;z-index:-1}.gui-loading.gui-loader-visible{animation-name:fadeIn;opacity:1;visibility:visible;z-index:1}.gui-text-highlight{background:#fff799;padding:0!important}.gui-title-panel{border-bottom-color:#d6d6d6}.gui-footer-panel{border-top-color:#d6d6d6}.gui-structure-schema-manager-icon{margin-right:16px}.gui-structure-schema-manager-icon svg{height:18px;margin-bottom:-1px;width:18px}.gui-row-radio{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-radio .gui-radio-button{height:24px;margin:0;padding:0;width:24px}.gui-row-checkbox{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox!important;display:flex!important;-ms-flex-pack:center;justify-content:center;padding:0 12px!important;width:48px!important}.gui-row-checkbox .gui-checkbox{height:24px;margin:0;padding:0;width:24px}.gui-select-all .gui-checkbox .gui-checkmark{top:0}.gui-structure-cell-edit-boolean{height:100%}.gui-column-highlighted{background:#fffddd}.gui-structure-column-manager>div:hover{background:#ecedee}.gui-structure-column-manager label{margin-bottom:0}.gui-structure-ordered-list li:hover{background:#ecedee}\n", ".gui-structure-column-menu-icon svg{height:16px;width:16px}.gui-structure-column-menu-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}.gui-structure-column-menu-arrow-icon{display:inline-block}.gui-structure-column-menu-arrow-icon svg{height:10px;width:12px}.gui-structure-column-menu-arrow-icon .gui-structure-column-menu-sort-icon svg{height:16px}.gui-structure-column-menu-arrow-icon .cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px}\n", ".gui-summaries-value{font-weight:700}.gui-structure-summaries-panel{background:#f2f3f4}.gui-structure-summaries-panel.gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top:1px solid #d6d6d6}.gui-structure-summaries-panel.gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom:1px solid #d6d6d6}.gui-structure-summaries-panel .gui-structure-summaries-cell{font-size:14px;padding-left:16px;padding-right:16px}.gui-structure-summaries-panel .gui-structure-summaries-cell:last-child{padding-right:20px}.gui-structure-summaries-panel .gui-structure-summaries-value{display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;line-height:1em;overflow:hidden;padding:8px 0}.gui-structure-summaries-panel .gui-structure-summaries-value div .gui-math-symbol{position:relative;top:-1px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean,.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;position:relative}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-mean span:nth-child(1){left:1px;position:absolute;top:-15px}.gui-structure-summaries-panel .gui-structure-summaries-value .gui-median span:nth-child(1){left:1px;position:absolute;top:-8px}\n", ".gui-structure-column-manager-icon svg{height:16px;width:16px}.gui-structure-column-manager-icon .cls-1,.gui-structure-column-manager-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-column-manager-icon .cls-2{stroke-width:1.5px}.gui-structure-info-icon svg{height:16px;width:16px}.gui-structure-info-icon .cls-1{stroke-width:0}.gui-structure-info-icon .cls-2{fill:none;stroke-linecap:round;stroke-linejoin:round}.gui-structure-info-panel div,.gui-structure-info-panel div button{display:inline-block}.gui-structure-info-panel .gui-right-section .gui-structure-column-manager-icon{margin-right:16px;position:relative}.gui-structure-info-panel .gui-right-section .gui-structure-info-icon{margin-right:4px;position:relative}.gui-structure-info-modal .gui-quote{color:#575757}.gui-structure-info-modal p{color:#333}.gui-structure-info-modal a{color:#2185d0}.gui-structure-info-modal a:hover{color:#59a9e5;text-decoration:underline}\n", "@media (max-width: 500px){.gui-paging>*{padding-left:4px}.gui-paging .gui-paging-stats{padding-left:4px}}\n", ".gui-header{display:-ms-flexbox;display:flex}.gui-header .gui-header-cell{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex}.gui-content{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column}.gui-content .gui-structure-cell-container,.gui-content .gui-row{display:-ms-flexbox;display:flex}.gui-content .gui-structure-cell-container .gui-cell,.gui-content .gui-row .gui-cell{display:inline-block}.gui-content .gui-structure-row-details{background:#80cbc4;display:block;height:200px;position:absolute;-ms-transform:translateY(0);transform:translateY(0);width:100%}\n", ".gui-inline-dialog-header-menu.gui-inline-dialog-wrapper .gui-inline-dialog-content{background:transparent;box-shadow:none}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-item-active{font-weight:700}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#fff}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#333}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#2185d0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 3px 7px #ccc;box-sizing:content-box;padding:0;width:225px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#333;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;padding:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item{-ms-flex-align:center;align-items:center;cursor:pointer;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.left{padding:12px 16px 12px 12px;width:48%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item.right{padding:12px 10px;width:52%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container{border:none;border-radius:0}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover .gui-dropdown-arrow{opacity:1}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu{width:125px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item{background:#fff;color:#333;display:-ms-flexbox;display:flex;padding:8px 8px 8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item:hover .gui-sort-title svg line{stroke:#464646}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;-ms-flex-pack:justify;justify-content:space-between;width:100%}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg{margin-top:3px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-menu .gui-item .gui-sort-title svg line{stroke:#aaa}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#333;cursor:pointer;display:block;padding:8px 12px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#ecedee}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#333;margin-left:12px;padding:8px 12px 8px 32px;width:169px}.gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox label{display:inline-block;width:inherit}\n", ".gui-schema-manager-dialog .gui-schema-manager{min-width:180px}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select,.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox{color:#333}.gui-schema-manager-dialog .gui-schema-manager .gui-structure-schema-manager-select:nth-last-child(1),.gui-schema-manager-dialog .gui-schema-manager .gui-checkbox:nth-last-child(1){margin-bottom:0}.gui-dialog-title{border-bottom:solid 1px #d6d6d6;font-size:18px;font-weight:700;margin-left:-16px;margin-right:-16px;padding-bottom:16px;text-align:center;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.gui-structure-schema-manager-select{padding:8px 0 24px}.gui-structure-dialog-column-manager ol{max-height:400px;min-width:250px}\n", ".gui-cell .gui-checkbox{display:block}.gui-cell .gui-chip{margin:0;padding:2px 8px}.gui-cell .gui-input{display:block;font-size:11px;padding:2px 4px;width:100%}.gui-cell .gui-button{padding:2px 8px}.gui-cell .gui-cell-number{display:block;width:100%}.gui-cell .gui-cell-boolean{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;height:100%;text-align:center;width:100%}.gui-cell .gui-string-edit{width:100%}\n", ".gui-fabric{border-color:#d6d6d6;font-family:Arial;font-size:14px}.gui-fabric .gui-header-cell,.gui-fabric .gui-structure-header-columns,.gui-fabric .gui-structure-top-panel,.gui-fabric .gui-structure-info-panel,.gui-fabric .gui-paging{height:42px}\n", ".gui-material{border-color:#0000001f;font-family:Arial;font-size:14px}.gui-material *{border-color:#0000001f}.gui-material.gui-structure{border:0;border-radius:0;box-shadow:0 2px 2px #00000024,0 3px 1px -2px #0000001f,0 1px 5px #0003}.gui-material.gui-structure,.gui-material .gui-header{font-family:Arial}.gui-material .gui-header-cell,.gui-material .gui-structure-header-columns{height:56px}.gui-material .gui-header .gui-header-cell.gui-header-sortable:hover{background:transparent}.gui-material .gui-header-cell{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-material .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-material .gui-structure-header .gui-header{background:transparent;color:#464646;font-weight:700}.gui-material .gui-structure-header .gui-header .gui-header-cell{border-color:inherit}.gui-material .gui-cell .gui-button,.gui-material .gui-cell .gui-badge{padding:0}.gui-material .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-material .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-material .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-material .gui-structure-summaries-panel{background:#fff}.gui-material gui-structure-top-panel,.gui-material .gui-structure-info-panel,.gui-material .gui-paging{height:52px;padding-left:16px;padding-right:16px}.gui-material .gui-structure-info-panel{background:#fff;border-radius:0}.gui-material gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-material gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-material .gui-search-bar form input{border:0;outline:none}\n", ".gui-dark{border-color:#575757;border-radius:2px;color:#f0f0f0;font-family:Arial;font-size:14px}.gui-dark *{border-color:#575757;color:#f0f0f0}.gui-dark.gui-structure{border-radius:2px}.gui-dark .gui-header-cell,.gui-dark .gui-structure-header-columns{background:#333;height:46px}.gui-dark .gui-structure-border{border:none;box-shadow:5px 5px 10px 2px #1f1f1f}.gui-dark .gui-header-cell{border-bottom:1px solid;border-color:inherit;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-dark .gui-structure-header .gui-header{border-bottom-color:#666;color:#bdbdbd}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover{background:#525252}.gui-dark .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-list{background:#383838}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-menu .gui-tab-menu-item.gui-active{color:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-tab-content{box-shadow:0 1px 2px #525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab .gui-structure-column-manager ol li:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-column-move .gui-header-menu-column-move-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu{border-color:#666}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container .gui-dropdown-menu .gui-item:hover svg line{stroke:#ce93d8}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-dropdown-container:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item{background:#383838;color:#f0f0f0;display:-ms-flexbox;display:flex}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-tab-item-dropdown .gui-header-menu-dropdown.gui-dropdown .gui-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item{color:#f0f0f0}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-header-menu-item:hover{background:#525252}.gui-dark .gui-inline-dialog-header-menu .gui-header-menu-tab .gui-checkbox{color:#f0f0f0}.gui-dark .gui-structure-column-manager>div:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#525252}.gui-dark .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-dark.gui-rows-odd .gui-row.odd,.gui-dark.gui-rows-even .gui-row.even{background:#4f4f4f}.gui-dark .gui-horizontal-grid .gui-structure-container-element .gui-row .gui-cell{border-bottom-color:#666}.gui-dark .gui-paging.gui-paging-bottom{border-top-color:#666}.gui-dark .gui-paging.gui-paging-top{border-bottom-color:#666}.gui-dark ::-webkit-scrollbar{width:15px}.gui-dark ::-webkit-scrollbar-track{background:#616161}.gui-dark ::-webkit-scrollbar-thumb{background:#424242}.gui-dark ::-webkit-scrollbar-thumb:hover{background:#212121}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging,.gui-dark .gui-structure-container-element,.gui-dark .gui-row{background:#444}.gui-dark .gui-structure-top-panel,.gui-dark .gui-structure-info-panel,.gui-dark .gui-paging{height:42px;padding-left:16px;padding-right:16px}.gui-dark .gui-structure-summaries-cell{background:#383838;color:#f0f0f0}.gui-dark .gui-structure-summaries-panel-bottom .gui-structure-summaries-cell{border-top-color:#666}.gui-dark .gui-structure-summaries-panel-top .gui-structure-summaries-cell{border-bottom-color:#666}.gui-dark .gui-structure-info-panel{background:#383838;border-top-color:#666}.gui-dark .gui-structure-info-panel div{color:#f0f0f0}.gui-dark .gui-structure-info-panel div button{background:#616161}.gui-dark .gui-structure-info-panel p,.gui-dark .gui-structure-info-modal p{color:#f0f0f0}.gui-dark gui-paging-alternative-navigator .gui-button{background:transparent;color:#f0f0f0;margin:0 4px;padding:0}.gui-dark gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-dark gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#f0f0f0;opacity:.4}.gui-dark gui-paging-alternative-navigator gui-paging-alternative-pages .gui-paging-active-page{box-shadow:0 1px #f0f0f0;color:#f0f0f0}.gui-dark .gui-search-bar form{background:#444}.gui-dark .gui-search-bar input{background:#444;border:0;color:#f0f0f0;cursor:pointer}.gui-dark .gui-search-bar:hover .gui-search-icon-svg line,.gui-dark .gui-search-bar:hover .gui-search-icon-svg circle{stroke:#878787}.gui-dark .gui-icon{cursor:pointer}.gui-dark .gui-icon svg{stroke:#aaa;transition:stroke .3s ease-in-out}.gui-dark .gui-icon svg:hover{stroke:#e6e6e6!important}.gui-dark .gui-empty-source div{background:#383838}.gui-dark .gui-dialog-wrapper .gui-dialog-content .gui-schema-manager-dialog .gui-dialog-title{color:#f0f0f0}.gui-dark .gui-title-panel,.gui-dark .gui-footer-panel{background:#383838}.gui-dark .gui-structure-ordered-list li:hover{background:#525252}\n", ".gui-light{border-color:#f0f0f0;font-family:Arial;font-size:14px}.gui-light *{border-color:#f0f0f0}.gui-light.gui-structure-border{border:0}.gui-light.gui-structure,.gui-light .gui-header{background:#fff;color:#333;font-family:Arial}.gui-light .gui-header-cell,.gui-light .gui-structure-header-columns{height:56px}.gui-light.gui-structure-border{border-color:#f0f0f0 transparent}.gui-light .gui-header-cell,.gui-light .gui-structure-container-element .gui-structure-cell>span{padding-left:16px;padding-right:16px}.gui-light .gui-structure-header .gui-header{color:#333;font-weight:700}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover{background:#f3f9ff}.gui-light .gui-structure-header .gui-header .gui-header-cell:hover .gui-header-menu .gui-header-menu-icon-wrapper{background-color:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:#f3f9ff}.gui-light .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:rgba(124,185,246,.3215686275)}.gui-light.gui-rows-odd .gui-row.odd,.gui-light.gui-rows-even .gui-row.even{background:#f7f7f7}.gui-light gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-light gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-light gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#333;opacity:.4}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging{height:56px;padding-left:16px;padding-right:16px}.gui-light .gui-structure-top-panel,.gui-light .gui-structure-info-panel,.gui-light .gui-paging,.gui-light .gui-structure-summaries-panel{background:#fff}.gui-light .gui-search-bar form input{border:0;outline:none}\n", ".gui-structure.gui-generic{border-color:#2224261a;font-family:Arial;font-size:14px}.gui-structure.gui-generic *{border-color:#2224261a}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-header-columns{height:46px}.gui-structure.gui-generic .gui-header .gui-header-cell.gui-header-sortable:hover{background:rgba(0,0,0,.04);transition:.15s all}.gui-structure.gui-generic .gui-header-cell,.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell>span{padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-container-element .gui-structure-cell:last-child>span{padding-right:20px}.gui-structure.gui-generic .gui-structure-header.gui-header-bottom .gui-header{border-color:inherit;border-style:solid;border-width:2px 0 0}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row:hover{background:rgba(0,0,0,.04)}.gui-structure.gui-generic .gui-structure-container .gui-structure-container-element .gui-content .gui-row.selected{background:#e6f7ff}.gui-structure.gui-generic .gui-structure-header .gui-header{background:#f9fafb;border-width:0 0 2px;color:#464646;font-weight:700}.gui-structure.gui-generic .gui-rows-odd .gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-cell .gui-button,.gui-structure.gui-generic .gui-cell .gui-badge{padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button{background:transparent;color:#333;margin:0 4px;padding:0}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:hover{background:transparent}.gui-structure.gui-generic .gui-paging-alternative-navigator .gui-button:disabled{background:transparent;color:#ccc;opacity:.4}.gui-structure.gui-generic .gui-structure-summaries-panel{background:#f9fafb}.gui-structure.gui-generic .gui-structure-top-panel,.gui-structure.gui-generic .gui-structure-info-panel,.gui-structure.gui-generic .gui-paging{height:46px;padding-left:12px;padding-right:12px}.gui-structure.gui-generic .gui-structure-info-panel{background:#f9fafb;border-radius:0}.gui-structure.gui-generic .gui-structure-top-panel{-ms-flex-align:center;align-items:center;display:-ms-flexbox;display:flex;padding-right:0}.gui-structure.gui-generic .gui-structure-top-panel .gui-search-bar form input{border:0;outline:0}.gui-structure.gui-generic .gui-rows-odd gui-row.odd,.gui-structure.gui-generic .gui-rows-even .gui-row.even{background:#f9fafb}.gui-structure.gui-generic .gui-row:hover{background:#f9fafb;transition:.15s all}\n"] }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SourcePublisher }, { type: SourceEventService }, { type: SortingPublisher }, { type: SearchPublisher }, { type: FieldPublisher }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructurePublisher }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: StructureColumnMenuConfigArchive }, { type: PagingDisplayModeArchive }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: StructureRowDetailConfigArchive }, { type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }, { type: ColumnAutoConfigurator }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.Injector }, { type: StructureDefinition }, { type: StructureWarehouse }, { type: CompositionWarehouse }, { type: SchemaCssClassManager }, { type: SchemaReadModelRootId }, { type: StructureRowDetailService }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: SourcePublisher }, { type: SourceEventService }, { type: SortingPublisher }, { type: SearchPublisher }, { type: FieldPublisher }, { type: SchemaPublisher }, { type: CompositionPublisher }, { type: CompositionEventRepository }, { type: FormationEventRepository }, { type: StructurePublisher }, { type: StructureEditModeArchive }, { type: StructureCellEditArchive }, { type: StructureInfoPanelArchive }, { type: StructureInfoPanelConfigService }, { type: StructureCellEditStore }, { type: ColumnFieldFactory }, { type: StructureColumnMenuConfigArchive }, { type: PagingDisplayModeArchive }, { type: FormationPublisher }, { type: SearchEventRepository }, { type: StructureHeaderBottomEnabledArchive }, { type: StructureRowDetailConfigArchive }, { type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }, { type: SchemaEventRepository }, { type: TranslationFacade }, { type: StructureInitialValuesReadyArchive }, { type: ColumnAutoConfigurator }, { type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i0.Injector }, { type: StructureDefinition }, { type: StructureWarehouse }, { type: CompositionWarehouse }, { type: SchemaCssClassManager }, { type: SchemaReadModelRootId }, { type: StructureRowDetailService }] });
 
 class StructureHeaderFilterComponent extends SmartComponent {
     changeDetectorRef;
@@ -13742,25 +13643,25 @@ class StructureHeaderFilterComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-structure-header-filter';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderFilterComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: FilterPublisher }, { token: StructureId }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureHeaderFilterComponent, selector: "gui-structure-header-filter", inputs: { column: "column" }, usesInheritance: true, ngImport: i0, template: "\n\n<!--\t\t<ng-container-->\n<!--\t\t\t\t*ngTemplateOutlet=\"column.editTemplate; context: editContext\">-->\n<!--\t\t</ng-container>-->\n\n<button gui-button [primary]=\"true\">Add Filter</button>\n\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderFilterComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: FilterPublisher }, { token: StructureId }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureHeaderFilterComponent, selector: "gui-structure-header-filter", inputs: { column: "column" }, usesInheritance: true, ngImport: i0, template: "\n\n<!--\t\t<ng-container-->\n<!--\t\t\t\t*ngTemplateOutlet=\"column.editTemplate; context: editContext\">-->\n<!--\t\t</ng-container>-->\n\n<button gui-button [primary]=\"true\">Add Filter</button>\n\n", dependencies: [{ kind: "component", type: i1.FabricButtonComponent, selector: "button[gui-button], a[gui-button]", inputs: ["link", "text"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureHeaderFilterComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureHeaderFilterComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-structure-header-filter', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "\n\n<!--\t\t<ng-container-->\n<!--\t\t\t\t*ngTemplateOutlet=\"column.editTemplate; context: editContext\">-->\n<!--\t\t</ng-container>-->\n\n<button gui-button [primary]=\"true\">Add Filter</button>\n\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: FilterPublisher }, { type: StructureId }]; }, propDecorators: { column: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: FilterPublisher }, { type: StructureId }], propDecorators: { column: [{
                 type: Input
             }] } });
 
 class StructureQuickFiltersComponent {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureQuickFiltersComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureQuickFiltersComponent, selector: "div[gui-structure-quick-filters]", ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureQuickFiltersComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureQuickFiltersComponent, selector: "div[gui-structure-quick-filters]", ngImport: i0, template: `
 
 		QuickFilters
 
 	`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureQuickFiltersComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureQuickFiltersComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'div[gui-structure-quick-filters]',
@@ -13793,13 +13694,13 @@ function provideLogger() {
     return CoreContainer.resolve(Logger);
 }
 class LoggerModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: LoggerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: LoggerModule });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: LoggerModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: LoggerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: LoggerModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: LoggerModule, providers: [
             { provide: Logger, useFactory: provideLogger }
         ] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: LoggerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: LoggerModule, decorators: [{
             type: NgModule,
             args: [{
                     providers: [
@@ -13910,17 +13811,17 @@ class ItemFactory {
 }
 
 class StructureTopPanelModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelModule, declarations: [StructureTopPanelComponent], imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelModule, declarations: [StructureTopPanelComponent], imports: [CommonModule,
             ReactiveFormsModule,
             FilterMenuFeatureModule,
             SearchFeatureModule], exports: [StructureTopPanelComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelModule, imports: [CommonModule,
             ReactiveFormsModule,
             FilterMenuFeatureModule,
             SearchFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureTopPanelModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureTopPanelModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -13942,15 +13843,15 @@ class UniqueValueListModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListModule, declarations: [UniqueValueListComponent], imports: [CommonModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, GuiTemplateModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListModule, declarations: [UniqueValueListComponent], imports: [CommonModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, GuiTemplateModule,
             FilterFeatureModule], exports: [UniqueValueListComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListModule, imports: [CommonModule,
             fabricImports,
             GuiTemplateModule,
             FilterFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: UniqueValueListModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UniqueValueListModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -13972,11 +13873,11 @@ const icon$1 = [
     StructureColumnMenuIconComponent
 ];
 class StructureMenuIconModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuIconModule, declarations: [StructureColumnMenuIconComponent], exports: [StructureColumnMenuIconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuIconModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuIconModule, declarations: [StructureColumnMenuIconComponent], exports: [StructureColumnMenuIconComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuIconModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureMenuIconModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureMenuIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: icon$1,
@@ -13988,11 +13889,11 @@ const icon = [
     StructureArrowIconComponent
 ];
 class StructureArrowIconModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconModule, declarations: [StructureArrowIconComponent], exports: [StructureArrowIconComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconModule, declarations: [StructureArrowIconComponent], exports: [StructureArrowIconComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureArrowIconModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureArrowIconModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: icon,
@@ -14012,8 +13913,8 @@ const icons$1 = [
     StructureArrowIconModule
 ];
 class StructureColumnMenuModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuModule, declarations: [StructureColumnConfigComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuModule, declarations: [StructureColumnConfigComponent,
             StructureColumnConfigTriggerComponent,
             StructureColumnConfigSortComponent,
             StructureColumnConfigColumnHideComponent,
@@ -14026,7 +13927,7 @@ class StructureColumnMenuModule {
             StructureColumnConfigSortComponent,
             StructureColumnConfigColumnHideComponent,
             StructureColumnConfigColumnMoveComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuModule, imports: [CommonModule,
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuModule, imports: [CommonModule,
             fabricImports,
             GuiTemplateModule,
             StructureColumnManagerModule,
@@ -14034,7 +13935,7 @@ class StructureColumnMenuModule {
             TranslationFeatureModule,
             icons$1] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -14134,13 +14035,13 @@ class StructureCellEditComponent extends SmartComponent {
     publishEditSubmit() {
         this.publishEditState(StructureCellEditState.SUBMIT);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: StructureCellEditComponent, selector: "div[gui-structure-cell-edit][entity][cell]", inputs: { entity: "entity", cell: "cell" }, viewQueries: [{ propertyName: "cellContainerRef", first: true, predicate: ["cellContainer"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span #cellContainer>\n\t<ng-container\n\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\tcontext: editContext\">\n\t</ng-container>\n</span>\n", dependencies: [{ kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: StructureCellEditComponent, selector: "div[gui-structure-cell-edit][entity][cell]", inputs: { entity: "entity", cell: "cell" }, viewQueries: [{ propertyName: "cellContainerRef", first: true, predicate: ["cellContainer"], descendants: true, read: ElementRef, static: true }], usesInheritance: true, usesOnChanges: true, ngImport: i0, template: "<span #cellContainer>\n\t<ng-container\n\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\tcontext: editContext\">\n\t</ng-container>\n</span>\n", dependencies: [{ kind: "directive", type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureCellEditComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureCellEditComponent, decorators: [{
             type: Component,
             args: [{ selector: 'div[gui-structure-cell-edit][entity][cell]', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<span #cellContainer>\n\t<ng-container\n\t\t*ngTemplateOutlet=\"cell.editTemplate;\n\t\t\t\t\t\t\tcontext: editContext\">\n\t</ng-container>\n</span>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourcePublisher }]; }, propDecorators: { cellContainerRef: [{
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureId }, { type: SourcePublisher }], propDecorators: { cellContainerRef: [{
                 type: ViewChild,
                 args: ['cellContainer', { read: ElementRef, static: true }]
             }], entity: [{
@@ -14336,13 +14237,13 @@ class SortingFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SortingFeatureModule, imports: [CommonModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SortingFeatureModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingFeatureModule, providers: [
             { provide: SortingPublisher, useFactory: provideSortingCommandInvoker }
         ], imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SortingFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SortingFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -15094,14 +14995,14 @@ class FieldFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FieldFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: FieldFeatureModule, imports: [CommonModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FieldFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FieldFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FieldFeatureModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FieldFeatureModule, providers: [
             { provide: FieldPublisher, useFactory: provideFieldCommandInvoker },
             { provide: FieldWarehouse, useFactory: provideFieldWarehouse }
         ], imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FieldFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FieldFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -15692,12 +15593,12 @@ class SummariesFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SummariesFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SummariesFeatureModule, declarations: [StructureSummariesPanelComponent], imports: [CommonModule,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SummariesFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SummariesFeatureModule, declarations: [StructureSummariesPanelComponent], imports: [CommonModule,
             FabricModule,
             TranslationFeatureModule,
             GuiTemplateModule], exports: [StructureSummariesPanelComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SummariesFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SummariesFeatureModule, providers: [
             { provide: SummariesPublisher, useFactory: provideSummariesCommandInvoker },
             { provide: SummariesWarehouse, useFactory: provideSummariesWarehouse },
             { provide: SummariesEventRepository, useFactory: provideSummariesEventRepository },
@@ -15711,7 +15612,7 @@ class SummariesFeatureModule extends FeatureModule {
             TranslationFeatureModule,
             GuiTemplateModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SummariesFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SummariesFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -16553,14 +16454,14 @@ class VerticalFormationFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationFeatureModule, imports: [CommonModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationFeatureModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationFeatureModule, providers: [
             { provide: VerticalFormationPublisher, useFactory: provideVerticalFormationCommandInvoker },
             { provide: VerticalFormationWarehouse, useFactory: provideVerticalFormationWarehouse }
         ], imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -17239,15 +17140,15 @@ class SchemaFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaFeatureModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SchemaFeatureModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaFeatureModule, providers: [
             { provide: SchemaPublisher, useFactory: useFactorySchemaCommandInvoker },
             { provide: SchemaWarehouse, useFactory: useFactorySchemaWarehouse },
             { provide: SchemaEventRepository, useFactory: useFactorySchemaEventRepository }
         ], imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SchemaFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SchemaFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -17261,14 +17162,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     declarations: [],
                     exports: []
                 }]
-        }], ctorParameters: function () { return []; } });
+        }], ctorParameters: () => [] });
 
 class SanitizeModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SanitizeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SanitizeModule, declarations: [SafePipe], imports: [CommonModule], exports: [SafePipe] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SanitizeModule, imports: [CommonModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SanitizeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SanitizeModule, declarations: [SafePipe], imports: [CommonModule], exports: [SafePipe] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SanitizeModule, imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SanitizeModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SanitizeModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -17287,10 +17188,10 @@ class ColumnQueryComponent {
     cellTemplate;
     header;
     headerTemplate;
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ColumnQueryComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: ColumnQueryComponent, selector: "gui-column[header]", inputs: { header: "header" }, queries: [{ propertyName: "cellTemplate", first: true, predicate: TemplateRef, descendants: true, read: TemplateRef }], ngImport: i0, template: '', isInline: true });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColumnQueryComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ColumnQueryComponent, selector: "gui-column[header]", inputs: { header: "header" }, queries: [{ propertyName: "cellTemplate", first: true, predicate: TemplateRef, descendants: true, read: TemplateRef }], ngImport: i0, template: '', isInline: true });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ColumnQueryComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColumnQueryComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'gui-column[header]',
@@ -17354,8 +17255,8 @@ class CompositionFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionFeatureModule, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CompositionFeatureModule, declarations: [ViewTemplatesComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionFeatureModule, deps: [{ token: i0.ComponentFactoryResolver }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CompositionFeatureModule, declarations: [ViewTemplatesComponent,
             EditTemplatesComponent,
             StringEditTemplateComponent,
             NumberEditTemplateComponent,
@@ -17384,7 +17285,7 @@ class CompositionFeatureModule extends FeatureModule {
             BarViewComponent,
             PercentageViewComponent,
             HtmlViewComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionFeatureModule, providers: [
             { provide: CompositionPublisher, useFactory: provideCompositionCommandPublisher },
             { provide: CompositionWarehouse, useFactory: provideCompositionWarehouse },
             { provide: CompositionEventRepository, useFactory: provideCompositionEventRepository },
@@ -17407,7 +17308,7 @@ class CompositionFeatureModule extends FeatureModule {
             FabricButtonModule,
             FabricInputModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CompositionFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CompositionFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -17439,21 +17340,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         { provide: ColumnFieldFactory, useFactory: provideColumnFieldFactory }
                     ]
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ComponentFactoryResolver }]; } });
+        }], ctorParameters: () => [{ type: i0.ComponentFactoryResolver }] });
 
 class StructureSearchingGate extends SearchingGate {
     constructor(structureId, searchEventRepository, searchCommandInvoker) {
         super(structureId, searchEventRepository, searchCommandInvoker);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureSearchingGate, selector: "gui-structure[searching]", usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSearchingGate, deps: [{ token: StructureId }, { token: SearchEventRepository }, { token: SearchPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureSearchingGate, selector: "gui-structure[searching]", usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSearchingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSearchingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[searching]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: SearchEventRepository }, { type: SearchPublisher }] });
 
 class StructureColumnHeaderGate extends Gate {
     structureHeaderTopEnabledArchive;
@@ -17473,15 +17374,15 @@ class StructureColumnHeaderGate extends Gate {
             this.structureHeaderBottomEnabledArchive.next(this.columnHeaderBottom);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnHeaderGate, deps: [{ token: StructureHeaderTopEnabledArchive }, { token: StructureHeaderBottomEnabledArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnHeaderGate, selector: "gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]", inputs: { columnHeaderTop: "columnHeaderTop", columnHeaderBottom: "columnHeaderBottom" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnHeaderGate, deps: [{ token: StructureHeaderTopEnabledArchive }, { token: StructureHeaderBottomEnabledArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnHeaderGate, selector: "gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]", inputs: { columnHeaderTop: "columnHeaderTop", columnHeaderBottom: "columnHeaderBottom" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnHeaderGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnHeaderGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[columnHeaderTop][columnHeaderBottom], gui-structure[columnHeaderTop], gui-structure[columnHeaderBottom]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureHeaderTopEnabledArchive }, { type: StructureHeaderBottomEnabledArchive }]; }, propDecorators: { columnHeaderTop: [{
+        }], ctorParameters: () => [{ type: StructureHeaderTopEnabledArchive }, { type: StructureHeaderBottomEnabledArchive }], propDecorators: { columnHeaderTop: [{
                 type: Input
             }], columnHeaderBottom: [{
                 type: Input
@@ -17510,15 +17411,15 @@ class StructurePagingGate extends PagingGate {
             this.pagingCommandInvoker.setPaging(pagingConfig, this.structureId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructurePagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: PagingDisplayModeArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructurePagingGate, selector: "gui-structure[paging]", usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructurePagingGate, deps: [{ token: StructureId }, { token: CompositionId }, { token: PagingPublisher }, { token: PagingEventRepository }, { token: PagingDisplayModeArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructurePagingGate, selector: "gui-structure[paging]", usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructurePagingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructurePagingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[paging]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: PagingDisplayModeArchive }]; } });
+        }], ctorParameters: () => [{ type: StructureId }, { type: CompositionId }, { type: PagingPublisher }, { type: PagingEventRepository }, { type: PagingDisplayModeArchive }] });
 
 class SelectionGate extends Gate {
     structureId;
@@ -17569,12 +17470,12 @@ class SelectionGate extends Gate {
             return items.map(i => i.getItem());
         }));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SelectionGate, inputs: { rowSelection: "rowSelection" }, outputs: { itemsSelected: "itemsSelected", selectedRows: "selectedRows" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: SelectionGate, inputs: { rowSelection: "rowSelection" }, outputs: { itemsSelected: "itemsSelected", selectedRows: "selectedRows" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectionGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectionGate, decorators: [{
             type: Directive
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }]; }, propDecorators: { rowSelection: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }], propDecorators: { rowSelection: [{
                 type: Input
             }], itemsSelected: [{
                 type: Output
@@ -17587,15 +17488,15 @@ class StructureSelectionGate extends SelectionGate {
     constructor(structureId, formationEventService, formationCommandDispatcher) {
         super(structureId, formationEventService, formationCommandDispatcher);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureSelectionGate, selector: "gui-structure[rowSelection], gui-structure[selectionGate]", inputs: { selectionGate: "selectionGate" }, usesInheritance: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSelectionGate, deps: [{ token: StructureId }, { token: FormationEventRepository }, { token: FormationPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureSelectionGate, selector: "gui-structure[rowSelection], gui-structure[selectionGate]", inputs: { selectionGate: "selectionGate" }, usesInheritance: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSelectionGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSelectionGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowSelection], gui-structure[selectionGate]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }]; }, propDecorators: { selectionGate: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: FormationEventRepository }, { type: FormationPublisher }], propDecorators: { selectionGate: [{
                 type: Input
             }] } });
 
@@ -17616,15 +17517,15 @@ class StructureL10nGate extends Gate {
             }
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureL10nGate, deps: [{ token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureL10nGate, selector: "gui-structure[localization]", inputs: { localization: "localization" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureL10nGate, deps: [{ token: TranslationFacade }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureL10nGate, selector: "gui-structure[localization]", inputs: { localization: "localization" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureL10nGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureL10nGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[localization]'
                 }]
-        }], ctorParameters: function () { return [{ type: TranslationFacade }]; }, propDecorators: { localization: [{
+        }], ctorParameters: () => [{ type: TranslationFacade }], propDecorators: { localization: [{
                 type: Input
             }] } });
 
@@ -17646,15 +17547,15 @@ class StructurePanelGate extends Gate {
             this.structureFooterPanelConfigArchive.next(this.footerPanel);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructurePanelGate, deps: [{ token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructurePanelGate, selector: "gui-structure[titlePanel][footerPanel]", inputs: { titlePanel: "titlePanel", footerPanel: "footerPanel" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructurePanelGate, deps: [{ token: StructureTitlePanelConfigArchive }, { token: StructureFooterPanelConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructurePanelGate, selector: "gui-structure[titlePanel][footerPanel]", inputs: { titlePanel: "titlePanel", footerPanel: "footerPanel" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructurePanelGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructurePanelGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[titlePanel][footerPanel]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }]; }, propDecorators: { titlePanel: [{
+        }], ctorParameters: () => [{ type: StructureTitlePanelConfigArchive }, { type: StructureFooterPanelConfigArchive }], propDecorators: { titlePanel: [{
                 type: Input
             }], footerPanel: [{
                 type: Input
@@ -17672,15 +17573,15 @@ class StructureRowDetailGate extends Gate {
             this.structureDetailViewConfigArchive.next(this.rowDetail);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailGate, deps: [{ token: StructureRowDetailConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowDetailGate, selector: "gui-structure[rowDetail]", inputs: { rowDetail: "rowDetail" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailGate, deps: [{ token: StructureRowDetailConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowDetailGate, selector: "gui-structure[rowDetail]", inputs: { rowDetail: "rowDetail" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowDetailGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowDetailGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowDetail]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureRowDetailConfigArchive }]; }, propDecorators: { rowDetail: [{
+        }], ctorParameters: () => [{ type: StructureRowDetailConfigArchive }], propDecorators: { rowDetail: [{
                 type: Input
             }] } });
 
@@ -17696,15 +17597,15 @@ class StructureColumnMenuGate extends Gate {
             this.structureColumnMenuConfigArchive.nextConfig(this.columnMenu);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuGate, deps: [{ token: StructureColumnMenuConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureColumnMenuGate, selector: "gui-structure[columnMenu]", inputs: { columnMenu: "columnMenu" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuGate, deps: [{ token: StructureColumnMenuConfigArchive }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureColumnMenuGate, selector: "gui-structure[columnMenu]", inputs: { columnMenu: "columnMenu" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureColumnMenuGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureColumnMenuGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[columnMenu]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureColumnMenuConfigArchive }]; }, propDecorators: { columnMenu: [{
+        }], ctorParameters: () => [{ type: StructureColumnMenuConfigArchive }], propDecorators: { columnMenu: [{
                 type: Input
             }] } });
 
@@ -17722,15 +17623,15 @@ class StructureSummariesGate extends Gate {
             this.summariesCommandInvoker.setConfig(this.summaries, this.structureId);
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSummariesGate, deps: [{ token: StructureId }, { token: SummariesPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureSummariesGate, selector: "gui-structure[summaries]", inputs: { summaries: "summaries" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSummariesGate, deps: [{ token: StructureId }, { token: SummariesPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureSummariesGate, selector: "gui-structure[summaries]", inputs: { summaries: "summaries" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSummariesGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSummariesGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[summaries]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SummariesPublisher }]; }, propDecorators: { summaries: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: SummariesPublisher }], propDecorators: { summaries: [{
                 type: Input
             }] } });
 
@@ -17751,15 +17652,15 @@ class StructureInfoPanelGate extends Gate {
             this.structureInfoPanelConfigService.set(this.infoPanel);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelGate, deps: [{ token: StructureInfoPanelConfigService }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureInfoPanelGate, selector: "gui-structure[infoPanel]", inputs: { infoPanel: "infoPanel" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelGate, deps: [{ token: StructureInfoPanelConfigService }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureInfoPanelGate, selector: "gui-structure[infoPanel]", inputs: { infoPanel: "infoPanel" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureInfoPanelGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureInfoPanelGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[infoPanel]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureInfoPanelConfigService }]; }, propDecorators: { infoPanel: [{
+        }], ctorParameters: () => [{ type: StructureInfoPanelConfigService }], propDecorators: { infoPanel: [{
                 type: Input
             }] } });
 
@@ -17777,15 +17678,15 @@ class StructureRowClassGate extends Gate {
             this.schemaPublisher.setRowClass(this.rowClass, this.schemaReadModelRootId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowClassGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowClassGate, selector: "gui-structure[rowClass]", inputs: { rowClass: "rowClass" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowClassGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowClassGate, selector: "gui-structure[rowClass]", inputs: { rowClass: "rowClass" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowClassGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowClassGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowClass]'
                 }]
-        }], ctorParameters: function () { return [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }]; }, propDecorators: { rowClass: [{
+        }], ctorParameters: () => [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }], propDecorators: { rowClass: [{
                 type: Input
             }] } });
 
@@ -17812,15 +17713,15 @@ class StructureRowColoringGate extends Gate {
     ngOnDestroy() {
         super.ngOnDestroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowColoringGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }, { token: SchemaEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowColoringGate, selector: "gui-structure[rowColoring]", inputs: { rowColoring: "rowColoring" }, outputs: { rowColoringChanged: "rowColoringChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowColoringGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }, { token: SchemaEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowColoringGate, selector: "gui-structure[rowColoring]", inputs: { rowColoring: "rowColoring" }, outputs: { rowColoringChanged: "rowColoringChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowColoringGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowColoringGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowColoring]'
                 }]
-        }], ctorParameters: function () { return [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }, { type: SchemaEventRepository }]; }, propDecorators: { rowColoring: [{
+        }], ctorParameters: () => [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }, { type: SchemaEventRepository }], propDecorators: { rowColoring: [{
                 type: Input
             }], rowColoringChanged: [{
                 type: Output
@@ -17840,15 +17741,15 @@ class StructureRowStyleGate extends Gate {
             this.schemaPublisher.setRowStyle(this.rowStyle, this.schemaReadModelRootId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowStyleGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureRowStyleGate, selector: "gui-structure[rowStyle]", inputs: { rowStyle: "rowStyle" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowStyleGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureRowStyleGate, selector: "gui-structure[rowStyle]", inputs: { rowStyle: "rowStyle" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureRowStyleGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureRowStyleGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[rowStyle]'
                 }]
-        }], ctorParameters: function () { return [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }]; }, propDecorators: { rowStyle: [{
+        }], ctorParameters: () => [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }], propDecorators: { rowStyle: [{
                 type: Input
             }] } });
 
@@ -17876,15 +17777,15 @@ class ThemeGridGate extends Gate {
             this.schemaCommandInvoker.setHorizontalGrid(this.horizontalGrid, this.schemaId);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ThemeGridGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }, { token: SchemaEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: ThemeGridGate, selector: "gui-structure[verticalGrid][horizontalGrid]", inputs: { verticalGrid: "verticalGrid", horizontalGrid: "horizontalGrid" }, outputs: { horizontalGridChanged: "horizontalGridChanged", verticalGridChanged: "verticalGridChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ThemeGridGate, deps: [{ token: SchemaReadModelRootId }, { token: SchemaPublisher }, { token: SchemaEventRepository }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ThemeGridGate, selector: "gui-structure[verticalGrid][horizontalGrid]", inputs: { verticalGrid: "verticalGrid", horizontalGrid: "horizontalGrid" }, outputs: { horizontalGridChanged: "horizontalGridChanged", verticalGridChanged: "verticalGridChanged" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ThemeGridGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ThemeGridGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[verticalGrid][horizontalGrid]'
                 }]
-        }], ctorParameters: function () { return [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }, { type: SchemaEventRepository }]; }, propDecorators: { verticalGrid: [{
+        }], ctorParameters: () => [{ type: SchemaReadModelRootId }, { type: SchemaPublisher }, { type: SchemaEventRepository }], propDecorators: { verticalGrid: [{
                 type: Input
             }], horizontalGrid: [{
                 type: Input
@@ -17910,15 +17811,15 @@ class SourceLoadingGate extends Gate {
     }
     ngOnInit() {
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceLoadingGate, deps: [{ token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: SourceLoadingGate, selector: "gui-structure[loading]", inputs: { loading: "loading" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceLoadingGate, deps: [{ token: StructureId }, { token: SourcePublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: SourceLoadingGate, selector: "gui-structure[loading]", inputs: { loading: "loading" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceLoadingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceLoadingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[loading]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SourcePublisher }]; }, propDecorators: { loading: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: SourcePublisher }], propDecorators: { loading: [{
                 type: Input
             }] } });
 
@@ -17941,15 +17842,15 @@ class VerticalFormationGate extends Gate {
             }
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: VerticalFormationGate, selector: "gui-structure[virtualScroll]", inputs: { virtualScroll: "virtualScroll" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: VerticalFormationGate, selector: "gui-structure[virtualScroll]", inputs: { virtualScroll: "virtualScroll" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: VerticalFormationGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: VerticalFormationGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[virtualScroll]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: StructurePublisher }]; }, propDecorators: { virtualScroll: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: StructurePublisher }], propDecorators: { virtualScroll: [{
                 type: Input
             }] } });
 
@@ -17976,15 +17877,15 @@ class StructureSortingGate extends Gate {
             this.sortingCommandInvoker.setSortingConfig(sorting, this.structureId);
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSortingGate, deps: [{ token: StructureId }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureSortingGate, selector: "gui-structure[sorting]", inputs: { sorting: "sorting" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSortingGate, deps: [{ token: StructureId }, { token: SortingPublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureSortingGate, selector: "gui-structure[sorting]", inputs: { sorting: "sorting" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSortingGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSortingGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[sorting]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: SortingPublisher }]; }, propDecorators: { sorting: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: SortingPublisher }], propDecorators: { sorting: [{
                 type: Input
             }] } });
 
@@ -18011,15 +17912,15 @@ class StructureFilterGate extends Gate {
             this.structureCommandInvoker.setFilterConfig(filtering, this.structureId);
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureFilterGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureFilterGate, selector: "gui-structure[filtering]", inputs: { filtering: "filtering" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureFilterGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureFilterGate, selector: "gui-structure[filtering]", inputs: { filtering: "filtering" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureFilterGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureFilterGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[filtering]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: StructurePublisher }]; }, propDecorators: { filtering: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: StructurePublisher }], propDecorators: { filtering: [{
                 type: Input
             }] } });
 
@@ -18046,15 +17947,15 @@ class StructureQuickFiltersGate extends Gate {
             this.structureCommandInvoker.setQuickFiltersConfig(quickFilters, this.structureId);
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureQuickFiltersGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.2.12", type: StructureQuickFiltersGate, selector: "gui-structure[quickFilters]", inputs: { quickFilters: "quickFilters" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureQuickFiltersGate, deps: [{ token: StructureId }, { token: StructurePublisher }], target: i0.ɵɵFactoryTarget.Directive });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: StructureQuickFiltersGate, selector: "gui-structure[quickFilters]", inputs: { quickFilters: "quickFilters" }, usesInheritance: true, usesOnChanges: true, ngImport: i0 });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureQuickFiltersGate, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureQuickFiltersGate, decorators: [{
             type: Directive,
             args: [{
                     selector: 'gui-structure[quickFilters]'
                 }]
-        }], ctorParameters: function () { return [{ type: StructureId }, { type: StructurePublisher }]; }, propDecorators: { quickFilters: [{
+        }], ctorParameters: () => [{ type: StructureId }, { type: StructurePublisher }], propDecorators: { quickFilters: [{
                 type: Input
             }] } });
 
@@ -19145,15 +19046,15 @@ class SourceFeatureModule extends FeatureModule {
     static forComponent() {
         return [];
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: SourceFeatureModule, imports: [CommonModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceFeatureModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: SourceFeatureModule, imports: [CommonModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceFeatureModule, providers: [
             { provide: SourcePublisher, useFactory: provideSourceCommandInvoker },
             { provide: SourceWarehouse, useFactory: provideSourceWarehouse },
             { provide: SourceEventService, useFactory: provideSourceEventRepository }
         ], imports: [CommonModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SourceFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SourceFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -19174,13 +19075,13 @@ function provideCssClassModifier() {
     return CoreContainer.resolve(CssClassModifier);
 }
 class CssClassModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CssClassModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: CssClassModule });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CssClassModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CssClassModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CssClassModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CssClassModule, providers: [
             { provide: CssClassModifier, useFactory: provideCssClassModifier }
         ] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CssClassModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CssClassModule, decorators: [{
             type: NgModule,
             args: [{
                     providers: [
@@ -19190,11 +19091,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }] });
 
 class StructureSharedModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSharedModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSharedModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSharedModule, imports: [CssClassModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: StructureSharedModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: StructureSharedModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -19204,13 +19105,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }] });
 
 class ResizeDetectorModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetectorModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetectorModule });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetectorModule, providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetectorModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetectorModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetectorModule, providers: [
             ResizeDetector
         ] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: ResizeDetectorModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResizeDetectorModule, decorators: [{
             type: NgModule,
             args: [{
                     providers: [
@@ -19736,17 +19637,17 @@ class SelectCustomComponent extends SmartComponent {
     getSelectorName() {
         return 'gui-select-custom';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectCustomComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureSelectCustomService }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SelectCustomComponent, selector: "gui-select-custom", providers: [
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectCustomComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: StructureSelectCustomService }, { token: StructureId }, { token: FormationPublisher }, { token: FormationWarehouse }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: SelectCustomComponent, selector: "gui-select-custom", providers: [
             StructureSelectCustomService
         ], usesInheritance: true, ngImport: i0, template: "<div #selectCustomContainer\n\t (click)=\"openConfigDialog()\"\n>\n\t<div gui-structure-menu-icon></div>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SelectCustomComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SelectCustomComponent, decorators: [{
             type: Component,
             args: [{ selector: 'gui-select-custom', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, providers: [
                         StructureSelectCustomService
                     ], template: "<div #selectCustomContainer\n\t (click)=\"openConfigDialog()\"\n>\n\t<div gui-structure-menu-icon></div>\n</div>\n" }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureSelectCustomService }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }]; } });
+        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }, { type: StructureSelectCustomService }, { type: StructureId }, { type: FormationPublisher }, { type: FormationWarehouse }] });
 
 initializeFormation();
 function provideFormationCommandInvoker() {
@@ -19759,8 +19660,8 @@ function provideFormationEventRepository() {
     return CoreContainer.resolve(FormationEventRepository);
 }
 class FormationFeatureModule extends FeatureModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: FormationFeatureModule, declarations: [SelectAllComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormationFeatureModule, deps: null, target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FormationFeatureModule, declarations: [SelectAllComponent,
             SelectCustomComponent,
             SelectCustomModalComponent], imports: [CommonModule,
             GuiTemplateModule,
@@ -19768,7 +19669,7 @@ class FormationFeatureModule extends FeatureModule {
             FabricTooltipModule], exports: [SelectAllComponent,
             SelectCustomComponent,
             SelectCustomModalComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FormationFeatureModule, providers: [
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormationFeatureModule, providers: [
             { provide: FormationPublisher, useFactory: provideFormationCommandInvoker },
             { provide: FormationWarehouse, useFactory: provideFormationWarehouse },
             { provide: FormationEventRepository, useFactory: provideFormationEventRepository }
@@ -19777,7 +19678,7 @@ class FormationFeatureModule extends FeatureModule {
             FabricCheckboxModule,
             FabricTooltipModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: FormationFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormationFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -21297,8 +21198,8 @@ class GridViewFeatureModule {
             window[GridViewFeatureModule.HERMES_API].loggers = false;
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GridViewFeatureModule, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: GridViewFeatureModule, declarations: [StructureComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GridViewFeatureModule, deps: [{ token: PLATFORM_ID }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: GridViewFeatureModule, declarations: [StructureComponent,
             StructureHeaderComponent,
             StructureHeaderColumnsComponent,
             StructureHeaderGroupsComponent,
@@ -21344,9 +21245,9 @@ class GridViewFeatureModule {
             StructureContentComponent,
             StructureRowComponent,
             StructureContainerComponent, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, PagingFeatureModule, StructureColumnHeaderGate, StructurePagingGate, StructureSearchingGate, StructureSelectionGate, StructureL10nGate, StructurePanelGate, StructureRowDetailGate, StructureColumnMenuGate, StructureSummariesGate, StructureInfoPanelGate, StructureRowClassGate, StructureRowStyleGate, StructureRowColoringGate, ThemeGridGate, StructureSortingGate, SourceLoadingGate, StructureFilterGate, StructureQuickFiltersGate, VerticalFormationGate] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GridViewFeatureModule, imports: [imports$1, FabricModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, PagingFeatureModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GridViewFeatureModule, imports: [imports$1, FabricModule, i1.FabricBadgeModule, i1.FabricButtonModule, i1.FabricButtonGroupModule, i1.FabricCheckboxModule, i1.FabricChipModule, i1.FabricDrawerModule, i1.FabricDropdownModule, i1.FabricRadioButtonModule, i1.FabricRadioGroupModule, i1.FabricProgressBarModule, i1.FabricProgressSpinnerModule, i1.FabricSelectModule, i1.FabricSpinnerModule, i1.FabricTabModule, i1.FabricTooltipModule, i1.FabricToggleButtonModule, i1.FabricInputModule, i1.FabricDialogModule, i1.FabricInlineDialogModule, i1.FabricTabModule, PagingFeatureModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GridViewFeatureModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GridViewFeatureModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
@@ -21355,10 +21256,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     declarations: declarations$1,
                     exports: exportDeclarations$1
                 }]
-        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
+        }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [PLATFORM_ID]
-                }] }]; } });
+                }] }] });
 
 const imports = [
     CommonModule,
@@ -21394,16 +21295,16 @@ class GuiListModule {
             providers: []
         };
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: GuiListModule, declarations: [GuiListComponent,
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: GuiListModule, declarations: [GuiListComponent,
             GuiListItemComponent,
             GuiListCardComponent], imports: [CommonModule,
             ListViewFeatureModule, GridViewFeatureModule], exports: [GuiListComponent,
             GuiListItemComponent,
             GuiListCardComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListModule, imports: [imports] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListModule, imports: [imports] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: GuiListModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: GuiListModule, decorators: [{
             type: NgModule,
             args: [{
                     imports,

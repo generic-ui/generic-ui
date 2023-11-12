@@ -6,20 +6,18 @@ import { CompositionId } from '../../../../../core/composition/src/api/global/co
 import { CompositionTemplateWarehouse } from '../../../../../feature/composition/src/column/composition.template-warehouse';
 import { CompositionTemplateModel } from '../../../../../feature/composition/src/column/composition.template.model';
 import { HermesObservable } from '@generic-ui/hermes';
-import { GuiState } from '../../../../../feature/gui-angular/state/gui.state';
 import * as i0 from "@angular/core";
 export interface StructureColumnManagerComponentState {
     columns: ReadonlyArray<CompositionTemplateModel>;
     enabledColumnsCount: number;
 }
 export declare class StructureColumnManagerComponent extends SmartComponent {
-    private changeDetectorRef;
-    private state;
-    private compositionId;
-    private compositionCommandInvoker;
-    private compositionTemplateWarehouse;
-    readonly state$: HermesObservable<StructureColumnManagerComponentState>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, state: GuiState<StructureColumnManagerComponentState>, compositionId: CompositionId, compositionCommandInvoker: CompositionPublisher, compositionTemplateWarehouse: CompositionTemplateWarehouse);
+    private readonly compositionId;
+    private readonly compositionCommandInvoker;
+    private readonly compositionTemplateWarehouse;
+    private readonly state;
+    readonly state$: HermesObservable<any>;
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, compositionId: CompositionId, compositionCommandInvoker: CompositionPublisher, compositionTemplateWarehouse: CompositionTemplateWarehouse);
     toggleColumn(column: CellTemplateWithContext): void;
     protected getSelectorName(): string;
     private selectColumns;

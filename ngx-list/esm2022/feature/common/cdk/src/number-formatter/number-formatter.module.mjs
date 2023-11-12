@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { NumberFormatterPipe } from './number-formatter.pipe';
 import * as i0 from "@angular/core";
 export class NumberFormatterModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, declarations: [NumberFormatterPipe], exports: [NumberFormatterPipe] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, declarations: [NumberFormatterPipe], exports: [NumberFormatterPipe] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: NumberFormatterModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: NumberFormatterModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: [
@@ -17,4 +17,4 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     ]
                 }]
         }] });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibnVtYmVyLWZvcm1hdHRlci5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2ZlYXR1cmUvY29tbW9uL2Nkay9zcmMvbnVtYmVyLWZvcm1hdHRlci9udW1iZXItZm9ybWF0dGVyLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRXpDLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHlCQUF5QixDQUFDOztBQVU5RCxNQUFNLE9BQU8scUJBQXFCO3dHQUFyQixxQkFBcUI7eUdBQXJCLHFCQUFxQixpQkFOaEMsbUJBQW1CLGFBR25CLG1CQUFtQjt5R0FHUixxQkFBcUI7OzRGQUFyQixxQkFBcUI7a0JBUmpDLFFBQVE7bUJBQUM7b0JBQ1QsWUFBWSxFQUFFO3dCQUNiLG1CQUFtQjtxQkFDbkI7b0JBQ0QsT0FBTyxFQUFFO3dCQUNSLG1CQUFtQjtxQkFDbkI7aUJBQ0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBOdW1iZXJGb3JtYXR0ZXJQaXBlIH0gZnJvbSAnLi9udW1iZXItZm9ybWF0dGVyLnBpcGUnO1xuXG5ATmdNb2R1bGUoe1xuXHRkZWNsYXJhdGlvbnM6IFtcblx0XHROdW1iZXJGb3JtYXR0ZXJQaXBlXG5cdF0sXG5cdGV4cG9ydHM6IFtcblx0XHROdW1iZXJGb3JtYXR0ZXJQaXBlXG5cdF1cbn0pXG5leHBvcnQgY2xhc3MgTnVtYmVyRm9ybWF0dGVyTW9kdWxlIHtcblxufVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibnVtYmVyLWZvcm1hdHRlci5tb2R1bGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9idWlsZC1jbGkvcHJvamVjdHMvbmd4LWxpc3Qvc3JjL2ZlYXR1cmUvY29tbW9uL2Nkay9zcmMvbnVtYmVyLWZvcm1hdHRlci9udW1iZXItZm9ybWF0dGVyLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRXpDLE9BQU8sRUFBRSxtQkFBbUIsRUFBRSxNQUFNLHlCQUF5QixDQUFDOztBQVU5RCxNQUFNLE9BQU8scUJBQXFCO3VHQUFyQixxQkFBcUI7d0dBQXJCLHFCQUFxQixpQkFOaEMsbUJBQW1CLGFBR25CLG1CQUFtQjt3R0FHUixxQkFBcUI7OzJGQUFyQixxQkFBcUI7a0JBUmpDLFFBQVE7bUJBQUM7b0JBQ1QsWUFBWSxFQUFFO3dCQUNiLG1CQUFtQjtxQkFDbkI7b0JBQ0QsT0FBTyxFQUFFO3dCQUNSLG1CQUFtQjtxQkFDbkI7aUJBQ0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuXG5pbXBvcnQgeyBOdW1iZXJGb3JtYXR0ZXJQaXBlIH0gZnJvbSAnLi9udW1iZXItZm9ybWF0dGVyLnBpcGUnO1xuXG5ATmdNb2R1bGUoe1xuXHRkZWNsYXJhdGlvbnM6IFtcblx0XHROdW1iZXJGb3JtYXR0ZXJQaXBlXG5cdF0sXG5cdGV4cG9ydHM6IFtcblx0XHROdW1iZXJGb3JtYXR0ZXJQaXBlXG5cdF1cbn0pXG5leHBvcnQgY2xhc3MgTnVtYmVyRm9ybWF0dGVyTW9kdWxlIHtcblxufVxuIl19

@@ -6,10 +6,10 @@ export declare class GuiClassDirective implements OnChanges, OnDestroy {
     private readonly subscriber;
     private readonly elementRef;
     guiClass: HermesObservable<Array<string>>;
-    private readonly manager;
+    private readonly classManager;
     constructor(subscriber: GuiSubscriber, elementRef: ElementRef);
     ngOnChanges(changes: SimpleChanges): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GuiClassDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiClassDirective, "[guiClass]", never, { "guiClass": { "alias": "guiClass"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<GuiClassDirective, "[guiClass]", never, { "guiClass": { "alias": "guiClass"; "required": true; }; }, {}, never, never, false, never>;
 }

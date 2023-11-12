@@ -1,23 +1,18 @@
 import { ChangeDetectorRef, ElementRef } from '@angular/core';
 import { SmartComponent } from '../../../../common/component/src/smart-component';
-import { FieldWarehouse } from '../../../../../core/structure/field/src/api/field.warehouse';
-import { StructureId } from '../../../../../core/structure/structure-core/src/api/global/structure.id';
 import { FieldModel } from '../../../../../core/structure/field/src/api/model/field.model';
-import { FilterWarehouse } from '../../../../../core/structure/filter/src/api/filter.warehouse';
 import { FilterTypeModel } from '../../../../../core/structure/filter/src/api/type/filter-type.model';
 import { FilterTypeId } from '../../../../../core/structure/filter/src/domain/type/filter-type.id';
 import { FilterPublisher } from '../../../../../core/structure/filter/src/api/filter.publisher';
 import { ActiveFilterModel } from '../../../../../core/structure/filter/src/api/active/active-filter.model';
-import { CompositionId } from '../../../../../core/composition/src/api/global/composition.id';
 import { FilterId } from '../../../../../core/structure/filter/src/api/id/filter.id';
 import { CompositionTemplateModel } from '../../../../composition/src/column/composition.template.model';
 import * as i0 from "@angular/core";
 export declare class FilterMenuComponent extends SmartComponent {
+    private readonly filterCommandInvoker;
     private readonly structureId;
-    private readonly compositionId;
     private readonly fieldWarehouse;
     private readonly filterWarehouse;
-    private readonly filterCommandInvoker;
     selectedColumn: CompositionTemplateModel;
     selectedField: FieldModel;
     filterTypes: Array<FilterTypeModel>;
@@ -25,7 +20,7 @@ export declare class FilterMenuComponent extends SmartComponent {
     selectedValue: string;
     readonly fields$: import("@generic-ui/hermes").HermesObservable<readonly FieldModel[]>;
     readonly activeFilters$: import("@generic-ui/hermes").HermesObservable<readonly ActiveFilterModel[]>;
-    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, structureId: StructureId, compositionId: CompositionId, fieldWarehouse: FieldWarehouse, filterWarehouse: FilterWarehouse, filterCommandInvoker: FilterPublisher);
+    constructor(changeDetectorRef: ChangeDetectorRef, elementRef: ElementRef, filterCommandInvoker: FilterPublisher);
     onFieldSelect(field: FieldModel): void;
     onFilterTypeSelect(filterTypeId: FilterTypeId): void;
     removeAllFilters(): void;

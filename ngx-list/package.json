@@ -1,15 +1,15 @@
 {
   "name": "@generic-ui/ngx-list",
   "description": "Generic UI - Angular List library",
-  "version": "0.20.0",
+  "version": "0.21.0",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/common": "^16.0.0",
-    "@angular/core": "^16.0.0",
-    "@angular/forms": "^16.0.0",
-    "@angular/platform-browser": "^16.0.0",
-    "@generic-ui/fabric": "0.20.0",
-    "@generic-ui/hermes": "0.20.0",
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@angular/platform-browser": "^17.0.0",
+    "@generic-ui/fabric": "0.21.0",
+    "@generic-ui/hermes": "0.21.0",
     "rxjs": "~7.8.0"
   },
   "keywords": [

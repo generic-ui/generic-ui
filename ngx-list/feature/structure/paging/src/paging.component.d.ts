@@ -8,7 +8,6 @@ import { PagingPosition } from './paging-position';
 import { CssClassModifier } from '../../common/src/css-class/css-class.modifier';
 import { NgChanges } from '../../../common/component/src/ng-changes';
 import { StructureId } from '../../../../core/structure/structure-core/src/api/global/structure.id';
-import { GuiState } from '../../../gui-angular/state/gui.state';
 import { HermesObservable } from '@generic-ui/hermes';
 import { GuiComponent } from '../../../common/component';
 import * as i0 from "@angular/core";
@@ -20,7 +19,6 @@ export interface PagingComponentState {
 }
 export declare class PagingComponent extends GuiComponent {
     private readonly elRef;
-    private readonly state;
     private readonly cssClassModifier;
     private readonly structureId;
     private readonly pagingWarehouse;
@@ -29,8 +27,9 @@ export declare class PagingComponent extends GuiComponent {
     private readonly pagingDisplayModeArchive;
     position: PagingPosition;
     minimal?: boolean;
-    readonly state$: HermesObservable<PagingComponentState>;
-    constructor(elRef: ElementRef, state: GuiState<PagingComponentState>, cssClassModifier: CssClassModifier, structureId: StructureId, pagingWarehouse: PagingWarehouse, pagingCommandInvoker: PagingPublisher, sourceWarehouse: SourceWarehouse, pagingDisplayModeArchive: PagingDisplayModeArchive);
+    private readonly state;
+    readonly state$: HermesObservable<any>;
+    constructor(elRef: ElementRef, cssClassModifier: CssClassModifier, structureId: StructureId, pagingWarehouse: PagingWarehouse, pagingCommandInvoker: PagingPublisher, sourceWarehouse: SourceWarehouse, pagingDisplayModeArchive: PagingDisplayModeArchive);
     ngOnChanges(changes: NgChanges<PagingComponent>): void;
     changePageSize(pageSize: number): void;
     nextPage(sourceSize: number): void;

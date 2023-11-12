@@ -15,7 +15,6 @@ import { CellEditorManager } from '../../../../core/structure/structure-core/src
 import { SchemaWarehouse } from '../../../../core/schema/src/api/schema.warehouse';
 import { SchemaReadModelRootId } from '../../../../core/schema/src/api/global/schema.read-model-root-id';
 import { CompositionAccessorModel } from '../../../../feature/composition/src/column/composition.accessor.model';
-import { GuiState } from '../../../../feature/gui-angular/state/gui.state';
 import * as i0 from "@angular/core";
 export interface StructureContentComponentState {
     editMode: boolean;
@@ -29,9 +28,6 @@ export interface StructureContentComponentState {
     searchPhrase: string;
 }
 export declare class StructureContentComponent extends SmartComponent {
-    private readonly elementRef;
-    private readonly changeDetectorRef;
-    private readonly state;
     private readonly formationPublisher;
     private readonly structureEditModeArchive;
     private readonly formationWarehouse;
@@ -43,8 +39,9 @@ export declare class StructureContentComponent extends SmartComponent {
     private readonly schemaWarehouse;
     source: Array<Item>;
     columns: Array<CompositionAccessorModel>;
-    readonly state$: HermesObservable<StructureContentComponentState>;
-    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, state: GuiState<StructureContentComponentState>, formationPublisher: FormationPublisher, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, verticalFormationWarehouse: VerticalFormationWarehouse, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, searchWarehouse: SearchWarehouse, schemaWarehouse: SchemaWarehouse);
+    private readonly state;
+    readonly state$: HermesObservable<any>;
+    constructor(elementRef: ElementRef, changeDetectorRef: ChangeDetectorRef, formationPublisher: FormationPublisher, structureEditModeArchive: StructureEditModeArchive, formationWarehouse: FormationWarehouse, structureWarehouse: StructureWarehouse, verticalFormationWarehouse: VerticalFormationWarehouse, structureId: StructureId, schemaReadModelRootId: SchemaReadModelRootId, searchWarehouse: SearchWarehouse, schemaWarehouse: SchemaWarehouse);
     trackByFn(): number;
     translateY(index: number, rowHeight: number): string;
     toggleSelectedRow(entity: Item, selectionEnabled: boolean, checkboxSelection: boolean, radioSelection: boolean): void;
